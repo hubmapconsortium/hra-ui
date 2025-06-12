@@ -146,8 +146,11 @@ export class NodeDistVisComponent {
    */
   readonly selection = input<string[] | string>();
 
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   readonly nodesChange = output<AnyData>({ alias: 'nodes' });
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   readonly edgesChange = output<AnyData>({ alias: 'edges' });
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   readonly colorMapChange = output<AnyData>({ alias: 'colorMap' });
 
   /** Emits when the user clicks on a node */
@@ -300,9 +303,8 @@ export class NodeDistVisComponent {
       return 'grabbing';
     } else if (isHovering) {
       return 'pointer';
-    } else {
-      return 'grab';
     }
+    return 'grab';
   }
 
   /**
@@ -349,10 +351,10 @@ export class NodeDistVisComponent {
     return { index, clientX: x, clientY: y, object: view.materializeAt(index) };
   }
 
-  private bindDataOutput<V extends AnyDataView>(view: Signal<V>, output: OutputEmitterRef<AnyData>): void {
+  private bindDataOutput<V extends AnyDataView>(view: Signal<V>, outputRef: OutputEmitterRef<AnyData>): void {
     effect(() => {
       if (view().length !== 0) {
-        output.emit(view().data);
+        outputRef.emit(view().data);
       }
     });
   }

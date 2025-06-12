@@ -11,7 +11,6 @@ import { Menu } from '../types/menus.schema';
  */
 @Component({
   selector: 'hra-desktop-menu',
-  standalone: true,
   imports: [CommonModule, ScrollingModule, HubmapMenuContentComponent, MenuContentComponent],
   templateUrl: './desktop-menu.component.html',
   styleUrl: './desktop-menu.component.scss',
@@ -20,9 +19,11 @@ import { Menu } from '../types/menus.schema';
 export class DesktopMenuComponent {
   /** Menu to display */
   readonly menu = input.required<Menu | HubmapMenuGroup[]>();
+  /** Base url - Menu urls starting with this will be converted into router links */
+  readonly baseUrl = input.required<string | undefined>();
 
   /** Menu object along with whether it is a hubmap or regular menu type */
-  protected typedMenu = computed(() => {
+  protected readonly typedMenu = computed(() => {
     const menu = this.menu();
     return Array.isArray(menu) ? { type: 'hubmap' as const, menu } : { type: 'menu' as const, menu };
   });

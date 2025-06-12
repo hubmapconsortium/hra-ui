@@ -1,0 +1,103 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
+:host {
+  display: flex;
+  max-width: 106.25rem;
+  width: 100%;
+  gap: 5rem;
+
+  .app-image {
+    max-width: 56.25rem;
+    max-height: 34.7106rem;
+    width: 100%;
+    box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.24);
+  }
+
+  .ui-content-main {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+
+    .label {
+      @include utils.use-font(headline, large);
+      color: vars.$on-background;
+    }
+  }
+
+  .ui-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .ui-content-description {
+    color: vars.$primary;
+    @include utils.use-font(body, xl);
+    vertical-align: middle;
+    margin: 1.5rem 0 2rem 0rem;
+  }
+
+  .ui-section-buttons {
+    display: flex;
+    gap: 2rem;
+  }
+
+  @media (min-width: 320px) and (max-width: 639px) {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 24.875rem;
+    width: 100%;
+
+    .app-image {
+      max-width: 24.875rem;
+      min-width: 0rem;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 999px) {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 56.25rem;
+    width: 100%;
+
+    .app-image {
+      max-width: 56.25rem;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1920px) {
+    max-width: 75rem;
+    width: 100%;
+
+    .app-image {
+      max-width: 35rem;
+      width: 100%;
+    }
+
+    .ui-content-main {
+      max-width: 43.75rem;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1150px) {
+    max-width: 63.75rem;
+    width: 100%;
+    gap: 4rem;
+    .app-image {
+      max-width: 28.75rem;
+      width: 100%;
+    }
+    .ui-content-main {
+      max-width: 29.375rem;
+    }
+  }
+}

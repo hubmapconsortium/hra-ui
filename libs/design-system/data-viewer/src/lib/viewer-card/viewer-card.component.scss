@@ -1,0 +1,72 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
+$padding: 0.5rem;
+$menu-height: 2.5rem;
+
+:host {
+  display: block;
+  border-radius: 0.5rem;
+  box-shadow: 1px 3px 6px 0px rgb(from vars.$shadow r g b / 24%);
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  aspect-ratio: 100 / 58;
+  align-content: center;
+
+  .viewer-image,
+  .model-viewer {
+    height: calc(100% - 2 * $padding - $menu-height);
+    width: 100%;
+    object-fit: contain;
+    padding: $padding;
+  }
+
+  .viewer-image {
+    cursor: pointer;
+  }
+
+  .object-menu {
+    display: flex;
+    align-items: center;
+    padding: 0 $padding;
+    height: $menu-height;
+
+    .tagline {
+      @include utils.use-font(label, large);
+      flex-grow: 1;
+      margin: 0.5rem 0.75rem;
+    }
+  }
+}
+
+::ng-deep .viewer-card-modal {
+  @include utils.use-font(title, large);
+  --mdc-dialog-container-shape: 0;
+
+  .dialog-container {
+    display: flex;
+    height: 100%;
+    padding: 1.5rem;
+    flex-direction: column;
+  }
+
+  .dialog-header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .img-container {
+    display: flex;
+    height: calc(100% - 2.5rem);
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dialog-image {
+    height: 100%;
+    width: 100%;
+  }
+}

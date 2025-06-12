@@ -12,7 +12,6 @@ export interface GradientPoint {
 /** Gradient legend for biomarkers */
 @Component({
   selector: 'hra-gradient-legend',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './gradient-legend.component.html',
   styleUrls: ['./gradient-legend.component.scss'],

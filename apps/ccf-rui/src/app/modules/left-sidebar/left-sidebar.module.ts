@@ -7,7 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { OpacitySliderModule } from 'ccf-shared';
 import { VisibilityMenuComponent } from '../../shared/components/visibility-menu/visibility-menu.component';
 import { LeftSidebarComponent } from './left-sidebar.component';
@@ -26,7 +26,7 @@ import { LeftSidebarComponent } from './left-sidebar.component';
     MatMenuModule,
     IconButtonSizeDirective,
     ButtonsModule,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
   ],
   declarations: [LeftSidebarComponent],
   exports: [LeftSidebarComponent],

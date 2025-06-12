@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'components-atoms',
   preset: '../../../jest.preset.js',

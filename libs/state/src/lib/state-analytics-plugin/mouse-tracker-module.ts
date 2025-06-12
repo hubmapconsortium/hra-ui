@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { fromEvent, Subscription } from 'rxjs';
 import { map, throttleTime } from 'rxjs/operators';
@@ -40,11 +40,10 @@ export function trackMouseClicks(el: HTMLElement, ga: GoogleAnalyticsService): S
 
 @NgModule()
 export class MouseTrackerModule {
-  constructor(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-    @Inject(DOCUMENT) document: any,
-    ga: GoogleAnalyticsService,
-  ) {
+  constructor() {
+    const document = inject(DOCUMENT);
+    const ga = inject(GoogleAnalyticsService);
+
     if (document) {
       trackMousePosition((document as Document).body, ga);
       trackMouseClicks((document as Document).body, ga);

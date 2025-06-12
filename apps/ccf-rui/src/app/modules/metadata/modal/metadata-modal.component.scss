@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
 :host {
   display: block;
   position: relative;
@@ -5,7 +8,12 @@
   height: 100vh;
 
   --scrollbar-offset: 2;
-  --mat-dialog-content-padding: 3rem 1.5rem;
+
+  @include mat.dialog-overrides(
+    (
+      content-padding: 3rem 1.5rem,
+    )
+  );
 
   .close {
     position: absolute;
@@ -37,8 +45,8 @@
       margin-bottom: 2rem;
 
       .title {
-        font: var(--sys-headline-large);
-        letter-spacing: var(--sys-headline-large-tracking);
+        font: vars.$headline-large;
+        letter-spacing: vars.$headline-large-tracking;
       }
     }
 
@@ -66,8 +74,12 @@
 
 ::ng-deep {
   .metadata-modal {
-    --mdc-dialog-container-shape: 0;
-    --mdc-dialog-container-color: var(--sys-surface-container-low);
+    @include mat.dialog-overrides(
+      (
+        container-color: #{vars.$surface-container-low},
+        container-shape: 0,
+      )
+    );
 
     .mat-mdc-dialog-surface {
       overflow-y: hidden !important;
@@ -75,6 +87,10 @@
   }
 
   .metadata-confirmation-modal {
-    --mdc-dialog-container-color: var(--sys-surface-container-low);
+    @include mat.dialog-overrides(
+      (
+        container-color: #{vars.$surface-container-low},
+      )
+    );
   }
 }

@@ -1,0 +1,19 @@
+<span class="section-title">Explore the Human Reference Atlas</span>
+
+<div class="cards">
+  @for (card of cardInfo(); track card) {
+    @if (card.url; as url) {
+      <hra-action-card variant="outlined-with-icons" [tagline]="card.tagline" [icons]="[card.icon]">
+        <hra-action-card-action>
+          <a hraHyperlink [attr.href]="card.url" target="_blank">{{ card.action }}</a>
+        </hra-action-card-action>
+      </hra-action-card>
+    } @else {
+      <hra-action-card variant="outlined-with-icons" [tagline]="card.tagline" [icons]="[card.icon]">
+        <hra-action-card-action>
+          <a hraHyperlink [routerLink]="card.route">{{ card.action }}</a>
+        </hra-action-card-action>
+      </hra-action-card>
+    }
+  }
+</div>

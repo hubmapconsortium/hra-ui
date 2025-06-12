@@ -1,0 +1,28 @@
+@if (url().isAbsolute) {
+  <a mat-list-item [href]="url().value">
+    <ng-container *ngTemplateOutlet="content" />
+  </a>
+} @else {
+  <a
+    mat-list-item
+    [routerLink]="url().value"
+    [activated]="rla.isActive"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="routerLinkActiveOptions"
+    #rla="routerLinkActive"
+  >
+    <ng-container *ngTemplateOutlet="content" />
+  </a>
+}
+
+<ng-template #content>
+  <div class="nav-content">
+    @if (navigationItem().icon; as icon) {
+      <mat-icon matListItemIcon>{{ icon }}</mat-icon>
+    }
+
+    <span matListItemTitle>
+      {{ navigationItem().label }}
+    </span>
+  </div>
+</ng-template>

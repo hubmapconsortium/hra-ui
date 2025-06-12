@@ -10,6 +10,7 @@
     "app:ccf-rui",
     "app:cde-ui",
     "app:dashboard-ui",
+    "app:docs.humanatlas.io",
     "app:ftu-ui",
     "app:humanatlas.io",
     "app:medical-illustration",
@@ -31,5 +32,6 @@
     "lib:utils",
     "lib:webcomponents",
     "lib:state"
-  ]
+  ],
+  "eslint.validate": ["yaml", "json", "javascript", "typescript"]
 }

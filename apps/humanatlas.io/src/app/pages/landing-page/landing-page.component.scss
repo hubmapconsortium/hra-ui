@@ -1,0 +1,82 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .intro,
+  hra-section-cards {
+    align-self: center;
+  }
+
+  .intro {
+    margin: 5rem 1rem;
+    max-width: 80rem;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 5rem 2.5rem;
+    max-width: 80rem;
+
+    .header {
+      @include utils.use-font(display, large);
+      color: vars.$secondary;
+    }
+
+    .subheader {
+      @include utils.use-font(title, large);
+      color: vars.$primary;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      @include utils.use-font(body, xl);
+      color: vars.$primary;
+    }
+  }
+
+  .carousel-container {
+    margin: 0 1rem 5rem 1rem;
+
+    hra-carousel {
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+  }
+
+  .count-cards {
+    display: flex;
+    padding: 2rem 2.5rem;
+    background: vars.$surface-dim;
+    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+  }
+
+  hra-section-cards {
+    margin: 6rem 1rem;
+    max-width: 87.5rem;
+    align-self: center;
+  }
+
+  @media (min-width: 640px) {
+    hra-page-section {
+      margin: 5rem 2.5rem;
+    }
+
+    .carousel-container {
+      margin: 0 2.5rem 5rem 2.5rem;
+    }
+
+    hra-count-info {
+      padding: 2rem 2.5rem;
+    }
+
+    hra-section-cards {
+      margin: 7.5rem 2.5rem;
+      align-self: center;
+    }
+  }
+}

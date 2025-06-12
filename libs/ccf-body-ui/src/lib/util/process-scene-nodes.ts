@@ -5,14 +5,28 @@ import { SpatialSceneNode } from '../shared/spatial-scene-node';
 import { loadGLTF, registerGLTFLoaders } from './load-gltf';
 import { traverseScene } from './scene-traversal';
 
+/**
+ * This interface extends the SpatialSceneNode interface to include additional properties for processed nodes.
+ */
 export interface ProcessedNode extends SpatialSceneNode {
+  /** The bounding box of the node, represented by an AABB object. */
   bbox: AABB;
+  /** The JSON-LD representation of the node. */
   jsonld: unknown;
+  /** The original node object. */
   node: unknown;
+  /** The size of the node, represented by a Vec3 object. */
   size: Vec3;
+  /** The center of the node, represented by a Vec3 object. */
   center: Vec3;
 }
 
+/**
+ * This recursive function collects the names of all child nodes in a scene.
+ * @param scene The scene object containing nodes or children.
+ * @param [names] An array to collect the names of the child nodes. Defaults to an empty array.
+ * @returns An array of strings representing the names of the child nodes.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function childNames(scene: { nodes: any; children: any }, names: string[] = []): string[] {
   for (const child of scene.nodes || scene.children || []) {
@@ -22,6 +36,14 @@ function childNames(scene: { nodes: any; children: any }, names: string[] = []):
   return names;
 }
 
+/**
+ * This function processes scene nodes from a GLTF file, generating processed nodes with bounding boxes, sizes, and centers.
+ * @param gltfUrl The URL of the GLTF file to be loaded.
+ * @param [worldMatrix] The world transformation matrix. Defaults identity matrix.
+ * @param [scenegraphNode] The specific scenegraph node to be processed.
+ * @param [gltfCache] An optional cache for storing GLTF file promises.
+ * @returns scene nodes A promise that resolves to an object where the keys are node IDs and the values are ProcessedNode objects.
+ */
 export async function processSceneNodes(
   gltfUrl: string,
   worldMatrix?: Matrix4,
@@ -101,4 +123,3 @@ export async function processSceneNodes(
   }
   return nodes;
 }
-/* eslint-enable */

@@ -10,7 +10,6 @@ import { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLib
  */
 @Component({
   selector: 'ftu-medical-illustration-behavior',
-  standalone: true,
   imports: [CommonModule, InteractiveSvgComponent, LabelBoxComponent],
   templateUrl: './medical-illustration-behavior.component.html',
   styleUrls: ['./medical-illustration-behavior.component.scss'],

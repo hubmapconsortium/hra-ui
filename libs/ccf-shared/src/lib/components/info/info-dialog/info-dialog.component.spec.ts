@@ -16,27 +16,22 @@ describe('InfoDialogComponent', () => {
   beforeEach(() => {
     shallow = new Shallow(InfoDialogComponent, InfoDialogModule)
       .provide({ provide: MatDialogRef, useValue: {} })
-      .provide({ provide: MAT_DIALOG_DATA, useValue: [] });
+      .provide({ provide: MAT_DIALOG_DATA, useValue: [] })
+      .mock(MatDialogRef, { close: jest.fn() });
   });
 
   it('should call the close() method when the close button is pressed', async () => {
-    const { find, instance } = await shallow.mock(MAT_DIALOG_DATA, []).render();
-    const spy = spyOn(instance, 'close');
+    const { find, instance } = await shallow.render();
+    const spy = jest.spyOn(instance, 'close');
     const closeButton = find('.close-icon');
 
     closeButton.triggerEventHandler('click', {});
+    await wait(250);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should close the dialog when the close() method is called', async () => {
-    const { instance, inject } = await shallow
-      .mock(MatDialogRef, {
-        close(): void {
-          /* empty */
-        },
-      })
-      .mock(MAT_DIALOG_DATA, [])
-      .render();
+    const { instance, inject } = await shallow.render();
     const ref = inject(MatDialogRef);
     instance.close();
     await wait(250);

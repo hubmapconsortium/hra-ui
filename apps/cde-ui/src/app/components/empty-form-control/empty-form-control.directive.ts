@@ -8,7 +8,6 @@ import { NgControl } from '@angular/forms';
 @Directive({
   selector: '[cdeMarkEmptyFormControl]',
   standalone: true,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class.empty]': 'isEmpty()',
   },

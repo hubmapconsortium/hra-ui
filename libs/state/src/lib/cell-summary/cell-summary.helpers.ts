@@ -30,8 +30,8 @@ export function combineSummariesByBiomarkerType(summaries: CellSummary[], types:
 
   const results: CellSummary[] = [];
   for (const type of types) {
-    const summaries = summariesByBiomarkerType[type] ?? [];
-    const items = summaries.reduce<CellSummary['summary']>((acc, { summary }) => acc.concat(summary), []);
+    const summariesByType = summariesByBiomarkerType[type] ?? [];
+    const items = summariesByType.reduce<CellSummary['summary']>((acc, { summary }) => acc.concat(summary), []);
     results.push({
       cell_source: `Aggregated by ${type}` as Iri,
       biomarker_type: type,

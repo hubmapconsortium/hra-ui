@@ -1,0 +1,6 @@
+@use 'vars';
+
+:host {
+  display: block;
+  background-color: vars.$on-secondary;
+}

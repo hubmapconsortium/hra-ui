@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
   templateUrl: './spatial-search-keyboard-ui.component.html',
   styleUrls: ['./spatial-search-keyboard-ui.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SpatialSearchKeyboardUIComponent {
   /** HTML class */

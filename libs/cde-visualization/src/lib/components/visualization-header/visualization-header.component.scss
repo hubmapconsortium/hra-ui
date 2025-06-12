@@ -14,8 +14,6 @@ $blue-theme: mat.m2-define-light-theme(
 
 :host {
   @include mat.button-color($blue-theme);
-  --mat-divider-width: 2px;
-
   display: flex;
   align-items: center;
   background-color: #fcfcfc;
@@ -23,6 +21,11 @@ $blue-theme: mat.m2-define-light-theme(
   $button-text-color: map.get(map.get(palettes.$palettes, 'blue'), 900);
   height: 100%;
 
+  @include mat.divider-overrides(
+    (
+      width: 2px,
+    )
+  );
   span.mat-caption {
     font-size: 1rem;
   }
@@ -37,10 +40,15 @@ $blue-theme: mat.m2-define-light-theme(
 
   button,
   .mdc-button {
-    --mdc-filled-button-label-text-color: #{button-text-color};
-    --mdc-filled-button-container-height: 2rem;
     padding: 4px 8px;
     font-weight: 500;
+
+    @include mat.button-overrides(
+      (
+        filled-label-text-color: $button-text-color,
+        filled-container-height: 2rem,
+      )
+    );
 
     .mat-icon {
       margin-right: 0.125rem;

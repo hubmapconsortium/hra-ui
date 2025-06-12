@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use '../../../../../libs/design-system/styles/vars';
+
 :host {
   display: flex;
   height: 2.5rem;
@@ -9,7 +12,7 @@
   .hra-logo,
   .app-logo {
     display: inline-flex;
-    color: var(--sys-secondary);
+    color: vars.$secondary;
   }
 
   .hra-logo {
@@ -26,23 +29,27 @@
     flex-direction: column;
     justify-content: center;
     .app-label {
-      font: var(--sys-label-large);
-      letter-spacing: var(--sys-label-large-tracking);
+      font: vars.$label-large;
+      letter-spacing: vars.$label-large-tracking;
     }
   }
 
   .app-name {
     margin-left: 0.5rem;
-    color: var(--sys-secondary);
+    color: vars.$secondary;
   }
 
   mat-button-toggle {
-    --mat-standard-button-toggle-height: 1.25rem;
-
     ::ng-deep .mat-button-toggle-button {
       display: flex;
       align-items: center;
     }
+
+    @include mat.button-toggle-overrides(
+      (
+        height: 1.25rem,
+      )
+    );
   }
 
   hra-software-status-indicator {

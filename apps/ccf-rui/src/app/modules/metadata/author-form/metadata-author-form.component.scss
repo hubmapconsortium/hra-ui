@@ -1,9 +1,11 @@
+@use 'vars';
+
 :host {
   display: block;
 
   .subheader {
-    font: var(--sys-title-small);
-    color: var(--sys-primary);
+    font: vars.$title-small;
+    color: vars.$primary;
     margin-bottom: 1rem;
   }
 
@@ -19,5 +21,9 @@
     .email {
       grid-column: 1 / span 2;
     }
+  }
+
+  mat-error {
+    font-family: vars.$label-small-font;
   }
 }

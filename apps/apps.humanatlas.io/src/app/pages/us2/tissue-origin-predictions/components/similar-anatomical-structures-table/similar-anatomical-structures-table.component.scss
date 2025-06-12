@@ -1,0 +1,103 @@
+@use 'vars';
+
+.table-overflow-container {
+  max-height: 35rem;
+  overflow: auto;
+  border: 1px solid vars.$outline;
+  border-radius: 0.25rem;
+}
+
+.table-container {
+  margin-top: 3rem;
+  margin-bottom: 0.3125rem;
+
+  button {
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+  }
+
+  caption {
+    display: none;
+  }
+
+  .more-icon {
+    display: flex;
+  }
+
+  .predictions-table {
+    background-color: vars.$secondary-container;
+
+    th,
+    tr:not(:last-child) {
+      border-bottom: 0.0625rem solid vars.$outline;
+    }
+
+    th,
+    td {
+      font: vars.$label-medium;
+      letter-spacing: vars.$label-medium-tracking;
+      padding: 0.5rem 1rem;
+
+      &:not(:last-child) {
+        border-right: 0.0625rem solid vars.$outline;
+      }
+    }
+
+    ::ng-deep tbody tr:nth-child(even) {
+      background-color: vars.$surface-container;
+    }
+
+    th {
+      color: vars.$on-primary-container;
+      background-color: vars.$surface-container;
+    }
+    td {
+      max-width: 16.38rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+      color: vars.$inverse-surface;
+      white-space: nowrap;
+
+      .link {
+        color: vars.$on-tertiary-container;
+      }
+
+      th {
+        color: vars.$on-primary-container;
+        background-color: vars.$surface-container;
+      }
+      td {
+        color: vars.$inverse-surface;
+      }
+    }
+  }
+
+  // Remove default Material padding
+  ::ng-deep .mat-cell:first-of-type,
+  ::ng-deep .mat-header-cell:first-of-type {
+    padding-left: 1rem;
+  }
+
+  ::ng-deep .mat-cell:last-of-type,
+  ::ng-deep .mat-header-cell:last-of-type {
+    padding-right: 1rem;
+  }
+}
+
+::ng-deep .hra-app table[matSort] .mat-sort-header-container {
+  max-width: 13rem !important;
+}
+
+::ng-deep {
+  .tooltip-panel {
+    background-color: white;
+    box-shadow: rgb(from vars.$secondary r g b / 24%);
+    border-radius: 0.5rem;
+    max-width: 22rem;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+    color: vars.$primary;
+  }
+}

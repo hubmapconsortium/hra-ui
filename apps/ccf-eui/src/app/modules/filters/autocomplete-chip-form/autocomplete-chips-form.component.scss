@@ -1,0 +1,117 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
+:host {
+  @include mat.form-field-overrides(
+    (
+      container-height: 3rem,
+      filled-container-color: vars.$surface-container,
+      filled-focus-active-indicator-color: vars.$error,
+      filled-label-text-color: vars.$on-primary-fixed,
+      filled-with-label-container-padding-bottom: 0rem,
+      filled-with-label-container-padding-top: 1rem,
+    )
+  );
+
+  ::ng-deep .mdc-floating-label--float-above {
+    transform: translateY(-100%);
+
+    mat-label {
+      font: vars.$label-small !important;
+      letter-spacing: vars.$label-small-tracking;
+    }
+  }
+
+  display: block;
+  margin-bottom: 2rem;
+
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+
+  mat-form-field,
+  mat-label {
+    color: vars.$on-primary-fixed;
+    font: vars.$label-medium;
+  }
+
+  .visible {
+    mat-label {
+      margin-bottom: 0.25rem;
+    }
+
+    .chips-area {
+      margin-top: 0.5rem;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .chips-area {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    @include mat.icon-button-overrides(
+      (
+        state-layer-size: 2rem,
+      )
+    );
+  }
+
+  .search-input {
+    margin-left: 0;
+    height: 2rem;
+    line-height: 2rem;
+  }
+
+  mat-error {
+    font: vars.$label-small;
+    margin-left: 1rem;
+  }
+
+  .error-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .error {
+    mat-label {
+      color: vars.$error;
+    }
+  }
+}
+
+::ng-deep .mat-mdc-autocomplete-panel {
+  display: flex;
+  flex-direction: column;
+  max-height: none !important;
+  overflow: hidden !important;
+
+  @include mat.autocomplete-overrides(
+    (
+      background-color: vars.$surface-container-low,
+    )
+  );
+
+  ng-scrollbar {
+    max-height: 18rem;
+  }
+
+  mat-option {
+    flex-grow: 1;
+    font: vars.$label-medium;
+  }
+
+  .autocomplete-option {
+    display: flex;
+    align-items: center;
+  }
+
+  .autocomplete-checkbox {
+    padding: 0.25rem;
+  }
+}

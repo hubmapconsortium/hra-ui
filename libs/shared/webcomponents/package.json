@@ -2,10 +2,10 @@
   "name": "@hra-ui/webcomponents",
   "version": "1.0.0",
   "peerDependencies": {
-    "@angular/core": "18.2.1",
-    "@angular/elements": "18.2.1",
-    "@angular/platform-browser": "18.2.1",
-    "rxjs": "7.8.0"
+    "@angular/core": "^19.2.0",
+    "@angular/elements": "^19.2.0",
+    "@angular/platform-browser": "^19.2.0",
+    "rxjs": "^7.8.2"
   },
   "dependencies": {},
   "sideEffects": false

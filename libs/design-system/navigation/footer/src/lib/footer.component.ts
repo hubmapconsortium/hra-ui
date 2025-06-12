@@ -12,7 +12,6 @@ import { FUNDER_IDS } from './static-data/parsed';
  */
 @Component({
   selector: 'hra-footer',
-  standalone: true,
   imports: [CommonModule, MatIconModule, BrandModule, ButtonsModule, FundingComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',

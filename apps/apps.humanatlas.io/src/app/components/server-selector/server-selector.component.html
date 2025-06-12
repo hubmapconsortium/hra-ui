@@ -1,0 +1,24 @@
+<mat-form-field class="server-select-field" [hintLabel]="selectedServer().description">
+  <mat-label>Server</mat-label>
+  <mat-select
+    disableRipple
+    panelWidth="auto"
+    panelClass="options-container server-selector-panel"
+    [(ngModel)]="selectedServer"
+    #serverSelect
+  >
+    <mat-select-trigger>
+      {{ selectedServer().url }}
+    </mat-select-trigger>
+    @if (servers().length > 0) {
+      @for (server of servers(); track $index) {
+        <mat-option [value]="server">
+          <div class="server-url">{{ server.url }}</div>
+          <div class="server-description">{{ server.description }}</div>
+        </mat-option>
+      }
+    } @else {
+      <mat-option disabled> No servers available. </mat-option>
+    }
+  </mat-select>
+</mat-form-field>

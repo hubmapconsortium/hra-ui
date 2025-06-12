@@ -69,7 +69,6 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
 /** Cell types table, describing the types and quanitites of cells for a specific organ */
 @Component({
   selector: 'hra-biomarker-table',
-  standalone: true,
   imports: [
     CommonModule,
     MatTableModule,
@@ -291,7 +290,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * @returns cell type id
    */
   getHoverId(data: DataRow<T>): string {
-    const entry = data.slice(2).find((entry) => entry) as T;
+    const entry = data.slice(2).find((item) => item) as T;
     return entry?.data.cell;
   }
 
@@ -361,7 +360,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
         .map((min, index) => this.lerp(value, min, maxColor[index]))
         .map((component) => {
           const hex = Math.round(component).toString(16);
-          return hex.length == 1 ? '0' + hex : hex;
+          return hex.length === 1 ? '0' + hex : hex;
         })
         .join('')
     );

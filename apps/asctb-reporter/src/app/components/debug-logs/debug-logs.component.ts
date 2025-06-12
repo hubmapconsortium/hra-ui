@@ -6,9 +6,10 @@ import { Logs } from '../../models/ui.model';
   selector: 'app-debug-logs',
   templateUrl: './debug-logs.component.html',
   styleUrls: ['./debug-logs.component.scss'],
+  standalone: false,
 })
 export class DebugLogsComponent {
   @Input() currentSheet!: Sheet;
   @Input() logs!: Logs;
-  @Output() closeDebug = new EventEmitter<void>();
+  @Output() readonly closeDebug = new EventEmitter<void>();
 }

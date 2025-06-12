@@ -19,7 +19,6 @@ describe('SceneState', () => {
     referenceOrganEntities: [],
     selectedReferenceOrgans: [],
     selectedAnatomicalStructures: [],
-    anatomicalStructureSettings: {},
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -66,12 +65,12 @@ describe('SceneState', () => {
   });
 
   it('should call listResults highlightNode on calling sceneNodeHovered', () => {
-    spyOn(sceneState['listResults'], 'highlightNode').and.callThrough();
+    jest.spyOn(sceneState['listResults'], 'highlightNode');
     sceneState.sceneNodeHovered({} as never);
     expect(sceneState['listResults'].highlightNode).toHaveBeenCalled();
   });
   it('should call listResults unhighlightNode on calling sceneNodeUnhover', () => {
-    spyOn(sceneState['listResults'], 'unHighlightNode').and.callThrough();
+    jest.spyOn(sceneState['listResults'], 'unHighlightNode');
     sceneState.sceneNodeUnhover();
     expect(sceneState['listResults'].unHighlightNode).toHaveBeenCalled();
   });
@@ -79,7 +78,6 @@ describe('SceneState', () => {
   it('should call updateFilter when sceneNode is Clicked', () => {
     const nodeClickEvent: NodeClickEvent = {
       node: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         '@id': '',
         '@type': '',
         representation_of: 'test',
@@ -88,7 +86,7 @@ describe('SceneState', () => {
       },
       ctrlClick: false,
     };
-    spyOn(sceneState['dataState'], 'updateFilter').and.callThrough();
+    jest.spyOn(sceneState['dataState'], 'updateFilter');
     sceneState.sceneNodeClicked(nodeClickEvent);
     expect(sceneState['dataState'].updateFilter).toHaveBeenCalled();
   });
@@ -96,7 +94,6 @@ describe('SceneState', () => {
   it('should call assignColor when sceneNode is clicked with no representation', () => {
     const nodeClickEvent: NodeClickEvent = {
       node: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         '@id': '',
         '@type': '',
         representation_of: '',
@@ -105,13 +102,13 @@ describe('SceneState', () => {
       },
       ctrlClick: false,
     };
-    spyOn(sceneState['colorAssignments'], 'assignColor').and.callThrough();
+    jest.spyOn(sceneState['colorAssignments'], 'assignColor');
     sceneState.sceneNodeClicked(nodeClickEvent);
     expect(sceneState['colorAssignments'].assignColor).toHaveBeenCalled();
   });
 
   it('should call setSelectedReferenceOrgans on calling setSelectedReferenceOrgansWithDefaults', () => {
-    spyOn(sceneState, 'setSelectedReferenceOrgans').and.callThrough();
+    jest.spyOn(sceneState, 'setSelectedReferenceOrgans');
     sceneState.setSelectedReferenceOrgansWithDefaults(ALL_POSSIBLE_ORGANS, [
       'http://purl.obolibrary.org/obo/UBERON_0004538',
     ]);
@@ -120,7 +117,7 @@ describe('SceneState', () => {
 
   it('should set selectedReferenceOrgans with default organs if referenceOrgans Input is empty', () => {
     const defaultOrgans = ALL_POSSIBLE_ORGANS.filter(({ id }) => DEFAULT_SELECTED_ORGANS.has(id as string));
-    spyOn(sceneState, 'setSelectedReferenceOrgans').and.callThrough();
+    jest.spyOn(sceneState, 'setSelectedReferenceOrgans');
     sceneState.setSelectedReferenceOrgansWithDefaults(ALL_POSSIBLE_ORGANS, []);
     expect(sceneState.getState().selectedReferenceOrgans).toEqual(defaultOrgans);
   });

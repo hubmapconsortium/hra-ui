@@ -7,6 +7,6 @@
     "inlineSources": true,
     "types": []
   },
-  "exclude": ["src/test.ts", "**/*.spec.ts", "karma.conf.js", "**/*.test.ts", "**/*.stories.ts", "**/*.stories.js"],
+  "exclude": ["src/test-setup.ts", "**/*.spec.ts", "**/*.test.ts", "**/*.stories.ts", "**/*.stories.js"],
   "include": ["**/*.ts"]
 }

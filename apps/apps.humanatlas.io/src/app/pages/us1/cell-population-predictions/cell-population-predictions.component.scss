@@ -1,0 +1,123 @@
+@use 'vars';
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 72.5rem;
+  margin: 10rem auto;
+  padding: 0 1rem;
+}
+
+h1 {
+  font: vars.$display-large;
+  letter-spacing: vars.$display-large-tracking;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+button {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.info-text {
+  font: vars.$body-large;
+  letter-spacing: vars.$body-large-tracking;
+  color: vars.$on-secondary-container;
+  word-wrap: break-word;
+}
+
+.table-container {
+  width: 100%;
+  margin-top: 3rem;
+  margin-bottom: 3rem; // TODO
+  overflow: hidden;
+
+  caption {
+    display: none;
+  }
+
+  .more-icon {
+    display: flex;
+  }
+
+  .table-overflow-container {
+    max-width: calc(100vw - 4rem);
+    max-height: 35rem;
+    overflow: auto;
+    border: 1px solid vars.$outline;
+    border-radius: 0.25rem;
+
+    .predictions-table {
+      background-color: vars.$secondary-container;
+      width: 100%;
+      min-width: 54.0625rem;
+
+      tr:not(:last-child) {
+        border-bottom: 0.0625rem solid vars.$outline;
+      }
+
+      th,
+      td {
+        font: vars.$label-medium;
+        letter-spacing: vars.$label-medium-tracking;
+        padding: 0.5rem 1rem;
+
+        &:not(:last-child) {
+          border-right: 0.0625rem solid vars.$outline;
+        }
+      }
+
+      th {
+        color: vars.$on-primary-container;
+        background-color: vars.$surface-container;
+      }
+
+      td {
+        color: vars.$inverse-surface;
+
+        &:last-child a {
+          color: vars.$on-tertiary-container;
+        }
+      }
+      ::ng-deep tbody tr:nth-child(even) {
+        background-color: vars.$surface-container;
+      }
+    }
+  }
+
+  // Remove default Material padding
+  ::ng-deep .mat-cell:first-of-type,
+  ::ng-deep .mat-header-cell:first-of-type {
+    padding-left: 1rem;
+  }
+
+  ::ng-deep .mat-cell:last-of-type,
+  ::ng-deep .mat-header-cell:last-of-type {
+    padding-right: 1rem;
+  }
+}
+::ng-deep {
+  .tooltip-panel {
+    background-color: white;
+    box-shadow: rgb(from vars.$secondary r g b / 24%);
+    border-radius: 0.5rem;
+    max-width: 22rem;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+    color: vars.$primary;
+  }
+
+  .cdk-overlay-connected-position-bounding-box {
+    margin-left: 0.5rem;
+  }
+
+  .cdk-overlay-pane .mat-mdc-menu-panel {
+    max-width: 22rem;
+    margin-left: 0.05rem;
+    .mat-mdc-menu-content {
+      padding: 0;
+    }
+  }
+}

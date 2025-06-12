@@ -37,6 +37,6 @@ describe('CallToActionSelectors', () => {
 
   it('should return popupShown', async () => {
     const popupShown = CallToActionSelectors.popupShown(model);
-    expect(popupShown).toBeFalse();
+    expect(popupShown).toBeFalsy();
   });
 });

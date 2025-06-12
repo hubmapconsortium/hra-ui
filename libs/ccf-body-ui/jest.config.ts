@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'ccf-body-ui',
   preset: '../../jest.preset.js',

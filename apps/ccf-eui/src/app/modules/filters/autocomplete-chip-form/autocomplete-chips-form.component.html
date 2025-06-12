@@ -1,0 +1,52 @@
+<mat-form-field [class.visible]="chips().length > 0" [class.error]="errorState()" subscriptSizing="dynamic">
+  <div class="chips-area">
+    <mat-chip-grid #chipGrid aria-label="Option selection" [formControl]="form()">
+      @for (option of chips(); track option) {
+        <mat-chip-row (removed)="remove(option)">
+          {{ option }}
+          <button matChipRemove [attr.aria-label]="'remove ' + option">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-chip-row>
+      }
+    </mat-chip-grid>
+    @if (chips().length > 0) {
+      <button mat-icon-button (click)="chips.set([])"><mat-icon>delete</mat-icon></button>
+    }
+  </div>
+  <mat-icon matPrefix class="search-icon">search</mat-icon>
+  <mat-label>{{ label() }}</mat-label>
+  <div class="search-container">
+    <input
+      placeholder="Search"
+      class="search-input"
+      #searchInput
+      [(ngModel)]="currentInputValue"
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="auto"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"
+    />
+    @if (errorState()) {
+      <mat-icon class="error-icon" svgIcon="error"></mat-icon>
+    }
+  </div>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+    <ng-scrollbar>
+      @for (option of filteredOptions(); track option) {
+        <div class="autocomplete-option">
+          <mat-checkbox
+            class="autocomplete-checkbox"
+            (change)="checkboxSelected($event, option); auto.showPanel = false"
+            [checked]="chips().includes(option)"
+          ></mat-checkbox>
+          <mat-option [value]="option">{{ option }}</mat-option>
+        </div>
+      }
+    </ng-scrollbar>
+  </mat-autocomplete>
+</mat-form-field>
+
+@if (errorState()) {
+  <mat-error>No matches found</mat-error>
+}

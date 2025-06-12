@@ -33,9 +33,8 @@ class SnackbarDemoComponent {
       return {
         duration: this.duration(),
       };
-    } else {
-      return {};
     }
+    return {};
   }
 }
 

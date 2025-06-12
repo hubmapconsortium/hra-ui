@@ -11,17 +11,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
-      "outputs": ["{options.outputPath.base}"],
       "options": {
-        "outputPath": {
-          "base": "dist/apps/cde-visualization-wc",
-          "browser": "."
-        },
-        "index": "apps/cde-visualization-wc/src/index.html",
-        "browser": "apps/cde-visualization-wc/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/cde-visualization-wc/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
         "assets": [
           "apps/cde-visualization-wc/src/favicon.png",
           "apps/cde-visualization-wc/src/assets",
@@ -31,21 +21,10 @@
             "output": "./assets"
           }
         ],
-        "styles": ["apps/cde-visualization-wc/src/styles.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/design-system/styles"]
-        },
-        "scripts": [],
-        "define": {
-          "define": "undefined"
-        },
-        "outputHashing": "none",
-        "allowedCommonJsDependencies": ["*"],
-        "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"]
+        "polyfills": ["zone.js"]
       },
       "configurations": {
         "production": {
-          "baseHref": "/ui/cde-visualization-wc/",
           "budgets": [
             {
               "type": "initial",
@@ -58,64 +37,14 @@
               "maximumError": "20kb"
             }
           ]
-        },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
-        },
-        "staging": {
-          "baseHref": "/ui--staging/cde-visualization-wc/"
-        },
-        "preview": {
-          "baseHref": "/apps/cde-visualization-wc/",
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "cde-visualization-wc:build:production"
-        },
-        "development": {
-          "buildTarget": "cde-visualization-wc:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "cde-visualization-wc:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/cde-visualization-wc/jest.config.ts"
-      }
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "cde-visualization-wc:build",
-        "port": 4200,
-        "staticFilePath": "dist/apps/cde-visualization-wc/browser",
-        "spa": true
-      }
+      "executor": "@nx/angular:dev-server"
     },
     "build-webcomponent": {
-      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cde-visualization-wc/"
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cde-visualization-wc/browser/"
     }
   }
 }

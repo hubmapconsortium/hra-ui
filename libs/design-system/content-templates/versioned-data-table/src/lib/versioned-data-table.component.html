@@ -1,0 +1,31 @@
+@if (!hideVersionSelector()) {
+  <mat-form-field>
+    <mat-label class="label"> {{ label() }} </mat-label>
+    <mat-select class="select" [value]="selection()" (selectionChange)="selection.set($event.value)">
+      @for (item of items(); track $index) {
+        <mat-option [value]="$index">
+          {{ item.label }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}
+
+<button
+  mat-icon-button
+  class="download"
+  aria-label="Download table data as csv"
+  hraPlainTooltip="Download data"
+  (click)="download()"
+>
+  <mat-icon>download</mat-icon>
+</button>
+
+<hra-table
+  [csvUrl]="item().csvUrl"
+  [columns]="item().columns ?? columns()"
+  [rows]="item().rows"
+  [style]="item().style ?? style()"
+  [enableSort]="item().enableSort ?? enableSort()"
+  [verticalDividers]="item().verticalDividers ?? verticalDividers()"
+/>

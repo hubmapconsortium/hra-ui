@@ -3,8 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { LinkDirective } from '@hra-ui/cdk';
-import { EMPTY_LINK } from '@hra-ui/cdk';
+import { LinkDirective, EMPTY_LINK } from '@hra-ui/cdk';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
@@ -12,7 +11,6 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
  */
 @Component({
   selector: 'hra-header',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, MatRippleModule, LinkDirective],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],

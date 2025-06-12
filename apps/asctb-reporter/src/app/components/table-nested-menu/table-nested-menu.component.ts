@@ -6,12 +6,13 @@ import { SheetDetails, VersionDetail } from '../../models/sheet.model';
   selector: 'app-table-nested-menu',
   templateUrl: './table-nested-menu.component.html',
   styleUrls: ['./table-nested-menu.component.scss'],
+  standalone: false,
 })
 export class TableNestedMenuComponent {
   @Input() sheetDetails: SheetDetails[] = [];
   @Input() title = '';
   window = window;
-  @ViewChild('childMenu', { static: true }) public childMenu!: MatMenu;
+  @ViewChild('childMenu', { static: true }) childMenu!: MatMenu;
   sheetURL = 'https://docs.google.com/spreadsheets/d/';
 
   openURL(version: VersionDetail) {

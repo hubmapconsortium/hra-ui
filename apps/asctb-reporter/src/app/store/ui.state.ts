@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Action, Select, Selector, State, StateContext, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ReportLog } from '../actions/logs.actions';
@@ -102,10 +102,8 @@ export interface UIStateModel {
 })
 @Injectable()
 export class UIState {
-  constructor(
-    public store: Store,
-    public ga: GoogleAnalyticsService,
-  ) {}
+  readonly store = inject(Store);
+  readonly ga = inject(GoogleAnalyticsService);
 
   /**
    * Select the snackbar state
@@ -399,7 +397,7 @@ export class UIState {
     const state = getState();
     dispatch(new CloseBottomSheet());
     dispatch(new CloseBottomSheetDOI());
-    dispatch(new UpdateBottomSheetData(data)).subscribe((_unused) => {
+    dispatch(new UpdateBottomSheetData(data)).subscribe(() => {
       setState({
         ...state,
         bottomSheetOpen: true,

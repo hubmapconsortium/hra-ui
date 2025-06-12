@@ -27,7 +27,6 @@ export class WorkflowCardExtraComponent {}
  */
 @Component({
   selector: 'hra-workflow-card',
-  standalone: true,
   imports: [MatProgressBarModule, StepIndicatorComponent],
   templateUrl: './workflow-card.component.html',
   styleUrl: './workflow-card.component.scss',

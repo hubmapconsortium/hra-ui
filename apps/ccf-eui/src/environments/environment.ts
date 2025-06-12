@@ -5,7 +5,6 @@
 /** Testing environment configuration. */
 export const environment = {
   production: false,
-  disableDbWorker: true,
   acceptableViewerDomains: [
     'https://portal.hubmapconsortium.org',
     'https://portal.test.hubmapconsortium.org',
@@ -18,7 +17,7 @@ export const environment = {
     theme: 'default',
     header: true,
     homeUrl: 'https://portal.hubmapconsortium.org/',
-    logoTooltip: 'Human BioMolecular Atlas Project',
+    logoTooltip: 'Human Reference Atlas Portal',
     loginDisabled: false,
   },
   googleAnalyticsToken: 'G-B3DT7XPMRT',

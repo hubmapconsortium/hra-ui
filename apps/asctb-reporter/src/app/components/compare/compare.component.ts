@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
@@ -9,21 +9,20 @@ import { CompareData } from '../../models/sheet.model';
   selector: 'app-compare',
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],
+  standalone: false,
 })
 export class CompareComponent implements OnInit {
-  @Output() closeCompare = new EventEmitter<boolean>();
-  @Output() compareData = new EventEmitter<CompareData[]>();
+  readonly fb = inject(UntypedFormBuilder);
+  readonly ga = inject(GoogleAnalyticsService);
+
+  @Output() readonly closeCompare = new EventEmitter<boolean>();
+  @Output() readonly compareData = new EventEmitter<CompareData[]>();
 
   @Input() compareSheets!: Observable<CompareData[]>;
 
   formGroup!: UntypedFormGroup;
   formSheets!: UntypedFormArray;
   formValid = true;
-
-  constructor(
-    public fb: UntypedFormBuilder,
-    public ga: GoogleAnalyticsService,
-  ) {}
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({

@@ -1,6 +1,6 @@
 import { Express, RequestHandler } from 'express';
 
-export const browserRoute: RequestHandler = (_req, res, _next) => {
+export const browserRoute: RequestHandler = (_req, res) => {
   res.send(`<!doctype html>
     <html lang="en">
     <head>
@@ -16,7 +16,7 @@ export const browserRoute: RequestHandler = (_req, res, _next) => {
     </html>`);
 };
 
-export const openApiRoute: RequestHandler = (_req, res, _next) => {
+export const openApiRoute: RequestHandler = (_req, res) => {
   res.sendFile('assets/asctb-api-spec.yaml', {
     root: __dirname,
   });

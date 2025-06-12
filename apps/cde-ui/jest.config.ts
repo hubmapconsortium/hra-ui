@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'cde-ui',
   preset: '../../jest.preset.js',

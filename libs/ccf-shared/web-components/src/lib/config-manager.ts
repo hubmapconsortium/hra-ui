@@ -1,26 +1,36 @@
 import { SimpleChange, SimpleChanges } from '@angular/core';
 import { GlobalConfigState } from 'ccf-shared';
 
+/** Global config */
 export type GenericGlobalConfig = Record<string, unknown>;
 
+/** Manager options */
 export interface ConfigManagerOptions {
+  /** Initial config */
   initialConfig?: GenericGlobalConfig;
 
+  /** Input parsers */
   parse?: Record<string, (value: unknown) => unknown>;
+  /** Input aliasing */
   rename?: Record<string, string>;
 }
 
+/** Default options */
 const DEFAULT_OPTIONS: Required<ConfigManagerOptions> = {
   initialConfig: {},
   parse: {},
   rename: {},
 };
 
+/** Config manager */
 export class ConfigManager {
+  /** Options */
   readonly options: Required<ConfigManagerOptions>;
 
+  /** Changes to be applied */
   private storedChanges: SimpleChanges = {};
 
+  /** Initialize the manager */
   constructor(
     readonly configState: GlobalConfigState<GenericGlobalConfig>,
     options: ConfigManagerOptions,
@@ -28,10 +38,21 @@ export class ConfigManager {
     this.options = { ...DEFAULT_OPTIONS, ...options };
   }
 
+  /**
+   * Add changes to be applied
+   *
+   * @param changes Changes
+   */
   addChanges(changes: SimpleChanges): void {
     this.storedChanges = { ...this.storedChanges, ...changes };
   }
 
+  /**
+   * Applies changes
+   *
+   * @param changes Changes to apply
+   * @param additionalConfig Additional configuration
+   */
   applyChanges(changes?: SimpleChanges, additionalConfig: GenericGlobalConfig = {}): void {
     if (changes === undefined) {
       changes = this.storedChanges;
@@ -56,6 +77,13 @@ export class ConfigManager {
     configState.setConfig(newConfig);
   }
 
+  /**
+   * Process a single change
+   *
+   * @param key Change key
+   * @param change Change
+   * @param output Output object
+   */
   private processChange(key: string, change: SimpleChange, output: GenericGlobalConfig): void {
     const {
       options: { parse, rename },
@@ -72,7 +100,6 @@ export class ConfigManager {
       try {
         output[target] = parser(value);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.warn(`Failed to parse ${key} = ${value} (${typeof value})`, (error as Error).message);
       }
     }

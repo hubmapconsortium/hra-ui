@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Filter, FilterSexEnum, SpatialEntity, SpatialSceneNode, SpatialSearch, TissueBlock } from '@hra-api/ng-client';
 import { Matrix4 } from '@math.gl/core';
 import { Action, Actions, Selector, State, StateContext, Store, ofActionDispatched } from '@ngxs/store';
 import { getOriginScene } from 'ccf-scene-utils';
-import { DataSourceService, OrganInfo } from 'ccf-shared';
+import { DataSourceService, OrganInfo, sexEquals, sexFromString } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable, forkJoin } from 'rxjs';
 import { debounceTime, mergeMap, take, tap } from 'rxjs/operators';
-import { Sex } from '../../../shared/components/spatial-search-config/spatial-search-config.component';
 import { UpdateFilter } from '../data/data.actions';
 import { DataStateSelectors } from '../data/data.selectors';
 import { SceneState } from '../scene/scene.state';
@@ -27,85 +26,122 @@ import {
   UpdateSpatialSearch,
 } from './spatial-search-ui.actions';
 
+/** Position */
 export interface Position {
+  /** X coordinate */
   x: number;
+  /** Y coordinate */
   y: number;
+  /** Z coordinate */
   z: number;
 }
 
+/** Radius settings */
 export interface RadiusSettings {
+  /** Minimum */
   min: number;
+  /** Maximum */
   max: number;
+  /** Default value */
   defaultValue: number;
 }
 
+/** Term result */
 export interface TermResult {
+  /** Id */
   '@id': string;
+  /** Label */
   label: string;
+  /** COunt */
   count: number;
 }
 
+/** Spatial search state model */
 export interface SpatialSearchUiModel {
-  sex: Sex;
+  /** Sex */
+  sex: FilterSexEnum;
+  /** Organ id */
   organId?: string;
+  /** Block position */
   position?: Position;
+  /** Block radius */
   radius?: number;
 
+  /** Default position */
   defaultPosition?: Position;
+  /** Radius settings */
   radiusSettings?: RadiusSettings;
 
+  /** Reference organs */
   referenceOrgans?: OrganInfo[];
+  /** Scene nodes */
   organScene?: SpatialSceneNode[];
 
+  /** Scene nodes */
   spatialSearchScene?: SpatialSceneNode[];
+  /** Tissue blocks */
   tissueBlocks?: TissueBlock[];
+  /** Anatomical structures */
   anatomicalStructures?: Record<string, number>;
+  /** Cell types */
   cellTypes?: Record<string, number>;
 
+  /** Execute search on generation */
   executeSearchOnGeneration: boolean;
 }
 
+/** Update spatial search */
 class ReallyUpdateSpatialSearch {
+  /** Action type */
   static readonly type = '[SpatialSearchUi] Really update spatial search data';
 }
 
+/** Spatial search ui state */
 @State<SpatialSearchUiModel>({
   name: 'spatialSearchUi',
   defaults: {
-    sex: 'female',
+    sex: FilterSexEnum.Female,
     executeSearchOnGeneration: true,
   },
 })
 @Injectable()
 export class SpatialSearchUiState {
+  /** Get the organ entity matching the state's organ id */
   @Selector([SpatialSearchUiState, SceneState.referenceOrganEntities])
   static organEntity(state: SpatialSearchUiModel, organs: SpatialEntity[]): SpatialEntity | undefined {
     const { organId, sex } = state;
-    return organs.find((o) => o.representation_of === organId && o.sex?.toLowerCase() === sex);
+    return organs.find((o) => o.representation_of === organId && sexEquals(o.sex, sex));
   }
 
-  constructor(
-    private readonly dataSource: DataSourceService,
-    private readonly store: Store,
-    actions$: Actions,
-    private readonly ga: GoogleAnalyticsService,
-  ) {
-    actions$
+  /** Data service */
+  private readonly dataSource = inject(DataSourceService);
+  /** State reference */
+  private readonly store = inject(Store);
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
+  /** Initialize the state */
+  constructor() {
+    inject(Actions)
       .pipe(
         ofActionDispatched(UpdateSpatialSearch),
         debounceTime(500),
-        tap(() => store.dispatch(ReallyUpdateSpatialSearch)),
+        tap(() => this.store.dispatch(ReallyUpdateSpatialSearch)),
       )
       .subscribe();
   }
 
+  /** Start a new spatial search */
   @Action(StartSpatialSearchFlow)
-  startSpatialSearchFlow(ctx: StateContext<SpatialSearchUiModel>): Observable<unknown> {
+  startSpatialSearchFlow(
+    ctx: StateContext<SpatialSearchUiModel>,
+    { executeSearch }: StartSpatialSearchFlow,
+  ): Observable<unknown> {
     const { sex, organId } = ctx.getState();
     const shortOrgan = organId?.split('/').slice(-1)[0];
     this.ga.event('set_organ', 'spatial_search_ui', `${sex}_${shortOrgan}`);
 
-    return ctx.dispatch(new SetSex(sex));
+    return ctx.dispatch([new SetSex(sex), new SetExecuteSearchOnGenerate(executeSearch)]);
   }
 
   /**
@@ -143,8 +179,7 @@ export class SpatialSearchUiState {
    */
   @Action(SetOrgan)
   setOrgan(ctx: StateContext<SpatialSearchUiModel>, { organId }: SetOrgan): Observable<unknown> | void {
-    const { sex } = ctx.getState();
-    ctx.patchState({ sex, organId });
+    ctx.patchState({ organId });
     const shortOrgan = organId?.split('/').slice(-1)[0];
     this.ga.event('set_organ', 'spatial_search_ui', shortOrgan);
 
@@ -156,7 +191,7 @@ export class SpatialSearchUiState {
       const globalFilter = this.store.selectSnapshot(DataStateSelectors.filter);
       const filter = {
         ...globalFilter,
-        sex: organ.sex as FilterSexEnum,
+        sex: sexFromString(organ.sex) ?? globalFilter.sex,
         ontologyTerms: [organId],
         spatialSearches: [],
       };
@@ -193,6 +228,7 @@ export class SpatialSearchUiState {
     this.ga.event('set_position', 'spatial_search_ui', `${x}_${y}_${z}`);
   }
 
+  /** Reset the position */
   @Action(ResetPosition)
   resetPosition(ctx: StateContext<SpatialSearchUiModel>): void {
     const { defaultPosition } = ctx.getState();
@@ -203,6 +239,7 @@ export class SpatialSearchUiState {
     this.ga.event('reset_position', 'spatial_search_ui', `${x}_${y}_${z}`);
   }
 
+  /** Move to a node */
   @Action(MoveToNode)
   moveToNode(ctx: StateContext<SpatialSearchUiModel>, { node }: MoveToNode): Observable<unknown> | void {
     const matrix = new Matrix4(node.transformMatrix);
@@ -223,6 +260,7 @@ export class SpatialSearchUiState {
     this.ga.event('set_radius', 'spatial_search_ui', radius.toFixed(1));
   }
 
+  /** Reset radius */
   @Action(ResetRadius)
   resetRadius(ctx: StateContext<SpatialSearchUiModel>): void {
     const { radiusSettings } = ctx.getState();
@@ -246,7 +284,7 @@ export class SpatialSearchUiState {
       const globalFilter = this.store.selectSnapshot(DataStateSelectors.filter);
       const filter: Filter = {
         ...globalFilter,
-        sex: organ.sex as FilterSexEnum,
+        sex: sexFromString(organ.sex ?? '') ?? globalFilter.sex,
         ontologyTerms: [organId],
         spatialSearches: [
           {
@@ -296,7 +334,7 @@ export class SpatialSearchUiState {
       return ctx.dispatch(actions).pipe(
         tap(() =>
           ctx.patchState({
-            sex: 'female',
+            sex: FilterSexEnum.Female,
             organId: undefined,
           }),
         ),
@@ -304,6 +342,7 @@ export class SpatialSearchUiState {
     }
   }
 
+  /** Set whether to execute search on registration */
   @Action(SetExecuteSearchOnGenerate)
   setExecuteSearchOnGenerate(ctx: StateContext<SpatialSearchUiModel>, { execute }: SetExecuteSearchOnGenerate): void {
     ctx.patchState({
@@ -314,9 +353,9 @@ export class SpatialSearchUiState {
   /**
    * Used to determine if an organ should be listed if a certain sex is selected
    */
-  private organValidForSex(organId: string, sex: Sex): boolean {
+  private organValidForSex(organId: string, sex: FilterSexEnum): boolean {
     const organs = this.store.selectSnapshot(SceneState.referenceOrgans);
     const organ = organs.find((o) => o.id === organId);
-    return organ?.hasSex || organ?.sex === sex;
+    return organ?.hasSex || sexEquals(organ?.sex, sex);
   }
 }

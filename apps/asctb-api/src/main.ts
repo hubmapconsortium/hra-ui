@@ -11,6 +11,7 @@ import { setupPlaygroundRoutes } from './routes/playground';
 import { setupStaticPageRoutes } from './routes/static-pages';
 import { routeCache } from './utils/route-caching';
 
+/** Main express application */
 export const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +27,9 @@ setupGoogleSheetRoutes(app);
 setupOpenApiSpecRoutes(app);
 setupStaticPageRoutes(app);
 
-const port = process.env.PORT || 5000;
+/** Port to listen on (default: 5000) */
+const port = process.env['PORT'] || 5000;
+/** Application server */
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });

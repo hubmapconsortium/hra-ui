@@ -1,9 +1,8 @@
-import { produce } from 'immer';
-import { StorageContext } from './storage.model';
 import { Injectable } from '@angular/core';
 import { Action, State } from '@ngxs/store';
-import { StorageId, StorageModel } from './storage.model';
-import { Set, Delete, Clear } from './storage.actions';
+import { produce } from 'immer';
+import { Clear, Delete, Set } from './storage.actions';
+import { StorageContext, StorageId, StorageModel } from './storage.model';
 
 /**
  * State holding Storage types

@@ -1,0 +1,15 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
+:host {
+  display: block;
+
+  .content {
+    @include utils.use-font(body, xl);
+    color: vars.$primary;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

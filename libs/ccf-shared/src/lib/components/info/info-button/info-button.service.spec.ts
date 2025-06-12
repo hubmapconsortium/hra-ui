@@ -12,7 +12,7 @@ describe('InfoButtonService', () => {
       providers: [InfoButtonService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     }).compileComponents();
 
-    spyOn(TestBed.inject(HttpClient), 'get').and.returnValue(of('# About'));
+    jest.spyOn(TestBed.inject(HttpClient), 'get').mockReturnValue(of('# About'));
     service = TestBed.inject(InfoButtonService);
   });
 
@@ -22,13 +22,13 @@ describe('InfoButtonService', () => {
   });
 
   it('updateData function should call parseMarkdown function', async () => {
-    const spy = spyOn(service, 'parseMarkdown');
+    const spy = jest.spyOn(service, 'parseMarkdown');
     service.updateData('url', 'id', 'title');
     expect(spy).toHaveBeenCalled();
   });
 
   it('updateData function should emit data to the panelContent behavior subject', async () => {
-    const spy = spyOn(service.panelContent, 'next');
+    const spy = jest.spyOn(service.panelContent, 'next');
     service.updateData('url', 'id', 'title');
     expect(spy).toHaveBeenCalled();
   });

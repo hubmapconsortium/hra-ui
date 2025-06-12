@@ -1,0 +1,31 @@
+@if (icons().length > 0) {
+  <div class="header-icons">
+    @for (icon of icons(); track icon) {
+      <hra-icon [icon]="icon" />
+    }
+  </div>
+}
+
+@switch (level()) {
+  @case (1) {
+    <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
+  }
+  @case (2) {
+    <h2 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h2>
+  }
+  @case (3) {
+    <h3 hra-section-link [anchor]="anchor()">{{ tagline() }}</h3>
+  }
+  @case (4) {
+    <h4 hra-section-link [anchor]="anchor()">{{ tagline() }}</h4>
+  }
+  @case (5) {
+    <h5 hra-section-link [anchor]="anchor()">{{ tagline() }}</h5>
+  }
+  @case (6) {
+    <h6 hra-section-link [anchor]="anchor()">{{ tagline() }}</h6>
+  }
+  @default {
+    <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
+  }
+}

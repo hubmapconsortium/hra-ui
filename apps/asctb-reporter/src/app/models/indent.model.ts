@@ -15,7 +15,7 @@ export class ILNode {
     this.type = '';
   }
 
-  public search(name: string) {
+  search(name: string) {
     for (const child of this.children ?? []) {
       if (child.name.toLowerCase() === name.toLowerCase()) {
         return child;

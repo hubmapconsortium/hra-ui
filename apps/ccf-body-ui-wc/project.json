@@ -7,32 +7,22 @@
   "projectType": "application",
   "sourceRoot": "apps/ccf-body-ui-wc/src",
   "prefix": "ccf",
-  "tags": ["type:app", "project:ccf", "karma-test-runner"],
-  "generators": {
-    "@schematics/angular:component": {
-      "style": "scss"
-    },
-    "@schematics/angular:application": {
-      "strict": true
-    }
-  },
+  "tags": ["type:app", "project:ccf"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:application",
       "options": {
-        "outputPath": "dist/apps/ccf-body-ui-wc",
-        "index": "apps/ccf-body-ui-wc/src/index.html",
-        "main": "apps/ccf-body-ui-wc/src/main.ts",
-        "polyfills": "apps/ccf-body-ui-wc/src/polyfills.ts",
-        "tsConfig": "apps/ccf-body-ui-wc/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
         "assets": ["apps/ccf-body-ui-wc/src/favicon.png", "apps/ccf-body-ui-wc/src/assets"],
-        "styles": ["apps/ccf-body-ui-wc/src/styles.scss"],
-        "scripts": []
+        "polyfills": ["apps/ccf-body-ui-wc/src/polyfills.ts"]
       },
       "configurations": {
         "production": {
-          "baseHref": "/ui/ccf-body-ui-wc/",
+          "fileReplacements": [
+            {
+              "replace": "apps/ccf-body-ui-wc/src/environments/environment.ts",
+              "with": "apps/ccf-body-ui-wc/src/environments/environment.prod.ts"
+            }
+          ],
           "budgets": [
             {
               "type": "initial",
@@ -44,122 +34,29 @@
               "maximumWarning": "8kb",
               "maximumError": "16kb"
             }
-          ],
-          "fileReplacements": [
-            {
-              "replace": "apps/ccf-body-ui-wc/src/environments/environment.ts",
-              "with": "apps/ccf-body-ui-wc/src/environments/environment.prod.ts"
-            }
-          ],
-          "outputHashing": "none"
+          ]
         },
         "staging": {
-          "baseHref": "/ui--staging/ccf-body-ui-wc/",
           "fileReplacements": [
             {
               "replace": "apps/ccf-body-ui-wc/src/environments/environment.ts",
               "with": "apps/ccf-body-ui-wc/src/environments/environment.staging.ts"
             }
-          ],
-          "optimization": true,
-          "outputHashing": "none",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false,
-          "buildOptimizer": true,
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "10kb"
-            }
           ]
-        },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        },
-        "preview": {
-          "baseHref": "/apps/ccf-body-ui-wc/",
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
         }
-      },
-      "defaultConfiguration": ""
+      }
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "browserTarget": "ccf-body-ui-wc:build:production"
-        },
-        "development": {
-          "browserTarget": "ccf-body-ui-wc:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "ccf-body-ui-wc:build"
-      }
-    },
-    "test": {
-      "executor": "@angular-devkit/build-angular:karma",
-      "options": {
-        "main": "apps/ccf-body-ui-wc/src/test.ts",
-        "polyfills": "apps/ccf-body-ui-wc/src/polyfills.ts",
-        "tsConfig": "apps/ccf-body-ui-wc/tsconfig.spec.json",
-        "karmaConfig": "apps/ccf-body-ui-wc/karma.conf.js",
-        "inlineStyleLanguage": "scss",
-        "assets": ["apps/ccf-body-ui-wc/src/favicon.png", "apps/ccf-body-ui-wc/src/assets"],
-        "codeCoverage": true,
-        "codeCoverageExclude": ["**/test.ts", "**/polyfills.ts", "**/environments/**/*.ts", "**/*.module.ts"],
-        "styles": ["apps/ccf-body-ui-wc/src/styles.scss"],
-        "scripts": []
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
-      }
-    },
-    "build-webcomponent": {
-      "command": "node tools/scripts/build-webcomponent.mjs ccf-body-ui-wc"
+      "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
-        "tsConfig": "apps/ccf-body-ui-wc/tsconfig.json",
-        "outputPath": "dist/compodoc/ccf-body-ui-wc"
-      },
-      "configurations": {
-        "ci": {
-          "silent": true
-        },
-        "serve": {
-          "watch": true,
-          "disableCoverage": false,
-          "disablePrivate": false,
-          "disableInternal": false
-        }
+        "tsConfig": "apps/ccf-body-ui-wc/tsconfig.app.json"
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ccf-body-ui-wc/browser/"
     }
   }
 }

@@ -23,8 +23,7 @@ export interface SnackbarData {
 /** Snackbar component */
 @Component({
   selector: 'hra-snackbar',
-  standalone: true,
-  imports: [CommonModule, MatIconModule, ButtonsModule, IconButtonSizeDirective, MatIconModule],
+  imports: [CommonModule, MatIconModule, ButtonsModule, IconButtonSizeDirective],
   templateUrl: './snackbar.component.html',
   styleUrl: './snackbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

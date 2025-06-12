@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Spec, View, parse } from 'vega';
@@ -25,17 +25,15 @@ import { Signals } from './spec/signals';
   providedIn: 'root',
 })
 export class VegaService {
+  readonly store = inject(Store);
+  readonly bm = inject(BimodalService);
+  readonly ga = inject(GoogleAnalyticsService);
+
   /**
    * Sheet configuration to be applied while building
    * the tree and the bimodal network
    */
   sheetConfig!: SheetConfig;
-
-  constructor(
-    public readonly store: Store,
-    public readonly bm: BimodalService,
-    public readonly ga: GoogleAnalyticsService,
-  ) {}
 
   /**
    * Function to create the partonomy tree
@@ -68,7 +66,7 @@ export class VegaService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public makeNodeInfoString(node: any) {
+  makeNodeInfoString(node: any) {
     const nodeInfo: GaNodeInfo = {
       name: node.name,
       groupName: node.groupName,

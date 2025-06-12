@@ -1,21 +1,23 @@
 @use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
   a:not(.hra-text-hyperlink) {
     text-decoration: none;
   }
 
-  a.hra-text-hyperlink {
+  a.hra-text-hyperlink,
+  markdown a {
     text-decoration: none;
 
     &:link,
     &:link mat-icon {
-      color: var(--sys-on-tertiary-fixed);
+      color: vars.$on-tertiary-fixed;
     }
 
     &:visited,
     &:visited mat-icon {
-      color: var(--sys-tertiary-fixed);
+      color: vars.$on-tertiary-fixed;
     }
 
     &:focus-visible,
@@ -26,23 +28,34 @@
     }
 
     &:focus-visible {
-      color: var(--sys-secondary);
-      outline: 0.125rem solid var(--sys-tertiary);
+      color: vars.$secondary;
+      outline: 0.125rem solid vars.$tertiary;
       border-radius: 0.25rem;
 
       & mat-icon {
-        color: var(--sys-secondary);
+        color: vars.$secondary;
       }
     }
 
     &:hover,
     &:hover mat-icon {
-      color: var(--sys-on-tertiary-fixed);
+      color: vars.$on-tertiary-fixed;
     }
 
     &:active,
     &:active mat-icon {
-      color: var(--sys-on-tertiary-fixed-variant);
+      color: vars.$on-tertiary-fixed-variant;
     }
+  }
+
+  /* TODO: Move this code to content pages component */
+  markdown pre {
+    background-color: vars.$surface-container;
+    border-radius: 0.25rem;
+    border: 1px solid vars.$outline;
+    padding: 0.75rem;
+    overflow-x: auto;
+
+    @include utils.use-font(label, medium);
   }
 }

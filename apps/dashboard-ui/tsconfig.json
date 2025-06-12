@@ -1,15 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "lib": ["ESNext", "dom"],
-    "useDefineForClassFields": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "useDefineForClassFields": false
   },
   "files": [],
   "include": [],

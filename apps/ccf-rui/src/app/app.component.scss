@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
 :host {
   display: grid;
   grid-template-columns: 21rem minmax(586px, calc(100vw - 43.25rem - 4px)) 22.25rem;
@@ -55,21 +58,29 @@
     padding: 1rem;
 
     ::ng-deep .title {
-      font: var(--sys-label-large);
+      font: vars.$label-large;
     }
 
     hra-expansion-panel-header-content {
       display: flex;
       gap: 1rem;
-      mat-button-toggle-group {
-        --mat-standard-button-toggle-height: auto;
-      }
+
+      @include mat.button-toggle-overrides(
+        (
+          height: auto,
+        )
+      );
     }
   }
 }
 
 ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
   z-index: 2000 !important;
-  --mdc-snackbar-container-color: var(--sys-surface-dim);
-  --mdc-snackbar-supporting-text-color: var(--sys-secondary);
+
+  @include mat.snack-bar-overrides(
+    (
+      container-color: vars.$surface-dim,
+      supporting-text-color: vars.$secondary,
+    )
+  );
 }

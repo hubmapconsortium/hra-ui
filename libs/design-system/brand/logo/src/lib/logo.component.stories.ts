@@ -13,11 +13,11 @@ const meta: Meta<BrandLogoComponent> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['small', 'large'],
+      options: ['small', 'regular'],
     },
   },
   args: {
-    size: 'large',
+    size: 'regular',
   },
 };
 

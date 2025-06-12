@@ -6,12 +6,17 @@ import { State } from '@ngxs/store';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
+/** Color */
 export interface Color {
+  /** Hex string */
   color: string;
+  /** Rgba tuple */
   rgba: [number, number, number, number];
+  /** Rank */
   rank: number;
 }
 
+/** Default palette */
 export const DEFAULT_COLOR_PALETTE: Color[] = [
   '#FF8800',
   '#2979ff',
@@ -32,10 +37,15 @@ export const DEFAULT_COLOR_PALETTE: Color[] = [
   return { color, rgba, rank };
 });
 
+/** State model */
 export interface ColorAssignmentStateModel {
+  /** Color palette */
   colorPalette: Color[];
+  /** Available colors */
   colorsAvailable: Color[];
+  /** Assignments */
   colorAssignments: Record<string, Color>;
+  /** Assignment list */
   colorAssignmentsList: { color: Color; key: string }[];
 }
 
@@ -54,23 +64,29 @@ export interface ColorAssignmentStateModel {
 })
 @Injectable()
 export class ColorAssignmentState extends NgxsImmutableDataRepository<ColorAssignmentStateModel> {
+  /** When a color is forcefully unassigned */
   private readonly forcedUnassignment = new Subject<void>();
 
+  /** When a color is forcefully unassigned */
   readonly forcedUnassignment$ = this.forcedUnassignment.asObservable();
+  /** Color assignments */
   readonly colorAssignments$ = this.state$.pipe(
     map((x) => x?.colorAssignments),
     distinctUntilChanged(),
   );
+  /** Color assignment list */
   readonly colorAssignmentsList$ = this.state$.pipe(
     map((x) => x?.colorAssignmentsList),
     distinctUntilChanged(),
   );
 
+  /** Get the color for a key */
   getColor(key: string): Immutable<Color> | undefined {
     const { colorAssignments } = this.snapshot;
     return colorAssignments[key];
   }
 
+  /** Assign a color for a key */
   @DataAction()
   assignColor(@Payload('key') key: string, @Payload('doReset') doReset = false): Immutable<Color> {
     let { colorAssignments, colorAssignmentsList, colorsAvailable } = this.snapshot;
@@ -104,6 +120,7 @@ export class ColorAssignmentState extends NgxsImmutableDataRepository<ColorAssig
     return color;
   }
 
+  /** Unassigns a color for a key */
   @DataAction()
   unassignColor(@Payload('key') key: string): void {
     let { colorAssignments, colorAssignmentsList, colorsAvailable } = this.snapshot;

@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { importProvidersFrom, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { NumbersOnlyModule } from 'ccf-shared';
 import { SlicesInputComponent } from './slices-input.component';
 
@@ -18,10 +17,9 @@ import { SlicesInputComponent } from './slices-input.component';
     MatRippleModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
     NumbersOnlyModule,
   ],
-  providers: [importProvidersFrom(BrowserAnimationsModule)],
   declarations: [SlicesInputComponent],
   exports: [SlicesInputComponent],
 })

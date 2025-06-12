@@ -6,6 +6,7 @@ import { REGISTRY } from '../../../static/docs';
   selector: 'app-docs-nav',
   templateUrl: './docs-nav.component.html',
   styleUrls: ['./docs-nav.component.scss'],
+  standalone: false,
 })
 export class DocsNavComponent {
   REGISTRY = REGISTRY;
@@ -14,6 +15,6 @@ export class DocsNavComponent {
 
   @Input() next: number | null = null;
   @Input() prev: number | null = null;
-  @Output() nextClick = new EventEmitter();
-  @Output() prevClick = new EventEmitter();
+  @Output() readonly nextClick = new EventEmitter();
+  @Output() readonly prevClick = new EventEmitter();
 }

@@ -81,7 +81,7 @@ describe('ColorMapLoaderService', () => {
     csvLoader.load.mockReturnValue(of(invalidColorMapEvent));
     const result$ = service.load('a/file.csv', {});
     const firstEvent = firstValueFrom(result$);
-    expect(firstEvent).rejects.toMatch(/parse/);
+    await expect(firstEvent).rejects.toThrow(/parse/);
   });
 
   it('returns an empty color map if event contains no data', async () => {

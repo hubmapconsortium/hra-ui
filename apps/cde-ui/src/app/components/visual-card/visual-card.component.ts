@@ -23,7 +23,6 @@ export interface VisualCard {
  */
 @Component({
   selector: 'cde-visual-card',
-  standalone: true,
   imports: [CommonModule, ButtonsModule, MatIconModule, RouterModule],
   templateUrl: './visual-card.component.html',
   styleUrl: './visual-card.component.scss',

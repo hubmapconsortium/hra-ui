@@ -8,39 +8,58 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { SpatialSceneNode } from '@hra-api/ng-client';
+import { NodeClickEvent } from 'ccf-body-ui';
 import { BodyUiComponent, GlobalConfigState } from 'ccf-shared';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 import { lastValueFrom } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 import { FilteredSceneService } from './core/services/filtered-scene/filtered-scene.service';
 
+/** Config */
 export interface GlobalConfig {
+  /** Highlight */
   highlightID?: string;
+  /** Zoom */
   zoomToID?: string;
+  /** Data */
   data?: JsonLdObj[];
 }
 
+/** Root component */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ccf-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: false,
 })
 export class AppComponent {
+  /** Reference to the body ui */
   @ViewChild('bodyUI', { static: true }) readonly bodyUI!: BodyUiComponent;
 
-  @Output() readonly onMouseEnter = new EventEmitter<string>();
-  @Output() readonly onMouseLeave = new EventEmitter<string>();
-  @Output() readonly onClick = new EventEmitter<string>();
+  /** Emits when the user starts hovering a node */
+  @Output() readonly onMouseEnter = new EventEmitter<SpatialSceneNode>();
+  /** Emits when the user stops hovering a node */
+  @Output() readonly onMouseLeave = new EventEmitter<SpatialSceneNode>();
+  /** Emits when the user clicks a node */
+  @Output() readonly onClick = new EventEmitter<NodeClickEvent>();
 
+  /** Global config */
   private readonly configState: GlobalConfigState<GlobalConfig> = inject(GlobalConfigState);
+  /** Scene service */
   private readonly sceneSource = inject(FilteredSceneService);
+  /** Change detector */
   private readonly cdr = inject(ChangeDetectorRef);
 
+  /** Data */
   readonly data$ = this.configState.getOption('data');
+  /** Organs */
   organs$ = this.sceneSource.filteredOrgans$;
-  scene$ = this.sceneSource.filteredScene$.pipe(tap((_) => this.reset()));
+  /** Scene */
+  scene$ = this.sceneSource.filteredScene$.pipe(tap(() => this.reset()));
 
+  /** Resets the body ui */
   private async reset(): Promise<void> {
     const { bodyUI } = this;
 
@@ -48,7 +67,7 @@ export class AppComponent {
       setTimeout(resolve, 200);
     });
     const organs = await lastValueFrom(this.organs$.pipe(take(1)));
-    const hasZoomingNode = !!bodyUI.scene?.find((node) => node.zoomToOnLoad) ?? false;
+    const hasZoomingNode = !!bodyUI.scene?.find((node) => node.zoomToOnLoad);
 
     bodyUI.rotation = 0;
     bodyUI.rotationX = 0;

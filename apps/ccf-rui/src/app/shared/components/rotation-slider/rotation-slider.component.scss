@@ -1,3 +1,5 @@
+@use 'vars';
+
 :host {
   width: 5rem;
 
@@ -6,7 +8,7 @@
     padding: 0.5rem 0;
 
     .title {
-      font: var(--sys-label-medium);
+      font: vars.$label-medium;
     }
   }
 

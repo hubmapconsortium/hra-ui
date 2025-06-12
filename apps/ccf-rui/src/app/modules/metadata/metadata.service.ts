@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
-
 import { AnatomicalStructureTagState } from '../../core/store/anatomical-structure-tags/anatomical-structure-tags.state';
 import { ModelState, ModelStateModel } from '../../core/store/model/model.state';
 import { PageState, PageStateModel } from '../../core/store/page/page.state';

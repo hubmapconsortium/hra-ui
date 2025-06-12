@@ -1,0 +1,107 @@
+@use 'vars';
+
+:host {
+  display: block;
+  max-width: 65rem;
+  margin: 10rem auto;
+  padding-right: 7.5rem;
+  padding-left: 7.5rem;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  :host {
+    padding: 0 1rem;
+
+    .cards .card {
+      width: 100%;
+    }
+  }
+}
+
+.info-text {
+  margin-top: 3.5rem;
+  font: vars.$body-large;
+  letter-spacing: vars.$body-large-tracking;
+  color: vars.$on-secondary-fixed;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+  gap: 3rem;
+
+  .card {
+    width: 42rem;
+
+    .card-info-text {
+      font: vars.$label-large;
+      letter-spacing: vars.$label-large-tracking;
+      color: vars.$primary;
+    }
+  }
+
+  .card-1 {
+    .file-format-info {
+      display: flex;
+      margin-top: 2rem;
+
+      span,
+      li {
+        font: vars.$label-large;
+        letter-spacing: vars.$label-large-tracking;
+      }
+
+      span {
+        color: vars.$secondary;
+      }
+
+      li {
+        color: vars.$primary;
+      }
+
+      & > div {
+        width: 21.25rem;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+    }
+  }
+
+  .card-2 {
+    p {
+      margin-top: 2rem;
+    }
+
+    .data-filters {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+
+      .filters {
+        width: 18.25rem;
+      }
+    }
+  }
+
+  .card-3 {
+    .error-message {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-container:has(.eui-panel) {
+    z-index: 1000;
+  }
+}

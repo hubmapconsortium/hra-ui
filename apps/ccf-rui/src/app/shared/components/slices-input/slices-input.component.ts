@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /**
@@ -25,8 +25,12 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
   templateUrl: './slices-input.component.html',
   styleUrls: ['./slices-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SlicesInputComponent {
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-slices-input';
 
@@ -41,12 +45,11 @@ export class SlicesInputComponent {
   @Output() readonly slicesConfigChange = new EventEmitter<SlicesConfig>();
 
   /**
-   * Creates an instance of slices input component.
+   * Get the original value if not NaN otherwise the empty string
    *
-   * @param ga Analytics service
+   * @param value Value to check
+   * @returns The original value if it is not NaN, '' otherwise
    */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
-
   emptyStringIfNaN(value: number): number | string {
     return Number.isNaN(value) ? '' : value;
   }

@@ -1,10 +1,12 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   --mdc-filled-button-container-height: 2rem;
   display: block;
   overflow: hidden;
   border-width: 0px 0px 2px 2px;
   border-style: solid;
-  border-color: var(--sys-outline-variant);
+  border-color: vars.$outline-variant;
 
   ::ng-deep {
     hra-expansion-panel {

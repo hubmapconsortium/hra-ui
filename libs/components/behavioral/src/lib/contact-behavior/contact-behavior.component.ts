@@ -10,7 +10,6 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 /** A Component for contact behavior which sends the message entered by the user and shows an acknowledgement */
 @Component({
   selector: 'ftu-contact-behavior',
-  standalone: true,
   imports: [CommonModule, MatDialogModule, ContactModalComponent, InfoModalComponent],
   templateUrl: './contact-behavior.component.html',
   styleUrls: ['./contact-behavior.component.scss'],

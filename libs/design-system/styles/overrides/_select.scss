@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include mat.select-overrides(
+    (
+      container-elevation-shadow: 0px 5px 4px 0px rgb(from vars.$shadow r g b / 0.16),
+      disabled-arrow-color: utils.with-alpha(vars.$on-primary, 40%),
+      disabled-trigger-text-color: utils.with-alpha(vars.$secondary, 40%),
+      enabled-arrow-color: vars.$primary,
+      focused-arrow-color: vars.$primary,
+      invalid-arrow-color: vars.$error,
+      panel-background-color: vars.$on-primary,
+      placeholder-text-color: vars.$on-primary,
+      trigger-text-font: vars.$label-medium-font,
+      trigger-text-size: vars.$label-medium-size,
+      trigger-text-weight: vars.$label-medium-weight,
+      trigger-text-line-height: vars.$label-medium-line-height,
+    )
+  );
+
+  @include mat.pseudo-checkbox-overrides(
+    (
+      full-selected-checkmark-color: utils.with-alpha(vars.$tertiary, 20%),
+      minimal-selected-checkmark-color: utils.with-alpha(vars.$tertiary, 20%),
+    )
+  );
+
+  @include mat.option-overrides(
+    (
+      focus-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
+      hover-state-layer-color: color-mix(in srgb, vars.$on-surface 4%, transparent),
+      label-text-color: vars.$secondary,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: vars.$label-medium-line-height,
+      label-text-tracking: vars.$label-medium-tracking,
+      label-text-size: vars.$label-medium-size,
+      label-text-weight: vars.$label-medium-weight,
+      selected-state-label-text-color: vars.$secondary,
+      selected-state-layer-color: utils.with-alpha(vars.$tertiary, 20%),
+    )
+  );
+
+  mat-option.mat-mdc-option {
+    margin-bottom: 0.5px;
+  }
+}

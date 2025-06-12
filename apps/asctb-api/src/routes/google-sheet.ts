@@ -6,6 +6,7 @@ import { PLAYGROUND_CSV } from '../../const';
 import { makeASCTBData } from '../functions/api.functions';
 import { makeGraphData } from '../functions/graph.functions';
 
+/** Adds google sheet routes */
 export function setupGoogleSheetRoutes(app: Express): void {
   /**
    * Fetch a Google Sheet given the sheet id and gid. Parses the data and returns JSON format.
@@ -13,8 +14,8 @@ export function setupGoogleSheetRoutes(app: Express): void {
   app.get('/v2/:sheetid/:gid', async (req: Request, res: Response) => {
     console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
 
-    const f1 = req.params.sheetid;
-    const f2 = req.params.gid;
+    const f1 = req.params['sheetid'];
+    const f2 = req.params['gid'];
 
     try {
       let response: { data: string };
@@ -28,17 +29,17 @@ export function setupGoogleSheetRoutes(app: Express): void {
 
       const asctbData = makeASCTBData(data);
 
-      return res.send({
-        data: asctbData.data,
-        metadata: asctbData.metadata,
-        warnings: asctbData.warnings,
+      res.send({
+        data: asctbData?.data ?? [],
+        metadata: asctbData?.metadata ?? {},
+        warnings: asctbData?.warnings ?? [],
         csv: response.data,
         parsed: data,
-        isOmap: asctbData.isOmap,
+        isOmap: asctbData?.isOmap ?? false,
       });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: 'Please check the table format or the sheet access',
         code: 500,
       });
@@ -50,8 +51,8 @@ export function setupGoogleSheetRoutes(app: Express): void {
    */
   app.get('/v2/:sheetid/:gid/graph', async (req: Request, res: Response) => {
     console.log(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
-    const sheetID = req.params.sheetid;
-    const gID = req.params.gid;
+    const sheetID = req.params['sheetid'];
+    const gID = req.params['gid'];
     try {
       let resp: { data: string };
 
@@ -62,14 +63,14 @@ export function setupGoogleSheetRoutes(app: Express): void {
       }
       const { data } = papa.parse<string[]>(resp.data);
       const asctbData = makeASCTBData(data);
-      const graphData = makeGraphData(asctbData.data);
+      const graphData = makeGraphData(asctbData?.data ?? []);
 
-      return res.send({
+      res.send({
         data: graphData,
       });
     } catch (err) {
       console.log(err);
-      return res.status(500).send({
+      res.status(500).send({
         msg: 'Please check the table format or the sheet access',
         code: 500,
       });

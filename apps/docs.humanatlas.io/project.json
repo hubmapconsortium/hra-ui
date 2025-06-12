@@ -1,0 +1,72 @@
+{
+  "name": "docs.humanatlas.io",
+  "metadata": {
+    "version": "0.1.0"
+  },
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "hra",
+  "sourceRoot": "apps/docs.humanatlas.io/src",
+  "tags": ["type:app", "project:humanatlas"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:application",
+      "options": {
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/docs.humanatlas.io/public"
+          },
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          },
+          {
+            "glob": "CHANGELOG.md",
+            "input": ".",
+            "output": "assets/content/changelog-page"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "1mb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/docs.humanatlas.io/tsconfig.app.json"
+      }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/docs.humanatlas.io/browser/"
+    },
+    "build-json-schemas": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-json-schema.mjs apps/docs.humanatlas.io/src/app/schemas/content-page/content-page.schema.ts --name ContentPage",
+          "node tools/scripts/build-json-schema.mjs apps/docs.humanatlas.io/src/app/schemas/landing-page/landing-page.schema.ts --name LandingPage"
+        ],
+        "parallel": true
+      }
+    }
+  }
+}

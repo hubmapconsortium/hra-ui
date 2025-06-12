@@ -1,55 +1,61 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
+@use '../../../../styles/vars';
 
 @include utils.global-styles() {
   mat-tree {
-    --mat-tree-container-background-color: var(--sys-on-primary);
-  }
-
-  mat-tree-node {
-    --mat-tree-node-text-font: var(--sys-label-medium-font);
-    --mat-tree-node-text-weight: var(--sys-label-medium-weight);
-    --mat-tree-node-text-color: var(--sys-secondary);
-
-    letter-spacing: var(--sys-label-medium-tracking);
+    letter-spacing: vars.$label-medium-tracking;
     cursor: pointer;
     user-select: none;
     outline: none;
 
     &:focus-visible .node-content {
-      border-color: var(--sys-tertiary);
+      border-color: vars.$tertiary;
     }
   }
 
-  .node-content {
-    button {
-      --mat-icon-button-hover-state-layer-opacity: 0;
-      --mat-icon-button-pressed-state-layer-opacity: 0;
-    }
+  @include mat.tree-overrides(
+    (
+      container-background-color: vars.$on-primary,
+      node-text-font: vars.$label-medium-font,
+      node-text-weight: vars.$label-medium-weight,
+      node-text-color: vars.$secondary,
+    )
+  );
 
+  .node-content {
     display: flex;
-    height: var(--mat-tree-node-min-height);
-    line-height: var(--mat-tree-node-min-height);
+    height: vars.$node-min-height;
+    line-height: vars.$node-min-height;
     border-radius: 0.25rem;
     width: 100%;
     border-width: 2px;
     border-style: solid;
     border-color: transparent;
+    align-items: center;
+
+    @include mat.button-overrides(
+      (
+        hover-state-layer-opacity: 0,
+        pressed-state-layer-opacity: 0,
+      )
+    );
 
     &.leaf {
       padding-left: 0.5rem;
     }
 
     &:hover {
-      background: rgb(from var(--sys-secondary) r g b / 0.08);
+      background: rgb(from vars.$secondary r g b / 0.08);
     }
 
     &:active {
-      background: rgb(from var(--sys-secondary) r g b / 0.16);
+      background: rgb(from vars.$secondary r g b / 0.16);
       border-color: transparent;
     }
 
     &.selected {
-      background: rgb(from var(--sys-tertiary) r g b / 0.2);
+      background: rgb(from vars.$tertiary r g b / 0.2);
     }
   }
 }

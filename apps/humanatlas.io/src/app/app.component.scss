@@ -1,32 +1,26 @@
 :host {
-  display: flex;
-  width: 100%;
-  min-height: calc(100% - 3.5rem);
-  flex-direction: column;
-  align-items: center;
-  padding-top: 3.5rem;
-  overflow: auto;
-  transition: padding-top 0.5s ease-out;
+  display: block;
 
-  &:has(.notice.visible) {
-    padding-top: 8.5rem;
+  .main {
+    display: flex;
 
-    ::ng-deep {
-      menu-tree.menu {
-        margin-top: 6rem !important;
+    .content {
+      flex: 1 1;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1099.99px) {
+    .main {
+      hra-site-navigation {
+        display: none;
       }
     }
   }
 
-  .filler {
-    flex-grow: 1;
-  }
-
-  .toolbar-class {
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    background-color: #444c65;
-    box-shadow: 0rem 0.063rem 0.188rem 0.063rem rgb(0 0 0 / 41%);
+  @media (min-width: 1100px) {
+    .main.navigation-visible .content {
+      max-width: calc(100% - 20rem);
+    }
   }
 }

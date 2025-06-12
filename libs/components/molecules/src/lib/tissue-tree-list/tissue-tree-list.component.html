@@ -18,7 +18,7 @@
     (mouseup)="selectNode(node.data)"
   >
     <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
-      <mat-icon>
+      <mat-icon class="material-symbols-outlined">
         {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}
       </mat-icon>
     </button>

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { z } from 'zod';
@@ -16,8 +15,7 @@ import {
  */
 @Component({
   selector: 'hra-dashboard-layout',
-  standalone: true,
-  imports: [CommonModule, DashboardComponentOutletDirective, MatIconModule, MatButtonModule, ButtonsModule],
+  imports: [CommonModule, DashboardComponentOutletDirective, MatIconModule, ButtonsModule],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

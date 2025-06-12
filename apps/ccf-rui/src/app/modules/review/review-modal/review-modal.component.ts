@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
@@ -23,8 +23,14 @@ interface ReviewModalData {
   templateUrl: './review-modal.component.html',
   styleUrls: ['./review-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ReviewModalComponent {
+  /** Dialog reference */
+  readonly dialogRef = inject<MatDialogRef<ReviewModalComponent>>(MatDialogRef);
+  /** Data */
+  readonly data = inject<ReviewModalData>(MAT_DIALOG_DATA);
+
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-review-modal';
 
@@ -33,19 +39,14 @@ export class ReviewModalComponent {
    */
   metaData: Record<string, MetaData> = {};
 
+  /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);
 
   /**
    * Creates an instance of the review modal component.
-   *
-   * @param dialogRef A reference to the dialog that this component creates, used to call the dialog's methods
-   * @param data Data being injected into the dialog
    */
-  constructor(
-    public dialogRef: MatDialogRef<ReviewModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ReviewModalData,
-  ) {
-    const allData = data.metaData;
+  constructor() {
+    const allData = this.data.metaData;
     this.metaData['Author Metadata'] = allData.slice(0, 5);
     this.metaData['Donor Metadata'] = allData.slice(5, 9);
     this.metaData['Tissue Block Registration'] = allData.slice(9, 16);
@@ -62,6 +63,7 @@ export class ReviewModalComponent {
     }, 250);
   }
 
+  /** Handle download click */
   downloadClicked(): void {
     this.dialogRef.close(true);
     this.snackbar.open('File downloaded', '', false, 'end', { duration: 5000 });

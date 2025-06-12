@@ -14,6 +14,16 @@ describe('HeaderComponent', () => {
     useValue: { observe: () => of({ matches: true, breakpoints: {} }) },
   };
 
+  beforeAll(() => {
+    if (typeof ResizeObserver === 'undefined') {
+      window.ResizeObserver = jest.fn().mockImplementation(() => ({
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+      }));
+    }
+  });
+
   it('should render', async () => {
     await expect(render(HeaderComponent, { providers })).resolves.toBeDefined();
   });
@@ -67,7 +77,7 @@ describe('HeaderComponent', () => {
   });
 
   it('should update menu positions when the header size changes', async () => {
-    await render(HeaderComponent, {
+    const { fixture } = await render(HeaderComponent, {
       providers: [...providers, mobileBreakpointsProvider],
     });
 
@@ -91,5 +101,8 @@ describe('HeaderComponent', () => {
     for (let index = 0; index < calls.length; index++) {
       calls[index][0]([], instances[index]);
     }
+
+    await fixture.whenStable();
+    expect(header.getBoundingClientRect).toHaveBeenCalled();
   });
 });

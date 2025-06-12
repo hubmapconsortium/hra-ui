@@ -11,15 +11,18 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule, ProgressBarMode } from '@angular/material/progress-bar';
+import { EventType, Router } from '@angular/router';
 import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';
 import { explicitEffect } from 'ngxtension/explicit-effect';
+import { filter } from 'rxjs';
 import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { HUBMAP_MENU, MENUS } from './static-data/parsed';
@@ -50,7 +53,6 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
  */
 @Component({
   selector: 'hra-header',
-  standalone: true,
   imports: [
     CommonModule,
     OverlayModule,
@@ -74,8 +76,10 @@ export class HeaderComponent {
   readonly hubmapMenu = input(HUBMAP_MENU);
   /** All other menus */
   readonly menus = input(MENUS);
+  /** Base url - Menu urls starting with this will be converted into router links */
+  readonly baseUrl = input<string>();
   /** Breadcrumb items */
-  readonly breadcrumbs = input<BreadcrumbItem[]>([]);
+  readonly breadcrumbs = input<BreadcrumbItem[]>();
   /**
    * Progress bar progress.
    * Use `true` for an indeterminate bar and values between `0` and `100` for a determinate bar.
@@ -118,17 +122,23 @@ export class HeaderComponent {
 
   /** Initialize the header */
   constructor() {
-    effect(
-      (cleanup) => {
-        if (this.activeMenu() !== undefined) {
-          const observer = this.attachResizeObserver();
-          cleanup(() => observer.disconnect());
-        }
-      },
-      { allowSignalWrites: true },
-    );
+    effect((cleanup) => {
+      if (this.activeMenu() !== undefined) {
+        const observer = this.attachResizeObserver();
+        cleanup(() => observer.disconnect());
+      }
+    });
 
     explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });
+
+    inject(Router)
+      ?.events.pipe(
+        takeUntilDestroyed(),
+        filter((navigationEvent) =>
+          [EventType.NavigationEnd, EventType.NavigationSkipped].includes(navigationEvent.type),
+        ),
+      )
+      .subscribe(() => this.closeMenu());
   }
 
   /**
@@ -192,6 +202,7 @@ export class HeaderComponent {
    * Notify menu overlays of position changes
    */
   private updateMenuPositions(): void {
+    /* istanbul ignore next */
     this.mobileMenuOverlay()?.overlayRef?.updatePosition();
   }
 }

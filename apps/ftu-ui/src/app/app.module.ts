@@ -1,5 +1,5 @@
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule, provideAppInitializer } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,11 +41,10 @@ import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
     MouseTrackerModule,
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initFactory,
-      multi: true,
-    },
+    provideAppInitializer(() => {
+      const initializerFn = initFactory();
+      return initializerFn();
+    }),
     {
       provide: MatDialogRef,
       useValue: {},

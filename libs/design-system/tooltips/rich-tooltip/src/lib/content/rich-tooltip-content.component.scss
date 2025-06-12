@@ -1,0 +1,29 @@
+@use '../../../../../styles/utils';
+@use '../../../../../styles/vars';
+:host {
+  display: block;
+}
+
+.container {
+  max-width: 19.5rem;
+  width: fit-content;
+  background-color: vars.$secondary-container;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0.125rem 0.25rem 0.125rem utils.with-alpha(vars.$shadow, 24%);
+
+  .tagline {
+    padding: 0.75rem 1rem 0.25rem 1rem;
+    @include utils.use-font(label, medium);
+    color: vars.$on-surface;
+  }
+
+  .content {
+    padding: 0 1rem 0.25rem 1rem;
+    @include utils.use-font(label, medium);
+    color: vars.$primary;
+  }
+
+  .actions {
+    padding: 0 0.5rem 0.25rem 0.5rem;
+  }
+}

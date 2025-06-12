@@ -1,5 +1,7 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
-  font: var(--sys-label-large);
+  font: vars.$label-large;
 
   .keys {
     display: flex;

@@ -23,7 +23,6 @@ export function setUrl(url: string, baseHref: string): Url {
     return url as Url;
   } else if (baseHref !== '' && !baseHref.endsWith('/')) {
     return `${baseHref}/${url}` as Url;
-  } else {
-    return `${baseHref}${url}` as Url;
   }
+  return `${baseHref}${url}` as Url;
 }

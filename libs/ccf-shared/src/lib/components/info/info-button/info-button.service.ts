@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 /**
@@ -15,24 +15,30 @@ export interface DocumentationContent {
   content: string;
 }
 
+/** Panel data */
 export interface PanelData {
+  /** Content */
   content: DocumentationContent[];
+  /** Title */
   infoTitle: string;
+  /** Video */
   videoID: string;
 }
 
+/** Info button service */
 @Injectable({
   providedIn: 'root',
 })
 export class InfoButtonService {
+  /** Http client */
+  private readonly http = inject(HttpClient);
+
   /** Subject to send the documentation data to the component when its done processing */
   panelContent: BehaviorSubject<PanelData> = new BehaviorSubject<PanelData>({
     content: [],
     infoTitle: '',
     videoID: '',
   });
-
-  constructor(private readonly http: HttpClient) {}
 
   /**
    * Read the markdown file to split it by h1 tags and update the panel title and videoID.

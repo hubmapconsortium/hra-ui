@@ -9,14 +9,7 @@ import { InfoDialogComponent } from './info-dialog.component';
 
 @NgModule({
   declarations: [InfoDialogComponent],
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    MatIconModule,
-    MatExpansionModule,
-    YouTubePlayerModule,
-    MarkdownModule.forRoot({}),
-  ],
+  imports: [CommonModule, MatDialogModule, MatIconModule, MatExpansionModule, YouTubePlayerModule, MarkdownModule],
   exports: [InfoDialogComponent],
 })
 export class InfoDialogModule {}

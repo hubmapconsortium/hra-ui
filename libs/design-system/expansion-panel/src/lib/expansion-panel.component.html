@@ -9,13 +9,13 @@
     <div class="header">
       @if (!disabled()) {
         <button mat-icon-button data-testid="toggle" (click)="accordionItem.toggle()">
-          <mat-icon [hraMicroTooltip]="accordionItem.expanded ? 'Collapse' : 'Expand'">
+          <mat-icon [hraPlainTooltip]="accordionItem.expanded ? 'Collapse' : 'Expand'">
             {{ accordionItem.expanded ? 'remove' : 'add' }}
           </mat-icon>
         </button>
       }
 
-      <span class="title" [attr.id]="taglineId" [hraMicroTooltip]="tooltip()">
+      <span class="title" [attr.id]="taglineId" [hraPlainTooltip]="tooltip()">
         {{ tagline() }}
       </span>
 
@@ -23,7 +23,7 @@
         <ng-content select="hra-expansion-panel-actions"> </ng-content>
       </span>
       <div class="filler"></div>
-      <span>
+      <span class="header-content">
         <ng-content select="hra-expansion-panel-header-content"></ng-content>
       </span>
     </div>

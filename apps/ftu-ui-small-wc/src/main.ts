@@ -1,5 +1,5 @@
 import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, provideAppInitializer } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,11 +38,10 @@ createCustomElement('hra-ftu-ui-small', AppComponent, {
     ),
     provideAnimations(),
     provideHttpClient(),
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initFactory,
-      multi: true,
-    },
+    provideAppInitializer(() => {
+      const initializerFn = initFactory();
+      return initializerFn();
+    }),
     {
       // Replace full routing with a partial implementation
       provide: Router,

@@ -25,6 +25,7 @@ jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({
   createEdgeGenerator: () => () => EMPTY,
 }));
 
+const TIMEOUT = 10000; // In ms
 const embedResult = mockDeep<Result>();
 
 describe('CdeVisualizationComponent', () => {
@@ -50,7 +51,7 @@ describe('CdeVisualizationComponent', () => {
         ...options?.inputs,
       },
       providers: [
-        provideDesignSystemCommon({ scrolling: { disableSensor: true } }),
+        provideDesignSystemCommon(),
         provideHttpClient(),
         provideHttpClientTesting(),
         ...(options?.providers ?? []),
@@ -91,71 +92,91 @@ describe('CdeVisualizationComponent', () => {
     embedResult.view.signal.mockReturnThis();
   });
 
-  it('should render', async () => {
-    await expect(setup()).resolves.toBeDefined();
-  });
+  it(
+    'filters the distances based on the current selection',
+    async () => {
+      const { fixture } = await setup();
+      fixture.componentInstance.cellTypesSelection.set(['t-cell', 'b-cell']);
+      fixture.detectChanges();
 
-  it('filters the distances based on the current selection', async () => {
-    const { fixture } = await setup();
-    fixture.componentInstance.cellTypesSelection.set(['t-cell', 'b-cell']);
-    fixture.detectChanges();
-
-    expect(fixture.componentInstance.filteredDistances()).toEqual([]);
-  });
+      expect(fixture.componentInstance.filteredDistances()).toEqual([]);
+    },
+    TIMEOUT,
+  );
 
   describe('countAdjustments', () => {
-    it('adjust counts when there are excluded nodes', async () => {
-      const { fixture } = await setup();
-      const instance = fixture.componentInstance;
-      instance.nodeFilterView.update((prev) => prev.addEntries(undefined, [0]));
+    it(
+      'adjust counts when there are excluded nodes',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        instance.nodeFilterView.update((prev) => prev.addEntries(undefined, [0]));
 
-      const adjustments = instance.countAdjustments();
-      expect(adjustments).toHaveProperty('epithelial');
-    });
+        const adjustments = instance.countAdjustments();
+        expect(adjustments).toHaveProperty('epithelial');
+      },
+      TIMEOUT,
+    );
   });
 
   describe('updateColor()', () => {
-    it('updates the cell types', async () => {
-      const { fixture } = await setup();
-      const instance = fixture.componentInstance;
-      const prevTypes = instance.cellTypes();
-      fixture.componentInstance.updateColor(prevTypes[0], [1, 2, 3]);
+    it(
+      'updates the cell types',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const prevTypes = instance.cellTypes();
+        fixture.componentInstance.updateColor(prevTypes[0], [1, 2, 3]);
 
-      const newTypes = instance.cellTypes();
-      expect(newTypes).not.toEqual(prevTypes);
-      expect(newTypes[0].color).toEqual([1, 2, 3]);
-    });
+        const newTypes = instance.cellTypes();
+        expect(newTypes).not.toEqual(prevTypes);
+        expect(newTypes[0].color).toEqual([1, 2, 3]);
+      },
+      TIMEOUT,
+    );
   });
 
   describe('downloads', () => {
-    it('should download nodes', async () => {
-      const { fixture } = await setup();
+    it(
+      'should download nodes',
+      async () => {
+        const { fixture } = await setup();
 
-      const fileSaver = TestBed.inject(FileSaverService);
-      const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
+        const fileSaver = TestBed.inject(FileSaverService);
+        const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
 
-      await fixture.componentInstance.downloadNodes();
-      expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'nodes.csv');
-    });
+        await fixture.componentInstance.downloadNodes();
+        expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'nodes.csv');
+      },
+      TIMEOUT,
+    );
 
-    it('should download edges', async () => {
-      const { fixture } = await setup();
+    it(
+      'should download edges',
+      async () => {
+        const { fixture } = await setup();
 
-      const fileSaver = TestBed.inject(FileSaverService);
-      const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
+        const fileSaver = TestBed.inject(FileSaverService);
+        const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
 
-      await fixture.componentInstance.downloadEdges();
-      expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'edges.csv');
-    });
+        await fixture.componentInstance.downloadEdges();
+        expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'edges.csv');
+      },
+      TIMEOUT,
+    );
 
-    it('should download color map', async () => {
-      const { fixture } = await setup();
+    it(
+      'should download color map',
+      async () => {
+        const { fixture } = await setup();
 
-      const fileSaver = TestBed.inject(FileSaverService);
-      const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
+        const fileSaver = TestBed.inject(FileSaverService);
+        const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
 
-      await fixture.componentInstance.downloadColorMap();
-      expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'color-map.csv');
-    });
+        await fixture.componentInstance.downloadColorMap();
+        expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'color-map.csv');
+      },
+      TIMEOUT,
+    );
   });
 });

@@ -6,7 +6,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 /** A call to action bar that can be displayed at top of the page */
 @Component({
   selector: 'hra-cta-bar',
-  standalone: true,
   imports: [CommonModule, MatIconModule, ButtonsModule],
   templateUrl: './cta-bar.component.html',
   styleUrl: './cta-bar.component.scss',

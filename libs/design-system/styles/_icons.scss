@@ -1,12 +1,12 @@
-@use '@fontsource/material-symbols-outlined/300.css' as material-symbols-outlined-300;
-@use '@fontsource/material-symbols-rounded/300.css' as material-symbols-rounded-300;
+@use '@fontsource-variable/material-symbols-outlined/full.css' as outlined;
+@use '@fontsource-variable/material-symbols-rounded/full.css' as rounded;
 
 /* As per https://fontsource.org/docs/getting-started/material-symbols */
 .material-symbols-outlined,
 .material-symbols-rounded {
   font-weight: 300;
   font-style: normal;
-  font-size: 1.5rem;
+  font-size: 24px;
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -17,9 +17,17 @@
 }
 
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
+  font-family: 'Material Symbols Outlined Variable';
 }
 
 .material-symbols-rounded {
-  font-family: 'Material Symbols Rounded';
+  font-family: 'Material Symbols Rounded Variable';
+}
+
+.material-symbols-filled {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 20;
 }

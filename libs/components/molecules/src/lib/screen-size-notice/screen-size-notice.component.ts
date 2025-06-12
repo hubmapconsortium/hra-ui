@@ -10,7 +10,6 @@ import { EMPTY_LINK, LinkDirective } from '@hra-ui/cdk';
  */
 @Component({
   selector: 'hra-screen-size-notice',
-  standalone: true,
   imports: [CommonModule, MarkdownModule, MatButtonModule, MatIconModule, LinkDirective],
   templateUrl: './screen-size-notice.component.html',
   styleUrls: ['./screen-size-notice.component.scss'],

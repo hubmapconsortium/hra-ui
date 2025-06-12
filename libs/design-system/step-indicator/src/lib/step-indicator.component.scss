@@ -1,9 +1,11 @@
+@use '../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   .step-number {
-    font: var(--sys-label-large);
-    letter-spacing: var(--sys-label-large-tracking);
-    background-color: var(--sys-inverse-surface);
-    color: var(--sys-on-primary);
+    font: vars.$label-large;
+    letter-spacing: vars.$label-large-tracking;
+    background-color: vars.$inverse-surface;
+    color: vars.$on-primary;
     display: flex;
     width: 2rem;
     height: 2rem;

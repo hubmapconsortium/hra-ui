@@ -2,7 +2,7 @@
   class="rotation-value"
   subscriptSizing="dynamic"
   (click)="showSlider()"
-  hraMicroTooltip="Rotation is measured in degrees"
+  hraPlainTooltip="Rotation is measured in degrees"
   cdkOverlayOrigin
   #trigger="cdkOverlayOrigin"
 >
@@ -29,7 +29,7 @@
   (backdropClick)="closeSlider()"
 >
   <div class="slider-container">
-    <button mat-icon-button class="icon reset" (click)="resetRotation.emit()" hraMicroTooltip="Reset">
+    <button mat-icon-button class="icon reset" (click)="resetRotation.emit()" hraPlainTooltip="Reset">
       <mat-icon>reset_settings</mat-icon>
     </button>
     <mat-slider
@@ -38,7 +38,7 @@
       [min]="-180"
       [step]="step"
       disableRipple
-      hraMicroTooltip="Hold shift while using the slider to rotate in smaller increments by 30 degrees"
+      hraPlainTooltip="Hold shift while using the slider to rotate in smaller increments by 30 degrees"
     >
       <input
         class="slider-input"

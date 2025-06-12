@@ -1,0 +1,39 @@
+<img class="app-image" [attr.src]="imagePath() | assetUrl" alt="" />
+<div class="ui-content-main">
+  <hra-app-label class="label" [tagline]="tagline()" [logo]="logo()" [appStatus]="appStatus()"></hra-app-label>
+  <p class="ui-content-description">
+    {{ description() }}
+  </p>
+  <div class="ui-section-buttons">
+    @if (appUrl()?.startsWith('http')) {
+      <a mat-button hraCtaButton [attr.href]="appUrl()" target="_self" rel="noopener noreferrer">
+        Use app
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+    } @else {
+      <a mat-button hraCtaButton [routerLink]="appUrl()">
+        Use app
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+    }
+    @if (documentationUrl()?.startsWith('http')) {
+      <a
+        mat-button
+        hraCtaButton
+        hraButtonVariant="secondary"
+        disableRipple
+        [attr.href]="documentationUrl()"
+        target="_self"
+        rel="noopener noreferrer"
+      >
+        Learn more
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+    } @else {
+      <a mat-button hraCtaButton hraButtonVariant="secondary" disableRipple [routerLink]="documentationUrl()">
+        Learn more
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+    }
+  </div>
+</div>

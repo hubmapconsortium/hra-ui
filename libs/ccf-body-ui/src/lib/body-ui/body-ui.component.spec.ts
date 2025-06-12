@@ -14,7 +14,7 @@ jest.mock('../body-ui.ts', () => ({
       setProps: jest.fn(),
       finalize: jest.fn(),
     },
-    initialize: jest.fn().mockResolvedValue(undefined),
+    initialize: jest.fn(),
     finalize: jest.fn(),
     setScene: jest.fn(),
     setZoom: jest.fn(),
@@ -34,22 +34,26 @@ describe('BodyUiComponent', () => {
     return jest.mocked(BodyUI).mock.results[0].value;
   }
 
+  function wait(ms: number): Promise<void> {
+    return new Promise((res) => setTimeout(res, ms));
+  }
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('should set zoom according to the bounds', async () => {
     const bounds: XYZTriplet = { x: 0, y: 0, z: 0 };
-    const {
-      fixture: { componentInstance: component },
-    } = await render(BodyUiComponent, {
+    const { fixture } = await render(BodyUiComponent, {
       providers,
       inputs: {
         bounds: bounds,
       },
     });
+    await wait(0);
+    fixture.detectChanges();
 
-    component.zoomToBounds(bounds);
+    fixture.componentInstance.zoomToBounds(bounds);
     expect(getBodyUi().setZoom).toHaveBeenCalled();
   });
 
@@ -61,8 +65,9 @@ describe('BodyUiComponent', () => {
         scene: scenes,
       },
     });
+    await wait(0);
+    fixture.detectChanges();
 
-    await fixture.whenStable();
     expect(getBodyUi().setScene).toHaveBeenCalledWith(scenes);
   });
 
@@ -78,8 +83,9 @@ describe('BodyUiComponent', () => {
     const controller = TestBed.inject(HttpTestingController);
     const req = controller.expectOne(URL);
     req.flush([sampleSpatialSceneNode]);
+    await wait(0);
+    fixture.detectChanges();
 
-    await fixture.whenStable();
     expect(getBodyUi().setScene).toHaveBeenCalledWith([sampleSpatialSceneNode]);
   });
 
@@ -97,7 +103,8 @@ describe('BodyUiComponent', () => {
     const req = controller.expectOne(URL);
     req.flush('Error Data');
 
-    await fixture.whenStable();
+    await wait(0);
+    fixture.detectChanges();
     expect(getBodyUi().setScene).not.toHaveBeenCalledWith([sampleSpatialSceneNode]);
     expect(errorHandler.handleError).toHaveBeenCalled();
   });
@@ -116,7 +123,8 @@ describe('BodyUiComponent', () => {
         nodeClick,
       },
     });
-    await fixture.whenStable();
+    await wait(0);
+    fixture.detectChanges();
 
     const nodeClick$ = getBodyUi().nodeClick$ as Subject<NodeClickEvent>;
     nodeClick$.next(event);

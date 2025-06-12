@@ -1,0 +1,94 @@
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Frequently Asked Questions (FAQs)
+subtitle: |
+  Welcome to the Human Reference Atlas (HRA) FAQs page! Here you’ll find answers to common questions about using, integrating,
+  and contributing to the HRA platform. If you don’t see your question here, please visit our Contact Us section for more support.
+icons: product:developer-portal
+content:
+  - component: PageSection
+    tagline: General
+    anchor: general
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          **Q: What is the Human Reference Atlas (HRA)?**<br>
+          A: The HRA is an open-access, 3D atlas of the healthy human body, providing detailed anatomical, cellular, and molecular data for researchers, developers, and educators.
+
+          **Q: Who can use the HRA?**<br>
+          A: Anyone! The HRA is designed for scientists, developers, educators, students, and the general public interested in human biology.
+
+          **Q: Is there a cost to use the HRA?**<br>
+          A: No. The HRA is free and open-access for all users.
+  - component: PageSection
+    tagline: Access & Data
+    anchor: access-data
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          **Q: How do I access HRA data?**<br>
+          A: You can access data via the HRA web portal, download digital objects, or use our public APIs. Visit the [API Reference](https://docs.humanatlas.io/api-reference) for more information.
+
+          **Q: What types of data are available?**<br>
+          A: The HRA offers 3D anatomical models, ASCT+B tables (anatomical structures, cell types, biomarkers), spatial ontologies, and more.
+
+          **Q: In which formats is the data available?**<br>
+          A: Data can be downloaded in formats such as GLB (3D models), JSON, and CSV.
+
+          **Q: Can I use HRA data in my own research or application?**<br>
+          A: Yes! All data is open-access and can be used in your projects, provided you cite the HRA appropriately.
+  - component: PageSection
+    tagline: API & Integration
+    anchor: api-integration
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          **Q: Where can I find API documentation?**<br>
+          A: Visit our [API Reference](https://docs.humanatlas.io/api-reference) for detailed documentation, code samples, and usage guidelines.
+
+          **Q: What should I do if I encounter an API error?**<br>
+          A: Check the [Changelog](https://docs.humanatlas.io/changelog) for updates, review error messages, and consult our Support Page for troubleshooting tips.
+  - component: PageSection
+    tagline: Visualization & Web Components
+    anchor: visualization-web-components
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          **Q: Can I embed HRA 3D models in my website or app?**<br>
+          A: Absolutely! Use our [Web Components](https://docs.humanatlas.io/web-components) for easy integration of interactive 3D models and visualizations.
+
+          **Q: Are there tutorials for using HRA components?**<br>
+          A: Yes, see our [Tutorials](https://docs.humanatlas.io/tutorials) section for step-by-step guides and example projects.
+  - component: PageSection
+    tagline: Troubleshooting
+    anchor: troubleshooting
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          **Q: The data isn’t loading—what should I do?**<br>
+          A:
+
+          - Check your internet connection.
+
+          - Ensure you’re using the latest endpoints listed in the Changelog.
+
+          - If problems persist, contact support at [support@humanatlas.io](support@humanatlas.io).
+
+          **Q: I found a bug or error—how do I report it?**<br>
+          A: Please report bugs via email at [support@humanatlas.io](support@humanatlas.io).
+  - component: PageSection
+    tagline: Contact Us
+    anchor: contact-us
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          **Still have questions?**<br>
+            - Email: [support@humanatlas.io](mailto:support@humanatlas.io)
+
+          We’re here to help!
+          If you have suggestions for additional FAQs, please let us know through our feedback channels!

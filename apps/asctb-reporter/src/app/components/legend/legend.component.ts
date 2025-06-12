@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, inject } from '@angular/core';
 import { BimodalData } from '../../models/bimodal.model';
 import { Legend } from '../../models/legend.model';
 import { Error } from '../../models/response.model';
@@ -11,16 +11,17 @@ import { delay } from 'rxjs';
   selector: 'app-legend',
   templateUrl: './legend.component.html',
   styleUrls: ['./legend.component.scss'],
+  standalone: false,
 })
 export class LegendComponent implements OnInit, OnChanges {
+  readonly ls = inject(LegendService);
+
   legends: Legend[] = [];
 
   @Input() treeData: TNode[] = [];
   @Input() bimodalData!: BimodalData;
   @Input() compareData: CompareData[] = [];
   @Input() error!: Error;
-
-  constructor(public ls: LegendService) {}
 
   ngOnInit(): void {
     this.ls.legendData$.pipe(delay(0)).subscribe((data) => {

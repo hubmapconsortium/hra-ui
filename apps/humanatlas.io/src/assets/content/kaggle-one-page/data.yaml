@@ -1,0 +1,134 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: |
+  HuBMAP - Hacking the Kidney
+subtitle: 'Kaggle competition timeline: November 16, 2020 to May 21, 2021'
+headerContent:
+  - component: FlexContainer
+    columnGap: 2rem
+    content:
+      - component: Button
+        label: Read publication
+        type: cta
+        href: https://www.nature.com/articles/s42003-023-04848-5
+
+      - component: Button
+        label: View competition
+        type: cta
+        variant: secondary
+        href: https://www.kaggle.com/c/hubmap-kidney-segmentation
+
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Human BioMolecular Atlas Program (HuBMAP), sponsored by the NIH, is building an open,
+          cellular-level map of the human body—starting with the kidney—similar to how the Human Genome Project mapped DNA.
+          In this competition, “Hacking the Kidney,” the challenge is to detect functional tissue units (FTUs) across varying tissue
+          preparation methods to support breakthroughs in health, anatomy, and disease understanding. Successful submissions are showcased
+          to expert judges and contribute vital tools, data, and insights that fuel research, therapy development, and public understanding
+          of human biology. This competition concluded on May 21, 2021.
+
+  - component: PageSection
+    tagline: Awards ceremony
+    anchor: awards-ceremony
+    level: 3
+    content:
+      - component: Image
+        src: assets/content/kaggle-one-page/images/winning-team.svg
+
+  - component: PageSection
+    tagline: Winning teams
+    anchor: winning-teams
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Accuracy prizes:
+          - 1st place ($18,000) presented by Geri Studebaker, Google:
+            - Team: Tom
+            - Kaggle ID(s): tikutiku
+            - [Solution writeup](https://www.kaggle.com/c/hubmap-kidney-segmentation/discussion/238198)
+          - 2nd place ($10,000) presented by Aashima Gupta, Google:
+            - Team: Gleb
+            - Kaggle ID(s): bakeryproducts, kulyabin, sherlockkay
+          - 3rd place ($3,000) presented by Albert Ihochi, CAS:
+            - Team: Whats goin on
+            - Kaggle ID(s): shujun717, rvslight
+            - [Solution writeup](https://www.kaggle.com/c/hubmap-kidney-segmentation/discussion/238013)
+
+          Judges prizes:
+          - Scientific Prize ($15,000) presented by Ryan Copping, Roche:
+            - Team: DeepLive.exe
+            - Kaggle ID(s): optimo, theoviel, iafoss
+            - [Notebook](https://www.kaggle.com/code/theoviel/hubmap-final-methodology-submission/notebook)
+            - [Presentation](https://www.youtube.com/watch?v=uqyFPMnOB2g&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=3)
+          - Innovation Prize ($10,000) presented by Matt Nelson, Deerfield:
+            - Team: deepflash2
+            - Kaggle ID(s): matjes, theudas, maddonix
+            - [Notebook](https://www.kaggle.com/matjes/hubmap-deepflash2-judge-price)
+            - [Presentation](https://www.youtube.com/watch?v=w6LpUDkXL0Q&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=2)
+          Diversity Prize ($3,000) presented by Rahcyne Omatete, Pistoia Alliance:
+            - Team: 404!
+            - Kaggle ID(s): Gavi_sr, Sophie, tpmeli, dskswu
+            - [Notebook](https://www.kaggle.com/dskswu/team-404-hubmap-presentation-v1-1)
+            - [Presentation](https://www.youtube.com/watch?v=pZTjzaP12Sc&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=5)
+
+          Kudos:
+          - Team players:
+            - Team: Efforless Neuron
+            - Kaggle ID(s): chienhsianghung, ulrich07, raphaelensae, faisalalsrheed, salimkhazem
+            - [Presentation](https://www.youtube.com/watch?v=DnX7vU4Caqg&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=6)
+          - Community hero:
+            - Team: Wojtek Rosa
+            - Kaggle ID(s): wrrosa
+          - Most entertaining:
+            - Team: deepflash2
+            - Kaggle ID(s): matjes, theudas, maddonix
+            - [Notebook](https://www.kaggle.com/matjes/hubmap-deepflash2-judge-price)
+            - [Presentation](https://www.youtube.com/watch?v=w6LpUDkXL0Q&list=PLuJUUASr8daMaDBweSiSbPXgzwUX_xoX_&index=2)
+
+  - component: PageSection
+    tagline: Publication
+    anchor: publication
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The competition results are published in Nature Communications Biology: [Segmentation of human functional tissue units in support of a Human Reference Atlas](https://www.nature.com/articles/s42003-023-04848-5). Explore this publication on the [HuBMAP Data Portal](https://portal.hubmapconsortium.org/browse/publication/eb975811a1a3005622c4da37d948117e).
+
+  - component: PageSection
+    tagline: How to cite
+    anchor: how-to-cite
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Jain, Y., Godwin, L.L., Ju, Y. et al. Segmentation of human functional tissue units in support of a Human Reference Atlas. Commun Biol 6, 717 (2023). https://doi.org/10.1038/s42003-023-04848-5.
+
+  - component: PageSection
+    tagline: Data and code
+    anchor: data-code
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - All 30 datasets have been published as a [HuBMAP collection](https://portal.hubmapconsortium.org/browse/collection/4964d24bbc6668a72c4cbb5e0393a6bc).
+          - All code submitted by the winning teams is made publicly available as part of the scientific paper showcasing the results of the competition using the [GitHub repository](https://github.com/cns-iu/ccf-research-kaggle-2021).
+
+  - component: PageSection
+    tagline: Acknowledgements
+    anchor: acknowledgements
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          We would like to thank the many individuals that made this competition possible, including:
+          - Organizers: Andrea de Souza (Eli Lilly and Company), Katy Börner (Indiana University), Deepika Vuppalanchi (Precision Value Health), Christine Drury (InnovDigi/Conference Ventures), and Sandeep Allam (STLogics).
+          - Support Team: Richard Holland, Marcos Novaes, and Addison Howard (Google), Leah Scherschel, Lisel Record, Ellen Quardokus, and Yingnan Ju (Indiana University), Jeffrey Spraggins and Heath Patterson (Vanderbilt University), and Arkan Abadi (Eli Lilly).
+          - Kaggle Sponsors: Google HCLS, Roche, Deloitte, Deerfield Healthcare, Pistoia Alliance, CAS - American Chemical Society, Maven Wave.
+          - Kaggle Judges: Zorina Galis (NIH), Thomas Fuchs (Paige.ai, Mount Sinai), Matt Nelson (Deerfield Healthcare), Amy Bernard (Allen Institute), Maigan Brusko (University of Florida), John Marioni (EMBL-EBI, UK), Blue Lake (UC San Diego), David Van Valen (CalTech), and Alex Wolf (Cellarity).
+          - Funders: This work has been funded in part by the NIH Common Fund through the Office of Strategic Coordination/Office of the NIH Director under award OT2OD026671 and VU HuBMAP under award 1U54DK120058-01.

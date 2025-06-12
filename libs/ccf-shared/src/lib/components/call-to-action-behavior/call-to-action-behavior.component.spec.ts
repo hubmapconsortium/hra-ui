@@ -25,11 +25,11 @@ describe('CallToActionBehaviorComponent', () => {
 
   it('should emit on call to action click', async () => {
     const { instance } = await shallow.render();
-    expect(instance.learnMore()).toEqual(jasmine.any(LearnMore));
+    expect(instance.learnMore()).toEqual(expect.any(LearnMore));
   });
 
   it('should emit on close click', async () => {
     const { instance } = await shallow.render();
-    expect(instance.close()).toEqual(jasmine.any(CloseDialog));
+    expect(instance.close()).toEqual(expect.any(CloseDialog));
   });
 });

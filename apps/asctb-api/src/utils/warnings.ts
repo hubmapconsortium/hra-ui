@@ -1,3 +1,4 @@
+/** Warning codes */
 export enum WarningCode {
   InvalidCsvFile = 1,
   UnmappedMetadata = 2,
@@ -10,6 +11,7 @@ export enum WarningCode {
   NoIdInCT1 = 9,
 }
 
+/** Labels for each warning code */
 export const WarningLabels = {
   [WarningCode.InvalidCsvFile]: 'Invalid CSV file?',
   [WarningCode.UnmappedMetadata]: 'Unmapped Metadata found?',

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'ftu-ui-small-wc',
   preset: '../../jest.preset.js',

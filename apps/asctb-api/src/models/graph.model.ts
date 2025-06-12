@@ -1,6 +1,6 @@
 import { Reference } from './api.model';
 
-/* tslint:disable:variable-name */
+/** Node types */
 export enum Node_type {
   AS = 'AS',
   CT = 'CT',
@@ -8,6 +8,7 @@ export enum Node_type {
   R = 'root',
 }
 
+/** Edge types */
 export enum Edge_type {
   AS_AS = 'ASAS',
   AS_CT = 'ASCT',
@@ -21,16 +22,26 @@ export enum Edge_type {
   AS_P = 'ASprotein', // Not supported, but shows up in the data
 }
 
+/** Graph node */
 export class GNode {
+  /** Node id */
   id: number;
+  /** Parent id */
   parent: number;
+  /** Node type */
   type: string;
+  /** Node name */
   name: string;
+  /** Node comparator */
   comparator: string;
+  /** Comparator name */
   comparatorName: string;
+  /** Comparator id */
   comparatorId: string;
+  /** Node metadata */
   metadata: Metadata;
 
+  /** Initialize the node */
   constructor(
     id: number,
     name: string,
@@ -52,15 +63,24 @@ export class GNode {
   }
 }
 
+/** Node metadata */
 export class Metadata {
+  /** Ontology type id */
   ontologyTypeId: string;
+  /** Ontology type name */
   ontologyType: string;
+  /** Label */
   label: string;
+  /** Name */
   name: string;
+  /** Ontology id */
   ontologyId: string;
+  /** Biomarker type */
   bmType?: string;
+  /** References */
   references: Reference[];
 
+  /** Initialize the metadata */
   constructor(name: string, ontologyId: string, label: string, references: Reference[], bmType?: string) {
     this.name = name;
     this.ontologyId = ontologyId;
@@ -85,12 +105,18 @@ export class Metadata {
   }
 }
 
+/** Graph edge */
 export interface GEdge {
+  /** Source node id */
   source: number;
+  /** Target node id */
   target: number;
 }
 
+/** A graph */
 export interface GraphData {
-  nodes: Array<GNode>;
-  edges: Array<GEdge>;
+  /** Nodes */
+  nodes: GNode[];
+  /** Edges */
+  edges: GEdge[];
 }

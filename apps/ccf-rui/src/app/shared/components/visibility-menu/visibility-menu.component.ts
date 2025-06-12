@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, model } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { OpacitySliderModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { VisibilityItem } from '../../../core/models/visibility-item';
@@ -24,12 +24,11 @@ const SLIDER_OVERLAY_POSITION: ConnectedPosition[] = [
  */
 @Component({
   selector: 'ccf-visibility-menu',
-  imports: [CommonModule, MatIconModule, MatRippleModule, OverlayModule, OpacitySliderModule, MicroTooltipDirective],
+  imports: [CommonModule, MatIconModule, MatRippleModule, OverlayModule, OpacitySliderModule, PlainTooltipDirective],
   templateUrl: './visibility-menu.component.html',
   styleUrls: ['./visibility-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [CdkScrollable],
-  standalone: true,
 })
 export class VisibilityMenuComponent {
   /**

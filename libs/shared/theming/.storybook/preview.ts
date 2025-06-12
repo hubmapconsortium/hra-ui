@@ -1,6 +1,9 @@
+import { setCompodocJson } from '@storybook/addon-docs/angular';
+import compodocJson from './compodoc/documentation.json';
+
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { argTypesEnhancers, decorators, parameters, setDocs } from '../../../../.storybook/preview';
+import { argTypesEnhancers, decorators, parameters } from '../../../../.storybook/preview';
 
 export { argTypesEnhancers, decorators, parameters };
 
-setDocs('shared-theming');
+setCompodocJson(compodocJson);

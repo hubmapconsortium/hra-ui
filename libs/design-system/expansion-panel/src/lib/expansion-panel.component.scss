@@ -1,19 +1,27 @@
+@use '../../../../../libs/design-system/styles/vars';
+
 :host {
   display: block;
 
   .header {
     display: flex;
     align-items: center;
-    font: var(--sys-label-medium);
-    color: var(--sys-secondary);
+    font: vars.$label-medium;
+    color: vars.$secondary;
   }
 
   .filler {
     flex-grow: 1;
   }
 
+  .header-content {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+  }
+
   .content {
-    font: var(--sys-label-large);
+    font: vars.$label-medium;
     display: flex;
     flex-direction: column;
     ::ng-deep &[style*='visibility: hidden'] * {

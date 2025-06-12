@@ -1,0 +1,183 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Data overview
+subtitle: |
+  The evolving Human Reference Atlas is built with distinct data structures called <a href="/overview-data#digital-objects">digital objects</a>.
+  New and updated data is released twice a year on June 15 and December 15.
+icons: misc:data
+action:
+  url: https://purl.humanatlas.io
+  label: Get data
+content:
+  - component: PageSection
+    tagline: Digital objects
+    anchor: digital-objects
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Digital objects are unique data categories building the Human Reference Atlas. Digital objects are organized within the <a href="https://lod.humanatlas.io" target="_blank">Knowledge Graph database application</a>.
+          Digital objects may be connected to ontology terminology, such as <a href="https://www.ebi.ac.uk/ols4/ontologies/uberon" target="_blank">Uberon</a>, <a href="https://www.ebi.ac.uk/ols4/ontologies/cl" target="_blank">Cell Ontology (CL)</a>,
+          and <a href="https://www.ebi.ac.uk/ols4/ontologies/pcl" target="_blank">Provisional Cell Ontology (PCL)</a>, via CSV files called crosswalk tables.
+      - component: FlexContainer
+        rowGap: 1.5rem
+        columnGap: 1.5rem
+        content:
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: 3D Organs
+            icons: product:3d-organ
+            content:
+              - component: Markdown
+                data: 3D human organs with ontological terminology.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /3d-reference-library?version=2.1&organ=Blood%20Vasculature
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/ref-organ
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: ASCT+B Tables
+            icons: product:asctb-reporter
+            content:
+              - component: Markdown
+                data: Human organ systems organized in nested levels from anatomical structures down to subcellular biomarkers.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /asctb-tables
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/asct-b
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Cell Type Annotations
+            icons: product:cell-type-annotations
+            content:
+              - component: Markdown
+                data: Ontology ID labels for cell type annotation cell types.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /cell-type-annotations
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/ctann
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Functional Tissue Unit (FTU) Illustrations
+            icons: product:ftu
+            content:
+              - component: Markdown
+                data: |
+                  Illustrations of the smallest tissue organization performing a unique physiologic function
+                  and is replicated multiple times in a human organ.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /2d-ftu-illustrations?version=2.1&organ=Kidney
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/2d-ftu
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Organ Mapping Antibody Panel (OMAP) Tables
+            icons: product:omaps
+            content:
+              - component: Markdown
+                data: Collections of antibodies spatially mapping anatomical structures and cell types.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /omap
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/omap
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Millitome
+            icons: product:millitome
+            content:
+              - component: Markdown
+                data: Files for assigning spatial locations to HuBMAP IDs and gathering metadata.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /millitome
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/millitome
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Vascular Geometry
+            icons: product:vascular-geometry
+            content:
+              - component: Markdown
+                data: Human blood vascular system information capturing key attributes of different vessels.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /vccf
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://lod.humanatlas.io/vascular-geometry
+  - component: PageSection
+    tagline: Collaborator data portals
+    anchor: collaborator-data-portals
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Explore data repositories from collaborators who help build the evolving Human Reference Atlas.
+      - component: FlexContainer
+        rowGap: 1.5rem
+        columnGap: 1.5rem
+        content:
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/HuBMAP.png
+            tagline: Human BioMolecular Atlas Program (HuBMAP) Data Portal
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://portal.hubmapconsortium.org/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/SenNet.png
+            tagline: Cellular Senescence Network (SenNet) Data Portal
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://data.sennetconsortium.org/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/KPMP.png
+            tagline: Kidney Precision Medicine Project (KPMP) Data Portal
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://www.kpmp.org/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/GTEx.png
+            tagline: The Genotype-Tissue Expression (GTEx) Portal
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://www.gtexportal.org/home/
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/data-page/images/GUDMAP.png
+            tagline: GenitoUrinary Development Molecular Anatomy Project (GUDMAP) Database
+            actionsLeft:
+              component: TextHyperlink
+              text: Explore
+              url: https://www.atlas-d2k.org/gudmap/

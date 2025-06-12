@@ -1,0 +1,15 @@
+@for (item of data(); track item.thumbnail) {
+  <div class="slide">
+    <a
+      class="thumbnail"
+      target="_blank"
+      rel="noopener noreferrer"
+      [attr.href]="item.link"
+      [style.background-image]="thumbnailUrl(item)"
+      (click)="linkClicked.emit(item)"
+    ></a>
+    <div>
+      {{ item.technology }}
+    </div>
+  </div>
+}

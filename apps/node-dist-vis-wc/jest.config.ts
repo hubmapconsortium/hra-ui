@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'node-dist-vis-wc',
   preset: '../../jest.preset.js',

@@ -1,0 +1,99 @@
+@use 'vars';
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: 58.75rem;
+  margin: 10rem auto;
+  padding: 0 1rem;
+}
+
+.info-text {
+  margin-top: 3.5rem;
+  font: vars.$body-large;
+  letter-spacing: vars.$body-large-tracking;
+  color: vars.$on-secondary-container;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 3.5rem;
+  --hra-workflow-card-header-padding: 0 0 0.5rem 0;
+
+  .info-icon {
+    display: flex;
+    align-self: center;
+  }
+
+  .card-text {
+    color: vars.$inverse-surface;
+    margin: 0;
+  }
+
+  .buttons-container {
+    padding-top: 2rem;
+  }
+
+  .card-with-file {
+    width: 27rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .file-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+  }
+
+  .card {
+    width: 27rem;
+    font: vars.$label-large;
+    letter-spacing: vars.$label-large-tracking;
+
+    &-1 {
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &-2 {
+      align-self: flex-start;
+      .buttons {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .tooltip-panel {
+    background-color: white;
+    margin-left: 0.5rem;
+    box-shadow: rgb(from vars.$secondary r g b / 24%);
+    border-radius: 0.5rem;
+    max-width: 21rem;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+    color: vars.$primary;
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-container:has(.rui-panel) {
+    z-index: 900;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .cards {
+    flex-wrap: nowrap;
+  }
+}

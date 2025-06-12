@@ -1,22 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { render, screen } from '@testing-library/angular';
-import { DialogService } from '../../dialog.service';
-import { NoticeComponent } from './notice.component';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
+import { DialogService } from '../../dialog.service';
 
 describe('DialogComponent', () => {
   let service: DialogService;
   const TITLE = 'Test Title';
   const MESSAGE = 'Test Message';
-  beforeEach(async () => {
-    await render(NoticeComponent, {
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: {} },
-        { provide: MatDialogRef, useValue: {} },
-      ],
-    });
 
+  beforeEach(async () => {
+    TestBed.configureTestingModule({
+      providers: [provideNoopAnimations()],
+    });
     service = TestBed.inject(DialogService);
   });
 
@@ -48,26 +44,22 @@ describe('DialogComponent', () => {
   });
 
   it('Dialog should close when clicked on dismiss button', async () => {
-    const user = userEvent.setup();
     service.openNotice(TITLE, MESSAGE);
 
-    const dialogTitle = await screen.findByText(TITLE);
-
     const dismiss = await screen.findByRole('button', { name: 'Dismiss' });
-    await user.click(dismiss);
+    await userEvent.click(dismiss);
 
+    const dialogTitle = screen.queryByText(TITLE);
     expect(dialogTitle).not.toBeInTheDocument();
   });
 
   it('Dialog should close when clicked on close button', async () => {
-    const user = userEvent.setup();
     service.openNotice(TITLE, MESSAGE);
 
-    const dialogTitle = await screen.findByText(TITLE);
+    const dismiss = await screen.findByTestId('close-icon');
+    await userEvent.click(dismiss);
 
-    const dismiss = await screen.findAllByTestId('close-icon');
-    await user.click(dismiss[1]);
-
+    const dialogTitle = screen.queryByText(TITLE);
     expect(dialogTitle).not.toBeInTheDocument();
   });
 });

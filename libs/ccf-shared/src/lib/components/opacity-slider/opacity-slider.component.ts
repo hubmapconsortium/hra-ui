@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
   templateUrl: './opacity-slider.component.html',
   styleUrls: ['./opacity-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class OpacitySliderComponent implements OnInit {
   /**
@@ -45,8 +46,10 @@ export class OpacitySliderComponent implements OnInit {
    */
   @Output() readonly sliderChanged = new EventEmitter<string>();
 
+  /** Previous opacity */
   prevOpacity!: number;
 
+  /** Initialize the component */
   ngOnInit(): void {
     if (this.visible) {
       this.prevOpacity = 0;
@@ -55,6 +58,7 @@ export class OpacitySliderComponent implements OnInit {
     }
   }
 
+  /** Reset previous opacity */
   reset(): void {
     this.prevOpacity = 20;
   }

@@ -15,17 +15,19 @@ describe('innerMap(project)', () => {
     scheduler.run((helpers) => {
       const { cold, flush } = helpers;
       const arrays = { a: [1, 2], b: [3, 4] };
-      const project = jasmine.createSpy();
+      const project = jest.fn<unknown, [number, number, number]>();
       const source = cold('ab|', arrays).pipe(innerMap(project));
 
       source.subscribe();
       flush();
 
       expect(project).toHaveBeenCalledTimes(4);
-      expect(project.calls.argsFor(0)).toEqual([1, 0, 0]);
-      expect(project.calls.argsFor(1)).toEqual([2, 1, 0]);
-      expect(project.calls.argsFor(2)).toEqual([3, 0, 1]);
-      expect(project.calls.argsFor(3)).toEqual([4, 1, 1]);
+      expect(project.mock.calls).toEqual([
+        [1, 0, 0],
+        [2, 1, 0],
+        [3, 0, 1],
+        [4, 1, 1],
+      ]);
     }));
 
   it('emits new arrays with the results of the project callback', () =>

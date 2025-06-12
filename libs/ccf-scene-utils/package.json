@@ -1,13 +1,9 @@
 {
   "name": "ccf-scene-utils",
   "version": "4.0.0",
-  "dependencies": {
-    "tslib": "^2.3.0",
-    "@hra-api/ng-client": "^0.10.0",
+  "peerDependencies": {
+    "@hra-api/ng-client": "^0.12.0",
     "@math.gl/core": "~3.6.3"
   },
-  "type": "commonjs",
-  "main": "./src/index.js",
-  "typings": "./src/index.d.ts",
-  "private": true
+  "sideEffects": false
 }

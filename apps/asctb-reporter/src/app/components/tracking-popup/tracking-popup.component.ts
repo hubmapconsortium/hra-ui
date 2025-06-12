@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { Consent, ConsentService } from '../../services/consent.service';
 
@@ -7,22 +7,17 @@ import { Consent, ConsentService } from '../../services/consent.service';
   templateUrl: './tracking-popup.component.html',
   styleUrls: ['./tracking-popup.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TrackingPopupComponent {
+  readonly consentService = inject(ConsentService);
+  readonly data = inject<{ preClose: () => void }>(MAT_SNACK_BAR_DATA);
+  readonly container = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+
   @HostBinding('class') readonly clsName = 'app-tracking-popup';
 
   get allowTelemetry(): Consent {
     return this.consentService.consent;
-  }
-
-  container: HTMLElement;
-
-  constructor(
-    elementRef: ElementRef<HTMLElement>,
-    readonly consentService: ConsentService,
-    @Inject(MAT_SNACK_BAR_DATA) public data: { preClose: () => void },
-  ) {
-    this.container = elementRef.nativeElement;
   }
 
   dismiss(): void {
@@ -38,8 +33,7 @@ export class TrackingPopupComponent {
     const { allowTelemetry } = this;
     if (allowTelemetry === 'not-set') {
       return true;
-    } else {
-      return button === 'opt-in' ? allowTelemetry === 'rescinded' : allowTelemetry === 'given';
     }
+    return button === 'opt-in' ? allowTelemetry === 'rescinded' : allowTelemetry === 'given';
   }
 }

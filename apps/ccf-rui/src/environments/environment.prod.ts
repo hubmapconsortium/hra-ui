@@ -1,9 +1,9 @@
+/** Production environment */
 export const environment = {
   production: true,
   disableDbWorker: true,
   dbOptions: {},
   customization: {
-    theme: 'hubmap',
     collisionsEndpoint: 'https://apps.humanatlas.io/api/v1/collisions',
     referenceData: 'https://apps.humanatlas.io/api/v1/rui-reference-data',
   },

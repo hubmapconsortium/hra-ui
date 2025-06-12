@@ -5,12 +5,13 @@
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Visit Human Reference Atlas"
+    [hraPlainTooltip]="hraTooltip()"
   >
-    <hra-brand-mark></hra-brand-mark>
+    <hra-brand-mark variant="small"></hra-brand-mark>
   </a>
 }
 <a class="app-logo" [href]="appLink()" [attr.alt]="appTitle() + ' logo'">
-  <hra-product-logo [name]="app()" size="small"></hra-product-logo>
+  <hra-icon [svgIcon]="app()" />
 </a>
 
 <span class="logos-text">

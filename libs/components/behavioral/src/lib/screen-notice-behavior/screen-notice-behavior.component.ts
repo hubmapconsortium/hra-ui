@@ -10,7 +10,6 @@ import { MatDialogRef } from '@angular/material/dialog';
  * for the buttons on the notice modal */
 @Component({
   selector: 'ftu-ui-screen-notice-behavior',
-  standalone: true,
   imports: [CommonModule, ScreenSizeNoticeComponent],
   templateUrl: './screen-notice-behavior.component.html',
   styleUrls: ['./screen-notice-behavior.component.scss'],

@@ -10,11 +10,11 @@ function nextValue<T>(obs: Observable<T>): Promise<T> {
 }
 
 describe('TextSearchComponent', () => {
-  let autoCompleter: jasmine.Spy;
+  let autoCompleter: jest.Mock;
   let shallow: Shallow<TextSearchComponent>;
 
   beforeEach(() => {
-    autoCompleter = jasmine.createSpy().and.returnValue([[]]);
+    autoCompleter = jest.fn(() => [[]]);
     shallow = new Shallow(TextSearchComponent, TextSearchModule);
   });
 
@@ -62,7 +62,7 @@ describe('TextSearchComponent', () => {
 
     it('truncates the result if it is longer than maxOptions', async () => {
       const { instance } = await shallow.render({ bind: { autoCompleter, maxOptions: 1 } });
-      autoCompleter.and.returnValue([[{}, {}]]);
+      autoCompleter.mockReturnValue([[{}, {}]]);
 
       const value = await nextValue(instance.options);
       expect(value.length).toEqual(1);

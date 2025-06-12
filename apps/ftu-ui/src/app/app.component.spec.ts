@@ -22,6 +22,7 @@ import {
 } from '@hra-ui/state';
 import { ActionContext, ActionStatus, Actions } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 import { ReplaySubject, firstValueFrom, from, of, take, toArray } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { AppComponent } from './app.component';
@@ -51,7 +52,7 @@ describe('AppComponent', () => {
     shallow = new Shallow(AppComponent, AppModule)
       .replaceModule(RouterModule, RouterTestingModule)
       .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
-      .dontMock(MatDialogModule, FTU_DATA_IMPL_ENDPOINTS, ENVIRONMENT_INITIALIZER)
+      .dontMock(MatDialogModule, NgxGoogleAnalyticsModule, FTU_DATA_IMPL_ENDPOINTS, ENVIRONMENT_INITIALIZER)
       .provideMock(
         {
           provide: MatDialog,

@@ -8,6 +8,15 @@
       "items": [
         {
           "type": "group",
+          "label": "Knowledge Graph",
+          "url": "https://lod.humanatlas.io/",
+          "description": "Query, filter, and download digital objects"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "group",
           "label": "Data Overview",
           "url": "https://humanatlas.io/overview-data/",
           "items": [
@@ -55,7 +64,7 @@
           "type": "group",
           "label": "HRA API",
           "description": "Get API access to all Human Reference Atlas datasets.",
-          "url": "https://humanatlas.io/api/"
+          "url": "https://apps.humanatlas.io/api/"
         },
         {
           "type": "divider"
@@ -135,7 +144,7 @@
                 {
                   "type": "item",
                   "label": "ASCT+B Reporter",
-                  "url": "https://hubmapconsortium.github.io/ccf-asct-reporter/"
+                  "url": "https://apps.humanatlas.io/asctb-reporter/"
                 }
               ]
             },
@@ -167,7 +176,7 @@
         {
           "type": "group",
           "label": "Training Overview",
-          "url": "https://humanatlas.io/overview-training/",
+          "url": "https://humanatlas.io/overview-training-outreach/",
           "items": [
             {
               "type": "item",
@@ -186,23 +195,18 @@
             },
             {
               "type": "item",
-              "label": "Events",
-              "url": "https://humanatlas.io/overview-training-outreach#events"
-            },
-            {
-              "type": "item",
               "label": "Kaggle Competitions",
-              "url": "https://humanatlas.io/overview-training#kaggle"
+              "url": "https://humanatlas.io/overview-training-outreach#kaggle-competitions"
             },
             {
               "type": "item",
               "label": "Release Notes",
-              "url": "https://humanatlas.io/overview-training#release-notes"
+              "url": "https://humanatlas.io/release-notes"
             },
             {
               "type": "item",
               "label": "Previews",
-              "url": "https://humanatlas.io/overview-training#previews"
+              "url": "https://humanatlas.io/overview-training-outreach#previews"
             }
           ]
         }
@@ -220,7 +224,7 @@
           "items": [
             {
               "type": "item",
-              "label": "About",
+              "label": "About the HRA",
               "url": "https://humanatlas.io/about/"
             },
             {
@@ -231,7 +235,7 @@
             {
               "type": "item",
               "label": "Publications",
-              "url": "https://humanatlas.io/about#publications"
+              "url": "https://humanatlas.io/publications"
             },
             {
               "type": "item",

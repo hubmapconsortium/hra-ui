@@ -29,7 +29,7 @@ const fontContent: Record<string, FontStyles> = {
     type: 'title',
     description: 'Tertiary headings, titles in app components',
     typography: {
-      large: 'Metropolis, Medium, 24/36, 0px',
+      large: 'Metropolis, Medium, 22/33, 0px',
       medium: 'Metropolis, Medium, 20/30, 0px',
       small: 'Metropolis Medium, 16/24, 0px ',
     },
@@ -41,16 +41,17 @@ const fontContent: Record<string, FontStyles> = {
       large: 'Metropolis, Medium, 16/24, 0px',
       medium: 'Metropolis, Medium, 14/21, 0px ',
       small: 'Metropolis, Medium, 12/18, 0px',
+      micro: 'Metropolis, Medium, 10/16, 0px',
     },
   },
   Body: {
     type: 'body',
     description: 'Paragraph text',
     typography: {
-      splash: 'Nunito Sans, 18/27, +0.5px',
-      large: 'Nunito Sans, 16/24, +0.5px',
-      medium: 'Nunito Sans, 14/21, +0.5px',
-      small: 'Nunito Sans, 12/18, +0.5px',
+      xl: 'Nunito Sans, 18/27, 0x',
+      large: 'Nunito Sans, 16/24, 0x',
+      medium: 'Nunito Sans, 14/21, 0x',
+      small: 'Nunito Sans, 12/18, 0x',
     },
   },
   Wordmark: {
@@ -73,7 +74,7 @@ const fontContent: Record<string, FontStyles> = {
         <span class="header-description">Uses: {{ variant().description }}</span>
       </div>
       @for (entry of typographies(); track entry) {
-        <div [style]="getStyles(entry[0])">{{ entry[0] | titlecase }}: {{ entry[1] }}</div>
+        <div [style]="getStyles(entry[0])">{{ entry[0] === 'xl' ? 'XL' : (entry[0] | titlecase) }}: {{ entry[1] }}</div>
       }
     </div>
   `,
@@ -82,28 +83,28 @@ const fontContent: Record<string, FontStyles> = {
       display: flex;
       flex-direction: column;
       width: fit-content;
-      box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.322);
+      box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b / 0.322);
       border-radius: 1rem;
       padding: 1.5rem;
       gap: 1.5rem;
-      color: var(--sys-secondary);
+      color: var(--mat-sys-secondary);
     }
 
     .header {
       display: flex;
       flex-direction: column;
-      border-bottom: 1px solid var(--sys-outline-variant);
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
       padding: 0 1.5rem 1rem 0;
       gap: 0.5rem;
-      color: var(--sys-on-secondary-fixed);
+      color: var(--mat-sys-on-secondary-fixed);
 
       .header-title {
-        font: var(--sys-headline-large);
-        letter-spacing: var(--sys-headline-large-tracking);
+        font: var(--mat-sys-headline-large);
+        letter-spacing: var(--mat-sys-headline-large-tracking);
       }
       .header-description {
-        font: var(--sys-title-medium);
-        letter-spacing: var(--sys-title-medium-tracking);
+        font: var(--mat-sys-title-medium);
+        letter-spacing: var(--mat-sys-title-medium-tracking);
       }
     }
   `,
@@ -116,8 +117,8 @@ class FontStylesDemoComponent {
 
   getStyles(size: string) {
     return {
-      font: `var(--sys-${this.variant().type}-${size})`,
-      'letter-spacing': `var(--sys-${this.variant().type}-${size}-tracking)`,
+      font: `var(--mat-sys-${this.variant().type}-${size})`,
+      'letter-spacing': `var(--mat-sys-${this.variant().type}-${size}-tracking)`,
     };
   }
 }

@@ -1,0 +1,13 @@
+<div class="content-container">
+  <ng-content select="hra-table-of-contents-layout-header" />
+
+  @if (!isWideScreen()) {
+    <hra-table-of-contents class="toc" />
+  }
+
+  <ng-content />
+</div>
+
+@if (isWideScreen()) {
+  <hra-table-of-contents class="toc" />
+}

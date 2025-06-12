@@ -1,28 +1,41 @@
+@use '@angular/material' as mat;
+@use '../../../../../libs/design-system/styles/vars' as vars;
+
 :host {
   display: block;
   position: relative;
+  height: auto;
   padding: 2rem;
   border-radius: 1rem;
   overflow: hidden;
-  background-color: var(--sys-surface-container-low);
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--sys-shadow) r g b / 0.24);
+  background-color: vars.$surface-container-low;
+  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.24);
 
   .header {
     display: flex;
     gap: 0.75rem;
-    margin: 0 0 2rem 0;
-    font: var(--sys-title-large);
-    letter-spacing: var(--sys-title-large-tracking);
+    align-items: center;
+    margin: var(--hra-workflow-card-header-padding, 0 0 2rem 0);
+    font: vars.$title-large;
+    letter-spacing: vars.$title-large-tracking;
+  }
+
+  .tagline {
+    color: vars.$on-background;
   }
 
   .progress {
     position: absolute;
     inset: auto 0 0 0;
 
-    --mdc-linear-progress-track-height: 0.25rem;
-    --mdc-linear-progress-active-indicator-height: 0.25rem;
-    --mdc-linear-progress-active-indicator-color: var(--sys-inverse-surface);
-    --mdc-linear-progress-track-color: var(--sys-surface-container-high);
+    @include mat.progress-bar-overrides(
+      (
+        active-indicator-color: vars.$inverse-surface,
+        active-indicator-height: 0.25rem,
+        track-color: vars.$surface-container-high,
+        track-height: 0.25rem,
+      )
+    );
   }
 
   .filler {

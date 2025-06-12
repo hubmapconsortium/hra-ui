@@ -1,0 +1,372 @@
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Embedding Web Components
+subtitle: |
+  The HRA Web Components are a collection of reusable, modular UI elements designed to simplify interaction with
+  the Human Reference Atlas (HRA) ecosystem. These components help developers build applications that visualize and
+  explore complex biological data such as 3D organ models, tissue block registrations, and cell-type mappings.
+
+  Think of them as ready-made building blocks: just plug them into your web app, and you can instantly access and interact with the HRA data.
+icons: product:web-components
+action:
+  label: Explore Components
+  url: https://apps.humanatlas.io/us6
+
+content:
+  - component: PageSection
+    tagline: Registration User Interface (RUI)
+    anchor: registration-user-interface
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/rui.png
+
+      - component: Markdown
+        data: |
+          The **Registration User Interface (RUI)** allows users to spatially register human tissue blocks within 3D reference organ models.
+          By positioning and annotating tissue samples in a standardized 3D space, researchers can ensure consistent data integration across studies.
+          The RUI supports over 50 organs and captures metadata such as tissue dimensions and anatomical structures involved.
+
+      - component: Markdown
+        data: |
+          **Basic Usage Example:**
+
+      - component: CodeBlock
+        language: html
+        code: |
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <title>RUI Web Component</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
+              <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
+              <link href="https://cdn.humanatlas.io/ui/ccf-rui/styles.css" rel="stylesheet" />
+              <script src="https://cdn.humanatlas.io/ui/ccf-rui/wc.js" defer></script>
+            </head>
+            <body style="margin: 0">
+              <ccf-rui
+                base-href="https://cdn.humanatlas.io/ui/ccf-rui/"
+                user='{"firstName": "demo", "lastName": "demo"}'
+                organ='{"name": "Kidney", "ontologyId": "http://purl.obolibrary.org/obo/UBERON_0004538", "side": "left", "sex": "female"}'
+                header="false"
+              >
+              </ccf-rui>
+            </body>
+          </html>
+
+      - component: TextHyperlink
+        text: View Detailed Embedding Guide on GitHub
+        url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-rui/EMBEDDING.md
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: Exploration User Interface (EUI)
+    anchor: exploration-user-interface
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/eui.png
+
+      - component: Markdown
+        data: |
+          The **Exploration User Interface (EUI)** enables interactive exploration of spatially registered tissue data across multiple scales. Users can visualize tissue blocks within 3D organ models, navigate through various coordinate systems, and integrate anatomical structures, cell types, and biomarkers. This tool is ideal for analyzing spatial relationships and validating tissue registrations.
+
+      - component: Markdown
+        data: |
+          **Basic Usage Example:**
+
+      - component: CodeBlock
+        language: html
+        code: |
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <title>EUI Web Component</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
+              <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
+              <link href="https://cdn.humanatlas.io/ui/ccf-eui/styles.css" rel="stylesheet" />
+              <script src="https://cdn.humanatlas.io/ui/ccf-eui/wc.js" defer></script>
+            </head>
+            <body style="margin: 0">
+              <ccf-eui
+                base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
+                remote-api-endpoint="https://apps.humanatlas.io/api"
+                header="false"
+                data-sources='["https://purl.humanatlas.io/collection/ds-graphs"]'
+                filter='{"ontologyTerms": ["http://purl.obolibrary.org/obo/UBERON_0002113"]}'
+              >
+              </ccf-eui>
+            </body>
+          </html>
+
+      - component: TextHyperlink
+        text: View Detailed Embedding Guide on GitHub
+        url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-eui/EMBEDDING.md
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: EUI Organ Information
+    anchor: eui-organ-information
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/eui-organ-information.png
+
+      - component: Markdown
+        data: |
+          The **EUI Organ Information** component provides detailed metadata for specific organs within the Human Reference Atlas. Users can access information about anatomical structures, associated cell types, and relevant biomarkers,
+          facilitating a comprehensive understanding of organ-specific data.
+
+      - component: Markdown
+        data: |
+          **Basic Usage Example:**
+
+      - component: CodeBlock
+        language: html
+        code: |
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <title>EUI Organ Info Web Component</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
+              <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
+              <link href="https://cdn.humanatlas.io/ui/ccf-organ-info/styles.css" rel="stylesheet" />
+              <script src="https://cdn.humanatlas.io/ui/ccf-organ-info/wc.js" defer></script>
+            </head>
+            <body style="margin: 0">
+              <ccf-organ-info
+                base-href="https://cdn.humanatlas.io/ui/ccf-organ-info/"
+                remote-api-endpoint="https://apps.humanatlas.io/api"
+                organ-iri="http://purl.obolibrary.org/obo/UBERON_0002113"
+                data-sources='["https://purl.humanatlas.io/collection/ds-graphs"]'
+              >
+              </ccf-organ-info>
+            </body>
+          </html>
+
+  - component: PageSection
+    tagline: EUI 3D Organ Viewer
+    anchor: eui-3d-organ-viewer
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/eui-3d-organ-viewer.png
+
+      - component: Markdown
+        data: |
+          The **EUI 3D Organ Viewer** offers a dynamic visualization of 3D organ models, allowing users to interact with spatially registered tissue blocks and explore anatomical structures in a three-dimensional context.
+          This tool enhances the understanding of spatial relationships within organs.
+      - component: Markdown
+        data: |
+          **Basic Usage Example:**
+
+      - component: CodeBlock
+        language: html
+        code: |
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <title>EUI 3D Organ Viewer Web Component</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link href="https://cdn.humanatlas.io/ui/ccf-body-ui-wc/styles.css" rel="stylesheet" />
+              <script src="https://cdn.humanatlas.io/ui/ccf-body-ui-wc/wc.js" defer></script>
+            </head>
+            <body style="margin: 0">
+              <!-- TODO inputs -->
+              <ccf-body-ui-wc> </ccf-body-ui-wc>
+            </body>
+          </html>
+
+      - component: TextHyperlink
+        text: View Detailed Embedding Guide on GitHub
+        url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-body-ui-wc/README.md
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: ASCT+B Reporter
+    anchor: asctb-reporter
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/asctb-reporter.png
+
+      - component: Markdown
+        data: |
+          The **ASCT+B Reporter** is a visualization tool for exploring and comparing Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables. It displays hierarchical relationships between anatomical structures and associated cell types and biomarkers, facilitating comparison and exploration of ASCT+B data.
+
+      - component: TextHyperlink
+        text: Use App
+        url: https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=kidney-v1.4&playground=false
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: Functional Tissue Unit (FTU) Explorer
+    anchor: ftu-explorer
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/ftu.png
+
+      - component: Markdown
+        data: |
+          The **Functional Tissue Unit (FTU) Explorer** allows users to explore Functional Tissue Units, the fundamental building blocks of organs. It visualizes FTUs in 2D, highlighting cell types and biomarker expression,
+          and provides detailed illustrations and data for various organs.
+
+      - component: Markdown
+        data: |
+          **Basic Usage Example:**
+
+      - component: CodeBlock
+        language: html
+        code: |
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <!-- Regular metadata. Customize as you see fit -->
+              <meta charset="utf-8" />
+              <title>FTU Explorer</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link rel="icon" type="image/png" href="favicon.png" />
+
+              <!-- The important bits -->
+              <base href="https://cdn.humanatlas.io/ui/ftu-ui/" />
+              <link rel="preconnect" href="https://fonts.gstatic.com" />
+              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+              <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+              <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+              <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
+              <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" defer></script>
+              <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" defer></script>
+            </head>
+            <body>
+                <hra-ftu-ui
+                  base-href="https://cdn.humanatlas.io/ui/ftu-ui/"
+                  selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle"
+                  datasets="assets/TEMP/ftu-datasets.jsonld"
+                  summaries="assets/TEMP/ftu-cell-summaries.jsonld">
+              </hra-ftu-ui>
+            </body>
+          </html>
+
+      - component: TextHyperlink
+        text: View Detailed Embedding Guide on GitHub
+        url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui/EMBEDDING.md
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: FTU Explorer - Small Web Component
+    anchor: ftu-explorer-swc
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/ftu-small-web-component.png
+
+      - component: Markdown
+        data: |
+          The **Functional Tissue Unit (FTU) Explorer** allows users to explore Functional Tissue Units, the fundamental building blocks of organs.
+          It visualizes FTUs in 2D, highlighting cell types and biomarker expression, and provides detailed illustrations and data for various organs.
+
+      - component: Markdown
+        data: |
+          **Basic Usage Example:**
+
+      - component: CodeBlock
+        language: html
+        code: |
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <title>FTU Ui Small Web Component</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+              <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+              <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+              />
+              <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
+              <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" type="module"></script>
+              <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" type="module"></script>
+            </head>
+            <body style="margin: 0">
+              <hra-ftu-ui
+                base-href="https://cdn.humanatlas.io/ui/ftu-ui/"
+                selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle"
+                datasets="assets/TEMP/ftu-datasets.jsonld"
+                summaries="assets/TEMP/ftu-cell-summaries.jsonld"
+              >
+              </hra-ftu-ui>
+            </body>
+          </html>
+
+      - component: TextHyperlink
+        text: View Detailed Embedding Guide on GitHub
+        url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui-small-wc/EMBEDDING.md
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: FTU Explorer - Illustration Viewer
+    anchor: ftu-explorer-swc
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/ftu-medical-illustration-viewer.png
+
+      - component: Markdown
+        data: |
+          The **Functional Tissue Unit (FTU) Explorer** allows users to explore Functional Tissue Units, the fundamental building blocks of organs. It visualizes FTUs in 2D,
+          highlighting cell types and biomarker expression, and provides detailed illustrations and data for various organs.
+
+      - component: Markdown
+        data: |
+          **Basic Usage Example:**
+
+      - component: CodeBlock
+        language: html
+        code: |
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <title>Medical Illustration Web Component</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link href="https://cdn.humanatlas.io/ui/medical-illustration/styles.css" rel="stylesheet" />
+              <script src="https://cdn.humanatlas.io/ui/medical-illustration/wc.js" defer></script>
+            </head>
+            <body style="margin: 0">
+              <hra-medical-illustration
+                selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle"
+                illustrations="https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld"
+              >
+              </hra-medical-illustration>
+            </body>
+          </html>
+
+      - component: TextHyperlink
+        text: View Detailed Embedding Guide on GitHub
+        url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/medical-illustration/EMBEDDING.md
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: HRA API
+    anchor: hra-api
+    level: 2
+    content:
+      - component: Image
+        src: assets/ui-images/hra-api.png
+
+      - component: Markdown
+        data: |
+          The **HRA API** offers programmatic access to data registered to the Human Reference Atlas. It provides endpoints for querying anatomical structures, cell types, biomarkers, and spatial data, supporting RESTful operations and returning data in JSON format. This API is ideal for developers building applications that require dynamic access to HRA datasets.
+
+      - component: TextHyperlink
+        text: Use App
+        url: https://apps.humanatlas.io/api
+        icon: arrow_right_alt

@@ -1,0 +1,76 @@
+$schema: ../../../app/schemas/landing-page/landing-page.schema.json
+carouselItems:
+  - tagline: New publication
+    description: |
+      Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage
+    imageSrc: assets/content/landing-page/images/carousel1.png
+    action: Read
+    link:
+      url: https://www.nature.com/articles/s41592-024-02563-5
+  - tagline: New preprint
+    description: Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph for Linked Open Data
+    imageSrc: assets/content/landing-page/images/carousel2.png
+    action: Read
+    link:
+      url: https://doi.org/10.1101/2024.12.22.630006
+  - tagline: New publication
+    description: Functional tissue units in the Human Reference Atlas
+    imageSrc: assets/content/landing-page/images/carousel3.png
+    action: Read
+    link:
+      url: https://www.nature.com/articles/s41467-024-54591-6
+  - tagline: Read the flagship publication of the Human Reference Atlas
+    description: Anatomical structures, cell types and biomarkers of the Human Reference Atlas
+    imageSrc: assets/content/landing-page/images/carousel4.png
+    action: Read
+    link:
+      url: https://www.nature.com/articles/s41556-021-00788-6
+
+countInfo:
+  - count: 26
+    label: consortia
+    icon: misc:contribute
+  - count: 250
+    label: experts
+    showSuffix: true
+    icon: misc:experts
+  - count: 1000
+    label: publications
+    showSuffix: true
+    icon: misc:publications
+  - count: 73
+    label: organs
+    icon: organ:heart
+  - count: 4719
+    label: anatomical structures
+    icon: product:asctb-reporter
+  - count: 1303
+    label: cell types
+    icon: misc:cell-type
+  - count: 2018
+    label: biomarkers
+    icon: misc:biomarker
+  - count: 30
+    label: organ mapping antibody panels
+    icon: misc:omaps
+  - count: 26
+    label: functional tissue units
+    icon: misc:ftu
+
+sectionCardInfo:
+  - tagline: Join our working group
+    icon: misc:contribute
+    url: https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH
+    action: Register
+  - tagline: Data overview
+    icon: misc:data
+    route: /overview-data
+    action: Learn more
+  - tagline: Apps overview
+    icon: misc:explore
+    url: https://apps.humanatlas.io/
+    action: Learn more
+  - tagline: Help & documentation
+    icon: misc:training
+    route: /overview-training-outreach
+    action: Learn more

@@ -1,0 +1,298 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Release Notes
+subtitle: What's new in the Human Reference Atlas.
+headerContent:
+  component: ReleaseNotesVersionSelector
+content:
+  - component: PageSection
+    tagline: Data
+    anchor: data
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The HRA now includes:
+           - 36 ASCT+B Tables
+             - 4,659 anatomical structures
+             - 2,024 cell types
+             - 1,311 biomarkers
+           - 22 2D Functional Tissue Units (FTUs)
+           - 65 3D Organ Models
+           - 21 Organ Mapping Antibody Panel (OMAP) Tables
+           - 10 Crosswalk Tables
+           - 7 Vasculature Common Coordinate Framework (VCCF) Tables
+
+      - component: Button
+        label: Get data
+        href: https://lod.humanatlas.io/collection/hra/v2.1/
+        type: cta
+
+  - component: PageSection
+    tagline: New Digital Objects
+    anchor: new-digital-objects
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - 8 Organ Mapping Antibody Panel (OMAP) Tables
+            - OMAP-14: Kidney, FFPE, CyCIF
+            - OMAP-15: Intestines, FFPE, CODEX
+            - OMAP-16: Lung, FFPE, CODEX
+            - OMAP-17: Thymus, Fixed Frozen, IBEX
+            - OMAP-18: Lymph Node, Fixed Frozen, IBEX
+            - OMAP-19: Palatine tonsil, Fixed Frozen, IBEX
+            - OMAP-20: Kidney, Fresh Frozen, IMS/CyCIF
+            - OMAP-21: Palatine tonsil, FFPE, MICS
+          - 6 Crosswalk Tables
+            - Pathway
+            - Lymph vasculature to organ
+            - Peripheral nervous system to organ
+            - Azimuth
+            - CellTypist
+            - popv
+
+  - component: PageSection
+    tagline: Revised Digital Objects
+    anchor: revised-digital-objects
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - 19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
+              - Blood
+              - Blood vasculature
+              - Bone marrow
+              - Brain
+              - Heart
+              - Fallopian tube
+              - Kidney
+              - Knee
+              - Liver
+              - Lung
+              - Lymph node
+              - Lymph vasculature
+              - Main bronchus
+              - Muscular system
+              - Ovary
+              - Palatine tonsil
+              - Peripheral nervous system
+              - Placenta
+              - Skeleton
+          - 13 Organ Mapping Antibody Panel (OMAP) Tables
+            - OMAP-1 through OMAP-13 were revised to use new template fields to match antibody validation report fields:
+              target_name to target_symbol, dilution to dilution_factor, author_orcid to author_orcids
+          - 67 3D Organ Models (formerly 3D Reference Objects)
+            - All male and female 3D Organ Models were revised to include the node types as organizational, mesh, or surface
+
+  - component: PageSection
+    tagline: User Interfaces
+    anchor: user-interfaces
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Explore new and updated Human Reference Atlas APIs, applications, and websites.
+
+  - component: PageSection
+    tagline: New Websites & Applications
+    anchor: new-websites-apps
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - <a href='https://apps.humanatlas.io/ftu-explorer/' target="_blank">Preview: Functional Tissue Unit (FTU) Explorer</a>
+          - <a href='https://apps.humanatlas.io/cde/' target="_blank">Preview: Cell Distance Explorer</a>
+          - <a href='https://apps.humanatlas.io/us6/' target="_blank">Preview: Use Atlas Components</a>
+          - <a href='https://apps.humanatlas.io/dashboard/' target="_blank">Preview: HRA Dashboard</a>
+          - <a href='https://lod.humanatlas.io' target="_blank">Human Atlas Stories: Knowledge Graph</a>
+
+  - component: PageSection
+    tagline: Updated Websites & Applications
+    anchor: updated-websites-apps
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - <a href='https://humanatlas.io/' target="_blank">Human Reference Atlas</a>
+          - <a href='https://humanatlas.io/overview-use-the-hra' target="_blank">Overview: Use HRA Previews</a>
+          - <a href='https://apps.humanatlas.io' target="_blank">Atlas Demo Apps</a>
+          - <a href='https://hubmapconsortium.github.io/ccf-asct-reporter/' target="_blank">ASCT+B Reporter</a>
+          - <a href='https://apps.humanatlas.io/eui/' target="_blank">Exploration User Interface (EUI)</a>
+          - <a href='https://apps.humanatlas.io/rui/' target="_blank">Registration User Interface (RUI)</a>
+          - <a href='https://www.meta.com/experiences/5696814507101529/' target="_blank">HRA Organ Gallery</a>
+
+  - component: PageSection
+    tagline: Updated APIs
+    anchor: updated-apis
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - <a href='https://www.npmjs.com/package/hra-api' target="_blank">HRA-API v0.6.0</a>
+          - HRA-API Client Libraries v0.6.0:
+            - <a href='https://www.npmjs.com/package/@hra-api/js-client' target="_blank">JavaScript</a>
+            - <a href='https://www.npmjs.com/package/@hra-api/ts-client' target="_blank">TypeScript</a>
+            - <a href='https://www.npmjs.com/package/@hra-api/ng-client' target="_blank">Angular</a>
+            - <a href='https://pypi.org/project/hra-api-client/' target="_blank">Python</a>
+          - <a href='http://lod.humanatlas.io' target="_blank">HRA-KG</a>
+          - <a href='https://github.com/hubmapconsortium/ccf-grlc/' target="_blank">grlc API</a>
+
+  - component: PageSection
+    tagline: Human Reference Atlas in 60+ Languages
+    anchor: hra-in-60-languages
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Use Google Translate to access the HRA.
+
+      - component: Image
+        src: assets/content/landing-page/images/hra_translate.png
+
+  - component: PageSection
+    tagline: News
+    anchor: news
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Human Reference Atlas news from the 7th release cycle.
+
+  - component: PageSection
+    tagline: Bio IT World HuBMAP Feature
+    anchor: bio-it-world-hubmap-feature
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - <a href='https://www.bio-itworld.com/news/2024/03/07/human-biomolecular-atlas-program-update' target="_blank">Human Biomolecular Atlas Program Update</a>
+
+  - component: PageSection
+    tagline: New CIFAR Video
+    anchor: new-cifar-video
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: -F6i5KOVGx8
+
+  - component: PageSection
+    tagline: Resources
+    anchor: resources
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Explore new and updated Human Reference Atlas publications, standard operating procedures, and contact information.
+
+  - component: PageSection
+    tagline: Publications
+    anchor: publications
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Recent papers (co-)authored by MC-IU that explain how the HRA is constructed and used:
+      - component: Markdown
+        data: |
+          - Börner, K. et al. Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage. bioRxiv
+            2024.03.27.587041 (2024) doi:10.1101/2024.03.27.587041.
+          - How to use the Registration and Exploration User Interfaces of the HRA: Börner, Bueckle, Herr II, et al. Tissue registration
+            and exploration user interfaces in support of a human reference atlas. Communications Biology 5, 1369 (2022). doi: 10.1038/s42003-022-03644-x
+          - Creation and usage of ASCT+B Tables as an essential data structure for the HRA: Börner, Teichmann, Quardokus, et al. Anatomical
+            structures, cell types and biomarkers of the Human Reference Atlas. Nature Cell Biology 23, 1117-1128 (2021). doi: 10.1038/s41556-021-00788-6
+          - Documenting the CCF Ontology v2.0.1 connecting specimen, biological structure, and spatial data, as well as the HRA API to make the HRA
+            programmatically accessible and interoperable with Linked Open Data (LOD): Herr II, Hardi, Quardokus, et al. Specimen, Biological Structure,
+            and Spatial Ontologies in Support of a Human Reference Atlas. Scientific Data 10, 171 (2023). doi: 10.1038/s41597-023-01993-8
+          - Documenting Organ Mapping Antibody Panels (OMAPs): Quardokus, Saunders, McDonough, et al. Organ Mapping Antibody Panels: A community resource
+            for standardized multiplexed tissue imaging. Nature Methods 20, 1174-1178 (2023). doi: 10.1038/s41592-023-01846-7
+
+  - component: PageSection
+    tagline: Standard Operating Procedures (SOPs)
+    anchor: sops
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - New SOPs
+            - <a href='https://zenodo.org/doi/10.5281/zenodo.11623744' target='_blank'>Authoring the Pathway Organ Crosswalk Tables</a>
+            - <a href='https://zenodo.org/doi/10.5281/zenodo.11623897' target='_blank'>Constructing Blood Vasculature-Organ Crosswalk Diagrams</a>
+            - <a href='https://zenodo.org/doi/10.5281/zenodo.11623414' target='_blank'>Authoring the Pathway Crosswalk Table</a>
+            - <a href='https://zenodo.org/doi/10.5281/zenodo.11623222' target='_blank'>Authoring the Blood Vasculature Geometry Table</a>
+          - Updated SOPs
+            - <a href='https://zenodo.org/doi/10.5281/zenodo.5639622' target='_blank'>Human Reference Atlas Working Group Communications</a>
+            - <a href='https://zenodo.org/doi/10.5281/zenodo.10359228' target='_blank'>Managing Human Reference Atlas Registrations</a>
+
+  - component: PageSection
+    tagline: HRA Diversity Survey 2024
+    anchor: hra-diversity-survey-2024
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The Human Reference Atlas diversity survey was designed to provide a baseline measurement of the diversity of the people building
+          and using the Human Reference Atlas. The survey is conducted annually to measure how the Human Reference Atlas community evolves
+          over time. The baseline survey in 2023 was shared with 297 individuals and the response rate was 7.7%. The survey was rerun in
+          March-April of 2024 (shared with 341 individuals). The response rate this time was 9.4%. To date, a total of 54 individuals completed
+          the survey. Respondents hold the following roles in the Human Reference Atlas:
+      - component: Markdown
+        data: |
+          - HRA Digital Object author
+          - HRA Digital Object reviewer
+          - Infrastructure designer
+          - Interface designer
+          - Organizer
+          - Toolmaker
+          - User
+          - Interface tester
+          - Other
+          - I prefer not to respond
+      - component: Markdown
+        data: |
+          **Gender and sexual orientation**\
+          Female: 53% (was 52%)\
+          Male: 44% (was 48%)\
+          Identify as LGBTQIA+: 7.79% (was 4.3%)
+      - component: Markdown
+        data: |
+          **Ethnicity and race**\
+          White: 80.7% (was 82.6%)\
+          Asian: 12.9% (was 13%)\
+          Hispanic, Latino, or Spanish: 1.6% (was 4.3%)
+      - component: Markdown
+        data: |
+          **Disability**\
+          8% (was 5.3%)
+      - component: Markdown
+        data: |
+          **Continent of residence**\
+          North America: 81.3 % (was 79.1%)\
+          Europe: 14.7% (was 12.5%)\
+          Australia/Oceania: 1.3% (was 4.2%)
+      - component: Markdown
+        data: |
+          **Socio-economic background**\
+          Individuals from disadvantaged backgrounds, as defined using <a href="https://extramural-diversity.nih.gov/diversity-matters/disadvantaged-backgrounds" target="_blank">National Institutes of Health criteria</a>: 26.2% (was 47%)\
+      - component: Markdown
+        data: |
+          The survey used to gather this information can be found <a href="https://drive.google.com/file/d/15cqbz-wHURmEyJ2DnsQKLV0ejVbXp9zG/view?usp=sharing" target="_blank">here</a>.
+
+  - component: PageSection
+    tagline: Visible Human Massive Open Online Course (VHMOOC) Updates
+    anchor: vhmooc-updates
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - 4 new videos added
+      - component: Button
+        label: Start Course
+        href: https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc
+        type: cta
+
+  - component: PageSection
+    tagline: 'Human Reference Atlas: Vasculature Common Coordinate Framework'
+    anchor: hra-vccf
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: zQeMgxo8n_U

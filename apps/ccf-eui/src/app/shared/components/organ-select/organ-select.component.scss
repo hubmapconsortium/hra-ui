@@ -1,0 +1,49 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
+:host {
+  .organ-form-field {
+    width: 100%;
+
+    @include mat.form-field-overrides(
+      (
+        container-height: 3rem,
+        filled-container-color: vars.$surface-container,
+        filled-label-text-color: vars.$on-primary-fixed,
+        filled-with-label-container-padding-bottom: 0rem,
+        filled-with-label-container-padding-top: 1rem,
+      )
+    );
+  }
+
+  mat-form-field,
+  mat-label {
+    color: vars.$on-primary-fixed;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+  }
+
+  ::ng-deep .mdc-floating-label--float-above {
+    transform: translateY(-100%) !important;
+
+    mat-label {
+      font: vars.$label-small !important;
+      letter-spacing: vars.$label-small-tracking;
+    }
+  }
+
+  .organ-input {
+    margin-left: 0;
+    height: 2rem;
+    line-height: 2rem;
+  }
+}
+
+.organ-select-chips {
+  padding: 0 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.organ-list {
+  border-top: 1px solid vars.$outline-variant;
+}

@@ -5,7 +5,6 @@ import { MarkdownModule } from 'ngx-markdown';
 /** Component for LandingPage Intro - Web coomponent */
 @Component({
   selector: 'hra-ui-hra-landing-page-intro-wc',
-  standalone: true,
   imports: [CommonModule, MarkdownModule],
   templateUrl: './hra-landing-page-intro-wc.component.html',
   styleUrls: ['./hra-landing-page-intro-wc.component.scss'],

@@ -1,25 +1,36 @@
 import { OntologyCode } from './../models/lookup.model';
 
+/** Creates an asct api url */
 export function buildASCTApiUrl(id: string): string {
   return `http://www.ebi.ac.uk/ols/api/terms/findByIdAndIsDefiningOntology?obo_id=${id}`;
 }
 
+/** Creates an hgnc api url */
 export function buildHGNCApiUrl(id: string): string {
   return `https://rest.genenames.org/fetch/hgnc_id/${id}`;
 }
 
+/** Creates an uniprot link */
 export function buildUniprotLink(id: string): string {
   return `https://www.uniprot.org/uniprot/${id}`;
 }
 
+/** Creates an entrez link */
 export function buildEntrezLink(id: string): string {
   return `https://www.ncbi.nlm.nih.gov/gene/?term=${id}`;
 }
 
+/** Creates an hgnc link */
 export function buildHGNCLink(id: string): string {
   return `http://identifiers.org/hgnc/${id}`;
 }
 
+/**
+ * Fix a poorly constructed ontology id
+ *
+ * @param id Original id
+ * @returns A proper id
+ */
 export function fixOntologyId(id: string): string {
   if (id?.toLowerCase() === 'n/a' || id?.toLowerCase() === 'not found') {
     return '';
@@ -37,7 +48,13 @@ export function fixOntologyId(id: string): string {
   return id;
 }
 
-export function guessIri(id: string): string {
+/**
+ * Attepmts to guess the iri corresponding to an id
+ *
+ * @param id Id to guess iri for
+ * @returns An iri if possible
+ */
+export function guessIri(id: string): string | undefined {
   const [code, idNumber] = id.split(':');
   if (idNumber) {
     switch (code) {

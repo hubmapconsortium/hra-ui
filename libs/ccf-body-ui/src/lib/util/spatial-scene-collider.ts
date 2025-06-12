@@ -7,12 +7,24 @@ import { AABB, Vec3 } from 'cannon-es';
 import { SpatialSceneNode } from '../shared/spatial-scene-node';
 import { traverseScene } from './scene-traversal';
 
+/**
+ * This interface defines the structure of a collision object, which includes an ID, name, and a list of hits.
+ */
 interface Collision {
+  /** Id of collision object */
   '@id': string;
+  /** Name of collision object */
   name: string;
+  /** List of hits */
   hits: { '@id': string; name: string }[];
 }
 
+/**
+ * This function performs collision detection between spatial scene nodes.
+ * It creates bounding boxes for source and target nodes, checks for overlaps, and generates a collision report.
+ * @param scene An array of SpatialSceneNode objects representing the scene.
+ * @returns A promise that resolves to an array of Collision objects, detailing the collisions detected.
+ */
 export async function doCollisions(scene: SpatialSceneNode[]): Promise<Collision[]> {
   console.log('Starting Collisioning');
   const sourceBoxes = scene

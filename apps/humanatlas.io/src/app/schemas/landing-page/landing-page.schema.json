@@ -1,0 +1,110 @@
+{
+  "$ref": "#/definitions/LandingPage",
+  "definitions": {
+    "LandingPage": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "carouselItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tagline": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "imageSrc": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string"
+              },
+              "link": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": ["url"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "route": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["route"],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "required": ["tagline", "description", "imageSrc", "action", "link"],
+            "additionalProperties": false
+          }
+        },
+        "countInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "count": {
+                "type": "number"
+              },
+              "label": {
+                "type": "string"
+              },
+              "showSuffix": {
+                "type": "boolean"
+              },
+              "icon": {
+                "type": "string"
+              }
+            },
+            "required": ["count", "label", "icon"],
+            "additionalProperties": false
+          }
+        },
+        "sectionCardInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tagline": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "route": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string"
+              }
+            },
+            "required": ["tagline", "icon", "action"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["$schema", "carouselItems", "countInfo", "sectionCardInfo"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

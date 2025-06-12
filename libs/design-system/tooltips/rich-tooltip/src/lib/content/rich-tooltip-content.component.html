@@ -1,0 +1,21 @@
+<ng-template hraRichTooltipContext let-owner #container>
+  <div class="container">
+    <div class="tagline">
+      <ng-content select="hra-rich-tooltip-tagline">
+        {{ owner.tagline() }}
+      </ng-content>
+    </div>
+    <div class="content">
+      <ng-content select="hra-rich-tooltip-content">
+        {{ owner.description() }}
+      </ng-content>
+    </div>
+    <div class="actions">
+      <ng-content select="hra-rich-tooltip-actions">
+        @if (owner.actionText()) {
+          <button mat-button color="accent" (click)="owner.actionClick.emit()">{{ owner.actionText() }}</button>
+        }
+      </ng-content>
+    </div>
+  </div>
+</ng-template>

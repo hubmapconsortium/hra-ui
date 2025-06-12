@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material/chips';
 import { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
 import {
@@ -10,6 +11,7 @@ import {
   PrimaryButtonVariantDirective,
   SecondaryButtonVariantDirective,
 } from '@hra-ui/design-system/buttons/button';
+import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
@@ -18,10 +20,12 @@ import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyper
 const REEXPORTS = [
   MatButtonModule,
   MatButtonToggleModule,
+  MatChipsModule,
 
   AppNavButtonComponent,
   BreadcrumbsComponent,
   ButtonSizeDirective,
+  ButtonToggleSizeDirective,
   ButtonVariantDirective,
   CtaButtonDirective,
   NavigationCategoryToggleComponent,

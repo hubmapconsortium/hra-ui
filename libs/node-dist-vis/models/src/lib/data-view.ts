@@ -165,9 +165,8 @@ function createAccessor<Entry>(instance: DataView<Entry>, property: keyof Entry,
   if (postfix === 'At') {
     const { data, offset } = instance;
     return (index: number) => ((data[index + offset] ?? {}) as Record<PropertyKey, unknown>)[key];
-  } else {
-    return (obj: Record<PropertyKey, unknown>) => obj[key];
   }
+  return (obj: Record<PropertyKey, unknown>) => obj[key];
 }
 
 /**
@@ -198,9 +197,8 @@ function selectMaterializationKeyMapping<Entry>(
     return Object.entries(mapping);
   } else if (Array.isArray(view.at(0))) {
     return header.map((key, index) => [key, index]);
-  } else {
-    return header.map((key) => [key, key]);
   }
+  return header.map((key) => [key, key]);
 }
 
 /**
@@ -233,9 +231,7 @@ export function createDataViewClass<Entry>(keys: (keyof Entry)[]): DataViewConst
       const mapping = selectMaterializationKeyMapping(this, keyMapping, this.keyMapping);
       const result: Record<string, unknown> = {};
       for (const [key, prop] of mapping) {
-        const value = (obj as Record<PropertyKey, unknown>)[prop];
-        const serialized = typeof value === 'object' ? JSON.stringify(value) : value;
-        result[key] = serialized;
+        result[key] = (obj as Record<PropertyKey, unknown>)[prop];
       }
 
       return result;

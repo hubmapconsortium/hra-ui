@@ -19,12 +19,16 @@ import { SpatialSceneNode } from '@hra-api/ng-client';
 import { derivedAsync } from 'ngxtension/derived-async';
 import { catchError, map, Observable, of, Subscription } from 'rxjs';
 import { z } from 'zod';
-import { BodyUI, NodeClickEvent, NodeDragEvent } from '../body-ui';
+
+import { BodyUI, BodyUIProps, NodeClickEvent, NodeDragEvent } from '../body-ui';
 
 /** Interface for bounds */
 export interface XYZTriplet<T = number> {
+  /** The x-coordinate */
   x: T;
+  /** The y-coordinate */
   y: T;
+  /** The z-coordinate */
   z: T;
 }
 
@@ -46,16 +50,26 @@ function tryParseJson(value: unknown): unknown {
   return value;
 }
 
+/** Utility function to set input values to BodyUI */
+function setInput<T>(
+  bodyUi: BodyUI | undefined,
+  source: T | undefined,
+  setter: SetterMethods<T>,
+  defaultValue?: T,
+): void {
+  const value = source ?? defaultValue;
+  if (bodyUi && value !== undefined) {
+    bodyUi[setter](value as never);
+  }
+}
+
 /** Utility function to use input data to set to relevant body ui setter */
 function connectInput<T>(
   bodyUi: Signal<BodyUI | undefined>,
   source: Signal<T | undefined>,
   setter: SetterMethods<T>,
 ): void {
-  const value = source();
-  if (value !== undefined) {
-    bodyUi()?.[setter](value as never);
-  }
+  effect(() => setInput(bodyUi(), source(), setter));
 }
 
 /** Utility function to use output data to set to relevant body ui subject */
@@ -88,10 +102,19 @@ const BOUNDS_INPUT = z.preprocess(tryParseJson, z.object({ x: z.number(), y: z.n
 /** Bind the bounds input */
 const parseBoundsInput = BOUNDS_INPUT.parse.bind(BOUNDS_INPUT);
 
+/** Initial state properties for the deck gl view */
+const INITIAL_PROPS = {
+  zoom: 9.5,
+  target: [0, 0, 0],
+  rotation: 0,
+  minRotationX: -75,
+  maxRotationX: 75,
+  interactive: true,
+  camera: '',
+} satisfies Partial<BodyUIProps>;
+
 /** HRA Body UI Component */
 @Component({
-  standalone: true,
-  imports: [],
   selector: 'hra-body-ui',
   templateUrl: './body-ui.component.html',
   styleUrl: './body-ui.component.scss',
@@ -140,13 +163,7 @@ export class BodyUiComponent {
       const bodyUi = new BodyUI({
         id: 'bodyUI',
         canvas: this.canvas().nativeElement,
-        zoom: 9.5,
-        target: [0, 0, 0],
-        rotation: 0,
-        minRotationX: -75,
-        maxRotationX: 75,
-        interactive: true,
-        camera: '',
+        ...INITIAL_PROPS,
       });
 
       await bodyUi.initialize();
@@ -184,11 +201,12 @@ export class BodyUiComponent {
 
   /** Constructor for the component */
   constructor() {
-    effect(() => connectInput(this.bodyUi, this.sceneData, 'setScene'));
-    effect(() => connectInput(this.bodyUi, this.rotation, 'setRotation'));
-    effect(() => connectInput(this.bodyUi, this.rotationX, 'setRotationX'));
-    effect(() => connectInput(this.bodyUi, this.target, 'setTarget'));
-    effect(() => connectInput(this.bodyUi, this.boundsZoom, 'setZoom'));
+    connectInput(this.bodyUi, this.sceneData, 'setScene');
+    connectInput(this.bodyUi, this.rotation, 'setRotation');
+    connectInput(this.bodyUi, this.rotationX, 'setRotationX');
+    connectInput(this.bodyUi, this.target, 'setTarget');
+    connectInput(this.bodyUi, this.zoom, 'setZoom');
+    connectInput(this.bodyUi, this.boundsZoom, 'setZoom');
 
     effect((onCleanup) => {
       const bodyUi = this.bodyUi();
@@ -204,6 +222,16 @@ export class BodyUiComponent {
     });
   }
 
+  /** Resets the deck gl view */
+  resetView(): void {
+    const bodyUi = this.bodyUi();
+    setInput(bodyUi, this.target(), 'setTarget', INITIAL_PROPS.target);
+    setInput(bodyUi, this.rotation(), 'setRotation', INITIAL_PROPS.rotation);
+    setInput(bodyUi, this.rotationX(), 'setRotationX', 0);
+    setInput(bodyUi, this.zoom(), 'setZoom', INITIAL_PROPS.zoom);
+    setInput(bodyUi, this.boundsZoom(), 'setZoom');
+  }
+
   /** Sets the deck gl zoom according to the provided bounds */
   zoomToBounds(bounds: XYZTriplet, margin = { x: 48, y: 48 }): void {
     const zoom = this.getBoundsZoom(bounds, margin);
@@ -214,6 +242,10 @@ export class BodyUiComponent {
   private getBoundsZoom(bounds: XYZTriplet, margin = { x: 48, y: 48 }): number {
     const { width, height } = this.canvas().nativeElement;
     const pxRatio = window.devicePixelRatio;
+    if (bounds.x === 0 && bounds.y === 0) {
+      return INITIAL_PROPS.zoom;
+    }
+
     return Math.min(
       Math.log2((width - margin.x) / pxRatio / bounds.x),
       Math.log2((height - margin.y) / pxRatio / bounds.y),

@@ -1,7 +1,7 @@
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { SpatialEntity, SpatialPlacement, SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { NgxsOnInit, State } from '@ngxs/store';
@@ -33,18 +33,28 @@ import { ReferenceDataState } from './../reference-data/reference-data.state';
 /**
  * Scene state model
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SceneStateModel {
+  /** Show collisions */
   showCollisions: boolean;
+  /** Defer collisions */
   deferCollisions: boolean;
 }
 
+/** Collision data */
 interface Collision {
+  /** Node id */
   id: string;
 }
 
+/** Duration to throttle collision requests */
 const NODE_COLLISION_THROTTLE_DURATION = 10;
 
+/**
+ * Compute the bounding box for a node
+ *
+ * @param model Node
+ * @returns Bounding box
+ */
 function getNodeBbox(model: SpatialSceneNode): AABB {
   const mat = new Matrix4(model.transformMatrix);
   const lowerBound = mat.transformAsPoint([-1, -1, -1], []);
@@ -68,6 +78,14 @@ function getNodeBbox(model: SpatialSceneNode): AABB {
 })
 @Injectable()
 export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> implements NgxsOnInit {
+  /** Injector */
+  private readonly injector = inject(Injector);
+  /** Http client */
+  private readonly http = inject(HttpClient);
+  /** Global config */
+  private readonly globalConfig = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
+
+  /** Scene nodes */
   @Computed()
   get nodes$(): Observable<SpatialSceneNode[]> {
     return combineLatest([
@@ -87,20 +105,20 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     );
   }
 
+  /** Rotated nodes */
   @Computed()
   get rotatedNodes$(): Observable<SpatialSceneNode[]> {
     return combineLatest([this.rotation$, this.nodes$]).pipe(
       map(([rotation, nodes]) => {
         if (rotation === 0) {
           return nodes;
-        } else {
-          return nodes.map((n) => ({
-            ...n,
-            transformMatrix: new Matrix4(Matrix4.IDENTITY)
-              .rotateY(toRadians(rotation))
-              .multiplyRight(n.transformMatrix ?? []),
-          }));
         }
+        return nodes.map((n) => ({
+          ...n,
+          transformMatrix: new Matrix4(Matrix4.IDENTITY)
+            .rotateY(toRadians(rotation))
+            .multiplyRight(n.transformMatrix ?? []),
+        }));
       }),
     );
   }
@@ -121,6 +139,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     );
   }
 
+  /** Reference organ nodes */
   @Computed()
   get referenceOrganSimpleNodes$(): Observable<SpatialSceneNode[]> {
     return combineLatest([this.model.anatomicalStructures$, this.model.organIri$, this.referenceData.state$]).pipe(
@@ -135,17 +154,16 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
                   color: [255, 255, 255, 255],
                 },
               ];
-            } else {
-              return (db.anatomicalStructures[organIri as string] || [])
-                .filter((node) => node.representation_of === item.id)
-                .map(
-                  (node): SpatialSceneNode => ({
-                    ...(db.simpleSceneNodeLookup[node['@id']] as SpatialSceneNode),
-                    opacity: (item.opacity ?? 100) / 100,
-                    color: [255, 255, 255, 255],
-                  }),
-                );
             }
+            return (db.anatomicalStructures[organIri as string] || [])
+              .filter((node) => node.representation_of === item.id)
+              .map(
+                (node): SpatialSceneNode => ({
+                  ...(db.simpleSceneNodeLookup[node['@id']] as SpatialSceneNode),
+                  opacity: (item.opacity ?? 100) / 100,
+                  color: [255, 255, 255, 255],
+                }),
+              );
           })
           .reduce<SpatialSceneNode[]>((acc, nodes) => acc.concat(nodes), []),
       ),
@@ -153,6 +171,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     );
   }
 
+  /** Node collisions */
   @Computed()
   get nodeCollisions$(): Observable<SpatialSceneNode[]> {
     return combineLatest([this.referenceOrganSimpleNodes$, this.collisions$, this.placementCube$]).pipe(
@@ -169,6 +188,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     );
   }
 
+  /** Previous nodes */
   @Computed()
   get previousRegistrationNodes$(): Observable<SpatialSceneNode[]> {
     return combineLatest([
@@ -182,6 +202,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     );
   }
 
+  /** Axis nodes */
   @Computed()
   get spatialKeyBoardAxis$(): Observable<SpatialSceneNode[]> {
     const nonEmptyOrganIri = this.model.organIri$.pipe(filter((iri): iri is string => iri !== undefined && iri !== ''));
@@ -219,6 +240,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     );
   }
 
+  /** Placement cube */
   @Computed()
   get placementCube$(): Observable<SpatialSceneNode[]> {
     return combineLatest([
@@ -228,11 +250,12 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       this.model.position$,
       this.model.organ$,
     ]).pipe(
-      map(([_viewType, _blockSize, _rotation, _position, organ]) => (organ.src === '' ? [] : [this.placementCube])),
+      map(([, , , , organ]) => (organ.src === '' ? [] : [this.placementCube])),
       distinctUntilChanged(isEqual),
     );
   }
 
+  /** Placement cube */
   @Computed()
   get placementCube(): SpatialSceneNode {
     const { viewType, blockSize, rotation, position, organDimensions } = this.model.snapshot;
@@ -250,6 +273,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     };
   }
 
+  /** Rotation */
   @Computed()
   get rotation$(): Observable<number> {
     return this.model.viewSide$.pipe(
@@ -273,6 +297,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     );
   }
 
+  /** Mini model gizmo */
   readonly gizmo$: Observable<SpatialSceneNode[]> = of([
     {
       '@id': 'http://purl.org/ccf/latest/ccf.owl#VHMaleOrgans_VHM_Spleen_Colic_Surface',
@@ -288,6 +313,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     },
   ]);
 
+  /** Defer collisions */
   @Computed()
   get deferCollisions$(): Observable<boolean> {
     return this.state$.pipe(
@@ -298,9 +324,12 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
 
   /** Reference to the model state */
   private model!: ModelState;
+  /** Registration state */
   private registration!: RegistrationState;
+  /** Reference data state */
   private referenceData!: ReferenceDataState;
 
+  /** Collisions */
   @Computed()
   private get collisions$(): Observable<Collision[] | undefined> {
     const jsonld$ = defer(() => this.registration.throttledJsonld$);
@@ -309,19 +338,6 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
       concatMap(([deferCollisions, jsonld]) => (deferCollisions ? of([]) : this.getCollisions(jsonld))),
       startWith([]),
     );
-  }
-
-  /**
-   * Creates an instance of scene state.
-   *
-   * @param injector Injector service used to lazy load page and model state
-   */
-  constructor(
-    private readonly injector: Injector,
-    private readonly http: HttpClient,
-    private readonly globalConfig: GlobalConfigState<GlobalConfig>,
-  ) {
-    super();
   }
 
   /**
@@ -339,11 +355,13 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     this.placementCube$.subscribe(() => this.setDeferCollisions(false));
   }
 
+  /** Set deferCollisions option */
   @DataAction()
   setDeferCollisions(deferCollisions: boolean): void {
     this.ctx.patchState({ deferCollisions });
   }
 
+  /** Create the scene */
   private createSceneNodes(organIri: string, items: VisibilityItem[]): SpatialSceneNode[] {
     const db = this.referenceData.snapshot;
     return items
@@ -357,24 +375,25 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
               color: [255, 255, 255, 255],
             },
           ];
-        } else {
-          return (db.anatomicalStructures[organIri] || [])
-            .filter((node) => node.representation_of === item.id)
-            .map((node) => ({
-              ...(db.sceneNodeLookup[node['@id']] as SpatialSceneNode),
-              opacity: (item.opacity ?? 100) / 100,
-              color: [255, 255, 255, 255],
-            }));
         }
+        return (db.anatomicalStructures[organIri] || [])
+          .filter((node) => node.representation_of === item.id)
+          .map((node) => ({
+            ...(db.sceneNodeLookup[node['@id']] as SpatialSceneNode),
+            opacity: (item.opacity ?? 100) / 100,
+            color: [255, 255, 255, 255],
+          }));
       })
       .reduce((acc, nodes) => acc.concat(nodes), []);
   }
 
+  /** Get the organ spatial entity */
   private getOrganSpatialEntity(organIri: string): SpatialEntity {
     const db = this.referenceData.snapshot;
     return db.organSpatialEntities[organIri] as SpatialEntity;
   }
 
+  /** Get collisions */
   private getCollisions(jsonld: unknown): Observable<Collision[] | undefined> {
     return this.globalConfig.getOption('collisionsEndpoint').pipe(
       switchMap((endpoint) =>
@@ -389,16 +408,19 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
     );
   }
 
+  /** Filter collisions */
   private filterNodeCollisions(nodes: SpatialSceneNode[], collisions: Collision[]): SpatialSceneNode[] {
     const collidedIds = new Set(collisions.map((node) => node.id));
     return nodes.filter((node) => collidedIds.has(node['@id']));
   }
 
+  /** Filter nodes by a bounding box */
   private filterNodeBBox(nodes: SpatialSceneNode[], placement: SpatialSceneNode): SpatialSceneNode[] {
     const bbox = getNodeBbox(placement);
     return nodes.filter((model) => bbox.overlaps(getNodeBbox(model)));
   }
 
+  /** Get previous nodes */
   private getPreviousRegistrationNodes(
     organIri: string,
     previousRegistrations: SpatialEntityJsonLd[],
@@ -419,9 +441,8 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
           tooltip: entity.label,
           unpickable: true,
         };
-      } else {
-        return undefined;
       }
+      return undefined;
     };
 
     return previousRegistrations.map(toNode).filter((entity): entity is SpatialSceneNode => entity !== undefined);

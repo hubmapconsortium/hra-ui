@@ -14,7 +14,7 @@ const meta: Meta<BrandMarkComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'contrast'],
+      options: ['default', 'contrast', 'small'],
     },
   },
   args: {

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,7 +7,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { BackButtonBarComponent } from '@hra-ui/design-system/buttons/back-button-bar';
+import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
   ExpansionPanelActionsComponent,
@@ -25,11 +24,13 @@ import { CoreModule } from './core/core.module';
 import { ContentModule } from './modules/content/content.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     CoreModule,
     MatIconModule,
     ContentModule,
@@ -43,7 +44,6 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,
     IconButtonSizeDirective,
-    MatButtonToggleModule,
     ButtonsModule,
     MatDividerModule,
     BackButtonBarComponent,

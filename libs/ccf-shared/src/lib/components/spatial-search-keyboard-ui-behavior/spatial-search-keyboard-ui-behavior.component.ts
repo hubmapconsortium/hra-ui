@@ -1,11 +1,16 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
+/** Position */
 export interface Position {
+  /** X coordinate */
   x: number;
+  /** Y coordinate */
   y: number;
+  /** Z coordinate */
   z: number;
 }
 
+/** Direction multipliers for each key */
 const DIRECTION_FACTORS: Record<string, number[]> = {
   q: [0, 0, 1],
   e: [0, 0, -1],
@@ -15,6 +20,7 @@ const DIRECTION_FACTORS: Record<string, number[]> = {
   d: [1, 0, 0],
 };
 
+/** Set of direction keys */
 const DIRECTION_KEYS = new Set(Object.keys(DIRECTION_FACTORS));
 
 /**
@@ -28,6 +34,7 @@ const DIRECTION_KEYS = new Set(Object.keys(DIRECTION_FACTORS));
     '(document:keydown)': 'handleKey($event)',
     '(document:keyup)': 'keyUp($event)',
   },
+  standalone: false,
 })
 export class SpatialSearchKeyboardUIBehaviorComponent {
   /** HTML class */
@@ -42,6 +49,7 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
   /** Current position of spatial search */
   @Input() position!: Position;
 
+  /** Disable position changes */
   @Input() disablePositionChange = false;
 
   /** Emits when position changes */

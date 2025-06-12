@@ -177,8 +177,5 @@ export function getOriginScene(node: SpatialEntity, includeLetters = false, cent
         .scale(originRadius),
       color: blue,
     },
-  ].filter(
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    (n) => (includeLetters && n.geometry === 'text' && n.text) || !n.text,
-  ) as SpatialSceneNode[];
+  ].filter((n) => (includeLetters && n.geometry === 'text' && n.text) || !n.text) as SpatialSceneNode[];
 }

@@ -1,0 +1,45 @@
+{
+  "$ref": "#/definitions/Organs",
+  "definitions": {
+    "OrganAppData": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "Organ": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "appData": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/OrganAppData"
+          }
+        }
+      },
+      "required": ["id", "label", "appData"],
+      "additionalProperties": false
+    },
+    "Organs": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "organs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Organ"
+          }
+        }
+      },
+      "required": ["$schema", "organs"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

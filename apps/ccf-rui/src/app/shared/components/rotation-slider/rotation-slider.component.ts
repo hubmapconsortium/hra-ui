@@ -18,6 +18,7 @@ const DEFAULT_ROTATION: Rotation = {
   z: 0,
 };
 
+/** Axis */
 export type Axis = 'x' | 'y' | 'z';
 
 /**
@@ -73,9 +74,11 @@ export class RotationSliderComponent {
     this.rotationChange.emit(this.rotation);
   }
 
+  /** Resets all rotations to 0 */
   resetAllRotations(): void {
     this.axisOptions.forEach((axis) => this.resetRotation(axis));
   }
+
   /** Changes the step size based on whether the shift key is pressed */
   changeStep(target: KeyboardEvent): void {
     this.step = target.shiftKey ? 30 : 1;

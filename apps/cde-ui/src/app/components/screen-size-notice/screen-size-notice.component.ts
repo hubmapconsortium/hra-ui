@@ -28,7 +28,6 @@ export const DEFAULT_SCREEN_SIZE_NOTICE_STORAGE_KEY = 'cde-screen-size-notice';
  */
 @Component({
   selector: 'cde-screen-size-notice',
-  standalone: true,
   imports: [CommonModule, MatButtonModule, MatDialogModule, MatIconModule],
   templateUrl: './screen-size-notice.component.html',
   styleUrl: './screen-size-notice.component.scss',

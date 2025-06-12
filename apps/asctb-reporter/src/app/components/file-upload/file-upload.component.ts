@@ -24,11 +24,12 @@ import {
       useExisting: FileUploadComponent,
     },
   ],
+  standalone: false,
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
   fileName = '';
 
-  @Output() fileFormDataEvent = new EventEmitter<FormData>();
+  @Output() readonly fileFormDataEvent = new EventEmitter<FormData>();
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement | null)?.files?.[0];
@@ -44,7 +45,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
 
   fileUploadError = false;
 
-  onChange = (_fileName: string) => {
+  onChange: (fileName: string) => void = () => {
     // Intentionally empty
   };
 
@@ -77,7 +78,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
     this.onValidatorChange = onValidatorChange;
   }
 
-  validate(_control: AbstractControl): ValidationErrors | null {
+  validate(): ValidationErrors | null {
     return null;
   }
 }

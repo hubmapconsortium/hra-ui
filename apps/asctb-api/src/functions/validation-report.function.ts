@@ -1,10 +1,17 @@
 import { WarningCode, WarningLabels } from '../utils/warnings';
 import { ASCTBData } from './api.functions';
 
+/** An object with containing zero or more warnings */
 type WarningDictionary = {
   [code in WarningCode]: string[];
 };
 
+/**
+ * Makes a validation report
+ *
+ * @param data Data to convert
+ * @returns A csv string
+ */
 export function makeValidationReport(data: ASCTBData): string {
   // Output lines/data will be added here
   const lines: string[] = [];

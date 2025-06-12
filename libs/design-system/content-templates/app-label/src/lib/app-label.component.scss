@@ -1,0 +1,38 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  @include utils.use-font(display, large);
+
+  p {
+    margin: 0;
+  }
+
+  .product-logo {
+    height: 5rem;
+    width: 5rem;
+    flex-shrink: 0;
+  }
+
+  .ui-content-header {
+    display: flex;
+    flex-direction: column;
+    min-width: 19.25rem;
+    gap: 0.25rem;
+
+    h1 {
+      margin: 0;
+      font: inherit;
+      letter-spacing: inherit;
+      color: vars.$on-background;
+    }
+  }
+
+  @media (max-width: 639px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

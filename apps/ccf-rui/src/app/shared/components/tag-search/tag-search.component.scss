@@ -1,20 +1,27 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
 :host {
   mat-form-field {
-    --mdc-filled-text-field-active-indicator-color: var(--sys-primary);
-    --mdc-filled-text-field-focus-active-indicator-color: var(--sys-primary);
-    --mdc-filled-text-field-input-text-color: var(--sys-primary);
-    --mat-form-field-trailing-icon-color: var(--sys-primary);
-    --mat-form-field-leading-icon-color: var(--sys-primary);
     width: 100%;
+    @include mat.form-field-overrides(
+      (
+        filled-active-indicator-color: vars.$primary,
+        filled-focus-active-indicator-color: vars.$primary,
+        filled-input-text-color: vars.$primary,
+        leading-icon-color: vars.$primary,
+        trailing-icon-color: vars.$primary,
+      )
+    );
   }
 
   mat-label {
-    color: var(--sys-inverse-surface);
-    font: var(--sys-label-medium);
+    color: vars.$inverse-surface;
+    font: vars.$label-medium;
   }
 
   mat-icon {
-    color: var(--sys-primary-fixed);
+    color: vars.$primary-fixed;
   }
 
   .search-icon {
@@ -22,20 +29,23 @@
   }
 
   .results {
-    background: var(--sys-surface-container-low);
-    border-top: 2px solid var(--sys-primary);
+    background: vars.$surface-container-low;
+    border-top: 2px solid vars.$primary;
     box-shadow: 0px 5px 4px 0px #201e3d29;
     padding: 0.5rem 0;
   }
 
   mat-checkbox {
-    --mdc-checkbox-state-layer-size: 3rem;
-    --mdc-checkbox-selected-icon-color: var(--sys-on-tertiary-fixed);
-    --mdc-checkbox-selected-focus-icon-color: var(--sys-on-tertiary-fixed);
-
     ::ng-deep label {
-      font: var(--sys-label-medium);
+      font: vars.$label-medium;
       padding-right: 0.5rem;
     }
   }
+  @include mat.checkbox-overrides(
+    (
+      selected-icon-color: vars.$on-tertiary-fixed,
+      selected-focus-icon-color: vars.$on-tertiary-fixed,
+      state-layer-size: 3rem,
+    )
+  );
 }

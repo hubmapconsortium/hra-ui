@@ -1,0 +1,34 @@
+@use 'vars';
+
+:host {
+  display: inline-block;
+  outline: none;
+
+  .label {
+    color: vars.$secondary;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+  }
+}
+
+::ng-deep {
+  .mat-mdc-form-field-type-dual-slider:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+    cursor: pointer;
+  }
+
+  .dual-slider-panel {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: vars.$on-primary;
+    box-shadow: 0rem 0.3125rem 0.25rem 0rem rgb(from vars.$secondary r g b / 16%);
+
+    .dual-slider-form {
+      display: flex;
+      gap: 1rem;
+
+      .number-input {
+        width: 3.75rem;
+      }
+    }
+  }
+}

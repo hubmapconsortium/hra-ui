@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'components-molecules',
   preset: '../../../jest.preset.js',

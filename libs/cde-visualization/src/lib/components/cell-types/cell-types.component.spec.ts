@@ -17,7 +17,7 @@ describe('CellTypesComponent', () => {
   async function setup(options?: RenderComponentOptions<CellTypesComponent>) {
     return render(CellTypesComponent, {
       ...options,
-      providers: [provideDesignSystemCommon({ scrolling: { disableSensor: true } }), ...(options?.providers ?? [])],
+      providers: [provideDesignSystemCommon(), ...(options?.providers ?? [])],
     });
   }
 

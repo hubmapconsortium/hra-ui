@@ -12,6 +12,7 @@
         matRippleColor="#201E3D14"
         [matMenuTriggerFor]="submenu"
         (mouseover)="suboptions = option.expandedOptions"
+        (focus)="(undefined)"
       >
         <mat-icon>{{ option.icon }}</mat-icon>
         {{ option.name }}

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -15,11 +15,17 @@ import { CloseDialog, LearnMore, OpenDialog } from './call-to-action.actions';
  * Interface to hold the necessary parts of the CTA dialog
  */
 export interface CallToActionModel {
+  /** Title */
   title: string;
+  /** Message */
   message: string;
+  /** Call to action button text */
   callToAction: string;
+  /** Image url */
   imageUrl: string;
+  /** Expiration data */
   expirationDate: string;
+  /** Whether popup is shown */
   popupShown: boolean;
 }
 
@@ -34,7 +40,7 @@ const POPUP_SHOWN_STORAGE_KEY = 'callToActionPopupShown';
 const SPATIAL_SEARCH_README = 'assets/docs/SPATIAL_SEARCH_README.md';
 
 /**
- * Sets the necessary defaults for the dialog box
+ * State that controls the data and behavior for the CallToAction Component
  */
 @State<CallToActionModel>({
   name: 'callToAction',
@@ -47,11 +53,19 @@ const SPATIAL_SEARCH_README = 'assets/docs/SPATIAL_SEARCH_README.md';
     popupShown: false,
   },
 })
-/**
- * State that controls the data and behavior for the CallToAction Component
- */
 @Injectable()
 export class CallToActionState implements NgxsOnInit {
+  /** Dialog service */
+  private readonly dialog = inject(MatDialog);
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+  /** Local storage service */
+  private readonly storage = inject(LocalStorageService);
+  /** Info button service */
+  private readonly infoService = inject(InfoButtonService);
+  /** Http client */
+  private readonly http = inject(HttpClient);
+
   /** Used to break cyclical import */
   static callToActionComponent: typeof CallToActionBehaviorComponent;
 
@@ -68,14 +82,7 @@ export class CallToActionState implements NgxsOnInit {
     return +today > +expire;
   }
 
-  constructor(
-    private readonly dialog: MatDialog,
-    private readonly ga: GoogleAnalyticsService,
-    private readonly storage: LocalStorageService,
-    private readonly infoService: InfoButtonService,
-    private readonly http: HttpClient,
-  ) {}
-
+  /** Initialize the state */
   ngxsOnInit(ctx: StateContext<CallToActionModel>): void {
     const { expirationDate, popupShown } = ctx.getState();
     const popupShownStr = this.storage.getItem(POPUP_SHOWN_STORAGE_KEY, `${popupShown}`);
@@ -116,7 +123,7 @@ export class CallToActionState implements NgxsOnInit {
    * @param _ctx
    */
   @Action(LearnMore)
-  learnMore(_ctx: StateContext<CallToActionModel>): Observable<DocumentationContent[]> {
+  learnMore(): Observable<DocumentationContent[]> {
     this.dialog.closeAll();
     this.ga.event('open_learn_more', 'call_to_action');
 
@@ -146,7 +153,7 @@ export class CallToActionState implements NgxsOnInit {
    * @param _ctxs;
    */
   @Action(CloseDialog)
-  close(_ctx: StateContext<CallToActionModel>): void {
+  close(): void {
     this.dialog.closeAll();
     this.ga.event('close', 'call_to_action');
   }

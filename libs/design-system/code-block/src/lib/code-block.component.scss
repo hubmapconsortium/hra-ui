@@ -1,0 +1,32 @@
+@use '../../../../../libs/design-system/styles/vars' as vars;
+
+:host {
+  display: flex;
+  background-color: vars.$surface-container;
+  border: solid 0.0625rem vars.$outline-variant;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  max-height: calc(100vh - 15rem);
+
+  ng-scrollbar {
+    flex: 1 1;
+  }
+  .code-block-pre {
+    margin: 0;
+    font: 400 0.875rem / 1.3125rem Roboto Mono;
+    letter-spacing: 0rem;
+    text-align: left;
+    display: flex;
+    /* Disabled max-width for expanding the code-block in other places.
+       Affected Areas:
+       - US6 Embed Drawer - Drawer Width (need to handle in drawer)
+       - API Command Component - No changes
+    */
+    // max-width: 35.5rem;
+    white-space: pre-wrap;
+
+    code {
+      background-color: vars.$surface-container;
+    }
+  }
+}

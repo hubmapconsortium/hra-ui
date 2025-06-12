@@ -3,6 +3,8 @@
 @use 'theming';
 @use 'overrides';
 @use 'variables' as vars;
+@use 'fonts';
+@use 'icons';
 
 html,
 body {

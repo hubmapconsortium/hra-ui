@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'body-ui',
   preset: '../../jest.preset.js',

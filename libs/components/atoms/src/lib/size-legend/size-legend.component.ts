@@ -12,7 +12,6 @@ export interface SizeLegend {
 /** Size legend component for the biomarkers table. */
 @Component({
   selector: 'hra-size-legend',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './size-legend.component.html',
   styleUrls: ['./size-legend.component.scss'],

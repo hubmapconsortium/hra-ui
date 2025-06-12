@@ -8,7 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { MicroTooltipDirective } from '@hra-ui/design-system/micro-tooltip';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { Metadata } from '../../models/metadata';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
@@ -42,7 +42,6 @@ export class DefaultToPipe implements PipeTransform {
  */
 @Component({
   selector: 'cde-metadata',
-  standalone: true,
   imports: [
     CommonModule,
     MatButtonModule,
@@ -52,7 +51,7 @@ export class DefaultToPipe implements PipeTransform {
     DefaultToPipe,
     MatMenuModule,
     IconButtonSizeDirective,
-    MicroTooltipDirective,
+    PlainTooltipDirective,
     ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,

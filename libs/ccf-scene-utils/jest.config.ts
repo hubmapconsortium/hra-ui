@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'ccf-scene-utils',
   preset: '../../jest.preset.js',

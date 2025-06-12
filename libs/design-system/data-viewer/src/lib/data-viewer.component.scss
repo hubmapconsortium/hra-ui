@@ -1,0 +1,121 @@
+@use '@angular/material' as mat;
+@use '../../../styles/utils';
+@use '../../../styles/vars' as vars;
+
+:host {
+  display: block;
+  color: vars.$secondary;
+  background-color: vars.$on-primary;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid vars.$outline-variant;
+  overflow: hidden;
+
+  .header,
+  .content {
+    padding: 1rem;
+  }
+
+  .header {
+    @include utils.use-font(title, medium);
+    display: flex;
+    align-items: center;
+    height: 4.5rem;
+    background-color: vars.$surface-container-low;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
+    gap: 1rem;
+
+    .header-label {
+      flex-grow: 1;
+    }
+  }
+
+  .logos {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .text-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .viewer-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+
+    @media (min-width: 40rem) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .select {
+    min-width: 15.5rem;
+  }
+
+  ::ng-deep .mdc-text-field--filled .mdc-floating-label--float-above {
+    transform: translateY(-106%);
+  }
+
+  mat-select-trigger {
+    @include utils.use-font(label, medium);
+  }
+}
+
+.release-label {
+  display: flex;
+  flex-direction: column;
+
+  .release-name {
+    @include utils.use-font(label, medium);
+
+    @include mat.option-overrides(
+      (
+        label-text-color: vars.$secondary,
+      )
+    );
+  }
+
+  .release-date {
+    @include utils.use-font(label, small);
+    color: vars.$primary;
+  }
+}
+
+.mat-mdc-option-active {
+  background-color: utils.with-alpha(vars.$tertiary, 20%) !important;
+  outline: none !important;
+
+  ::ng-deep .mat-pseudo-checkbox {
+    @include mat.pseudo-checkbox-overrides(
+      (
+        full-selected-checkmark-color: vars.$tertiary,
+      )
+    );
+  }
+}
+
+.csv-button {
+  padding: 0.5rem 1rem;
+
+  .csv-label {
+    display: flex;
+  }
+
+  .csv-desc {
+    @include utils.use-font(label, small);
+    color: vars.$primary;
+  }
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  width: 15.5rem;
+}

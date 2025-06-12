@@ -6,12 +6,13 @@ import { Error } from '../../models/response.model';
   selector: 'app-omap-controls',
   templateUrl: './omap-controls.component.html',
   styleUrls: ['./omap-controls.component.scss'],
+  standalone: false,
 })
 export class OmapControlsComponent {
   @Input() omaps: OmapConfig = { organsOnly: false, proteinsOnly: false };
   @Input() error!: Error;
 
-  @Output() updateConfig = new EventEmitter<OmapConfig>();
+  @Output() readonly updateConfig = new EventEmitter<OmapConfig>();
 
   checkBoxClicked(event: Record<string, boolean>) {
     this.omaps.organsOnly = event['organsOnly'];

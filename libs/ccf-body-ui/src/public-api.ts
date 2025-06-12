@@ -1,5 +1,4 @@
 // Hack to support deck.gl and other typings
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="node" />
 
 /*

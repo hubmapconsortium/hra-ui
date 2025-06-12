@@ -8,8 +8,5 @@
     "@hra-ui/theming": "*",
     "@hra-ui/utils": "*"
   },
-  "dependencies": {
-    "tslib": "^2.3.0"
-  },
   "sideEffects": false
 }

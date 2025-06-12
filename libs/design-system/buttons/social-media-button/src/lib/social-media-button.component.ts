@@ -9,9 +9,9 @@ import { SOCIALS } from './static-data/parsed';
  */
 @Component({
   selector: 'hra-social-media-button',
-  standalone: true,
   imports: [CommonModule, IconButtonModule],
   templateUrl: './social-media-button.component.html',
+  styleUrl: './social-media-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialMediaButtonComponent {

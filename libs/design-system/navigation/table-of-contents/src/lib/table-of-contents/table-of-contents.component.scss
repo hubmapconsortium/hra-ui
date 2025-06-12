@@ -1,0 +1,61 @@
+@use '../../../../../styles/utils';
+@use '../../../../../styles/vars';
+
+:host {
+  display: block;
+  border: 0.0625rem solid vars.$outline-variant;
+  border-radius: 0.5rem;
+
+  .tagline {
+    @include utils.use-font(label, large);
+    min-height: 3rem;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    color: vars.$secondary;
+    background-color: vars.$surface-container-low;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    @include utils.use-font(label, medium);
+    padding: 0.5rem;
+
+    .link {
+      min-height: 2rem;
+      border-radius: 0.5rem;
+      padding: 0.3438rem 1rem;
+      margin-left: calc((var(--indentation-level, 1) - 1) * 0.75rem);
+      color: vars.$primary;
+
+      &:hover {
+        background-color: utils.with-alpha(vars.$secondary, 8%);
+      }
+
+      &:focus-visible {
+        @include utils.inset-outline(vars.$primary);
+      }
+    }
+  }
+
+  @media (min-width: 1100px) {
+    border: none;
+
+    .tagline {
+      min-height: 2.5rem;
+      padding: 0.5rem 1rem;
+      border-bottom: none;
+      background-color: unset;
+    }
+
+    .links {
+      padding: 0;
+
+      .link.active {
+        background-color: utils.with-alpha(vars.$tertiary, 20%);
+      }
+    }
+  }
+}

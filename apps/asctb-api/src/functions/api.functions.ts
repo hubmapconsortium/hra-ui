@@ -16,13 +16,24 @@ import { WarningCode } from '../utils/warnings';
 import { fixOntologyId } from './lookup.functions';
 import { OmapDataTransformer } from './omap.functions';
 
+/** Asctb data */
 export interface ASCTBData {
+  /** Data rows */
   data: Row[];
+  /** Additional metadata */
   metadata: Record<string, string | string[]>;
+  /** Warnings */
   warnings: string[];
+  /** Whether the data is omap data */
   isOmap?: boolean;
 }
 
+/**
+ * Normalizes the url to a google sheet
+ *
+ * @param url Sheets url
+ * @returns A normalized url
+ */
 export function normalizeCsvUrl(url: string): string {
   if (url.startsWith('https://docs.google.com/spreadsheets/d/') && url.indexOf('export?format=csv') === -1) {
     const splitUrl = url.split('/');
@@ -35,6 +46,15 @@ export function normalizeCsvUrl(url: string): string {
   return url;
 }
 
+/**
+ * Set a value in a data row
+ *
+ * @param column Column names
+ * @param _columnNumber Column index
+ * @param row Row data
+ * @param value Value
+ * @param warnings Set to add warnings to
+ */
 function setData(column: string[], _columnNumber: number, row: Row, value: string, warnings: Set<string>): void {
   if (column.length > 1) {
     const arrayName: arrayNameType = arrayNameMap[column[0]];
@@ -76,11 +96,22 @@ function setData(column: string[], _columnNumber: number, row: Row, value: strin
   }
 }
 
+/** Regex matching invalid characters */
 const invalidCharacterRegex = /_/gi;
+/** Regex matching urls */
 const isLinkRegex = /^http/gi;
+/** Code point for 'A' */
 const codepointUppercaseA = 65;
+/** Length of the alhpabet */
 const alphabetLength = 26;
 
+/**
+ * Get the column name for a column index.
+ * Column names: A B C ... Z AA AB AC ... AZ ... ZA ... ZZ
+ *
+ * @param index Column index
+ * @returns Column name
+ */
 function columnIndexToName(index: number): string {
   index = index + 1;
   const name = [];
@@ -92,6 +123,14 @@ function columnIndexToName(index: number): string {
   return name.join('');
 }
 
+/**
+ * Checks that a cell's value is valid
+ *
+ * @param value Value to check
+ * @param rowIndex Row index of value
+ * @param columnIndex Column index of value
+ * @param warnings Set to add warning to
+ */
 function validateDataCell(value: string, rowIndex: number, columnIndex: number, warnings: Set<string>): void {
   if (!isLinkRegex.test(value) && invalidCharacterRegex.test(value)) {
     const colName = columnIndexToName(columnIndex);
@@ -103,7 +142,7 @@ function validateDataCell(value: string, rowIndex: number, columnIndex: number, 
   }
 }
 
-/*
+/**
  * buildMetadata - build metadata key value store
  * @param metadataRows = rows from metadata to be extracted
  * @param warnings = warnings generated during the process are pushed to this set
@@ -118,7 +157,7 @@ export const buildMetadata = (metadataRows: string[][], warnings: Set<string>): 
   };
 
   return metadataRows.reduce((metadata: Record<string, string | string[]>, rowData: string[], rowNumber: number) => {
-    const [metadataIdentifier, metadataValue, ..._] = rowData;
+    const [metadataIdentifier, metadataValue] = rowData;
     /**
      * Raise Warnings:
      *    Case 1: IF the Metadata Key/Value is filled or empty
@@ -152,6 +191,14 @@ export const buildMetadata = (metadataRows: string[][], warnings: Set<string>): 
   }, result);
 };
 
+/**
+ * Finds the header row
+ *
+ * @param headerRow Start index
+ * @param data Data rows
+ * @param firstColumnName First column
+ * @returns Index of the header row
+ */
 export function findHeaderIndex(headerRow: number, data: string[][], firstColumnName: string): number {
   for (let i = headerRow; i < data.length; i++) {
     if (data[i][0] === firstColumnName) {
@@ -160,6 +207,14 @@ export function findHeaderIndex(headerRow: number, data: string[][], firstColumn
   }
   return headerRow;
 }
+
+/**
+ * Validates the header row
+ *
+ * @param headerData Data rows
+ * @param rowIndex Header index
+ * @param warnings Set to add warnings to
+ */
 function validateHeaderRow(headerData: string[][], rowIndex: number, warnings: Set<string>) {
   let columnIndex = 0;
   headerData.forEach((value) => {
@@ -210,6 +265,17 @@ function validateHeaderRow(headerData: string[][], rowIndex: number, warnings: S
     columnIndex = columnIndex + 1;
   });
 }
+
+/**
+ * Checks the data for missing ids
+ *
+ * @param column Column names
+ * @param index Data index
+ * @param row Row data
+ * @param value Data value
+ * @param rowData Raw row
+ * @param warnings Set to add warnings to
+ */
 function checkMissingIds(
   column: string[],
   index: number,
@@ -222,7 +288,7 @@ function checkMissingIds(
    * check for missing Uberon/CL IDs:
    */
   const lastElement = column[column.length - 1];
-  const isId = lastElement.toLowerCase() === objectFieldMap.ID;
+  const isId = lastElement.toLowerCase() === objectFieldMap['ID'];
   if (isId) {
     const nameValue = rowData[index - 2]?.trim() ?? '';
     const idValue = value.trim();
@@ -256,6 +322,7 @@ function checkMissingIds(
   }
 }
 
+/** Get the header row */
 export function getHeaderRow(
   data: string[][],
   omapHeader: string,
@@ -276,13 +343,15 @@ export function getHeaderRow(
   return undefined;
 }
 
+/**
+ * Processes data into asctb format
+ *
+ * @param data Raw data
+ * @returns Processed data
+ */
 export function makeASCTBData(data: string[][]): ASCTBData | undefined {
-  const header = getHeaderRow(
-    data,
-    OMAP_HEADER_FIRST_COLUMN,
-    ASCT_HEADER_FIRST_COLUMN,
-    LEGACY_OMAP_HEADER_FIRST_COLUMN,
-  );
+  const header =
+    getHeaderRow(data, OMAP_HEADER_FIRST_COLUMN, ASCT_HEADER_FIRST_COLUMN, LEGACY_OMAP_HEADER_FIRST_COLUMN) ?? [];
 
   if (header[0] === LEGACY_OMAP_HEADER_FIRST_COLUMN) {
     const omapTransformer = new OmapDataTransformer(data, true);
@@ -305,11 +374,16 @@ export function makeASCTBData(data: string[][]): ASCTBData | undefined {
   } else if (header[0] === ASCT_HEADER_FIRST_COLUMN) {
     const asctbData = makeASCTBDataWork(data);
     return { ...asctbData, isOmap: false };
-  } else {
-    throw new Error(`Header row, first column should be : ${ASCT_HEADER_FIRST_COLUMN} or ${OMAP_HEADER_FIRST_COLUMN}`);
   }
+  throw new Error(`Header row, first column should be : ${ASCT_HEADER_FIRST_COLUMN} or ${OMAP_HEADER_FIRST_COLUMN}`);
 }
 
+/**
+ * Processes data into asctb format
+ *
+ * @param data Raw data
+ * @returns Processed data
+ */
 export function makeASCTBDataWork(data: string[][]): ASCTBData {
   const headerRow = findHeaderIndex(0, data, ASCT_HEADER_FIRST_COLUMN);
   const columns = data[headerRow].map((col: string) =>

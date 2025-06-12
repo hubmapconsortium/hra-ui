@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LocalStorageService {
+  /** Local storage reference */
   static storage = (() => {
     // Slightly modified from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
     let storage: Storage | undefined;
@@ -72,7 +73,7 @@ export class LocalStorageService {
     try {
       LocalStorageService.storage?.setItem(key, value);
       return true;
-    } catch (_error) {
+    } catch {
       return false;
     }
   }

@@ -1,3 +1,4 @@
+/** Any constructor */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Constructor = new (...args: any[]) => any;
 

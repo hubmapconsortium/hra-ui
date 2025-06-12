@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RUI Web Component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
+    <link href="https://cdn.humanatlas.io/ui/ccf-rui/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/ccf-rui/wc.js" defer></script>
+  </head>
+  <body style="margin: 0">
+    <ccf-rui
+      base-href="https://cdn.humanatlas.io/ui/ccf-rui/"
+      user='{"firstName": "demo", "lastName": "demo"}'
+      organ='{"name": "{{name}}", "ontologyId": "{{organ}}", "side": "{{side}}", "sex": "{{sex}}"}'
+      header="false"
+    >
+    </ccf-rui>
+  </body>
+</html>

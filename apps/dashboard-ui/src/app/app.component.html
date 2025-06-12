@@ -1,3 +1,23 @@
-<hra-dashboard-header></hra-dashboard-header>
-<router-outlet></router-outlet>
-<hra-footer></hra-footer>
+<hra-header baseUrl="https://apps.humanatlas.io/dashboard/" [breadcrumbs]="crumbs() ?? []">
+  <a mat-icon-button routerLink="/data">
+    <mat-icon>database</mat-icon>
+  </a>
+  <a mat-icon-button routerLink="/usage">
+    <mat-icon>data_usage</mat-icon>
+  </a>
+  <a mat-icon-button routerLink="/publications">
+    <mat-icon>newsmode</mat-icon>
+  </a>
+  <a mat-icon-button routerLink="/experimental-data">
+    <mat-icon>experiment</mat-icon>
+  </a>
+  <a mat-icon-button routerLink="/diversity-and-inclusion">
+    <mat-icon>diversity_4</mat-icon>
+  </a>
+  <a mat-icon-button href="https://humanatlas.io/user-story/7" rel="noopener noreferrer">
+    <mat-icon>help</mat-icon>
+  </a>
+</hra-header>
+
+<router-outlet />
+<hra-footer />

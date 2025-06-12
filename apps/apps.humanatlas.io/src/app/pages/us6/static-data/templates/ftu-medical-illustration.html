@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Medical Illustration Web Component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.humanatlas.io/ui/medical-illustration/styles.css" rel="stylesheet" />
+    <script src="https://cdn.humanatlas.io/ui/medical-illustration/wc.js" defer></script>
+  </head>
+  <body style="margin: 0">
+    <hra-medical-illustration
+      selected-illustration="https://purl.humanatlas.io/2d-ftu/{{illustration}}"
+      illustrations="https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld"
+    >
+    </hra-medical-illustration>
+  </body>
+</html>

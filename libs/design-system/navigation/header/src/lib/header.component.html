@@ -5,8 +5,7 @@
     [description]="ctaConfig.description"
     [url]="ctaConfig.url"
     (closeClick)="ctaDismissed.set(true)"
-  >
-  </hra-cta-bar>
+  />
 }
 
 <header
@@ -17,7 +16,7 @@
   data-testid="header"
 >
   <div class="menus" #desktopMenuOrigin>
-    <hra-brand-logo size="small"></hra-brand-logo>
+    <hra-brand-logo size="small" />
 
     <div class="filler"></div>
 
@@ -42,7 +41,7 @@
           [cdkConnectedOverlayPositions]="desktopMenuPositions"
           (overlayOutsideClick)="closeMenu()"
         >
-          <hra-desktop-menu [menu]="menu" [style.max-height]="desktopMenuMaxHeight()"></hra-desktop-menu>
+          <hra-desktop-menu [menu]="menu" [baseUrl]="baseUrl()" [style.max-height]="desktopMenuMaxHeight()" />
         </ng-template>
       }
     }
@@ -79,7 +78,7 @@
         [cdkConnectedOverlayWidth]="'100%'"
         #mobileMenuOverlay
       >
-        <hra-mobile-menu [hubmapMenu]="hubmapMenu()" [menus]="menus()"></hra-mobile-menu>
+        <hra-mobile-menu [hubmapMenu]="hubmapMenu()" [menus]="menus()" [baseUrl]="baseUrl()" />
       </ng-template>
     } @else {
       <ng-template
@@ -92,22 +91,22 @@
         [cdkConnectedOverlayPositions]="desktopMenuPositions"
         (overlayOutsideClick)="closeMenu()"
       >
-        <hra-desktop-menu [menu]="hubmapMenu()" [style.max-height]="desktopMenuMaxHeight()"></hra-desktop-menu>
+        <hra-desktop-menu [menu]="hubmapMenu()" [baseUrl]="baseUrl()" [style.max-height]="desktopMenuMaxHeight()" />
       </ng-template>
     }
   </div>
 
-  @if (breadcrumbs().length > 0) {
-    <mat-divider></mat-divider>
+  @if (breadcrumbs(); as crumbs) {
+    <mat-divider />
 
     <div class="navigation">
-      <hra-breadcrumbs [crumbs]="breadcrumbs()"> </hra-breadcrumbs>
+      <hra-breadcrumbs [crumbs]="crumbs" />
       <div class="filler"></div>
-      <ng-content></ng-content>
+      <ng-content />
     </div>
   }
 </header>
 
 @if (progress() !== false) {
-  <mat-progress-bar class="progress-bar" [mode]="progressMode()" [value]="progress()"></mat-progress-bar>
+  <mat-progress-bar class="progress-bar" [mode]="progressMode()" [value]="progress()" />
 }

@@ -4,6 +4,7 @@ import { DashboardComponent, DashboardComponentSpecFor } from '../../../dashboar
 import { TITLE_CARD_DEF, TitleCardComponent } from '../../title-card/title-card.component';
 import { METRICS_ITEM_DEF, MetricsItemComponent } from '../item/metrics-item.component';
 
+/** Metrics card data */
 export type MetricsCard = z.infer<typeof METRICS_CARD_DEF>;
 
 /** Metrics card definition */
@@ -20,7 +21,6 @@ const WIDE_CARD_MIN_ITEM_COUNT = 4;
   templateUrl: './metrics-container.component.html',
   styleUrl: './metrics-container.component.scss',
   imports: [TitleCardComponent, MetricsItemComponent],
-  standalone: true,
 })
 export class MetricsContainerComponent implements DashboardComponent<typeof MetricsContainerComponent> {
   /** Input type for Metrics Container Component */

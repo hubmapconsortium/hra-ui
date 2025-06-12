@@ -65,7 +65,7 @@ $_palettes: (
     30: #484646,
     35: #535252,
     40: #5f5e5e,
-    50: #787776,
+    50: #acb5c3,
     60: #929090,
     70: #adaaaa,
     80: #c9c6c5,
@@ -126,14 +126,11 @@ $_rest: (
 $_primary: map.merge(map.get($_palettes, primary), $_rest);
 $_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
 
-$theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: $_primary,
-      tertiary: $_tertiary,
-      use-system-variables: true,
-    ),
-    typography: typo.$typography,
-  )
+$theme: (
+  color: (
+    theme-type: light,
+    primary: $_primary,
+    tertiary: $_tertiary,
+  ),
+  typography: typo.$typography,
 );

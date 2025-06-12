@@ -1,5 +1,5 @@
 import { PlatformLocation } from '@angular/common';
-import { APP_INITIALIZER, EnvironmentProviders, inject, makeEnvironmentProviders } from '@angular/core';
+import { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppInitializer } from '@angular/core';
 
 /** Patchable platform location history methods */
 export type PatchablePlatformLocationHistoryMethod = 'replaceState' | 'pushState' | 'forward' | 'back' | 'historyGo';
@@ -66,13 +66,12 @@ export function patchPlatformLocationHistoryMethods(
  */
 export function provideNothrowPlatformLocation(): EnvironmentProviders {
   return makeEnvironmentProviders([
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: () => {
+    provideAppInitializer(() => {
+      const initializerFn = (() => {
         patchPlatformLocationHistoryMethods(inject(PlatformLocation));
         return () => undefined;
-      },
-    },
+      })();
+      return initializerFn();
+    }),
   ]);
 }

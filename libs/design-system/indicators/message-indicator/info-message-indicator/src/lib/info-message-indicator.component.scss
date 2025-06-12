@@ -1,0 +1,20 @@
+@use '../../../../../styles/utils';
+
+:host {
+  display: flex;
+  background-color: #1791ff1f;
+
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  gap: 0.75rem;
+
+  mat-icon {
+    color: #00529c;
+  }
+
+  .message {
+    @include utils.use-font(label, large);
+    color: var(--mat-sys-secondary);
+    flex: 1;
+  }
+}

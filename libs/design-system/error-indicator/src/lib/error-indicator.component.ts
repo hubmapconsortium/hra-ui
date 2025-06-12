@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 /** Error Indicator component */
 @Component({
   selector: 'hra-error-indicator',
-  standalone: true,
   imports: [CommonModule, MatIconModule],
   templateUrl: './error-indicator.component.html',
   styleUrl: './error-indicator.component.scss',

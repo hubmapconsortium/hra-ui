@@ -1,3 +1,5 @@
+@use 'vars';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -11,7 +13,7 @@
 
     &.selected {
       z-index: 1;
-      background: color-mix(in srgb, var(--sys-tertiary) 20%, transparent);
+      background: color-mix(in srgb, vars.$tertiary 20%, transparent);
     }
 
     .opacity-icon {
@@ -25,8 +27,8 @@
     }
 
     .item-name {
-      font: var(--sys-label-small);
-      color: var(--sys-primary);
+      font: vars.$label-small;
+      color: vars.$primary;
       user-select: none;
       white-space: nowrap;
       overflow: hidden;
