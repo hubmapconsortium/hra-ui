@@ -1,0 +1,121 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: ASCT+B cell types data from Azimuth reference data with summaries
+subtitle: Crosswalks from Azimuth cell annotation tool to ASCT+B tables with cell population data.
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        ASCT+B tables represent cell-by-gene (CxG) relationships that are also captured in the HuBMAP Azimuth references.
+        This site provides the cell-type typology for all existing Azimuth annotated reference datasets;
+        the Azimuth cell-type typology trees can be visualized in the ASCT+B Reporter.
+
+        We also provide easy access to results for comparing CxG in ASCT+B vs. CxG in Azimuth.
+        In January of 2022, Azimuth supports single-cell RNA-seq data exclusively.
+        As more experimental data becomes available and additional types of data are supported (e.g., proteins, lipids, metabolites),
+        data differences will decrease.
+
+  - component: PageSection
+    tagline: Azimuth cell type typologies and counts
+    anchor: azimuth-cell-typologies-counts
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        In November of 2022, 10 Azimuth molecular reference maps for the human are available.
+        For each, we provide the cell-type typology as a file that can be visualized in the ASCT+B Reporter together
+        with a table that lists the annotation level and the number of cell-types for each unique cell in the organ-specific
+        Azimuth reference.
+
+  - component: PageSection
+    tagline: Comparison of CxG in ASCT+B vs. Azimuth
+    anchor: comparison-of-cxg-asctb-azimuth
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        The below table shows the comparison of the CxG matrix in ASCT+B tables vs. CxG matrix in Azimuth for each organ in January 2022.
+        An automatically generated, up-to-date comparison is available for download here; this XLS file also contains separate sheets with
+        cell-types that are not (yet) covered in the ASCT+B tables. Details on how the comparison is calculated are on GitHub.
+        Note that not all Azimuth cell types have CL IDs; in these cases, matching is done based on cell-type names.
+
+        Data from Azimuth Website GitHub Repository has been parsed to derive cell-type typologies:
+
+  - component: PageSection
+    tagline: Summary statistics
+    anchor: summary-statistics
+    level: 4
+    content:
+      component: PageTable
+      styles:
+        --hra-table-max-height: 35rem
+      style: alternating
+      enableSort: true
+      csvUrl: assets/content/asctb-azimuth-page/asctb-summary-stats.csv
+      columns:
+        - column: Organ
+          label: Organ
+          type:
+            type: link
+            urlColumn: OrganURL
+        - column: AzimuthUniqueNames
+          label: 'Azimuth cell types with unique names'
+        - column: AzimuthUniqueIDs
+          label: 'Azimuth cell types with unique IDs'
+        - column: ASCTBUniqueNames
+          label: 'ASCT+B v1.0 cell types with unique names'
+        - column: ASCTBUniqueIDs
+          label: 'ASCT+B v1.0 cell types with unique IDs'
+        - column: MatchingUniqueNames
+          label: 'Matching cell types with unique names'
+        - column: MatchingUniqueIDs
+          label: 'Matching cell types with unique IDs'
+        - column: AnnotationLevelsAzimuthRef
+          label: 'Annotation levels in Azimuth reference'
+        - column: TotalCellsAzimuthRef
+          label: 'Total cell count in Azimuth reference'
+        - column: BiomarkersAzimuth
+          label: 'Azimuth biomarkers'
+        - column: BiomarkersASCTB
+          label: 'ASCT+B biomarkers'
+        - column: BiomarkersMatches
+          label: 'Matching biomarkers'
+
+  - component: PageSection
+    tagline: Azimuth cell type counts
+    anchor: azimuth-cell-type-counts
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        Data from Azimuth Website GitHub Repository has been parsed to derive cell-type counts.
+
+        Code is available on GitHub.
+
+  - component: PageSection
+    tagline: Terms of use
+    anchor: terms-of-use
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        HuBMAP data are supplied with no warranties, expressed or implied, including without limitation,
+        any warranty of merchantability or fitness for a particular purpose or non-infringement.
+        No warranty with respect to the HuBMAP infrastructure is provided, including without limitation, any uptime warranty.
+        The Parties make no representations that the use of the data will not infringe any patent or proprietary rights of third parties.
+
+  - component: PageSection
+    tagline: References
+    anchor: references
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
+        "[Anatomical structures, cell-types and biomarkers of the Human Reference Atlas](https://doi.org/10.1038/s41556-021-00788-6)". Nature Cell Biology 23 (11): 1117-28.
+
+        Hao Yuhan, Stephanie Hao, Erica Andersen-Nissen, et al. 2021.
+        "[Integrated Analysis of Multimodal Single-Cell Data](https://doi.org/10.1016/j.cell.2021.04.048)." Cell 184 (13): 3573-3587. e29. doi: 10.1016/j.cell.2021.04.048.

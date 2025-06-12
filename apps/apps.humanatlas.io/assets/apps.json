@@ -1,0 +1,118 @@
+{
+  "$schema": "../../src/app/pages/landing-page/types/app-cards.schema.json",
+  "tabs": [
+    {
+      "name": "Researcher apps",
+      "sections": [
+        {
+          "tagline": "Researcher applications for using the Human Reference Atlas",
+          "cards": [
+            {
+              "tagline": "Cell Distance Explorer",
+              "description": "Compute, visualize, and explore distance distributions between different cells, cell types, anatomical structures, and more.",
+              "imagePath": "assets/ui-images/CDE.png",
+              "logoPath": "product:cde",
+              "appUrl": "https://apps.humanatlas.io/cde/",
+              "documentLink": "https://humanatlas.io/user-story/5"
+            },
+            {
+              "tagline": "FTU Explorer",
+              "description": "Examine cell type populations and biomarker expression values for functional tissue units (FTUs).",
+              "imagePath": "assets/ui-images/FTU_explorer.png",
+              "logoPath": "product:ftu",
+              "appUrl": "https://apps.humanatlas.io/ftu-explorer",
+              "documentLink": "https://humanatlas.io/user-story/4"
+            },
+            {
+              "tagline": "Exploration User Interface",
+              "description": "Explore and validate spatially registered single-cell datasets in three-dimensions across organs.",
+              "imagePath": "assets/ui-images/eui.png",
+              "logoPath": "product:eui",
+              "appUrl": "https://apps.humanatlas.io/eui/",
+              "documentLink": "https://humanatlas.io/exploration-user-interface"
+            },
+            {
+              "tagline": "HRA Organ Gallery",
+              "description": "An immersive application to explore organs, donor data, tissue blocks, datasets, and cells across scales in virtual reality.",
+              "imagePath": "assets/ui-images/organ_gallery.png",
+              "logoPath": "product:organ-gallery",
+              "appUrl": "https://www.meta.com/experiences/hra-organ-gallery/5696814507101529/",
+              "documentLink": "https://humanatlas.io/hra-organ-gallery"
+            },
+            {
+              "tagline": "Cell Population Predictor",
+              "description": "Select a 3D tissue extraction site and use the Human Reference Atlas API to predict cell type populations for this site.",
+              "imagePath": "assets/ui-images/cell_population_predictor.png",
+              "logoPath": "product:cell-population-predictor",
+              "appUrl": "/us1",
+              "documentLink": "https://humanatlas.io/user-story/1"
+            },
+            {
+              "tagline": "Tissue Origin Predictor",
+              "description": "Upload a cell type population file and use the Human Reference Atlas API to predict 3D tissue origin.",
+              "imagePath": "assets/ui-images/tissue_origin_predictor.png",
+              "logoPath": "product:tissue-origin-predictor",
+              "appUrl": "/us2",
+              "documentLink": "https://humanatlas.io/user-story/2"
+            },
+            {
+              "tagline": "Dashboard",
+              "description": "Explore the size of HRA data, usage over time, publication data, experimental data, and diversity of collaborators.",
+              "imagePath": "assets/ui-images/dashboard.png",
+              "logoPath": "product:dashboard",
+              "appUrl": "https://apps.humanatlas.io/dashboard/",
+              "documentLink": "https://humanatlas.io/user-story/7"
+            }
+          ]
+        },
+        {
+          "tagline": "Researcher applications to construct the Human Reference Atlas",
+          "cards": [
+            {
+              "tagline": "Registration User Interface",
+              "description": "Spatially register human tissue blocks to a 3D organ model.",
+              "imagePath": "assets/ui-images/rui.png",
+              "logoPath": "product:3d-organ",
+              "appUrl": "https://apps.humanatlas.io/rui/",
+              "documentLink": "https://humanatlas.io/registration-user-interface"
+            },
+            {
+              "tagline": "ASCT+B Reporter",
+              "description": "Construct, explore, and compare ASCT+B Tables and Organ Mapping Antibody Panels (OMAPs).",
+              "imagePath": "assets/ui-images/asctb-reporter.png",
+              "logoPath": "product:asctb-reporter",
+              "appUrl": "https://apps.humanatlas.io/asctb-reporter/",
+              "documentLink": "https://humanatlas.io/asctb-reporter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Developer apps",
+      "sections": [
+        {
+          "tagline": "Developer applications",
+          "cards": [
+            {
+              "tagline": "Web Components",
+              "description": "Explore, use, and share web components to improve Human Reference Atlas data access and analysis.",
+              "imagePath": "assets/ui-images/web_components.png",
+              "logoPath": "product:web-components",
+              "appUrl": "/us6",
+              "documentLink": "https://humanatlas.io/user-story/6"
+            },
+            {
+              "tagline": "APIs",
+              "description": "Query and interact with the Human Reference Atlas using Python, JavaScript, SPARQL, REST, and more.",
+              "imagePath": "assets/ui-images/api.png",
+              "logoPath": "product:api",
+              "appUrl": "/api",
+              "documentLink": "https://humanatlas.io/api"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

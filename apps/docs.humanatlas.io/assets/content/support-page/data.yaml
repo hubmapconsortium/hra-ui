@@ -1,0 +1,72 @@
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Support
+subtitle: |
+  Welcome to the Human Reference Atlas (HRA) Support Portal for Developers and Users! The HRA is a comprehensive,
+  open-access, 3D atlas of the healthy human body, built for researchers, developers, and educators.
+  This support page provides guidance, troubleshooting, and resources to help you make the most of the
+  HRA platform—whether you are integrating APIs, visualizing data, or contributing tools and datasets.
+icons: product:developer-portal
+content:
+  - component: PageSection
+    tagline: Core Support Resources
+    anchor: core-support-resources
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - **Getting Started Guides:**<br>
+            Step-by-step instructions for setting up your development environment, authenticating with HRA APIs,
+            and accessing key features of the platform.
+          - **API Troubleshooting:**<br>
+            Solutions to common issues when querying anatomical structures, retrieving models, or working with spatial ontologies.
+            Includes error code explanations and example requests.
+          - **Integration Help:**<br>
+            Guidance on embedding HRA web components, using plug-and-play UI elements, and connecting HRA data with your own applications.
+          - **Data Access & Formats:**<br>
+            Information on available data types (3D models, ASCT+B tables, coordinate frameworks), supported formats (GLB, JSON, CSV),
+            and best practices for downloading and using these resources.
+          - **FAQs and Community Support:**<br>
+            Find answers to frequently asked questions, or connect with the HRA community for additional help and feedback.
+  - component: PageSection
+    tagline: Quick Links
+    anchor: quick-links
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - [API Reference](https://docs.humanatlas.io/api-reference): Detailed documentation for all public endpoints.
+          - [Changelog](https://docs.humanatlas.io/changelog): Latest updates, patch notes, and breaking changes.
+          - [Tutorials](https://docs.humanatlas.io/tutorials): Hands-on guides for developers and users.
+          - [Digital Objects](https://docs.humanatlas.io/digital-objects): Download 3D organs, tables, and more.
+          - [Knowledge Graph](https://docs.humanatlas.io/knowledge-graph): Explore relationships between anatomical structures, cell types, and biomarkers.
+          - [Web Components](https://docs.humanatlas.io/web-components): Integrate HRA visuals into your own apps.
+          - [Design System](https://docs.humanatlas.io/design-system): Maintain design consistency across your HRA-powered tools.
+  - component: PageSection
+    tagline: Common Issues and Solutions
+    anchor: common-issues-and-solutions
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - Authentication Errors:<br>
+            Ensure your API key is valid and permissions are correctly set. Refer to the API Reference for authentication examples.
+          - Data Not Loading:<br>
+            Check your internet connection and verify that you are using the latest endpoints. Review the Changelog for recent updates that may affect data access.
+          - UI Component Integration:
+            Follow the Web Components documentation for installation and usage instructions. If issues persist, consult the troubleshooting section or reach out via community forums.
+  - component: PageSection
+    tagline: Contact Us
+    anchor: contact-us
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Have a question, need technical support, or want to provide feedback? We’re here to help!
+          - **Email:** [support@humanatlas.io](mailto:support@humanatlas.io)
+          - **Community Forum:** [HRA Community Forum]()
+          - **Report an Issue:** [GitHub Issues]()
+          - **Follow Us:**<br>
+           - [Twitter/X]()
+           - [LinkedIn]()<br>
+
+          This support page is designed to evolve with your needs—please suggest improvements or additional resources that would help you and your team succeed with the Human Reference Atlas.

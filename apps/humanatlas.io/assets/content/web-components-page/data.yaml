@@ -1,0 +1,50 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Web Components
+subtitle: Explore, use, and share Human Reference Atlas web components.
+icons: product:web-components
+action:
+  label: Use app
+  url: https://apps.humanatlas.io/beta/us6
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Add lightweight Human Reference Atlas web components, such as applications and APIs, into other portals in the growing ecosystem of human atlases.
+          Use these components to make collaboration and data and/or code reuse easier while supporting FAIR data principles.
+
+  - component: PageSection
+    tagline: App preview
+    anchor: app-preview
+    level: 3
+    content:
+      - component: Image
+        src: assets/content/web-components-page/images/app-preview.png
+
+  - component: PageSection
+    tagline: Integration
+    anchor: integration
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          You can also explore more on the developer documentation for integrating the web components in your website or application.
+
+      - component: Button
+        label: Go to developer documentation
+        href: https://docs.humanatlas.io/web-components
+        type: cta
+
+  - component: PageSection
+    tagline: Code
+    anchor: code
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Human Reference Atlas APIs are available freely on GitHub.
+          - [GitHub Repository](https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/us6-lightweight-atlas-components/)
+          - [Open API Link](#)

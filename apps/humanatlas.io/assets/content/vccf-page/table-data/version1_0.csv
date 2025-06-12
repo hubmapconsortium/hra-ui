@@ -1,0 +1,4 @@
+label,url,releaseVersion,dot,version,FileType,FileLink
+Vasculature Female,https://doi.org/10.48539/hbm253.dkwb.737,v1.0,3D Reference Object,1.0,GLB,https://ccf-ontology.hubmapconsortium.org/objects/v1.0/VH_F_Vasculature.glb
+Vasculature Male,https://doi.org/10.48539/hbm784.zdzf.357,v1.0,3D Reference Object,1.0,GLB,https://ccf-ontology.hubmapconsortium.org/objects/v1.0/VH_M_Vasculature.glb
+Vasculature,https://doi.org/10.48539/hbm426.gzpn.888,v1.0,ASCT+B Table,1.0,CSV,https://cdn.humanatlas.io/hra-releases/v1.0/asct-b/ASCT-B_VH_Vasculature.csv

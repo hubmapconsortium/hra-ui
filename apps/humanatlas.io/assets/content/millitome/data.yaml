@@ -1,0 +1,95 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Millitome
+subtitle: A unique 3D printed tool for the uniform sectioning of organs
+icons: product:millitome
+action:
+  label: Get data
+  url: https://purl.humanatlas.io/millitome
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        A millitome is a device designed to hold a freshly procured human organ and
+        facilitate cutting it into many small tissue blocks for usage in single-cell analysis.
+        A millitome has discrete, equally placed cutting grooves in three dimensions (x, y, and z)
+        to guide a carbon steel cutting knife to produce standard size slices or cubes of tissue material.
+        Millitomes are used to create uniformly sized tissue blocks that match the shape and
+        size of organs from the CCF 3D Reference Object Library.
+
+        This page allows you to download complete millitome sets for 3D-printing.
+
+        Specific download packages are accessed by selecting the organ (i.e., VH_F_Kidney_L = female kidney, left).
+        Each organ folder contains three compressed download packages, distinguished by sample block size
+        (i.e., VH_F_Kidney_L_20 = female kidney, left, 20mm block size).
+
+        Each package contains six 3D-printable .STL files for the requested organ,
+        three each for the bottom and top half.
+        Each millitome comes in three size variations to cover a range of organ sizes: large (115%),
+        medium (100%), small (85%). Also included in each package are six matching lookup files in
+        .CSV file format to record data about the sample blocks taken from the organ.
+
+  - component: PageSection
+    tagline: Millitome files
+    anchor: millitome-catalog
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Download millitome sets for 3D-printing.
+
+      - component: PageTable
+        styles:
+          --hra-table-max-height: 35rem
+        style: alternating
+        enableSort: true
+        columns:
+          - column: Organ
+            label: Organ
+            type:
+              type: link
+              urlColumn: organUrl
+          - column: Sex
+            label: Sex
+          - column: LeftRight
+            label: Left/Right
+        rows:
+          - Organ: Kidney
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_L/,
+            Sex: Female
+            LeftRight: Left
+          - Organ: Kidney
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_R/
+            Sex: Female
+            LeftRight: Right
+          - Organ: Kidney
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_L/
+            Sex: Male
+            LeftRight: Left
+          - Organ: Kidney
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Kidney_R/
+            Sex: Male
+            LeftRight: Right
+          - Organ: Pancreas
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/G_Pancreas/
+            Sex: Generic
+            LeftRight: N/A
+          - Organ: Pancreas
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Pancreas/
+            Sex: Female
+            LeftRight: N/A
+          - Organ: Pancreas
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Pancreas/
+            Sex: Male
+            LeftRight: N/A
+          - Organ: Spleen
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Spleen/
+            Sex: Female
+            LeftRight: N/A
+          - Organ: Spleen
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_M_Spleen/
+            Sex: Male
+            LeftRight: N/A
