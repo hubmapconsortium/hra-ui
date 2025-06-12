@@ -49,7 +49,7 @@ content:
 
   - component: PageSection
     tagline: Using spatial search filters
-    anchor: using-spacial-search
+    anchor: using-spatial-search
     level: 2
     content:
       - component: Markdown
