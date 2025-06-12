@@ -38,7 +38,7 @@ describe('CellPopulationPredictorComponent', () => {
       ],
     });
 
-    const useSampleButton = screen.getByText('Use Sample');
+    const useSampleButton = screen.getByText('Use sample');
     await userEvent.click(useSampleButton);
     fixture.detectChanges();
 
