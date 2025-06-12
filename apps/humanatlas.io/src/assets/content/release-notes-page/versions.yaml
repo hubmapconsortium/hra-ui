@@ -19,3 +19,7 @@ versions:
   - version: '1.4'
     label: 5th Release (v1.4)
     date: June 2023
+
+  - version: '1.3'
+    label: 4th Release (v1.3)
+    date: December 2022
