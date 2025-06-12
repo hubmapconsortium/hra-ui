@@ -17,7 +17,9 @@ content:
           Find metrics related to the size and coverage of HRA data; the amount and type of HRA usage over time;
           scholarly and experimental data evidence for the HRA; plus diversity of atlas authors, donors, and users.
 
-          <img src="assets/content/dashboard-page/images/dashboard_diversity.png" width="100%" />
+      - component: Image
+        src: assets/content/dashboard-page/images/dashboard_diversity.png
+
   - component: PageSection
     tagline: Code
     anchor: code

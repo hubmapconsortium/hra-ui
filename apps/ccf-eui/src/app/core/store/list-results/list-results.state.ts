@@ -8,6 +8,7 @@ import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { ListResult } from '../../models/list-result';
 import { ColorAssignmentState } from '../color-assignment/color-assignment.state';
 import { DataState } from '../data/data.state';
+import { sortBy } from 'lodash';
 
 /**
  * Interface representing the state model for list results.
@@ -135,14 +136,15 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
     combineLatest([this.dataState.tissueBlockData$, this.colorAssignments.colorAssignments$])
       .pipe(
         map(([tissueBlocks, colors]) => {
-          const updatedBlocks: ListResult[] = [];
+          const topBlocks: ListResult[] = [];
+          const otherBlocks: ListResult[] = [];
           for (const tissueBlock of tissueBlocks) {
             const color = colors[tissueBlock.spatialEntityId ?? ''];
             const expanded =
               this.ctx.getState().listResults.find((r) => r.tissueBlock['@id'] === tissueBlock['@id'])?.expanded ??
               false;
             if (color) {
-              updatedBlocks.push({
+              topBlocks.push({
                 selected: true,
                 color: color.color,
                 rank: color.rank,
@@ -150,7 +152,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
                 expanded,
               });
             } else {
-              updatedBlocks.push({
+              otherBlocks.push({
                 selected: false,
                 tissueBlock,
                 expanded,
@@ -158,7 +160,7 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
             }
           }
 
-          return updatedBlocks;
+          return sortBy(topBlocks, ['rank']).concat(otherBlocks);
         }),
         tap((results) => this.setListResults(results)),
       )

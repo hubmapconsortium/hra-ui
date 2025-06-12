@@ -32,9 +32,8 @@ content:
     anchor: app-features
     level: 3
     content:
-      - component: Markdown
-        data: |
-          <img src="assets/content/ftu-explorer-page/images/ftu_explorer.png" width="100%" />
+      - component: Image
+        src: assets/content/ftu-explorer-page/images/ftu_explorer.png
 
   - component: PageSection
     tagline: Code

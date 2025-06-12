@@ -146,9 +146,8 @@ content:
         data: |
           Use Google Translate to access the HRA.
 
-      - component: Markdown
-        data: |
-          <img src="assets/content/landing-page/images/hra_translate.svg" />
+      - component: Image
+        src: assets/content/landing-page/images/hra_translate.png
 
   - component: PageSection
     tagline: News

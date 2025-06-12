@@ -35,7 +35,8 @@ content:
           [Source](https://www.biorxiv.org/content/10.1101/2023.02.13.528002v1).
           More information can be found at our [README](https://github.com/cns-iu/hra-organ-gallery-in-vr/blob/main/README.md).<br><br>
 
-          <img src="assets/content/organ-gallery-page/images/organ_gallery.png" width="100%" />
+      - component: Image
+        src: assets/content/organ-gallery-page/images/organ_gallery.png
 
   - component: PageSection
     tagline: Background

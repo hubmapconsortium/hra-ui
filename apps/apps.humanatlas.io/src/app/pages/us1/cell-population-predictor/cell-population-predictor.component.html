@@ -1,9 +1,5 @@
 <!-- HEADING -->
-<hra-app-label
-  tagline="Cell Population Predictor"
-  logo="product:cell-population-predictor"
-  appStatus="Preview"
-></hra-app-label>
+<hra-app-label tagline="Cell Population Predictor" logo="product:cell-population-predictor"></hra-app-label>
 
 <!-- INFO -->
 <p class="info-text">
@@ -54,7 +50,7 @@
         </div>
       } @else {
         <div class="buttons">
-          <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use Sample</button>
+          <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use sample</button>
           <input
             type="file"
             accept="application/json"
@@ -63,7 +59,7 @@
             data-testid="file-input"
             #fileInput
           />
-          <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
+          <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload file</button>
         </div>
       }
     </div>

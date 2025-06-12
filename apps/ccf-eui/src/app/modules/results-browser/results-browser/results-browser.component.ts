@@ -1,7 +1,7 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -38,6 +38,9 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
     MatDividerModule,
     PlainTooltipDirective,
     ScrollingModule,
+  ],
+  providers: [
+    { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -130,7 +133,7 @@ export class ResultsBrowserComponent {
 
   /** Get the color of an item */
   getColor(result: Immutable<ListResult>): string {
-    return result.selected ? result.color || '' : 'transparent';
+    return result.selected ? result.color || '' : '';
   }
 
   /** Toggle the selected items */

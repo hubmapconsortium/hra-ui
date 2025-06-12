@@ -29,6 +29,12 @@
           "type": "string",
           "format": "uri"
         },
+        "external": {
+          "type": "boolean"
+        },
+        "target": {
+          "type": "string"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -59,6 +65,12 @@
         "url": {
           "type": "string",
           "format": "uri"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "target": {
+          "type": "string"
         }
       },
       "required": ["type", "label", "url"],
