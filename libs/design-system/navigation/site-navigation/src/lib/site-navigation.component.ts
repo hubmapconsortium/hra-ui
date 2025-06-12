@@ -1,5 +1,6 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -9,6 +10,8 @@ import { Router, RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgScrollbar } from 'ngx-scrollbar';
+import { injectNavigationEnd } from 'ngxtension/navigation-end';
+import { take } from 'rxjs';
 import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 import { DOCS_NAVIGATION_MENU } from './static-data/parsed';
@@ -52,9 +55,9 @@ export class SiteNavigationComponent {
 
   /** Constructor */
   constructor() {
-    const ref = effect(() => {
+    const end$ = injectNavigationEnd().pipe(takeUntilDestroyed(), take(1));
+    end$.subscribe(() => {
       this.expandedCategory.set(this.findExpandedCategory(this.navigationMenu()));
-      ref.destroy();
     });
   }
 

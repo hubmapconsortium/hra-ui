@@ -40,11 +40,4 @@ export const servers: Server[] = [
     url: 'https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir',
     spec: 'https://apps.humanatlas.io/api/grlc/index-spec.json',
   },
-  /* HRA-API SPARQL Queries (HRA) */
-  {
-    id: 'sparql-hra',
-    description: 'HRA-API SPARQL Queries',
-    url: 'https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/',
-    spec: 'https://apps.humanatlas.io/api/grlc/hra-spec.json',
-  },
 ];
