@@ -79,7 +79,7 @@ content:
         - [Frequently Asked Questions (FAQs) for OMAPs](https://humanatlas.io/faq/omap)
 
   - component: PageSection
-    tagline: Summary Statistics
+    tagline: Summary statistics
     anchor: summary-statistics
     level: 3
     content:
@@ -102,7 +102,7 @@ content:
                   type: link
                   urlColumn: url
               - column: tissuePreservationMethod
-                label: Tissue Preservation Method
+                label: Tissue preservation method
               - column: imagingMethod
                 label: Multiplexed antibody-based imaging method
               - column: csvLabel

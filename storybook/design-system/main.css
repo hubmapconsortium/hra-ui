@@ -1254,16 +1254,34 @@ html {
   --mat-select-disabled-arrow-color: rgb(from var(--mat-sys-on-primary) r g b/40%);
 }
 html {
+  --mat-select-disabled-trigger-text-color: rgb(from var(--mat-sys-secondary) r g b/40%);
+}
+html {
   --mat-select-enabled-arrow-color: var(--mat-sys-primary);
 }
 html {
   --mat-select-focused-arrow-color: var(--mat-sys-primary);
 }
 html {
+  --mat-select-invalid-arrow-color: var(--mat-sys-error);
+}
+html {
   --mat-select-panel-background-color: var(--mat-sys-on-primary);
 }
 html {
   --mat-select-placeholder-text-color: var(--mat-sys-on-primary);
+}
+html {
+  --mat-select-trigger-text-font: var(--mat-sys-label-medium-font);
+}
+html {
+  --mat-select-trigger-text-size: var(--mat-sys-label-medium-size);
+}
+html {
+  --mat-select-trigger-text-weight: var(--mat-sys-label-medium-weight);
+}
+html {
+  --mat-select-trigger-text-line-height: var(--mat-sys-label-medium-line-height);
 }
 html {
   --mat-full-pseudo-checkbox-selected-checkmark-color: rgb(from var(--mat-sys-tertiary) r g b/20%);
