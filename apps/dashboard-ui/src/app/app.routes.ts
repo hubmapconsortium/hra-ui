@@ -6,7 +6,7 @@ import { yamlFileResolver } from './shared/resolvers/yaml-file/yaml-file.resolve
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 
 /** Index spec file URL */
-const INDEX_SPEC_URL = 'https://cdn.humanatlas.io/hra-dashboard-data--staging/dashboards/index.yaml';
+const INDEX_SPEC_URL = 'https://cdn.humanatlas.io/hra-dashboard-data/dashboards/index.yaml';
 
 /** Base route breadcrumb item */
 const BASE_ROUTE_CRUMB: BreadcrumbItem = {
