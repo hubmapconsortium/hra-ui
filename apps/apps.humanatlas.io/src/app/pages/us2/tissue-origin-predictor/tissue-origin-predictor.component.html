@@ -1,9 +1,5 @@
 <!-- HEADING -->
-<hra-app-label
-  logo="product:tissue-origin-predictor"
-  tagline="Tissue Origin Predictor"
-  appStatus="Preview"
-></hra-app-label>
+<hra-app-label logo="product:tissue-origin-predictor" tagline="Tissue Origin Predictor"></hra-app-label>
 
 <!-- INFO -->
 <p class="info-text">
@@ -16,7 +12,7 @@
   <hra-workflow-card tagline="Upload Cell Population" step="1" class="card card-1">
     <hra-workflow-card-extra>
       <a [attr.href]="sampleLinkWithDefault()" target="_blank" rel="noopener noreferrer">
-        <button mat-button hraButtonSize="medium">View Sample</button>
+        <button mat-button hraButtonSize="medium">View sample</button>
       </a>
     </hra-workflow-card-extra>
 
@@ -42,7 +38,7 @@
       @if (file; as f) {
         <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
       } @else {
-        <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use Sample</button>
+        <button mat-button hraButtonSize="medium" (click)="onUseSampleClicked()">Use sample</button>
         <input
           type="file"
           accept=".csv"
@@ -51,7 +47,7 @@
           data-testid="file-input"
           #fileInput
         />
-        <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload File</button>
+        <button (click)="fileInput.click()" mat-button hraButtonSize="medium">Upload file</button>
       }
     </div>
   </hra-workflow-card>
