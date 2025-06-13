@@ -14,10 +14,13 @@
     cursor: pointer;
     width: 3.75rem;
     height: 2.5rem;
-    background-color: black;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: var(--mat-sys-inverse-primary);
 
     &:hover {
-      mix-blend-mode: hard-light;
+      opacity: 0.75;
     }
   }
 }
