@@ -1,4 +1,9 @@
-<hra-header baseUrl="https://apps.humanatlas.io/" [breadcrumbs]="crumbs() ?? []" [progress]="isNavigating()">
+<hra-header
+  baseUrl="https://apps.humanatlas.io/"
+  [cta]="cta"
+  [breadcrumbs]="crumbs() ?? []"
+  [progress]="isNavigating()"
+>
   <a mat-icon-button [href]="getHelpUrl()" target="_blank" rel="noopener noreferrer">
     <mat-icon>help</mat-icon>
   </a>

@@ -4,7 +4,7 @@ import { Component, computed, effect, ElementRef, inject, viewChild } from '@ang
 import { RouterModule } from '@angular/router';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
+import { CtaConfig, HeaderComponent } from '@hra-ui/design-system/navigation/header';
 import { routeData } from './utils/route-data';
 
 /** Padding when scrolling to an anchor in px */
@@ -31,6 +31,13 @@ export class AppComponent {
 
   /** Whether site navigation is enabled for the current route */
   protected readonly siteNavigationEnabled = computed(() => this.data()['siteNavigation'] !== false);
+
+  /** Call to action message */
+  protected readonly cta: CtaConfig = {
+    description: '🎉  9th Release (v2.3) has arrived!',
+    action: 'Learn more',
+    url: 'https://humanatlas.io/release-notes/v2.3',
+  };
 
   /** Initialize the application */
   constructor() {
