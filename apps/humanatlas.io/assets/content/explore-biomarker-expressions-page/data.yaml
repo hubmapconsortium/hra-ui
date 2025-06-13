@@ -4,7 +4,7 @@ title: |
 subtitle: Use the Exploration User Interface to examine anatomical structures, cell types, and biomarkers
 icons: product:eui
 action:
-  label: Use App
+  label: Use app
   url: https://apps.humanatlas.io/eui/
 content:
   - component: PageSection

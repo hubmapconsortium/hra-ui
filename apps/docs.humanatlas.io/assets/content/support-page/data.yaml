@@ -1,34 +1,34 @@
 $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Support
 subtitle: |
-  Welcome to the Human Reference Atlas (HRA) Support Portal for Developers and Users! The HRA is a comprehensive,
+  Welcome to the Human Reference Atlas (HRA) Support Portal for developers and users! The HRA is a comprehensive,
   open-access, 3D atlas of the healthy human body, built for researchers, developers, and educators.
   This support page provides guidance, troubleshooting, and resources to help you make the most of the
-  HRA platform—whether you are integrating APIs, visualizing data, or contributing tools and datasets.
+  HRA platform - whether you are integrating APIs, visualizing data, or contributing tools and datasets.
 icons: product:developer-portal
 content:
   - component: PageSection
-    tagline: Core Support Resources
+    tagline: Core support resources
     anchor: core-support-resources
     level: 2
     content:
       - component: Markdown
         data: |
-          - **Getting Started Guides:**<br>
+          - **Getting started guides:**<br>
             Step-by-step instructions for setting up your development environment, authenticating with HRA APIs,
             and accessing key features of the platform.
-          - **API Troubleshooting:**<br>
+          - **API troubleshooting:**<br>
             Solutions to common issues when querying anatomical structures, retrieving models, or working with spatial ontologies.
             Includes error code explanations and example requests.
-          - **Integration Help:**<br>
+          - **Integration help:**<br>
             Guidance on embedding HRA web components, using plug-and-play UI elements, and connecting HRA data with your own applications.
-          - **Data Access & Formats:**<br>
+          - **Data access & formats:**<br>
             Information on available data types (3D models, ASCT+B tables, coordinate frameworks), supported formats (GLB, JSON, CSV),
             and best practices for downloading and using these resources.
-          - **FAQs and Community Support:**<br>
+          - **FAQs and community support:**<br>
             Find answers to frequently asked questions, or connect with the HRA community for additional help and feedback.
   - component: PageSection
-    tagline: Quick Links
+    tagline: Quick links
     anchor: quick-links
     level: 2
     content:
@@ -42,20 +42,20 @@ content:
           - [Web Components](https://docs.humanatlas.io/web-components): Integrate HRA visuals into your own apps.
           - [Design System](https://docs.humanatlas.io/design-system): Maintain design consistency across your HRA-powered tools.
   - component: PageSection
-    tagline: Common Issues and Solutions
+    tagline: Common issues and solutions
     anchor: common-issues-and-solutions
     level: 2
     content:
       - component: Markdown
         data: |
-          - Authentication Errors:<br>
+          - Authentication errors:<br>
             Ensure your API key is valid and permissions are correctly set. Refer to the API Reference for authentication examples.
-          - Data Not Loading:<br>
+          - Data not loading:<br>
             Check your internet connection and verify that you are using the latest endpoints. Review the Changelog for recent updates that may affect data access.
-          - UI Component Integration:
+          - UI component integration:
             Follow the Web Components documentation for installation and usage instructions. If issues persist, consult the troubleshooting section or reach out via community forums.
   - component: PageSection
-    tagline: Contact Us
+    tagline: Contact us
     anchor: contact-us
     level: 2
     content:

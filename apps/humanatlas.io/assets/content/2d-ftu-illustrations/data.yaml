@@ -815,7 +815,7 @@ content:
                     - label: SVG
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
             - label: Large Intestine
-              icon: organ:kidneys
+              icon: organ:large-intestine
               cards:
                 - label: Crypt of Lieberkuhn
                   alt: Image of Crypt of Lieberkuhn
