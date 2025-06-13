@@ -28,7 +28,7 @@
     @include utils.use-font(body, xl);
     color: vars.$primary-fixed;
     margin-bottom: 2rem;
-    line-height: 1.3125rem;
+    // line-height: 1.3125rem;
   }
 
   .read-btn {
