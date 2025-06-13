@@ -5,13 +5,14 @@ import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { routeData } from './shared/utils/route-data';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * App Component
  */
 @Component({
   selector: 'hra-root',
-  imports: [ButtonsModule, IconsModule, NavigationModule, RouterModule],
+  imports: [ButtonsModule, IconsModule, NavigationModule, RouterModule, PlainTooltipDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {
