@@ -138,12 +138,40 @@ content:
           types. HuBMAP and other teams are actively adding anatomical structure terms to Uberon and
           novel cell types to Cell Ontology (CL) and the Provisional Cell Ontology (PCL) to improve
           the quality and coverage of these ontologies.
-
-          | Ontology | Last published release | Terms added | Axioms added |
-          | :---- | :---- | :---- | :---- |
-          | Uberon | [Uberon v2025-05-28](https://github.com/obophenotype/uberon/releases/tag/v2025-05-28) | 162 | 761 |
-          | CL | [CL v2025-04-10](https://github.com/obophenotype/cell-ontology/releases/tag/v2025-04-10) | 155 | 321 |
-          | PCL | [PCL v2025-01-08](https://github.com/obophenotype/provisional_cell_ontology/releases/tag/v2025-01-08) | 468 | 468 |
+      - component: PageTable
+        style: alternating
+        columns:
+          - column: ontology
+            label: Ontology
+          - column: published
+            label: Last published release
+            type:
+              type: link
+              urlColumn: publishedUrl
+          - column: termsAdded
+            label: Terms Added
+            type:
+              type: numeric
+          - column: axiomsAdded
+            label: Axioms Added
+            type:
+              type: numeric
+        rows:
+          - ontology: Uberon
+            published: Uberon v2025-05-28
+            publishedUrl: https://github.com/obophenotype/uberon/releases/tag/v2025-05-28
+            termsAdded: 162
+            axiomsAdded: 761
+          - ontology: CL
+            published: CL v2025-04-10
+            publishedUrl: https://github.com/obophenotype/cell-ontology/releases/tag/v2025-04-10
+            termsAdded: 155
+            axiomsAdded: 321
+          - ontology: PCL
+            published: PCL v2025-01-08
+            publishedUrl: https://github.com/obophenotype/provisional_cell_ontology/releases/tag/v2025-01-08
+            termsAdded: 468
+            axiomsAdded: 468
 
   - component: PageSection
     tagline: Fluorescence Imitating Brightfield Imaging (FIBI)
