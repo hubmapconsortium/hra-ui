@@ -1,0 +1,14 @@
+:host {
+  display: block;
+
+  markdown ::ng-deep {
+    p {
+      margin: 0.75rem 0;
+      line-height: 1.6875rem;
+    }
+
+    *:first-child {
+      margin-top: 0;
+    }
+  }
+}

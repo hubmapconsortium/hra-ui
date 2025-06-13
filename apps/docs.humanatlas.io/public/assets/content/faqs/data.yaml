@@ -13,17 +13,17 @@ content:
 
   - component: PageSection
     tagline: What is the Human Reference Atlas (HRA)?
-    anchor: what-is-hra
+    anchor: what-is-the-human-reference-atlas
     level: 3
     content:
       - component: Markdown
         data: |
-          The HRA is an open-access, 3D atlas of the healthy human body, providing detailed anatomical, cellular,
-          and molecular data for researchers, developers, and educators.
+          The HRA is an open-access, 3D atlas of the healthy human body, providing detailed anatomical,
+          cellular, and molecular data for researchers, developers, and educators.
 
   - component: PageSection
     tagline: Who can use the HRA?
-    anchor: who-can-use-hra
+    anchor: who-can-use-the-hra
     level: 3
     content:
       - component: Markdown
@@ -32,7 +32,7 @@ content:
 
   - component: PageSection
     tagline: Is there a cost to use the HRA?
-    anchor: is-there-cost-to-use-hra
+    anchor: is-there-a-cost-to-use-the-hra
     level: 3
     content:
       - component: Markdown
@@ -47,7 +47,7 @@ content:
 
   - component: PageSection
     tagline: How do I access HRA data?
-    anchor: how-to-access-hra-data
+    anchor: how-do-i-access-hra-data
     level: 3
     content:
       - component: Markdown
@@ -66,7 +66,7 @@ content:
 
   - component: PageSection
     tagline: In which formats is the data available?
-    anchor: in-what-formats-is-data-available
+    anchor: in-which-formats-is-the-data-available
     level: 3
     content:
       - component: Markdown
@@ -75,7 +75,7 @@ content:
 
   - component: PageSection
     tagline: Can I use HRA data in my own research or application?
-    anchor: can-i-use-hra-data-in-own-research
+    anchor: can-i-use-hra-data-in-my-own-research-or-application
     level: 3
     content:
       - component: Markdown
@@ -99,7 +99,7 @@ content:
 
   - component: PageSection
     tagline: What should I do if I encounter an API error?
-    anchor: what-to-do-if-encounter-api-error
+    anchor: what-should-i-do-if-i-encounter-an-api-error
     level: 3
     content:
       - component: Markdown
@@ -114,7 +114,7 @@ content:
 
   - component: PageSection
     tagline: Can I embed HRA 3D models in my website or app?
-    anchor: can-i-embed-hra-3d-models-in-my-website
+    anchor: can-i-embed-hra-3d-models-in-my-website-or-app
     level: 3
     content:
       - component: Markdown
@@ -123,13 +123,12 @@ content:
 
   - component: PageSection
     tagline: Are there tutorials for using HRA components?
-    anchor: are-these-tutorials-for-using-hra-components
+    anchor: are-there-tutorials-for-using-hra-components
     level: 3
     content:
       - component: Markdown
         data: |
           Yes, see our [Tutorials](https://docs.humanatlas.io/tutorials) section for step-by-step guides and example projects.
-
   - component: PageSection
     tagline: Troubleshooting
     anchor: troubleshooting
@@ -137,8 +136,8 @@ content:
     content: []
 
   - component: PageSection
-    tagline: The data isn't loading - what should I do?
-    anchor: what-to-do-when-data-is-not-loading
+    tagline: The data isn't loading—what should I do?
+    anchor: the-data-isn't-loading-what-should-i-do
     level: 3
     content:
       - component: Markdown
@@ -148,8 +147,8 @@ content:
           - If problems persist, contact support at [support@humanatlas.io](support@humanatlas.io).
 
   - component: PageSection
-    tagline: I found a bug or error — how do I report it?
-    anchor: how-to-report-a-bug
+    tagline: I found a bug or error—how do I report it?
+    anchor: i-found-a-bug-or-error-how-do-i-report-it
     level: 3
     content:
       - component: Markdown
