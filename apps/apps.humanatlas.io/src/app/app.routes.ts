@@ -26,7 +26,7 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: LandingPageComponent,
     data: {
-      crumbs: [{ name: 'Apps', route: '/' }] satisfies BreadcrumbItem[],
+      crumbs: [{ name: 'Apps' }] satisfies BreadcrumbItem[],
       helpUrl: 'https://docs.humanatlas.io/apps',
     },
   },
