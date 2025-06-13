@@ -1,14 +1,14 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Filter } from '@hra-api/ng-client';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
-import { ALL_ORGANS, GlobalConfigState, OrganInfo, TrackingPopupComponent } from 'ccf-shared';
+import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
-import { combineLatest } from 'rxjs';
+import { combineLatest, take } from 'rxjs';
 import { OntologySelection } from './core/models/ontology-selection';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
@@ -137,7 +137,7 @@ export class AppComponent implements OnInit {
     readonly listResultsState: ListResultsState,
     readonly consentService: ConsentService,
     readonly localStorageSyncService: LocalStorageSyncService,
-    readonly snackbar: MatSnackBar,
+    readonly snackbar: SnackbarService,
     private readonly globalConfig: GlobalConfigState<AppOptions>,
   ) {
     this.data.tissueBlockData$.subscribe();
@@ -158,15 +158,32 @@ export class AppComponent implements OnInit {
 
   /** Initialize the component */
   ngOnInit(): void {
-    const snackBar = this.snackbar.openFromComponent(TrackingPopupComponent, {
-      data: {
-        preClose: () => {
-          snackBar.dismiss();
-        },
-      },
-      panelClass: 'usage-snackbar',
-      duration: this.consentService.consent === 'not-set' ? Infinity : 6000,
-    });
+    this.showConsentSnackBar();
+  }
+
+  /** Shows the consent snackbar with user tracking preferences */
+  showConsentSnackBar(): void {
+    const { consent } = this.consentService;
+    const isInitialConsent = consent === 'not-set';
+    const shouldOptIn = isInitialConsent || consent === 'rescinded';
+
+    const config = {
+      message: 'We log usage to improve this service.',
+      action: shouldOptIn ? (isInitialConsent ? 'I understand' : 'Opt in') : 'Opt out',
+      persistent: isInitialConsent,
+      duration: isInitialConsent ? Infinity : 6000,
+    };
+
+    this.snackbar
+      .open(config.message, config.action, config.persistent, 'start', { duration: config.duration })
+      .afterDismissed()
+      .pipe(take(1))
+      .subscribe(({ dismissedByAction }) => {
+        const newConsent = dismissedByAction ? (shouldOptIn ? 'given' : 'rescinded') : 'rescinded';
+        if (dismissedByAction || isInitialConsent) {
+          this.consentService.setConsent(newConsent);
+        }
+      });
   }
 
   /** Format a range of values */

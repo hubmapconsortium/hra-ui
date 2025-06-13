@@ -14,7 +14,7 @@ subtitle: |
 icons: product:api
 content:
   - component: PageSection
-    tagline: Get Started
+    tagline: Get started
     anchor: get-started
     level: 2
     content:
@@ -34,7 +34,7 @@ content:
         data: |
           The Human Reference Atlas (HRA) REST API allows you to query data programmatically using standard HTTP requests. You can use tools like **cURL**, **Postman**, or any preferred HTTP client to make requests to the API.
 
-          ### Session Token
+          ### Session token
 
           To use the REST API, you may need a **session token** for certain endpoints that require authentication.
           To obtain a session token:
@@ -76,7 +76,7 @@ content:
 
       - component: Markdown
         data: |
-          ### Example REST API Request
+          ### Example REST API request
 
           Here's an example of fetching **HuBMAP RUI locations** using the `/v1/hubmap/rui_locations.jsonld` endpoint:
 
@@ -87,7 +87,7 @@ content:
 
       - component: Markdown
         data: |
-          **Optional Query Parameters**
+          **Optional query parameters**
 
           - `cache` (boolean): Hint to cache (or not) the response of this request (default: `true`)
           - `token` (string): Authentication token to use for authenticated searches (optional)
@@ -100,14 +100,14 @@ content:
           curl -X GET "https://apps.humanatlas.io/api/v1/hubmap/rui_locations.jsonld?cache=false"
 
       - component: TextHyperlink
-        text: Explore Full API Directory
+        text: Explore full API directory
         url: https://apps.humanatlas.io/api
         icon: arrow_right_alt
 
   - component: PageSection
     anchor: javascript-client
     level: 2
-    tagline: Client Libraries
+    tagline: Client libraries
     content:
       - component: PageSection
         anchor: javascript-client
@@ -159,7 +159,7 @@ content:
               });
 
           - component: TextHyperlink
-            text: Learn More
+            text: Learn more
             url: https://www.npmjs.com/package/@hra-api/js-client
             icon: arrow_right_alt
 
@@ -213,7 +213,7 @@ content:
               });
 
           - component: TextHyperlink
-            text: Learn More
+            text: Learn more
             url: https://www.npmjs.com/package/@hra-api/ts-client
             icon: arrow_right_alt
 
@@ -282,7 +282,7 @@ content:
               export class AppModule {}
 
           - component: TextHyperlink
-            text: Learn More
+            text: Learn more
             url: https://www.npmjs.com/package/@hra-api/ng-client
             icon: arrow_right_alt
 
@@ -320,7 +320,7 @@ content:
               print("API called successfully. Returned data:", response)
 
           - component: TextHyperlink
-            text: Learn More
+            text: Learn more
             url: https://pypi.org/project/hra-api-client/
             icon: arrow_right_alt
 
@@ -333,12 +333,12 @@ content:
         data: |
           The **Human Reference Atlas Knowledge Graph (HRA-KG)** provides a semantic web interface to the HRA data. It is a linked data resource, accessible via a **SPARQL endpoint** for querying complex relationships and ontologies in the HRA.
 
-          - **Production Site:** [https://lod.humanatlas.io](https://lod.humanatlas.io)
-          - **SPARQL Endpoint:** [https://lod.humanatlas.io/sparql](https://lod.humanatlas.io/sparql)
+          - **Production site:** [https://lod.humanatlas.io](https://lod.humanatlas.io)
+          - **SPARQL endpoint:** [https://lod.humanatlas.io/sparql](https://lod.humanatlas.io/sparql)
 
           You can use the SPARQL endpoint directly with tools like **YASGUI**, **SPARQLWrapper (Python)**, or any other SPARQL client to explore and query the data.
 
-          **Sample SPARQL Query:**
+          **Sample SPARQL query:**
 
       - component: CodeBlock
         language: sql
@@ -363,12 +363,12 @@ content:
           ORDER BY ?type ?name ?version
 
       - component: TextHyperlink
-        text: HRA-KG Queries (SPARQL via grlc)
+        text: HRA-KG queries (SPARQL via grlc)
         url: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/
         icon: arrow_right_alt
 
       - component: TextHyperlink
-        text: Ubergraph Queries (SPARQL via grlc)
+        text: Ubergraph queries (SPARQL via grlc)
         url: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ubergraph/
         icon: arrow_right_alt
 
@@ -387,6 +387,6 @@ content:
           The **grlc APIs** provide REST-style endpoints built on top of the HRA Knowledge Graph and Ubergraph SPARQL endpoints. They simplify accessing complex SPARQL queries through a RESTful interface.
 
       - component: TextHyperlink
-        text: Explore grlc APIs on the HRA API Page
+        text: Explore grlc APIs on the HRA API page
         url: https://apps.humanatlas.io/api
         icon: arrow_right_alt
