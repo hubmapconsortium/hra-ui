@@ -7,12 +7,11 @@
   top: 0;
   width: 100%;
   z-index: 200;
+  background-color: utils.with-alpha(vars.$surface-dim, 80%);
+  backdrop-filter: blur(10rem);
   box-shadow: 0rem 0.25rem 0.25rem 0rem utils.with-alpha(vars.$secondary, 20%);
 
   .header {
-    background-color: utils.with-alpha(vars.$surface-dim, 80%);
-    backdrop-filter: blur(10rem);
-
     .menus,
     .navigation {
       display: flex;

@@ -5,6 +5,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { CtaConfig } from '@hra-ui/design-system/navigation/header';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
 
@@ -34,7 +35,14 @@ export class AppComponent {
   protected readonly isNavigating = isNavigating();
 
   /** Router instance for navigation */
-  protected readonly router = inject(Router);
+  private readonly router = inject(Router);
+
+  /** Call to action message */
+  protected readonly cta: CtaConfig = {
+    description: '🎉  9th Release (v2.3) has arrived!',
+    action: 'Learn more',
+    url: 'https://humanatlas.io/release-notes/v2.3',
+  };
 
   /** Help data for the current route */
   getHelpUrl(): string {
