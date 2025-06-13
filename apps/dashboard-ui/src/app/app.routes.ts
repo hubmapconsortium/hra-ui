@@ -9,10 +9,16 @@ import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 const INDEX_SPEC_URL = 'https://cdn.humanatlas.io/hra-dashboard-data/dashboards/index.yaml';
 
 /** Base route breadcrumb item */
-const BASE_ROUTE_CRUMB: BreadcrumbItem = {
-  name: 'Apps',
-  route: '/',
-};
+const BASE_ROUTE_CRUMB: BreadcrumbItem[] = [
+  {
+    name: 'Apps',
+    route: 'https://apps.humanatlas.io',
+  },
+  {
+    name: 'Dashboard',
+    route: '/',
+  },
+];
 
 /** Dashboard page specific breadcrumb items */
 const DASHBOARD_PAGE_CRUMBS: Record<string, BreadcrumbItem> = {
@@ -32,7 +38,12 @@ export const appRoutes: Route[] = [
       spec: yamlFileResolver(INDEX_SPEC_URL),
     },
     data: {
-      crumbs: [{ name: 'Apps' }] satisfies BreadcrumbItem[],
+      crumbs: [
+        { name: 'Apps', route: 'https://apps.humanatlas.io' },
+        {
+          name: 'Dashboard',
+        },
+      ] satisfies BreadcrumbItem[],
     },
   },
   {
@@ -45,7 +56,7 @@ export const appRoutes: Route[] = [
         const dashboard = route.params['dashboard'];
         const crumb = DASHBOARD_PAGE_CRUMBS[dashboard];
         if (crumb) {
-          return [BASE_ROUTE_CRUMB, crumb];
+          return [...BASE_ROUTE_CRUMB, crumb];
         }
         return undefined;
       },

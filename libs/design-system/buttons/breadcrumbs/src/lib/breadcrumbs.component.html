@@ -3,7 +3,11 @@
     @for (crumb of crumbs(); track $index) {
       <li class="crumb">
         @if (crumb.route) {
-          <a hraHyperlink [routerLink]="crumb.route">{{ crumb.name }}</a>
+          @if (crumb.route.startsWith('http')) {
+            <a hraHyperlink [href]="crumb.route">{{ crumb.name }}</a>
+          } @else {
+            <a hraHyperlink [routerLink]="crumb.route">{{ crumb.name }}</a>
+          }
         } @else {
           {{ crumb.name }}
         }
