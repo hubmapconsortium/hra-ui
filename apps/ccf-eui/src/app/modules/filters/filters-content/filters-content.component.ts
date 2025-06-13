@@ -12,6 +12,7 @@ import { Filter, FilterSexEnum } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SpatialSearchListComponent } from 'ccf-shared';
+import { isEqual } from 'lodash';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import {
   DEFAULT_FILTER,
@@ -101,7 +102,7 @@ export class FiltersContentComponent {
   });
 
   /** Latest form value */
-  private readonly formValue = toSignal(this.filterForm.valueChanges, { initialValue: DEFAULT_FILTER });
+  private readonly formValue = toSignal(this.filterForm.valueChanges, { initialValue: DEFAULT_FILTER, equal: isEqual });
   /** Selected spatial searches items */
   private readonly selectedSpatialSearchItems = computed(() =>
     this.spatialSearchItems().filter((item) => item.selected),

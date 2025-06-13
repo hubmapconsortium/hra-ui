@@ -184,6 +184,9 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
   /** Callback invoked whenever the field is touched */
   private onTouched: () => void = () => undefined;
 
+  /** Whether the form is currently updating it's own value */
+  private isUpdating = false;
+
   /** Initialize the field - setting up effects and subscriptions */
   constructor() {
     const {
@@ -236,6 +239,7 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
     range.valueChanges.pipe(takeUntilDestroyed(), skip(1)).subscribe((value) => {
       const { low, high } = value;
       this.updateLowHighAndSync(low, high);
+      this.isUpdating = false;
     });
   }
 
@@ -321,7 +325,9 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
    * @param value The new value
    */
   writeValue(value: DualSliderRange | null): void {
-    this.updateValue(this.normalizeValue(value));
+    if (!this.isUpdating) {
+      this.updateValue(this.normalizeValue(value));
+    }
   }
 
   /**
@@ -366,6 +372,8 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
    * @param high New high range value
    */
   private updateLowHighAndSync(low: number | undefined, high: number | undefined): void {
+    this.isUpdating = true;
+
     const normalized = this.normalizeValue([low, high]);
     const changed = this.updateValue(normalized);
     if (changed) {
