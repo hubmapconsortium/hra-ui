@@ -33,6 +33,14 @@ content:
           - More queries available at: https://github.com/hubmapconsortium/ccf-grlc/
 
   - component: PageSection
+    tagline: Demo video
+    anchor: demo-video
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: O-STi0Jyupw
+
+  - component: PageSection
     tagline: Deprecated APIs
     anchor: deprecated-apis
     level: 3

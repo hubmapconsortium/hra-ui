@@ -133,7 +133,7 @@
                 },
                 {
                   "type": "item",
-                  "label": "Dashboards",
+                  "label": "Dashboard",
                   "url": "https://apps.humanatlas.io/dashboard/",
                   "external": true
                 }
