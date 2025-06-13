@@ -4,8 +4,8 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { routeData } from './shared/utils/route-data';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { routeData } from './shared/utils/route-data';
 
 /**
  * App Component
