@@ -10,7 +10,7 @@ subtitle: |
   or querying cell-type-biomarker relationships, these applications expose HRA capabilities through both intuitive UIs and API integrations.
 icons: product:apps
 action:
-  label: Launch HRA Apps
+  label: Launch HRA apps
   url: https://apps.humanatlas.io/
 content:
   - component: PageSection

@@ -44,7 +44,15 @@
 
   <!-- TABLE -->
   <ng-scrollbar class="table-overflow-container">
-    <table mat-table [dataSource]="dataSource" matSort class="predictions-table">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSortActive="tool"
+      matSortDirection="desc"
+      matSortDisableClear
+      matSort
+      class="predictions-table"
+    >
       <caption>
         Table displaying cell population predictions.
       </caption>

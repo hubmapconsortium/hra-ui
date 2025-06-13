@@ -8,7 +8,7 @@ subtitle: |
   Think of them as ready-made building blocks: just plug them into your web app, and you can instantly access and interact with the HRA data.
 icons: product:web-components
 action:
-  label: Explore Components
+  label: Explore components
   url: https://apps.humanatlas.io/us6
 
 content:
@@ -28,7 +28,7 @@ content:
 
       - component: Markdown
         data: |
-          **Basic Usage Example:**
+          **Basic usage example:**
 
       - component: CodeBlock
         language: html
@@ -56,7 +56,7 @@ content:
           </html>
 
       - component: TextHyperlink
-        text: View Detailed Embedding Guide on GitHub
+        text: View detailed embedding guide on GitHub
         url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-rui/EMBEDDING.md
         icon: arrow_right_alt
 
@@ -74,7 +74,7 @@ content:
 
       - component: Markdown
         data: |
-          **Basic Usage Example:**
+          **Basic usage example:**
 
       - component: CodeBlock
         language: html
@@ -103,7 +103,7 @@ content:
           </html>
 
       - component: TextHyperlink
-        text: View Detailed Embedding Guide on GitHub
+        text: View detailed embedding guide on GitHub
         url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-eui/EMBEDDING.md
         icon: arrow_right_alt
 
@@ -122,7 +122,7 @@ content:
 
       - component: Markdown
         data: |
-          **Basic Usage Example:**
+          **Basic usage example:**
 
       - component: CodeBlock
         language: html
@@ -163,7 +163,7 @@ content:
           This tool enhances the understanding of spatial relationships within organs.
       - component: Markdown
         data: |
-          **Basic Usage Example:**
+          **Basic usage example:**
 
       - component: CodeBlock
         language: html
@@ -184,7 +184,7 @@ content:
           </html>
 
       - component: TextHyperlink
-        text: View Detailed Embedding Guide on GitHub
+        text: View detailed embedding guide on GitHub
         url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ccf-body-ui-wc/README.md
         icon: arrow_right_alt
 
@@ -201,7 +201,7 @@ content:
           The **ASCT+B Reporter** is a visualization tool for exploring and comparing Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables. It displays hierarchical relationships between anatomical structures and associated cell types and biomarkers, facilitating comparison and exploration of ASCT+B data.
 
       - component: TextHyperlink
-        text: Use App
+        text: Use app
         url: https://hubmapconsortium.github.io/ccf-asct-reporter/vis?selectedOrgans=kidney-v1.4&playground=false
         icon: arrow_right_alt
 
@@ -220,7 +220,7 @@ content:
 
       - component: Markdown
         data: |
-          **Basic Usage Example:**
+          **Basic usage example:**
 
       - component: CodeBlock
         language: html
@@ -255,7 +255,7 @@ content:
           </html>
 
       - component: TextHyperlink
-        text: View Detailed Embedding Guide on GitHub
+        text: View detailed embedding guide on GitHub
         url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui/EMBEDDING.md
         icon: arrow_right_alt
 
@@ -274,7 +274,7 @@ content:
 
       - component: Markdown
         data: |
-          **Basic Usage Example:**
+          **Basic usage example:**
 
       - component: CodeBlock
         language: html
@@ -307,7 +307,7 @@ content:
           </html>
 
       - component: TextHyperlink
-        text: View Detailed Embedding Guide on GitHub
+        text: View detailed embedding guide on GitHub
         url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui-small-wc/EMBEDDING.md
         icon: arrow_right_alt
 
@@ -326,7 +326,7 @@ content:
 
       - component: Markdown
         data: |
-          **Basic Usage Example:**
+          **Basic usage example:**
 
       - component: CodeBlock
         language: html
@@ -350,7 +350,7 @@ content:
           </html>
 
       - component: TextHyperlink
-        text: View Detailed Embedding Guide on GitHub
+        text: View detailed embedding guide on GitHub
         url: https://github.com/hubmapconsortium/hra-ui/blob/main/apps/medical-illustration/EMBEDDING.md
         icon: arrow_right_alt
 
@@ -367,6 +367,6 @@ content:
           The **HRA API** offers programmatic access to data registered to the Human Reference Atlas. It provides endpoints for querying anatomical structures, cell types, biomarkers, and spatial data, supporting RESTful operations and returning data in JSON format. This API is ideal for developers building applications that require dynamic access to HRA datasets.
 
       - component: TextHyperlink
-        text: Use App
+        text: Use app
         url: https://apps.humanatlas.io/api
         icon: arrow_right_alt
