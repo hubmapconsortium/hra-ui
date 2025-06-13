@@ -117,7 +117,7 @@ content:
           -	Python 3.6+
 
       - component: TextHyperlink
-        text: Learn More
+        text: Learn more
         url: https://humanatlas.io/api
         icon: arrow_right_alt
 

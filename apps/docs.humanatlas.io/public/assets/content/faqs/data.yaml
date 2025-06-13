@@ -1,8 +1,8 @@
 $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Frequently Asked Questions (FAQs)
 subtitle: |
-  Welcome to the Human Reference Atlas (HRA) FAQs page! Here you’ll find answers to common questions about using, integrating,
-  and contributing to the HRA platform. If you don’t see your question here, please visit our Contact Us section for more support.
+  Welcome to the Human Reference Atlas (HRA) FAQs page! Here you'll find answers to common questions about using, integrating,
+  and contributing to the HRA platform. If you don't see your question here, please visit our Contact Us section for more support.
 icons: product:developer-portal
 content:
   - component: PageSection
@@ -13,12 +13,13 @@ content:
 
   - component: PageSection
     tagline: What is the Human Reference Atlas (HRA)?
-    anchor: what-is-the-human-reference-atlas-hra
+    anchor: what-is-the-human-reference-atlas
     level: 3
     content:
       - component: Markdown
         data: |
-          The HRA is an open-access, 3D atlas of the healthy human body, providing detailed anatomical, cellular, and molecular data for researchers, developers, and educators.
+          The HRA is an open-access, 3D atlas of the healthy human body, providing detailed anatomical,
+          cellular, and molecular data for researchers, developers, and educators.
 
   - component: PageSection
     tagline: Who can use the HRA?
@@ -51,7 +52,8 @@ content:
     content:
       - component: Markdown
         data: |
-          You can access data via the HRA web portal, download digital objects, or use our public APIs. Visit the [API Reference](https://docs.humanatlas.io/api-reference) for more information.
+          You can access data via the HRA web portal, download digital objects, or use our public APIs.
+          Visit the [API Reference](https://docs.humanatlas.io/api-reference) for more information.
 
   - component: PageSection
     tagline: What types of data are available?
@@ -134,14 +136,14 @@ content:
     content: []
 
   - component: PageSection
-    tagline: The data isn’t loading—what should I do?
-    anchor: the-data-isnt-loading-what-should-i-do
+    tagline: The data isn't loading—what should I do?
+    anchor: the-data-isn't-loading-what-should-i-do
     level: 3
     content:
       - component: Markdown
         data: |
           - Check your internet connection.
-          - Ensure you’re using the latest endpoints listed in the Changelog.
+          - Ensure you're using the latest endpoints listed in the Changelog.
           - If problems persist, contact support at [support@humanatlas.io](support@humanatlas.io).
 
   - component: PageSection
@@ -154,7 +156,7 @@ content:
           Please report bugs via email at [support@humanatlas.io](support@humanatlas.io).
 
   - component: PageSection
-    tagline: Contact Us
+    tagline: Contact us
     anchor: contact-us
     level: 2
     content: []
@@ -168,5 +170,7 @@ content:
         data: |
           - Email: [support@humanatlas.io](mailto:support@humanatlas.io)
 
-          We’re here to help!
+      - component: Markdown
+        data: |
+          We're here to help!
           If you have suggestions for additional FAQs, please let us know through our feedback channels!
