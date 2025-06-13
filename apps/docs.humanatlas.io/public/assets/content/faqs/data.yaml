@@ -156,7 +156,7 @@ content:
           Please report bugs via email at [support@humanatlas.io](support@humanatlas.io).
 
   - component: PageSection
-    tagline: Contact Us
+    tagline: Contact us
     anchor: contact-us
     level: 2
     content: []
