@@ -6,15 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { TissueDataset } from '@hra-api/ng-client';
 import { GlobalConfigState } from 'ccf-shared';
 
-/** Returns a unique identifier */
-const nextUid = (() => {
-  let counter = -1;
-  return () => {
-    counter += 1;
-    return counter;
-  };
-})();
-
 /**
  * List containing sample thumbnails in expanded donor cards
  */
@@ -31,9 +22,6 @@ export class ThumbnailListComponent {
 
   /** Outputs the result whose link was clicked */
   readonly linkClicked = output<TissueDataset>();
-
-  /** Per instance unique identifier */
-  readonly uid = nextUid();
 
   /** Base href */
   private readonly baseHref = toSignal(inject(GlobalConfigState).getOption('baseHref'), { initialValue: '' });
