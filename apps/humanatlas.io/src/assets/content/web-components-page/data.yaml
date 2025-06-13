@@ -33,10 +33,10 @@ content:
         data: |
           You can also explore more on the developer documentation for integrating the web components in your website or application.
 
-      - component: Button
-        label: Go to developer documentation
-        href: https://docs.humanatlas.io/web-components
-        type: cta
+      - component: TextHyperlink
+        text: Go to developer documentation
+        url: https://docs.humanatlas.io/web-components
+        icon: arrow_right_alt
 
   - component: PageSection
     tagline: Code

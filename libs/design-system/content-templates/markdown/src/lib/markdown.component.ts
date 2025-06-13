@@ -9,13 +9,10 @@ import { MarkdownComponent as NgxMarkdownComponent } from 'ngx-markdown';
 @Component({
   selector: 'hra-markdown',
   imports: [CommonModule, NgxMarkdownComponent, AssetUrlPipe],
-  template: `<markdown [data]="data()" [src]="src() ? (src()! | assetUrl) : undefined" />`,
-  styles: `
-    :host {
-      display: block;
-    }
-  `,
+  templateUrl: './markdown.component.html',
+  styleUrl: './markdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class MarkdownComponent {
   /** Markdown data input */

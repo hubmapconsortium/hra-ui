@@ -23,10 +23,11 @@
     }
   }
 
-  ::ng-deep ng-scrollbar {
-    .ng-scroll-content {
-      --_viewport-padding-top: 0.25rem;
-      --_viewport-padding-bottom: 0.25rem;
+  ng-scrollbar {
+    --_viewport-padding-top: 0.25rem;
+    --_viewport-padding-bottom: 0.25rem;
+
+    ::ng-deep .ng-scroll-content {
       gap: 0.125rem;
       display: flex;
       flex-direction: column;
