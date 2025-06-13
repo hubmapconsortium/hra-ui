@@ -104,7 +104,6 @@
   .results {
     grid-area: results;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas:
       'tissues'
       'as'
