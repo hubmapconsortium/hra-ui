@@ -5,6 +5,22 @@ headerContent:
   component: ReleaseNotesVersionSelector
 content:
   - component: PageSection
+    tagline: '9th Release (v2.3): June 15, 2025'
+    anchor: announcement
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          HuBMAP's Indiana University Mapping Component (MC-IU) has published the 9th Release of the
+          Human Reference Atlas in close collaboration with the HuBMAP team and experts from more
+          than 25 other consortia and teams. The evolving HRA lets users query and explore anatomical
+          structures, cell types, and biomarkers down to the cellular level. Every six months, a new
+          version of Human Reference Atlas data and code is released with user interfaces that make it
+          possible to visually explore the atlas or programmatically access the data. For more
+          information, please read the new *Nature Methods* paper entitled “[Human BioMolecular Atlas
+          Program (HuBMAP): 3D Human Reference Atlas construction
+          and usage](https://doi.org/10.1038/s41592-024-02563-5)”.
+  - component: PageSection
     tagline: Data
     anchor: data
     level: 2
@@ -12,86 +28,166 @@ content:
       - component: Markdown
         data: |
           The Human Reference Atlas now includes:
-          - 34 ASCT+B Tables
-            - 4,719 anatomical structures
-            - 1,303 cell types
-            - 2,018 biomarkers
-          - 26 2D Functional Tissue Units (FTUs)
-          - 73 3D Organ Models
-          - 30 Organ Mapping Antibody Panel (OMAP) Tables
-          - 10 Crosswalk Tables
-          - 7 Vasculature Common Coordinate Framework (VCCF) Tables
+            * 34 ASCT+B Tables with
+              * 4,719 anatomical structures linked to Uberon/FMA
+              * 1,303 cell types linked to Cell Ontology (CL)
+              * 2,018 biomarkers linked to HGNC
+            * 26 Functional Tissue Unit Illustrations
+            * 73 3D Organs with 1,356 3D anatomical structures
+            * 30 Organ Mapping Antibody Panels
+            * 7 Vasculature Common Coordinate Framework (VCCF) Tables
+            * 10 Crosswalk Tables from 3D Organs, Cell Type Annotations, Functional Tissue Unit Illustrations to ASCT+B Tables
       - component: Button
         label: Get data
         href: https://purl.humanatlas.io/collection/hra/v2.3
         type: cta
 
   - component: PageSection
-    tagline: New Digital Objects
+    tagline: New data
     anchor: new-digital-objects
     level: 3
     content:
       - component: Markdown
         data: |
-          - 8 Organ Mapping Antibody Panel (OMAP) Tables
-            - OMAP-14: Kidney, FFPE, CyCIF
-            - OMAP-15: Intestines, FFPE, CODEX
-            - OMAP-16: Lung, FFPE, CODEX
-            - OMAP-17: Thymus, Fixed Frozen, IBEX
-            - OMAP-18: Lymph Node, Fixed Frozen, IBEX
-            - OMAP-19: Palatine tonsil, Fixed Frozen, IBEX
-            - OMAP-20: Kidney, Fresh Frozen, IMS/CyCIF
-            - OMAP-21: Palatine tonsil, FFPE, MICS
-          - 6 Crosswalk Tables
-            - Pathway
-            - Lymph vasculature to organ
-            - Peripheral nervous system to organ
-            - Azimuth
-            - CellTypist
-            - popv
+          * 4 Functional Tissue Unit Illustrations
+            * Mouth, Submandibular Gland
+            * Mouth, Sublingual Gland
+            * Mouth, Parotid Gland
+            * Skin, Hair Follicle
+          * 1 ASCT+B Table
+            * Mouth
+          * 2 3D Organs
+            * Mouth, Female
+            * Mouth, Male
+          * 7 Organ Mapping Antibody Panels
+          * OMAP-24: Pancreas Cycif
+          * OMAP-25: Lung, CODEX
+          * OMAP-26: Kidney, CODEX
+          * OMAP-27: Kidney, IMS, CODEX
+          * OMAP-28: Heart, CODEX
+          * OMAP-29: Mouth, Mucosa, CODEX
+          * OMAP-30: Mouth, Salivary Gland, CODEX
 
   - component: PageSection
-    tagline: Revised Digital Objects
+    tagline: Revised data
     anchor: revised-digital-objects
     level: 3
     content:
       - component: Markdown
         data: |
-          - 19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
-            - Blood
-            - Blood vasculature
-            - Bone marrow
-            - Brain
-            - Heart
-            - Fallopian tube
-            - Kidney
-            - Knee
-            - Liver
-            - Lung
-            - Lymph node
-            - Lymph vasculature
-            - Main bronchus
-            - Muscular system
-            - Ovary
-            - Palatine tonsil
-            - Peripheral nervous system
-            - Placenta
-            - Skeleton
-          - 13 Organ Mapping Antibody Panel (OMAP) Tables
-            - OMAP-1 through OMAP-13 were revised to use new template fields to match antibody validation report fields:
-              target_name → target_symbol, dilution → dilution_factor, author_orcid → author_orcids
-          - 67 3D Organ Models (formerly 3D Reference Objects)
-            - All male and female 3D Organ Models were revised to include the node types as organizational, mesh, or surface
+          * 4 Functional Tissue Unit Illustrations
+            * Kidney, cortical collecting duct
+            * Lung, bronchial submucosal gland
+            * Skin, epidermal ridge of digit
+            * Thymus, thymus lobule
+          * 10 ASCT+B Tables
+            * Anatomical Systems
+            * Blood Vasculature
+            * Large Intestine
+            * Liver
+            * Main Bronchus
+            * Muscular System
+            * Skin
+            * Small Intestine
+            * Spleen
+            * Uterus
+          * 23 Organ Mapping Antibody Panels
+            * OMAP-4: Skin, Cell DIVE
+            * OMAP-7: Lung, Cell DIVE
+            * OMAP-22: Skin, Cell DIVE
+            * All previous OMAPs’ metadata were updated
+          * 8 3D Organs
+            * Palatine tonsil, female, left
+            * Palatine tonsil, female, right
+            * Palatine tonsil, male, left
+            * Palatine tonsil, male, right
+            * Skin, female
+            * Skin, male
+            * United, female
+            * United, male
+          * 1 Vasculature Geometry Table
+            * Blood Vasculature Geometry
+          * 7 Crosswalk Tables
+            * 3D Organs Crosswalk
+            * Cell Type Annotation Azimuth Crosswalk
+            * Cell Type Annotation CellTypist Crosswalk
+            * Cell Type Annotation popV Crosswalk
+            * Blood Vasculature to Organ Crosswalk
+            * Functional Tissue Unit Crosswalk
+            * Musculoskeletal Crosswalk
 
   - component: PageSection
-    tagline: Ontology Updates
+    tagline: Data mirror
+    anchor: data-mirrors
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The [new Asian data mirror](https://www.humanatlas.asia/mirror) keeps a full copy of the
+          [Human Reference Atlas Knowledge Graph](https://lod.humanatlas.io/) in support of HRA data
+          access, usage, and collaborations.
+
+  - component: PageSection
+    tagline: Updated ontologies
     anchor: ontology-updates
     level: 3
     content:
       - component: Markdown
         data: |
-          - 19 Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables
-            - Blood
+          Existing ontologies do not (yet) properly represent healthy anatomical structures and cell
+          types. HuBMAP and other teams are actively adding anatomical structure terms to Uberon and
+          novel cell types to Cell Ontology (CL) and the Provisional Cell Ontology (PCL) to improve
+          the quality and coverage of these ontologies.
+      - component: PageTable
+        style: alternating
+        columns:
+          - column: ontology
+            label: Ontology
+          - column: published
+            label: Last published release
+            type:
+              type: link
+              urlColumn: publishedUrl
+          - column: termsAdded
+            label: Terms Added
+            type:
+              type: numeric
+          - column: axiomsAdded
+            label: Axioms Added
+            type:
+              type: numeric
+        rows:
+          - ontology: Uberon
+            published: Uberon v2025-05-28
+            publishedUrl: https://github.com/obophenotype/uberon/releases/tag/v2025-05-28
+            termsAdded: 162
+            axiomsAdded: 761
+          - ontology: CL
+            published: CL v2025-04-10
+            publishedUrl: https://github.com/obophenotype/cell-ontology/releases/tag/v2025-04-10
+            termsAdded: 155
+            axiomsAdded: 321
+          - ontology: PCL
+            published: PCL v2025-01-08
+            publishedUrl: https://github.com/obophenotype/provisional_cell_ontology/releases/tag/v2025-01-08
+            termsAdded: 468
+            axiomsAdded: 468
+
+  - component: PageSection
+    tagline: Fluorescence Imitating Brightfield Imaging (FIBI)
+    anchor: fibi
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          FIBI-processed images make it possible to study whole functional tissue units by providing
+          rapid, high-resolution visualization of intact tissue architecture without the need for
+          traditional sectioning.
+      - component: Button
+        label: Learn more
+        href: https://cns-iu.github.io/hra-fibi-images/
+        type: cta
+        variant: secondary
 
   - component: PageSection
     tagline: Applications
@@ -100,31 +196,124 @@ content:
     content: []
 
   - component: PageSection
-    tagline: New Developer Apps
-    anchor: new-developer-apps
+    tagline: New apps
+    anchor: new-apps
     level: 3
     content:
       - component: Markdown
         data: |
-          - Jupyter Widgets for Python Notebook
-            - A new Python package, `hra-jupyter-widgets`, has been published which makes all HRA Web Components available as widgets for Python Notebooks.
-          - HRA Notebooks
-            - A new repository is available that includes Python Notebooks demonstrating the use of the HRA from Python.
+          * [Help & Documentation](http://docs.humanatlas.io/dev) guidance for HRA developers
 
   - component: PageSection
-    tagline: Updated Apps
+    tagline: Updated apps
     anchor: updated-apps
     level: 3
     content:
       - component: Markdown
         data: |
-          Researcher Apps
-          - Cell Distance Explorer
-            - A refreshed application look and feel, plus new features such as a violin graph panel and visualization modes to explore, inspect, and select cells.
+          9th release data has been added to all apps.
 
-          Developer Apps
-          - Cell Distance Explorer
-            - A refreshed user interface, updated data, updated clients, and improved stability.
+  - component: PageSection
+    tagline: Researcher apps
+    anchor: researcher-apps
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          * [App Library](https://apps.humanatlas.io/)
+            * New look and feel using the HRA Design System
+          * [ASCT+B Reporter](https://apps.humanatlas.io/asctb-reporter/)
+          * [Cell Distance Explorer](https://apps.humanatlas.io/cde/)
+          * [Cell Population Predictor](https://apps.humanatlas.io/us1/)
+          * [Dashboard](https://apps.humanatlas.io/dashboard/)
+          * [Exploration User Interface](https://apps.humanatlas.io/eui/)
+            * New look and feel using the HRA Design System
+          * [Functional Tissue Unit Explorer](https://apps.humanatlas.io/ftu-explorer/#/)
+          * [HRA Organ Gallery](https://www.meta.com/experiences/5696814507101529)
+          * [Tissue Origin Predictor](https://apps.humanatlas.io/us2/)
+          * [Registration User Interface](https://apps.humanatlas.io/rui/)
+
+  - component: PageSection
+    tagline: Developer apps
+    anchor: developer-apps
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          All developer apps have a new look and feel using the HRA Design System:
+            * [API](https://apps.humanatlas.io/beta/api)
+            * [Web Components](https://apps.humanatlas.io/us6)
+
+  - component: PageSection
+    tagline: Other
+    anchor: other
+    level: 2
+    content: []
+
+  - component: PageSection
+    tagline: 'Human Reference Atlas: Define Yourself—The Human Gut Atlas Story'
+    anchor: human-gut-atlas-story
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Börner, Katy, Philip Blood, Jonathan C. Silverstein, Matthew Ruffalo, Sarah A. Teichmann,
+          Gloria Pryhuber, Ravi Misra, Jeffrey Purkerson, Jean Fan, John W. Hickey, Gesmira Molla,
+          Chuan Xu, Yun Zhang, Griffin Weber, Yashvardhan Jain, Danial Qaurooni, Yongxin Kong, HRA
+          Team, Andreas Bueckle, and Bruce W. Herr II. 2025\. "Human BioMolecular Atlas Program
+          (HuBMAP): 3D Human Reference Atlas Construction and Usage". *Nature Methods*. Doi:
+          [https://doi.org/10.1038/s41592-024-02563-5](https://doi.org/10.1038/s41592-024-02563-5)
+
+          Hickey, John W., Winston R. Becker, Stephanie A. Nevins, Aaron Horning, Almudena Espin Perez,
+          Chenchen Zhu, Bokai Zhu, Bei Wei, Roxanne Chiu, Derek C. Chen, Daniel L. Cotter, Edward D.
+          Esplin, Annika K. Weimer, Chiara Caraccio, Vishal Venkataraaman, Christian M. Schürch, Sarah
+          Black, Maria Brbić, Kaidi Cao, Shuxiao Chen, Weiruo Zhang, Emma Monte, Nancy R. Zhang,
+          Zongming Ma, Jure Leskovec, Zhengyan Zhang, Shin Lin, Teri Longacre, Sylvia K. Plevritis,
+          Yiing Lin, Garry P. Nolan, William J. Greenleaf, and Michael Snyder. 2023\. "Organization of
+          the human intestine at single-cell resolution". *Nature* 619, 572–584. doi:
+          [https://doi.org/10.1038/s41586-023-05915-x](https://doi.org/10.1038/s41586-023-05915-x)
+
+          Patel, Ushma, Griffin Weber, Katherine Gustilo, and Katy Börner. 2023\. [Human Reference Atlas:
+          Vasculature Common Coordinate Framework (VCCF)](https://www.youtube.com/watch?v=zQeMgxo8n_U).
+
+      - component: YouTubePlayer
+        videoId: _H3S5HeFFPE
+
+  - component: PageSection
+    tagline: New Human Atlas Stories
+    anchor: human-atlas-stories
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          We added two new stories to help anyone—kids, parents, or curious minds—understand the
+          Human Reference Atlas.
+
+            * [Data Detangle](https://cns-iu.github.io/hra-scrollytelling/story4.html)
+            * [Know Your Body Buddies](https://cns-iu.github.io/hra-scrollytelling/story5.html)
+
+  - component: PageSection
+    tagline: Butterfly in the wild
+    anchor: butterfly-in-the-wild
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The iconic Human Reference Atlas butterfly visualization took flight at the SenNet Spring
+          Meeting on April 28th, 2025. Catch it in its natural (conference) habitat.
+
+          The large-format poster shows radial tree graphs of (1) the nested partonomy of anatomical
+          structures and cell types of the female (left) and male (right) human body with an overlay
+          of (2) the branching structure of the blood vasculature extending from the heart (center)
+          to FTUs (outer edge). Illustrations of 22 FTUs are placed for easy reference.
+      - component: Button
+        label: Read publication
+        href: https://doi.org/10.1038/s41467-024-54591-6
+        type: cta
+        variant: secondary
+      - component: Image
+        src: assets/content/release-notes-page/images/v2.3/ButterflyVis-SenNet.png
+        alt: Nancy posing with the butterfly visualization at the SenNet All-Hands Meeting 2025
 
   - component: PageSection
     tagline: Publications
@@ -139,50 +328,27 @@ content:
     content:
       - component: Markdown
         data: |
-          - Wang, Xuefei (Julie), Rohit Dilip, Yuval Bussi, Caitlin Brown, Elora Pradhan, Yashvardhan Jain, Kevin Yu,
-            Shenyi Li, Martin Abt, Katy Börner, Leeat Keren, Yisong Yue, Ross Barnowski, and David Van Valen. 2024.
-            "Generalized cell phenotyping for spatial proteomics with language-informed vision models."
-            doi: <a href='https://doi.org/10.1101/2024.11.02.621624' target="_blank">10.1101/2024.11.02.621624</a>.
-          - Bajcsy, Peter; Screenivas Bhattiprolu; Katy Börner; et al. 2024.
-            "<a href='https://arxiv.org/abs/2401.13023' target="_blank">Enabling Global Image Data Sharing in the Life Sciences</a>."
-            <a href='https://doi.org/10.48550/arXiv.2401.13023' target="_blank">10.48550/arXiv.2401.13023</a>.
-            Accepted for <i>Nature Methods</i>.
-          - Radtke, Andrea J.; Ifeanyichukwu Anidi; Leanne Arakkal; et al. 2024.
-            "<a href='https://arxiv.org/abs/2407.19059' target="_blank">The IBEX Knowledge-Base: Achieving more together with open science</a>."
-            doi: <a href='https://doi.org/10.48550/arXiv.2407.19059' target="_blank">10.48550/arXiv.2407.19059</a>.
-          - Börner, Katy; Philip Blood; Jonathan C. Silverstein; et al. 2024.
-            "Human BioMolecular Atlas Program (HuBMAP):
-            <a href='https://www.biorxiv.org/content/10.1101/2024.03.27.587041v1' target="_blank">3D Human Reference Atlas Construction and Usage</a>."
-            bioRxiv doi: <a href='https://doi.org/10.1101/2024.03.27.587041' target="_blank">10.1101/2024.03.27.587041</a>.
-            Accepted as ‘Resource’ paper in <i>Nature Methods</i>.
+          Hu, Joyce , Beverly Peng, Ajith V. Pankajam, Bingfang Xu, Vikrant Deshpande, Bruce W Herr II, Katy Börner, Christopher Dupont, Richard H. Scheuermann, and Yun Zhang. 2025\. ["Benchmarking single cell transcriptome matching methods for incremental growth of reference atlases"](https://www.biorxiv.org/content/10.1101/2025.04.10.648034v1). *bioRxiv* doi: [https://www.biorxiv.org/content/10.1101/2025](https://www.biorxiv.org/content/10.1101/2025).
+
+          O’Connor, Martin J. , Josef Hardi, Marcos Martínez-Romero, Sowmya Somasundaram, Brendan Honick, Stephen A. Fisher, Ajay Pillai, and Mark Musen. 2025\. ["Ensuring Adherence to Standards in Experiment-Related Metadata Entered Via Spreadsheets"](https://www.nature.com/articles/s41597-025-04589-6). *Scientific Data* doi: [https://doi.org/10.1038/s41597-025-04589-6](https://doi.org/10.1038/s41597-025-04589-6).
+
+          Radtke, Andrea J. , Ifeanyichukwu U. Anidi, Leanne Arakkal, Armando Arroyo-Mejias, Rebecca T. Beuschel, Katy Börner, Colin J. Chu, Beatrice Clark, Menna R. Clatworthy, Jake Colautti, Fabian Coscia, Joshua Croteau, Saven Denha, Rose Dever, Walderez O. Dutra, Sonja Fritzsche, Spencer Fullam, Michael Y. Gerner, Anita Gola, Kenneth J. Gollob, Jonathan M. Hernandez, Jyh Liang Hor, Hiroshi Ichise, Zhixin Jing, Danny Jonigk, Evelyn Kandov, Wolfgang Kastenmueller, Joshua F.E. Koenig, Rosa K. Kortekaas, Aanandita Kothurkar, Alexandra Y. Kreins, Ian T. Lamborn, Yuri Lin, Katia Luciano Pereira Morais, Aleksandra Lunich, Jean C. S. Luz, Ryan B. MacDonald, Chen Makranz, Vivien I. Maltez, John E. McDonough, Ryan V. Moriarty, Juan M. Ocampo-Godinez, Vitoria M. Olyntho, Annette Oxenius, Kartika Padhan, Kirsten Remmert, Nathan Richoz, Edward C. Schrom, Wanjing Shang, Lihong Shi, Rochelle M. Shih, Emily Speranza, Salome Stierli, Sarah A. Teichmann, Tibor Z. Veres, Megan Vierhout, Adam K. Wade-Vallance, Margaret Williams, Nathan Zangger, Ronald N. Germain, and Ziv Yaniv. 2025\. ["The IBEX Knowledge-Base: A central resource for multiplexed imaging techniques"](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3003070&?utm_id=plos111&utm_source=internal&utm_medium=email&utm_campaign=author). *PLOS Biology* https://doi.org/10.1371/journal.pbio.3003070.
+
+          Bueckle, Andreas, Bruce W. Herr II, Josef Hardi, Ellen M Quardokus, Mark A. Musen, and Katy Börner. 2025\. ["Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph for Linked Open Data"](https://www.biorxiv.org/content/10.1101/2024.12.22.630006v1). doi: [https://doi.org/10.1101/2024.12.22.630006](https://doi.org/10.1101/2024.12.22.630006).
+
+          Bidanta, Supriya, Katy Börner, Bruce W. Herr II, Ellen M. Quardokus, Marcell Nagy, Katherine Gustilo, Rachel Bajema, Elizabeth Maier, and Griffin Weber. 2025\. ["Functional tissue units in the Human Reference Atlas"](https://www.nature.com/articles/s41467-024-54591-6). *Nature Communications* 16: 1526\.
+
+          Blanka, Rogina, Rozalyn Anderson, Nathan K. LeBrasseur, Sean P. Curran, Matthew J. Yousefzadeh, Bhaswati Ghosh, Gustavo Duque, Susan Howlett, Steven Austad, Ilja Demuth, Denis Gerstorf, Justin Korfhage, David B. Lombard, Peter Abadir, Kaare Christensen, James R. Carey, Susan C. Alberts, Fernando Campos, Juan Pablo Palavicini, Allyson Palmer, Justice Bell, Nathan Basisty, Rafael de Cabo, Ana Gomes, Vishwa Deep Dixit, Payel Sen, Joseph A. Baur, Shin-ichiro Imai, Xiaoling Li, Gregorio Valdez, Miranda E. Orr, Scott Pletcher, Julie Andersen, Leanne Jones, David Castillo-Azofeida, Michael Bonaguidi, Yousin Suh, Francesca E. Duncan, Anna Murray, Meng C. Wang, Kristopher Burkewitz, Mike Henne, Kai Zhou, Dan Benjamini, Shannon Kolind, Keenan A. Walker, David A. Reiter, Douglas C. Dean III, Vera Gorbunova, Vadim N. Gladyshev, Robert Palovics, Laura J. Niedernhofer, Rong Fan, Andreas Bueckle, Jennifer Hurley, Karyn A. Esser, Pankaj Kapahi, Shogo Sato, Nisi Jiang, Sarah A. Ashiqueali, Jose Diaz, Sidharth Prasad Mishra, Nuno Raimundo, Reema Banarjee, Richard Allsopp, Lindsay M. Reynolds, Bohan Zhang, Paola Sebastiani, Stefano Monti, Nicholas Schork, and Noa Rappaport. 2025\. ["Symposia Report of The Annual Biological Sciences Section Meeting of the Gerontological Society of America 2023, Tampa, Florida"](https://academic.oup.com/biomedgerontology/article/80/5/glaf026/8008765). *The Journals of Gerontology: Series A* Volume 80 (Issue 5): [doi.org/10.1093/gerona/glaf026](http://doi.org/10.1093/gerona/glaf026).
+
+          Börner, Katy, Philip Blood, Jonathan C. Silverstein, Matthew Ruffalo, Sarah A. Teichmann, Gloria Pryhuber, Ravi Misra, Jeffrey Purkerson, Jean Fan, John W. Hickey, Gesmira Molla, Chuan Xu, Yun Zhang, Griffin Weber, Yashvardhan Jain, Danial Qaurooni, Yongxin Kong, HRA Team, Andreas Bueckle, and Bruce W. Herr II. 2025\. ["Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage"](https://www.nature.com/articles/s41592-024-02563-5). *Nature Methods.* doi: https://doi.org/10.1038/s41592-024-02563-5.
+
   - component: PageSection
-    tagline: Standard Operating Procedures (SOP)
-    anchor: standard-operating-procedures
+    tagline: New publication page
+    anchor: new-publication-page
     level: 3
     content:
       - component: Markdown
         data: |
-          - SOP: 3D Reference Object Approval
-          - SOP: Using 3D Reference Objects
-          - SOP: Using the CCF Registration User Interface
-          - SOP: Assigning RUI Data to Multiple Tissue Blocks
+          Human BioMolecular Atlas Program (HuBMAP) Data Portal publication pages connect papers to HuBMAP and other data:
 
-  - component: PageSection
-    tagline: Other
-    anchor: other
-    level: 2
-    content:
-      - component: Markdown
-        data: |
-          - Börner, Katy; Sarah A. Teichmann; Ellen M. Quardokus; James C. Gee; Kristen Browne; David Osumi-Sutherland; Bruce W. Herr; et al. 2021.
-            "Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas."
-            Nature Cell Biology 23 (11): 1117-28.
-
-          - Ding, Song-Lin; Joshua J. Royall; Susan M. Sunkin; Lydia Ng; Benjamin A. C. Facer; Phil Lesnar; Angie Guillozet-Bongaarts; et al. 2016.
-            "Comprehensive Cellular-Resolution Atlas of the Adult Human Brain."
-            Journal of Comparative Neurology 524 (16): 3127-348. doi:10.1002/cne.24080.
-
-          - Ding, Song-Lin; Joshua J. Royall; Susan M. Sunkin; Benjamin A.C. Facer; Phil Lesnar; Amy Bernard; Lydia Ng; and Ed S. Lein. 2020.
-            Allen Human Reference Atlas 3D, 2020. RRID: SCR_017764, version 1.0.0.
-
-          - U.S. National Library of Medicine. 2021. Visible Human Project Data. Accessed June 12, 2023.
+          * [Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage](https://portal.hubmapconsortium.org/browse/publication/fa99f1ac5d1b1eb63d8e797149cc8902)
