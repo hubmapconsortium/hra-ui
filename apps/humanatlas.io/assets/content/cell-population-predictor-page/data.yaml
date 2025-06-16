@@ -41,7 +41,7 @@ content:
         rightButton:
           icon: api
           label: Try me
-          url: https://apps.humanatlas.io/api/hra-pop/rui-location-cell-summary
+          url: https://apps.humanatlas.io/api#post-/hra-pop/rui-location-cell-summary
   - component: PageSection
     tagline: Code
     anchor: code
@@ -50,4 +50,4 @@ content:
       - component: Markdown
         data: |
           - [GitHub Repository](https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/us1-spatial-to-cell)
-          - [Open API Link](https://apps.humanatlas.io/api/
+          - [Open API Link](https://apps.humanatlas.io/api/)
