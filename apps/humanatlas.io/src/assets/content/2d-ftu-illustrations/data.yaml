@@ -441,6 +441,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2/assets/2d-ftu-kidney-ascending-thin-loop-of-henle.ai
@@ -453,6 +454,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-cortical-collecting-duct/v1.2/assets/2d-ftu-kidney-cortical-collecting-duct.ai
@@ -465,6 +467,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-descending-thin-loop-of-henle/v1.1/assets/2d-ftu-kidney-descending-thin-loop-of-henle.ai
@@ -477,6 +480,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-inner-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-inner-medullary-collecting-duct.ai
@@ -489,6 +493,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-nephron/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-nephron/v1.2/assets/2d-ftu-kidney-nephron.ai
@@ -501,6 +506,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.ai
@@ -513,6 +519,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-renal-corpuscle/v1.2/assets/2d-ftu-kidney-renal-corpuscle.ai
@@ -525,6 +532,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-thick-ascending-loop-of-henle/v1.2/assets/2d-ftu-kidney-thick-ascending-loop-of-henle.ai
@@ -540,6 +548,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/large-intestine-crypt-lieberkuhn/v1.2/assets/2d-ftu-large-intestine-crypt-lieberkuhn.ai
@@ -555,6 +564,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/liver-liver-lobule/v1.3
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/liver-liver-lobule/v1.3/assets/2d-ftu-liver-liver-lobule.ai
@@ -570,6 +580,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland/v1.1
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-bronchial-submucosal-gland/v1.1/assets/2d-ftu-lung-bronchial-submucosal-gland.ai
@@ -582,6 +593,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus/v1.3
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/lung-pulmonary-alveolus/v1.3/assets/2d-ftu-lung-pulmonary-alveolus.ai
@@ -597,6 +609,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/2d-ftu-pancreas-pancreatic-acinus.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/2d-ftu-pancreas-pancreatic-acinus.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/pancreas-pancreatic-acinus/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-pancreatic-acinus/v1.2/assets/2d-ftu-pancreas-pancreatic-acinus.ai
@@ -609,6 +622,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/2d-ftu-pancreas-intercalated-duct.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/2d-ftu-pancreas-intercalated-duct.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-intercalated-duct/v1.2/assets/2d-ftu-pancreas-intercalated-duct.ai
@@ -621,6 +635,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/pancreas-islets-langerhans/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/pancreas-islets-langerhans/v1.2/assets/2d-ftu-pancreas-islets-langerhans.ai
@@ -636,6 +651,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/prostate-prostate-glandular-acinus/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/prostate-prostate-glandular-acinus/v1.2/assets/2d-ftu-prostate-prostate-glandular-acinus.ai
@@ -651,6 +667,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/2d-ftu-skin-dermal-papilla.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/2d-ftu-skin-dermal-papilla.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/skin-dermal-papilla/v1.1
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-dermal-papilla/v1.1/assets/2d-ftu-skin-dermal-papilla.ai
@@ -663,6 +680,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.1/assets/2d-ftu-skin-epidermal-ridge.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.1/assets/2d-ftu-skin-epidermal-ridge.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/skin-epidermal-ridge/v1.1
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.1/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/skin-epidermal-ridge/v1.1/assets/2d-ftu-skin-epidermal-ridge.ai
@@ -678,6 +696,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/small-intestine-villus/v1.0
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/small-intestine-villus/v1.0/assets/2d-ftu-small-intestine-villus.ai
@@ -693,6 +712,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/2d-ftu-spleen-red-pulp.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/2d-ftu-spleen-red-pulp.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/spleen-red-pulp/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-red-pulp/v1.2/assets/2d-ftu-spleen-red-pulp.ai
@@ -705,6 +725,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/spleen-white-pulp/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/spleen-white-pulp/v1.2/assets/2d-ftu-spleen-white-pulp.ai
@@ -720,6 +741,7 @@ content:
                   fileUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.png
                   fullscreenUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.svg
                   sourceDataUrl: https://purl.humanatlas.io/2d-ftu/thymus-thymus-lobule/v1.2
+                  crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/crosswalk.csv
                   files:
                     - label: Adobe Illustrator
                       url: https://cdn.humanatlas.io/digital-objects/2d-ftu/thymus-thymus-lobule/v1.2/assets/2d-ftu-thymus-thymus-lobule.ai
