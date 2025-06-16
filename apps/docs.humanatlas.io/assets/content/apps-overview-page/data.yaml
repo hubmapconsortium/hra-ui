@@ -159,7 +159,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /knowledge-graph
+              url: https://docs.humanatlas.io/dev/kg
             actionsRight:
               component: TextHyperlink
               text: Use app
