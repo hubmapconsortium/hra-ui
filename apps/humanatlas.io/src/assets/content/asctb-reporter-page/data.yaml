@@ -7,7 +7,7 @@ headerContent:
     content:
       - component: Button
         label: Use app
-        href: ''
+        href: 'https://apps.humanatlas.io/asctb-reporter/'
         type: cta
 
 content:
