@@ -62,8 +62,8 @@ export class DataViewerComponent {
 
   /** Current organ selected */
   protected readonly organ_ = computed(() => {
-    const organ = this.organ();
     const releaseVersion = this.releaseVersion_();
-    return releaseVersion.organData.find((item) => item.label === organ) ?? releaseVersion.organData[0];
+    const organ = this.organ() ?? releaseVersion.organData[0].label;
+    return releaseVersion.organData.find((item) => item.label === organ) ?? undefined;
   });
 }
