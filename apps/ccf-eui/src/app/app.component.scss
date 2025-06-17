@@ -71,13 +71,14 @@
   }
 
   mat-progress-bar {
+    grid-area: progress;
+
     @include mat.progress-bar-overrides(
       (
         active-indicator-color: vars.$tertiary,
         track-color: transparent,
       )
     );
-    grid-area: progress;
   }
 
   hra-back-button-bar {
@@ -171,12 +172,12 @@
     }
 
     mat-button-toggle-group {
+      width: 100%;
       @include mat.button-toggle-overrides(
         (
           selected-state-text-color: vars.$secondary,
         )
       );
-      width: 100%;
 
       mat-button-toggle {
         flex-grow: 1;
