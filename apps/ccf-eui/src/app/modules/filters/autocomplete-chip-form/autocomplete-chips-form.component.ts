@@ -1,7 +1,12 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output, signal, viewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import {
+  MatAutocomplete,
+  MatAutocompleteModule,
+  MatAutocompleteSelectedEvent,
+  MatAutocompleteTrigger,
+} from '@angular/material/autocomplete';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -47,6 +52,8 @@ export class AutocompleteChipsFormComponent {
 
   /** Displayed chip options */
   readonly chips = signal([] as string[]);
+
+  private readonly autoCompleteTrigger = viewChild<MatAutocompleteTrigger>('searchInput');
 
   /** Autocomplete dropdown options filtered by input, removes all selected options from list */
   readonly filteredOptions = computed(() => {
@@ -128,5 +135,12 @@ export class AutocompleteChipsFormComponent {
     this.currentInputValue.set('');
     this.selectedOptions.emit();
     this.form().setValue([]);
+  }
+
+  /** Closes the Autocomplete panel when user presses the escape button */
+  closeAutocomplete(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.autoCompleteTrigger()?.closePanel();
+    }
   }
 }
