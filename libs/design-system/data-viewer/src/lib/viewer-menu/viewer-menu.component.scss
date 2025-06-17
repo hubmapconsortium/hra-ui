@@ -1,3 +1,21 @@
+@use '../../../../styles/utils' as utils;
+
 :host {
   display: block;
+}
+
+::ng-deep .hra-data-viewer-download-menu {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+
+    .label {
+      @include utils.use-font(label, medium);
+    }
+
+    .description {
+      @include utils.use-font(label, small);
+    }
+  }
 }
