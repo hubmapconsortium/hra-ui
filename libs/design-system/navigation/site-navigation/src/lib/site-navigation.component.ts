@@ -6,12 +6,11 @@ import { MatDivider } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule, Scroll } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgScrollbar } from 'ngx-scrollbar';
-import { injectNavigationEnd } from 'ngxtension/navigation-end';
-import { take } from 'rxjs';
+import { debounceTime, filter } from 'rxjs';
 import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 import { DOCS_NAVIGATION_MENU } from './static-data/parsed';
@@ -55,10 +54,17 @@ export class SiteNavigationComponent {
 
   /** Constructor */
   constructor() {
-    const end$ = injectNavigationEnd().pipe(takeUntilDestroyed(), take(1));
-    end$.subscribe(() => {
-      this.expandedCategory.set(this.findExpandedCategory(this.navigationMenu()));
-    });
+    this.router?.events
+      .pipe(
+        filter(
+          (event) =>
+            event instanceof NavigationEnd || (event instanceof Scroll && event.routerEvent instanceof NavigationEnd),
+        ),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => {
+        this.expandedCategory.set(this.findExpandedCategory(this.navigationMenu()));
+      });
   }
 
   /** Event handler to change the expanded navigation category */
