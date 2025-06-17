@@ -63,7 +63,7 @@
   </hra-expansion-panel>
 
   <ng-scrollbar hraScrollOverflowFade cdkVirtualScrollingElement>
-    <cdk-virtual-scroll-viewport [itemSize]="56" #viewport>
+    <cdk-virtual-scroll-viewport #viewport>
       <div class="results-browser-list">
         <ng-container *cdkVirtualFor="let result of items(); trackBy: trackByResult">
           <div
@@ -82,13 +82,14 @@
               [checked]="result.selected"
             ></mat-checkbox>
             <ccf-donor-card
-              #donorCard
               [tissueBlock]="asMutable(result.tissueBlock)"
               [selected]="result.selected"
-              (selectOption)="handleSelection(result, true)"
-              (expansionChange)="changeExpansion(result, $event)"
               [expanded]="result.expanded ?? false"
               [highlighted]="result.tissueBlock.spatialEntityId === highlighted()"
+              [attr.data-item-id]="result.tissueBlock['@id']"
+              (selectOption)="handleSelection(result, true)"
+              (expansionChange)="changeExpansion(result, $event)"
+              #donorCard
             >
             </ccf-donor-card>
           </div>

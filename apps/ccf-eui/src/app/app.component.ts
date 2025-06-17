@@ -24,6 +24,7 @@ import { SceneState } from './core/store/scene/scene.state';
 import { RemoveSearch, SetSelectedSearches } from './core/store/spatial-search-filter/spatial-search-filter.actions';
 import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter/spatial-search-filter.selectors';
 import { SpatialSearchFlowService } from './shared/services/spatial-search-flow.service';
+import { debounce } from 'lodash';
 
 /** App options */
 interface AppOptions {
@@ -128,6 +129,9 @@ export class AppComponent implements OnInit {
   readonly selectedOrgans$ = this.globalConfig.getOption('selectedOrgans');
   /** Base href option */
   readonly baseHref$ = this.globalConfig.getOption('baseHref');
+
+  /** Node highlighting function with debounce */
+  protected readonly debouncedHighlight = debounce((id: string) => this.listResultsState.highlightNode(id), 100);
 
   /**
    * Creates an instance of app component.
@@ -238,5 +242,12 @@ export class AppComponent implements OnInit {
   /** Clear all organs */
   clearAllOrgans() {
     this.scene.setSelectedReferenceOrgans([]);
+  }
+
+  /** Unhighlight a node */
+  unHighlightNode(): void {
+    if (this.listResultsState.getState().highlightedNodeId) {
+      this.listResultsState.unHighlightNode();
+    }
   }
 }

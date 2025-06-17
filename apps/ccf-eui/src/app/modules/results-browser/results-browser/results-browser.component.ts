@@ -1,5 +1,5 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport, ScrollingModule, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -22,9 +22,9 @@ import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule as HraScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 import { ListResult } from '../../../core/models/list-result';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
+import { ResultsVirtualScrollStrategy } from '../virtual-scroll-strategy/results-virtual-scroll-strategy';
 
 /**
  * ResultsBrowser is the container component in charge of rendering the label and stats of
@@ -51,13 +51,12 @@ import { DonorCardComponent } from '../donor-card/donor-card.component';
   ],
   providers: [
     { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions },
+    { provide: VIRTUAL_SCROLL_STRATEGY, useExisting: ResultsVirtualScrollStrategy },
+    ResultsVirtualScrollStrategy,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultsBrowserComponent {
-  /** Virtual scroll viewport */
-  readonly viewport = viewChild.required<CdkVirtualScrollViewport>('viewport');
-
   /** Input array of List Results to display */
   readonly listResults = input.required<Immutable<ListResult[]>>();
 
@@ -106,12 +105,11 @@ export class ResultsBrowserComponent {
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
 
+  private readonly scrollStrategy = inject(ResultsVirtualScrollStrategy);
+
   /** Resize viewport on changes to the items */
   constructor() {
-    effect(() => {
-      this.items(); // Grab a dependency on items
-      this.viewport().checkViewportSize();
-    });
+    effect(() => this.scrollStrategy.setItems(this.items() as ListResult[]));
   }
 
   /**
