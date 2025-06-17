@@ -11,8 +11,9 @@
     gap: 0.75rem;
     height: unset !important;
     margin: 0.5rem 0;
-    padding: 0.5rem 1rem !important;
-    padding-left: var(--hra-navigation-item-padding-left, 1rem) !important;
+    padding: 0.5rem 0 0.5rem 1rem !important;
+    margin-left: var(--hra-navigation-item-padding-left, 1rem) !important;
+    width: unset;
 
     &.active {
       span {
