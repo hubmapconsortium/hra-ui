@@ -60,13 +60,13 @@ content:
             * Mouth, Female
             * Mouth, Male
           * 7 Organ Mapping Antibody Panels
-          * OMAP-24: Pancreas Cycif
-          * OMAP-25: Lung, CODEX
-          * OMAP-26: Kidney, CODEX
-          * OMAP-27: Kidney, IMS, CODEX
-          * OMAP-28: Heart, CODEX
-          * OMAP-29: Mouth, Mucosa, CODEX
-          * OMAP-30: Mouth, Salivary Gland, CODEX
+            * OMAP-24: Pancreas Cycif
+            * OMAP-25: Lung, CODEX
+            * OMAP-26: Kidney, CODEX
+            * OMAP-27: Kidney, IMS, CODEX
+            * OMAP-28: Heart, CODEX
+            * OMAP-29: Mouth, Mucosa, CODEX
+            * OMAP-30: Mouth, Salivary Gland, CODEX
 
   - component: PageSection
     tagline: Revised data
