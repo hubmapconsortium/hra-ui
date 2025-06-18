@@ -7,7 +7,7 @@ import { filter, map } from 'rxjs';
  * Fetches the custom data from the current route.
  * @returns Signal containing data from the current route.
  */
-export function routeData(): Signal<Data> {
+export function routeData(initialValue: Data = {}): Signal<Data> {
   assertInInjectionContext(routeData);
 
   const router = inject(Router);
@@ -16,7 +16,7 @@ export function routeData(): Signal<Data> {
     map(() => extractData(router)),
   );
 
-  return toSignal(data$, { initialValue: {} });
+  return toSignal(data$, { initialValue });
 }
 
 /**
