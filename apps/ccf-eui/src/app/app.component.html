@@ -196,8 +196,8 @@
         (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
         (listResultExpansionChange)="listResultsState.changeExpansion(asMutable($event))"
         [highlighted]="(listResultsState.highlightedNodeId$ | async) ?? ''"
-        (itemHovered)="listResultsState.highlightNode($event)"
-        (itemUnhovered)="listResultsState.unHighlightNode()"
+        (itemHovered)="debouncedHighlight($event)"
+        (itemUnhovered)="unHighlightNode()"
         [header]="(header$ | async) ?? false"
       >
       </ccf-results-browser>
