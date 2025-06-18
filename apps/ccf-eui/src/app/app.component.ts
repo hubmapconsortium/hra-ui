@@ -1,4 +1,6 @@
 import { Immutable } from '@angular-ru/cdk/typings';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Filter } from '@hra-api/ng-client';
@@ -154,6 +156,12 @@ export class AppComponent implements OnInit {
     });
 
     this.selectedToggleOptions = this.menuOptions;
+
+    const overlay = inject(OverlayContainer);
+    const overlayEl = overlay.getContainerElement();
+    if (!overlayEl.isConnected) {
+      inject(DOCUMENT).body.appendChild(overlayEl);
+    }
   }
 
   /** Initialize the component */
