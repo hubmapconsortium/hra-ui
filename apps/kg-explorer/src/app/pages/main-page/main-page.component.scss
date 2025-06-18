@@ -3,8 +3,29 @@
 @use 'vars';
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 2rem 1.5rem;
+
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0.75rem;
+
+    .object-search {
+      max-width: 36.25rem;
+      flex-grow: 1;
+
+      hra-icon {
+        padding: 0 0.75rem;
+      }
+    }
+
+    hra-results-indicator {
+      line-height: 2rem;
+      height: 3rem;
+    }
+  }
 
   ::ng-deep hra-table {
     --mat-table-header-container-height: 5.375rem;

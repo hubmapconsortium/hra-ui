@@ -1,6 +1,11 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
+import { IconsModule } from '@hra-ui/design-system/icons';
+import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 
 /** Example download options */
@@ -184,7 +189,16 @@ const columns: TableColumn[] = [
 /** This component is used for rendering the main page of the application. */
 @Component({
   selector: 'hra-kg-main-page',
-  imports: [HraCommonModule, TableComponent, BrandModule],
+  imports: [
+    HraCommonModule,
+    TableComponent,
+    BrandModule,
+    ResultsIndicatorComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    IconsModule,
+  ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -192,4 +206,20 @@ const columns: TableColumn[] = [
 export class MainPageComponent {
   readonly rows = input<TableRow[]>(exampleData);
   readonly columns = input<TableColumn[]>(columns);
+  readonly filteredRows = signal(exampleData);
+  readonly searchControl = new UntypedFormControl();
+
+  constructor() {
+    this.searchControl.valueChanges.subscribe((result) => {
+      this.onSearchChange(result);
+    });
+  }
+
+  onSearchChange(searchTerm: string): void {
+    this.filteredRows.set(
+      this.rows().filter((row) =>
+        Object.values(row).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase())),
+      ),
+    );
+  }
 }

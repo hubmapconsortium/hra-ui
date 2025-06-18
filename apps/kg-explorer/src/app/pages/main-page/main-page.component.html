@@ -1,1 +1,9 @@
-<hra-table [style]="'divider'" [enableSort]="true" [rows]="rows()" [columns]="columns()" />
+<div class="search-header">
+  <mat-form-field class="object-search">
+    <hra-icon matPrefix>search</hra-icon>
+    <mat-label>Search</mat-label>
+    <input matInput [formControl]="searchControl" />
+  </mat-form-field>
+  <hra-results-indicator description="Viewing" [value]="0" [total]="0"></hra-results-indicator>
+</div>
+<hra-table [style]="'divider'" [enableSort]="true" [rows]="filteredRows()" [columns]="columns()" />
