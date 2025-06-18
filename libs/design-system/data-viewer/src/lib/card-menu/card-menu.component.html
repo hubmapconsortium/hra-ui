@@ -4,23 +4,30 @@
     Downloads
     <mat-icon class="expand-arrow">arrow_right</mat-icon>
   </button>
-  <mat-divider class="menu-divider"></mat-divider>
+
+  <mat-divider class="menu-divider" />
+
   <a mat-menu-item [href]="card().sourceDataUrl" target="_blank" rel="noopener noreferrer">
     <mat-icon class="reset icon">database</mat-icon>
     View source data
   </a>
 </mat-menu>
-<mat-menu #submenu="matMenu">
+
+<mat-menu class="hra-data-viewer-download-menu" #submenu="matMenu">
   @for (file of card().files; track file) {
     <a mat-menu-item [attr.href]="file.url" download>
       <mat-icon>download</mat-icon>
       {{ file.label }}
     </a>
   }
-  <mat-divider class="menu-divider"></mat-divider>
-  <a mat-menu-item class="csv-button" [attr.href]="card().crosswalkUrl" download>
+
+  <mat-divider class="menu-divider" />
+
+  <a mat-menu-item class="download-csv" [attr.href]="card().crosswalkUrl" download>
     <mat-icon>download</mat-icon>
-    <span class="csv-label">CSV-Crosswalk</span>
-    <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
+    <div class="container">
+      <span class="label">CSV-Crosswalk</span>
+      <span class="description">A CSV file connecting digital objects to ontology terms in ASCT+B Tables.</span>
+    </div>
   </a>
 </mat-menu>

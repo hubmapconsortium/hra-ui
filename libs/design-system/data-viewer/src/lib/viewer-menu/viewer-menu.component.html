@@ -11,7 +11,7 @@
   </a>
 </mat-menu>
 
-<mat-menu #submenu="matMenu">
+<mat-menu class="hra-data-viewer-download-menu" #submenu="matMenu">
   @if (currentVersion().extractionsSitesUrl) {
     <a mat-menu-item [attr.href]="currentVersion().extractionsSitesUrl" target="_blank" rel="noopener noreferrer">
       <mat-icon>download</mat-icon>
@@ -30,8 +30,10 @@
   @if (currentVersion().crosswalkUrl) {
     <a class="csv-button" mat-menu-item [attr.href]="currentVersion().crosswalkUrl" download>
       <mat-icon>download</mat-icon>
-      <span class="csv-label">CSV-Crosswalk</span>
-      <span class="csv-desc"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
+      <div class="container">
+        <span class="label">CSV-Crosswalk</span>
+        <span class="description"> A CSV file connecting digital objects to ontology terms in ASCT+B Tables. </span>
+      </div>
     </a>
   }
 </mat-menu>
