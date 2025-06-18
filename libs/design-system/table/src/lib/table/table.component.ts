@@ -9,6 +9,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { MarkdownModule } from 'ngx-markdown';
 import { parse } from 'papaparse';
 import {
+  IconColumnType,
   LinkColumnType,
   MarkdownColumnType,
   NumericColumnType,
@@ -19,6 +20,7 @@ import {
   TableVariant,
   TextColumnType,
 } from '../types/page-table.schema';
+import { IconsModule } from '@hra-ui/design-system/icons';
 
 /** Type for the row element context */
 type RowElementContext<T, CT extends TableColumnType> = {
@@ -78,6 +80,23 @@ export class MarkdownRowElementDirective {
   }
 }
 
+/** Directive for typing the context of Icon Row Element */
+@Directive({
+  selector: 'ng-template[hraIconRowElement]',
+  standalone: true,
+})
+export class IconRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Markdowm Row Element */
+  static ngTemplateContextGuard(
+    _dir: IconRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext<string, IconColumnType> {
+    return true;
+  }
+}
+
 /** Directive for typing the context of Numeric Row Element */
 @Directive({
   selector: 'ng-template[hraNumericRowElement]',
@@ -113,6 +132,7 @@ export class NumericRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     NumericRowElementDirective,
+    IconsModule,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',

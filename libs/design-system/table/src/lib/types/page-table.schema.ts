@@ -38,6 +38,15 @@ export const MarkdownColumnTypeSchema = z.object({
   type: z.literal('markdown'),
 });
 
+/** Type for Icon Column */
+export type IconColumnType = z.infer<typeof IconColumnTypeSchema>;
+
+/** Schema for Icon Column */
+export const IconColumnTypeSchema = z.object({
+  type: z.literal('icon'),
+  icon: z.string(),
+});
+
 /** Type for Link Column */
 export type LinkColumnType = z.infer<typeof LinkColumnTypeSchema>;
 
@@ -52,6 +61,7 @@ export const SimpleTableColumnTypeSchema = z.union([
   TextColumnTypeSchema.shape.type,
   NumericColumnTypeSchema.shape.type,
   MarkdownColumnTypeSchema.shape.type,
+  IconColumnTypeSchema.shape.type,
 ]);
 
 /** Inferred types for Table Columns */
@@ -63,6 +73,7 @@ export const TableColumnTypeSchema = z.union([
   NumericColumnTypeSchema,
   MarkdownColumnTypeSchema,
   LinkColumnTypeSchema,
+  IconColumnTypeSchema,
 ]);
 
 /** Type for table columns */

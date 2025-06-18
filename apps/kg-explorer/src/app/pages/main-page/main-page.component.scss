@@ -1,0 +1,8 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: block;
+  padding: 2rem 1.5rem;
+}
