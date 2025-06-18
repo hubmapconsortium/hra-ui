@@ -3,8 +3,35 @@ import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 
-/** Example data */
-const rows: TableRow[] = [
+/** Example download options */
+const exampleDownloadOptions = [
+  { name: 'SVG', icon: 'download' },
+  { name: 'PNG', icon: 'download' },
+  { name: 'Adobe Illustrator', icon: 'download' },
+  {
+    name: 'CSV - Crosswalk',
+    description: 'A CSV file connecting digital objects to ontology terms in ASCT+B Tables.',
+    icon: 'download',
+  },
+  {
+    name: 'Turtle',
+    description:
+      'Terse RDF Triple Language (Turtle) format helps developers write SPARQL queries to HRA data by making its triple structure explicit and showing possible subjects, predicates, and objects.',
+    icon: 'download',
+  },
+  {
+    name: 'JSON-LD',
+    description:
+      'A lightweight Linked Data format, ideal for programming environments, such as REST Web services, and unstructured databases such as Apache CouchDB and MongoDB.',
+    icon: 'download',
+  },
+  { name: 'RDF/XML', icon: 'download' },
+  { name: 'N-Triple', icon: 'download' },
+  { name: 'N-Quads', icon: 'download' },
+];
+
+/** Example row data */
+const exampleData: TableRow[] = [
   {
     title: '2D Ascending Thin Limb of Loop of Henle FTU for Kidney',
     objectUrl: 'https://google.com',
@@ -13,6 +40,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title: '2D Cortical Collecting Duct FTU for Kidney',
@@ -22,6 +50,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title: '2D Descending Thin Limb of Loop of Henle FTU for Kidney',
@@ -31,6 +60,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title: '2D Inner Medullary Collecting Duct FTU for Kidney',
@@ -40,6 +70,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title: '2D Nephron Functional Tissue Unit (FTU) for Kidney',
@@ -49,6 +80,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title: '2D Outer Medullary Collecting Duct FTU for Kidney',
@@ -58,6 +90,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title: '2D Renal Corpuscle Functional Tissue Unit (FTU) for Kidney',
@@ -67,6 +100,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title: '2D Thick Ascending Limb of Loop of Henle FTU for Kidney',
@@ -76,6 +110,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title: '2D Crypt of Lieberkuhn FTU for Large Intestine',
@@ -85,6 +120,7 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
   {
     title:
@@ -95,13 +131,24 @@ const rows: TableRow[] = [
     cellCount: 100,
     biomarkerCount: 100,
     lastModified: '2025-06',
+    downloadOptions: exampleDownloadOptions,
   },
 ];
 
+/** Column info */
 const columns: TableColumn[] = [
   {
+    column: 'download',
+    label: '',
+    type: {
+      type: 'menu',
+      icon: 'download',
+      options: 'downloadOptions',
+    },
+  },
+  {
     column: 'title',
-    label: 'Digital Object',
+    label: 'Digital Objects',
     type: {
       type: 'link',
       urlColumn: 'objectUrl',
@@ -143,6 +190,6 @@ const columns: TableColumn[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent {
-  readonly rows = input<TableRow[]>(rows);
+  readonly rows = input<TableRow[]>(exampleData);
   readonly columns = input<TableColumn[]>(columns);
 }

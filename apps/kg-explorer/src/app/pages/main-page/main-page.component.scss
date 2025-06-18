@@ -5,4 +5,29 @@
 :host {
   display: block;
   padding: 2rem 1.5rem;
+
+  ::ng-deep hra-table {
+    --mat-table-header-container-height: 5.375rem;
+    --mat-table-row-item-container-height: 4.75rem;
+    border: none;
+
+    th {
+      padding-bottom: 0.75rem !important;
+    }
+
+    th:first-of-type {
+      pointer-events: none;
+    }
+
+    tr {
+      background-color: var(--mat-sys-on-primary);
+    }
+
+    td {
+      max-width: 50rem;
+      vertical-align: middle !important;
+      padding-top: 0.25rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+  }
 }
