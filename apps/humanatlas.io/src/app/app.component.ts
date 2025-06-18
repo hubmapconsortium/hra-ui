@@ -27,7 +27,7 @@ export class AppComponent {
   private readonly header = viewChild.required(HeaderComponent, { read: ElementRef });
 
   /** Route data */
-  private readonly data = routeData();
+  private readonly data = routeData({ siteNavigation: false });
 
   /** Whether site navigation is enabled for the current route */
   protected readonly siteNavigationEnabled = computed(() => this.data()['siteNavigation'] !== false);

@@ -1,5 +1,5 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
@@ -11,7 +11,6 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { injectNavigationEnd } from 'ngxtension/navigation-end';
-import { take } from 'rxjs';
 import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 import { DOCS_NAVIGATION_MENU } from './static-data/parsed';
@@ -55,10 +54,10 @@ export class SiteNavigationComponent {
 
   /** Constructor */
   constructor() {
-    const end$ = injectNavigationEnd().pipe(takeUntilDestroyed(), take(1));
-    end$.subscribe(() => {
-      this.expandedCategory.set(this.findExpandedCategory(this.navigationMenu()));
-    });
+    effect(() => this.updateExpandedCategory());
+
+    const end$ = injectNavigationEnd().pipe(takeUntilDestroyed());
+    end$.subscribe(() => this.updateExpandedCategory());
   }
 
   /** Event handler to change the expanded navigation category */
@@ -66,6 +65,13 @@ export class SiteNavigationComponent {
     if (isExpanded) {
       this.expandedCategory.set(category);
     }
+  }
+
+  /** Updates the currently expanded category */
+  private updateExpandedCategory(): void {
+    const menu = this.navigationMenu();
+    const category = this.findExpandedCategory(menu);
+    this.expandedCategory.set(category);
   }
 
   /** Finds the expanded category
