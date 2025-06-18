@@ -52,6 +52,7 @@ export class AutocompleteChipsFormComponent {
   /** Displayed chip options */
   readonly chips = signal([] as string[]);
 
+  /** View Child for the Autocomplete Trigger */
   private readonly autoCompleteTrigger = viewChild<MatAutocompleteTrigger>('searchInput');
 
   /** Autocomplete dropdown options filtered by input, removes all selected options from list */
