@@ -23,6 +23,7 @@ import { ReleaseNotesVersionSelectorDef } from './components/release-notes-versi
 import { SummaryStatisticsTableDef } from './components/summary-statistics-table/summary-statistics-table.definition';
 import { VersionedTableParamSyncControllerService } from './controllers/versioned-table-param-sync/versioned-table-param-sync.service';
 import { DataViewerParamSyncControllerService } from './controllers/data-viewer-param-sync/data-viewer-param-sync.service';
+import { DataViewerWithQueryParamsDef } from './components/data-viewer-with-query-params/data-viewer-with-query-params.definition';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
       ApiCommandDef,
       ButtonDef,
       DataViewerDef,
+      DataViewerWithQueryParamsDef,
       FlexContainerDef,
       IconDef,
       ImageDef,
