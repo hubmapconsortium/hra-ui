@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -66,4 +66,17 @@ export class DataViewerComponent {
     const organ = this.organ() ?? releaseVersion.organData[0].label;
     return releaseVersion.organData.find((item) => item.label === organ) ?? undefined;
   });
+
+  /** constructor to set the release version and organ from the model from effect*/
+  constructor() {
+    effect(() => {
+      const releaseVersion = this.releaseVersion_();
+      this.releaseVersion.set(releaseVersion.version);
+    });
+
+    effect(() => {
+      const organ = this.organ_();
+      this.organ.set(organ?.label ?? '');
+    });
+  }
 }
