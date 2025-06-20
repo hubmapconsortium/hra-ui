@@ -135,7 +135,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tube-left
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -564,7 +564,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter
+                icon: organ:ureter-right
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -591,7 +591,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ureter-male-right/v1.2/assets/crosswalk.csv
                     files: []
               - label: Urinary Bladder
-                icon: organ:urinary-bladder
+                icon: organ:bladder
                 cards:
                   - label: Female
                     alt: Urinary Bladder, Female
@@ -837,7 +837,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-nodes
+                icon: organ:lymph-node
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -1235,7 +1235,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tube-left
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -1265,7 +1265,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.3/assets/crosswalk.csv
                     files: []
               - label: Kidney
-                icon: organ:kidney
+                icon: organ:kidneys
                 cards:
                   - label: Female, L
                     alt: Kidney, Female, Left
@@ -1364,7 +1364,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/liver-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Lung
-                icon: organ:lung
+                icon: organ:lungs
                 cards:
                   - label: Female
                     alt: Lung, Female
@@ -1705,7 +1705,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pelvis-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Allen Brain
-                icon: organ:allen-brain
+                icon: organ:brain
                 cards:
                   - label: Female
                     alt: The Allen brain, female
@@ -1762,7 +1762,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.2/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tube-left
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -1792,7 +1792,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Kidney
-                icon: organ:kidney
+                icon: organ:kidneys
                 cards:
                   - label: Female, L
                     alt: Kidney, Female, Left
@@ -1891,7 +1891,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/liver-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Lung
-                icon: organ:lung
+                icon: organ:lungs
                 cards:
                   - label: Female
                     alt: Lung, Female
@@ -2200,7 +2200,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pelvis-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Allen Brain
-                icon: organ:allen-brain
+                icon: organ:brain
                 cards:
                   - label: Female
                     alt: The Allen brain, female
@@ -2255,7 +2255,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.2/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tube-left
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -2285,7 +2285,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Kidney
-                icon: organ:kidney
+                icon: organ:kidneys
                 cards:
                   - label: Female, L
                     alt: Kidney, Female, Left
@@ -2384,7 +2384,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/liver-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Lung
-                icon: organ:lung
+                icon: organ:lungs
                 cards:
                   - label: Female
                     alt: Lung, Female
@@ -2695,7 +2695,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pelvis-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Allen Brain
-                icon: organ:allen-brain
+                icon: organ:brain
                 cards:
                   - label: Female
                     alt: Brain, Female
@@ -2737,7 +2737,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.1/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tube-left
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -2767,7 +2767,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Kidney
-                icon: organ:kidney
+                icon: organ:kidneys
                 cards:
                   - label: Female, L
                     alt: Kidney, Female, Left
@@ -3120,7 +3120,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pelvis-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Allen Brain
-                icon: organ:allen-brain
+                icon: organ:brain
                 cards:
                   - label: Female
                     alt: Brain, Female
@@ -3162,7 +3162,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.1/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tube-left
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -3192,7 +3192,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Kidney
-                icon: organ:kidney
+                icon: organ:kidneys
                 cards:
                   - label: Female, L
                     alt: Kidney, Female, Left
