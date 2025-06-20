@@ -313,7 +313,7 @@ content:
 
   - component: PageSection
     tagline: FTU Explorer - Illustration Viewer
-    anchor: ftu-explorer-swc
+    anchor: ftu-explorer-illustration-viewer
     level: 2
     content:
       - component: Image
