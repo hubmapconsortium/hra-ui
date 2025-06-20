@@ -7,5 +7,9 @@
   .content {
     display: flex;
     flex-direction: column;
+
+    &.cta-active {
+      --hra-table-of-contents-layout-top-offset: 3rem;
+    }
   }
 }

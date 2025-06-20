@@ -3,12 +3,13 @@
   [cta]="cta"
   [breadcrumbs]="crumbs() ?? []"
   [progress]="isNavigating()"
+  [(ctaDismissed)]="ctaDismissed"
 >
   <a mat-icon-button [href]="getHelpUrl()" target="_blank" rel="noopener noreferrer">
     <mat-icon>help</mat-icon>
   </a>
 </hra-header>
-<div class="content">
+<div class="content" [class.cta-active]="!ctaDismissed()">
   <router-outlet></router-outlet>
 </div>
 <hra-footer></hra-footer>
