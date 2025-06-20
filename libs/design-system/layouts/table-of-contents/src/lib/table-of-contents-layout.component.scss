@@ -27,7 +27,7 @@
 
     .toc {
       position: sticky;
-      top: calc(var(--hra-site-navigation-top-offset, 0rem) + 7rem);
+      top: var(--hra-table-of-contents-layout-top-offset, 7rem);
       width: 17rem;
       height: min-content;
       margin: 0 0.75rem 1rem;
