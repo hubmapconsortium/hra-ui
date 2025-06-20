@@ -29,7 +29,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /api-reference
+              url: dev/api
           - component: ActionCard
             variant: outlined
             tagline: Apps
@@ -40,7 +40,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /apps
+              url: dev/apps
           - component: ActionCard
             variant: outlined
             tagline: Changelog
@@ -51,7 +51,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /changelog
+              url: dev/changelog
           - component: ActionCard
             variant: outlined
             tagline: Design System
@@ -62,7 +62,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /design-system
+              url: dev/design-system
           - component: ActionCard
             variant: outlined
             tagline: Digital Objects
@@ -73,7 +73,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /digital-objects
+              url: dev/digital-objects
             actionsRight:
               component: TextHyperlink
               text: Get data
@@ -88,7 +88,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /web-components
+              url: dev/web-components
           - component: ActionCard
             variant: outlined
             tagline: Frequently Asked Questions (FAQs)
@@ -99,7 +99,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /faqs
+              url: dev/faq
           - component: ActionCard
             variant: outlined
             tagline: Knowledge Graph
@@ -110,7 +110,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /knowledge-graph
+              url: dev/kg
             actionsRight:
               component: TextHyperlink
               text: Get data
@@ -125,7 +125,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /support
+              url: dev/support
             actionsRight:
               component: TextHyperlink
               text: Submit issue
@@ -140,7 +140,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /tutorials
+              url: dev/tutorials
       - component: PageSection
         tagline: What does the Human Reference Atlas support?
         anchor: what-does-hra-support
