@@ -4,6 +4,16 @@
     <mat-label>Search</mat-label>
     <input matInput [formControl]="searchControl" />
   </mat-form-field>
-  <hra-results-indicator description="Viewing" [value]="0" [total]="0"></hra-results-indicator>
+  <hra-results-indicator
+    description="Viewing"
+    [value]="filteredRows().length"
+    [total]="rows().length"
+  ></hra-results-indicator>
 </div>
-<hra-table [style]="'divider'" [enableSort]="true" [rows]="filteredRows()" [columns]="columns()" />
+<hra-table
+  [style]="'divider'"
+  [enableSort]="true"
+  [rows]="filteredRows()"
+  [columns]="columns()"
+  (downloadFile)="saveFile($event[0], $event[1])"
+/>

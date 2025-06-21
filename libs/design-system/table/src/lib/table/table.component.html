@@ -74,7 +74,7 @@
 
   <mat-menu #menuOptions="matMenu" class="table-menu">
     @for (option of getMenuOptions(options); track option) {
-      <button mat-menu-item>
+      <button mat-menu-item (click)="downloadFile.emit([option.url || '', option.id])">
         <mat-icon>{{ option.icon }}</mat-icon>
         <div class="option-text">
           <span class="option-name">

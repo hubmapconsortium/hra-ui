@@ -69,6 +69,7 @@ export const MenuButtonColumnTypeSchema = z.object({
 export type MenuOptionsType = z.infer<typeof MenuOptionsTypeSchema>;
 
 export const MenuOptionsTypeSchema = z.object({
+  id: z.string(),
   name: z.string(),
   icon: z.string(),
   description: z.string().optional(),

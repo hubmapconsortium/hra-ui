@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { httpResource } from '@angular/common/http';
-import { Component, computed, Directive, effect, ErrorHandler, inject, input, viewChild } from '@angular/core';
+import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -227,6 +227,8 @@ export class TableComponent<T extends TableRow = TableRow> {
 
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);
+
+  readonly downloadFile = output<[string, string]>();
 
   /** Sort data on load and set columns */
   constructor() {
