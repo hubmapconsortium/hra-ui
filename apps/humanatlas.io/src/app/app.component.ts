@@ -1,7 +1,7 @@
-import { coerceElement } from '@angular/cdk/coercion';
 import { ViewportScroller } from '@angular/common';
-import { Component, computed, effect, ElementRef, inject, viewChild } from '@angular/core';
+import { Component, computed, effect, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { monitorHeight } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { CtaConfig, HeaderComponent } from '@hra-ui/design-system/navigation/header';
@@ -39,15 +39,18 @@ export class AppComponent {
     url: 'https://humanatlas.io/release-notes/v2.3',
   };
 
+  /** Whether the CTA is dismissed or not */
+  protected readonly ctaDismissed = signal(false);
+
+  /** The height of the header given by the monitor */
+  private readonly headerHeight = monitorHeight(this.header);
+
   /** Initialize the application */
   constructor() {
     inject(CustomScrollService);
     const scroller = inject(ViewportScroller);
     effect(() => {
-      // Compute and set the scroll Y-offset to be the header height + padding
-      const el = coerceElement<Element>(this.header());
-      const { height } = el.getBoundingClientRect();
-      const yOffset = height + ANCHOR_SCROLL_PADDING;
+      const yOffset = this.headerHeight() + ANCHOR_SCROLL_PADDING;
       scroller.setOffset([0, yOffset]);
     });
   }

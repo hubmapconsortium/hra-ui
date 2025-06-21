@@ -8,6 +8,7 @@ import {
   ElementRef,
   inject,
   input,
+  model,
   signal,
   viewChild,
 } from '@angular/core';
@@ -88,7 +89,8 @@ export class HeaderComponent {
   readonly progress = input<boolean | number>(false);
 
   /** Whether the user has dismissed the call to action */
-  protected readonly ctaDismissed = signal(false);
+  readonly ctaDismissed = model(false);
+
   /** Progress bar mode */
   protected readonly progressMode = computed((): ProgressBarMode => {
     return typeof this.progress() === 'boolean' ? 'indeterminate' : 'determinate';

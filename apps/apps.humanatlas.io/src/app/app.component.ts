@@ -1,13 +1,27 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CommonModule, ViewportScroller } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { monitorHeight } from '@hra-ui/common';
+import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { CtaConfig } from '@hra-ui/design-system/navigation/header';
+import { CtaConfig, HeaderComponent } from '@hra-ui/design-system/navigation/header';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
+
+/** Padding when scrolling to an anchor in px */
+const ANCHOR_SCROLL_PADDING = 24;
 
 /** Main application component */
 @Component({
@@ -21,6 +35,9 @@ import { routeData } from './utils/route-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  /** Reference to the header html element */
+  private readonly header = viewChild.required(HeaderComponent, { read: ElementRef });
+
   /**
    * Data for breadcrumbs in navigation header.
    */
@@ -43,6 +60,22 @@ export class AppComponent {
     action: 'Learn more',
     url: 'https://humanatlas.io/release-notes/v2.3',
   };
+
+  /** Whether the CTA is dismissed or not */
+  protected readonly ctaDismissed = signal(false);
+
+  /** The height of the header given by the monitor */
+  private readonly headerHeight = monitorHeight(this.header);
+
+  /** Initialize the application */
+  constructor() {
+    inject(CustomScrollService);
+    const scroller = inject(ViewportScroller);
+    effect(() => {
+      const yOffset = this.headerHeight() + ANCHOR_SCROLL_PADDING;
+      scroller.setOffset([0, yOffset]);
+    });
+  }
 
   /** Help data for the current route */
   getHelpUrl(): string {
