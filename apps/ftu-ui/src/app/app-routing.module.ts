@@ -4,20 +4,21 @@ import { FtuComponent } from './pages/ftu-page/ftu.component';
 import { LandingComponent } from './pages/landing-page/landing.component';
 import { ftuResolver } from './pages/ftu-page/ftu.resolver';
 
-const routes: Route[] = [
+export const ROUTES: Route[] = [
   {
     path: '',
-    loadComponent: () => LandingComponent,
+    pathMatch: 'full',
+    component: LandingComponent,
   },
   {
     path: 'ftu',
+    component: FtuComponent,
     data: {
       name: 'ftu',
     },
     resolve: {
       id: ftuResolver,
     },
-    loadComponent: () => FtuComponent,
   },
   {
     path: '**',
@@ -26,7 +27,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(ROUTES, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
