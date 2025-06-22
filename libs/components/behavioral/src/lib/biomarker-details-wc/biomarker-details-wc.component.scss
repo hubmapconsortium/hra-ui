@@ -11,16 +11,16 @@
     font-weight: 500;
 
     &:last-child {
-      border-right: 1px solid rgba(vars.$light-dividers);
-      border-left: 1px solid rgba(vars.$light-dividers);
+      // border-right: 1px solid rgba(vars.$light-dividers);
+      // border-left: 1px solid rgba(vars.$light-dividers);
     }
 
     &.mdc-tab-indicator--active {
-      background-color: rgba(vars.$primary-lighter);
+      // background-color: rgba(vars.$primary-lighter);
     }
 
     &:hover {
-      background-color: rgba(vars.$primary-lighter);
+      // background-color: rgba(vars.$primary-lighter);
     }
     .mat-tab__text-label {
       --palette-accent-500-rgb: #243142;
@@ -29,7 +29,7 @@
 
   .table-header {
     grid-area: table-header;
-    border: 1px solid rgba(vars.$light-dividers);
+    // border: 1px solid rgba(vars.$light-dividers);
     border-bottom: none;
     width: 43rem;
     height: 2.5rem;
@@ -46,7 +46,7 @@
       cursor: pointer;
       padding: 0.4rem;
       &:hover {
-        background-color: rgba(vars.$light-dividers);
+        // background-color: rgba(vars.$light-dividers);
         border-radius: 5px;
       }
     }
@@ -56,27 +56,27 @@
     grid-area: table;
     max-width: 100%;
     overflow: auto;
-    border: 1px solid rgba(vars.$light-dividers);
+    // border: 1px solid rgba(vars.$light-dividers);
     flex-grow: 1;
 
     ::ng-deep .table-tab-header {
       padding-left: 1rem;
       padding-right: 1rem;
-      border-left: 1px solid rgba(vars.$light-dividers);
+      // border-left: 1px solid rgba(vars.$light-dividers);
       background-color: white;
       font-weight: 500;
       letter-spacing: 0;
 
       &:last-child {
-        border-right: 1px solid rgba(vars.$light-dividers);
+        // border-right: 1px solid rgba(vars.$light-dividers);
       }
 
       &.mdc-tab-indicator--active {
-        background-color: rgba(vars.$primary-lighter);
+        // background-color: rgba(vars.$primary-lighter);
       }
 
       &:hover {
-        background-color: rgba(vars.$primary-lighter);
+        // background-color: rgba(vars.$primary-lighter);
       }
     }
   }
@@ -105,8 +105,8 @@
   }
 
   .legend-header {
-    color: vars.$dark-primary-text;
-    border-bottom: 1px solid rgba(vars.$light-dividers);
+    // color: vars.$dark-primary-text;
+    // border-bottom: 1px solid rgba(vars.$light-dividers);
     gap: 0.5rem;
     min-width: max-content;
     line-height: normal;
@@ -114,7 +114,7 @@
 
     &.gradient {
       grid-area: gradient-legend-header;
-      border-right: 1px solid rgba(vars.$light-dividers);
+      // border-right: 1px solid rgba(vars.$light-dividers);
     }
 
     &.size {
@@ -134,7 +134,7 @@
 
     &.gradient {
       grid-area: gradient-legend-header;
-      border-right: 1px solid rgba(vars.$light-dividers);
+      // border-right: 1px solid rgba(vars.$light-dividers);
 
       hra-gradient-legend {
         width: 10rem !important;
@@ -169,7 +169,7 @@
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-  background-color: vars.$primary-contrast-rgb;
+  // background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
   font-family: Metropolis;
   font-weight: 500;
@@ -180,30 +180,30 @@
 ::ng-deep {
   .table-tab-header,
   .extraTab > .mdc-tab__content > span {
-    color: rgba(vars.$primary-600);
+    // color: rgba(vars.$primary-600);
     user-select: none;
     font-weight: 500;
   }
 
   mat-tab-header {
-    border-bottom: 1px solid rgba(vars.$light-dividers);
+    // border-bottom: 1px solid rgba(vars.$light-dividers);
   }
 
   .mat-mdc-tab-body-wrapper {
     height: calc(100% - 3rem);
   }
 
-  .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
-    color: vars.$primary;
-  }
+  // .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+  //   color: vars.$primary;
+  // }
 
-  .mdc-tab__text-label {
-    color: rgba(vars.$primary-600) !important;
-  }
+  // .mdc-tab__text-label {
+  //   color: rgba(vars.$primary-600) !important;
+  // }
 
-  .mdc-tab-indicator__content--underline {
-    border-color: rgba(vars.$accent-lighter) !important;
-  }
+  // .mdc-tab-indicator__content--underline {
+  //   border-color: rgba(vars.$accent-lighter) !important;
+  // }
 
   .mdc-tab__ripple::before {
     opacity: 0 !important;
@@ -219,7 +219,7 @@
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-  background-color: vars.$primary-contrast-rgb;
+  // background-color: vars.$primary-contrast-rgb;
   overflow: auto;
   max-width: fit-content;
   font-family: Metropolis;

@@ -22,17 +22,17 @@
   }
 
   .label {
-    color: rgba(vars.$primary);
+    // color: rgba(vars.$primary);
     padding-right: 3rem;
     font-weight: 500;
   }
 
   .value {
-    color: rgba(vars.$primary-400);
+    // color: rgba(vars.$primary-400);
     font-weight: 400;
   }
 
   .sr-only {
-    @include utils.sr-only();
+    // @include utils.sr-only();
   }
 }
