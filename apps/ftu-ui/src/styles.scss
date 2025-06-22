@@ -1,8 +1,8 @@
 @use 'angular-material-css-vars' as mat-css;
-@use 'reset';
+// @use 'reset';
 @use 'theming';
 @use 'overrides';
-@use 'variables' as vars;
+@use 'vars';
 @use 'fonts';
 @use 'icons';
 
@@ -10,7 +10,7 @@ html,
 body {
   height: 100%;
   overflow: auto;
-  color: rgba(vars.$primary);
+  // color: rgba(vars.$primary);
 }
 body {
   margin: 0;
@@ -48,5 +48,5 @@ $mat-css-default-light-theme: map-merge(
   )
 );
 
-@include theming.init($default-theme: $mat-css-default-light-theme);
-@include overrides.init();
+// @include theming.init($default-theme: $mat-css-default-light-theme);
+// @include overrides.init();
