@@ -1,3 +1,13 @@
+@use 'utils';
+@use 'vars';
+
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+
+  .splash-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 1600rem;
+  }
 }
