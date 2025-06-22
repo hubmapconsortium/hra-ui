@@ -1,4 +1,4 @@
-@use 'variables' as vars;
+@use 'vars';
 
 :host {
   display: grid;
@@ -25,14 +25,14 @@
 
   .header {
     grid-area: header;
-    border-bottom: 1px solid rgba(vars.$light-dividers);
+    // border-bottom: 1px solid rgba(vars.$light-dividers);
     width: 100%;
     z-index: 2;
   }
 
   .sidebar {
     grid-area: sidebar;
-    border-right: 1px solid rgba(vars.$light-dividers);
+    // border-right: 1px solid rgba(vars.$light-dividers);
   }
 
   .page-content::ng-deep {
