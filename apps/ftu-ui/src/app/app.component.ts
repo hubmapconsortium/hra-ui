@@ -1,6 +1,8 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
+import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   HostBinding,
   HostListener,
@@ -11,8 +13,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { dispatch, dispatch$, select$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
   BaseHrefActions,
@@ -25,7 +27,7 @@ import {
   StorageId,
   StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
+import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from '@hra-ui/components/behavioral';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -45,12 +47,16 @@ import {
   IllustratorActions,
   IllustratorSelectors,
   LinkIds,
+  MouseTrackerModule,
   ScreenModeSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconsModule } from '@hra-ui/design-system/icons';
 
 /** Input property keys */
 type InputProps =
@@ -92,13 +98,21 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 
 @Component({
   selector: 'ftu-ui-root',
+  imports: [
+    ButtonsModule,
+    CommonModule,
+    IconsModule,
+    TissueLibraryBehaviorComponent,
+    MouseTrackerModule,
+    NavigationModule,
+    RouterModule,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MatDialogModule],
   host: {
     class: 'hra-app',
   },
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @HostBinding('class.mat-typography') readonly matTypography = true;
@@ -165,7 +179,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   private readonly clearActiveFtu = dispatch(ActiveFtuActions.Clear);
 
   /** The router */
-  private readonly router = inject(Router);
+  readonly router = inject(Router);
   /** Current route */
   private readonly activatedRoute = inject(ActivatedRoute);
 
