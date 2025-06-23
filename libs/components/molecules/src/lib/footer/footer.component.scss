@@ -1,12 +1,11 @@
-@use 'variables' as vars;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: flex;
   padding: 2rem;
-  border-top: 1px solid rgba(vars.$light-dividers);
+  // border-top: 1px solid rgba(vars.$light-dividers);
   align-items: center;
-  background: rgba(vars.$primary-lighter);
+  // background: rgba(vars.$primary-lighter);
   gap: 2rem;
   height: 100%;
   width: 100%;
@@ -37,13 +36,13 @@
   }
 
   button {
-    background: rgba(vars.$light-dividers);
+    // background: rgba(vars.$light-dividers);
     height: 1.75rem;
     font-size: 0.75rem;
     font-weight: 500;
     padding: 0;
     min-width: 10rem;
-    color: rgba(vars.$primary);
+    // color: rgba(vars.$primary);
 
     mat-icon,
     span {

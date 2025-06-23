@@ -1,5 +1,5 @@
 @use 'utils';
-@use 'variables' as vars;
+@use 'vars';
 
 :host {
   display: flex;
@@ -7,7 +7,7 @@
   height: 4rem;
   padding: 0 2rem;
 
-  @include utils.define-flex-filler();
+  // @include utils.define-flex-filler();
 
   h1 {
     // Reset margins for h1 elements
@@ -29,7 +29,7 @@
     .text {
       margin-left: 1rem;
       font-weight: 600;
-      color: vars.$accent-rgb;
+      // color: vars.$accent-rgb;
     }
   }
 
@@ -38,13 +38,13 @@
   }
 
   .button {
-    background: rgba(vars.$light-dividers);
+    // background: rgba(vars.$light-dividers);
     height: 1.75rem;
     font-size: 0.75rem;
     font-weight: 500;
     padding: 0;
     width: 7.5rem;
-    color: rgba(vars.$primary);
+    // color: rgba(vars.$primary);
 
     mat-icon {
       height: 1rem;
@@ -59,7 +59,7 @@
       height: 100%;
       text-decoration: none;
       align-items: center;
-      color: rgba(vars.$primary);
+      // color: rgba(vars.$primary);
       gap: 0.25rem;
     }
   }
@@ -73,7 +73,7 @@
 
     .product .text,
     .about .text {
-      @include utils.sr-only();
+      // @include utils.sr-only();
     }
 
     .product {
