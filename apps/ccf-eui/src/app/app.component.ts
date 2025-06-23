@@ -48,6 +48,8 @@ interface AppOptions {
   filter?: Partial<Filter>;
   /** Login disabled */
   loginDisabled?: boolean;
+  /** Embedded State */
+  embedded?: boolean;
 }
 
 /**
@@ -60,6 +62,7 @@ interface AppOptions {
   styleUrls: ['./app.component.scss'],
   host: {
     class: 'hra-app',
+    '[class.embedded]': 'isEmbedded()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
@@ -131,6 +134,8 @@ export class AppComponent implements OnInit {
   readonly selectedOrgans$ = this.globalConfig.getOption('selectedOrgans');
   /** Base href option */
   readonly baseHref$ = this.globalConfig.getOption('baseHref');
+  /** Embedded option */
+  readonly isEmbedded = toSignal(this.globalConfig.getOption('embedded'));
 
   /** Node highlighting function with debounce */
   protected readonly debouncedHighlight = debounce((id: string) => this.listResultsState.highlightNode(id), 100);

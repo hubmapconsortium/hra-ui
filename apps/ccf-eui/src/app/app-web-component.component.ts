@@ -158,6 +158,9 @@ export class AppWebComponent extends BaseWebComponent {
   /** Whether the component is fully initialized */
   override initialized!: boolean;
 
+  /** Whether the component is embedded */
+  embedded = input<boolean>(false);
+
   /**
    * Creates an instance of app web component and parses the initial configuration
    */
@@ -176,6 +179,7 @@ export class AppWebComponent extends BaseWebComponent {
         loginDisabled: BUILTIN_PARSERS.boolean,
         filter: parseFilter,
         selectedOrgans: BUILTIN_PARSERS.json,
+        embedded: BUILTIN_PARSERS.boolean,
       },
     });
   }

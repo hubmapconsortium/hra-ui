@@ -59,15 +59,11 @@
   }
 
   &.embedded .page-content {
-    grid-template-rows: 0rem 3rem 5rem calc(100vh - 8rem);
+    grid-template-rows: 0rem 0rem 5rem calc(100vh - 8rem);
 
     .ontologies {
       max-height: calc(100vh - 14.375rem);
     }
-  }
-
-  &:not(.embedded) .page-content hra-back-button-bar {
-    display: none;
   }
 
   mat-progress-bar {
@@ -79,10 +75,6 @@
         track-color: transparent,
       )
     );
-  }
-
-  hra-back-button-bar {
-    grid-area: back;
   }
 
   ::ng-deep hra-nav-header-buttons {
