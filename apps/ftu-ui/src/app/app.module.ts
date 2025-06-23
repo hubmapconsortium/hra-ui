@@ -13,7 +13,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { MarkdownModule } from 'ngx-markdown';
 import { ReplaySubject } from 'rxjs';
 import { environment } from '../environments/environment';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
 import { initFactory } from './app.init';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
