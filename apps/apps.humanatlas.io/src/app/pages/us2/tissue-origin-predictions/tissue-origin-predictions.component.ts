@@ -35,13 +35,13 @@ import moment from 'moment';
  * Script URL for EUI
  * TODO: Currently using Staging URL, need to change to production URL.
  * */
-const SCRIPT_URL = 'http://127.0.0.1:5500/dist/apps/ccf-eui/browser/wc.js';
+const SCRIPT_URL = 'https://cdn.humanatlas.io/ui--staging/ccf-eui/wc.js';
 
 /**
  * Style URLs for EUI
  * TODO: Currently using Staging URL, need to change to production URL.
  */
-const STYLE_URLS = ['http://127.0.0.1:5500/dist/apps/ccf-eui/browser/styles.css'];
+const STYLE_URLS = ['https://cdn.humanatlas.io/ui--staging/ccf-eui/styles.css'];
 
 /** Empty Inputs for Predictions page */
 const EMPTY_DATA: TissuePredictionData = {
@@ -115,9 +115,7 @@ export class TissueOriginPredictionsComponent {
   /** EUI Template */
   private readonly euiTemplate = viewChild.required('euiTemplate', { read: TemplateRef });
   /** Portal for the EUI */
-  private readonly euiPortal = computed(
-    () => new TemplatePortal(this.euiTemplate(), this.viewContainerRef, { isEmbedded: true }),
-  );
+  private readonly euiPortal = computed(() => new TemplatePortal(this.euiTemplate(), this.viewContainerRef));
   /** EUI Overlay */
   private readonly euiOverlay = this.overlay.create({
     disposeOnNavigation: true,
@@ -139,7 +137,6 @@ export class TissueOriginPredictionsComponent {
         const positionStrategy = this.overlay.position().global().top(`${scrollTop}px`).right();
         this.euiOverlay.updatePositionStrategy(positionStrategy);
         this.euiOverlay.attach(this.euiPortal());
-        console.log(this.euiTemplate());
         cleanup(() => this.euiOverlay.detach());
       }
     });
