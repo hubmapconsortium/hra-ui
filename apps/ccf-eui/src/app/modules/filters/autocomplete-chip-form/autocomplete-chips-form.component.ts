@@ -130,9 +130,9 @@ export class AutocompleteChipsFormComponent implements OnInit {
    * @param event Autocomplete selected event
    */
   optionSelected(event: MatAutocompleteSelectedEvent): void {
-    const selected = event.option.viewValue;
-    if (!this.chips().includes(selected)) {
-      const updatedValue = [...this.chips(), selected];
+    const selectedValue = event.option.viewValue;
+    if (!this.chips().includes(selectedValue)) {
+      const updatedValue = [...this.chips(), selectedValue];
       this.chips.set(updatedValue);
       this.form().setValue(updatedValue);
     }
