@@ -35,13 +35,13 @@ import moment from 'moment';
  * Script URL for EUI
  * TODO: Currently using Staging URL, need to change to production URL.
  * */
-const SCRIPT_URL = 'https://cdn.humanatlas.io/ui--staging/ccf-eui/wc.js';
+const SCRIPT_URL = 'http://127.0.0.1:5500/dist/apps/ccf-eui/browser/wc.js';
 
 /**
  * Style URLs for EUI
  * TODO: Currently using Staging URL, need to change to production URL.
  */
-const STYLE_URLS = ['https://cdn.humanatlas.io/ui--staging/ccf-eui/styles.css'];
+const STYLE_URLS = ['http://127.0.0.1:5500/dist/apps/ccf-eui/browser/styles.css'];
 
 /** Empty Inputs for Predictions page */
 const EMPTY_DATA: TissuePredictionData = {

@@ -2,6 +2,14 @@
 @use 'utils';
 @use 'vars';
 
+:host-context(.embedded) .page-content {
+  grid-template-rows: 0rem 0rem 5rem calc(100vh - 8rem);
+
+  .ontologies {
+    max-height: calc(100vh - 14.375rem);
+  }
+}
+
 :host {
   .sidenav-container {
     height: 100%;

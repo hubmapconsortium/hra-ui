@@ -116,16 +116,11 @@ function parseFilter(value: unknown): string | Partial<Filter> {
 }
 
 /**
- * Custom injection token to lazy load the theme for Rapidoc.
- */
-export const STANDALONE_TOKEN = new InjectionToken<boolean>('EUI-Standalone');
-
-/**
  * Root web component for the EUI
  */
 @Component({
   selector: 'ccf-root-wc',
-  template: '<ccf-root *ngIf="initialized" [class.embedded]="!isStandalone"></ccf-root>',
+  template: '<ccf-root *ngIf="initialized"></ccf-root>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
@@ -162,8 +157,6 @@ export class AppWebComponent extends BaseWebComponent {
 
   /** Whether the component is fully initialized */
   override initialized!: boolean;
-
-  protected readonly isStandalone = inject(STANDALONE_TOKEN) ?? false;
 
   /**
    * Creates an instance of app web component and parses the initial configuration
