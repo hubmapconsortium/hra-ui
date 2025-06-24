@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, InjectionToken, input } from '@angular/core';
 import { Filter } from '@hra-api/ng-client';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 
@@ -116,11 +116,16 @@ function parseFilter(value: unknown): string | Partial<Filter> {
 }
 
 /**
+ * Custom injection token to lazy load the theme for Rapidoc.
+ */
+export const STANDALONE_TOKEN = new InjectionToken<boolean>('EUI-Standalone');
+
+/**
  * Root web component for the EUI
  */
 @Component({
   selector: 'ccf-root-wc',
-  template: '<ccf-root *ngIf="initialized"></ccf-root>',
+  template: '<ccf-root *ngIf="initialized" [class.embedded]="!isStandalone"></ccf-root>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
@@ -158,8 +163,7 @@ export class AppWebComponent extends BaseWebComponent {
   /** Whether the component is fully initialized */
   override initialized!: boolean;
 
-  /** Whether the component is embedded */
-  embedded = input<boolean>(false);
+  protected readonly isStandalone = inject(STANDALONE_TOKEN) ?? false;
 
   /**
    * Creates an instance of app web component and parses the initial configuration
@@ -179,7 +183,6 @@ export class AppWebComponent extends BaseWebComponent {
         loginDisabled: BUILTIN_PARSERS.boolean,
         filter: parseFilter,
         selectedOrgans: BUILTIN_PARSERS.json,
-        embedded: BUILTIN_PARSERS.boolean,
       },
     });
   }

@@ -61,13 +61,13 @@
   <div>
     <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>
     <ccf-eui
+      class="embedded"
       base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
       use-remote-api="false"
       hubmap-data-url=""
       login-disabled="true"
       header="false"
       data-sources="{{ ruiLocationsJsonString }}"
-      embedded="true"
     >
     </ccf-eui>
   </div>
