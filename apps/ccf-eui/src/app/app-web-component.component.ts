@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, InjectionToken, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Filter } from '@hra-api/ng-client';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 
