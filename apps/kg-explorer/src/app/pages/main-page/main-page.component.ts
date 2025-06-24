@@ -188,14 +188,10 @@ export class MainPageComponent {
           const objectData = this.resolveData(data['@graph']);
           this.rows.set(objectData);
         }),
-      )
-      .pipe(
         switchMap((items: any) => {
           const innerCalls = items['@graph'].map((item: any) => this.getMetadata(item));
           return forkJoin(innerCalls) as unknown as any[];
         }),
-      )
-      .pipe(
         tap((metadata: any[]) => {
           this.rows().map((row) => {
             const md = metadata.find((entry) => entry['id'] === row['objectUrl']);
@@ -246,14 +242,13 @@ export class MainPageComponent {
 
   private resolveData(data: any[]): TableRow[] {
     return data.map((item: any) => {
-      // console.log(item['title'], item['organs']); //TODO: handle multiple organs?
       return {
         title: item['title'],
         objectUrl: item['lod'],
         type: 'product:' + PRODUCT_ICON_MAP[item['doType']],
         organ: this.getOrganIcon(item['organs'] && item['organs'].length < 4 ? item['organs'][0] : 'all-organs'),
-        cellCount: '',
-        biomarkerCount: '',
+        cellCount: item['cell_count'],
+        biomarkerCount: item['biomarker_count'],
         lastModified: this.formatDateToYYYYMM(item['lastUpdated']),
       };
     });
