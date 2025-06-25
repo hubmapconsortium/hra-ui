@@ -4,27 +4,16 @@
 :host {
   display: block;
 
-  .splash-wrapper,
-  .collaborators-wrapper {
-    width: 100%;
-  }
-
   .splash-section,
   .collaborators-section {
     position: relative;
     z-index: 1;
-    width: 100%;
-    max-width: 46.25rem;
     min-width: 17rem;
     display: flex;
-    flex-direction: column;
   }
 
   .splash-wrapper {
-    position: relative;
-    // height: 100vh;
     max-height: 747px;
-    // min-height: 720px;
     overflow: hidden;
     margin: 0;
     min-height: calc(34.625rem + 10rem);
@@ -39,31 +28,27 @@
       background-size: cover;
     }
     .splash-section {
-      position: relative;
-      z-index: 1;
+      flex-direction: column;
       width: 100%;
       max-width: 46.25rem;
       min-width: 17rem;
       min-height: 34.625rem;
-      top: 96px;
-      left: 40px;
+      margin-left: 2.5rem;
       margin-right: auto;
-
-      display: flex;
-      flex-direction: column;
-      // gap: 3.5rem;
-      // padding: 5rem 2.5rem;
+      margin-top: 6rem;
 
       .misc-logo {
         width: 64px;
         height: 64px;
         margin-top: 80px;
         margin-bottom: 32px;
+        margin-left: 2.5rem;
       }
 
       .splash-section-content {
         display: flex;
         flex-direction: column;
+        margin-left: 2.5rem;
       }
 
       .header {
@@ -92,9 +77,6 @@
   }
 
   .collaborators-wrapper {
-    position: relative;
-    overflow: hidden;
-
     .splash-header-img-2 {
       position: absolute;
       object-fit: cover;
@@ -105,22 +87,24 @@
       background-size: cover;
     }
 
-    // max-width: 46.25rem;
     min-height: 720px;
     .collaborators-section {
-      top: 96px;
-      left: 820px;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 100%;
+      margin-right: 2.5rem;
+      padding: 6rem 2.5rem;
 
       .collaborators-section-content {
+        margin-left: 2.5rem;
         display: flex;
         flex-direction: column;
-        margin-left: 2.5rem;
       }
 
       .thank-you-header {
         @include utils.use-font(headline, large);
-        margin-top: 96px;
-        margin-bottom: 32px;
+        margin-top: 6rem;
+        margin-bottom: 2rem;
         color: vars.$on-background;
       }
 
@@ -128,10 +112,12 @@
         font: vars.$body-xl;
         color: vars.$on-secondary-fixed;
         margin-bottom: 56px;
+        max-width: 41.25rem;
       }
 
       .logo-wrapper {
         display: flex;
+        align-items: center;
         flex-wrap: wrap;
         gap: 4rem;
 
