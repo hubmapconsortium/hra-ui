@@ -96,6 +96,8 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   return filter((value): value is T => value !== undefined);
 }
 
+/** Main application component
+ */
 @Component({
   selector: 'ftu-ui-root',
   imports: [
