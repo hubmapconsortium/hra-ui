@@ -11,30 +11,9 @@ import { provideDesignSystem } from '@hra-ui/design-system';
 import { ROUTES } from './app.routes';
 import { provideStore } from '@ngxs/store';
 
-// @NgModule({
-//   declarations: [AppComponent],
-//   imports: [
-//     BrowserModule,
-//     BrowserAnimationsModule,
-//     MatDialogModule,
-//     InlineSVGModule.forRoot(),
-//     MarkdownModule.forRoot({
-//       loader: HttpClient,
-//     }),
-//     NgxsModule.forRoot(),
-//     ThemingModule,
-//     AppRoutingModule,
-//     CdkStateModule,
-//     HraServiceModule,
-//     HraStateModule.forRoot({
-//       googleAnalyticsToken: environment.googleAnalyticsToken,
-//     }),
-//     HeaderBehaviorComponent,
-//     TissueLibraryBehaviorComponent,
-//     MouseTrackerModule,
-//   ],
-
-// })
+/**
+ * Application config
+ */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAppInitializer(() => {
