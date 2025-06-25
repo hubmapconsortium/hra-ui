@@ -1,0 +1,10 @@
+:host {
+  --mat-text-button-horizontal-padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  color: var(--mat-sys-secondary);
+
+  .info-icon {
+    padding: 0.5rem;
+  }
+}

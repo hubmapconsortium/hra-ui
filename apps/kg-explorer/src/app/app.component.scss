@@ -1,8 +1,11 @@
 :host {
-  display: block;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   .content {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
   }
 }
