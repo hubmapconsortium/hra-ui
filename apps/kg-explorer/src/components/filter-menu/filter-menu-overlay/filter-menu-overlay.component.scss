@@ -8,3 +8,38 @@
     padding: 0.5rem;
   }
 }
+
+::ng-deep .container {
+  .tagline,
+  .actions {
+    padding: 0 !important;
+  }
+
+  .content {
+    padding: 0.75rem 0.75rem 0 0.75rem !important;
+    width: 312px;
+  }
+}
+
+::ng-deep .filter-menu-content {
+  .search {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .mat-mdc-form-field-infix {
+    padding-top: 13.5px;
+    padding-bottom: 13.5px;
+  }
+
+  .option-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2.5rem;
+  }
+
+  ng-scrollbar {
+    height: 264px;
+  }
+}
