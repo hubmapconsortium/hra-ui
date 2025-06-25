@@ -1,32 +1,30 @@
-import { NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
+import { Route } from '@angular/router';
 import { FtuComponent } from './pages/ftu-page/ftu.component';
 import { LandingComponent } from './pages/landing-page/landing.component';
 import { ftuResolver } from './pages/ftu-page/ftu.resolver';
 
-const routes: Route[] = [
+/**
+ * Application routes definition
+ */
+export const ROUTES: Route[] = [
   {
     path: '',
-    loadComponent: () => LandingComponent,
+    pathMatch: 'full',
+    component: LandingComponent,
   },
   {
     path: 'ftu',
+    component: FtuComponent,
     data: {
       name: 'ftu',
+      id: 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle',
     },
     resolve: {
       id: ftuResolver,
     },
-    loadComponent: () => FtuComponent,
   },
   {
     path: '**',
     redirectTo: '/',
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

@@ -1,24 +1,29 @@
-<div class="no-data" *ngIf="sectionItems.length === 0">No data</div>
-<table mat-table *ngIf="sectionItems.length > 0" [dataSource]="sectionItems">
-  <caption class="sr-only">
-    Biomarker Table Data Card
-  </caption>
+@if (sectionItems.length === 0) {
+  <div class="no-data">No data</div>
+}
 
-  <!-- Label Column -->
-  <ng-container matColumnDef="label">
-    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Label</th>
-    <td class="label" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">
-      {{ element.data.label }}
-    </td>
-  </ng-container>
+@if (sectionItems.length > 0) {
+  <table mat-table [dataSource]="sectionItems">
+    <caption class="sr-only">
+      Biomarker Table Data Card
+    </caption>
 
-  <!-- Value Column -->
-  <ng-container matColumnDef="value">
-    <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Value</th>
-    <td class="value" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">
-      {{ element.data.value }}
-    </td>
-  </ng-container>
+    <!-- Label Column -->
+    <ng-container matColumnDef="label">
+      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Label</th>
+      <td class="label" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">
+        {{ element.data.label }}
+      </td>
+    </ng-container>
 
-  <tr mat-row *matRowDef="let row; columns: ['label', 'value']"></tr>
-</table>
+    <!-- Value Column -->
+    <ng-container matColumnDef="value">
+      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Value</th>
+      <td class="value" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">
+        {{ element.data.value }}
+      </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: ['label', 'value']"></tr>
+  </table>
+}

@@ -27,6 +27,7 @@ import { takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
+  /** Whether the FTU is in fullscreen mode */
   readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
 
   /** Set the illustration from the id query parameter */

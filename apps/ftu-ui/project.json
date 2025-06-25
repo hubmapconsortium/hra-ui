@@ -8,16 +8,19 @@
   "sourceRoot": "apps/ftu-ui/src",
   "prefix": "ftu",
   "tags": ["type:app", "project:ftu"],
-  "implicitDependencies": ["shared-theming"],
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
       "options": {
-        "assets": ["apps/ftu-ui/src/favicon.png", "apps/ftu-ui/src/assets"],
-        "styles": ["apps/ftu-ui/src/styles.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
-        },
+        "assets": [
+          "apps/ftu-ui/src/favicon.png",
+          "apps/ftu-ui/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "polyfills": ["zone.js"]
       },
       "configurations": {
@@ -39,6 +42,12 @@
     },
     "serve": {
       "executor": "@nx/angular:dev-server"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/ftu-ui/tsconfig.app.json"
+      }
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ftu-ui/browser/"
