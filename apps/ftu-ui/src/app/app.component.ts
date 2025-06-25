@@ -117,6 +117,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterContentInit, OnChanges, OnInit {
+  /** Host binding of app component */
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   /** Illustration to display (choosen automatically if not provided) */
@@ -321,25 +322,31 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
       });
   }
 
+  /** Screen size notice open of app component */
   screenSizeNoticeOpen = false;
 
+  /** Determines whether shown small viewport notice has been displayed */
   private readonly hasShownSmallViewportNotice = selectQuerySnapshot(
     StorageSelectors.get,
     StorageId.Local,
     'screen-size-notice',
   );
 
+  /** Dialog  of app component */
   private readonly dialog = inject(MatDialog);
 
+  /** Host listener for window resize events */
   @HostListener('window:resize', ['$event'])
   onWindowResize(): void {
     this.detectSmallViewport();
   }
 
+  /** Lifecycle hook that is called after content has been projected into the component */
   ngAfterContentInit(): void {
     this.detectSmallViewport();
   }
 
+  /** Detect small viewport */
   detectSmallViewport(): void {
     if (
       window.innerWidth <= SMALL_VIEWPORT_THRESHOLD &&
