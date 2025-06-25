@@ -1,5 +1,5 @@
-@use 'utils';
-@use 'vars';
+@use '../../../../../../libs/design-system/styles/utils' as utils;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: flex;
