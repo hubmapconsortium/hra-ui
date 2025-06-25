@@ -14,6 +14,7 @@ export const ROUTES: Route[] = [
     component: FtuComponent,
     data: {
       name: 'ftu',
+      id: 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle',
     },
     resolve: {
       id: ftuResolver,
