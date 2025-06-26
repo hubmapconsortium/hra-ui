@@ -1,0 +1,65 @@
+<div class="header">
+  <div class="left">
+    <div class="icons">
+      <hra-icon [svgIcon]="'product:eui'"></hra-icon>
+      <hra-icon [svgIcon]="'organ:kidney-left'"></hra-icon>
+    </div>
+    <div class="title">Organ Information</div>
+  </div>
+  <button mat-icon-button hraIconButtonSize="large" hraIconButtonVariant="dark">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</div>
+<div class="content">
+  <div class="info-view">
+    <div class="organ-title">
+      {{ statsLabel$ | async }}
+    </div>
+    <div class="params">
+      <mat-button-toggle-group
+        hraButtonToggleSize="medium"
+        disabled="false"
+        [hideSingleSelectionIndicator]="false"
+        [value]="(sex$ | async)!"
+        (change)="updateInput('sex', $event.value)"
+      >
+        <mat-button-toggle value="Male">Male</mat-button-toggle>
+        <mat-button-toggle value="Female">Female</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <mat-button-toggle-group
+        hraButtonToggleSize="medium"
+        disabled="false"
+        [hideSingleSelectionIndicator]="false"
+        [value]="(side$ | async)!"
+        (change)="updateInput('side', $event.value)"
+      >
+        <mat-button-toggle value="Left">Left</mat-button-toggle>
+        <mat-button-toggle value="Right">Right</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="stats-table">
+      <hra-table
+        [columns]="[
+          { column: 'count', label: '#total', type: 'numeric' },
+          { column: 'label', label: 'Metadata type', type: 'text' },
+        ]"
+        [rows]="(stats$ | async) ?? []"
+        [style]="'alternating'"
+        [verticalDividers]="true"
+      ></hra-table>
+    </div>
+  </div>
+  <div class="organ-view">
+    <ccf-organ
+      [blocks]="(blocks$ | async) ?? []"
+      [filter]="$any(filter$ | async)"
+      [sex]="(sex$ | async)!"
+      [side]="$any(side$ | async)"
+      [organ]="(organ$ | async) ?? undefined"
+      [scene]="(scene$ | async) ?? []"
+      (nodeClick)="nodeClicked.emit($event)"
+    >
+    </ccf-organ>
+  </div>
+</div>
