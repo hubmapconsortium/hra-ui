@@ -4,12 +4,14 @@
   </button>
 </div>
 
-@switch (data.variant) {
-  @case ('table') {
-    <hra-table [rows]="data.rows" [columns]="data.columns" />
-  }
+<div class="sheet-content">
+  @switch (data.variant) {
+    @case ('table') {
+      <hra-table [rows]="data.rows" [columns]="data.columns" />
+    }
 
-  @case ('page-section') {
-    <hra-page-section [tagline]="data.tagline ?? ''" />
+    @case ('page-section') {
+      <hra-page-section [tagline]="data.tagline ?? ''" />
+    }
   }
-}
+</div>
