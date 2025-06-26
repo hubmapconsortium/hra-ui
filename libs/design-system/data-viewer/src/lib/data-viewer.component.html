@@ -56,7 +56,7 @@
       <mat-select
         disableRipple
         panelClass="options-container"
-        [ngModel]="organ_()"
+        [(ngModel)]="organ_"
         (ngModelChange)="organ.set($event.label)"
         class="organ-selector"
       >
@@ -64,7 +64,7 @@
           <mat-option [value]="organ">{{ organ.label }}</mat-option>
         }
       </mat-select>
-      @if (!organ_() || organ_() === undefined) {
+      @if (organ_() === undefined) {
         <mat-hint>Please select an organ from this release</mat-hint>
       }
     </mat-form-field>
