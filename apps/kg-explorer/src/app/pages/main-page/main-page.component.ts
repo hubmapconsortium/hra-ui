@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -10,51 +11,7 @@ import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/resu
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 
-/** Column info */
-const columns: TableColumn[] = [
-  {
-    column: 'download',
-    label: '',
-    type: {
-      type: 'menu',
-      icon: 'download',
-      options: 'downloadOptions',
-    },
-  },
-  {
-    column: 'title',
-    label: 'Digital Objects',
-    type: {
-      type: 'link',
-      urlColumn: 'objectUrl',
-    },
-  },
-  {
-    column: 'type',
-    label: 'Type',
-    type: 'icon',
-  },
-  {
-    column: 'organ',
-    label: 'Organ',
-    type: 'icon',
-  },
-  {
-    column: 'cellCount',
-    label: '#Cell types',
-    type: 'numeric',
-  },
-  {
-    column: 'biomarkerCount',
-    label: '#Biomarker types',
-    type: 'numeric',
-  },
-  {
-    column: 'lastModified',
-    label: 'Date last modified',
-    type: 'text',
-  },
-];
+import { DigitalObjectData, DigitalObjectMetadata, DigitalObjectsData } from '../../digital-objects.schema';
 
 const PRODUCT_ICON_MAP: Record<string, string> = {
   '2d-ftu': 'ftu',
@@ -90,7 +47,13 @@ const ORGAN_ICON_MAP: Record<string, string> = {
   ureter: 'ureter-left',
 };
 
-const FILE_TYPE_MAP: Record<string, object> = {
+interface FileData {
+  name: string;
+  typeSuffix: string;
+  description?: string;
+}
+
+const FILE_TYPE_MAP: Record<string, FileData> = {
   'image/svg+xml': {
     name: 'SVG',
     typeSuffix: '.svg',
@@ -155,8 +118,6 @@ const FILE_TYPE_MAP: Record<string, object> = {
   },
 };
 
-const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
-
 /** This component is used for rendering the main page of the application. */
 @Component({
   selector: 'hra-kg-main-page',
@@ -175,29 +136,38 @@ const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent {
-  private readonly http = inject(HttpClient);
-  readonly rows = signal<TableRow[]>([]);
-  readonly filteredRows = signal<any[]>([]);
-  readonly columns = input<TableColumn[]>(columns);
+  readonly data = input.required<DigitalObjectsData>();
+  readonly $data = toObservable(this.data);
+
+  readonly columns = input.required<TableColumn[]>();
+
+  readonly allRows = signal<TableRow[]>([]);
+  readonly filteredRows = signal<TableRow[]>([]);
+
   readonly searchControl = new UntypedFormControl();
 
+  private readonly http = inject(HttpClient);
+
   constructor() {
-    this.getData()
+    effect(() => {
+      this.filteredRows.set(this.allRows());
+    });
+
+    this.$data
       .pipe(
-        tap((data: any) => {
-          const objectData = this.resolveData(data['@graph']);
-          this.rows.set(objectData);
+        switchMap((items) => {
+          const objectData = this.resolveData(items['@graph']);
+          this.allRows.set(objectData);
+          const innerCalls = items['@graph'].map((item) => this.getMetadata(item));
+          return forkJoin(innerCalls);
         }),
-        switchMap((items: any) => {
-          const innerCalls = items['@graph'].map((item: any) => this.getMetadata(item));
-          return forkJoin(innerCalls) as unknown as any[];
-        }),
-        tap((metadata: any[]) => {
-          this.rows().map((row) => {
+        tap((metadata) => {
+          this.allRows().map((row) => {
             const md = metadata.find((entry) => entry['id'] === row['objectUrl']);
-            row['downloadOptions'] = this.setDownloadOptions(md);
+            if (md) {
+              row['downloadOptions'] = this.setDownloadOptions(md);
+            }
           });
-          this.filteredRows.set(this.rows());
         }),
       )
       .subscribe();
@@ -207,56 +177,49 @@ export class MainPageComponent {
     });
   }
 
-  private setDownloadOptions(md: any): any {
+  private setDownloadOptions(md: DigitalObjectMetadata): Record<string, string | undefined>[] {
     const id = md['name'];
-    const files = md['distributions'];
-    const derivedFiles = md['was_derived_from']['distributions'];
-    const downloads1 = derivedFiles.map((file: any) => {
-      return {
-        id: id + (FILE_TYPE_MAP[file['mediaType']] as any)['typeSuffix'],
-        name: (FILE_TYPE_MAP[file['mediaType']] as any)['name'],
-        description: (FILE_TYPE_MAP[file['mediaType']] as any)['description'],
-        icon: 'download',
-        url: file['downloadUrl'],
-      };
-    });
-    const downloads2 = files.map((file: any) => {
-      return {
-        id: id + (FILE_TYPE_MAP[file['mediaType']] as any)['typeSuffix'],
-        name: (FILE_TYPE_MAP[file['mediaType']] as any)['name'],
-        description: (FILE_TYPE_MAP[file['mediaType']] as any)['description'],
-        icon: 'download',
-        url: file['downloadUrl'],
-      };
-    });
+    const files = md['distributions'] as Record<string, string>[];
+    const derivedFiles = md['was_derived_from']['distributions'] as Record<string, string>[];
+    const downloads1 = this.resolveDownloadOptions(id, derivedFiles);
+    const downloads2 = this.resolveDownloadOptions(id, files);
     return downloads1.concat(downloads2);
   }
 
-  private getData() {
-    return this.http.get(DO_URL, { responseType: 'json' });
-  }
-
-  private getMetadata(entry: any): Observable<any> {
-    return this.http.get(entry['lod'], { responseType: 'json' });
-  }
-
-  private resolveData(data: any[]): TableRow[] {
-    return data.map((item: any) => {
+  private resolveDownloadOptions(id: string, files: Record<string, string>[]) {
+    return files.map((file) => {
+      const fileType = FILE_TYPE_MAP[file['mediaType']];
       return {
-        title: item['title'],
-        objectUrl: item['lod'],
-        type: 'product:' + PRODUCT_ICON_MAP[item['doType']],
-        organ: this.getOrganIcon(item['organs'] && item['organs'].length < 4 ? item['organs'][0] : 'all-organs'),
-        cellCount: item['cell_count'],
-        biomarkerCount: item['biomarker_count'],
-        lastModified: this.formatDateToYYYYMM(item['lastUpdated']),
+        id: id + fileType.typeSuffix,
+        name: fileType.name,
+        description: fileType.description,
+        icon: 'download',
+        url: file['downloadUrl'],
       };
+    });
+  }
+
+  private getMetadata(entry: DigitalObjectData): Observable<DigitalObjectMetadata> {
+    return this.http.get(entry.lod, { responseType: 'json' });
+  }
+
+  private resolveData(data: DigitalObjectData[]): TableRow[] {
+    return data.map((item) => {
+      return {
+        title: item.title,
+        objectUrl: item.lod,
+        type: 'product:' + PRODUCT_ICON_MAP[item.doType],
+        organ: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'),
+        cellCount: item.cell_count,
+        biomarkerCount: item.biomarker_count,
+        lastModified: this.formatDateToYYYYMM(item.lastUpdated),
+      } as TableRow;
     });
   }
 
   private onSearchChange(searchTerm: string): void {
     this.filteredRows.set(
-      this.rows().filter((row) =>
+      this.allRows().filter((row) =>
         Object.values(row).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase())),
       ),
     );
