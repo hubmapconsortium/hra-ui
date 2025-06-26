@@ -45,9 +45,7 @@ content:
     anchor: data-viewer
     level: 3
     content:
-      component: DataViewer
-      controllers:
-        - id: DataViewerParamSync
+      component: DataViewerWithQueryParams
       variant: ftu
       githubIconsUrl: https://github.com/cns-iu/md-icons/tree/main/other-icons/organs
       releaseVersionData:
