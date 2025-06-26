@@ -26,8 +26,12 @@ export class DataViewerWithQueryParamsComponent {
   /** The release version to filter by, from the URL */
   protected readonly releaseVersion = linkedQueryParam('releaseVersion', {
     defaultValue: '',
+    preserveFragment: true,
   }) as WritableSignal<string>;
 
   /** The organ to filter by, from the URL */
-  protected readonly organ = linkedQueryParam('organ', { defaultValue: 'Kidney' }) as WritableSignal<string>;
+  protected readonly organ = linkedQueryParam('organ', {
+    defaultValue: 'Kidney',
+    preserveFragment: true,
+  }) as WritableSignal<string>;
 }
