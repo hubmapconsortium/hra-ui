@@ -1,7 +1,7 @@
 @use 'utils';
 
 :host {
-  width: 18.5rem;
+  min-width: 18.5rem;
   height: 100%;
   border-right: 1px solid var(--mat-sys-outline);
   padding: 2rem 1rem;

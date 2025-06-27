@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
+
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 
 @Component({
@@ -26,7 +27,10 @@ export class FilterMenuComponent {
   ];
   drawerClosed = false;
 
+  readonly closeDrawer = output<boolean>();
+
   toggleDrawer() {
     this.drawerClosed = !this.drawerClosed;
+    this.closeDrawer.emit(this.drawerClosed);
   }
 }

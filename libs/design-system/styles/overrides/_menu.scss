@@ -26,8 +26,8 @@
 
   // TODO revisit
   .mat-mdc-menu-panel {
+    max-width: 19.5rem;
     button {
-      min-width: 12rem;
       border: 0.125rem solid transparent;
     }
 
@@ -55,5 +55,24 @@
     .mat-mdc-menu-item-highlighted {
       background-color: rgb(from vars.$tertiary r g b / 0.2);
     }
+  }
+
+  .option-text {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+
+    .option-name {
+      font: vars.$label-medium-font;
+    }
+    .option-description {
+      font: vars.$label-small-font;
+      color: vars.$primary;
+    }
+  }
+
+  .table-menu {
+    --mat-menu-item-with-icon-leading-spacing: 0.75rem;
+    --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
   }
 }
