@@ -1,5 +1,6 @@
 @use 'utils';
 @use 'vars';
+@use '@angular/material' as mat;
 
 :host {
   display: block;
@@ -64,4 +65,12 @@
       background-color: #000;
     }
   }
+}
+
+.menu-divider {
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
 }

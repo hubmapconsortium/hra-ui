@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -24,6 +26,8 @@ import { CoreModule } from './core/core.module';
     MatButtonToggle,
     ButtonsModule,
     TableComponent,
+    MatMenuModule,
+    MatDivider,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [provideDesignSystem()],
