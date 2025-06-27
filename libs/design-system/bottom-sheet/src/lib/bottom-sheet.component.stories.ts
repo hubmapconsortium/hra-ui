@@ -4,6 +4,7 @@ import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular'
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { BottomSheetService } from '../bottom-sheet.service';
 
 @Component({
   selector: 'hra-bottom-sheet-demo',
@@ -22,7 +23,7 @@ class BottomSheetDemoComponent {
     { column: 'age', label: 'Age', type: 'numeric' },
   ]);
 
-  private readonly bottomSheet = inject(MatBottomSheet);
+  private readonly service = inject(BottomSheetService);
 
   openBottomSheet() {
     const data: BottomSheetData = {
@@ -32,7 +33,7 @@ class BottomSheetDemoComponent {
       columns: this.variant() === 'table' ? this.columns() : undefined,
     };
 
-    this.bottomSheet.open(BottomSheetComponent, { data });
+    this.service.openBottomSheet(data);
   }
 }
 
