@@ -12,12 +12,16 @@ import { TableComponent } from '@hra-ui/design-system/table';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { OrganModule } from './components/organ/organ.module';
-import { CoreModule } from './core/core.module';
+import { HraApiModule, HraApiConfiguration } from '@hra-api/ng-client';
+import { AnalyticsModule } from 'ccf-shared/analytics';
+import { environment } from '../environments/environment';
+import { StoreModule } from './store/store.module';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { DataSourceService, ApiEndpointDataSourceService } from 'ccf-shared';
 
 @NgModule({
   imports: [
     BrowserModule,
-    CoreModule,
     OrganModule,
     IconComponent,
     MatIcon,
@@ -28,8 +32,25 @@ import { CoreModule } from './core/core.module';
     TableComponent,
     MatMenuModule,
     MatDivider,
+    AnalyticsModule.forRoot({
+      gaToken: environment.googleAnalyticsToken,
+      appName: 'organ-info',
+      projectName: 'ccf',
+      developmentMode: !environment.production,
+    }),
+    HraApiModule.forRoot(
+      () =>
+        new HraApiConfiguration({
+          basePath: environment.dbOptions.remoteApiEndpoint,
+        }),
+    ),
+    StoreModule,
   ],
   declarations: [AppComponent, AppWebComponent],
-  providers: [provideDesignSystem()],
+  providers: [
+    provideDesignSystem(),
+    { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
 export class AppModule {}

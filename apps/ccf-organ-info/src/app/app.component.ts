@@ -5,7 +5,7 @@ import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo, sexFromString } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { combineLatest, map, Observable, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
-import { OrganLookupService } from './core/services/organ-lookup/organ-lookup.service';
+import { OrganLookupService } from './services/organ-lookup/organ-lookup.service';
 import { TableColumn } from '@hra-ui/design-system/table';
 
 /** Body ui config */
