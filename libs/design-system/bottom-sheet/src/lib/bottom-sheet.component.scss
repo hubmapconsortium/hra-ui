@@ -10,3 +10,11 @@
     }
   }
 }
+
+::ng-deep {
+  .mat-bottom-sheet-container {
+    max-height: 25.75rem;
+  }
+}
+
+
