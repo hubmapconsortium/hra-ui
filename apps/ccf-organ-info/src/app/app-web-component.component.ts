@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 import { environment } from '../environments/environment';
@@ -65,43 +65,31 @@ function parseStringArray(value: unknown): string[] {
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Organ iri */
-  @Input() organIri?: string;
+  readonly organIri? = input<string>();
   /** Model sex */
-  @Input() sex?: 'Both' | 'Male' | 'Female' = 'Female';
+  readonly sex? = input<'Both' | 'Male' | 'Female'>('Female');
   /** Organ side */
-  @Input() side?: 'Left' | 'Right' = 'Left';
+  readonly side? = input<'Left' | 'Right'>('Left');
   /** Data sources */
-  @Input() dataSources!: string | string[];
+  readonly dataSources = input<string | string[]>();
   /** Highlight */
-  @Input() highlightProviders!: string | string[];
+  readonly highlightProviders = input<string | string[]>();
 
   /** Api token */
-  @Input() token!: string;
+  readonly token = input<string>();
 
   /** Api endpoint */
-  @Input() remoteApiEndpoint!: string;
+  readonly remoteApiEndpoint = input<string>();
 
   /** Donor label */
-  @Input() donorLabel!: string;
-  /** Rui app url */
-  @Input() ruiUrl!: string;
-  /** Eui app url */
-  @Input() euiUrl!: string;
-  /** Asctb app url */
-  @Input() asctbUrl!: string;
-  /** Hra portal url */
-  @Input() hraPortalUrl!: string;
-  /** Course url */
-  @Input() onlineCourseUrl!: string;
-  /** Paper url */
-  @Input() paperUrl!: string;
+  readonly donorLabel = input<string>();
 
   /** Emits when the user switches the model sex */
-  @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
+  readonly sexChange = output<'Male' | 'Female'>();
   /** Emits when the user switches organ side */
-  @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
+  readonly sideChange = output<'Left' | 'Right'>();
   /** Emits when the user clicks a node */
-  @Output() readonly nodeClicked = new EventEmitter<NodeClickEvent>();
+  readonly nodeClicked = output<NodeClickEvent>();
 
   /** Initializes the component */
   constructor() {

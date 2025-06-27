@@ -1,28 +1,76 @@
-.container {
-  height: fit-content;
-  display: flex;
-  flex-direction: row;
-  padding: 1rem;
-  font-family:
-    var(--ccf-ui-font, ''),
-    Inter,
-    Inter Variable,
-    sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  text-align: left;
-  position: relative;
-  background-color: white;
-  color: black;
+@use 'utils';
+@use 'vars';
+@use '@angular/material' as mat;
 
-  .left {
-    width: auto;
-    flex-grow: 1;
+:host {
+  display: block;
+  border-radius: 12px;
+  border: 1px solid vars.$outline;
+  overflow: hidden;
+  min-height: 35.625rem;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid vars.$outline;
+
+    .left {
+      align-items: center;
+      display: flex;
+      gap: 1rem;
+
+      .icons {
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .title {
+        @include utils.use-font(title, medium);
+      }
+    }
   }
 
-  .right {
-    margin-left: 2rem;
-    height: fit-content;
-    width: 29rem;
+  .content {
+    display: flex;
+
+    .organ-title {
+      @include utils.use-font(title, small);
+      margin-bottom: 1rem;
+    }
+
+    .info-view {
+      padding: 24px;
+      min-width: 21rem;
+      max-width: 23.25rem;
+
+      .params {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+
+        mat-button-toggle-group {
+          width: 150px;
+
+          mat-button-toggle {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .organ-view {
+      flex: 1 1;
+      background-color: #000;
+    }
   }
+}
+
+.menu-divider {
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
 }

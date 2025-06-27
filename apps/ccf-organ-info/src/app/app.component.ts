@@ -1,21 +1,12 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Output,
-  ViewChild,
-  inject,
-} from '@angular/core';
-import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
+import { FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo, sexFromString } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { Observable, combineLatest, of } from 'rxjs';
-import { map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
+import { combineLatest, map, Observable, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
 import { OrganLookupService } from './core/services/organ-lookup/organ-lookup.service';
+import { TableColumn } from '@hra-ui/design-system/table';
 
 /** Body ui config */
 interface GlobalConfig {
@@ -57,72 +48,74 @@ const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }];
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
+
   /** Global config */
   private readonly configState = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
 
-  /** Reference to the left container */
-  @ViewChild('left', { read: ElementRef, static: true }) left!: ElementRef<HTMLElement>;
-  /** Reference to the right container */
-  @ViewChild('right', { read: ElementRef, static: true }) right!: ElementRef<HTMLElement>;
-
   /** Emits when the user switches the model sex */
-  @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
+  readonly sexChange = output<'Male' | 'Female'>();
+
   /** Emits when the user switches organ side */
-  @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
+  readonly sideChange = output<'Left' | 'Right'>();
+
   /** Emits when the user clicks a node */
-  @Output() readonly nodeClicked = new EventEmitter<NodeClickEvent>();
+  readonly nodeClicked = output<NodeClickEvent>();
 
   /** Organ sex */
   readonly sex$ = this.configState.getOption('sex');
+
   /** Model size */
   readonly side$ = this.configState.getOption('side');
+
   /** Data filters */
   readonly filter$ = this.configState
     .getOption('highlightProviders')
     .pipe(map((providers) => ({ tmc: providers ?? [] })));
+
   /** Donor label */
   readonly donorLabel$ = this.configState.getOption('donorLabel');
-  /** Rui app url */
-  readonly ruiUrl$ = this.configState.getOption('ruiUrl');
-  /** Eui app url */
-  readonly euiUrl$ = this.configState.getOption('euiUrl');
-  /** Asctb app url */
-  readonly asctbUrl$ = this.configState.getOption('asctbUrl');
-  /** Hra portal url */
-  readonly hraPortalUrl$ = this.configState.getOption('hraPortalUrl');
-  /** Course url */
-  readonly onlineCourseUrl$ = this.configState.getOption('onlineCourseUrl');
-  /** Paper url */
-  readonly paperUrl$ = this.configState.getOption('paperUrl');
 
   /** Organ info */
   readonly organInfo$: Observable<OrganInfo | undefined>;
+
   /** Organ spatial entity */
   readonly organ$: Observable<SpatialEntity | undefined>;
+
   /** Scene nodes */
   readonly scene$: Observable<SpatialSceneNode[]>;
+
   /** Organ stats */
-  readonly stats$: Observable<AggregateCount[]>;
+  readonly stats$: Observable<Record<string, string | number | boolean>[]>;
+
   /** Label for stats */
   readonly statsLabel$: Observable<string>;
+
   /** Tissue blocks */
   readonly blocks$: Observable<TissueBlock[]>;
 
   /** Organ stats */
-  stats: AggregateCount[] = [];
+  stats: Record<string, string | number | boolean>[] = [];
 
   /** Latest config */
   private latestConfig: Immutable<GlobalConfig> = {};
+
   /** Latest organ info */
   private latestOrganInfo?: OrganInfo;
 
-  /** Inizialize the component */
+  /** Table column definitions for the stats table */
+  tableColumns: TableColumn[] = [
+    { column: 'count', label: '#total', type: 'numeric' },
+    { column: 'label', label: 'Metadata type', type: 'text' },
+  ];
+
+  /** Initialize the component */
   constructor() {
     const lookup = inject(OrganLookupService);
 
+    /** Observable for organ 3D entity data */
     this.organInfo$ = this.configState.config$.pipe(
       tap((config) => (this.latestConfig = config)),
       switchMap((config) =>
@@ -133,6 +126,7 @@ export class AppComponent implements AfterViewInit {
       shareReplay(1),
     );
 
+    /** Observable for organ information */
     this.organ$ = this.organInfo$.pipe(
       switchMap((info) =>
         info ? lookup.getOrgan(info, info.hasSex ? this.latestConfig.sex : undefined) : of(undefined),
@@ -151,6 +145,7 @@ export class AppComponent implements AfterViewInit {
       shareReplay(1),
     );
 
+    /** Observable for organ 3D scene */
     this.scene$ = this.organ$.pipe(
       switchMap((organ) =>
         organ && this.latestOrganInfo
@@ -159,27 +154,29 @@ export class AppComponent implements AfterViewInit {
       ),
     );
 
+    /** Observable for current stats for the loaded organ */
     this.stats$ = combineLatest([this.organ$, this.donorLabel$]).pipe(
       switchMap(([organ, donorLabel]) =>
         organ && this.latestOrganInfo
-          ? lookup
-              .getOrganStats(this.latestOrganInfo, sexFromString(organ.sex ?? ''))
-              .pipe(
-                map((agg) =>
-                  agg.map((result) =>
-                    donorLabel && result.label === 'Donors' ? { ...result, label: donorLabel } : result,
-                  ),
-                ),
-              )
+          ? lookup.getOrganStats(this.latestOrganInfo, sexFromString(organ.sex ?? '')).pipe(
+              map((agg) =>
+                agg.map((result) => ({
+                  count: result.count,
+                  label: donorLabel && result.label === 'Donors' ? donorLabel : result.label,
+                })),
+              ),
+            )
           : of([]),
       ),
     );
 
+    /** Observable to compute the organ status label for the loaded organ */
     this.statsLabel$ = this.organ$.pipe(
       map((organ) => this.makeStatsLabel(this.latestOrganInfo, organ?.sex)),
       startWith('Loading...'),
     );
 
+    /** Observable for block registrations */
     this.blocks$ = this.organ$.pipe(
       switchMap((organ) =>
         organ && this.latestOrganInfo ? lookup.getBlocks(this.latestOrganInfo, sexFromString(organ.sex ?? '')) : of([]),
@@ -187,16 +184,8 @@ export class AppComponent implements AfterViewInit {
     );
   }
 
-  /** Initialize parts that depend on dom elements */
-  ngAfterViewInit(): void {
-    const { left, right } = this;
-    const rightHeight = right.nativeElement.offsetHeight;
-    left.nativeElement.style.height = `${rightHeight}px`;
-  }
-
   /**
-   * Update the global config state
-   *
+   * Apply latest changes to the global configuration state.
    * @param key Key to update
    * @param value New value
    */
@@ -205,8 +194,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   /**
-   * Create a label for stats
-   *
+   * Create a new label for the stats data.
    * @param info Organ info
    * @param sex Model sex
    * @returns A label
@@ -222,13 +210,20 @@ export class AppComponent implements AfterViewInit {
   }
 
   /**
-   * Creates an analytics event for the organ info
-   *
-   * @param info Organ info
+   * Creates an analytics event for the organ info.
+   * @param info Organ information
    */
   private logOrganLookup(info: OrganInfo | undefined): void {
     const event = info ? 'organ_lookup_success' : 'organ_lookup_failure';
     const inputs = `Iri: ${this.latestConfig.organIri} - Sex: ${this.latestConfig.sex} - Side: ${this.latestConfig.side}`;
     this.ga.event(event, 'organ', inputs);
+  }
+
+  /**
+   * Gets the organ logo SVG source for the loaded organ.
+   * @returns The organ logo SVG source.
+   */
+  protected getOrganLogo() {
+    return 'organ:' + this.latestOrganInfo?.src.split(':')[1];
   }
 }
