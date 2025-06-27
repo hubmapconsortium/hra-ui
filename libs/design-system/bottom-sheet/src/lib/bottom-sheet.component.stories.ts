@@ -1,8 +1,7 @@
 import { Component, inject, input } from '@angular/core';
-import { BottomSheetComponent, BottomSheetData, BottomSheetVariant } from './bottom-sheet.component';
+import { BottomSheetData, BottomSheetVariant } from './bottom-sheet.component';
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { BottomSheetService } from '../bottom-sheet.service';
 
