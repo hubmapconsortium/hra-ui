@@ -42,10 +42,6 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
   /** Data filter */
   @Input() filter?: Filter;
 
-  /** Emits when the user switches the model sex */
-  @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
-  /** Emits when the user switches organ side */
-  @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
   /** Emits when the user clicks a node */
   @Output() readonly nodeClick = new EventEmitter<NodeClickEvent>();
 
@@ -86,18 +82,6 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
     if (this.bodyUI && 'organ' in changes) {
       this.zoomToFitOrgan();
     }
-  }
-
-  /** Update the model sex */
-  updateSex(selection?: 'Male' | 'Female'): void {
-    this.sex = selection;
-    this.sexChange.emit(this.sex);
-  }
-
-  /** Update the organ side */
-  updateSide(selection?: 'Left' | 'Right'): void {
-    this.side = selection;
-    this.sideChange.emit(this.side);
   }
 
   /** Zoom to fit */

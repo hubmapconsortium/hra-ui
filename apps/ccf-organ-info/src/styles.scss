@@ -1,9 +1,11 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@use 'light-theme';
+@use 'theming' as design-system-theming;
 
-ccf-organ-info {
-  display: flex;
+html {
+  @include design-system-theming.theme(light-theme.$theme);
+}
 
-  ccf-root {
-    width: 100%;
-  }
+html,
+body {
+  height: 100%;
 }

@@ -1,5 +1,15 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { ChangeDetectionStrategy, Component, computed, input, model, output, signal, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  model,
+  OnInit,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatAutocompleteModule,
@@ -33,7 +43,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
   styleUrl: './autocomplete-chips-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteChipsFormComponent {
+export class AutocompleteChipsFormComponent implements OnInit {
   /** Input form label */
   readonly label = input.required<string>();
 
@@ -76,6 +86,16 @@ export class AutocompleteChipsFormComponent {
   /** Emits selected options */
   readonly selectedOptions = output();
 
+  ngOnInit() {
+    const syncChips = (value: string[] | null) => {
+      if (Array.isArray(value)) {
+        this.chips.set(value);
+      }
+    };
+    this.form().valueChanges.subscribe(syncChips);
+    syncChips(this.form().value);
+  }
+
   /**
    * Adds option to chip list
    * @param event Chip input event
@@ -99,13 +119,9 @@ export class AutocompleteChipsFormComponent {
    */
   remove(option: string): void {
     this.chips.update((options) => {
-      const index = options.indexOf(option);
-      if (index < 0) {
-        return options;
-      }
-
-      options.splice(index, 1);
-      return [...options];
+      const updatedValue = options.filter((o) => o !== option);
+      this.form().setValue(updatedValue);
+      return updatedValue;
     });
   }
 
@@ -114,10 +130,14 @@ export class AutocompleteChipsFormComponent {
    * @param event Autocomplete selected event
    */
   optionSelected(event: MatAutocompleteSelectedEvent): void {
-    this.chips.update((options) => [...options, event.option.viewValue]);
+    const selectedValue = event.option.viewValue;
+    if (!this.chips().includes(selectedValue)) {
+      const updatedValue = [...this.chips(), selectedValue];
+      this.chips.set(updatedValue);
+      this.form().setValue(updatedValue);
+    }
     this.currentInputValue.set('');
     this.selectedOptions.emit();
-    this.form().setValue([]);
     event.option.deselect();
   }
 
@@ -127,14 +147,17 @@ export class AutocompleteChipsFormComponent {
    * @param option Option name
    */
   checkboxSelected(event: MatCheckboxChange, option: string): void {
-    if (!event.checked) {
+    if (event.checked) {
+      if (!this.chips().includes(option)) {
+        const updatedValue = [...this.chips(), option];
+        this.chips.set(updatedValue);
+        this.form().setValue(updatedValue);
+        this.selectedOptions.emit();
+      }
+    } else {
       this.remove(option);
-      return;
     }
-    this.chips.update((options) => [...options, option]);
     this.currentInputValue.set('');
-    this.selectedOptions.emit();
-    this.form().setValue([]);
   }
 
   /** Closes the Autocomplete panel when user presses the escape button */

@@ -125,7 +125,6 @@ export class FiltersContentComponent {
     effect(() => {
       const filter = normalizeFilter(this.filter());
       this.filterForm.patchValue(filter);
-      this.filterForm.markAsPristine();
     });
 
     effect(() => {
@@ -148,7 +147,14 @@ export class FiltersContentComponent {
   /** Reset the filter */
   resetFilter(): void {
     this.ga.event('filters_reset', 'filter_content');
-    this.filterForm.patchValue(DEFAULT_FILTER);
+    this.filterForm.setValue({
+      sex: DEFAULT_FILTER_SEX,
+      ageRange: [DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH],
+      bmiRange: [DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH],
+      technologies: [],
+      consortiums: [],
+      tmc: [],
+    });
     this.filterForm.markAsDirty();
     this.spatialSearchItems().forEach((item) => this.spatialSearchRemoved.emit(item.id));
     this.spatialSearchSelectionChange.emit([]);

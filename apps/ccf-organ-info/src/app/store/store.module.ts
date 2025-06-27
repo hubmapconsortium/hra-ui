@@ -4,7 +4,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 
 import { GlobalConfigState } from 'ccf-shared';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 
 /**
  * States shared across the entire app.

@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { OrganComponent } from './organ.component';
 
 import { BodyUiModule } from 'ccf-shared';
-import { SlideToggleModule } from '../slide-toggle/slide-toggle/slide-toggle.module';
+import { provideDesignSystem } from '@hra-ui/design-system';
 
 @NgModule({
   declarations: [OrganComponent],
-  imports: [CommonModule, BodyUiModule, SlideToggleModule],
+  imports: [CommonModule, BodyUiModule],
   exports: [OrganComponent],
+  providers: [provideDesignSystem()],
 })
 export class OrganModule {}

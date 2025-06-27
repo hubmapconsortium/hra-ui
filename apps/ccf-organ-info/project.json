@@ -12,7 +12,15 @@
     "build": {
       "executor": "@nx/angular:application",
       "options": {
-        "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
+        "assets": [
+          "apps/ccf-organ-info/src/favicon.png",
+          "apps/ccf-organ-info/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "polyfills": ["apps/ccf-organ-info/src/polyfills.ts"]
       },
       "configurations": {

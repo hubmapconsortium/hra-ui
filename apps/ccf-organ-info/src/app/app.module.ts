@@ -1,15 +1,56 @@
 import { NgModule } from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { MatDivider } from '@angular/material/divider';
+import { MatIcon } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconComponent } from '@hra-ui/design-system/icons';
+import { TableComponent } from '@hra-ui/design-system/table';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { OrganModule } from './features/organ/organ.module';
-import { LinkCardsModule } from './modules/link-cards/link-cards.module';
-import { StatsListModule } from './modules/stats-list/stats-list.module';
+import { OrganModule } from './components/organ/organ.module';
+import { HraApiModule, HraApiConfiguration } from '@hra-api/ng-client';
+import { AnalyticsModule } from 'ccf-shared/analytics';
+import { environment } from '../environments/environment';
+import { StoreModule } from './store/store.module';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { DataSourceService, ApiEndpointDataSourceService } from 'ccf-shared';
 
 @NgModule({
-  imports: [BrowserModule, CoreModule, LinkCardsModule, StatsListModule, OrganModule],
+  imports: [
+    BrowserModule,
+    OrganModule,
+    IconComponent,
+    MatIcon,
+    MatIconButton,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    ButtonsModule,
+    TableComponent,
+    MatMenuModule,
+    MatDivider,
+    AnalyticsModule.forRoot({
+      gaToken: environment.googleAnalyticsToken,
+      appName: 'organ-info',
+      projectName: 'ccf',
+      developmentMode: !environment.production,
+    }),
+    HraApiModule.forRoot(
+      () =>
+        new HraApiConfiguration({
+          basePath: environment.dbOptions.remoteApiEndpoint,
+        }),
+    ),
+    StoreModule,
+  ],
   declarations: [AppComponent, AppWebComponent],
-  providers: [],
+  providers: [
+    provideDesignSystem(),
+    { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
 export class AppModule {}
