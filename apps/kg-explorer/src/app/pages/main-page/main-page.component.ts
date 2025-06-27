@@ -78,7 +78,12 @@ const FILE_TYPE_MAP: Record<string, FileData> = {
     name: 'XLSX',
     typeSuffix: '.xlsx',
   },
+  'text/vnd.mermaid': {
+    name: 'MMD',
+    typeSuffix: '.mmd',
+  },
   'application/vnd.chipnuts.karaoke-mmd': {
+    //TODO: Remove when data is fixed
     name: 'MMD',
     typeSuffix: '.mmd',
   },

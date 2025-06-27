@@ -5,7 +5,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.5rem;
+  padding: 2rem 1.5rem 0;
   height: 100%;
 
   .search-header {
@@ -32,6 +32,13 @@
     --mat-table-header-container-height: 5.375rem;
     --mat-table-row-item-container-height: 4.75rem;
     border: none;
+
+    scrollbar-y {
+      --viewport-height: 645;
+      --track-size: 630;
+      --_scrollbar-wrapper-top: 86;
+      top: 86px;
+    }
 
     th {
       padding-bottom: 0.75rem !important;
