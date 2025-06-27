@@ -62,10 +62,10 @@
   </div>
 
   <mat-menu #headerMenu="matMenu">
-    <button mat-menu-item>
+    <a mat-menu-item [href]="(organ$ | async)?.['@id']" target="_blank">
       <mat-icon>database</mat-icon>
       Source data
-    </button>
+    </a>
     <a mat-menu-item href="https://docs.humanatlas.io/dev/web-components#eui-organ-information" target="_blank">
       <mat-icon>help</mat-icon>
       Help & documentation
