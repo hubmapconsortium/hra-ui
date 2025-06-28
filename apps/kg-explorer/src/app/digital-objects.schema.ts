@@ -22,9 +22,11 @@ export const DigitalObjectDataSchema = z.object({
   lod: z.string(),
 });
 
-export type DigitalObjectsData = z.infer<typeof DigitalObjectsDataSchema>;
+/** Knowledge graph data type */
+export type KnowledgeGraphObjectsData = z.infer<typeof KnowledgeGraphObjectsDataSchema>;
 
-export const DigitalObjectsDataSchema = z.object({
+/** Knowledge graph data schema */
+export const KnowledgeGraphObjectsDataSchema = z.object({
   '@context': z.record(
     z.string(),
     z.union([
@@ -38,6 +40,8 @@ export const DigitalObjectsDataSchema = z.object({
   '@graph': DigitalObjectDataSchema.array(),
 });
 
+/** Digital object metadata type */
 export type DigitalObjectMetadata = z.infer<typeof DigitalObjectMetadataSchema>;
 
+/** Digital object metadata schema */
 export const DigitalObjectMetadataSchema = z.record(z.string(), z.any());

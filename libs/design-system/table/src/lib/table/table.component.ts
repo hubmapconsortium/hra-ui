@@ -228,6 +228,7 @@ export class TableComponent<T extends TableRow = TableRow> {
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);
 
+  /** Emits url and id when an item is to be downloaded */
   readonly downloadFile = output<[string, string]>();
 
   /** Sort data on load and set columns */
@@ -270,6 +271,11 @@ export class TableComponent<T extends TableRow = TableRow> {
     return columns;
   }
 
+  /**
+   * Returns download menu options as an array of MenuOptionsType
+   * @param options Menu options
+   * @returns Menu options as an array of MenuOptionsType
+   */
   getMenuOptions(options: string | number | boolean | MenuOptionsType[]) {
     return options as MenuOptionsType[];
   }

@@ -11,8 +11,9 @@ import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/resu
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 
-import { DigitalObjectData, DigitalObjectMetadata, DigitalObjectsData } from '../../digital-objects.schema';
+import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
 
+/** Maps doType to the correct icon in the design system */
 const PRODUCT_ICON_MAP: Record<string, string> = {
   '2d-ftu': 'ftu',
   'asct-b': 'asctb-reporter',
@@ -29,6 +30,7 @@ const PRODUCT_ICON_MAP: Record<string, string> = {
   vocab: 'vocabulary',
 };
 
+/** Maps organ name to the correct icon in the design system */
 const ORGAN_ICON_MAP: Record<string, string> = {
   kidney: 'kidneys',
   'large intestine': 'large-intestine',
@@ -47,13 +49,18 @@ const ORGAN_ICON_MAP: Record<string, string> = {
   ureter: 'ureter-left',
 };
 
-interface FileData {
+/** Interface for file type info */
+interface FileTypeData {
+  /** File name */
   name: string;
+  /** Suffix to append to end of download url */
   typeSuffix: string;
+  /** Optional file type description */
   description?: string;
 }
 
-const FILE_TYPE_MAP: Record<string, FileData> = {
+/** Maps mediaType to file type data */
+const FILE_TYPE_MAP: Record<string, FileTypeData> = {
   'image/svg+xml': {
     name: 'SVG',
     typeSuffix: '.svg',
@@ -123,7 +130,12 @@ const FILE_TYPE_MAP: Record<string, FileData> = {
   },
 };
 
-/** This component is used for rendering the main page of the application. */
+/** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
+const SCROLLBAR_TOP_OFFSET = '86';
+
+/**
+ * This component is used for rendering the main page of the application. Contains digital object table and filters.
+ */
 @Component({
   selector: 'hra-kg-main-page',
   imports: [
@@ -139,20 +151,35 @@ const FILE_TYPE_MAP: Record<string, FileData> = {
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.--view-height]': 'scrollViewportHeight()',
+    '[style.--scrollbar-top-offset]': SCROLLBAR_TOP_OFFSET,
+  },
 })
 export class MainPageComponent {
-  readonly data = input.required<DigitalObjectsData>();
+  /** Raw digital objects data */
+  readonly data = input.required<KnowledgeGraphObjectsData>();
+  /** Digital objects data observable */
   readonly $data = toObservable(this.data);
 
+  /** Column info */
   readonly columns = input.required<TableColumn[]>();
 
+  /** All rows in the data */
   readonly allRows = signal<TableRow[]>([]);
+  /** Filtered rows to display */
   readonly filteredRows = signal<TableRow[]>([]);
 
+  /** Form control for search input */
   readonly searchControl = new UntypedFormControl();
 
+  /** Http service */
   private readonly http = inject(HttpClient);
 
+  /**
+   * Sets filtered rows to all rows on init
+   * Fetches file download metadata for each object
+   */
   constructor() {
     effect(() => {
       this.filteredRows.set(this.allRows());
@@ -170,7 +197,7 @@ export class MainPageComponent {
           this.allRows().map((row) => {
             const md = metadata.find((entry) => entry['id'] === row['objectUrl']);
             if (md) {
-              row['downloadOptions'] = this.setDownloadOptions(md);
+              row['downloadOptions'] = this.getDownloadOptions(md);
             }
           });
         }),
@@ -182,15 +209,52 @@ export class MainPageComponent {
     });
   }
 
-  private setDownloadOptions(md: DigitalObjectMetadata): Record<string, string | undefined>[] {
-    const id = md['name'];
-    const files = md['distributions'] as Record<string, string>[];
-    const derivedFiles = md['was_derived_from']['distributions'] as Record<string, string>[];
-    const downloads1 = this.resolveDownloadOptions(id, derivedFiles);
-    const downloads2 = this.resolveDownloadOptions(id, files);
-    return downloads1.concat(downloads2);
+  /**
+   * Resolves raw digital object data into array of TableRow
+   * @param data Raw digital object data
+   * @returns Data as TableRow[]
+   */
+  private resolveData(data: DigitalObjectData[]): TableRow[] {
+    return data.map((item) => {
+      return {
+        title: item.title,
+        objectUrl: item.lod,
+        type: 'product:' + PRODUCT_ICON_MAP[item.doType],
+        organ: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'), //If more than one organ use all-organs icon
+        cellCount: item.cell_count,
+        biomarkerCount: item.biomarker_count,
+        lastModified: this.formatDateToYYYYMM(item.lastUpdated),
+      } as TableRow;
+    });
   }
 
+  /**
+   * Fetches metadata from a digital object entry
+   * @param entry Digital object entry data
+   * @returns Observable for digital object metadata JSON
+   */
+  private getMetadata(entry: DigitalObjectData): Observable<DigitalObjectMetadata> {
+    return this.http.get(entry.lod, { responseType: 'json' });
+  }
+
+  /**
+   * Gets distributions data from metadata JSON and returns resolved download data
+   * @param metadata Metadata JSON
+   * @returns Array of distributions download info for the metadata
+   */
+  private getDownloadOptions(metadata: DigitalObjectMetadata): Record<string, string | undefined>[] {
+    const id = metadata['name'];
+    const files = metadata['distributions'] as Record<string, string>[];
+    const derivedFiles = metadata['was_derived_from']['distributions'] as Record<string, string>[];
+    return this.resolveDownloadOptions(id, derivedFiles.concat(files));
+  }
+
+  /**
+   * Resolves download options
+   * @param id Object id
+   * @param files Array of distributions from metadata
+   * @returns Resolved download data
+   */
   private resolveDownloadOptions(id: string, files: Record<string, string>[]) {
     return files.map((file) => {
       const fileType = FILE_TYPE_MAP[file['mediaType']];
@@ -204,24 +268,10 @@ export class MainPageComponent {
     });
   }
 
-  private getMetadata(entry: DigitalObjectData): Observable<DigitalObjectMetadata> {
-    return this.http.get(entry.lod, { responseType: 'json' });
-  }
-
-  private resolveData(data: DigitalObjectData[]): TableRow[] {
-    return data.map((item) => {
-      return {
-        title: item.title,
-        objectUrl: item.lod,
-        type: 'product:' + PRODUCT_ICON_MAP[item.doType],
-        organ: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'),
-        cellCount: item.cell_count,
-        biomarkerCount: item.biomarker_count,
-        lastModified: this.formatDateToYYYYMM(item.lastUpdated),
-      } as TableRow;
-    });
-  }
-
+  /**
+   * Updates filteredRows on searchTerm input
+   * @param searchTerm Search input
+   */
   private onSearchChange(searchTerm: string): void {
     this.filteredRows.set(
       this.allRows().filter((row) =>
@@ -230,10 +280,20 @@ export class MainPageComponent {
     );
   }
 
+  /**
+   * Returns formatted organ name using organ icon map, if not in the map return the original organ name
+   * @param organ Organ name
+   * @returns Organ name in design system format
+   */
   private getOrganIcon(organ: string): string {
     return `organ:${ORGAN_ICON_MAP[organ] ?? organ}`;
   }
 
+  /**
+   * Formats Date to yyyy-mm
+   * @param dateString Date string
+   * @returns Date as yyyy-mm
+   */
   private formatDateToYYYYMM(dateString: string): string {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -241,6 +301,11 @@ export class MainPageComponent {
     return `${year}-${month}`;
   }
 
+  /**
+   * Downloads file
+   * @param url Download url
+   * @param id File name to save as
+   */
   saveFile(url: string, id: string) {
     this.http.get(url, { responseType: 'blob' }).subscribe((blob) => {
       const a = document.createElement('a');
@@ -250,5 +315,13 @@ export class MainPageComponent {
       a.click();
       URL.revokeObjectURL(objectUrl);
     });
+  }
+
+  /**
+   * Returns scroll viewport height
+   * @returns scroll viewport height
+   */
+  scrollViewportHeight(): number {
+    return window.innerHeight - 299;
   }
 }
