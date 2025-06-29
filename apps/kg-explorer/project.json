@@ -10,6 +10,23 @@
   "tags": ["type:app", "project:humanatlas"],
   "targets": {
     "build": {
+      "configurations": {
+        "production": {
+          "baseHref": "/",
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "1mb"
+            }
+          ]
+        }
+      },
       "executor": "@nx/angular:application",
       "options": {
         "assets": [
