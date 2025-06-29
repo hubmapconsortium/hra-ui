@@ -1,5 +1,4 @@
 @use '@angular/material' as mat;
-@use 'utils';
 @use 'vars';
 
 :host {
@@ -52,10 +51,10 @@
     width: calc(100vw - 22.5rem);
 
     scrollbar-y {
-      --viewport-height: 645;
-      --track-size: 630;
-      --_scrollbar-wrapper-top: 86;
-      top: 86px;
+      --viewport-height: var(--view-height);
+      --track-size: calc(var(--view-height) - 8);
+      --_scrollbar-wrapper-top: var(--scrollbar-top-offset);
+      top: calc(var(--scrollbar-top-offset) * 1px);
     }
 
     th {

@@ -5,12 +5,13 @@ import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-fou
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { TableColumn } from '@hra-ui/design-system/table';
 
-import { DigitalObjectsDataSchema } from './digital-objects.schema';
+import { KnowledgeGraphObjectsDataSchema } from './digital-objects.schema';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
+/** Digital objects api */
 const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
 
-/** Column info */
+/** Column info for digital object table */
 const columns: TableColumn[] = [
   {
     column: 'download',
@@ -68,7 +69,7 @@ export const appRoutes: Route[] = [
       columns: columns,
     },
     resolve: {
-      data: createJsonSpecResolver(DO_URL, DigitalObjectsDataSchema),
+      data: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
     },
   },
   {
