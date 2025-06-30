@@ -10,7 +10,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
 </div>
-<div class="content">
+<div class="content" #contentContainer>
   <div class="info-view">
     <div class="organ-title">
       {{ statsLabel$ | async }}
@@ -48,7 +48,7 @@
       ></hra-table>
     </div>
   </div>
-  <div class="organ-view">
+  <div class="organ-view" [style.height]="`${contentHeightMonitor()}px`">
     <ccf-organ
       [blocks]="(blocks$ | async) ?? []"
       [filter]="$any(filter$ | async)"

@@ -1,5 +1,5 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, output, viewChild } from '@angular/core';
 import { FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo, sexFromString } from 'ccf-shared';
@@ -7,6 +7,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { combineLatest, map, Observable, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
 import { OrganLookupService } from './services/organ-lookup/organ-lookup.service';
 import { TableColumn } from '@hra-ui/design-system/table';
+import { monitorHeight } from '@hra-ui/common';
 
 /** Body ui config */
 interface GlobalConfig {
@@ -110,6 +111,14 @@ export class AppComponent {
     { column: 'count', label: '#total', type: 'numeric' },
     { column: 'label', label: 'Metadata type', type: 'text' },
   ];
+
+  /** Reference to the information view container */
+  contentContainer = viewChild.required<ElementRef<HTMLElement>>('contentContainer');
+
+  /** Reference to the organ view container */
+  organView = viewChild.required<ElementRef<HTMLElement>>('organView');
+
+  contentHeightMonitor = monitorHeight(this.contentContainer);
 
   /** Initialize the component */
   constructor() {

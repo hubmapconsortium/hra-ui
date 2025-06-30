@@ -3,7 +3,8 @@
 @use '@angular/material' as mat;
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border-radius: 12px;
   border: 1px solid vars.$outline;
   overflow: hidden;
@@ -34,7 +35,7 @@
 
   .content {
     display: flex;
-
+    flex: 1;
     .organ-title {
       @include utils.use-font(title, small);
       margin-bottom: 1rem;
@@ -63,6 +64,9 @@
     .organ-view {
       flex: 1 1;
       background-color: #000;
+      // ccf-organ {
+      //   height: 100%;
+      // }
     }
   }
 }
