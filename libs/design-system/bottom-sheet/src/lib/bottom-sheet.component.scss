@@ -10,3 +10,11 @@
     }
   }
 }
+
+::ng-deep {
+  .mat-bottom-sheet-container {
+    hra-table {
+      height: 28rem;
+    }
+  }
+}
