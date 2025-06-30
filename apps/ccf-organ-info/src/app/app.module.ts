@@ -11,18 +11,18 @@ import { IconComponent } from '@hra-ui/design-system/icons';
 import { TableComponent } from '@hra-ui/design-system/table';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
-import { OrganModule } from './components/organ/organ.module';
 import { HraApiModule, HraApiConfiguration } from '@hra-api/ng-client';
 import { AnalyticsModule } from 'ccf-shared/analytics';
 import { environment } from '../environments/environment';
 import { StoreModule } from './store/store.module';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DataSourceService, ApiEndpointDataSourceService } from 'ccf-shared';
+import { OrganComponent } from './components/organ/organ.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    OrganModule,
+    OrganComponent,
     IconComponent,
     MatIcon,
     MatIconButton,
@@ -49,8 +49,8 @@ import { DataSourceService, ApiEndpointDataSourceService } from 'ccf-shared';
   declarations: [AppComponent, AppWebComponent],
   providers: [
     provideDesignSystem(),
-    { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
     provideHttpClient(withInterceptorsFromDi()),
+    { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
   ],
 })
 export class AppModule {}

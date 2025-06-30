@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   AfterViewChecked,
   ChangeDetectionStrategy,
@@ -12,16 +13,16 @@ import {
 } from '@angular/core';
 import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
-import { BodyUiComponent } from 'ccf-shared';
+import { BodyUiComponent, BodyUiModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-/** Organ display */
+/** Component for displaying organ in 3D using Body UI */
 @Component({
   selector: 'ccf-organ',
+  imports: [CommonModule, BodyUiModule],
   templateUrl: './organ.component.html',
   styleUrls: ['./organ.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class OrganComponent implements AfterViewChecked, OnChanges {
   /** Analytics service */
