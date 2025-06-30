@@ -118,6 +118,7 @@ export class AppComponent {
   /** Reference to the organ view container */
   organView = viewChild.required<ElementRef<HTMLElement>>('organView');
 
+  /** Height monitor for content container height used to update the height of Body UI container */
   contentHeightMonitor = monitorHeight(this.contentContainer);
 
   /** Initialize the component */
