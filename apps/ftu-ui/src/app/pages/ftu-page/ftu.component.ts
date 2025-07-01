@@ -6,8 +6,8 @@ import {
   BiomarkerDetailsComponent,
   FooterBehaviorComponent,
   MedicalIllustrationBehaviorComponent,
-} from '@hra-ui/components/behavioral';
-import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
+} from '../../ftu-components/behavioral/src';
+import { FullscreenContainerComponent, FullscreenContentComponent } from '../../ftu-components/molecules/src';
 import { ActiveFtuActions, ScreenModeSelectors } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
 
