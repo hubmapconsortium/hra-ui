@@ -4,12 +4,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input,
-  OnChanges,
   Output,
-  SimpleChanges,
-  ViewChild,
+  effect,
   inject,
+  input,
+  viewChild,
 } from '@angular/core';
 import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
@@ -24,35 +23,43 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   styleUrls: ['./organ.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrganComponent implements AfterViewChecked, OnChanges {
+export class OrganComponent implements AfterViewChecked {
   /** Analytics service */
   readonly ga = inject(GoogleAnalyticsService);
 
   /** Organ */
-  @Input() organ?: SpatialEntity;
+  readonly organ = input<SpatialEntity>();
   /** Scene */
-  @Input() scene!: SpatialSceneNode[];
+  readonly scene = input.required<SpatialSceneNode[]>();
   /** Organ iri */
-  @Input() organIri!: string;
+  readonly organIri = input<string>();
   /** Model sex */
-  @Input() sex?: 'Male' | 'Female' | 'Both';
+  readonly sex = input<'Male' | 'Female' | 'Both'>();
   /** Organ side */
-  @Input() side?: 'Left' | 'Right';
+  readonly side = input<'Left' | 'Right'>();
   /** Tissue blocks */
-  @Input() blocks?: TissueBlock[];
+  readonly blocks = input.required<TissueBlock[]>();
   /** Data filter */
-  @Input() filter?: Filter;
+  readonly filter = input.required<Filter>();
 
   /** Emits when the user clicks a node */
   @Output() readonly nodeClick = new EventEmitter<NodeClickEvent>();
 
   /** Reference to the body ui */
-  @ViewChild('bodyUI', { static: true }) readonly bodyUI!: BodyUiComponent;
+  readonly bodyUI = viewChild.required<BodyUiComponent>('bodyUI');
 
   /** Highlighted node */
   highlightedNodeId!: string;
   /** Filtered tissue blocks */
   filteredBlocks!: string[];
+
+  constructor() {
+    effect(() => {
+      if (this.bodyUI() && this.organ()) {
+        this.zoomToFitOrgan();
+      }
+    });
+  }
 
   /** Updates highlighting on dom changes */
   ngAfterViewChecked(): void {
@@ -61,11 +68,12 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
 
   /** Updates the highlighted block */
   updateHighlighting(): void {
-    const providerName = new Set<string>(this.filter?.tmc ?? []);
+    const providerName = new Set<string>(this.filter()?.tmc ?? []);
     this.filteredBlocks =
-      this.blocks?.filter((block) => providerName.has(block.donor?.providerName ?? '')).map((block) => block['@id']) ??
-      [];
-    this.bodyUI.scene = this.bodyUI.scene.map(
+      this.blocks()
+        ?.filter((block) => providerName.has(block.donor?.providerName ?? ''))
+        .map((block) => block['@id']) ?? [];
+    this.bodyUI().scene = this.bodyUI().scene.map(
       (node): SpatialSceneNode => ({
         ...node,
         color:
@@ -78,16 +86,10 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
     );
   }
 
-  /** Reacts to input changes */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.bodyUI && 'organ' in changes) {
-      this.zoomToFitOrgan();
-    }
-  }
-
   /** Zoom to fit */
   zoomToFitOrgan(): void {
-    const { bodyUI, organ } = this;
+    const bodyUI = this.bodyUI();
+    const organ = this.organ();
     if (organ) {
       const { x_dimension: x, y_dimension: y, z_dimension: z } = organ;
       bodyUI.rotation = bodyUI.rotationX = 0;

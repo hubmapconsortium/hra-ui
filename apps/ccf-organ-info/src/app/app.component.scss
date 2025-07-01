@@ -9,6 +9,7 @@
   border: 1px solid vars.$outline;
   overflow: hidden;
   min-height: 35.625rem;
+  height: 100%;
 
   .header {
     display: flex;
@@ -35,7 +36,8 @@
 
   .content {
     display: flex;
-    flex: 1;
+    // flex: 1;
+    height: 100%;
     .organ-title {
       @include utils.use-font(title, small);
       margin-bottom: 1rem;
