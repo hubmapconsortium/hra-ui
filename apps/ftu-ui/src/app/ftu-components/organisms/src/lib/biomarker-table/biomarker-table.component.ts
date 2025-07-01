@@ -19,11 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { HoverDirective } from '@hra-ui/cdk';
 import { GradientPoint } from '../../../../atoms/src/lib/gradient-legend/gradient-legend.component';
 import { SizeLegend } from '../../../../atoms/src/lib/size-legend/size-legend.component';
-import {
-  BiomarkerTableDataCardComponent,
-  DataItem,
-} from '../../../../molecules/src/lib/biomarker-table-data-card/biomarker-table-data-card.component';
-import { BiomarkerTableDataIconComponent } from '../../../../molecules/src';
+import { BiomarkerTableDataIconComponent, BiomarkerTableDataCardComponent, DataItem } from '../../../../molecules/src';
 import { SourceListItem } from '../../../../molecules/src/lib/source-list/source-list.component';
 import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { ReplaySubject } from 'rxjs';
