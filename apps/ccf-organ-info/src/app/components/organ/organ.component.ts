@@ -53,6 +53,7 @@ export class OrganComponent implements AfterViewChecked {
   /** Filtered tissue blocks */
   filteredBlocks!: string[];
 
+  /** Initializes the component */
   constructor() {
     effect(() => {
       if (this.bodyUI() && this.organ()) {
