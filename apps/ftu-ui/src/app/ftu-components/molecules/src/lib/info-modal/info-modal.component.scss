@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  position: relative;
+  padding: 2rem 2rem 1.25rem 2rem;
+
+  .close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    .product-logo-image {
+      height: 2.75rem;
+      margin-right: 1rem;
+    }
+
+    .product-title {
+      margin: 0;
+      color: #990000;
+    }
+  }
+
+  .description {
+    display: block;
+    margin-top: 1rem;
+  }
+}
