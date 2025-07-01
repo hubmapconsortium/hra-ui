@@ -45,14 +45,14 @@
 
         <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
           @if (element[index + 2] !== undefined) {
-            <hra-biomarker-table-data-icon
+            <ftu-biomarker-table-data-icon
               class="icon"
               [color]="getColor(element[index + 2].color)"
               [size]="getSize(element[index + 2].size)"
               [hraHover]="dataHover"
               [hraHoverData]="[index + 2, element]"
             >
-            </hra-biomarker-table-data-icon>
+            </ftu-biomarker-table-data-icon>
           } @else {
             <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>
           }
@@ -84,5 +84,5 @@
 </ng-template>
 
 <ng-template #dataHover let-data>
-  <hra-biomarker-table-data-card [data]="getHoverData(data)"> </hra-biomarker-table-data-card>
+  <ftu-biomarker-table-data-card [data]="getHoverData(data)"> </ftu-biomarker-table-data-card>
 </ng-template>
