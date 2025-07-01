@@ -7,24 +7,24 @@
   <mat-icon class="material-symbols-outlined">close</mat-icon>
 </button>
 
-<hra-email-input
+<ftu-email-input
   class="email"
   placeholder="Example@domain.com"
   (emailChange)="updateData('email', $event)"
   [defaultMail]="defaultMail"
 >
-</hra-email-input>
+</ftu-email-input>
 
-<hra-required-input label="Subject" (inputChange)="updateData('subject', $event)" class="subject-field">
-</hra-required-input>
+<ftu-required-input label="Subject" (inputChange)="updateData('subject', $event)" class="subject-field">
+</ftu-required-input>
 
-<hra-required-textbox
+<ftu-required-textbox
   class="message-field"
   label="Message"
   placeholder="Enter your message here"
   (messageChange)="updateData('message', $event)"
 >
-</hra-required-textbox>
+</ftu-required-textbox>
 
 <markdown class="desc" data="Please allow two business days for a response to each inquiry."></markdown>
 
