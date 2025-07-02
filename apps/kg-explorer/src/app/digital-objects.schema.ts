@@ -3,7 +3,7 @@ import { z } from 'zod';
 /** Digital object data type */
 export type DigitalObjectData = z.infer<typeof DigitalObjectDataSchema>;
 
-/** Digital objects data schema */
+/** Digital object data schema */
 export const DigitalObjectDataSchema = z.object({
   '@id': z.string(),
   '@type': z.string(),

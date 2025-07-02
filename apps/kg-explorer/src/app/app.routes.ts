@@ -31,12 +31,12 @@ const columns: TableColumn[] = [
     },
   },
   {
-    column: 'type',
+    column: 'typeIcon',
     label: 'Type',
     type: 'icon',
   },
   {
-    column: 'organ',
+    column: 'organIcon',
     label: 'Organ',
     type: 'icon',
   },

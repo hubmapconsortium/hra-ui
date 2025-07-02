@@ -1,22 +1,26 @@
 <hra-icon class="info-icon" fontIcon="info"></hra-icon>
 <button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
-  {{ filter() }}
+  {{ filterOptionCategory().label }}
 </button>
 
 <hra-rich-tooltip-container #content class="filter-menu">
   <hra-rich-tooltip-content class="filter-menu-content">
     <mat-form-field class="search field" subscriptSizing="dynamic">
       <mat-icon class="search-icon" matPrefix>search</mat-icon>
-      <input matInput type="text" placeholder="Search" />
+      <input matInput type="text" [formControl]="searchControl" placeholder="Search" />
     </mat-form-field>
 
     <ng-scrollbar>
-      @for (option of options(); track option) {
-        <div class="option-label">
-          <span>{{ option.name }}</span>
-          <span>{{ option.count }}</span>
-        </div>
-      }
+      <mat-action-list>
+        @for (option of filteredOptions(); track option) {
+          <button mat-list-item (click)="selectOption(option)">
+            <div class="option-label">
+              <span>{{ option.label }}</span>
+              <span>{{ option.count }}</span>
+            </div>
+          </button>
+        }
+      </mat-action-list>
     </ng-scrollbar>
   </hra-rich-tooltip-content>
 </hra-rich-tooltip-container>

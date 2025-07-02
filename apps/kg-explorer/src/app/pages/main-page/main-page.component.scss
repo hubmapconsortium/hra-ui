@@ -19,6 +19,8 @@
   }
 
   .page-content {
+    display: flex;
+    flex-direction: column;
     padding: 2rem 1.5rem 0;
     transition: all 0.5s;
   }

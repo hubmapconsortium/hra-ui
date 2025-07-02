@@ -1,4 +1,8 @@
-<hra-filter-menu (closeDrawer)="closeDrawer($event)"></hra-filter-menu>
+<hra-filter-menu
+  [filterRecord]="filterRecord()"
+  (closeDrawer)="filterClosed.set($event)"
+  (formChanges)="handleFilterChanges($event)"
+></hra-filter-menu>
 
 <div class="page-content">
   <div class="search-header">

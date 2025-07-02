@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HraCommonModule } from '@hra-ui/common';
@@ -11,8 +11,51 @@ import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/resu
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 
-import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
 import { FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
+import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
+
+export interface FilterOption {
+  id: string;
+  label: string;
+  secondaryLabel?: string;
+  count: number;
+  tooltip?: string;
+}
+
+interface CurrentFilters {
+  digitalObjects?: FilterOption[];
+  releaseVersion?: FilterOption[];
+  organs?: FilterOption[];
+  anatomicalStructures?: FilterOption[];
+  cellTypes?: FilterOption[];
+  biomarkers?: FilterOption[];
+  searchTerm?: string;
+}
+
+export interface FilterOptionCategory {
+  label: string;
+  options: FilterOption[];
+}
+
+export interface FilterOptionList {
+  [id: string]: FilterOptionCategory;
+}
+
+const DIGITAL_OBJECT_NAME_MAP: Record<string, string> = {
+  'ref-organ': '3D Organs',
+  '2d-ftu': 'FTU Illustations',
+  'asct-b': 'ASCT+B Tables',
+  collection: 'Collections',
+  ctann: 'Cell Type Annotations',
+  'ds-graph': 'Dataset Graphs',
+  graph: 'Graphs',
+  landmark: 'Landmarks',
+  millitome: 'Millitome',
+  omap: 'Organ Mapping Antibody Panels',
+  schema: 'Schema',
+  'vascular-geometry': 'Vascular Geometry',
+  vocab: 'Vocabulary',
+};
 
 /** Maps doType to the correct icon in the design system */
 const PRODUCT_ICON_MAP: Record<string, string> = {
@@ -179,7 +222,12 @@ export class MainPageComponent {
   /** Http service */
   private readonly http = inject(HttpClient);
 
+  /** Whether or not the filter menu is closed */
   readonly filterClosed = signal<boolean>(false);
+
+  readonly filterRecord = signal<FilterOptionList>({});
+
+  readonly filters = signal<CurrentFilters>({});
 
   /**
    * Sets filtered rows to all rows on init
@@ -188,6 +236,33 @@ export class MainPageComponent {
   constructor() {
     effect(() => {
       this.filteredRows.set(this.allRows());
+      this.getFilterOptions();
+    });
+
+    effect(() => {
+      let newFilteredRows = this.allRows();
+      if (this.filters().searchTerm) {
+        newFilteredRows = newFilteredRows.filter((row) =>
+          Object.values(row).some((value) =>
+            String(value)
+              .toLowerCase()
+              .includes((this.filters().searchTerm ?? '').toLowerCase()),
+          ),
+        );
+      }
+      if (this.filters().digitalObjects) {
+        const currentDigitalObjectsFilters = this.filters().digitalObjects?.map((obj) => obj.id) || undefined;
+        newFilteredRows = newFilteredRows.filter((row) =>
+          currentDigitalObjectsFilters?.includes(row['doType'] as string),
+        );
+      }
+      // if (this.filters().organs) {
+      //   const currentOrganFilters = this.filters().organs?.map((obj) => obj.id) || undefined;
+      //   newFilteredRows = newFilteredRows.filter((row) =>
+      //     (row['organs'] as string[]).some(item => currentOrganFilters?.includes(item))
+      //   );
+      // }
+      this.filteredRows.set(newFilteredRows);
     });
 
     this.$data
@@ -207,11 +282,74 @@ export class MainPageComponent {
           });
         }),
       )
-      .subscribe();
+      .subscribe((result) => console.log(result));
 
     this.searchControl.valueChanges.subscribe((result) => {
       this.onSearchChange(result);
     });
+  }
+
+  getFilterOptions() {
+    const objectFilterOptions = new Set<string>();
+    const versionFilterOptions = new Set<string>();
+    const organFilterOptions = new Set<string>();
+    this.allRows().forEach((row) => {
+      const type = row['doType'];
+      objectFilterOptions.add(type as string);
+      const version = row['doVersion'];
+      versionFilterOptions.add(version as string);
+      const organs = row['organs'] as string[];
+      if (organs) {
+        for (const organ of organs) {
+          organFilterOptions.add(organ);
+        }
+      }
+    });
+    console.log(objectFilterOptions);
+    console.log(versionFilterOptions);
+    console.log(organFilterOptions);
+    this.filterRecord.set({
+      digitalObjects: {
+        label: 'Digital objects',
+        options: Array.from(objectFilterOptions).map((filterOption) => {
+          return {
+            id: filterOption,
+            label: DIGITAL_OBJECT_NAME_MAP[filterOption],
+            count: this.calculateCount(filterOption, 'doType'),
+          };
+        }),
+      },
+      releaseVersion: {
+        label: 'HRA release version',
+        options: [],
+      },
+      organs: {
+        label: 'Organs',
+        options: Array.from(organFilterOptions).map((organOption) => {
+          return {
+            id: organOption,
+            label: organOption,
+            count: this.calculateCount(organOption, 'organs'),
+          };
+        }),
+      },
+      anatomicalStructures: {
+        label: 'Anatomical structures',
+        options: [],
+      },
+      cellTypes: {
+        label: 'Cell types',
+        options: [],
+      },
+      biomarkers: {
+        label: 'Biomarkers',
+        options: [],
+      },
+    });
+  }
+
+  private calculateCount(filterOption: string, category: string) {
+    return this.allRows().filter((row) => row[category] === filterOption).length;
   }
 
   /**
@@ -222,10 +360,14 @@ export class MainPageComponent {
   private resolveData(data: DigitalObjectData[]): TableRow[] {
     return data.map((item) => {
       return {
+        doType: item.doType,
+        doVersion: item.doVersion,
+        organs: item.organs,
         title: item.title,
         objectUrl: item.lod,
-        type: 'product:' + PRODUCT_ICON_MAP[item.doType],
-        organ: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'), //If more than one organ use all-organs icon
+        typeIcon: 'product:' + PRODUCT_ICON_MAP[item.doType],
+        // If more than one organ use all-organs icon
+        organIcon: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'),
         cellCount: item.cell_count,
         biomarkerCount: item.biomarker_count,
         lastModified: this.formatDateToYYYYMM(item.lastUpdated),
@@ -278,11 +420,12 @@ export class MainPageComponent {
    * @param searchTerm Search input
    */
   private onSearchChange(searchTerm: string): void {
-    this.filteredRows.set(
-      this.allRows().filter((row) =>
-        Object.values(row).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase())),
-      ),
-    );
+    this.filters.update((value) => {
+      return {
+        ...value,
+        searchTerm,
+      };
+    });
   }
 
   /**
@@ -322,15 +465,23 @@ export class MainPageComponent {
     });
   }
 
-  closeDrawer(closed: boolean) {
-    this.filterClosed.set(closed);
-  }
-
   /**
    * Returns scroll viewport height
    * @returns scroll viewport height
    */
   scrollViewportHeight(): number {
     return window.innerHeight - 299;
+  }
+
+  handleFilterChanges(form: FormGroup) {
+    console.log(form.value);
+    this.filters.set({
+      digitalObjects: form.value.digitalObjects[0] ? form.value.digitalObjects : undefined,
+      // releaseVersion: form.controls['releaseVersion'].value ?? undefined,
+      // organs: form.value.organs[0] ? form.value.organs : undefined,
+      // anatomicalStructures: form.controls['anatomicalStructures'].value ?? undefined,
+      // cellTypes: form.controls['cellTypes'].value ?? undefined,
+      // biomarkers: form.controls['biomarkers'].value ?? undefined,
+    });
   }
 }

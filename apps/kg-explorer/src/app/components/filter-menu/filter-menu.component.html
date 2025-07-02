@@ -7,9 +7,35 @@
   </button>
 </div>
 
-<div class="menu-content">
-  @for (filter of filterItems; track filter) {
-    <hra-filter-menu-overlay [filter]="filter" />
-    <mat-divider />
-  }
-</div>
+<form class="menu-content" [formGroup]="form">
+  <hra-filter-menu-overlay
+    [form]="form.controls.digitalObjects"
+    [filterOptionCategory]="filterRecord()['digitalObjects']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider />
+  <!-- <hra-filter-menu-overlay
+    [form]="form.controls.releaseVersion"
+    filter="HRA release version"
+    [options]="generateFilterOptions('HRA release version')"
+  />
+  <mat-divider /> -->
+  <!-- <hra-filter-menu-overlay
+    [form]="form.controls.organs"
+    [filterOptionCategory]="filterRecord()['organs']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider /> -->
+  <!-- <hra-filter-menu-overlay
+    [form]="form.controls.anatomicalStructures"
+    filter="Anatomical structures"
+    [options]="generateFilterOptions('Anatomical structures')"
+  />
+  <mat-divider />
+  <hra-filter-menu-overlay
+    [form]="form.controls.cellTypes"
+    filter="Cell types"
+    [options]="generateFilterOptions('Cell types')"
+  />
+  <mat-divider /> -->
+</form>
