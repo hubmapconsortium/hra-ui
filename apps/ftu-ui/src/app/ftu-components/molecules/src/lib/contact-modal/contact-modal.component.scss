@@ -1,0 +1,53 @@
+:host {
+  display: block;
+  position: relative;
+  padding-top: 2rem;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+
+  .product-logo {
+    display: flex;
+    align-items: center;
+
+    .product-logo-image {
+      margin-right: 1rem;
+    }
+
+    .product-title {
+      color: #990000;
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 1.5rem;
+    right: 0rem;
+  }
+
+  .submit {
+    margin-right: 1.5rem;
+  }
+
+  .submit,
+  .cancel {
+    width: 7.5rem;
+  }
+
+  .email {
+    margin-top: 1.25rem;
+  }
+
+  .message-field {
+    margin-top: 1rem;
+  }
+
+  .subject-field {
+    margin-top: 1rem;
+  }
+
+  .desc {
+    margin-top: 1.5rem;
+  }
+}

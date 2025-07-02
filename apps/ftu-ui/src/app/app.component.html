@@ -1,9 +1,13 @@
-<ftu-header-behavior class="header"></ftu-header-behavior>
+<hra-header />
+@if (!screenSizeNoticeOpen) {
+  <div class="main">
+    @if (router.url !== '/') {
+      <ftu-tissue-library-behavior class="sidebar"></ftu-tissue-library-behavior>
+    }
 
-<ng-container *ngIf="!screenSizeNoticeOpen">
-  <ftu-tissue-library-behavior class="sidebar"></ftu-tissue-library-behavior>
-
-  <div class="page-content">
-    <router-outlet></router-outlet>
+    <div class="content">
+      <router-outlet />
+    </div>
   </div>
-</ng-container>
+}
+<hra-footer />
