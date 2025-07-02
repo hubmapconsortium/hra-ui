@@ -1,7 +1,8 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
 import { provideStore } from '@ngxs/store';
 import { provideMarkdown } from 'ngx-markdown';
@@ -24,21 +25,22 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideDesignSystem(),
-    provideRouter(appRoutes),
     ConfigService,
+    importProvidersFrom(AnalyticsModule.forRoot({ gaToken: environment.googleAnalyticsId, appName: 'reporter' })),
     provideAppInitializer(() => {
       const initializerFn = initializeApp(inject(ConfigService));
       return initializerFn();
     }),
     provideHttpClient(withInterceptorsFromDi()),
-    withNgxsResetPlugin(),
+    provideDesignSystem(),
+    provideIcons(),
     provideDesignSystem(),
     provideStore(
       [SheetState, TreeState, UIState, LogsState],
       withNgxsLoggerPlugin({ disabled: environment.production }),
+      withNgxsResetPlugin(),
     ),
-    importProvidersFrom(AnalyticsModule.forRoot({ gaToken: environment.googleAnalyticsId, appName: 'reporter' })),
-    provideMarkdown(),
+    provideMarkdown({ loader: HttpClient }),
+    provideRouter(appRoutes),
   ],
 };

@@ -1,37 +1,25 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
-import { FileUploadModule } from './components/file-upload/file-upload.module';
-import { FooterModule } from './components/footer/footer.module';
-import { OrganTableSelectorModule } from './components/organ-table-selector/organ-table-selector.module';
-import { TrackingPopupComponent } from './components/tracking-popup/tracking-popup.component';
-import { TrackingPopupModule } from './components/tracking-popup/tracking-popup.module';
-import { DocsModule } from './modules/docs/docs.module';
-import { RootModule } from './modules/root/root.module';
+
 import { ConsentService } from './services/consent.service';
-import { MousePositionTrackerModule } from './services/mouse-position-tracker.module';
+
+import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
 
 declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
 
 @Component({
   selector: 'app-reporter',
+  host: { class: 'hra-app' },
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [
-    DocsModule,
-    RootModule,
-    FileUploadModule,
-    OrganTableSelectorModule,
-    FooterModule,
-    TrackingPopupModule,
-    MousePositionTrackerModule,
-    RouterModule,
-  ],
+  imports: [HeaderComponent, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   readonly consentService = inject(ConsentService);
   readonly snackbar = inject(MatSnackBar);
   private readonly matIconRegistry = inject(MatIconRegistry);
@@ -86,17 +74,6 @@ export class AppComponent implements OnInit {
           page_path: event.urlAfterRedirects,
         });
       }
-    });
-  }
-
-  ngOnInit(): void {
-    const snackBar = this.snackbar.openFromComponent(TrackingPopupComponent, {
-      data: {
-        preClose: () => {
-          snackBar.dismiss();
-        },
-      },
-      duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
     });
   }
 }
