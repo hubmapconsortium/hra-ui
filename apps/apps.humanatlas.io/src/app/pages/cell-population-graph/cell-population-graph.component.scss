@@ -1,0 +1,69 @@
+@use 'utils' as utils;
+@use 'vars' as vars;
+
+:host {
+  padding: 5rem 6.25rem;
+
+  .header {
+    padding: 1rem;
+  }
+
+  .header {
+    @include utils.use-font(title, medium);
+    display: flex;
+    align-items: center;
+    height: 4.5rem;
+    background-color: vars.$surface-container-low;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
+    gap: 1rem;
+
+    .header-label {
+      flex-grow: 1;
+    }
+  }
+
+  .cell-population-graph-content {
+    margin-top: 4rem;
+    width: 100%;
+    border-radius: 8px;
+    border-width: 1px;
+    color: vars.$secondary;
+    background-color: vars.$on-primary;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid vars.$outline-variant;
+    overflow: hidden;
+
+
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  @media (min-width: 1000px) {
+    .cell-population-graph-content {
+      max-width: 87.5rem;
+    }
+  }
+
+    @media (min-width: 640px) and (max-width: 999px) {
+      padding: 5rem 2.5rem;
+      .cell-population-graph-content {
+        max-width: 57.4375rem;
+      }
+
+    .content {
+      flex-direction: column;
+    }
+    }
+    @media (min-width: 320px) and (max-width: 639px) {
+      .cell-population-graph-content {
+        max-width: 23.625rem;
+      }
+
+    .content {
+      flex-direction: column;
+    }
+    }
+}
