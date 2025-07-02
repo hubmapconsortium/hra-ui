@@ -1,0 +1,32 @@
+<hra-page-section tagline="Cell Population Graph">
+  Explore organ-specific datasets from publications and data portals.
+</hra-page-section>
+<div class="cell-population-graph-content">
+  <div class="header">
+    <div class="logos">
+      <hra-icon svgIcon="product:cell-population-graphs" />
+    </div>
+    <span class="header-label"> Cell population graph </span>
+  </div>
+  <div class="content">
+    <hra-config-selector
+      [datasetSource]="datasetSource()"
+      [sortBy]="sortBy()"
+      [orderType]="orderType()"
+      [groupBy]="groupBy()"
+      [yAxisField]="yAxisField()"
+      [xAxisField]="xAxisField()"
+      (vegaSpecEvent)="onSpecUpdate($event)"
+      (datasetChange)="onDatasetChange($event)"
+      (sortByChange)="onSortByChange($event)"
+      (orderTypeChange)="onOrderTypeChange($event)"
+      (groupByChange)="onGroupByChange($event)"
+      (yAxisFieldChange)="onYAxisFieldChange($event)"
+      (xAxisFieldChange)="onXAxisFieldChange($event)"
+    />
+
+    <mat-divider class="menu-divider"></mat-divider>
+
+    <hra-bar-graph [spec]="currentSpec()"></hra-bar-graph>
+  </div>
+</div>

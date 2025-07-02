@@ -1,0 +1,107 @@
+<div class="organ-dataset-group">
+  <h1>Organ dataset</h1>
+  <mat-form-field class="select" subscriptSizing="dynamic">
+    <mat-label>Dataset</mat-label>
+    <mat-select
+      disableRipple
+      panelClass="options-container"
+      [value]="datasetSource()"
+      (selectionChange)="onDatasetChange($event.value)"
+      [disabled]="loading()"
+    >
+      @for (dataset of datasetOptions(); track dataset.key) {
+        <mat-option [value]="dataset.key">{{ dataset.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+@if (!loading()) {
+  <div class="sort-group">
+    <h1>Sort & group</h1>
+    <div class="sort-controls">
+      <mat-form-field class="select" subscriptSizing="dynamic">
+        <mat-label>Sort by</mat-label>
+        <mat-select
+          disableRipple
+          panelClass="options-container"
+          [value]="sortBy()"
+          (selectionChange)="onSortByChange($event.value)"
+        >
+          <mat-optgroup label="Tissue Block Attribute">
+            @for (label of generalSortLabels(); track label) {
+              <mat-option [value]="label">{{ label }}</mat-option>
+            }
+          </mat-optgroup>
+          <mat-optgroup label="Cell Type Count">
+            @for (cellType of cellTypes(); track cellType) {
+              <mat-option [value]="cellType">{{ cellType }}</mat-option>
+            }
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="select" subscriptSizing="dynamic">
+        <mat-label>Sort order</mat-label>
+        <mat-select
+          disableRipple
+          panelClass="options-container"
+          [value]="orderType()"
+          (selectionChange)="onOrderTypeChange($event.value)"
+        >
+          @for (option of orderTypeOptions; track option.value) {
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="select" subscriptSizing="dynamic">
+        <mat-label>Group by</mat-label>
+        <mat-select
+          disableRipple
+          panelClass="options-container"
+          [value]="groupBy()"
+          (selectionChange)="onGroupByChange($event.value)"
+        >
+          @for (group of groupOptions(); track group.key) {
+            <mat-option [value]="group.key">{{ group.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="axes-group">
+    <div class="x-axis-group">
+      <h1>X axis</h1>
+      <mat-button-toggle-group
+        [hideSingleSelectionIndicator]="false"
+        hraButtonToggleSize="large"
+        [value]="xAxisField()"
+        (change)="onXAxisFieldChange($event.value)"
+      >
+        @for (option of xAxisOptions; track option.value) {
+          <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="y-axis-group">
+      <h1>Y axis</h1>
+      <mat-button-toggle-group
+        [hideSingleSelectionIndicator]="false"
+        hraButtonToggleSize="large"
+        [value]="yAxisField()"
+        (change)="onYAxisFieldChange($event.value)"
+      >
+        @for (option of yAxisOptions; track option.value) {
+          <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+  </div>
+} @else {
+  <div class="loading-state">
+    <small style="color: gray">Loading dataset...</small>
+  </div>
+}
