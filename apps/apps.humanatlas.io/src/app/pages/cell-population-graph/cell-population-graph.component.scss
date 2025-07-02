@@ -32,8 +32,6 @@
     border-radius: 0.5rem;
     border: 0.0625rem solid vars.$outline-variant;
     overflow: hidden;
-
-
   }
 
   .content {
@@ -47,23 +45,23 @@
     }
   }
 
-    @media (min-width: 640px) and (max-width: 999px) {
-      padding: 5rem 2.5rem;
-      .cell-population-graph-content {
-        max-width: 57.4375rem;
-      }
+  @media (min-width: 640px) and (max-width: 999px) {
+    padding: 5rem 2.5rem;
+    .cell-population-graph-content {
+      max-width: 57.4375rem;
+    }
 
     .content {
       flex-direction: column;
     }
+  }
+  @media (min-width: 320px) and (max-width: 639px) {
+    .cell-population-graph-content {
+      max-width: 23.625rem;
     }
-    @media (min-width: 320px) and (max-width: 639px) {
-      .cell-population-graph-content {
-        max-width: 23.625rem;
-      }
 
     .content {
       flex-direction: column;
     }
-    }
+  }
 }
