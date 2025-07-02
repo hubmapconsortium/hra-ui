@@ -1,6 +1,5 @@
 import { Injectable, signal } from '@angular/core';
 import { parse } from 'papaparse';
-import urljoin from 'url-join';
 import {
   Configuration,
   MAIN_CONFIG_JSON,
@@ -91,10 +90,11 @@ export class CellPopulationDataService {
         const fileUrl = (() => {
           if (config.basePath.includes('docs.google.com')) {
             // Request Google Sheets API through query param
-            return urljoin(config.basePath, `&sheet=${encodeURIComponent(title)}`);
+            return `${config.basePath}&sheet=${encodeURIComponent(title)}`;
           }
           // Append title as CSV to base path otherwise
-          return urljoin(config.basePath, encodeURIComponent(`${title}.csv`));
+          const basePath = config.basePath.endsWith('/') ? config.basePath : `${config.basePath}/`;
+          return new URL(`${title}.csv`, basePath).toString();
         })();
         return this.getCsv(fileUrl);
       });
