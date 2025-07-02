@@ -1,0 +1,29 @@
+@if (sectionItems.length === 0) {
+  <div class="no-data">No data</div>
+}
+
+@if (sectionItems.length > 0) {
+  <table mat-table [dataSource]="sectionItems">
+    <caption class="sr-only">
+      Biomarker Table Data Card
+    </caption>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="label">
+      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Label</th>
+      <td class="label" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">
+        {{ element.data.label }}
+      </td>
+    </ng-container>
+
+    <!-- Value Column -->
+    <ng-container matColumnDef="value">
+      <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Value</th>
+      <td class="value" mat-cell *matCellDef="let element" [class.no-border]="!element.isLastItem">
+        {{ element.data.value }}
+      </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: ['label', 'value']"></tr>
+  </table>
+}

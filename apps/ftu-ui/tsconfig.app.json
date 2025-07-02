@@ -5,6 +5,6 @@
     "types": []
   },
   "files": ["src/main.ts"],
-  "exclude": ["jest.config.ts", "src/test-setup.ts", "**/*.spec.ts", "**/*.worker.ts"],
+  "exclude": ["jest.config.ts", "src/test-setup.ts", "**/*.spec.ts", "**/*.worker.ts", "**/*.stories.ts"],
   "include": ["src/**/*.ts"]
 }

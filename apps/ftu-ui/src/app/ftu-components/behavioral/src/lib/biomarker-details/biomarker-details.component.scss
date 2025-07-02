@@ -1,0 +1,178 @@
+@use 'vars';
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-rows: auto 2rem 69px min-content;
+  grid-template-areas:
+    'table table table'
+    'gradient-legend-header size-legend-header size-legend-header'
+    'gradient-legend size-legend .'
+    'source-list source-list source-list';
+
+  ::ng-deep .table-tab-header {
+    height: 39px !important;
+    background-color: white;
+    font-weight: 400;
+    letter-spacing: 0;
+    font-size: 0.75rem;
+
+    &:hover {
+      // background: rgba(vars.$primary-lighter);
+    }
+  }
+
+  @media (min-height: 49.5rem) {
+    grid-template-rows: auto 37px 69px min-content;
+    ::ng-deep .table-tab-header {
+      height: calc(3rem - 1px) !important;
+    }
+  }
+
+  @media (min-height: 60.75rem) {
+    grid-template-rows: auto 3rem 5rem min-content;
+  }
+
+  .table-header-group {
+    grid-area: table;
+    display: flex;
+    max-width: 100%;
+    border-bottom: 1px solid rgba(var(--light-dividers));
+  }
+
+  .table {
+    grid-area: table;
+    max-width: 100%;
+    // border-bottom: 1px solid rgba(vars.$light-dividers);
+
+    ::ng-deep .mat-mdc-tab-body-wrapper {
+      height: 100%;
+      // border-top: 1px solid rgba(vars.$light-dividers);
+    }
+
+    ::ng-deep .mat-mdc-tab {
+      max-width: 14rem;
+    }
+
+    ::ng-deep .expansion-icon {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+      height: 100%;
+    }
+
+    .cursor {
+      pointer-events: auto;
+    }
+  }
+
+  ::ng-deep {
+    .table-tab-header > .mdc-tab__content > span {
+      // color: rgba(vars.$primary-600);
+      user-select: none;
+      font-weight: 500;
+    }
+
+    .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active {
+      // color: vars.$primary;
+      user-select: none;
+    }
+
+    .mdc-tab-indicator__content--underline {
+      // border-color: rgba(vars.$accent-lighter) !important;
+    }
+  }
+
+  .legend-header {
+    // color: vars.$dark-primary-text;
+    // border-bottom: 1px solid rgba(vars.$light-dividers);
+    gap: 0.5rem;
+    min-width: max-content;
+    line-height: normal;
+
+    &.gradient {
+      grid-area: gradient-legend-header;
+      // border-right: 1px solid rgba(vars.$light-dividers);
+    }
+
+    &.size {
+      grid-area: size-legend-header;
+    }
+
+    .icon {
+      font-size: 1.125rem;
+      height: 1.125rem;
+      width: 1.125rem;
+    }
+  }
+
+  .legend {
+    padding: 1rem 1.5rem;
+
+    &.gradient {
+      grid-area: gradient-legend;
+      // border-right: 1px solid rgba(vars.$light-dividers);
+
+      .content {
+        width: 10rem;
+      }
+    }
+
+    &.size {
+      grid-area: size-legend;
+    }
+  }
+
+  .source-list {
+    height: min-content;
+    grid-area: source-list;
+    overflow: hidden;
+    max-height: 276px;
+  }
+
+  hra-biomarker-table {
+    height: 100%;
+
+    &.small {
+      min-height: fit-content;
+    }
+  }
+
+  hra-label-box {
+    font-size: 0.875rem;
+    padding-left: 1.5rem;
+  }
+}
+
+::ng-deep .biomarker-details.info-tooltip {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  // background-color: vars.$primary-contrast-rgb;
+  max-width: 21rem;
+  font-family: Metropolis;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
+}
+
+::ng-deep .mdc-tab__ripple::before {
+  opacity: 0 !important;
+}
+
+::ng-deep .biomarker-table-hover.full-column-name {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  // background-color: vars.$primary-contrast-rgb;
+  overflow: auto;
+  max-width: fit-content;
+  font-family: Metropolis;
+  font-size: 0.75rem;
+
+  &.empty {
+    display: none;
+  }
+}

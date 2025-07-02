@@ -1,0 +1,128 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: block;
+
+  .table th,
+  .table th div {
+    height: 6.5rem !important;
+  }
+
+  cdk-virtual-scroll-viewport {
+    height: 100%;
+  }
+
+  .sr-only {
+    // @include utils.sr-only();
+  }
+
+  .table {
+    margin-left: -1px;
+
+    .highlight {
+      // background: rgba(vars.$primary-lighter);
+    }
+    td.type {
+      text-transform: lowercase;
+    }
+  }
+
+  .table th {
+    // background: rgba(vars.$primary-lighter);
+    // color: rgba(vars.$accent-darker);
+    font-weight: 500;
+    height: 56px;
+    padding: 0;
+    max-width: 2.75rem;
+    min-width: 2.75rem;
+    // border-bottom: 1px solid rgba(vars.$light-dividers);
+  }
+
+  .table td {
+    // border-bottom: 1px solid rgba(vars.$light-dividers);
+    padding: 0 0.5rem;
+
+    &:not(:first-child) {
+      // border-left: 1px solid rgba(vars.$light-dividers);
+    }
+  }
+
+  .table tr {
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+
+  .table tr:first-child td {
+    // border-top: 0rem solid rgba(vars.$light-dividers);
+    max-width: 13.5rem;
+  }
+
+  tr > td:first-child {
+    text-align: left;
+  }
+
+  tr > th:first-child {
+    text-align: left;
+  }
+
+  tr > td:last-of-type {
+    // border-right: 1px solid rgba(vars.$light-dividers);
+  }
+
+  tr > th:last-of-type {
+    // border-right: 1px solid rgba(vars.$light-dividers);
+    // border-left: 1px solid rgba(vars.$light-dividers);
+  }
+
+  .type {
+    height: 2rem;
+    max-width: 13.5rem;
+    border-radius: 0rem;
+    white-space: nowrap;
+
+    &.highlight {
+      font-weight: bold;
+    }
+  }
+
+  .count {
+    height: 2rem;
+    min-width: 4.25rem;
+    // border-right: 1px solid rgba(vars.$light-dividers);
+  }
+
+  th:not(:first-child) {
+    // border-left: 1px solid rgba(vars.$light-dividers);
+  }
+
+  th:first-child,
+  th:nth-child(2) {
+    padding: 0 0.5rem !important;
+  }
+
+  .icon-header {
+    .header-column-text {
+      // transform: rotate(-90deg);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0.5rem auto;
+    }
+  }
+
+  .icon-cell {
+    width: 2rem;
+    min-height: 2rem;
+
+    .icon {
+      margin: auto;
+    }
+  }
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  // background: rgba(vars.$primary-lighter);
+}
