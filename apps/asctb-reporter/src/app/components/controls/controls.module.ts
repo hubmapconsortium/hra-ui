@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VisControlsComponent } from './vis-controls.component';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatInputModule } from '@angular/material/input';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { provideDesignSystem } from '@hra-ui/design-system';
+import { VisControlsComponent } from './vis-controls.component';
 
 @NgModule({
   declarations: [VisControlsComponent],
@@ -25,5 +26,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
   ],
   exports: [VisControlsComponent],
+  providers: [provideDesignSystem()],
 })
 export class ControlsModule {}

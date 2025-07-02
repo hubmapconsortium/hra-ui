@@ -14,7 +14,7 @@
             [ngStyle]="{
               'background-color': l.style === 'stroke' ? 'transparent' : l.color,
               border: l.style === 'stroke' ? '3px solid ' + l.color : 'none',
-              'border-style': l.style === 'stroke' ? 'dotted' : 'none'
+              'border-style': l.style === 'stroke' ? 'dotted' : 'none',
             }"
             [ngClass]="{
               rect:
@@ -33,7 +33,7 @@
               lipids: l.name === 'Lipids Biomarkers',
               metabolites: l.name === 'Metabolites Biomarkers',
               proteoforms: l.name === 'Proteoforms Biomarkers',
-              'mr-2': true
+              'mr-2': true,
             }"
           ></div>
           <span class="legend-label">{{ l.name }}</span>
@@ -41,4 +41,16 @@
       </div>
     </div>
   </mat-expansion-panel>
+</div>
+
+<div class="hra-app">
+  <hra-expansion-panel [tagline]="'Title'">
+    <hra-expansion-panel-actions>
+      <button mat-icon-button>
+        <mat-icon class="material-symbols-rounded">more_vert</mat-icon>
+      </button>
+    </hra-expansion-panel-actions>
+    <hra-expansion-panel-header-content> Additional Actions </hra-expansion-panel-header-content>
+    Actual Content
+  </hra-expansion-panel>
 </div>

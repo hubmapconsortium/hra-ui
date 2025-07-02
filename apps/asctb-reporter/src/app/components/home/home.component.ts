@@ -1,6 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { YouTubePlayer } from '@angular/youtube-player';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, ViewChild, inject, AfterViewInit, OnDestroy } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { Router, RouterModule } from '@angular/router';
+import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faGlobe, faPhone } from '@fortawesome/free-solid-svg-icons';
@@ -9,12 +13,23 @@ import { ConfigService } from '../../app-config.service';
 import { GaAction, GaCategory } from '../../models/ga.model';
 import { SheetDetails } from '../../models/sheet.model';
 import { CONTIRBUTORS, IMAGES, VIDEO_ACTIONS } from '../../static/home';
+import { FooterModule } from '../footer/footer.module';
+import { TableNestedMenuModule } from '../table-nested-menu/table-nested-menu.module';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: false,
+  imports: [
+    MatMenuModule,
+    TableNestedMenuModule,
+    MatIconModule,
+    RouterModule,
+    CommonModule,
+    YouTubePlayerModule,
+    FontAwesomeModule,
+    FooterModule,
+  ],
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
   readonly configService = inject(ConfigService);
