@@ -1,13 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { environment } from '../environments/environment';
-
-import { ConsentService } from './services/consent.service';
-
+import { routeData } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { environment } from '../environments/environment';
+import { ConfigService } from './app-config.service';
+import { TableNestedMenuComponent } from './components/table-nested-menu/table-nested-menu.component';
+import { ConsentService } from './services/consent.service';
 
 declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
 
@@ -16,16 +21,38 @@ declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
   host: { class: 'hra-app' },
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [HeaderComponent, RouterModule],
+  imports: [
+    HeaderComponent,
+    RouterModule,
+    MatIconModule,
+    ButtonsModule,
+    PlainTooltipDirective,
+    TableNestedMenuComponent,
+    CommonModule,
+    MatMenuModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  /** Consent Service */
   readonly consentService = inject(ConsentService);
+
+  /** Configuration Service */
+  readonly configService = inject(ConfigService);
+
+  /** Snackbar Service */
   readonly snackbar = inject(MatSnackBar);
-  private readonly matIconRegistry = inject(MatIconRegistry);
-  private readonly domSanitizer = inject(DomSanitizer);
+
+  /** Angular Router */
   readonly router = inject(Router);
 
+  /** Data for breadcrumbs in navigation header. */
+  private readonly data = routeData();
+
+  /** Breadcrumbs data (computed from above signal). */
+  protected readonly crumbs = computed(() => this.data()['crumbs'] as BreadcrumbItem[] | undefined);
+
+  /** Initialize the component */
   constructor() {
     switch (environment.tag) {
       case 'Staging':
@@ -37,36 +64,6 @@ export class AppComponent {
       default:
         document.title = 'ASCT+B Reporter';
     }
-
-    this.matIconRegistry.addSvgIcon(
-      'debug',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/debug.svg'),
-    );
-
-    this.matIconRegistry.addSvgIcon(
-      'report',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/report.svg'),
-    );
-
-    this.matIconRegistry.addSvgIcon(
-      'indentedList',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/indent.svg'),
-    );
-
-    this.matIconRegistry.addSvgIcon(
-      'compare',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/compare.svg'),
-    );
-
-    this.matIconRegistry.addSvgIcon(
-      'playground',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/playground.svg'),
-    );
-
-    this.matIconRegistry.addSvgIcon(
-      'upload_file',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/upload.svg'),
-    );
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

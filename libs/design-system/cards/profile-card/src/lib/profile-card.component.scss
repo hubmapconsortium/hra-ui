@@ -31,9 +31,14 @@
       margin-bottom: 0.5rem;
     }
 
-    .description {
+    .description ::ng-deep {
       @include utils.use-font(body, large);
       color: vars.$on-secondary-fixed;
+      margin-top: 0;
+
+      p {
+        margin-top: 0;
+      }
     }
   }
 

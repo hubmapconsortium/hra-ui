@@ -4,14 +4,14 @@
     <hra-icon class="icon" [svgIcon]="'product:asctb-reporter'"></hra-icon>
     <div class="title">Create and visualize Human Reference Atlas Data</div>
     <div class="actions">
-      <button mat-button hraCtaButton hraButtonVariant="primary">
+      <a mat-button hraCtaButton hraButtonVariant="primary" routerLink="/vis">
         Explore visualization
         <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-      </button>
-      <button mat-button hraCtaButton hraButtonVariant="secondary">
+      </a>
+      <a mat-button hraCtaButton hraButtonVariant="secondary" routerLink="/playground">
         Launch playground
         <mat-icon iconPositionEnd>arrow_forward</mat-icon>
-      </button>
+      </a>
     </div>
   </div>
 </div>
@@ -20,35 +20,27 @@
   <div class="section-description">Learn about the features and functionality of this application.</div>
   <div class="split-sections">
     <div class="youtube-video-container">
-      <youtube-player videoId="pzUFmDhQEO8" [playerVars]="{ rel: 0, showinfo: 0 }"></youtube-player>
+      <youtube-player #tutorialVideo videoId="pzUFmDhQEO8" [playerVars]="{ rel: 0, showinfo: 0 }"></youtube-player>
     </div>
     <div class="section-selector-container">
       <div class="chapters">Chapters</div>
       <ng-scrollbar hraScrollOverflowFade>
         <div class="section-selectors">
-          <button
-            mat-button
-            class="section-selector section-selected"
-            hraButtonVariant="primary"
-            [disableRipple]="true"
-          >
-            <div class="ss-header">Introduction</div>
-            <div class="ss-desc">
-              Learn about the ASCT+B Reporter, why it was built, and who was involved building it.
-            </div>
-          </button>
-          <button mat-button class="section-selector" hraButtonVariant="primary" [disableRipple]="true">
-            <div class="ss-header">Getting Started</div>
-            <div class="ss-desc">Learn about the application's toolbar.</div>
-          </button>
-          <button mat-button class="section-selector" hraButtonVariant="primary" [disableRipple]="true">
-            <div class="ss-header">Search</div>
-            <div class="ss-desc">Search entities by typing their names.</div>
-          </button>
-          <button mat-button class="section-selector" hraButtonVariant="primary" [disableRipple]="true">
-            <div class="ss-header">Indented List</div>
-            <div class="ss-desc">View the data in a hierarchical format.</div>
-          </button>
+          @for (section of videoSections; track section) {
+            <button
+              mat-button
+              class="section-selector"
+              [class.section-selected]="$index === selectedVideoSection()"
+              hraButtonVariant="primary"
+              [disableRipple]="true"
+              (click)="seekVideo(section.sec, $index)"
+            >
+              <div class="ss-header">{{ section.header }}</div>
+              <div class="ss-desc">
+                {{ section.desc }}
+              </div>
+            </button>
+          }
         </div>
       </ng-scrollbar>
     </div>
@@ -58,24 +50,52 @@
   <div class="section-title">Contributors</div>
   <div class="section-description">The core team who built the ASCT+B Reporter</div>
   <div class="contributors-grid">
-    @for (item of [1, 2, 3, 4, 5, 6, 7, 8]; track item) {
+    @for (contributor of contributors; track contributor) {
       <hra-profile-card
-        [pictureUrl]="'assets/ui-images/placeholder.png'"
-        [name]="'Hello World'"
-        [description]="'Description'"
+        [pictureUrl]="contributor.img"
+        [name]="contributor.name"
+        [description]="contributor.desc"
         [centerContent]="true"
       >
         <div class="social-media-actions">
-          <a mat-icon-button [hraIconButtonVariant]="'color'" [hraIconButtonSize]="'small'">
+          <a
+            *ngIf="contributor.mail"
+            mat-icon-button
+            [hraIconButtonVariant]="'color'"
+            [hraIconButtonSize]="'large'"
+            [href]="'mailto:' + contributor.mail"
+            target="_blank"
+          >
             <mat-icon color="accent">mail</mat-icon>
           </a>
-          <a mat-icon-button [hraIconButtonVariant]="'color'" [hraIconButtonSize]="'small'">
+          <a
+            *ngIf="contributor.link"
+            mat-icon-button
+            [hraIconButtonVariant]="'color'"
+            [hraIconButtonSize]="'large'"
+            [href]="contributor.link"
+            target="_blank"
+          >
             <mat-icon color="accent">person</mat-icon>
           </a>
-          <a mat-icon-button [hraIconButtonVariant]="'color'" [hraIconButtonSize]="'small'">
+          <a
+            *ngIf="contributor.linkedin"
+            mat-icon-button
+            [hraIconButtonVariant]="'color'"
+            [hraIconButtonSize]="'large'"
+            [href]="contributor.linkedin"
+            target="_blank"
+          >
             <mat-icon svgIcon="social:linkedin" color="accent"></mat-icon>
           </a>
-          <a mat-icon-button [hraIconButtonVariant]="'color'" [hraIconButtonSize]="'small'">
+          <a
+            *ngIf="contributor.github"
+            mat-icon-button
+            [hraIconButtonVariant]="'color'"
+            [hraIconButtonSize]="'large'"
+            [href]="contributor.github"
+            target="_blank"
+          >
             <mat-icon svgIcon="social:github" color="accent"></mat-icon>
           </a>
         </div>

@@ -13,7 +13,6 @@ import { IndentedListModule } from '../../components/indented-list/indented-list
 import { InfoModule } from '../../components/info/info.module';
 import { LegendComponent } from '../../components/legend/legend.component';
 import { ReportModule } from '../../components/report/report.module';
-import { TableNestedMenuModule } from '../../components/table-nested-menu/table-nested-menu.module';
 import { ControlPaneModule } from '../control-pane/control-pane.module';
 import { NavbarModule } from '../navbar/navbar.module';
 import { PlaygroundModule } from '../playground/playground.module';
@@ -40,7 +39,6 @@ import { RootComponent } from './root.component';
     DragDropModule,
     DoiModule,
     InfoModule,
-    TableNestedMenuModule,
 
     LegendComponent,
   ],
