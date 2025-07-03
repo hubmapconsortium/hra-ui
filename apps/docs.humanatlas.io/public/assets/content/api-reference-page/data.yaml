@@ -364,12 +364,12 @@ content:
 
       - component: TextHyperlink
         text: HRA-KG queries (SPARQL via grlc)
-        url: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/
+        url: https://apps.humanatlas.io/api/grlc/hra.html
         icon: arrow_right_alt
 
       - component: TextHyperlink
         text: Ubergraph queries (SPARQL via grlc)
-        url: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ubergraph/
+        url: https://apps.humanatlas.io/api/grlc/ubergraph.html
         icon: arrow_right_alt
 
       - component: TextHyperlink
