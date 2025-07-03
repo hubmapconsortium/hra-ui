@@ -13,17 +13,47 @@
   >
     <mat-icon svgIcon="social:github"></mat-icon>
   </a>
-  <a
-    mat-icon-button
-    href="https://humanatlas.io/user-story/7"
-    rel="noopener noreferrer"
-    hraPlainTooltip="Help & documentation"
-  >
+  <a mat-icon-button [matMenuTriggerFor]="helpMenu" rel="noopener noreferrer" hraPlainTooltip="Help & documentation">
     <mat-icon>help</mat-icon>
   </a></hra-header
 >
+
 <app-table-nested-menu
   #nestedMenu
   [sheetDetails]="(configService.allSheetConfigurations$ | async) ?? []"
 ></app-table-nested-menu>
+
+<mat-menu #helpMenu="matMenu" class="help-menu">
+  <a mat-menu-item href="https://humanatlas.io/asctb-reporter" target="_blank">
+    <div class="title">ASCT+B Reporter</div>
+    <div class="description">App guide & documentation</div>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-menu-item href="https://humanatlas.io/asctb-tables" target="_blank">
+    <div class="title">ASCT+B Tables</div>
+    <div class="description">Data documentation</div>
+  </a>
+  <a mat-menu-item href="https://humanatlas.io/omap" target="_blank">
+    <div class="title">Organ Mapping Antibody Panels</div>
+    <div class="description">Data documentation</div>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-menu-item href="https://humanatlas.io/publications" target="_blank">Read Publications</a>
+  <mat-divider></mat-divider>
+  <a mat-menu-item [matMenuTriggerFor]="hubmapMenu">
+    Human Biomolecular Atlas Program (HuBMAP)
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </a>
+</mat-menu>
+
+<mat-menu #hubmapMenu="matMenu">
+  <a
+    mat-menu-item
+    href="https://hubmapconsortium.org/wp-content/uploads/2020/06/DUA_FINAL_2020_02_03_for_Signature.pdf"
+    target="_blank"
+    >Terms and conditions</a
+  >
+  <a mat-menu-item href="https://hubmapconsortium.org/policies" target="_blank">Policies</a>
+</mat-menu>
+
 <router-outlet></router-outlet>

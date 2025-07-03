@@ -1,7 +1,20 @@
 @use 'light-theme';
 @use 'theming';
 @use 'utils';
+@use 'vars';
 
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
+
+  .help-menu {
+    width: 15rem !important;
+    a {
+      .title {
+        color: vars.$secondary;
+      }
+      .description {
+        color: vars.$primary;
+      }
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -30,6 +31,7 @@ declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
     TableNestedMenuComponent,
     CommonModule,
     MatMenuModule,
+    MatDividerModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
