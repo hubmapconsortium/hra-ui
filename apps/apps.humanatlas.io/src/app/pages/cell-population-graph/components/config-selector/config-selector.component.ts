@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, effect, inject, output, signal, ChangeDetectionStrategy, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -11,6 +11,7 @@ import {
   getAttributeTitle,
   DatasetOption,
   GroupOption,
+  GraphSelectionState,
 } from '../../models/parameters.model';
 import { CellPopulationDataService } from '../../services/cell-population-data.service';
 import { getStackedBarsSpec, StackedBarsSpecOptions } from '../../utils/visualization';
@@ -27,20 +28,8 @@ export class ConfigSelectorComponent {
   /** Data service */
   private readonly dataService = inject(CellPopulationDataService);
 
-  readonly datasetSource = input<string>('');
-  readonly sortBy = input<string>('Total Cell Count');
-  readonly orderType = input<OrderType>(OrderType.Descending);
-  readonly groupBy = input<GraphAttribute>(GraphAttribute.None);
-  readonly yAxisField = input<GraphAttribute>(GraphAttribute.Count);
-  readonly xAxisField = input<GraphAttribute>(GraphAttribute.DatasetName);
-
   readonly vegaSpecEvent = output<VisualizationSpec>();
-  readonly datasetChange = output<string>();
-  readonly sortByChange = output<string>();
-  readonly orderTypeChange = output<OrderType>();
-  readonly groupByChange = output<GraphAttribute>();
-  readonly yAxisFieldChange = output<GraphAttribute>();
-  readonly xAxisFieldChange = output<GraphAttribute>();
+  readonly graphSelections = model<GraphSelectionState>();
 
   private readonly currentConfig = signal<Configuration | null>(null);
   readonly generalSortLabels = signal<string[]>(['Total Cell Count']);
@@ -89,7 +78,7 @@ export class ConfigSelectorComponent {
 
   constructor() {
     effect(async () => {
-      const source = this.datasetSource();
+      const source = this.graphSelections()?.datasetSource;
       if (source) {
         await this.loadDataset(source);
       }
@@ -135,14 +124,17 @@ export class ConfigSelectorComponent {
       return;
     }
 
+    if (!this.graphSelections()) {
+      return;
+    }
     const options: StackedBarsSpecOptions = {
       graphTitle: 'Cell Population Comparison',
       values: data,
-      xAxisField: this.xAxisField(),
-      yAxisField: this.yAxisField(),
-      sortBy: this.sortBy(),
-      orderType: this.orderType(),
-      groupBy: this.groupBy(),
+      xAxisField: this.graphSelections()?.xAxisField ?? GraphAttribute.DatasetName,
+      yAxisField: this.graphSelections()?.yAxisField ?? GraphAttribute.Count,
+      sortBy: this.graphSelections()?.sortBy ?? 'Total cell count',
+      orderType: this.graphSelections()?.orderType ?? OrderType.Descending,
+      groupBy: this.graphSelections()?.groupBy ?? GraphAttribute.None,
       legendField: GraphAttribute.CellType,
       legendDomain: cellTypes,
       legendRange: Array.from(config.colorPalette).reverse().slice(0, cellTypes.length),
@@ -153,30 +145,9 @@ export class ConfigSelectorComponent {
     this.vegaSpecEvent.emit(spec);
   }
 
-  /**
-   * Event handlers for UI interactions
-   */
-  onDatasetChange(value: string): void {
-    this.datasetChange.emit(value);
-  }
-
-  onSortByChange(value: string): void {
-    this.sortByChange.emit(value);
-  }
-
-  onOrderTypeChange(value: OrderType): void {
-    this.orderTypeChange.emit(value);
-  }
-
-  onGroupByChange(value: GraphAttribute): void {
-    this.groupByChange.emit(value);
-  }
-
-  onYAxisFieldChange(value: GraphAttribute): void {
-    this.yAxisFieldChange.emit(value);
-  }
-
-  onXAxisFieldChange(value: GraphAttribute): void {
-    this.xAxisFieldChange.emit(value);
+  onGraphSelectionChange(partial: Partial<GraphSelectionState>) {
+    const currentSelections = this.graphSelections();
+    const newSelections = { ...currentSelections, ...partial } as GraphSelectionState;
+    this.graphSelections.set(newSelections);
   }
 }

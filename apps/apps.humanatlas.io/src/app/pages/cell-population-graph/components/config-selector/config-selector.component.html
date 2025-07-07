@@ -5,8 +5,8 @@
     <mat-select
       disableRipple
       panelClass="options-container"
-      [value]="datasetSource()"
-      (selectionChange)="onDatasetChange($event.value)"
+      [value]="graphSelections()?.datasetSource"
+      (selectionChange)="onGraphSelectionChange({ datasetSource: $event.value })"
       [disabled]="loading()"
     >
       @for (dataset of datasetOptions(); track dataset.key) {
@@ -25,8 +25,8 @@
         <mat-select
           disableRipple
           panelClass="options-container"
-          [value]="sortBy()"
-          (selectionChange)="onSortByChange($event.value)"
+          [value]="graphSelections()?.sortBy"
+          (selectionChange)="onGraphSelectionChange({ sortBy: $event.value })"
         >
           <mat-optgroup label="Tissue Block Attribute">
             @for (label of generalSortLabels(); track label) {
@@ -46,8 +46,8 @@
         <mat-select
           disableRipple
           panelClass="options-container"
-          [value]="orderType()"
-          (selectionChange)="onOrderTypeChange($event.value)"
+          [value]="graphSelections()?.orderType"
+          (selectionChange)="onGraphSelectionChange({ orderType: $event.value })"
         >
           @for (option of orderTypeOptions; track option.value) {
             <mat-option [value]="option.value">{{ option.label }}</mat-option>
@@ -60,8 +60,8 @@
         <mat-select
           disableRipple
           panelClass="options-container"
-          [value]="groupBy()"
-          (selectionChange)="onGroupByChange($event.value)"
+          [value]="graphSelections()?.groupBy"
+          (selectionChange)="onGraphSelectionChange({ groupBy: $event.value })"
         >
           @for (group of groupOptions(); track group.key) {
             <mat-option [value]="group.key">{{ group.label }}</mat-option>
@@ -77,8 +77,8 @@
       <mat-button-toggle-group
         [hideSingleSelectionIndicator]="false"
         hraButtonToggleSize="large"
-        [value]="xAxisField()"
-        (change)="onXAxisFieldChange($event.value)"
+        [value]="graphSelections()?.xAxisField"
+        (change)="onGraphSelectionChange({ xAxisField: $event.value })"
       >
         @for (option of xAxisOptions; track option.value) {
           <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
@@ -91,17 +91,13 @@
       <mat-button-toggle-group
         [hideSingleSelectionIndicator]="false"
         hraButtonToggleSize="large"
-        [value]="yAxisField()"
-        (change)="onYAxisFieldChange($event.value)"
+        [value]="graphSelections()?.yAxisField"
+        (change)="onGraphSelectionChange({ yAxisField: $event.value })"
       >
         @for (option of yAxisOptions; track option.value) {
           <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
         }
       </mat-button-toggle-group>
     </div>
-  </div>
-} @else {
-  <div class="loading-state">
-    <small style="color: gray">Loading dataset...</small>
   </div>
 }

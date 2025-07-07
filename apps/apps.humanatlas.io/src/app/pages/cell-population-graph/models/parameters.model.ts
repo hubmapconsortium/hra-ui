@@ -49,6 +49,15 @@ interface Configuration {
   defaultGroupBy?: GraphAttribute;
 }
 
+export interface GraphSelectionState {
+  datasetSource: string;
+  sortBy: string;
+  orderType: OrderType;
+  groupBy: GraphAttribute;
+  yAxisField: GraphAttribute;
+  xAxisField: GraphAttribute;
+}
+
 function getAttributeTitle(attribute: GraphAttribute): string {
   switch (attribute) {
     case GraphAttribute.Dataset:

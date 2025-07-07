@@ -2,7 +2,13 @@ import { Component, computed, effect, inject, input, signal, ChangeDetectionStra
 import { VisualizationSpec } from 'vega-embed';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 import { ConfigSelectorComponent } from './components/config-selector/config-selector.component';
-import { GraphAttribute, OrderType, PreviewMode, MAIN_CONFIG_JSON } from './models/parameters.model';
+import {
+  GraphAttribute,
+  OrderType,
+  PreviewMode,
+  MAIN_CONFIG_JSON,
+  GraphSelectionState,
+} from './models/parameters.model';
 import { CellPopulationDataService } from './services/cell-population-data.service';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -23,13 +29,16 @@ export class CellPopulationGraphComponent {
   readonly showUi = input<boolean>(true);
   readonly previewMode = input<PreviewMode | undefined>(undefined);
 
-  readonly datasetSource = signal<string>('');
-  readonly sortBy = signal<string>('Total Cell Count');
-  readonly orderType = signal<OrderType>(OrderType.Descending);
-  readonly groupBy = signal<GraphAttribute>(GraphAttribute.None);
-  readonly yAxisField = signal<GraphAttribute>(GraphAttribute.Count);
-  readonly xAxisField = signal<GraphAttribute>(GraphAttribute.DatasetName);
   readonly currentSpec = signal<VisualizationSpec | null>(null);
+
+  readonly graphSelections = signal<GraphSelectionState>({
+    datasetSource: '',
+    sortBy: 'Total cell count',
+    orderType: OrderType.Descending,
+    groupBy: GraphAttribute.None,
+    yAxisField: GraphAttribute.Count,
+    xAxisField: GraphAttribute.DatasetName,
+  });
 
   /** Loading state from data service */
   readonly isLoading = this.dataService.loadingSignal;
@@ -45,40 +54,16 @@ export class CellPopulationGraphComponent {
       await this.dataService.loadConfiguration(configSource, previewMode);
 
       const options = this.dataService.getDatasetOptions();
-      if (options.length > 0 && !this.datasetSource()) {
-        this.datasetSource.set(options[0].key);
+      if (options.length > 0 && !this.graphSelections().datasetSource) {
+        this.graphSelections.set({
+          ...this.graphSelections(),
+          datasetSource: options[0].key,
+        });
       }
     });
   }
 
-  /**
-   * Event handlers for configuration changes
-   */
   onSpecUpdate(spec: VisualizationSpec): void {
     this.currentSpec.set(spec);
-  }
-
-  onDatasetChange(value: string): void {
-    this.datasetSource.set(value);
-  }
-
-  onSortByChange(value: string): void {
-    this.sortBy.set(value);
-  }
-
-  onOrderTypeChange(value: OrderType): void {
-    this.orderType.set(value);
-  }
-
-  onGroupByChange(value: GraphAttribute): void {
-    this.groupBy.set(value);
-  }
-
-  onYAxisFieldChange(value: GraphAttribute): void {
-    this.yAxisField.set(value);
-  }
-
-  onXAxisFieldChange(value: GraphAttribute): void {
-    this.xAxisField.set(value);
   }
 }

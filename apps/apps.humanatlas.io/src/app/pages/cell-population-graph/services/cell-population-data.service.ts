@@ -16,13 +16,21 @@ export class CellPopulationDataService {
   private readonly loading = signal<boolean>(false);
   private readonly graphData = signal<Record<string, any>[]>([]);
   private readonly cellTypes = signal<string[]>([]);
+  private readonly error = signal<string | null>(null);
 
-  readonly presetsSignal = this.presets.asReadonly();
   readonly loadingSignal = this.loading.asReadonly();
   readonly graphDataSignal = this.graphData.asReadonly();
   readonly cellTypesSignal = this.cellTypes.asReadonly();
 
   constructor() {}
+
+  private resolveDatasetUrl(basePath: string, title: string): string {
+    if (basePath.includes('docs.google.com')) {
+      return `${basePath}&sheet=${encodeURIComponent(title)}`;
+    }
+    const safeBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
+    return new URL(`${title}.csv`, safeBase).toString();
+  }
 
   async getCsv(url: string): Promise<Record<string, any>[]> {
     return new Promise((resolve, reject) => {
@@ -31,24 +39,20 @@ export class CellPopulationDataService {
         delimiter: ',',
         header: true,
         skipEmptyLines: true,
-        complete: (result: any) => {
-          resolve(result.data);
-        },
-        error: (error: any) => {
-          reject(`Failed to load from URL: ${url}`);
-        },
+        complete: (result: any) => resolve(result.data),
+        error: () => reject(`Failed to load from URL: ${url}`),
       });
     });
   }
 
   async loadConfiguration(configSource?: string, previewMode?: PreviewMode): Promise<void> {
+    this.error.set(null);
+    const finalConfigSource =
+      previewMode !== undefined && isOfTypePreviewMode(previewMode)
+        ? PREVIEW_CONFIG_JSON
+        : configSource || MAIN_CONFIG_JSON;
+
     try {
-      let finalConfigSource = configSource || MAIN_CONFIG_JSON;
-
-      if (previewMode !== undefined && isOfTypePreviewMode(previewMode)) {
-        finalConfigSource = PREVIEW_CONFIG_JSON;
-      }
-
       const response = await fetch(finalConfigSource, {
         method: 'GET',
         cache: 'reload',
@@ -56,14 +60,16 @@ export class CellPopulationDataService {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to load configuration');
+        throw new Error(`Failed to fetch configuration from ${finalConfigSource}`);
       }
 
       const presetsData = await response.json();
       this.presets.set(presetsData);
-    } catch (error) {
-      console.error('Unable to load JSON config:', error);
+    } catch (err) {
+      const msg = (err as Error).message ?? 'Unknown config load error';
+      console.error('Config Load Error:', msg);
       this.presets.set({});
+      this.error.set(`Configuration Error: ${msg}`);
     }
   }
 
@@ -72,43 +78,33 @@ export class CellPopulationDataService {
     cellTypes: string[];
     config: Configuration;
   }> {
+    this.error.set(null);
     const presets = this.presets();
+    const config = presets[datasetSource];
 
-    if (!(datasetSource in presets)) {
-      throw new Error('No config found for provided data source.');
+    if (!config) {
+      const msg = 'No configuration found for the selected dataset.';
+      this.error.set(msg);
+      throw new Error(msg);
     }
 
     this.loading.set(true);
-
-    const config = presets[datasetSource];
     const newGraphData: Record<string, any>[] = [];
     const uniqueCTs = new Set<string>();
 
     try {
-      // Make requests in parallel
-      const promises = config.datasets.map((title) => {
-        const fileUrl = (() => {
-          if (config.basePath.includes('docs.google.com')) {
-            // Request Google Sheets API through query param
-            return `${config.basePath}&sheet=${encodeURIComponent(title)}`;
-          }
-          // Append title as CSV to base path otherwise
-          const basePath = config.basePath.endsWith('/') ? config.basePath : `${config.basePath}/`;
-          return new URL(`${title}.csv`, basePath).toString();
-        })();
-        return this.getCsv(fileUrl);
-      });
+      const datasets = await Promise.all(
+        config.datasets.map((title) => this.getCsv(this.resolveDatasetUrl(config.basePath, title))),
+      );
 
-      const datasets = await Promise.all(promises);
-
-      for (const [index, csvData] of datasets.entries()) {
+      datasets.forEach((csvData, index) =>
         csvData.forEach((row) => {
           row['dataset_id'] = config.datasets[index];
           row['index'] = index;
           uniqueCTs.add(row['cell_type']);
           newGraphData.push(row);
-        });
-      }
+        }),
+      );
 
       const sortedCellTypes = Array.from(uniqueCTs).sort();
 
@@ -122,7 +118,7 @@ export class CellPopulationDataService {
         config,
       };
     } catch (error) {
-      console.error('Error loading dataset:', error);
+      this.error.set(error as string);
       this.loading.set(false);
       throw error;
     }
