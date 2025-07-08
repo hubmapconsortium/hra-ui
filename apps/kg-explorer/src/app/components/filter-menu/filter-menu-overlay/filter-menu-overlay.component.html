@@ -1,7 +1,20 @@
-<hra-icon class="info-icon" fontIcon="info"></hra-icon>
-<button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
-  {{ filterOptionCategory().label }}
-</button>
+<div class="top-row">
+  <hra-icon class="info-icon" fontIcon="info"></hra-icon>
+  <button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
+    {{ filterOptionCategory().label }}
+  </button>
+</div>
+
+<mat-chip-set>
+  @for (option of chips(); track option) {
+    <mat-chip (removed)="remove(option)">
+      {{ option.label }}
+      <button matChipRemove [attr.aria-label]="'remove ' + option">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-chip>
+  }
+</mat-chip-set>
 
 <hra-rich-tooltip-container #content class="filter-menu">
   <hra-rich-tooltip-content class="filter-menu-content">

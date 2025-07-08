@@ -43,7 +43,7 @@ export interface FilterOptionList {
 
 const DIGITAL_OBJECT_NAME_MAP: Record<string, string> = {
   'ref-organ': '3D Organs',
-  '2d-ftu': 'FTU Illustations',
+  '2d-ftu': 'FTU Illustrations',
   'asct-b': 'ASCT+B Tables',
   collection: 'Collections',
   ctann: 'Cell Type Annotations',

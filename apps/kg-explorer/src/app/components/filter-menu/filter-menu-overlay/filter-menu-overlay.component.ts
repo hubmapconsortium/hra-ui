@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, OnInit, output, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -26,12 +27,13 @@ import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/mai
     MatInputModule,
     ReactiveFormsModule,
     MatListModule,
+    MatChipsModule,
   ],
   templateUrl: './filter-menu-overlay.component.html',
   styleUrl: './filter-menu-overlay.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterMenuOverlayComponent {
+export class FilterMenuOverlayComponent implements OnInit {
   readonly searchControl = new UntypedFormControl();
   readonly form = input.required<FormControl<FilterOption[] | null>>();
   readonly filterOptionCategory = input.required<FilterOptionCategory>();
@@ -40,6 +42,9 @@ export class FilterMenuOverlayComponent {
 
   readonly filterChanged = output();
 
+  /** Displayed chip options */
+  readonly chips = signal([] as FilterOption[]);
+
   constructor() {
     effect(() => {
       this.filteredOptions.set(this.filterOptionCategory().options);
@@ -47,6 +52,30 @@ export class FilterMenuOverlayComponent {
 
     this.searchControl.valueChanges.subscribe((result) => {
       this.onSearchChange(result);
+    });
+  }
+
+  ngOnInit() {
+    const syncChips = (value: FilterOption[] | null) => {
+      if (Array.isArray(value)) {
+        this.chips.set(value);
+      }
+    };
+    this.form().valueChanges.subscribe(syncChips);
+    syncChips(this.form().value);
+  }
+
+  /**
+   * Removes option from the chip list
+   * @param option Option name
+   */
+  remove(option: FilterOption): void {
+    this.chips.update((chips) => {
+      this.selectedOptions.delete(option);
+      const updatedValue = chips.filter((o) => o !== option);
+      this.form().setValue(updatedValue);
+      this.filterChanged.emit();
+      return updatedValue;
     });
   }
 
