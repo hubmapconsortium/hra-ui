@@ -1,8 +1,6 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">
   <mat-tree-node
     *matTreeNodeDef="let node; let level = level"
-    [matTreeNodePadding]="level"
-    matTreeNodePaddingIndent="64"
     [class.selected]="node.data === selected"
     class="row"
     [class.child]="hasChild"
@@ -10,7 +8,6 @@
   >
     <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>
   </mat-tree-node>
-
   <mat-tree-node
     *matTreeNodeDef="let node; let level = level; when: hasChild"
     class="row"
