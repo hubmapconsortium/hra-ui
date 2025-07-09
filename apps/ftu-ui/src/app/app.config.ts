@@ -10,7 +10,6 @@ import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from 
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ROUTES } from './app.routes';
 import { provideStore } from '@ngxs/store';
-
 /**
  * Application config
  */
