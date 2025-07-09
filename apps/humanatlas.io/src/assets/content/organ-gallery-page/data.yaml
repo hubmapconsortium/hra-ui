@@ -49,11 +49,11 @@ content:
     content:
       component: Markdown
       data: |
-        You can download the application on the Meta Horizon Store: [https://www.meta.com/experiences/5696814507101529](https://www.meta.com/experiences/5696814507101529)
+        * You can download the application on the Meta Horizon Store: [https://www.meta.com/experiences/5696814507101529](https://www.meta.com/experiences/5696814507101529)
         * This paper, mentioned above, describes the basic concept: [https://doi.org/10.3389/fbinf.2023.1162723](https://doi.org/10.3389/fbinf.2023.1162723)
-        * Work in progress: follow-up publication describing multiscale exploration and visualization (to be shared when available)
-        * Data pages for multiscale exploration and visualization: TBA
-        * Supporting Information for next paper: TBA
+        * Work in progress: a follow-up publication describing multiscale exploration and visualization (preprint to be shared when available)
+        * Data pages for multiscale exploration and visualization: **TBA**
+        * Supporting Information for next paper: **TBA**
 
   - component: PageSection
     tagline: Feedback
