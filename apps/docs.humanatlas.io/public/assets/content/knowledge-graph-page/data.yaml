@@ -69,7 +69,7 @@ content:
           To execute this query, use the following cURL command:
 
           ```bash
-          curl -L -g "https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/as-3d-cnt"
+          curl -L -g "https://apps.humanatlas.io/api/grlc/hra/as-3d-cnt"
           ```
 
           The response will return the count of 3D anatomical structures in the graph, like this:
