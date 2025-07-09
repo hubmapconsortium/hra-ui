@@ -18,7 +18,6 @@ content:
         Figure 1 compares the user interface for exploring the HRA via the [Exploration User Interface (EUI)](https://apps.humanatlas.io/eui/) to how it appears in the HRA Organ Gallery when using a Meta Quest 2 or 3.
         This research is based on work supported by a [R03 award by the NIH](https://reporter.nih.gov/search/ywt9ul-G8kuWaSRazYBjJg/project-details/11123677), a [NIH HuBMAP JumpStart Fellowship 2024-2025](https://hubmapconsortium.org/jumpstart-program/#andreas2024), a HuBMAP NIH JumpStart Award (2023-2024), and a [CIFAR](https://cifar.ca/research-programs/cifar-macmillan-multiscale-human/) catalyst award.
 
-
   - component: PageSection
     tagline: 2D vs. virtual reality
     anchor: 2d-vs-virtual-reality
@@ -31,7 +30,6 @@ content:
 
       - component: Image
         src: assets/content/organ-gallery-page/images/organ_gallery.png
-
 
   - component: PageSection
     tagline: Why virtual reality?
