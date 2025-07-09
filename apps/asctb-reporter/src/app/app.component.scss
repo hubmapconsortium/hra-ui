@@ -1,0 +1,10 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
+::ng-deep .help-menu {
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
+}

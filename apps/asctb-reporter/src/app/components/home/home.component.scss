@@ -8,7 +8,7 @@
   .splash-header {
     position: relative;
     width: 100%;
-    height: 900px;
+    height: 56.25rem;
 
     .splash-img {
       width: 100%;
@@ -42,6 +42,7 @@
 
       .actions {
         display: flex;
+        flex-wrap: wrap;
         gap: 2rem;
       }
     }
@@ -67,15 +68,29 @@
 
     .split-sections {
       display: flex;
-      gap: 64px;
+      gap: 4rem;
       justify-content: center;
-      height: 24.375rem;
+      flex-wrap: wrap;
+
+      .youtube-video-container {
+        flex: 1;
+        ::ng-deep youtube-player {
+          iframe,
+          youtube-player-placeholder {
+            height: 25.625rem !important;
+            min-width: 32rem;
+            width: 100% !important;
+          }
+        }
+      }
 
       .section-selector-container {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        height: 100%;
+        height: 25.625rem;
+        flex: 1;
+        min-width: 20rem;
 
         .section-selectors {
           display: flex;
@@ -143,7 +158,7 @@
 
     .contributors-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
       gap: 5rem;
       width: 100%;
       max-width: 62.5rem;
@@ -161,6 +176,43 @@
           color: vars.$on-tertiary-fixed;
         }
       }
+    }
+  }
+
+  /** Responsive Styles **/
+
+  @media only screen and (min-width: 320px) and (max-width: 639px) {
+    .splash-header .splash-content {
+      padding: 10rem 1.5rem;
+    }
+
+    .demonstration-video-section {
+      padding: 6rem 1.5rem;
+      .split-sections {
+        flex-direction: column;
+        height: unset;
+        flex-wrap: nowrap;
+
+        .youtube-video-container {
+          ::ng-deep youtube-player {
+            iframe,
+            youtube-player-placeholder {
+              min-width: unset;
+              min-height: 13.4375rem;
+              height: unset !important;
+            }
+          }
+        }
+
+        .section-selector-container {
+          min-height: 9.5569rem;
+          max-height: 19.6875rem;
+        }
+      }
+    }
+
+    .contributors-section {
+      padding: 6rem 1.5rem;
     }
   }
 }
