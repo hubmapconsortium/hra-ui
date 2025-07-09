@@ -18,6 +18,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { dispatch, dispatch$, select$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
   BaseHrefActions,
+  CdkStateModule,
   createLinkId,
   InternalLinkEntry,
   LinkRegistryActions,
@@ -27,10 +28,11 @@ import {
   StorageId,
   StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from '@hra-ui/components/behavioral';
+import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from './ftu-components/behavioral/src';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
+  HraServiceModule,
   illustrationsInput,
   rawCellSummariesInput,
   RawCellSummary,
@@ -44,6 +46,7 @@ import {
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
+  HraStateModule,
   IllustratorActions,
   IllustratorSelectors,
   LinkIds,
@@ -108,6 +111,9 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
     MouseTrackerModule,
     NavigationModule,
     RouterModule,
+    CdkStateModule,
+    HraServiceModule,
+    HraStateModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
