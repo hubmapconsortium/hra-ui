@@ -15,9 +15,13 @@ export type BottomSheetVariant = 'table' | 'page-section';
  * Interface for the bottom sheet Data
  */
 export interface BottomSheetData {
+  /** variant of the bottom sheet */
   variant: BottomSheetVariant;
+  /** tagline of the bottom sheet */
   tagline?: string;
+  /** rows of the bottom sheet */
   rows?: TableRow[];
+  /** columns of the bottom sheet */
   columns?: TableColumn[];
 }
 
