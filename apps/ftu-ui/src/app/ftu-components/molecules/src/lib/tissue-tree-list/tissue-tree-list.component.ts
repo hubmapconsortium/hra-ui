@@ -101,7 +101,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    */
   readonly flattener = new MatTreeFlattener<T, InternalNode<K, T>>(
     (node, level) => ({
-      label: level === 0 ? node.label : node.label.toLowerCase(),
+      label: node.label.charAt(0).toUpperCase() + node.label.slice(1),
       expandable: !!node.children?.length,
       level,
       data: node,
