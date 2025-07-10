@@ -13,7 +13,7 @@ import { IndentedListModule } from '../../components/indented-list/indented-list
 import { InfoModule } from '../../components/info/info.module';
 import { LegendComponent } from '../../components/legend/legend.component';
 import { ReportModule } from '../../components/report/report.module';
-import { ControlPaneModule } from '../control-pane/control-pane.module';
+import { ControlPaneComponent } from '../control-pane/control-pane.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { PlaygroundModule } from '../playground/playground.module';
 import { TreeModule } from '../tree/tree.module';
@@ -24,7 +24,6 @@ import { RootComponent } from './root.component';
   imports: [
     CommonModule,
     MatSidenavModule,
-    ControlPaneModule,
     ReportModule,
     IndentedListModule,
     DebugLogsModule,
@@ -39,7 +38,7 @@ import { RootComponent } from './root.component';
     DragDropModule,
     DoiModule,
     InfoModule,
-
+    ControlPaneComponent,
     LegendComponent,
   ],
   exports: [RootComponent],

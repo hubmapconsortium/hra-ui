@@ -1,15 +1,12 @@
 <app-sidenav>
   <div header>
-    <div class="w-100 text-center pt-3 pb-2">
-      <img
-        src="./assets/logo.svg"
-        alt=""
-        class="w-100 logo-link"
-        routerLink="/"
-        matTooltip="Home Page"
-        matTooltipPosition="below"
-      />
+    <div class="branding">
+      <hra-icon [svgIcon]="'product:asctb-reporter'"></hra-icon>
+      <div class="app-title">ASCT+B Reporter</div>
     </div>
+    <button mat-icon-button hraIconButtonSize="large" hraIconButtonVariant="dark">
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </div>
   <div body>
     <div class="px-3 mt-2">
@@ -22,15 +19,11 @@
     </div>
 
     <div class="px-3 mt-4">
-      <app-functions [error]="error"></app-functions>
-    </div>
-
-    <div class="px-3 mt-4">
-      <app-omap-controls
+      <app-functions
         [error]="error"
         [omaps]="(omapConfig$ | async)!"
         (updateConfig)="updateOmapConfig($event)"
-      ></app-omap-controls>
+      ></app-functions>
     </div>
 
     <div class="px-3 mt-4">

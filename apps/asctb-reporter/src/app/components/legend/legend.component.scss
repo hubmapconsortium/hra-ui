@@ -1,65 +1,74 @@
+@use 'utils';
+@use 'vars';
 @import './../../../assets/stylesheets/_colors.scss';
 
-.mat-expansion-panel:not([class*='mat-elevation-z']) {
-  box-shadow: none;
-}
+:host {
+  .title {
+    @include utils.use-font(label, large);
+    padding: 0.5rem 1rem;
+    height: 3rem;
+  }
 
-.circle {
-  height: 0.9375rem;
-  width: 0.9375rem;
-  border-radius: 50%;
-  display: inline-block;
-}
+  .circle {
+    height: 0.9375rem;
+    width: 0.9375rem;
+    border-radius: 50%;
+    display: inline-block;
+  }
 
-.rect {
-  height: 0.125rem;
-  width: 0.9375rem;
-  display: inline-block;
-}
+  .rect {
+    height: 0.125rem;
+    width: 0.9375rem;
+    display: inline-block;
+  }
 
-.protein {
-  height: 1.063rem;
-  width: 1.063rem;
-  background-image: url(../../../assets/legends/diamondSymbol.svg);
-  background-repeat: no-repeat;
-  background-position: -0.438rem -0.438rem;
-  background-color: unset !important;
-}
+  .protein {
+    height: 1.063rem;
+    width: 1.063rem;
+    background-image: url(../../../assets/legends/diamondSymbol.svg);
+    background-repeat: no-repeat;
+    background-position: -0.438rem -0.438rem;
+    background-color: unset !important;
+  }
 
-.lipids {
-  height: 1.063rem;
-  width: 1.063rem;
-  background-image: url(../../../assets/legends/squareSymbol.svg);
-  background-repeat: no-repeat;
-  background-color: unset !important;
-  background-position: -0.438rem -0.438rem;
-}
+  .lipids {
+    height: 1.063rem;
+    width: 1.063rem;
+    background-image: url(../../../assets/legends/squareSymbol.svg);
+    background-repeat: no-repeat;
+    background-color: unset !important;
+    background-position: -0.438rem -0.438rem;
+  }
 
-.metabolites {
-  height: 1.063rem;
-  width: 1.063rem;
-  background-image: url(../../../assets/legends/triangleSymbol.svg);
-  background-color: unset !important;
-  background-repeat: no-repeat;
-  background-position: -0.438rem -0.438rem;
-}
+  .metabolites {
+    height: 1.063rem;
+    width: 1.063rem;
+    background-image: url(../../../assets/legends/triangleSymbol.svg);
+    background-color: unset !important;
+    background-repeat: no-repeat;
+    background-position: -0.438rem -0.438rem;
+  }
 
-.proteoforms {
-  height: 1.063rem;
-  width: 1.063rem;
-  background-image: url(../../../assets/legends/crossSymbol.svg);
-  background-color: unset !important;
-  background-repeat: no-repeat;
-  background-position: -0.438rem -0.438rem;
-}
+  .proteoforms {
+    height: 1.063rem;
+    width: 1.063rem;
+    background-image: url(../../../assets/legends/crossSymbol.svg);
+    background-color: unset !important;
+    background-repeat: no-repeat;
+    background-position: -0.438rem -0.438rem;
+  }
 
-.legend-div {
-  max-height: 11.25rem;
-  overflow-y: auto;
+  .legends {
+    max-height: 11.25rem;
+    overflow-y: auto;
+    padding: 0 1rem 1rem 1rem;
+    border-bottom: 0.0625rem solid vars.$outline;
 
-  .legend-label {
-    padding-left: 0.5rem;
-    letter-spacing: 0.1px;
-    font-size: 14px;
+    .legend-label {
+      @include utils.use-font(label, medium);
+      padding-left: 0.5rem;
+      letter-spacing: 0.1px;
+      font-size: 14px;
+    }
   }
 }

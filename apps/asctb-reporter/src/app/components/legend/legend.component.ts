@@ -16,7 +16,6 @@ import { LegendService } from './legend.service';
   selector: 'app-legend',
   templateUrl: './legend.component.html',
   styleUrls: ['./legend.component.scss'],
-  standalone: true,
   imports: [CommonModule, ExpansionPanelModule, MatIconModule, OrderByPipe, MatExpansionModule],
   providers: [LegendService],
 })

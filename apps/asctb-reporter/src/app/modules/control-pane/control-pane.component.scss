@@ -1,21 +1,44 @@
-/* REPORT */
-.report {
-  border: 0.0625rem solid rgba(245, 159, 61);
-  border-radius: 0.5rem !important;
-  color: black;
-  transition: all 0.3s;
-}
+@use 'utils';
+@use 'vars';
 
-.report:hover {
-  background-color: rgb(245, 159, 61);
-}
+:host {
+  div[header] {
+    border-bottom: 1px solid vars.$outline;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    height: 5rem;
 
-a {
-  color: grey;
-}
-.arrow-left-button {
-  border-radius: 0.5rem;
-}
-.arrow-left-icon {
-  font-weight: bold;
+    .branding {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .app-title {
+        @include utils.use-font(title, medium);
+      }
+    }
+  }
+
+  .report {
+    border: 0.0625rem solid rgba(245, 159, 61);
+    border-radius: 0.5rem !important;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  .report:hover {
+    background-color: rgb(245, 159, 61);
+  }
+
+  a {
+    color: grey;
+  }
+  .arrow-left-button {
+    border-radius: 0.5rem;
+  }
+  .arrow-left-icon {
+    font-weight: bold;
+  }
 }
