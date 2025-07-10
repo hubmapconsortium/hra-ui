@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, effect, ElementRef, input, viewChild, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import embed, { Result, VisualizationSpec } from 'vega-embed';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 @Component({
   selector: 'hra-bar-graph',
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollingModule],
   templateUrl: './bar-graph.component.html',
   styleUrl: './bar-graph.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
