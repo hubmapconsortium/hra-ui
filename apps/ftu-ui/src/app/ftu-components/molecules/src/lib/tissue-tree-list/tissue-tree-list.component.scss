@@ -1,52 +1,77 @@
+@use 'utils';
 @use 'vars';
+@use '@angular/material' as mat;
 
 :host {
   overflow-y: auto;
+  max-width: 17rem;
+  border-right: 0.0625rem solid vars.$outline;
+
+  @include mat.tree-overrides(
+    (
+      node-min-height: 24px,
+      node-text-color: vars.$secondary,
+      node-text-font: vars.$label-small-font,
+      node-text-size: vars.$label-small-size,
+      node-text-weight: vars.$label-small-weight,
+    )
+  );
 
   .row {
     min-height: unset;
+    &:first-child {
+      margin-top: 0.5rem;
+    }
 
     &.child {
-      padding-left: 2rem !important;
+      margin: 0 1rem 0.25rem 2.5rem !important;
 
-      @media (min-width: 90rem) {
-        padding-left: 4rem !important;
+      &.selected {
+        background-color: utils.with-alpha(vars.$tertiary, 20%);
+        border-radius: 0.25rem;
       }
     }
 
-    &.selected {
-      background-color: #fff3f0;
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 1.5rem;
     }
 
-    .toggle {
-      width: 2rem;
-      height: 2rem;
-      padding: 0.25rem;
+    &:has(.toggle):not(:first-child) {
+      border-top: 0.0625rem solid vars.$outline;
+      padding-top: 0.25rem;
     }
 
     .label-container {
       display: flex;
       align-items: center;
-      min-height: 2rem;
+      min-height: 1.375rem;
       border-radius: 0.25rem;
       width: 100%;
-      font-weight: 500;
-      font-size: 0.75rem;
+      text-decoration: none;
+      padding-left: 0.5rem;
 
       .link {
         cursor: pointer;
         text-decoration: none;
-        // color: rgba(vars.$dark-primary-text);
         line-height: normal;
         width: 100%;
         height: 100%;
         align-items: center;
         display: flex;
+        color: vars.$primary;
+      }
+
+      &.selected {
+        background-color: utils.with-alpha(vars.$tertiary, 33%);
       }
     }
 
     &.selected .label-container .link {
-      // color: rgba(vars.$accent);
+      color: vars.$secondary;
     }
 
     &:focus-visible {
