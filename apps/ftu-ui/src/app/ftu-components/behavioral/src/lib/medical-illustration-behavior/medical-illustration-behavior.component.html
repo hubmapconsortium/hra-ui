@@ -1,9 +1,9 @@
-<hra-label-box>{{ tissueTitle }}</hra-label-box>
-<hra-interactive-svg
+<ftu-label-box>{{ tissueTitle }}</ftu-label-box>
+<ftu-interactive-svg
   [url]="currentUrl()"
   [mapping]="mapping()"
   [highlightId]="highlightId()"
   (nodeHover)="updateNodeOnHover($event)"
   (nodeClick)="updateNodeOnClicked($event)"
 >
-</hra-interactive-svg>
+</ftu-interactive-svg>

@@ -10,4 +10,6 @@
     </div>
   </div>
 }
-<hra-footer />
+@if (!router.url.includes('ftu')) {
+  <hra-footer />
+}

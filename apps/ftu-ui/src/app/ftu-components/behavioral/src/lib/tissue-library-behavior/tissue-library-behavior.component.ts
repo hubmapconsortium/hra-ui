@@ -2,22 +2,27 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
-import { LabelBoxComponent } from '@hra-ui/components/atoms';
-import { TissueTreeListComponent } from '@hra-ui/components/molecules';
+import { LabelBoxComponent } from '../../../../atoms/src';
+import { TissueTreeListComponent } from '../../../../molecules/src';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
-
+import { MenuDemoComponent, MenuDemoOption } from '@hra-ui/design-system/menu';
+import { MatDivider } from '@angular/material/divider';
 /**
  * Component for Tissue Library Behavior
  */
 @Component({
   selector: 'ftu-tissue-library-behavior',
-  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent],
+  imports: [CommonModule, LabelBoxComponent, TissueTreeListComponent, MenuDemoComponent, MatDivider],
   templateUrl: './tissue-library-behavior.component.html',
   styleUrls: ['./tissue-library-behavior.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueLibraryBehaviorComponent {
+  /**
+   * Menu options for the Tissue Library Behavior component
+   */
+  protected readonly menuOptions: MenuDemoOption[] = [];
   /**
    * Reference to the TissueTreeListComponent.
    */

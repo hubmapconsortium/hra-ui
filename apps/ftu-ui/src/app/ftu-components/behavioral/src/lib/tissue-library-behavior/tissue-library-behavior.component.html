@@ -1,9 +1,13 @@
-<hra-label-box>FTU Library</hra-label-box>
-<hra-tissue-tree-list
+<ftu-label-box>
+  Functional Tissue Unit Explorer
+  <hra-menu [menuOptions]="menuOptions" />
+</ftu-label-box>
+<mat-divider />
+<ftu-tissue-tree-list
   class="tissue-tree"
   [nodes]="tissues()"
   (navigate)="navigate($event.link, { queryParams: { id: $event.id } })"
   [(selected)]="selected"
   #list
 >
-</hra-tissue-tree-list>
+</ftu-tissue-tree-list>

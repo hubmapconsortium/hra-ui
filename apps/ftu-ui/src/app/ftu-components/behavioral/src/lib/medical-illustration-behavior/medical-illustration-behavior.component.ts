@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
-import { LabelBoxComponent } from '@hra-ui/components/atoms';
-import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
+import { LabelBoxComponent } from '../../../../atoms/src';
+import { InteractiveSvgComponent } from '../../../../molecules/src';
 import { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
 
 /**
