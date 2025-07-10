@@ -4,7 +4,7 @@
 :host {
   display: block;
   overflow: auto;
-  border-left: solid .0625rem vars.$outline-variant;
+  border-left: solid 0.0625rem vars.$outline-variant;
 
   .vega-container {
     margin: 2rem;
@@ -14,7 +14,7 @@
       color: #5e5a4b;
       padding: 0.5rem;
       max-width: 22.5rem;
-      box-shadow: 0rem .3125rem 1rem 0rem #201e3d3d;
+      box-shadow: 0rem 0.3125rem 1rem 0rem #201e3d3d;
     }
   }
 
@@ -26,14 +26,14 @@
 
     .vega-embed .vega-actions::before {
       right: auto;
-      left: .875rem;
+      left: 0.875rem;
     }
 
     .vega-embed .vega-actions {
       left: -0.5625rem;
       right: auto;
-      border-radius: .5rem;
-      box-shadow: 0rem .3125rem .25rem 0rem #201E3D29;
+      border-radius: 0.5rem;
+      box-shadow: 0rem 0.3125rem 0.25rem 0rem #201e3d29;
       border: none;
       width: 12.5rem;
       height: 17.0625rem;
@@ -46,16 +46,15 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-
       }
 
       a:nth-child(2) {
-        border-bottom: .0625rem solid vars.$outline-variant;
+        border-bottom: 0.0625rem solid vars.$outline-variant;
       }
     }
   }
 
   @media (min-width: 320px) and (max-width: 999px) {
-    border-top: solid .0625rem vars.$outline-variant;
+    border-top: solid 0.0625rem vars.$outline-variant;
   }
 }
