@@ -13,8 +13,8 @@ import {
   LabelBoxComponent,
   SizeLegend,
   SizeLegendComponent,
-} from '@hra-ui/components/atoms';
-import { SourceListComponent } from '@hra-ui/components/molecules';
+} from '../../../../atoms/src';
+import { SourceListComponent } from '../../../../molecules/src';
 import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
