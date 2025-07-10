@@ -18,6 +18,13 @@ export const appRoutes: Route[] = [
   {
     path: 'vis',
     component: RootComponent,
+    data: {
+      crumbs: [
+        { name: 'Apps', route: 'https://apps.humanatlas.io' },
+        { name: 'ASCT+B Reporter', route: '../' },
+        { name: 'Visualization app' },
+      ] satisfies BreadcrumbItem[],
+    },
   },
   {
     path: 'playground',

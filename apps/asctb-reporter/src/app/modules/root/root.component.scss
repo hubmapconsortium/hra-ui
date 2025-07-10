@@ -1,5 +1,7 @@
+@use 'vars';
+
 .control-pane-container {
-  height: 100%;
+  height: calc(100% - 7rem);
   width: 100%;
   position: absolute;
   left: 0;
@@ -7,8 +9,10 @@
 
 .control-pane {
   width: 20.5rem;
-  border-right: 0.1875rem solid #444a6510;
+  border-right: 0.0625rem solid vars.$outline;
   min-width: 3.125rem;
+  border-radius: 0;
+  background-color: var(--mat-sys-surface-container-lowest);
 }
 
 .tree-div {

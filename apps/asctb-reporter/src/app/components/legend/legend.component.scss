@@ -22,45 +22,44 @@
     display: inline-block;
   }
 
-  .protein {
+  .polygon {
+    display: inline-block;
     height: 1.063rem;
     width: 1.063rem;
-    background-image: url(../../../assets/legends/diamondSymbol.svg);
+    background-color: unset !important;
     background-repeat: no-repeat;
     background-position: -0.438rem -0.438rem;
-    background-color: unset !important;
+  }
+
+  .protein {
+    @extend .polygon;
+    background-image: url(../../../assets/legends/diamondSymbol.svg);
   }
 
   .lipids {
-    height: 1.063rem;
-    width: 1.063rem;
+    @extend .polygon;
     background-image: url(../../../assets/legends/squareSymbol.svg);
-    background-repeat: no-repeat;
-    background-color: unset !important;
-    background-position: -0.438rem -0.438rem;
   }
 
   .metabolites {
-    height: 1.063rem;
-    width: 1.063rem;
+    @extend .polygon;
     background-image: url(../../../assets/legends/triangleSymbol.svg);
-    background-color: unset !important;
-    background-repeat: no-repeat;
-    background-position: -0.438rem -0.438rem;
   }
 
   .proteoforms {
-    height: 1.063rem;
-    width: 1.063rem;
+    @extend .polygon;
     background-image: url(../../../assets/legends/crossSymbol.svg);
-    background-color: unset !important;
-    background-repeat: no-repeat;
-    background-position: -0.438rem -0.438rem;
   }
 
   .legends {
-    max-height: 11.25rem;
-    overflow-y: auto;
+    & > div {
+      display: flex;
+      align-items: center;
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    }
+
     padding: 0 1rem 1rem 1rem;
     border-bottom: 0.0625rem solid vars.$outline;
 

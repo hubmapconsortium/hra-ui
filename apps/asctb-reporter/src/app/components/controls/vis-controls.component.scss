@@ -1,59 +1,89 @@
+@use 'utils';
+@use 'vars';
+@use '@angular/material' as mat;
 @import './../../../assets/stylesheets/_colors.scss';
 
-.mat-expansion-panel:not([class*='mat-elevation-z']) {
-  box-shadow: none;
-}
+:host {
+  .checkboxes {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem 0 1rem;
+    mat-checkbox {
+      display: block;
+    }
+  }
 
-.mat-expansion-panel-header:not(.compare) {
-  border-top-left-radius: 0.5rem !important;
-  border-top-right-radius: 0.5rem !important;
-}
+  .radios {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1rem 0.5rem 1rem;
+  }
 
-.mat-expansion-panel-header {
-  transition: all 0.3s;
-  background-color: $secondary !important;
-  padding-left: 0.9375rem !important;
-  padding-right: 0.9375rem !important;
-  border-top-left-radius: 0.5rem !important;
-  border-top-right-radius: 0.5rem !important;
-}
+  .controls {
+    padding: 0 1rem 1rem 1rem;
 
-.mat-expansion-panel-header:hover {
-  background-color: darken($color: $secondary, $amount: 8%) !important;
-}
+    .title {
+      @include utils.use-font(label, medium);
+      color: vars.$primary;
+      margin-bottom: 0.5rem;
+    }
 
-.numberInput {
-  background-color: #fafafa !important;
-  border-radius: 0.25rem !important;
-  font: inherit;
-  background: transparent;
-  color: currentColor;
-  border: none;
-  outline: none;
-  padding: 0;
-  margin: 0;
-  width: 500%;
-  max-width: 100%;
-  vertical-align: bottom;
-  text-align: inherit;
-}
+    .toggle-full-width {
+      width: 100%;
+      mat-button-toggle {
+        flex: 1;
+      }
+    }
 
-.controls .mat-expansion-panel-header-description {
-  justify-content: flex-end !important;
-  align-items: center;
-  margin-right: 0 !important;
-}
+    .control {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      mat-form-field {
+        width: 5rem;
+      }
+      mat-slider {
+        flex: 1;
+        margin: 0;
+      }
+    }
+  }
 
-.controls .mat-expansion-panel-header-description {
-  flex-basis: 0;
-}
+  .numberInput {
+    background-color: #fafafa !important;
+    border-radius: 0.25rem !important;
+    font: inherit;
+    background: transparent;
+    color: currentColor;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: 500%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+  }
 
-.controls .mat-expansion-panel-header-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  .controls .mat-expansion-panel-header-description {
+    justify-content: flex-end !important;
+    align-items: center;
+    margin-right: 0 !important;
+  }
 
-.vis-controls {
-  font-size: 0.9rem;
+  .controls .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+
+  .controls .mat-expansion-panel-header-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .vis-controls {
+    font-size: 0.9rem;
+  }
 }

@@ -3,6 +3,7 @@ import { ApplicationConfig, importProvidersFrom, inject, provideAppInitializer }
 import { provideRouter } from '@angular/router';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideIcons } from '@hra-ui/design-system/icons';
+import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
 import { provideStore } from '@ngxs/store';
 import { provideMarkdown } from 'ngx-markdown';
@@ -35,6 +36,7 @@ export const appConfig: ApplicationConfig = {
     provideDesignSystem(),
     provideIcons(),
     provideDesignSystem(),
+    provideScrolling(),
     provideStore(
       [SheetState, TreeState, UIState, LogsState],
       withNgxsLoggerPlugin({ disabled: environment.production }),

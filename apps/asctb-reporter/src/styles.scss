@@ -3,6 +3,10 @@
 @use 'utils';
 @use 'vars';
 
+html,
+body {
+  height: 100%;
+}
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
 

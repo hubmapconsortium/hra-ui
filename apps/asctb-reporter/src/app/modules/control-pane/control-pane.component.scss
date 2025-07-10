@@ -2,6 +2,24 @@
 @use 'vars';
 
 :host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: calc(100vh - 7rem);
+
+  .control-pane-items {
+    height: calc(100vh - 12rem);
+    ng-scrollbar {
+      --_scrollbar-content-width: unset;
+    }
+    display: flex;
+    flex-direction: column;
+  }
+
+  ::ng-deep .scroller .ng-scroll-content {
+    width: 100% !important;
+  }
+
   div[header] {
     border-bottom: 1px solid vars.$outline;
     display: flex;
@@ -19,6 +37,10 @@
         @include utils.use-font(title, medium);
       }
     }
+  }
+
+  div[footer] {
+    flex: 1;
   }
 
   .report {

@@ -15,6 +15,7 @@
       .control-title {
         @include utils.use-font(label, medium);
         color: vars.$primary;
+        margin-bottom: 0.5rem;
       }
 
       .filters {
