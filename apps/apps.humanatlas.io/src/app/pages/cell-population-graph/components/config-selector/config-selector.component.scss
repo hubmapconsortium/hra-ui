@@ -43,6 +43,10 @@
     }
   }
 
+  mat-button-toggle {
+    flex: 1;
+  }
+
   @media (min-width: 640px) and (max-width: 999px) {
     .sort-controls {
       display: flex;

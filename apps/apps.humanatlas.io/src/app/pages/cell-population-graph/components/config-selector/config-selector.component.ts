@@ -128,7 +128,6 @@ export class ConfigSelectorComponent {
       return;
     }
     const options: StackedBarsSpecOptions = {
-      graphTitle: 'Cell Population Comparison',
       values: data,
       xAxisField: this.graphSelections()?.xAxisField ?? GraphAttribute.DatasetName,
       yAxisField: this.graphSelections()?.yAxisField ?? GraphAttribute.Count,

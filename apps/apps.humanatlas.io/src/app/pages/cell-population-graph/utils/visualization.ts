@@ -3,7 +3,6 @@ import { VisualizationSpec } from 'vega-embed';
 import { GraphAttribute, OrderType, getAttributeTitle } from '../models/parameters.model';
 
 export interface StackedBarsSpecOptions {
-  graphTitle: string;
   values: Record<string, any>[];
   xAxisField: GraphAttribute;
   yAxisField: GraphAttribute;
@@ -22,7 +21,6 @@ export interface StackedBarsSpecOptions {
   legendSymbolLimit?: number;
   legendSymbolPerColumn?: number;
   legendOrient?: LegendOrient;
-  graphTitleFontSize?: number;
 }
 
 export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): VisualizationSpec {
@@ -36,13 +34,12 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
       labelAngle: -25,
       legendSymbolLimit: 100,
       legendSymbolPerColumn: 30,
-      graphTitleFontSize: 18,
     },
     userOptions,
   );
 
   const spec: VisualizationSpec = {
-    $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+    $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     data: {
       values: options.values,
     },
@@ -50,6 +47,32 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
       step: options.barWidth,
     },
     height: options.graphHeight,
+    config: {
+      font: 'Metropolis',
+      axis: {
+        titleColor: '#201E3D',
+        titleFont: 'Metropolis',
+        titleFontWeight: 500,
+        titleFontSize: 14,
+        titleLineHeight: 21,
+        labelColor: '#4B4B5E',
+        labelFont: 'Metropolis',
+        labelFontWeight: 500,
+        labelFontSize: 14,
+        labelLineHeight: 21,
+        labelAngle: -45,
+        labelPadding: 6,
+      },
+      legend: {
+        titleFontSize: 14,
+        titleLineHeight: 21,
+        titleColor: '#201E3D',
+        titleFontWeight: 500,
+        labelFontSize: 14,
+        labelFontWeight: 500,
+        labelColor: '#4B4B5E',
+      },
+    },
     mark: {
       type: 'bar',
     },
@@ -125,11 +148,6 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
           orient: options.legendOrient,
         },
       },
-    },
-    title: {
-      text: options.graphTitle,
-      anchor: 'middle',
-      fontSize: options.graphTitleFontSize,
     },
     transform: [
       {

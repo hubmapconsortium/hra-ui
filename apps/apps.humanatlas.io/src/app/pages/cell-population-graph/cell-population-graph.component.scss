@@ -39,12 +39,6 @@
     flex-direction: row;
   }
 
-  @media (min-width: 1000px) {
-    .cell-population-graph-content {
-      max-width: 87.5rem;
-    }
-  }
-
   @media (min-width: 640px) and (max-width: 999px) {
     padding: 5rem 2.5rem;
     .cell-population-graph-content {
@@ -56,8 +50,9 @@
     }
   }
   @media (min-width: 320px) and (max-width: 639px) {
+    padding: 5rem 1rem;
     .cell-population-graph-content {
-      max-width: 23.625rem;
+      max-width: 62.4375rem;
     }
 
     .content {

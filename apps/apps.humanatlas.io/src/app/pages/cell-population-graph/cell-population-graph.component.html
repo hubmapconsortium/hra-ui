@@ -11,8 +11,6 @@
   <div class="content">
     <hra-config-selector [(graphSelections)]="graphSelections" (vegaSpecEvent)="onSpecUpdate($event)" />
 
-    <mat-divider [vertical]="true" class="menu-divider"></mat-divider>
-
     <hra-bar-graph [spec]="currentSpec()"></hra-bar-graph>
   </div>
 </div>
