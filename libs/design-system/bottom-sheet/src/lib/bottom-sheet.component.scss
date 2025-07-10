@@ -1,0 +1,20 @@
+:host {
+  display: block;
+
+  .sheet-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    .close {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-bottom-sheet-container {
+    hra-table {
+      height: 28rem;
+    }
+  }
+}

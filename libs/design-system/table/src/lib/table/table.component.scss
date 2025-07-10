@@ -68,8 +68,10 @@
     justify-content: end;
   }
 
-  .numeric {
-    margin-right: 1.125rem;
+  &.sortable {
+    .numeric {
+      margin-right: 1.125rem;
+    }
   }
 
   markdown ::ng-deep {
