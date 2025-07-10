@@ -68,6 +68,12 @@
     justify-content: end;
   }
 
+  &.sortable {
+    .numeric {
+      margin-right: 1.125rem;
+    }
+  }
+
   markdown ::ng-deep {
     p:first-child {
       margin-top: 0.5rem;
