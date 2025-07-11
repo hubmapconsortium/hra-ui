@@ -1,4 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
+import { enableSelection } from 'ngx-scrollbar/lib/utils/common';
 import { z } from 'zod';
 
 /** Type for table style */
@@ -47,11 +48,18 @@ export const LinkColumnTypeSchema = z.object({
   urlColumn: z.string(),
 });
 
+export type CheckboxColumnType = z.infer<typeof CheckboxColumnTypeSchema>;
+
+export const CheckboxColumnTypeSchema = z.object({
+  type: z.literal('checkbox'),
+});
+
 /** Union of Schema Types for Simple Columns */
 export const SimpleTableColumnTypeSchema = z.union([
   TextColumnTypeSchema.shape.type,
   NumericColumnTypeSchema.shape.type,
   MarkdownColumnTypeSchema.shape.type,
+  CheckboxColumnTypeSchema.shape.type,
 ]);
 
 /** Inferred types for Table Columns */
@@ -63,6 +71,7 @@ export const TableColumnTypeSchema = z.union([
   NumericColumnTypeSchema,
   MarkdownColumnTypeSchema,
   LinkColumnTypeSchema,
+  CheckboxColumnTypeSchema,
 ]);
 
 /** Type for table columns */
@@ -90,4 +99,5 @@ export const PageTableSchema = ContentTemplateSchema.extend({
   style: TableVariantSchema.optional(),
   enableSort: z.boolean().optional(),
   verticalDividers: z.boolean().optional(),
+  enableSelection: z.boolean().optional(),
 });
