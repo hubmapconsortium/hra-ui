@@ -498,9 +498,12 @@ export class MainPageComponent {
       digitalObjects: form.value.digitalObjects && form.value.digitalObjects[0] ? form.value.digitalObjects : undefined,
       releaseVersion: form.value.releaseVersion && form.value.releaseVersion[0] ? form.value.releaseVersion : undefined,
       organs: form.value.organs && form.value.organs[0] ? form.value.organs : undefined,
-      // anatomicalStructures: form.controls['anatomicalStructures'].value ?? undefined,
-      // cellTypes: form.controls['cellTypes'].value ?? undefined,
-      // biomarkers: form.controls['biomarkers'].value ?? undefined,
+      anatomicalStructures:
+        form.value.anatomicalStructures && form.value.anatomicalStructures[0]
+          ? form.value.anatomicalStructures
+          : undefined,
+      cellTypes: form.value.cellTypes && form.value.cellTypes[0] ? form.value.cellTypes : undefined,
+      biomarkers: form.value.biomarkers && form.value.biomarkers[0] ? form.value.biomarkers : undefined,
     });
   }
 }
