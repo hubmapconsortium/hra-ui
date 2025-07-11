@@ -1,4 +1,5 @@
 @use 'vars';
+@use 'utils';
 
 :host {
   display: grid;
@@ -84,15 +85,15 @@
   }
 
   .legend-header {
-    // color: vars.$dark-primary-text;
-    // border-bottom: 1px solid rgba(vars.$light-dividers);
-    gap: 0.5rem;
-    min-width: max-content;
-    line-height: normal;
+    @include utils.use-font(label, small);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     &.gradient {
       grid-area: gradient-legend-header;
-      // border-right: 1px solid rgba(vars.$light-dividers);
+      border-right: 1px solid vars.$outline;
     }
 
     &.size {
@@ -107,7 +108,11 @@
   }
 
   .legend {
-    padding: 1rem 1.5rem;
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+
+    // padding: 1rem 1.5rem;
 
     &.gradient {
       grid-area: gradient-legend;
