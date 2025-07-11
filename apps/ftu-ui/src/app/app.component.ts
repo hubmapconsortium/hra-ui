@@ -1,6 +1,8 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
+import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   HostBinding,
   HostListener,
@@ -11,11 +13,12 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { dispatch, dispatch$, select$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
   BaseHrefActions,
+  CdkStateModule,
   createLinkId,
   InternalLinkEntry,
   LinkRegistryActions,
@@ -25,10 +28,11 @@ import {
   StorageId,
   StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
+import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from './ftu-components/behavioral/src';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
+  HraServiceModule,
   illustrationsInput,
   rawCellSummariesInput,
   RawCellSummary,
@@ -42,15 +46,20 @@ import {
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
+  HraStateModule,
   IllustratorActions,
   IllustratorSelectors,
   LinkIds,
+  MouseTrackerModule,
   ScreenModeSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconsModule } from '@hra-ui/design-system/icons';
 
 /** Input property keys */
 type InputProps =
@@ -90,17 +99,31 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   return filter((value): value is T => value !== undefined);
 }
 
+/** Main application component
+ */
 @Component({
   selector: 'ftu-ui-root',
+  imports: [
+    ButtonsModule,
+    CommonModule,
+    IconsModule,
+    TissueLibraryBehaviorComponent,
+    MouseTrackerModule,
+    NavigationModule,
+    RouterModule,
+    CdkStateModule,
+    HraServiceModule,
+    HraStateModule,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MatDialogModule],
   host: {
     class: 'hra-app',
   },
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterContentInit, OnChanges, OnInit {
+  /** Host binding of app component */
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   /** Illustration to display (choosen automatically if not provided) */
@@ -165,7 +188,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   private readonly clearActiveFtu = dispatch(ActiveFtuActions.Clear);
 
   /** The router */
-  private readonly router = inject(Router);
+  readonly router = inject(Router);
   /** Current route */
   private readonly activatedRoute = inject(ActivatedRoute);
 
@@ -305,25 +328,31 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
       });
   }
 
+  /** Screen size notice open of app component */
   screenSizeNoticeOpen = false;
 
+  /** Determines whether shown small viewport notice has been displayed */
   private readonly hasShownSmallViewportNotice = selectQuerySnapshot(
     StorageSelectors.get,
     StorageId.Local,
     'screen-size-notice',
   );
 
+  /** Dialog  of app component */
   private readonly dialog = inject(MatDialog);
 
+  /** Host listener for window resize events */
   @HostListener('window:resize', ['$event'])
   onWindowResize(): void {
     this.detectSmallViewport();
   }
 
+  /** Lifecycle hook that is called after content has been projected into the component */
   ngAfterContentInit(): void {
     this.detectSmallViewport();
   }
 
+  /** Detect small viewport */
   detectSmallViewport(): void {
     if (
       window.innerWidth <= SMALL_VIEWPORT_THRESHOLD &&

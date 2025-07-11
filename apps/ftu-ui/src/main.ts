@@ -1,8 +1,5 @@
-import { importProvidersFrom } from '@angular/core';
 import { createCustomElement } from '@hra-ui/webcomponents';
 import { AppComponent } from './app/app.component';
-import { AppModule } from './app/app.module';
+import { appConfig } from './app/app.config';
 
-createCustomElement('hra-ftu-ui', AppComponent, {
-  providers: [importProvidersFrom(AppModule)],
-});
+createCustomElement('hra-ftu-ui', AppComponent, appConfig);

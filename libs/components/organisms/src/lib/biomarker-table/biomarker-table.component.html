@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/mouse-events-have-key-events -->
 <cdk-virtual-scroll-viewport tvsItemSize="32" headerHeight="72">
   <table class="table" mat-table [dataSource]="dataSource" #table>
     <caption class="sr-only">
@@ -34,29 +35,30 @@
       </td>
     </ng-container>
 
-    <ng-container *ngFor="let column of columns; let index = index; trackBy: trackByIndex" [matColumnDef]="column">
-      <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">
-        <div class="header-column-text">
-          {{ column }}
-        </div>
-      </th>
+    @for (column of columns; track column; let index = $index) {
+      <ng-container [matColumnDef]="column">
+        <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">
+          <div class="header-column-text">
+            {{ column }}
+          </div>
+        </th>
 
-      <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
-        <hra-biomarker-table-data-icon
-          class="icon"
-          *ngIf="element[index + 2] !== undefined; else emptyCell"
-          [color]="getColor(element[index + 2].color)"
-          [size]="getSize(element[index + 2].size)"
-          [hraHover]="dataHover"
-          [hraHoverData]="[index + 2, element]"
-        >
-        </hra-biomarker-table-data-icon>
-
-        <ng-template #emptyCell>
-          <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>
-        </ng-template>
-      </td>
-    </ng-container>
+        <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
+          @if (element[index + 2] !== undefined) {
+            <hra-biomarker-table-data-icon
+              class="icon"
+              [color]="getColor(element[index + 2].color)"
+              [size]="getSize(element[index + 2].size)"
+              [hraHover]="dataHover"
+              [hraHoverData]="[index + 2, element]"
+            >
+            </hra-biomarker-table-data-icon>
+          } @else {
+            <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>
+          }
+        </td>
+      </ng-container>
+    }
 
     <ng-container matColumnDef="postFiller">
       <th mat-header-cell *matHeaderCellDef></th>

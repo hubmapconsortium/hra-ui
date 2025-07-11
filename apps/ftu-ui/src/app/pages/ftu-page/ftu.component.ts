@@ -6,8 +6,8 @@ import {
   BiomarkerDetailsComponent,
   FooterBehaviorComponent,
   MedicalIllustrationBehaviorComponent,
-} from '@hra-ui/components/behavioral';
-import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
+} from '../../ftu-components/behavioral/src';
+import { FullscreenContainerComponent, FullscreenContentComponent } from '../../ftu-components/molecules/src';
 import { ActiveFtuActions, ScreenModeSelectors } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
 
@@ -27,6 +27,7 @@ import { takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
+  /** Whether the FTU is in fullscreen mode */
   readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
 
   /** Set the illustration from the id query parameter */

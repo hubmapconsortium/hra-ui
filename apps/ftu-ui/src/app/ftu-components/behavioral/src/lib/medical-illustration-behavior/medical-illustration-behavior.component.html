@@ -1,0 +1,9 @@
+<ftu-label-box>{{ tissueTitle }}</ftu-label-box>
+<ftu-interactive-svg
+  [url]="currentUrl()"
+  [mapping]="mapping()"
+  [highlightId]="highlightId()"
+  (nodeHover)="updateNodeOnHover($event)"
+  (nodeClick)="updateNodeOnClicked($event)"
+>
+</ftu-interactive-svg>
