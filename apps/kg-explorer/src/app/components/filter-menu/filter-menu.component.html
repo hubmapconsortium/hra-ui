@@ -14,18 +14,18 @@
     (filterChanged)="handleFilterChange()"
   />
   <mat-divider />
-  <!-- <hra-filter-menu-overlay
+  <hra-filter-menu-overlay
     [form]="form.controls.releaseVersion"
-    filter="HRA release version"
-    [options]="generateFilterOptions('HRA release version')"
+    [filterOptionCategory]="filterRecord()['releaseVersion']"
+    (filterChanged)="handleFilterChange()"
   />
-  <mat-divider /> -->
-  <!-- <hra-filter-menu-overlay
+  <mat-divider />
+  <hra-filter-menu-overlay
     [form]="form.controls.organs"
     [filterOptionCategory]="filterRecord()['organs']"
     (filterChanged)="handleFilterChange()"
   />
-  <mat-divider /> -->
+  <mat-divider />
   <!-- <hra-filter-menu-overlay
     [form]="form.controls.anatomicalStructures"
     filter="Anatomical structures"

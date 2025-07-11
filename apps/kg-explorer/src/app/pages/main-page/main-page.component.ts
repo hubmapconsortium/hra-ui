@@ -256,12 +256,18 @@ export class MainPageComponent {
           currentDigitalObjectsFilters?.includes(row['doType'] as string),
         );
       }
-      // if (this.filters().organs) {
-      //   const currentOrganFilters = this.filters().organs?.map((obj) => obj.id) || undefined;
-      //   newFilteredRows = newFilteredRows.filter((row) =>
-      //     (row['organs'] as string[]).some(item => currentOrganFilters?.includes(item))
-      //   );
-      // }
+      if (this.filters().releaseVersion) {
+        const currentReleaseVersionFilters = this.filters().releaseVersion?.map((obj) => obj.id) || undefined;
+        newFilteredRows = newFilteredRows.filter((row) =>
+          currentReleaseVersionFilters?.includes(row['doVersion'] as string),
+        );
+      }
+      if (this.filters().organs) {
+        const currentOrganFilters = this.filters().organs?.map((obj) => obj.id) || [];
+        newFilteredRows = newFilteredRows.filter((row) =>
+          ((row['organs'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
+        );
+      }
       this.filteredRows.set(newFilteredRows);
     });
 
@@ -321,7 +327,15 @@ export class MainPageComponent {
       },
       releaseVersion: {
         label: 'HRA release version',
-        options: [],
+        options: Array.from(versionFilterOptions).map((filterOption) => {
+          return {
+            id: filterOption,
+            label: filterOption,
+            count: this.calculateCount(filterOption, 'doVersion'),
+            secondaryLabel: '',
+            tooltip: '',
+          };
+        }),
       },
       organs: {
         label: 'Organs',
@@ -349,7 +363,12 @@ export class MainPageComponent {
   }
 
   private calculateCount(filterOption: string, category: string) {
-    return this.allRows().filter((row) => row[category] === filterOption).length;
+    return this.allRows().filter((row) => {
+      if (Array.isArray(row[category])) {
+        return row[category].some((value) => String(value).toLowerCase().includes(filterOption));
+      }
+      return row[category] === filterOption;
+    }).length;
   }
 
   /**
@@ -476,9 +495,9 @@ export class MainPageComponent {
   handleFilterChanges(form: FormGroup) {
     console.log(form.value);
     this.filters.set({
-      digitalObjects: form.value.digitalObjects[0] ? form.value.digitalObjects : undefined,
-      // releaseVersion: form.controls['releaseVersion'].value ?? undefined,
-      // organs: form.value.organs[0] ? form.value.organs : undefined,
+      digitalObjects: form.value.digitalObjects && form.value.digitalObjects[0] ? form.value.digitalObjects : undefined,
+      releaseVersion: form.value.releaseVersion && form.value.releaseVersion[0] ? form.value.releaseVersion : undefined,
+      organs: form.value.organs && form.value.organs[0] ? form.value.organs : undefined,
       // anatomicalStructures: form.controls['anatomicalStructures'].value ?? undefined,
       // cellTypes: form.controls['cellTypes'].value ?? undefined,
       // biomarkers: form.controls['biomarkers'].value ?? undefined,
