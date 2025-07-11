@@ -1,4 +1,5 @@
 @use 'vars';
+@use 'utils';
 
 :host {
   display: grid;
@@ -16,10 +17,6 @@
     font-weight: 400;
     letter-spacing: 0;
     font-size: 0.75rem;
-
-    &:hover {
-      // background: rgba(vars.$primary-lighter);
-    }
   }
 
   @media (min-height: 49.5rem) {
@@ -43,11 +40,9 @@
   .table {
     grid-area: table;
     max-width: 100%;
-    // border-bottom: 1px solid rgba(vars.$light-dividers);
 
     ::ng-deep .mat-mdc-tab-body-wrapper {
       height: 100%;
-      // border-top: 1px solid rgba(vars.$light-dividers);
     }
 
     ::ng-deep .mat-mdc-tab {
@@ -68,31 +63,25 @@
 
   ::ng-deep {
     .table-tab-header > .mdc-tab__content > span {
-      // color: rgba(vars.$primary-600);
       user-select: none;
       font-weight: 500;
     }
 
     .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active {
-      // color: vars.$primary;
       user-select: none;
-    }
-
-    .mdc-tab-indicator__content--underline {
-      // border-color: rgba(vars.$accent-lighter) !important;
     }
   }
 
   .legend-header {
-    // color: vars.$dark-primary-text;
-    // border-bottom: 1px solid rgba(vars.$light-dividers);
-    gap: 0.5rem;
-    min-width: max-content;
-    line-height: normal;
+    @include utils.use-font(label, small);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     &.gradient {
       grid-area: gradient-legend-header;
-      // border-right: 1px solid rgba(vars.$light-dividers);
+      border-right: 1px solid vars.$outline;
     }
 
     &.size {
@@ -107,14 +96,14 @@
   }
 
   .legend {
-    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: center;
 
     &.gradient {
       grid-area: gradient-legend;
-      // border-right: 1px solid rgba(vars.$light-dividers);
 
       .content {
-        width: 10rem;
+        width: 9.75rem;
       }
     }
 
@@ -149,7 +138,6 @@
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-  // background-color: vars.$primary-contrast-rgb;
   max-width: 21rem;
   font-family: Metropolis;
   font-weight: 500;
@@ -166,7 +154,6 @@
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-  // background-color: vars.$primary-contrast-rgb;
   overflow: auto;
   max-width: fit-content;
   font-family: Metropolis;

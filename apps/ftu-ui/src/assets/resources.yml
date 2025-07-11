@@ -99,11 +99,11 @@ GradientLegendInfo:
 GradientLegend:
   type: gradient
   points:
-    - color: '#EDFAFD'
+    - color: '#FF9078'
       percentage: 0
-    - color: '#63B1D3'
+    - color: '#8185CF'
       percentage: 49.78
-    - color: '#00385F'
+    - color: '#201E3D'
       percentage: 100
 
 SizeLegendInfo:
@@ -116,11 +116,11 @@ SizeLegend:
   type: size
   sizes:
     - label: '0%'
-      radius: 0.5
+      radius: .125
     - label: '50%'
-      radius: 1
+      radius: .625
     - label: '100%'
-      radius: 1.5
+      radius: 1.25
 
 ScreenSizeNoticeContent:
   type: markdown
