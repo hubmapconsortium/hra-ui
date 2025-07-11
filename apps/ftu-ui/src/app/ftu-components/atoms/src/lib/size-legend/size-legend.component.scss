@@ -1,27 +1,24 @@
+@use 'vars';
+@use 'utils';
+
 :host {
   display: flex;
   flex-direction: row;
-  column-gap: 2rem;
+  column-gap: 0.4375rem;
 
   .item {
+    @include utils.use-font(label, micro);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    line-height: 0.5rem;
+    justify-content: center;
+    column-gap: 0.125rem;
 
     .circle {
       height: var(--size);
       width: var(--size);
       border-radius: 50%;
-      border: 0.125rem solid #75838f;
-    }
-
-    .label {
-      margin-top: 0.5rem;
-    }
-
-    .filler {
-      flex-grow: 1;
+      background-color: vars.$secondary;
     }
   }
 }
