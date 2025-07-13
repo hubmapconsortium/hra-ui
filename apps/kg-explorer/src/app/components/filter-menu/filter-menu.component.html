@@ -26,16 +26,22 @@
     (filterChanged)="handleFilterChange()"
   />
   <mat-divider />
-  <!-- <hra-filter-menu-overlay
+  <hra-filter-menu-overlay
     [form]="form.controls.anatomicalStructures"
-    filter="Anatomical structures"
-    [options]="generateFilterOptions('Anatomical structures')"
+    [filterOptionCategory]="filterRecord()['anatomicalStructures']"
+    (filterChanged)="handleFilterChange()"
   />
   <mat-divider />
   <hra-filter-menu-overlay
     [form]="form.controls.cellTypes"
-    filter="Cell types"
-    [options]="generateFilterOptions('Cell types')"
+    [filterOptionCategory]="filterRecord()['cellTypes']"
+    (filterChanged)="handleFilterChange()"
   />
-  <mat-divider /> -->
+  <mat-divider />
+  <hra-filter-menu-overlay
+    [form]="form.controls.biomarkers"
+    [filterOptionCategory]="filterRecord()['biomarkers']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider />
 </form>

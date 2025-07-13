@@ -1,12 +1,14 @@
 <div class="top-row">
   <hra-icon class="info-icon" fontIcon="info"></hra-icon>
-  <button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
-    {{ filterOptionCategory().label }}
-  </button>
+  @if (filterOptionCategory()) {
+    <button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
+      {{ filterOptionCategory().label }}
+    </button>
+  }
 </div>
 
 <mat-chip-set>
-  @for (option of chips(); track option) {
+  @for (option of chips(); track option.id) {
     <mat-chip (removed)="remove(option)">
       {{ option.label }}
       <button matChipRemove [attr.aria-label]="'remove ' + option">
@@ -25,7 +27,7 @@
 
     <ng-scrollbar>
       <mat-action-list>
-        @for (option of filteredOptions(); track option) {
+        @for (option of filteredOptions(); track option.id) {
           <button mat-list-item (click)="selectOption(option)">
             <div class="option-label">
               <span>{{ option.label }}</span>

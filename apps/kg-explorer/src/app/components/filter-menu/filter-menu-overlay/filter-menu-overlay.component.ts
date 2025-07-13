@@ -47,7 +47,9 @@ export class FilterMenuOverlayComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      this.filteredOptions.set(this.filterOptionCategory().options);
+      if (this.filterOptionCategory()) {
+        this.filteredOptions.set(this.filterOptionCategory().options);
+      }
     });
 
     this.searchControl.valueChanges.subscribe((result) => {

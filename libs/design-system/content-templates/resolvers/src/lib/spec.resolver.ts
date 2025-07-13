@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { APP_ASSETS_HREF } from '@hra-ui/common';
 import { load } from 'js-yaml';
-import { map, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { z } from 'zod';
 
 /**
@@ -17,10 +17,7 @@ import { z } from 'zod';
 export function createJsonSpecResolver<T extends z.ZodTypeAny>(url: string, spec: T): ResolveFn<z.infer<T>> {
   return () => {
     const http = inject(HttpClient);
-    return http.get(resolveUrl(url), { responseType: 'json' }).pipe(
-      tap((data) => console.log(data)),
-      map((data) => spec.parse(data)),
-    );
+    return http.get(resolveUrl(url), { responseType: 'json' }).pipe(map((data) => spec.parse(data)));
   };
 }
 

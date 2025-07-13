@@ -47,6 +47,10 @@
   }
 
   ng-scrollbar {
-    height: 264px;
+    height: 16.5rem;
+
+    ::ng-deep .ng-scroll-content {
+      max-width: 100%;
+    }
   }
 }
