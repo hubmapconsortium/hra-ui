@@ -24,6 +24,7 @@ export class BarGraphComponent implements OnDestroy {
   /** Current Vega embed result */
   private result: Result | null = null;
 
+  /** Constructor to initialize the component and set up effects */
   constructor() {
     effect(async () => {
       const currentSpec = this.spec();
@@ -61,6 +62,7 @@ export class BarGraphComponent implements OnDestroy {
     }
   }
 
+  /** Lifecycle hook to clean up the visualization when the component is destroyed. */
   ngOnDestroy(): void {
     this.clearVisualization();
   }

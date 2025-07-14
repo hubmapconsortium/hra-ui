@@ -53,6 +53,9 @@ export class CellPopulationGraphComponent {
   /** Available dataset options */
   readonly datasetOptions = computed(() => this.dataService.getDatasetOptions());
 
+  /**
+   * Constructor to initialize the component and load the configuration.
+   */
   constructor() {
     effect(async () => {
       const configSource = this.configSource();
@@ -70,6 +73,7 @@ export class CellPopulationGraphComponent {
     });
   }
 
+  /** Handle updates to the graph visualization specification */
   onSpecUpdate(spec: VisualizationSpec): void {
     this.currentSpec.set(spec);
   }

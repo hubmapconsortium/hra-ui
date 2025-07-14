@@ -6,23 +6,41 @@ import { GraphAttribute, OrderType, getAttributeTitle } from '../models/paramete
  * Options for the stacked bars visualization specification.
  */
 export interface StackedBarsSpecOptions {
+  /** Values to be visualized in the stacked bars */
   values: Record<string, any>[];
+  /** Field used for the x-axis */
   xAxisField: GraphAttribute;
+  /** Field used for the y-axis */
   yAxisField: GraphAttribute;
+  /** Field used for sorting data */
   sortBy: string;
+  /** Order type for sorting (ascending or descending) */
   orderType: OrderType;
+  /** Field used for grouping the data */
   groupBy: GraphAttribute;
+  /** Field used for the legend */
   legendField: GraphAttribute;
+  /** Domain for the legend, representing unique values for the legend field */
   legendDomain: string[];
+  /** Range of colors for the legend */
   legendRange: string[];
+  /** Number of fixed bars to display at the start */
   fixedBars?: number;
+  /** Width of each bar in the graph */
   barWidth?: number;
+  /** Height of the graph */
   graphHeight?: number;
+  /** Whether to show tooltips on hover */
   tooltip?: boolean;
+  /** Spacing between groups of bars */
   groupSpacing?: number;
+  /** Angle for the x-axis labels */
   labelAngle?: number;
+  /** Limit for the number of symbols in the legend */
   legendSymbolLimit?: number;
+  /** Number of symbols per column in the legend */
   legendSymbolPerColumn?: number;
+  /** Orientation of the legend */
   legendOrient?: LegendOrient;
 }
 

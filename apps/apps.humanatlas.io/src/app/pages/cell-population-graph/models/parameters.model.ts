@@ -2,10 +2,11 @@
  * Main configuration and model definitions for the Cell Population Graph application.
  */
 
-/** Configuration JSON URLs */
+/** Configuration JSON URL */
 const MAIN_CONFIG_JSON =
   'https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/main.config.json';
 
+/** Preview configuration JSON URL */
 const PREVIEW_CONFIG_JSON =
   'https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/preview.config.json';
 
@@ -38,36 +39,56 @@ enum OrderType {
 
 /** Preview modes for the application */
 const previewModes = ['bluelake-kidney'] as const;
+
+/** Type for PreviewMode, derived from the previewModes constant */
 type PreviewMode = (typeof previewModes)[number];
 
+/** Checks if a mode is a valid PreviewMode */
 function isOfTypePreviewMode(mode: string): mode is PreviewMode {
   return (previewModes as readonly string[]).includes(mode);
 }
 
 /** Configuration interface for the Cell Population Graph */
 interface Configuration {
+  /** Unique label for the configuration */
   label: string;
+  /** Base path for the configuration */
   basePath: string;
+  /** List of datasets included in the configuration */
   datasets: string[];
+  /** Group types for the configuration */
   groupTypes: Partial<Record<GraphAttribute, string>>;
+  /** Fixed bars */
   fixed?: number;
+  /** Color palette for the configuration */
   colorPalette: string[];
+  /** Default sort attribute */
   sortAttributes: GraphAttribute[];
+  /** Default Y-axis field */
   defaultYAxisField?: GraphAttribute;
+  /** Default X-axis field */
   defaultXAxisField?: GraphAttribute;
+  /** Default groupBy for sorting */
   defaultGroupBy?: GraphAttribute;
 }
 
 /** Interface representing the state of graph selections in the application. */
 export interface GraphSelectionState {
+  /** Source of the dataset being visualized */
   datasetSource: string;
+  /** Field used for sorting the data */
   sortBy: string;
+  /** Order type for sorting the data */
   orderType: OrderType;
+  /** Field used for grouping the data */
   groupBy: GraphAttribute;
+  /** Field used for the Y-axis in the graph */
   yAxisField: GraphAttribute;
+  /** Field used for the X-axis in the graph */
   xAxisField: GraphAttribute;
 }
 
+/** Returns the title for a given graph attribute */
 function getAttributeTitle(attribute: GraphAttribute): string {
   switch (attribute) {
     case GraphAttribute.Dataset:
@@ -116,12 +137,16 @@ export {
 
 /** Dataset option interface for the application */
 export interface DatasetOption {
+  /** Unique identifier for the dataset */
   key: string;
+  /** Display label for the dataset */
   label: string;
 }
 
 /** GroupBy option interface for the application */
 export interface GroupOption {
+  /** Unique identifier for the group */
   key: GraphAttribute;
+  /** Display label for the group */
   label: string;
 }

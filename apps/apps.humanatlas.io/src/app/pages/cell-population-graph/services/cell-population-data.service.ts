@@ -30,9 +30,11 @@ export class CellPopulationDataService {
   /** Error signal to hold any error messages */
   private readonly error = signal<string | null>(null);
 
-  /** Readonly signals for external access */
+  /** Loading signal of cell population data service */
   readonly loadingSignal = this.loading.asReadonly();
+  /** Graph data signal of cell population data service */
   readonly graphDataSignal = this.graphData.asReadonly();
+  /** Cell types signal of cell population data service */
   readonly cellTypesSignal = this.cellTypes.asReadonly();
 
   /**

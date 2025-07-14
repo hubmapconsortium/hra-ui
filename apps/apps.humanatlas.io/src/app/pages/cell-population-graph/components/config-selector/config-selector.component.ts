@@ -96,6 +96,9 @@ export class ConfigSelectorComponent {
     { value: GraphAttribute.Percentage, label: 'Percentage' },
   ];
 
+  /**
+   * Constructor to initialize the component and load the dataset and current configurations.
+   */
   constructor() {
     effect(async () => {
       const source = this.graphSelections()?.datasetSource;
