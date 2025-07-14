@@ -1,6 +1,12 @@
 @use '@angular/material' as mat;
 @use 'vars';
 
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 ::ng-deep .help-menu {
   @include mat.divider-overrides(
     (

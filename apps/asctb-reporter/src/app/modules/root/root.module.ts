@@ -14,7 +14,7 @@ import { InfoModule } from '../../components/info/info.module';
 import { LegendComponent } from '../../components/legend/legend.component';
 import { ReportModule } from '../../components/report/report.module';
 import { ControlPaneComponent } from '../control-pane/control-pane.component';
-import { NavbarModule } from '../navbar/navbar.module';
+import { NavbarComponent } from '../navbar/navbar.component';
 import { PlaygroundModule } from '../playground/playground.module';
 import { TreeModule } from '../tree/tree.module';
 import { RootComponent } from './root.component';
@@ -28,7 +28,7 @@ import { RootComponent } from './root.component';
     IndentedListModule,
     DebugLogsModule,
     CompareModule,
-    NavbarModule,
+    NavbarComponent,
     ErrorModule,
     PlaygroundModule,
     TreeModule,

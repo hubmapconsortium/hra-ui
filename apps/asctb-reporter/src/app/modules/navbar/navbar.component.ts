@@ -1,6 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router, RouterModule } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
@@ -14,6 +24,7 @@ import {
   ToggleReport,
 } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
+import { NavItemModule } from '../../components/nav-item/nav-item.module';
 import { OrganTableSelectorComponent } from '../../components/organ-table-selector/organ-table-selector.component';
 import { GaAction, GaCategory } from '../../models/ga.model';
 import {
@@ -27,12 +38,28 @@ import {
 import { SheetService } from '../../services/sheet.service';
 import { SheetState, SheetStateModel } from '../../store/sheet.state';
 import { UIState, UIStateModel } from '../../store/ui.state';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-navbar',
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    NavItemModule,
+    SearchComponent,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatMenuModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatInputModule,
+  ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  standalone: false,
 })
 export class NavbarComponent implements OnInit {
   readonly sheetservice = inject(SheetService);

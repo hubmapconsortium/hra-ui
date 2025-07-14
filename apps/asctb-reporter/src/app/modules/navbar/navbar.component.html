@@ -1,50 +1,18 @@
-<mat-toolbar
-  color="secondary"
-  class="d-flex align-items-center toolbar-nav"
-  [ngStyle]="{
-    'border-bottom': (mode$ | async) === 'vis' ? '0.1875rem solid #444a6510' : 'none'
-  }"
->
+<div class="toolbar-nav">
   <div class="nav-wrapper">
-    <app-nav-item
-      [label]="'Toggle'"
-      (click)="togglePane()"
-      #tooltip="matTooltip"
-      [matTooltip]="'Toggle Sidenav'"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">menu</mat-icon>
-    </app-nav-item>
-    <div *ngIf="(ui$ | async)?.controlPaneOpen === false">
-      <img
-        src="./assets/logo.svg"
-        alt=""
-        class="px-2"
-        width="225"
-        routerLink="/"
-        matTooltip="Home Page"
-        matTooltipPosition="below"
-      />
-    </div>
-    <div class="search ml-1">
+    <div class="nav-item">
       <app-search [disabled]="(ui$ | async)?.error?.hasError ?? false"></app-search>
     </div>
 
-    <button
-      mat-flat-button
-      id="selectedorgansBtn"
-      (click)="openSelectOrgansDialog()"
-      class="select-organs-button secondary ch"
-      #tooltip="matTooltip"
-      [disabled]="(mode$ | async) !== 'vis'"
-      matTooltip="Select Organ Set"
-      matTooltipPosition="below"
-    >
-      <span>&nbsp; {{ (mode$ | async) === 'vis' ? selectedOrgansLabel : 'Example' }}</span>
-      <mat-icon>arrow_drop_down</mat-icon>
-    </button>
+    <div class="nav-item">
+      <mat-form-field class="datasets-field" subscriptSizing="dynamic" (click)="openSelectOrgansDialog()">
+        <mat-label>Datasets</mat-label>
+        <input matInput readonly value="{{ (mode$ | async) === 'vis' ? selectedOrgansLabel : 'Example' }}" />
+        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+      </mat-form-field>
+    </div>
 
-    <app-nav-item
+    <!-- <app-nav-item
       #tooltip="matTooltip"
       matTooltip="Master Data Tables"
       matTooltipPosition="below"
@@ -157,6 +125,6 @@
       <button mat-menu-item *ngFor="let option of moreOptions" (click)="onOptionClick(option.type, option.url)">
         {{ option.name }}
       </button>
-    </mat-menu>
+    </mat-menu> -->
   </div>
-</mat-toolbar>
+</div>

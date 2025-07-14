@@ -1,7 +1,7 @@
 @use 'vars';
 
 .control-pane-container {
-  height: calc(100% - 7rem);
+  height: calc(100% - 7.1rem);
   width: 100%;
   position: absolute;
   left: 0;
@@ -42,8 +42,4 @@
   width: 15.625rem;
   left: 0.625rem;
   z-index: 2;
-}
-
-#content {
-  padding-top: 4rem;
 }
