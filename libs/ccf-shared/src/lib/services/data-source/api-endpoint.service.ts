@@ -224,6 +224,16 @@ export class ApiEndpointDataSourceService implements DataSource {
   }
 
   /**
+   * Get the supported consortium names
+   *
+   * @returns An observable of consortium names
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getConsortiumNames(): Observable<string[]> {
+    return this.doRequest((params) => this.api.consortiumNames(params));
+  }
+
+  /**
    * Get the ontology tree
    *
    * @returns An observable of the ontology tree
