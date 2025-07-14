@@ -114,6 +114,13 @@ export const Basic: Story = {
   },
 };
 
+export const WithSelection: Story = {
+  args: {
+    style: 'alternating',
+    enableSelection: true,
+  },
+};
+
 export const WithScrolling: Story = {
   render: (args) => ({
     props: args,
