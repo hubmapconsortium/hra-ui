@@ -12,7 +12,7 @@ export const TableVariantSchema = z.enum(['alternating', 'divider', 'basic']);
 export type TableRow = z.infer<typeof TableRowSchema>;
 
 /** Schema for a single table row */
-export const TableRowSchema = z.record(z.union([z.string(), z.number(), z.boolean()]));
+export const TableRowSchema = z.record(z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]));
 
 /** Type for Text Column */
 export type TextColumnType = z.infer<typeof TextColumnTypeSchema>;
