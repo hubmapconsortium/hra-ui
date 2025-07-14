@@ -8,31 +8,53 @@ import {
   PreviewMode,
 } from '../models/parameters.model';
 
+/**
+ * Service for managing cell population data, including loading configurations and datasets.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class CellPopulationDataService {
+  /** Presets signal to hold configurations */
   private readonly presets = signal<Record<string, Configuration>>({});
+
+  /** Loading signal set to default false*/
   private readonly loading = signal<boolean>(false);
+
+  /** Graph data signal to hold the loaded data */
   private readonly graphData = signal<Record<string, any>[]>([]);
+
+  /** Cell types signal to hold unique cell types */
   private readonly cellTypes = signal<string[]>([]);
+
+  /** Error signal to hold any error messages */
   private readonly error = signal<string | null>(null);
 
+  /** Readonly signals for external access */
   readonly loadingSignal = this.loading.asReadonly();
   readonly graphDataSignal = this.graphData.asReadonly();
   readonly cellTypesSignal = this.cellTypes.asReadonly();
 
-  constructor() {}
-
+  /**
+   * Resolves the dataset URL based on the base path and title.
+   * @param basePath - Base path for the dataset
+   * @param title - Title of the dataset
+   * @returns Resolved URL for the dataset
+   */
   private resolveDatasetUrl(basePath: string, title: string): string {
     if (basePath.includes('docs.google.com')) {
       return `${basePath}&sheet=${encodeURIComponent(title)}`;
     }
-    const safeBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
-    return new URL(`${title}.csv`, safeBase).toString();
+    const safeBasePath = basePath.endsWith('/') ? basePath : `${basePath}/`;
+    return new URL(`${title}.csv`, safeBasePath).toString();
   }
 
-  async getCsv(url: string): Promise<Record<string, any>[]> {
+  /**
+   * Fetches CSV data from the given URL.
+   * @param url - URL to fetch the CSV data from
+   * @returns Promise resolving to an array of records
+   */
+  private async getCsv(url: string): Promise<Record<string, any>[]> {
     return new Promise((resolve, reject) => {
       parse(url, {
         download: true,
@@ -45,6 +67,11 @@ export class CellPopulationDataService {
     });
   }
 
+  /**
+   * Loads the configuration from the specified source.
+   * @param configSource - Source URL for the configuration
+   * @param previewMode - Optional preview mode to use
+   */
   async loadConfiguration(configSource?: string, previewMode?: PreviewMode): Promise<void> {
     this.error.set(null);
     const finalConfigSource =
@@ -67,12 +94,16 @@ export class CellPopulationDataService {
       this.presets.set(presetsData);
     } catch (err) {
       const msg = (err as Error).message ?? 'Unknown config load error';
-      console.error('Config Load Error:', msg);
       this.presets.set({});
       this.error.set(`Configuration Error: ${msg}`);
     }
   }
 
+  /**
+   * Loads dataset based on the selected source.
+   * @param datasetSource - The key of the dataset to load
+   * @returns Promise resolving to an object containing graph data, cell types, and configuration
+   */
   async loadDataset(datasetSource: string): Promise<{
     graphData: Record<string, any>[];
     cellTypes: string[];
@@ -124,6 +155,10 @@ export class CellPopulationDataService {
     }
   }
 
+  /**
+   * Returns dataset options for the selector.
+   * @returns Array of dataset options with key and label
+   */
   getDatasetOptions(): { key: string; label: string }[] {
     const presets = this.presets();
     return Object.entries(presets)

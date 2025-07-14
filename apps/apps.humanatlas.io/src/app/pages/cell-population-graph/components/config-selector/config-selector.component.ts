@@ -17,6 +17,9 @@ import { CellPopulationDataService } from '../../services/cell-population-data.s
 import { getStackedBarsSpec, StackedBarsSpecOptions } from '../../utils/visualization';
 import { CommonModule } from '@angular/common';
 
+/**
+ * Component for selecting configurations from dropdowns and rendering the cell population graph.
+ */
 @Component({
   selector: 'hra-config-selector',
   imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonToggleModule],
@@ -28,20 +31,33 @@ export class ConfigSelectorComponent {
   /** Data service */
   private readonly dataService = inject(CellPopulationDataService);
 
+  /** Vega spec output signal */
   readonly vegaSpecEvent = output<VisualizationSpec>();
+
+  /** Graph Selection state signal */
   readonly graphSelections = model<GraphSelectionState>();
 
+  /** Current configuration signal */
   private readonly currentConfig = signal<Configuration | null>(null);
+
+  /** General sort labels signal */
   readonly generalSortLabels = signal<string[]>(['Total Cell Count']);
 
+  /** Loading signal */
   readonly loading = this.dataService.loadingSignal;
+
+  /** Cell types */
   readonly cellTypes = this.dataService.cellTypesSignal;
+
+  /** Grpah data signal */
   readonly graphData = this.dataService.graphDataSignal;
 
+  /** Computed signal for dataset options in config selector component */
   readonly datasetOptions = computed<DatasetOption[]>(() => {
     return this.dataService.getDatasetOptions();
   });
 
+  /** Computed signal for groupBy options */
   readonly groupOptions = computed<GroupOption[]>(() => {
     const config = this.currentConfig();
     if (!config) {
@@ -57,20 +73,24 @@ export class ConfigSelectorComponent {
     );
   });
 
+  /** Computed signal for sortBy options */
   readonly sortOptions = computed<string[]>(() => {
     return [...this.generalSortLabels(), ...this.cellTypes()];
   });
 
+  /** Options for order type */
   readonly orderTypeOptions = [
     { value: OrderType.Ascending, label: 'Ascending' },
     { value: OrderType.Descending, label: 'Descending' },
   ];
 
+  /** X-axis toggle options */
   readonly xAxisOptions = [
     { value: GraphAttribute.DatasetName, label: 'Dataset Name' },
     { value: GraphAttribute.Dataset, label: 'Dataset ID' },
   ];
 
+  /** Y-axis toggle options */
   readonly yAxisOptions = [
     { value: GraphAttribute.Count, label: 'Raw Count' },
     { value: GraphAttribute.Percentage, label: 'Percentage' },
@@ -99,21 +119,16 @@ export class ConfigSelectorComponent {
    * Loads dataset configuration and data
    */
   private async loadDataset(source: string): Promise<void> {
-    try {
-      const result = await this.dataService.loadDataset(source);
-      this.currentConfig.set(result.config);
+    const result = await this.dataService.loadDataset(source);
+    this.currentConfig.set(result.config);
 
-      // Update general sort labels with config attributes
-      const newSortLabels = ['Total Cell Count', ...result.config.sortAttributes.map(getAttributeTitle)];
-      this.generalSortLabels.set(newSortLabels);
-    } catch (error) {
-      console.error('Failed to load dataset:', error);
-      this.currentConfig.set(null);
-    }
+    // Update general sort labels with config attributes
+    const newSortLabels = ['Total Cell Count', ...result.config.sortAttributes.map(getAttributeTitle)];
+    this.generalSortLabels.set(newSortLabels);
   }
 
   /**
-   * Generates and emits Vega-Lite specification
+   * Emits the Vega-Lite specification based on current selections and data
    */
   private emitSpec(): void {
     const config = this.currentConfig();
@@ -144,6 +159,11 @@ export class ConfigSelectorComponent {
     this.vegaSpecEvent.emit(spec);
   }
 
+  /**
+   * Handles changes in graph selection state
+   *
+   * @param partial Partial graph selection state to update
+   */
   onGraphSelectionChange(partial: Partial<GraphSelectionState>) {
     const currentSelections = this.graphSelections();
     const newSelections = { ...currentSelections, ...partial } as GraphSelectionState;

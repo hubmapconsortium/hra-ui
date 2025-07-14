@@ -14,6 +14,9 @@ import { PageSectionComponent } from '@hra-ui/design-system/content-templates/pa
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatDividerModule } from '@angular/material/divider';
 
+/**
+ * Component for displaying the Cell Population Graph with configuration options.
+ */
 @Component({
   selector: 'hra-cell-population-graph',
   imports: [BarGraphComponent, ConfigSelectorComponent, PageSectionComponent, IconsModule, MatDividerModule],
@@ -25,12 +28,16 @@ export class CellPopulationGraphComponent {
   /** Data service for loading configurations and datasets */
   private readonly dataService = inject(CellPopulationDataService);
 
+  /** Input for configuration source, defaults to the main config JSON */
   readonly configSource = input<string>(MAIN_CONFIG_JSON);
-  readonly showUi = input<boolean>(true);
+
+  /** Input for preview mode, if undefined, the component will not be in preview mode */
   readonly previewMode = input<PreviewMode | undefined>(undefined);
 
+  /** Signal to hold the current visualization specification */
   readonly currentSpec = signal<VisualizationSpec | null>(null);
 
+  /** Signal to hold the graph selections state */
   readonly graphSelections = signal<GraphSelectionState>({
     datasetSource: '',
     sortBy: 'Total cell count',

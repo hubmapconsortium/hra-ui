@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import embed, { Result, VisualizationSpec } from 'vega-embed';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
+/**
+ * Component for rendering a bar graph using Vega-Lite.
+ * It takes a Vega-Lite specification as input and renders it in the view.
+ */
 @Component({
   selector: 'hra-bar-graph',
   imports: [CommonModule, ScrollingModule],
@@ -14,7 +18,7 @@ export class BarGraphComponent implements OnDestroy {
   /** Vega-Lite specification input */
   readonly spec = input<VisualizationSpec | null>(null);
 
-  /** ViewChild reference to the container element */
+  /** ViewChild reference to the vega container element */
   private readonly vegaContainer = viewChild.required<ElementRef<HTMLDivElement>>('vegaContainer');
 
   /** Current Vega embed result */

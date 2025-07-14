@@ -2,6 +2,9 @@ import { LegendOrient } from 'vega';
 import { VisualizationSpec } from 'vega-embed';
 import { GraphAttribute, OrderType, getAttributeTitle } from '../models/parameters.model';
 
+/**
+ * Options for the stacked bars visualization specification.
+ */
 export interface StackedBarsSpecOptions {
   values: Record<string, any>[];
   xAxisField: GraphAttribute;
@@ -23,6 +26,10 @@ export interface StackedBarsSpecOptions {
   legendOrient?: LegendOrient;
 }
 
+/** * Generates a Vega-Lite specification for a stacked bar graph.
+ * @param userOptions - Options for customizing the stacked bars visualization.
+ * @returns A Vega-Lite specification object for rendering the stacked bars graph.
+ */
 export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): VisualizationSpec {
   const options = Object.assign(
     {
@@ -184,6 +191,10 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
   return spec;
 }
 
+/** * Returns the scale domain for a given graph attribute.
+ * @param attribute - Graph attribute to determine the scale domain for.
+ * @returns An array representing the scale domain, or undefined if no specific domain is needed.
+ */
 function getScaleDomain(attribute: GraphAttribute): number[] | undefined {
   switch (attribute) {
     case GraphAttribute.Percentage:

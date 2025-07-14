@@ -1,9 +1,15 @@
+/**
+ * Main configuration and model definitions for the Cell Population Graph application.
+ */
+
+/** Configuration JSON URLs */
 const MAIN_CONFIG_JSON =
   'https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/main.config.json';
 
 const PREVIEW_CONFIG_JSON =
   'https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/preview.config.json';
 
+/** Graph attributes used in the application */
 enum GraphAttribute {
   None = '',
   CellType = 'cell_type',
@@ -24,11 +30,13 @@ enum GraphAttribute {
   CellOntologyID = 'cell_type_ontology_id',
 }
 
+/** Order types for sorting */
 enum OrderType {
   Ascending = 'ascending',
   Descending = 'descending',
 }
 
+/** Preview modes for the application */
 const previewModes = ['bluelake-kidney'] as const;
 type PreviewMode = (typeof previewModes)[number];
 
@@ -36,6 +44,7 @@ function isOfTypePreviewMode(mode: string): mode is PreviewMode {
   return (previewModes as readonly string[]).includes(mode);
 }
 
+/** Configuration interface for the Cell Population Graph */
 interface Configuration {
   label: string;
   basePath: string;
@@ -49,6 +58,7 @@ interface Configuration {
   defaultGroupBy?: GraphAttribute;
 }
 
+/** Interface representing the state of graph selections in the application. */
 export interface GraphSelectionState {
   datasetSource: string;
   sortBy: string;
@@ -104,11 +114,13 @@ export {
   isOfTypePreviewMode,
 };
 
+/** Dataset option interface for the application */
 export interface DatasetOption {
   key: string;
   label: string;
 }
 
+/** GroupBy option interface for the application */
 export interface GroupOption {
   key: GraphAttribute;
   label: string;
