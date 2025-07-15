@@ -2,10 +2,10 @@ import { readFileSync, writeFileSync } from 'fs';
 import Papa from 'papaparse';
 
 /** API Endpoint that fetches FTU dataset metadata */
-const FTU_DATASET_METADATA_API = 'http://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra-scratch/ftu-datasets';
+const FTU_DATASET_METADATA_API = 'https://apps.humanatlas.io/api/grlc/hra-scratch/ftu-datasets';
 
 /** API Endpoint that computes a cell summary for each FTU as a whole */
-const FTU_CELL_SUMMARIES_API = 'http://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra-scratch/ftu-cell-summaries';
+const FTU_CELL_SUMMARIES_API = 'https://apps.humanatlas.io/api/grlc/hra-scratch/ftu-cell-summaries';
 
 const CONTEXT = JSON.parse(readFileSync('context.jsonld').toString());
 

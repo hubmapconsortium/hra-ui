@@ -12,7 +12,7 @@ content:
       - component: Markdown
         data: |
           The Human Reference Atlas now includes 65 3D reference organs with 1,215 3D anatomical structures.
-          <a href="https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ccf/#/default/get_as_3d_counts" target="_blank">This SPARQL query</a>
+          <a href="https://apps.humanatlas.io/api/grlc/ccf.html#get-/as-3d-counts" target="_blank">This SPARQL query</a>
           returns all anatomical structures with an Uberon ID, i.e., it retrieves the 1,215 anatomical structures plus the 65 organs for a total of 1,280 items.
 
       - component: Markdown

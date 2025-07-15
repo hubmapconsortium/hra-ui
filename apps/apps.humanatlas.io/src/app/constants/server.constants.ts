@@ -19,6 +19,13 @@ export const servers: Server[] = [
     url: 'https://apps.humanatlas.io/api',
     spec: 'https://apps.humanatlas.io/api/hra-api-spec.yaml',
   },
+  /* HRA-API SPARQL Queries */
+  {
+    id: 'grlc',
+    description: 'HRA-API SPARQL Queries',
+    url: 'https://apps.humanatlas.io/api/grlc/',
+    spec: 'https://apps.humanatlas.io/api/grlc/index-spec.json',
+  },
   /* staging server */
   {
     id: 'staging',
@@ -30,14 +37,7 @@ export const servers: Server[] = [
   {
     id: 'ccf-api',
     description: 'CCF-API (deprecated) Production',
-    url: 'https://apps.humanatlas.io/hra-api/v1',
+    url: 'https://apps.humanatlas.io/hra-api/',
     spec: 'https://apps.humanatlas.io/hra-api/ccf-api-spec.yaml',
-  },
-  /* HRA-API SPARQL Queries */
-  {
-    id: 'sparql',
-    description: 'HRA-API SPARQL Queries',
-    url: 'https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir',
-    spec: 'https://apps.humanatlas.io/api/grlc/index-spec.json',
   },
 ];
