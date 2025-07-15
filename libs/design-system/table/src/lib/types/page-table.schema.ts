@@ -1,5 +1,4 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { enableSelection } from 'ngx-scrollbar/lib/utils/common';
 import { z } from 'zod';
 
 /** Type for table style */
