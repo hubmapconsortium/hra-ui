@@ -3,11 +3,10 @@ import {
   AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Output,
   effect,
   inject,
   input,
+  output,
   viewChild,
 } from '@angular/core';
 import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
@@ -43,7 +42,7 @@ export class OrganComponent implements AfterViewChecked {
   readonly filter = input.required<Filter>();
 
   /** Emits when the user clicks a node */
-  @Output() readonly nodeClick = new EventEmitter<NodeClickEvent>();
+  readonly nodeClick = output<NodeClickEvent>();
 
   /** Reference to the body ui */
   readonly bodyUI = viewChild.required<BodyUiComponent>('bodyUI');

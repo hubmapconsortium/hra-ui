@@ -5,8 +5,8 @@
 :host {
   display: flex;
   flex-direction: column;
-  border-radius: 12px;
-  border: 1px solid vars.$outline;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid vars.$outline;
   overflow: hidden;
   min-height: 35.625rem;
   height: 100%;
@@ -15,8 +15,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px;
-    border-bottom: 1px solid vars.$outline;
+    padding: 1rem;
+    border-bottom: 0.0625rem solid vars.$outline;
 
     .left {
       align-items: center;
@@ -36,7 +36,7 @@
 
   .content {
     display: flex;
-    // flex: 1;
+
     height: 100%;
     .organ-title {
       @include utils.use-font(title, small);
@@ -44,7 +44,7 @@
     }
 
     .info-view {
-      padding: 24px;
+      padding: 1.5rem;
       min-width: 21rem;
       max-width: 23.25rem;
 
@@ -54,7 +54,7 @@
         margin-bottom: 2rem;
 
         mat-button-toggle-group {
-          width: 150px;
+          width: 9.375rem;
 
           mat-button-toggle {
             width: 100%;
@@ -66,9 +66,6 @@
     .organ-view {
       flex: 1 1;
       background-color: #000;
-      // ccf-organ {
-      //   height: 100%;
-      // }
     }
   }
 }
