@@ -1,9 +1,4 @@
-<ftu-label-box class="toggle" (click)="toggleTable()">
-  Source Data
-  <mat-icon class="end material-symbols-outlined">
-    {{ showTable ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}
-  </mat-icon>
-</ftu-label-box>
+<ftu-label-box class="toggle" (click)="toggleTable()"> Source data </ftu-label-box>
 
 <div class="table-content" [class.hidden]="!showTable">
   <hra-table
