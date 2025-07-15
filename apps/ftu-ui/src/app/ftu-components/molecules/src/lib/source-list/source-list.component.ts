@@ -21,7 +21,10 @@ import { EmptyBiomarkerComponent } from '../../../../atoms/src';
 import { LabelBoxComponent } from '../../../../atoms/src/lib/label-box/label-box.component';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { TableComponent, TableColumn, TableRow } from '@hra-ui/design-system/table';
+import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { Iri } from '@hra-ui/services';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem extends TableRow {
   id: Iri;
@@ -43,16 +46,19 @@ export interface SourceListItem extends TableRow {
 @Component({
   selector: 'ftu-source-list',
   imports: [
+    ButtonsModule,
     CommonModule,
     MatButtonModule,
     MatTableModule,
     MatIconModule,
     MatSortModule,
+    IconButtonModule,
     LabelBoxComponent,
     EmptyBiomarkerComponent,
     MatCheckboxModule,
     HoverDirective,
     TableComponent,
+    ResultsIndicatorComponent,
   ],
   templateUrl: './source-list.component.html',
   styleUrls: ['./source-list.component.scss'],
@@ -70,6 +76,8 @@ export class SourceListComponent implements OnChanges {
 
   /** Whether to show the biomarker table */
   showTable = true;
+
+  selectedCount = 0;
 
   // /** Current source selection */
   // selection = new SelectionModel<TableRow>(true, []);
@@ -160,6 +168,7 @@ export class SourceListComponent implements OnChanges {
    */
   onSelectionChange(): void {
     if (this.sourceTable) {
+      this.selectedCount = this.sourceTable.selection.selected.length;
       this.selectionChanged.emit(this.sourceTable.selection.selected as SourceListItem[]);
     }
   }
