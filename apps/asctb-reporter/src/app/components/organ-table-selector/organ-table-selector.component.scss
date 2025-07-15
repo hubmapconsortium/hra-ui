@@ -1,118 +1,173 @@
-.button-container {
-  width: 100%;
-  justify-content: space-between;
-  display: flex;
-  margin-top: 1rem;
-  height: 3.8rem;
-  padding: 0.5rem 1rem 0rem 1rem;
-}
+@use '@angular/material' as mat;
+@use 'vars';
+@use 'utils';
 
-.version-dropdown {
-  position: relative;
-  top: 0.525rem;
-}
+:host {
+  display: block;
 
-.organ-name-label {
-  font-size: 0.9rem;
-  padding: unset;
-}
-.imaging-method {
-  padding-left: 0.5rem;
-}
+  .selector-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid vars.$outline;
 
-.select-deselect-all {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 0.938rem;
-}
-
-.add-cancel-button {
-  border: 0.063rem solid rgb(196, 196, 196);
-  border-radius: 0.5rem !important;
-}
-
-.orgon-selection-box {
-  margin-bottom: 0;
-}
-
-.orgon-selection-button {
-  width: 100%;
-}
-
-::ng-deep .orgon-selection-box .mat-form-field-underline {
-  display: none;
-}
-
-.mat-table {
-  overflow-x: scroll;
-}
-
-.mat-cell,
-.mat-header-cell {
-  word-wrap: initial;
-  display: table-cell;
-  padding: 0rem 0.625rem;
-  line-break: auto;
-  width: fit-content;
-  white-space: normal;
-  overflow: hidden;
-  vertical-align: middle;
-}
-
-.mat-row,
-.mat-header-row {
-  display: table-row;
-}
-
-.table-container {
-  margin-top: 0.625rem;
-  max-height: 18.75rem;
-  overflow: auto;
-}
-
-.selector-title-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
-  padding: 0.5rem 1rem 0 1rem;
-}
-
-.title {
-  margin-bottom: 0rem !important;
-}
-
-.toggle-container {
-  display: flex;
-  align-items: center;
-}
-
-.cache-slider {
-  font-weight: 500;
-}
-
-mat-tab-group {
-  padding: 0rem 1rem 0rem 1rem;
-
-  ::ng-deep mat-tab-header {
-    border-style: solid;
-    border-width: 0px 0px 1px 0px;
+    .title {
+      @include utils.use-font(title, small);
+    }
   }
-}
 
-.version-dropdown ::ng-deep .mat-mdc-form-field-flex .mat-mdc-form-field-infix {
-  padding-top: unset;
-  padding-bottom: unset;
-  // padding: 0.432rem 0;
-  min-height: 2.375rem;
-}
+  @include mat.tabs-overrides(
+    (
+      active-indicator-color: vars.$on-tertiary-fixed,
+      active-focus-indicator-color: vars.$on-tertiary-fixed,
+      active-focus-label-text-color: vars.$secondary,
 
-th {
-  font-size: 0.8rem;
-  color: #7588a1;
-  font-weight: 400;
-}
+      inactive-label-text-color: vars.$primary,
+    )
+  );
 
-::ng-deep .mat-mdc-select-trigger .mat-mdc-select-value .mat-mdc-select-value-text {
-  padding: unset;
+  @include mat.table-overrides(
+    (
+      header-container-height: 2.5rem,
+      header-headline-color: vars.$secondary,
+      header-headline-font: vars.$label-medium-font,
+      header-headline-line-height: vars.$label-medium-line-height,
+      header-headline-size: vars.$label-medium-size,
+      header-headline-tracking: vars.$label-medium-tracking,
+      header-headline-weight: vars.$label-medium-weight,
+
+      footer-container-height: 2.5rem,
+      footer-supporting-text-font: vars.$label-medium-font,
+      footer-supporting-text-line-height: vars.$label-medium-line-height,
+      footer-supporting-text-size: vars.$label-medium-size,
+      footer-supporting-text-tracking: vars.$label-medium-tracking,
+      footer-supporting-text-weight: vars.$label-medium-weight,
+
+      row-item-container-height: 2.5rem,
+      row-item-label-text-color: vars.$primary,
+      row-item-label-text-font: vars.$label-medium-font,
+      row-item-label-text-line-height: vars.$label-medium-line-height,
+      row-item-label-text-size: vars.$label-medium-size,
+      row-item-label-text-tracking: vars.$label-medium-tracking,
+      row-item-label-text-weight: vars.$label-medium-weight,
+      row-item-outline-width: 0px,
+    )
+  );
+
+  .button-container {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    margin-top: 1rem;
+    height: 3.8rem;
+    padding: 0.5rem 1rem 0rem 1rem;
+  }
+
+  .organ-name-label {
+    font-size: 0.9rem;
+    padding: unset;
+  }
+  .imaging-method {
+    padding-left: 0.5rem;
+  }
+
+  .select-deselect-all {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.938rem;
+  }
+
+  .add-cancel-button {
+    border: 0.063rem solid rgb(196, 196, 196);
+    border-radius: 0.5rem !important;
+  }
+
+  .orgon-selection-box {
+    margin-bottom: 0;
+  }
+
+  .orgon-selection-button {
+    width: 100%;
+  }
+
+  .mat-table {
+    overflow-x: scroll;
+  }
+
+  .table-container {
+    margin-top: 0.625rem;
+    max-height: 18.75rem;
+    overflow: auto;
+
+    table {
+      th,
+      td {
+        @include utils.use-font(label, medium);
+        padding: 0.5rem 1rem;
+        min-width: fit-content;
+
+        &:nth-child(1) {
+          width: 3rem !important;
+        }
+      }
+
+      th {
+        color: vars.$secondary;
+      }
+
+      td {
+        color: vars.$primary;
+      }
+
+      &.omaps {
+        max-width: 50rem;
+
+        th,
+        td {
+          &:nth-child(5) {
+            min-width: 7rem;
+          }
+
+          &:nth-child(6) {
+            max-width: 7rem;
+
+            mat-form-field {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      &.asctb {
+        min-width: 31.25rem;
+
+        th,
+        td {
+          &:nth-child(2) {
+            min-width: 6.75rem;
+            max-width: 17.5rem;
+          }
+
+          &:nth-child(3) {
+            max-width: 7rem;
+
+            mat-form-field {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  th {
+    font-size: 0.8rem;
+    color: #7588a1;
+    font-weight: 400;
+  }
+
+  ::ng-deep .mat-mdc-select-trigger .mat-mdc-select-value .mat-mdc-select-value-text {
+    padding: unset;
+  }
 }

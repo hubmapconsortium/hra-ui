@@ -233,6 +233,7 @@ export class RootComponent implements OnDestroy {
         config.autoFocus = true;
         config.id = 'OrganTableSelector';
         config.width = 'fit-content';
+        config.maxWidth = 'unset';
         config.data = {
           isIntilalSelect: true,
           getFromCache: true,

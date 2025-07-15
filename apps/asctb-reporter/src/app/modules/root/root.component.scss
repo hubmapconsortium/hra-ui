@@ -43,3 +43,9 @@
   left: 0.625rem;
   z-index: 2;
 }
+
+::ng-deep {
+  mat-dialog-container .mat-mdc-dialog-surface {
+    border-radius: 0.5rem;
+  }
+}

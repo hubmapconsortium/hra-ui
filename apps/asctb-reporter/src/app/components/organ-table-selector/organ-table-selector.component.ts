@@ -1,7 +1,19 @@
 import { SelectionModel } from '@angular/cdk/collections';
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ConfigService } from '../../app-config.service';
 import { GaAction, GaCategory, GaOrgansInfo } from '../../models/ga.model';
@@ -9,9 +21,25 @@ import { OrganTableOnClose, OrganTableSelect, SheetDetails } from '../../models/
 
 @Component({
   selector: 'app-organ-table-selector',
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatSlideToggleModule,
+    MatTabsModule,
+  ],
   templateUrl: './organ-table-selector.component.html',
   styleUrls: ['./organ-table-selector.component.scss'],
-  standalone: false,
 })
 export class OrganTableSelectorComponent {
   readonly configService = inject(ConfigService);
