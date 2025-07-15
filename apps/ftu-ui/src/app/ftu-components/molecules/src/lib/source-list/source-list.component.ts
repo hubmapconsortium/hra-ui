@@ -1,4 +1,3 @@
-import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -14,11 +13,9 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { HoverDirective } from '@hra-ui/cdk';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { EmptyBiomarkerComponent } from '../../../../atoms/src';
-import { LabelBoxComponent } from '../../../../atoms/src/lib/label-box/label-box.component';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { TableComponent, TableColumn, TableRow } from '@hra-ui/design-system/table';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
@@ -53,10 +50,8 @@ export interface SourceListItem extends TableRow {
     MatIconModule,
     MatSortModule,
     IconButtonModule,
-    LabelBoxComponent,
     EmptyBiomarkerComponent,
     MatCheckboxModule,
-    HoverDirective,
     TableComponent,
     ResultsIndicatorComponent,
   ],
@@ -77,27 +72,14 @@ export class SourceListComponent implements OnChanges {
   /** Whether to show the biomarker table */
   showTable = true;
 
+  /** Number of selected sources */
   selectedCount = 0;
-
-  // /** Current source selection */
-  // selection = new SelectionModel<TableRow>(true, []);
-
-  // /** Data source for table */
-  // dataSource = new MatTableDataSource<TableRow>();
-
-  // /** Columns to display in the sources list */
-  // displayedColumns: string[] = ['select', 'authors', 'year', 'title', 'link'];
 
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
 
   /** Emits when source selection changed */
   @Output() readonly selectionChanged = new EventEmitter<SourceListItem[]>();
-
-  // /** Sorter for sources list */
-  // @ViewChild(MatSort) set sort(sorter: MatSort) {
-  //   this.dataSource.sort = sorter || null;
-  // }
 
   /** Reference to the table component */
   @ViewChild('sourceTable') sourceTable!: TableComponent<TableRow>;
@@ -172,29 +154,4 @@ export class SourceListComponent implements OnChanges {
       this.selectionChanged.emit(this.sourceTable.selection.selected as SourceListItem[]);
     }
   }
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  // isAllSelected() {
-  //   const numSelected = this.selection.selected.length;
-  //   const numRows = this.dataSource.data.length;
-  //   return numSelected === numRows;
-  // }
-
-  // /** Selects all rows if they are not all selected; otherwise clear selection. */
-  // toggleAllRows() {
-  //   if (this.isAllSelected()) {
-  //     this.selection.clear();
-  //     this.selectionChanged.emit(this.selection.selected);
-  //     return;
-  //   }
-
-  //   this.dataSource.data.forEach((row) => this.selection.select(row));
-  //   this.selectionChanged.emit(this.selection.selected);
-  // }
-
-  // /** Toggles selection status of a row */
-  // toggleRow(row: T) {
-  //   this.selection.toggle(row);
-  //   this.selectionChanged.emit(this.selection.selected);
-  // }
 }
