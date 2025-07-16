@@ -47,8 +47,10 @@ export const LinkColumnTypeSchema = z.object({
   urlColumn: z.string(),
 });
 
+/** Type for Checkbox Column */
 export type CheckboxColumnType = z.infer<typeof CheckboxColumnTypeSchema>;
 
+/** Schema for Checkbox Column */
 export const CheckboxColumnTypeSchema = z.object({
   type: z.literal('checkbox'),
 });

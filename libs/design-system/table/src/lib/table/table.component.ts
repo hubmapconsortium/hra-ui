@@ -98,11 +98,15 @@ export class NumericRowElementDirective {
   }
 }
 
+/** Directive for typing the context of Checkbox Row Element */
 @Directive({
   selector: 'ng-template[hraCheckboxRowElement]',
   standalone: true,
 })
 export class CheckboxRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Checkbox Row Element */
   static ngTemplateContextGuard(
     _dir: CheckboxRowElementDirective,
     _ctx: unknown,
