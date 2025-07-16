@@ -4,7 +4,7 @@ import { Shallow } from 'shallow-render';
 import { SourceListComponent, SourceListItem } from './source-list.component';
 
 describe('SourceListComponent', () => {
-  let shallow: Shallow<SourceListComponent<SourceListItem>>;
+  let shallow: Shallow<SourceListComponent>;
   const testItem = {
     link: 'test',
     authors: ['test'],
@@ -22,15 +22,6 @@ describe('SourceListComponent', () => {
     await expect(shallow.render()).resolves.toBeDefined();
   });
 
-  it('should select all rows on source change', async () => {
-    const { instance } = await shallow.render({ bind: { sources: [] } });
-    const changes: SimpleChanges = {
-      sources: { currentValue: testSources, previousValue: [], isFirstChange: () => true, firstChange: true },
-    };
-    instance.ngOnChanges(changes);
-    expect(instance.selectionChanged.emit).toHaveBeenCalled();
-  });
-
   it('should initialize showTable to be true', async () => {
     const { instance } = await shallow.render();
     expect(instance.showTable).toBe(true);
@@ -44,14 +35,24 @@ describe('SourceListComponent', () => {
     expect(instance.showTable).toBe(true);
   });
 
-  it('checks if all rows selected', async () => {
-    const { instance } = await shallow.render();
-    expect(instance.isAllSelected()).toBeTruthy();
-  });
+  it('should emit selectionChanged when onSelectionChange is called', async () => {
+    const { instance } = await shallow.render({ bind: { sources: testSources } });
+    let emittedValue: SourceListItem[] | undefined;
 
-  it('toggles row selection', async () => {
-    const { instance } = await shallow.render();
-    instance.toggleRow(testItem);
-    expect(instance.selectionChanged.emit).toHaveBeenCalledWith(testSources);
+    instance.selectionChanged.subscribe((value: SourceListItem[]) => {
+      emittedValue = value;
+    });
+
+    // Mock the sourceTable with selected items
+    instance.sourceTable = {
+      selection: {
+        selected: testSources,
+      },
+    } as any;
+
+    instance.onSelectionChange();
+
+    expect(instance.selectedCount).toBe(1);
+    expect(emittedValue).toEqual(testSources);
   });
 });
