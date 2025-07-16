@@ -76,9 +76,10 @@
       <h1>X axis</h1>
       <mat-button-toggle-group
         [hideSingleSelectionIndicator]="false"
-        hraButtonToggleSize="large"
+        hraButtonToggleSize="medium"
         [value]="graphSelections()?.xAxisField"
         (change)="onGraphSelectionChange({ xAxisField: $event.value })"
+        class="toggle-group"
       >
         @for (option of xAxisOptions; track option.value) {
           <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
@@ -90,9 +91,10 @@
       <h1>Y axis</h1>
       <mat-button-toggle-group
         [hideSingleSelectionIndicator]="false"
-        hraButtonToggleSize="large"
+        hraButtonToggleSize="medium"
         [value]="graphSelections()?.yAxisField"
         (change)="onGraphSelectionChange({ yAxisField: $event.value })"
+        class="toggle-group"
       >
         @for (option of yAxisOptions; track option.value) {
           <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>

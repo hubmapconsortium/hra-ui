@@ -24,20 +24,19 @@
       right: auto;
     }
 
-    .vega-embed .vega-actions::before {
-      right: auto;
-      left: 0.875rem;
+    .vega-embed .vega-actions::before::after {
+      visibility: hidden;
     }
 
     .vega-embed .vega-actions {
       left: -0.5625rem;
       right: auto;
+      top: 1.75rem;
       border-radius: 0.5rem;
       box-shadow: 0rem 0.3125rem 0.25rem 0rem #201e3d29;
       border: none;
       width: 12.5rem;
       height: 17.0625rem;
-      padding: 0;
 
       a {
         color: vars.$on-background;
