@@ -24,6 +24,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem extends TableRow {
+  /** Unique identifier for the source */
   id: Iri;
   /** List of authors for the source */
   authors: string[];
