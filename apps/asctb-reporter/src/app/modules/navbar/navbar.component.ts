@@ -16,13 +16,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { ClearSheetLogs } from '../../actions/logs.actions';
 import { UpdateGetFromCache } from '../../actions/sheet.actions';
-import {
-  OpenCompare,
-  ToggleControlPane,
-  ToggleDebugLogs,
-  ToggleIndentList,
-  ToggleReport,
-} from '../../actions/ui.actions';
+import { ToggleControlPane, ToggleDebugLogs } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
 import { NavItemModule } from '../../components/nav-item/nav-item.module';
 import { OrganTableSelectorComponent } from '../../components/organ-table-selector/organ-table-selector.component';
@@ -264,20 +258,8 @@ export class NavbarComponent implements OnInit {
     this.store.dispatch(new ToggleControlPane());
   }
 
-  toggleIndentedList() {
-    this.store.dispatch(new ToggleIndentList());
-  }
-
-  toggleReport() {
-    this.store.dispatch(new ToggleReport());
-  }
-
   toggleDebugLogs() {
     this.store.dispatch(new ToggleDebugLogs());
-  }
-
-  toggleCompare() {
-    this.store.dispatch(new OpenCompare());
   }
 
   exportImage(imageType: string) {
@@ -304,6 +286,7 @@ export class NavbarComponent implements OnInit {
     config.disableClose = true;
     config.autoFocus = true;
     config.id = 'OrganTableSelector';
+    config.maxWidth = 'unset';
     config.width = 'fit-content';
     config.data = {
       organs: this.selectedOrgans,
@@ -326,24 +309,5 @@ export class NavbarComponent implements OnInit {
         });
       }
     });
-  }
-
-  toggleMode() {
-    if (this.mode === 'vis') {
-      this.router.navigate(['/vis'], {
-        queryParams: { playground: true, selectedOrgans: 'example' },
-        queryParamsHandling: 'merge',
-      });
-      this.ga.event(GaAction.NAV, GaCategory.NAVBAR, 'Enter Playground Mode', undefined);
-    } else if (this.mode === 'playground') {
-      this.router.navigate(['/vis'], {
-        queryParams: {
-          selectedOrgans: sessionStorage.getItem('selectedOrgans'),
-          playground: false,
-        },
-        queryParamsHandling: 'merge',
-      });
-      this.ga.event(GaAction.NAV, GaCategory.NAVBAR, 'Exit Playground Mode', undefined);
-    }
   }
 }

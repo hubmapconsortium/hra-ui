@@ -80,54 +80,40 @@ export class RootComponent implements OnDestroy {
   private readonly snackbar = inject(MatSnackBar);
   private readonly infoSheet = inject(MatBottomSheet);
 
-  /**
-   * Organ sheet data
-   */
+  /** Organ sheet data */
   data: Row[] = [];
-  /**
-   * Denotes if loading
-   */
+
+  /** Denotes if loading */
   loading = true;
-  /**
-   * Vega view
-   */
+
+  /** Vega view */
   view!: View;
-  /**
-   * Selected sheet
-   */
+
+  /** Selected sheet */
   sheet!: Sheet;
-  /**
-   * Denotesthe error state
-   */
+
+  /** Denotesthe error state */
   hasError = false;
-  /**
-   * Stores the error
-   */
+
+  /** Stores the error */
   error!: Error;
-  /**
-   * Reference to the snackbar
-   */
+
+  /** Reference to the snackbar */
   snackbarRef!: MatSnackBarRef<TextOnlySnackBar>;
-  /**
-   * Dnotes of sidebar control pane is open
-   */
+
+  /** Dnotes of sidebar control pane is open */
   isControlPaneOpen = false;
-  /**
-   * Botton input sheet ref
-   */
+
+  /** Botton input sheet ref */
   infoSheetRef!: MatBottomSheetRef;
-  /**
-   * Mode of the application. Playground or visualiization
-   * Default is vis
-   */
+
+  /** Mode of the application. Playground or visualiization Default is vis */
   mode = 'vis';
-  /**
-   * Comparison sheets details
-   */
+
+  /** Comparison sheets details */
   compareDetails: CompareData[] = [];
-  /**
-   * Bimodal filter values to snd via snackbar update
-   */
+
+  /** Bimodal filter values to snd via snackbar update */
   bimodalConfig!: BimodalConfig;
 
   // The container used for vertical scrolling of the viz is different than the one used for horizontal scrolling
@@ -136,50 +122,47 @@ export class RootComponent implements OnDestroy {
   @Output() readonly export = new EventEmitter<unknown>();
 
   // Sheet Observables
-  @Select(SheetState.getData) data$!: Observable<Row[]>;
-  @Select(SheetState.getCompareSheets) compareSheets$!: Observable<CompareData[]>;
-  @Select(SheetState.getReportdata) rd$!: Observable<Report>;
-  @Select(SheetState.getCompareData) compareData$!: Observable<Row[]>;
-  @Select(SheetState.getAllCompareData) allCompareData$!: Observable<{
-    data: Row[];
-    sheets: CompareData[];
-  }>;
-  @Select(SheetState.getMode) mode$!: Observable<string>;
-  @Select(SheetState.getBottomSheetInfo)
-  bottomSheetInfo$!: Observable<SheetInfo>;
-  @Select(SheetState.getBottomSheetDOI) bottomSheetDOI$!: Observable<DOI[]>;
-  @Select(SheetState.getSheetConfig) sheetConfig$!: Observable<SheetConfig>;
-  @Select(SheetState.getFullAsData) fullAsData$!: Observable<Row[]>;
-  @Select(SheetState.getFullDataByOrgan) fullDataByOrgan$!: Observable<Row[][]>;
-  @Select(SheetState.getDataFromCache) getFromCache$!: Observable<boolean>;
+  readonly data$: Observable<Row[]> = this.store.select(SheetState.getData);
+  readonly compareSheets$: Observable<CompareData[]> = this.store.select(SheetState.getCompareSheets);
+  readonly rd$: Observable<Report> = this.store.select(SheetState.getReportdata);
+  readonly compareData$: Observable<Row[]> = this.store.select(SheetState.getCompareData);
+  readonly allCompareData$: Observable<{ data: Row[]; sheets: CompareData[] }> = this.store.select(
+    SheetState.getAllCompareData,
+  );
+  readonly mode$: Observable<string> = this.store.select(SheetState.getMode);
+  readonly bottomSheetInfo$: Observable<SheetInfo> = this.store.select(SheetState.getBottomSheetInfo);
+  readonly bottomSheetDOI$: Observable<DOI[]> = this.store.select(SheetState.getBottomSheetDOI);
+  readonly sheetConfig$: Observable<SheetConfig> = this.store.select(SheetState.getSheetConfig);
+  readonly fullAsData$: Observable<Row[]> = this.store.select(SheetState.getFullAsData);
+  readonly fullDataByOrgan$: Observable<Row[][]> = this.store.select(SheetState.getFullDataByOrgan);
+  readonly getFromCache$: Observable<boolean> = this.store.select(SheetState.getDataFromCache);
 
   // Tree Observables
-  @Select(TreeState.getTreeData) treeData$!: Observable<TNode[]>;
-  // @Select(TreeState.getBottomSheetData) bsd$!: Observable<any>;
-  @Select(TreeState.getLinksData) links$!: Observable<LinksASCTBData>;
-  @Select(TreeState.getBimodal) bm$!: Observable<BimodalData>;
-  @Select(TreeState.getBiomarkerType) bmType$!: Observable<string>;
-  @Select(TreeState.getLatestSearchStructure)
-  searchOption$!: Observable<SearchStructure>;
-  @Select(TreeState.getBimodalConfig) config$!: Observable<BimodalConfig>;
+  readonly treeData$: Observable<TNode[]> = this.store.select(TreeState.getTreeData);
+  // readonly bsd$: Observable<any> = this.store.select(TreeState.getBottomSheetData);
+  readonly links$: Observable<LinksASCTBData> = this.store.select(TreeState.getLinksData);
+  readonly bm$: Observable<BimodalData> = this.store.select(TreeState.getBimodal);
+  readonly bmType$: Observable<string> = this.store.select(TreeState.getBiomarkerType);
+  readonly searchOption$: Observable<SearchStructure> = this.store.select(TreeState.getLatestSearchStructure);
+  readonly config$: Observable<BimodalConfig> = this.store.select(TreeState.getBimodalConfig);
 
   // Control Pane Observables
-  @Select(UIState.getControlPaneState) pane$!: Observable<boolean>;
-  @Select(UIState.getIndentList) il$!: Observable<boolean>;
+  readonly pane$: Observable<boolean> = this.store.select(UIState.getControlPaneState);
+  readonly il$: Observable<boolean> = this.store.select(UIState.getIndentList);
 
   // UI Observables
-  @Select(UIState.getError) error$!: Observable<{ error: Error }>;
-  @Select(UIState.getLoading) loading$!: Observable<boolean>;
-  @Select(UIState.getLoadingText) loadingText$!: Observable<string>;
-  @Select(UIState) uiState$!: Observable<UIStateModel>;
-  @Select(UIState.getSnackbar) snack$!: Observable<Snackbar>;
-  @Select(UIState.getReport) report$!: Observable<boolean>;
-  @Select(UIState.getDebugLog) dl$!: Observable<boolean>;
-  @Select(UIState.getBottomSheet) bs$!: Observable<boolean>;
-  @Select(UIState.getCompareState) c$!: Observable<boolean>;
+  readonly error$: Observable<{ error: Error }> = this.store.select(UIState.getError);
+  readonly loading$: Observable<boolean> = this.store.select(UIState.getLoading);
+  readonly loadingText$: Observable<string> = this.store.select(UIState.getLoadingText);
+  @Select(UIState) readonly uiState$!: Observable<UIStateModel>;
+  readonly snack$: Observable<Snackbar> = this.store.select(UIState.getSnackbar);
+  readonly report$: Observable<boolean> = this.store.select(UIState.getReport);
+  readonly dl$: Observable<boolean> = this.store.select(UIState.getDebugLog);
+  readonly bs$: Observable<boolean> = this.store.select(UIState.getBottomSheet);
+  readonly c$: Observable<boolean> = this.store.select(UIState.getCompareState);
 
   // Logs Oberservables
-  @Select(LogsState) logs$!: Observable<Logs>;
+  readonly logs$: Observable<Logs> = this.store.select(LogsState.getLogs);
 
   sheetConfig: SheetDetails[] = [];
   omapSheetConfig: SheetDetails[] = [];
@@ -201,7 +184,6 @@ export class RootComponent implements OnDestroy {
         try {
           this.ts.makeTreeData(this.sheet, data, []);
         } catch (err) {
-          console.log(err);
           this.store.dispatch(new HasError({ hasError: true, msg: err as string, status: 400 }));
         }
       }
@@ -357,7 +339,7 @@ export class RootComponent implements OnDestroy {
     this.snack$.subscribe((sb) => {
       if (sb.opened) {
         const config: MatSnackBarConfig = {
-          duration: 1500,
+          duration: 0,
           verticalPosition: 'bottom',
           horizontalPosition: 'end',
           panelClass: [`${sb.type}-snackbar`],
@@ -440,8 +422,7 @@ export class RootComponent implements OnDestroy {
     this.store.dispatch(new StateReset(SheetState));
   }
 
-  /**
-   * Function to update the report with the data
+  /** Function to update the report with the data
    *
    * @param data sheet data
    */
@@ -449,8 +430,7 @@ export class RootComponent implements OnDestroy {
     this.store.dispatch(new UpdateReport(data));
   }
 
-  /**
-   * Deletes a sheeet from the compare
+  /** Deletes a sheeet from the compare
    *
    * @param i index of sheet
    */
@@ -458,8 +438,7 @@ export class RootComponent implements OnDestroy {
     this.store.dispatch(new DeleteCompareSheet(i));
   }
 
-  /**
-   * Opens loading dialog
+  /** Opens loading dialog
    *
    * @param text Loading text
    */
@@ -474,9 +453,7 @@ export class RootComponent implements OnDestroy {
     this.dialog.open(LoadingComponent, config);
   }
 
-  /**
-   *
-   * @param url  of the sheet to compare
+  /** @param url  of the sheet to compare
    * @returns a object with the sheetID, gid, and CsvUrl
    */
 
@@ -503,9 +480,7 @@ export class RootComponent implements OnDestroy {
     };
   }
 
-  /**
-   * Close loading dialog
-   */
+  /** Close loading dialog */
   closeLoading() {
     const loadingDialog = this.dialog.getDialogById('LoadingDialog');
     if (loadingDialog) {
@@ -513,17 +488,12 @@ export class RootComponent implements OnDestroy {
     }
   }
 
-  /**
-   * Toggling sidebars for Report, IL, Debug, Compare
-   */
+  /** Toggling sidebars for Report, IL, Debug, Compare */
   toggleSideNav() {
     this.store.dispatch(new CloseRightSideNav());
   }
 
-  /**
-   * Set compare data
-   * @param data compare data
-   */
+  /** Set compare data @param data compare data */
   compareData(data: CompareData[]) {
     this.store.dispatch(new CloseCompare());
     this.compareDetails = data;
@@ -556,16 +526,12 @@ export class RootComponent implements OnDestroy {
     });
   }
 
-  /**
-   * Dispatch action to open bottom sheet
-   * @param id ontology id
-   */
+  /** Dispatch action to open bottom sheet @param id ontology id */
   getStructureInfo(data: { name: string; ontologyId: string }) {
     this.store.dispatch(new OpenBottomSheet(data as OpenBottomSheetData));
   }
 
-  /**
-   * Exports the visualiation into 3 formats
+  /** Exports the visualiation into 3 formats
    *
    * @param option Export option. PNG | SVG | Vega Spec
    */
@@ -670,9 +636,7 @@ export class RootComponent implements OnDestroy {
           link.setAttribute('download', fileName);
           link.dispatchEvent(new MouseEvent('click'));
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(() => {});
     }
   }
 

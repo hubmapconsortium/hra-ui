@@ -37,53 +37,6 @@
     </app-nav-item>
 
     <app-nav-item
-      [label]="(mode$ | async) === 'vis' ? 'Playground' : 'Exit Playground'"
-      (click)="toggleMode()"
-      #tooltip="matTooltip"
-      [matTooltip]="(mode$ | async) === 'vis' ? 'Playground' : 'Exit Playground'"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">{{ (mode$ | async) === 'vis' ? 'edit' : 'exit_to_app' }}</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Indented List'"
-      (click)="toggleIndentedList()"
-      #tooltip="matTooltip"
-      matTooltip="Indented List"
-      matTooltipPosition="below"
-      [disabled]="(ui$ | async)?.error?.hasError ?? false"
-      mat-icon-button
-    >
-      <mat-icon class="toolbar-icons">format_indent_increase</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Compare'"
-      [disabled]="(ui$ | async)?.error?.hasError ?? false"
-      mat-icon-button
-      (click)="toggleCompare()"
-      #tooltip="matTooltip"
-      matTooltip="Compare"
-      matTooltipPosition="below"
-      *ngIf="(mode$ | async) !== 'playground'"
-    >
-      <mat-icon class="toolbar-icons">compare_arrows</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Report'"
-      [disabled]="(ui$ | async)?.error?.hasError ?? false"
-      mat-icon-button
-      (click)="toggleReport()"
-      #tooltip="matTooltip"
-      matTooltip="Report"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">bar_chart</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
       [label]="'Debug Log'"
       (click)="toggleDebugLogs()"
       #tooltip="matTooltip"

@@ -2,21 +2,48 @@
   <a mat-icon-button hraPlainTooltip="ASCT+B Table metadata" [matMenuTriggerFor]="nestedMenu.childMenu">
     <mat-icon>table</mat-icon>
   </a>
-  <a mat-icon-button hraPlainTooltip="View in Knowledge Graph" href="https://lod.humanatlas.io/asct-b" target="_blank">
-    <mat-icon>database</mat-icon>
-  </a>
-  <a
-    mat-icon-button
-    hraPlainTooltip="GitHub repository"
-    href="https://github.com/hubmapconsortium/hra-ui"
-    target="_blank"
-  >
-    <mat-icon svgIcon="social:github"></mat-icon>
-  </a>
+  @if (!appControlsEnabled()) {
+    <a
+      mat-icon-button
+      hraPlainTooltip="View in Knowledge Graph"
+      href="https://lod.humanatlas.io/asct-b"
+      target="_blank"
+    >
+      <mat-icon>database</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      hraPlainTooltip="GitHub repository"
+      href="https://github.com/hubmapconsortium/hra-ui"
+      target="_blank"
+    >
+      <mat-icon svgIcon="social:github"></mat-icon>
+    </a>
+  } @else {
+    <button
+      mat-icon-button
+      [hraPlainTooltip]="mode() === 'vis' ? 'Launch Playground' : 'Exit Playground'"
+      (click)="toggleMode()"
+    >
+      <mat-icon>{{ mode() === 'vis' ? 'playground_2' : 'exit_to_app' }}</mat-icon>
+    </button>
+    <button mat-icon-button hraPlainTooltip="View indented list" (click)="toggleIndentedList()">
+      <mat-icon>format_indent_increase</mat-icon>
+    </button>
+    <button mat-icon-button hraPlainTooltip="Upload data to compare to ASCT+B tables" (click)="openCompare()">
+      <mat-icon>compare_arrows</mat-icon>
+    </button>
+    <button mat-icon-button hraPlainTooltip="View statistics" (click)="toggleReport()">
+      <mat-icon>bar_chart</mat-icon>
+    </button>
+    <button mat-icon-button hraPlainTooltip="View download options">
+      <mat-icon>download</mat-icon>
+    </button>
+  }
   <a mat-icon-button [matMenuTriggerFor]="helpMenu" rel="noopener noreferrer" hraPlainTooltip="Help & documentation">
     <mat-icon>help</mat-icon>
-  </a></hra-header
->
+  </a>
+</hra-header>
 
 <app-table-nested-menu
   #nestedMenu
@@ -55,6 +82,12 @@
     >Terms and conditions</a
   >
   <a mat-menu-item href="https://hubmapconsortium.org/policies" target="_blank">Policies</a>
+</mat-menu>
+
+<mat-menu #downloadMenu="matMenu">
+  <button mat-menu-item *ngFor="let option of imgOptions" (click)="exportImage(option)">
+    {{ option }}
+  </button>
 </mat-menu>
 
 <router-outlet></router-outlet>

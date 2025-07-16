@@ -24,6 +24,7 @@ export const appRoutes: Route[] = [
         { name: 'ASCT+B Reporter', route: '../' },
         { name: 'Visualization app' },
       ] satisfies BreadcrumbItem[],
+      appControls: true,
     },
   },
   {
