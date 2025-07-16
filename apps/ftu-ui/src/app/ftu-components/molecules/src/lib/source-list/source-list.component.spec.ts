@@ -5,6 +5,7 @@ import { SourceListComponent, SourceListItem } from './source-list.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import '@testing-library/jest-dom';
+import { Iri } from '@hra-ui/services';
 
 describe('SourceListComponent', () => {
   let shallow: Shallow<SourceListComponent>;
@@ -78,5 +79,50 @@ describe('SourceListComponent', () => {
     expect(screen.getByText('Year')).toBeInTheDocument();
     expect(screen.getByText('Paper Title')).toBeInTheDocument();
     expect(screen.getByText('Paper DOI')).toBeInTheDocument();
+  });
+
+  it('should display SourceListItem data correctly in the table', async () => {
+    const testSourceItem: SourceListItem = {
+      id: 'https://test-id.com' as Iri,
+      authors: ['John Doe', 'Jane Smith'],
+      year: 2023,
+      title: 'Test Research Paper',
+      doi: '10.1000/test.doi',
+      label: 'Test Label',
+      link: 'https://doi.org/10.1000/test.doi',
+    };
+
+    await render(SourceListComponent, {
+      componentInputs: {
+        sources: [testSourceItem],
+      },
+      imports: [MatTableModule, HttpClientTestingModule],
+      providers: [
+        {
+          provide: GoogleAnalyticsService,
+          useValue: {
+            event: () => {},
+          },
+        },
+      ],
+    });
+
+    expect(
+      screen.getByText((content) => {
+        return content.includes('John Doe');
+      }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText((content) => {
+        return content.includes('Test Research Paper');
+      }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText((content) => {
+        return content.includes('https://doi.org/10.1000/test.doi');
+      }),
+    ).toBeInTheDocument();
   });
 });
