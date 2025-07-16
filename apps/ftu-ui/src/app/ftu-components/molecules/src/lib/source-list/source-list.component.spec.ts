@@ -1,7 +1,10 @@
-import { SimpleChanges } from '@angular/core';
+import { render, screen } from '@testing-library/angular';
 import { MatTableModule } from '@angular/material/table';
 import { Shallow } from 'shallow-render';
 import { SourceListComponent, SourceListItem } from './source-list.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import '@testing-library/jest-dom';
 
 describe('SourceListComponent', () => {
   let shallow: Shallow<SourceListComponent>;
@@ -43,7 +46,6 @@ describe('SourceListComponent', () => {
       emittedValue = value;
     });
 
-    // Mock the sourceTable with selected items
     instance.sourceTable = {
       selection: {
         selected: testSources,
@@ -54,5 +56,27 @@ describe('SourceListComponent', () => {
 
     expect(instance.selectedCount).toBe(1);
     expect(emittedValue).toEqual(testSources);
+  });
+
+  it('should display table columns correctly', async () => {
+    await render(SourceListComponent, {
+      componentInputs: {
+        sources: testSources,
+      },
+      imports: [MatTableModule, HttpClientTestingModule],
+      providers: [
+        {
+          provide: GoogleAnalyticsService,
+          useValue: {
+            event: () => {},
+          },
+        },
+      ],
+    });
+
+    expect(screen.getByText('Authors')).toBeInTheDocument();
+    expect(screen.getByText('Year')).toBeInTheDocument();
+    expect(screen.getByText('Paper Title')).toBeInTheDocument();
+    expect(screen.getByText('Paper DOI')).toBeInTheDocument();
   });
 });
