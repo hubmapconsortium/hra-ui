@@ -23,6 +23,7 @@
   [sheetDetails]="(configService.allSheetConfigurations$ | async) ?? []"
 ></app-table-nested-menu>
 
+<!-- LATER: Refactor into one shared menu component -->
 <mat-menu #helpMenu="matMenu" class="help-menu">
   <a mat-menu-item href="https://humanatlas.io/asctb-reporter" target="_blank">
     <div class="title">ASCT+B Reporter</div>

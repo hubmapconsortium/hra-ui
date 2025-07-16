@@ -250,6 +250,8 @@ export class RootComponent implements OnDestroy {
               },
               queryParamsHandling: 'merge',
             });
+          } else {
+            this.router.navigate(['/']);
           }
         });
       } else if (

@@ -1,22 +1,23 @@
 <div class="selector-title-container">
   <div class="title">Select one or more datasets</div>
 
-  <mat-checkbox
+  <mat-slide-toggle
     [checked]="getFromCache"
-    color="primary"
     (change)="getFromCache = !getFromCache"
     matTooltip="Toggle to get data from Cache"
     matTooltipPosition="below"
   >
-    Enable Cache
-  </mat-checkbox>
+    <span class="cache-label">Cache</span>
+  </mat-slide-toggle>
 </div>
 
 <mat-tab-group
+  class="remove-border"
   [selectedIndex]="componentActive"
   (selectedIndexChange)="changeTab($event)"
   [mat-stretch-tabs]="false"
   [fitInkBarToContent]="false"
+  animationDuration="0"
 >
   <mat-tab [tabIndex]="0" label="ASCT+B Tables">
     <ng-template matTabContent>
@@ -45,7 +46,7 @@
           </ng-container>
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef id="organ-name">Organs</th>
-            <td class="organ-name-label" mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element">
               {{ element.display }}
             </td>
           </ng-container>
@@ -151,10 +152,55 @@
 </mat-tab-group>
 
 <div footer>
-  <div class="mt-2" class="button-container">
-    <button mat-flat-button color="primary" class="add-cancel-button" [mat-dialog-close]="onClose">Cancel</button>
-    <button mat-flat-button color="primary" class="add-cancel-button" [disabled]="!hasSomeOrgans" (click)="addSheets()">
-      Submit
-    </button>
+  <div class="mt-2" class="dialog-actions">
+    <div class="left">
+      <button mat-button hraButtonVariant="primary" hraButtonSize="medium" [mat-dialog-close]="onClose">
+        Back
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <div class="right">
+      <button mat-button hraButtonVariant="secondary" hraButtonSize="medium" [matMenuTriggerFor]="helpMenu">
+        Help & documentation
+        <mat-icon>help</mat-icon>
+      </button>
+      <button mat-flat-button hraButtonSize="medium" [disabled]="!hasSomeOrgans" (click)="addSheets()">
+        Visualize data
+      </button>
+    </div>
   </div>
 </div>
+
+<!-- LATER: Refactor into one shared menu component -->
+<mat-menu #helpMenu="matMenu" class="help-menu">
+  <a mat-menu-item href="https://humanatlas.io/asctb-reporter" target="_blank">
+    <div class="title">ASCT+B Reporter</div>
+    <div class="description">App guide & documentation</div>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-menu-item href="https://humanatlas.io/asctb-tables" target="_blank">
+    <div class="title">ASCT+B Tables</div>
+    <div class="description">Data documentation</div>
+  </a>
+  <a mat-menu-item href="https://humanatlas.io/omap" target="_blank">
+    <div class="title">Organ Mapping Antibody Panels</div>
+    <div class="description">Data documentation</div>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-menu-item href="https://humanatlas.io/publications" target="_blank">Read Publications</a>
+  <mat-divider></mat-divider>
+  <a mat-menu-item [matMenuTriggerFor]="hubmapMenu">
+    Human Biomolecular Atlas Program (HuBMAP)
+    <mat-icon class="expand-arrow">arrow_right</mat-icon>
+  </a>
+</mat-menu>
+
+<mat-menu #hubmapMenu="matMenu">
+  <a
+    mat-menu-item
+    href="https://hubmapconsortium.org/wp-content/uploads/2020/06/DUA_FINAL_2020_02_03_for_Signature.pdf"
+    target="_blank"
+    >Terms and conditions</a
+  >
+  <a mat-menu-item href="https://hubmapconsortium.org/policies" target="_blank">Policies</a>
+</mat-menu>

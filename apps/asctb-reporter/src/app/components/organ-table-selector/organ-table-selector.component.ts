@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -14,6 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ConfigService } from '../../app-config.service';
 import { GaAction, GaCategory, GaOrgansInfo } from '../../models/ga.model';
@@ -37,6 +39,9 @@ import { OrganTableOnClose, OrganTableSelect, SheetDetails } from '../../models/
     MatTableModule,
     MatSlideToggleModule,
     MatTabsModule,
+    ButtonVariantDirective,
+    ButtonSizeDirective,
+    MatDivider,
   ],
   templateUrl: './organ-table-selector.component.html',
   styleUrls: ['./organ-table-selector.component.scss'],
