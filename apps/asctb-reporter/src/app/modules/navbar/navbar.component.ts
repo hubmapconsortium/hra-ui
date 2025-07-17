@@ -16,7 +16,7 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { ClearSheetLogs } from '../../actions/logs.actions';
 import { UpdateGetFromCache } from '../../actions/sheet.actions';
-import { ToggleControlPane, ToggleDebugLogs } from '../../actions/ui.actions';
+import { ToggleControlPane } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
 import { NavItemModule } from '../../components/nav-item/nav-item.module';
 import { OrganTableSelectorComponent } from '../../components/organ-table-selector/organ-table-selector.component';
@@ -256,10 +256,6 @@ export class NavbarComponent implements OnInit {
 
   togglePane() {
     this.store.dispatch(new ToggleControlPane());
-  }
-
-  toggleDebugLogs() {
-    this.store.dispatch(new ToggleDebugLogs());
   }
 
   exportImage(imageType: string) {

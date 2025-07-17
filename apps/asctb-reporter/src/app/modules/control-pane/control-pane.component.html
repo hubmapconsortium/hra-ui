@@ -4,7 +4,7 @@
       <hra-icon [svgIcon]="'product:asctb-reporter'"></hra-icon>
       <div class="app-title">ASCT+B Reporter</div>
     </div>
-    <button mat-icon-button hraIconButtonSize="large" hraIconButtonVariant="dark">
+    <button mat-icon-button hraIconButtonSize="large" hraIconButtonVariant="dark" [matMenuTriggerFor]="headerMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
@@ -33,3 +33,14 @@
     </div>
   </div>
 </app-sidenav>
+
+<mat-menu #headerMenu="matMenu" class="header-menu">
+  <button mat-menu-item (click)="togglePane()">
+    <mat-icon>visibility_off</mat-icon>
+    Hide legend & visualization controls
+  </button>
+  <button mat-menu-item (click)="toggleDebugLogs()">
+    <mat-icon>bug_report</mat-icon>
+    Debug log
+  </button>
+</mat-menu>

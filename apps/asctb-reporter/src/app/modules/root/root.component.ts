@@ -339,7 +339,7 @@ export class RootComponent implements OnDestroy {
     this.snack$.subscribe((sb) => {
       if (sb.opened) {
         const config: MatSnackBarConfig = {
-          duration: 0,
+          duration: 1500,
           verticalPosition: 'bottom',
           horizontalPosition: 'end',
           panelClass: [`${sb.type}-snackbar`],

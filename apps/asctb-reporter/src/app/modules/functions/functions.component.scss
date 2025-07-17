@@ -58,22 +58,12 @@
     gap: 1rem;
   }
 
-  // mat-select {
-  //   letter-spacing: 0.1px;
-  //   font-size: 14px;
-  //   align-items: center;
-  // }
-
   ::ng-deep {
     .cell-types-panel {
       left: 74px;
       position: fixed !important;
       width: 140px !important;
     }
-
-    // .mat-mdc-select-arrow-wrapper {
-    //   margin: 14px;
-    // }
   }
 
   .control-title ::ng-deep .mat-mdc-select-trigger {
