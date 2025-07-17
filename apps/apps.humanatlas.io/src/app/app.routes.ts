@@ -88,7 +88,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'cell-population-graph',
+    path: 'cell-population-graphs',
     component: CellPopulationGraphComponent,
     data: {
       crumbs: [{ name: 'Apps', route: '/' }, { name: 'Cell Population Graph' }] satisfies BreadcrumbItem[],
