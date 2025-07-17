@@ -6,6 +6,7 @@
   display: block;
   min-width: 20rem;
   max-width: 29.5rem;
+  background: vars.$surface-container-low;
 
   &:has(.action) {
     @include mat.dialog-overrides(
@@ -23,8 +24,9 @@
     margin-bottom: 1rem;
 
     .title {
-      margin-top: 1.75rem;
-      margin-left: 2rem;
+      font: vars.$title-medium;
+      margin-top: 1.625rem;
+      margin-left: 1.5rem;
     }
 
     button[mat-icon-button] {
@@ -37,8 +39,8 @@
   }
 
   .mat-mdc-dialog-content {
-    padding: 0 2rem;
-    font: vars.$body-large;
+    padding: 0 1rem 0 1.5rem;
+    font: vars.$label-large;
     color: vars.$primary;
 
     @include mat.dialog-overrides(
@@ -49,7 +51,7 @@
   }
 
   .mat-mdc-dialog-actions {
-    padding: 1rem 2rem;
+    padding: 1.5rem 1rem 1rem 1rem;
     min-height: auto;
   }
 }
@@ -62,4 +64,9 @@
       border-radius: 0.5rem;
     }
   }
+
+  .mat-mdc-dialog-container {
+    box-shadow: 0px 5px 16px 0px #201E3D3D;
+  }
+
 }
