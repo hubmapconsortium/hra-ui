@@ -28,15 +28,15 @@ describe('SourceListComponent', () => {
 
   it('should initialize showTable to be true', async () => {
     const { instance } = await shallow.render();
-    expect(instance.showTable).toBe(true);
+    expect(instance.showTable()).toBe(true);
   });
 
   it('should toggle showTable on toggleTable() method call', async () => {
     const { instance } = await shallow.render();
     instance.toggleTable();
-    expect(instance.showTable).toBe(false);
+    expect(instance.showTable()).toBe(false);
     instance.toggleTable();
-    expect(instance.showTable).toBe(true);
+    expect(instance.showTable()).toBe(true);
   });
 
   it('should emit selectionChanged when onSelectionChange is called', async () => {
@@ -55,7 +55,7 @@ describe('SourceListComponent', () => {
 
     instance.onSelectionChange();
 
-    expect(instance.selectedCount).toBe(1);
+    expect(instance.selectedCount()).toBe(1);
     expect(emittedValue).toEqual(testSources);
   });
 
