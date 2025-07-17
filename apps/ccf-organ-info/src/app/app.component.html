@@ -44,8 +44,9 @@
         </mat-button-toggle-group>
       }
     </div>
-    <div class="stats-table">
+    <div>
       <hra-table
+        class="stats-table"
         [columns]="tableColumns"
         [rows]="(stats$ | async) ?? []"
         [style]="'alternating'"

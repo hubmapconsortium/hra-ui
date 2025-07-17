@@ -68,6 +68,27 @@
       background-color: #000;
     }
   }
+
+  /** Custom Styles for the Table */
+  ::ng-deep .stats-table {
+    thead th:first-child {
+      padding-right: 1.5rem;
+    }
+    tbody {
+      td {
+        &:first-child {
+          padding-right: 1.5rem;
+          span {
+            margin: 0;
+          }
+        }
+
+        &:last-child {
+          color: vars.$secondary;
+        }
+      }
+    }
+  }
 }
 
 .menu-divider {
