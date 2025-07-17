@@ -9,24 +9,25 @@
 </div>
 
 <div class="table-content" [class.hidden]="!showTable">
-  <hra-table
-    *ngIf="sources.length !== 0"
-    [rows]="sources"
-    [columns]="tableColumns"
-    [enableSelection]="true"
-    [enableSort]="true"
-    [style]="'alternating'"
-    [verticalDividers]="true"
-    #sourceTable
-    (selectionChange)="onSelectionChange()"
-  >
-  </hra-table>
-  <ftu-empty-biomarker
-    *ngIf="sources.length === 0"
-    [collaborateText]="collaborateText"
-    [message]="message"
-    (collaborateClick)="collaborateClick.emit()"
-  ></ftu-empty-biomarker>
+  @if (sources.length !== 0) {
+    <hra-table
+      [rows]="sources"
+      [columns]="tableColumns"
+      [enableSelection]="true"
+      [enableSort]="true"
+      [style]="'alternating'"
+      [verticalDividers]="true"
+      #sourceTable
+      (selectionChange)="onSelectionChange()"
+    >
+    </hra-table>
+  } @else {
+    <ftu-empty-biomarker
+      [collaborateText]="collaborateText"
+      [message]="message"
+      (collaborateClick)="collaborateClick.emit()"
+    ></ftu-empty-biomarker>
+  }
 </div>
 
 <ng-template #dataHover let-columnName>
