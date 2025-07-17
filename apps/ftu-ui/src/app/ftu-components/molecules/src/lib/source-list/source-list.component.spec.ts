@@ -1,10 +1,14 @@
-import { SimpleChanges } from '@angular/core';
+import { render, screen } from '@testing-library/angular';
 import { MatTableModule } from '@angular/material/table';
 import { Shallow } from 'shallow-render';
 import { SourceListComponent, SourceListItem } from './source-list.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import '@testing-library/jest-dom';
+import { Iri } from '@hra-ui/services';
 
 describe('SourceListComponent', () => {
-  let shallow: Shallow<SourceListComponent<SourceListItem>>;
+  let shallow: Shallow<SourceListComponent>;
   const testItem = {
     link: 'test',
     authors: ['test'],
@@ -22,36 +26,103 @@ describe('SourceListComponent', () => {
     await expect(shallow.render()).resolves.toBeDefined();
   });
 
-  it('should select all rows on source change', async () => {
-    const { instance } = await shallow.render({ bind: { sources: [] } });
-    const changes: SimpleChanges = {
-      sources: { currentValue: testSources, previousValue: [], isFirstChange: () => true, firstChange: true },
-    };
-    instance.ngOnChanges(changes);
-    expect(instance.selectionChanged.emit).toHaveBeenCalled();
-  });
-
   it('should initialize showTable to be true', async () => {
     const { instance } = await shallow.render();
-    expect(instance.showTable).toBe(true);
+    expect(instance.showTable()).toBe(true);
   });
 
   it('should toggle showTable on toggleTable() method call', async () => {
     const { instance } = await shallow.render();
     instance.toggleTable();
-    expect(instance.showTable).toBe(false);
+    expect(instance.showTable()).toBe(false);
     instance.toggleTable();
-    expect(instance.showTable).toBe(true);
+    expect(instance.showTable()).toBe(true);
   });
 
-  it('checks if all rows selected', async () => {
-    const { instance } = await shallow.render();
-    expect(instance.isAllSelected()).toBeTruthy();
+  it('should emit selectionChanged when onSelectionChange is called', async () => {
+    const { instance } = await shallow.render({ bind: { sources: testSources } });
+    let emittedValue: SourceListItem[] | undefined;
+
+    instance.selectionChanged.subscribe((value: SourceListItem[]) => {
+      emittedValue = value;
+    });
+
+    instance.sourceTable = {
+      selection: {
+        selected: testSources,
+      },
+    } as any;
+
+    instance.onSelectionChange();
+
+    expect(instance.selectedCount()).toBe(1);
+    expect(emittedValue).toEqual(testSources);
   });
 
-  it('toggles row selection', async () => {
-    const { instance } = await shallow.render();
-    instance.toggleRow(testItem);
-    expect(instance.selectionChanged.emit).toHaveBeenCalledWith(testSources);
+  it('should display table columns correctly', async () => {
+    await render(SourceListComponent, {
+      componentInputs: {
+        sources: testSources,
+      },
+      imports: [MatTableModule, HttpClientTestingModule],
+      providers: [
+        {
+          provide: GoogleAnalyticsService,
+          useValue: {
+            event: () => {},
+          },
+        },
+      ],
+    });
+
+    expect(screen.getByText('Authors')).toBeInTheDocument();
+    expect(screen.getByText('Year')).toBeInTheDocument();
+    expect(screen.getByText('Paper Title')).toBeInTheDocument();
+    expect(screen.getByText('Paper DOI')).toBeInTheDocument();
+  });
+
+  it('should display SourceListItem data correctly in the table', async () => {
+    const testSourceItem: SourceListItem = {
+      id: 'https://test-id.com' as Iri,
+      authors: ['John Doe', 'Jane Smith'],
+      year: 2023,
+      title: 'Test Research Paper',
+      doi: '10.1000/test.doi',
+      label: 'Test Label',
+      link: 'https://doi.org/10.1000/test.doi',
+    };
+
+    await render(SourceListComponent, {
+      componentInputs: {
+        sources: [testSourceItem],
+      },
+      imports: [MatTableModule, HttpClientTestingModule],
+      providers: [
+        {
+          provide: GoogleAnalyticsService,
+          useValue: {
+            event: () => {},
+          },
+        },
+      ],
+    });
+
+    expect(
+      screen.getByText((content) => {
+        return content.includes('John Doe');
+      }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText((content) => {
+        return content.includes('Test Research Paper');
+      }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText((content) => {
+        return content.includes('https://doi.org/10.1000/test.doi');
+      }),
+    ).toBeInTheDocument();
   });
 });

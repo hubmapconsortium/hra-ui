@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
 import { httpResource } from '@angular/common/http';
-import { Component, computed, Directive, effect, ErrorHandler, inject, input, viewChild } from '@angular/core';
+import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { APP_ASSETS_HREF, HraCommonModule, parseUrl } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
@@ -9,6 +10,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { MarkdownModule } from 'ngx-markdown';
 import { parse } from 'papaparse';
 import {
+  CheckboxColumnType,
   LinkColumnType,
   MarkdownColumnType,
   NumericColumnType,
@@ -19,6 +21,7 @@ import {
   TableVariant,
   TextColumnType,
 } from '../types/page-table.schema';
+import { SelectionModel } from '@angular/cdk/collections';
 
 /** Type for the row element context */
 type RowElementContext<T, CT extends TableColumnType> = {
@@ -95,6 +98,23 @@ export class NumericRowElementDirective {
   }
 }
 
+/** Directive for typing the context of Checkbox Row Element */
+@Directive({
+  selector: 'ng-template[hraCheckboxRowElement]',
+  standalone: true,
+})
+export class CheckboxRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Checkbox Row Element */
+  static ngTemplateContextGuard(
+    _dir: CheckboxRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext<boolean, CheckboxColumnType> {
+    return true;
+  }
+}
+
 /**
  * Angular Material Table with Sort Feature
  */
@@ -108,11 +128,13 @@ export class NumericRowElementDirective {
     MatSortModule,
     MatTableModule,
     ScrollingModule,
+    MatCheckboxModule,
     TextHyperlinkDirective,
     LinkRowElementDirective,
     TextRowElementDirective,
     MarkdownRowElementDirective,
     NumericRowElementDirective,
+    CheckboxRowElementDirective,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',
@@ -138,6 +160,15 @@ export class TableComponent<T extends TableRow = TableRow> {
 
   /** Enables dividers between columns */
   readonly verticalDividers = input<boolean>(false);
+
+  /** Enable row selection with checkboxes */
+  readonly enableSelection = input<boolean>(false);
+
+  /** Emits when selection changes */
+  readonly selectionChange = output<T[]>();
+
+  /** Selection model for checkbox functionality */
+  readonly selection = new SelectionModel<TableRow>(true, []);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
@@ -175,7 +206,10 @@ export class TableComponent<T extends TableRow = TableRow> {
   protected readonly _columns = computed(() => this.columns() ?? this.inferColumns(this._rows()));
 
   /** Table data column IDs */
-  protected readonly columnIds = computed(() => this._columns().map((col) => col.column));
+  protected readonly columnIds = computed(() => {
+    const columns = this._columns().map((col) => col.column);
+    return this.enableSelection() ? ['select', ...columns] : columns;
+  });
 
   /** Table data source */
   protected readonly dataSource = new MatTableDataSource<TableRow>([]);
@@ -221,5 +255,34 @@ export class TableComponent<T extends TableRow = TableRow> {
     }
 
     return columns;
+  }
+
+  /**
+   * Whether the number of selected elements matches the total number of rows.
+   */
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /**
+   * Selects all rows if they are not all selected; otherwise clear selection.
+   */
+  toggleAllRows(): void {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.selection.select(...(this.dataSource.data as T[]));
+    }
+    this.selectionChange.emit(this.selection.selected as T[]);
+  }
+
+  /**
+   * Toggle row selection
+   */
+  toggleRow(row: TableRow): void {
+    this.selection.toggle(row as T);
+    this.selectionChange.emit(this.selection.selected as T[]);
   }
 }
