@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /** Defining the input data types for the radius and label to be displayed. */
@@ -19,5 +19,8 @@ export interface SizeLegend {
 })
 export class SizeLegendComponent {
   /** Taking input for the radius of the circle and the label to be displayed. */
-  @Input() sizes: SizeLegend[] = [];
+  sizes = input<SizeLegend[]>([]);
+
+  /** Filtered sizes of size legend component */
+  filteredSizes = computed(() => this.sizes().filter((size) => size.label !== '25%' && size.label !== '75%'));
 }
