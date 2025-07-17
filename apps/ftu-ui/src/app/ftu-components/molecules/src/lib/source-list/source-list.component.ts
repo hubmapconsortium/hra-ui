@@ -98,7 +98,7 @@ export class SourceListComponent implements OnChanges {
     {
       column: 'year',
       label: 'Year',
-      type: 'numeric',
+      type: 'text',
     },
     {
       column: 'title',
