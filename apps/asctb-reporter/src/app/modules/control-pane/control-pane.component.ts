@@ -9,7 +9,6 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FetchSelectedOrganData, ToggleShowAllAS, UpdateConfig } from '../../actions/sheet.actions';
 import { DiscrepencyId, DiscrepencyLabel, DuplicateId, UpdateOmapConfig } from '../../actions/tree.actions';
-import { ToggleControlPane, ToggleDebugLogs } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
 import { VisControlsComponent } from '../../components/controls/vis-controls.component';
 import { LegendComponent } from '../../components/legend/legend.component';
@@ -278,16 +277,6 @@ export class ControlPaneComponent implements OnInit {
         }
       }
     });
-  }
-
-  /** Toggles the side pane */
-  togglePane() {
-    this.store.dispatch(new ToggleControlPane());
-  }
-
-  /** Toggles debug logs drawer */
-  toggleDebugLogs() {
-    this.store.dispatch(new ToggleDebugLogs());
   }
 
   sendMail() {

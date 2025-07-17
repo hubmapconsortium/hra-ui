@@ -1,15 +1,44 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { GaAction, GaCategory, GaCompareInfo } from '../../models/ga.model';
 import { CompareData } from '../../models/sheet.model';
+import { FileUploadModule } from '../file-upload/file-upload.module';
+import { SidenavHeaderModule } from '../sidenav-header/sidenav-header.module';
+import { SidenavModule } from '../sidenav/sidenav.module';
 
 @Component({
   selector: 'app-compare',
+  imports: [
+    CommonModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SidenavModule,
+    SidenavHeaderModule,
+    MatButtonModule,
+    FileUploadModule,
+    MatCardModule,
+  ],
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],
-  standalone: false,
 })
 export class CompareComponent implements OnInit {
   readonly fb = inject(UntypedFormBuilder);

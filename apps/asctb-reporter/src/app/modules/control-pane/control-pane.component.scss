@@ -20,25 +20,6 @@
     width: 100% !important;
   }
 
-  div[header] {
-    border-bottom: 1px solid vars.$outline;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    height: 5rem;
-
-    .branding {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-
-      .app-title {
-        @include utils.use-font(title, medium);
-      }
-    }
-  }
-
   div[footer] {
     flex: 1;
   }

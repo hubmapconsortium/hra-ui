@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, Signal, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -11,12 +11,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterModule } from '@angular/router';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import { Select, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { ClearSheetLogs } from '../../actions/logs.actions';
 import { UpdateGetFromCache } from '../../actions/sheet.actions';
-import { ToggleControlPane } from '../../actions/ui.actions';
+import { ToggleControlPane, ToggleDebugLogs } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
 import { NavItemModule } from '../../components/nav-item/nav-item.module';
 import { OrganTableSelectorComponent } from '../../components/organ-table-selector/organ-table-selector.component';
@@ -51,6 +52,7 @@ import { SearchComponent } from '../search/search.component';
     ReactiveFormsModule,
     RouterModule,
     MatInputModule,
+    IconsModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
@@ -129,6 +131,9 @@ export class NavbarComponent implements OnInit {
   @Select(SheetState.getMode) mode$!: Observable<string>;
   @Select(SheetState.getSelectedOrgans) selectedOrgans$!: Observable<string[]>;
   @Select(SheetState.getOMAPSelectedOrgans) omapSelectedOrgans$!: Observable<string[]>;
+
+  /** Determines the status of the control pane */
+  controlPaneOpen: Signal<boolean> = this.store.selectSignal(UIState.getControlPaneState);
 
   @Input() cache!: boolean;
   @Output() readonly export = new EventEmitter<string>();
@@ -254,8 +259,14 @@ export class NavbarComponent implements OnInit {
     this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Refresh Visualization Button', undefined);
   }
 
+  /** Toggles the side pane */
   togglePane() {
     this.store.dispatch(new ToggleControlPane());
+  }
+
+  /** Toggles debug logs drawer */
+  toggleDebugLogs() {
+    this.store.dispatch(new ToggleDebugLogs());
   }
 
   exportImage(imageType: string) {

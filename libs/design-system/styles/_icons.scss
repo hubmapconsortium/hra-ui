@@ -1,5 +1,5 @@
-@use '@fontsource-variable/material-symbols-outlined' as outlined;
-@use '@fontsource-variable/material-symbols-rounded' as rounded;
+@use '@fontsource-variable/material-symbols-outlined/full.css' as outlined;
+@use '@fontsource-variable/material-symbols-rounded/full.css' as rounded;
 
 /* As per https://fontsource.org/docs/getting-started/material-symbols */
 .material-symbols-outlined,
@@ -14,6 +14,7 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
+  @extend .material-symbols-filled;
 }
 
 .material-symbols-outlined {
