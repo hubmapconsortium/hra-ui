@@ -7,6 +7,7 @@ import {
   Input,
   OnChanges,
   Output,
+  signal,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -71,10 +72,10 @@ export class SourceListComponent implements OnChanges {
   @Input() message = '';
 
   /** Whether to show the biomarker table */
-  showTable = true;
+  showTable = signal(true);
 
   /** Number of selected sources */
-  selectedCount = 0;
+  selectedCount = signal(0);
 
   /** Emits when the contact button is clicked */
   @Output() readonly collaborateClick = new EventEmitter<void>();
