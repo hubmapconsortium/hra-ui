@@ -119,6 +119,8 @@ SizeLegend:
       radius: .125
     - label: '50%'
       radius: .625
+    - label: '75%'
+      radius: .9375
     - label: '100%'
       radius: 1.25
 
