@@ -135,8 +135,8 @@ export class SourceListComponent implements OnChanges {
    * and vice versa
    */
   toggleTable(): void {
-    this.showTable = !this.showTable;
-    this.ga.event('source_table_toggle', this.showTable.toString());
+    this.showTable.set(!this.showTable());
+    this.ga.event('source_table_toggle', this.showTable().toString());
   }
 
   /**
@@ -152,7 +152,7 @@ export class SourceListComponent implements OnChanges {
    */
   onSelectionChange(): void {
     if (this.sourceTable) {
-      this.selectedCount = this.sourceTable.selection.selected.length;
+      this.selectedCount.set(this.sourceTable.selection.selected.length);
       this.selectionChanged.emit(this.sourceTable.selection.selected as SourceListItem[]);
     }
   }
