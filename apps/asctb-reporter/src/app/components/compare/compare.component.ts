@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
 import { GaAction, GaCategory, GaCompareInfo } from '../../models/ga.model';
 import { CompareData } from '../../models/sheet.model';
 import { FileUploadModule } from '../file-upload/file-upload.module';
-import { SidenavHeaderModule } from '../sidenav-header/sidenav-header.module';
+import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
 import { SidenavModule } from '../sidenav/sidenav.module';
 
 @Component({
@@ -32,7 +32,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     FormsModule,
     ReactiveFormsModule,
     SidenavModule,
-    SidenavHeaderModule,
+    SidenavHeaderComponent,
     MatButtonModule,
     FileUploadModule,
     MatCardModule,

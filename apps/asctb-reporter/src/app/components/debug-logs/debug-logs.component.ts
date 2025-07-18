@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Sheet } from '../../models/sheet.model';
 import { Logs } from '../../models/ui.model';
-import { SidenavHeaderModule } from '../sidenav-header/sidenav-header.module';
+import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
 import { SidenavModule } from '../sidenav/sidenav.module';
 
 @Component({
@@ -23,13 +23,13 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
-    SidenavHeaderModule,
+    SidenavHeaderComponent,
   ],
   templateUrl: './debug-logs.component.html',
   styleUrls: ['./debug-logs.component.scss'],
 })
 export class DebugLogsComponent {
-  @Input() currentSheet!: Sheet;
-  @Input() logs!: Logs;
-  @Output() readonly closeDebug = new EventEmitter<void>();
+  readonly currentSheet = input.required<Sheet>();
+  readonly logs = input.required<Logs>();
+  readonly closeDebug = output<void>();
 }

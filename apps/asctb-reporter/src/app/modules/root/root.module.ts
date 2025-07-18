@@ -7,7 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DoiModule } from '../../components/doi/doi.module';
 import { ErrorModule } from '../../components/error/error.module';
-import { InfoModule } from '../../components/info/info.module';
+import { InfoComponent } from '../../components/info/info.component';
 import { LegendComponent } from '../../components/legend/legend.component';
 import { ControlPaneComponent } from '../control-pane/control-pane.component';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -30,7 +30,7 @@ import { RootComponent } from './root.component';
     MatBottomSheetModule,
     DragDropModule,
     DoiModule,
-    InfoModule,
+    InfoComponent,
     ControlPaneComponent,
     LegendComponent,
   ],

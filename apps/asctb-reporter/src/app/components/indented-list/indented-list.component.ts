@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTree, MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 import { ILNode } from '../../models/indent.model';
 import { Row, Sheet } from '../../models/sheet.model';
-import { SidenavHeaderModule } from '../sidenav-header/sidenav-header.module';
+import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
 import { SidenavModule } from '../sidenav/sidenav.module';
 import { IndentedListService } from './indented-list.service';
 
@@ -35,7 +35,7 @@ interface FlatNode {
 
 @Component({
   selector: 'app-indent',
-  imports: [CommonModule, SidenavModule, SidenavHeaderModule, MatTreeModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, SidenavModule, SidenavHeaderComponent, MatTreeModule, MatButtonModule, MatIconModule],
   templateUrl: './indented-list.component.html',
   styleUrls: ['./indented-list.component.scss'],
 })

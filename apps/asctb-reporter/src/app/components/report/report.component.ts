@@ -20,7 +20,7 @@ import { GaAction, GaCategory } from '../../models/ga.model';
 import { BmCtPairings, LinksASCTBData } from '../../models/tree.model';
 import { TreeService } from '../../modules/tree/tree.service';
 import { OrderByPipe } from '../../pipes/order-by/order-by.pipe';
-import { SidenavHeaderModule } from '../sidenav-header/sidenav-header.module';
+import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
 import { SidenavModule } from '../sidenav/sidenav.module';
 
 @Component({
@@ -28,7 +28,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
   imports: [
     CommonModule,
     SidenavModule,
-    SidenavHeaderModule,
+    SidenavHeaderComponent,
     MatTabsModule,
     NgxChartsModule,
     MatExpansionModule,

@@ -2,6 +2,7 @@
 @use 'theming';
 @use 'utils';
 @use 'vars';
+@use '@angular/material' as mat;
 
 html,
 body {
@@ -22,3 +23,10 @@ body {
     }
   }
 }
+
+/* Material Bottom Sheet Style Overrides */
+@include mat.bottom-sheet-overrides(
+  (
+    container-shape: 1rem,
+  )
+);
