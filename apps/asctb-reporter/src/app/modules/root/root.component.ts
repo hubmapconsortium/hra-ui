@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnDestroy, Output, ViewChild, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { StateReset } from 'ngxs-reset-plugin';
@@ -32,7 +31,6 @@ export class RootComponent implements OnDestroy {
   readonly indent = inject(IndentedListService);
   readonly report = inject(ReportService);
   readonly router = inject(Router);
-  private readonly snackbar = inject(MatSnackBar);
 
   /** Organ sheet data */
   data: Row[] = [];

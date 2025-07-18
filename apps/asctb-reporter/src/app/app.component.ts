@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, OnDestroy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -43,6 +43,8 @@ import { ConfigService } from './app-config.service';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import moment from 'moment';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { StateReset } from 'ngxs-reset-plugin';
 import { UpdateBimodalConfig } from './actions/tree.actions';
 import { CompareComponent } from './components/compare/compare.component';
 import { DebugLogsComponent } from './components/debug-logs/debug-logs.component';
@@ -102,7 +104,7 @@ declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   /** Consent Service */
   readonly consentService = inject(ConsentService);
 
@@ -114,6 +116,8 @@ export class AppComponent {
 
   /** Angular Router */
   readonly router = inject(Router);
+
+  /** Activated Route */
   readonly route = inject(ActivatedRoute);
 
   /** Tree Service */
@@ -139,6 +143,12 @@ export class AppComponent {
    * the user has entered the app or not
    */
   protected readonly appControlsEnabled = computed(() => this.routeData()['appControls'] === true);
+
+  /** Bottom Sheet Service */
+  private readonly infoSheet = inject(MatBottomSheet);
+
+  /** Google Analytics Service */
+  private readonly ga = inject(GoogleAnalyticsService);
 
   /** State Store */
   protected readonly store = inject(Store);
@@ -195,8 +205,6 @@ export class AppComponent {
   /** Bimodal filter values to snd via snackbar update */
   bimodalConfig!: BimodalConfig;
 
-  private readonly infoSheet = inject(MatBottomSheet);
-
   /** Initialize the component */
   constructor() {
     switch (environment.tag) {
@@ -218,12 +226,24 @@ export class AppComponent {
       }
     });
 
-    this.configService.config$.subscribe((config) => {
-      this.imgOptions = config['imgOptions'] as string[];
-    });
-
     effect(() => {
       if (this.appControlsEnabled()) {
+        this.configService.config$.subscribe((config) => {
+          this.imgOptions = config['imgOptions'] as string[];
+        });
+
+        this.configService.sheetConfiguration$.subscribe((sheetOptions) => {
+          this.sheetConfig = sheetOptions;
+        });
+
+        this.configService.omapsheetConfiguration$.subscribe((sheetOptions) => {
+          this.omapSheetConfig = sheetOptions;
+        });
+
+        this.config$.subscribe((config) => {
+          this.bimodalConfig = config;
+        });
+
         this.data$.subscribe((data) => {
           if (data.length) {
             this.data = data;
@@ -425,18 +445,6 @@ export class AppComponent {
             this.openSnackBarToUpdateFilter();
           }
         });
-
-        this.configService.sheetConfiguration$.subscribe((sheetOptions) => {
-          this.sheetConfig = sheetOptions;
-        });
-
-        this.configService.omapsheetConfiguration$.subscribe((sheetOptions) => {
-          this.omapSheetConfig = sheetOptions;
-        });
-
-        this.config$.subscribe((config) => {
-          this.bimodalConfig = config;
-        });
       }
     });
   }
@@ -485,7 +493,7 @@ export class AppComponent {
 
   /** Exports image */
   exportImage(imageType: string) {
-    // this.export.emit(imageType);
+    this.exportVis(imageType);
     // this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, `Export Image: ${imageType}`, 0);
   }
 
@@ -732,5 +740,9 @@ export class AppComponent {
     if (loadingDialog) {
       loadingDialog.close();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new StateReset(SheetState));
   }
 }
