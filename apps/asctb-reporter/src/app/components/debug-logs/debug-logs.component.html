@@ -9,13 +9,13 @@
     ></app-sidenav-header>
   </div>
 
-  <div body class="debug-log">
+  <div body>
     <mat-tab-group mat-stretch-tabs>
-      <mat-tab [label]="currentSheet().display">
+      <mat-tab [label]="currentSheet().display" bodyClass="tab-body">
         <div class="content">
           <div class="logs-list">
             <div *ngFor="let l of logs().sheetLogs.messages" class="logs-list-item">
-              <mat-icon class="error-icon-list" [ngClass]="l.icon">{{ l.icon }}</mat-icon>
+              <mat-icon class="error-icon-list">{{ l.icon }}</mat-icon>
               <div [innerHTML]="l.text"></div>
             </div>
             <div *ngIf="logs().sheetLogs.MULTI_IN_LINKS.length" class="logs-list">
@@ -105,10 +105,10 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="All Logs">
+      <mat-tab label="All Logs" bodyClass="tab-body">
         <div class="logs-list mt-2" *ngFor="let AL of logs().allLogs">
           <div *ngFor="let l of AL.messages" class="logs-list-item py-2">
-            <mat-icon class="error-icon-list" [ngClass]="l.icon">{{ l.icon }}</mat-icon>
+            <mat-icon class="error-icon-list">{{ l.icon }}</mat-icon>
             <div mat-line class="error-list-container">
               <span class="i2" [innerHTML]="l.text"></span>
             </div>

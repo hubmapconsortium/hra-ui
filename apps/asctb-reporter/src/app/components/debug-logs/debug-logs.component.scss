@@ -26,11 +26,17 @@
       align-items: center;
       gap: 0.5rem;
       @include utils.use-font(label, medium);
-    }
-  }
 
-  .debug-log {
-    min-width: 31.25rem;
+      .error-icon-list {
+        color: vars.$primary;
+      }
+
+      .i2 {
+        @include utils.use-font(label, medium);
+        margin-top: 0.3125rem;
+        margin-bottom: 0.3125rem;
+      }
+    }
   }
 
   ::ng-deep .mat-list-item-content {
@@ -41,32 +47,13 @@
     align-items: flex-start;
   }
 
-  .i2 {
-    @include utils.use-font(label, medium);
-    margin-top: 0.3125rem;
-    margin-bottom: 0.3125rem;
-  }
-
-  .check_circle {
-    color: #66bb6a !important;
-  }
-
-  .error {
-    color: #ffca28 !important;
-  }
-
-  .cancel {
-    color: #ff5722 !important;
-  }
   .mat-list-container {
     padding: 0;
   }
   .list-item-first {
     padding-left: 0;
   }
-  .error-icon-list {
-    color: grey;
-  }
+
   .list-item-section {
     width: 100%;
   }
@@ -86,4 +73,8 @@
     display: flex !important;
     justify-content: space-between;
   }
+}
+
+::ng-deep .tab-body {
+  max-height: calc(100vh - 7.2rem);
 }
