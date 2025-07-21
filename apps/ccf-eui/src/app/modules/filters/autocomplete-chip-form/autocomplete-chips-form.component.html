@@ -20,12 +20,13 @@
     <input
       placeholder="Search"
       class="search-input"
-      #searchInput
+      #searchInput="matAutocompleteTrigger"
       [(ngModel)]="currentInputValue"
       [matChipInputFor]="chipGrid"
       [matAutocomplete]="auto"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       (matChipInputTokenEnd)="add($event)"
+      (keydown)="closeAutocomplete($event)"
     />
     @if (errorState()) {
       <mat-icon class="error-icon" svgIcon="error"></mat-icon>

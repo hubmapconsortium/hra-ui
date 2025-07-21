@@ -8,7 +8,7 @@
   border-right: 0.0625rem solid vars.$outline;
   height: calc(100vh - 4.5rem);
   position: sticky;
-  top: 4.5rem;
+  top: var(--hra-site-navigation-top-offset, 4.5rem);
   width: 20rem;
 
   .scrollbar-container {

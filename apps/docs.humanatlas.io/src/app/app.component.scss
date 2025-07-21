@@ -8,6 +8,11 @@
       flex: 1 1;
       width: 100%;
     }
+
+    &.cta-active {
+      --hra-table-of-contents-layout-top-offset: 10rem;
+      --hra-site-navigation-top-offset: 7.5rem;
+    }
   }
 
   @media (max-width: 1099.99px) {

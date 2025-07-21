@@ -2,6 +2,9 @@
 @use 'vars';
 
 :host {
+  display: block;
+  margin-bottom: 2rem;
+
   @include mat.form-field-overrides(
     (
       container-height: 3rem,
@@ -21,9 +24,6 @@
       letter-spacing: vars.$label-small-tracking;
     }
   }
-
-  display: block;
-  margin-bottom: 2rem;
 
   .search-container {
     display: flex;

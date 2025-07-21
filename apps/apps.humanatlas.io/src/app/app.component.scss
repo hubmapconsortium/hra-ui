@@ -7,5 +7,10 @@
   .content {
     display: flex;
     flex-direction: column;
+
+    &.cta-active {
+      --hra-table-of-contents-layout-top-offset: 10rem;
+      --hra-site-navigation-top-offset: 7.5rem;
+    }
   }
 }
