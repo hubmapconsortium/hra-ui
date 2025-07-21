@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { MarkdownModule } from 'ngx-markdown';
 
 /**
  * Main application component
  */
 @Component({
-  imports: [RouterModule, NavigationModule],
+  imports: [RouterModule, NavigationModule, MarkdownModule],
   selector: 'hra-kg-explorer-root',
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',

@@ -1,0 +1,13 @@
+<div class="content-container">
+  <ng-content select="hra-metadata-layout-header" />
+
+  @if (!isWideScreen()) {
+    <hra-table class="toc" [rows]="rows" [columns]="columns" [verticalDividers]="true" />
+  }
+
+  <ng-content />
+</div>
+
+@if (isWideScreen()) {
+  <hra-table class="toc" [rows]="rows" [columns]="columns" [verticalDividers]="true" />
+}
