@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { FileUploadModule } from '../file-upload/file-upload.module';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
 import { SidenavModule } from '../sidenav/sidenav.module';
 import { UploadComponent } from './upload.component';
@@ -23,7 +23,7 @@ import { UploadComponent } from './upload.component';
     SidenavModule,
     SidenavHeaderComponent,
     MatButtonModule,
-    FileUploadModule,
+    FileUploadComponent,
     MatCardModule,
   ],
   exports: [UploadComponent],

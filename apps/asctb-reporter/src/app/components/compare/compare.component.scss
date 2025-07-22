@@ -1,20 +1,90 @@
-// .cc {
-//   border-radius: 8px;
-//   box-shadow: 3px 3px 40px 30px #ececec;
-// }
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: block;
+
+  .sheet {
+    margin-bottom: 1.5rem;
+  }
+
+  .dataset-block {
+    .title-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      .title {
+        @include utils.use-font(label, large);
+        color: vars.$secondary;
+      }
+    }
+
+    .subtitle {
+      @include utils.use-font(label, large);
+      color: vars.$primary;
+    }
+    .data-source-selector {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .metadata-container {
+      margin-top: 3rem;
+
+      .dataset-title-color {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        justify-content: space-between;
+        margin: 1.5rem 0;
+
+        mat-form-field {
+          flex: 1;
+        }
+
+        .color-selector {
+          display: flex;
+          align-items: center;
+          color: vars.$secondary;
+          gap: 0.25rem;
+          @include utils.use-font(label, medium);
+          line-height: 0;
+
+          .color-wrapper {
+            display: flex;
+            padding: 4px;
+            input {
+              border: 0.0625rem solid vars.$secondary;
+              border-radius: 100%;
+              cursor: pointer;
+              height: 1.5rem;
+              width: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  div[body] {
+    padding: 1rem;
+  }
+
+  div[footer] {
+    padding: 1rem;
+  }
+}
 
 .link-input-field {
   width: 100%;
-}
-
-input[type='color'] {
-  -webkit-appearance: none;
-  border: none;
-  outline: none;
-}
-
-::ng-deep input[type='color']::-webkit-color-swatch-wrapper {
-  padding: 0;
 }
 
 input[type='color']::-webkit-color-swatch {
@@ -61,10 +131,6 @@ input[type='color']::-webkit-color-swatch {
   flex: 0.5;
 }
 
-.flex-container {
-  flex: 0.5;
-}
-
 .file-upload {
   color: #757575;
 }
@@ -73,22 +139,6 @@ input[type='color']::-webkit-color-swatch {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.pick-color-container {
-  width: 4rem;
-  margin-top: 1.125rem !important;
-  margin-bottom: 1.125rem !important;
-
-  .pick-color-title {
-    font-size: 0.625rem;
-    color: grey;
-  }
-
-  .pick-color-textbox {
-    height: 1.875rem;
-    margin-top: 0.25rem;
-  }
 }
 
 .button-container {

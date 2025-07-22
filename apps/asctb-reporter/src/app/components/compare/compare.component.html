@@ -8,160 +8,111 @@
   </div>
 
   <div body>
-    <div class="px-3">
-      <mat-expansion-panel [expanded]="true" class="mepNoPadding">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <div class="instruction-title">Instructions</div>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="mt-1 text-muted">
-          <ul class="pl-3">
-            <li class="text-justify">
-              Through this feature, you can upload your own data (ASCT+B to ASCT+B, ASCT+B to experimental data, or
-              ASCT+B to OMAP) by pasting the Browser URL address for the Google sheet of your data in the fields
-              mentioned below.
-            </li>
-            <li class="text-justify">
-              In order to successfully link your sheet, make sure the sheet has public access by selecting Share --> Get
-              link --> selecting "Anyone with the link" option and "Viewer" privileges, select "Done" to save.
-            </li>
-
-            <li class="text-justify">
-              Please make sure your data follows the appropriate data format:
-              <ul class="pl-3">
-                <li class="text-justify">
-                  <a
-                    href="https://docs.google.com/spreadsheets/d/1smQ8_3F-KSRlY7bmozsoM1EonQL4ahNaXP7zeQFf3Ko/edit#gid=0"
-                    target="_blank"
-                    >ASCT+B Table template</a
-                  >
-                </li>
-                <li class="text-justify">
-                  <a
-                    href="https://docs.google.com/spreadsheets/d/1DE4Bh2PI7mgaMciMOky2OTduNwYNRU-DyYQPT8szJ-Y/edit#gid=0"
-                    target="_blank"
-                    >OMAP compare template</a
-                  >
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <hr />
-        <div class="optional-info">
-          <div class="rounded-blob">New</div>
-          <div>Organ Mapping Antibody Panel files (CSV) are now supported!</div>
-        </div>
-      </mat-expansion-panel>
-    </div>
-
     <div class="content px-3">
-      <div class="mt-3">
-        <span class="required-field-disclaimer">* required field</span>
-      </div>
-
-      <form [formGroup]="formGroup" class="mt-4 px-2">
+      <form [formGroup]="formGroup">
         <div formArrayName="sheets">
-          <div *ngFor="let sheet of CSControls.controls; let i = index" class="cc py-3">
-            <div [formGroupName]="i">
-              <div class="w-100 title-sheet-container">
-                <div class="w-75 mr-1 flex-container">
-                  <p>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Title</mat-label>
-                      <input matInput placeholder="Sheet {{ i + 1 }}" formControlName="title" />
-                      <mat-hint>A title for your sheet</mat-hint>
-                    </mat-form-field>
-                  </p>
-                </div>
-                <div class="title-sheet-sub-container">
-                  <div class="w-75">
-                    <p>
-                      <mat-form-field appearance="fill">
-                        <mat-label>Description</mat-label>
-                        <input
-                          matInput
-                          placeholder="This data maps amazing structures!"
-                          formControlName="description"
-                        />
-                        <mat-hint>A suitable description</mat-hint>
-                      </mat-form-field>
-                    </p>
-                  </div>
-                  <div class="ml-2">
-                    <button
-                      mat-icon-button
-                      [disabled]="formGroup.value.sheets.length === 1"
-                      (click)="removeCompareSheetRow(i)"
-                    >
-                      <mat-icon color="red">delete</mat-icon>
-                    </button>
-                  </div>
-                </div>
+          <div *ngFor="let sheet of CSControls.controls; let i = index" class="sheet">
+            <div class="dataset-block" [formGroupName]="i">
+              <div class="title-container">
+                <div class="title">Dataset {{ i + 1 }}</div>
+                <button
+                  mat-icon-button
+                  [style.visibility]="formGroup.value.sheets.length === 1 ? 'hidden' : 'visible'"
+                  (click)="removeCompareSheetRow(i)"
+                >
+                  <mat-icon color="red">delete</mat-icon>
+                </button>
+              </div>
+              <div class="subtitle">Add data</div>
+              <div class="data-source-selector">
+                <mat-button-toggle-group
+                  hraButtonToggleSize="medium"
+                  [hideSingleSelectionIndicator]="false"
+                  #dataSource="matButtonToggleGroup"
+                  (change)="onDataSourceChange(i)"
+                >
+                  <mat-button-toggle value="file" checked>Upload file</mat-button-toggle>
+                  <mat-button-toggle value="link">Link URL</mat-button-toggle>
+                </mat-button-toggle-group>
+
+                <button
+                  mat-button
+                  hraButtonVariant="primary"
+                  hraButtonSize="medium"
+                  [matMenuTriggerFor]="templatesMenu"
+                >
+                  Templates
+                </button>
               </div>
 
-              <div class="pick-color-container">
-                <mat-label class="pick-color-title">Pick Color</mat-label>
-                <input
-                  type="color"
-                  class="w-100 form-control pick-color-textbox"
-                  formControlName="color"
-                  [style.backgroundColor]="sheet.get('color')?.value"
-                />
-              </div>
+              @if (dataSource.value === 'file') {
+                <app-file-upload
+                  formControlName="fileName"
+                  (fileFormDataEvent)="upload($event, sheet)"
+                ></app-file-upload>
+              } @else {
+                <mat-form-field class="full-width" subscriptSizing="dynamic">
+                  <mat-label>Google Sheet or CSV URL</mat-label>
+                  <input matInput formControlName="link" />
+                </mat-form-field>
+              }
 
-              <div class="data-upload-title">
-                Data
-                <p class="red">* &nbsp;</p>
-                <span class="data-disclaimer-text"> ( Upload a csv file or link to the data)</span>
-              </div>
-
-              <div class="w-100 mt-4 sheet-link-container">
-                <div class="w-100 flex-container">
-                  <p>
-                    <mat-form-field appearance="fill" class="w-75">
-                      <mat-label>Google Sheet (or CSV) Link</mat-label>
-                      <input class="w-100" matInput placeholder="Enter link..." formControlName="link" />
-                      <mat-hint>Enter Browser URL address for your public Google Sheet (or CSV)</mat-hint>
-                    </mat-form-field>
-                  </p>
-                </div>
-
-                <div class="title-sheet-sub-container">
-                  <div class="w-100">
-                    <p>
-                      <app-file-upload
-                        formControlName="fileName"
-                        (fileFormDataEvent)="upload($event, sheet)"
-                      ></app-file-upload>
-                    </p>
+              <div class="metadata-container">
+                <div class="subtitle">Optional: Configure metadata & color</div>
+                <div class="dataset-title-color">
+                  <mat-form-field appearance="fill" subscriptSizing="dynamic">
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Sheet {{ i + 1 }}" formControlName="title" />
+                  </mat-form-field>
+                  <div class="color-selector">
+                    <div>Dataset color:</div>
+                    <div class="color-wrapper">
+                      <input type="color" formControlName="color" [style.backgroundColor]="sheet.get('color')?.value" />
+                    </div>
                   </div>
+                </div>
+                <div class="dataset-description">
+                  <mat-form-field class="full-width" appearance="fill" subscriptSizing="dynamic">
+                    <mat-label>Data Description</mat-label>
+                    <input matInput placeholder="This data maps amazing structures!" formControlName="description" />
+                  </mat-form-field>
                 </div>
               </div>
             </div>
-            <hr />
           </div>
         </div>
       </form>
     </div>
+
+    <mat-menu #templatesMenu="matMenu">
+      <a
+        mat-menu-item
+        href="https://docs.google.com/spreadsheets/d/1smQ8_3F-KSRlY7bmozsoM1EonQL4ahNaXP7zeQFf3Ko/edit#gid=0"
+        target="_blank"
+        >ASCT+B Table template</a
+      >
+      <a
+        mat-menu-item
+        href="https://docs.google.com/spreadsheets/d/1DE4Bh2PI7mgaMciMOky2OTduNwYNRU-DyYQPT8szJ-Y/edit#gid=0"
+        target="_blank"
+        >OMAP Compare template</a
+      >
+    </mat-menu>
   </div>
 
   <div footer>
     <div class="mt-2" class="button-container">
+      <button mat-button hraButtonSize="medium" (click)="addCompareSheetRow()">
+        <mat-icon>add_circle</mat-icon>
+        Add Dataset
+      </button>
       <button
         mat-flat-button
-        color="primary"
+        hraButtonSize="medium"
         (click)="compare()"
-        class="compare-button"
         [ngClass]="{ 'compare-button-color': !formValid }"
       >
         Compare
-      </button>
-      <button mat-flat-button class="add-button" (click)="addCompareSheetRow()">
-        <mat-icon>add</mat-icon>
-        Add
       </button>
     </div>
   </div>

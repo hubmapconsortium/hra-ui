@@ -4,7 +4,6 @@
 
 :host {
   display: block;
-  height: 100%;
   @include utils.use-font(label, medium);
 
   /** Material Tab Style Overrides */
@@ -118,9 +117,6 @@
   }
 }
 
-.report {
-  width: 43.75rem;
-}
 .download-report {
   color: white;
 }
@@ -272,17 +268,6 @@ hr {
   flex: 1 1 auto;
 }
 
-.tabs {
-  position: absolute;
-  top: 4.0625rem;
-  overflow: auto;
-  right: 0rem;
-  left: 0rem;
-  padding-left: 0.3125rem;
-  padding-right: 0.3125rem;
-  /* height: 100%; */
-  /* flex: 1 1 auto; */
-}
 .loader {
   height: 100%;
   justify-content: center;
