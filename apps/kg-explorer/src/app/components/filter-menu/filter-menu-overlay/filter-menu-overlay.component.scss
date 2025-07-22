@@ -1,0 +1,56 @@
+:host {
+  .top-row {
+    --mat-text-button-horizontal-padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    color: var(--mat-sys-secondary);
+
+    .info-icon {
+      padding: 0.5rem;
+    }
+  }
+}
+
+::ng-deep .container {
+  .tagline,
+  .actions {
+    padding: 0 !important;
+  }
+
+  .content {
+    padding: 0.75rem 0 !important;
+    width: 312px;
+  }
+}
+
+::ng-deep .filter-menu-content {
+  .search,
+  .option-label {
+    padding: 0 0.75rem;
+  }
+
+  .search {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .mat-mdc-form-field-infix {
+    padding-top: 13.5px;
+    padding-bottom: 13.5px;
+  }
+
+  .option-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2.5rem;
+  }
+
+  ng-scrollbar {
+    height: 16.5rem;
+
+    ::ng-deep .ng-scroll-content {
+      max-width: 100%;
+    }
+  }
+}

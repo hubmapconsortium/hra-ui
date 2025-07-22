@@ -1,0 +1,47 @@
+<div class="drawer-header">
+  <hra-icon class="filter-icon" fontIcon="filter_list" />
+  <span class="drawer-title">Filters</span>
+  <div class="filler"></div>
+  <button mat-icon-button (click)="toggleDrawer()" aria-label="Open or close filters menu">
+    <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
+  </button>
+</div>
+
+<form class="menu-content" [formGroup]="form">
+  <hra-filter-menu-overlay
+    [form]="form.controls.digitalObjects"
+    [filterOptionCategory]="filterRecord()['digitalObjects']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider />
+  <hra-filter-menu-overlay
+    [form]="form.controls.releaseVersion"
+    [filterOptionCategory]="filterRecord()['releaseVersion']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider />
+  <hra-filter-menu-overlay
+    [form]="form.controls.organs"
+    [filterOptionCategory]="filterRecord()['organs']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider />
+  <hra-filter-menu-overlay
+    [form]="form.controls.anatomicalStructures"
+    [filterOptionCategory]="filterRecord()['anatomicalStructures']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider />
+  <hra-filter-menu-overlay
+    [form]="form.controls.cellTypes"
+    [filterOptionCategory]="filterRecord()['cellTypes']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider />
+  <hra-filter-menu-overlay
+    [form]="form.controls.biomarkers"
+    [filterOptionCategory]="filterRecord()['biomarkers']"
+    (filterChanged)="handleFilterChange()"
+  />
+  <mat-divider />
+</form>

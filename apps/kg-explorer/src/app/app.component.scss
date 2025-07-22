@@ -1,8 +1,18 @@
 :host {
-  display: block;
+  display: grid;
+  grid-template-areas:
+    'header'
+    'content';
+  grid-template-rows: auto calc(100vh - 113px);
+
+  hra-header {
+    grid-area: header;
+  }
 
   .content {
+    grid-area: content;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 }
