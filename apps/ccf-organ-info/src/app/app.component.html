@@ -18,25 +18,25 @@
       {{ statsLabel$ | async }}
     </div>
     <div class="params">
-      @if (sex$ | async) {
+      @if (sex$ | async; as sex) {
         <mat-button-toggle-group
           hraButtonToggleSize="medium"
           disabled="false"
           [hideSingleSelectionIndicator]="false"
-          [value]="sex$ | async"
+          [value]="sex"
           (change)="updateInput('sex', $event.value)"
         >
           <mat-button-toggle value="Male">Male</mat-button-toggle>
           <mat-button-toggle value="Female">Female</mat-button-toggle>
         </mat-button-toggle-group>
       }
-      @if (side$ | async) {
+      @if (side$ | async; as side) {
         <mat-button-toggle-group
           *ngIf="side$ | async"
           hraButtonToggleSize="medium"
           disabled="false"
           [hideSingleSelectionIndicator]="false"
-          [value]="side$ | async"
+          [value]="side"
           (change)="updateInput('side', $event.value)"
         >
           <mat-button-toggle value="Left">Left</mat-button-toggle>
@@ -54,7 +54,7 @@
       ></hra-table>
     </div>
   </div>
-  <div class="organ-view" [style.height]="`${contentHeightMonitor()}px`">
+  <div class="organ-view" [style.height.px]="contentHeightMonitor()">
     <ccf-organ
       [blocks]="(blocks$ | async) ?? []"
       [filter]="$any(filter$ | async)"

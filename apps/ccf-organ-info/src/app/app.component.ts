@@ -1,13 +1,22 @@
 import { Immutable } from '@angular-ru/cdk/typings';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, inject, output, viewChild } from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { MatDivider } from '@angular/material/divider';
+import { MatIcon } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { monitorHeight } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconComponent } from '@hra-ui/design-system/icons';
+import { TableColumn, TableComponent } from '@hra-ui/design-system/table';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo, sexFromString } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { combineLatest, map, Observable, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
+import { OrganComponent } from './components/organ/organ.component';
 import { OrganLookupService } from './services/organ-lookup/organ-lookup.service';
-import { TableColumn } from '@hra-ui/design-system/table';
-import { monitorHeight } from '@hra-ui/common';
 
 /** Body ui config */
 interface GlobalConfig {
@@ -41,13 +50,25 @@ const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }];
 /** Root component */
 @Component({
   selector: 'ccf-root',
+  imports: [
+    OrganComponent,
+    IconComponent,
+    MatIcon,
+    MatIconButton,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    ButtonsModule,
+    TableComponent,
+    MatMenuModule,
+    MatDivider,
+    CommonModule,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host: {
     class: 'hra-app',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class AppComponent {
   /** Analytics service */

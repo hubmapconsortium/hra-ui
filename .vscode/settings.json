@@ -33,6 +33,5 @@
     "lib:webcomponents",
     "lib:state"
   ],
-  "eslint.validate": ["yaml", "json", "javascript", "typescript"],
-  "pieces.cloudCapabilities": "Local"
+  "eslint.validate": ["yaml", "json", "javascript", "typescript"]
 }

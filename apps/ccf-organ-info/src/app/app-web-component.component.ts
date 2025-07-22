@@ -1,11 +1,54 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+
+/** Type for Sex */
+export type Sex = 'Both' | 'Male' | 'Female';
+
+/** Type for Side */
+export type Side = 'Left' | 'Right';
+
+/**
+ * Function to parse value of type Sex
+ * @param value Value to parse
+ * @returns
+ */
+function parseSex(value: unknown): Sex {
+  const str = String(value).trim().toLowerCase();
+
+  switch (str) {
+    case 'male':
+      return 'Male';
+    case 'female':
+      return 'Female';
+    case 'both':
+      return 'Both';
+    default:
+      return 'Female';
+  }
+}
+
+/**
+ * Function to parse value of type Side
+ * @param value Value to parse
+ * @returns
+ */
+function parseSide(value: unknown): Side {
+  const str = String(value).trim().toLowerCase();
+
+  if (str === 'left') {
+    return 'Left';
+  } else if (str === 'right') {
+    return 'Right';
+  }
+  return 'Left';
+}
 
 /**
  * Parses user supplied data sources
- *
  * @param value Raw data
  * @returns Data sources
  */
@@ -27,7 +70,6 @@ function parseDataSources(value: unknown): string[] {
 
 /**
  * Parses user supplied data as an array of strings
- *
  * @param value Raw data
  * @returns An array of strings
  */
@@ -54,6 +96,7 @@ function parseStringArray(value: unknown): string[] {
 /** Web component */
 @Component({
   selector: 'ccf-root-wc',
+  imports: [AppComponent, NgIf],
   template: `<ccf-root
     *ngIf="initialized"
     (sexChange)="sexChange.emit($event)"
@@ -61,19 +104,18 @@ function parseStringArray(value: unknown): string[] {
     (sideChange)="sideChange.emit($event)"
   ></ccf-root>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Organ iri */
   readonly organIri? = input<string>();
   /** Model sex */
-  readonly sex? = input<'Both' | 'Male' | 'Female'>('Female');
+  readonly sex? = input('Female', { transform: parseSex });
   /** Organ side */
-  readonly side? = input<'Left' | 'Right'>('Left');
+  readonly side? = input('Left', { transform: parseSide });
   /** Data sources */
-  readonly dataSources = input<string | string[]>();
+  readonly dataSources = input([], { transform: parseDataSources });
   /** Highlight */
-  readonly highlightProviders = input<string | string[]>();
+  readonly highlightProviders = input([], { transform: parseStringArray });
 
   /** Api token */
   readonly token = input<string>();
@@ -99,10 +141,6 @@ export class AppWebComponent extends BaseWebComponent {
       initialConfig: {
         ...environment.dbOptions,
         ...(globalThis['dbOptions' as never] as object),
-      },
-      parse: {
-        dataSources: parseDataSources,
-        highlightProviders: parseStringArray,
       },
     });
   }
