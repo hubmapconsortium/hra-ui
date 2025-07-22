@@ -1,21 +1,24 @@
-<hra-metadata-layout [rows]="rows" [columns]="columns">
+<hra-metadata-layout [rows]="rows()" [columns]="columns()">
   <hra-metadata-layout-header>
-    <hra-page-section [tagline]="metadata().title"> </hra-page-section>
+    <hra-icon></hra-icon>
+    <hra-page-section [tagline]="metadata().title" [icons]="icons()"> </hra-page-section>
     <img *ngIf="metadata().image" [src]="metadata().image" alt="Metadata Image" class="metadata-image" />
   </hra-metadata-layout-header>
 
-  <hra-metadata-layout-content [class.mediumScreen]="!isSmallScreen() && !isWideScreen()">
+  <hra-metadata-layout-content [class.mediumScreen]="!isWMediumScreen()">
     <div class="sections">
       <hra-page-section tagline="Description" [level]="2">
         <markdown [data]="metadata().description" />
       </hra-page-section>
       <hra-page-section tagline="Publisher" [level]="2">
-        <markdown [data]="metadata().publisher" />
+        <markdown [data]="createMarkdownLink(metadata().publisher.name, metadata().publisher.url)" />
       </hra-page-section>
       <hra-page-section tagline="Funder" [level]="2">
-        @for (funder of metadata().funders; track $index) {
-          <markdown [data]="metadata().funders[$index]" />
-        }
+        <ul>
+          @for (funder of metadata().funders; track funder) {
+            <li>{{`${funder.funder} (Award number ${funder.awardNumber})`}}</li>
+          }
+        </ul>
       </hra-page-section>
       <hra-page-section tagline="License" [level]="2">
         <markdown [data]="metadata().license" />
@@ -26,6 +29,6 @@
         }
       </hra-page-section>
     </div>
-    <hra-table class="toc" [rows]="rows" [columns]="columns" [verticalDividers]="true" />
+    <hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
   </hra-metadata-layout-content>
 </hra-metadata-layout>

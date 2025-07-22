@@ -10,12 +10,16 @@
     gap: 3rem;
   }
 
-  ::ng-deep .toc {
+  ::ng-deep .metadata-table {
     markdown {
       overflow-wrap: anywhere;
     }
     ul {
       padding-inline-start: 1.5rem;
+    }
+
+    td {
+      vertical-align: inherit !important;
     }
   }
 
@@ -29,9 +33,9 @@
       margin: auto;
     }
 
-    .toc {
+    .metadata-table {
       position: sticky;
-      top: var(--hra-table-of-contents-layout-top-offset, 7rem);
+      top: 7rem;
       max-width: 288px;
       height: min-content;
       margin: 0 0.75rem 1rem;
@@ -42,7 +46,7 @@
     margin-right: 0;
     gap: 2.5rem;
 
-    .toc {
+    .metadata-table {
       max-width: 360px;
     }
   }
