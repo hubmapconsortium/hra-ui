@@ -1,3 +1,123 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: block;
+  height: 100%;
+  @include utils.use-font(label, medium);
+
+  /** Material Tab Style Overrides */
+  @include mat.tabs-overrides(
+    (
+      active-indicator-color: vars.$on-tertiary-fixed,
+      active-focus-indicator-color: vars.$on-tertiary-fixed,
+      active-hover-indicator-color: vars.$on-tertiary-fixed,
+      active-focus-label-text-color: vars.$secondary,
+
+      inactive-label-text-color: vars.$primary,
+    )
+  );
+
+  .content {
+    padding: 1rem;
+
+    .section-title {
+      @include utils.use-font(label, large);
+      color: vars.$secondary;
+      margin-bottom: 0.75rem;
+    }
+
+    .subsection {
+      margin-bottom: 2rem;
+
+      .subsection-title {
+        @include utils.use-font(label, medium);
+        color: vars.$secondary;
+        margin-bottom: 0.5rem;
+      }
+
+      .subsection-description {
+        margin-bottom: 1rem;
+        color: vars.$primary;
+      }
+
+      .overview-table {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        @include utils.use-font(label, medium);
+
+        .row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-right: 1rem;
+
+          .badge {
+            border-radius: 0.25rem;
+            color: vars.$on-primary;
+            padding: 0.125rem 0.5rem;
+            @include utils.use-font(label, small);
+
+            &.red {
+              background-color: #e41a1c;
+            }
+
+            &.blue {
+              background-color: #377eb8;
+            }
+
+            &.green {
+              background-color: #4daf4a;
+            }
+          }
+
+          .group {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+          }
+        }
+      }
+    }
+
+    .chart-parent {
+      display: grid;
+      .report-chart {
+        @include utils.use-font(label, medium);
+      }
+    }
+  }
+
+  /** Expansion Panel Styles */
+  @include mat.expansion-overrides(
+    (
+      header-collapsed-state-height: 2.5rem,
+      header-expanded-state-height: 2.5rem,
+    )
+  );
+
+  .mat-expansion-panel {
+    box-shadow: none;
+    margin-bottom: 0.5rem;
+
+    .mat-expansion-panel-header {
+      @include utils.use-font(label, medium);
+      background: vars.$surface-container !important;
+
+      ::ng-deep .mat-expansion-indicator {
+        margin-top: 0 !important;
+      }
+
+      &:hover {
+        background-color: utils.with-alpha(vars.$secondary, 8%) !important;
+      }
+    }
+  }
+}
+
 .report {
   width: 43.75rem;
 }
@@ -116,19 +236,6 @@ hr {
   border-top: 0.0625rem solid rgb(203, 203, 203);
 }
 
-// .overview {
-//   font-size: 14pt;
-// }
-
-.number {
-  font-weight: 400;
-  padding-right: 3.1rem;
-}
-
-.details {
-  font-size: 14pt;
-}
-
 .mat-expansion-panel:not([class*='mat-elevation-z']) {
   box-shadow: none;
 }
@@ -168,7 +275,6 @@ hr {
 .tabs {
   position: absolute;
   top: 4.0625rem;
-  bottom: 3.125rem;
   overflow: auto;
   right: 0rem;
   left: 0rem;

@@ -5,6 +5,7 @@ import { ReportService } from './report.service';
 
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -38,6 +39,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     MatTableModule,
     MatTooltipModule,
     MatSortModule,
+    MatDividerModule,
   ],
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
