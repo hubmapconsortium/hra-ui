@@ -32,7 +32,6 @@
       }
       @if (side$ | async; as side) {
         <mat-button-toggle-group
-          *ngIf="side$ | async"
           hraButtonToggleSize="medium"
           disabled="false"
           [hideSingleSelectionIndicator]="false"
