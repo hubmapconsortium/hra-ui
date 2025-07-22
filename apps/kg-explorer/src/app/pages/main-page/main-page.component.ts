@@ -87,7 +87,7 @@ const ORGAN_ICON_MAP: Record<string, string> = {
   'lymph node': 'lymph-nodes',
   'extrapulmonary bronchus': 'extrapulmonary-bronchus',
   ovary: 'ovaries',
-  // skeleton: '',
+  skeleton: 'spinal-cord',
   'urinary bladder': 'bladder',
   // 'lymph vasculature': '',
   'spinal cord': 'spinal-cord',
@@ -413,6 +413,18 @@ export class MainPageComponent {
               count: this.calculateCount(organOption, 'organs'),
             };
           }),
+        },
+        anatomicalStructures: {
+          label: 'Anatomical structures',
+          options: [],
+        },
+        cellTypes: {
+          label: 'Cell types',
+          options: [],
+        },
+        biomarkers: {
+          label: 'Biomarkers',
+          options: [],
         },
       };
     });

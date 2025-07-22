@@ -8,7 +8,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { TableColumn, TableComponent } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
-import { MetadataLayoutModule } from '../../metadata-layout/metadata-layout.module';
+import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 
 interface MetadataPageData {
   type: string;
