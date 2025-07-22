@@ -1,3 +1,27 @@
 :host {
-  display: block;
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  hra-table {
+    display: none;
+  }
+
+  .mediumScreen {
+    display: flex;
+    gap: 40px;
+    .sections {
+      width: calc(100% - 288px - 40px);
+    }
+
+    hra-table {
+      display: block;
+      position: sticky;
+      top: var(--hra-table-of-contents-layout-top-offset, 7rem);
+      min-width: 288px;
+      height: min-content;
+    }
+  }
 }

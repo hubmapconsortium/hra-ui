@@ -1,9 +1,11 @@
 import { Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { MetadataLayoutModule } from '@hra-ui/design-system/layouts/metadata';
+import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
 interface MetadataPageData {
@@ -50,6 +52,35 @@ const testData: MetadataPageData = {
     'https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg',
 };
 
+const columns: TableColumn[] = [
+  {
+    column: 'provenance',
+    label: 'Provenance',
+    type: 'text',
+  },
+  {
+    column: 'metadata',
+    label: 'Metadata',
+    type: 'markdown',
+  },
+];
+
+const symbolUrl = 'https://google.com';
+
+/** Example data */
+const rows: TableRow[] = [
+  { provenance: 'Creator(s)', metadata: `[Rachel Bajema](${symbolUrl})` },
+  { provenance: 'Project lead', metadata: `[Katy Börner](${symbolUrl})` },
+  {
+    provenance: 'Reviewer(s)',
+    metadata: `\n* [Sanjay Jain](${symbolUrl})\n* [Matthias Kretzler](${symbolUrl})\n* [M. Todd Valerius](${symbolUrl})`,
+  },
+  { provenance: 'DOI', metadata: `[https://doi.org/10.48539/HBM489.KLNJ.323](${symbolUrl})` },
+  { provenance: 'HuBMAP ID', metadata: 'HBM283.BMNR.744' },
+  { provenance: 'Date created', metadata: '2023-12-15' },
+  { provenance: 'Date last modified', metadata: '2023-12-15' },
+];
+
 @Component({
   selector: 'hra-metadata-page',
   imports: [
@@ -59,10 +90,18 @@ const testData: MetadataPageData = {
     PageSectionComponent,
     MetadataLayoutModule,
     MarkdownComponent,
+    TableComponent,
   ],
   templateUrl: './metadata-page.component.html',
   styleUrl: './metadata-page.component.scss',
 })
 export class MetadataPageComponent {
   readonly metadata = input<MetadataPageData>(testData);
+
+  rows = rows;
+  columns = columns;
+
+  protected isWideScreen = watchBreakpoint('(min-width: 1100px)');
+
+  protected isSmallScreen = watchBreakpoint('(max-width: 639.9999px)');
 }

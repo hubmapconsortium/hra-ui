@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex-direction: row;
-  margin: 2.5rem 1rem;
+  padding: 2.5rem 1rem;
 
   .content-container {
     display: flex;
@@ -20,7 +20,7 @@
   }
 
   @media (min-width: 640px) {
-    margin: 2.5rem;
+    padding: 2.5rem;
 
     .content-container {
       flex: 1;

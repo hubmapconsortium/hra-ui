@@ -1,26 +1,31 @@
-<hra-metadata-layout>
+<hra-metadata-layout [rows]="rows" [columns]="columns">
   <hra-metadata-layout-header>
     <hra-page-section [tagline]="metadata().title"> </hra-page-section>
     <img *ngIf="metadata().image" [src]="metadata().image" alt="Metadata Image" class="metadata-image" />
   </hra-metadata-layout-header>
 
-  <hra-page-section tagline="Description" [level]="2">
-    <markdown [data]="metadata().description" />
-  </hra-page-section>
-  <hra-page-section tagline="Publisher" [level]="2">
-    <markdown [data]="metadata().publisher" />
-  </hra-page-section>
-  <hra-page-section tagline="Funder" [level]="2">
-    @for (funder of metadata().funders; track $index) {
-      <markdown [data]="metadata().funders[$index]" />
-    }
-  </hra-page-section>
-  <hra-page-section tagline="License" [level]="2">
-    <markdown [data]="metadata().license" />
-  </hra-page-section>
-  <hra-page-section tagline="Tags" [level]="2">
-    @for (funder of metadata().tags; track $index) {
-      <markdown [data]="metadata().tags[$index]" />
-    }
-  </hra-page-section>
+  <hra-metadata-layout-content [class.mediumScreen]="!isSmallScreen() && !isWideScreen()">
+    <div class="sections">
+      <hra-page-section tagline="Description" [level]="2">
+        <markdown [data]="metadata().description" />
+      </hra-page-section>
+      <hra-page-section tagline="Publisher" [level]="2">
+        <markdown [data]="metadata().publisher" />
+      </hra-page-section>
+      <hra-page-section tagline="Funder" [level]="2">
+        @for (funder of metadata().funders; track $index) {
+          <markdown [data]="metadata().funders[$index]" />
+        }
+      </hra-page-section>
+      <hra-page-section tagline="License" [level]="2">
+        <markdown [data]="metadata().license" />
+      </hra-page-section>
+      <hra-page-section tagline="Tags" [level]="2">
+        @for (funder of metadata().tags; track $index) {
+          <markdown [data]="metadata().tags[$index]" />
+        }
+      </hra-page-section>
+    </div>
+    <hra-table class="toc" [rows]="rows" [columns]="columns" [verticalDividers]="true" />
+  </hra-metadata-layout-content>
 </hra-metadata-layout>
