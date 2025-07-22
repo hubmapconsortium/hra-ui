@@ -68,6 +68,16 @@
     justify-content: end;
   }
 
+  th[data-column-type='checkbox'],
+  td[data-column-type='checkbox'] {
+    padding: 0;
+    text-align: center;
+    max-height: 2.0625rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .numeric {
     margin-right: 1.125rem;
   }

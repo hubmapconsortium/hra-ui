@@ -1,9 +1,11 @@
 export default {
   displayName: 'ftu-ui',
   preset: '../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  globals: {},
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
   coverageDirectory: '../../coverage/apps/ftu-ui',
+  coverageThreshold: {
+    global: {},
+  },
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

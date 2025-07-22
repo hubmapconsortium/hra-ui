@@ -11,7 +11,7 @@ export const TableVariantSchema = z.enum(['alternating', 'divider', 'basic']);
 export type TableRow = z.infer<typeof TableRowSchema>;
 
 /** Schema for a single table row */
-export const TableRowSchema = z.record(z.union([z.string(), z.number(), z.boolean()]));
+export const TableRowSchema = z.record(z.union([z.string(), z.number(), z.boolean(), z.array(z.string())]));
 
 /** Type for Text Column */
 export type TextColumnType = z.infer<typeof TextColumnTypeSchema>;
@@ -47,11 +47,20 @@ export const LinkColumnTypeSchema = z.object({
   urlColumn: z.string(),
 });
 
+/** Type for Checkbox Column */
+export type CheckboxColumnType = z.infer<typeof CheckboxColumnTypeSchema>;
+
+/** Schema for Checkbox Column */
+export const CheckboxColumnTypeSchema = z.object({
+  type: z.literal('checkbox'),
+});
+
 /** Union of Schema Types for Simple Columns */
 export const SimpleTableColumnTypeSchema = z.union([
   TextColumnTypeSchema.shape.type,
   NumericColumnTypeSchema.shape.type,
   MarkdownColumnTypeSchema.shape.type,
+  CheckboxColumnTypeSchema.shape.type,
 ]);
 
 /** Inferred types for Table Columns */
@@ -63,6 +72,7 @@ export const TableColumnTypeSchema = z.union([
   NumericColumnTypeSchema,
   MarkdownColumnTypeSchema,
   LinkColumnTypeSchema,
+  CheckboxColumnTypeSchema,
 ]);
 
 /** Type for table columns */
@@ -90,4 +100,5 @@ export const PageTableSchema = ContentTemplateSchema.extend({
   style: TableVariantSchema.optional(),
   enableSort: z.boolean().optional(),
   verticalDividers: z.boolean().optional(),
+  enableSelection: z.boolean().optional(),
 });
