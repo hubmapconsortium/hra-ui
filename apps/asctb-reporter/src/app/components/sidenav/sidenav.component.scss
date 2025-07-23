@@ -7,6 +7,7 @@
     .card-body {
       max-height: calc(100vh - 4rem);
       &.with-footer {
+        flex: 1;
         max-height: calc(100vh - 4.1rem - 4.5rem);
       }
     }
