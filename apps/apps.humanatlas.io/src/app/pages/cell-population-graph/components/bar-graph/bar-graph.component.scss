@@ -10,11 +10,11 @@
     margin: 2rem;
 
     #vg-tooltip-element.vg-tooltip {
-      font: vars.$label-medium;
-      color: #5e5a4b;
+      @include utils.use-font(label, medium);
+      color: vars.$inverse-surface;
       padding: 0.5rem;
       max-width: 22.5rem;
-      box-shadow: 0rem 0.3125rem 1rem 0rem #201e3d3d;
+      box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$on-background, 24%);
     }
   }
 
@@ -24,7 +24,11 @@
       right: auto;
     }
 
-    .vega-embed .vega-actions::before::after {
+    .vega-embed .vega-actions::before{
+      visibility: hidden;
+    }
+
+    .vega-embed .vega-actions::after {
       visibility: hidden;
     }
 
@@ -33,14 +37,14 @@
       right: auto;
       top: 1.75rem;
       border-radius: 0.5rem;
-      box-shadow: 0rem 0.3125rem 0.25rem 0rem #201e3d29;
+      box-shadow: 0rem 0.3125rem 0.25rem 0rem utils.with-alpha(vars.$on-background, 16%);
       border: none;
       width: 12.5rem;
       height: 17.0625rem;
 
       a {
+        @include utils.use-font(label, medium);
         color: vars.$on-background;
-        font: vars.$label-medium;
         height: 3rem;
         display: flex;
         align-items: center;
