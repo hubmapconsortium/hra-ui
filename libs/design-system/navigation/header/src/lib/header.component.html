@@ -96,8 +96,7 @@
     }
   </div>
 
-  @let crumbs = breadcrumbs() ?? [];
-  @if (crumbs.length > 0) {
+  @if (breadcrumbs(); as crumbs) {
     <mat-divider />
 
     <div class="navigation">
