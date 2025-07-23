@@ -11,6 +11,13 @@ body {
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
 
+  /* Material Bottom Sheet Style Overrides */
+  @include mat.bottom-sheet-overrides(
+    (
+      container-shape: 1rem,
+    )
+  );
+
   .help-menu {
     width: 15rem !important;
     a {
@@ -23,10 +30,3 @@ body {
     }
   }
 }
-
-/* Material Bottom Sheet Style Overrides */
-@include mat.bottom-sheet-overrides(
-  (
-    container-shape: 1rem,
-  )
-);
