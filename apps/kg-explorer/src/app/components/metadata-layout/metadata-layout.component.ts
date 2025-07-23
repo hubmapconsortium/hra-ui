@@ -8,6 +8,7 @@ import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/tab
 @Component({
   selector: 'hra-metadata-layout-header',
   template: `<ng-content />`,
+  styles: ['::ng-deep h1 > mat-divider { display: none !important; }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataLayoutHeaderComponent {}
@@ -32,7 +33,7 @@ export class MetadataLayoutComponent {
   /** Whether the screen width is currently greater than or equal to 1100px */
   protected isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
-  protected isSmallScreen = watchBreakpoint('(max-width: 639.9999px)');
+  protected isSmallScreen = watchBreakpoint('(max-width: 639px)');
 
   readonly rows = input.required<TableRow[]>();
   readonly columns = input.required<TableColumn[]>();

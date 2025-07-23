@@ -13,7 +13,12 @@ import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/tab
 import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 
 import { FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
-import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
+import {
+  DigitalObjectData,
+  DigitalObjectMetadata,
+  DistributionsInfo,
+  KnowledgeGraphObjectsData,
+} from '../../digital-objects.schema';
 
 export interface FilterOption {
   id: string;
@@ -59,7 +64,7 @@ const DIGITAL_OBJECT_NAME_MAP: Record<string, string> = {
 };
 
 /** Maps doType to the correct icon in the design system */
-const PRODUCT_ICON_MAP: Record<string, string> = {
+export const PRODUCT_ICON_MAP: Record<string, string> = {
   '2d-ftu': 'ftu',
   'asct-b': 'asctb-reporter',
   collection: 'collections',
@@ -349,7 +354,7 @@ export class MainPageComponent {
         }),
         tap((metadata) => {
           this.allRows().map((row) => {
-            const md = metadata.find((entry) => entry['id'] === row['objectUrl']);
+            const md = metadata.find((entry) => entry.id === row['objectUrl']);
             if (md) {
               row['downloadOptions'] = this.getDownloadOptions(md);
             }
@@ -452,7 +457,8 @@ export class MainPageComponent {
         doVersion: item.doVersion,
         organs: item.organs,
         title: item.title,
-        objectUrl: item.lod,
+        // objectUrl: item.lod,
+        objectUrl: `/metadata/${item.doType}/${item.doName}/${item.doVersion}`,
         typeIcon: 'product:' + PRODUCT_ICON_MAP[item.doType],
         // If more than one organ use all-organs icon
         organIcon: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'),
@@ -469,7 +475,7 @@ export class MainPageComponent {
    * @returns Observable for digital object metadata JSON
    */
   private getMetadata(entry: DigitalObjectData): Observable<DigitalObjectMetadata> {
-    return this.http.get(entry.lod, { responseType: 'json' });
+    return this.http.get(entry.lod, { responseType: 'json' }) as Observable<DigitalObjectMetadata>;
   }
 
   /**
@@ -478,9 +484,9 @@ export class MainPageComponent {
    * @returns Array of distributions download info for the metadata
    */
   private getDownloadOptions(metadata: DigitalObjectMetadata): Record<string, string | undefined>[] {
-    const id = metadata['name'];
-    const files = metadata['distributions'] as Record<string, string>[];
-    const derivedFiles = metadata['was_derived_from']['distributions'] as Record<string, string>[];
+    const id = metadata.id;
+    const files = metadata.distributions;
+    const derivedFiles = metadata.was_derived_from.distributions;
     return this.resolveDownloadOptions(id, derivedFiles.concat(files));
   }
 
@@ -490,15 +496,15 @@ export class MainPageComponent {
    * @param files Array of distributions from metadata
    * @returns Resolved download data
    */
-  private resolveDownloadOptions(id: string, files: Record<string, string>[]) {
+  private resolveDownloadOptions(id: string, files: DistributionsInfo[]) {
     return files.map((file) => {
-      const fileType = FILE_TYPE_MAP[file['mediaType']];
+      const fileType = FILE_TYPE_MAP[file.mediaType];
       return {
         id: id + fileType.typeSuffix,
         name: fileType.name,
         description: fileType.description,
         icon: 'download',
-        url: file['downloadUrl'],
+        url: file.downloadUrl,
       };
     });
   }

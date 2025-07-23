@@ -1,21 +1,21 @@
 <hra-metadata-layout [rows]="rows()" [columns]="columns()">
   <hra-metadata-layout-header>
     <hra-icon></hra-icon>
-    <hra-page-section [tagline]="metadata().title" [icons]="icons()"> </hra-page-section>
-    <img *ngIf="metadata().image" [src]="metadata().image" alt="Metadata Image" class="metadata-image" />
+    <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()"> </hra-page-section>
+    <!-- <img *ngIf="metadata().image" [src]="metadata().image" alt="Metadata Image" class="metadata-image" /> -->
   </hra-metadata-layout-header>
 
   <hra-metadata-layout-content [class.mediumScreen]="!isWMediumScreen()">
     <div class="sections">
       <hra-page-section tagline="Description" [level]="2">
-        <markdown [data]="metadata().description" />
+        <markdown [data]="metadata().was_derived_from.description" />
       </hra-page-section>
       <hra-page-section tagline="Publisher" [level]="2">
-        <markdown [data]="createMarkdownLink(metadata().publisher.name, metadata().publisher.url)" />
+        <markdown [data]="metadata().was_derived_from.publisher" />
       </hra-page-section>
       <hra-page-section tagline="Funder" [level]="2">
         <ul>
-          @for (funder of metadata().funders; track funder) {
+          @for (funder of metadata().was_derived_from.funders; track funder) {
             <li>{{`${funder.funder} (Award number ${funder.awardNumber})`}}</li>
           }
         </ul>
@@ -23,11 +23,11 @@
       <hra-page-section tagline="License" [level]="2">
         <markdown [data]="metadata().license" />
       </hra-page-section>
-      <hra-page-section tagline="Tags" [level]="2">
+      <!-- <hra-page-section tagline="Tags" [level]="2">
         @for (funder of metadata().tags; track $index) {
           <markdown [data]="metadata().tags[$index]" />
         }
-      </hra-page-section>
+      </hra-page-section> -->
     </div>
     <hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
   </hra-metadata-layout-content>

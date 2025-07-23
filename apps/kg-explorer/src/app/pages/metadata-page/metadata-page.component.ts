@@ -1,5 +1,8 @@
-import { Component, computed, input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute } from '@angular/router';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -9,97 +12,44 @@ import { TableColumn, TableComponent } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
+import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
+import { PRODUCT_ICON_MAP } from '../main-page/main-page.component';
 
-interface MetadataPageData {
-  type: string;
-  organ: string;
-  title: string; //was_derived_from.title
-  description: string; //was_derived_from.description
-  publisher: {
-    name: string; //publisher
-    url: string;
-  };
-  funders: {
-    //was_derived_from.funders
-    funder: string;
-    awardNumber: string;
-  }[];
-  license: string; //license
-  tags: string[];
-
-  creators: {
-    name: string; //was_derived_from.creators.label
-    id: string; //was_derived_from.creators.id
-  }[];
-  leads: {
-    name: string; //was_derived_from.project_leads.label
-    id: string; //was_derived_from.project_leads.id
-  }[];
-  reviewers: {
-    name: string; //was_derived_from.reviewers.label
-    id: string; //was_derived_from.reviewers.id
-  }[];
-  doi: string; //was_derived_from.doi
-  hubmapId: string; //was_derived_from.hubmapId
-  dateCreated: string; //creation_date
-  dateModified: string;
-
-  image?: string; //was_derived_from.distributions[?].downloadUrl
-}
-
-const testData: MetadataPageData = {
-  type: 'ftu',
-  organ: 'kidney',
-  title: '2D Outer Medullary Collecting Duct FTU for Kidney',
-  description:
-    'This functional tissue unit (FTU) illustration includes cell types related to the outer medullary collecting duct FTU in the ASCT+B Table [Kidney v1.2](https://doi.org/10.48539/HBM248.CBJV.556). This illustration was inspired by the [Kidney Tissue Atlas Explorer](https://atlas.kpmp.org/explorer) created by the Kidney Precision Medicine Project (KPMP). Multiple histology atlases, especially *Human Microscopic Anatomy* (Krstić 1991) and *Histology: A Text and Atlas* (Wojciech Pawlina and Michael H. Ross 2019) were referenced. Cell types and metrics were primarily defined by (Hu, McDonough, and Layton 2021; Layton and Layton 2019). Uberon describes this FTU as follows: "The outer medullary collecting duct is the portion of the collecting duct that lies in the renal outer medulla." \n\n**Bibliography**:\n\n* Hu, Rui, Alicia A. McDonough, and Anita T. Layton. 2021. “Sex Differences in Solute and Water Handling in the Human Kidney: Modeling and Functional Implications.” *iScience* 24 (6): 102667. https://doi.org/10.1016/j.isci.2021.102667.\n* Krstić, Radivoj V. 1991. Human Microscopic Anatomy. Berlin, Heidelberg: *Springer*. https://doi.org/10.1007/978-3-662-02676-2.\n* Layton, Anita T., and Harold E. Layton. 2019. “A Computational Model of Epithelial Solute and Water Transport along a Human Nephron.” Edited by Daniel A Beard. *PLOS Computational Biology* 15 (2): e1006108. https://doi.org/10.1371/journal.pcbi.1006108.\n* Wojciech Pawlina and Michael H. Ross. 2019. “Histology: A Text and Atlas: With Correlated Cell and Molecular Biology. Eighth Edition, 2018 Authors: Wojciech Pawlina; Michael H. Ross.” *Morphologia* 13 (4): 76–89. https://doi.org/10.26641/1997-9665.2019.4.76-89.',
-  publisher: {
-    name: 'HuBMAP',
-    url: 'https://hubmapconsortium.org/',
+const EMPTY_METADATA: DigitalObjectMetadata = {
+  $schema: '',
+  '@context': '',
+  '@type': '',
+  creation_date: '',
+  creators: [],
+  description: '',
+  distributions: [],
+  id: '',
+  label: '',
+  license: '',
+  publisher: '',
+  see_also: '',
+  title: '',
+  type: '',
+  version: '',
+  was_derived_from: {
+    citation: '',
+    citationOverall: '',
+    creation_date: '',
+    creators: [],
+    description: '',
+    distributions: [],
+    doi: '',
+    funders: [],
+    hubmapId: '',
+    id: '',
+    label: '',
+    license: '',
+    project_leads: [],
+    publisher: '',
+    reviewers: [],
+    title: '',
   },
-  funders: [
-    {
-      funder: 'National Institutes of Health',
-      awardNumber: 'OT2OD033756',
-    },
-    {
-      funder: 'National Institutes of Health',
-      awardNumber: 'OT2OD026671',
-    },
-  ],
-  license: 'Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))',
-  tags: ['Functional Tissue Unit', 'Kidney'],
-
-  creators: [{ name: 'Rachel Bajema', id: 'https://orcid.org/0000-0002-3775-8574' }],
-  leads: [{ name: 'Katy Börner', id: 'https://orcid.org/0000-0002-3321-6137' }],
-  reviewers: [
-    { name: 'Sanjay Jain', id: 'https://orcid.org/0000-0003-2804-127X' },
-    { name: 'Matthias Kretzler', id: 'https://orcid.org/0000-0003-4064-0582' },
-    { name: 'M. Todd Valerius', id: 'https://orcid.org/0000-0001-8143-9231' },
-  ],
-  doi: 'https://doi.org/10.48539/HBM724.KFSK.483',
-  hubmapId: 'HBM724.KFSK.483',
-  dateCreated: '2025-06-12',
-  dateModified: '2025-06-12',
-
-  image:
-    'https://cdn.humanatlas.io/digital-objects/2d-ftu/kidney-outer-medullary-collecting-duct/v1.2/assets/2d-ftu-kidney-outer-medullary-collecting-duct.svg',
 };
-
-const testIcons = ['product:ftu', 'organ:kidneys'];
-
-const columns: TableColumn[] = [
-  {
-    column: 'provenance',
-    label: 'Provenance',
-    type: 'text',
-  },
-  {
-    column: 'metadata',
-    label: 'Metadata',
-    type: 'markdown',
-  },
-];
 
 @Component({
   selector: 'hra-metadata-page',
@@ -117,35 +67,70 @@ const columns: TableColumn[] = [
   styleUrl: './metadata-page.component.scss',
 })
 export class MetadataPageComponent {
-  readonly metadata = input<MetadataPageData>(testData);
+  private readonly http = inject(HttpClient);
+  private route = inject(ActivatedRoute);
 
-  readonly icons = input<string[]>(testIcons);
+  readonly metadata = signal<DigitalObjectMetadata>(EMPTY_METADATA);
 
-  readonly columns = input<TableColumn[]>(columns);
+  readonly doData = input.required<KnowledgeGraphObjectsData>();
+  readonly $doData = toObservable(this.doData);
+
+  readonly icons = signal<string[]>([]);
+
+  readonly columns = input.required<TableColumn[]>();
 
   readonly rows = computed(() => [
-    { provenance: 'Creator(s)', metadata: this.createMarkdownList(this.metadata().creators) },
-    { provenance: 'Project lead', metadata: this.createMarkdownList(this.metadata().leads) },
+    { provenance: 'Creator(s)', metadata: this.createMarkdownList(this.metadata().was_derived_from.creators) },
+    { provenance: 'Project lead', metadata: this.createMarkdownList(this.metadata().was_derived_from.project_leads) },
     {
       provenance: 'Reviewer(s)',
-      metadata: this.createMarkdownList(this.metadata().reviewers),
+      metadata: this.createMarkdownList(this.metadata().was_derived_from.reviewers),
     },
-    { provenance: 'DOI', metadata: `[${this.metadata().doi}](${this.metadata().doi})` },
-    { provenance: 'HuBMAP ID', metadata: this.metadata().hubmapId },
-    { provenance: 'Date created', metadata: this.metadata().dateCreated },
-    { provenance: 'Date last modified', metadata: this.metadata().dateModified },
+    {
+      provenance: 'DOI',
+      metadata: `[${this.metadata().was_derived_from.doi}](${this.metadata().was_derived_from.doi})`,
+    },
+    { provenance: 'HuBMAP ID', metadata: this.metadata().was_derived_from.hubmapId },
+    { provenance: 'Date created', metadata: this.metadata().was_derived_from.creation_date },
+    { provenance: 'Date last modified', metadata: this.metadata().creation_date },
   ]);
 
-  protected isWMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639.9999px)');
+  protected isWMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639px)');
+
+  constructor() {
+    const type = this.route.snapshot.paramMap.get('type') || '';
+    const name = this.route.snapshot.paramMap.get('name') || '';
+    const version = this.route.snapshot.paramMap.get('version') || '';
+
+    this.$doData.subscribe((data) => {
+      console.log(data);
+      const pageItem = data['@graph'].find((item) => {
+        return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
+      });
+      console.log(pageItem);
+    });
+
+    this.icons.set([
+      `product:${PRODUCT_ICON_MAP[type]}`,
+      'organ:all-organs', //TODO: get organ from data
+    ]);
+
+    this.http
+      .get(`https://lod.humanatlas.io/${type}/${name}/${version}`, { responseType: 'json' })
+      .subscribe((data) => {
+        console.log(data);
+        this.metadata.set(data as DigitalObjectMetadata);
+      });
+  }
 
   createMarkdownLink(text: string, url: string): string {
     return `[${text}](${url})`;
   }
 
-  createMarkdownList(items: { name: string; id: string }[]): string {
+  createMarkdownList(items: PersonInfo[]): string {
     if (items.length === 1) {
-      return this.createMarkdownLink(items[0].name, items[0].id);
+      return this.createMarkdownLink(items[0].label, items[0].id);
     }
-    return items.map((item) => `\n* ${this.createMarkdownLink(item.name, item.id)}`).join();
+    return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join();
   }
 }
