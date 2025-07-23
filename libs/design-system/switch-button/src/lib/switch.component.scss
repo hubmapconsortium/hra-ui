@@ -3,7 +3,9 @@
 @use '../../../styles/vars' as vars;
 
 :host {
-  @include mat.slide-toggle-overrides((selected-track-color: vars.$on-tertiary-fixed,
+  @include mat.slide-toggle-overrides(
+    (
+      selected-track-color: vars.$on-tertiary-fixed,
       selected-focus-track-color: vars.$on-tertiary-fixed,
       selected-hover-track-color: vars.$on-tertiary-fixed,
       selected-pressed-track-color: vars.$on-tertiary-fixed,
@@ -27,5 +29,6 @@
       unselected-focus-state-layer-color: vars.$on-secondary-fixed,
       unselected-hover-state-layer-color: vars.$on-secondary-fixed,
       unselected-pressed-state-layer-color: vars.$on-secondary-fixed,
-    ));
+    )
+  );
 }
