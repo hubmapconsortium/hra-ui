@@ -13,7 +13,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
-import { PRODUCT_ICON_MAP } from '../main-page/main-page.component';
+import { ORGAN_ICON_MAP, PRODUCT_ICON_MAP } from '../main-page/main-page.component';
 
 const EMPTY_METADATA: DigitalObjectMetadata = {
   $schema: '',
@@ -103,22 +103,21 @@ export class MetadataPageComponent {
     const version = this.route.snapshot.paramMap.get('version') || '';
 
     this.$doData.subscribe((data) => {
-      console.log(data);
       const pageItem = data['@graph'].find((item) => {
         return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
       });
-      console.log(pageItem);
+      const icons = [`product:${PRODUCT_ICON_MAP[type]}`];
+      if (pageItem?.organs) {
+        icons.push(
+          this.getOrganIcon(pageItem?.organs && pageItem?.organs.length === 1 ? pageItem?.organs[0] : 'all-organs'),
+        );
+      }
+      this.icons.set(icons);
     });
-
-    this.icons.set([
-      `product:${PRODUCT_ICON_MAP[type]}`,
-      'organ:all-organs', //TODO: get organ from data
-    ]);
 
     this.http
       .get(`https://lod.humanatlas.io/${type}/${name}/${version}`, { responseType: 'json' })
       .subscribe((data) => {
-        console.log(data);
         this.metadata.set(data as DigitalObjectMetadata);
       });
   }
@@ -132,5 +131,9 @@ export class MetadataPageComponent {
       return this.createMarkdownLink(items[0].label, items[0].id);
     }
     return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join();
+  }
+
+  getOrganIcon(organ: string): string {
+    return `organ:${ORGAN_ICON_MAP[organ] ?? organ}`;
   }
 }

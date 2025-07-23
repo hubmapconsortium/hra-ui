@@ -81,7 +81,7 @@ export const PRODUCT_ICON_MAP: Record<string, string> = {
 };
 
 /** Maps organ name to the correct icon in the design system */
-const ORGAN_ICON_MAP: Record<string, string> = {
+export const ORGAN_ICON_MAP: Record<string, string> = {
   kidney: 'kidneys',
   'large intestine': 'large-intestine',
   lung: 'lungs',
