@@ -12,7 +12,7 @@
     labelClass="table-tab-header"
     [label]="'Cell Types by ' + tab.label"
   >
-    <hra-biomarker-table
+    <ftu-biomarker-table
       #table
       *ngIf="tab.rows.length !== 0"
       [class.small]="tab.rows.length < 10"
@@ -25,7 +25,7 @@
       [dataSources]="source()"
       [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
       (rowHover)="highlightCells($event)"
-    ></hra-biomarker-table>
+    ></ftu-biomarker-table>
     <ftu-empty-biomarker
       *ngIf="tab.rows.length === 0"
       [collaborateText]="collaborateText"
