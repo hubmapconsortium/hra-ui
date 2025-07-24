@@ -1,13 +1,19 @@
 <!-- eslint-disable @angular-eslint/template/mouse-events-have-key-events -->
-<cdk-virtual-scroll-viewport tvsItemSize="32" headerHeight="72">
+<cdk-virtual-scroll-viewport tvsItemSize="32" headerHeight="32">
+  <mat-button-toggle-group
+    hraButtonToggleSize="small"
+    [(value)]="selectedToggle"
+    (change)="onToggleChange($event)"
+    class="biomarker-toggle-group absolute-toggle"
+  >
+    <mat-button-toggle value="genes">Genes</mat-button-toggle>
+    <mat-button-toggle value="proteins">Proteins</mat-button-toggle>
+    <mat-button-toggle value="lipids">Lipids</mat-button-toggle>
+  </mat-button-toggle-group>
+
   <table class="table" mat-table [dataSource]="dataSource" #table>
-    <caption class="sr-only">
-      Cell type table by Biomarker
-    </caption>
-
     <ng-container matColumnDef="type" sticky>
-      <th mat-header-cell *matHeaderCellDef>Cell Type</th>
-
+      <th mat-header-cell *matHeaderCellDef>Cell types</th>
       <td
         class="type"
         mat-cell
@@ -21,8 +27,7 @@
     </ng-container>
 
     <ng-container matColumnDef="count" sticky>
-      <th class="count" mat-header-cell *matHeaderCellDef>Cell Count</th>
-
+      <th class="count" mat-header-cell *matHeaderCellDef>#Cells</th>
       <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
         {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
       </td>
@@ -67,7 +72,7 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="(columns$ | async) ?? []; sticky: true"></tr>
+    <tr mat-header-row *matHeaderRowDef="(columns$ | async) ?? []; sticky: true" class="column-header-row"></tr>
     <tr
       mat-row
       *matRowDef="let row; columns: (columns$ | async) ?? []"
@@ -84,5 +89,5 @@
 </ng-template>
 
 <ng-template #dataHover let-data>
-  <ftu-biomarker-table-data-card [data]="getHoverData(data)"> </ftu-biomarker-table-data-card>
+  <ftu-biomarker-table-data-card [data]="getHoverData(data)"></ftu-biomarker-table-data-card>
 </ng-template>
