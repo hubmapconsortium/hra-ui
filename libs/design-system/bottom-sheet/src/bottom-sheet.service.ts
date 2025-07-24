@@ -1,10 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { BottomSheetComponent, BottomSheetData } from './lib/bottom-sheet.component';
+import { BottomSheetComponent } from './lib/bottom-sheet.component';
+import { TableRow, TableColumn } from '@hra-ui/design-system/table';
 
 /**
  * Service to handle bottom sheet operations.
- * Provides a method to open a bottom sheet with specified data.
+ * Provides methods to open different types of bottom sheets.
  */
 @Injectable({ providedIn: 'root' })
 export class BottomSheetService {
@@ -12,10 +13,30 @@ export class BottomSheetService {
   private readonly _bottomSheet = inject(MatBottomSheet);
 
   /**
-   * Opens a bottom sheet with the provided data.
-   * @param data - The data to be passed to the bottom sheet component.
+   * Opens a table bottom sheet with the provided rows and columns.
+   * @param rows - The table rows to display
+   * @param columns - The table columns to display
    */
-  openBottomSheet(data: BottomSheetData) {
-    return this._bottomSheet.open(BottomSheetComponent, { data });
+  openTableBottomSheet(rows: TableRow[], columns: TableColumn[]) {
+    return this._bottomSheet.open(BottomSheetComponent, {
+      data: {
+        variant: 'table',
+        rows,
+        columns,
+      },
+    });
+  }
+
+  /**
+   * Opens a page section bottom sheet with the provided tagline.
+   * @param tagline - The tagline to display in the page section
+   */
+  openPageSectionBottomSheet(tagline: string) {
+    return this._bottomSheet.open(BottomSheetComponent, {
+      data: {
+        variant: 'page-section',
+        tagline,
+      },
+    });
   }
 }
