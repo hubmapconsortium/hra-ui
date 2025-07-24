@@ -97,6 +97,9 @@ export class AppComponent implements OnInit {
   protected readonly technologyOptions = toSignal(this.data.technologyFilterData$, { initialValue: [] });
   /** Provider options */
   protected readonly providerOptions = toSignal(this.data.providerFilterData$, { initialValue: [] });
+
+  /** Consortia options */
+  protected readonly consortiaOptions = toSignal(this.data.consortiaFilterData$, { initialValue: [] });
   /** Spatial searches */
   protected readonly spatialSearchItems = this.store.selectSignal(SpatialSearchFilterSelectors.items);
   /** Database state */
