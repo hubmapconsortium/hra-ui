@@ -3,6 +3,8 @@ export { DataViewerDef } from './lib/types/data-viewer.definition';
 export {
   DataViewer,
   DataViewerSchema,
+  DataViewerVariant,
+  DataViewerVariantSchema,
   ReleaseVersionData,
   ReleaseVersionDataSchema,
   ViewerCard,

@@ -66,7 +66,7 @@ export class DataViewerParamSyncControllerService implements ContentTemplateCont
 
       // Subscribe to organ changes to update URL
       instance.organ.subscribe((organLabel) => {
-        if (organLabel) {
+        if (organLabel !== undefined) {
           this.organ.set(organLabel);
         }
       });

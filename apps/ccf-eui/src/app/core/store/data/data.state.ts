@@ -285,6 +285,16 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
     return this.databaseReady$.pipe(switchMap(() => this.source.getProviderNames()));
   };
 
+  /**
+   * Queries for consortium filter data.
+   *
+   * @returns The result of the query.
+   */
+  private readonly consortiaFilterData = (): ObservableInput<string[]> => {
+    this._providerFilterQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() => this.source.getConsortiumNames()));
+  };
+
   /** Current filter. */
   readonly filter$ = this.state$.pipe(map((x) => x.filter));
   /** Latest tissue block query data. */
@@ -316,6 +326,10 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
   /** Latest provider filter label query data. */
   readonly providerFilterData$ = this.filter$.pipe(
     queryData(this.providerFilterData, sendCompletedTo(this._providerFilterQueryStatus$)),
+  );
+  /** Latest consortia filter label query data. */
+  readonly consortiaFilterData$ = this.filter$.pipe(
+    queryData(this.consortiaFilterData, sendCompletedTo(this._providerFilterQueryStatus$)),
   );
 
   /** Current status of queries in the tissueBlockData$ observable. */

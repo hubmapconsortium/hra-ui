@@ -17,6 +17,8 @@ export interface DataSource {
   getProviderNames(): Observable<string[]>;
   /** Get technologies */
   getDatasetTechnologyNames(): Observable<string[]>;
+  /** Get consortium names */
+  getConsortiumNames(): Observable<string[]>;
   /** Get ontology tree */
   getOntologyTreeModel(): Observable<OntologyTree>;
   /** Get cell type tree */
