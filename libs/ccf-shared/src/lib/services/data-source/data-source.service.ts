@@ -20,6 +20,8 @@ export abstract class DataSourceService implements DataSource {
   abstract getProviderNames(): Observable<string[]>;
   /** Get technologies */
   abstract getDatasetTechnologyNames(): Observable<string[]>;
+  /** Get consortium names */
+  abstract getConsortiumNames(): Observable<string[]>;
   /** Get ontology tree */
   abstract getOntologyTreeModel(): Observable<OntologyTree>;
   /** Get cell type tree */
