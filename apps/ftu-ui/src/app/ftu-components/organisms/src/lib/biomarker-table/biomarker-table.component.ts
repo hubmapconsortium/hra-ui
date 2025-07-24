@@ -12,6 +12,7 @@ import {
   OnChanges,
   OnInit,
   Output,
+  signal,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -23,6 +24,7 @@ import { BiomarkerTableDataIconComponent, BiomarkerTableDataCardComponent, DataI
 import { SourceListItem } from '../../../../molecules/src/lib/source-list/source-list.component';
 import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { ReplaySubject } from 'rxjs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 /**
  * RGBTriblet of type RGB to store color
@@ -74,6 +76,7 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
     BiomarkerTableDataCardComponent,
     ScrollingModule,
     TableVirtualScrollModule,
+    MatButtonToggleModule,
   ],
   templateUrl: './biomarker-table.component.html',
   styleUrls: ['./biomarker-table.component.scss'],
@@ -108,6 +111,9 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
 
   /** List of cell ids in the illustration */
   @Input() illustrationIds: string[] = [];
+
+  /** Emits the selected toggle value */
+  selectedToggle = signal('genes');
 
   /** Emits cell type label when row is hovered */
   @Output() readonly rowHover = new EventEmitter<string>();
@@ -208,6 +214,14 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
     if (shouldUpdate) {
       this.updateColumns();
     }
+  }
+
+  /**
+   * Handles toggle change event
+   * @param event toggle change event
+   */
+  onToggleChange(event: any) {
+    this.selectedToggle.set(event.value);
   }
 
   /**
