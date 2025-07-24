@@ -16,18 +16,28 @@
     )
   );
 
+  @include mat.button-toggle-overrides((
+    disabled-state-background-color: vars.$secondary,
+    height: 2rem,
+    label-text-font: vars.$label-medium-font,
+    label-text-line-height: 1.3125rem,
+    label-text-size: .875rem,
+    label-text-weight: 500,
+    selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
+    selected-state-text-color: vars.$secondary,
+    background-color: utils.with-alpha(vars.$secondary, 12%),
+  ));
+
   cdk-virtual-scroll-viewport {
     height: 100%;
   }
 
   .absolute-toggle {
     position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
+    top: 1rem;
+    left: 1rem;
     z-index: 1000;
-    width: 16.75rem;
-    height: 3rem;
-    background-color: vars.$surface-container;
+    width: 14.625rem;
     border: 1px solid vars.$outline;
     border-radius: 6px;
     overflow: hidden;
@@ -36,8 +46,6 @@
     .mat-button-toggle {
       flex: 1;
       border: none;
-      background-color: vars.$surface-container-low;
-      color: vars.$on-surface;
       font-weight: 500;
       text-transform: none;
       transition: all 0.2s ease;
@@ -46,13 +54,9 @@
       align-items: center;
       justify-content: center;
 
-      &:hover {
-        background-color: rgba(vars.$primary, 0.05);
-      }
-
       &.mat-button-toggle-checked {
-        background-color: vars.$primary;
-        color: vars.$on-primary;
+        // background-color: vars.$primary;
+        // color: vars.$on-primary;
         font-weight: 600;
       }
 
