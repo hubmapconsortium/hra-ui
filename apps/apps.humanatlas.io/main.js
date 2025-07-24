@@ -4254,10 +4254,8 @@ Please report this to https://github.com/markedjs/marked.`,n){let s="<p>An error
     <meta charset="utf-8" />
     <title>RUI Web Component</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
     <link href="https://cdn.humanatlas.io/ui/ccf-rui/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/ccf-rui/wc.js" defer><\/script>
+    <script src="https://cdn.humanatlas.io/ui/ccf-rui/wc.js" type="module"><\/script>
   </head>
   <body style="margin: 0">
     <ccf-rui
@@ -4275,10 +4273,8 @@ Please report this to https://github.com/markedjs/marked.`,n){let s="<p>An error
     <meta charset="utf-8" />
     <title>EUI Web Component</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
     <link href="https://cdn.humanatlas.io/ui/ccf-eui/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/ccf-eui/wc.js" defer><\/script>
+    <script src="https://cdn.humanatlas.io/ui/ccf-eui/wc.js" type="module"><\/script>
   </head>
   <body style="margin: 0">
     <ccf-eui
@@ -4300,7 +4296,7 @@ Please report this to https://github.com/markedjs/marked.`,n){let s="<p>An error
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
     <link href="https://cdn.humanatlas.io/ui/ccf-organ-info/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/ccf-organ-info/wc.js" defer><\/script>
+    <script src="https://cdn.humanatlas.io/ui/ccf-organ-info/wc.js" type="module"><\/script>
   </head>
   <body style="margin: 0">
     <ccf-organ-info
@@ -4319,10 +4315,9 @@ Please report this to https://github.com/markedjs/marked.`,n){let s="<p>An error
     <title>EUI 3D Organ Viewer Web Component</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.humanatlas.io/ui/ccf-body-ui-wc/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/ccf-body-ui-wc/wc.js" defer><\/script>
+    <script src="https://cdn.humanatlas.io/ui/ccf-body-ui-wc/wc.js" type="module"><\/script>
   </head>
   <body style="margin: 0">
-    <!-- TODO inputs -->
     <ccf-body-ui-wc> </ccf-body-ui-wc>
   </body>
 </html>
@@ -4365,7 +4360,7 @@ Please report this to https://github.com/markedjs/marked.`,n){let s="<p>An error
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
     <link href="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/wc.js" defer><\/script>
+    <script src="https://cdn.humanatlas.io/ui/ftu-ui-small-wc/wc.js" type="module"><\/script>
   </head>
   <body style="margin: 0">
     <hra-ftu-ui-small
@@ -4384,7 +4379,7 @@ Please report this to https://github.com/markedjs/marked.`,n){let s="<p>An error
     <title>Medical Illustration Web Component</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.humanatlas.io/ui/medical-illustration/styles.css" rel="stylesheet" />
-    <script src="https://cdn.humanatlas.io/ui/medical-illustration/wc.js" defer><\/script>
+    <script src="https://cdn.humanatlas.io/ui/medical-illustration/wc.js" type="module"><\/script>
   </head>
   <body style="margin: 0">
     <hra-medical-illustration
