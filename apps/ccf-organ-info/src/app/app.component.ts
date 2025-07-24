@@ -57,10 +57,21 @@ interface GlobalConfig {
 /** Empty scene object */
 const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }] as SpatialSceneNode[];
 
+/**
+ * Gets the sex of the organ.
+ * @param organ Organ Spatial Entity
+ * @returns Sex of the organ
+ */
 function getOrganSex(organ: SpatialEntity | undefined): FilterSexEnum | undefined {
   return organ?.sex !== undefined ? sexFromString(organ.sex) : undefined;
 }
 
+/**
+ * Normalizes stats labels for the table.
+ * @param stats Stats Data
+ * @param label Label
+ * @returns Normalized stats labels
+ */
 function normalizeStatLabels(stats: AggregateCount[], label?: string): AggregateCount[] {
   if (label === undefined) {
     return stats;
@@ -164,12 +175,13 @@ export class AppComponent {
       const organ$ = this.lookupService.getOrgan(info, info.hasSex ? sex : undefined).pipe(
         tap((organ) => {
           if (organ) {
-            const newSex = info?.hasSex && organ.sex !== undefined ? sexFromString(organ.sex) : undefined;
+            const newSex = info?.hasSex && getOrganSex(organ);
+            const newSide = organ.side;
             if (newSex !== sex) {
               this.updateInput('sex', newSex);
             }
             if (organ.side !== side) {
-              this.updateInput('side', organ.side);
+              this.updateInput('side', newSide);
             }
           }
         }),
