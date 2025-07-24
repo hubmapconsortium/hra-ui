@@ -157,7 +157,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       margin: 0.5rem auto;
-      max-height: 6rem;
+      max-height: calc(6rem - 16px);
     }
   }
 
