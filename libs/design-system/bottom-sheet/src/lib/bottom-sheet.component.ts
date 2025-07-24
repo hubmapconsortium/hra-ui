@@ -7,23 +7,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 
 /**
- * Bottom Sheet Variant
+ * Interface for the Table Bottom Sheet Data
  */
-export type BottomSheetVariant = 'table' | 'page-section';
+interface TableBottomSheetData {
+  variant: 'table';
+  rows: TableRow[];
+  columns: TableColumn[];
+}
 
 /**
- * Interface for the bottom sheet Data
+ * Interface for the Page Section Bottom Sheet Data
  */
-export interface BottomSheetData {
-  /** variant of the bottom sheet */
-  variant: BottomSheetVariant;
-  /** tagline of the bottom sheet */
-  tagline?: string;
-  /** rows of the bottom sheet */
-  rows?: TableRow[];
-  /** columns of the bottom sheet */
-  columns?: TableColumn[];
+interface PageSectionBottomSheetData {
+  variant: 'page-section';
+  tagline: string;
 }
+
+/**
+ * Union type for the Bottom Sheet Data
+ * Can be either TableBottomSheetData or PageSectionBottomSheetData
+ */
+export type BottomSheetData = TableBottomSheetData | PageSectionBottomSheetData;
 
 /**
  * Bottom Sheet Component
@@ -40,7 +44,7 @@ export class BottomSheetComponent {
   private readonly _bottomSheetRef = inject(MatBottomSheetRef<BottomSheetComponent>);
 
   /** Data injected into the bottom sheet */
-  readonly data = inject<BottomSheetData>(MAT_BOTTOM_SHEET_DATA);
+  protected readonly data = inject<BottomSheetData>(MAT_BOTTOM_SHEET_DATA);
 
   /** Function to close the bottom sheet */
   close(): void {
