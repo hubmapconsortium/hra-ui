@@ -70,6 +70,7 @@ export class GlobalConfigState<T> extends NgxsImmutableDataRepository<T> {
     return obs;
   }
 
+  /** Gets the config option as a signal */
   getOptionSignal<K1 extends keyof T>(k1: K1): Signal<T[K1]> {
     return toSignal(this.getOption(k1), { requireSync: true });
   }
