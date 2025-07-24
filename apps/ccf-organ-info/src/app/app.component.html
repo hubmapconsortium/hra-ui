@@ -2,8 +2,8 @@
   <div class="left">
     <div class="icons">
       <hra-icon [svgIcon]="'product:eui'"></hra-icon>
-      @if (organInfo$) {
-        <hra-icon [svgIcon]="getOrganLogo()"></hra-icon>
+      @if (organLogo(); as logo) {
+        <hra-icon [svgIcon]="logo"></hra-icon>
       }
     </div>
     <div class="title">Organ Information</div>
@@ -15,27 +15,27 @@
 <div class="content" #contentContainer>
   <div class="info-view">
     <div class="organ-title">
-      {{ statsLabel$ | async }}
+      {{ statsLabel() }}
     </div>
     <div class="params">
-      @if (sex$ | async; as sex) {
+      @if (sex()) {
         <mat-button-toggle-group
           hraButtonToggleSize="medium"
           disabled="false"
           [hideSingleSelectionIndicator]="false"
-          [value]="sex"
+          [value]="sex()"
           (change)="updateInput('sex', $event.value)"
         >
           <mat-button-toggle value="Male">Male</mat-button-toggle>
           <mat-button-toggle value="Female">Female</mat-button-toggle>
         </mat-button-toggle-group>
       }
-      @if (side$ | async; as side) {
+      @if (side()) {
         <mat-button-toggle-group
           hraButtonToggleSize="medium"
           disabled="false"
           [hideSingleSelectionIndicator]="false"
-          [value]="side"
+          [value]="side()"
           (change)="updateInput('side', $event.value)"
         >
           <mat-button-toggle value="Left">Left</mat-button-toggle>
@@ -47,7 +47,7 @@
       <hra-table
         class="stats-table"
         [columns]="tableColumns"
-        [rows]="(stats$ | async) ?? []"
+        [rows]="stats()"
         [style]="'alternating'"
         [verticalDividers]="true"
       ></hra-table>
@@ -55,19 +55,19 @@
   </div>
   <div class="organ-view" [style.height.px]="contentHeightMonitor()">
     <ccf-organ
-      [blocks]="(blocks$ | async) ?? []"
-      [filter]="$any(filter$ | async)"
-      [sex]="(sex$ | async)!"
-      [side]="$any(side$ | async)"
-      [organ]="(organ$ | async) ?? undefined"
-      [scene]="(scene$ | async) ?? []"
+      [blocks]="blocks.value()"
+      [filter]="filter()"
+      [sex]="sex()"
+      [side]="side()"
+      [organ]="organ.value()"
+      [scene]="scene.value()"
       (nodeClick)="nodeClicked.emit($event)"
     >
     </ccf-organ>
   </div>
 
   <mat-menu #headerMenu="matMenu">
-    <a mat-menu-item [href]="(organ$ | async)?.['@id']" target="_blank">
+    <a mat-menu-item [href]="organ.value()?.['@id']" target="_blank">
       <mat-icon>database</mat-icon>
       Source data
     </a>

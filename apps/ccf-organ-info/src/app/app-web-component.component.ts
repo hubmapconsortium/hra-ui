@@ -18,6 +18,7 @@ export type Side = 'Left' | 'Right';
  */
 function parseSex(value: unknown): Sex {
   const str = String(value).trim().toLowerCase();
+  console.log(str);
 
   switch (str) {
     case 'male':
@@ -107,11 +108,11 @@ function parseStringArray(value: unknown): string[] {
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Organ iri */
-  readonly organIri? = input<string>();
+  readonly organIri = input<string>();
   /** Model sex */
-  readonly sex? = input('Female', { transform: parseSex });
+  readonly sex = input('Female');
   /** Organ side */
-  readonly side? = input('Left', { transform: parseSide });
+  readonly side = input('Left');
   /** Data sources */
   readonly dataSources = input([], { transform: parseDataSources });
   /** Highlight */

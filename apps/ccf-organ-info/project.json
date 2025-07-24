@@ -21,7 +21,7 @@
             "output": "./assets"
           }
         ],
-        "polyfills": ["apps/ccf-organ-info/src/polyfills.ts"]
+        "polyfills": ["zone.js"]
       },
       "configurations": {
         "production": {

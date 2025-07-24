@@ -1,12 +1,21 @@
-import { Immutable } from '@angular-ru/cdk/typings';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, inject, output, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  output,
+  untracked,
+  viewChild,
+} from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { MatIconButton } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode } from '@hra-api/ng-client';
 import { monitorHeight } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconComponent } from '@hra-ui/design-system/icons';
@@ -14,7 +23,8 @@ import { TableColumn, TableComponent } from '@hra-ui/design-system/table';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo, sexFromString } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { combineLatest, map, Observable, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
+import { of, tap } from 'rxjs';
+import { Side } from './app-web-component.component';
 import { OrganComponent } from './components/organ/organ.component';
 import { OrganLookupService } from './services/organ-lookup/organ-lookup.service';
 
@@ -23,7 +33,7 @@ interface GlobalConfig {
   /** Organ iri */
   organIri?: string;
   /** Organ side */
-  side?: string;
+  side?: Side;
   /** Model sex */
   sex?: FilterSexEnum;
   /** Highlight */
@@ -45,7 +55,19 @@ interface GlobalConfig {
 }
 
 /** Empty scene object */
-const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }];
+const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }] as SpatialSceneNode[];
+
+function getOrganSex(organ: SpatialEntity | undefined): FilterSexEnum | undefined {
+  return organ?.sex !== undefined ? sexFromString(organ.sex) : undefined;
+}
+
+function normalizeStatLabels(stats: AggregateCount[], label?: string): AggregateCount[] {
+  if (label === undefined) {
+    return stats;
+  }
+
+  return stats.map((stat) => ({ ...stat, label: stat.label === 'Donors' ? label : stat.label }));
+}
 
 /** Root component */
 @Component({
@@ -71,12 +93,6 @@ const EMPTY_SCENE = [{ color: [0, 0, 0, 0], opacity: 0.001 }];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
-  /** Global config */
-  private readonly configState = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
-
   /** Emits when the user switches the model sex */
   readonly sexChange = output<'Male' | 'Female'>();
 
@@ -86,46 +102,120 @@ export class AppComponent {
   /** Emits when the user clicks a node */
   readonly nodeClicked = output<NodeClickEvent>();
 
-  /** Organ sex */
-  readonly sex$ = this.configState.getOption('sex');
+  /** Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
 
-  /** Model size */
-  readonly side$ = this.configState.getOption('side');
+  /** Global config */
+  private readonly configState = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
 
-  /** Data filters */
-  readonly filter$ = this.configState
-    .getOption('highlightProviders')
-    .pipe(map((providers) => ({ tmc: providers ?? [] })));
+  private readonly lookupService = inject(OrganLookupService);
 
-  /** Donor label */
-  readonly donorLabel$ = this.configState.getOption('donorLabel');
+  private readonly organIri = this.configState.getOptionSignal('organIri');
+  protected readonly sex = this.configState.getOptionSignal('sex');
+  protected readonly side = this.configState.getOptionSignal('side');
+  private readonly donorLabel = this.configState.getOptionSignal('donorLabel');
+  private readonly providers = this.configState.getOptionSignal('highlightProviders');
+  protected readonly filter = computed(() => ({ tmc: this.providers() ?? [] }));
 
-  /** Organ info */
-  readonly organInfo$: Observable<OrganInfo | undefined>;
+  private readonly organInfo = rxResource({
+    request: () => ({
+      iri: this.organIri(),
+      sex: this.sex(),
+      side: this.side(),
+    }),
+    loader: (params) => {
+      const { iri, sex, side } = params.request;
+      console.log(iri, sex, side);
 
-  /** Organ spatial entity */
-  readonly organ$: Observable<SpatialEntity | undefined>;
+      if (iri === undefined) {
+        return of(undefined);
+      }
 
-  /** Scene nodes */
-  readonly scene$: Observable<SpatialSceneNode[]>;
+      const info$ = this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo['side'], sex);
+      return info$.pipe(tap((info) => this.logOrganLookup(info, iri, sex, side)));
+    },
+  });
 
-  /** Organ stats */
-  readonly stats$: Observable<Record<string, string | number | boolean>[]>;
+  protected readonly organ = rxResource({
+    request: () => ({
+      info: this.organInfo.value(),
+      sex: untracked(this.sex),
+      side: untracked(this.side),
+    }),
+    loader: (params) => {
+      const { info, sex } = params.request;
+      if (info === undefined) {
+        return of(undefined);
+      }
 
-  /** Label for stats */
-  readonly statsLabel$: Observable<string>;
+      const organ$ = this.lookupService.getOrgan(info, info.hasSex ? sex : undefined);
+      // Do we need the tap?
+      return organ$;
+    },
+  });
 
-  /** Tissue blocks */
-  readonly blocks$: Observable<TissueBlock[]>;
+  protected readonly organLogo = computed(() => {
+    const info = this.organInfo.value();
+    return info && `organ:${info.src.split(':')[1]}`;
+  });
 
-  /** Organ stats */
-  stats: Record<string, string | number | boolean>[] = [];
+  protected readonly scene = rxResource({
+    request: () => ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    loader: (params) => {
+      const { organ, info } = params.request;
+      if (organ === undefined || info === undefined) {
+        return of(EMPTY_SCENE);
+      }
 
-  /** Latest config */
-  private latestConfig: Immutable<GlobalConfig> = {};
+      return this.lookupService.getOrganScene(info, getOrganSex(organ));
+    },
+    defaultValue: [],
+  });
 
-  /** Latest organ info */
-  private latestOrganInfo?: OrganInfo;
+  protected readonly blocks = rxResource({
+    request: () => ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    loader: (params) => {
+      const { organ, info } = params.request;
+      if (organ === undefined || info === undefined) {
+        return of([]);
+      }
+
+      return this.lookupService.getBlocks(info, getOrganSex(organ));
+    },
+    defaultValue: [],
+  });
+
+  private readonly rawStats = rxResource({
+    request: () => ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    loader: (params) => {
+      const { organ, info } = params.request;
+      if (organ === undefined || info === undefined) {
+        return of([]);
+      }
+
+      return this.lookupService.getOrganStats(info, getOrganSex(organ));
+    },
+    defaultValue: [],
+  });
+
+  protected readonly stats = computed(() => {
+    const rawStats = this.rawStats.value();
+    const label = this.donorLabel();
+    return normalizeStatLabels(rawStats, label);
+  });
+
+  protected readonly statsLabel = computed(() => {
+    return this.makeStatsLabel(this.organIri(), this.organInfo.value(), this.sex());
+  });
 
   /** Table column definitions for the stats table */
   tableColumns: TableColumn[] = [
@@ -134,86 +224,13 @@ export class AppComponent {
   ];
 
   /** Reference to the information view container */
-  contentContainer = viewChild.required<ElementRef<HTMLElement>>('contentContainer');
+  private readonly contentContainer = viewChild.required<ElementRef<HTMLElement>>('contentContainer');
 
   /** Reference to the organ view container */
-  organView = viewChild.required<ElementRef<HTMLElement>>('organView');
+  // private readonly organView = viewChild.required<ElementRef<HTMLElement>>('organView');
 
   /** Height monitor for content container height used to update the height of Body UI container */
-  contentHeightMonitor = monitorHeight(this.contentContainer);
-
-  /** Initialize the component */
-  constructor() {
-    const lookup = inject(OrganLookupService);
-
-    /** Observable for organ 3D entity data */
-    this.organInfo$ = this.configState.config$.pipe(
-      tap((config) => (this.latestConfig = config)),
-      switchMap((config) =>
-        lookup.getOrganInfo(config.organIri ?? '', config.side?.toLowerCase?.() as OrganInfo['side'], config.sex),
-      ),
-      tap((info) => this.logOrganLookup(info)),
-      tap((info) => (this.latestOrganInfo = info)),
-      shareReplay(1),
-    );
-
-    /** Observable for organ information */
-    this.organ$ = this.organInfo$.pipe(
-      switchMap((info) =>
-        info ? lookup.getOrgan(info, info.hasSex ? this.latestConfig.sex : undefined) : of(undefined),
-      ),
-      tap((organ) => {
-        if (organ && this.latestOrganInfo) {
-          const newSex = this.latestOrganInfo?.hasSex && organ.sex !== undefined ? sexFromString(organ.sex) : undefined;
-          if (newSex !== this.latestConfig.sex) {
-            this.updateInput('sex', newSex);
-          }
-          if (organ.side !== this.latestConfig.side) {
-            this.updateInput('side', organ.side);
-          }
-        }
-      }),
-      shareReplay(1),
-    );
-
-    /** Observable for organ 3D scene */
-    this.scene$ = this.organ$.pipe(
-      switchMap((organ) =>
-        organ && this.latestOrganInfo
-          ? lookup.getOrganScene(this.latestOrganInfo, sexFromString(organ.sex ?? ''))
-          : of(EMPTY_SCENE as SpatialSceneNode[]),
-      ),
-    );
-
-    /** Observable for current stats for the loaded organ */
-    this.stats$ = combineLatest([this.organ$, this.donorLabel$]).pipe(
-      switchMap(([organ, donorLabel]) =>
-        organ && this.latestOrganInfo
-          ? lookup.getOrganStats(this.latestOrganInfo, sexFromString(organ.sex ?? '')).pipe(
-              map((agg) =>
-                agg.map((result) => ({
-                  count: result.count,
-                  label: donorLabel && result.label === 'Donors' ? donorLabel : result.label,
-                })),
-              ),
-            )
-          : of([]),
-      ),
-    );
-
-    /** Observable to compute the organ status label for the loaded organ */
-    this.statsLabel$ = this.organ$.pipe(
-      map((organ) => this.makeStatsLabel(this.latestOrganInfo, organ?.sex)),
-      startWith('Loading...'),
-    );
-
-    /** Observable for block registrations */
-    this.blocks$ = this.organ$.pipe(
-      switchMap((organ) =>
-        organ && this.latestOrganInfo ? lookup.getBlocks(this.latestOrganInfo, sexFromString(organ.sex ?? '')) : of([]),
-      ),
-    );
-  }
+  protected readonly contentHeightMonitor = monitorHeight(this.contentContainer);
 
   /**
    * Apply latest changes to the global configuration state.
@@ -230,8 +247,8 @@ export class AppComponent {
    * @param sex Model sex
    * @returns A label
    */
-  private makeStatsLabel(info: OrganInfo | undefined, sex?: string): string {
-    let parts: (string | undefined)[] = [`Unknown IRI: ${this.latestConfig.organIri}`];
+  private makeStatsLabel(iri: string | undefined, info: OrganInfo | undefined, sex?: string): string {
+    let parts: (string | undefined)[] = [`Unknown IRI: ${iri}`];
     if (info) {
       // Use title cased side for a cleaner display
       const side = info.side ? info.side.charAt(0).toUpperCase() + info.side.slice(1) : undefined;
@@ -244,9 +261,9 @@ export class AppComponent {
    * Creates an analytics event for the organ info.
    * @param info Organ information
    */
-  private logOrganLookup(info: OrganInfo | undefined): void {
+  private logOrganLookup(info: OrganInfo | undefined, iri: string, sex?: string, side?: string): void {
     const event = info ? 'organ_lookup_success' : 'organ_lookup_failure';
-    const inputs = `Iri: ${this.latestConfig.organIri} - Sex: ${this.latestConfig.sex} - Side: ${this.latestConfig.side}`;
+    const inputs = `Iri: ${iri} - Sex: ${sex} - Side: ${side}`;
     this.ga.event(event, 'organ', inputs);
   }
 
@@ -254,7 +271,7 @@ export class AppComponent {
    * Gets the organ logo SVG source for the loaded organ.
    * @returns The organ logo SVG source.
    */
-  protected getOrganLogo() {
-    return 'organ:' + this.latestOrganInfo?.src.split(':')[1];
-  }
+  // protected getOrganLogo() {
+  //   return 'organ:' + this.latestOrganInfo?.src.split(':')[1];
+  // }
 }
