@@ -1,8 +1,8 @@
 @use '@angular/material' as mat;
-@use '../../../styles/utils' as utils;
-@use '../../../styles/vars' as vars;
+@use '../utils';
+@use '../vars';
 
-:host {
+@mixin overrides() {
   @include mat.slide-toggle-overrides(
     (
       selected-track-color: vars.$on-tertiary-fixed,
