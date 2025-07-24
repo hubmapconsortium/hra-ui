@@ -1,118 +1,163 @@
+@use '@angular/material' as mat;
 @use 'utils';
 @use 'vars';
 
 :host {
   display: block;
+  position: relative;
+  height: 16rem;
 
-  .table th,
-  .table th div {
-    height: 6.5rem !important;
-  }
+  @include mat.table-overrides(
+    (
+      row-item-container-height: 1.75rem,
+      row-item-label-text-font: vars.$label-small-font,
+      row-item-label-text-size: vars.$label-small-size,
+      header-container-height: 6rem,
+    )
+  );
 
   cdk-virtual-scroll-viewport {
     height: 100%;
   }
 
-  .sr-only {
-    // @include utils.sr-only();
+  .absolute-toggle {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 1000;
+    width: 16.75rem;
+    height: 3rem;
+    background-color: vars.$surface-container;
+    border: 1px solid vars.$outline;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+
+    .mat-button-toggle {
+      flex: 1;
+      border: none;
+      background-color: vars.$surface-container-low;
+      color: vars.$on-surface;
+      font-weight: 500;
+      text-transform: none;
+      transition: all 0.2s ease;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background-color: rgba(vars.$primary, 0.05);
+      }
+
+      &.mat-button-toggle-checked {
+        background-color: vars.$primary;
+        color: vars.$on-primary;
+        font-weight: 600;
+      }
+
+      &:not(:first-child) {
+        border-left: 1px solid vars.$outline;
+      }
+
+      .mat-button-toggle-label-content {
+        line-height: 1;
+        padding: 0;
+      }
+    }
   }
 
   .table {
     margin-left: -1px;
+    background-color: vars.$surface-container-low;
 
     .highlight {
-      // background: rgba(vars.$primary-lighter);
+      background-color: rgba(vars.$primary, 0.1);
     }
+
     td.type {
       text-transform: lowercase;
     }
-  }
 
-  .table th {
-    // background: rgba(vars.$primary-lighter);
-    // color: rgba(vars.$accent-darker);
-    font-weight: 500;
-    height: 56px;
-    padding: 0;
-    max-width: 2.75rem;
-    min-width: 2.75rem;
-    // border-bottom: 1px solid rgba(vars.$light-dividers);
-  }
+    // Column header row styling
+    tr.column-header-row {
+      th.mat-header-cell {
+        height: 2rem;
+        padding: 0 0.5rem;
+        background-color: vars.$surface-container;
+        border-bottom: 1px solid vars.$outline;
+      }
+    }
 
-  .table td {
-    // border-bottom: 1px solid rgba(vars.$light-dividers);
-    padding: 0 0.5rem;
+    // General table header styling
+    th {
+      font-weight: 500;
+      padding: 0;
+      max-width: 2.75rem;
+      min-width: 2.75rem;
+      border-bottom: 1px solid vars.$outline;
+      overflow: hidden;
+      background-color: vars.$surface-container-low;
+    }
 
-    &:not(:first-child) {
-      // border-left: 1px solid rgba(vars.$light-dividers);
+    // General table cell styling
+    td {
+      padding: 0 0.5rem;
+      border-bottom: none;
+    }
+
+    // First row special styling
+    tr:first-child td {
+      max-width: 13.5rem;
     }
   }
 
-  .table tr {
-    height: 2rem;
-    font-size: 0.75rem;
-  }
-
-  .table tr:first-child td {
-    // border-top: 0rem solid rgba(vars.$light-dividers);
-    max-width: 13.5rem;
-  }
-
-  tr > td:first-child {
-    text-align: left;
-  }
-
+  // Text alignment
+  tr > td:first-child,
   tr > th:first-child {
     text-align: left;
   }
 
-  tr > td:last-of-type {
-    // border-right: 1px solid rgba(vars.$light-dividers);
-  }
-
-  tr > th:last-of-type {
-    // border-right: 1px solid rgba(vars.$light-dividers);
-    // border-left: 1px solid rgba(vars.$light-dividers);
-  }
-
+  // Type column styling
   .type {
     height: 2rem;
     max-width: 13.5rem;
-    border-radius: 0rem;
     white-space: nowrap;
 
     &.highlight {
       font-weight: bold;
+      background-color: rgba(vars.$primary, 0.1);
     }
   }
 
+  // Count column styling
   .count {
     height: 2rem;
     min-width: 4.25rem;
-    // border-right: 1px solid rgba(vars.$light-dividers);
+    border-right: 1px solid vars.$outline;
   }
 
-  th:not(:first-child) {
-    // border-left: 1px solid rgba(vars.$light-dividers);
-  }
-
+  // First two columns padding
   th:first-child,
   th:nth-child(2) {
     padding: 0 0.5rem !important;
+    vertical-align: bottom;
   }
 
+  // Icon header styling
   .icon-header {
     .header-column-text {
-      // transform: rotate(-90deg);
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       margin: 0.5rem auto;
+      max-height: 6rem;
     }
   }
 
+  // Icon cell styling
   .icon-cell {
     width: 2rem;
     min-height: 2rem;
@@ -123,6 +168,7 @@
   }
 }
 
+// Row hover effect
 .mat-mdc-row:hover .mat-mdc-cell {
-  // background: rgba(vars.$primary-lighter);
+  background-color: rgba(vars.$primary, 0.05);
 }
