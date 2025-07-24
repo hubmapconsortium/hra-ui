@@ -15,7 +15,11 @@ import {
   SizeLegendComponent,
 } from '../../../../atoms/src';
 import { SourceListComponent } from '../../../../molecules/src';
-import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
+import {
+  BiomarkerTableComponent,
+  DataCell,
+  TissueInfo,
+} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
@@ -52,8 +56,6 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     MatDialogModule,
     BiomarkerTableComponent,
     GradientLegendComponent,
-    HoverDirective,
-    LabelBoxComponent,
     SizeLegendComponent,
     SourceListComponent,
     EmptyBiomarkerComponent,
