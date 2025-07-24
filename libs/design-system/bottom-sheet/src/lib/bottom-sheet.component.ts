@@ -10,8 +10,11 @@ import { PageSectionComponent } from '@hra-ui/design-system/content-templates/pa
  * Interface for the Table Bottom Sheet Data
  */
 interface TableBottomSheetData {
+  /** Variant of the bottom sheet data */
   variant: 'table';
+  /** rows for the table */
   rows: TableRow[];
+  /** columns for the table */
   columns: TableColumn[];
 }
 
@@ -19,7 +22,9 @@ interface TableBottomSheetData {
  * Interface for the Page Section Bottom Sheet Data
  */
 interface PageSectionBottomSheetData {
+  /** Variant of the bottom sheet data */
   variant: 'page-section';
+  /** Tagline for the page section */
   tagline: string;
 }
 
