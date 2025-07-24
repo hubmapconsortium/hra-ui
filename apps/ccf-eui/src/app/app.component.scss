@@ -2,14 +2,6 @@
 @use 'utils';
 @use 'vars';
 
-:host-context(.embedded) .page-content {
-  grid-template-rows: 0rem 0rem 5rem calc(100vh - 8rem);
-
-  .ontologies {
-    max-height: calc(100vh - 14.375rem);
-  }
-}
-
 :host {
   .sidenav-container {
     height: 100%;
@@ -68,14 +60,6 @@
     height: 100%;
 
     background-color: vars.$surface-container-low;
-  }
-
-  &.embedded .page-content {
-    grid-template-rows: 0rem 0rem 5rem calc(100vh - 8rem);
-
-    .ontologies {
-      max-height: calc(100vh - 14.375rem);
-    }
   }
 
   mat-progress-bar {
@@ -228,5 +212,13 @@
         supporting-text-color: vars.$secondary,
       )
     );
+  }
+}
+
+::ng-deep ccf-eui.embedded .page-content {
+  grid-template-rows: 0rem 0rem 5rem calc(100vh - 8rem) !important;
+
+  .ontologies {
+    max-height: calc(100vh - 14.375rem) !important;
   }
 }
