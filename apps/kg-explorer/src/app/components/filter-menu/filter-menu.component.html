@@ -10,37 +10,37 @@
 <form class="menu-content" [formGroup]="form">
   <hra-filter-menu-overlay
     [form]="form.controls.digitalObjects"
-    [filterOptionCategory]="filterRecord()['digitalObjects']"
+    [filterOptionCategory]="filterOptions()[0]"
     (filterChanged)="handleFilterChange()"
   />
   <mat-divider />
   <hra-filter-menu-overlay
     [form]="form.controls.releaseVersion"
-    [filterOptionCategory]="filterRecord()['releaseVersion']"
+    [filterOptionCategory]="filterOptions()[1]"
     (filterChanged)="handleFilterChange()"
   />
   <mat-divider />
   <hra-filter-menu-overlay
     [form]="form.controls.organs"
-    [filterOptionCategory]="filterRecord()['organs']"
+    [filterOptionCategory]="filterOptions()[2]"
     (filterChanged)="handleFilterChange()"
   />
   <mat-divider />
   <hra-filter-menu-overlay
     [form]="form.controls.anatomicalStructures"
-    [filterOptionCategory]="filterRecord()['anatomicalStructures']"
+    [filterOptionCategory]="filterOptions()[3]"
     (filterChanged)="handleFilterChange()"
   />
   <mat-divider />
   <hra-filter-menu-overlay
     [form]="form.controls.cellTypes"
-    [filterOptionCategory]="filterRecord()['cellTypes']"
+    [filterOptionCategory]="filterOptions()[4]"
     (filterChanged)="handleFilterChange()"
   />
   <mat-divider />
   <hra-filter-menu-overlay
     [form]="form.controls.biomarkers"
-    [filterOptionCategory]="filterRecord()['biomarkers']"
+    [filterOptionCategory]="filterOptions()[5]"
     (filterChanged)="handleFilterChange()"
   />
   <mat-divider />

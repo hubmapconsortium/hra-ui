@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { FormGroup, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HraKgService, V1Service } from '@hra-api/ng-client';
@@ -12,8 +12,13 @@ import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/resu
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 
-import { FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
-import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
+import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
+import {
+  DigitalObjectData,
+  DigitalObjectMetadata,
+  DistributionsInfo,
+  KnowledgeGraphObjectsData,
+} from '../../digital-objects.schema';
 
 export interface FilterOption {
   id: string;
@@ -23,7 +28,7 @@ export interface FilterOption {
   tooltip?: string;
 }
 
-interface CurrentFilters {
+export interface CurrentFilters {
   digitalObjects?: FilterOption[];
   releaseVersion?: FilterOption[];
   organs?: FilterOption[];
@@ -34,15 +39,12 @@ interface CurrentFilters {
 }
 
 export interface FilterOptionCategory {
+  id: string;
   label: string;
   options: FilterOption[];
 }
 
-export interface FilterOptionList {
-  [id: string]: FilterOptionCategory;
-}
-
-const DIGITAL_OBJECT_NAME_MAP: Record<string, string> = {
+export const DIGITAL_OBJECT_NAME_MAP: Record<string, string> = {
   'ref-organ': '3D Organs',
   '2d-ftu': 'FTU Illustrations',
   'asct-b': 'ASCT+B Tables',
@@ -59,7 +61,7 @@ const DIGITAL_OBJECT_NAME_MAP: Record<string, string> = {
 };
 
 /** Maps doType to the correct icon in the design system */
-const PRODUCT_ICON_MAP: Record<string, string> = {
+export const PRODUCT_ICON_MAP: Record<string, string> = {
   '2d-ftu': 'ftu',
   'asct-b': 'asctb-reporter',
   collection: 'collections',
@@ -76,7 +78,7 @@ const PRODUCT_ICON_MAP: Record<string, string> = {
 };
 
 /** Maps organ name to the correct icon in the design system */
-const ORGAN_ICON_MAP: Record<string, string> = {
+export const ORGAN_ICON_MAP: Record<string, string> = {
   kidney: 'kidneys',
   'large intestine': 'large-intestine',
   lung: 'lungs',
@@ -87,7 +89,7 @@ const ORGAN_ICON_MAP: Record<string, string> = {
   'lymph node': 'lymph-nodes',
   'extrapulmonary bronchus': 'extrapulmonary-bronchus',
   ovary: 'ovaries',
-  // skeleton: '',
+  skeleton: 'spinal-cord',
   'urinary bladder': 'bladder',
   // 'lymph vasculature': '',
   'spinal cord': 'spinal-cord',
@@ -206,8 +208,6 @@ const SCROLLBAR_TOP_OFFSET = '86';
 export class MainPageComponent {
   /** Raw digital objects data */
   readonly data = input.required<KnowledgeGraphObjectsData>();
-  /** Digital objects data observable */
-  readonly $data = toObservable(this.data);
 
   /** Column info */
   readonly columns = input.required<TableColumn[]>();
@@ -222,14 +222,13 @@ export class MainPageComponent {
 
   /** Http service */
   private readonly http = inject(HttpClient);
-
   private readonly kg = inject(HraKgService);
   private readonly v1 = inject(V1Service);
 
   /** Whether or not the filter menu is closed */
   readonly filterClosed = signal<boolean>(false);
 
-  readonly filterRecord = signal<FilterOptionList>({});
+  readonly filterOptions = signal<FilterOptionCategory[]>([]);
 
   readonly filters = signal<CurrentFilters>({});
 
@@ -239,56 +238,17 @@ export class MainPageComponent {
    */
   constructor() {
     effect(() => {
-      this.filteredRows.set(this.allRows());
-      this.getFilterOptions();
+      this.applyFilters();
+      this.populateFilterOptions();
     });
-
-    effect(() => {
-      const currentAnatomicalStructuresFilters = this.filters().anatomicalStructures?.map((obj) => obj.id) || [];
-      const currentCellTypesFilters = this.filters().cellTypes?.map((obj) => obj.id) || [];
-      const currentBiomarkerFilters = this.filters().biomarkers?.map((obj) => obj.id) || [];
-
-      this.kg
-        .doSearch({
-          ontologyTerms: currentAnatomicalStructuresFilters,
-          cellTypeTerms: currentCellTypesFilters,
-          biomarkerTerms: currentBiomarkerFilters,
-        })
-        .subscribe((ontologyTerms) => {
-          let newFilteredRows = this.allRows();
-          newFilteredRows = newFilteredRows.filter((row) => ontologyTerms.includes(row['id'] as string));
-
-          if (this.filters().searchTerm) {
-            newFilteredRows = newFilteredRows.filter((row) =>
-              Object.values(row).some((value) =>
-                String(value)
-                  .toLowerCase()
-                  .includes((this.filters().searchTerm ?? '').toLowerCase()),
-              ),
-            );
-          }
-          if (this.filters().digitalObjects) {
-            const currentDigitalObjectsFilters = this.filters().digitalObjects?.map((obj) => obj.id) || undefined;
-            newFilteredRows = newFilteredRows.filter((row) =>
-              currentDigitalObjectsFilters?.includes(row['doType'] as string),
-            );
-          }
-          if (this.filters().releaseVersion) {
-            const currentReleaseVersionFilters = this.filters().releaseVersion?.map((obj) => obj.id) || undefined;
-            newFilteredRows = newFilteredRows.filter((row) =>
-              currentReleaseVersionFilters?.includes(row['doVersion'] as string),
-            );
-          }
-          if (this.filters().organs) {
-            const currentOrganFilters = this.filters().organs?.map((obj) => obj.id) || [];
-            newFilteredRows = newFilteredRows.filter((row) =>
-              ((row['organs'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
-            );
-          }
-          this.filteredRows.set(newFilteredRows);
-        });
+    this.searchControl.valueChanges.subscribe((result) => {
+      this.onSearchChange(result);
     });
+    this.attachDownloadOptions().subscribe();
+  }
 
+  populateFilterOptions() {
+    const kgOptions = this.kgFilterOptions();
     forkJoin([
       this.v1.ontologyTreeModel({}),
       this.v1.cellTypeTreeModel({}),
@@ -296,74 +256,175 @@ export class MainPageComponent {
       this.kg.asctbTermOccurences({}),
     ]).subscribe(([as, ct, b, asctbTerms]) => {
       const terms = Object.entries(asctbTerms);
-      this.filterRecord.update((record) => {
-        return {
-          ...record,
-          anatomicalStructures: {
-            label: 'Anatomical structures',
-            options: terms
-              .filter((term) => as.nodes[term[0]])
-              .map((term) => {
-                return {
-                  id: term[0],
-                  label: as.nodes[term[0]] ? as.nodes[term[0]].label || '' : term[0],
-                  count: term[1],
-                };
-              }),
-          },
-          cellTypes: {
-            label: 'Cell types',
-            options: terms
-              .filter((term) => ct.nodes[term[0]])
-              .map((term) => {
-                return {
-                  id: term[0],
-                  label: ct.nodes[term[0]] ? ct.nodes[term[0]].label || '' : term[0],
-                  count: term[1],
-                };
-              }),
-          },
-          biomarkers: {
-            label: 'Biomarkers',
-            options: terms
-              .filter((term) => b.nodes[term[0]])
-              .map((term) => {
-                return {
-                  id: term[0],
-                  label: b.nodes[term[0]] ? b.nodes[term[0]].label || '' : term[0],
-                  count: term[1],
-                };
-              }),
-          },
-        };
-      });
-    });
 
-    this.$data
-      .pipe(
-        switchMap((items) => {
-          const objectData = this.resolveData(items['@graph']);
-          this.allRows.set(objectData);
-          const innerCalls = items['@graph'].map((item) => this.getMetadata(item));
-          return forkJoin(innerCalls);
-        }),
-        tap((metadata) => {
-          this.allRows().map((row) => {
-            const md = metadata.find((entry) => entry['id'] === row['objectUrl']);
-            if (md) {
-              row['downloadOptions'] = this.getDownloadOptions(md);
-            }
-          });
-        }),
-      )
-      .subscribe();
-
-    this.searchControl.valueChanges.subscribe((result) => {
-      this.onSearchChange(result);
+      this.filterOptions.set([
+        {
+          id: 'digitalObjects',
+          label: 'Digital objects',
+          options: Array.from(kgOptions.doOptions).map((filterOption) => {
+            return {
+              id: filterOption,
+              label: DIGITAL_OBJECT_NAME_MAP[filterOption],
+              count: this.calculateCount(filterOption, 'doType'),
+            };
+          }),
+        },
+        {
+          id: 'releaseVersion',
+          label: 'HRA release version',
+          options: Array.from(kgOptions.versionOptions).map((filterOption) => {
+            return {
+              id: filterOption,
+              label: filterOption,
+              count: this.calculateCount(filterOption, 'doVersion'),
+              secondaryLabel: '',
+              tooltip: '',
+            };
+          }),
+        },
+        {
+          id: 'organs',
+          label: 'Organs',
+          options: Array.from(kgOptions.organOptions).map((organOption) => {
+            return {
+              id: organOption,
+              label: organOption,
+              count: this.calculateCount(organOption, 'organs'),
+            };
+          }),
+        },
+        {
+          id: 'anatomicalStructures',
+          label: 'Anatomical structures',
+          options: terms
+            .filter((term) => as.nodes[term[0]])
+            .map((term) => {
+              return {
+                id: term[0],
+                label: as.nodes[term[0]] ? as.nodes[term[0]].label || '' : term[0],
+                count: term[1],
+              };
+            }),
+        },
+        {
+          id: 'cellTypes',
+          label: 'Cell types',
+          options: terms
+            .filter((term) => ct.nodes[term[0]])
+            .map((term) => {
+              return {
+                id: term[0],
+                label: ct.nodes[term[0]] ? ct.nodes[term[0]].label || '' : term[0],
+                count: term[1],
+              };
+            }),
+        },
+        {
+          id: 'biomarkers',
+          label: 'Biomarkers',
+          options: terms
+            .filter((term) => b.nodes[term[0]])
+            .map((term) => {
+              return {
+                id: term[0],
+                label: b.nodes[term[0]] ? b.nodes[term[0]].label || '' : term[0],
+                count: term[1],
+              };
+            }),
+        },
+      ]);
     });
   }
 
-  getFilterOptions() {
+  applyFilters() {
+    this.digitalObjectSearch().subscribe((searchResults) => {
+      let newFilteredRows = this.allRows();
+      newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['id'] as string));
+
+      if (this.filters().searchTerm) {
+        newFilteredRows = this.filterSearchFormResults(newFilteredRows);
+      }
+      if (this.filters().digitalObjects) {
+        newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
+      }
+      if (this.filters().releaseVersion) {
+        newFilteredRows = this.filterVersionResults(newFilteredRows);
+      }
+      if (this.filters().organs) {
+        newFilteredRows = this.filterOrganResults(newFilteredRows);
+      }
+      this.filteredRows.set(newFilteredRows);
+    });
+  }
+
+  filterSearchFormResults(currentResults: TableRow[]): TableRow[] {
+    return currentResults.filter((row) =>
+      Object.values(row).some((value) =>
+        String(value)
+          .toLowerCase()
+          .includes((this.filters().searchTerm ?? '').toLowerCase()),
+      ),
+    );
+  }
+
+  filterDigitalObjectResults(currentResults: TableRow[]): TableRow[] {
+    const currentDigitalObjectsFilters = this.filters().digitalObjects?.map((obj) => obj.id);
+    if (currentDigitalObjectsFilters && currentDigitalObjectsFilters.length === 0) {
+      return currentResults;
+    }
+    return currentResults.filter((row) => currentDigitalObjectsFilters?.includes(row['doType'] as string));
+  }
+
+  filterVersionResults(currentResults: TableRow[]): TableRow[] {
+    const currentReleaseVersionFilters = this.filters().releaseVersion?.map((obj) => obj.id);
+    if (currentReleaseVersionFilters && currentReleaseVersionFilters.length === 0) {
+      return currentResults;
+    }
+    return currentResults.filter((row) => currentReleaseVersionFilters?.includes(row['doVersion'] as string));
+  }
+
+  filterOrganResults(currentResults: TableRow[]): TableRow[] {
+    const currentOrganFilters = this.filters().organs?.map((obj) => obj.id) || [];
+    if (currentOrganFilters && currentOrganFilters.length === 0) {
+      return currentResults;
+    }
+    return currentResults.filter((row) =>
+      ((row['organs'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
+    );
+  }
+
+  digitalObjectSearch(): Observable<string[]> {
+    const currentAnatomicalStructuresFilters = this.filters().anatomicalStructures?.map((obj) => obj.id) || [];
+    const currentCellTypesFilters = this.filters().cellTypes?.map((obj) => obj.id) || [];
+    const currentBiomarkerFilters = this.filters().biomarkers?.map((obj) => obj.id) || [];
+
+    return this.kg.doSearch({
+      ontologyTerms: currentAnatomicalStructuresFilters,
+      cellTypeTerms: currentCellTypesFilters,
+      biomarkerTerms: currentBiomarkerFilters,
+    });
+  }
+
+  attachDownloadOptions(): Observable<DigitalObjectMetadata[]> {
+    return toObservable(this.data).pipe(
+      switchMap((items) => {
+        const objectData = this.resolveData(items['@graph']);
+        this.allRows.set(objectData);
+        const innerCalls = items['@graph'].map((item) => this.getMetadata(item));
+        return forkJoin(innerCalls);
+      }),
+      tap((metadata) => {
+        this.allRows().map((row) => {
+          const md = metadata.find((entry) => entry.id === row['objectUrl']);
+          if (md) {
+            row['downloadOptions'] = this.getDownloadOptions(md);
+          }
+        });
+      }),
+    );
+  }
+
+  kgFilterOptions() {
     const objectFilterOptions = new Set<string>();
     const versionFilterOptions = new Set<string>();
     const organFilterOptions = new Set<string>();
@@ -379,43 +440,11 @@ export class MainPageComponent {
         }
       }
     });
-    this.filterRecord.update((record) => {
-      return {
-        ...record,
-        digitalObjects: {
-          label: 'Digital objects',
-          options: Array.from(objectFilterOptions).map((filterOption) => {
-            return {
-              id: filterOption,
-              label: DIGITAL_OBJECT_NAME_MAP[filterOption],
-              count: this.calculateCount(filterOption, 'doType'),
-            };
-          }),
-        },
-        releaseVersion: {
-          label: 'HRA release version',
-          options: Array.from(versionFilterOptions).map((filterOption) => {
-            return {
-              id: filterOption,
-              label: filterOption,
-              count: this.calculateCount(filterOption, 'doVersion'),
-              secondaryLabel: '',
-              tooltip: '',
-            };
-          }),
-        },
-        organs: {
-          label: 'Organs',
-          options: Array.from(organFilterOptions).map((organOption) => {
-            return {
-              id: organOption,
-              label: organOption,
-              count: this.calculateCount(organOption, 'organs'),
-            };
-          }),
-        },
-      };
-    });
+    return {
+      doOptions: objectFilterOptions,
+      versionOptions: versionFilterOptions,
+      organOptions: organFilterOptions,
+    };
   }
 
   private calculateCount(filterOption: string, category: string) {
@@ -440,7 +469,8 @@ export class MainPageComponent {
         doVersion: item.doVersion,
         organs: item.organs,
         title: item.title,
-        objectUrl: item.lod,
+        // objectUrl: item.lod,
+        objectUrl: `/metadata/${item.doType}/${item.doName}/${item.doVersion}`,
         typeIcon: 'product:' + PRODUCT_ICON_MAP[item.doType],
         // If more than one organ use all-organs icon
         organIcon: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'),
@@ -457,7 +487,7 @@ export class MainPageComponent {
    * @returns Observable for digital object metadata JSON
    */
   private getMetadata(entry: DigitalObjectData): Observable<DigitalObjectMetadata> {
-    return this.http.get(entry.lod, { responseType: 'json' });
+    return this.http.get(entry.lod, { responseType: 'json' }) as Observable<DigitalObjectMetadata>;
   }
 
   /**
@@ -466,9 +496,9 @@ export class MainPageComponent {
    * @returns Array of distributions download info for the metadata
    */
   private getDownloadOptions(metadata: DigitalObjectMetadata): Record<string, string | undefined>[] {
-    const id = metadata['name'];
-    const files = metadata['distributions'] as Record<string, string>[];
-    const derivedFiles = metadata['was_derived_from']['distributions'] as Record<string, string>[];
+    const id = metadata.id;
+    const files = metadata.distributions;
+    const derivedFiles = metadata.was_derived_from.distributions;
     return this.resolveDownloadOptions(id, derivedFiles.concat(files));
   }
 
@@ -478,15 +508,15 @@ export class MainPageComponent {
    * @param files Array of distributions from metadata
    * @returns Resolved download data
    */
-  private resolveDownloadOptions(id: string, files: Record<string, string>[]) {
+  private resolveDownloadOptions(id: string, files: DistributionsInfo[]) {
     return files.map((file) => {
-      const fileType = FILE_TYPE_MAP[file['mediaType']];
+      const fileType = FILE_TYPE_MAP[file.mediaType];
       return {
         id: id + fileType.typeSuffix,
         name: fileType.name,
         description: fileType.description,
         icon: 'download',
-        url: file['downloadUrl'],
+        url: file.downloadUrl,
       };
     });
   }
@@ -549,9 +579,16 @@ export class MainPageComponent {
     return window.innerHeight - 299;
   }
 
-  handleFilterChanges(form: FormGroup) {
-    const updatedFilters = form.value;
-    updatedFilters.searchTerm = this.filters().searchTerm;
+  handleFilterChanges(formControls: FilterFormControls) {
+    const updatedFilters = {
+      digitalObjects: formControls.digitalObjects.value || undefined,
+      releaseVersion: formControls.releaseVersion.value || undefined,
+      organs: formControls.organs.value || undefined,
+      anatomicalStructures: formControls.anatomicalStructures.value || undefined,
+      cellTypes: formControls.cellTypes.value || undefined,
+      biomarkers: formControls.biomarkers.value || undefined,
+      searchTerm: this.filters().searchTerm,
+    };
     this.filters.set(updatedFilters);
   }
 }
