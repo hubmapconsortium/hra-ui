@@ -8,81 +8,87 @@
   </div>
 
   <div body>
-    <div class="content px-3">
-      <form [formGroup]="formGroup">
-        <div formArrayName="sheets">
-          <div *ngFor="let sheet of CSControls.controls; let i = index" class="sheet">
-            <div class="dataset-block" [formGroupName]="i">
-              <div class="title-container">
-                <div class="title">Dataset {{ i + 1 }}</div>
-                <button
-                  mat-icon-button
-                  [style.visibility]="formGroup.value.sheets.length === 1 ? 'hidden' : 'visible'"
-                  (click)="removeCompareSheetRow(i)"
-                >
-                  <mat-icon color="red">delete</mat-icon>
-                </button>
-              </div>
-              <div class="subtitle">Add data</div>
-              <div class="data-source-selector">
-                <mat-button-toggle-group
-                  hraButtonToggleSize="medium"
-                  [hideSingleSelectionIndicator]="false"
-                  #dataSource="matButtonToggleGroup"
-                  (change)="onDataSourceChange(i)"
-                >
-                  <mat-button-toggle value="file" checked>Upload file</mat-button-toggle>
-                  <mat-button-toggle value="link">Link URL</mat-button-toggle>
-                </mat-button-toggle-group>
+    <ng-scrollbar>
+      <div class="content px-3">
+        <form [formGroup]="formGroup">
+          <div formArrayName="sheets">
+            <div *ngFor="let sheet of CSControls.controls; let i = index" class="sheet">
+              <div class="dataset-block" [formGroupName]="i">
+                <div class="title-container">
+                  <div class="title">Dataset {{ i + 1 }}</div>
+                  <button
+                    mat-icon-button
+                    [style.visibility]="formGroup.value.sheets.length === 1 ? 'hidden' : 'visible'"
+                    (click)="removeCompareSheetRow(i)"
+                  >
+                    <mat-icon color="red">delete</mat-icon>
+                  </button>
+                </div>
+                <div class="subtitle">Add data</div>
+                <div class="data-source-selector">
+                  <mat-button-toggle-group
+                    hraButtonToggleSize="medium"
+                    [hideSingleSelectionIndicator]="false"
+                    #dataSource="matButtonToggleGroup"
+                    (change)="onDataSourceChange(i)"
+                  >
+                    <mat-button-toggle value="file" checked>Upload file</mat-button-toggle>
+                    <mat-button-toggle value="link">Link URL</mat-button-toggle>
+                  </mat-button-toggle-group>
 
-                <button
-                  mat-button
-                  hraButtonVariant="primary"
-                  hraButtonSize="medium"
-                  [matMenuTriggerFor]="templatesMenu"
-                >
-                  Templates
-                </button>
-              </div>
+                  <button
+                    mat-button
+                    hraButtonVariant="primary"
+                    hraButtonSize="medium"
+                    [matMenuTriggerFor]="templatesMenu"
+                  >
+                    Templates
+                  </button>
+                </div>
 
-              @if (dataSource.value === 'file') {
-                <app-file-upload
-                  formControlName="fileName"
-                  (fileFormDataEvent)="upload($event, sheet)"
-                ></app-file-upload>
-              } @else {
-                <mat-form-field class="full-width" subscriptSizing="dynamic">
-                  <mat-label>Google Sheet or CSV URL</mat-label>
-                  <input matInput formControlName="link" />
-                </mat-form-field>
-              }
-
-              <div class="metadata-container">
-                <div class="subtitle">Optional: Configure metadata & color</div>
-                <div class="dataset-title-color">
-                  <mat-form-field appearance="fill" subscriptSizing="dynamic">
-                    <mat-label>Title</mat-label>
-                    <input matInput placeholder="Sheet {{ i + 1 }}" formControlName="title" />
+                @if (dataSource.value === 'file') {
+                  <app-file-upload
+                    formControlName="fileName"
+                    (fileFormDataEvent)="upload($event, sheet)"
+                  ></app-file-upload>
+                } @else {
+                  <mat-form-field class="full-width" subscriptSizing="dynamic">
+                    <mat-label>Google Sheet or CSV URL</mat-label>
+                    <input matInput formControlName="link" />
                   </mat-form-field>
-                  <div class="color-selector">
-                    <div>Dataset color:</div>
-                    <div class="color-wrapper">
-                      <input type="color" formControlName="color" [style.backgroundColor]="sheet.get('color')?.value" />
+                }
+
+                <div class="metadata-container">
+                  <div class="subtitle">Optional: Configure metadata & color</div>
+                  <div class="dataset-title-color">
+                    <mat-form-field appearance="fill" subscriptSizing="dynamic">
+                      <mat-label>Title</mat-label>
+                      <input matInput placeholder="Sheet {{ i + 1 }}" formControlName="title" />
+                    </mat-form-field>
+                    <div class="color-selector">
+                      <div>Dataset color:</div>
+                      <div class="color-wrapper">
+                        <input
+                          type="color"
+                          formControlName="color"
+                          [style.backgroundColor]="sheet.get('color')?.value"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="dataset-description">
-                  <mat-form-field class="full-width" appearance="fill" subscriptSizing="dynamic">
-                    <mat-label>Data Description</mat-label>
-                    <input matInput placeholder="This data maps amazing structures!" formControlName="description" />
-                  </mat-form-field>
+                  <div class="dataset-description">
+                    <mat-form-field class="full-width" appearance="fill" subscriptSizing="dynamic">
+                      <mat-label>Data Description</mat-label>
+                      <input matInput placeholder="This data maps amazing structures!" formControlName="description" />
+                    </mat-form-field>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </ng-scrollbar>
 
     <mat-menu #templatesMenu="matMenu">
       <a

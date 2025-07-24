@@ -75,7 +75,7 @@
   }
 
   div[body] {
-    padding: 1rem;
+    height: 100%;
   }
 
   div[footer] {
@@ -94,6 +94,7 @@ input[type='color']::-webkit-color-swatch {
 .content {
   flex: 1 1;
   overflow: auto;
+  padding: 1rem;
 }
 
 .mat-expansion-panel:not([class*='mat-elevation-z']) {

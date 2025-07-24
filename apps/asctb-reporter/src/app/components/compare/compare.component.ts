@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { GaAction, GaCategory, GaCompareInfo } from '../../models/ga.model';
@@ -47,6 +48,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     ButtonSizeDirective,
     ButtonVariantDirective,
     MatMenuModule,
+    ScrollingModule,
   ],
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],
