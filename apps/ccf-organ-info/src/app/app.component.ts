@@ -105,18 +105,31 @@ export class AppComponent {
   /** Analytics service */
   private readonly ga = inject(GoogleAnalyticsService);
 
-  /** Global config */
+  /** Global Configuration State */
   private readonly configState = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
 
+  /** Organ Lookup Service */
   private readonly lookupService = inject(OrganLookupService);
 
+  /** Organ IRI */
   private readonly organIri = this.configState.getOptionSignal('organIri');
+
+  /** Organ Sex */
   protected readonly sex = this.configState.getOptionSignal('sex');
+
+  /** Organ Side */
   protected readonly side = this.configState.getOptionSignal('side');
+
+  /** Donor Label */
   private readonly donorLabel = this.configState.getOptionSignal('donorLabel');
+
+  /** Providers */
   private readonly providers = this.configState.getOptionSignal('highlightProviders');
+
+  /** Organ Filters */
   protected readonly filter = computed(() => ({ tmc: this.providers() ?? [] }));
 
+  /** Organ Info */
   private readonly organInfo = rxResource({
     request: () => ({
       iri: this.organIri(),
@@ -125,7 +138,6 @@ export class AppComponent {
     }),
     loader: (params) => {
       const { iri, sex, side } = params.request;
-      console.log(iri, sex, side);
 
       if (iri === undefined) {
         return of(undefined);
@@ -136,6 +148,7 @@ export class AppComponent {
     },
   });
 
+  /** Organ */
   protected readonly organ = rxResource({
     request: () => ({
       info: this.organInfo.value(),
@@ -143,22 +156,37 @@ export class AppComponent {
       side: untracked(this.side),
     }),
     loader: (params) => {
-      const { info, sex } = params.request;
+      const { info, sex, side } = params.request;
       if (info === undefined) {
         return of(undefined);
       }
 
-      const organ$ = this.lookupService.getOrgan(info, info.hasSex ? sex : undefined);
-      // Do we need the tap?
+      const organ$ = this.lookupService.getOrgan(info, info.hasSex ? sex : undefined).pipe(
+        tap((organ) => {
+          if (organ) {
+            const newSex = info?.hasSex && organ.sex !== undefined ? sexFromString(organ.sex) : undefined;
+            if (newSex !== sex) {
+              this.updateInput('sex', newSex);
+            }
+            if (organ.side !== side) {
+              this.updateInput('side', organ.side);
+            }
+          }
+        }),
+      );
+      // Do we need the tap? -- added so that the inputs are updated
+      // Need to discuss with Daniel.
       return organ$;
     },
   });
 
+  /** Organ Logo */
   protected readonly organLogo = computed(() => {
     const info = this.organInfo.value();
     return info && `organ:${info.src.split(':')[1]}`;
   });
 
+  /** Organ Scene */
   protected readonly scene = rxResource({
     request: () => ({
       organ: this.organ.value(),
@@ -175,6 +203,7 @@ export class AppComponent {
     defaultValue: [],
   });
 
+  /** Blocks */
   protected readonly blocks = rxResource({
     request: () => ({
       organ: this.organ.value(),
@@ -191,6 +220,7 @@ export class AppComponent {
     defaultValue: [],
   });
 
+  /** Raw Statistics */
   private readonly rawStats = rxResource({
     request: () => ({
       organ: this.organ.value(),
@@ -207,14 +237,16 @@ export class AppComponent {
     defaultValue: [],
   });
 
+  /** Statistics */
   protected readonly stats = computed(() => {
     const rawStats = this.rawStats.value();
     const label = this.donorLabel();
     return normalizeStatLabels(rawStats, label);
   });
 
+  /** Organ Stat Label */
   protected readonly statsLabel = computed(() => {
-    return this.makeStatsLabel(this.organIri(), this.organInfo.value(), this.sex());
+    return this.makeStatsLabel(this.organIri(), this.organInfo.value(), this.organ.value()?.sex);
   });
 
   /** Table column definitions for the stats table */
@@ -266,12 +298,4 @@ export class AppComponent {
     const inputs = `Iri: ${iri} - Sex: ${sex} - Side: ${side}`;
     this.ga.event(event, 'organ', inputs);
   }
-
-  /**
-   * Gets the organ logo SVG source for the loaded organ.
-   * @returns The organ logo SVG source.
-   */
-  // protected getOrganLogo() {
-  //   return 'organ:' + this.latestOrganInfo?.src.split(':')[1];
-  // }
 }
