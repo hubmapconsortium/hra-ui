@@ -1,0 +1,41 @@
+<div class="top-row">
+  <hra-icon class="info-icon" fontIcon="info"></hra-icon>
+  @if (filterOptionCategory()) {
+    <button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
+      {{ filterOptionCategory().label }}
+    </button>
+  }
+</div>
+
+<mat-chip-set>
+  @for (option of chips(); track option.id) {
+    <mat-chip (removed)="remove(option)">
+      {{ option.label }}
+      <button matChipRemove [attr.aria-label]="'remove ' + option">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-chip>
+  }
+</mat-chip-set>
+
+<hra-rich-tooltip-container #content class="filter-menu">
+  <hra-rich-tooltip-content class="filter-menu-content">
+    <mat-form-field class="search field" subscriptSizing="dynamic">
+      <mat-icon class="search-icon" matPrefix>search</mat-icon>
+      <input matInput type="text" [formControl]="searchControl" placeholder="Search" />
+    </mat-form-field>
+
+    <ng-scrollbar>
+      <mat-action-list>
+        @for (option of filteredOptions(); track option.id) {
+          <button mat-list-item (click)="selectOption(option)">
+            <div class="option-label">
+              <span>{{ option.label }}</span>
+              <span>{{ option.count }}</span>
+            </div>
+          </button>
+        }
+      </mat-action-list>
+    </ng-scrollbar>
+  </hra-rich-tooltip-content>
+</hra-rich-tooltip-container>
