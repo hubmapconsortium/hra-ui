@@ -110,9 +110,9 @@ export class AppWebComponent extends BaseWebComponent {
   /** Organ iri */
   readonly organIri = input<string>();
   /** Model sex */
-  readonly sex = input('Female');
+  readonly sex = input('Female', { transform: parseSex });
   /** Organ side */
-  readonly side = input('Left');
+  readonly side = input('Left', { transform: parseSide });
   /** Data sources */
   readonly dataSources = input([], { transform: parseDataSources });
   /** Highlight */
@@ -140,6 +140,9 @@ export class AppWebComponent extends BaseWebComponent {
       initialDelay: 10,
 
       initialConfig: {
+        sex: 'Female',
+        side: 'Left',
+        highlightProviders: [],
         ...environment.dbOptions,
         ...(globalThis['dbOptions' as never] as object),
       },

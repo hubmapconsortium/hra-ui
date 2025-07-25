@@ -19,6 +19,7 @@ import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode } from '
 import { monitorHeight } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconComponent } from '@hra-ui/design-system/icons';
+import { ProgressSpinnerComponent } from '@hra-ui/design-system/indicators/progress-spinner';
 import { TableColumn, TableComponent } from '@hra-ui/design-system/table';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo, sexFromString } from 'ccf-shared';
@@ -95,6 +96,7 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
     MatMenuModule,
     MatDivider,
     CommonModule,
+    ProgressSpinnerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -141,7 +143,7 @@ export class AppComponent {
   protected readonly filter = computed(() => ({ tmc: this.providers() ?? [] }));
 
   /** Organ Info */
-  private readonly organInfo = rxResource({
+  protected readonly organInfo = rxResource({
     request: () => ({
       iri: this.organIri(),
       sex: this.sex(),
@@ -149,7 +151,6 @@ export class AppComponent {
     }),
     loader: (params) => {
       const { iri, sex, side } = params.request;
-
       if (iri === undefined) {
         return of(undefined);
       }
@@ -164,31 +165,14 @@ export class AppComponent {
     request: () => ({
       info: this.organInfo.value(),
       sex: untracked(this.sex),
-      side: untracked(this.side),
     }),
     loader: (params) => {
-      const { info, sex, side } = params.request;
+      const { info, sex } = params.request;
       if (info === undefined) {
         return of(undefined);
       }
 
-      const organ$ = this.lookupService.getOrgan(info, info.hasSex ? sex : undefined).pipe(
-        tap((organ) => {
-          if (organ) {
-            const newSex = info?.hasSex && getOrganSex(organ);
-            const newSide = organ.side;
-            if (newSex !== sex) {
-              this.updateInput('sex', newSex);
-            }
-            if (organ.side !== side) {
-              this.updateInput('side', newSide);
-            }
-          }
-        }),
-      );
-      // Do we need the tap? -- added so that the inputs are updated
-      // Need to discuss with Daniel.
-      return organ$;
+      return this.lookupService.getOrgan(info, info.hasSex ? sex : undefined);
     },
   });
 
@@ -212,7 +196,7 @@ export class AppComponent {
 
       return this.lookupService.getOrganScene(info, getOrganSex(organ));
     },
-    defaultValue: [],
+    defaultValue: EMPTY_SCENE,
   });
 
   /** Blocks */
@@ -261,6 +245,11 @@ export class AppComponent {
     return this.makeStatsLabel(this.organIri(), this.organInfo.value(), this.organ.value()?.sex);
   });
 
+  /** Determines whether the data is still loading. */
+  protected readonly isLoading = computed(() => {
+    return this.organInfo.isLoading() || this.organ.isLoading() || this.scene.isLoading() || this.blocks.isLoading();
+  });
+
   /** Table column definitions for the stats table */
   tableColumns: TableColumn[] = [
     { column: 'count', label: '#total', type: 'numeric' },
@@ -269,9 +258,6 @@ export class AppComponent {
 
   /** Reference to the information view container */
   private readonly contentContainer = viewChild.required<ElementRef<HTMLElement>>('contentContainer');
-
-  /** Reference to the organ view container */
-  // private readonly organView = viewChild.required<ElementRef<HTMLElement>>('organView');
 
   /** Height monitor for content container height used to update the height of Body UI container */
   protected readonly contentHeightMonitor = monitorHeight(this.contentContainer);

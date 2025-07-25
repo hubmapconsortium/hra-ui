@@ -30,12 +30,6 @@ export class OrganComponent implements AfterViewChecked {
   readonly organ = input<SpatialEntity>();
   /** Scene */
   readonly scene = input.required<SpatialSceneNode[]>();
-  /** Organ iri */
-  readonly organIri = input<string>();
-  /** Model sex */
-  readonly sex = input<'Male' | 'Female' | 'Both'>();
-  /** Organ side */
-  readonly side = input<'Left' | 'Right'>();
   /** Tissue blocks */
   readonly blocks = input.required<TissueBlock[]>();
   /** Data filter */
