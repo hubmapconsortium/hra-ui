@@ -112,9 +112,6 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /** List of cell ids in the illustration */
   @Input() illustrationIds: string[] = [];
 
-  /** Emits the selected toggle value */
-  selectedToggle = signal('genes');
-
   /** Emits cell type label when row is hovered */
   @Output() readonly rowHover = new EventEmitter<string>();
 
@@ -214,14 +211,6 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
     if (shouldUpdate) {
       this.updateColumns();
     }
-  }
-
-  /**
-   * Handles toggle change event
-   * @param event toggle change event
-   */
-  onToggleChange(event: any) {
-    this.selectedToggle.set(event.value);
   }
 
   /**
