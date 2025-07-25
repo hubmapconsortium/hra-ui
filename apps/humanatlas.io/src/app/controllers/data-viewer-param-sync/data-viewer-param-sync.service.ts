@@ -26,6 +26,7 @@ export class DataViewerParamSyncControllerService implements ContentTemplateCont
       const version = this.version();
       const organ = this.organ();
       const componentRef = this.componentRef();
+      console.log(version, organ, componentRef);
 
       if (componentRef) {
         const instance = componentRef.instance;

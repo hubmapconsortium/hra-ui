@@ -1,0 +1,45 @@
+@use 'vars';
+
+:host {
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .viewer-container,
+  .metadata-image {
+    display: flex;
+    aspect-ratio: 4 / 3;
+    border-radius: 0.75rem;
+    border: 1px solid vars.$outline;
+
+    .model-viewer {
+      flex-grow: 1;
+      height: 100%;
+    }
+  }
+
+  .metadata-table {
+    display: none;
+  }
+
+  hra-table {
+    height: min-content;
+  }
+
+  .mediumScreen {
+    display: flex;
+    gap: 40px;
+    .sections {
+      width: calc(100% - 288px - 40px);
+    }
+
+    .metadata-table {
+      display: block;
+      position: sticky;
+      top: 9rem;
+      min-width: 288px;
+    }
+  }
+}

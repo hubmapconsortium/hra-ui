@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  padding: 2.5rem 1rem;
+  overflow-wrap: break-word;
+
+  .content-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  ::ng-deep .metadata-table {
+    markdown {
+      overflow-wrap: anywhere;
+    }
+    ul {
+      padding-inline-start: 1.5rem;
+    }
+
+    td {
+      vertical-align: inherit !important;
+    }
+  }
+
+  hra-table {
+    height: min-content;
+  }
+
+  @media (min-width: 640px) {
+    padding: 2.5rem;
+
+    .content-container {
+      flex: 1;
+      width: calc(100% - 17rem - 2.5rem);
+      max-width: 87.5rem;
+      margin: auto;
+    }
+
+    .metadata-table {
+      position: sticky;
+      top: 10rem;
+      max-width: 288px;
+      // height: min-content;
+      margin: 0 0.75rem 1rem;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    margin-right: 0;
+    gap: 2.5rem;
+
+    .metadata-table {
+      max-width: 360px;
+    }
+  }
+}
