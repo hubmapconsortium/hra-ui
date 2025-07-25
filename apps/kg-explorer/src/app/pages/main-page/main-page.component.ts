@@ -415,7 +415,7 @@ export class MainPageComponent {
       }),
       tap((metadata) => {
         this.allRows().map((row) => {
-          const md = metadata.find((entry) => entry.id === row['objectUrl']);
+          const md = metadata.find((entry) => entry.id === row['lod']);
           if (md) {
             row['downloadOptions'] = this.getDownloadOptions(md);
           }
@@ -469,7 +469,7 @@ export class MainPageComponent {
         doVersion: item.doVersion,
         organs: item.organs,
         title: item.title,
-        // objectUrl: item.lod,
+        lod: item.lod,
         objectUrl: `/metadata/${item.doType}/${item.doName}/${item.doVersion}`,
         typeIcon: 'product:' + PRODUCT_ICON_MAP[item.doType],
         // If more than one organ use all-organs icon
