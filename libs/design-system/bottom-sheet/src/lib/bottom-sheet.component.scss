@@ -5,16 +5,13 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+
     .close {
       margin-bottom: 0.5rem;
     }
   }
-}
 
-::ng-deep {
-  .mat-bottom-sheet-container {
-    hra-table {
-      height: 28rem;
-    }
+  hra-table {
+    height: min(28rem, 80vh - 3rem - 2 * 0.5rem);
   }
 }
