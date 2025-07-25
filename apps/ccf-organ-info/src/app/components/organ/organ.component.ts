@@ -1,61 +1,59 @@
+import { CommonModule } from '@angular/common';
 import {
   AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-  ViewChild,
+  effect,
   inject,
+  input,
+  output,
+  viewChild,
 } from '@angular/core';
 import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
-import { BodyUiComponent } from 'ccf-shared';
+import { BodyUiComponent, BodyUiModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
-/** Organ display */
+/** Component for displaying organ in 3D using Body UI */
 @Component({
   selector: 'ccf-organ',
+  imports: [CommonModule, BodyUiModule],
   templateUrl: './organ.component.html',
   styleUrls: ['./organ.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
-export class OrganComponent implements AfterViewChecked, OnChanges {
+export class OrganComponent implements AfterViewChecked {
   /** Analytics service */
   readonly ga = inject(GoogleAnalyticsService);
 
   /** Organ */
-  @Input() organ?: SpatialEntity;
+  readonly organ = input<SpatialEntity>();
   /** Scene */
-  @Input() scene!: SpatialSceneNode[];
-  /** Organ iri */
-  @Input() organIri!: string;
-  /** Model sex */
-  @Input() sex?: 'Male' | 'Female' | 'Both';
-  /** Organ side */
-  @Input() side?: 'Left' | 'Right';
+  readonly scene = input.required<SpatialSceneNode[]>();
   /** Tissue blocks */
-  @Input() blocks?: TissueBlock[];
+  readonly blocks = input.required<TissueBlock[]>();
   /** Data filter */
-  @Input() filter?: Filter;
+  readonly filter = input.required<Filter>();
 
-  /** Emits when the user switches the model sex */
-  @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
-  /** Emits when the user switches organ side */
-  @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
   /** Emits when the user clicks a node */
-  @Output() readonly nodeClick = new EventEmitter<NodeClickEvent>();
+  readonly nodeClick = output<NodeClickEvent>();
 
   /** Reference to the body ui */
-  @ViewChild('bodyUI', { static: true }) readonly bodyUI!: BodyUiComponent;
+  readonly bodyUI = viewChild.required<BodyUiComponent>('bodyUI');
 
   /** Highlighted node */
   highlightedNodeId!: string;
   /** Filtered tissue blocks */
   filteredBlocks!: string[];
+
+  /** Initializes the component */
+  constructor() {
+    effect(() => {
+      if (this.bodyUI() && this.organ()) {
+        this.zoomToFitOrgan();
+      }
+    });
+  }
 
   /** Updates highlighting on dom changes */
   ngAfterViewChecked(): void {
@@ -64,11 +62,12 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
 
   /** Updates the highlighted block */
   updateHighlighting(): void {
-    const providerName = new Set<string>(this.filter?.tmc ?? []);
+    const providerName = new Set<string>(this.filter()?.tmc ?? []);
     this.filteredBlocks =
-      this.blocks?.filter((block) => providerName.has(block.donor?.providerName ?? '')).map((block) => block['@id']) ??
-      [];
-    this.bodyUI.scene = this.bodyUI.scene.map(
+      this.blocks()
+        ?.filter((block) => providerName.has(block.donor?.providerName ?? ''))
+        .map((block) => block['@id']) ?? [];
+    this.bodyUI().scene = this.bodyUI().scene.map(
       (node): SpatialSceneNode => ({
         ...node,
         color:
@@ -81,28 +80,10 @@ export class OrganComponent implements AfterViewChecked, OnChanges {
     );
   }
 
-  /** Reacts to input changes */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.bodyUI && 'organ' in changes) {
-      this.zoomToFitOrgan();
-    }
-  }
-
-  /** Update the model sex */
-  updateSex(selection?: 'Male' | 'Female'): void {
-    this.sex = selection;
-    this.sexChange.emit(this.sex);
-  }
-
-  /** Update the organ side */
-  updateSide(selection?: 'Left' | 'Right'): void {
-    this.side = selection;
-    this.sideChange.emit(this.side);
-  }
-
   /** Zoom to fit */
   zoomToFitOrgan(): void {
-    const { bodyUI, organ } = this;
+    const bodyUI = this.bodyUI();
+    const organ = this.organ();
     if (organ) {
       const { x_dimension: x, y_dimension: y, z_dimension: z } = organ;
       bodyUI.rotation = bodyUI.rotationX = 0;

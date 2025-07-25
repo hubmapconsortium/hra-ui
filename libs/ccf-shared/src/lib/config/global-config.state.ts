@@ -2,7 +2,8 @@ import { Immutable } from '@angular-ru/cdk/typings';
 import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { ImmutablePatchValue, ImmutableStateValue } from '@angular-ru/ngxs/typings';
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { State } from '@ngxs/store';
 import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
 import { Observable, OperatorFunction, of } from 'rxjs';
@@ -67,6 +68,11 @@ export class GlobalConfigState<T> extends NgxsImmutableDataRepository<T> {
 
     this.optionCache.set(key, obs);
     return obs;
+  }
+
+  /** Gets the config option as a signal */
+  getOptionSignal<K1 extends keyof T>(k1: K1): Signal<T[K1]> {
+    return toSignal(this.getOption(k1), { requireSync: true });
   }
 
   /** Compute a key for a path */
