@@ -23,7 +23,8 @@
   );
 
   @include mat.button-toggle-overrides((
-    disabled-state-background-color: vars.$secondary,
+    divider-color: 1px solid vars.$primary,
+    disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
     height: 2rem,
     label-text-font: vars.$label-medium-font,
     label-text-line-height: 1.3125rem,
@@ -31,7 +32,6 @@
     label-text-weight: vars.$label-medium-weight,
     selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
     selected-state-text-color: vars.$secondary,
-    background-color: utils.with-alpha(vars.$secondary, 12%),
   ));
 
   cdk-virtual-scroll-viewport {
@@ -51,7 +51,6 @@
 
     .mat-button-toggle {
       flex: 1;
-      border: none;
       font-weight: vars.$label-medium-weight;
       text-transform: none;
       transition: all 0.2s ease;
@@ -59,12 +58,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      // &.mat-button-toggle-checked {
-      //   // background-color: vars.$primary;
-      //   // color: vars.$on-primary;
-      //   font-weight: 600;
-      // }
 
       &:not(:first-child) {
         border-left: 1px solid vars.$outline;
