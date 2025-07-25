@@ -24,6 +24,10 @@
     }
   }
 
+  hra-table {
+    height: min-content;
+  }
+
   @media (min-width: 640px) {
     padding: 2.5rem;
 
@@ -38,7 +42,7 @@
       position: sticky;
       top: 10rem;
       max-width: 288px;
-      height: min-content;
+      // height: min-content;
       margin: 0 0.75rem 1rem;
     }
   }

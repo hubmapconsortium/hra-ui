@@ -20,8 +20,12 @@
     }
   }
 
-  hra-table {
+  .metadata-table {
     display: none;
+  }
+
+  hra-table {
+    height: min-content;
   }
 
   .mediumScreen {
@@ -31,12 +35,11 @@
       width: calc(100% - 288px - 40px);
     }
 
-    hra-table {
+    .metadata-table {
       display: block;
       position: sticky;
       top: 9rem;
       min-width: 288px;
-      height: min-content;
     }
   }
 }

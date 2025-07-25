@@ -1,8 +1,10 @@
+import '@google/model-viewer';
+
 import { HttpClient } from '@angular/common/http';
-import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, input, signal } from '@angular/core';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -14,7 +16,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
 import { ORGAN_ICON_MAP, PRODUCT_ICON_MAP } from '../main-page/main-page.component';
-import '@google/model-viewer';
+import { VersionSelectorComponent } from '../../components/version-selector/version-selector.component';
 
 const EMPTY_METADATA: DigitalObjectMetadata = {
   $schema: '',
@@ -63,6 +65,7 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
     MarkdownComponent,
     TableComponent,
     IconsModule,
+    VersionSelectorComponent,
   ],
   templateUrl: './metadata-page.component.html',
   styleUrl: './metadata-page.component.scss',
@@ -71,6 +74,7 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
 export class MetadataPageComponent {
   private readonly http = inject(HttpClient);
   private route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly metadata = signal<DigitalObjectMetadata>(EMPTY_METADATA);
 
@@ -78,6 +82,8 @@ export class MetadataPageComponent {
   readonly $doData = toObservable(this.doData);
 
   readonly icons = signal<string[]>([]);
+  readonly availableVersions = signal<string[]>([]);
+  readonly currentVersion = signal<string>(this.metadata().version);
 
   readonly columns = input.required<TableColumn[]>();
 
@@ -114,6 +120,16 @@ export class MetadataPageComponent {
     const type = this.route.snapshot.paramMap.get('type') || '';
     const name = this.route.snapshot.paramMap.get('name') || '';
     const version = this.route.snapshot.paramMap.get('version') || '';
+    this.currentVersion.set(version);
+
+    effect(() => {
+      this.router.navigate(['metadata', type, name, this.currentVersion()]);
+      this.http
+        .get(`https://lod.humanatlas.io/${type}/${name}/${this.currentVersion()}`, { responseType: 'json' })
+        .subscribe((data) => {
+          this.metadata.set(data as DigitalObjectMetadata);
+        });
+    });
 
     this.$doData.subscribe((data) => {
       const pageItem = data['@graph'].find((item) => {
@@ -126,13 +142,10 @@ export class MetadataPageComponent {
         );
       }
       this.icons.set(icons);
+      if (pageItem) {
+        this.availableVersions.set(pageItem.versions);
+      }
     });
-
-    this.http
-      .get(`https://lod.humanatlas.io/${type}/${name}/${version}`, { responseType: 'json' })
-      .subscribe((data) => {
-        this.metadata.set(data as DigitalObjectMetadata);
-      });
   }
 
   getImage(): string | undefined {

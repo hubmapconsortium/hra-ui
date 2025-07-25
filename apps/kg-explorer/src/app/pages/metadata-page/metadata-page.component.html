@@ -1,6 +1,11 @@
-<hra-metadata-layout [rows]="rows()" [columns]="columns()">
+<hra-metadata-layout
+  [rows]="rows()"
+  [columns]="columns()"
+  [version]="currentVersion()"
+  [availableVersions]="availableVersions()"
+  (versionChange)="currentVersion.set($event)"
+>
   <hra-metadata-layout-header>
-    <hra-icon></hra-icon>
     <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()"> </hra-page-section>
     @if (getImage()) {
       @if (imageTypes[metadata().type] === 'image/svg+xml') {
@@ -25,7 +30,7 @@
       </hra-page-section>
       <hra-page-section tagline="Funder" [level]="2">
         <ul>
-          @for (funder of metadata().was_derived_from.funders; track funder) {
+          @for (funder of metadata().was_derived_from.funders; track $index) {
             <li>{{`${funder.funder} (Award number ${funder.awardNumber})`}}</li>
           }
         </ul>
@@ -39,6 +44,13 @@
         }
       </hra-page-section> -->
     </div>
-    <hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
+    <div class="metadata-table">
+      <hra-version-selector
+        [version]="currentVersion()"
+        [availableVersions]="availableVersions()"
+        (versionChange)="currentVersion.set($event)"
+      ></hra-version-selector>
+      <hra-table [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
+    </div>
   </hra-metadata-layout-content>
 </hra-metadata-layout>

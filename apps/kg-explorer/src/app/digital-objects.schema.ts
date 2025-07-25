@@ -68,7 +68,6 @@ export const DistributionsInfoSchema = z.object({
 export type DigitalObjectMetadata = z.infer<typeof DigitalObjectMetadataSchema>;
 
 /** Digital object metadata schema */
-// export const DigitalObjectMetadataSchema = z.record(z.string(), z.any());
 export const DigitalObjectMetadataSchema = z.object({
   $schema: z.string(),
   '@context': z.string(),

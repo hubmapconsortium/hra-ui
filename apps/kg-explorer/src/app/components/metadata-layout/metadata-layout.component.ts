@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { providePageSectionNavigation } from '@hra-ui/design-system/content-templates/page-section';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+
+import { VersionSelectorComponent } from '../version-selector/version-selector.component';
 
 /** Metadata layout header */
 @Component({
@@ -23,7 +25,7 @@ export class MetadataLayoutContentComponent {}
 /** Metadata layout */
 @Component({
   selector: 'hra-metadata-layout',
-  imports: [HraCommonModule, TableComponent],
+  imports: [HraCommonModule, TableComponent, VersionSelectorComponent],
   templateUrl: './metadata-layout.component.html',
   styleUrl: './metadata-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,4 +39,7 @@ export class MetadataLayoutComponent {
 
   readonly rows = input.required<TableRow[]>();
   readonly columns = input.required<TableColumn[]>();
+  readonly version = input.required<string>();
+  readonly availableVersions = input.required<string[]>();
+  readonly versionChange = output<string>();
 }
