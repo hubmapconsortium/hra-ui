@@ -1,16 +1,9 @@
 :host {
-  display: grid;
-  grid-template-areas:
-    'header'
-    'content';
-
-  hra-header {
-    grid-area: header;
-  }
+  display: block;
 
   .content {
-    grid-area: content;
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 7rem);
   }
 }

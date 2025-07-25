@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 
-import { FilterOption, FilterOptionList } from '../../pages/main-page/main-page.component';
+import { FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 
 /** Filter form controls */
@@ -52,11 +52,11 @@ export class FilterMenuComponent {
     biomarkers: new FormControl<FilterOption[] | null>(null),
   });
 
-  readonly filterRecord = input.required<FilterOptionList>();
+  readonly filterOptions = input.required<FilterOptionCategory[]>();
   readonly drawerClosed = signal<boolean>(false);
   readonly closeDrawer = output<boolean>();
 
-  readonly formChanges = output<FormGroup<FilterFormControls>>();
+  readonly formChanges = output<FilterFormControls>();
 
   toggleDrawer() {
     this.drawerClosed.set(!this.drawerClosed());
@@ -64,6 +64,6 @@ export class FilterMenuComponent {
   }
 
   handleFilterChange() {
-    this.formChanges.emit(this.form);
+    this.formChanges.emit(this.form.controls);
   }
 }
