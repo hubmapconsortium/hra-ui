@@ -1,16 +1,5 @@
 <!-- eslint-disable @angular-eslint/template/mouse-events-have-key-events -->
 <cdk-virtual-scroll-viewport tvsItemSize="32" headerHeight="32">
-  <mat-button-toggle-group
-    hraButtonToggleSize="small"
-    [(value)]="selectedToggle"
-    (change)="onToggleChange($event)"
-    class="biomarker-toggle-group absolute-toggle"
-  >
-    <mat-button-toggle value="genes">Genes</mat-button-toggle>
-    <mat-button-toggle value="proteins">Proteins</mat-button-toggle>
-    <mat-button-toggle value="lipids">Lipids</mat-button-toggle>
-  </mat-button-toggle-group>
-
   <table class="table" mat-table [dataSource]="dataSource" #table>
     <ng-container matColumnDef="type" sticky>
       <th mat-header-cell *matHeaderCellDef>Cell types</th>
