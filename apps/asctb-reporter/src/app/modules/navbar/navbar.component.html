@@ -1,62 +1,27 @@
-<mat-toolbar
-  color="secondary"
-  class="d-flex align-items-center toolbar-nav"
-  [ngStyle]="{
-    'border-bottom': (mode$ | async) === 'vis' ? '0.1875rem solid #444a6510' : 'none'
-  }"
->
-  <div class="nav-wrapper">
-    <app-nav-item
-      [label]="'Toggle'"
-      (click)="togglePane()"
-      #tooltip="matTooltip"
-      [matTooltip]="'Toggle Sidenav'"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">menu</mat-icon>
-    </app-nav-item>
-    <div *ngIf="(ui$ | async)?.controlPaneOpen === false">
-      <img
-        src="./assets/logo.svg"
-        alt=""
-        class="px-2"
-        width="225"
-        routerLink="/"
-        matTooltip="Home Page"
-        matTooltipPosition="below"
-      />
+<div class="toolbar-nav">
+  <div header>
+    <div class="branding">
+      <hra-icon [svgIcon]="'product:asctb-reporter'"></hra-icon>
+      <div class="app-title">ASCT+B Reporter</div>
     </div>
-    <div class="search ml-1">
+    <button mat-icon-button hraIconButtonSize="large" hraIconButtonVariant="dark" [matMenuTriggerFor]="headerMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+  <div class="nav-wrapper">
+    <div class="nav-item">
       <app-search [disabled]="(ui$ | async)?.error?.hasError ?? false"></app-search>
     </div>
 
-    <button
-      mat-flat-button
-      id="selectedorgansBtn"
-      (click)="openSelectOrgansDialog()"
-      class="select-organs-button secondary ch"
-      #tooltip="matTooltip"
-      [disabled]="(mode$ | async) !== 'vis'"
-      matTooltip="Select Organ Set"
-      matTooltipPosition="below"
-    >
-      <span>&nbsp; {{ (mode$ | async) === 'vis' ? selectedOrgansLabel : 'Example' }}</span>
-      <mat-icon>arrow_drop_down</mat-icon>
-    </button>
+    <div class="nav-item">
+      <mat-form-field class="datasets-field" subscriptSizing="dynamic" (click)="openSelectOrgansDialog()">
+        <mat-label>Datasets</mat-label>
+        <input matInput readonly value="{{ (mode$ | async) === 'vis' ? selectedOrgansLabel : 'Example' }}" />
+        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+      </mat-form-field>
+    </div>
 
-    <app-nav-item
-      #tooltip="matTooltip"
-      matTooltip="Master Data Tables"
-      matTooltipPosition="below"
-      [label]="'Data Tables'"
-      [matMenuTriggerFor]="nestedMenu.childMenu"
-    >
-      <mat-icon class="toolbar-icons">table_view</mat-icon>
-      <app-table-nested-menu
-        #nestedMenu
-        [sheetDetails]="(configService.allSheetConfigurations$ | async) ?? []"
-      ></app-table-nested-menu>
-    </app-nav-item>
+    <!--
 
     <app-nav-item
       [label]="'Refresh'"
@@ -66,63 +31,6 @@
       matTooltipPosition="below"
     >
       <mat-icon class="toolbar-icons">refresh</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="(mode$ | async) === 'vis' ? 'Playground' : 'Exit Playground'"
-      (click)="toggleMode()"
-      #tooltip="matTooltip"
-      [matTooltip]="(mode$ | async) === 'vis' ? 'Playground' : 'Exit Playground'"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">{{ (mode$ | async) === 'vis' ? 'edit' : 'exit_to_app' }}</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Indented List'"
-      (click)="toggleIndentedList()"
-      #tooltip="matTooltip"
-      matTooltip="Indented List"
-      matTooltipPosition="below"
-      [disabled]="(ui$ | async)?.error?.hasError ?? false"
-      mat-icon-button
-    >
-      <mat-icon class="toolbar-icons">format_indent_increase</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Compare'"
-      [disabled]="(ui$ | async)?.error?.hasError ?? false"
-      mat-icon-button
-      (click)="toggleCompare()"
-      #tooltip="matTooltip"
-      matTooltip="Compare"
-      matTooltipPosition="below"
-      *ngIf="(mode$ | async) !== 'playground'"
-    >
-      <mat-icon class="toolbar-icons">compare_arrows</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Report'"
-      [disabled]="(ui$ | async)?.error?.hasError ?? false"
-      mat-icon-button
-      (click)="toggleReport()"
-      #tooltip="matTooltip"
-      matTooltip="Report"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">bar_chart</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Debug Log'"
-      (click)="toggleDebugLogs()"
-      #tooltip="matTooltip"
-      matTooltip="Debug Log"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">bug_report</mat-icon>
     </app-nav-item>
 
     <app-nav-item
@@ -157,6 +65,17 @@
       <button mat-menu-item *ngFor="let option of moreOptions" (click)="onOptionClick(option.type, option.url)">
         {{ option.name }}
       </button>
-    </mat-menu>
+    </mat-menu> -->
   </div>
-</mat-toolbar>
+</div>
+
+<mat-menu #headerMenu="matMenu" class="header-menu">
+  <button mat-menu-item (click)="togglePane()">
+    <mat-icon>visibility_{{ controlPaneOpen() ? 'off' : 'on' }}</mat-icon>
+    {{ controlPaneOpen() ? 'Hide' : 'Show' }} legend & visualization controls
+  </button>
+  <button mat-menu-item (click)="toggleDebugLogs()">
+    <mat-icon>bug_report</mat-icon>
+    Debug log
+  </button>
+</mat-menu>

@@ -1,3 +1,6 @@
+@use 'utils';
+@use 'vars';
+
 .mw {
   min-width: 15.625rem;
 }
@@ -5,9 +8,23 @@
   display: inline-block;
 }
 .help-icon {
-  color: grey;
+  color: vars.$secondary;
 }
 
-.title {
-  font-weight: 600;
+:host {
+  .sidenav-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+
+    .title {
+      @include utils.use-font(title, small);
+    }
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+  }
 }

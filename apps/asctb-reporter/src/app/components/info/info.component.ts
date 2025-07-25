@@ -1,6 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDivider } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ProgressSpinnerComponent } from '@hra-ui/design-system/indicators/progress-spinner';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { MarkdownModule } from 'ngx-markdown';
 import { Observable } from 'rxjs';
 import { GaAction, GaCategory } from '../../models/ga.model';
 import { Error } from '../../models/response.model';
@@ -8,9 +15,18 @@ import { SheetInfo } from '../../models/sheet.model';
 
 @Component({
   selector: 'app-info',
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatBottomSheetModule,
+    MarkdownModule,
+    MatDivider,
+    ProgressSpinnerComponent,
+    TextHyperlinkDirective,
+  ],
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],
-  standalone: false,
 })
 export class InfoComponent implements OnInit {
   readonly data = inject<Observable<SheetInfo>>(MAT_BOTTOM_SHEET_DATA);

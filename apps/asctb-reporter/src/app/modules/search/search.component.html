@@ -1,97 +1,94 @@
-<div class="h-100 w-100 search-container">
-  <div class="pl-2 br-left search-icon-container">
-    <mat-icon class="mt-2">search</mat-icon>
-  </div>
-  <button
-    mat-flat-button
-    id="searchBtn"
-    [disabled]="disabled"
-    (click)="openSearchList()"
-    class="w-100 secondary ch text-start"
-    #tooltip="matTooltip"
-    matTooltip="Search Structures"
-    matTooltipPosition="below"
-  >
-    <span>{{ selectedValues }}</span>
-    <mat-icon class="droprown-arrow-icon">arrow_drop_down</mat-icon>
-  </button>
-  <div class="search-modal mat-elevation-z4" [hidden]="(searchState$ | async) === false">
-    <div class="search-controls br-top">
-      <mat-form-field class="br-top" appearance="fill" floatLabel="auto">
-        <input
-          matInput
-          cdkFocusInitial
-          #searchField
-          (keyup.enter)="selectFirstOption()"
-          [(ngModel)]="searchValue"
-          placeholder="Search Structures"
-          (input)="filterStructuresOnSearch()"
-        />
-        <button
-          matSuffix
-          mat-icon-button
-          #clearBtn
-          [hidden]="!searchValue"
-          aria-label="Clear Search"
-          matTooltip="Clear Search"
-          (click)="clearSearchField()"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-        <button matSuffix mat-icon-button aria-label="Close" matTooltip="Close" (click)="closeSearchList()">
-          <mat-icon>arrow_drop_up</mat-icon>
-        </button>
-      </mat-form-field>
-      <br />
-      <p>
-        <span id="label">Show<br />only:</span>
+<mat-form-field class="search-field" subscriptSizing="dynamic" (click)="openSearchList()">
+  <mat-label>Search Structures</mat-label>
+  <mat-icon matPrefix>search</mat-icon>
+  <input matInput readonly [value]="selectedValues" [disabled]="searchState$ | async" />
+  <mat-icon matSuffix>arrow_drop_down</mat-icon>
+</mat-form-field>
+
+<div class="search-modal" *ngIf="searchState$ | async">
+  <div class="search-controls">
+    <mat-form-field cdkTrapFocus [cdkTrapFocusAutoCapture]="true" subscriptSizing="dynamic">
+      <mat-icon matPrefix>search</mat-icon>
+      <mat-label>Search Structures</mat-label>
+      <input
+        cdkFocusInitial
+        matInput
+        #searchField
+        (keyup.enter)="selectFirstOption()"
+        [(ngModel)]="searchValue"
+        (input)="filterStructuresOnSearch()"
+      />
+      <mat-icon matSuffix>close</mat-icon>
+      <button matSuffix mat-icon-button aria-label="Close" matTooltip="Close" (click)="closeSearchList()">
+        <mat-icon>arrow_drop_up</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="search-options">
+      <div class="toggle-group">
+        <div class="label">Show only</div>
+
         <mat-button-toggle-group
           multiple
+          hraButtonToggleSize="small"
           #group="matButtonToggleGroup"
           (change)="filterToggleChange(group.value)"
           name="searchFilterButtons"
-          aria-label="searchFilterButtons"
+          [hideMultipleSelectionIndicator]="false"
         >
           <mat-button-toggle value="Anatomical Structures" matTooltip="Anatomical Structures">AS</mat-button-toggle>
           <mat-button-toggle value="Cell Types" matTooltip="Cell Types">CT</mat-button-toggle>
           <mat-button-toggle value="Biomarkers" matTooltip="Biomarkers">B</mat-button-toggle>
         </mat-button-toggle-group>
-        <button class="selectBtn" mat-stroked-button aria-label="Select All" (click)="selectAllOptions()">
+      </div>
+
+      <div class="select-actions">
+        <button
+          mat-button
+          hraButtonVariant="primary"
+          hraButtonSize="small"
+          aria-label="Select All"
+          (click)="selectAllOptions()"
+        >
           Select All
         </button>
-        <button class="selectBtn" mat-stroked-button aria-label="Deselect All" (click)="deselectAllOptions()">
+        <button
+          mat-button
+          hraButtonVariant="primary"
+          hraButtonSize="small"
+          aria-label="Deselect All"
+          (click)="deselectAllOptions()"
+        >
           Deselect All
         </button>
-      </p>
+      </div>
     </div>
-    <mat-selection-list
-      #multiSelect
-      [disabled]="disabled"
-      [multiple]="true"
-      (selectionChange)="selectOption()"
-      [(ngModel)]="selectedOptions"
-      [compareWith]="selectionCompareFunction"
-    >
-      <mat-list-item *ngIf="searchFilteredStructures.length === 0 && groupFilteredStructures.length === 0">
-        <div>No entries found.</div>
-      </mat-list-item>
-      <mat-list-option
-        *ngFor="let structure of structures"
-        [value]="structure"
-        color="primary"
-        [hidden]="hideStructure(structure)"
-        [selected]="isSelected(structure)"
-        checkboxPosition="before"
-      >
-        <div class="structure-name">
-          <div>
-            {{ structure.name }}
-          </div>
-          <div class="structure-group-name">
-            <em>{{ structure.groupName }}</em>
-          </div>
-        </div>
-      </mat-list-option>
-    </mat-selection-list>
   </div>
+  <mat-selection-list
+    #multiSelect
+    [disabled]="disabled"
+    [multiple]="true"
+    (selectionChange)="selectOption()"
+    [(ngModel)]="selectedOptions"
+    [compareWith]="selectionCompareFunction"
+  >
+    <mat-list-item *ngIf="searchFilteredStructures.length === 0 && groupFilteredStructures.length === 0">
+      <div>No entries found.</div>
+    </mat-list-item>
+    <mat-list-option
+      *ngFor="let structure of structures"
+      [value]="structure"
+      color="primary"
+      [hidden]="hideStructure(structure)"
+      [selected]="isSelected(structure)"
+      checkboxPosition="before"
+    >
+      <div class="structure-group">
+        <div class="structure-name">
+          {{ structure.name }}
+        </div>
+        <div class="structure-group-name">{{ structure.groupName }}</div>
+      </div>
+    </mat-list-option>
+  </mat-selection-list>
 </div>

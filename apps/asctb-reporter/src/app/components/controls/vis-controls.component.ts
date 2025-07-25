@@ -1,4 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { GaAction, GaCategory } from '../../models/ga.model';
 import { Error } from '../../models/response.model';
@@ -6,9 +17,22 @@ import { Sheet, SheetConfig } from '../../models/sheet.model';
 
 @Component({
   selector: 'app-vis-controls',
+  imports: [
+    CommonModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatSliderModule,
+    MatIconModule,
+    MatTooltipModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatRadioModule,
+  ],
   templateUrl: './vis-controls.component.html',
   styleUrls: ['./vis-controls.component.scss'],
-  standalone: false,
 })
 export class VisControlsComponent {
   readonly ga = inject(GoogleAnalyticsService);

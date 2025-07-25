@@ -1,10 +1,18 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
+import { IconsModule } from '@hra-ui/design-system/icons';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FetchSelectedOrganData, ToggleShowAllAS, UpdateConfig } from '../../actions/sheet.actions';
 import { DiscrepencyId, DiscrepencyLabel, DuplicateId, UpdateOmapConfig } from '../../actions/tree.actions';
-import { ToggleControlPane } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
+import { VisControlsComponent } from '../../components/controls/vis-controls.component';
+import { LegendComponent } from '../../components/legend/legend.component';
+import { SidenavModule } from '../../components/sidenav/sidenav.module';
 import { BMNode } from '../../models/bimodal.model';
 import { OmapConfig } from '../../models/omap.model';
 import { Error } from '../../models/response.model';
@@ -12,14 +20,26 @@ import { CompareData, Sheet, SheetConfig } from '../../models/sheet.model';
 import { DiscrepencyStructure, TNode } from '../../models/tree.model';
 import { SheetState } from '../../store/sheet.state';
 import { TreeState, TreeStateModel } from '../../store/tree.state';
+import { FunctionsComponent } from '../functions/functions.component';
 import { BimodalService } from '../tree/bimodal.service';
 import { VegaService } from '../tree/vega.service';
 
 @Component({
   selector: 'app-control-pane',
+  imports: [
+    CommonModule,
+    SidenavModule,
+    MatButtonModule,
+    FunctionsComponent,
+    VisControlsComponent,
+    RouterModule,
+    LegendComponent,
+    IconsModule,
+    ScrollingModule,
+    MatMenuModule,
+  ],
   templateUrl: './control-pane.component.html',
   styleUrls: ['./control-pane.component.scss'],
-  standalone: false,
 })
 export class ControlPaneComponent implements OnInit {
   readonly store = inject(Store);
@@ -257,10 +277,6 @@ export class ControlPaneComponent implements OnInit {
         }
       }
     });
-  }
-
-  togglePane() {
-    this.store.dispatch(new ToggleControlPane());
   }
 
   sendMail() {

@@ -1,0 +1,14 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  @include utils.use-font(label, large);
+  color: vars.$secondary;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}

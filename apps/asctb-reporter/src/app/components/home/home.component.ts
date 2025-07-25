@@ -1,120 +1,55 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { YouTubePlayer } from '@angular/youtube-player';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { faGlobe, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { ConfigService } from '../../app-config.service';
-import { GaAction, GaCategory } from '../../models/ga.model';
-import { SheetDetails } from '../../models/sheet.model';
-import { CONTIRBUTORS, IMAGES, VIDEO_ACTIONS } from '../../static/home';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
+import { IconButtonSizeDirective, IconButtonVariantDirective } from '@hra-ui/design-system/icon-button';
+import { IconsModule } from '@hra-ui/design-system/icons';
+import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: false,
+  imports: [
+    CommonModule,
+    IconsModule,
+    ButtonsModule,
+    YouTubePlayerModule,
+    ScrollingModule,
+    ProfileCardComponent,
+    IconButtonVariantDirective,
+    IconButtonSizeDirective,
+    FooterComponent,
+    RouterModule,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements AfterViewInit, OnDestroy {
-  readonly configService = inject(ConfigService);
-  readonly ga = inject(GoogleAnalyticsService);
-  private readonly router = inject(Router);
+export class HomeComponent {
+  /** List of contributors */
+  protected readonly contributors = CONTRIBUTORS;
 
-  window = window;
-  dataVersion = 'latest';
-  VIDEO_ACTIONS = VIDEO_ACTIONS;
-  CONTIRBUTORS = CONTIRBUTORS;
-  IMAGES = IMAGES;
-  videoSectionSelected = 0;
+  /** List of video sections - for chapters */
+  protected readonly videoSections = VIDEO_SECTIONS;
 
-  faLinkedin = faLinkedin;
-  faGlobe = faGlobe;
-  faGithub = faGithub;
-  faPhone = faPhone;
-  faEnvelope = faEnvelope;
+  /** ViewChild reference to the YouTube player */
+  private readonly player = viewChild.required<YouTubePlayer>('tutorialVideo');
 
-  copyrightYear = new Date().getFullYear();
-  masterSheetLink = '';
-  sheetOptions: SheetDetails[] = [];
+  /** Signal for selected video section state */
+  protected readonly selectedVideoSection = signal<number>(0);
 
-  @ViewChild('tutorialVideoContainer') videoContainer!: ElementRef<HTMLElement>;
-  @ViewChild('tutorialVideo') player!: YouTubePlayer;
-
-  private videoContainerResizeObserver?: ResizeObserver;
-
-  constructor() {
-    this.configService.config$.subscribe((config) => {
-      this.masterSheetLink = config['masterSheetLink'] as string;
-    });
-
-    this.configService.sheetConfiguration$.subscribe((sheetOptions) => {
-      this.sheetOptions = sheetOptions;
-    });
-  }
-
-  ngAfterViewInit(): void {
-    const actionsDiv = document.getElementById('actionsHeight');
-    if (actionsDiv) {
-      actionsDiv.style.maxHeight = `${this.player.height + 50}px`;
-      actionsDiv.style.overflowY = 'auto';
-    }
-
-    this.videoContainerResizeObserver = new ResizeObserver((entries) => {
-      const [
-        {
-          contentBoxSize: [{ inlineSize: width, blockSize: height }],
-        },
-      ] = entries;
-
-      this.player.width = width;
-      this.player.height = height;
-    });
-    this.videoContainerResizeObserver.observe(this.videoContainer.nativeElement);
-  }
-
-  ngOnDestroy(): void {
-    this.videoContainerResizeObserver?.disconnect();
-  }
-
-  seekVideo(seconds: number, id: number) {
-    this.videoSectionSelected = id;
-
-    this.player.pauseVideo();
-    this.player.seekTo(seconds, true);
-    this.player.playVideo();
-
-    this.ga.event(GaAction.CLICK, GaCategory.HOME, `Jump to video section: ${VIDEO_ACTIONS[id].header}`);
-  }
-
-  openGithub() {
-    window.open('https://github.com/hubmapconsortium/ccf-asct-reporter', '_blank');
-    this.ga.event(GaAction.NAV, GaCategory.HOME, 'Open Github');
-  }
-
-  openDocs() {
-    this.router.navigate(['/docs']);
-    this.ga.event(GaAction.NAV, GaCategory.HOME, 'Open Docs');
-  }
-
-  openData() {
-    window.open(this.masterSheetLink, '_blank');
-    this.ga.event(GaAction.NAV, GaCategory.HOME, 'Open Master Tables');
-  }
-
-  openDataOld() {
-    window.open(
-      'https://docs.google.com/spreadsheets/d/1j_SLhFipRWUcRZrCDfNH15OWoiLf7cJks7NVppe3htI/edit#gid=1268820100',
-      '_blank',
-    );
-    this.ga.event(GaAction.NAV, GaCategory.HOME, 'Open Old Data Tables');
-  }
-
-  goToPlayground() {
-    this.router.navigate(['/vis'], {
-      queryParams: { playground: 'true', selectedOrgans: 'example' },
-      queryParamsHandling: 'merge',
-    });
-    this.ga.event(GaAction.NAV, GaCategory.HOME, 'Launch Playground Tool');
+  /**
+   * Seeks the YouTube player to the selected video section.
+   * @param seconds The target time in seconds to seek to.
+   * @param id Unique identifier of the video section.
+   */
+  protected seekVideo(seconds: number, id: number) {
+    this.selectedVideoSection.set(id);
+    this.player().pauseVideo();
+    this.player().seekTo(seconds, true);
+    this.player().playVideo();
   }
 }

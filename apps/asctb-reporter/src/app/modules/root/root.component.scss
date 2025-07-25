@@ -1,28 +1,23 @@
+@use 'vars';
+
 .control-pane-container {
-  height: 100%;
+  height: calc(100% - 12.1rem);
   width: 100%;
   position: absolute;
   left: 0;
 }
 
 .control-pane {
-  width: 15.625rem;
-  border-right: 0.1875rem solid #444a6510;
+  width: 20.5rem;
+  border-right: 0.0625rem solid vars.$outline;
   min-width: 3.125rem;
+  border-radius: 0;
+  background-color: var(--mat-sys-surface-container-lowest);
 }
 
 .tree-div {
   max-width: 100%;
   overflow-x: auto;
-}
-
-.right-sidenav {
-  min-width: 31.25rem;
-  max-width: 43.75rem;
-  overflow-x: auto;
-  border-left: 0.1875rem solid #ececec;
-  box-shadow: none !important;
-  z-index: 10 !important;
 }
 
 .compare-sidenav {
@@ -40,6 +35,8 @@
   z-index: 2;
 }
 
-#content {
-  padding-top: 4rem;
+::ng-deep {
+  mat-dialog-container .mat-mdc-dialog-surface {
+    border-radius: 0.5rem;
+  }
 }
