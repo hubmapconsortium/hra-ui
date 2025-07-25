@@ -3,7 +3,7 @@
 
 :host {
   display: flex;
-  height: 100%;
+  height: calc(100vh - 7rem);
   transition: all 0.5s;
 
   &.filterClosed {
@@ -68,7 +68,7 @@
     }
 
     tr {
-      background-color: var(--mat-sys-on-primary);
+      background-color: vars.$on-primary;
     }
 
     td {
