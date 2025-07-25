@@ -1,92 +1,59 @@
 import { Component, inject, input } from '@angular/core';
-import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
-import { provideDesignSystem } from '@hra-ui/design-system';
 import { BottomSheetService } from '../bottom-sheet.service';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'hra-table-bottom-sheet-demo',
+  selector: 'hra-bottom-sheet-demo',
   standalone: true,
   imports: [MatButtonModule],
-  template: ` <button mat-flat-button (click)="openTableBottomSheet()">Open Table Bottom Sheet</button> `,
+  template: `
+    <button mat-flat-button (click)="openBottomSheet()">
+      Open {{ variant() === 'table' ? 'Table' : 'Page Section' }} Bottom Sheet
+    </button>
+  `,
 })
-class TableBottomSheetDemoComponent {
-  readonly rows = input<TableRow[]>([
-    { name: 'Alice', age: 30 },
-    { name: 'Bob', age: 25 },
-  ]);
-  readonly columns = input<TableColumn[]>([
-    { column: 'name', label: 'Name', type: 'text' },
-    { column: 'age', label: 'Age', type: 'numeric' },
-  ]);
+class BottomSheetDemoComponent {
+  readonly variant = input.required<'table' | 'page-section'>();
+  readonly tagline = input<string>('');
+  readonly rows = input<TableRow[]>([]);
+  readonly columns = input<TableColumn[]>([]);
 
   private readonly service = inject(BottomSheetService);
 
-  openTableBottomSheet() {
-    this.service.openTableBottomSheet(this.rows(), this.columns());
+  openBottomSheet() {
+    if (this.variant() === 'table') {
+      this.service.openTableBottomSheet(this.rows(), this.columns());
+    } else {
+      this.service.openPageSectionBottomSheet(this.tagline());
+    }
   }
 }
 
-@Component({
-  selector: 'hra-page-section-bottom-sheet-demo',
-  standalone: true,
-  imports: [MatButtonModule],
-  template: ` <button mat-flat-button (click)="openPageSectionBottomSheet()">Open Page Section Bottom Sheet</button> `,
-})
-class PageSectionBottomSheetDemoComponent {
-  readonly tagline = input<string>('Demo tagline');
-
-  private readonly service = inject(BottomSheetService);
-
-  openPageSectionBottomSheet() {
-    this.service.openPageSectionBottomSheet(this.tagline());
-  }
-}
-
-const tableMeta: Meta<TableBottomSheetDemoComponent> = {
-  component: TableBottomSheetDemoComponent,
-  title: 'BottomSheet/Table',
-  args: {
-    rows: [
-      { name: 'Alice', age: 30 },
-      { name: 'Bob', age: 25 },
-    ],
-    columns: [
-      { column: 'name', label: 'Name', type: 'text' },
-      { column: 'age', label: 'Age', type: 'numeric' },
-    ],
-  },
+const meta: Meta<BottomSheetDemoComponent> = {
+  component: BottomSheetDemoComponent,
+  title: 'Design System/Bottom Sheet',
   argTypes: {
+    variant: {
+      control: 'select',
+      options: ['table', 'page-section'],
+      description: 'Select the bottom sheet variant to display',
+    },
     rows: {
       control: 'object',
+      if: { arg: 'variant', eq: 'table' },
+      description: 'Table rows (for table bottom sheets)',
     },
     columns: {
       control: 'object',
+      if: { arg: 'variant', eq: 'table' },
+      description: 'Table columns (for table bottom sheets)',
     },
-  },
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=4132-1621&p=f&t=j4a0ZyhA3Dkh4YFX-0',
-    },
-  },
-  decorators: [
-    applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
-  ],
-};
-
-const pageSectionMeta: Meta<PageSectionBottomSheetDemoComponent> = {
-  component: PageSectionBottomSheetDemoComponent,
-  title: 'BottomSheet/PageSection',
-  args: {
-    tagline: 'This is a page section demo',
-  },
-  argTypes: {
     tagline: {
       control: 'text',
+      if: { arg: 'variant', eq: 'page-section' },
+      description: 'Tagline text (for page section bottom sheets)',
     },
   },
   parameters: {
@@ -95,21 +62,15 @@ const pageSectionMeta: Meta<PageSectionBottomSheetDemoComponent> = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=4132-1621&p=f&t=j4a0ZyhA3Dkh4YFX-0',
     },
   },
-  decorators: [
-    applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
-  ],
 };
 
-export default tableMeta;
-export { pageSectionMeta };
+export default meta;
 
-type TableStory = StoryObj<TableBottomSheetDemoComponent>;
-type PageSectionStory = StoryObj<PageSectionBottomSheetDemoComponent>;
+type Story = StoryObj<BottomSheetDemoComponent>;
 
-export const TableBottomSheet: TableStory = {
+export const TableBottomSheet: Story = {
   args: {
+    variant: 'table',
     rows: [
       { name: 'Alice', age: 30 },
       { name: 'Bob', age: 25 },
@@ -122,16 +83,9 @@ export const TableBottomSheet: TableStory = {
   },
 };
 
-export const PageSectionBottomSheet: PageSectionStory = {
-  parameters: {
-    ...pageSectionMeta.parameters,
-  },
-  decorators: pageSectionMeta.decorators,
-  render: (args) => ({
-    component: PageSectionBottomSheetDemoComponent,
-    props: args,
-  }),
+export const PageSectionBottomSheet: Story = {
   args: {
+    variant: 'page-section',
     tagline: 'This is a page section bottom sheet demo',
   },
 };
