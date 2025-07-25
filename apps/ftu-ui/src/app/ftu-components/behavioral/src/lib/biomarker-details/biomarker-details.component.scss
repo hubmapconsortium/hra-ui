@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'vars';
 @use 'utils';
 
@@ -11,64 +12,66 @@
     'gradient-legend size-legend .'
     'source-list source-list source-list';
 
-  ::ng-deep .table-tab-header {
-    height: 39px !important;
-    background-color: white;
-    font-weight: 400;
-    letter-spacing: 0;
-    font-size: 0.75rem;
-  }
+  @include mat.button-toggle-overrides(
+    (
+      divider-color: 1px solid vars.$primary,
+      disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
+      height: 2rem,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: 1.3125rem,
+      label-text-size: 0.875rem,
+      label-text-weight: vars.$label-medium-weight,
+      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
+      selected-state-text-color: vars.$secondary,
+    )
+  );
 
   @media (min-height: 49.5rem) {
     grid-template-rows: auto 37px 69px min-content;
-    ::ng-deep .table-tab-header {
-      height: calc(3rem - 1px) !important;
-    }
   }
 
   @media (min-height: 60.75rem) {
     grid-template-rows: auto 3rem 5rem min-content;
   }
 
-  .table-header-group {
-    grid-area: table;
+  .absolute-toggle {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    width: 14.625rem;
+    border: 1px solid vars.$primary;
+    border-radius: 6px;
+    overflow: hidden;
     display: flex;
-    max-width: 100%;
-    border-bottom: 1px solid rgba(var(--light-dividers));
+
+    .mat-button-toggle {
+      flex: 1;
+      font-weight: vars.$label-medium-weight;
+      text-transform: none;
+      transition: all 0.2s ease;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:not(:first-child) {
+        border-left: 1px solid vars.$outline;
+      }
+
+      .mat-button-toggle-label-content {
+        line-height: 1;
+        padding: 0;
+      }
+    }
   }
 
   .table {
     grid-area: table;
-    max-width: 100%;
-
-    ::ng-deep .mat-mdc-tab-body-wrapper {
-      height: 100%;
-    }
-
-    ::ng-deep .mat-mdc-tab {
-      max-width: 14rem;
-    }
-
-    ::ng-deep .expansion-icon {
-      position: absolute;
-      right: 0;
-      opacity: 1;
-      height: 100%;
-    }
+    width: 100%;
 
     .cursor {
       pointer-events: auto;
-    }
-  }
-
-  ::ng-deep {
-    .table-tab-header > .mdc-tab__content > span {
-      user-select: none;
-      font-weight: 500;
-    }
-
-    .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active {
-      user-select: none;
     }
   }
 
@@ -120,6 +123,8 @@
   }
 
   ftu-biomarker-table {
+    grid-area: table;
+    width: 100%;
     height: 100%;
 
     &.small {
