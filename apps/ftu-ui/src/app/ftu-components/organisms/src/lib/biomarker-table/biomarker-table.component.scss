@@ -6,6 +6,7 @@
   display: block;
   position: relative;
   height: 16rem;
+  width: 100%;
 
   @include mat.table-overrides(
     (
@@ -22,20 +23,23 @@
     )
   );
 
-  @include mat.button-toggle-overrides((
-    divider-color: 1px solid vars.$primary,
-    disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
-    height: 2rem,
-    label-text-font: vars.$label-medium-font,
-    label-text-line-height: 1.3125rem,
-    label-text-size: .875rem,
-    label-text-weight: vars.$label-medium-weight,
-    selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
-    selected-state-text-color: vars.$secondary,
-  ));
+  @include mat.button-toggle-overrides(
+    (
+      divider-color: 1px solid vars.$primary,
+      disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
+      height: 2rem,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: 1.3125rem,
+      label-text-size: 0.875rem,
+      label-text-weight: vars.$label-medium-weight,
+      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
+      selected-state-text-color: vars.$secondary,
+    )
+  );
 
   cdk-virtual-scroll-viewport {
     height: 100%;
+    width: 100%;
   }
 
   .absolute-toggle {
@@ -72,6 +76,7 @@
 
   .table {
     background-color: vars.$surface-container-low;
+    width: 100%;
 
     .highlight {
       background-color: rgba(vars.$primary, 0.1);
@@ -81,28 +86,14 @@
       text-transform: capitalize;
     }
 
-    // Column header row styling
-    // tr.column-header-row {
-    //   th.mat-header-cell {
-    //     height: 2rem;
-    //     padding: 0 0.5rem;
-    //     background-color: vars.$surface-container;
-    //     border-bottom: 1px solid vars.$outline;
-    //   }
-    // }
-
-    // General table header styling
     th {
-      // font-weight: 500;
       padding: 0;
       max-width: 2.75rem;
       min-width: 2.75rem;
       border-bottom: 1px solid vars.$outline;
-      // overflow: hidden;
       background-color: vars.$surface-container-low;
     }
 
-    // General table cell styling
     td {
       padding: 0 0.5rem;
       border-bottom: none;
@@ -124,7 +115,7 @@
     max-width: 13.5rem;
     white-space: nowrap;
     padding-left: 1rem;
-    padding-right: .5rem;
+    padding-right: 0.5rem;
 
     &.highlight {
       font-weight: bold;
