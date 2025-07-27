@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, input, signal, ChangeDetectionStra
 import { VisualizationSpec } from 'vega-embed';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 import { ConfigSelectorComponent } from './components/config-selector/config-selector.component';
-import { PreviewMode, MAIN_CONFIG_JSON, GraphSelectionState, ConfigurationSchema } from './models/parameters.model';
+import { MAIN_CONFIG_JSON, GraphSelectionState, ConfigurationSchema } from './models/parameters.model';
 import { CellPopulationDataService } from './services/cell-population-data.service';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -32,9 +32,6 @@ export class CellPopulationGraphComponent {
   /** Input for configuration source, defaults to the main config JSON */
   readonly configSource = input<string>(MAIN_CONFIG_JSON);
 
-  /** Input for preview mode, if undefined, the component will not be in preview mode */
-  readonly previewMode = input<PreviewMode | undefined>(undefined);
-
   /** Signal to hold the current visualization specification */
   readonly currentSpec = signal<VisualizationSpec | null>(null);
 
@@ -48,9 +45,6 @@ export class CellPopulationGraphComponent {
     xAxisField: 'dataset_name',
   });
 
-  /** Loading state from data service */
-  readonly isLoading = this.dataService.loadingSignal;
-
   /** Available dataset options */
   readonly datasetOptions = computed(() => this.dataService.getDatasetOptions());
 
@@ -60,14 +54,13 @@ export class CellPopulationGraphComponent {
   constructor() {
     effect(() => {
       const configSource = this.configSource();
-      const previewMode = this.previewMode();
 
-      this.loadConfig(configSource, previewMode);
+      this.loadConfig(configSource);
     });
   }
 
-  private async loadConfig(configSource?: string, previewMode?: PreviewMode | undefined): Promise<void> {
-    await this.dataService.loadConfiguration(configSource, previewMode);
+  private async loadConfig(configSource?: string): Promise<void> {
+    await this.dataService.loadConfiguration(configSource);
 
     const options = this.dataService.getDatasetOptions();
     if (options.length > 0 && !this.graphSelections().datasetSource) {

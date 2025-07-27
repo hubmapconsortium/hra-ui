@@ -43,9 +43,6 @@ export class ConfigSelectorComponent {
   /** General sort labels signal */
   readonly generalSortLabels = signal<string[]>(['Total Cell Count']);
 
-  /** Loading signal */
-  readonly loading = this.dataService.loadingSignal;
-
   /** Cell types */
   readonly cellTypes = this.dataService.cellTypesSignal;
 

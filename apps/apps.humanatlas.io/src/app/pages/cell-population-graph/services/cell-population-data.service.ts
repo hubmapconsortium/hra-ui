@@ -1,12 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { parse } from 'papaparse';
-import {
-  Configuration,
-  MAIN_CONFIG_JSON,
-  PREVIEW_CONFIG_JSON,
-  isOfTypePreviewMode,
-  PreviewMode,
-} from '../models/parameters.model';
+import { Configuration, MAIN_CONFIG_JSON } from '../models/parameters.model';
 
 /**
  * Service for managing cell population data, including loading configurations and datasets.
@@ -29,9 +23,6 @@ export class CellPopulationDataService {
 
   /** Error signal to hold any error messages */
   private readonly error = signal<string | null>(null);
-
-  /** Loading signal of cell population data service */
-  readonly loadingSignal = this.loading.asReadonly();
   /** Graph data signal of cell population data service */
   readonly graphDataSignal = this.graphData.asReadonly();
   /** Cell types signal of cell population data service */
@@ -72,14 +63,10 @@ export class CellPopulationDataService {
   /**
    * Loads the configuration from the specified source.
    * @param configSource - Source URL for the configuration
-   * @param previewMode - Optional preview mode to use
    */
-  async loadConfiguration(configSource?: string, previewMode?: PreviewMode): Promise<void> {
+  async loadConfiguration(configSource?: string): Promise<void> {
     this.error.set(null);
-    const finalConfigSource =
-      previewMode !== undefined && isOfTypePreviewMode(previewMode)
-        ? PREVIEW_CONFIG_JSON
-        : configSource || MAIN_CONFIG_JSON;
+    const finalConfigSource = configSource || MAIN_CONFIG_JSON;
 
     try {
       const response = await fetch(finalConfigSource, {

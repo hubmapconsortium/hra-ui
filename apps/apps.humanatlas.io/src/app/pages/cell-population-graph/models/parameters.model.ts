@@ -8,22 +8,9 @@ import { z } from 'zod';
 export const MAIN_CONFIG_JSON =
   'https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/main.config.json';
 
-/** Preview configuration JSON URL */
-export const PREVIEW_CONFIG_JSON =
-  'https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/preview.config.json';
-
 /** Order types for sorting */
 export const OrderTypeSchema = z.enum(['ascending', 'descending']);
 export type OrderType = z.infer<typeof OrderTypeSchema>;
-
-/** Preview modes */
-export const PreviewModeSchema = z.enum(['bluelake-kidney']);
-export type PreviewMode = z.infer<typeof PreviewModeSchema>;
-
-/** Checks if a mode is a valid PreviewMode */
-export function isOfTypePreviewMode(mode: string): mode is PreviewMode {
-  return PreviewModeSchema.options.includes(mode as any);
-}
 
 export type GraphAttribute = z.infer<typeof GraphAttributeSchema>;
 export const GraphAttributeSchema = z.enum([
