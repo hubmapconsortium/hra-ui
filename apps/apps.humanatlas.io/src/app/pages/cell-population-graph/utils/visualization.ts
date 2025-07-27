@@ -1,6 +1,6 @@
 import { LegendOrient } from 'vega';
 import { VisualizationSpec } from 'vega-embed';
-import { GraphAttribute, OrderType, getAttributeTitle } from '../models/parameters.model';
+import { GraphAttribute, OrderType, GRAPH_ATTRIBUTE_LABELS } from '../models/parameters.model';
 
 /**
  * Options for the stacked bars visualization specification.
@@ -106,17 +106,17 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
         {
           field: options.xAxisField,
           type: 'nominal',
-          title: getAttributeTitle(options.xAxisField),
+          title: GRAPH_ATTRIBUTE_LABELS[options.xAxisField] ?? options.xAxisField,
         },
         {
           field: options.yAxisField,
           aggregate: 'sum',
-          title: getAttributeTitle(options.yAxisField),
+          title: GRAPH_ATTRIBUTE_LABELS[options.yAxisField] ?? options.yAxisField,
         },
         {
           field: options.legendField,
           type: 'nominal',
-          title: getAttributeTitle(options.legendField),
+          title: GRAPH_ATTRIBUTE_LABELS[options.legendField] ?? options.legendField,
         },
         {
           field: 'cell_type_ontology_id',
@@ -125,24 +125,24 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
         },
       ],
       facet:
-        options.groupBy === GraphAttribute.None
+        options.groupBy === ''
           ? undefined
           : {
               field: options.groupBy,
-              title: getAttributeTitle(options.groupBy),
+              title: GRAPH_ATTRIBUTE_LABELS[options.groupBy] ?? options.groupBy,
               type: 'ordinal',
               spacing: options.groupSpacing,
               sort: {
-                field: GraphAttribute.Order,
+                field: 'order',
                 op: 'mean',
                 order: options.orderType,
               },
             },
       x: {
         field: options.xAxisField,
-        title: getAttributeTitle(options.xAxisField),
+        title: GRAPH_ATTRIBUTE_LABELS[options.xAxisField] ?? options.xAxisField,
         sort: {
-          field: GraphAttribute.Order,
+          field: 'order',
           op: 'sum',
           order: options.orderType,
         },
@@ -153,7 +153,7 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
       },
       y: {
         field: options.yAxisField,
-        title: getAttributeTitle(options.yAxisField),
+        title: GRAPH_ATTRIBUTE_LABELS[options.yAxisField] ?? options.yAxisField,
         aggregate: 'sum',
         scale: {
           domain: getScaleDomain(options.yAxisField),
@@ -161,7 +161,7 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
       },
       color: {
         field: options.legendField,
-        title: getAttributeTitle(options.legendField),
+        title: GRAPH_ATTRIBUTE_LABELS[options.legendField] ?? options.legendField,
         type: 'nominal',
         scale: {
           domain: options.legendDomain,
@@ -187,12 +187,11 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
       },
       {
         calculate: `datum.index < ${options.fixedBars} ?
-          ${options.orderType === OrderType.Ascending ? 0 : 'MAX_VALUE'} :
-          '${options.sortBy}' === 'Total Cell Count' ? datum.${options.yAxisField} :
-          '${options.sortBy}' === '${getAttributeTitle(GraphAttribute.YPosition)}' ? datum.${GraphAttribute.YPosition} :
-          datum.${GraphAttribute.CellType} === '${options.sortBy}' ?
-          datum.${options.yAxisField} : 0`,
-        as: GraphAttribute.Order,
+        ${options.orderType === 'ascending' ? 0 : 'MAX_VALUE'} :
+        '${options.sortBy}' === 'Total Cell Count' ? datum.${options.yAxisField} :
+        '${options.sortBy}' === '${GRAPH_ATTRIBUTE_LABELS['y_pos']}' ? datum.y_pos :
+        datum.cell_type === '${options.sortBy}' ? datum.${options.yAxisField} : 0`,
+        as: 'order',
       },
       {
         calculate: `'${options.yAxisField}' == 'percentage' ? datum.${options.yAxisField}/datum.Total * 100 : datum.${options.yAxisField}`,
@@ -205,7 +204,6 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
       },
     },
   };
-
   return spec;
 }
 
@@ -215,7 +213,7 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
  */
 function getScaleDomain(attribute: GraphAttribute): number[] | undefined {
   switch (attribute) {
-    case GraphAttribute.Percentage:
+    case 'percentage':
       return [0, 100];
     default:
       return undefined;

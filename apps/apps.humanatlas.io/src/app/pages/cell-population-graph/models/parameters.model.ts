@@ -2,151 +2,102 @@
  * Main configuration and model definitions for the Cell Population Graph application.
  */
 
+import { z } from 'zod';
+
 /** Configuration JSON URL */
-const MAIN_CONFIG_JSON =
+export const MAIN_CONFIG_JSON =
   'https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/main.config.json';
 
 /** Preview configuration JSON URL */
-const PREVIEW_CONFIG_JSON =
+export const PREVIEW_CONFIG_JSON =
   'https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/preview.config.json';
 
-/** Graph attributes used in the application */
-enum GraphAttribute {
-  None = '',
-  CellType = 'cell_type',
-  Dataset = 'dataset_id',
-  Count = 'count',
-  Percentage = 'percentage',
-  Order = 'order',
-  Sex = 'sex',
-  Ethnicity = 'race',
-  Age = 'age',
-  Category = 'cat',
-  Exposure = 'exp',
-  Location = 'location',
-  Laterality = 'laterality',
-  YPosition = 'y_pos',
-  DonorId = 'donor_id',
-  DatasetName = 'dataset_name',
-  CellOntologyID = 'cell_type_ontology_id',
-}
-
 /** Order types for sorting */
-enum OrderType {
-  Ascending = 'ascending',
-  Descending = 'descending',
-}
+export const OrderTypeSchema = z.enum(['ascending', 'descending']);
+export type OrderType = z.infer<typeof OrderTypeSchema>;
 
-/** Preview modes for the application */
-const previewModes = ['bluelake-kidney'] as const;
-
-/** Type for PreviewMode, derived from the previewModes constant */
-type PreviewMode = (typeof previewModes)[number];
+/** Preview modes */
+export const PreviewModeSchema = z.enum(['bluelake-kidney']);
+export type PreviewMode = z.infer<typeof PreviewModeSchema>;
 
 /** Checks if a mode is a valid PreviewMode */
-function isOfTypePreviewMode(mode: string): mode is PreviewMode {
-  return (previewModes as readonly string[]).includes(mode);
+export function isOfTypePreviewMode(mode: string): mode is PreviewMode {
+  return PreviewModeSchema.options.includes(mode as any);
 }
 
-/** Configuration interface for the Cell Population Graph */
-interface Configuration {
-  /** Unique label for the configuration */
-  label: string;
-  /** Base path for the configuration */
-  basePath: string;
-  /** List of datasets included in the configuration */
-  datasets: string[];
-  /** Group types for the configuration */
-  groupTypes: Partial<Record<GraphAttribute, string>>;
-  /** Fixed bars */
-  fixed?: number;
-  /** Color palette for the configuration */
-  colorPalette: string[];
-  /** Default sort attribute */
-  sortAttributes: GraphAttribute[];
-  /** Default Y-axis field */
-  defaultYAxisField?: GraphAttribute;
-  /** Default X-axis field */
-  defaultXAxisField?: GraphAttribute;
-  /** Default groupBy for sorting */
-  defaultGroupBy?: GraphAttribute;
-}
+export type GraphAttribute = z.infer<typeof GraphAttributeSchema>;
+export const GraphAttributeSchema = z.enum([
+  '',
+  'cell_type',
+  'dataset_id',
+  'count',
+  'percentage',
+  'order',
+  'sex',
+  'race',
+  'age',
+  'cat',
+  'exp',
+  'location',
+  'laterality',
+  'y_pos',
+  'donor_id',
+  'dataset_name',
+  'cell_type_ontology_id',
+]);
 
-/** Interface representing the state of graph selections in the application. */
-export interface GraphSelectionState {
-  /** Source of the dataset being visualized */
-  datasetSource: string;
-  /** Field used for sorting the data */
-  sortBy: string;
-  /** Order type for sorting the data */
-  orderType: OrderType;
-  /** Field used for grouping the data */
-  groupBy: GraphAttribute;
-  /** Field used for the Y-axis in the graph */
-  yAxisField: GraphAttribute;
-  /** Field used for the X-axis in the graph */
-  xAxisField: GraphAttribute;
-}
+export type Configuration = z.infer<typeof ConfigurationSchema>;
+export const ConfigurationSchema = z.object({
+  label: z.string(),
+  basePath: z.string(),
+  datasets: z.array(z.string()),
+  groupTypes: z.record(z.string()),
+  fixed: z.number().optional(),
+  colorPalette: z.array(z.string()),
+  sortAttributes: z.array(GraphAttributeSchema),
+  defaultYAxisField: GraphAttributeSchema.optional(),
+  defaultXAxisField: GraphAttributeSchema.optional(),
+  defaultGroupBy: GraphAttributeSchema.optional(),
+});
 
-/** Returns the title for a given graph attribute */
-function getAttributeTitle(attribute: GraphAttribute): string {
-  switch (attribute) {
-    case GraphAttribute.Dataset:
-      return 'Dataset ID';
-    case GraphAttribute.DatasetName:
-      return 'Dataset Name';
-    case GraphAttribute.CellType:
-      return 'Cell Type';
-    case GraphAttribute.Count:
-      return 'Cell Count';
-    case GraphAttribute.Percentage:
-      return 'Cell Proportion';
-    case GraphAttribute.Sex:
-      return 'Sex';
-    case GraphAttribute.Ethnicity:
-      return 'Ethnicity';
-    case GraphAttribute.Category:
-      return 'Category';
-    case GraphAttribute.Age:
-      return 'Age';
-    case GraphAttribute.Exposure:
-      return 'Exposure';
-    case GraphAttribute.Laterality:
-      return 'Laterality';
-    case GraphAttribute.Location:
-      return 'Location';
-    case GraphAttribute.YPosition:
-      return 'Vertical Tissue Block Position';
-    case GraphAttribute.DonorId:
-      return 'Donor';
-    default:
-      return '';
-  }
-}
-
-export {
-  MAIN_CONFIG_JSON,
-  PREVIEW_CONFIG_JSON,
-  GraphAttribute,
-  OrderType,
-  Configuration,
-  PreviewMode,
-  getAttributeTitle,
-  isOfTypePreviewMode,
+export const GRAPH_ATTRIBUTE_LABELS = {
+  '': 'None',
+  cell_type: 'Cell Type',
+  dataset_id: 'Dataset ID',
+  count: 'Cell Count',
+  percentage: 'Cell Proportion',
+  order: 'Order',
+  sex: 'Sex',
+  race: 'Ethnicity',
+  age: 'Age',
+  cat: 'Category',
+  exp: 'Exposure',
+  location: 'Location',
+  laterality: 'Laterality',
+  y_pos: 'Vertical Tissue Block Position',
+  donor_id: 'Donor',
+  dataset_name: 'Dataset Name',
+  cell_type_ontology_id: 'CellOntologyID',
 };
 
-/** Dataset option interface for the application */
-export interface DatasetOption {
-  /** Unique identifier for the dataset */
-  key: string;
-  /** Display label for the dataset */
-  label: string;
-}
+export type GraphSelectionState = z.infer<typeof GraphSelectionStateSchema>;
+export const GraphSelectionStateSchema = z.object({
+  datasetSource: z.string(),
+  sortBy: z.string(),
+  orderType: OrderTypeSchema,
+  groupBy: GraphAttributeSchema,
+  yAxisField: GraphAttributeSchema,
+  xAxisField: GraphAttributeSchema,
+});
 
-/** GroupBy option interface for the application */
-export interface GroupOption {
-  /** Unique identifier for the group */
-  key: GraphAttribute;
-  /** Display label for the group */
-  label: string;
-}
+export type DatasetOption = z.infer<typeof DatasetOptionSchema>;
+export const DatasetOptionSchema = z.object({
+  key: z.string(),
+  label: z.string(),
+});
+
+export type GroupOption = z.infer<typeof GroupOptionSchema>;
+export const GroupOptionSchema = z.object({
+  key: GraphAttributeSchema,
+  label: z.string(),
+});

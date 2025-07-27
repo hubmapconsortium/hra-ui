@@ -1,6 +1,17 @@
-import { ChangeDetectionStrategy, Component, effect, ElementRef, input, viewChild, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  ElementRef,
+  input,
+  viewChild,
+  OnDestroy,
+  resource,
+  inject,
+  Renderer2,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import embed, { Result, VisualizationSpec } from 'vega-embed';
+import embed, { VisualizationSpec } from 'vega-embed';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 /**
@@ -14,56 +25,55 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
   styleUrl: './bar-graph.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BarGraphComponent implements OnDestroy {
+export class BarGraphComponent {
   /** Vega-Lite specification input */
   readonly spec = input<VisualizationSpec | null>(null);
 
   /** ViewChild reference to the vega container element */
-  private readonly vegaContainer = viewChild.required<ElementRef<HTMLDivElement>>('vegaContainer');
+  private readonly container = viewChild.required<ElementRef<HTMLDivElement>>('vegaContainer');
 
-  /** Current Vega embed result */
-  private result: Result | null = null;
+  private readonly renderer = inject(Renderer2);
+
+  private readonly vega = resource({
+    request: () => this.spec(),
+    loader: async (params) => {
+      const { abortSignal, request: spec } = params;
+      this.clearContainer();
+      if (!spec) {
+        return null;
+      }
+
+      const root = this.createVisualizationRootElement();
+      const resultP = embed(root, spec);
+      let finalize = () => {};
+      abortSignal.addEventListener('abort', () => finalize());
+
+      const result = await resultP;
+      finalize = result.finalize;
+      return result;
+    },
+  });
 
   /** Constructor to initialize the component and set up effects */
   constructor() {
-    effect(async () => {
-      const currentSpec = this.spec();
-
-      if (currentSpec) {
-        await this.renderVisualization(currentSpec);
-      } else {
-        this.clearVisualization();
+    effect((onCleanup) => {
+      const result = this.vega.value();
+      if (result) {
+        onCleanup(() => result.finalize());
       }
     });
   }
 
-  /**
-   * Renders the Vega-Lite visualization
-   */
-  private async renderVisualization(spec: VisualizationSpec): Promise<void> {
-    if (this.result) {
-      this.result.finalize();
-      this.result = null;
-    }
-    this.result = await embed(this.vegaContainer().nativeElement, spec);
-  }
-
-  /**
-   * Clears the current visualization
-   */
-  private clearVisualization(): void {
-    if (this.result) {
-      this.result.finalize();
-      this.result = null;
-    }
-
-    if (this.vegaContainer()?.nativeElement) {
-      this.vegaContainer().nativeElement.innerHTML = '';
+  private clearContainer(): void {
+    const containerEl = this.container().nativeElement;
+    while (containerEl.firstChild) {
+      containerEl.removeChild(containerEl.firstChild);
     }
   }
 
-  /** Lifecycle hook to clean up the visualization when the component is destroyed. */
-  ngOnDestroy(): void {
-    this.clearVisualization();
+  private createVisualizationRootElement(): HTMLElement {
+    const element = this.renderer.createElement('div');
+    this.renderer.appendChild(this.container().nativeElement, element);
+    return element;
   }
 }

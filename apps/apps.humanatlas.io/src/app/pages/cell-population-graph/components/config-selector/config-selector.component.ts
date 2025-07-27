@@ -8,10 +8,10 @@ import {
   Configuration,
   GraphAttribute,
   OrderType,
-  getAttributeTitle,
   DatasetOption,
   GroupOption,
   GraphSelectionState,
+  GRAPH_ATTRIBUTE_LABELS,
 } from '../../models/parameters.model';
 import { CellPopulationDataService } from '../../services/cell-population-data.service';
 import { getStackedBarsSpec, StackedBarsSpecOptions } from '../../utils/visualization';
@@ -61,7 +61,7 @@ export class ConfigSelectorComponent {
   readonly groupOptions = computed<GroupOption[]>(() => {
     const config = this.currentConfig();
     if (!config) {
-      return [{ key: GraphAttribute.None, label: 'None' }];
+      return [{ key: '', label: 'None' }];
     }
 
     return Object.entries(config.groupTypes).reduce(
@@ -69,7 +69,7 @@ export class ConfigSelectorComponent {
         types.push({ key: key as GraphAttribute, label: label || '' });
         return types;
       },
-      [{ key: GraphAttribute.None, label: 'None' }] as GroupOption[],
+      [{ key: '', label: 'None' }] as GroupOption[],
     );
   });
 
@@ -79,31 +79,29 @@ export class ConfigSelectorComponent {
   });
 
   /** Options for order type */
-  readonly orderTypeOptions = [
-    { value: OrderType.Ascending, label: 'Ascending' },
-    { value: OrderType.Descending, label: 'Descending' },
+  readonly orderTypeOptions: { value: OrderType; label: string }[] = [
+    { value: 'ascending', label: 'Ascending' },
+    { value: 'descending', label: 'Descending' },
   ];
 
-  /** X-axis toggle options */
-  readonly xAxisOptions = [
-    { value: GraphAttribute.DatasetName, label: 'Dataset Name' },
-    { value: GraphAttribute.Dataset, label: 'Dataset ID' },
+  readonly xAxisOptions: { value: GraphAttribute; label: string }[] = [
+    { value: 'dataset_name', label: 'Dataset Name' },
+    { value: 'dataset_id', label: 'Dataset ID' },
   ];
 
-  /** Y-axis toggle options */
-  readonly yAxisOptions = [
-    { value: GraphAttribute.Count, label: 'Raw Count' },
-    { value: GraphAttribute.Percentage, label: 'Percentage' },
+  readonly yAxisOptions: { value: GraphAttribute; label: string }[] = [
+    { value: 'count', label: 'Raw Count' },
+    { value: 'percentage', label: 'Percentage' },
   ];
 
   /**
    * Constructor to initialize the component and load the dataset and current configurations.
    */
   constructor() {
-    effect(async () => {
+    effect(() => {
       const source = this.graphSelections()?.datasetSource;
       if (source) {
-        await this.loadDataset(source);
+        this.loadDataset(source);
       }
     });
 
@@ -126,7 +124,10 @@ export class ConfigSelectorComponent {
     this.currentConfig.set(result.config);
 
     // Update general sort labels with config attributes
-    const newSortLabels = ['Total Cell Count', ...result.config.sortAttributes.map(getAttributeTitle)];
+    const newSortLabels = [
+      'Total Cell Count',
+      ...result.config.sortAttributes.map((attr) => GRAPH_ATTRIBUTE_LABELS[attr]),
+    ];
     this.generalSortLabels.set(newSortLabels);
   }
 
@@ -147,12 +148,12 @@ export class ConfigSelectorComponent {
     }
     const options: StackedBarsSpecOptions = {
       values: data,
-      xAxisField: this.graphSelections()?.xAxisField ?? GraphAttribute.DatasetName,
-      yAxisField: this.graphSelections()?.yAxisField ?? GraphAttribute.Count,
+      xAxisField: this.graphSelections()?.xAxisField ?? 'dataset_name',
+      yAxisField: this.graphSelections()?.yAxisField ?? 'count',
       sortBy: this.graphSelections()?.sortBy ?? 'Total cell count',
-      orderType: this.graphSelections()?.orderType ?? OrderType.Descending,
-      groupBy: this.graphSelections()?.groupBy ?? GraphAttribute.None,
-      legendField: GraphAttribute.CellType,
+      orderType: this.graphSelections()?.orderType ?? 'descending',
+      groupBy: this.graphSelections()?.groupBy ?? '',
+      legendField: 'cell_type',
       legendDomain: cellTypes,
       legendRange: Array.from(config.colorPalette).reverse().slice(0, cellTypes.length),
       fixedBars: config.fixed || 0,

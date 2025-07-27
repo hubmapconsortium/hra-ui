@@ -24,11 +24,7 @@
       right: auto;
     }
 
-    .vega-embed .vega-actions::before {
-      visibility: hidden;
-    }
-
-    .vega-embed .vega-actions::after {
+    .vega-embed .vega-actions::before, .vega-embed .vega-actions::after{
       visibility: hidden;
     }
 

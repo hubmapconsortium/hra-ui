@@ -2,17 +2,12 @@ import { Component, computed, effect, inject, input, signal, ChangeDetectionStra
 import { VisualizationSpec } from 'vega-embed';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 import { ConfigSelectorComponent } from './components/config-selector/config-selector.component';
-import {
-  GraphAttribute,
-  OrderType,
-  PreviewMode,
-  MAIN_CONFIG_JSON,
-  GraphSelectionState,
-} from './models/parameters.model';
+import { PreviewMode, MAIN_CONFIG_JSON, GraphSelectionState, ConfigurationSchema } from './models/parameters.model';
 import { CellPopulationDataService } from './services/cell-population-data.service';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatDividerModule } from '@angular/material/divider';
+import { httpResource } from '@angular/common/http';
 
 /**
  * Component for displaying the Cell Population Graph with configuration options.
@@ -28,6 +23,12 @@ export class CellPopulationGraphComponent {
   /** Data service for loading configurations and datasets */
   private readonly dataService = inject(CellPopulationDataService);
 
+  readonly configurationUrl = input<string>(MAIN_CONFIG_JSON);
+
+  private readonly config = httpResource(() => this.configurationUrl(), {
+    parse: (raw: unknown) => ConfigurationSchema.parse(raw),
+  });
+
   /** Input for configuration source, defaults to the main config JSON */
   readonly configSource = input<string>(MAIN_CONFIG_JSON);
 
@@ -41,10 +42,10 @@ export class CellPopulationGraphComponent {
   readonly graphSelections = signal<GraphSelectionState>({
     datasetSource: '',
     sortBy: 'Total cell count',
-    orderType: OrderType.Descending,
-    groupBy: GraphAttribute.None,
-    yAxisField: GraphAttribute.Count,
-    xAxisField: GraphAttribute.DatasetName,
+    orderType: 'descending',
+    groupBy: '',
+    yAxisField: 'count',
+    xAxisField: 'dataset_name',
   });
 
   /** Loading state from data service */
@@ -57,20 +58,24 @@ export class CellPopulationGraphComponent {
    * Constructor to initialize the component and load the configuration.
    */
   constructor() {
-    effect(async () => {
+    effect(() => {
       const configSource = this.configSource();
       const previewMode = this.previewMode();
 
-      await this.dataService.loadConfiguration(configSource, previewMode);
-
-      const options = this.dataService.getDatasetOptions();
-      if (options.length > 0 && !this.graphSelections().datasetSource) {
-        this.graphSelections.set({
-          ...this.graphSelections(),
-          datasetSource: options[0].key,
-        });
-      }
+      this.loadConfig(configSource, previewMode);
     });
+  }
+
+  private async loadConfig(configSource?: string, previewMode?: PreviewMode | undefined): Promise<void> {
+    await this.dataService.loadConfiguration(configSource, previewMode);
+
+    const options = this.dataService.getDatasetOptions();
+    if (options.length > 0 && !this.graphSelections().datasetSource) {
+      this.graphSelections.set({
+        ...this.graphSelections(),
+        datasetSource: options[0].key,
+      });
+    }
   }
 
   /** Handle updates to the graph visualization specification */
