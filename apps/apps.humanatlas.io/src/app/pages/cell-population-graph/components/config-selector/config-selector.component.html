@@ -7,7 +7,6 @@
       panelClass="options-container"
       [value]="graphSelections()?.datasetSource"
       (selectionChange)="onGraphSelectionChange({ datasetSource: $event.value })"
-      [disabled]="loading()"
     >
       @for (dataset of datasetOptions(); track dataset.key) {
         <mat-option [value]="dataset.key">{{ dataset.label }}</mat-option>
@@ -16,90 +15,88 @@
   </mat-form-field>
 </div>
 
-@if (!loading()) {
-  <div class="sort-group">
-    <h1>Sort & group</h1>
-    <div class="sort-controls">
-      <mat-form-field class="select" subscriptSizing="dynamic">
-        <mat-label>Sort by</mat-label>
-        <mat-select
-          disableRipple
-          panelClass="options-container"
-          [value]="graphSelections()?.sortBy"
-          (selectionChange)="onGraphSelectionChange({ sortBy: $event.value })"
-        >
-          <mat-optgroup label="Tissue Block Attribute">
-            @for (label of generalSortLabels(); track label) {
-              <mat-option [value]="label">{{ label }}</mat-option>
-            }
-          </mat-optgroup>
-          <mat-optgroup label="Cell Type Count">
-            @for (cellType of cellTypes(); track cellType) {
-              <mat-option [value]="cellType">{{ cellType }}</mat-option>
-            }
-          </mat-optgroup>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="select" subscriptSizing="dynamic">
-        <mat-label>Sort order</mat-label>
-        <mat-select
-          disableRipple
-          panelClass="options-container"
-          [value]="graphSelections()?.orderType"
-          (selectionChange)="onGraphSelectionChange({ orderType: $event.value })"
-        >
-          @for (option of orderTypeOptions; track option.value) {
-            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+<div class="sort-group">
+  <h1>Sort & group</h1>
+  <div class="sort-controls">
+    <mat-form-field class="select" subscriptSizing="dynamic">
+      <mat-label>Sort by</mat-label>
+      <mat-select
+        disableRipple
+        panelClass="options-container"
+        [value]="graphSelections()?.sortBy"
+        (selectionChange)="onGraphSelectionChange({ sortBy: $event.value })"
+      >
+        <mat-optgroup label="Tissue Block Attribute">
+          @for (label of generalSortLabels(); track label) {
+            <mat-option [value]="label">{{ label }}</mat-option>
           }
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="select" subscriptSizing="dynamic">
-        <mat-label>Group by</mat-label>
-        <mat-select
-          disableRipple
-          panelClass="options-container"
-          [value]="graphSelections()?.groupBy"
-          (selectionChange)="onGraphSelectionChange({ groupBy: $event.value })"
-        >
-          @for (group of groupOptions(); track group.key) {
-            <mat-option [value]="group.key">{{ group.label }}</mat-option>
+        </mat-optgroup>
+        <mat-optgroup label="Cell Type Count">
+          @for (cellType of cellTypes(); track cellType) {
+            <mat-option [value]="cellType">{{ cellType }}</mat-option>
           }
-        </mat-select>
-      </mat-form-field>
-    </div>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="select" subscriptSizing="dynamic">
+      <mat-label>Sort order</mat-label>
+      <mat-select
+        disableRipple
+        panelClass="options-container"
+        [value]="graphSelections()?.orderType"
+        (selectionChange)="onGraphSelectionChange({ orderType: $event.value })"
+      >
+        @for (option of orderTypeOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="select" subscriptSizing="dynamic">
+      <mat-label>Group by</mat-label>
+      <mat-select
+        disableRipple
+        panelClass="options-container"
+        [value]="graphSelections()?.groupBy"
+        (selectionChange)="onGraphSelectionChange({ groupBy: $event.value })"
+      >
+        @for (group of groupOptions(); track group.key) {
+          <mat-option [value]="group.key">{{ group.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="axes-group">
+  <div class="x-axis-group">
+    <h1>X axis</h1>
+    <mat-button-toggle-group
+      [hideSingleSelectionIndicator]="false"
+      hraButtonToggleSize="medium"
+      [value]="graphSelections()?.xAxisField"
+      (change)="onGraphSelectionChange({ xAxisField: $event.value })"
+      class="toggle-group"
+    >
+      @for (option of xAxisOptions; track option.value) {
+        <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
+      }
+    </mat-button-toggle-group>
   </div>
 
-  <div class="axes-group">
-    <div class="x-axis-group">
-      <h1>X axis</h1>
-      <mat-button-toggle-group
-        [hideSingleSelectionIndicator]="false"
-        hraButtonToggleSize="medium"
-        [value]="graphSelections()?.xAxisField"
-        (change)="onGraphSelectionChange({ xAxisField: $event.value })"
-        class="toggle-group"
-      >
-        @for (option of xAxisOptions; track option.value) {
-          <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
-        }
-      </mat-button-toggle-group>
-    </div>
-
-    <div class="y-axis-group">
-      <h1>Y axis</h1>
-      <mat-button-toggle-group
-        [hideSingleSelectionIndicator]="false"
-        hraButtonToggleSize="medium"
-        [value]="graphSelections()?.yAxisField"
-        (change)="onGraphSelectionChange({ yAxisField: $event.value })"
-        class="toggle-group"
-      >
-        @for (option of yAxisOptions; track option.value) {
-          <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
-        }
-      </mat-button-toggle-group>
-    </div>
+  <div class="y-axis-group">
+    <h1>Y axis</h1>
+    <mat-button-toggle-group
+      [hideSingleSelectionIndicator]="false"
+      hraButtonToggleSize="medium"
+      [value]="graphSelections()?.yAxisField"
+      (change)="onGraphSelectionChange({ yAxisField: $event.value })"
+      class="toggle-group"
+    >
+      @for (option of yAxisOptions; track option.value) {
+        <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
+      }
+    </mat-button-toggle-group>
   </div>
-}
+</div>
