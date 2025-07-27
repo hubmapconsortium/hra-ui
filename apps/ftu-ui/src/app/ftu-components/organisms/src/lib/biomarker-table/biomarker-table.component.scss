@@ -92,6 +92,19 @@
       min-width: 2.75rem;
       border-bottom: 1px solid vars.$outline;
       background-color: vars.$surface-container-low;
+
+      &:first-child {
+        max-width: 188px;
+        min-width: 188px;
+        width: 188px;
+      }
+
+      &:nth-child(2) {
+        max-width: 96px;
+        min-width: 96px;
+        width: 96px;
+        text-align: center;
+      }
     }
 
     td {
@@ -107,6 +120,7 @@
     tr:first-child td {
       max-width: 13.5rem;
     }
+
   }
 
   // Type column styling
@@ -130,12 +144,13 @@
     max-width: 6rem;
     padding-right: 1rem;
     border-right: 1px solid vars.$outline;
+    text-align: right;
   }
 
   // First two columns padding
   th:first-child,
   th:nth-child(2) {
-    padding: 0 0.5rem !important;
+    padding-left: 0.5rem !important;
     vertical-align: bottom;
   }
 
