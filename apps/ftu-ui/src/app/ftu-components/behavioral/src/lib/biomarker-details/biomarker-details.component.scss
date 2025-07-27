@@ -4,13 +4,12 @@
 
 :host {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  grid-template-rows: auto 2rem 69px min-content;
+  grid-template-columns: 17.75rem 1fr;
+  grid-template-rows: 4rem 16.5625rem 1fr;
   grid-template-areas:
-    'table table table'
-    'gradient-legend-header size-legend-header size-legend-header'
-    'gradient-legend size-legend .'
-    'source-list source-list source-list';
+    'headline legend-area'
+    'table table'
+    'source-list source-list';
 
   @include mat.button-toggle-overrides(
     (
@@ -26,17 +25,31 @@
     )
   );
 
-  @media (min-height: 49.5rem) {
-    grid-template-rows: auto 37px 69px min-content;
+  .biomarker-header {
+    grid-area: headline;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0.5625rem;
+    width: 100%;
+    border-bottom: 1px solid vars.$outline;
+    border-right: 1px solid vars.$outline;
+    @include utils.use-font(label, medium);
+    padding-left: 1rem;
   }
 
-  @media (min-height: 60.75rem) {
-    grid-template-rows: auto 3rem 5rem min-content;
-  }
+  // @media (min-height: 49.5rem) {
+  //   grid-template-rows: auto 37px 69px min-content;
+  // }
+
+  // @media (min-height: 60.75rem) {
+  //   grid-template-rows: auto 3rem 5rem min-content;
+  // }
 
   .absolute-toggle {
     position: absolute;
-    top: 1rem;
+    top: 5rem;
     left: 1rem;
     z-index: 1000;
     width: 14.625rem;
@@ -75,45 +88,73 @@
     }
   }
 
-  .legend-header {
-    @include utils.use-font(label, small);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &.gradient {
-      grid-area: gradient-legend-header;
-      border-right: 1px solid vars.$outline;
-    }
-
-    &.size {
-      grid-area: size-legend-header;
-    }
-
-    .icon {
-      font-size: 1.125rem;
-      height: 1.125rem;
-      width: 1.125rem;
-    }
-  }
-
   .legend {
+    grid-area: legend-area;
+    min-width: 21.5rem;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    align-content: space-around;
+    width: 100%;
 
-    &.gradient {
-      grid-area: gradient-legend;
+    .legend-percentage {
+      // grid-area: size-legend;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 0.25rem;
+      flex-grow: 1;
+
+      .legend-header-percentage {
+        @include utils.use-font(label, small);
+      }
+    }
+
+    .legend-gradient {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 0.25rem;
+      flex-grow: 1;
+      // grid-area: gradient-legend;
 
       .content {
         width: 9.75rem;
       }
-    }
 
-    &.size {
-      grid-area: size-legend;
+      .legend-header-gradient {
+        @include utils.use-font(label, small);
+      }
+
+      // &.size {
+      //   grid-area: size-legend;
+      // }
     }
   }
+
+  // .legend-header {
+  //   // @include utils.use-font(label, small);
+  //   // display: flex;
+  //   // flex-direction: column;
+  //   // align-items: center;
+  //   // justify-content: center;
+
+  //   &.gradient {
+  //     grid-area: gradient-legend-header;
+  //     border-right: 1px solid vars.$outline;
+  //   }
+
+  //   &.size {
+  //     grid-area: size-legend-header;
+  //   }
+
+  //   .icon {
+  //     font-size: 1.125rem;
+  //     height: 1.125rem;
+  //     width: 1.125rem;
+  //   }
+  // }
 
   .source-list {
     height: 14rem;
