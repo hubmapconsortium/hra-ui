@@ -38,6 +38,9 @@ import {
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MatButtonModule } from '@angular/material/button';
+import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -51,10 +54,13 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
 @Component({
   selector: 'ftu-biomarker-details',
   imports: [
+    ButtonsModule,
     CommonModule,
+    MatButtonModule,
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
+    IconButtonModule,
     BiomarkerTableComponent,
     GradientLegendComponent,
     SizeLegendComponent,
