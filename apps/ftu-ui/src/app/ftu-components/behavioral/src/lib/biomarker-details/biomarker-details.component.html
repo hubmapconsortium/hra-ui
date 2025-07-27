@@ -1,3 +1,10 @@
+<div class="biomarker-header">
+  <span class="biomarker-header-title">Cell types by biomarkers</span>
+  <button mat-icon-button hraIconButtonSize="large">
+    <mat-icon>fullscreen</mat-icon>
+  </button>
+</div>
+
 <mat-button-toggle-group
   hraButtonToggleSize="small"
   [value]="selectedToggleValue"
@@ -29,14 +36,16 @@
   (collaborateClick)="collaborate()"
 ></ftu-empty-biomarker>
 
-<div class="legend-header gradient">Biomarker expression mean</div>
-<div class="legend gradient">
-  <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
-</div>
+<div class="legend">
+  <div class="legend-gradient">
+    <span class="legend-header-gradient">Biomarker expression mean</span>
+    <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
+  </div>
 
-<div class="legend-header size">Percentage of cells</div>
-<div class="legend size">
-  <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
+  <div class="legend-percentage">
+    <span class="legend-header-percentage">Percentage of cells</span>
+    <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
+  </div>
 </div>
 
 <div class="source-list">
