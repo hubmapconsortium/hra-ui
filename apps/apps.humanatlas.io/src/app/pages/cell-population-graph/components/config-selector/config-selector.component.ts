@@ -81,13 +81,13 @@ export class ConfigSelectorComponent {
 
   /** X-axis options */
   readonly xAxisOptions: { value: GraphAttribute; label: string }[] = [
-    { value: 'dataset_name', label: 'Dataset Name' },
+    { value: 'dataset_name', label: 'Dataset name' },
     { value: 'dataset_id', label: 'Dataset ID' },
   ];
 
   /** Y-axis options */
   readonly yAxisOptions: { value: GraphAttribute; label: string }[] = [
-    { value: 'count', label: 'Raw Count' },
+    { value: 'count', label: 'Raw count' },
     { value: 'percentage', label: 'Percentage' },
   ];
 

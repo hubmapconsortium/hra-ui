@@ -91,7 +91,7 @@ export const appRoutes: Route[] = [
     path: 'cell-population-graphs',
     component: CellPopulationGraphComponent,
     data: {
-      crumbs: [{ name: 'Apps', route: '/' }, { name: 'Cell Population Graph' }] satisfies BreadcrumbItem[],
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'Cell Population Graphs' }] satisfies BreadcrumbItem[],
       helpUrl: 'https://humanatlas.io/cell-population-graphs',
     },
   },
