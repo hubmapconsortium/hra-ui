@@ -21,7 +21,7 @@
   .page-content {
     display: flex;
     flex-direction: column;
-    padding: 2rem 1.5rem 0;
+    padding: 2rem 1.5rem 0rem;
     transition: all 0.5s;
   }
 
@@ -57,6 +57,10 @@
       --track-size: calc(var(--view-height) - 8);
       --_scrollbar-wrapper-top: var(--scrollbar-top-offset);
       top: calc(var(--scrollbar-top-offset) * 1px);
+    }
+
+    table {
+      padding-bottom: 2rem;
     }
 
     th {

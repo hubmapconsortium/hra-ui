@@ -15,6 +15,7 @@ import { forkJoin, fromEvent, Observable, switchMap, tap } from 'rxjs';
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
+import { VERSION_DATA } from '../../components/version-selector/version-selector.component';
 
 export interface FilterOption {
   id: string;
@@ -276,15 +277,16 @@ export class MainPageComponent {
           id: 'releaseVersion',
           label: 'HRA release version',
           options: Array.from(kgOptions.versionOptions).map((filterOption) => {
+            const versionData = VERSION_DATA[filterOption];
             return {
               id: filterOption,
-              label: filterOption,
+              label: versionData ? versionData.label : filterOption,
               count: this.calculateCount(filterOption, 'doVersion'),
-              secondaryLabel: '',
+              secondaryLabel: versionData ? versionData.date : undefined,
             };
           }),
           tooltip: {
-            description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
+            description: 'New and updated data is released twice a year on June 15 and December 15.',
           },
         },
         {
@@ -298,7 +300,8 @@ export class MainPageComponent {
             };
           }),
           tooltip: {
-            description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
+            description:
+              'Organs are distinct body structures made of specialized cells and tissues that work together to perform specific biological functions.',
           },
         },
         {

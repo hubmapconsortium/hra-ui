@@ -6,7 +6,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
-import { MenuOptionsType, TableColumn, TableComponent } from '@hra-ui/design-system/table';
+import { MenuOptionsType, TableColumn } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
@@ -53,7 +53,7 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
 
 @Component({
   selector: 'hra-metadata-page',
-  imports: [PageSectionComponent, MetadataLayoutModule, MarkdownComponent, ProvenanceMenuComponent, TableComponent],
+  imports: [PageSectionComponent, MetadataLayoutModule, MarkdownComponent, ProvenanceMenuComponent],
   templateUrl: './metadata-page.component.html',
   styleUrl: './metadata-page.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

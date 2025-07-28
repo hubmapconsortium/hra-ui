@@ -25,12 +25,12 @@
     height: min-content;
   }
 
-  .downloads {
-    width: 9.75rem;
+  .button {
+    font: vars.$label-medium;
   }
 
-  .view-app {
-    width: 6.75rem;
+  .downloads {
+    width: 9.75rem;
   }
 
   ::ng-deep .metadata-table {
@@ -49,8 +49,8 @@
   @media (min-width: 640px) {
     position: sticky;
     top: 10rem;
-    min-width: 240px;
-    max-width: 288px;
+    min-width: 15rem;
+    max-width: 18rem;
     margin: 0 0.75rem 1rem;
 
     .selector-and-buttons {
@@ -68,7 +68,7 @@
   }
 
   @media (min-width: 1100px) {
-    max-width: 360px;
+    max-width: 22.5rem;
     margin: 0;
 
     .selector-and-buttons {

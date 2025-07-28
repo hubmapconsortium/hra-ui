@@ -91,6 +91,7 @@ export const appRoutes: Route[] = [
     component: MetadataPageComponent,
     data: {
       columns: metadataColumns,
+      helpUrl: 'https://docs.humanatlas.io/apps',
     },
     resolve: {
       crumbs: (route: ActivatedRouteSnapshot) => {

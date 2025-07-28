@@ -50,8 +50,13 @@
               </button>
             }
             <button mat-list-item class="option" (mouseup)="selectOption(option)">
-              <div class="option-label">
-                <span class="option-name">{{ option.label }}</span>
+              <div class="labels-count">
+                <span class="option-labels">
+                  <div class="option-primary-label">{{ option.label }}</div>
+                  @if (option.secondaryLabel) {
+                    <div class="option-secondary-label">{{ option.secondaryLabel }}</div>
+                  }
+                </span>
                 <span class="option-count">{{ option.count }}</span>
               </div>
             </button>
