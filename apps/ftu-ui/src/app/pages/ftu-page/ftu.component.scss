@@ -27,21 +27,6 @@
           height: calc(100% - 5rem);
         }
       }
-
-      ftu-footer-behavior {
-        min-height: 5rem;
-
-        @media (min-width: 1820px) {
-          ::ng-deep hra-footer {
-            padding: 0 2rem;
-
-            .filler {
-              flex-grow: 1;
-            }
-          }
-        }
-      }
-
       ::ng-deep hra-interactive-svg {
         display: flex;
         height: calc(100% - 3rem);
@@ -53,10 +38,6 @@
       .illustration-details {
         height: 100%;
         z-index: 1;
-      }
-
-      .illustration-details {
-        // border-left: 1px solid rgba(vars.$light-dividers);
       }
     }
   }
