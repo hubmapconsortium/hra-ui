@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnDestroy, Output, ViewChild, inject } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { StateReset } from 'ngxs-reset-plugin';
@@ -27,7 +26,6 @@ export class RootComponent implements OnDestroy {
   readonly configService = inject(ConfigService);
   readonly store = inject(Store);
 
-  readonly dialog = inject(MatDialog);
   readonly indent = inject(IndentedListService);
   readonly report = inject(ReportService);
   readonly router = inject(Router);
@@ -65,7 +63,7 @@ export class RootComponent implements OnDestroy {
 
   // Tree Observables
   readonly treeData$: Observable<TNode[]> = this.store.select(TreeState.getTreeData);
-  readonly bsd$: Observable<any> = this.store.select(TreeState.getBottomSheetData);
+  readonly bsd$: Observable<Record<string, never>> = this.store.select(TreeState.getBottomSheetData);
   readonly bm$: Observable<BimodalData> = this.store.select(TreeState.getBimodal);
   readonly searchOption$: Observable<SearchStructure> = this.store.select(TreeState.getLatestSearchStructure);
 
