@@ -8,19 +8,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 21.5px 16px;
+    padding: 1.3438rem 1rem;
     border-bottom: 1px solid vars.$outline;
 
     .content {
       @include utils.use-font(label, medium);
-      padding-top: 9.5px;
-      padding-bottom: 9.5px;
+      padding: 0.5938rem 0;
     }
   }
 
   @media (min-height: 49.5rem) {
     hra-label-box {
-      font-size: 15px;
+      font-size: 0.9375rem;
       height: 3rem;
     }
   }
