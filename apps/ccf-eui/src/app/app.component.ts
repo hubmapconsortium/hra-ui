@@ -10,6 +10,7 @@ import { Store } from '@ngxs/store';
 import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
+import { debounce } from 'lodash';
 import { combineLatest, take } from 'rxjs';
 import { OntologySelection } from './core/models/ontology-selection';
 import { actionAsFn } from './core/store/action-as-fn';
@@ -26,7 +27,6 @@ import { SceneState } from './core/store/scene/scene.state';
 import { RemoveSearch, SetSelectedSearches } from './core/store/spatial-search-filter/spatial-search-filter.actions';
 import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter/spatial-search-filter.selectors';
 import { SpatialSearchFlowService } from './shared/services/spatial-search-flow.service';
-import { debounce } from 'lodash';
 
 /** App options */
 interface AppOptions {
