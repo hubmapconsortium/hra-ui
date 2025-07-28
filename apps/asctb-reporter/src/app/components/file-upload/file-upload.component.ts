@@ -1,17 +1,35 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
-  AbstractControl,
   ControlValueAccessor,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ButtonSizeDirective } from '@hra-ui/design-system/buttons/button';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    FontAwesomeModule,
+    ButtonSizeDirective,
+  ],
+
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -24,7 +42,6 @@ import {
       useExisting: FileUploadComponent,
     },
   ],
-  standalone: false,
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
   fileName = '';
@@ -41,6 +58,13 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
       this.fileFormDataEvent.emit(formData);
       this.onChange(this.fileName);
     }
+  }
+
+  onFileRemove(fileUpload: HTMLInputElement) {
+    fileUpload.value = '';
+    this.fileName = '';
+    this.fileFormDataEvent.emit();
+    this.onChange(this.fileName);
   }
 
   fileUploadError = false;

@@ -1,11 +1,11 @@
 import { Directive, input } from '@angular/core';
 
 /** Named button sizes */
-export type ButtonSize = 'small' | 'medium';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 /** Style a mat-button to a specific named size */
 @Directive({
-  selector: 'button[mat-button][hraButtonSize], a[mat-button][hraButtonSize]',
+  selector: 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]',
   standalone: true,
   host: {
     '[class]': '"hra-button-size-" + size()',

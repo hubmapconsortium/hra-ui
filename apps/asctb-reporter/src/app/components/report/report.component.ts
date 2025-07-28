@@ -3,8 +3,16 @@ import { BiomarkersCounts, BiomarkersNamesInReport, CByOrgan, Report } from '../
 import { CompareData, CompareReport, Row, Sheet, SheetConfig } from '../../models/sheet.model';
 import { ReportService } from './report.service';
 
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import moment from 'moment';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
@@ -12,12 +20,29 @@ import * as XLSX from 'xlsx';
 import { GaAction, GaCategory } from '../../models/ga.model';
 import { BmCtPairings, LinksASCTBData } from '../../models/tree.model';
 import { TreeService } from '../../modules/tree/tree.service';
+import { OrderByPipe } from '../../pipes/order-by/order-by.pipe';
+import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
+import { SidenavModule } from '../sidenav/sidenav.module';
 
 @Component({
   selector: 'app-report',
+  imports: [
+    CommonModule,
+    SidenavModule,
+    SidenavHeaderComponent,
+    MatTabsModule,
+    NgxChartsModule,
+    MatExpansionModule,
+    OrderByPipe,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatSortModule,
+    MatDividerModule,
+  ],
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
-  standalone: false,
 })
 export class ReportComponent implements OnInit {
   readonly reportService = inject(ReportService);
