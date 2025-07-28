@@ -1,6 +1,14 @@
-import { Component, Input, inject } from '@angular/core';
-import { MatSelectChange } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faDna } from '@fortawesome/free-solid-svg-icons';
+import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { Select, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
@@ -13,6 +21,7 @@ import {
   bimodalSortOptions,
 } from '../../models/bimodal.model';
 import { GaAction, GaCategory } from '../../models/ga.model';
+import { OmapConfig } from '../../models/omap.model';
 import { Error } from '../../models/response.model';
 import { BimodalService } from '../../modules/tree/bimodal.service';
 import { SheetState } from '../../store/sheet.state';
@@ -20,9 +29,19 @@ import { TreeState } from '../../store/tree.state';
 
 @Component({
   selector: 'app-functions',
+  imports: [
+    CommonModule,
+    MatExpansionModule,
+    MatSelectModule,
+    MatIconModule,
+    MatTooltipModule,
+    FontAwesomeModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    ButtonToggleSizeDirective,
+  ],
   templateUrl: './functions.component.html',
   styleUrls: ['./functions.component.scss'],
-  standalone: false,
 })
 export class FunctionsComponent {
   readonly store = inject(Store);
@@ -39,6 +58,9 @@ export class FunctionsComponent {
   @Input() error!: Error;
 
   @Select(TreeState.getBimodalConfig) config$!: Observable<BimodalConfig>;
+
+  @Input() omaps: OmapConfig = { organsOnly: false, proteinsOnly: false };
+  @Output() readonly updateConfig = new EventEmitter<OmapConfig>();
 
   constructor() {
     this.config$.subscribe((config) => {
@@ -68,5 +90,15 @@ export class FunctionsComponent {
         this.bms.makeBimodalData(data, treeData, bimodalConfig, false, sheetConfig, omapConfig, filteredProtiens);
       }
     });
+  }
+
+  /**
+   * Action handler for the OMAP toggle button
+   * @param event Click event
+   */
+  handleOMAPOptionToggle(event: Record<string, boolean>) {
+    this.omaps.organsOnly = event['organsOnly'];
+    this.omaps.proteinsOnly = event['proteinsOnly'];
+    this.updateConfig.emit(this.omaps);
   }
 }

@@ -142,7 +142,7 @@ export class CheckboxRowElementDirective {
     '[class.vertical-dividers]': 'verticalDividers()',
   },
 })
-export class TableComponent<T extends TableRow = TableRow> {
+export class TableComponent<T = TableRow> {
   /** CSV URL input */
   readonly csvUrl = input<string>();
 
@@ -212,7 +212,7 @@ export class TableComponent<T extends TableRow = TableRow> {
   });
 
   /** Table data source */
-  protected readonly dataSource = new MatTableDataSource<TableRow>([]);
+  protected readonly dataSource = new MatTableDataSource<T>([]);
 
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);

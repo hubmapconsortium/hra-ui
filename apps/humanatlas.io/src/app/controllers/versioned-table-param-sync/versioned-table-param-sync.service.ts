@@ -12,7 +12,7 @@ export class VersionedTableParamSyncControllerService implements ContentTemplate
   static readonly id = 'VersionedTableParamSync';
 
   /** The version from URL params */
-  private readonly version = linkedQueryParam('version');
+  private readonly version = linkedQueryParam('version', { preserveFragment: true });
 
   /** The component reference for the versioned data table */
   private readonly componentRef = signal<ComponentRef<VersionedDataTableComponent> | undefined>(undefined);

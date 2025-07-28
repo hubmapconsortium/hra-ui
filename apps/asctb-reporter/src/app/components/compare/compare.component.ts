@@ -1,15 +1,57 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
+import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { GaAction, GaCategory, GaCompareInfo } from '../../models/ga.model';
 import { CompareData } from '../../models/sheet.model';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
+import { SidenavModule } from '../sidenav/sidenav.module';
 
 @Component({
   selector: 'app-compare',
+  imports: [
+    CommonModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SidenavModule,
+    SidenavHeaderComponent,
+    MatButtonModule,
+    FileUploadComponent,
+    MatCardModule,
+    MatButtonToggleModule,
+    ButtonToggleSizeDirective,
+    ButtonSizeDirective,
+    ButtonVariantDirective,
+    MatMenuModule,
+    ScrollingModule,
+  ],
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],
-  standalone: false,
 })
 export class CompareComponent implements OnInit {
   readonly fb = inject(UntypedFormBuilder);
@@ -195,5 +237,11 @@ export class CompareComponent implements OnInit {
   removeCompareSheetRow(i: number) {
     this.formSheets.removeAt(i);
     this.ga.event(GaAction.CLICK, GaCategory.COMPARE, 'Delete compare row', i);
+  }
+
+  onDataSourceChange(idx: number) {
+    const sheets = this.formGroup.get('sheets') as FormArray;
+    const grp = sheets.at(idx) as FormGroup;
+    grp.patchValue({ link: '', fileName: '', formData: {} });
   }
 }

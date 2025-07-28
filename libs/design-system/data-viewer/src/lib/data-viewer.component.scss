@@ -59,6 +59,18 @@
 
   .select {
     min-width: 15.5rem;
+    height: 3rem;
+
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+      min-height: 1.25rem;
+    }
+    ::ng-deep .mdc-text-field {
+      min-height: 3rem;
+    }
+
+    ::ng-deep .mat-mdc-form-field-flex {
+      min-height: 3rem;
+    }
   }
 
   ::ng-deep .mdc-text-field--filled .mdc-floating-label--float-above {

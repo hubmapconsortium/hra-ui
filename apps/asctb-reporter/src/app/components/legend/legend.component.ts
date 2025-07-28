@@ -1,17 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, inject } from '@angular/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
+import { delay } from 'rxjs';
 import { BimodalData } from '../../models/bimodal.model';
 import { Legend } from '../../models/legend.model';
 import { Error } from '../../models/response.model';
 import { CompareData } from '../../models/sheet.model';
 import { TNode } from '../../models/tree.model';
+import { OrderByPipe } from '../../pipes/order-by/order-by.pipe';
 import { LegendService } from './legend.service';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-legend',
   templateUrl: './legend.component.html',
   styleUrls: ['./legend.component.scss'],
-  standalone: false,
+  imports: [CommonModule, ExpansionPanelModule, MatIconModule, OrderByPipe, MatExpansionModule],
+  providers: [LegendService],
 })
 export class LegendComponent implements OnInit, OnChanges {
   readonly ls = inject(LegendService);

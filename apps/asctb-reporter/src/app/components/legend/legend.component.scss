@@ -1,79 +1,73 @@
+@use 'utils';
+@use 'vars';
 @import './../../../assets/stylesheets/_colors.scss';
 
-.mat-expansion-panel:not([class*='mat-elevation-z']) {
-  box-shadow: none;
-}
+:host {
+  .title {
+    @include utils.use-font(label, large);
+    padding: 0.5rem 1rem;
+    height: 3rem;
+  }
 
-.mat-expansion-panel-header:not(.compare) {
-  border-top-left-radius: 0.5rem !important;
-  border-top-right-radius: 0.5rem !important;
-}
+  .circle {
+    height: 0.9375rem;
+    width: 0.9375rem;
+    border-radius: 50%;
+    display: inline-block;
+  }
 
-.mat-expansion-panel-header {
-  transition: all 0.3s;
-  background-color: $secondary !important;
-}
+  .rect {
+    height: 0.125rem;
+    width: 0.9375rem;
+    display: inline-block;
+  }
 
-.mat-expansion-panel-header:hover {
-  background-color: darken($color: $secondary, $amount: 8%) !important;
-}
+  .polygon {
+    display: inline-block;
+    height: 1.063rem;
+    width: 1.063rem;
+    background-color: unset !important;
+    background-repeat: no-repeat;
+    background-position: -0.438rem -0.438rem;
+  }
 
-.circle {
-  height: 0.9375rem;
-  width: 0.9375rem;
-  border-radius: 50%;
-  display: inline-block;
-}
+  .protein {
+    @extend .polygon;
+    background-image: url(../../../assets/legends/diamondSymbol.svg);
+  }
 
-.rect {
-  height: 0.125rem;
-  width: 0.9375rem;
-  display: inline-block;
-}
+  .lipids {
+    @extend .polygon;
+    background-image: url(../../../assets/legends/squareSymbol.svg);
+  }
 
-.protein {
-  height: 1.063rem;
-  width: 1.063rem;
-  background-image: url(../../../assets/legends/diamondSymbol.svg);
-  background-repeat: no-repeat;
-  background-position: -0.438rem -0.438rem;
-  background-color: unset !important;
-}
+  .metabolites {
+    @extend .polygon;
+    background-image: url(../../../assets/legends/triangleSymbol.svg);
+  }
 
-.lipids {
-  height: 1.063rem;
-  width: 1.063rem;
-  background-image: url(../../../assets/legends/squareSymbol.svg);
-  background-repeat: no-repeat;
-  background-color: unset !important;
-  background-position: -0.438rem -0.438rem;
-}
+  .proteoforms {
+    @extend .polygon;
+    background-image: url(../../../assets/legends/crossSymbol.svg);
+  }
 
-.metabolites {
-  height: 1.063rem;
-  width: 1.063rem;
-  background-image: url(../../../assets/legends/triangleSymbol.svg);
-  background-color: unset !important;
-  background-repeat: no-repeat;
-  background-position: -0.438rem -0.438rem;
-}
+  .legends {
+    & > div {
+      display: flex;
+      align-items: center;
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    }
 
-.proteoforms {
-  height: 1.063rem;
-  width: 1.063rem;
-  background-image: url(../../../assets/legends/crossSymbol.svg);
-  background-color: unset !important;
-  background-repeat: no-repeat;
-  background-position: -0.438rem -0.438rem;
-}
+    padding: 0 1rem 1rem 1rem;
+    border-bottom: 0.0625rem solid vars.$outline;
 
-.legend-div {
-  max-height: 11.25rem;
-  overflow-y: auto;
-
-  .legend-label {
-    padding-left: 0.5rem;
-    letter-spacing: 0.1px;
-    font-size: 14px;
+    .legend-label {
+      @include utils.use-font(label, medium);
+      padding-left: 0.5rem;
+      letter-spacing: 0.1px;
+      font-size: 14px;
+    }
   }
 }

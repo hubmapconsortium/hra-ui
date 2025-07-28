@@ -12,6 +12,7 @@
       [filter]="filter()"
       [technologyOptions]="technologyOptions()"
       [providerOptions]="providerOptions()"
+      [consortiaOptions]="consortiaOptions()"
       [spatialSearchItems]="spatialSearchItems()"
       (filterChange)="data.updateFilter($event); sidenav.toggle()"
       (spatialSearchSelectionChange)="setSelectedSearches($event)"
@@ -24,7 +25,6 @@
     @if (!databaseReady()) {
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
-    <hra-back-button-bar></hra-back-button-bar>
 
     <hra-nav-header-buttons
       app="product:eui"

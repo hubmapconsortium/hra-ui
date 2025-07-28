@@ -1,4 +1,4 @@
-export const VIDEO_ACTIONS = [
+export const VIDEO_SECTIONS = [
   {
     header: 'Introduction',
     desc: 'Know about the Reporter, what it is, why was it built and by who.',
@@ -66,7 +66,7 @@ export const VIDEO_ACTIONS = [
   },
 ];
 
-export const CONTIRBUTORS = [
+export const CONTRIBUTORS = [
   {
     img: 'assets/contributors/paul.jpg',
     name: 'Hrishikesh Paul',

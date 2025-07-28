@@ -11,7 +11,7 @@
 
   .vertical-divider th:not(:first-child),
   .vertical-divider td:not(:first-child) {
-    border-left: 1px solid vars.$outline-variant;
+    border-left: 1px solid vars.$outline;
   }
 
   @include mat.table-overrides(
@@ -80,6 +80,11 @@
 
   .numeric {
     margin-right: 1.125rem;
+
+  &.sortable {
+    .numeric {
+      margin-right: 1.125rem;
+    }
   }
 
   markdown ::ng-deep {
