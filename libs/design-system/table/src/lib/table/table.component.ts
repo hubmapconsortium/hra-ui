@@ -168,7 +168,7 @@ export class TableComponent<T = TableRow> {
   readonly selectionChange = output<T[]>();
 
   /** Selection model for checkbox functionality */
-  readonly selection = new SelectionModel<T>(true, []);
+  readonly selection = new SelectionModel<TableRow>(true, []);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
@@ -273,7 +273,7 @@ export class TableComponent<T = TableRow> {
     if (this.isAllSelected()) {
       this.selection.clear();
     } else {
-      this.selection.select(...(this.dataSource.data as T[]));
+      this.selection.select(...(this.dataSource.data as TableRow[]));
     }
     this.selectionChange.emit(this.selection.selected as T[]);
   }
@@ -282,7 +282,7 @@ export class TableComponent<T = TableRow> {
    * Toggle row selection
    */
   toggleRow(row: TableRow): void {
-    this.selection.toggle(row as T);
+    this.selection.toggle(row as TableRow);
     this.selectionChange.emit(this.selection.selected as T[]);
   }
 }
