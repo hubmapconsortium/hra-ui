@@ -5,7 +5,7 @@
 :host {
   display: grid;
   grid-template-columns: 17.75rem 1fr;
-  grid-template-rows: 4rem 16.5625rem 1fr;
+  grid-template-rows: 4rem auto 1fr;
   grid-template-areas:
     'headline legend-area'
     'table table'
@@ -33,7 +33,6 @@
     justify-content: space-between;
     column-gap: 0.5625rem;
     width: 100%;
-    border-bottom: 1px solid vars.$outline;
     border-right: 1px solid vars.$outline;
     @include utils.use-font(label, medium);
     padding-left: 1rem;
@@ -104,6 +103,7 @@
       justify-content: center;
       row-gap: 0.25rem;
       flex-grow: 1;
+      border-right: 1px solid vars.$outline;
 
       .legend-header-percentage {
         @include utils.use-font(label, small);
@@ -117,6 +117,7 @@
       justify-content: center;
       row-gap: 0.25rem;
       flex-grow: 1;
+      border-right: 1px solid vars.$outline;
       // grid-area: gradient-legend;
 
       .content {
@@ -126,38 +127,11 @@
       .legend-header-gradient {
         @include utils.use-font(label, small);
       }
-
-      // &.size {
-      //   grid-area: size-legend;
-      // }
     }
   }
 
-  // .legend-header {
-  //   // @include utils.use-font(label, small);
-  //   // display: flex;
-  //   // flex-direction: column;
-  //   // align-items: center;
-  //   // justify-content: center;
-
-  //   &.gradient {
-  //     grid-area: gradient-legend-header;
-  //     border-right: 1px solid vars.$outline;
-  //   }
-
-  //   &.size {
-  //     grid-area: size-legend-header;
-  //   }
-
-  //   .icon {
-  //     font-size: 1.125rem;
-  //     height: 1.125rem;
-  //     width: 1.125rem;
-  //   }
-  // }
-
   .source-list {
-    height: 14rem;
+    height: 100%;
     grid-area: source-list;
     overflow: hidden;
     max-height: 21rem;
@@ -166,11 +140,6 @@
   ftu-biomarker-table {
     grid-area: table;
     width: 100%;
-    height: 100%;
-
-    &.small {
-      min-height: fit-content;
-    }
   }
 
   ftu-label-box {
