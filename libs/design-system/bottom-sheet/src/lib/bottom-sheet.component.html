@@ -1,0 +1,17 @@
+<div class="sheet-header">
+  <button mat-icon-button class="close" aria-label="Close bottom sheet" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="sheet-content">
+  @switch (data.variant) {
+    @case ('table') {
+      <hra-table [rows]="data.rows" [columns]="data.columns" />
+    }
+
+    @case ('page-section') {
+      <hra-page-section [tagline]="data.tagline" />
+    }
+  }
+</div>
