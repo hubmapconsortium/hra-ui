@@ -10,9 +10,12 @@ export const MAIN_CONFIG_JSON =
 
 /** Order types for sorting */
 export const OrderTypeSchema = z.enum(['ascending', 'descending']);
+/** Order type for sorting */
 export type OrderType = z.infer<typeof OrderTypeSchema>;
 
+/** Graph attributes used for sorting and grouping */
 export type GraphAttribute = z.infer<typeof GraphAttributeSchema>;
+/** Graph attributes schema */
 export const GraphAttributeSchema = z.enum([
   '',
   'cell_type',
@@ -33,7 +36,9 @@ export const GraphAttributeSchema = z.enum([
   'cell_type_ontology_id',
 ]);
 
+/** Configuration schema for the Cell Population Graph */
 export type Configuration = z.infer<typeof ConfigurationSchema>;
+/** Configuration schema */
 export const ConfigurationSchema = z.object({
   label: z.string(),
   basePath: z.string(),
@@ -47,6 +52,7 @@ export const ConfigurationSchema = z.object({
   defaultGroupBy: GraphAttributeSchema.optional(),
 });
 
+/** Labels for graph attributes */
 export const GRAPH_ATTRIBUTE_LABELS = {
   '': 'None',
   cell_type: 'Cell Type',
@@ -67,7 +73,9 @@ export const GRAPH_ATTRIBUTE_LABELS = {
   cell_type_ontology_id: 'CellOntologyID',
 };
 
+/** Graph selection state schema */
 export type GraphSelectionState = z.infer<typeof GraphSelectionStateSchema>;
+/** Graph selection state schema */
 export const GraphSelectionStateSchema = z.object({
   datasetSource: z.string(),
   sortBy: z.string(),
@@ -77,13 +85,17 @@ export const GraphSelectionStateSchema = z.object({
   xAxisField: GraphAttributeSchema,
 });
 
+/** Dataset option schema */
 export type DatasetOption = z.infer<typeof DatasetOptionSchema>;
+/** Dataset option schema */
 export const DatasetOptionSchema = z.object({
   key: z.string(),
   label: z.string(),
 });
 
+/** Group option schema */
 export type GroupOption = z.infer<typeof GroupOptionSchema>;
+/** Group option schema */
 export const GroupOptionSchema = z.object({
   key: GraphAttributeSchema,
   label: z.string(),

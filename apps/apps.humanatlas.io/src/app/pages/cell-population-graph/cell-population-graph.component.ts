@@ -52,6 +52,9 @@ export class CellPopulationGraphComponent {
     });
   }
 
+  /**
+   * Loads configuration
+   */
   private async loadConfig(configSource?: string): Promise<void> {
     await this.dataService.loadConfiguration(configSource);
 
