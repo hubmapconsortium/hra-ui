@@ -1,0 +1,81 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
+:host {
+  display: flex;
+  height: calc(100vh - 7rem);
+  transition: all 0.5s;
+
+  &.filterClosed {
+    width: calc(100vw + 14rem);
+
+    .page-content {
+      transform: translateX(-14rem);
+    }
+
+    hra-table {
+      width: calc(100vw - 8.5rem);
+    }
+  }
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem 0;
+    transition: all 0.5s;
+  }
+
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0.75rem;
+
+    .object-search {
+      max-width: 36.25rem;
+      flex-grow: 1;
+
+      hra-icon {
+        padding: 0 0.75rem;
+      }
+    }
+
+    hra-results-indicator {
+      line-height: 2rem;
+      height: 3rem;
+    }
+  }
+
+  ::ng-deep hra-table {
+    --mat-table-header-container-height: 5.375rem;
+    --mat-table-row-item-container-height: 4.75rem;
+    border: none;
+    transition: all 0.5s;
+    width: calc(100vw - 22.5rem);
+
+    scrollbar-y {
+      --viewport-height: var(--view-height);
+      --track-size: calc(var(--view-height) - 8);
+      --_scrollbar-wrapper-top: var(--scrollbar-top-offset);
+      top: calc(var(--scrollbar-top-offset) * 1px);
+    }
+
+    th {
+      padding-bottom: 0.75rem !important;
+    }
+
+    th:first-of-type {
+      pointer-events: none;
+    }
+
+    tr {
+      background-color: vars.$on-primary;
+    }
+
+    td {
+      max-width: 50rem;
+      vertical-align: middle !important;
+      padding-top: 0.25rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+  }
+}

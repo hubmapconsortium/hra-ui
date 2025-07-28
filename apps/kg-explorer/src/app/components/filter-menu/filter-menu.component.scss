@@ -1,0 +1,54 @@
+@use 'utils';
+
+:host {
+  width: 18.5rem;
+  min-width: 18.5rem;
+  height: 100%;
+  border-right: 1px solid var(--mat-sys-outline);
+  padding: 2rem 1rem;
+  transition: all 0.5s;
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    color: var(--mat-sys-secondary);
+
+    .filter-icon {
+      padding: 0.5rem;
+    }
+
+    .drawer-title {
+      padding: 0.5rem 0.75rem;
+      @include utils.use-font(title, small);
+    }
+
+    .filler {
+      flex-grow: 1;
+    }
+
+    .menu-icon {
+      transition: all 0.5s;
+    }
+  }
+
+  .menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &.closed {
+    transform: translateX(-14rem);
+
+    .menu-icon {
+      transform: rotate(180deg);
+    }
+
+    .menu-content {
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+  }
+}

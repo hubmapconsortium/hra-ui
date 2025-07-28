@@ -11,7 +11,7 @@ export const TableVariantSchema = z.enum(['alternating', 'divider', 'basic']);
 export type TableRow = z.infer<typeof TableRowSchema>;
 
 /** Schema for a single table row */
-export const TableRowSchema = z.record(z.union([z.string(), z.number(), z.boolean()]));
+export const TableRowSchema = z.record(z.union([z.string(), z.number(), z.boolean(), z.array(z.any())]));
 
 /** Type for Text Column */
 export type TextColumnType = z.infer<typeof TextColumnTypeSchema>;
@@ -38,13 +38,44 @@ export const MarkdownColumnTypeSchema = z.object({
   type: z.literal('markdown'),
 });
 
+/** Type for Icon Column */
+export type IconColumnType = z.infer<typeof IconColumnTypeSchema>;
+
+/** Schema for Icon Column */
+export const IconColumnTypeSchema = z.object({
+  type: z.literal('icon'),
+  icon: z.string(),
+});
+
 /** Type for Link Column */
 export type LinkColumnType = z.infer<typeof LinkColumnTypeSchema>;
 
-/** Schema for Markdown Column */
+/** Schema for Link Column */
 export const LinkColumnTypeSchema = z.object({
   type: z.literal('link'),
   urlColumn: z.string(),
+});
+
+/** Type for MenuButton Column */
+export type MenuButtonColumnType = z.infer<typeof MenuButtonColumnTypeSchema>;
+
+/** Schema for MenuButton Column */
+export const MenuButtonColumnTypeSchema = z.object({
+  type: z.literal('menu'),
+  icon: z.string(),
+  options: z.string(),
+});
+
+/** Type for MenuOptions Column */
+export type MenuOptionsType = z.infer<typeof MenuOptionsTypeSchema>;
+
+/** Schema for MenuOptions Column */
+export const MenuOptionsTypeSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  icon: z.string(),
+  description: z.string().optional(),
+  url: z.string().url().optional(),
 });
 
 /** Union of Schema Types for Simple Columns */
@@ -52,6 +83,8 @@ export const SimpleTableColumnTypeSchema = z.union([
   TextColumnTypeSchema.shape.type,
   NumericColumnTypeSchema.shape.type,
   MarkdownColumnTypeSchema.shape.type,
+  IconColumnTypeSchema.shape.type,
+  MenuButtonColumnTypeSchema.shape.type,
 ]);
 
 /** Inferred types for Table Columns */
@@ -63,6 +96,8 @@ export const TableColumnTypeSchema = z.union([
   NumericColumnTypeSchema,
   MarkdownColumnTypeSchema,
   LinkColumnTypeSchema,
+  IconColumnTypeSchema,
+  MenuButtonColumnTypeSchema,
 ]);
 
 /** Type for table columns */
