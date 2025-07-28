@@ -168,7 +168,7 @@ export class TableComponent<T = TableRow> {
   readonly selectionChange = output<T[]>();
 
   /** Selection model for checkbox functionality */
-  readonly selection = new SelectionModel<TableRow>(true, []);
+  readonly selection = new SelectionModel<T>(true, []);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
