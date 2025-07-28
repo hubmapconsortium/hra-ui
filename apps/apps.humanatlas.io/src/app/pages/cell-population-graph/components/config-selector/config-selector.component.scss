@@ -3,10 +3,12 @@
 @use '@angular/material' as mat;
 
 :host {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem;
+  .configForm {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1rem;
+  }
 
   ::ng-deep {
     .mat-button-toggle-checkbox-wrapper {

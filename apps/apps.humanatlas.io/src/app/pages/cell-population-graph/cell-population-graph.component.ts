@@ -2,12 +2,11 @@ import { Component, computed, effect, inject, input, signal, ChangeDetectionStra
 import { VisualizationSpec } from 'vega-embed';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 import { ConfigSelectorComponent } from './components/config-selector/config-selector.component';
-import { MAIN_CONFIG_JSON, GraphSelectionState, ConfigurationSchema } from './models/parameters.model';
+import { MAIN_CONFIG_JSON, GraphSelectionState } from './models/parameters.model';
 import { CellPopulationDataService } from './services/cell-population-data.service';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatDividerModule } from '@angular/material/divider';
-import { httpResource } from '@angular/common/http';
 
 /**
  * Component for displaying the Cell Population Graph with configuration options.
@@ -22,12 +21,6 @@ import { httpResource } from '@angular/common/http';
 export class CellPopulationGraphComponent {
   /** Data service for loading configurations and datasets */
   private readonly dataService = inject(CellPopulationDataService);
-
-  readonly configurationUrl = input<string>(MAIN_CONFIG_JSON);
-
-  private readonly config = httpResource(() => this.configurationUrl(), {
-    parse: (raw: unknown) => ConfigurationSchema.parse(raw),
-  });
 
   /** Input for configuration source, defaults to the main config JSON */
   readonly configSource = input<string>(MAIN_CONFIG_JSON);

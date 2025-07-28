@@ -1,5 +1,6 @@
-import { Component, computed, effect, inject, output, signal, ChangeDetectionStrategy, model } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, ChangeDetectionStrategy, computed, effect, inject, model, output, signal } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -15,14 +16,13 @@ import {
 } from '../../models/parameters.model';
 import { CellPopulationDataService } from '../../services/cell-population-data.service';
 import { getStackedBarsSpec, StackedBarsSpecOptions } from '../../utils/visualization';
-import { CommonModule } from '@angular/common';
 
 /**
  * Component for selecting configurations from dropdowns and rendering the cell population graph.
  */
 @Component({
   selector: 'hra-config-selector',
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonToggleModule],
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonToggleModule],
   templateUrl: './config-selector.component.html',
   styleUrl: './config-selector.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,6 +30,9 @@ import { CommonModule } from '@angular/common';
 export class ConfigSelectorComponent {
   /** Data service */
   private readonly dataService = inject(CellPopulationDataService);
+
+  /** Form builder */
+  private readonly fb = inject(FormBuilder);
 
   /** Vega spec output signal */
   readonly vegaSpecEvent = output<VisualizationSpec>();
@@ -70,35 +73,49 @@ export class ConfigSelectorComponent {
     );
   });
 
-  /** Computed signal for sortBy options */
-  readonly sortOptions = computed<string[]>(() => {
-    return [...this.generalSortLabels(), ...this.cellTypes()];
-  });
-
   /** Options for order type */
   readonly orderTypeOptions: { value: OrderType; label: string }[] = [
     { value: 'ascending', label: 'Ascending' },
     { value: 'descending', label: 'Descending' },
   ];
 
+  /** X-axis options */
   readonly xAxisOptions: { value: GraphAttribute; label: string }[] = [
     { value: 'dataset_name', label: 'Dataset Name' },
     { value: 'dataset_id', label: 'Dataset ID' },
   ];
 
+  /** Y-axis options */
   readonly yAxisOptions: { value: GraphAttribute; label: string }[] = [
     { value: 'count', label: 'Raw Count' },
     { value: 'percentage', label: 'Percentage' },
   ];
 
+  /** Config form group */
+  readonly configForm: FormGroup = this.fb.group({
+    datasetSource: [''],
+    sortBy: [''],
+    orderType: ['descending'],
+    groupBy: [''],
+    xAxisField: ['dataset_name'],
+    yAxisField: ['count'],
+  });
+
   /**
    * Constructor to initialize the component and load the dataset and current configurations.
    */
   constructor() {
+    this.configForm.valueChanges.subscribe((value) => {
+      this.graphSelections.set({ ...this.graphSelections(), ...value });
+    });
+
     effect(() => {
-      const source = this.graphSelections()?.datasetSource;
-      if (source) {
-        this.loadDataset(source);
+      const selections = this.graphSelections();
+      if (selections) {
+        this.configForm.patchValue(selections, { emitEvent: false });
+        if (selections.datasetSource) {
+          this.loadDataset(selections.datasetSource);
+        }
       }
     });
 
@@ -106,9 +123,22 @@ export class ConfigSelectorComponent {
       const config = this.currentConfig();
       const data = this.graphData();
       const cellTypes = this.cellTypes();
+      const selections = this.graphSelections();
 
-      if (config && data.length > 0 && cellTypes.length > 0) {
-        this.emitSpec();
+      if (config && data.length && cellTypes.length && selections) {
+        const options: StackedBarsSpecOptions = {
+          values: data,
+          xAxisField: selections.xAxisField ?? 'dataset_name',
+          yAxisField: selections.yAxisField ?? 'count',
+          sortBy: selections.sortBy ?? 'Total Cell Count',
+          orderType: selections.orderType ?? 'descending',
+          groupBy: selections.groupBy ?? '',
+          legendField: 'cell_type',
+          legendDomain: cellTypes,
+          legendRange: [...config.colorPalette].reverse().slice(0, cellTypes.length),
+          fixedBars: config.fixed || 0,
+        };
+        this.vegaSpecEvent.emit(getStackedBarsSpec(options));
       }
     });
   }
@@ -119,55 +149,9 @@ export class ConfigSelectorComponent {
   private async loadDataset(source: string): Promise<void> {
     const result = await this.dataService.loadDataset(source);
     this.currentConfig.set(result.config);
-
-    // Update general sort labels with config attributes
-    const newSortLabels = [
+    this.generalSortLabels.set([
       'Total Cell Count',
       ...result.config.sortAttributes.map((attr) => GRAPH_ATTRIBUTE_LABELS[attr]),
-    ];
-    this.generalSortLabels.set(newSortLabels);
-  }
-
-  /**
-   * Emits the Vega-Lite specification based on current selections and data
-   */
-  private emitSpec(): void {
-    const config = this.currentConfig();
-    const data = this.graphData();
-    const cellTypes = this.cellTypes();
-
-    if (!config || data.length === 0) {
-      return;
-    }
-
-    if (!this.graphSelections()) {
-      return;
-    }
-    const options: StackedBarsSpecOptions = {
-      values: data,
-      xAxisField: this.graphSelections()?.xAxisField ?? 'dataset_name',
-      yAxisField: this.graphSelections()?.yAxisField ?? 'count',
-      sortBy: this.graphSelections()?.sortBy ?? 'Total cell count',
-      orderType: this.graphSelections()?.orderType ?? 'descending',
-      groupBy: this.graphSelections()?.groupBy ?? '',
-      legendField: 'cell_type',
-      legendDomain: cellTypes,
-      legendRange: Array.from(config.colorPalette).reverse().slice(0, cellTypes.length),
-      fixedBars: config.fixed || 0,
-    };
-
-    const spec = getStackedBarsSpec(options);
-    this.vegaSpecEvent.emit(spec);
-  }
-
-  /**
-   * Handles changes in graph selection state
-   *
-   * @param partial Partial graph selection state to update
-   */
-  onGraphSelectionChange(partial: Partial<GraphSelectionState>) {
-    const currentSelections = this.graphSelections();
-    const newSelections = { ...currentSelections, ...partial } as GraphSelectionState;
-    this.graphSelections.set(newSelections);
+    ]);
   }
 }

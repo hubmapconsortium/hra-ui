@@ -5,7 +5,6 @@ import {
   ElementRef,
   input,
   viewChild,
-  OnDestroy,
   resource,
   inject,
   Renderer2,
@@ -32,8 +31,14 @@ export class BarGraphComponent {
   /** ViewChild reference to the vega container element */
   private readonly container = viewChild.required<ElementRef<HTMLDivElement>>('vegaContainer');
 
+  /**
+   * Renderer  of bar graph component
+   */
   private readonly renderer = inject(Renderer2);
 
+  /**
+   * Vega resource of bar graph component
+   */
   private readonly vega = resource({
     request: () => this.spec(),
     loader: async (params) => {
@@ -64,6 +69,7 @@ export class BarGraphComponent {
     });
   }
 
+  /** Clears container element */
   private clearContainer(): void {
     const containerEl = this.container().nativeElement;
     while (containerEl.firstChild) {
@@ -71,6 +77,10 @@ export class BarGraphComponent {
     }
   }
 
+  /**
+   * Creates visualization root element
+   * @returns HTML element
+   */
   private createVisualizationRootElement(): HTMLElement {
     const element = this.renderer.createElement('div');
     this.renderer.appendChild(this.container().nativeElement, element);
