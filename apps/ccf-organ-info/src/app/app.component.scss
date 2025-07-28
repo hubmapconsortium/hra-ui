@@ -1,28 +1,116 @@
-.container {
-  height: fit-content;
+@use 'utils';
+@use 'vars';
+@use '@angular/material' as mat;
+
+:host {
   display: flex;
-  flex-direction: row;
-  padding: 1rem;
-  font-family:
-    var(--ccf-ui-font, ''),
-    Inter,
-    Inter Variable,
-    sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  text-align: left;
-  position: relative;
-  background-color: white;
-  color: black;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid vars.$outline;
+  overflow: hidden;
+  min-height: 35.625rem;
+  height: 100%;
 
-  .left {
-    width: auto;
-    flex-grow: 1;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 0.0625rem solid vars.$outline;
+
+    .left {
+      align-items: center;
+      display: flex;
+      gap: 1rem;
+
+      .icons {
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .title {
+        @include utils.use-font(title, medium);
+      }
+    }
   }
 
-  .right {
-    margin-left: 2rem;
-    height: fit-content;
-    width: 29rem;
+  .content {
+    display: flex;
+
+    height: 100%;
+    .organ-title {
+      @include utils.use-font(title, small);
+      margin-bottom: 1rem;
+    }
+
+    .info-view {
+      padding: 1.5rem;
+      min-width: 21rem;
+      max-width: 23.25rem;
+
+      .params {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+
+        mat-button-toggle-group {
+          width: 9.375rem;
+
+          mat-button-toggle {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .organ-view {
+      flex: 1 1;
+      background-color: #000;
+      position: relative;
+
+      .loading-spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+      }
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
+
+  /** Custom Styles for the Table */
+  ::ng-deep .stats-table {
+    thead th:first-child {
+      padding-right: 1.5rem;
+    }
+    tbody {
+      td {
+        &:first-child {
+          padding-right: 1.5rem;
+          span {
+            margin: 0;
+          }
+        }
+
+        &:last-child {
+          color: vars.$secondary;
+        }
+      }
+    }
+  }
+}
+
+.menu-divider {
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
 }
