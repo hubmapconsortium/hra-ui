@@ -81,72 +81,73 @@
   .numeric {
     margin-right: 1.125rem;
 
-  &.sortable {
-    .numeric {
-      margin-right: 1.125rem;
-    }
-  }
-
-  markdown ::ng-deep {
-    p:first-child {
-      margin-top: 0.5rem;
-    }
-
-    p:last-child {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  &.hra-table-style-basic {
-    ::ng-deep thead {
-      background-color: vars.$on-primary;
-    }
-  }
-
-  &.hra-table-style-divider,
-  &.hra-table-style-alternating {
-    @include mat.table-overrides(
-      (
-        background-color: vars.$on-primary,
-      )
-    );
-
-    ng-scrollbar {
-      --scrollbar-offset: 4;
-    }
-
-    ::ng-deep thead {
-      background-color: vars.$surface-dim;
-
-      th {
-        border-bottom: 0.0625rem solid vars.$outline;
-        padding-bottom: 0.5rem;
-        padding-top: 0.5rem;
-        vertical-align: bottom;
+    &.sortable {
+      .numeric {
+        margin-right: 1.125rem;
       }
     }
 
-    ::ng-deep tbody {
-      td {
-        padding-bottom: 0.5rem;
-        padding-top: 0.5rem;
-        vertical-align: top;
+    markdown ::ng-deep {
+      p:first-child {
+        margin-top: 0.5rem;
+      }
+
+      p:last-child {
+        margin-bottom: 0.5rem;
       }
     }
-  }
 
-  &.hra-table-style-divider {
-    @include mat.table-overrides(
-      (
-        row-item-outline-color: vars.$outline-variant,
-        row-item-outline-width: 0.0625rem,
-      )
-    );
-  }
+    &.hra-table-style-basic {
+      ::ng-deep thead {
+        background-color: vars.$on-primary;
+      }
+    }
 
-  &.hra-table-style-alternating {
-    ::ng-deep tbody tr:nth-child(even) {
-      background-color: vars.$surface-container;
+    &.hra-table-style-divider,
+    &.hra-table-style-alternating {
+      @include mat.table-overrides(
+        (
+          background-color: vars.$on-primary,
+        )
+      );
+
+      ng-scrollbar {
+        --scrollbar-offset: 4;
+      }
+
+      ::ng-deep thead {
+        background-color: vars.$surface-dim;
+
+        th {
+          border-bottom: 0.0625rem solid vars.$outline;
+          padding-bottom: 0.5rem;
+          padding-top: 0.5rem;
+          vertical-align: bottom;
+        }
+      }
+
+      ::ng-deep tbody {
+        td {
+          padding-bottom: 0.5rem;
+          padding-top: 0.5rem;
+          vertical-align: top;
+        }
+      }
+    }
+
+    &.hra-table-style-divider {
+      @include mat.table-overrides(
+        (
+          row-item-outline-color: vars.$outline-variant,
+          row-item-outline-width: 0.0625rem,
+        )
+      );
+    }
+
+    &.hra-table-style-alternating {
+      ::ng-deep tbody tr:nth-child(even) {
+        background-color: vars.$surface-container;
+      }
     }
   }
 }
