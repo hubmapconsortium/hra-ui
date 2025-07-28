@@ -122,13 +122,11 @@
       background-color: vars.$on-primary;
     }
 
-    // First row special styling
     tr:first-child td {
       max-width: 13.5rem;
     }
   }
 
-  // Type column styling
   .type {
     height: 1.75rem;
     max-width: 13.5rem;
@@ -142,7 +140,6 @@
     }
   }
 
-  // Count column styling
   .count {
     height: 1.75rem;
     min-width: 4.25rem;
@@ -152,14 +149,12 @@
     text-align: right;
   }
 
-  // First two columns padding
   th:first-child,
   th:nth-child(2) {
     padding-left: 0.5rem !important;
     vertical-align: bottom;
   }
 
-  // Icon header styling
   .icon-header {
     .header-column-text {
       writing-mode: vertical-rl;
