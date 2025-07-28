@@ -216,7 +216,7 @@
 }
 
 ::ng-deep ccf-eui.embedded .page-content {
-  grid-template-rows: 0rem 0rem 5rem calc(100vh - 8rem) !important;
+  grid-template-rows: 0rem 0rem 5rem calc(100vh - 5rem) !important;
 
   .ontologies {
     max-height: calc(100vh - 14.375rem) !important;
