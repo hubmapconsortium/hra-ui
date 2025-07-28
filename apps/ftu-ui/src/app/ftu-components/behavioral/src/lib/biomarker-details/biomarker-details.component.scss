@@ -1,133 +1,138 @@
+@use '@angular/material' as mat;
 @use 'vars';
 @use 'utils';
 
 :host {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  grid-template-rows: auto 2rem 69px min-content;
+  grid-template-columns: 17.75rem 1fr;
+  grid-template-rows: 4rem auto 1fr;
   grid-template-areas:
-    'table table table'
-    'gradient-legend-header size-legend-header size-legend-header'
-    'gradient-legend size-legend .'
-    'source-list source-list source-list';
+    'headline legend-area'
+    'table table'
+    'source-list source-list';
 
-  ::ng-deep .table-tab-header {
-    height: 39px !important;
-    background-color: white;
-    font-weight: 400;
-    letter-spacing: 0;
-    font-size: 0.75rem;
-  }
+  @include mat.button-toggle-overrides(
+    (
+      divider-color: 1px solid vars.$primary,
+      disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
+      height: 2rem,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: 1.3125rem,
+      label-text-size: 0.875rem,
+      label-text-weight: vars.$label-medium-weight,
+      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
+      selected-state-text-color: vars.$secondary,
+    )
+  );
 
-  @media (min-height: 49.5rem) {
-    grid-template-rows: auto 37px 69px min-content;
-    ::ng-deep .table-tab-header {
-      height: calc(3rem - 1px) !important;
-    }
-  }
-
-  @media (min-height: 60.75rem) {
-    grid-template-rows: auto 3rem 5rem min-content;
-  }
-
-  .table-header-group {
-    grid-area: table;
+  .biomarker-header {
+    grid-area: headline;
     display: flex;
-    max-width: 100%;
-    border-bottom: 1px solid rgba(var(--light-dividers));
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0.5625rem;
+    width: 100%;
+    border-right: 1px solid vars.$outline;
+    @include utils.use-font(label, medium);
+    padding-left: 1rem;
+  }
+
+  .absolute-toggle {
+    position: absolute;
+    top: 5rem;
+    left: 1rem;
+    z-index: 1000;
+    width: 14.625rem;
+    border: 1px solid vars.$primary;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+
+    .mat-button-toggle {
+      flex: 1;
+      font-weight: vars.$label-medium-weight;
+      text-transform: none;
+      transition: all 0.2s ease;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:not(:first-child) {
+        border-left: 1px solid vars.$outline;
+      }
+
+      .mat-button-toggle-label-content {
+        line-height: 1;
+        padding: 0;
+      }
+    }
   }
 
   .table {
     grid-area: table;
-    max-width: 100%;
-
-    ::ng-deep .mat-mdc-tab-body-wrapper {
-      height: 100%;
-    }
-
-    ::ng-deep .mat-mdc-tab {
-      max-width: 14rem;
-    }
-
-    ::ng-deep .expansion-icon {
-      position: absolute;
-      right: 0;
-      opacity: 1;
-      height: 100%;
-    }
+    width: 100%;
 
     .cursor {
       pointer-events: auto;
     }
   }
 
-  ::ng-deep {
-    .table-tab-header > .mdc-tab__content > span {
-      user-select: none;
-      font-weight: 500;
-    }
-
-    .mat-mdc-tab-group.mat-accent .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active {
-      user-select: none;
-    }
-  }
-
-  .legend-header {
-    @include utils.use-font(label, small);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &.gradient {
-      grid-area: gradient-legend-header;
-      border-right: 1px solid vars.$outline;
-    }
-
-    &.size {
-      grid-area: size-legend-header;
-    }
-
-    .icon {
-      font-size: 1.125rem;
-      height: 1.125rem;
-      width: 1.125rem;
-    }
-  }
-
   .legend {
+    grid-area: legend-area;
+    min-width: 21.5rem;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    align-content: space-around;
+    width: 100%;
 
-    &.gradient {
-      grid-area: gradient-legend;
+    .legend-percentage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 0.25rem;
+      flex-grow: 1;
+      border-right: 1px solid vars.$outline;
+
+      .legend-header-percentage {
+        @include utils.use-font(label, small);
+      }
+    }
+
+    .legend-gradient {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 0.25rem;
+      flex-grow: 1;
+      border-right: 1px solid vars.$outline;
 
       .content {
         width: 9.75rem;
       }
-    }
 
-    &.size {
-      grid-area: size-legend;
+      .legend-header-gradient {
+        @include utils.use-font(label, small);
+      }
     }
   }
 
   .source-list {
-    height: 14rem;
+    height: 100%;
     grid-area: source-list;
     overflow: hidden;
     max-height: 21rem;
   }
 
-  hra-biomarker-table {
-    height: 100%;
-
-    &.small {
-      min-height: fit-content;
-    }
+  ftu-biomarker-table {
+    grid-area: table;
+    width: 100%;
   }
 
-  hra-label-box {
+  ftu-label-box {
     font-size: 0.875rem;
     padding-left: 1.5rem;
   }

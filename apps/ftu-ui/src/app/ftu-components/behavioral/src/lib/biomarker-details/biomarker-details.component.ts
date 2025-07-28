@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
@@ -15,7 +16,11 @@ import {
   SizeLegendComponent,
 } from '../../../../atoms/src';
 import { SourceListComponent } from '../../../../molecules/src';
-import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
+import {
+  BiomarkerTableComponent,
+  DataCell,
+  TissueInfo,
+} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
@@ -33,6 +38,9 @@ import {
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MatButtonModule } from '@angular/material/button';
+import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -46,17 +54,19 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
 @Component({
   selector: 'ftu-biomarker-details',
   imports: [
+    ButtonsModule,
     CommonModule,
+    MatButtonModule,
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
+    IconButtonModule,
     BiomarkerTableComponent,
     GradientLegendComponent,
-    HoverDirective,
-    LabelBoxComponent,
     SizeLegendComponent,
     SourceListComponent,
     EmptyBiomarkerComponent,
+    MatButtonToggleModule,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],
@@ -111,13 +121,33 @@ export class BiomarkerDetailsComponent {
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
+  private activeTabIndex = 0;
+
   /** Table tabs */
-  get tabs(): CellSummaryAggregate[] {
+  get tab(): CellSummaryAggregate {
     const tabs = this.getTabs();
-    if (tabs.length !== 0) {
-      this.tabs_ = tabs;
+    return tabs[this.activeTabIndex] ?? { label: '', columns: [], rows: [] };
+  }
+
+  /** Toggle options for the biomarker table */
+  readonly toggleOptions = [
+    { value: 'genes', label: 'Genes' },
+    { value: 'proteins', label: 'Proteins' },
+    { value: 'lipids', label: 'Lipids' },
+  ];
+
+  /** Selected toggle value */
+  selectedToggleValue = 'genes';
+
+  /**
+   * Handle toggle change from biomarker table
+   * @param value selected toggle value
+   */
+  onToggleChange(value: string): void {
+    const index = this.toggleOptions.findIndex((option) => option.value === value);
+    if (index !== -1) {
+      this.activeTabIndex = index;
     }
-    return this.tabs_;
   }
 
   /**
