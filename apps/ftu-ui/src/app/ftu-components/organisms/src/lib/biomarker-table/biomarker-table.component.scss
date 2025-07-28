@@ -5,8 +5,9 @@
 :host {
   display: block;
   position: relative;
-  height: 16rem;
+  min-height: 14rem;
   width: 100%;
+  border: 1px solid vars.$outline;
 
   @include mat.table-overrides(
     (
@@ -112,6 +113,11 @@
       border-bottom: none;
     }
 
+    td:first-child,
+    td:nth-child(2) {
+      background: vars.$surface-container-low;
+    }
+
     td:not(:first-child):not(:nth-child(2)) {
       background-color: vars.$on-primary;
     }
@@ -120,7 +126,6 @@
     tr:first-child td {
       max-width: 13.5rem;
     }
-
   }
 
   // Type column styling
@@ -164,6 +169,12 @@
       text-overflow: ellipsis;
       margin: 0.5rem auto;
       max-height: calc(6rem - 16px);
+    }
+  }
+
+  .icon-cell {
+    .icon {
+      margin: auto;
     }
   }
 }
