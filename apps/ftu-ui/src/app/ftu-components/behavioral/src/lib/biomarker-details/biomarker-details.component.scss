@@ -38,14 +38,6 @@
     padding-left: 1rem;
   }
 
-  // @media (min-height: 49.5rem) {
-  //   grid-template-rows: auto 37px 69px min-content;
-  // }
-
-  // @media (min-height: 60.75rem) {
-  //   grid-template-rows: auto 3rem 5rem min-content;
-  // }
-
   .absolute-toggle {
     position: absolute;
     top: 5rem;
@@ -96,7 +88,6 @@
     width: 100%;
 
     .legend-percentage {
-      // grid-area: size-legend;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -118,7 +109,6 @@
       row-gap: 0.25rem;
       flex-grow: 1;
       border-right: 1px solid vars.$outline;
-      // grid-area: gradient-legend;
 
       .content {
         width: 9.75rem;
