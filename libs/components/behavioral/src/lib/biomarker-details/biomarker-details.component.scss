@@ -10,18 +10,6 @@
     'gradient-legend size-legend .'
     'source-list source-list source-list';
 
-  ::ng-deep .table-tab-header {
-    height: 39px !important;
-    background-color: white;
-    font-weight: 400;
-    letter-spacing: 0;
-    font-size: 0.75rem;
-
-    &:hover {
-      // background: rgba(vars.$primary-lighter);
-    }
-  }
-
   @media (min-height: 49.5rem) {
     grid-template-rows: auto 37px 69px min-content;
     ::ng-deep .table-tab-header {
@@ -33,17 +21,16 @@
     grid-template-rows: auto 3rem 5rem min-content;
   }
 
-  .table-header-group {
-    grid-area: table;
-    display: flex;
-    max-width: 100%;
-    border-bottom: 1px solid rgba(var(--light-dividers));
-  }
+  // .table-header-group {
+  //   grid-area: table;
+  //   display: flex;
+  //   max-width: 100%;
+  //   border-bottom: 1px solid;
+  // }
 
   .table {
     grid-area: table;
     max-width: 100%;
-    // border-bottom: 1px solid rgba(vars.$light-dividers);
 
     ::ng-deep .mat-mdc-tab-body-wrapper {
       height: 100%;

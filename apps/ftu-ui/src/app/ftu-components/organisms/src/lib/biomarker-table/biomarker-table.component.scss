@@ -1,128 +1,180 @@
+@use '@angular/material' as mat;
 @use 'utils';
 @use 'vars';
 
 :host {
   display: block;
+  position: relative;
+  min-height: 14rem;
+  width: 100%;
+  border: 1px solid vars.$outline;
 
-  .table th,
-  .table th div {
-    height: 6.5rem !important;
-  }
+  @include mat.table-overrides(
+    (
+      header-container-height: 6rem,
+      header-headline-color: vars.$secondary,
+      header-headline-font: vars.$label-small-font,
+      header-headline-size: vars.$label-small-size,
+      header-headline-weight: vars.$label-small-weight,
+      row-item-container-height: 1.75rem,
+      row-item-label-text-color: vars.$primary,
+      row-item-label-text-font: vars.$label-small-font,
+      row-item-label-text-size: vars.$label-small-size,
+      row-item-label-text-weight: vars.$label-small-weight,
+    )
+  );
+
+  @include mat.button-toggle-overrides(
+    (
+      divider-color: 1px solid vars.$primary,
+      disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
+      height: 2rem,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: 1.3125rem,
+      label-text-size: 0.875rem,
+      label-text-weight: vars.$label-medium-weight,
+      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
+      selected-state-text-color: vars.$secondary,
+    )
+  );
 
   cdk-virtual-scroll-viewport {
     height: 100%;
+    width: 100%;
   }
 
-  .sr-only {
-    // @include utils.sr-only();
+  .absolute-toggle {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    width: 14.625rem;
+    border: 1px solid vars.$primary;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+
+    .mat-button-toggle {
+      flex: 1;
+      font-weight: vars.$label-medium-weight;
+      text-transform: none;
+      transition: all 0.2s ease;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:not(:first-child) {
+        border-left: 1px solid vars.$outline;
+      }
+
+      .mat-button-toggle-label-content {
+        line-height: 1;
+        padding: 0;
+      }
+    }
   }
 
   .table {
-    margin-left: -1px;
+    background-color: vars.$surface-container-low;
+    width: 100%;
 
     .highlight {
-      // background: rgba(vars.$primary-lighter);
+      background-color: rgba(vars.$primary, 0.1);
     }
+
     td.type {
-      text-transform: lowercase;
+      text-transform: capitalize;
     }
-  }
 
-  .table th {
-    // background: rgba(vars.$primary-lighter);
-    // color: rgba(vars.$accent-darker);
-    font-weight: 500;
-    height: 56px;
-    padding: 0;
-    max-width: 2.75rem;
-    min-width: 2.75rem;
-    // border-bottom: 1px solid rgba(vars.$light-dividers);
-  }
+    th {
+      padding: 0;
+      max-width: 2.75rem;
+      min-width: 2.75rem;
+      border-bottom: 1px solid vars.$outline;
+      background-color: vars.$surface-container-low;
 
-  .table td {
-    // border-bottom: 1px solid rgba(vars.$light-dividers);
-    padding: 0 0.5rem;
+      &:first-child {
+        max-width: 188px;
+        min-width: 188px;
+        width: 188px;
+      }
 
-    &:not(:first-child) {
-      // border-left: 1px solid rgba(vars.$light-dividers);
+      &:nth-child(2) {
+        max-width: 96px;
+        min-width: 96px;
+        width: 96px;
+        text-align: center;
+      }
     }
-  }
 
-  .table tr {
-    height: 2rem;
-    font-size: 0.75rem;
-  }
+    td {
+      padding: 0 0.5rem;
+      border-bottom: none;
+    }
 
-  .table tr:first-child td {
-    // border-top: 0rem solid rgba(vars.$light-dividers);
-    max-width: 13.5rem;
-  }
+    td:first-child,
+    td:nth-child(2) {
+      background: vars.$surface-container-low;
+    }
 
-  tr > td:first-child {
-    text-align: left;
-  }
+    td:not(:first-child):not(:nth-child(2)) {
+      background-color: vars.$on-primary;
+    }
 
-  tr > th:first-child {
-    text-align: left;
-  }
-
-  tr > td:last-of-type {
-    // border-right: 1px solid rgba(vars.$light-dividers);
-  }
-
-  tr > th:last-of-type {
-    // border-right: 1px solid rgba(vars.$light-dividers);
-    // border-left: 1px solid rgba(vars.$light-dividers);
+    tr:first-child td {
+      max-width: 13.5rem;
+    }
   }
 
   .type {
-    height: 2rem;
+    height: 1.75rem;
     max-width: 13.5rem;
-    border-radius: 0rem;
     white-space: nowrap;
+    padding-left: 1rem;
+    padding-right: 0.5rem;
 
     &.highlight {
       font-weight: bold;
+      background-color: rgba(vars.$primary, 0.1);
     }
   }
 
   .count {
-    height: 2rem;
+    height: 1.75rem;
     min-width: 4.25rem;
-    // border-right: 1px solid rgba(vars.$light-dividers);
-  }
-
-  th:not(:first-child) {
-    // border-left: 1px solid rgba(vars.$light-dividers);
+    max-width: 6rem;
+    padding-right: 1rem;
+    border-right: 1px solid vars.$outline;
+    text-align: right;
   }
 
   th:first-child,
   th:nth-child(2) {
-    padding: 0 0.5rem !important;
+    padding-left: 0.5rem !important;
+    vertical-align: bottom;
   }
 
   .icon-header {
     .header-column-text {
-      // transform: rotate(-90deg);
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       margin: 0.5rem auto;
+      max-height: calc(6rem - 16px);
     }
   }
 
   .icon-cell {
-    width: 2rem;
-    min-height: 2rem;
-
     .icon {
       margin: auto;
     }
   }
 }
 
+// Row hover effect
 .mat-mdc-row:hover .mat-mdc-cell {
-  // background: rgba(vars.$primary-lighter);
+  background-color: rgba(vars.$primary, 0.05);
 }

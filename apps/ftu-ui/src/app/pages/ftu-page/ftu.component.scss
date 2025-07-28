@@ -27,7 +27,8 @@
           height: calc(100% - 5rem);
         }
       }
-      ::ng-deep hra-interactive-svg {
+      
+      ::ng-deep ftu-interactive-svg {
         display: flex;
         height: calc(100% - 3rem);
       }
@@ -46,20 +47,20 @@
     ftu-biomarker-details {
       grid-template-columns: 0.5fr 0.5fr 1fr;
 
-      hra-source-list {
+      ftu-source-list {
         width: unset !important;
 
-        hra-label-box {
+        ftu-label-box {
           width: auto;
         }
       }
     }
 
-    hra-label-box.table-header {
+    ftu-label-box.table-header {
       width: auto;
     }
 
-    hra-biomarker-table {
+    ftu-biomarker-table {
       max-width: none;
     }
   }
