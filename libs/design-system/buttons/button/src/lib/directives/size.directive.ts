@@ -1,7 +1,7 @@
 import { Directive, input } from '@angular/core';
 
 /** Named button sizes */
-export type ButtonSize = 'small' | 'medium';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 /** Style a mat-button to a specific named size */
 @Directive({
