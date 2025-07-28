@@ -13,47 +13,6 @@
     gap: 2.5rem;
   }
 
-  ::ng-deep .provenance-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    height: min-content;
-
-    .selector-and-buttons {
-      height: min-content;
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-      gap: 1.5rem;
-      border-radius: 0.5rem;
-      border: 1px solid vars.$outline;
-    }
-
-    .provenance-buttons {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .downloads {
-      width: 9.75rem;
-    }
-
-    markdown {
-      overflow-wrap: anywhere;
-    }
-    ul {
-      padding-inline-start: 1.5rem;
-    }
-
-    td {
-      vertical-align: inherit !important;
-    }
-  }
-
-  .metadata-table {
-    height: min-content;
-  }
-
   @media (min-width: 640px) {
     padding: 2.5rem;
 
@@ -63,13 +22,6 @@
       max-width: 87.5rem;
       margin: auto;
     }
-
-    .provenance-menu {
-      position: sticky;
-      top: 10rem;
-      max-width: 288px;
-      margin: 0 0.75rem 1rem;
-    }
   }
 
   @media (min-width: 1100px) {
@@ -78,11 +30,6 @@
 
     .content-container {
       width: calc(100% - 23rem - 2.5rem);
-    }
-
-    .provenance-menu {
-      max-width: 360px;
-      margin: 0;
     }
   }
 }

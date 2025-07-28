@@ -2,80 +2,26 @@
   <ng-content select="hra-metadata-layout-header" />
 
   @if (isSmallScreen()) {
-    <div class="provenance-menu small">
-      <div class="selector-and-buttons">
-        <hra-version-selector
-          [version]="version()"
-          [availableVersions]="availableVersions()"
-          (versionChange)="versionChange.emit($event)"
-        ></hra-version-selector>
-        <div class="provenance-buttons">
-          <button mat-flat-button class="downloads button" [matMenuTriggerFor]="options">
-            Downloads
-            <mat-icon>download</mat-icon>
-          </button>
-
-          <mat-menu #options="matMenu">
-            @for (option of downloadOptions(); track option) {
-              <button mat-menu-item (click)="saveFile(option.url || '', option.id)">
-                <mat-icon>{{ option.icon }}</mat-icon>
-                <div class="option-text">
-                  <span class="option-name">
-                    {{ option.name }}
-                  </span>
-                  <span class="option-description">
-                    {{ option.description }}
-                  </span>
-                </div>
-              </button>
-            }
-          </mat-menu>
-
-          <button mat-button hraButtonVariant="secondary">View in app</button>
-        </div>
-      </div>
-      <hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
-    </div>
+    <hra-provenance-menu
+      [rows]="rows()"
+      [columns]="columns()"
+      [version]="version()"
+      [availableVersions]="availableVersions()"
+      [downloadOptions]="downloadOptions()"
+      (versionChange)="versionChange.emit($event)"
+    ></hra-provenance-menu>
   }
 
   <ng-content select="hra-metadata-layout-content" />
 </div>
 
 @if (isWideScreen()) {
-  <div class="provenance-menu wide">
-    <div class="selector-and-buttons">
-      <hra-version-selector
-        [version]="version()"
-        [availableVersions]="availableVersions()"
-        (versionChange)="versionChange.emit($event)"
-      ></hra-version-selector>
-
-      <div class="provenance-buttons">
-        <button mat-flat-button class="downloads button" [matMenuTriggerFor]="options">
-          Downloads
-          <mat-icon>download</mat-icon>
-        </button>
-
-        <mat-menu #options="matMenu">
-          @for (option of downloadOptions(); track option) {
-            <button mat-menu-item (click)="saveFile(option.url || '', option.id)">
-              <mat-icon>{{ option.icon }}</mat-icon>
-              <div class="option-text">
-                <span class="option-name">
-                  {{ option.name }}
-                </span>
-                <span class="option-description">
-                  {{ option.description }}
-                </span>
-              </div>
-            </button>
-          }
-        </mat-menu>
-
-        <button mat-button hraButtonVariant="secondary">View in app</button>
-      </div>
-    </div>
-
-    <hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
-  </div>
+  <hra-provenance-menu
+    [rows]="rows()"
+    [columns]="columns()"
+    [version]="version()"
+    [availableVersions]="availableVersions()"
+    [downloadOptions]="downloadOptions()"
+    (versionChange)="versionChange.emit($event)"
+  ></hra-provenance-menu>
 }

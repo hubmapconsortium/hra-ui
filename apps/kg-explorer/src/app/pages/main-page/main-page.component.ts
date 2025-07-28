@@ -9,16 +9,12 @@ import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
-import { MenuOptionsType, TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
-import {
-  DigitalObjectData,
-  DigitalObjectMetadata,
-  DistributionsInfo,
-  KnowledgeGraphObjectsData,
-} from '../../digital-objects.schema';
+import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
+import { DownloadService } from '../../services/download.service';
 
 export interface FilterOption {
   id: string;
@@ -96,87 +92,6 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   ureter: 'ureter-left',
 };
 
-/** Interface for file type info */
-interface FileTypeData {
-  /** File name */
-  name: string;
-  /** Suffix to append to end of download url */
-  typeSuffix: string;
-  /** Optional file type description */
-  description?: string;
-}
-
-/** Maps mediaType to file type data */
-export const FILE_TYPE_MAP: Record<string, FileTypeData> = {
-  'image/svg+xml': {
-    name: 'SVG',
-    typeSuffix: '.svg',
-  },
-  'image/png': {
-    name: 'PNG',
-    typeSuffix: '.png',
-  },
-  'application/postscript': {
-    name: 'Adobe Illustrator',
-    typeSuffix: '.ai',
-  },
-  'text/yaml': {
-    name: 'YAML',
-    typeSuffix: '.yaml',
-  },
-  'model/gltf-binary': {
-    name: 'GLB',
-    typeSuffix: '.glb',
-  },
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': {
-    name: 'XLSX',
-    typeSuffix: '.xlsx',
-  },
-  'text/vnd.mermaid': {
-    name: 'MMD',
-    typeSuffix: '.mmd',
-  },
-  'application/vnd.chipnuts.karaoke-mmd': {
-    //TODO: Remove when data is fixed
-    name: 'MMD',
-    typeSuffix: '.mmd',
-  },
-  'text/csv': {
-    name: 'CSV - Crosswalk',
-    description: 'A CSV file connecting digital objects to ontology terms in ASCT+B Tables.',
-    typeSuffix: '.csv',
-  },
-
-  'application/json': {
-    name: 'JSON',
-    typeSuffix: '.json',
-  },
-  'text/turtle': {
-    name: 'Turtle',
-    description:
-      'Terse RDF Triple Language (Turtle) format helps developers write SPARQL queries to HRA data by making its triple structure explicit and showing possible subjects, predicates, and objects.',
-    typeSuffix: '.ttl',
-  },
-  'application/ld+json': {
-    name: 'JSON-LD',
-    description:
-      'A lightweight Linked Data format, ideal for programming environments, such as REST Web services, and unstructured databases such as Apache CouchDB and MongoDB.',
-    typeSuffix: '.jsonld',
-  },
-  'application/rdf+xml': {
-    name: 'RDF/XML',
-    typeSuffix: '.xml',
-  },
-  'application/n-triples': {
-    name: 'N-Triple',
-    typeSuffix: '.nq',
-  },
-  'application/n-quads': {
-    name: 'N-Quads',
-    typeSuffix: '.nt',
-  },
-};
-
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
 
@@ -224,6 +139,7 @@ export class MainPageComponent {
   private readonly http = inject(HttpClient);
   private readonly kg = inject(HraKgService);
   private readonly v1 = inject(V1Service);
+  readonly download = inject(DownloadService);
 
   /** Whether or not the filter menu is closed */
   readonly filterClosed = signal<boolean>(false);
@@ -483,42 +399,11 @@ export class MainPageComponent {
         this.allRows().map((row) => {
           const md = metadata.find((entry) => entry.id === row['lod']);
           if (md) {
-            row['downloadOptions'] = this.getDownloadOptions(md);
+            row['downloadOptions'] = this.download.getDownloadOptions(md);
           }
         });
       }),
     );
-  }
-
-  /**
-   * Gets distributions data from metadata JSON and returns resolved download data
-   * @param metadata Metadata JSON
-   * @returns Array of distributions download info for the metadata
-   */
-  private getDownloadOptions(metadata: DigitalObjectMetadata): MenuOptionsType[] {
-    const id = metadata.id;
-    const files = metadata.distributions;
-    const derivedFiles = metadata.was_derived_from.distributions;
-    return this.resolveDownloadOptions(id, derivedFiles.concat(files));
-  }
-
-  /**
-   * Resolves download options
-   * @param id Object id
-   * @param files Array of distributions from metadata
-   * @returns Resolved download data
-   */
-  private resolveDownloadOptions(id: string, files: DistributionsInfo[]) {
-    return files.map((file) => {
-      const fileType = FILE_TYPE_MAP[file.mediaType];
-      return {
-        id: id + fileType.typeSuffix,
-        name: fileType.name,
-        description: fileType.description,
-        icon: 'download',
-        url: file.downloadUrl,
-      };
-    });
   }
 
   /**
@@ -553,22 +438,6 @@ export class MainPageComponent {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     return `${year}-${month}`;
-  }
-
-  /**
-   * Downloads file
-   * @param url Download url
-   * @param id File name to save as
-   */
-  saveFile(url: string, id: string) {
-    this.http.get(url, { responseType: 'blob' }).subscribe((blob) => {
-      const a = document.createElement('a');
-      const objectUrl = URL.createObjectURL(blob);
-      a.href = objectUrl;
-      a.download = id;
-      a.click();
-      URL.revokeObjectURL(objectUrl);
-    });
   }
 
   /**

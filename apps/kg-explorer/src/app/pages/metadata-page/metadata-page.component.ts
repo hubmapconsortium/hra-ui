@@ -3,26 +3,17 @@ import '@google/model-viewer';
 import { HttpClient } from '@angular/common/http';
 import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
-import { HraCommonModule } from '@hra-ui/common';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
-import { IconsModule } from '@hra-ui/design-system/icons';
 import { MenuOptionsType, TableColumn, TableComponent } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
-import {
-  DigitalObjectMetadata,
-  DistributionsInfo,
-  KnowledgeGraphObjectsData,
-  PersonInfo,
-} from '../../digital-objects.schema';
-import { FILE_TYPE_MAP, ORGAN_ICON_MAP, PRODUCT_ICON_MAP } from '../main-page/main-page.component';
-import { VersionSelectorComponent } from '../../components/version-selector/version-selector.component';
-import { MatMenuModule } from '@angular/material/menu';
+import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
+import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
+import { DownloadService } from '../../services/download.service';
+import { ORGAN_ICON_MAP, PRODUCT_ICON_MAP } from '../main-page/main-page.component';
 
 const EMPTY_METADATA: DigitalObjectMetadata = {
   $schema: '',
@@ -62,26 +53,16 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
 
 @Component({
   selector: 'hra-metadata-page',
-  imports: [
-    HraCommonModule,
-    MatIconModule,
-    ButtonsModule,
-    PageSectionComponent,
-    MetadataLayoutModule,
-    MarkdownComponent,
-    TableComponent,
-    IconsModule,
-    VersionSelectorComponent,
-    MatMenuModule,
-  ],
+  imports: [PageSectionComponent, MetadataLayoutModule, MarkdownComponent, ProvenanceMenuComponent, TableComponent],
   templateUrl: './metadata-page.component.html',
   styleUrl: './metadata-page.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MetadataPageComponent {
   private readonly http = inject(HttpClient);
-  private route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly download = inject(DownloadService);
+  private route = inject(ActivatedRoute);
 
   readonly metadata = signal<DigitalObjectMetadata>(EMPTY_METADATA);
 
@@ -137,7 +118,7 @@ export class MetadataPageComponent {
         .get(`https://lod.humanatlas.io/${type}/${name}/${this.currentVersion()}`, { responseType: 'json' })
         .subscribe((data) => {
           this.metadata.set(data as DigitalObjectMetadata);
-          this.downloadOptions.set(this.getDownloadOptions(this.metadata()));
+          this.downloadOptions.set(this.download.getDownloadOptions(this.metadata()));
         });
     });
 
@@ -191,53 +172,5 @@ export class MetadataPageComponent {
 
   getOrganIcon(organ: string): string {
     return `organ:${ORGAN_ICON_MAP[organ] ?? organ}`;
-  }
-
-  /**
-   * Gets distributions data from metadata JSON and returns resolved download data
-   * @param metadata Metadata JSON
-   * @returns Array of distributions download info for the metadata
-   */
-  private getDownloadOptions(metadata: DigitalObjectMetadata): MenuOptionsType[] {
-    const id = metadata.id;
-    const files = metadata.distributions;
-    const derivedFiles = metadata.was_derived_from.distributions;
-    return this.resolveDownloadOptions(id, derivedFiles.concat(files));
-  }
-
-  /**
-   * Resolves download options
-   * @param id Object id
-   * @param files Array of distributions from metadata
-   * @returns Resolved download data
-   */
-  private resolveDownloadOptions(id: string, files: DistributionsInfo[]) {
-    return files.map((file) => {
-      const fileType = FILE_TYPE_MAP[file.mediaType];
-      return {
-        id: id + fileType.typeSuffix,
-        name: fileType.name,
-        description: fileType.description,
-        icon: 'download',
-        url: file.downloadUrl,
-      };
-    });
-  }
-
-  /**
-   * Downloads file
-   * @param url Download url
-   * @param id File name to save as
-   */
-  saveFile(url: string, id: string) {
-    //TODO: replace with service
-    this.http.get(url, { responseType: 'blob' }).subscribe((blob) => {
-      const a = document.createElement('a');
-      const objectUrl = URL.createObjectURL(blob);
-      a.href = objectUrl;
-      a.download = id;
-      a.click();
-      URL.revokeObjectURL(objectUrl);
-    });
   }
 }

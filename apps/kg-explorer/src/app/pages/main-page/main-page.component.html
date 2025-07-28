@@ -22,6 +22,6 @@
     [enableSort]="true"
     [rows]="filteredRows()"
     [columns]="columns()"
-    (downloadFile)="saveFile($event[0], $event[1])"
+    (downloadFile)="download.saveFile($event[0], $event[1])"
   />
 </div>
