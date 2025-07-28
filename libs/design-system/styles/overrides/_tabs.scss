@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include mat.tabs-overrides(
+    (
+      active-indicator-color: vars.$on-tertiary-fixed,
+      active-focus-indicator-color: vars.$on-tertiary-fixed,
+      active-hover-indicator-color: vars.$on-tertiary-fixed,
+      active-focus-label-text-color: vars.$secondary,
+
+      inactive-label-text-color: vars.$primary,
+    )
+  );
+}
