@@ -13,4 +13,9 @@
       inactive-label-text-color: vars.$primary,
     )
   );
+
+  .mdc-tab {
+    min-width: unset;
+    padding: 0 1rem;
+  }
 }
