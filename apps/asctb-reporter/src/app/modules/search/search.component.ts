@@ -1,7 +1,21 @@
+import { A11yModule } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, Input, ViewChild, inject } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
+import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
+import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { Select, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { Observable } from 'rxjs';
 import { UpdateConfig } from '../../actions/sheet.actions';
 import { DiscrepencyId, DiscrepencyLabel, DoSearch, DuplicateId } from '../../actions/tree.actions';
@@ -17,9 +31,26 @@ import { UIState, UIStateModel } from '../../store/ui.state';
 
 @Component({
   selector: 'app-search',
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    MatOptionModule,
+    NgxMatSelectSearchModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    A11yModule,
+    ButtonToggleSizeDirective,
+    ButtonSizeDirective,
+    ButtonVariantDirective,
+  ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
-  standalone: false,
 })
 export class SearchComponent {
   readonly bms = inject(BimodalService);
