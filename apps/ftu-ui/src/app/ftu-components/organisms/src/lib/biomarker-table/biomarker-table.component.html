@@ -8,8 +8,7 @@
         mat-cell
         *matCellDef="let element"
         [class.highlight]="isHighlighted(element)"
-        [hraHover]="columnHover"
-        [hraHoverData]="element[0]"
+        [hraPlainTooltip]="element[0]"
       >
         {{ element[0] }}
       </td>
@@ -31,7 +30,7 @@
 
     @for (column of columns; track column; let index = $index) {
       <ng-container [matColumnDef]="column">
-        <th class="icon-header" mat-header-cell *matHeaderCellDef [hraHover]="columnHover" [hraHoverData]="column">
+        <th class="icon-header" mat-header-cell *matHeaderCellDef [hraPlainTooltip]="column">
           <div class="header-column-text">
             {{ column }}
           </div>
@@ -71,11 +70,11 @@
   </table>
 </cdk-virtual-scroll-viewport>
 
-<ng-template #columnHover let-columnName>
+<!-- <ng-template #columnHover let-columnName>
   <div class="biomarker-table-hover full-column-name">
     {{ columnName }}
   </div>
-</ng-template>
+</ng-template> -->
 
 <ng-template #dataHover let-data>
   <ftu-biomarker-table-data-card [data]="getHoverData(data)"></ftu-biomarker-table-data-card>

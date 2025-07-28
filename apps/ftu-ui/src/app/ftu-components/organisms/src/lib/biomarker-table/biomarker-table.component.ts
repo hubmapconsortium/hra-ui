@@ -25,6 +25,7 @@ import { SourceListItem } from '../../../../molecules/src/lib/source-list/source
 import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { ReplaySubject } from 'rxjs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * RGBTriblet of type RGB to store color
@@ -77,6 +78,7 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
     ScrollingModule,
     TableVirtualScrollModule,
     MatButtonToggleModule,
+    PlainTooltipDirective,
   ],
   templateUrl: './biomarker-table.component.html',
   styleUrls: ['./biomarker-table.component.scss'],
