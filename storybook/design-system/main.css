@@ -59,21 +59,21 @@
   src: url('nunito-sans-latin-wght-normal.woff2') format("woff2-variations");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* material-symbols-outlined-latin-wght-normal */
+/* material-symbols-outlined-latin-fill-normal */
 @font-face {
   font-family: "Material Symbols Outlined Variable";
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  src: url('material-symbols-outlined-latin-wght-normal.woff2') format("woff2-variations");
+  src: url('material-symbols-outlined-latin-fill-normal.woff2') format("woff2-variations");
 }
-/* material-symbols-rounded-latin-wght-normal */
+/* material-symbols-rounded-latin-fill-normal */
 @font-face {
   font-family: "Material Symbols Rounded Variable";
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  src: url('material-symbols-rounded-latin-wght-normal.woff2') format("woff2-variations");
+  src: url('material-symbols-rounded-latin-fill-normal.woff2') format("woff2-variations");
 }
 /* As per https://fontsource.org/docs/getting-started/material-symbols */
 .material-symbols-outlined,
@@ -98,7 +98,8 @@
   font-family: "Material Symbols Rounded Variable";
 }
 
-.material-symbols-filled {
+.material-symbols-filled, .material-symbols-outlined,
+.material-symbols-rounded {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 20;
 }
 
@@ -803,6 +804,10 @@ html [mat-button].hra-button-size-small {
 html [mat-button].hra-button-size-small {
   --mat-text-button-horizontal-padding: 0.5rem;
 }
+html [mat-button].hra-button-size-medium {
+  font: var(--mat-sys-label-medium);
+  letter-spacing: var(--mat-sys-label-medium-tracking);
+}
 html [mat-button].hra-button-variant-secondary:not(.hra-cta-button) {
   --mdc-text-button-label-text-color: var(--mat-sys-secondary);
 }
@@ -890,6 +895,10 @@ html [mat-flat-button]:focus-visible {
 }
 html [mat-flat-button]:focus-visible {
   --mat-filled-button-focus-state-layer-opacity: 0;
+}
+html [mat-flat-button].hra-button-size-medium {
+  font: var(--mat-sys-label-medium);
+  letter-spacing: var(--mat-sys-label-medium-tracking);
 }
 html [mat-fab][extended] {
   filter: drop-shadow(0 0.0625rem 0.5rem rgb(from var(--mat-sys-on-background) r g b/30%)), drop-shadow(0 0.25rem 0.5rem 0.1875rem rgb(from var(--mat-sys-on-background) r g b/15%));
@@ -1173,7 +1182,7 @@ html {
   --mat-menu-item-hover-state-layer-color: rgb(from var(--mat-sys-secondary) r g b/0.08);
 }
 html {
-  --mat-menu-item-focus-state-layer-color: rgb(from var(--mat-sys-tertiary) r g b/0.2);
+  --mat-menu-item-focus-state-layer-color: rgb(from var(--mat-sys-secondary) r g b/8%);
 }
 html {
   --mat-menu-item-label-text-tracking: var(--mat-sys-label-medium-tracking);
@@ -1206,7 +1215,7 @@ html .mat-mdc-menu-panel .cdk-keyboard-focused {
   border: 0.125rem solid var(--mat-sys-tertiary);
 }
 html .mat-mdc-menu-panel .mat-mdc-menu-item-highlighted {
-  background-color: rgb(from var(--mat-sys-tertiary) r g b/0.2);
+  background-color: rgb(from var(--mat-sys-secondary) r g b/8%);
 }
 html {
   --mdc-slider-inactive-track-color: var(--mat-sys-outline);
