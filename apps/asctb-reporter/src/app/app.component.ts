@@ -6,13 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Select, Store } from '@ngxs/store';
+import { injectQueryParams } from 'ngxtension/inject-query-params';
 import { Observable } from 'rxjs';
 
 import { environment } from '../environments/environment';
@@ -144,6 +145,9 @@ export class AppComponent implements OnDestroy {
    */
   protected readonly appControlsEnabled = computed(() => this.routeData()['appControls'] === true);
 
+  /** Signal for Query Parameters */
+  protected readonly queryParams = injectQueryParams((params) => convertToParamMap(params));
+
   /** Bottom Sheet Service */
   private readonly infoSheet = inject(MatBottomSheet);
 
@@ -262,132 +266,130 @@ export class AppComponent implements OnDestroy {
         });
 
         const store = this.store;
-        this.route.queryParamMap.subscribe((query) => {
-          const selectedOrgans = query.get('selectedOrgans') ?? '';
-          const version = query.get('version');
-          const comparisonCSV = query.get('comparisonCSVURL');
-          const comparisonName = query.get('comparisonName');
-          const comparisonColor = query.get('comparisonColor');
-          const comparisonHasFile = query.get('comparisonHasFile');
-          const sheet = query.get('sheet');
-          const playground = query.get('playground');
-          const omapSelectedOrgans = query.get('omapSelectedOrgans') ?? '';
-          if (!(selectedOrgans || omapSelectedOrgans) && playground !== 'true') {
-            store.dispatch(new UpdateMode('vis'));
-            store.dispatch(new CloseLoading('Select Organ Model Rendered'));
-            const config = new MatDialogConfig();
-            config.disableClose = true;
-            config.autoFocus = true;
-            config.id = 'OrganTableSelector';
-            config.width = 'fit-content';
-            config.maxWidth = 'unset';
-            config.data = {
-              isIntilalSelect: true,
-              getFromCache: true,
-            };
-            const dialogRef = this.dialog.open(OrganTableSelectorComponent, config);
-            dialogRef.afterClosed().subscribe(({ organs, cache, omapOrgans }) => {
-              store.dispatch(new UpdateGetFromCache(cache));
-              if (organs !== false) {
-                this.router.navigate(['/vis'], {
-                  queryParams: {
-                    selectedOrgans: organs?.join(','),
-                    playground: false,
-                    omapSelectedOrgans: omapOrgans?.join(','),
-                  },
-                  queryParamsHandling: 'merge',
-                });
-              } else {
-                this.router.navigate(['/']);
-              }
-            });
-          } else if (
-            (selectedOrgans || omapSelectedOrgans) &&
-            playground !== 'true' &&
-            (comparisonCSV || comparisonHasFile)
-          ) {
-            store.dispatch(new UpdateMode('vis'));
-            const comparisonCSVURLList = comparisonCSV?.split('|');
-            const comparisonColorList = comparisonColor?.split('|');
-            const comparisonNameList = comparisonName?.split('|');
-
-            const comparisonDetails = this.compareDetails;
-            this.sheet = this.sheetConfig.find((i) => i.name === 'some') as Sheet;
-
-            if (!comparisonDetails.length) {
-              const colors = [
-                '#6457A6',
-                '#2C666E',
-                '#72A98F',
-                '#3D5A6C',
-                '#F37748',
-                '#FB4B4E',
-                '#FFCBDD',
-                '#7C0B2B',
-                '#067BC2',
-                '#ECC30B',
-              ];
-              comparisonCSVURLList?.forEach((linkUrl, index) => {
-                linkUrl = linkUrl.trim();
-                comparisonDetails.push({
-                  title:
-                    comparisonNameList !== undefined && comparisonNameList.length - 1 >= index
-                      ? comparisonNameList[index]
-                      : `Sheet ${index + 1}`,
-                  description: '',
-                  link: linkUrl,
-                  color:
-                    comparisonColorList !== undefined && comparisonColorList.length - 1 >= index
-                      ? comparisonColorList[index]
-                      : colors[index % colors.length],
-                  sheetId: this.parseSheetUrl(linkUrl).sheetID,
-                  gid: this.parseSheetUrl(linkUrl).gid,
-                  csvUrl: this.parseSheetUrl(linkUrl).csvUrl,
-                });
+        const selectedOrgans = this.queryParams().get('selectedOrgans') ?? '';
+        const version = this.queryParams().get('version');
+        const comparisonCSV = this.queryParams().get('comparisonCSVURL');
+        const comparisonName = this.queryParams().get('comparisonName');
+        const comparisonColor = this.queryParams().get('comparisonColor');
+        const comparisonHasFile = this.queryParams().get('comparisonHasFile');
+        const sheet = this.queryParams().get('sheet');
+        const playground = this.queryParams().get('playground');
+        const omapSelectedOrgans = this.queryParams().get('omapSelectedOrgans') ?? '';
+        if (!(selectedOrgans || omapSelectedOrgans) && playground !== 'true') {
+          store.dispatch(new UpdateMode('vis'));
+          store.dispatch(new CloseLoading('Select Organ Model Rendered'));
+          const config = new MatDialogConfig();
+          config.disableClose = true;
+          config.autoFocus = true;
+          config.id = 'OrganTableSelector';
+          config.width = 'fit-content';
+          config.maxWidth = 'unset';
+          config.data = {
+            isIntilalSelect: true,
+            getFromCache: true,
+          };
+          const dialogRef = this.dialog.open(OrganTableSelectorComponent, config);
+          dialogRef.afterClosed().subscribe(({ organs, cache, omapOrgans }) => {
+            store.dispatch(new UpdateGetFromCache(cache));
+            if (organs !== false) {
+              this.router.navigate(['/vis'], {
+                queryParams: {
+                  selectedOrgans: organs?.join(','),
+                  playground: false,
+                  omapSelectedOrgans: omapOrgans?.join(','),
+                },
+                queryParamsHandling: 'merge',
               });
-            }
-            store.dispatch(
-              new FetchSelectedOrganData(
-                this.sheet,
-                selectedOrgans.split(','),
-                omapSelectedOrgans.split(','),
-                comparisonDetails,
-              ),
-            );
-            sessionStorage.setItem('selectedOrgans', selectedOrgans);
-            if (omapSelectedOrgans) {
-              this.openSnackBarToUpdateFilter();
-            }
-          } else if ((selectedOrgans || omapSelectedOrgans) && playground !== 'true') {
-            store.dispatch(new UpdateMode('vis'));
-            this.sheet = this.sheetConfig.find((i) => i.name === 'some') as Sheet;
-            store.dispatch(
-              new FetchSelectedOrganData(this.sheet, selectedOrgans.split(','), omapSelectedOrgans.split(',')),
-            );
-            sessionStorage.setItem('selectedOrgans', selectedOrgans);
-            if (omapSelectedOrgans) {
-              this.openSnackBarToUpdateFilter();
-            }
-          } else if (playground === 'true') {
-            store.dispatch(new UpdateMode('playground'));
-            this.sheet = this.sheetConfig.find((i) => i.name === 'some') as Sheet;
-            this.store.dispatch(new FetchInitialPlaygroundData());
-            store.dispatch(new CloseLoading());
-          } else {
-            store.dispatch(new UpdateMode('vis'));
-            this.sheet = this.sheetConfig.find((i) => i.name === sheet) as Sheet;
-            localStorage.setItem('sheet', this.sheet.name);
-            if (version === 'latest') {
-              if (this.sheet.name === 'all') {
-                store.dispatch(new FetchAllOrganData(this.sheet));
-              } else {
-                store.dispatch(new FetchSheetData(this.sheet));
-              }
             } else {
-              store.dispatch(new FetchDataFromAssets(version ?? '', this.sheet));
+              this.router.navigate(['/']);
             }
+          });
+        } else if (
+          (selectedOrgans || omapSelectedOrgans) &&
+          playground !== 'true' &&
+          (comparisonCSV || comparisonHasFile)
+        ) {
+          store.dispatch(new UpdateMode('vis'));
+          const comparisonCSVURLList = comparisonCSV?.split('|');
+          const comparisonColorList = comparisonColor?.split('|');
+          const comparisonNameList = comparisonName?.split('|');
+
+          const comparisonDetails = this.compareDetails;
+          this.sheet = this.sheetConfig.find((i) => i.name === 'some') as Sheet;
+
+          if (!comparisonDetails.length) {
+            const colors = [
+              '#6457A6',
+              '#2C666E',
+              '#72A98F',
+              '#3D5A6C',
+              '#F37748',
+              '#FB4B4E',
+              '#FFCBDD',
+              '#7C0B2B',
+              '#067BC2',
+              '#ECC30B',
+            ];
+            comparisonCSVURLList?.forEach((linkUrl, index) => {
+              linkUrl = linkUrl.trim();
+              comparisonDetails.push({
+                title:
+                  comparisonNameList !== undefined && comparisonNameList.length - 1 >= index
+                    ? comparisonNameList[index]
+                    : `Sheet ${index + 1}`,
+                description: '',
+                link: linkUrl,
+                color:
+                  comparisonColorList !== undefined && comparisonColorList.length - 1 >= index
+                    ? comparisonColorList[index]
+                    : colors[index % colors.length],
+                sheetId: this.parseSheetUrl(linkUrl).sheetID,
+                gid: this.parseSheetUrl(linkUrl).gid,
+                csvUrl: this.parseSheetUrl(linkUrl).csvUrl,
+              });
+            });
           }
-        });
+          store.dispatch(
+            new FetchSelectedOrganData(
+              this.sheet,
+              selectedOrgans.split(','),
+              omapSelectedOrgans.split(','),
+              comparisonDetails,
+            ),
+          );
+          sessionStorage.setItem('selectedOrgans', selectedOrgans);
+          if (omapSelectedOrgans) {
+            this.openSnackBarToUpdateFilter();
+          }
+        } else if ((selectedOrgans || omapSelectedOrgans) && playground !== 'true') {
+          store.dispatch(new UpdateMode('vis'));
+          this.sheet = this.sheetConfig.find((i) => i.name === 'some') as Sheet;
+          store.dispatch(
+            new FetchSelectedOrganData(this.sheet, selectedOrgans.split(','), omapSelectedOrgans.split(',')),
+          );
+          sessionStorage.setItem('selectedOrgans', selectedOrgans);
+          if (omapSelectedOrgans) {
+            this.openSnackBarToUpdateFilter();
+          }
+        } else if (playground === 'true') {
+          store.dispatch(new UpdateMode('playground'));
+          this.sheet = this.sheetConfig.find((i) => i.name === 'some') as Sheet;
+          this.store.dispatch(new FetchInitialPlaygroundData());
+          store.dispatch(new CloseLoading());
+        } else {
+          store.dispatch(new UpdateMode('vis'));
+          this.sheet = this.sheetConfig.find((i) => i.name === sheet) as Sheet;
+          localStorage.setItem('sheet', this.sheet.name);
+          if (version === 'latest') {
+            if (this.sheet.name === 'all') {
+              store.dispatch(new FetchAllOrganData(this.sheet));
+            } else {
+              store.dispatch(new FetchSheetData(this.sheet));
+            }
+          } else {
+            store.dispatch(new FetchDataFromAssets(version ?? '', this.sheet));
+          }
+        }
 
         this.loading$.subscribe((l) => {
           if (l && !this.dialog.getDialogById('LoadingDialog')) {
@@ -440,7 +442,7 @@ export class AppComponent implements OnDestroy {
         });
 
         this.compareSheets$.subscribe((sheets) => {
-          const omapSheets = sheets.filter((sheet) => sheet.isOmap);
+          const omapSheets = sheets.filter((omapSheet) => omapSheet.isOmap);
           if (omapSheets.length > 0) {
             this.openSnackBarToUpdateFilter();
           }
