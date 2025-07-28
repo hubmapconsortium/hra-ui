@@ -1,7 +1,12 @@
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ApplicationConfig, provideAppInitializer, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideAppInitializer,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FTU_DATA_IMPL_ENDPOINTS } from '@hra-ui/services';
+import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
 import { ReplaySubject } from 'rxjs';
 import { initFactory } from './app.init';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
@@ -10,6 +15,8 @@ import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from 
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ROUTES } from './app.routes';
 import { provideStore } from '@ngxs/store';
+import { CdkStateModule } from '@hra-ui/cdk/state';
+import { HraStateModule, MouseTrackerModule } from '@hra-ui/state';
 /**
  * Application config
  */
@@ -38,5 +45,6 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' }),
     ),
     provideStore([]),
+    importProvidersFrom(CdkStateModule, HraStateModule, HraServiceModule, MouseTrackerModule),
   ],
 };

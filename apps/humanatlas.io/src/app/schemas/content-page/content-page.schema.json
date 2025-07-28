@@ -120,6 +120,9 @@
           "$ref": "#/definitions/DataViewer"
         },
         {
+          "$ref": "#/definitions/DataViewerWithQueryParams"
+        },
+        {
           "$ref": "#/definitions/FlexContainer"
         },
         {
@@ -379,6 +382,38 @@
             },
             "required": ["version", "label", "date", "organData"],
             "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
+      "additionalProperties": false
+    },
+    "DataViewerWithQueryParams": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "DataViewerWithQueryParams"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "variant": {
+          "$ref": "#/definitions/DataViewer/properties/variant"
+        },
+        "githubIconsUrl": {
+          "type": "string"
+        },
+        "releaseVersionData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataViewer/properties/releaseVersionData/items"
           }
         }
       },

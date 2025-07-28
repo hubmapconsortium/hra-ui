@@ -3,6 +3,10 @@
 @use 'vars';
 
 :host {
+  .sidenav-container {
+    height: 100%;
+  }
+
   .sidenav-content {
     --mat-sidenav-container-background-color: #{vars.$surface-container-low};
     width: fit-content;
@@ -58,18 +62,6 @@
     background-color: vars.$surface-container-low;
   }
 
-  &.embedded .page-content {
-    grid-template-rows: 0rem 3rem 5rem calc(100vh - 8rem);
-
-    .ontologies {
-      max-height: calc(100vh - 14.375rem);
-    }
-  }
-
-  &:not(.embedded) .page-content hra-back-button-bar {
-    display: none;
-  }
-
   mat-progress-bar {
     grid-area: progress;
 
@@ -79,10 +71,6 @@
         track-color: transparent,
       )
     );
-  }
-
-  hra-back-button-bar {
-    grid-area: back;
   }
 
   ::ng-deep hra-nav-header-buttons {
@@ -224,5 +212,13 @@
         supporting-text-color: vars.$secondary,
       )
     );
+  }
+}
+
+::ng-deep ccf-eui.embedded .page-content {
+  grid-template-rows: 0rem 0rem 5rem calc(100vh - 5rem) !important;
+
+  .ontologies {
+    max-height: calc(100vh - 14.375rem) !important;
   }
 }

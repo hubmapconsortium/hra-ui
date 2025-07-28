@@ -1,1 +1,152 @@
-<router-outlet></router-outlet>
+<mat-drawer-container style="height: 100%">
+  <mat-drawer
+    #rightDrawer
+    class="right-sidenav"
+    mode="over"
+    [opened]="(il$ | async) || (report$ | async) || (dl$ | async) || (c$ | async)"
+    position="end"
+    (closedStart)="toggleSideNav()"
+    autoFocus="false"
+    style="z-index: 3"
+  >
+    <app-report
+      (deleteSheet)="deleteSheet($event)"
+      [compareData]="allCompareData$"
+      [inputReportData]="rd$"
+      (closeReport)="rightDrawer.close()"
+      *ngIf="report$ | async"
+      [sheetData]="data"
+      [asFullData]="(fullAsData$ | async) ?? []"
+      [fullDataByOrgan]="(fullDataByOrgan$ | async) ?? []"
+      [currentSheet]="sheet"
+      [currentSheetConfig]="sheetConfig$"
+      [linksData$]="links$"
+      (computedReport)="updateReport($event)"
+      [bmType]="(bmType$ | async) ?? ''"
+      [hideReportCompareTab]="(mode$ | async) === 'playground'"
+    ></app-report>
+
+    <app-indent
+      (closeIL)="rightDrawer.close()"
+      *ngIf="il$ | async"
+      [sheetData]="data"
+      [currentSheet]="sheet"
+      (openBottomSheet)="getStructureInfo($event)"
+    ></app-indent>
+
+    <app-debug-logs
+      (closeDebug)="rightDrawer.close()"
+      *ngIf="dl$ | async"
+      [currentSheet]="sheet"
+      [logs]="(logs$ | async)!"
+    ></app-debug-logs>
+
+    <app-compare
+      (closeCompare)="rightDrawer.close()"
+      *ngIf="c$ | async"
+      class="compare-sidenav"
+      (compareData)="compareData($event)"
+      [compareSheets]="compareSheets$"
+    ></app-compare>
+  </mat-drawer>
+  <mat-drawer-content>
+    <hra-header baseUrl="https://apps.humanatlas.io/" [breadcrumbs]="crumbs() ?? []">
+      <a mat-icon-button hraPlainTooltip="ASCT+B Table metadata" [matMenuTriggerFor]="nestedMenu.childMenu">
+        <mat-icon>table</mat-icon>
+      </a>
+      @if (!appControlsEnabled()) {
+        <a
+          mat-icon-button
+          hraPlainTooltip="View in Knowledge Graph"
+          href="https://lod.humanatlas.io/asct-b"
+          target="_blank"
+        >
+          <mat-icon>database</mat-icon>
+        </a>
+        <a
+          mat-icon-button
+          hraPlainTooltip="GitHub repository"
+          href="https://github.com/hubmapconsortium/hra-ui"
+          target="_blank"
+        >
+          <mat-icon svgIcon="social:github"></mat-icon>
+        </a>
+      } @else {
+        <button
+          mat-icon-button
+          [hraPlainTooltip]="mode() === 'vis' ? 'Launch Playground' : 'Exit Playground'"
+          (click)="toggleMode()"
+        >
+          <mat-icon>{{ mode() === 'vis' ? 'playground_2' : 'exit_to_app' }}</mat-icon>
+        </button>
+        <button mat-icon-button hraPlainTooltip="View indented list" (click)="toggleIndentedList()">
+          <mat-icon>format_indent_increase</mat-icon>
+        </button>
+        <button mat-icon-button hraPlainTooltip="Upload data to compare to ASCT+B tables" (click)="openCompare()">
+          <mat-icon>compare_arrows</mat-icon>
+        </button>
+        <button mat-icon-button hraPlainTooltip="View statistics" (click)="toggleReport()">
+          <mat-icon>bar_chart</mat-icon>
+        </button>
+        <button mat-icon-button hraPlainTooltip="View download options" [matMenuTriggerFor]="downloadMenu">
+          <mat-icon>download</mat-icon>
+        </button>
+      }
+      <a
+        mat-icon-button
+        [matMenuTriggerFor]="helpMenu"
+        rel="noopener noreferrer"
+        hraPlainTooltip="Help & documentation"
+      >
+        <mat-icon>help</mat-icon>
+      </a>
+    </hra-header>
+
+    <app-table-nested-menu
+      #nestedMenu
+      [sheetDetails]="(configService.allSheetConfigurations$ | async) ?? []"
+    ></app-table-nested-menu>
+
+    <!-- LATER: Refactor into one shared menu component -->
+    <mat-menu #helpMenu="matMenu" class="help-menu">
+      <a mat-menu-item href="https://humanatlas.io/asctb-reporter" target="_blank">
+        <div class="title">ASCT+B Reporter</div>
+        <div class="description">App guide & documentation</div>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-menu-item href="https://humanatlas.io/asctb-tables" target="_blank">
+        <div class="title">ASCT+B Tables</div>
+        <div class="description">Data documentation</div>
+      </a>
+      <a mat-menu-item href="https://humanatlas.io/omap" target="_blank">
+        <div class="title">Organ Mapping Antibody Panels</div>
+        <div class="description">Data documentation</div>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-menu-item href="https://humanatlas.io/publications" target="_blank">Read Publications</a>
+      <mat-divider></mat-divider>
+      <a mat-menu-item [matMenuTriggerFor]="hubmapMenu">
+        Human Biomolecular Atlas Program (HuBMAP)
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </a>
+    </mat-menu>
+
+    <mat-menu #hubmapMenu="matMenu">
+      <a
+        mat-menu-item
+        href="https://hubmapconsortium.org/wp-content/uploads/2020/06/DUA_FINAL_2020_02_03_for_Signature.pdf"
+        target="_blank"
+        >Terms and conditions</a
+      >
+      <a mat-menu-item href="https://hubmapconsortium.org/policies" target="_blank">Policies</a>
+    </mat-menu>
+
+    <mat-menu #downloadMenu="matMenu">
+      <button mat-menu-item *ngFor="let option of imgOptions" (click)="exportImage(option)">
+        {{ option }}
+      </button>
+    </mat-menu>
+
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

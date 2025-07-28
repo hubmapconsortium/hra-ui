@@ -1,3 +1,15 @@
-.br-top {
-  border-top: 0.0625rem solid #fcfcfc !important;
+:host {
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    .card-body {
+      max-height: calc(100vh - 4rem);
+      &.with-footer {
+        flex: 1;
+        max-height: calc(100vh - 4.1rem - 4.5rem);
+      }
+    }
+  }
 }

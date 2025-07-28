@@ -142,7 +142,7 @@ export class CheckboxRowElementDirective {
     '[class.vertical-dividers]': 'verticalDividers()',
   },
 })
-export class TableComponent<T extends TableRow = TableRow> {
+export class TableComponent<T = TableRow> {
   /** CSV URL input */
   readonly csvUrl = input<string>();
 
@@ -212,7 +212,7 @@ export class TableComponent<T extends TableRow = TableRow> {
   });
 
   /** Table data source */
-  protected readonly dataSource = new MatTableDataSource<TableRow>([]);
+  protected readonly dataSource = new MatTableDataSource<T>([]);
 
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);
@@ -273,7 +273,7 @@ export class TableComponent<T extends TableRow = TableRow> {
     if (this.isAllSelected()) {
       this.selection.clear();
     } else {
-      this.selection.select(...(this.dataSource.data as T[]));
+      this.selection.select(...(this.dataSource.data as TableRow[]));
     }
     this.selectionChange.emit(this.selection.selected as T[]);
   }
@@ -282,7 +282,7 @@ export class TableComponent<T extends TableRow = TableRow> {
    * Toggle row selection
    */
   toggleRow(row: TableRow): void {
-    this.selection.toggle(row as T);
+    this.selection.toggle(row as TableRow);
     this.selectionChange.emit(this.selection.selected as T[]);
   }
 }

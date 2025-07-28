@@ -1,0 +1,7 @@
+.nested-menu {
+  height: 28.25rem;
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  width: 200px !important;
+}

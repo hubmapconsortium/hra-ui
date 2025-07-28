@@ -50,6 +50,10 @@
       );
     }
 
+    &.hra-button-size-medium {
+      @include utils.use-font(label, medium);
+    }
+
     &.hra-button-variant-secondary:not(.hra-cta-button) {
       @include mat.button-overrides(
         (
@@ -165,6 +169,10 @@
       );
 
       @include utils.inset-outline(vars.$tertiary);
+    }
+
+    &.hra-button-size-medium {
+      @include utils.use-font(label, medium);
     }
   }
 

@@ -64,7 +64,7 @@ export class FiltersContentComponent {
   /** Provider options */
   readonly providerOptions = input.required<string[]>();
   /** Consortia options */
-  readonly consortiaOptions = input(['HuBMAP', 'SenNet']);
+  readonly consortiaOptions = input.required<string[]>();
 
   /** Spatial search items */
   readonly spatialSearchItems = input.required<SpatialSearchFilterItem[]>();

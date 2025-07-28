@@ -28,8 +28,8 @@ content:
           - Production: https://lod.humanatlas.io
           - SPARQL Endpoint: https://lod.humanatlas.io/sparql
         - grlc APIs (SPARQL queries plus OpenAPI endpoints more info):
-          - grlc queries using the HRA-KG SPARQL endpoint: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/hra/
-          - grlc queries using the Ubergraph SPARQL endpoint: https://grlc.io/api-git/hubmapconsortium/ccf-grlc/subdir/ubergraph/
+          - grlc queries using the HRA-KG SPARQL endpoint: https://apps.humanatlas.io/api/grlc/hra.html
+          - grlc queries using the Ubergraph SPARQL endpoint: https://apps.humanatlas.io/api/grlc/ubergraph.html
           - More queries available at: https://github.com/hubmapconsortium/ccf-grlc/
 
   - component: PageSection

@@ -235,7 +235,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
     const { baseHref } = this;
     let endpointsUpdated = false;
     const updateEndpointsOnce = () => {
-      if (!endpointsUpdated) {
+      if (!endpointsUpdated && this.endpoints && typeof this.endpoints.next === 'function') {
         const { illustrations, datasets, summaries } = this;
         this.endpoints.next({
           illustrations: illustrationsInput(illustrations) ?? '',
