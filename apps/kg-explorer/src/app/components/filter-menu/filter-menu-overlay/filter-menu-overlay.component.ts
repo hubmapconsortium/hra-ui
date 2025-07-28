@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, effect, input, OnInit, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { Router } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -19,6 +21,7 @@ import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/mai
     HraCommonModule,
     IconsModule,
     ButtonsModule,
+    MatIconModule,
     RichTooltipModule,
     ScrollingModule,
     MatAutocompleteModule,
@@ -34,11 +37,13 @@ import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/mai
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterMenuOverlayComponent implements OnInit {
+  readonly router = inject(Router);
   readonly searchControl = new UntypedFormControl();
   readonly form = input.required<FormControl<FilterOption[] | null>>();
   readonly filterOptionCategory = input.required<FilterOptionCategory>();
   readonly filteredOptions = signal<FilterOption[]>([]);
-  readonly selectedOptions = new Set<FilterOption>();
+
+  selectedOptions: FilterOption[] = [];
 
   readonly filterChanged = output();
 
@@ -73,7 +78,7 @@ export class FilterMenuOverlayComponent implements OnInit {
    */
   remove(option: FilterOption): void {
     this.chips.update((chips) => {
-      this.selectedOptions.delete(option);
+      this.selectedOptions = this.selectedOptions.filter((o) => o.id !== option.id);
       const updatedValue = chips.filter((o) => o !== option);
       this.form().setValue(updatedValue);
       this.filterChanged.emit();
@@ -90,12 +95,18 @@ export class FilterMenuOverlayComponent implements OnInit {
   }
 
   selectOption(option: FilterOption) {
-    if (this.selectedOptions.has(option)) {
-      this.selectedOptions.delete(option);
+    if (this.selectedOptions.map((x) => x.id).includes(option.id)) {
+      this.remove(option);
     } else {
-      this.selectedOptions.add(option);
+      this.selectedOptions.push(option);
     }
-    this.form().patchValue(Array.from(this.selectedOptions));
+    this.form().patchValue(this.selectedOptions);
     this.filterChanged.emit();
+  }
+
+  navigateToLink(link?: string) {
+    if (link) {
+      window.open(link, '_blank');
+    }
   }
 }

@@ -8,6 +8,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 
 import { FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 /** Filter form controls */
 export interface FilterFormControls {
@@ -33,6 +34,7 @@ export interface FilterFormControls {
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
+    ScrollingModule,
   ],
   templateUrl: './filter-menu.component.html',
   styleUrl: './filter-menu.component.scss',

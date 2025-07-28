@@ -5,8 +5,16 @@
   min-width: 18.5rem;
   height: 100%;
   border-right: 1px solid var(--mat-sys-outline);
-  padding: 2rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   transition: all 0.5s;
+
+  ng-scrollbar {
+    padding-top: 2rem;
+
+    ::ng-deep .ng-scroll-content {
+      max-width: 100%;
+    }
+  }
 
   .drawer-header {
     display: flex;
@@ -49,6 +57,20 @@
       opacity: 0;
       transition: opacity 0.3s;
       pointer-events: none;
+    }
+  }
+
+  ::ng-deep .mdc-evolution-chip-set__chips {
+    margin: 0 !important;
+    gap: 0.25rem;
+
+    .mdc-evolution-chip__text-label {
+      max-width: 13.75rem;
+      overflow: hidden;
+    }
+
+    .mat-mdc-chip {
+      margin: 0;
     }
   }
 }

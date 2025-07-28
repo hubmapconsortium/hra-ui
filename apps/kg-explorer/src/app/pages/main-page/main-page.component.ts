@@ -10,7 +10,7 @@ import { BrandModule } from '@hra-ui/design-system/brand';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { forkJoin, Observable, switchMap, tap } from 'rxjs';
+import { forkJoin, fromEvent, Observable, switchMap, tap } from 'rxjs';
 
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
@@ -21,7 +21,7 @@ export interface FilterOption {
   label: string;
   secondaryLabel?: string;
   count: number;
-  tooltip?: string;
+  tooltip?: TooltipData;
 }
 
 export interface CurrentFilters {
@@ -34,10 +34,17 @@ export interface CurrentFilters {
   searchTerm?: string;
 }
 
+export interface TooltipData {
+  description: string;
+  actionText?: string;
+  actionUrl?: string;
+}
+
 export interface FilterOptionCategory {
   id: string;
   label: string;
   options: FilterOption[];
+  tooltip: TooltipData;
 }
 
 export const DIGITAL_OBJECT_NAME_MAP: Record<string, string> = {
@@ -92,6 +99,73 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   ureter: 'ureter-left',
 };
 
+const DO_TOOLTIP_INFO: Record<string, TooltipData> = {
+  'ref-organ': {
+    description:
+      '3D models of human organ structures, complete with accurate size and position data, to support the creation of a comprehensive 3D model of the human body, with each 3D model object carefully annotated with a proper label and an identifier from the Uberon and FMA ontologies.',
+    actionText: 'Learn more',
+    actionUrl: 'https://humanatlas.io/3d-reference-library',
+  },
+  'asct-b': {
+    description:
+      'Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables are authored by multiple experts across many consortia. Tables capture the partonomy of anatomical structures, cell types, and major biomarkers (e.g., gene, protein, lipid, or metabolic markers). Cellular identity is supported by scientific evidence and linked to ontologies.',
+    actionText: 'Learn more',
+    actionUrl: 'https://humanatlas.io/asctb-tables',
+  },
+  ctann: {
+    description:
+      'Azimuth and other cell type annotation tools are used to assign cell types to cells from sc/snRNA-seq studies. Manually compiled crosswalks are used to assign ontology IDs to cell types.',
+    actionText: 'Learn more',
+    actionUrl: 'https://humanatlas.io/cell-type-annotations',
+  },
+  collection: {
+    description: 'Multiple digital objects that create a collection of data.',
+  },
+  'ds-graph': {
+    description:
+      "Sample registration information submitted by consortium members in HuBMAP or other efforts, including accurate sample sizes and positions. When combined with 3D Organ data, this information helps create 3D visual tissue sample placements. Additionally, the sample information is linked to datasets from researchers' assay analyses that offer deeper insights into the tissue samples.",
+  },
+  '2d-ftu': {
+    description:
+      'A functional tissue unit is the smallest tissue organization, i.e. a set of cells, that performs a unique physiologic function and is replicated multiple times in a whole organ. Functional Tissue Unit (FTU) Illustrations are linked to ASCT+B Tables.',
+    actionText: 'Learn more',
+    actionUrl: 'https://humanatlas.io/2d-ftu-illustrations',
+  },
+  graph: {
+    description: 'Externally created RDF graph data.',
+  },
+  landmark: {
+    description:
+      '3D model shapes representing features near organs of interest (e.g., an artery or pelvis bone near a kidney) to help experts accurately orient themselves when registering tissue blocks into a 3D Organ.',
+  },
+
+  millitome: {
+    description:
+      'Data for cutting tissue samples using a millitome device. A digital data package that includes an STL file and a spreadsheet for assigning spatial locations to HuBMAP IDs and gathering metadata with information about the size, dimensions, donor sex, and laterality of the reference organ for which the millitome is fitted.',
+    actionText: 'Learn more',
+    actionUrl: 'https://humanatlas.io/millitome',
+  },
+  omap: {
+    description: 'Collections of antibodies spatially mapping anatomical structures and cell types.',
+    actionText: 'Learn more',
+    actionUrl: 'https://humanatlas.io/omap',
+  },
+  schema: {
+    description:
+      'Describes the structure, i.e., the schema, of the normalized form of a single data type, its metadata, or shared concepts between data types.',
+  },
+  'vascular-geometry': {
+    description:
+      'Geometry information on the human blood vascular system capturing key attributes of different vessels, such as diameter and length, population, sample size, and reference to the source of data.',
+    actionText: 'Learn more',
+    actionUrl: 'https://humanatlas.io/vccf',
+  },
+  vocab: {
+    description:
+      'Various reference ontologies and vocabularies that hold standard concepts and relationships used to construct data components. Vocabularies are typically external biomedical ontologies, like CL and Uberon, and they provide a convenient mechanism for querying reference ontologies alongside HRA-curated data.',
+  },
+};
+
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
 
@@ -116,7 +190,7 @@ const SCROLLBAR_TOP_OFFSET = '86';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.filterClosed]': 'filterClosed()',
-    '[style.--view-height]': 'scrollViewportHeight()',
+    '[style.--view-height]': 'scrollHeight()',
     '[style.--scrollbar-top-offset]': SCROLLBAR_TOP_OFFSET,
   },
 })
@@ -148,11 +222,15 @@ export class MainPageComponent {
 
   readonly filters = signal<CurrentFilters>({});
 
+  readonly scrollHeight = signal(0);
+
   /**
    * Sets filtered rows to all rows on init
    * Fetches file download metadata for each object
    */
   constructor() {
+    this.setScrollViewportHeight();
+
     effect(() => {
       this.applyFilters();
       this.populateFilterOptions();
@@ -161,6 +239,8 @@ export class MainPageComponent {
       this.onSearchChange(result);
     });
     this.attachDownloadOptions().subscribe();
+
+    fromEvent(window, 'resize').subscribe(() => this.setScrollViewportHeight());
   }
 
   populateFilterOptions() {
@@ -178,12 +258,19 @@ export class MainPageComponent {
           id: 'digitalObjects',
           label: 'Digital objects',
           options: Array.from(kgOptions.doOptions).map((filterOption) => {
+            const label = DIGITAL_OBJECT_NAME_MAP[filterOption];
             return {
               id: filterOption,
-              label: DIGITAL_OBJECT_NAME_MAP[filterOption],
+              label: label,
               count: this.calculateCount(filterOption, 'doType'),
+              tooltip: DO_TOOLTIP_INFO[filterOption],
             };
           }),
+          tooltip: {
+            description: 'Categories of unique data structures that construct the evolving Human Reference Atlas.',
+            actionText: 'Learn more',
+            actionUrl: 'https://humanatlas.io/overview-data',
+          },
         },
         {
           id: 'releaseVersion',
@@ -194,9 +281,11 @@ export class MainPageComponent {
               label: filterOption,
               count: this.calculateCount(filterOption, 'doVersion'),
               secondaryLabel: '',
-              tooltip: '',
             };
           }),
+          tooltip: {
+            description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
+          },
         },
         {
           id: 'organs',
@@ -208,6 +297,9 @@ export class MainPageComponent {
               count: this.calculateCount(organOption, 'organs'),
             };
           }),
+          tooltip: {
+            description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
+          },
         },
         {
           id: 'anatomicalStructures',
@@ -221,6 +313,10 @@ export class MainPageComponent {
                 count: term[1],
               };
             }),
+          tooltip: {
+            description:
+              'A distinct biological entity with a 3D volume and shape, e.g., an organ, functional tissue unit, or cell.',
+          },
         },
         {
           id: 'cellTypes',
@@ -234,6 +330,10 @@ export class MainPageComponent {
                 count: term[1],
               };
             }),
+          tooltip: {
+            description:
+              'Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. Tissue is composed of different (resident and transitory) cell types that are characterized or identified via biomarkers.',
+          },
         },
         {
           id: 'biomarkers',
@@ -247,6 +347,10 @@ export class MainPageComponent {
                 count: term[1],
               };
             }),
+          tooltip: {
+            description:
+              'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type. They include genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).',
+          },
         },
       ]);
     });
@@ -444,8 +548,8 @@ export class MainPageComponent {
    * Returns scroll viewport height
    * @returns scroll viewport height
    */
-  scrollViewportHeight(): number {
-    return window.innerHeight - 299;
+  setScrollViewportHeight() {
+    this.scrollHeight.set(window.innerHeight - 299);
   }
 
   handleFilterChanges(formControls: FilterFormControls) {
