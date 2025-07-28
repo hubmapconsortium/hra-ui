@@ -1,3 +1,5 @@
+@use 'vars';
+
 :host {
   display: flex;
   flex-direction: row;
@@ -8,10 +10,34 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
-  ::ng-deep .metadata-table {
+  ::ng-deep .provenance-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: min-content;
+
+    .selector-and-buttons {
+      height: min-content;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid vars.$outline;
+    }
+
+    .provenance-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .downloads {
+      width: 9.75rem;
+    }
+
     markdown {
       overflow-wrap: anywhere;
     }
@@ -24,7 +50,7 @@
     }
   }
 
-  hra-table {
+  .metadata-table {
     height: min-content;
   }
 
@@ -38,11 +64,10 @@
       margin: auto;
     }
 
-    .metadata-table {
+    .provenance-menu {
       position: sticky;
       top: 10rem;
       max-width: 288px;
-      // height: min-content;
       margin: 0 0.75rem 1rem;
     }
   }
@@ -51,8 +76,13 @@
     margin-right: 0;
     gap: 2.5rem;
 
-    .metadata-table {
+    .content-container {
+      width: calc(100% - 23rem - 2.5rem);
+    }
+
+    .provenance-menu {
       max-width: 360px;
+      margin: 0;
     }
   }
 }

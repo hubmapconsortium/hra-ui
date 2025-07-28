@@ -9,7 +9,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
-import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+import { MenuOptionsType, TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
@@ -107,7 +107,7 @@ interface FileTypeData {
 }
 
 /** Maps mediaType to file type data */
-const FILE_TYPE_MAP: Record<string, FileTypeData> = {
+export const FILE_TYPE_MAP: Record<string, FileTypeData> = {
   'image/svg+xml': {
     name: 'SVG',
     typeSuffix: '.svg',
@@ -405,25 +405,6 @@ export class MainPageComponent {
     });
   }
 
-  attachDownloadOptions(): Observable<DigitalObjectMetadata[]> {
-    return toObservable(this.data).pipe(
-      switchMap((items) => {
-        const objectData = this.resolveData(items['@graph']);
-        this.allRows.set(objectData);
-        const innerCalls = items['@graph'].map((item) => this.getMetadata(item));
-        return forkJoin(innerCalls);
-      }),
-      tap((metadata) => {
-        this.allRows().map((row) => {
-          const md = metadata.find((entry) => entry.id === row['lod']);
-          if (md) {
-            row['downloadOptions'] = this.getDownloadOptions(md);
-          }
-        });
-      }),
-    );
-  }
-
   kgFilterOptions() {
     const objectFilterOptions = new Set<string>();
     const versionFilterOptions = new Set<string>();
@@ -490,12 +471,31 @@ export class MainPageComponent {
     return this.http.get(entry.lod, { responseType: 'json' }) as Observable<DigitalObjectMetadata>;
   }
 
+  attachDownloadOptions(): Observable<DigitalObjectMetadata[]> {
+    return toObservable(this.data).pipe(
+      switchMap((items) => {
+        const objectData = this.resolveData(items['@graph']);
+        this.allRows.set(objectData);
+        const innerCalls = items['@graph'].map((item) => this.getMetadata(item));
+        return forkJoin(innerCalls);
+      }),
+      tap((metadata) => {
+        this.allRows().map((row) => {
+          const md = metadata.find((entry) => entry.id === row['lod']);
+          if (md) {
+            row['downloadOptions'] = this.getDownloadOptions(md);
+          }
+        });
+      }),
+    );
+  }
+
   /**
    * Gets distributions data from metadata JSON and returns resolved download data
    * @param metadata Metadata JSON
    * @returns Array of distributions download info for the metadata
    */
-  private getDownloadOptions(metadata: DigitalObjectMetadata): Record<string, string | undefined>[] {
+  private getDownloadOptions(metadata: DigitalObjectMetadata): MenuOptionsType[] {
     const id = metadata.id;
     const files = metadata.distributions;
     const derivedFiles = metadata.was_derived_from.distributions;

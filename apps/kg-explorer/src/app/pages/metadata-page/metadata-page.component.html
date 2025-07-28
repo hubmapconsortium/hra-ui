@@ -3,6 +3,7 @@
   [columns]="columns()"
   [version]="currentVersion()"
   [availableVersions]="availableVersions()"
+  [downloadOptions]="downloadOptions()"
   (versionChange)="currentVersion.set($event)"
 >
   <hra-metadata-layout-header>
@@ -18,11 +19,14 @@
         </div>
       }
     }
+    @if (getCsv()) {
+      <hra-table class="csv-table" [csvUrl]="getCsv()"></hra-table>
+    }
   </hra-metadata-layout-header>
 
   <hra-metadata-layout-content [class.mediumScreen]="!isWMediumScreen()">
     <div class="sections">
-      <hra-page-section tagline="Description" [level]="2">
+      <hra-page-section class="description" tagline="Description" [level]="2">
         <markdown [data]="metadata().was_derived_from.description" />
       </hra-page-section>
       <hra-page-section tagline="Publisher" [level]="2">
@@ -44,13 +48,40 @@
         }
       </hra-page-section> -->
     </div>
-    <div class="metadata-table">
-      <hra-version-selector
-        [version]="currentVersion()"
-        [availableVersions]="availableVersions()"
-        (versionChange)="currentVersion.set($event)"
-      ></hra-version-selector>
-      <hra-table [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
+    <div class="provenance-menu">
+      <div class="selector-and-buttons">
+        <hra-version-selector
+          [version]="currentVersion()"
+          [availableVersions]="availableVersions()"
+          (versionChange)="currentVersion.set($event)"
+        ></hra-version-selector>
+
+        <div class="provenance-buttons">
+          <button mat-flat-button class="downloads button" [matMenuTriggerFor]="options">
+            Downloads
+            <mat-icon>download</mat-icon>
+          </button>
+
+          <mat-menu #options="matMenu">
+            @for (option of downloadOptions(); track option) {
+              <button mat-menu-item (click)="saveFile(option.url || '', option.id)">
+                <mat-icon>{{ option.icon }}</mat-icon>
+                <div class="option-text">
+                  <span class="option-name">
+                    {{ option.name }}
+                  </span>
+                  <span class="option-description">
+                    {{ option.description }}
+                  </span>
+                </div>
+              </button>
+            }
+          </mat-menu>
+
+          <button mat-button hraButtonVariant="secondary" class="view-app button">View in app</button>
+        </div>
+      </div>
+      <hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
     </div>
   </hra-metadata-layout-content>
 </hra-metadata-layout>

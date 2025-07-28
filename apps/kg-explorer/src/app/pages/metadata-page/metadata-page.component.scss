@@ -1,6 +1,8 @@
 @use 'vars';
 
 :host {
+  min-width: 20rem;
+
   .sections {
     display: flex;
     flex-direction: column;
@@ -20,26 +22,54 @@
     }
   }
 
-  .metadata-table {
+  .provenance-menu {
     display: none;
   }
 
-  hra-table {
+  .provenance-menu,
+  .metadata-table,
+  .csv-table {
+    max-height: 120rem;
     height: min-content;
   }
 
   .mediumScreen {
     display: flex;
     gap: 40px;
+
     .sections {
       width: calc(100% - 288px - 40px);
     }
 
-    .metadata-table {
-      display: block;
+    .provenance-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
       position: sticky;
       top: 9rem;
-      min-width: 288px;
+      min-width: 240px;
+      max-width: 288px;
+
+      .selector-and-buttons {
+        height: min-content;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+        gap: 1.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid vars.$outline;
+      }
+
+      .provenance-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: space-between;
+      }
+
+      .button {
+        width: 100%;
+      }
     }
   }
 }
