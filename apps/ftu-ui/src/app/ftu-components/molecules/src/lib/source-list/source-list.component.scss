@@ -3,8 +3,7 @@
 
 :host {
   display: block;
-  height: 100%;
-  border: 0.0625rem solid vars.$outline;
+  border-inline: 0.0625rem solid vars.$outline;
 
   .source-list-header {
     display: flex;
