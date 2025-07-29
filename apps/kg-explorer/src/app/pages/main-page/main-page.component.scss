@@ -13,13 +13,15 @@
       transform: translateX(-14rem);
     }
 
-    hra-table {
+    hra-table,
+    .search-header {
       width: calc(100vw - 8.5rem);
     }
   }
 
   .page-content {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     padding: 2rem 1.5rem 0rem;
     transition: all 0.5s;
@@ -28,7 +30,9 @@
   .search-header {
     display: flex;
     justify-content: space-between;
-    margin-left: 0.75rem;
+    padding-left: 0.75rem;
+    gap: 2.5rem;
+    transition: all 0.5s;
 
     .object-search {
       max-width: 36.25rem;
@@ -42,7 +46,14 @@
     hra-results-indicator {
       line-height: 2rem;
       height: 3rem;
+      min-width: 139px;
+      text-align: center;
     }
+  }
+
+  .search-header,
+  hra-table {
+    width: calc(100vw - 22.5rem);
   }
 
   ::ng-deep hra-table {
@@ -50,7 +61,6 @@
     --mat-table-row-item-container-height: 4.75rem;
     border: none;
     transition: all 0.5s;
-    width: calc(100vw - 22.5rem);
 
     scrollbar-y {
       --viewport-height: var(--view-height);
@@ -80,6 +90,16 @@
       vertical-align: middle !important;
       padding-top: 0.25rem !important;
       padding-bottom: 0.5rem !important;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .object-search {
+      width: 100%;
+    }
+
+    hra-results-indicator {
+      display: none;
     }
   }
 }
