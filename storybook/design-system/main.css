@@ -1400,3 +1400,22 @@ html {
 html {
   --mdc-switch-unselected-pressed-state-layer-color: var(--mat-sys-on-secondary-fixed);
 }
+html {
+  --mdc-tab-indicator-active-indicator-color: var(--mat-sys-on-tertiary-fixed);
+}
+html {
+  --mat-tab-header-active-focus-indicator-color: var(--mat-sys-on-tertiary-fixed);
+}
+html {
+  --mat-tab-header-active-hover-indicator-color: var(--mat-sys-on-tertiary-fixed);
+}
+html {
+  --mat-tab-header-active-focus-label-text-color: var(--mat-sys-secondary);
+}
+html {
+  --mat-tab-header-inactive-label-text-color: var(--mat-sys-primary);
+}
+html .mdc-tab {
+  min-width: unset;
+  padding: 0 1rem;
+}
