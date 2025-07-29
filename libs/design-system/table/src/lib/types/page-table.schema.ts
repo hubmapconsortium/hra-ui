@@ -47,20 +47,11 @@ export const LinkColumnTypeSchema = z.object({
   urlColumn: z.string(),
 });
 
-/** Type for Checkbox Column */
-export type CheckboxColumnType = z.infer<typeof CheckboxColumnTypeSchema>;
-
-/** Schema for Checkbox Column */
-export const CheckboxColumnTypeSchema = z.object({
-  type: z.literal('checkbox'),
-});
-
 /** Union of Schema Types for Simple Columns */
 export const SimpleTableColumnTypeSchema = z.union([
   TextColumnTypeSchema.shape.type,
   NumericColumnTypeSchema.shape.type,
   MarkdownColumnTypeSchema.shape.type,
-  CheckboxColumnTypeSchema.shape.type,
 ]);
 
 /** Inferred types for Table Columns */
@@ -72,7 +63,6 @@ export const TableColumnTypeSchema = z.union([
   NumericColumnTypeSchema,
   MarkdownColumnTypeSchema,
   LinkColumnTypeSchema,
-  CheckboxColumnTypeSchema,
 ]);
 
 /** Type for table columns */

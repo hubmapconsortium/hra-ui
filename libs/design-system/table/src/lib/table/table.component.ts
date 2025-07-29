@@ -1,8 +1,9 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Location } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
-import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { APP_ASSETS_HREF, HraCommonModule, parseUrl } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
@@ -10,7 +11,6 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { MarkdownModule } from 'ngx-markdown';
 import { parse } from 'papaparse';
 import {
-  CheckboxColumnType,
   LinkColumnType,
   MarkdownColumnType,
   NumericColumnType,
@@ -21,7 +21,6 @@ import {
   TableVariant,
   TextColumnType,
 } from '../types/page-table.schema';
-import { SelectionModel } from '@angular/cdk/collections';
 
 /** Type for the row element context */
 type RowElementContext<T, CT extends TableColumnType> = {
@@ -98,23 +97,6 @@ export class NumericRowElementDirective {
   }
 }
 
-/** Directive for typing the context of Checkbox Row Element */
-@Directive({
-  selector: 'ng-template[hraCheckboxRowElement]',
-  standalone: true,
-})
-export class CheckboxRowElementDirective {
-  /* istanbul ignore next */
-
-  /** Guard for the context of Checkbox Row Element */
-  static ngTemplateContextGuard(
-    _dir: CheckboxRowElementDirective,
-    _ctx: unknown,
-  ): _ctx is RowElementContext<boolean, CheckboxColumnType> {
-    return true;
-  }
-}
-
 /**
  * Angular Material Table with Sort Feature
  */
@@ -134,7 +116,6 @@ export class CheckboxRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     NumericRowElementDirective,
-    CheckboxRowElementDirective,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',
@@ -162,7 +143,7 @@ export class TableComponent<T = TableRow> {
   readonly verticalDividers = input<boolean>(false);
 
   /** Enable row selection with checkboxes */
-  readonly enableSelection = input<boolean>(false);
+  readonly enableRowSelection = input<boolean>(false);
 
   /** Emits when selection changes */
   readonly selectionChange = output<T[]>();
@@ -208,7 +189,7 @@ export class TableComponent<T = TableRow> {
   /** Table data column IDs */
   protected readonly columnIds = computed(() => {
     const columns = this._columns().map((col) => col.column);
-    return this.enableSelection() ? ['select', ...columns] : columns;
+    return this.enableRowSelection() ? ['select', ...columns] : columns;
   });
 
   /** Table data source */

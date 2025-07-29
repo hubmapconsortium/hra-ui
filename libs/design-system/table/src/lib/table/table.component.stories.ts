@@ -117,7 +117,7 @@ export const Basic: Story = {
 export const WithSelection: Story = {
   args: {
     style: 'alternating',
-    enableSelection: true,
+    enableRowSelection: true,
   },
 };
 
