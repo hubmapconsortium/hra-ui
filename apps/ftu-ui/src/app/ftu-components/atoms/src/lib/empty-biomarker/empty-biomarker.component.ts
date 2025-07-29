@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MarkdownModule } from 'ngx-markdown';
 
 /**
@@ -10,14 +11,14 @@ import { MarkdownModule } from 'ngx-markdown';
  */
 @Component({
   selector: 'ftu-empty-biomarker',
-  imports: [CommonModule, MatButtonModule, MarkdownModule],
+  imports: [CommonModule, MatButtonModule, MarkdownModule, MatIconModule],
   templateUrl: './empty-biomarker.component.html',
   styleUrls: ['./empty-biomarker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmptyBiomarkerComponent {
   /**
-   * Input  buttonon text of empty biomarker component.
+   * Input button on text of empty biomarker component.
    */
   @Input() collaborateText = '';
 

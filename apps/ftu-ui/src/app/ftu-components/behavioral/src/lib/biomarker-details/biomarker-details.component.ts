@@ -1,26 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
-import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import {
-  EmptyBiomarkerComponent,
-  GradientLegendComponent,
-  GradientPoint,
-  LabelBoxComponent,
-  SizeLegend,
-  SizeLegendComponent,
-} from '../../../../atoms/src';
-import { SourceListComponent } from '../../../../molecules/src';
-import {
-  BiomarkerTableComponent,
-  DataCell,
-  TissueInfo,
-} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
@@ -36,11 +21,25 @@ import {
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import {
+  EmptyBiomarkerComponent,
+  GradientLegendComponent,
+  GradientPoint,
+  SizeLegend,
+  SizeLegendComponent,
+} from '../../../../atoms/src';
+import { SourceListComponent, SourceListItem } from '../../../../molecules/src';
+import {
+  BiomarkerTableComponent,
+  DataCell,
+  TissueInfo,
+} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatButtonModule } from '@angular/material/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -67,10 +66,15 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     SourceListComponent,
     EmptyBiomarkerComponent,
     MatButtonToggleModule,
+    MessageIndicatorModule,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.no-data]': 'source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0',
+    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
+  },
 })
 export class BiomarkerDetailsComponent {
   /** Reference to biomarker table */
@@ -120,6 +124,8 @@ export class BiomarkerDetailsComponent {
 
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
+
+  readonly selectedSources = signal<SourceListItem[]>([]);
 
   private activeTabIndex = 0;
 
@@ -184,8 +190,14 @@ export class BiomarkerDetailsComponent {
   /**
    * message markdown of empty biomarker component.
    */
-  readonly message = `We currently do not have cell type data for this biomarker.
-  <br><br> Please contact us to discuss your dataset.`;
+  readonly message = `
+  <p>
+    We currently do not have cell type by biomarker data for genes, proteins, or lipids.
+  </p>
+  <p>
+  Please email the Human Reference Atlas team at infoccf@iu.edu about your dataset.
+  </p>
+  `;
 
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);

@@ -5,11 +5,46 @@
 :host {
   display: grid;
   grid-template-columns: 17.75rem 1fr;
-  grid-template-rows: 4rem auto 1fr;
+  grid-template-rows: 4rem 1fr 1fr;
   grid-template-areas:
     'headline legend-area'
     'table table'
     'source-list source-list';
+
+  &.no-data {
+    grid-template-rows: 4rem 1fr;
+    grid-template-areas:
+      'headline headline'
+      'empty empty';
+
+    .biomarker-header {
+      height: 4rem;
+    }
+
+    ftu-empty-biomarker {
+      grid-area: empty;
+    }
+  }
+
+  &.no-data-selected {
+    grid-template-areas:
+      'headline headline'
+      'select-data-message select-data-message'
+      'source-list source-list';
+
+    .biomarker-header {
+      height: 4rem;
+    }
+
+    .select-data-message {
+      border: 1px solid vars.$outline;
+      padding: 0 1rem;
+      padding-top: 3.875rem;
+      grid-area: select-data-message;
+      @include utils.use-font(body, medium);
+      color: vars.$primary;
+    }
+  }
 
   @include mat.button-toggle-overrides(
     (
@@ -124,7 +159,6 @@
     height: 100%;
     grid-area: source-list;
     overflow: hidden;
-    max-height: 21rem;
   }
 
   ftu-biomarker-table {

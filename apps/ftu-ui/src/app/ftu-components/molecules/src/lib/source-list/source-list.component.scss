@@ -4,6 +4,7 @@
 :host {
   display: block;
   border-inline: 0.0625rem solid vars.$outline;
+  height: 100%;
 
   .source-list-header {
     display: flex;
