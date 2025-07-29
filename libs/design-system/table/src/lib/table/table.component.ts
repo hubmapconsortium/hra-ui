@@ -21,6 +21,7 @@ import {
   TableVariant,
   TextColumnType,
 } from '../types/page-table.schema';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Type for the row element context */
 type RowElementContext<T, CT extends TableColumnType> = {
@@ -116,6 +117,7 @@ export class NumericRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     NumericRowElementDirective,
+    PlainTooltipDirective,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',

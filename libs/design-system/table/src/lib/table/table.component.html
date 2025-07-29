@@ -26,7 +26,8 @@
             @if (!hideHeaders()) {
               <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">
                 <mat-checkbox
-                  aria-label="Select all"
+                  aria-label="Hide all"
+                  hraPlainTooltip="Hide all"
                   [checked]="selection.hasValue() && isAllSelected()"
                   [indeterminate]="selection.hasValue() && !isAllSelected()"
                   (change)="toggleAllRows()"
@@ -37,7 +38,8 @@
             }
             <td mat-cell *matCellDef="let element" data-column-type="checkbox">
               <mat-checkbox
-                aria-label="Select row"
+                aria-label="Hide"
+                hraPlainTooltip="Hide"
                 (click)="$event.stopPropagation()"
                 (change)="$event ? toggleRow(element) : null"
                 [checked]="selection.isSelected(element)"
