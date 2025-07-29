@@ -138,3 +138,10 @@ export const WithCsvUrl: Story = {
     csvUrl,
   },
 };
+
+export const WithoutHeaders: Story = {
+  args: {
+    style: 'alternating',
+    hideHeaders: true,
+  },
+};
