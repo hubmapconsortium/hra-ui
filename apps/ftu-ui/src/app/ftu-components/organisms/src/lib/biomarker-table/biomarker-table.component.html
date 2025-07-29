@@ -42,12 +42,12 @@
               class="icon"
               [color]="getColor(element[index + 2].color)"
               [size]="getSize(element[index + 2].size)"
-              [hraHover]="dataHover"
-              [hraHoverData]="[index + 2, element]"
+              (click)="openBottomSheet(element[index + 2])"
+              style="cursor: pointer"
             >
             </ftu-biomarker-table-data-icon>
           } @else {
-            <div class="empty" [hraHover]="dataHover" [hraHoverData]="[index + 2, element]"></div>
+            <div class="empty"></div>
           }
         </td>
       </ng-container>
@@ -69,7 +69,3 @@
     ></tr>
   </table>
 </cdk-virtual-scroll-viewport>
-
-<ng-template #dataHover let-data>
-  <ftu-biomarker-table-data-card [data]="getHoverData(data)"></ftu-biomarker-table-data-card>
-</ng-template>
