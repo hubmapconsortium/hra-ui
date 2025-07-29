@@ -49,12 +49,15 @@ export class BarGraphComponent {
       }
 
       const root = this.createVisualizationRootElement();
-      const resultP = embed(root, spec);
-      let finalize = () => {};
-      abortSignal.addEventListener('abort', () => finalize());
+      let finalized = false;
+      abortSignal.addEventListener('abort', () => (finalized = true));
 
-      const result = await resultP;
-      finalize = result.finalize;
+      const result = await embed(root, spec);
+      if (finalized) {
+        result.finalize();
+        return null;
+      }
+
       return result;
     },
   });
