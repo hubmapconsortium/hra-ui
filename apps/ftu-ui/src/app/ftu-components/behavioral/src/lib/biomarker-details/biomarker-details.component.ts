@@ -34,7 +34,7 @@ import {
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatButtonModule } from '@angular/material/button';
@@ -66,6 +66,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     SourceListComponent,
     EmptyBiomarkerComponent,
     MatButtonToggleModule,
+    PlainTooltipDirective,
     RichTooltipModule,
     RichTooltipDirective,
   ],
