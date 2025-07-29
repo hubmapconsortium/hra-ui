@@ -12,20 +12,20 @@ import {
   OnChanges,
   OnInit,
   Output,
-  signal,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { HoverDirective } from '@hra-ui/cdk';
 import { GradientPoint } from '../../../../atoms/src/lib/gradient-legend/gradient-legend.component';
 import { SizeLegend } from '../../../../atoms/src/lib/size-legend/size-legend.component';
-import { BiomarkerTableDataIconComponent, BiomarkerTableDataCardComponent, DataItem } from '../../../../molecules/src';
+import { BiomarkerTableDataIconComponent, DataItem } from '../../../../molecules/src';
 import { SourceListItem } from '../../../../molecules/src/lib/source-list/source-list.component';
 import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { ReplaySubject } from 'rxjs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
+import { TableColumn, TableRow } from '@hra-ui/design-system/table';
 
 /**
  * RGBTriblet of type RGB to store color
@@ -73,8 +73,6 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
     CommonModule,
     MatTableModule,
     BiomarkerTableDataIconComponent,
-    HoverDirective,
-    BiomarkerTableDataCardComponent,
     ScrollingModule,
     TableVirtualScrollModule,
     MatButtonToggleModule,
@@ -139,6 +137,9 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   private displayedColumnCount = 10;
   /** Current displayed column offset */
   private displayedColumnOffset = 0;
+
+  /** Injects BottomSheetService */
+  private readonly bottomSheetService = inject(BottomSheetService);
 
   /** Gets the current width of the prefiller column */
   get preFillerWidth(): string {
@@ -215,6 +216,25 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
     }
   }
 
+  /**
+   * Opens bottom sheet
+   * @param cellData
+   */
+  openBottomSheet(cellData: T): void {
+    const hoverData = this.getHoverData([2, ['', undefined, cellData]]);
+
+    const rows: TableRow[] = hoverData.flat().map((item) => ({
+      property: item.label,
+      value: item.value,
+    }));
+
+    const columns: TableColumn[] = [
+      { column: 'property', label: 'Property', type: 'text' },
+      { column: 'value', label: 'Value', type: 'text' },
+    ];
+
+    this.bottomSheetService.openTableBottomSheet(rows, columns, true);
+  }
   /**
    * Updates horizontal viewport size and updates displayed column count
    */
