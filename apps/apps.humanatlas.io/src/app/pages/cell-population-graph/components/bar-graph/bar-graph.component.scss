@@ -1,0 +1,60 @@
+@use 'utils' as utils;
+@use 'vars' as vars;
+
+:host {
+  display: block;
+  overflow: auto;
+  border-left: solid 0.0625rem vars.$outline-variant;
+
+  .vega-container {
+    margin: 2rem;
+
+    #vg-tooltip-element.vg-tooltip {
+      @include utils.use-font(label, medium);
+      color: vars.$inverse-surface;
+      padding: 0.5rem;
+      max-width: 22.5rem;
+      box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$on-background, 24%);
+    }
+  }
+
+  ::ng-deep {
+    .vega-embed summary {
+      left: 0;
+      right: auto;
+    }
+
+    .vega-embed .vega-actions::before,
+    .vega-embed .vega-actions::after {
+      visibility: hidden;
+    }
+
+    .vega-embed .vega-actions {
+      left: -0.5625rem;
+      right: auto;
+      top: 1.75rem;
+      border-radius: 0.5rem;
+      box-shadow: 0rem 0.3125rem 0.25rem 0rem utils.with-alpha(vars.$on-background, 16%);
+      border: none;
+      width: 12.5rem;
+      height: 17.0625rem;
+
+      a {
+        @include utils.use-font(label, medium);
+        color: vars.$on-background;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      a:nth-child(2) {
+        border-bottom: 0.0625rem solid vars.$outline-variant;
+      }
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 999px) {
+    border-top: solid 0.0625rem vars.$outline-variant;
+  }
+}
