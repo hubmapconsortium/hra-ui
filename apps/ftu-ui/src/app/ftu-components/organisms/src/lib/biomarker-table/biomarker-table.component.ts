@@ -221,7 +221,19 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * @param cellData
    */
   openBottomSheet(cellData: T): void {
-    const hoverData = this.getHoverData([2, ['', undefined, cellData]]);
+    const row = this.dataSource.data.find((r) => r.slice(2).some((cell) => cell === cellData));
+
+    if (!row) {
+      return;
+    }
+
+    const cellIndex = row.indexOf(cellData);
+
+    if (cellIndex === -1) {
+      return;
+    }
+
+    const hoverData = this.getHoverData([cellIndex, row]);
 
     const rows: TableRow[] = hoverData.flat().map((item) => ({
       property: item.label,
