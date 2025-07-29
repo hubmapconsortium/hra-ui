@@ -7,6 +7,8 @@ export default [
   {
     files: ['**/*.ts'],
     rules: {
+      '@angular-eslint/prefer-signals': 'off',
+      '@angular-eslint/prefer-standalone': 'off',
       '@angular-eslint/directive-selector': [
         'error',
         {
@@ -23,6 +25,13 @@ export default [
           style: 'kebab-case',
         },
       ],
+    },
+  },
+  {
+    files: ['**/*.html'],
+    rules: {
+      '@angular-eslint/template/click-events-have-key-events': 'warn',
+      '@angular-eslint/template/interactive-supports-focus': 'warn',
     },
   },
 ];
