@@ -3,6 +3,7 @@
 @use 'utils';
 
 :host {
+  border-left: 0.0625rem solid vars.$outline;
   display: grid;
   grid-template-columns: 17.75rem 1fr;
   grid-template-rows: 4rem 1fr 1fr;
@@ -10,6 +11,28 @@
     'headline legend-area'
     'table table'
     'source-list source-list';
+  gap: 0.0625rem;
+  background-color: vars.$outline;
+
+  > * {
+    background-color: vars.$surface-container-lowest;
+  }
+
+  &.no-data-sources {
+    grid-template-areas:
+      'headline headline'
+      'empty empty'
+      'source-list source-list' !important;
+
+    .biomarker-header {
+      height: 4rem;
+    }
+
+    ftu-empty-biomarker {
+      grid-area: empty;
+      padding-top: 4rem;
+    }
+  }
 
   &.no-data {
     grid-template-rows: 4rem 1fr;
@@ -37,9 +60,8 @@
     }
 
     .select-data-message {
-      border: 1px solid vars.$outline;
       padding: 0 1rem;
-      padding-top: 3.875rem;
+      padding-top: 4.875rem;
       grid-area: select-data-message;
       @include utils.use-font(body, medium);
       color: vars.$primary;
@@ -68,7 +90,7 @@
     justify-content: space-between;
     column-gap: 0.5625rem;
     width: 100%;
-    border-right: 1px solid vars.$outline;
+    // border-right: 1px solid vars.$outline;
     @include utils.use-font(label, medium);
     padding-left: 1rem;
   }

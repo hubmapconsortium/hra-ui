@@ -3,6 +3,11 @@
 :host {
   flex-grow: 1;
 
+  ftu-label-box {
+    height: 4.0625rem;
+    border-bottom: 0.0625rem solid vars.$outline;
+  }
+
   hra-label-box {
     // border-bottom: 1px solid rgba(vars.$light-dividers);
     width: 100%;

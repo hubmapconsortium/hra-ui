@@ -7,7 +7,7 @@
   position: relative;
   min-height: 14rem;
   width: 100%;
-  border: 1px solid vars.$outline;
+  // border: 1px solid vars.$outline;
 
   @include mat.table-overrides(
     (

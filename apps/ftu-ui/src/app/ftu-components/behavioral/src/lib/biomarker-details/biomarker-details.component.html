@@ -6,7 +6,7 @@
 </div>
 
 <mat-button-toggle-group
-  hraButtonToggleSize="small"
+  hraButtonToggleSize="medium"
   [value]="selectedToggleValue"
   (change)="onToggleChange($event.value)"
   class="biomarker-toggle-group absolute-toggle"
@@ -32,8 +32,8 @@
   ></ftu-biomarker-table>
 }
 
-@if (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0) {
-  <ftu-empty-biomarker [message]="message" (collaborateClick)="collaborate()"></ftu-empty-biomarker>
+@if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
+  <ftu-empty-biomarker></ftu-empty-biomarker>
 }
 
 @if (source().length > 0 && selectedSources().length === 0) {
@@ -59,7 +59,6 @@
   <div class="source-list">
     <ftu-source-list
       [collaborateText]="collaborateText"
-      [message]="message"
       (collaborateClick)="collaborate()"
       [sources]="source()"
       (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"

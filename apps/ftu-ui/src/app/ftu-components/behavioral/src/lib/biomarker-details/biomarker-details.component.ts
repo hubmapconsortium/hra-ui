@@ -72,7 +72,9 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   styleUrls: ['./biomarker-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.no-data]': 'source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0',
+    '[class.no-data-sources]': 'source().length === 0',
+    '[class.no-data]':
+      'source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)',
     '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
   },
 })
@@ -186,18 +188,6 @@ export class BiomarkerDetailsComponent {
    * button text of empty biomarker component.
    */
   readonly collaborateText = 'Collaborate with the HRA Team';
-
-  /**
-   * message markdown of empty biomarker component.
-   */
-  readonly message = `
-  <p>
-    We currently do not have cell type by biomarker data for genes, proteins, or lipids.
-  </p>
-  <p>
-  Please email the Human Reference Atlas team at infoccf@iu.edu about your dataset.
-  </p>
-  `;
 
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);

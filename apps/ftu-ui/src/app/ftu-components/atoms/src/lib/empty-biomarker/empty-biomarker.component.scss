@@ -5,33 +5,19 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-left: 1px solid vars.$outline;
-
-  markdown {
-    display: block;
-    padding-top: 3rem;
-
-    ::ng-deep p {
-      @include utils.use-font(body, medium);
-      color: vars.$primary;
-    }
-  }
 
   .content {
-    border-top: 1px solid vars.$outline;
     padding: 0 1rem;
     flex: 1;
+    @include utils.use-font(body, medium);
+    color: vars.$primary;
   }
 
   .footer {
     padding: 1rem;
 
     .collaborate-button {
-      margin-top: 0.5rem;
-      font-weight: 700;
-      color: #fff;
       width: 100%;
-      height: 3rem;
     }
   }
 }

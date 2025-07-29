@@ -25,7 +25,14 @@ export class EmptyBiomarkerComponent {
   /**
    * Input  message markdown of empty biomarker component.
    */
-  @Input() message = '';
+  @Input() message = `
+  <p>
+    We currently do not have cell type by biomarker data for the selected biomarker.
+  </p>
+  <p>
+  Please email the Human Reference Atlas team at infoccf@iu.edu about your dataset.
+  </p>
+`;
 
   /**
    * An event emitter that emits the user button click event
