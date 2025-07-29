@@ -86,8 +86,9 @@ export class BiomarkerDetailsComponent {
   static readonly EXPRESSION_TOOLTIP_TEXT =
     'Functional tissue unit expression is scaled linearly to the range [0,1]. Scaling is done by designating the minimum value in the current view to 0 and the max is assigned to 1.';
 
-  /** Instance access to tooltip texts */
+  /** Instance access to percentage tooltip text */
   readonly percentageTooltipText = BiomarkerDetailsComponent.PERCENTAGE_TOOLTIP_TEXT;
+  /** Instance access to expression tooltip text */
   readonly expressionTooltipText = BiomarkerDetailsComponent.EXPRESSION_TOOLTIP_TEXT;
 
   /** Table tabs */
@@ -135,6 +136,7 @@ export class BiomarkerDetailsComponent {
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
+  /** Active tab index */
   private activeTabIndex = 0;
 
   /** Table tabs */
