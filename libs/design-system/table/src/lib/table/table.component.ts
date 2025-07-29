@@ -151,6 +151,9 @@ export class TableComponent<T = TableRow> {
   /** Selection model for checkbox functionality */
   readonly selection = new SelectionModel<TableRow>(true, []);
 
+  /** Hide table headers */
+  readonly hideHeaders = input<boolean>(false);
+
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
 
