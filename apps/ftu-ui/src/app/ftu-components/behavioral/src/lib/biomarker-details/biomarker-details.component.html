@@ -37,14 +37,24 @@
 ></ftu-empty-biomarker>
 
 <div class="legend">
-  <div class="legend-percentage">
+  <button
+    class="legend-percentage"
+    [hraRichTooltip]
+    hraRichTooltipTagline="Percentage of cells"
+    [hraRichTooltipDescription]="percentageTooltipText"
+  >
     <span class="legend-header-percentage">Percentage of cells</span>
     <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
-  </div>
-  <div class="legend-gradient">
+  </button>
+  <button
+    class="legend-gradient"
+    [hraRichTooltip]
+    hraRichTooltipTagline="Biomarker expression mean"
+    [hraRichTooltipDescription]="expressionTooltipText"
+  >
     <span class="legend-header-gradient">Biomarker expression mean</span>
     <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
-  </div>
+  </button>
 </div>
 
 <div class="source-list">
