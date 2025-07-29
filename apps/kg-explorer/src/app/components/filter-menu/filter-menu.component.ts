@@ -40,7 +40,7 @@ export interface FilterFormControls {
   styleUrl: './filter-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.closed]': 'drawerClosed()',
+    '[class.closed]': 'formClosed()',
   },
 })
 export class FilterMenuComponent {
@@ -55,14 +55,15 @@ export class FilterMenuComponent {
   });
 
   readonly filterOptions = input.required<FilterOptionCategory[]>();
+  readonly formClosed = input(false);
   readonly drawerClosed = signal<boolean>(false);
-  readonly closeDrawer = output<boolean>();
+  readonly toggleForm = output();
 
   readonly formChanges = output<FilterFormControls>();
 
   toggleDrawer() {
-    this.drawerClosed.set(!this.drawerClosed());
-    this.closeDrawer.emit(this.drawerClosed());
+    // this.drawerClosed.set(!this.drawerClosed());
+    this.toggleForm.emit();
   }
 
   handleFilterChange() {

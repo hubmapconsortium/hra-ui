@@ -1,31 +1,45 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+@if (isSmallScreen()) {
+  <button mat-fab extended class="filter-button" (click)="sidenav.toggle()">
+    <mat-icon>filter_list</mat-icon>
+    Filters
+  </button>
+}
+
+<mat-sidenav-container
+  autosize
+  [hasBackdrop]="!isWideScreen()"
+  [class.small]="isSmallScreen()"
+  [class.filter-closed]="!sidenav.opened"
+>
+  <mat-sidenav #sidenav [mode]="!isWideScreen() ? 'over' : 'side'" [opened]="isWideScreen()">
     <hra-filter-menu
       [filterOptions]="filterOptions()"
-      (closeDrawer)="filterClosed.set($event)"
+      (toggleForm)="sidenav.toggle()"
+      [formClosed]="!sidenav.opened"
       (formChanges)="handleFilterChanges($event)"
     ></hra-filter-menu>
-  </mat-drawer>
-</mat-drawer-container>
-
-<div class="page-content">
-  <div class="search-header">
-    <mat-form-field class="object-search">
-      <hra-icon matPrefix>search</hra-icon>
-      <mat-label>Search</mat-label>
-      <input matInput [formControl]="searchControl" />
-    </mat-form-field>
-    <hra-results-indicator
-      description="Viewing"
-      [value]="filteredRows().length"
-      [total]="allRows().length"
-    ></hra-results-indicator>
-  </div>
-  <hra-table
-    [style]="'divider'"
-    [enableSort]="true"
-    [rows]="filteredRows()"
-    [columns]="columns()"
-    (downloadFile)="download.saveFile($event[0], $event[1])"
-  />
-</div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="page-content">
+      <div class="search-header">
+        <mat-form-field class="object-search">
+          <hra-icon matPrefix>search</hra-icon>
+          <mat-label>Search</mat-label>
+          <input matInput [formControl]="searchControl" />
+        </mat-form-field>
+        <hra-results-indicator
+          description="Viewing"
+          [value]="filteredRows().length"
+          [total]="allRows().length"
+        ></hra-results-indicator>
+      </div>
+      <hra-table
+        [style]="'divider'"
+        [enableSort]="true"
+        [rows]="filteredRows()"
+        [columns]="columns()"
+        (downloadFile)="download.saveFile($event[0], $event[1])"
+      />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -6,8 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HraKgService, V1Service } from '@hra-api/ng-client';
+import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
@@ -187,6 +189,7 @@ const SCROLLBAR_TOP_OFFSET = '86';
     IconsModule,
     FilterMenuComponent,
     MatSidenavModule,
+    ButtonsModule,
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
@@ -226,6 +229,10 @@ export class MainPageComponent {
   readonly filters = signal<CurrentFilters>({});
 
   readonly scrollHeight = signal(0);
+
+  protected isWideScreen = watchBreakpoint('(min-width: 1100px)');
+
+  protected isSmallScreen = watchBreakpoint('(max-width: 639px)');
 
   /**
    * Sets filtered rows to all rows on init

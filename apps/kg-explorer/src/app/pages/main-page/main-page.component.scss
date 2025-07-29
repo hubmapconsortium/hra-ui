@@ -5,30 +5,43 @@
   @include mat.sidenav-overrides(
     (
       container-width: 18.5rem,
-      container-divider-color: vars.$outline,
       container-shape: 0,
+      container-background-color: vars.$surface-container-low,
+      content-background-color: vars.$on-primary,
     )
   );
 
   display: flex;
   height: calc(100vh - 7rem);
 
-  mat-drawer {
+  mat-sidenav {
     padding: 2rem 1rem;
+    border-right: 1px solid vars.$outline;
   }
 
-  mat-drawer-container {
-    overflow: visible;
+  mat-sidenav-container {
+    flex: 1;
   }
 
-  &.filter-closed {
-    mat-drawer {
-      transform: translateX(-14.5rem);
-      padding: 2rem 0.75rem;
-    }
+  mat-sidenav-content {
+    background: inherit;
+  }
 
-    ::ng-deep mat-drawer-content {
-      margin-left: 4rem !important;
+  .filter-closed {
+    @media (min-width: 640px) {
+      mat-sidenav {
+        transform: translateX(-14.5rem);
+        padding: 2rem 0.75rem;
+        visibility: visible;
+      }
+
+      mat-sidenav-content {
+        padding-left: 4rem;
+      }
+
+      ::ng-deep .mat-drawer-inner-container {
+        display: unset !important;
+      }
     }
   }
 
@@ -36,7 +49,7 @@
     display: flex;
     flex-direction: column;
     padding: 2rem 1.5rem 0rem;
-    overflow: auto;
+    height: 100%;
   }
 
   .search-header {
@@ -50,10 +63,8 @@
     width: 100%;
 
     @media (min-width: 640px) {
-      .object-search {
-        max-width: 36.25rem;
-        flex-grow: 1;
-      }
+      max-width: 36.25rem;
+      flex-grow: 1;
     }
 
     hra-icon {
@@ -71,6 +82,13 @@
     @media (min-width: 640px) {
       display: unset;
     }
+  }
+
+  .filter-button {
+    position: fixed;
+    right: 0.75rem;
+    top: 8rem;
+    z-index: 2;
   }
 
   ::ng-deep hra-table {

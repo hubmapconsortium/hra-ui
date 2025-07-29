@@ -96,7 +96,7 @@ export const appRoutes: Route[] = [
     resolve: {
       crumbs: (route: ActivatedRouteSnapshot) => {
         const name = route.params['name'];
-        return [{ name: 'Apps' }, { name: name }];
+        return [{ name: 'Apps' }, { name: name }]; //TODO: display the actual label
       },
       doData: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
     },
