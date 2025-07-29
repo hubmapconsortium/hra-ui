@@ -1,21 +1,7 @@
 @use 'utils';
+@use 'vars';
 
 :host {
-  width: 18.5rem;
-  min-width: 18.5rem;
-  height: 100%;
-  border-right: 1px solid var(--mat-sys-outline);
-  padding: 0rem 1rem 1rem 1rem;
-  transition: all 0.5s;
-
-  ng-scrollbar {
-    padding-top: 2rem;
-
-    ::ng-deep .ng-scroll-content {
-      max-width: 100%;
-    }
-  }
-
   .drawer-header {
     display: flex;
     align-items: center;
@@ -34,29 +20,27 @@
     .filler {
       flex-grow: 1;
     }
+  }
 
-    .menu-icon {
-      transition: all 0.5s;
-    }
+  .menu-icon,
+  .menu-content {
+    transition: 0.3s;
   }
 
   .menu-content {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    opacity: 1;
   }
 
   &.closed {
-    transform: translateX(-14rem);
-
     .menu-icon {
       transform: rotate(180deg);
     }
 
     .menu-content {
       opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
     }
   }
 
@@ -72,5 +56,9 @@
     .mat-mdc-chip {
       margin: 0;
     }
+  }
+
+  mat-divider {
+    border-top-color: vars.$outline-variant;
   }
 }

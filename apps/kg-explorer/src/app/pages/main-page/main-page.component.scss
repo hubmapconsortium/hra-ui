@@ -2,29 +2,41 @@
 @use 'vars';
 
 :host {
+  @include mat.sidenav-overrides(
+    (
+      container-width: 18.5rem,
+      container-divider-color: vars.$outline,
+      container-shape: 0,
+    )
+  );
+
   display: flex;
   height: calc(100vh - 7rem);
-  transition: all 0.5s;
 
-  &.filterClosed {
-    width: calc(100vw + 14rem);
+  mat-drawer {
+    padding: 2rem 1rem;
+  }
 
-    .page-content {
-      transform: translateX(-14rem);
+  mat-drawer-container {
+    overflow: visible;
+  }
+
+  &.filter-closed {
+    mat-drawer {
+      transform: translateX(-14.5rem);
+      padding: 2rem 0.75rem;
     }
 
-    hra-table,
-    .search-header {
-      width: calc(100vw - 8.5rem);
+    ::ng-deep mat-drawer-content {
+      margin-left: 4rem !important;
     }
   }
 
   .page-content {
     display: flex;
-    flex-grow: 1;
     flex-direction: column;
     padding: 2rem 1.5rem 0rem;
-    transition: all 0.5s;
+    overflow: auto;
   }
 
   .search-header {
@@ -32,35 +44,39 @@
     justify-content: space-between;
     padding-left: 0.75rem;
     gap: 2.5rem;
-    transition: all 0.5s;
+  }
 
-    .object-search {
-      max-width: 36.25rem;
-      flex-grow: 1;
+  .object-search {
+    width: 100%;
 
-      hra-icon {
-        padding: 0 0.75rem;
+    @media (min-width: 640px) {
+      .object-search {
+        max-width: 36.25rem;
+        flex-grow: 1;
       }
     }
 
-    hra-results-indicator {
-      line-height: 2rem;
-      height: 3rem;
-      min-width: 139px;
-      text-align: center;
+    hra-icon {
+      padding: 0 0.75rem;
     }
   }
 
-  .search-header,
-  hra-table {
-    width: calc(100vw - 22.5rem);
+  hra-results-indicator {
+    display: none;
+    line-height: 2rem;
+    height: 3rem;
+    min-width: 139px;
+    text-align: center;
+
+    @media (min-width: 640px) {
+      display: unset;
+    }
   }
 
   ::ng-deep hra-table {
     --mat-table-header-container-height: 5.375rem;
     --mat-table-row-item-container-height: 4.75rem;
     border: none;
-    transition: all 0.5s;
 
     scrollbar-y {
       --viewport-height: var(--view-height);
@@ -90,16 +106,6 @@
       vertical-align: middle !important;
       padding-top: 0.25rem !important;
       padding-bottom: 0.5rem !important;
-    }
-  }
-
-  @media (max-width: 639px) {
-    .object-search {
-      width: 100%;
-    }
-
-    hra-results-indicator {
-      display: none;
     }
   }
 }

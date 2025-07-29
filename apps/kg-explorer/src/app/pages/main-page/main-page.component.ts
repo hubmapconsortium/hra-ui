@@ -4,6 +4,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { HraKgService, V1Service } from '@hra-api/ng-client';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
@@ -13,9 +14,9 @@ import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/tab
 import { forkJoin, fromEvent, Observable, switchMap, tap } from 'rxjs';
 
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
+import { VERSION_DATA } from '../../components/version-selector/version-selector.component';
 import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
-import { VERSION_DATA } from '../../components/version-selector/version-selector.component';
 
 export interface FilterOption {
   id: string;
@@ -185,12 +186,13 @@ const SCROLLBAR_TOP_OFFSET = '86';
     ReactiveFormsModule,
     IconsModule,
     FilterMenuComponent,
+    MatSidenavModule,
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.filterClosed]': 'filterClosed()',
+    '[class.filter-closed]': 'filterClosed()',
     '[style.--view-height]': 'scrollHeight()',
     '[style.--scrollbar-top-offset]': SCROLLBAR_TOP_OFFSET,
   },

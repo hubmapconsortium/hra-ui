@@ -1,8 +1,12 @@
-<hra-filter-menu
-  [filterOptions]="filterOptions()"
-  (closeDrawer)="filterClosed.set($event)"
-  (formChanges)="handleFilterChanges($event)"
-></hra-filter-menu>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+    <hra-filter-menu
+      [filterOptions]="filterOptions()"
+      (closeDrawer)="filterClosed.set($event)"
+      (formChanges)="handleFilterChanges($event)"
+    ></hra-filter-menu>
+  </mat-drawer>
+</mat-drawer-container>
 
 <div class="page-content">
   <div class="search-header">
