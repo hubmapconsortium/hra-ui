@@ -49,7 +49,7 @@ export const Simple: Story = {
 };
 
 export const SimpleWithAction: Story = {
-  storyName: 'Simple Tooltip with Action',
+  name: 'Simple Tooltip with Action',
   args: {
     tagline: 'Title',
     description: 'Supporting line text lorem ipsum dolor sit amet, consectetur',
@@ -76,7 +76,7 @@ export const SimpleWithAction: Story = {
 };
 
 export const AdvancedTooltip: Story = {
-  storyName: 'Advanced Tooltip with Custom Content',
+  name: 'Advanced Tooltip with Custom Content',
   render: (args) => ({
     props: args,
     styles: [

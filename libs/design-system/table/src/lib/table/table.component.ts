@@ -165,7 +165,7 @@ export class NumericRowElementDirective {
     '[class.vertical-dividers]': 'verticalDividers()',
   },
 })
-export class TableComponent<T extends TableRow = TableRow> {
+export class TableComponent<T = TableRow> {
   /** CSV URL input */
   readonly csvUrl = input<string>();
 
@@ -223,7 +223,7 @@ export class TableComponent<T extends TableRow = TableRow> {
   protected readonly columnIds = computed(() => this._columns().map((col) => col.column));
 
   /** Table data source */
-  protected readonly dataSource = new MatTableDataSource<TableRow>([]);
+  protected readonly dataSource = new MatTableDataSource<T>([]);
 
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);

@@ -1,14 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UIState, UIStateModel } from '../../store/ui.state';
 
+import { ProgressSpinnerComponent } from '@hra-ui/design-system/indicators/progress-spinner';
+
 @Component({
   selector: 'app-loading',
+  imports: [CommonModule, ProgressSpinnerComponent],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
-  standalone: false,
 })
 export class LoadingComponent implements OnInit {
   data = inject<string>(MAT_DIALOG_DATA);

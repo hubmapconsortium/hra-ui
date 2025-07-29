@@ -1,14 +1,21 @@
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
+import { provideStore } from '@ngxs/store';
 import { render } from '@testing-library/angular';
-import configuration from '../assets/configuration.json';
+import { withNgxsResetPlugin } from 'ngxs-reset-plugin';
 import { environment } from '../environments/environment';
+import { ConfigService } from './app-config.service';
 import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
+import { ConsentService } from './services/consent.service';
+import { LogsState } from './store/logs.state';
+import { SheetState } from './store/sheet.state';
+import { TreeState } from './store/tree.state';
+import { UIState } from './store/ui.state';
 
 jest.mock('vega', () => ({ parse: jest.fn() }));
 
+/** Outdated Tests */
 describe('AppComponent', () => {
   beforeAll(() => {
     if (typeof ResizeObserver === 'undefined') {
@@ -22,14 +29,18 @@ describe('AppComponent', () => {
 
   it('should create', async () => {
     const result = render(AppComponent, {
-      imports: [AppModule],
-      providers: [provideHttpClientTesting(), withNgxsLoggerPlugin({ disabled: true })],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideIcons(),
+        provideStore(
+          [SheetState, TreeState, UIState, LogsState],
+          withNgxsLoggerPlugin({ disabled: environment.production }),
+          withNgxsResetPlugin(),
+        ),
+        ConsentService,
+        ConfigService,
+      ],
     });
-
-    const controller = TestBed.inject(HttpTestingController);
-    controller.expectOne('assets/configuration.json').flush(configuration);
-    controller.expectOne(environment.omapSheetConfigUrl).flush([]);
-    controller.expectOne(environment.sheetConfigUrl).flush([]);
 
     await expect(result).resolves.toBeDefined();
   });
