@@ -474,7 +474,7 @@ export class MainPageComponent {
         organs: item.organs,
         title: item.title,
         lod: item.lod,
-        objectUrl: `/metadata/${item.doType}/${item.doName}/${item.doVersion}`,
+        objectUrl: `metadata/${item.doType}/${item.doName}/${item.doVersion}`,
         typeIcon: 'product:' + PRODUCT_ICON_MAP[item.doType],
         // If more than one organ use all-organs icon
         organIcon: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'),
