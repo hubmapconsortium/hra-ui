@@ -1,0 +1,33 @@
+@use 'vars';
+@use 'utils';
+
+:host {
+  flex-grow: 1;
+
+  .illustration-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.3438rem 1rem;
+    border-bottom: 1px solid vars.$outline;
+    background-color: vars.$surface-container-low;
+
+    .content {
+      @include utils.use-font(label, medium);
+      padding: 0.5938rem 0;
+    }
+  }
+
+  @media (min-height: 49.5rem) {
+    hra-label-box {
+      font-size: 0.9375rem;
+      height: 3rem;
+    }
+  }
+
+  @media (min-height: 60.75rem) {
+    hra-label-box {
+      font-size: 1.25rem;
+    }
+  }
+}

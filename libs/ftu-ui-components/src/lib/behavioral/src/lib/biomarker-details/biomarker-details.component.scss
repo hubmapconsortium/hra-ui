@@ -1,0 +1,170 @@
+@use '@angular/material' as mat;
+@use 'vars';
+@use 'utils';
+
+:host {
+  display: grid;
+  grid-template-columns: 17.75rem 1fr;
+  grid-template-rows: 4rem auto 1fr;
+  grid-template-areas:
+    'headline legend-area'
+    'table table'
+    'source-list source-list';
+
+  @include mat.button-toggle-overrides(
+    (
+      divider-color: 1px solid vars.$primary,
+      disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
+      height: 2rem,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: 1.3125rem,
+      label-text-size: 0.875rem,
+      label-text-weight: vars.$label-medium-weight,
+      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
+      selected-state-text-color: vars.$secondary,
+    )
+  );
+
+  .biomarker-header {
+    grid-area: headline;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0.5625rem;
+    width: 100%;
+    border-right: 1px solid vars.$outline;
+    @include utils.use-font(label, medium);
+    padding-left: 1rem;
+  }
+
+  .absolute-toggle {
+    position: absolute;
+    top: 5rem;
+    left: 1rem;
+    z-index: 1000;
+    width: 14.625rem;
+    border: 1px solid vars.$primary;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+
+    .mat-button-toggle {
+      flex: 1;
+      font-weight: vars.$label-medium-weight;
+      text-transform: none;
+      transition: all 0.2s ease;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:not(:first-child) {
+        border-left: 1px solid vars.$outline;
+      }
+
+      .mat-button-toggle-label-content {
+        line-height: 1;
+        padding: 0;
+      }
+    }
+  }
+
+  .table {
+    grid-area: table;
+    width: 100%;
+
+    .cursor {
+      pointer-events: auto;
+    }
+  }
+
+  .legend {
+    grid-area: legend-area;
+    min-width: 21.5rem;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    width: 100%;
+
+    .legend-percentage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 0.25rem;
+      flex-grow: 1;
+      border-right: 1px solid vars.$outline;
+
+      .legend-header-percentage {
+        @include utils.use-font(label, small);
+      }
+    }
+
+    .legend-gradient {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 0.25rem;
+      flex-grow: 1;
+      border-right: 1px solid vars.$outline;
+
+      .content {
+        width: 9.75rem;
+      }
+
+      .legend-header-gradient {
+        @include utils.use-font(label, small);
+      }
+    }
+  }
+
+  .source-list {
+    height: 100%;
+    grid-area: source-list;
+    overflow: hidden;
+    max-height: 21rem;
+  }
+
+  ftu-biomarker-table {
+    grid-area: table;
+    width: 100%;
+  }
+
+  ftu-label-box {
+    font-size: 0.875rem;
+    padding-left: 1.5rem;
+  }
+}
+
+::ng-deep .biomarker-details.info-tooltip {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  max-width: 21rem;
+  font-family: Metropolis;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
+}
+
+::ng-deep .mdc-tab__ripple::before {
+  opacity: 0 !important;
+}
+
+::ng-deep .biomarker-table-hover.full-column-name {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
+  overflow: auto;
+  max-width: fit-content;
+  font-family: Metropolis;
+  font-size: 0.75rem;
+
+  &.empty {
+    display: none;
+  }
+}
