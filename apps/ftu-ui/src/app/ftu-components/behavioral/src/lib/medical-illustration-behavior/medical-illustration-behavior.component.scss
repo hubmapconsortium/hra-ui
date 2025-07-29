@@ -10,6 +10,7 @@
     justify-content: space-between;
     padding: 1.3438rem 1rem;
     border-bottom: 1px solid vars.$outline;
+    background-color: vars.$surface-container-low;
 
     .content {
       @include utils.use-font(label, medium);
