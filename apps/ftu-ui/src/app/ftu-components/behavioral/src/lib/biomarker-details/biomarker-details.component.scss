@@ -30,7 +30,6 @@
 
     ftu-empty-biomarker {
       grid-area: empty;
-      padding-top: 4rem;
     }
   }
 
@@ -42,10 +41,6 @@
 
     .biomarker-header {
       height: 4rem;
-    }
-
-    ftu-empty-biomarker {
-      grid-area: empty;
     }
   }
 
@@ -191,6 +186,11 @@
   ftu-label-box {
     font-size: 0.875rem;
     padding-left: 1.5rem;
+  }
+
+  ftu-empty-biomarker {
+    grid-area: empty;
+    padding-top: 4rem;
   }
 }
 
