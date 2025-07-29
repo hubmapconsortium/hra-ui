@@ -17,7 +17,6 @@ import { TooltipComponent } from '../../../../atoms/src';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Delay before tooltip becomes visible */
 const HOVER_DELAY = 200;
@@ -79,7 +78,7 @@ export interface NodeMapEntry {
  */
 @Component({
   selector: 'ftu-interactive-svg',
-  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent, PlainTooltipDirective],
+  imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],
   templateUrl: './interactive-svg.component.html',
   styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
