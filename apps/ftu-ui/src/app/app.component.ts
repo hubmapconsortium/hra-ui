@@ -28,7 +28,7 @@ import {
   StorageId,
   StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from './ftu-components/behavioral/src';
+import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from '@hra-ui/ftu-ui-components';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
