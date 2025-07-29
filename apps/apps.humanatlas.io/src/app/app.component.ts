@@ -25,7 +25,7 @@ const ANCHOR_SCROLL_PADDING = 24;
 
 /** Main application component */
 @Component({
-  selector: 'hra-apps',
+  selector: 'hra-root',
   imports: [ButtonsModule, CommonModule, RouterModule, IconsModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
