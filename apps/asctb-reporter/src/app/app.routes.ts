@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { HomeComponent } from './components/home/home.component';
-import { DocsComponent } from './modules/docs/docs.component';
 import { RootComponent } from './modules/root/root.component';
 
 export const appRoutes: Route[] = [
@@ -27,20 +26,15 @@ export const appRoutes: Route[] = [
       appControls: true,
     },
   },
-  {
-    path: 'playground',
-    component: RootComponent,
-  },
-  {
-    path: 'vis/:sheet/:version/:playground',
-    component: RootComponent,
-  },
-  {
-    path: 'docs',
-    component: DocsComponent,
-  },
-  {
-    path: 'docs/:id',
-    component: DocsComponent,
-  },
+
+  // TODO external redirect to docs.humanatlas.io
+  // Port existing content to doc portal
+  // {
+  //   path: 'docs',
+  //   component: DocsComponent,
+  // },
+  // {
+  //   path: 'docs/:id',
+  //   component: DocsComponent,
+  // },
 ];

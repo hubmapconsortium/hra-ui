@@ -8,7 +8,13 @@
         Explore visualization
         <mat-icon iconPositionEnd>arrow_forward</mat-icon>
       </a>
-      <a mat-button hraCtaButton hraButtonVariant="secondary" routerLink="/playground">
+      <a
+        mat-button
+        hraCtaButton
+        hraButtonVariant="secondary"
+        routerLink="/vis"
+        [queryParams]="{ playground: true, selectedOrgans: 'example' }"
+      >
         Launch playground
         <mat-icon iconPositionEnd>arrow_forward</mat-icon>
       </a>
