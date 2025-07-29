@@ -62,6 +62,14 @@
               "logoPath": "product:dashboard",
               "appUrl": "https://apps.humanatlas.io/dashboard/",
               "documentLink": "https://humanatlas.io/user-story/7"
+            },
+            {
+              "tagline": "Cell Population Graphs",
+              "description": "Explore organ-specific datasets from publications and data portals.",
+              "imagePath": "assets/ui-images/cell_population_graphs.png",
+              "logoPath": "product:cell-population-graphs",
+              "appUrl": "https://apps.humanatlas.io/cell-population-graphs/",
+              "documentLink": "https://humanatlas.io/cell-population-graphs"
             }
           ]
         },
