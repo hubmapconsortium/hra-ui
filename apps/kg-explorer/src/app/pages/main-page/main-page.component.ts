@@ -16,7 +16,6 @@ import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/tab
 import { forkJoin, fromEvent, Observable, switchMap, tap } from 'rxjs';
 
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
-import { VERSION_DATA } from '../../components/version-selector/version-selector.component';
 import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
 
@@ -83,6 +82,46 @@ export interface ObjectTypeData {
   /** Tooltip data for the digital object type */
   tooltip: TooltipData;
 }
+
+/** HRA version data info */
+const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
+  'v2.3': {
+    label: '9th Release (v2.3)',
+    date: 'June 2025',
+  },
+  'v2.2': {
+    label: '8th Release (v2.2)',
+    date: 'December 2024',
+  },
+  'v2.1': {
+    label: '7th Release (v2.1)',
+    date: 'June 2024',
+  },
+  'v2.0': {
+    label: '6th Release (v2.0)',
+    date: 'December 2023',
+  },
+  'v1.4': {
+    label: '5th Release (v1.4)',
+    date: 'June 2023',
+  },
+  'v1.3': {
+    label: '4th Release (v1.3)',
+    date: 'December 2022',
+  },
+  'v1.2': {
+    label: '3rd Release (v1.2)',
+    date: 'June 2022',
+  },
+  'v1.1': {
+    label: '2rd Release (v1.1)',
+    date: 'December 2021',
+  },
+  'v1.0': {
+    label: '1st Release (v1.0)',
+    date: 'June 2021',
+  },
+};
 
 /** Maps organ name to the correct icon in the design system */
 export const ORGAN_ICON_MAP: Record<string, string> = {
@@ -349,8 +388,28 @@ export class MainPageComponent {
       this.v1.cellTypeTreeModel({}),
       this.v1.biomarkerTreeModel({}),
       this.kg.asctbTermOccurences({}),
-    ]).subscribe(([as, ct, b, asctbTerms]) => {
+      this.kg.doSearch({ hraVersions: ['v1.0'] }),
+      this.kg.doSearch({ hraVersions: ['v1.1'] }),
+      this.kg.doSearch({ hraVersions: ['v1.2'] }),
+      this.kg.doSearch({ hraVersions: ['v1.3'] }),
+      this.kg.doSearch({ hraVersions: ['v1.4'] }),
+      this.kg.doSearch({ hraVersions: ['v2.0'] }),
+      this.kg.doSearch({ hraVersions: ['v2.1'] }),
+      this.kg.doSearch({ hraVersions: ['v2.2'] }),
+      this.kg.doSearch({ hraVersions: ['v2.3'] }),
+    ]).subscribe(([as, ct, b, asctbTerms, r1, r2, r3, r4, r5, r6, r7, r8, r9]) => {
       const terms = Object.entries(asctbTerms);
+      const hraVersionCounts: Record<string, number> = {
+        'v1.0': r1.length,
+        'v1.1': r2.length,
+        'v1.2': r3.length,
+        'v1.3': r4.length,
+        'v1.4': r5.length,
+        'v2.0': r6.length,
+        'v2.1': r7.length,
+        'v2.2': r8.length,
+        'v2.3': r9.length,
+      };
 
       this.filterCategories.set([
         {
@@ -373,12 +432,12 @@ export class MainPageComponent {
         {
           id: 'releaseVersion',
           label: 'HRA release version',
-          options: Array.from(kgOptions.versionOptions).map((filterOption) => {
-            const versionData = VERSION_DATA[filterOption];
+          options: Object.keys(HRA_VERSION_DATA).map((filterOption) => {
+            const versionData = HRA_VERSION_DATA[filterOption];
             return {
               id: filterOption,
               label: versionData ? versionData.label : filterOption,
-              count: this.calculateCount(filterOption, 'doVersion'),
+              count: hraVersionCounts[filterOption],
               secondaryLabel: versionData ? versionData.date : undefined,
             };
           }),
@@ -470,9 +529,6 @@ export class MainPageComponent {
       if (this.filters().digitalObjects) {
         newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
       }
-      if (this.filters().releaseVersion) {
-        newFilteredRows = this.filterVersionResults(newFilteredRows);
-      }
       if (this.filters().organs) {
         newFilteredRows = this.filterOrganResults(newFilteredRows);
       }
@@ -544,11 +600,13 @@ export class MainPageComponent {
     const currentAnatomicalStructuresFilters = this.filters().anatomicalStructures?.map((obj) => obj.id) || [];
     const currentCellTypesFilters = this.filters().cellTypes?.map((obj) => obj.id) || [];
     const currentBiomarkerFilters = this.filters().biomarkers?.map((obj) => obj.id) || [];
+    const currentHraVersionFilters = this.filters().releaseVersion?.map((obj) => obj.id) || [];
 
     return this.kg.doSearch({
       ontologyTerms: currentAnatomicalStructuresFilters,
       cellTypeTerms: currentCellTypesFilters,
       biomarkerTerms: currentBiomarkerFilters,
+      hraVersions: currentHraVersionFilters,
     });
   }
 
@@ -557,13 +615,10 @@ export class MainPageComponent {
    */
   private kgFilterOptions() {
     const objectFilterOptions = new Set<string>();
-    const versionFilterOptions = new Set<string>();
     const organFilterOptions = new Set<string>();
     this.allRows().forEach((row) => {
       const type = row['doType'];
       objectFilterOptions.add(type as string);
-      const version = row['doVersion'];
-      versionFilterOptions.add(version as string);
       const organs = row['organs'] as string[];
       if (organs) {
         for (const organ of organs) {
@@ -573,7 +628,6 @@ export class MainPageComponent {
     });
     return {
       doOptions: objectFilterOptions,
-      versionOptions: versionFilterOptions,
       organOptions: organFilterOptions,
     };
   }
