@@ -85,7 +85,6 @@
     justify-content: space-between;
     column-gap: 0.5625rem;
     width: 100%;
-    // border-right: 1px solid vars.$outline;
     @include utils.use-font(label, medium);
     padding-left: 1rem;
   }
@@ -103,13 +102,6 @@
 
     .mat-button-toggle {
       flex: 1;
-      font-weight: vars.$label-medium-weight;
-      text-transform: none;
-      transition: all 0.2s ease;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
       &:not(:first-child) {
         border-left: 1px solid vars.$outline;
@@ -203,11 +195,6 @@
   ftu-biomarker-table {
     grid-area: table;
     width: 100%;
-  }
-
-  ftu-label-box {
-    font-size: 0.875rem;
-    padding-left: 1.5rem;
   }
 
   ftu-empty-biomarker {
