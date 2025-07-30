@@ -1,4 +1,5 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,8 +18,8 @@ import {
   FooterBehaviorComponent,
   HraLandingPageIntroWcBehaviourComponent,
   TissueLibraryBehaviorComponent,
-} from '@hra-ui/components/behavioral';
-import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
+} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
+import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -84,6 +85,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 @Component({
   selector: 'hra-root',
   imports: [
+    CommonModule,
     TissueLibraryBehaviorComponent,
     HraLandingPageIntroWcBehaviourComponent,
     BiomarkerDetailsWcComponent,
