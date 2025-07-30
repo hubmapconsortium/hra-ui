@@ -12,7 +12,6 @@ import {
   OnChanges,
   OnInit,
   Output,
-  signal,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
