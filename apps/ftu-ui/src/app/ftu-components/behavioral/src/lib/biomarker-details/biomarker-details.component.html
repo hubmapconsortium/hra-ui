@@ -7,12 +7,14 @@
 
 <mat-button-toggle-group
   hraButtonToggleSize="medium"
-  [value]="selectedToggleValue"
+  [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
   (change)="onToggleChange($event.value)"
   class="biomarker-toggle-group absolute-toggle"
 >
-  @for (option of toggleOptions; track option.value) {
-    <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
+  @for (option of toggleOptions; track option.value; let i = $index) {
+    <mat-button-toggle [value]="option.value" [disabled]="getTabs()[i].rows.length === 0">{{
+      option.label
+    }}</mat-button-toggle>
   }
 </mat-button-toggle-group>
 
