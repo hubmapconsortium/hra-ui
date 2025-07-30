@@ -140,6 +140,7 @@ export class BiomarkerDetailsComponent {
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
+  /** List of selected sources */
   readonly selectedSources = signal<SourceListItem[]>([]);
 
   /** Active tab index */
