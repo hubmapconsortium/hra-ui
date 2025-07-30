@@ -6,6 +6,7 @@ import {
   effect,
   ElementRef,
   inject,
+  input,
   signal,
   viewChild,
 } from '@angular/core';
@@ -16,7 +17,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { CtaConfig, HeaderComponent } from '@hra-ui/design-system/navigation/header';
+import { CtaConfig, DEFAULT_MENUS, HeaderComponent, Menu } from '@hra-ui/design-system/navigation/header';
 import { isNavigating } from './utils/navigation';
 
 /** Padding when scrolling to an anchor in px */
@@ -24,7 +25,7 @@ const ANCHOR_SCROLL_PADDING = 24;
 
 /** Main application component */
 @Component({
-  selector: 'hra-apps',
+  selector: 'hra-root',
   imports: [ButtonsModule, CommonModule, RouterModule, IconsModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -34,6 +35,12 @@ const ANCHOR_SCROLL_PADDING = 24;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  /** Additional header menus */
+  readonly extraMenus = input<Menu[]>([]);
+
+  /** All menus (default + extra) */
+  protected readonly menus = computed(() => [...DEFAULT_MENUS, ...this.extraMenus()]);
+
   /** Reference to the header html element */
   private readonly header = viewChild.required(HeaderComponent, { read: ElementRef });
 
@@ -69,6 +76,8 @@ export class AppComponent {
   /** Initialize the application */
   constructor() {
     inject(CustomScrollService);
+    this.router.initialNavigation();
+
     const scroller = inject(ViewportScroller);
     effect(() => {
       const yOffset = this.headerHeight() + ANCHOR_SCROLL_PADDING;

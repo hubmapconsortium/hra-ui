@@ -1,4 +1,8 @@
-<hra-header></hra-header>
+<hra-header baseUrl="lod.humanatlas.io/" [breadcrumbs]="crumbs() ?? []" [progress]="isNavigating()">
+  <a mat-icon-button [href]="getHelpUrl()" target="_blank" rel="noopener noreferrer">
+    <mat-icon>help</mat-icon>
+  </a>
+</hra-header>
 <div class="content">
   <router-outlet></router-outlet>
 </div>

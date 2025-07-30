@@ -1,0 +1,35 @@
+@use 'vars';
+
+:host {
+  display: flex;
+  flex-direction: row;
+  padding: 2.5rem 1rem;
+  overflow-wrap: break-word;
+
+  .content-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    padding: 2.5rem;
+
+    .content-container {
+      flex: 1;
+      width: calc(100% - 17rem - 2.5rem);
+      max-width: 87.5rem;
+      margin: auto;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    margin-right: 0;
+    gap: 2.5rem;
+
+    .content-container {
+      width: calc(100% - 23rem - 2.5rem);
+    }
+  }
+}

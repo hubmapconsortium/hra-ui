@@ -1,0 +1,51 @@
+@use 'vars';
+
+:host {
+  min-width: 20rem;
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .viewer-container,
+  .metadata-image {
+    display: flex;
+    aspect-ratio: 4 / 3;
+    border-radius: 0.75rem;
+    border: 1px solid vars.$outline;
+
+    .model-viewer {
+      flex-grow: 1;
+      height: 100%;
+    }
+  }
+
+  .csv-table.add-margin {
+    margin-top: 1.5rem;
+  }
+
+  hra-provenance-menu {
+    display: none;
+  }
+
+  .metadata-table,
+  .csv-table {
+    max-height: 120rem;
+    height: min-content;
+  }
+
+  .medium-screen {
+    display: flex;
+    gap: 2.5rem;
+
+    .sections {
+      width: calc(100% - 18rem - 2.5rem);
+    }
+
+    hra-provenance-menu {
+      display: flex;
+    }
+  }
+}

@@ -1,44 +1,11 @@
 @use 'utils';
 @use 'vars';
 @use '@angular/material' as mat;
-@import './../../../assets/stylesheets/_colors.scss';
+@use './../../../assets/stylesheets/_colors.scss';
 
 :host {
-  .checkboxes {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 1rem 0 1rem;
-    mat-checkbox {
-      display: block;
-    }
-  }
-
-  .radios {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 1rem 0.5rem 1rem;
-
-    @include mat.radio-overrides(
-      (
-        selected-icon-color: vars.$on-tertiary-fixed,
-        selected-pressed-icon-color: vars.$on-tertiary-fixed,
-        selected-focus-icon-color: vars.$on-tertiary-fixed,
-        selected-hover-icon-color: vars.$on-tertiary-fixed,
-
-        unselected-icon-color: vars.$primary,
-        unselected-pressed-icon-color: vars.$primary,
-        unselected-focus-icon-color: vars.$primary,
-        unselected-hover-icon-color: vars.$primary,
-
-        ripple-color: vars.$primary,
-        checked-ripple-color: vars.$on-tertiary-fixed,
-      )
-    );
-  }
-
   .controls {
-    padding: 0 1rem 1rem 1rem;
+    padding: 0 1rem 0.5rem 1rem;
 
     .title {
       @include utils.use-font(label, medium);
@@ -102,5 +69,51 @@
 
   .vis-controls {
     font-size: 0.9rem;
+  }
+
+  .ids {
+    margin: 0 1rem 1rem 1rem;
+
+    .label {
+      @include utils.use-font(label, medium);
+      color: vars.$primary;
+      margin-bottom: 0.5rem;
+    }
+
+    .checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+
+      @include mat.slide-toggle-overrides(
+        (
+          label-text-color: vars.$primary,
+          label-text-font: vars.$label-medium-font,
+          label-text-line-height: vars.$label-medium-line-height,
+          label-text-size: vars.$label-medium-size,
+          label-text-tracking: vars.$label-medium-tracking,
+          label-text-weight: vars.$label-medium-weight,
+        )
+      );
+    }
+
+    mat-button-toggle-group {
+      width: 100%;
+
+      @include mat.button-toggle-overrides(
+        (
+          label-text-font: vars.$label-small-font,
+          label-text-line-height: vars.$label-small-line-height,
+          label-text-size: vars.$label-small-size,
+          label-text-tracking: vars.$label-small-tracking,
+          label-text-weight: vars.$label-small-weight,
+        )
+      );
+
+      mat-button-toggle {
+        flex: 1;
+      }
+    }
   }
 }
