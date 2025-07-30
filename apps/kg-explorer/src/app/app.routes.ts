@@ -88,7 +88,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'metadata/:type/:name/:version',
+    path: ':type/:name/:version',
     component: MetadataPageComponent,
     data: {
       columns: metadataColumns,
