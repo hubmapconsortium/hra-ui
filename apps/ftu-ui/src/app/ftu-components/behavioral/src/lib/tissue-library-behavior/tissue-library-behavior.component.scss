@@ -4,4 +4,8 @@
 :host {
   display: flex;
   flex-direction: column;
+
+  ftu-label-box {
+    border-right: 0.0625rem solid vars.$outline;
+  }
 }

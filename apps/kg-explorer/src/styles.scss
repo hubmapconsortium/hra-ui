@@ -5,3 +5,7 @@
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
 }
+
+mat-icon {
+  font-variation-settings: unset !important;
+}

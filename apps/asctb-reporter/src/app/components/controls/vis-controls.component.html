@@ -1,33 +1,3 @@
-<div class="checkboxes">
-  <mat-checkbox
-    *ngIf="currentSheet.name === 'all' || (currentSheet.name === 'some' && selectedOrgans.length > 8)"
-    [checked]="config.show_all_AS"
-    (change)="changeShowAS()"
-    matTooltip="Toggle Visibility of Anatomical Structures"
-    matTooltipPosition="below"
-    >Show all AS</mat-checkbox
-  >
-  <mat-checkbox
-    [checked]="config.show_ontology"
-    (change)="changeShowOntology()"
-    matTooltip="Toggle Visibility of Ontology Links"
-    matTooltipPosition="below"
-    >Ontology IDs</mat-checkbox
-  >
-</div>
-
-<mat-radio-group class="radios">
-  <mat-radio-button value="1" [checked]="config.discrepencyLabel" (change)="showDiscrepencyLabel()"
-    >Label mismatch</mat-radio-button
-  >
-  <mat-radio-button value="2" [checked]="config.discrepencyId" (change)="showDiscrepencyId()"
-    >ID Missing</mat-radio-button
-  >
-  <mat-radio-button value="3" [checked]="config.duplicateId" (change)="showDuplicateId()"
-    >ID Duplicates</mat-radio-button
-  >
-</mat-radio-group>
-
 <div class="controls">
   <div class="title">Tree controls</div>
   <div class="control">
@@ -35,7 +5,7 @@
       <mat-label>Width</mat-label>
       <input [(ngModel)]="config.width" type="number" matInput (change)="changeWidth()" />
     </mat-form-field>
-    <mat-slider tickInterval="100" min="100" max="1000" (change)="changeWidth()">
+    <mat-slider tickInterval="100" min="100" max="1000" (change)="changeWidth()" discrete>
       <input matSliderThumb [(ngModel)]="config.width" />
     </mat-slider>
   </div>
@@ -44,7 +14,7 @@
       <mat-label>Height</mat-label>
       <input [(ngModel)]="config.height" type="number" matInput (change)="changeHeight()" />
     </mat-form-field>
-    <mat-slider tickInterval="100" min="100" max="7000" (change)="changeHeight()">
+    <mat-slider tickInterval="100" min="100" max="7000" (change)="changeHeight()" discrete>
       <input matSliderThumb [(ngModel)]="config.height"
     /></mat-slider>
   </div>
@@ -57,7 +27,15 @@
       <mat-label>X</mat-label>
       <input [(ngModel)]="config.bimodal_distance_x" type="number" matInput (change)="changeBimodalDistanceX()" />
     </mat-form-field>
-    <mat-slider thumbLabel color="primary" tickInterval="100" min="50" max="500" (change)="changeBimodalDistanceX()">
+    <mat-slider
+      thumbLabel
+      color="primary"
+      tickInterval="100"
+      min="50"
+      max="500"
+      (change)="changeBimodalDistanceX()"
+      discrete
+    >
       <input matSliderThumb [(ngModel)]="config.bimodal_distance_x"
     /></mat-slider>
   </div>
@@ -66,8 +44,44 @@
       <mat-label>Y</mat-label>
       <input [(ngModel)]="config.bimodal_distance_y" type="number" matInput (change)="changeBimodalDistanceY()" />
     </mat-form-field>
-    <mat-slider tickInterval="100" min="10" max="200" (change)="changeBimodalDistanceY()">
+    <mat-slider tickInterval="100" min="10" max="200" (change)="changeBimodalDistanceY()" discrete>
       <input matSliderThumb [(ngModel)]="config.bimodal_distance_y" />
     </mat-slider>
   </div>
+</div>
+
+<div class="ids">
+  <div class="label">IDs & labels</div>
+
+  <div class="checkboxes">
+    <mat-slide-toggle
+      *ngIf="currentSheet.name === 'all' || (currentSheet.name === 'some' && selectedOrgans.length > 8)"
+      [checked]="config.show_all_AS"
+      (change)="changeShowAS()"
+      matTooltip="Toggle Visibility of Anatomical Structures"
+      matTooltipPosition="below"
+    >
+      Show all AS
+    </mat-slide-toggle>
+    <mat-slide-toggle
+      [checked]="config.show_ontology"
+      (change)="changeShowOntology()"
+      matTooltip="Toggle Visibility of Ontology Links"
+      matTooltipPosition="below"
+    >
+      Show ontology IDs
+    </mat-slide-toggle>
+  </div>
+
+  <mat-button-toggle-group hraButtonToggleSize="medium" hideSingleSelectionIndicator="false">
+    <mat-button-toggle value="1" [checked]="config.discrepencyLabel" (change)="showDiscrepencyLabel()">
+      Label mismatch
+    </mat-button-toggle>
+    <mat-button-toggle value="2" [checked]="config.discrepencyId" (change)="showDiscrepencyId()">
+      ID Missing
+    </mat-button-toggle>
+    <mat-button-toggle value="3" [checked]="config.duplicateId" (change)="showDuplicateId()">
+      ID Duplicates
+    </mat-button-toggle>
+  </mat-button-toggle-group>
 </div>

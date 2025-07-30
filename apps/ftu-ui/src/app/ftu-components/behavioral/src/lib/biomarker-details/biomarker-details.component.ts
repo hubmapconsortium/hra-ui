@@ -1,24 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import {
-  EmptyBiomarkerComponent,
-  GradientLegendComponent,
-  GradientPoint,
-  SizeLegend,
-  SizeLegendComponent,
-} from '../../../../atoms/src';
-import { SourceListComponent } from '../../../../molecules/src';
-import {
-  BiomarkerTableComponent,
-  DataCell,
-  TissueInfo,
-} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
@@ -34,12 +21,25 @@ import {
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import {
+  EmptyBiomarkerComponent,
+  GradientLegendComponent,
+  GradientPoint,
+  SizeLegend,
+  SizeLegendComponent,
+} from '../../../../atoms/src';
+import { SourceListComponent, SourceListItem } from '../../../../molecules/src';
+import {
+  BiomarkerTableComponent,
+  DataCell,
+  TissueInfo,
+} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
+
 import { MatButtonModule } from '@angular/material/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
-import { RichTooltipModule, RichTooltipDirective } from '@hra-ui/design-system/tooltips/rich-tooltip';
+import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
+import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -66,13 +66,17 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     SourceListComponent,
     EmptyBiomarkerComponent,
     MatButtonToggleModule,
-    PlainTooltipDirective,
-    RichTooltipModule,
-    RichTooltipDirective,
+    MessageIndicatorModule,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.no-data-sources]': 'source().length === 0',
+    '[class.no-data]':
+      'source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)',
+    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
+  },
 })
 export class BiomarkerDetailsComponent {
   /** Reference to biomarker table */
@@ -136,6 +140,9 @@ export class BiomarkerDetailsComponent {
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
+  /** List of selected sources */
+  readonly selectedSources = signal<SourceListItem[]>([]);
+
   /** Active tab index */
   private activeTabIndex = 0;
 
@@ -164,6 +171,16 @@ export class BiomarkerDetailsComponent {
     if (index !== -1) {
       this.activeTabIndex = index;
     }
+  }
+
+  /**
+   * Determines if a toggle option is disabled.
+   * @param index index of the toggle option
+   * @returns true if the toggle option is disabled, false otherwise
+   */
+  isToggleOptionDisabled(index: number): boolean {
+    const tab = this.getTabs()[index] ?? { label: '', columns: [], rows: [] };
+    return tab ? tab.rows.length === 0 : true;
   }
 
   /**
@@ -196,12 +213,6 @@ export class BiomarkerDetailsComponent {
    * button text of empty biomarker component.
    */
   readonly collaborateText = 'Collaborate with the HRA Team';
-
-  /**
-   * message markdown of empty biomarker component.
-   */
-  readonly message = `We currently do not have cell type data for this biomarker.
-  <br><br> Please contact us to discuss your dataset.`;
 
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);

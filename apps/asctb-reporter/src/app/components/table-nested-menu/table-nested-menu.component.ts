@@ -14,13 +14,12 @@ import { SheetDetails, VersionDetail } from '../../models/sheet.model';
 })
 export class TableNestedMenuComponent {
   @Input() sheetDetails: SheetDetails[] = [];
-  @Input() title = '';
-  window = window;
   @ViewChild('childMenu', { static: true }) childMenu!: MatMenu;
   sheetURL = 'https://docs.google.com/spreadsheets/d/';
 
-  openURL(version: VersionDetail) {
-    const url = version.link || version.csvUrl || `${this.sheetURL}${version.sheetId}/edit#gid=${version.gid}`;
-    this.window.open(url, '_blank');
+  getUrl(version: VersionDetail): string {
+    const { sheetURL } = this;
+    const { link, csvUrl, sheetId, gid } = version;
+    return link || csvUrl || `${sheetURL}${sheetId}/edit#gid=${gid}`;
   }
 }
