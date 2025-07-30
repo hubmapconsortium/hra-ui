@@ -3,23 +3,15 @@ import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
-import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
+import { GradientPoint, SizeLegend } from '../../../../atoms/src';
+import { InteractiveSvgComponent, SourceListComponent } from '../../../../molecules/src';
 import {
-  EmptyBiomarkerComponent,
-  GradientLegendComponent,
-  GradientPoint,
-  LabelBoxComponent,
-  SizeLegend,
-  SizeLegendComponent,
-} from '@hra-ui/components/atoms';
-import {
-  BiomarkerTableDataCardComponent,
-  InteractiveSvgComponent,
-  SourceListComponent,
-} from '@hra-ui/components/molecules';
-import { BiomarkerTableComponent, DataCell, TissueInfo } from '@hra-ui/components/organisms';
+  BiomarkerTableComponent,
+  DataCell,
+  TissueInfo,
+} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
@@ -35,8 +27,8 @@ import {
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
+import { BiomarkerDetailsComponent } from '../biomarker-details/biomarker-details.component';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -53,15 +45,9 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     CommonModule,
     MatIconModule,
     MatTabsModule,
-    BiomarkerTableComponent,
-    BiomarkerTableDataCardComponent,
-    GradientLegendComponent,
-    HoverDirective,
-    LabelBoxComponent,
-    SizeLegendComponent,
     SourceListComponent,
-    EmptyBiomarkerComponent,
     InteractiveSvgComponent,
+    BiomarkerDetailsComponent,
   ],
   templateUrl: './biomarker-details-wc.component.html',
   styleUrls: ['./biomarker-details-wc.component.scss'],
