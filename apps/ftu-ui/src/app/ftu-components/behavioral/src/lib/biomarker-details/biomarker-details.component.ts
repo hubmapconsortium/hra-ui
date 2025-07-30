@@ -82,6 +82,19 @@ export class BiomarkerDetailsComponent {
   /** Reference to biomarker table */
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
+  /** Tooltip text for percentage of cells legend */
+  static readonly PERCENTAGE_TOOLTIP_TEXT =
+    'The percentage of cells in the functional tissue unit (FTU) is calculated by dividing the total number of cells in all FTUs by the number of all cells in that tissue section.';
+
+  /** Tooltip text for biomarker expression mean legend */
+  static readonly EXPRESSION_TOOLTIP_TEXT =
+    'Functional tissue unit expression is scaled linearly to the range [0,1]. Scaling is done by designating the minimum value in the current view to 0 and the max is assigned to 1.';
+
+  /** Instance access to percentage tooltip text */
+  readonly percentageTooltipText = BiomarkerDetailsComponent.PERCENTAGE_TOOLTIP_TEXT;
+  /** Instance access to expression tooltip text */
+  readonly expressionTooltipText = BiomarkerDetailsComponent.EXPRESSION_TOOLTIP_TEXT;
+
   /** Table tabs */
   readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);
 
@@ -129,6 +142,7 @@ export class BiomarkerDetailsComponent {
 
   readonly selectedSources = signal<SourceListItem[]>([]);
 
+  /** Active tab index */
   private activeTabIndex = 0;
 
   /** Table tabs */

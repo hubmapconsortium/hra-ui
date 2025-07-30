@@ -174,7 +174,9 @@
   }
 }
 
-// Row hover effect
-.mat-mdc-row:hover .mat-mdc-cell {
-  background-color: rgba(vars.$primary, 0.05);
+::ng-deep {
+  hra-bottom-sheet hra-table tr td:first-child {
+    color: vars.$secondary !important;
+    border-right: 1px solid vars.$outline;
+  }
 }

@@ -1,4 +1,9 @@
-<ftu-label-box>{{ tissueTitle }}</ftu-label-box>
+<div class="illustration-header">
+  <span class="content">Illustration</span>
+  <button mat-icon-button hraIconButtonSize="large" hraPlainTooltip="Open in full screen">
+    <mat-icon>fullscreen</mat-icon>
+  </button>
+</div>
 <ftu-interactive-svg
   [url]="currentUrl()"
   [mapping]="mapping()"

@@ -30,7 +30,7 @@
 
       ::ng-deep ftu-interactive-svg {
         display: flex;
-        height: calc(100% - 3rem);
+        height: calc(100% - 4.1rem);
       }
     }
 
@@ -39,10 +39,6 @@
       .illustration-details {
         height: 100%;
         z-index: 1;
-      }
-
-      .illustration-details {
-        // border-left: 1px solid rgba(vars.$light-dividers);
       }
     }
   }
