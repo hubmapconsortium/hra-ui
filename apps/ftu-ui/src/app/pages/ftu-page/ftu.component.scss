@@ -30,7 +30,7 @@
 
       ::ng-deep ftu-interactive-svg {
         display: flex;
-        height: calc(100% - 3rem);
+        height: calc(100% - 4.1rem);
       }
     }
 
@@ -62,6 +62,19 @@
 
     ftu-biomarker-table {
       max-width: none;
+    }
+  }
+
+  /** Styles to define view width for the case when no data is available */
+  ftu-fullscreen-content:has(ftu-biomarker-details.no-data),
+  ftu-fullscreen-content:has(ftu-biomarker-details.no-data-available) {
+    width: 18rem !important;
+  }
+
+  ftu-fullscreen-container:has(ftu-biomarker-details.no-data),
+  ftu-fullscreen-container:has(ftu-biomarker-details.no-data-available) {
+    .left-side {
+      max-width: calc(100% - 18rem) !important;
     }
   }
 }

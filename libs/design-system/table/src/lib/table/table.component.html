@@ -18,24 +18,28 @@
         [class.vertical-divider]="verticalDividers()"
         aria-label="Table with sort function"
       >
-        @let templates = { text, numeric, markdown, link };
+        @let templates = { text, numeric, markdown, link, icon, menu };
 
         <!-- Selection Column (if enabled) -->
         @if (enableRowSelection()) {
           <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">
-              <mat-checkbox
-                aria-label="Select all"
-                [checked]="selection.hasValue() && isAllSelected()"
-                [indeterminate]="selection.hasValue() && !isAllSelected()"
-                (change)="toggleAllRows()"
-                disableRipple
-              >
-              </mat-checkbox>
-            </th>
+            @if (!hideHeaders()) {
+              <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">
+                <mat-checkbox
+                  aria-label="Hide all"
+                  hraPlainTooltip="Hide all"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  (change)="toggleAllRows()"
+                  disableRipple
+                >
+                </mat-checkbox>
+              </th>
+            }
             <td mat-cell *matCellDef="let element" data-column-type="checkbox">
               <mat-checkbox
-                aria-label="Select row"
+                aria-label="Hide"
+                hraPlainTooltip="Hide"
                 (click)="$event.stopPropagation()"
                 (change)="$event ? toggleRow(element) : null"
                 [checked]="selection.isSelected(element)"
@@ -51,15 +55,17 @@
           @let template = templates[type];
 
           <ng-container [matColumnDef]="column.column">
-            <th
-              mat-header-cell
-              *matHeaderCellDef
-              mat-sort-header
-              [attr.data-column-type]="type"
-              [sortActionDescription]="`Sort by ${column.label}`"
-            >
-              {{ column.label }}
-            </th>
+            @if (!hideHeaders()) {
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                [attr.data-column-type]="type"
+                [sortActionDescription]="`Sort by ${column.label}`"
+              >
+                {{ column.label }}
+              </th>
+            }
             <td mat-cell *matCellDef="let element" [attr.data-column-type]="type">
               <ng-container
                 *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"
@@ -68,7 +74,9 @@
           </ng-container>
         }
 
-        <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
+        @if (!hideHeaders()) {
+          <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
+        }
         <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>
       </table>
     </div>
@@ -85,6 +93,34 @@
 
 <ng-template hraMarkdownRowElement #markdown let-markdown>
   <markdown class="markdown" [data]="markdown" />
+</ng-template>
+
+<ng-template hraIconRowElement #icon let-icon>
+  <hra-icon [svgIcon]="icon"></hra-icon>
+</ng-template>
+
+<ng-template hraMenuButtonRowElement #menu let-column="column" let-element="element">
+  @let icon = column.type.icon;
+  @let options = element[column.type.options];
+  <button mat-icon-button [matMenuTriggerFor]="menuOptions">
+    <hra-icon [fontIcon]="icon"></hra-icon>
+  </button>
+
+  <mat-menu #menuOptions="matMenu" class="table-menu">
+    @for (option of getMenuOptions(options); track option) {
+      <button mat-menu-item (click)="downloadFile.emit([option.url || '', option.id])">
+        <mat-icon>{{ option.icon }}</mat-icon>
+        <div class="option-text">
+          <span class="option-name">
+            {{ option.name }}
+          </span>
+          <span class="option-description">
+            {{ option.description }}
+          </span>
+        </div>
+      </button>
+    }
+  </mat-menu>
 </ng-template>
 
 <ng-template hraLinkRowElement #link let-label let-column="column" let-element="element">

@@ -1,0 +1,68 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    color: var(--mat-sys-secondary);
+
+    .filter-icon {
+      padding: 0.5rem;
+    }
+
+    .drawer-title {
+      padding: 0.5rem 0.75rem;
+      @include utils.use-font(title, small);
+    }
+
+    .filler {
+      flex-grow: 1;
+    }
+  }
+
+  .menu-icon,
+  .menu-content {
+    transition: 0.3s;
+  }
+
+  .menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    opacity: 1;
+  }
+
+  &.closed {
+    .menu-icon {
+      transform: rotate(180deg);
+    }
+
+    .menu-content {
+      opacity: 0;
+    }
+  }
+
+  ::ng-deep .mdc-evolution-chip-set__chips {
+    margin: 0 !important;
+    gap: 0.25rem;
+
+    .mdc-evolution-chip__text-label {
+      max-width: 13.75rem;
+      overflow: hidden;
+    }
+
+    .mat-mdc-chip {
+      margin: 0;
+    }
+  }
+
+  mat-divider {
+    border-top-color: vars.$outline-variant;
+  }
+
+  ::ng-deep .ng-scroll-content {
+    max-width: 100%;
+  }
+}

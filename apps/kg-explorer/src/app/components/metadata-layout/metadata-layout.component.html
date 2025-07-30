@@ -1,0 +1,27 @@
+<div class="content-container">
+  <ng-content select="hra-metadata-layout-header" />
+
+  @if (isSmallScreen()) {
+    <hra-provenance-menu
+      [rows]="rows()"
+      [columns]="columns()"
+      [version]="version()"
+      [availableVersions]="availableVersions()"
+      [downloadOptions]="downloadOptions()"
+      (versionChange)="versionChange.emit($event)"
+    ></hra-provenance-menu>
+  }
+
+  <ng-content select="hra-metadata-layout-content" />
+</div>
+
+@if (isWideScreen()) {
+  <hra-provenance-menu
+    [rows]="rows()"
+    [columns]="columns()"
+    [version]="version()"
+    [availableVersions]="availableVersions()"
+    [downloadOptions]="downloadOptions()"
+    (versionChange)="versionChange.emit($event)"
+  ></hra-provenance-menu>
+}

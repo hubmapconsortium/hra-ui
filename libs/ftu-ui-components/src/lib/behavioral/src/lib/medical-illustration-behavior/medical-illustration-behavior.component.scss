@@ -4,11 +4,16 @@
 :host {
   flex-grow: 1;
 
+  ftu-label-box {
+    height: 4.0625rem;
+    border-bottom: 0.0625rem solid vars.$outline;
+  }
+
   .illustration-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.3438rem 1rem;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid vars.$outline;
     background-color: vars.$surface-container-low;
 

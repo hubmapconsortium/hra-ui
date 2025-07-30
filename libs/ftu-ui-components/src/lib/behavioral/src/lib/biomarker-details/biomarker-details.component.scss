@@ -3,13 +3,65 @@
 @use '../../../../../../../design-system/styles/utils';
 
 :host {
+  border-left: 0.0625rem solid vars.$outline;
   display: grid;
   grid-template-columns: 17.75rem 1fr;
-  grid-template-rows: 4rem auto 1fr;
+  grid-template-rows: 4rem 1fr 1fr;
   grid-template-areas:
     'headline legend-area'
     'table table'
     'source-list source-list';
+  gap: 0.0625rem;
+  background-color: vars.$outline;
+
+  > * {
+    background-color: vars.$surface-container-lowest;
+  }
+
+  &.no-data-sources {
+    grid-template-areas:
+      'headline headline'
+      'empty empty'
+      'source-list source-list' !important;
+
+    .biomarker-header {
+      height: 4rem;
+    }
+
+    ftu-empty-biomarker {
+      grid-area: empty;
+    }
+  }
+
+  &.no-data {
+    grid-template-rows: 4rem 1fr;
+    grid-template-areas:
+      'headline headline'
+      'empty empty';
+
+    .biomarker-header {
+      height: 4rem;
+    }
+  }
+
+  &.no-data-selected {
+    grid-template-areas:
+      'headline headline'
+      'select-data-message select-data-message'
+      'source-list source-list';
+
+    .biomarker-header {
+      height: 4rem;
+    }
+
+    .select-data-message {
+      padding: 0 1rem;
+      padding-top: 4.875rem;
+      grid-area: select-data-message;
+      @include utils.use-font(body, medium);
+      color: vars.$primary;
+    }
+  }
 
   @include mat.button-toggle-overrides(
     (
@@ -33,7 +85,6 @@
     justify-content: space-between;
     column-gap: 0.5625rem;
     width: 100%;
-    border-right: 1px solid vars.$outline;
     @include utils.use-font(label, medium);
     padding-left: 1rem;
   }
@@ -51,13 +102,6 @@
 
     .mat-button-toggle {
       flex: 1;
-      font-weight: vars.$label-medium-weight;
-      text-transform: none;
-      transition: all 0.2s ease;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
       &:not(:first-child) {
         border-left: 1px solid vars.$outline;
@@ -96,6 +140,17 @@
       flex-grow: 1;
       border-right: 1px solid vars.$outline;
 
+      background: none;
+      border: none;
+      border-right: 1px solid vars.$outline;
+      padding: 0;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 0.7;
+      }
+
       .legend-header-percentage {
         @include utils.use-font(label, small);
       }
@@ -114,6 +169,17 @@
         width: 9.75rem;
       }
 
+      background: none;
+      border: none;
+      border-right: 1px solid vars.$outline;
+      padding: 0;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 0.7;
+      }
+
       .legend-header-gradient {
         @include utils.use-font(label, small);
       }
@@ -124,7 +190,6 @@
     height: 100%;
     grid-area: source-list;
     overflow: hidden;
-    max-height: 21rem;
   }
 
   ftu-biomarker-table {
@@ -132,9 +197,9 @@
     width: 100%;
   }
 
-  ftu-label-box {
-    font-size: 0.875rem;
-    padding-left: 1.5rem;
+  ftu-empty-biomarker {
+    grid-area: empty;
+    padding-top: 4rem;
   }
 }
 

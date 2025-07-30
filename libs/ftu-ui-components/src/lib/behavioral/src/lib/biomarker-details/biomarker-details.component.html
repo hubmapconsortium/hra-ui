@@ -1,62 +1,75 @@
 <div class="biomarker-header">
   <span class="biomarker-header-title">Cell types by biomarkers</span>
-  <button mat-icon-button hraIconButtonSize="large">
+  <button mat-icon-button hraIconButtonSize="large" hraPlainTooltip="Open in full screen">
     <mat-icon>fullscreen</mat-icon>
   </button>
 </div>
 
 <mat-button-toggle-group
-  hraButtonToggleSize="small"
-  [value]="selectedToggleValue"
+  hraButtonToggleSize="medium"
+  [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
   (change)="onToggleChange($event.value)"
   class="biomarker-toggle-group absolute-toggle"
 >
   @for (option of toggleOptions; track option.value) {
-    <mat-button-toggle [value]="option.value">{{ option.label }}</mat-button-toggle>
+    <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
+      option.label
+    }}</mat-button-toggle>
   }
 </mat-button-toggle-group>
-<ftu-biomarker-table
-  #table
-  *ngIf="tab.rows.length !== 0"
-  [class.small]="tab.rows.length < 10"
-  [data]="$any(tab.rows)"
-  [columns]="tab.columns"
-  [gradient]="gradients()"
-  [sizes]="sizes()"
-  [tissueInfo]="tissueInfo"
-  [illustrationIds]="illustrationIds"
-  [dataSources]="source()"
-  [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
-  (rowHover)="highlightCells($event)"
-></ftu-biomarker-table>
-<ftu-empty-biomarker
-  *ngIf="tab.rows.length === 0"
-  [collaborateText]="collaborateText"
-  [message]="message"
-  (collaborateClick)="collaborate()"
-></ftu-empty-biomarker>
 
-<div class="legend">
-  <div class="legend-percentage">
-    <span class="legend-header-percentage">Percentage of cells</span>
-    <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
-  </div>
-  <div class="legend-gradient">
-    <span class="legend-header-gradient">Biomarker expression mean</span>
-    <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
-  </div>
-</div>
+@if (tab.rows.length !== 0) {
+  <ftu-biomarker-table
+    #table
+    [class.small]="tab.rows.length < 10"
+    [data]="$any(tab.rows)"
+    [columns]="tab.columns"
+    [gradient]="gradients()"
+    [sizes]="sizes()"
+    [tissueInfo]="tissueInfo"
+    [illustrationIds]="illustrationIds"
+    [dataSources]="source()"
+    [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
+    (rowHover)="highlightCells($event)"
+  ></ftu-biomarker-table>
+}
 
-<div class="source-list">
-  <ftu-source-list
-    [collaborateText]="collaborateText"
-    [message]="message"
-    (collaborateClick)="collaborate()"
-    [sources]="source()"
-    (selectionChanged)="setSelectedSources($event)"
-    class="content"
-  ></ftu-source-list>
-</div>
+@if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
+  <ftu-empty-biomarker
+    emptyBehaviorText="We currently do not have cell type data for the selected biomarker."
+  ></ftu-empty-biomarker>
+}
+
+@if (source().length > 0 && selectedSources().length === 0) {
+  <div class="select-data-message">
+    <hra-info-message-indicator> Select source data to view cell types by biomarkers. </hra-info-message-indicator>
+  </div>
+}
+
+@if (tab.rows.length > 0) {
+  <div class="legend">
+    <div class="legend-percentage">
+      <span class="legend-header-percentage">Percentage of cells</span>
+      <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
+    </div>
+    <div class="legend-gradient">
+      <span class="legend-header-gradient">Biomarker expression mean</span>
+      <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
+    </div>
+  </div>
+}
+
+@if (!(source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
+  <div class="source-list">
+    <ftu-source-list
+      [collaborateText]="collaborateText"
+      (collaborateClick)="collaborate()"
+      [sources]="source()"
+      (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
+      class="content"
+    ></ftu-source-list>
+  </div>
+}
 
 <ng-template #infoTooltip let-tooltip>
   <div class="biomarker-details info-tooltip">

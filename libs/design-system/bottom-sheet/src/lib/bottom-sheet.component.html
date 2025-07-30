@@ -7,7 +7,7 @@
 <div class="sheet-content">
   @switch (data.variant) {
     @case ('table') {
-      <hra-table [rows]="data.rows" [columns]="data.columns" />
+      <hra-table [rows]="data.rows" [columns]="data.columns" [hideHeaders]="data.hideHeaders ?? false" />
     }
 
     @case ('page-section') {

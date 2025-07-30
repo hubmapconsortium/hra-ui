@@ -1,4 +1,17 @@
-<markdown [data]="message" class="message"></markdown>
-<button mat-flat-button class="collaborate-button" color="primary" (click)="collaborateClick.emit($event)">
-  {{ collaborateText }}
-</button>
+<div class="content">
+  <p>{{ emptyBehaviorText() }}</p>
+  <p>Please email the Human Reference Atlas team at infoccf&#64;iu.edu about your dataset.</p>
+</div>
+
+<div class="footer">
+  <button
+    mat-flat-button
+    class="collaborate-button"
+    color="primary"
+    cdkCopyToClipboard="infoccf@iu.edu"
+    (click)="showCopiedMessage()"
+  >
+    <mat-icon>content_copy</mat-icon>
+    Copy email
+  </button>
+</div>

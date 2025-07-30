@@ -7,7 +7,6 @@
   position: relative;
   min-height: 14rem;
   width: 100%;
-  border: 1px solid vars.$outline;
 
   @include mat.table-overrides(
     (
@@ -174,7 +173,9 @@
   }
 }
 
-// Row hover effect
-.mat-mdc-row:hover .mat-mdc-cell {
-  background-color: rgba(vars.$primary, 0.05);
+::ng-deep {
+  hra-bottom-sheet hra-table tr td:first-child {
+    color: vars.$secondary !important;
+    border-right: 1px solid vars.$outline;
+  }
 }

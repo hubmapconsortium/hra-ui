@@ -3,7 +3,8 @@
 
 :host {
   display: block;
-  border-inline: 0.0625rem solid vars.$outline;
+
+  height: 100%;
 
   .source-list-header {
     display: flex;
@@ -30,7 +31,6 @@
 
   .table-content {
     overflow: auto;
-    padding: 16px;
 
     &.hidden {
       display: none;
@@ -38,6 +38,7 @@
 
     hra-table {
       max-height: 163px;
+      border-radius: 0;
 
       ::ng-deep td {
         max-width: 143.6704px;

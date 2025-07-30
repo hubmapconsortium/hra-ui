@@ -2,7 +2,6 @@
   .card {
     display: flex;
     flex-direction: column;
-    height: 100vh;
 
     .card-body {
       max-height: calc(100vh - 4rem);

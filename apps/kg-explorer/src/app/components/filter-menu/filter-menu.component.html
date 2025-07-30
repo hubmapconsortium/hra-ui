@@ -1,0 +1,49 @@
+<ng-scrollbar>
+  <div class="drawer-header">
+    <hra-icon class="filter-icon" fontIcon="filter_list" />
+    <span class="drawer-title">Filters</span>
+    <div class="filler"></div>
+    <button mat-icon-button (click)="toggleForm.emit()" aria-label="Open or close filters menu">
+      <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
+    </button>
+  </div>
+
+  <form class="menu-content" [formGroup]="form">
+    <hra-filter-menu-overlay
+      [form]="form.controls.digitalObjects"
+      [filterOptionCategory]="filterCategories()[0]"
+      (filterChanged)="formChanges.emit(form.controls)"
+    />
+    <mat-divider />
+    <hra-filter-menu-overlay
+      [form]="form.controls.releaseVersion"
+      [filterOptionCategory]="filterCategories()[1]"
+      (filterChanged)="formChanges.emit(form.controls)"
+    />
+    <mat-divider />
+    <hra-filter-menu-overlay
+      [form]="form.controls.organs"
+      [filterOptionCategory]="filterCategories()[2]"
+      (filterChanged)="formChanges.emit(form.controls)"
+    />
+    <mat-divider />
+    <hra-filter-menu-overlay
+      [form]="form.controls.anatomicalStructures"
+      [filterOptionCategory]="filterCategories()[3]"
+      (filterChanged)="formChanges.emit(form.controls)"
+    />
+    <mat-divider />
+    <hra-filter-menu-overlay
+      [form]="form.controls.cellTypes"
+      [filterOptionCategory]="filterCategories()[4]"
+      (filterChanged)="formChanges.emit(form.controls)"
+    />
+    <mat-divider />
+    <hra-filter-menu-overlay
+      [form]="form.controls.biomarkers"
+      [filterOptionCategory]="filterCategories()[5]"
+      (filterChanged)="formChanges.emit(form.controls)"
+    />
+    <mat-divider />
+  </form>
+</ng-scrollbar>
