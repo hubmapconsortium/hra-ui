@@ -1196,8 +1196,10 @@ html {
 html {
   --mat-menu-item-label-text-line-height: var(--mat-sys-label-medium-line-height);
 }
+html .mat-mdc-menu-panel {
+  max-width: 19.5rem;
+}
 html .mat-mdc-menu-panel button {
-  min-width: 12rem;
   border: 0.125rem solid transparent;
 }
 html .mat-mdc-menu-panel .expand-arrow {
@@ -1216,6 +1218,22 @@ html .mat-mdc-menu-panel .cdk-keyboard-focused {
 }
 html .mat-mdc-menu-panel .mat-mdc-menu-item-highlighted {
   background-color: rgb(from var(--mat-sys-secondary) r g b/8%);
+}
+html .option-text {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+html .option-text .option-name {
+  font: var(--mat-sys-label-medium-font);
+}
+html .option-text .option-description {
+  font: var(--mat-sys-label-small-font);
+  color: var(--mat-sys-primary);
+}
+html .table-menu {
+  --mat-menu-item-with-icon-leading-spacing: 0.75rem;
+  --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
 }
 html {
   --mdc-slider-inactive-track-color: var(--mat-sys-outline);
