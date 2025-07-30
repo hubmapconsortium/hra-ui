@@ -319,4 +319,13 @@ export class TableComponent<T = TableRow> {
     this.selection.toggle(row as TableRow);
     this.selectionChange.emit(this.selection.selected as T[]);
   }
+
+  /**
+   * Returns download menu options as an array of MenuOptionsType
+   * @param options Menu options
+   * @returns Menu options as an array of MenuOptionsType
+   */
+  getMenuOptions(options: string | number | boolean | MenuOptionsType[]) {
+    return options as MenuOptionsType[];
+  }
 }
