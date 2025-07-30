@@ -16,6 +16,8 @@ interface TableBottomSheetData {
   rows: TableRow[];
   /** columns for the table */
   columns: TableColumn[];
+  /** Optional flag to hide headers */
+  hideHeaders?: boolean;
 }
 
 /**
