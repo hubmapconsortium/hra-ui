@@ -92,7 +92,10 @@ export class MetadataPageComponent {
   readonly rows = computed(() =>
     [
       { provenance: 'Creator(s)', metadata: this.createMarkdownList(this.metadata().was_derived_from.creators) },
-      { provenance: 'Project lead', metadata: this.createMarkdownList(this.metadata().was_derived_from.project_leads) },
+      {
+        provenance: 'Project lead(s)',
+        metadata: this.createMarkdownList(this.metadata().was_derived_from.project_leads),
+      },
       {
         provenance: 'Reviewer(s)',
         metadata: this.createMarkdownList(this.metadata().was_derived_from.reviewers),

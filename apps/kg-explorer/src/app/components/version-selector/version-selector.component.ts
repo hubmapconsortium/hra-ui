@@ -60,11 +60,11 @@ export class VersionSelectorComponent {
   readonly versionChange = output<string>();
 
   /**
-   * Gets the version label from version id
+   * Gets the version label from version id (uses version id if no label is found)
    * @param version version id
    * @returns version label
    */
   versionLabel(version: string): string {
-    return VERSION_DATA[version].label;
+    return VERSION_DATA[version]?.label ?? version;
   }
 }
