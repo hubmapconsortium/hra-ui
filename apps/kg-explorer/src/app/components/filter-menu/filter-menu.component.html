@@ -3,7 +3,7 @@
     <hra-icon class="filter-icon" fontIcon="filter_list" />
     <span class="drawer-title">Filters</span>
     <div class="filler"></div>
-    <button mat-icon-button (click)="toggleDrawer()" aria-label="Open or close filters menu">
+    <button mat-icon-button (click)="toggleForm.emit()" aria-label="Open or close filters menu">
       <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
     </button>
   </div>
@@ -11,38 +11,38 @@
   <form class="menu-content" [formGroup]="form">
     <hra-filter-menu-overlay
       [form]="form.controls.digitalObjects"
-      [filterOptionCategory]="filterOptions()[0]"
-      (filterChanged)="handleFilterChange()"
+      [filterOptionCategory]="filterCategories()[0]"
+      (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.releaseVersion"
-      [filterOptionCategory]="filterOptions()[1]"
-      (filterChanged)="handleFilterChange()"
+      [filterOptionCategory]="filterCategories()[1]"
+      (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.organs"
-      [filterOptionCategory]="filterOptions()[2]"
-      (filterChanged)="handleFilterChange()"
+      [filterOptionCategory]="filterCategories()[2]"
+      (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.anatomicalStructures"
-      [filterOptionCategory]="filterOptions()[3]"
-      (filterChanged)="handleFilterChange()"
+      [filterOptionCategory]="filterCategories()[3]"
+      (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.cellTypes"
-      [filterOptionCategory]="filterOptions()[4]"
-      (filterChanged)="handleFilterChange()"
+      [filterOptionCategory]="filterCategories()[4]"
+      (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.biomarkers"
-      [filterOptionCategory]="filterOptions()[5]"
-      (filterChanged)="handleFilterChange()"
+      [filterOptionCategory]="filterCategories()[5]"
+      (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
   </form>

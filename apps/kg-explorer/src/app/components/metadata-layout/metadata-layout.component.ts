@@ -14,6 +14,7 @@ import { ProvenanceMenuComponent } from '../provenance-menu/provenance-menu.comp
 })
 export class MetadataLayoutHeaderComponent {}
 
+/** Metadata layout content */
 @Component({
   selector: 'hra-metadata-layout-content',
   template: `<ng-content />`,
@@ -33,13 +34,20 @@ export class MetadataLayoutContentComponent {}
 export class MetadataLayoutComponent {
   /** Whether the screen width is currently greater than or equal to 1100px */
   protected isWideScreen = watchBreakpoint('(min-width: 1100px)');
-
+  /** Whether the screen width is currently less than 639px */
   protected isSmallScreen = watchBreakpoint('(max-width: 639px)');
 
+  /** Row data for the metadata table */
   readonly rows = input.required<TableRow[]>();
+  /** Column data for the metadata table */
   readonly columns = input.required<TableColumn[]>();
+  /** Current data version */
   readonly version = input.required<string>();
+  /** All available data versions */
   readonly availableVersions = input.required<string[]>();
+  /** Options for distribution downloads */
   readonly downloadOptions = input.required<MenuOptionsType[]>();
+
+  /** Emits on version change */
   readonly versionChange = output<string>();
 }

@@ -84,10 +84,14 @@ interface FileTypeData {
   description?: string;
 }
 
+/**
+ * Service for handling file downloads
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class DownloadService {
+  /** Http request service */
   private readonly http = inject(HttpClient);
 
   /**

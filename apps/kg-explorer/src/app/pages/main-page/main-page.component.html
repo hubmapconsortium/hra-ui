@@ -13,7 +13,7 @@
 >
   <mat-sidenav #sidenav [mode]="!isWideScreen() ? 'over' : 'side'" [opened]="isWideScreen()">
     <hra-filter-menu
-      [filterOptions]="filterOptions()"
+      [filterCategories]="filterCategories()"
       (toggleForm)="sidenav.toggle()"
       [formClosed]="!sidenav.opened"
       (formChanges)="handleFilterChanges($event)"

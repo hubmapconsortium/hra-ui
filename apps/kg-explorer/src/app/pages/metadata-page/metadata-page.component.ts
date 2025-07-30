@@ -13,8 +13,9 @@ import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
 import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
-import { ORGAN_ICON_MAP, PRODUCT_ICON_MAP } from '../main-page/main-page.component';
+import { DO_INFO, ORGAN_ICON_MAP } from '../main-page/main-page.component';
 
+/** Empty metadata object */
 const EMPTY_METADATA: DigitalObjectMetadata = {
   $schema: '',
   '@context': '',
@@ -51,6 +52,9 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
   },
 };
 
+/**
+ * Metadata page for a digital object
+ */
 @Component({
   selector: 'hra-metadata-page',
   imports: [PageSectionComponent, MetadataLayoutModule, MarkdownComponent, ProvenanceMenuComponent],
@@ -59,31 +63,32 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MetadataPageComponent {
+  /** Http client service */
   private readonly http = inject(HttpClient);
+  /** Router service */
   private readonly router = inject(Router);
+  /** Activated route service */
+  private readonly route = inject(ActivatedRoute);
+  /** File download service */
   private readonly download = inject(DownloadService);
-  private route = inject(ActivatedRoute);
 
-  readonly metadata = signal<DigitalObjectMetadata>(EMPTY_METADATA);
-
+  /** Raw digital object data from API */
   readonly doData = input.required<KnowledgeGraphObjectsData>();
-  readonly $doData = toObservable(this.doData);
-
-  readonly icons = signal<string[]>([]);
-  readonly availableVersions = signal<string[]>([]);
-  readonly currentVersion = signal<string>(this.metadata().version);
-
+  /** Column data for metadata table */
   readonly columns = input.required<TableColumn[]>();
 
-  readonly imageTypes: Record<string, string> = {
-    '2d-ftu': 'image/svg+xml',
-    'ref-organ': 'model/gltf-binary',
-    landmark: 'model/gltf-binary',
-    schema: 'image/svg+xml',
-  };
-
+  /** Metadata for the digital object */
+  readonly metadata = signal<DigitalObjectMetadata>(EMPTY_METADATA);
+  /** Versions available for this digital object */
+  readonly availableVersions = signal<string[]>([]);
+  /** Current version selected */
+  readonly currentVersion = signal<string>(this.metadata().version);
+  /** Icons to display on top of the page */
+  readonly icons = signal<string[]>([]);
+  /** File download options for this digital object */
   readonly downloadOptions = signal<MenuOptionsType[]>([]);
 
+  /** Data to display in the metadata table */
   readonly rows = computed(() =>
     [
       { provenance: 'Creator(s)', metadata: this.createMarkdownList(this.metadata().was_derived_from.creators) },
@@ -104,8 +109,20 @@ export class MetadataPageComponent {
     ].filter((item) => item.metadata !== ''),
   );
 
+  /** Determines if the screen is medium-sized */
   protected isWMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639px)');
 
+  /** For these DoTypes the corresponding image types will be displayed on the page */
+  readonly imageTypes: Record<string, string> = {
+    '2d-ftu': 'image/svg+xml',
+    'ref-organ': 'model/gltf-binary',
+    landmark: 'model/gltf-binary',
+    schema: 'image/svg+xml',
+  };
+
+  /**
+   * Fetches digital object metadata from API, sets current data version, and sets the correct product/organ icons
+   */
   constructor() {
     const type = this.route.snapshot.paramMap.get('type') || '';
     const name = this.route.snapshot.paramMap.get('name') || '';
@@ -122,11 +139,11 @@ export class MetadataPageComponent {
         });
     });
 
-    this.$doData.subscribe((data) => {
+    toObservable(this.doData).subscribe((data) => {
       const pageItem = data['@graph'].find((item) => {
         return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
       });
-      const icons = [`product:${PRODUCT_ICON_MAP[type]}`];
+      const icons = [`product:${DO_INFO[type].icon}`];
       if (pageItem?.organs) {
         icons.push(
           this.getOrganIcon(pageItem?.organs && pageItem?.organs.length === 1 ? pageItem?.organs[0] : 'all-organs'),
@@ -139,6 +156,10 @@ export class MetadataPageComponent {
     });
   }
 
+  /**
+   * Returns image url for the digital object, if applicable
+   * @returns image url
+   */
   getImage(): string | undefined {
     const mediaType = this.imageTypes[this.metadata().type];
     if (this.imageTypes[this.metadata().type]) {
@@ -151,16 +172,31 @@ export class MetadataPageComponent {
     return undefined;
   }
 
-  getCsv(): string | undefined {
-    const csvMatch = this.metadata().was_derived_from.distributions.find((dist) => dist.mediaType === 'text/csv');
-    return csvMatch?.downloadUrl ?? undefined;
-  }
+  // /**
+  //  * Returns CSV  downloadUrl for the digital object, if available
+  //  * @returns csv url
+  //  */
+  // private getCsv(): string | undefined {
+  //   const csvMatch = this.metadata().was_derived_from.distributions.find((dist) => dist.mediaType === 'text/csv');
+  //   return csvMatch?.downloadUrl ?? undefined;
+  // }
 
-  createMarkdownLink(text: string, url: string): string {
+  /**
+   * Returns a string formated as a markdown link from text and url
+   * @param text Link text
+   * @param url Link url
+   * @returns Markdown link
+   */
+  private createMarkdownLink(text: string, url: string): string {
     return `[${text}](${url})`;
   }
 
-  createMarkdownList(items?: PersonInfo[]): string {
+  /**
+   * Creates a list of markdown links (or a single markdown link) from person info data, if available
+   * @param items info data
+   * @returns list of markdown links
+   */
+  private createMarkdownList(items?: PersonInfo[]): string {
     if (!items) {
       return '';
     }
@@ -170,7 +206,7 @@ export class MetadataPageComponent {
     return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join();
   }
 
-  getOrganIcon(organ: string): string {
+  private getOrganIcon(organ: string): string {
     return `organ:${ORGAN_ICON_MAP[organ] ?? organ}`;
   }
 }

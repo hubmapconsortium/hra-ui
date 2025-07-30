@@ -61,4 +61,8 @@
   mat-divider {
     border-top-color: vars.$outline-variant;
   }
+
+  ::ng-deep .ng-scroll-content {
+    max-width: 100%;
+  }
 }

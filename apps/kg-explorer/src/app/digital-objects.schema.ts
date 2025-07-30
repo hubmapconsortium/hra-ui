@@ -40,8 +40,10 @@ export const KnowledgeGraphObjectsDataSchema = z.object({
   '@graph': DigitalObjectDataSchema.array(),
 });
 
+/** Person info type */
 export type PersonInfo = z.infer<typeof PersonInfoSchema>;
 
+/** Person info schema */
 export const PersonInfoSchema = z.object({
   conforms_to: z.string(),
   firstName: z.string(),
@@ -53,8 +55,10 @@ export const PersonInfoSchema = z.object({
   type_of: z.string().array(),
 });
 
+/** Data distributions type */
 export type DistributionsInfo = z.infer<typeof DistributionsInfoSchema>;
 
+/** Data distributions schema */
 export const DistributionsInfoSchema = z.object({
   accessUrl: z.string(),
   downloadUrl: z.string(),

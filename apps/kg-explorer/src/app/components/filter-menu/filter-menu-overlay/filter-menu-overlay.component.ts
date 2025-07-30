@@ -15,6 +15,9 @@ import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
 import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/main-page.component';
 
+/**
+ * Menu for searching and selecting individual filters in a filter category
+ */
 @Component({
   selector: 'hra-filter-menu-overlay',
   imports: [
@@ -37,19 +40,31 @@ import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/mai
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterMenuOverlayComponent implements OnInit {
+  /** Router service */
   readonly router = inject(Router);
+
+  /** Filter search form control */
   readonly searchControl = new UntypedFormControl();
+
+  /** Filter form control */
   readonly form = input.required<FormControl<FilterOption[] | null>>();
+
+  /** Filter category containing options and other data */
   readonly filterOptionCategory = input.required<FilterOptionCategory>();
+  /** Filtered options */
   readonly filteredOptions = signal<FilterOption[]>([]);
-
-  selectedOptions: FilterOption[] = [];
-
-  readonly filterChanged = output();
-
   /** Displayed chip options */
   readonly chips = signal([] as FilterOption[]);
 
+  /** Emits when filter selection is changed */
+  readonly filterChanged = output();
+
+  /** Current selected options */
+  selectedOptions: FilterOption[] = [];
+
+  /**
+   * Sets options for the filter category and subscribes to searchbar inputs
+   */
   constructor() {
     effect(() => {
       if (this.filterOptionCategory()) {
@@ -62,6 +77,9 @@ export class FilterMenuOverlayComponent implements OnInit {
     });
   }
 
+  /**
+   * Syncs chips with the form control
+   */
   ngOnInit() {
     const syncChips = (value: FilterOption[] | null) => {
       if (Array.isArray(value)) {
@@ -70,6 +88,20 @@ export class FilterMenuOverlayComponent implements OnInit {
     };
     this.form().valueChanges.subscribe(syncChips);
     syncChips(this.form().value);
+  }
+
+  /**
+   * Adds option to the chip list
+   * @param option Option name
+   */
+  selectOption(option: FilterOption) {
+    if (this.selectedOptions.map((x) => x.id).includes(option.id)) {
+      this.remove(option);
+    } else {
+      this.selectedOptions.push(option);
+    }
+    this.form().patchValue(this.selectedOptions);
+    this.filterChanged.emit();
   }
 
   /**
@@ -86,27 +118,25 @@ export class FilterMenuOverlayComponent implements OnInit {
     });
   }
 
+  /**
+   * Navigates to url in a separate window
+   * @param Url
+   */
+  navigateToLink(url?: string) {
+    if (url) {
+      window.open(url, '_blank');
+    }
+  }
+
+  /**
+   * Filters the options when user types in a search term
+   * @param searchTerm current search term
+   */
   private onSearchChange(searchTerm: string): void {
     this.filteredOptions.set(
       this.filterOptionCategory().options.filter((row) =>
         Object.values(row).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase())),
       ),
     );
-  }
-
-  selectOption(option: FilterOption) {
-    if (this.selectedOptions.map((x) => x.id).includes(option.id)) {
-      this.remove(option);
-    } else {
-      this.selectedOptions.push(option);
-    }
-    this.form().patchValue(this.selectedOptions);
-    this.filterChanged.emit();
-  }
-
-  navigateToLink(link?: string) {
-    if (link) {
-      window.open(link, '_blank');
-    }
   }
 }

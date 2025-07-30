@@ -1,6 +1,7 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 
+/** Version data info */
 export const VERSION_DATA: Record<string, { label: string; date: string }> = {
   'v2.3': {
     label: '9th Release (v2.3)',
@@ -40,6 +41,9 @@ export const VERSION_DATA: Record<string, { label: string; date: string }> = {
   },
 };
 
+/**
+ * Selecter for version
+ */
 @Component({
   selector: 'hra-version-selector',
   imports: [MatSelectModule],
@@ -47,16 +51,20 @@ export const VERSION_DATA: Record<string, { label: string; date: string }> = {
   styleUrl: './version-selector.component.scss',
 })
 export class VersionSelectorComponent {
+  /** Current version */
   readonly version = input.required<string>();
+  /** Versions available for selection */
   readonly availableVersions = input.required<string[]>();
-  readonly versionDataToDisplay = computed(() => {
-    return Object.keys(VERSION_DATA).filter((entry) => this.availableVersions().includes(entry));
-  });
+
+  /** Emits new version id on change */
   readonly versionChange = output<string>();
 
-  versionData = VERSION_DATA;
-
-  navigateToVersion(version: string) {
-    this.versionChange.emit(version);
+  /**
+   * Gets the version label from version id
+   * @param version version id
+   * @returns version label
+   */
+  versionLabel(version: string): string {
+    return VERSION_DATA[version].label;
   }
 }

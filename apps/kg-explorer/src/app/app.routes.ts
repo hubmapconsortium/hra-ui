@@ -58,6 +58,7 @@ const columns: TableColumn[] = [
   },
 ];
 
+/** Column info for metadata table */
 const metadataColumns: TableColumn[] = [
   {
     column: 'provenance',

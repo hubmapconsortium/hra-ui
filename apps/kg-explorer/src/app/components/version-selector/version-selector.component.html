@@ -3,12 +3,12 @@
   <mat-select
     disableRipple
     panelClass="options-container"
-    (selectionChange)="navigateToVersion($event.value)"
+    (selectionChange)="versionChange.emit($event.value)"
     [value]="version()"
   >
-    @for (ver of versionDataToDisplay(); track $index) {
-      <mat-option [value]="ver">
-        {{ versionData[ver].label }}
+    @for (version of availableVersions(); track $index) {
+      <mat-option [value]="version">
+        {{ versionLabel(version) }}
       </mat-option>
     }
   </mat-select>
