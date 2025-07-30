@@ -121,6 +121,8 @@ export class CellPopulationDataService {
         csvData.forEach((row) => {
           row['dataset_id'] = config.datasets[index];
           row['index'] = index;
+          row['dataset_name'] ??= 'Unknown';
+          row['cell_type_ontology_id'] ??= 'Unknown';
           uniqueCTs.add(row['cell_type']);
           newGraphData.push(row);
         }),
