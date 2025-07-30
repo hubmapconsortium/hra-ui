@@ -1,16 +1,23 @@
 import { Location } from '@angular/common';
 import { httpResource } from '@angular/common/http';
-import { Component, computed, Directive, effect, ErrorHandler, inject, input, viewChild } from '@angular/core';
+import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { APP_ASSETS_HREF, HraCommonModule, parseUrl } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { MarkdownModule } from 'ngx-markdown';
 import { parse } from 'papaparse';
+
 import {
+  IconColumnType,
   LinkColumnType,
   MarkdownColumnType,
+  MenuButtonColumnType,
+  MenuOptionsType,
   NumericColumnType,
   TableColumn,
   TableColumnType,
@@ -69,11 +76,45 @@ export class LinkRowElementDirective {
 export class MarkdownRowElementDirective {
   /* istanbul ignore next */
 
-  /** Guard for the context of Markdowm Row Element */
+  /** Guard for the context of Markdown Row Element */
   static ngTemplateContextGuard(
     _dir: MarkdownRowElementDirective,
     _ctx: unknown,
   ): _ctx is RowElementContext<string, MarkdownColumnType> {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Icon Row Element */
+@Directive({
+  selector: 'ng-template[hraIconRowElement]',
+  standalone: true,
+})
+export class IconRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Icon Row Element */
+  static ngTemplateContextGuard(
+    _dir: IconRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext<string, IconColumnType> {
+    return true;
+  }
+}
+
+/** Directive for typing the context of menuButton Row Element */
+@Directive({
+  selector: 'ng-template[hraMenuButtonRowElement]',
+  standalone: true,
+})
+export class MenuButtonRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of menuButton Row Element */
+  static ngTemplateContextGuard(
+    _dir: MenuButtonRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext<string, MenuButtonColumnType> {
     return true;
   }
 }
@@ -105,6 +146,7 @@ export class NumericRowElementDirective {
   imports: [
     HraCommonModule,
     MarkdownModule,
+    MatMenuModule,
     MatSortModule,
     MatTableModule,
     ScrollingModule,
@@ -112,7 +154,10 @@ export class NumericRowElementDirective {
     LinkRowElementDirective,
     TextRowElementDirective,
     MarkdownRowElementDirective,
+    MenuButtonRowElementDirective,
     NumericRowElementDirective,
+    IconsModule,
+    ButtonsModule,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',
@@ -183,6 +228,9 @@ export class TableComponent<T = TableRow> {
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);
 
+  /** Emits url and id when an item is to be downloaded */
+  readonly downloadFile = output<[string, string]>();
+
   /** Sort data on load and set columns */
   constructor() {
     effect(() => {
@@ -221,5 +269,14 @@ export class TableComponent<T = TableRow> {
     }
 
     return columns;
+  }
+
+  /**
+   * Returns download menu options as an array of MenuOptionsType
+   * @param options Menu options
+   * @returns Menu options as an array of MenuOptionsType
+   */
+  getMenuOptions(options: string | number | boolean | MenuOptionsType[]) {
+    return options as MenuOptionsType[];
   }
 }

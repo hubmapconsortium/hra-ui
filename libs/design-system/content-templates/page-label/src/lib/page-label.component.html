@@ -1,6 +1,6 @@
 @if (icons().length > 0) {
   <div class="header-icons">
-    @for (icon of icons(); track icon) {
+    @for (icon of icons(); track $index) {
       <hra-icon [icon]="icon" />
     }
   </div>

@@ -1,0 +1,143 @@
+@use '@angular/material' as mat;
+@use 'vars';
+
+:host {
+  @include mat.sidenav-overrides(
+    (
+      container-width: 18.5rem,
+      container-shape: 0,
+      container-background-color: vars.$surface-container-low,
+      content-background-color: vars.$on-primary,
+    )
+  );
+
+  display: flex;
+  height: calc(100vh - 7rem);
+
+  mat-sidenav {
+    padding: 2rem 1rem;
+    border-right: 1px solid vars.$outline;
+  }
+
+  mat-sidenav-container {
+    flex: 1;
+  }
+
+  mat-sidenav-content {
+    background: inherit;
+
+    @media (min-width: 640px) {
+      padding-left: 4rem;
+    }
+
+    @media (min-width: 1100px) {
+      padding-left: 0;
+    }
+  }
+
+  .filter-closed {
+    @media (min-width: 640px) {
+      mat-sidenav {
+        transform: translateX(-14.5rem);
+        padding: 2rem 0.75rem;
+        visibility: visible;
+      }
+
+      ::ng-deep .menu-content {
+        pointer-events: none;
+      }
+
+      ::ng-deep .mat-drawer-inner-container {
+        display: unset !important;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      mat-sidenav-content {
+        padding-left: 4rem;
+      }
+    }
+  }
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem 0rem;
+    height: 100%;
+  }
+
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0.75rem;
+    gap: 2.5rem;
+  }
+
+  .object-search {
+    width: 100%;
+
+    @media (min-width: 640px) {
+      max-width: 36.25rem;
+      flex-grow: 1;
+    }
+
+    hra-icon {
+      padding: 0 0.75rem;
+    }
+  }
+
+  hra-results-indicator {
+    display: none;
+    line-height: 2rem;
+    height: 3rem;
+    min-width: 139px;
+    text-align: center;
+
+    @media (min-width: 640px) {
+      display: unset;
+    }
+  }
+
+  .filter-button {
+    position: fixed;
+    right: 0.75rem;
+    top: 8rem;
+    z-index: 2;
+  }
+
+  ::ng-deep hra-table {
+    --mat-table-header-container-height: 5.375rem;
+    --mat-table-row-item-container-height: 4.75rem;
+    border: none;
+
+    scrollbar-y {
+      --viewport-height: var(--view-height);
+      --track-size: calc(var(--view-height) - 8);
+      --_scrollbar-wrapper-top: var(--scrollbar-top-offset);
+      top: calc(var(--scrollbar-top-offset) * 1px);
+    }
+
+    table {
+      padding-bottom: 2rem;
+    }
+
+    th {
+      padding-bottom: 0.75rem !important;
+    }
+
+    th:first-of-type {
+      pointer-events: none;
+    }
+
+    tr {
+      background-color: vars.$on-primary;
+    }
+
+    td {
+      max-width: 50rem;
+      vertical-align: middle !important;
+      padding-top: 0.25rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+  }
+}
