@@ -150,25 +150,28 @@ export class SearchComponent {
   }
 
   deselectAllOptions() {
-    if (this.selection().length === 0) {
+    const multiSelect = this.multiSelect();
+    if (!multiSelect) {
       return;
     }
 
-    this.selection.set([]);
-    this.multiSelect()?.deselectAll();
-    this.store.dispatch(new DoSearch([], null as unknown as SearchStructure));
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Deselect All Search Filters');
+    const options = multiSelect.deselectAll();
+    const structures = new Set(options.map((opt) => opt.value as SearchStructure));
+    this.selection.update((values) => values.filter((struct) => !structures.has(struct)));
+    this.store.dispatch(new DoSearch(this.selection(), null as unknown as SearchStructure));
+    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Deselect All Search Options');
   }
 
   selectAllOptions() {
-    const structures = this.structures();
-    if (this.selection().length === structures.length) {
+    const multiSelect = this.multiSelect();
+    if (!multiSelect) {
       return;
     }
 
-    this.selection.set(structures);
-    this.multiSelect()?.selectAll();
-    this.store.dispatch(new DoSearch(structures, structures[0]));
+    const options = multiSelect.selectAll();
+    const structures = options.map((opt) => opt.value as SearchStructure);
+    this.selection.update((values) => [...values, ...structures]);
+    this.store.dispatch(new DoSearch(this.selection(), structures[0]));
     this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Select All Searched Options');
   }
 
