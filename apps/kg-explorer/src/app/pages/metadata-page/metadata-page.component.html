@@ -32,7 +32,7 @@
       <hra-page-section tagline="Funder" [level]="2">
         <ul>
           @for (funder of metadata().was_derived_from.funders; track $index) {
-            <li>{{`${funder.funder} (Award number ${funder.awardNumber})`}}</li>
+            <li>{{ `${funder.funder} (Award number ${funder.awardNumber})` }}</li>
           }
         </ul>
       </hra-page-section>
