@@ -2,6 +2,9 @@
 @use 'vars';
 
 :host {
+  display: flex;
+  height: calc(100vh - 7rem);
+
   @include mat.sidenav-overrides(
     (
       container-width: 18.5rem,
@@ -10,9 +13,6 @@
       content-background-color: vars.$on-primary,
     )
   );
-
-  display: flex;
-  height: calc(100vh - 7rem);
 
   mat-sidenav {
     padding: 2rem 1rem;

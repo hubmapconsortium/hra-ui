@@ -14,7 +14,7 @@ import { routeData } from './utils/route-data';
  */
 @Component({
   imports: [RouterModule, NavigationModule, MarkdownModule, ButtonsModule, IconsModule],
-  selector: 'hra-kg-explorer-root',
+  selector: 'hra-kg-explorer',
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
   host: {

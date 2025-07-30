@@ -31,7 +31,8 @@
     "lib:services",
     "lib:utils",
     "lib:webcomponents",
-    "lib:state"
+    "lib:state",
+    "app:kg-explorer"
   ],
   "eslint.validate": ["yaml", "json", "javascript", "typescript"]
 }
