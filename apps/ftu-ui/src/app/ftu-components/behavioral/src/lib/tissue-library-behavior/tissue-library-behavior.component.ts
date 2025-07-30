@@ -52,7 +52,7 @@ export class TissueLibraryBehaviorComponent {
   /**
    * Selected  of tissue library behavior component
    */
-  protected selected?: Tissue;
+  selected?: Tissue;
 
   /**
    * Navigates to a tissue page
