@@ -35,7 +35,9 @@
 }
 
 @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
-  <ftu-empty-biomarker></ftu-empty-biomarker>
+  <ftu-empty-biomarker
+    emptyBehaviorText="We currently do not have cell type data for the selected biomarker."
+  ></ftu-empty-biomarker>
 }
 
 @if (source().length > 0 && selectedSources().length === 0) {

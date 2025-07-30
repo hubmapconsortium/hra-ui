@@ -1,6 +1,6 @@
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
@@ -19,8 +19,11 @@ import { MarkdownModule } from 'ngx-markdown';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmptyBiomarkerComponent {
+  /** Text to display for the empty behavior button */
+  readonly emptyBehaviorText = input.required<string>();
+
   /** Snackbar service */
-  private snackbar = inject(SnackbarService);
+  private readonly snackbar = inject(SnackbarService);
 
   /** Shows the copied snackbar message */
   protected showCopiedMessage() {
