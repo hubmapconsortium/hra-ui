@@ -18,9 +18,9 @@
 
           <mat-menu #submenu="matMenu">
             @for (version of sheet?.version; track version) {
-              <button mat-menu-item (click)="openURL(version)">
+              <a mat-menu-item [attr.href]="getUrl(version)" target="_blank">
                 <span>{{ version.viewValue }}</span>
-              </button>
+              </a>
             }
           </mat-menu>
         </ng-container>

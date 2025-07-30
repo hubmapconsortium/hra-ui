@@ -263,6 +263,16 @@ export class AppComponent implements OnDestroy {
 
         const store = this.store;
         this.route.queryParamMap.subscribe((query) => {
+          const isVisRoute = this.router.isActive('/vis', {
+            paths: 'subset',
+            fragment: 'ignored',
+            queryParams: 'ignored',
+            matrixParams: 'ignored',
+          });
+          if (!isVisRoute) {
+            return;
+          }
+
           const selectedOrgans = query.get('selectedOrgans') ?? '';
           const version = query.get('version');
           const comparisonCSV = query.get('comparisonCSVURL');
