@@ -1,14 +1,9 @@
-import { Shallow } from 'shallow-render';
+import { render } from '@testing-library/angular';
 import { EmptyBiomarkerComponent } from './empty-biomarker.component';
 
 describe('EmptyBiomarkerComponent', () => {
-  let shallow: Shallow<EmptyBiomarkerComponent>;
-
-  beforeEach(() => {
-    shallow = new Shallow(EmptyBiomarkerComponent);
-  });
-
   it('should create', async () => {
-    await expect(shallow.render()).resolves.toBeDefined();
+    const promise = render(EmptyBiomarkerComponent, { inputs: { emptyBehaviorText: 'Test text' } });
+    await expect(promise).resolves.toBeTruthy();
   });
 });

@@ -174,6 +174,16 @@ export class BiomarkerDetailsComponent {
   }
 
   /**
+   * Determines if a toggle option is disabled.
+   * @param index index of the toggle option
+   * @returns true if the toggle option is disabled, false otherwise
+   */
+  isToggleOptionDisabled(index: number): boolean {
+    const tab = this.getTabs()[index] ?? { label: '', columns: [], rows: [] };
+    return tab ? tab.rows.length === 0 : true;
+  }
+
+  /**
    * Gets tissue title from the list of tissues
    */
   get tissueInfo(): TissueInfo {

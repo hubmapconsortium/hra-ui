@@ -11,8 +11,8 @@
   (change)="onToggleChange($event.value)"
   class="biomarker-toggle-group absolute-toggle"
 >
-  @for (option of toggleOptions; track option.value; let i = $index) {
-    <mat-button-toggle [value]="option.value" [disabled]="getTabs()[i].rows.length === 0">{{
+  @for (option of toggleOptions; track option.value) {
+    <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
       option.label
     }}</mat-button-toggle>
   }
