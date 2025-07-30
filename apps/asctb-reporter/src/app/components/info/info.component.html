@@ -73,7 +73,7 @@
 
       <!-- REMOVE ME -->
       <div class="info-title">Notes</div>
-      <markdown class="info-description" [data]="info.notes ? info.notes : 'No notes found'"> </markdown>
+      <markdown class="info-description" [data]="info.notes ? info.notes : 'No notes found.'"> </markdown>
 
       <div class="info-title">DOI</div>
       <div *ngIf="info?.references?.length">
@@ -83,7 +83,7 @@
           </li>
         </ul>
       </div>
-      <div class="info-description" *ngIf="!info?.references?.length">No DOI references found</div>
+      <div class="info-description" *ngIf="!info?.references?.length">No DOI references found.</div>
     </div>
   </ng-template>
 }

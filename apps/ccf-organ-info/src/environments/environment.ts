@@ -8,11 +8,6 @@ export const environment = {
   disableDbWorker: true,
   acceptableViewerDomains: ['https://portal.hubmapconsortium.org', 'https://portal.test.hubmapconsortium.org'],
   dbOptions: {
-    dataSources: [
-      'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/assets/kpmp/data/rui_locations.jsonld',
-      'https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/assets/sparc/data/rui_locations.jsonld',
-    ],
-
     remoteApiEndpoint: 'https://apps.humanatlas.io/api',
   },
   googleAnalyticsToken: 'G-B3DT7XPMRT',
