@@ -4,7 +4,13 @@
 </div>
 
 <div class="footer">
-  <button mat-flat-button class="collaborate-button" color="primary" (click)="collaborateClick.emit($event)">
+  <button
+    mat-flat-button
+    class="collaborate-button"
+    color="primary"
+    cdkCopyToClipboard="infoccf@iu.edu"
+    (click)="showCopiedMessage()"
+  >
     <mat-icon>content_copy</mat-icon>
     Copy email
   </button>
