@@ -11,7 +11,13 @@
   [class.small]="isSmallScreen()"
   [class.filter-closed]="!sidenav.opened"
 >
-  <mat-sidenav #sidenav [mode]="!isWideScreen() ? 'over' : 'side'" [opened]="isWideScreen()">
+  <mat-sidenav
+    #sidenav
+    [mode]="!isWideScreen() ? 'over' : 'side'"
+    [opened]="isWideScreen()"
+    [fixedInViewport]="true"
+    [fixedTopGap]="113"
+  >
     <hra-filter-menu
       [filterCategories]="filterCategories()"
       (toggleForm)="sidenav.toggle()"

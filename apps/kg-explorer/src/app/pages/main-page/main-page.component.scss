@@ -25,6 +25,14 @@
 
   mat-sidenav-content {
     background: inherit;
+
+    @media (min-width: 640px) {
+      padding-left: 4rem;
+    }
+
+    @media (min-width: 1100px) {
+      padding-left: 0;
+    }
   }
 
   .filter-closed {
@@ -35,12 +43,18 @@
         visibility: visible;
       }
 
-      mat-sidenav-content {
-        padding-left: 4rem;
+      ::ng-deep .menu-content {
+        pointer-events: none;
       }
 
       ::ng-deep .mat-drawer-inner-container {
         display: unset !important;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      mat-sidenav-content {
+        padding-left: 4rem;
       }
     }
   }
