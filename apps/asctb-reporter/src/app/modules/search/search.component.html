@@ -1,24 +1,25 @@
 <mat-form-field class="search-field" subscriptSizing="dynamic" (click)="openSearchList()">
   <mat-label>Search Structures</mat-label>
   <mat-icon matPrefix>search</mat-icon>
-  <input matInput readonly [value]="selectedValues" [disabled]="searchState$ | async" />
+  <input matInput readonly [value]="selectionLabel()" [disabled]="searchOpen()" />
   <mat-icon matSuffix>arrow_drop_down</mat-icon>
 </mat-form-field>
 
-<div class="search-modal" *ngIf="searchState$ | async">
+<div class="search-modal" *ngIf="searchOpen()">
   <div class="search-controls">
     <mat-form-field cdkTrapFocus [cdkTrapFocusAutoCapture]="true" subscriptSizing="dynamic">
       <mat-icon matPrefix>search</mat-icon>
       <mat-label>Search Structures</mat-label>
-      <input
-        cdkFocusInitial
-        matInput
-        #searchField
-        (keyup.enter)="selectFirstOption()"
-        [(ngModel)]="searchValue"
-        (input)="filterStructuresOnSearch()"
-      />
-      <mat-icon matSuffix>close</mat-icon>
+      <input cdkFocusInitial matInput #searchField [(ngModel)]="searchValue" />
+      <button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear search"
+        matTooltip="Clear search"
+        (click)="searchValue.set('')"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
       <button matSuffix mat-icon-button aria-label="Close" matTooltip="Close" (click)="closeSearchList()">
         <mat-icon>arrow_drop_up</mat-icon>
       </button>
@@ -32,7 +33,8 @@
           multiple
           hraButtonToggleSize="small"
           #group="matButtonToggleGroup"
-          (change)="filterToggleChange(group.value)"
+          [value]="categories()"
+          (change)="categories.set($event.value)"
           name="searchFilterButtons"
           [hideMultipleSelectionIndicator]="false"
         >
@@ -65,22 +67,20 @@
     </div>
   </div>
   <mat-selection-list
-    #multiSelect
     [disabled]="disabled"
     [multiple]="true"
-    (selectionChange)="selectOption()"
-    [(ngModel)]="selectedOptions"
     [compareWith]="selectionCompareFunction"
+    (selectionChange)="toggleOption($event.options[0])"
+    #multiSelect
   >
-    <mat-list-item *ngIf="searchFilteredStructures.length === 0 && groupFilteredStructures.length === 0">
-      <div>No entries found.</div>
+    <mat-list-item *ngIf="filteredStructures().length === 0">
+      <div>No matches.</div>
     </mat-list-item>
     <mat-list-option
-      *ngFor="let structure of structures"
+      *ngFor="let structure of filteredStructures()"
       [value]="structure"
+      [selected]="selectionSet().has(structure)"
       color="primary"
-      [hidden]="hideStructure(structure)"
-      [selected]="isSelected(structure)"
       checkboxPosition="before"
     >
       <div class="structure-group">
