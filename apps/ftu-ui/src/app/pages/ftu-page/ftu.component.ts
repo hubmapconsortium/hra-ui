@@ -4,10 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { dispatch, injectDestroy$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
   BiomarkerDetailsComponent,
-  FooterBehaviorComponent,
   MedicalIllustrationBehaviorComponent,
-} from '../../ftu-components/behavioral/src';
-import { FullscreenContainerComponent, FullscreenContentComponent } from '../../ftu-components/molecules/src';
+} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
+import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
 import { ActiveFtuActions, ScreenModeSelectors } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
 
@@ -17,7 +16,6 @@ import { takeUntil } from 'rxjs';
   imports: [
     CommonModule,
     BiomarkerDetailsComponent,
-    FooterBehaviorComponent,
     FullscreenContainerComponent,
     FullscreenContentComponent,
     MedicalIllustrationBehaviorComponent,
