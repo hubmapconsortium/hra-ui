@@ -4,14 +4,12 @@ import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/d
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
-import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
   GradientPoint,
-  LabelBoxComponent,
   SizeLegend,
   SizeLegendComponent,
 } from '../../../../atoms/src';
@@ -36,11 +34,12 @@ import {
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatButtonModule } from '@angular/material/button';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { RichTooltipModule, RichTooltipDirective } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -67,6 +66,9 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     SourceListComponent,
     EmptyBiomarkerComponent,
     MatButtonToggleModule,
+    PlainTooltipDirective,
+    RichTooltipModule,
+    RichTooltipDirective,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],
@@ -75,6 +77,19 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
 export class BiomarkerDetailsComponent {
   /** Reference to biomarker table */
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
+
+  /** Tooltip text for percentage of cells legend */
+  static readonly PERCENTAGE_TOOLTIP_TEXT =
+    'The percentage of cells in the functional tissue unit (FTU) is calculated by dividing the total number of cells in all FTUs by the number of all cells in that tissue section.';
+
+  /** Tooltip text for biomarker expression mean legend */
+  static readonly EXPRESSION_TOOLTIP_TEXT =
+    'Functional tissue unit expression is scaled linearly to the range [0,1]. Scaling is done by designating the minimum value in the current view to 0 and the max is assigned to 1.';
+
+  /** Instance access to percentage tooltip text */
+  readonly percentageTooltipText = BiomarkerDetailsComponent.PERCENTAGE_TOOLTIP_TEXT;
+  /** Instance access to expression tooltip text */
+  readonly expressionTooltipText = BiomarkerDetailsComponent.EXPRESSION_TOOLTIP_TEXT;
 
   /** Table tabs */
   readonly getTabs = selectSnapshot(CellSummarySelectors.aggregates);
@@ -121,6 +136,7 @@ export class BiomarkerDetailsComponent {
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
+  /** Active tab index */
   private activeTabIndex = 0;
 
   /** Table tabs */

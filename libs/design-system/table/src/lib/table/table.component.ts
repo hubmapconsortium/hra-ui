@@ -21,6 +21,7 @@ import {
   TableVariant,
   TextColumnType,
 } from '../types/page-table.schema';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Type for the row element context */
 type RowElementContext<T, CT extends TableColumnType> = {
@@ -116,6 +117,7 @@ export class NumericRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     NumericRowElementDirective,
+    PlainTooltipDirective,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',
@@ -150,6 +152,9 @@ export class TableComponent<T = TableRow> {
 
   /** Selection model for checkbox functionality */
   readonly selection = new SelectionModel<TableRow>(true, []);
+
+  /** Hide table headers */
+  readonly hideHeaders = input<boolean>(false);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);

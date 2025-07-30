@@ -5,7 +5,7 @@ import { SizeLegend } from '../../../../atoms/src/lib/size-legend/size-legend.co
 import { GradientPoint } from '../../../../atoms/src/lib/gradient-legend/gradient-legend.component';
 import { of } from 'rxjs';
 import { Shallow } from 'shallow-render';
-
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { BiomarkerTableComponent, DataCell, DataRow, TissueInfo } from './biomarker-table.component';
 
@@ -115,7 +115,7 @@ describe('BiomarkerTableComponent', () => {
 
   beforeEach(() => {
     shallow = new Shallow(BiomarkerTableComponent<DataCell>)
-      .dontMock(MatTableModule, HoverDirective, TableVirtualScrollModule)
+      .dontMock(MatTableModule, HoverDirective, TableVirtualScrollModule, PlainTooltipDirective)
       .provide(CdkVirtualScrollViewport)
       .mock(CdkVirtualScrollViewport, {
         scrollable: {
