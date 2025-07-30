@@ -36,7 +36,7 @@
     <ng-scrollbar>
       <mat-action-list>
         @for (option of filteredOptions(); track option.id) {
-          <div class="option-content">
+          <div class="option-content" [class.large]="option.secondaryLabel">
             @if (option.tooltip) {
               <button
                 mat-icon-button
