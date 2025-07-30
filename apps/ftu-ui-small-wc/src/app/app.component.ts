@@ -1,5 +1,4 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,11 +14,8 @@ import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
-  FooterBehaviorComponent,
-  HraLandingPageIntroWcBehaviourComponent,
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/ftu-ui-components/src/lib/behavioral';
-import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -84,15 +80,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 /** FTU ui small web component */
 @Component({
   selector: 'hra-root',
-  imports: [
-    CommonModule,
-    TissueLibraryBehaviorComponent,
-    HraLandingPageIntroWcBehaviourComponent,
-    BiomarkerDetailsWcComponent,
-    FooterBehaviorComponent,
-    FullscreenContainerComponent,
-    FullscreenContentComponent,
-  ],
+  imports: [TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host: {
