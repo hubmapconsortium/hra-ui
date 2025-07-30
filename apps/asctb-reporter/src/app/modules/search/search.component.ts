@@ -1,6 +1,6 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, Input, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, computed, inject, input, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -44,13 +44,13 @@ import { TreeState } from '../../store/tree.state';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
+  readonly disabled = input(false);
+
+  private readonly multiSelect = viewChild<MatSelectionList>('multiSelect');
+
   private readonly store = inject(Store);
   private readonly ga = inject(GoogleAnalyticsService);
   private readonly elementRef = inject(ElementRef);
-
-  @Input() disabled = false;
-
-  private readonly multiSelect = viewChild<MatSelectionList>('multiSelect');
 
   private readonly treeData = this.store.selectSignal(TreeState.getTreeData);
   private readonly bimodal = this.store.selectSignal(TreeState.getBimodal);

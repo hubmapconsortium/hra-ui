@@ -1,11 +1,11 @@
 <mat-form-field class="search-field" subscriptSizing="dynamic" (click)="openSearchList()">
   <mat-label>Search Structures</mat-label>
   <mat-icon matPrefix>search</mat-icon>
-  <input matInput readonly [value]="selectionLabel()" [disabled]="searchOpen()" />
+  <input matInput readonly [value]="selectionLabel()" [disabled]="searchOpen() || disabled()" />
   <mat-icon matSuffix>arrow_drop_down</mat-icon>
 </mat-form-field>
 
-<div class="search-modal" *ngIf="searchOpen()">
+<div class="search-modal" *ngIf="searchOpen() && !disabled()">
   <div class="search-controls">
     <mat-form-field cdkTrapFocus [cdkTrapFocusAutoCapture]="true" subscriptSizing="dynamic">
       <mat-icon matPrefix>search</mat-icon>
@@ -67,7 +67,6 @@
     </div>
   </div>
   <mat-selection-list
-    [disabled]="disabled"
     [multiple]="true"
     [compareWith]="selectionCompareFunction"
     (selectionChange)="toggleOption($event.options[0])"
