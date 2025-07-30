@@ -18,8 +18,6 @@ export type Side = 'Left' | 'Right';
  */
 function parseSex(value: unknown): Sex {
   const str = String(value).trim().toLowerCase();
-  console.log(str);
-
   switch (str) {
     case 'male':
       return 'Male';
@@ -142,7 +140,6 @@ export class AppWebComponent extends BaseWebComponent {
       initialConfig: {
         sex: 'Female',
         side: 'Left',
-        highlightProviders: [],
         ...environment.dbOptions,
         ...(globalThis['dbOptions' as never] as object),
       },
