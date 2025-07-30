@@ -111,7 +111,12 @@
     <div class="vis-controls">
       <div class="control-title">Organ Mapping Antibody Panels filters</div>
       <div class="filters">
-        <mat-button-toggle-group hraButtonToggleSize="medium" class="full-width" multiple="true">
+        <mat-button-toggle-group
+          hraButtonToggleSize="medium"
+          class="full-width"
+          multiple="true"
+          hideMultipleSelectionIndicator="false"
+        >
           <mat-button-toggle
             [checked]="omaps.organsOnly"
             (change)="
