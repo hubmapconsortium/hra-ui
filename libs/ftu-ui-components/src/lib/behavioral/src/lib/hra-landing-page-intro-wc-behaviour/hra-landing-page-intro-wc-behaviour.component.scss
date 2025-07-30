@@ -1,4 +1,5 @@
-@use 'vars';
+@use '../../../../../../../design-system/styles/vars';
+@use '../../../../../../../design-system/styles/utils';
 
 :host {
   display: block;
