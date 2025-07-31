@@ -1,23 +1,151 @@
 @use '../../../../../../../design-system/styles/vars';
 @use '../../../../../../../design-system/styles/utils';
+@use '@angular/material' as mat;
 
 :host {
   display: flex;
   flex-direction: column;
 
-  // ::ng-deep .extraTab {
-  //   padding-left: 1rem;
-  //   padding-right: 1rem;
-  //   letter-spacing: 0;
-  //   font-weight: 500;
+  @include mat.tabs-overrides(
+    (
+      container-height: 4rem,
+      active-indicator-color: vars.$on-tertiary-fixed,
+      active-label-text-color: vars.$secondary,
+      inactive-label-text-color: vars.$primary,
+      background-color: vars.$surface-container-low,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: vars.$label-medium-line-height,
+      label-text-size: vars.$label-medium-size,
+      label-text-tracking: vars.$label-medium-tracking,
+      label-text-weight: vars.$label-medium-weight,
+    )
+  );
 
-  //   .mat-tab__text-label {
-  //     --palette-accent-500-rgb: #243142;
-  //   }
-  // }
+  @include mat.button-toggle-overrides(
+    (
+      disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
+      height: 2rem,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: 1.3125rem,
+      label-text-size: 0.875rem,
+      label-text-weight: vars.$label-medium-weight,
+      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
+      selected-state-text-color: vars.$secondary,
+    )
+  );
 
-  // ftu-interactive-svg {
-  //   display: block;
-  //   height: calc(100% - 64px);
-  // }
+  @media (min-width: 800px) and (min-height: 480px) {
+    .biomarker-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: minmax(4rem, 6rem) 1fr;
+      grid-template-areas:
+        'legend-area legend-area'
+        'table table';
+      position: relative;
+
+      .legend {
+        grid-area: legend-area;
+        min-width: 21.5rem;
+        display: flex;
+        flex-direction: row;
+        align-content: space-around;
+        width: 100%;
+
+        .legend-percentage {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          row-gap: 0.25rem;
+          flex-grow: 1;
+          border-right: 1px solid vars.$outline;
+          max-width: 17.75rem;
+
+          background: none;
+          border: none;
+          border-right: 1px solid vars.$outline;
+          padding: 0;
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+
+          &:hover {
+            opacity: 0.7;
+          }
+
+          .legend-header-percentage {
+            @include utils.use-font(label, small);
+          }
+        }
+
+        .legend-gradient {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          row-gap: 0.25rem;
+          flex-grow: 1;
+          border-right: 1px solid vars.$outline;
+          max-width: 14.25rem;
+
+          .content {
+            width: 9.75rem;
+          }
+
+          background: none;
+          border: none;
+          border-right: 1px solid vars.$outline;
+          padding: 0;
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+
+          &:hover {
+            opacity: 0.7;
+          }
+
+          .legend-header-gradient {
+            @include utils.use-font(label, small);
+          }
+        }
+      }
+
+      ftu-biomarker-table {
+        grid-area: table;
+        width: 100%;
+        border-top: 1px solid vars.$outline;
+        min-height: 21.25rem;
+      }
+
+      .biomarker-toggle-group.absolute-toggle {
+        position: absolute;
+        top: 7rem;
+        left: 1rem;
+        z-index: 10;
+        border: 1px solid vars.$primary;
+        overflow: hidden;
+
+        .mat-button-toggle {
+          flex: 1;
+
+          &:not(:first-child) {
+            border-left: 1px solid vars.$outline;
+          }
+
+          .mat-button-toggle-label-content {
+            line-height: 1;
+            padding: 0;
+          }
+        }
+      }
+    }
+    ::ng-deep ftu-empty-biomarker {
+      .footer {
+        border-top: 1px solid vars.$outline;
+        button {
+          width: auto !important;
+          margin-left: 23.4375rem;
+        }
+      }
+    }
+  }
 }

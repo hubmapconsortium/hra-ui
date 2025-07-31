@@ -16,20 +16,67 @@
 
   <mat-tab labelClass="table-tab-header" label="Source Data">
     <div class="source-list">
-      <ftu-source-list
-        [collaborateText]="collaborateText"
-        [message]="message"
-        (collaborateClick)="collaborate()"
-        [sources]="source()"
-        (selectionChanged)="setSelectedSources($event)"
-        class="content"
-      ></ftu-source-list>
+      @if (source().length > 0) {
+        <ftu-source-list
+          [collaborateText]="collaborateText"
+          [message]="message"
+          (collaborateClick)="collaborate()"
+          [sources]="source()"
+          [hideTitle]="true"
+          (selectionChanged)="setSelectedSources($event)"
+          class="content"
+        ></ftu-source-list>
+      }
+
+      @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
+        <ftu-empty-biomarker
+          class="wc-empty-biomarker"
+          emptyBehaviorText="We currently do not have cell type by biomarker data for genes, proteins, or lipids."
+        ></ftu-empty-biomarker>
+      }
     </div>
   </mat-tab>
 
-  <mat-tab labelClass="table-tab-header" label="Cell types by Biomarkers">
+  <mat-tab labelClass="table-tab-header" label="Cell types by Biomarkers" [disabled]="tab.rows.length === 0">
     <div class="biomarker-details">
-      <ftu-biomarker-details></ftu-biomarker-details>
+      <div class="legend">
+        <div class="legend-percentage">
+          <span class="legend-header-percentage">Percentage of cells</span>
+          <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
+        </div>
+        <div class="legend-gradient">
+          <span class="legend-header-gradient">Biomarker expression mean</span>
+          <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
+        </div>
+      </div>
+      <mat-button-toggle-group
+        hraButtonToggleSize="medium"
+        [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
+        (change)="onToggleChange($event.value)"
+        class="biomarker-toggle-group absolute-toggle"
+      >
+        @for (option of toggleOptions; track option.value) {
+          <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
+            option.label
+          }}</mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+
+      @if (tab.rows.length !== 0) {
+        <ftu-biomarker-table
+          #table
+          [class.small]="tab.rows.length < 10"
+          [data]="$any(tab.rows)"
+          [columns]="tab.columns"
+          [gradient]="gradients()"
+          [sizes]="sizes()"
+          [tissueInfo]="tissueInfo"
+          [illustrationIds]="illustrationIds"
+          [dataSources]="source()"
+          [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
+          (rowHover)="highlightCells($event)"
+        ></ftu-biomarker-table>
+      }
     </div>
   </mat-tab>
 </mat-tab-group>
