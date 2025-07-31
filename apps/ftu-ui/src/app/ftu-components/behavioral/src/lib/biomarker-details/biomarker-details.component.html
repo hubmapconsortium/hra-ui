@@ -1,22 +1,31 @@
-<div class="biomarker-header">
-  <span class="biomarker-header-title">Cell types by biomarkers</span>
-  <button mat-icon-button hraIconButtonSize="large" hraPlainTooltip="Open in full screen">
-    <mat-icon>fullscreen</mat-icon>
-  </button>
-</div>
+@if (!isBiomarkerfullscreen()) {
+  <div class="biomarker-header">
+    <span class="biomarker-header-title">Cell types by biomarkers</span>
+    <button
+      mat-icon-button
+      hraIconButtonSize="large"
+      hraPlainTooltip="Open in full screen"
+      (click)="isBiomarkerfullscreen.set(true)"
+    >
+      <mat-icon>fullscreen</mat-icon>
+    </button>
+  </div>
+}
 
-<mat-button-toggle-group
-  hraButtonToggleSize="medium"
-  [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
-  (change)="onToggleChange($event.value)"
-  class="biomarker-toggle-group absolute-toggle"
->
-  @for (option of toggleOptions; track option.value) {
-    <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
-      option.label
-    }}</mat-button-toggle>
-  }
-</mat-button-toggle-group>
+@if (!isBiomarkerfullscreen()) {
+  <mat-button-toggle-group
+    hraButtonToggleSize="medium"
+    [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
+    (change)="onToggleChange($event.value)"
+    class="biomarker-toggle-group absolute-toggle"
+  >
+    @for (option of toggleOptions; track option.value) {
+      <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
+        option.label
+      }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+}
 
 @if (tab.rows.length !== 0) {
   <ftu-biomarker-table
@@ -60,13 +69,15 @@
 }
 
 @if (!(source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
-  <div class="source-list">
+  <div class="source-list" [style.display]="isBiomarkerfullscreen() ? 'none' : undefined">
     <ftu-source-list
       [collaborateText]="collaborateText"
       (collaborateClick)="collaborate()"
       [sources]="source()"
       (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
       class="content"
+      [(isFullscreen)]="isSourceListfullscreen"
+      (isFullscreenChange)="isSourceListfullscreen.set(true)"
     ></ftu-source-list>
   </div>
 }
@@ -75,4 +86,15 @@
   <div class="biomarker-details info-tooltip">
     {{ tooltip }}
   </div>
+</ng-template>
+
+<ng-template #sourceList>
+  <ftu-source-list
+    [collaborateText]="collaborateText"
+    (collaborateClick)="collaborate()"
+    [sources]="source()"
+    (selectionChanged)="setSelectedSources($event)"
+    class="content"
+    (isFullscreen)="isSourceListfullscreen.set(true)"
+  ></ftu-source-list>
 </ng-template>

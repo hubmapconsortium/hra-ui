@@ -6,6 +6,14 @@
   min-width: 59rem;
   height: 100%;
 
+  .fullscreen-content-container {
+    position: relative;
+  }
+
+  ::ng-deep .mat-mdc-tab-body-wrapper {
+    height: 100%;
+  }
+
   .content-container {
     display: flex;
     height: 100%;
@@ -13,7 +21,6 @@
     .left-side {
       display: flex;
       flex-direction: column;
-      max-width: calc(100% - 46.3125rem);
       flex-grow: 1;
 
       ftu-medical-illustration-behavior {
@@ -62,19 +69,6 @@
 
     ftu-biomarker-table {
       max-width: none;
-    }
-  }
-
-  /** Styles to define view width for the case when no data is available */
-  ftu-fullscreen-content:has(ftu-biomarker-details.no-data),
-  ftu-fullscreen-content:has(ftu-biomarker-details.no-data-available) {
-    width: 18rem !important;
-  }
-
-  ftu-fullscreen-container:has(ftu-biomarker-details.no-data),
-  ftu-fullscreen-container:has(ftu-biomarker-details.no-data-available) {
-    .left-side {
-      max-width: calc(100% - 18rem) !important;
     }
   }
 }

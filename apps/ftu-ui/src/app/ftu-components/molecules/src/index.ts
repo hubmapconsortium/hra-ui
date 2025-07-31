@@ -3,7 +3,6 @@ export * from './lib/biomarker-table-data-icon/biomarker-table-data-icon.compone
 export * from './lib/contact-modal/contact-modal.component';
 export * from './lib/footer/footer.component';
 export * from './lib/fullscreen/fullscreen-container.component';
-export * from './lib/fullscreen/fullscreen-content.component';
 export * from './lib/header/header.component';
 export * from './lib/info-modal/info-modal.component';
 export * from './lib/interactive-svg/interactive-svg.component';

@@ -5,6 +5,7 @@ import {
   EventEmitter,
   inject,
   Input,
+  model,
   OnChanges,
   Output,
   signal,
@@ -88,6 +89,11 @@ export class SourceListComponent implements OnChanges {
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
+
+  /**
+   * Determines whether fullscreen mode is on or off
+   */
+  readonly isFullscreen = model<boolean>(false);
 
   /** Table columns configuration */
   readonly tableColumns: TableColumn[] = [
