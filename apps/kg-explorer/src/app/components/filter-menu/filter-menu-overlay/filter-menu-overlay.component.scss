@@ -22,16 +22,20 @@
   width: 19.5rem;
 }
 
-::ng-deep .filter-menu-content {
+.filter-menu-content {
+  width: calc(100% + 2rem);
+  display: flex;
+  flex-direction: column;
+  left: -16px;
+  position: relative;
+  padding-left: 0.75rem;
+
   .search {
     width: 100%;
+    padding-right: 0.75rem;
   }
 
-  .mdc-list-item {
-    padding: 0;
-  }
-
-  .mat-mdc-form-field-infix {
+  ::ng-deep .mat-mdc-form-field-infix {
     padding-top: 13.5px;
     padding-bottom: 13.5px;
   }
@@ -47,8 +51,8 @@
   }
 
   .option {
+    margin: 0 0.75rem 0rem 0rem;
     padding: 0 0.5rem;
-    height: 2.5rem;
   }
 
   .labels-count {
@@ -84,7 +88,7 @@
   ng-scrollbar {
     height: 15.75rem;
 
-    .ng-scroll-content {
+    ::ng-deep .ng-scroll-content {
       max-width: 100%;
     }
   }

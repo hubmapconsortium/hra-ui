@@ -10,4 +10,12 @@
     position: relative;
     z-index: 1;
   }
+
+  ::ng-deep .navigation {
+    display: none !important;
+
+    @media (min-width: 640px) {
+      display: flex !important;
+    }
+  }
 }

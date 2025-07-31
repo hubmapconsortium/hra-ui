@@ -67,9 +67,7 @@ export class FilterMenuOverlayComponent implements OnInit {
    */
   constructor() {
     effect(() => {
-      if (this.filterOptionCategory()) {
-        this.filteredOptions.set(this.filterOptionCategory().options);
-      }
+      this.filteredOptions.set(this.filterOptionCategory().options || []);
     });
 
     this.searchControl.valueChanges.subscribe((result) => {
@@ -134,7 +132,7 @@ export class FilterMenuOverlayComponent implements OnInit {
    */
   private onSearchChange(searchTerm: string): void {
     this.filteredOptions.set(
-      this.filterOptionCategory().options.filter((row) =>
+      (this.filterOptionCategory().options || []).filter((row) =>
         Object.values(row).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase())),
       ),
     );
