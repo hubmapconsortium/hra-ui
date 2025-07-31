@@ -1,12 +1,12 @@
-@use 'utils';
-@use 'variables' as vars;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: flex;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0.063rem 0.125rem 1rem 0.125rem rgba(0, 0, 0, 0.16);
-  background-color: vars.$primary-contrast-rgb;
+  // background-color: vars.$primary-contrast-rgb;
   font-family: Metropolis;
 
   .mat-mdc-cell {
@@ -22,17 +22,17 @@
   }
 
   .label {
-    color: rgba(vars.$primary);
+    // color: rgba(vars.$primary);
     padding-right: 3rem;
     font-weight: 500;
   }
 
   .value {
-    color: rgba(vars.$primary-400);
+    // color: rgba(vars.$primary-400);
     font-weight: 400;
   }
 
   .sr-only {
-    @include utils.sr-only();
+    // @include utils.sr-only();
   }
 }

@@ -17,12 +17,13 @@ export class BottomSheetService {
    * @param rows - The table rows to display
    * @param columns - The table columns to display
    */
-  openTableBottomSheet(rows: TableRow[], columns: TableColumn[]) {
+  openTableBottomSheet(rows: TableRow[], columns: TableColumn[], hideHeaders = false) {
     return this._bottomSheet.open(BottomSheetComponent, {
       data: {
         variant: 'table',
         rows,
         columns,
+        hideHeaders,
       },
     });
   }

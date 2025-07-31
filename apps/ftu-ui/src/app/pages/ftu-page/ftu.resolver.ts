@@ -9,7 +9,7 @@ import { EMPTY } from 'rxjs';
  */
 export const ftuResolver: ResolveFn<unknown> = (route) => {
   const navigateHome = dispatch(LinkRegistryActions.Navigate, LinkIds.LandingPage);
-  const id = route.queryParamMap.get('id');
+  const id = route.queryParamMap.get('id') || route.data['id'];
 
   if (!id) {
     navigateHome();

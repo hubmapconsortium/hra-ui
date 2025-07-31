@@ -1,0 +1,1 @@
+Functional Tissue Unit (FTU) Explorer is best utilized from a tablet or desktop. The interface is not intended for this screen size. Proceed with this in mind, or, read more about the FTU Explorer effort at the Human Reference Atlas (HRA) Portal.

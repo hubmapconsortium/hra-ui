@@ -16,7 +16,8 @@
     align-items: center;
 
     .crumb {
-      display: inline-block;
+      display: flex; // done to improve vertical alignment of text
+      align-items: center;
 
       .icon {
         vertical-align: middle;

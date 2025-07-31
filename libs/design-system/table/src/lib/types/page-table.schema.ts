@@ -125,4 +125,5 @@ export const PageTableSchema = ContentTemplateSchema.extend({
   style: TableVariantSchema.optional(),
   enableSort: z.boolean().optional(),
   verticalDividers: z.boolean().optional(),
+  enableSelection: z.boolean().optional(),
 });

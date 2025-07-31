@@ -61,6 +61,12 @@
       "@hra-ui/design-system/*": [
         "libs/design-system/*/src/index.ts"
       ],
+      "@hra-ui/ftu-ui-components": [
+        "libs/ftu-ui-components/src/index.ts"
+      ],
+      "@hra-ui/ftu-ui-components/*": [
+        "libs/ftu-ui-components/*/src/index.ts"
+      ],
       "@hra-ui/node-dist-vis": [
         "libs/node-dist-vis/src/index.ts"
       ],

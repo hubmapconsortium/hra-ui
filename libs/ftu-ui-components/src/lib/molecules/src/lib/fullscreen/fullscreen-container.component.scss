@@ -1,0 +1,22 @@
+.fullscreen-overlay {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.tabs-group {
+  flex: 1;
+}
+
+::ng-deep .mat-mdc-tab.mdc-tab {
+  height: 4rem;
+}
+
+.closeButton {
+  position: absolute;
+  right: 1rem;
+  top: 0.75rem;
+  z-index: 1;
+}
