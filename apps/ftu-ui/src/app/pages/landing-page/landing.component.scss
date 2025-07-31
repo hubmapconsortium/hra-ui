@@ -134,3 +134,15 @@
     }
   }
 }
+
+@media (max-height: 639px) and (max-width: 320px) {
+  :host {
+    .splash-wrapper {
+      min-height: 45rem;
+    }
+
+    .collaborators-wrapper {
+      max-height: 45rem;
+    }
+  }
+}
