@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, Route } from '@angular/router';
+import { Route } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
@@ -95,10 +95,6 @@ export const appRoutes: Route[] = [
       helpUrl: 'https://docs.humanatlas.io/apps',
     },
     resolve: {
-      crumbs: (route: ActivatedRouteSnapshot) => {
-        const name = route.params['name'];
-        return [{ name: 'Apps' }, { name: name }]; //TODO: display the actual label
-      },
       doData: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
     },
   },
