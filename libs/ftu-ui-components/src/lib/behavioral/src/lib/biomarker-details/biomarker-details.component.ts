@@ -1,5 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+  output,
+  TemplateRef,
+  ViewChild,
+  AfterViewInit,
+  model,
+} from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -72,13 +82,15 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   styleUrls: ['./biomarker-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    '[class.full-screen-grid]': 'isBiomarkerfullscreen()',
+    '[class.no-data-full-screen-grid]': 'source().length === 0 && isBiomarkerfullscreen()',
     '[class.no-data-sources]': 'source().length === 0',
     '[class.no-data]':
       'source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)',
     '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
   },
 })
-export class BiomarkerDetailsComponent {
+export class BiomarkerDetailsComponent implements AfterViewInit {
   /** Reference to biomarker table */
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
@@ -145,6 +157,32 @@ export class BiomarkerDetailsComponent {
 
   /** Active tab index */
   private activeTabIndex = 0;
+
+  /**
+   * Determines whether biomarkerfullscreen is in fullscreen mode
+   */
+  readonly isBiomarkerfullscreen = model<boolean>(false);
+
+  /**
+   * Determines whether source listfullscreen is in fullscreen mode
+   */
+  readonly isSourceListfullscreen = model<boolean>(false);
+
+  /**
+   * View child of source list component
+   */
+  @ViewChild('sourceList', { static: true }) sourceListRef!: TemplateRef<unknown>;
+
+  /**
+   * Source list template of biomarker details component
+   */
+  readonly sourceListTemplate = output<TemplateRef<unknown>>();
+
+  ngAfterViewInit(): void {
+    if (this.sourceListRef) {
+      this.sourceListTemplate.emit(this.sourceListRef);
+    }
+  }
 
   /** Table tabs */
   get tab(): CellSummaryAggregate {

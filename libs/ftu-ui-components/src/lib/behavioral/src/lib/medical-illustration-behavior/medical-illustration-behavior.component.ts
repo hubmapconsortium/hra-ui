@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, model, output } from '@angular/core';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { InteractiveSvgComponent } from '../../../../molecules/src';
 import { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
@@ -50,6 +50,11 @@ export class MedicalIllustrationBehaviorComponent {
    * Get all tissues
    */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
+
+  /**
+   * Whether the illustration is in fullscreen mode
+   */
+  readonly isFullscreen = model(false);
 
   /**
    * Gets tissue title from the list of tissues
