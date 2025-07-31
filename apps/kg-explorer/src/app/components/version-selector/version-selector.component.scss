@@ -1,5 +1,29 @@
+@use 'vars';
+
 :host {
   mat-form-field {
     width: 100%;
+
+    ::ng-deep label {
+      transform: translateY(-140%);
+    }
+  }
+
+  .single-version-label {
+    display: flex;
+    flex-direction: column;
+    height: 3rem;
+    padding: 0 0.75rem;
+    justify-content: center;
+
+    .label {
+      font: vars.$label-small;
+      color: vars.$primary;
+    }
+
+    .version {
+      font: vars.$label-medium;
+      color: vars.$secondary;
+    }
   }
 }

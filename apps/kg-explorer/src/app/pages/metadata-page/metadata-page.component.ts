@@ -133,7 +133,7 @@ export class MetadataPageComponent {
     this.currentVersion.set(version);
 
     effect(() => {
-      this.router.navigate(['metadata', type, name, this.currentVersion()]);
+      this.router.navigate([type, name, this.currentVersion()]);
       this.http
         .get(`https://lod.humanatlas.io/${type}/${name}/${this.currentVersion()}`, { responseType: 'json' })
         .subscribe((data) => {

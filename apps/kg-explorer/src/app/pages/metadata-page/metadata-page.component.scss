@@ -48,4 +48,23 @@
       display: flex;
     }
   }
+
+  ::ng-deep hra-page-section {
+    strong {
+      display: block;
+      font: var(--mat-sys-headline-medium);
+      color: var(--mat-sys-secondary);
+      margin-top: 2.5rem;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-inline-start: 2rem;
+    }
+  }
 }
