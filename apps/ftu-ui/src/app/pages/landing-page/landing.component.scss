@@ -1,3 +1,148 @@
+@use 'utils';
+@use 'vars';
+
 :host {
   display: block;
+
+  .splash-section,
+  .collaborators-section {
+    position: relative;
+    z-index: 1;
+    min-width: 17rem;
+    display: flex;
+  }
+
+  .splash-wrapper {
+    max-height: 747px;
+    overflow: hidden;
+    margin: 0;
+    min-height: calc(34.625rem + 10rem);
+
+    .splash-header-img {
+      position: absolute;
+      object-fit: cover;
+      width: 100%;
+      height: 747px;
+      z-index: 0;
+      background-position: center;
+      background-size: cover;
+    }
+    .splash-section {
+      flex-direction: column;
+      width: 100%;
+      max-width: 46.25rem;
+      min-width: 17rem;
+      min-height: 34.625rem;
+      margin-left: 2.5rem;
+      margin-right: auto;
+      margin-top: 6rem;
+
+      .misc-logo {
+        width: 64px;
+        height: 64px;
+        margin-top: 80px;
+        margin-bottom: 32px;
+        margin-left: 2.5rem;
+      }
+
+      .splash-section-content {
+        display: flex;
+        flex-direction: column;
+        margin-left: 2.5rem;
+      }
+
+      .header {
+        @include utils.use-font(display, large);
+        color: vars.$on-background;
+        margin-bottom: 36px;
+      }
+
+      .description {
+        font: vars.$body-xl;
+        color: vars.$on-secondary-fixed;
+        margin-bottom: 56px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 80px;
+
+        .action {
+          @include utils.use-font(label, medium);
+        }
+      }
+    }
+  }
+
+  .collaborators-wrapper {
+    .splash-header-img-2 {
+      position: absolute;
+      object-fit: cover;
+      width: 100%;
+      height: 720px;
+      z-index: 0;
+      background-position: center;
+      background-size: cover;
+    }
+
+    min-height: 720px;
+    .collaborators-section {
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 100%;
+      margin-right: 2.5rem;
+      padding: 6rem 2.5rem;
+
+      .collaborators-section-content {
+        margin-left: 2.5rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .thank-you-header {
+        @include utils.use-font(headline, large);
+        margin-top: 6rem;
+        margin-bottom: 2rem;
+        color: vars.$on-background;
+      }
+
+      .thank-you-description {
+        font: vars.$body-xl;
+        color: vars.$on-secondary-fixed;
+        margin-bottom: 56px;
+        max-width: 41.25rem;
+      }
+
+      .logo-wrapper {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 4rem;
+
+        .kpmp {
+          width: 119px;
+          height: 59px;
+        }
+
+        .partner {
+          width: 133px;
+          height: 41px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-height: 639px) and (max-width: 320px) {
+  :host {
+    .splash-wrapper {
+      min-height: 45rem;
+    }
+
+    .collaborators-wrapper {
+      max-height: 45rem;
+    }
+  }
 }

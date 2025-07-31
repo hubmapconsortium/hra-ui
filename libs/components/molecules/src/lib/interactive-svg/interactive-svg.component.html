@@ -1,13 +1,14 @@
-<div
-  *ngIf="url"
-  class="svg"
-  [class.hover-active]="nodeHoverData$ | async"
-  [inlineSVG]="url"
-  [evalScripts]="NEVER_EVAL_SCRIPTS"
-  (onSVGInserted)="setSvgElement($event)"
-></div>
+@if (url) {
+  <div
+    class="svg"
+    [class.hover-active]="nodeHoverData$ | async"
+    [inlineSVG]="url"
+    [evalScripts]="NEVER_EVAL_SCRIPTS"
+    (onSVGInserted)="setSvgElement($event)"
+  ></div>
+}
 
-<ng-container *ngIf="nodeHoverDelayedData$ | async as hover">
+@if (nodeHoverDelayedData$ | async; as hover) {
   <ng-template
     cdkConnectedOverlay
     cdkConnectedOverlayPanelClass="hra-interactive-svg-tooltip-panel"
@@ -18,4 +19,4 @@
   >
     <hra-ui-tooltip [text]="formatNodeName(hover.node)"></hra-ui-tooltip>
   </ng-template>
-</ng-container>
+}

@@ -1,6 +1,8 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Location } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -26,6 +28,7 @@ import {
   TableVariant,
   TextColumnType,
 } from '../types/page-table.schema';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Type for the row element context */
 type RowElementContext<T, CT extends TableColumnType> = {
@@ -150,12 +153,14 @@ export class NumericRowElementDirective {
     MatSortModule,
     MatTableModule,
     ScrollingModule,
+    MatCheckboxModule,
     TextHyperlinkDirective,
     LinkRowElementDirective,
     TextRowElementDirective,
     MarkdownRowElementDirective,
     MenuButtonRowElementDirective,
     NumericRowElementDirective,
+    PlainTooltipDirective,
     IconsModule,
     ButtonsModule,
   ],
@@ -183,6 +188,18 @@ export class TableComponent<T = TableRow> {
 
   /** Enables dividers between columns */
   readonly verticalDividers = input<boolean>(false);
+
+  /** Enable row selection with checkboxes */
+  readonly enableRowSelection = input<boolean>(false);
+
+  /** Emits when selection changes */
+  readonly selectionChange = output<T[]>();
+
+  /** Selection model for checkbox functionality */
+  readonly selection = new SelectionModel<TableRow>(true, []);
+
+  /** Hide table headers */
+  readonly hideHeaders = input<boolean>(false);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
@@ -220,7 +237,10 @@ export class TableComponent<T = TableRow> {
   protected readonly _columns = computed(() => this.columns() ?? this.inferColumns(this._rows()));
 
   /** Table data column IDs */
-  protected readonly columnIds = computed(() => this._columns().map((col) => col.column));
+  protected readonly columnIds = computed(() => {
+    const columns = this._columns().map((col) => col.column);
+    return this.enableRowSelection() ? ['select', ...columns] : columns;
+  });
 
   /** Table data source */
   protected readonly dataSource = new MatTableDataSource<T>([]);
@@ -269,6 +289,35 @@ export class TableComponent<T = TableRow> {
     }
 
     return columns;
+  }
+
+  /**
+   * Whether the number of selected elements matches the total number of rows.
+   */
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /**
+   * Selects all rows if they are not all selected; otherwise clear selection.
+   */
+  toggleAllRows(): void {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.selection.select(...(this.dataSource.data as TableRow[]));
+    }
+    this.selectionChange.emit(this.selection.selected as T[]);
+  }
+
+  /**
+   * Toggle row selection
+   */
+  toggleRow(row: TableRow): void {
+    this.selection.toggle(row as TableRow);
+    this.selectionChange.emit(this.selection.selected as T[]);
   }
 
   /**

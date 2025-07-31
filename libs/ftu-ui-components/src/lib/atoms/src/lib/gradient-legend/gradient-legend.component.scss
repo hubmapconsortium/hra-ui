@@ -1,0 +1,20 @@
+@use '../../../../../../../design-system/styles/utils';
+@use '../../../../../../../design-system/styles/vars';
+
+:host {
+  display: flex;
+  flex-direction: rows;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+
+  .start,
+  .end {
+    @include utils.use-font(label, micro);
+  }
+
+  .gradient-bar {
+    height: 1.25rem;
+    width: 100%;
+  }
+}
