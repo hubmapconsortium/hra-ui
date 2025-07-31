@@ -1,10 +1,104 @@
 <ftu-label-box>
-  Functional Tissue Unit Explorer
-  <hra-menu [menuOptions]="menuOptions" />
+  <span [class.hidden]="isCompactMode()"> Functional Tissue Unit Explorer </span>
+  <button mat-icon-button [matMenuTriggerFor]="moreMenu" hraPlainTooltip="More">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <!-- More Menu -->
+  <mat-menu #moreMenu="matMenu" class="more-menu">
+    <a mat-menu-item [matMenuTriggerFor]="helpMenu">
+      <mat-icon>help</mat-icon>
+      <div>Help & documentation</div>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+    </a>
+    <mat-divider />
+    <a mat-menu-item [matMenuTriggerFor]="fullScreenMenu">
+      <mat-icon>fullscreen</mat-icon>
+      <div>Open in full screen</div>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+    </a>
+    <button mat-menu-item (click)="isCompactMode.set(!isCompactMode())">
+      <mat-icon>visibility_{{ isCompactMode() ? 'off' : 'on' }}</mat-icon>
+      <div>{{ isCompactMode() ? 'Show' : 'Hide' }} functional tissue unit list</div>
+    </button>
+    <mat-divider />
+    <button mat-menu-item [hraLink]="illustrationMetadata">
+      <mat-icon>database</mat-icon>
+      <div>View illustration metadata</div>
+    </button>
+    <a mat-menu-item [matMenuTriggerFor]="downloadMenu">
+      <mat-icon>download</mat-icon>
+      <div>Download illustation</div>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+    </a>
+    <mat-divider />
+
+    <a mat-menu-item [matMenuTriggerFor]="embedMenu">
+      <mat-icon>code</mat-icon>
+      <div>Embed app</div>
+      <mat-icon class="expand-arrow">arrow_right</mat-icon>
+    </a>
+  </mat-menu>
+
+  <!-- Help & documentation Menu -->
+  <mat-menu #helpMenu class="more-menu">
+    <a mat-menu-item href="https://humanatlas.io/2d-ftu-illustrations" target="_blank">
+      <div class="title">Functional Tissue Unit Illustrations</div>
+      <div class="description">Data documentation</div>
+    </a>
+    <a mat-menu-item href="https://humanatlas.io/user-story/4" target="_blank">
+      <div class="title">Functional Tissue Unit Explorer</div>
+      <div class="description">App guidance & documentation</div>
+    </a>
+    <mat-divider />
+    <a mat-menu-item href="https://doi.org/10.1038/s41467-024-54591-6" target="_blank">
+      <div>Read publication</div>
+    </a>
+  </mat-menu>
+
+  <!-- Full Screen Menu -->
+  <mat-menu #fullScreenMenu>
+    <button mat-menu-item (click)="openFullScreen(FullScreenTab.Illustration)">
+      <div>Illustration</div>
+    </button>
+    <button mat-menu-item (click)="openFullScreen(FullScreenTab.BiomarkerDetails)">
+      <div>Cell types by biomarkers</div>
+    </button>
+    <button mat-menu-item (click)="openFullScreen(FullScreenTab.SourceList)">
+      <div>Source data</div>
+    </button>
+  </mat-menu>
+
+  <!-- Download Menu -->
+  <mat-menu #downloadMenu>
+    @for (format of downloadFormats(); track format.label) {
+      <button mat-menu-item (click)="download(format.id)">
+        <div>{{ format.label }}</div>
+      </button>
+    }
+  </mat-menu>
+
+  <!-- Embed Menu -->
+  <mat-menu #embedMenu>
+    <a mat-menu-item href="https://docs.humanatlas.io/dev/web-components#ftu-explorer" target="_blank">
+      <div>Full app</div>
+    </a>
+    <a mat-menu-item href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-swc" target="_blank">
+      <div>Web component</div>
+    </a>
+    <a
+      mat-menu-item
+      href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-illustration-viewer"
+      target="_blank"
+    >
+      <div>Illustration viewer</div>
+    </a>
+  </mat-menu>
 </ftu-label-box>
 <mat-divider />
 <ftu-tissue-tree-list
   class="tissue-tree"
+  [class.hidden]="isCompactMode()"
   [nodes]="tissues()"
   (navigate)="navigate($event.link, { queryParams: { id: $event.id } })"
   [(selected)]="selected"
