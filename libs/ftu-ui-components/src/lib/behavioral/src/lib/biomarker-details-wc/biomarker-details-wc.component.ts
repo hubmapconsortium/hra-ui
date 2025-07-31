@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { GradientPoint, SizeLegend } from '../../../../atoms/src';
-import { InteractiveSvgComponent, SourceListComponent } from '../../../../molecules/src';
+import { InteractiveSvgComponent, SourceListComponent, SourceListItem } from '../../../../molecules/src';
 import {
   BiomarkerTableComponent,
   DataCell,
@@ -28,8 +27,16 @@ import {
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
-import { BiomarkerDetailsComponent } from '../biomarker-details/biomarker-details.component';
-
+import {
+  EmptyBiomarkerComponent,
+  GradientLegendComponent,
+  GradientPoint,
+  SizeLegend,
+  SizeLegendComponent,
+} from '../../../../atoms/src';
+import { MatButtonModule } from '@angular/material/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { DialogService } from '@hra-ui/design-system/dialog';
 /**
  * PlaceHolder for Empty Tissue Info
  */
@@ -42,18 +49,81 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
 @Component({
   selector: 'ftu-wc-biomarker-details',
   imports: [
+    ButtonsModule,
     CommonModule,
+    MatButtonModule,
     MatIconModule,
     MatTabsModule,
     SourceListComponent,
     InteractiveSvgComponent,
-    BiomarkerDetailsComponent,
+    EmptyBiomarkerComponent,
+    GradientLegendComponent,
+    SizeLegendComponent,
+    BiomarkerTableComponent,
   ],
   templateUrl: './biomarker-details-wc.component.html',
   styleUrls: ['./biomarker-details-wc.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.no-data-sources]': 'source().length === 0',
+    '[class.no-data]':
+      'source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)',
+    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
+  },
 })
 export class BiomarkerDetailsWcComponent {
+  /** A dialog box which shows contact modal after clicking on contact */
+  private readonly dialog = inject(MatDialog);
+
+  /** Dialog service for opening notice dialogs */
+  private readonly dialogService = inject(DialogService);
+
+  /** Google analytics tracking service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
+  /** Text to be copied to clipboard */
+  emailText = 'infoccf@iu.edu';
+
+  /** Component constructor */
+  constructor() {
+    effect(() => {
+      const hasUrl = !!this.currentUrl();
+      const hasMapping = !!this.mapping();
+      const tabs = this.getTabs();
+
+      if (!hasUrl || !hasMapping) {
+        return;
+      }
+      const dataLoadingComplete = Array.isArray(tabs);
+
+      if (dataLoadingComplete) {
+        const hasNoData = tabs.length === 0 || tabs.every((tab) => tab.rows.length === 0);
+
+        if (hasNoData) {
+          this.dialogService.openNotice(
+            '',
+            'We currently do not have cell type by gene, protein, or lipid biomarker data for this functional tissue unit. Please email us at infoccf@iu.edu to discuss your dataset.',
+            {
+              label: 'Copy email',
+              callback: () => {
+                this.copyEmailToClipboard();
+              },
+            },
+          );
+        }
+      }
+    });
+  }
+
+  /**
+   * Copies email to clipboard
+   */
+  private copyEmailToClipboard(): void {
+    navigator.clipboard.writeText(this.emailText).then(() => {
+      this.ga.event('email_copied', 'clipboard');
+    });
+  }
+
   /**
    * Reference to the biomarker table component
    */
@@ -107,6 +177,9 @@ export class BiomarkerDetailsWcComponent {
   /** Info to be shown on the tooltip for Size Legend */
   readonly sizeHoverInfo = selectQuerySnapshot(RR.anyText, Ids.SizeLegendInfo);
 
+  /** Action to highlight a cell type */
+  readonly highlightCell = dispatch(IllustratorActions.HighlightCellType);
+
   /** Indicates if the table is fully shown, defaults to false*/
   isTableFullScreen = false;
 
@@ -120,6 +193,9 @@ export class BiomarkerDetailsWcComponent {
 
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
+
+  /** List of selected sources */
+  readonly selectedSources = signal<SourceListItem[]>([]);
 
   /**
    * Gets tissue title from the list of tissues
@@ -173,14 +249,11 @@ export class BiomarkerDetailsWcComponent {
   /** Sets currently selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
+  /** Selects the cells hovered currently to highlight in table */
+  readonly selectedOnHovered = selectSnapshot(IllustratorSelectors.selectedOnHovered);
+
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);
-
-  /** A dialog box which shows contact modal after clicking on contact */
-  private readonly dialog = inject(MatDialog);
-
-  /** Google analytics tracking service */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** Mapping item reference */
   private mapping_: IllustrationMappingItem[] = [];
@@ -220,5 +293,53 @@ export class BiomarkerDetailsWcComponent {
    */
   logTabChange(event: MatTabChangeEvent) {
     this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
+  }
+
+  /** Toggle options for the biomarker table */
+  readonly toggleOptions = [
+    { value: 'genes', label: 'Genes' },
+    { value: 'proteins', label: 'Proteins' },
+    { value: 'lipids', label: 'Lipids' },
+  ];
+
+  /** Active tab index */
+  private activeTabIndex = 0;
+
+  /** Selected toggle value */
+  selectedToggleValue = 'genes';
+
+  /**
+   * Handle toggle change from biomarker table
+   * @param value selected toggle value
+   */
+  onToggleChange(value: string): void {
+    const index = this.toggleOptions.findIndex((option) => option.value === value);
+    if (index !== -1) {
+      this.activeTabIndex = index;
+    }
+  }
+
+  /** Table tabs */
+  get tab(): CellSummaryAggregate {
+    const tabs = this.getTabs();
+    return tabs[this.activeTabIndex] ?? { label: '', columns: [], rows: [] };
+  }
+
+  /**
+   * Determines if a toggle option is disabled.
+   * @param index index of the toggle option
+   * @returns true if the toggle option is disabled, false otherwise
+   */
+  isToggleOptionDisabled(index: number): boolean {
+    const tab = this.getTabs()[index] ?? { label: '', columns: [], rows: [] };
+    return tab ? tab.rows.length === 0 : true;
+  }
+
+  /**
+   * Highlights cells matching the label
+   * @param event
+   */
+  highlightCells(label?: string) {
+    this.highlightCell(label);
   }
 }
