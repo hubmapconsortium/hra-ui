@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, model, ViewChild } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -7,7 +7,6 @@ import { LinkDirective } from '@hra-ui/cdk';
 import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { MenuDemoOption } from '@hra-ui/design-system/menu';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, DownloadActions, DownloadSelectors, LinkIds, TissueLibrarySelectors } from '@hra-ui/state';
@@ -35,10 +34,6 @@ import { TissueTreeListComponent } from '../../../../molecules/src';
 })
 export class TissueLibraryBehaviorComponent {
   /**
-   * Menu options for the Tissue Library Behavior component
-   */
-  protected readonly menuOptions: MenuDemoOption[] = [];
-  /**
    * Reference to the TissueTreeListComponent.
    */
   @ViewChild('list', { static: true })
@@ -52,7 +47,7 @@ export class TissueLibraryBehaviorComponent {
   /**
    * Selected  of tissue library behavior component
    */
-  selected?: Tissue;
+  readonly selected = model<Tissue>();
 
   /**
    * Navigates to a tissue page
@@ -75,7 +70,7 @@ export class TissueLibraryBehaviorComponent {
   constructor() {
     /** Get iris from the observable else reset selection if iri is undefined */
     select$(ActiveFtuSelectors.iri).subscribe((iri) => {
-      this.selected = iri && this.tissues() && this.tissues()[iri];
+      this.selected.set(iri && this.tissues() && this.tissues()[iri]);
       if (iri === undefined) {
         this.list?.resetSelection();
       }
