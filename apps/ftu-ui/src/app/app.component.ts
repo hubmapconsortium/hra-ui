@@ -74,6 +74,7 @@ import {
   ScreenNoticeBehaviorComponent,
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/ftu-ui-components/src/lib/behavioral';
+import { environment } from '../environments/environment.stage';
 
 /** Input property keys */
 type InputProps =
@@ -149,8 +150,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   @Input() selectedIllustration?: string | RawIllustration;
 
   /** Set of all illustrations */
-  @Input() illustrations: string | RawIllustrationsJsonld =
-    'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
+  @Input() illustrations: string | RawIllustrationsJsonld = environment.illustrationsUrl;
 
   /** Cell summaries to display in tables */
   @Input() summaries: string | RawCellSummary = '';
