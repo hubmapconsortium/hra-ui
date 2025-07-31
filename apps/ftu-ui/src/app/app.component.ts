@@ -4,6 +4,7 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
+  computed,
   HostBinding,
   HostListener,
   inject,
@@ -28,7 +29,10 @@ import {
   StorageId,
   StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from './ftu-components/behavioral/src';
+import { routeData } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconsModule } from '@hra-ui/design-system/icons';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -56,10 +60,8 @@ import {
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
-import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconsModule } from '@hra-ui/design-system/icons';
+import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from './ftu-components/behavioral/src';
 
 /** Input property keys */
 type InputProps =
@@ -119,6 +121,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   styleUrls: ['./app.component.scss'],
   host: {
     class: 'hra-app',
+    '[class.app-height]': '!isLanding()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -191,6 +194,12 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   readonly router = inject(Router);
   /** Current route */
   private readonly activatedRoute = inject(ActivatedRoute);
+
+  /** Signal for route data */
+  private readonly data = routeData();
+
+  /** Whether the current route is the landing page */
+  protected readonly isLanding = computed(() => this.data()['isLanding'] === true || false);
 
   /** Enpoints used to load data */
   private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
