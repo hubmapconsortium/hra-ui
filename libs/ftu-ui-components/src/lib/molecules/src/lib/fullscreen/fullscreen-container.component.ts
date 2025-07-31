@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, model, output, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
-import { IconsModule } from '@hra-ui/design-system/icons';
+import { ChangeDetectionStrategy, Component, input, model, output, TemplateRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconsModule } from '@hra-ui/design-system/icons';
 
 /** A component that wraps any child components of type FullscreenContentComponent and
  * sets their isFullScreen property to true or false based on its own fullscreen input property

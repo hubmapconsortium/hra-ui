@@ -5,7 +5,6 @@
 :host {
   overflow-y: auto;
   max-width: 17rem;
-  border-right: 0.0625rem solid vars.$outline;
 
   @include mat.tree-overrides(
     (
@@ -16,6 +15,10 @@
       node-text-weight: vars.$label-small-weight,
     )
   );
+
+  .tree {
+    background-color: transparent;
+  }
 
   .row {
     min-height: unset;

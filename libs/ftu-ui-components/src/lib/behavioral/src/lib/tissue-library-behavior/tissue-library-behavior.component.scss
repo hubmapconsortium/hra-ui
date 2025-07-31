@@ -3,8 +3,28 @@
 :host {
   display: flex;
   flex-direction: column;
+  border-right: 0.0625rem solid vars.$outline;
 
-  ftu-label-box {
-    border-right: 0.0625rem solid vars.$outline;
+  .hidden {
+    display: none;
+  }
+}
+
+::ng-deep {
+  .more-menu {
+    width: 17.75rem !important;
+    a {
+      .title {
+        color: vars.$secondary;
+      }
+      .description {
+        color: vars.$primary;
+      }
+    }
+    @include mat.divider-overrides(
+      (
+        color: vars.$outline-variant,
+      )
+    );
   }
 }

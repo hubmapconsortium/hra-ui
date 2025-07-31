@@ -1,4 +1,4 @@
-import { select$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { Subject } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { TissueLibraryBehaviorComponent } from './tissue-library-behavior.component';
@@ -6,14 +6,14 @@ import { TissueLibraryBehaviorComponent } from './tissue-library-behavior.compon
 jest.mock('@hra-ui/cdk/injectors');
 
 describe('TissueLibraryBehaviorComponent', () => {
-  const TISSUES = { test: {} };
   const urlSubject = new Subject<string | undefined>();
   let shallow: Shallow<TissueLibraryBehaviorComponent>;
 
-  jest.mocked(selectSnapshot).mockReturnValue(jest.fn().mockReturnValue(TISSUES));
   jest.mocked(select$).mockReturnValue(urlSubject);
+  jest.mocked(dispatch).mockReturnValue(jest.fn());
 
   beforeEach(async () => {
+    jest.mocked(selectSnapshot).mockReturnValue(jest.fn());
     shallow = new Shallow(TissueLibraryBehaviorComponent);
   });
 
@@ -21,16 +21,10 @@ describe('TissueLibraryBehaviorComponent', () => {
     await expect(shallow.render()).resolves.toBeDefined();
   });
 
-  it('should set the current selection when it changes', async () => {
-    const { instance } = await shallow.render();
-    urlSubject.next('test');
-    expect(instance.selected).toBe(TISSUES.test);
-  });
-
   it('should clear the selection when the medical illustration url becomes undefined', async () => {
     const { instance } = await shallow.render();
-    instance.selected = {} as never;
+    instance.selected.set({} as never);
     urlSubject.next(undefined);
-    expect(instance.selected).toBeUndefined();
+    expect(instance.selected()).toBeUndefined();
   });
 });

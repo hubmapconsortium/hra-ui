@@ -18,13 +18,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { EmptyBiomarkerComponent } from '../../../../atoms/src';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { TableComponent, TableColumn, TableRow } from '@hra-ui/design-system/table';
-import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
-import { Iri } from '@hra-ui/services';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
+import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+import { Iri } from '@hra-ui/services';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { EmptyBiomarkerComponent } from '../../../../atoms/src';
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem extends TableRow {
   /** Unique identifier for the source */

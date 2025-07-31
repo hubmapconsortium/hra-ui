@@ -9,13 +9,17 @@ import {
   HostListener,
   inject,
   Input,
+  model,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { LinkDirective } from '@hra-ui/cdk';
 import { dispatch, dispatch$, select$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
   BaseHrefActions,
@@ -31,8 +35,10 @@ import {
 } from '@hra-ui/cdk/state';
 import { routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -46,10 +52,13 @@ import {
   RawIllustrationsJsonld,
   selectedIllustrationInput,
   setUrl,
+  Tissue,
 } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
+  DownloadActions,
+  DownloadSelectors,
   HraStateModule,
   IllustratorActions,
   IllustratorSelectors,
@@ -119,6 +128,10 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
     CdkStateModule,
     HraServiceModule,
     HraStateModule,
+    MatMenuModule,
+    MatDividerModule,
+    PlainTooltipDirective,
+    LinkDirective,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -150,6 +163,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   /** Application links */
   @Input() appLinks = 'assets/links.yml';
+
   /** Application resources */
   @Input() appResources = 'assets/resources.yml';
 
@@ -195,6 +209,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   /** The router */
   readonly router = inject(Router);
+
   /** Current route */
   private readonly activatedRoute = inject(ActivatedRoute);
 
@@ -204,11 +219,34 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   /** Whether the current route is the landing page */
   protected readonly isLanding = computed(() => this.data()['isLanding'] === true || false);
 
+  /** Breadcrumbs */
+  protected readonly crumbs = computed(() => {
+    const crumbs = (this.data()['crumbs'] as BreadcrumbItem[]) ?? [];
+    const label = this.selectedFtu()?.label;
+    if (!label) {
+      return crumbs;
+    }
+    return [...crumbs, { name: label.slice(0, 1).toUpperCase() + label.slice(1) } satisfies BreadcrumbItem];
+  });
+
+  /** Selected FTU */
+  protected readonly selectedFtu = model<Tissue>();
+
   /** Enpoints used to load data */
   private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
   /** Whether the component is initialized */
   private initialized = false;
+
+  /** Data for Menus */
+  /** Illustration Metadata */
+  protected readonly illustrationMetadata = LinkIds.Illustration;
+
+  /** Available Download Formats */
+  protected readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);
+
+  /** Download Action Dispatcher */
+  protected readonly download = dispatch(DownloadActions.Download);
 
   /** Initializes the component */
   ngOnInit(): void {
