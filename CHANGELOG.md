@@ -15,6 +15,7 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - [@hra-ui/dashboard-ui](#hra-uidashboard-ui)
 - [@hra-ui/ftu-ui](#hra-uiftu-ui)
 - [@hra-ui/humanatlas.io](#hra-uihumanatlasio)
+- [@hra-ui/kg-explorer](#kg-explorer)
 - [@hra-ui/medical-illustration](#hra-uimedical-illustration)
 
 ### Libraries
@@ -41,6 +42,10 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 # Apps
 
 ## @hra-ui/asctb-reporter
+
+### 4.0.0 - 2025-07-31
+
+- Align the UI with HRA Design System
 
 ### 3.0.0 - 2024-12-04
 
@@ -75,6 +80,12 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - See [changelog](https://github.com/hubmapconsortium/ccf-ui/blob/main/CHANGELOG.md) in previous reporitory
 
 ## @hra-ui/ccf-organ-info
+
+### 5.0.0 - 2025-07-31
+
+- Align the UI with HRA Design System
+- All external resource links have been moved into a menu located at the top right of the application
+- The model view and metadata table now displays loading spinners while fetching data
 
 ### 4.0.0 - 2024-12-04
 
@@ -170,6 +181,13 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 ### 1.5.0 and earlier
 
 - See [changelog](https://github.com/cns-iu/humanatlas.io/blob/main/CHANGELOG.md) in previous reporitory
+
+## @hra-ui/kg-explorer
+
+### 1.0.0 - 2025-07-31
+
+- Initial release
+- TODO
 
 ## @hra-ui/medical-illustration
 
