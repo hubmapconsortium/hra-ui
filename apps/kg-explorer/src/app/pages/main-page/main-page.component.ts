@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,7 +13,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { forkJoin, fromEvent, Observable, switchMap, tap } from 'rxjs';
+import { forkJoin, fromEvent, Observable } from 'rxjs';
 
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
@@ -31,14 +31,12 @@ export interface TooltipData {
 
 /** Filter option category interface */
 export interface FilterOptionCategory {
-  /** Category id */
-  id: string;
   /** Category label */
   label: string;
   /** Filter options for the category */
-  options: FilterOption[];
+  options?: FilterOption[];
   /** Tooltip data */
-  tooltip: TooltipData;
+  tooltip?: TooltipData;
 }
 
 /** Filter option interface */
@@ -264,6 +262,15 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
 
+const CATEGORY_LABELS = [
+  'Digital objects',
+  'HRA release version',
+  'Organs',
+  'Anatomical structures',
+  'Cell types',
+  'Biomarkers',
+];
+
 /**
  * This component is used for rendering the main page of the application. Contains digital object table and filters.
  */
@@ -333,15 +340,23 @@ export class MainPageComponent {
    */
   constructor() {
     this.setScrollViewportHeight();
+    this.filterCategories.set(
+      CATEGORY_LABELS.map((label) => {
+        return { label };
+      }),
+    );
 
-    effect(() => {
-      this.applyFilters();
+    toObservable(this.data).subscribe((items) => {
+      const objectData = this.resolveData(items['@graph']);
+      this.allRows.set(objectData);
+      this.digitalObjectSearch().subscribe((results) => this.applyMoreFilters(results));
       this.populateFilterOptions();
+      this.attachDownloadOptions(items);
     });
+
     this.searchControl.valueChanges.subscribe((result) => {
       this.onSearchChange(result);
     });
-    this.attachDownloadOptions().subscribe();
 
     fromEvent(window, 'resize').subscribe(() => this.setScrollViewportHeight());
   }
@@ -413,7 +428,6 @@ export class MainPageComponent {
 
       this.filterCategories.set([
         {
-          id: 'digitalObjects',
           label: 'Digital objects',
           options: Array.from(kgOptions.doOptions)
             .map((filterOption) => {
@@ -432,7 +446,6 @@ export class MainPageComponent {
           },
         },
         {
-          id: 'releaseVersion',
           label: 'HRA release version',
           options: Object.keys(HRA_VERSION_DATA)
             .map((filterOption) => {
@@ -450,7 +463,6 @@ export class MainPageComponent {
           },
         },
         {
-          id: 'organs',
           label: 'Organs',
           options: Array.from(kgOptions.organOptions)
             .map((organOption) => {
@@ -467,7 +479,6 @@ export class MainPageComponent {
           },
         },
         {
-          id: 'anatomicalStructures',
           label: 'Anatomical structures',
           options: terms
             .filter((term) => as.nodes[term[0]])
@@ -485,7 +496,6 @@ export class MainPageComponent {
           },
         },
         {
-          id: 'cellTypes',
           label: 'Cell types',
           options: terms
             .filter((term) => ct.nodes[term[0]])
@@ -503,7 +513,6 @@ export class MainPageComponent {
           },
         },
         {
-          id: 'biomarkers',
           label: 'Biomarkers',
           options: terms
             .filter((term) => b.nodes[term[0]])
@@ -525,24 +534,22 @@ export class MainPageComponent {
   }
 
   /**
-   * Applies filters to digital objects
+   * Applies additional filters to digital objects obtained from KG search and sets new filtered rows
    */
-  private applyFilters() {
-    this.digitalObjectSearch().subscribe((searchResults) => {
-      let newFilteredRows = this.allRows();
-      newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['id'] as string));
+  private applyMoreFilters(searchResults: string[]) {
+    let newFilteredRows = this.allRows();
+    newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['id'] as string));
 
-      if (this.filters().searchTerm) {
-        newFilteredRows = this.filterSearchFormResults(newFilteredRows);
-      }
-      if (this.filters().digitalObjects) {
-        newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
-      }
-      if (this.filters().organs) {
-        newFilteredRows = this.filterOrganResults(newFilteredRows);
-      }
-      this.filteredRows.set(newFilteredRows);
-    });
+    if (this.filters().searchTerm) {
+      newFilteredRows = this.filterSearchFormResults(newFilteredRows);
+    }
+    if (this.filters().digitalObjects) {
+      newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
+    }
+    if (this.filters().organs) {
+      newFilteredRows = this.filterOrganResults(newFilteredRows);
+    }
+    this.filteredRows.set(newFilteredRows);
   }
 
   /**
@@ -589,7 +596,7 @@ export class MainPageComponent {
   }
 
   /**
-   * Performs KG DO search for selected ontology, cell type, and biomarker filters
+   * Performs KG DO search for selected ontology, cell type, biomarker, and HRA release version filters
    * @returns object search
    */
   private digitalObjectSearch(): Observable<string[]> {
@@ -664,25 +671,17 @@ export class MainPageComponent {
 
   /**
    * Attaches download options to a row
-   * @returns Observable
    */
-  private attachDownloadOptions(): Observable<DigitalObjectMetadata[]> {
-    return toObservable(this.data).pipe(
-      switchMap((items) => {
-        const objectData = this.resolveData(items['@graph']);
-        this.allRows.set(objectData);
-        const innerCalls = items['@graph'].map((item) => this.getMetadata(item));
-        return forkJoin(innerCalls);
-      }),
-      tap((metadata) => {
-        this.allRows().map((row) => {
-          const md = metadata.find((entry) => entry.id === row['lod']);
-          if (md) {
-            row['downloadOptions'] = this.download.getDownloadOptions(md);
-          }
-        });
-      }),
-    );
+  private attachDownloadOptions(data: KnowledgeGraphObjectsData) {
+    const innerCalls = data['@graph'].map((d) => this.getMetadata(d));
+    for (const call of innerCalls) {
+      call.subscribe((result) => {
+        const match = this.allRows().find((row) => row['lod'] === result.id);
+        if (match) {
+          match['downloadOptions'] = this.download.getDownloadOptions(result);
+        }
+      });
+    }
   }
 
   /**
