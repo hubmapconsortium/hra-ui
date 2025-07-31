@@ -42,15 +42,6 @@ export class FtuComponent {
   sourceListTemplate: TemplateRef<unknown> | null = null;
 
   /**
-   * Determines whether full screen is enabled or not
-   * @param tab
-   */
-  isFullscreenenabled(tab: FullscreenTab) {
-    this.fullscreenService.isFullscreen.set(true);
-    this.fullscreenService.fullscreentabIndex.set(tab);
-  }
-
-  /**
    * Closes the fullscreen mode
    */
   closefullscreen() {

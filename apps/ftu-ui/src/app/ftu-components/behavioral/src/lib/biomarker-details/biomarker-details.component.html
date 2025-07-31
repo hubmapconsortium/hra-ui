@@ -4,7 +4,7 @@
     mat-icon-button
     hraIconButtonSize="large"
     hraPlainTooltip="Open in full screen"
-    (click)="openBiomarkerFullscreen()"
+    (click)="isBiomarkerfullscreen.set(true)"
   >
     <mat-icon>fullscreen</mat-icon>
   </button>
@@ -72,7 +72,7 @@
       [sources]="source()"
       (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
       class="content"
-      (isFullscreen)="openSourceListFullscreen()"
+      (isFullscreen)="isSourceListfullscreen.set(true)"
     ></ftu-source-list>
   </div>
 }
@@ -90,6 +90,6 @@
     [sources]="source()"
     (selectionChanged)="setSelectedSources($event)"
     class="content"
-    (isFullscreen)="openSourceListFullscreen()"
+    (isFullscreen)="isSourceListfullscreen.set(true)"
   ></ftu-source-list>
 </ng-template>
