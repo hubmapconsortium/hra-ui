@@ -26,18 +26,29 @@
       <hra-page-section class="description" tagline="Description" [level]="2">
         <markdown [data]="metadata().was_derived_from.description" />
       </hra-page-section>
-      <hra-page-section tagline="Publisher" [level]="2">
-        <markdown [data]="metadata().was_derived_from.publisher" />
-      </hra-page-section>
-      <hra-page-section tagline="Funder" [level]="2">
-        <ul>
-          @for (funder of metadata().was_derived_from.funders; track $index) {
-            <li>{{ `${funder.funder} (Award number ${funder.awardNumber})` }}</li>
-          }
-        </ul>
-      </hra-page-section>
+      @if (metadata().was_derived_from.publisher) {
+        <hra-page-section tagline="Publisher" [level]="2">
+          <markdown [data]="metadata().was_derived_from.publisher" />
+        </hra-page-section>
+      }
+      @if (metadata().was_derived_from.funders) {
+        <hra-page-section tagline="Funder" [level]="2">
+          <ul>
+            @for (funder of metadata().was_derived_from.funders; track $index) {
+              <li>{{ `${funder.funder} (Award number ${funder.awardNumber})` }}</li>
+            }
+          </ul>
+        </hra-page-section>
+      }
       <hra-page-section tagline="License" [level]="2">
         <markdown [data]="metadata().was_derived_from.license" />
+      </hra-page-section>
+      <hra-page-section tagline="Tags" [level]="2">
+        <mat-chip-set>
+          @for (tag of tags(); track tag) {
+            <mat-chip>{{ tag | titlecase }}</mat-chip>
+          }
+        </mat-chip-set>
       </hra-page-section>
     </div>
 

@@ -27,6 +27,8 @@ export class EmptyBiomarkerComponent {
 
   /** Shows the copied snackbar message */
   protected showCopiedMessage() {
-    this.snackbar.open('Email copied', '');
+    this.snackbar.open('Email copied', '', undefined, undefined, {
+      duration: 3000,
+    });
   }
 }
