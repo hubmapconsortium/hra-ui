@@ -24,7 +24,6 @@
 
 ::ng-deep .filter-menu-content {
   .search {
-    margin-bottom: 0.5rem;
     width: 100%;
   }
 
@@ -38,8 +37,13 @@
   }
 
   .option-content {
+    --mdc-list-list-item-one-line-container-height: 2.5rem;
     display: flex;
     align-items: center;
+
+    &.large {
+      --mdc-list-list-item-one-line-container-height: 3rem;
+    }
   }
 
   .option {

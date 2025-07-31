@@ -3,15 +3,15 @@
     mat-icon-button
     class="info-icon"
     [hraRichTooltip]
-    [hraRichTooltipTagline]="filterOptionCategory().label"
-    [hraRichTooltipDescription]="filterOptionCategory().tooltip.description"
-    [hraRichTooltipActionText]="filterOptionCategory().tooltip.actionText || ''"
-    (hraRichTooltipActionClick)="navigateToLink(filterOptionCategory().tooltip.actionUrl)"
+    [hraRichTooltipTagline]="filterOptionCategory() ? filterOptionCategory().label : ''"
+    [hraRichTooltipDescription]="filterOptionCategory() ? filterOptionCategory().tooltip.description : ''"
+    [hraRichTooltipActionText]="filterOptionCategory() ? filterOptionCategory().tooltip.actionText || '' : ''"
+    (hraRichTooltipActionClick)="navigateToLink(filterOptionCategory() ? filterOptionCategory().tooltip.actionUrl : '')"
   >
     <mat-icon>info</mat-icon>
   </button>
   <button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
-    {{ filterOptionCategory().label }}
+    {{ filterOptionCategory() ? filterOptionCategory().label : '' }}
   </button>
 </div>
 
@@ -36,7 +36,7 @@
     <ng-scrollbar>
       <mat-action-list>
         @for (option of filteredOptions(); track option.id) {
-          <div class="option-content">
+          <div class="option-content" [class.large]="option.secondaryLabel">
             @if (option.tooltip) {
               <button
                 mat-icon-button

@@ -1,4 +1,4 @@
-@if (isSmallScreen()) {
+@if (isSmallScreen() && !sidenav.opened) {
   <button mat-fab extended class="filter-button" (click)="sidenav.toggle()">
     <mat-icon>filter_list</mat-icon>
     Filters
