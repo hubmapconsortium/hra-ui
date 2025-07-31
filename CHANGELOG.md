@@ -45,7 +45,7 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 ### 4.0.0 - 2025-07-31
 
-- Align the UI with HRA Design System
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
 
 ### 3.0.0 - 2024-12-04
 
@@ -83,7 +83,7 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 ### 5.0.0 - 2025-07-31
 
-- Align the UI with HRA Design System
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
 - All external resource links have been moved into a menu located at the top right of the application
 - The model view and metadata table now displays loading spinners while fetching data
 
@@ -140,6 +140,10 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - Added the ability for the user to select which columns to use when uploading a custom dataset
 
 ## @hra-ui/ftu-ui
+
+### 1.0.0 - 2025-07-31
+
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
 
 ### 0.5.0 - 2023-12-15
 
