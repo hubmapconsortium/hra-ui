@@ -1,6 +1,11 @@
 <div class="biomarker-header">
   <span class="biomarker-header-title">Cell types by biomarkers</span>
-  <button mat-icon-button hraIconButtonSize="large" hraPlainTooltip="Open in full screen">
+  <button
+    mat-icon-button
+    hraIconButtonSize="large"
+    hraPlainTooltip="Open in full screen"
+    (click)="openBiomarkerFullscreen()"
+  >
     <mat-icon>fullscreen</mat-icon>
   </button>
 </div>
@@ -67,6 +72,7 @@
       [sources]="source()"
       (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
       class="content"
+      (isFullscreen)="openSourceListFullscreen()"
     ></ftu-source-list>
   </div>
 }
@@ -75,4 +81,15 @@
   <div class="biomarker-details info-tooltip">
     {{ tooltip }}
   </div>
+</ng-template>
+
+<ng-template #sourceList>
+  <ftu-source-list
+    [collaborateText]="collaborateText"
+    (collaborateClick)="collaborate()"
+    [sources]="source()"
+    (selectionChanged)="setSelectedSources($event)"
+    class="content"
+    (isFullscreen)="openSourceListFullscreen()"
+  ></ftu-source-list>
 </ng-template>

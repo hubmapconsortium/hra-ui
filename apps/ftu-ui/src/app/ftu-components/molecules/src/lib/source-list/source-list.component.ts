@@ -6,6 +6,7 @@ import {
   inject,
   Input,
   OnChanges,
+  output,
   Output,
   signal,
   SimpleChanges,
@@ -88,6 +89,8 @@ export class SourceListComponent implements OnChanges {
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
+
+  readonly isFullscreen = output();
 
   /** Table columns configuration */
   readonly tableColumns: TableColumn[] = [
