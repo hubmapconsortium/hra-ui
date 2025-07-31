@@ -19,7 +19,9 @@ import { provideStore } from '@ngxs/store';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { provideMarkdown } from 'ngx-markdown';
 import { provideTabs } from '@hra-ui/design-system/tabs';
-
+/**
+ * Application config
+ */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAppInitializer(() => {
