@@ -203,7 +203,16 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 ### 1.0.0 - 2025-07-31
 
 - Initial release
-- TODO
+- Main page featuring a table for searching and filtering digital objects:
+  - Users may filter digital objects by name
+  - Searchable filter menu which can be used to filter digital objects by object type, HRA release version, organs, anatomical structures, cell types, and biomarkers
+  - Each table entry contains a link to the individual digital object page, Design System icons for the object type and associated organs, and a button for file downloads
+- Revamped individual digital object pages:
+  - Displays image/3d viewer if applicable
+  - Table containing provenance metadata
+  - Version selector for switching between digital object versions
+  - Button to access all file downloads easily
+  - All styles updated to current Design System
 
 ## @hra-ui/medical-illustration
 
