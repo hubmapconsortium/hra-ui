@@ -18,7 +18,7 @@ import {
 import { MatTableModule } from '@angular/material/table';
 import { GradientPoint } from '../../../../atoms/src/lib/gradient-legend/gradient-legend.component';
 import { SizeLegend } from '../../../../atoms/src/lib/size-legend/size-legend.component';
-import { BiomarkerTableDataIconComponent, DataItem } from '../../../../molecules/src';
+import { BiomarkerTableDataIconComponent } from '../../../../molecules/src';
 import { SourceListItem } from '../../../../molecules/src/lib/source-list/source-list.component';
 import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { ReplaySubject } from 'rxjs';
@@ -26,6 +26,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
+import { DataItem } from '@hra-ui/components/molecules';
 
 /**
  * RGBTriblet of type RGB to store color

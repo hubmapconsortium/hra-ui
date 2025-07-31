@@ -9,7 +9,7 @@ import {
 import { FullscreenContainerComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
 import { ActiveFtuActions } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
-import { FtuFullScreenService } from '../../services/ftu-fullscreen.service';
+import { FtuFullScreenService } from '@hra-ui/ftu-ui-components';
 
 /** Main FTU page */
 @Component({

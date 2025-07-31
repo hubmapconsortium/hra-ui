@@ -10,7 +10,10 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, DownloadActions, DownloadSelectors, LinkIds, TissueLibrarySelectors } from '@hra-ui/state';
-import { FtuFullScreenService, FullscreenTab } from '../../../../../services/ftu-fullscreen.service';
+import {
+  FtuFullScreenService,
+  FullscreenTab,
+} from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
 import { LabelBoxComponent } from '../../../../atoms/src';
 import { TissueTreeListComponent } from '../../../../molecules/src';
 /**

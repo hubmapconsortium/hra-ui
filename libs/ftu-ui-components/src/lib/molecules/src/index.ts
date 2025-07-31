@@ -1,4 +1,3 @@
-export * from './lib/biomarker-table-data-card/biomarker-table-data-card.component';
 export * from './lib/biomarker-table-data-icon/biomarker-table-data-icon.component';
 export * from './lib/contact-modal/contact-modal.component';
 export * from './lib/footer/footer.component';
