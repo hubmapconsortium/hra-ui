@@ -6,6 +6,7 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 ### Apps
 
+- [@hra-ui/apps.humanatlas.io](#hra-uiappshumanatlasio)
 - [@hra-ui/asctb-reporter](#hra-uiasctb-reporter)
 - [@hra-ui/body-ui](#hra-uibody-ui)
 - [@hra-ui/ccf-eui](#hra-uiccf-eui)
@@ -15,6 +16,7 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - [@hra-ui/dashboard-ui](#hra-uidashboard-ui)
 - [@hra-ui/ftu-ui](#hra-uiftu-ui)
 - [@hra-ui/humanatlas.io](#hra-uihumanatlasio)
+- [@hra-ui/kg-explorer](#hra-uikg-explorer)
 - [@hra-ui/medical-illustration](#hra-uimedical-illustration)
 
 ### Libraries
@@ -40,7 +42,18 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 # Apps
 
+## @hra-ui/apps.humanatlas.io
+
+### 1.0.0 - 2025-07-31
+
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
+- Migrated and renamed [Tissue Bar Graphs](https://hubmapconsortium.github.io/tissue-bar-graphs/) to [Cell Population Graphs](https://apps.humanatlas.io/cell-population-graphs)
+
 ## @hra-ui/asctb-reporter
+
+### 4.0.0 - 2025-07-31
+
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
 
 ### 3.0.0 - 2024-12-04
 
@@ -75,6 +88,12 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - See [changelog](https://github.com/hubmapconsortium/ccf-ui/blob/main/CHANGELOG.md) in previous reporitory
 
 ## @hra-ui/ccf-organ-info
+
+### 5.0.0 - 2025-07-31
+
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
+- All external resource links have been moved into a menu located at the top right of the application
+- The model view and metadata table now displays loading spinners while fetching data
 
 ### 4.0.0 - 2024-12-04
 
@@ -130,6 +149,10 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 ## @hra-ui/ftu-ui
 
+### 1.0.0 - 2025-07-31
+
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
+
 ### 0.5.0 - 2023-12-15
 
 #### Added
@@ -163,6 +186,10 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 ## @hra-ui/humanatlas.io
 
+### 3.0.0 - 2025-07-31
+
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
+
 ### 2.0.0 - 2024-12-04
 
 - Finished migration from [cns-iu/humanatlas.io](https://github.com/cns-iu/humanatlas.io)
@@ -170,6 +197,22 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 ### 1.5.0 and earlier
 
 - See [changelog](https://github.com/cns-iu/humanatlas.io/blob/main/CHANGELOG.md) in previous reporitory
+
+## @hra-ui/kg-explorer
+
+### 1.0.0 - 2025-07-31
+
+- Initial release
+- Main page featuring a table for searching and filtering digital objects:
+  - Users may filter digital objects by name
+  - Searchable filter menu which can be used to filter digital objects by object type, HRA release version, organs, anatomical structures, cell types, and biomarkers
+  - Each table entry contains a link to the individual digital object page, Design System icons for the object type and associated organs, and a button for file downloads
+- Revamped individual digital object pages:
+  - Displays image/3d viewer if applicable
+  - Table containing provenance metadata
+  - Version selector for switching between digital object versions
+  - Button to access all file downloads easily
+  - All styles updated to current Design System
 
 ## @hra-ui/medical-illustration
 

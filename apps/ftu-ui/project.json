@@ -1,7 +1,7 @@
 {
   "name": "ftu-ui",
   "metadata": {
-    "version": "0.5.0"
+    "version": "1.0.0"
   },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
