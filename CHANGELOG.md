@@ -15,7 +15,7 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - [@hra-ui/dashboard-ui](#hra-uidashboard-ui)
 - [@hra-ui/ftu-ui](#hra-uiftu-ui)
 - [@hra-ui/humanatlas.io](#hra-uihumanatlasio)
-- [@hra-ui/kg-explorer](#kg-explorer)
+- [@hra-ui/kg-explorer](#hra-uikg-explorer)
 - [@hra-ui/medical-illustration](#hra-uimedical-illustration)
 
 ### Libraries
