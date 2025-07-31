@@ -18,6 +18,11 @@
       display: flex;
       align-items: center;
 
+      &.hide-title {
+        justify-content: flex-end;
+        flex: 1;
+      }
+
       hra-results-indicator {
         border-radius: 624.9375rem;
       }

@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   inject,
+  input,
   Input,
   OnChanges,
   Output,
@@ -70,6 +71,9 @@ export class SourceListComponent implements OnChanges {
 
   /** Text that appears in the empty biomarker message */
   @Input() message = '';
+
+  /** Whether to hide the title of the source list */
+  readonly hideTitle = input<boolean>(false);
 
   /** Whether to show the biomarker table */
   showTable = signal(true);
