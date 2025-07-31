@@ -135,7 +135,7 @@ export class DownloadService {
       const a = document.createElement('a');
       const objectUrl = URL.createObjectURL(blob);
       a.href = objectUrl;
-      a.download = id;
+      a.download = id.split('https://lod.humanatlas.io/')[1].replaceAll('/', '.');
       a.click();
       URL.revokeObjectURL(objectUrl);
     });

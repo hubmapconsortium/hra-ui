@@ -3,15 +3,15 @@
     mat-icon-button
     class="info-icon"
     [hraRichTooltip]
-    [hraRichTooltipTagline]="filterOptionCategory() ? filterOptionCategory().label : ''"
-    [hraRichTooltipDescription]="filterOptionCategory() ? filterOptionCategory().tooltip.description : ''"
-    [hraRichTooltipActionText]="filterOptionCategory() ? filterOptionCategory().tooltip.actionText || '' : ''"
-    (hraRichTooltipActionClick)="navigateToLink(filterOptionCategory() ? filterOptionCategory().tooltip.actionUrl : '')"
+    [hraRichTooltipTagline]="filterOptionCategory().label"
+    [hraRichTooltipDescription]="filterOptionCategory().tooltip?.description ?? ''"
+    [hraRichTooltipActionText]="filterOptionCategory().tooltip?.actionText ?? ''"
+    (hraRichTooltipActionClick)="navigateToLink(filterOptionCategory().tooltip?.actionUrl ?? '')"
   >
     <mat-icon>info</mat-icon>
   </button>
   <button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
-    {{ filterOptionCategory() ? filterOptionCategory().label : '' }}
+    {{ filterOptionCategory().label }}
   </button>
 </div>
 
