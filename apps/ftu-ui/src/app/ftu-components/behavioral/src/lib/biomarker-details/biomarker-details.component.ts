@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+  output,
+  TemplateRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -78,7 +87,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
   },
 })
-export class BiomarkerDetailsComponent {
+export class BiomarkerDetailsComponent implements AfterViewInit {
   /** Reference to biomarker table */
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
@@ -145,6 +154,26 @@ export class BiomarkerDetailsComponent {
 
   /** Active tab index */
   private activeTabIndex = 0;
+
+  readonly isFullscreen = output();
+
+  readonly sourceListfullscreen = output();
+
+  @ViewChild('sourceList', { static: true }) sourceListRef!: TemplateRef<unknown>;
+  readonly sourceListTemplate = output<TemplateRef<unknown>>();
+
+  ngAfterViewInit(): void {
+    if (this.sourceListRef) {
+      this.sourceListTemplate.emit(this.sourceListRef);
+    }
+  }
+  openBiomarkerFullscreen() {
+    this.isFullscreen.emit();
+  }
+
+  openSourceListFullscreen() {
+    this.sourceListfullscreen.emit();
+  }
 
   /** Table tabs */
   get tab(): CellSummaryAggregate {

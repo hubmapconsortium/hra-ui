@@ -2,7 +2,7 @@
   <span class="source-list-title">Source data</span>
   <div class="view-fullscreen">
     <hra-results-indicator [value]="selectedCount()" [total]="sources.length" description="Viewing" />
-    <button mat-icon-button hraIconButtonSize="large">
+    <button mat-icon-button hraIconButtonSize="large" (click)="isFullscreen.emit()">
       <mat-icon>fullscreen</mat-icon>
     </button>
   </div>
