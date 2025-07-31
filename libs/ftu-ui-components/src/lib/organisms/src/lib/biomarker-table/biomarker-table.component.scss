@@ -130,13 +130,7 @@
     height: 1.75rem;
     max-width: 13.5rem;
     white-space: nowrap;
-    padding-left: 1rem;
-    padding-right: 0.5rem;
-
-    &.highlight {
-      font-weight: bold;
-      background-color: rgba(vars.$primary, 0.1);
-    }
+    padding: 0 0.5rem 0 1rem;
   }
 
   .count {
