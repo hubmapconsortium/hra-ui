@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,7 +13,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { forkJoin, fromEvent, Observable, switchMap, tap } from 'rxjs';
+import { forkJoin, fromEvent, Observable } from 'rxjs';
 
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
@@ -31,14 +31,12 @@ export interface TooltipData {
 
 /** Filter option category interface */
 export interface FilterOptionCategory {
-  /** Category id */
-  id: string;
   /** Category label */
   label: string;
   /** Filter options for the category */
-  options: FilterOption[];
+  options?: FilterOption[];
   /** Tooltip data */
-  tooltip: TooltipData;
+  tooltip?: TooltipData;
 }
 
 /** Filter option interface */
@@ -264,6 +262,16 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
 
+/** Filter cateogry labels */
+const CATEGORY_LABELS = [
+  'Digital objects',
+  'HRA release version',
+  'Organs',
+  'Anatomical structures',
+  'Cell types',
+  'Biomarkers',
+];
+
 /**
  * This component is used for rendering the main page of the application. Contains digital object table and filters.
  */
@@ -333,15 +341,23 @@ export class MainPageComponent {
    */
   constructor() {
     this.setScrollViewportHeight();
+    this.filterCategories.set(
+      CATEGORY_LABELS.map((label) => {
+        return { label };
+      }),
+    );
 
-    effect(() => {
-      this.applyFilters();
+    toObservable(this.data).subscribe((items) => {
+      const objectData = this.resolveData(items['@graph']);
+      this.allRows.set(objectData);
+      this.digitalObjectSearch().subscribe((results) => this.applyMoreFilters(results));
       this.populateFilterOptions();
+      this.attachDownloadOptions(items);
     });
+
     this.searchControl.valueChanges.subscribe((result) => {
       this.onSearchChange(result);
     });
-    this.attachDownloadOptions().subscribe();
 
     fromEvent(window, 'resize').subscribe(() => this.setScrollViewportHeight());
   }
@@ -413,16 +429,17 @@ export class MainPageComponent {
 
       this.filterCategories.set([
         {
-          id: 'digitalObjects',
           label: 'Digital objects',
-          options: Array.from(kgOptions.doOptions).map((filterOption) => {
-            return {
-              id: filterOption,
-              label: DO_INFO[filterOption].label,
-              count: this.calculateCount(filterOption, 'doType'),
-              tooltip: DO_INFO[filterOption].tooltip,
-            };
-          }),
+          options: Array.from(kgOptions.doOptions)
+            .map((filterOption) => {
+              return {
+                id: filterOption,
+                label: DO_INFO[filterOption].label,
+                count: this.calculateCount(filterOption, 'doType'),
+                tooltip: DO_INFO[filterOption].tooltip,
+              };
+            })
+            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
           tooltip: {
             description: 'Categories of unique data structures that construct the evolving Human Reference Atlas.',
             actionText: 'Learn more',
@@ -430,38 +447,39 @@ export class MainPageComponent {
           },
         },
         {
-          id: 'releaseVersion',
           label: 'HRA release version',
-          options: Object.keys(HRA_VERSION_DATA).map((filterOption) => {
-            const versionData = HRA_VERSION_DATA[filterOption];
-            return {
-              id: filterOption,
-              label: versionData ? versionData.label : filterOption,
-              count: hraVersionCounts[filterOption],
-              secondaryLabel: versionData ? versionData.date : undefined,
-            };
-          }),
+          options: Object.keys(HRA_VERSION_DATA)
+            .map((filterOption) => {
+              const versionData = HRA_VERSION_DATA[filterOption];
+              return {
+                id: filterOption,
+                label: versionData ? versionData.label : filterOption,
+                count: hraVersionCounts[filterOption],
+                secondaryLabel: versionData ? versionData.date : undefined,
+              };
+            })
+            .sort((o1, o2) => o2.label.localeCompare(o1.label)), //Reverse order
           tooltip: {
             description: 'New and updated data is released twice a year on June 15 and December 15.',
           },
         },
         {
-          id: 'organs',
           label: 'Organs',
-          options: Array.from(kgOptions.organOptions).map((organOption) => {
-            return {
-              id: organOption,
-              label: organOption,
-              count: this.calculateCount(organOption, 'organs'),
-            };
-          }),
+          options: Array.from(kgOptions.organOptions)
+            .map((organOption) => {
+              return {
+                id: organOption,
+                label: organOption,
+                count: this.calculateCount(organOption, 'organs'),
+              };
+            })
+            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
           tooltip: {
             description:
               'Organs are distinct body structures made of specialized cells and tissues that work together to perform specific biological functions.',
           },
         },
         {
-          id: 'anatomicalStructures',
           label: 'Anatomical structures',
           options: terms
             .filter((term) => as.nodes[term[0]])
@@ -471,14 +489,14 @@ export class MainPageComponent {
                 label: as.nodes[term[0]] ? as.nodes[term[0]].label || '' : term[0],
                 count: term[1],
               };
-            }),
+            })
+            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
           tooltip: {
             description:
               'A distinct biological entity with a 3D volume and shape, e.g., an organ, functional tissue unit, or cell.',
           },
         },
         {
-          id: 'cellTypes',
           label: 'Cell types',
           options: terms
             .filter((term) => ct.nodes[term[0]])
@@ -488,14 +506,14 @@ export class MainPageComponent {
                 label: ct.nodes[term[0]] ? ct.nodes[term[0]].label || '' : term[0],
                 count: term[1],
               };
-            }),
+            })
+            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
           tooltip: {
             description:
               'Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. Tissue is composed of different (resident and transitory) cell types that are characterized or identified via biomarkers.',
           },
         },
         {
-          id: 'biomarkers',
           label: 'Biomarkers',
           options: terms
             .filter((term) => b.nodes[term[0]])
@@ -505,7 +523,8 @@ export class MainPageComponent {
                 label: b.nodes[term[0]] ? b.nodes[term[0]].label || '' : term[0],
                 count: term[1],
               };
-            }),
+            })
+            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
           tooltip: {
             description:
               'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type. They include genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).',
@@ -516,24 +535,22 @@ export class MainPageComponent {
   }
 
   /**
-   * Applies filters to digital objects
+   * Applies additional filters to digital objects obtained from KG search and sets new filtered rows
    */
-  private applyFilters() {
-    this.digitalObjectSearch().subscribe((searchResults) => {
-      let newFilteredRows = this.allRows();
-      newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['id'] as string));
+  private applyMoreFilters(searchResults: string[]) {
+    let newFilteredRows = this.allRows();
+    newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['id'] as string));
 
-      if (this.filters().searchTerm) {
-        newFilteredRows = this.filterSearchFormResults(newFilteredRows);
-      }
-      if (this.filters().digitalObjects) {
-        newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
-      }
-      if (this.filters().organs) {
-        newFilteredRows = this.filterOrganResults(newFilteredRows);
-      }
-      this.filteredRows.set(newFilteredRows);
-    });
+    if (this.filters().searchTerm) {
+      newFilteredRows = this.filterSearchFormResults(newFilteredRows);
+    }
+    if (this.filters().digitalObjects) {
+      newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
+    }
+    if (this.filters().organs) {
+      newFilteredRows = this.filterOrganResults(newFilteredRows);
+    }
+    this.filteredRows.set(newFilteredRows);
   }
 
   /**
@@ -565,19 +582,6 @@ export class MainPageComponent {
   }
 
   /**
-   * Filters an array of results by selected release versions
-   * @param currentResults Results to filter
-   * @returns Filtered results
-   */
-  private filterVersionResults(currentResults: TableRow[]): TableRow[] {
-    const currentReleaseVersionFilters = this.filters().releaseVersion?.map((obj) => obj.id);
-    if (currentReleaseVersionFilters && currentReleaseVersionFilters.length === 0) {
-      return currentResults;
-    }
-    return currentResults.filter((row) => currentReleaseVersionFilters?.includes(row['doVersion'] as string));
-  }
-
-  /**
    * Filters an array of results by selected organ filters
    * @param currentResults Results to filter
    * @returns Filtered results
@@ -593,7 +597,7 @@ export class MainPageComponent {
   }
 
   /**
-   * Performs KG DO search for selected ontology, cell type, and biomarker filters
+   * Performs KG DO search for selected ontology, cell type, biomarker, and HRA release version filters
    * @returns object search
    */
   private digitalObjectSearch(): Observable<string[]> {
@@ -668,25 +672,17 @@ export class MainPageComponent {
 
   /**
    * Attaches download options to a row
-   * @returns Observable
    */
-  private attachDownloadOptions(): Observable<DigitalObjectMetadata[]> {
-    return toObservable(this.data).pipe(
-      switchMap((items) => {
-        const objectData = this.resolveData(items['@graph']);
-        this.allRows.set(objectData);
-        const innerCalls = items['@graph'].map((item) => this.getMetadata(item));
-        return forkJoin(innerCalls);
-      }),
-      tap((metadata) => {
-        this.allRows().map((row) => {
-          const md = metadata.find((entry) => entry.id === row['lod']);
-          if (md) {
-            row['downloadOptions'] = this.download.getDownloadOptions(md);
-          }
-        });
-      }),
-    );
+  private attachDownloadOptions(data: KnowledgeGraphObjectsData) {
+    const innerCalls = data['@graph'].map((d) => this.getMetadata(d));
+    for (const call of innerCalls) {
+      call.subscribe((result) => {
+        const match = this.allRows().find((row) => row['lod'] === result.id);
+        if (match) {
+          match['downloadOptions'] = this.download.getDownloadOptions(result);
+        }
+      });
+    }
   }
 
   /**

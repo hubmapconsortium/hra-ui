@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { dispatch, injectDestroy$ } from '@hra-ui/cdk/injectors';
-import { BiomarkerDetailsComponent, MedicalIllustrationBehaviorComponent } from '../../ftu-components/behavioral/src';
-import { FullscreenContainerComponent } from '../../ftu-components/molecules/src';
 import { ActiveFtuActions } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
-import { FtuFullScreenService, FullscreenTab } from '../../services/ftu-fullscreen.service';
+import { BiomarkerDetailsComponent, MedicalIllustrationBehaviorComponent } from '../../ftu-components/behavioral/src';
+import { FullscreenContainerComponent } from '../../ftu-components/molecules/src';
+import { FtuFullScreenService } from '../../services/ftu-fullscreen.service';
 
 /** Main FTU page */
 @Component({

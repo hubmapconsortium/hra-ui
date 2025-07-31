@@ -5,8 +5,8 @@ import {
   EventEmitter,
   inject,
   Input,
+  model,
   OnChanges,
-  output,
   Output,
   signal,
   SimpleChanges,
@@ -17,13 +17,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { EmptyBiomarkerComponent } from '../../../../atoms/src';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { TableComponent, TableColumn, TableRow } from '@hra-ui/design-system/table';
-import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
-import { Iri } from '@hra-ui/services';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
+import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+import { Iri } from '@hra-ui/services';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { EmptyBiomarkerComponent } from '../../../../atoms/src';
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem extends TableRow {
   /** Unique identifier for the source */
@@ -90,7 +90,10 @@ export class SourceListComponent implements OnChanges {
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
 
-  readonly isFullscreen = output();
+  /**
+   * Determines whether fullscreen mode is on or off
+   */
+  readonly isFullscreen = model<boolean>(false);
 
   /** Table columns configuration */
   readonly tableColumns: TableColumn[] = [
