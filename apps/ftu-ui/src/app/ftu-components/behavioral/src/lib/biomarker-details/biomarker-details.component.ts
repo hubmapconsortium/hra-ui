@@ -8,6 +8,7 @@ import {
   TemplateRef,
   ViewChild,
   AfterViewInit,
+  model,
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
@@ -155,24 +156,30 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   /** Active tab index */
   private activeTabIndex = 0;
 
-  readonly isFullscreen = output();
+  /**
+   * Determines whether biomarkerfullscreen is in fullscreen mode
+   */
+  readonly isBiomarkerfullscreen = model<boolean>(false);
 
-  readonly sourceListfullscreen = output();
+  /**
+   * Determines whether source listfullscreen is in fullscreen mode
+   */
+  readonly isSourceListfullscreen = model<boolean>(false);
 
+  /**
+   * View child of source list component
+   */
   @ViewChild('sourceList', { static: true }) sourceListRef!: TemplateRef<unknown>;
+
+  /**
+   * Source list template of biomarker details component
+   */
   readonly sourceListTemplate = output<TemplateRef<unknown>>();
 
   ngAfterViewInit(): void {
     if (this.sourceListRef) {
       this.sourceListTemplate.emit(this.sourceListRef);
     }
-  }
-  openBiomarkerFullscreen() {
-    this.isFullscreen.emit();
-  }
-
-  openSourceListFullscreen() {
-    this.sourceListfullscreen.emit();
   }
 
   /** Table tabs */

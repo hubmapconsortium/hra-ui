@@ -1,25 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, model, output, signal, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { dispatch, injectDestroy$, selectSnapshot } from '@hra-ui/cdk/injectors';
-import {
-  BiomarkerDetailsComponent,
-  FooterBehaviorComponent,
-  MedicalIllustrationBehaviorComponent,
-} from '../../ftu-components/behavioral/src';
-import {
-  FullscreenContainerComponent,
-  FullscreenContentComponent,
-  SourceListComponent,
-} from '../../ftu-components/molecules/src';
-import { ActiveFtuActions, ScreenModeSelectors } from '@hra-ui/state';
+import { dispatch, injectDestroy$ } from '@hra-ui/cdk/injectors';
+import { BiomarkerDetailsComponent, MedicalIllustrationBehaviorComponent } from '../../ftu-components/behavioral/src';
+import { FullscreenContainerComponent } from '../../ftu-components/molecules/src';
+import { ActiveFtuActions } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
-
-export enum FullscreenTab {
-  Illustration = 0,
-  BiomarkerDetails = 1,
-  SourceList = 2,
-}
+import { FtuFullScreenService, FullscreenTab } from '../../services/ftu-fullscreen.service';
 
 /** Main FTU page */
 @Component({
@@ -27,34 +14,46 @@ export enum FullscreenTab {
   imports: [
     CommonModule,
     BiomarkerDetailsComponent,
-    FooterBehaviorComponent,
     FullscreenContainerComponent,
-    FullscreenContentComponent,
     MedicalIllustrationBehaviorComponent,
-    SourceListComponent,
   ],
   templateUrl: './ftu.component.html',
   styleUrls: ['./ftu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
-  readonly isFullscreen = signal(false);
+  /**
+   * Fullscreen service of ftu component
+   */
+  private readonly fullscreenService = inject(FtuFullScreenService);
 
-  readonly fullscreentabIndex = model<FullscreenTab>(0);
+  /**
+   * Determines whether fullscreen mode is on or off
+   */
+  isFullscreen = this.fullscreenService.isFullscreen;
+  /**
+   * Fullscreentab index of ftu component
+   */
+  fullscreentabIndex = this.fullscreenService.fullscreentabIndex;
 
-  isFullscreenenabled(tab: FullscreenTab) {
-    this.isFullscreen.set(true);
-    this.fullscreentabIndex.set(tab);
-    console.log('fullscreen enabled');
-  }
+  /**
+   * Source list template of ftu component
+   */
+  sourceListTemplate: TemplateRef<unknown> | null = null;
 
-  sourceListTemplate: TemplateRef<any> | null = null;
-
-  setSourceList(ref: TemplateRef<any>) {
-    this.sourceListTemplate = ref;
-  }
+  /**
+   * Closes the fullscreen mode
+   */
   closefullscreen() {
-    this.isFullscreen.set(false);
+    this.fullscreenService.isFullscreen.set(false);
+  }
+
+  /**
+   * Sets the source list template
+   * @param ref Template ref to source list
+   */
+  setSourceList(ref: TemplateRef<unknown>) {
+    this.sourceListTemplate = ref;
   }
 
   /** Set the illustration from the id query parameter */

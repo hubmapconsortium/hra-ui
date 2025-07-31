@@ -1,19 +1,4 @@
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
-  contentChild,
-  input,
-  Input,
-  model,
-  OnChanges,
-  output,
-  QueryList,
-  SimpleChanges,
-  TemplateRef,
-  OnInit,
-  AfterViewInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model, output, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { IconsModule } from '@hra-ui/design-system/icons';
