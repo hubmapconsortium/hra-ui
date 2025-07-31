@@ -1,4 +1,5 @@
 @use '../../../../../../../design-system/styles/vars';
+@use '@angular/material' as mat;
 
 :host {
   display: flex;
