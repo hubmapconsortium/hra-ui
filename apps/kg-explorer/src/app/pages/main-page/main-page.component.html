@@ -16,7 +16,7 @@
     [mode]="!isWideScreen() ? 'over' : 'side'"
     [opened]="isWideScreen()"
     [fixedInViewport]="true"
-    [fixedTopGap]="113"
+    [fixedTopGap]="isSmallScreen() ? 73 : 113"
   >
     <hra-filter-menu
       [filterCategories]="filterCategories()"
