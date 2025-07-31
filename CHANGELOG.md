@@ -6,6 +6,7 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 
 ### Apps
 
+- [@hra-ui/apps.humanatlas.io](#hra-uiappshumanatlasio)
 - [@hra-ui/asctb-reporter](#hra-uiasctb-reporter)
 - [@hra-ui/body-ui](#hra-uibody-ui)
 - [@hra-ui/ccf-eui](#hra-uiccf-eui)
@@ -40,6 +41,13 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - [@hra-ui/webcomponents](#hra-uiwebcomponents)
 
 # Apps
+
+## @hra-ui/apps.humanatlas.io
+
+### 1.0.0 - 2025-07-31
+
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
+- Migrated and renamed [Tissue Bar Graphs](https://hubmapconsortium.github.io/tissue-bar-graphs/) to [Cell Population Graphs](https://apps.humanatlas.io/cell-population-graphs)
 
 ## @hra-ui/asctb-reporter
 
@@ -177,6 +185,10 @@ Changelog for the Human Reference Atlas (HRA) User Interfaces
 - Added download options for different file formats
 
 ## @hra-ui/humanatlas.io
+
+### 3.0.0 - 2025-07-31
+
+- Align the UI with [@hra-ui/design-system@1.0.0](#hra-uidesign-system)
 
 ### 2.0.0 - 2024-12-04
 
