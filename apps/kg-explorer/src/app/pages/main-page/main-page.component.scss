@@ -3,7 +3,11 @@
 
 :host {
   display: flex;
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 4.5rem);
+
+  @media (min-width: 640px) {
+    height: calc(100vh - 7rem);
+  }
 
   @include mat.sidenav-overrides(
     (
@@ -101,8 +105,12 @@
   .filter-button {
     position: fixed;
     right: 0.75rem;
-    top: 8rem;
+    top: 5.5rem;
     z-index: 2;
+
+    @media (min-width: 640px) {
+      top: 8rem;
+    }
   }
 
   ::ng-deep hra-table {

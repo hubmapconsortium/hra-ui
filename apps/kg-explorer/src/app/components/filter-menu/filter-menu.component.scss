@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'utils';
 @use 'vars';
 
@@ -43,6 +44,13 @@
       opacity: 0;
     }
   }
+
+  @include mat.chips-overrides(
+    (
+      outline-color: vars.$outline-variant,
+      label-text-color: vars.$on-primary-fixed,
+    )
+  );
 
   ::ng-deep .mdc-evolution-chip-set__chips {
     margin: 0 !important;
