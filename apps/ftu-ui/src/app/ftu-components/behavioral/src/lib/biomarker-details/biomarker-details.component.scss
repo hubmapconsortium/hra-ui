@@ -18,6 +18,20 @@
     background-color: vars.$surface-container-lowest;
   }
 
+  &.full-screen-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 4rem 1fr;
+    grid-template-areas:
+    "legend-area"
+    "table"
+  }
+
+  &.no-data-full-screen-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "empty";
+  }
+
   &.no-data-sources {
     grid-template-areas:
       'headline headline'

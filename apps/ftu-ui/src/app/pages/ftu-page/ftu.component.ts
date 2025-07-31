@@ -6,7 +6,7 @@ import { BiomarkerDetailsComponent, MedicalIllustrationBehaviorComponent } from 
 import { FullscreenContainerComponent } from '../../ftu-components/molecules/src';
 import { ActiveFtuActions } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
-import { FtuFullScreenService, FullscreenTab } from '../../services/ftu-fullscreen.service';
+import { FtuFullScreenService } from '../../services/ftu-fullscreen.service';
 
 /** Main FTU page */
 @Component({
