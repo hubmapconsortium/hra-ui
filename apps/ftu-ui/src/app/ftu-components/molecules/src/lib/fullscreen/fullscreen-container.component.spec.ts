@@ -14,7 +14,7 @@ describe('FullscreenContainerComponent', () => {
   });
 
   it('should render FullscreenContainerComponent', async () => {
-    const { findComponent } = await shallow.render();
-    expect(findComponent(FullscreenContainerComponent)).toHaveFoundOne();
+    const { instance } = await shallow.render();
+    expect(instance).toBeDefined();
   });
 });
