@@ -17,6 +17,10 @@
     )
   );
 
+  .tree {
+    background-color: transparent;
+  }
+
   .row {
     min-height: unset;
     &:first-child {
