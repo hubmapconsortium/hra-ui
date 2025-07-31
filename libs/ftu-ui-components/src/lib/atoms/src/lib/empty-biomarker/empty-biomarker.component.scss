@@ -1,0 +1,23 @@
+@use '../../../../../../../design-system/styles/utils';
+@use '../../../../../../../design-system/styles/vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .content {
+    padding: 0 1rem;
+    flex: 1;
+    @include utils.use-font(body, medium);
+    color: vars.$primary;
+  }
+
+  .footer {
+    padding: 1rem;
+
+    .collaborate-button {
+      width: 100%;
+    }
+  }
+}

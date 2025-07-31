@@ -14,11 +14,8 @@ import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
-  FooterBehaviorComponent,
-  HraLandingPageIntroWcBehaviourComponent,
   TissueLibraryBehaviorComponent,
-} from '@hra-ui/components/behavioral';
-import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
+} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -83,14 +80,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 /** FTU ui small web component */
 @Component({
   selector: 'hra-root',
-  imports: [
-    TissueLibraryBehaviorComponent,
-    HraLandingPageIntroWcBehaviourComponent,
-    BiomarkerDetailsWcComponent,
-    FooterBehaviorComponent,
-    FullscreenContainerComponent,
-    FullscreenContentComponent,
-  ],
+  imports: [TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host: {

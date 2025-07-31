@@ -70,7 +70,10 @@ import {
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
-import { ScreenNoticeBehaviorComponent, TissueLibraryBehaviorComponent } from './ftu-components/behavioral/src';
+import {
+  ScreenNoticeBehaviorComponent,
+  TissueLibraryBehaviorComponent,
+} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
 
 /** Input property keys */
 type InputProps =
