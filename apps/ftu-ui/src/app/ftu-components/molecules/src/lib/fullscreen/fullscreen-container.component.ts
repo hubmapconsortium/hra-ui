@@ -16,14 +16,29 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FullscreenContainerComponent {
+  /**
+   * Illustration template of fullscreen container component
+   */
   readonly illustrationTemplate = input<TemplateRef<unknown> | null>(null);
+  /**
+   * Biomarker template of fullscreen container component
+   */
   readonly biomarkerTemplate = input<TemplateRef<unknown> | null>(null);
+  /**
+   * Source list template of fullscreen container component
+   */
   readonly sourceListTemplate = input<TemplateRef<unknown> | null>(null);
 
   /** A boolean input property that controls the fullscreen mode */
   readonly fullscreen = input<boolean>(false);
 
+  /**
+   * Fullscreentab index of fullscreen container component
+   */
   readonly fullscreentabIndex = model<number>(0);
 
+  /**
+   * Close fullscreen of fullscreen container component
+   */
   readonly closeFullscreen = output();
 }

@@ -71,10 +71,4 @@
       max-width: none;
     }
   }
-
-  /** Styles to define view width for the case when no data is available */
-  ftu-fullscreen-content:has(ftu-biomarker-details.no-data),
-  ftu-fullscreen-content:has(ftu-biomarker-details.no-data-available) {
-    width: 18rem !important;
-  }
 }
