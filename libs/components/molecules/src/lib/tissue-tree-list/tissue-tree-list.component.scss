@@ -1,4 +1,4 @@
-@use 'variables' as vars;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   overflow-y: auto;
@@ -36,7 +36,7 @@
       .link {
         cursor: pointer;
         text-decoration: none;
-        color: rgba(vars.$dark-primary-text);
+        // color: rgba(vars.$dark-primary-text);
         line-height: normal;
         width: 100%;
         height: 100%;
@@ -46,7 +46,7 @@
     }
 
     &.selected .label-container .link {
-      color: rgba(vars.$accent);
+      // color: rgba(vars.$accent);
     }
 
     &:focus-visible {

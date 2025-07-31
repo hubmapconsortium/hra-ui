@@ -1,10 +1,33 @@
-<hra-fullscreen-container class="content-container" [fullscreen]="isFullscreen()">
-  <div class="left-side">
-    <ftu-medical-illustration-behavior class="illustration"> </ftu-medical-illustration-behavior>
-    <ftu-footer-behavior></ftu-footer-behavior>
-  </div>
+<ftu-fullscreen-container
+  class="content-container"
+  [fullscreen]="isFullscreen()"
+  [(fullscreentabIndex)]="fullscreentabIndex"
+  (closeFullscreen)="closefullscreen()"
+  [illustrationTemplate]="illustration"
+  [biomarkerTemplate]="biomarker"
+  [sourceListTemplate]="sourceListTemplate"
+>
+  <ng-template #illustration>
+    <div class="left-side">
+      <ftu-medical-illustration-behavior
+        [(isFullscreen)]="isFullscreen"
+        (isFullscreenChange)="fullscreentabIndex.set(0)"
+        class="illustration"
+      ></ftu-medical-illustration-behavior>
+    </div>
+  </ng-template>
 
-  <hra-fullscreen-content class="fullscreen-content-container">
-    <ftu-biomarker-details class="illustration-details"> </ftu-biomarker-details>
-  </hra-fullscreen-content>
-</hra-fullscreen-container>
+  <ng-template #biomarker>
+    <div class="fullscreen-content-container">
+      <ftu-biomarker-details
+        [(isBiomarkerfullscreen)]="isFullscreen"
+        (isBiomarkerfullscreenChange)="fullscreentabIndex.set(1)"
+        [(isSourceListfullscreen)]="isFullscreen"
+        (isSourceListfullscreenChange)="fullscreentabIndex.set(2)"
+        class="illustration-details"
+        (sourceListTemplate)="setSourceList($event)"
+      >
+      </ftu-biomarker-details>
+    </div>
+  </ng-template>
+</ftu-fullscreen-container>

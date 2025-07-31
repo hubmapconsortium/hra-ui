@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { dispatch, injectDestroy$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { dispatch, injectDestroy$ } from '@hra-ui/cdk/injectors';
 import {
   BiomarkerDetailsComponent,
-  FooterBehaviorComponent,
   MedicalIllustrationBehaviorComponent,
-} from '@hra-ui/components/behavioral';
-import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
-import { ActiveFtuActions, ScreenModeSelectors } from '@hra-ui/state';
+} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
+import { FullscreenContainerComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
+import { ActiveFtuActions } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
+import { FtuFullScreenService } from '@hra-ui/ftu-ui-components';
 
 /** Main FTU page */
 @Component({
@@ -17,9 +17,7 @@ import { takeUntil } from 'rxjs';
   imports: [
     CommonModule,
     BiomarkerDetailsComponent,
-    FooterBehaviorComponent,
     FullscreenContainerComponent,
-    FullscreenContentComponent,
     MedicalIllustrationBehaviorComponent,
   ],
   templateUrl: './ftu.component.html',
@@ -27,7 +25,39 @@ import { takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
-  readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
+  /**
+   * Fullscreen service of ftu component
+   */
+  private readonly fullscreenService = inject(FtuFullScreenService);
+
+  /**
+   * Determines whether fullscreen mode is on or off
+   */
+  isFullscreen = this.fullscreenService.isFullscreen;
+  /**
+   * Fullscreentab index of ftu component
+   */
+  fullscreentabIndex = this.fullscreenService.fullscreentabIndex;
+
+  /**
+   * Source list template of ftu component
+   */
+  sourceListTemplate: TemplateRef<unknown> | null = null;
+
+  /**
+   * Closes the fullscreen mode
+   */
+  closefullscreen() {
+    this.fullscreenService.isFullscreen.set(false);
+  }
+
+  /**
+   * Sets the source list template
+   * @param ref Template ref to source list
+   */
+  setSourceList(ref: TemplateRef<unknown>) {
+    this.sourceListTemplate = ref;
+  }
 
   /** Set the illustration from the id query parameter */
   constructor() {

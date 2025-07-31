@@ -20,20 +20,52 @@
       >
         @let templates = { text, numeric, markdown, link, icon, menu };
 
+        <!-- Selection Column (if enabled) -->
+        @if (enableRowSelection()) {
+          <ng-container matColumnDef="select">
+            @if (!hideHeaders()) {
+              <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">
+                <mat-checkbox
+                  aria-label="Hide all"
+                  hraPlainTooltip="Hide all"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  (change)="toggleAllRows()"
+                  disableRipple
+                >
+                </mat-checkbox>
+              </th>
+            }
+            <td mat-cell *matCellDef="let element" data-column-type="checkbox">
+              <mat-checkbox
+                aria-label="Hide"
+                hraPlainTooltip="Hide"
+                (click)="$event.stopPropagation()"
+                (change)="$event ? toggleRow(element) : null"
+                [checked]="selection.isSelected(element)"
+                disableRipple
+              >
+              </mat-checkbox>
+            </td>
+          </ng-container>
+        }
+
         @for (column of _columns(); track column.column) {
           @let type = getColumnType(column);
           @let template = templates[type];
 
           <ng-container [matColumnDef]="column.column">
-            <th
-              mat-header-cell
-              *matHeaderCellDef
-              mat-sort-header
-              [attr.data-column-type]="type"
-              [sortActionDescription]="`Sort by ${column.label}`"
-            >
-              {{ column.label }}
-            </th>
+            @if (!hideHeaders()) {
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                [attr.data-column-type]="type"
+                [sortActionDescription]="`Sort by ${column.label}`"
+              >
+                {{ column.label }}
+              </th>
+            }
             <td mat-cell *matCellDef="let element" [attr.data-column-type]="type">
               <ng-container
                 *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"
@@ -42,7 +74,9 @@
           </ng-container>
         }
 
-        <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
+        @if (!hideHeaders()) {
+          <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
+        }
         <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>
       </table>
     </div>

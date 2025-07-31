@@ -114,6 +114,13 @@ export const Basic: Story = {
   },
 };
 
+export const WithSelection: Story = {
+  args: {
+    style: 'alternating',
+    enableRowSelection: true,
+  },
+};
+
 export const WithScrolling: Story = {
   render: (args) => ({
     props: args,
@@ -129,5 +136,12 @@ export const WithCsvUrl: Story = {
   args: {
     rows: undefined,
     csvUrl,
+  },
+};
+
+export const WithoutHeaders: Story = {
+  args: {
+    style: 'alternating',
+    hideHeaders: true,
   },
 };

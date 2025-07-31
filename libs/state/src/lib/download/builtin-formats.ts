@@ -6,7 +6,7 @@ import { DownloadFormat } from './download.model';
  */
 export const SVG_FORMAT: DownloadFormat = {
   id: Svg,
-  label: 'Download SVG',
+  label: 'SVG',
   extension: '.svg',
 };
 
@@ -15,7 +15,7 @@ export const SVG_FORMAT: DownloadFormat = {
  */
 export const PNG_FORMAT: DownloadFormat = {
   id: Png,
-  label: 'Download PNG',
+  label: 'PNG',
   extension: '.png',
 };
 
