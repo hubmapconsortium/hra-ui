@@ -47,8 +47,12 @@
         Bioinformatics Institute. It showcases single-cell expression data from the Anatomogram site by EMBL-EBI.
       </div>
       <div class="logo-wrapper">
-        <hra-icon class="kpmp" [svgIcon]="'KPMP'" />
-        <hra-icon class="partner" [svgIcon]="'partner-logos'" />
+        <a [href]="kpmpLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
+          <hra-icon class="kpmp" [svgIcon]="'KPMP'" />
+        </a>
+        <a [href]="ebiLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
+          <hra-icon class="partner" [svgIcon]="'partner-logos'" />
+        </a>
       </div>
     </div>
   </div>
