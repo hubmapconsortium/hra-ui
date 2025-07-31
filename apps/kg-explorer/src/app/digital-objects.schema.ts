@@ -15,6 +15,7 @@ export const DigitalObjectDataSchema = z.object({
   title: z.string(),
   doType: z.string(),
   lastUpdated: z.string(),
+  hraVersions: z.string().array(),
   doName: z.string(),
   versions: z.string().array(),
   purl: z.string(),

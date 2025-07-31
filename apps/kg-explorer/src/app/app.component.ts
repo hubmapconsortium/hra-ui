@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { Router, RouterModule, RoutesRecognized } from '@angular/router';
 import { HraKgService } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -41,14 +41,32 @@ export class AppComponent {
   /** If the user is navigating to a different page */
   protected readonly isNavigating = isNavigating();
 
+  /** Params for metadata pages */
+  private readonly params = signal<{ name?: string; type?: string; version?: string }>({});
+
   /**
    * Gets the page title for breadcrumbs
    */
   constructor() {
-    this.kg.digitalObjects().subscribe((data) => {
-      this.pageTitle.set(
-        data['@graph']?.find((x) => x.lod === 'https://lod.humanatlas.io' + window.location.pathname)?.title,
-      );
+    this.router.events.subscribe((val) => {
+      if (val instanceof RoutesRecognized) {
+        const name = val.state.root.firstChild?.params['name'];
+        const type = val.state.root.firstChild?.params['type'];
+        const version = val.state.root.firstChild?.params['version'];
+        this.params.set({ name, type, version });
+      }
+    });
+
+    effect(() => {
+      this.kg.digitalObjects().subscribe((data) => {
+        this.pageTitle.set(
+          data['@graph']?.find(
+            (x) =>
+              x.lod ===
+              ['https://lod.humanatlas.io', this.params().type, this.params().name, this.params().version].join('/'),
+          )?.title,
+        );
+      });
     });
   }
 
