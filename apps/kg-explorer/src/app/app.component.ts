@@ -36,16 +36,14 @@ export class AppComponent {
   private readonly data = routeData();
 
   /** Breadcrumbs data (computed from above signal). */
-  protected readonly crumbs = computed(() => {
-    if (this.data()['crumbs']) {
-      return this.data()['crumbs'];
-    }
-    return [{ name: 'Apps' }, { name: this.pageTitle() }];
-  });
+  protected readonly crumbs = computed(() => this.data()['crumbs'] ?? [{ name: 'Apps' }, { name: this.pageTitle() }]);
 
   /** If the user is navigating to a different page */
   protected readonly isNavigating = isNavigating();
 
+  /**
+   * Gets the page title for breadcrumbs
+   */
   constructor() {
     this.kg.digitalObjects().subscribe((data) => {
       this.pageTitle.set(

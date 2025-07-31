@@ -262,6 +262,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
 
+/** Filter cateogry labels */
 const CATEGORY_LABELS = [
   'Digital objects',
   'HRA release version',
