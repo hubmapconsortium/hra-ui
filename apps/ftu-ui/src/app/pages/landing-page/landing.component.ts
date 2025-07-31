@@ -10,8 +10,14 @@ import { RouterModule } from '@angular/router';
  */
 const PUBLICATION_LINK = 'https://doi.org/10.1038/s41467-024-54591-6';
 
+/**
+ * Default KPMP link for the FTU landing page.
+ */
 const KPMP_LINK = 'https://www.kpmp.org/';
 
+/**
+ * Default EBI link for the FTU landing page.
+ */
 const EBI_LINK = 'https://www.ebi.ac.uk/';
 
 /**
