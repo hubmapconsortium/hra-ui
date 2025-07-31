@@ -7,11 +7,11 @@
       <mat-tab label="Illustration">
         <ng-container [ngTemplateOutlet]="illustrationTemplate()"></ng-container>
       </mat-tab>
-      <mat-tab label="Biomarker Details">
-        <ng-container [ngTemplateOutlet]="biomarkerTemplate()"></ng-container>
-      </mat-tab>
-      <mat-tab label="Source List">
+      <mat-tab label="Source data">
         <ng-container [ngTemplateOutlet]="sourceListTemplate()"></ng-container>
+      </mat-tab>
+      <mat-tab label="Cell types by biomarkers">
+        <ng-container [ngTemplateOutlet]="biomarkerTemplate()"></ng-container>
       </mat-tab>
     </mat-tab-group>
     <button mat-icon-button class="closeButton" aria-label="Close fullscreen" (click)="closeFullscreen.emit()">

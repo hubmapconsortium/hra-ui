@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   inject,
+  input,
   Input,
   model,
   OnChanges,
@@ -89,6 +90,11 @@ export class SourceListComponent implements OnChanges {
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
+
+  /**
+   * Hide fullscreen icon of source list component when it is in fullscreen mode
+   */
+  readonly hideFullscreenIcon = input<boolean>();
 
   /**
    * Determines whether fullscreen mode is on or off
