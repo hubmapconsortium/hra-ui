@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -334,6 +334,8 @@ export class MainPageComponent {
   readonly filters = signal<CurrentFilters>({});
   /** Scroll viewport height for the digital object table */
   readonly scrollHeight = signal(0);
+  /** Records HRA version counts for the version filter */
+  readonly versionCounts = signal<Record<string, number>>({});
 
   /**
    * Sets filtered rows to all rows on init
@@ -350,9 +352,13 @@ export class MainPageComponent {
     toObservable(this.data).subscribe((items) => {
       const objectData = this.resolveData(items['@graph']);
       this.allRows.set(objectData);
+      this.setVersionCounts(items['@graph']);
+      this.attachDownloadOptions(items);
+    });
+
+    effect(() => {
       this.digitalObjectSearch().subscribe((results) => this.applyMoreFilters(results));
       this.populateFilterOptions();
-      this.attachDownloadOptions(items);
     });
 
     this.searchControl.valueChanges.subscribe((result) => {
@@ -360,6 +366,24 @@ export class MainPageComponent {
     });
 
     fromEvent(window, 'resize').subscribe(() => this.setScrollViewportHeight());
+  }
+
+  /**
+   * Sets the version filter counts from the data
+   * @param data Digital object data
+   */
+  private setVersionCounts(data: DigitalObjectData[]) {
+    const result: Record<string, number> = {};
+    const allVersions = data.map((object) => object.hraVersions);
+    const flatVersions = allVersions.flat();
+    for (const version of flatVersions) {
+      if (result[version]) {
+        result[version] += 1;
+      } else {
+        result[version] = 1;
+      }
+    }
+    this.versionCounts.set(result);
   }
 
   /**
@@ -404,28 +428,8 @@ export class MainPageComponent {
       this.v1.cellTypeTreeModel({}),
       this.v1.biomarkerTreeModel({}),
       this.kg.asctbTermOccurences({}),
-      this.kg.doSearch({ hraVersions: ['v1.0'] }),
-      this.kg.doSearch({ hraVersions: ['v1.1'] }),
-      this.kg.doSearch({ hraVersions: ['v1.2'] }),
-      this.kg.doSearch({ hraVersions: ['v1.3'] }),
-      this.kg.doSearch({ hraVersions: ['v1.4'] }),
-      this.kg.doSearch({ hraVersions: ['v2.0'] }),
-      this.kg.doSearch({ hraVersions: ['v2.1'] }),
-      this.kg.doSearch({ hraVersions: ['v2.2'] }),
-      this.kg.doSearch({ hraVersions: ['v2.3'] }),
-    ]).subscribe(([as, ct, b, asctbTerms, r1, r2, r3, r4, r5, r6, r7, r8, r9]) => {
+    ]).subscribe(([as, ct, b, asctbTerms]) => {
       const terms = Object.entries(asctbTerms);
-      const hraVersionCounts: Record<string, number> = {
-        'v1.0': r1.length,
-        'v1.1': r2.length,
-        'v1.2': r3.length,
-        'v1.3': r4.length,
-        'v1.4': r5.length,
-        'v2.0': r6.length,
-        'v2.1': r7.length,
-        'v2.2': r8.length,
-        'v2.3': r9.length,
-      };
 
       this.filterCategories.set([
         {
@@ -454,7 +458,7 @@ export class MainPageComponent {
               return {
                 id: filterOption,
                 label: versionData ? versionData.label : filterOption,
-                count: hraVersionCounts[filterOption],
+                count: this.versionCounts()[filterOption],
                 secondaryLabel: versionData ? versionData.date : undefined,
               };
             })
