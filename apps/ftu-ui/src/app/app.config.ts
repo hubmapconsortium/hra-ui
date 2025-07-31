@@ -26,14 +26,6 @@ export const appConfig: ApplicationConfig = {
       const initializerFn = initFactory();
       return initializerFn();
     }),
-    {
-      provide: MatDialogRef,
-      useValue: {},
-    },
-    {
-      provide: FTU_DATA_IMPL_ENDPOINTS,
-      useValue: new ReplaySubject(1),
-    },
     provideHttpClient(withInterceptorsFromDi()),
     provideNothrowPlatformLocation(),
     provideDesignSystem(),
@@ -46,5 +38,13 @@ export const appConfig: ApplicationConfig = {
     ),
     provideStore([]),
     importProvidersFrom(CdkStateModule, HraStateModule, HraServiceModule, MouseTrackerModule),
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+    {
+      provide: FTU_DATA_IMPL_ENDPOINTS,
+      useValue: new ReplaySubject(1),
+    },
   ],
 };
