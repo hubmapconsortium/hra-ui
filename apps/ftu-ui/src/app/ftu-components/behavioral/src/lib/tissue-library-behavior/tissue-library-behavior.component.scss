@@ -5,9 +5,14 @@
 :host {
   display: flex;
   flex-direction: column;
+  border-right: 0.0625rem solid vars.$outline;
 
-  ftu-label-box {
-    border-right: 0.0625rem solid vars.$outline;
+  // ftu-label-box {
+  //   border-right: 0.0625rem solid vars.$outline;
+  // }
+
+  .hidden {
+    display: none;
   }
 }
 

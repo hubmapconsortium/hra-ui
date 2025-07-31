@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, model, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, model, signal, ViewChild } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -10,6 +10,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, DownloadActions, DownloadSelectors, LinkIds, TissueLibrarySelectors } from '@hra-ui/state';
+import { FtuFullScreenService, FullscreenTab } from '../../../../../services/ftu-fullscreen.service';
 import { LabelBoxComponent } from '../../../../atoms/src';
 import { TissueTreeListComponent } from '../../../../molecules/src';
 /**
@@ -33,6 +34,9 @@ import { TissueTreeListComponent } from '../../../../molecules/src';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueLibraryBehaviorComponent {
+  /** Options for full screen */
+  FullScreenTab = FullscreenTab;
+
   /**
    * Reference to the TissueTreeListComponent.
    */
@@ -64,6 +68,12 @@ export class TissueLibraryBehaviorComponent {
   /** Download Action Dispatcher */
   protected readonly download = dispatch(DownloadActions.Download);
 
+  /** Full Screen Service */
+  protected fullScreenService = inject(FtuFullScreenService);
+
+  /** Compact Mode */
+  protected readonly isCompactMode = signal<boolean>(false);
+
   /**
    * Sets the TissueItem instance as undefined if the url is undefined
    */
@@ -75,5 +85,13 @@ export class TissueLibraryBehaviorComponent {
         this.list?.resetSelection();
       }
     });
+  }
+
+  /**
+   * Opens the full screen mode with the specified tab index.
+   */
+  openFullScreen(mode: FullscreenTab) {
+    this.fullScreenService.fullscreentabIndex.set(mode);
+    this.fullScreenService.isFullscreen.set(true);
   }
 }

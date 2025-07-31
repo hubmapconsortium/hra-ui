@@ -1,5 +1,5 @@
 <ftu-label-box>
-  Functional Tissue Unit Explorer
+  <span [class.hidden]="isCompactMode()"> Functional Tissue Unit Explorer </span>
   <button mat-icon-button [matMenuTriggerFor]="moreMenu" hraPlainTooltip="More">
     <mat-icon>more_vert</mat-icon>
   </button>
@@ -17,10 +17,10 @@
       <div>Open in full screen</div>
       <mat-icon class="expand-arrow">arrow_right</mat-icon>
     </a>
-    <a mat-menu-item>
-      <mat-icon>visibility_off</mat-icon>
-      <div>Hide functional tissue unit list</div>
-    </a>
+    <button mat-menu-item (click)="isCompactMode.set(!isCompactMode())">
+      <mat-icon>visibility_{{ isCompactMode() ? 'off' : 'on' }}</mat-icon>
+      <div>{{ isCompactMode() ? 'Show' : 'Hide' }} functional tissue unit list</div>
+    </button>
     <mat-divider />
     <button mat-menu-item [hraLink]="illustrationMetadata">
       <mat-icon>database</mat-icon>
@@ -58,15 +58,15 @@
 
   <!-- Full Screen Menu -->
   <mat-menu #fullScreenMenu>
-    <a mat-menu-item>
+    <button mat-menu-item (click)="openFullScreen(FullScreenTab.Illustration)">
       <div>Illustration</div>
-    </a>
-    <a mat-menu-item>
+    </button>
+    <button mat-menu-item (click)="openFullScreen(FullScreenTab.BiomarkerDetails)">
       <div>Cell types by biomarkers</div>
-    </a>
-    <a mat-menu-item>
+    </button>
+    <button mat-menu-item (click)="openFullScreen(FullScreenTab.SourceList)">
       <div>Source data</div>
-    </a>
+    </button>
   </mat-menu>
 
   <!-- Download Menu -->
@@ -98,6 +98,7 @@
 <mat-divider />
 <ftu-tissue-tree-list
   class="tissue-tree"
+  [class.hidden]="isCompactMode()"
   [nodes]="tissues()"
   (navigate)="navigate($event.link, { queryParams: { id: $event.id } })"
   [(selected)]="selected"
