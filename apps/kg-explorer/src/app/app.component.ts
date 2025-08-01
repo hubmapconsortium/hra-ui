@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
-import { Router, RouterModule, RoutesRecognized } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HraKgService } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -25,12 +25,14 @@ import { routeData } from './utils/route-data';
 export class AppComponent {
   /** Router instance for navigation */
   private readonly router = inject(Router);
+  /** Activated route service */
+  private readonly route = inject(ActivatedRoute);
 
   /** HRA KG API service */
   private readonly kg = inject(HraKgService);
 
   /** Page title to display on the breadcrumbs */
-  private readonly pageTitle = signal<string | undefined>(undefined);
+  private readonly pageTitle = signal<string>('');
 
   /** Data for breadcrumbs in navigation header. */
   private readonly data = routeData();
@@ -48,31 +50,20 @@ export class AppComponent {
   /** If the user is navigating to a different page */
   protected readonly isNavigating = isNavigating();
 
-  /** Params for metadata pages */
-  private readonly params = signal<{ name?: string; type?: string; version?: string }>({});
-
   /**
    * Gets the page title for breadcrumbs
    */
   constructor() {
-    this.router.events.subscribe((val) => {
-      if (val instanceof RoutesRecognized) {
-        const name = val.state.root.firstChild?.params['name'];
-        const type = val.state.root.firstChild?.params['type'];
-        const version = val.state.root.firstChild?.params['version'];
-        this.params.set({ name, type, version });
-      }
-    });
+    this.router.events.subscribe(() => {
+      const type = this.route.snapshot.root.firstChild?.params['type'];
+      const name = this.route.snapshot.root.firstChild?.params['name'];
+      const version = this.route.snapshot.root.firstChild?.params['version'];
 
-    effect(() => {
       this.kg.digitalObjects().subscribe((data) => {
-        this.pageTitle.set(
-          data['@graph']?.find(
-            (x) =>
-              x.lod ===
-              ['https://lod.humanatlas.io', this.params().type, this.params().name, this.params().version].join('/'),
-          )?.title,
+        const match = data['@graph']?.find(
+          (object) => object.lod === ['https://lod.humanatlas.io', type, name, version].join('/'),
         );
+        this.pageTitle.set(match?.title || '');
       });
     });
   }
