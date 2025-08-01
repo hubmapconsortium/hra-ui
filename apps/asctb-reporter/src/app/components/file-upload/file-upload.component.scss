@@ -3,6 +3,7 @@
 
 :host {
   display: block;
+  height: 3rem;
 
   .file-input {
     display: none;
@@ -18,5 +19,15 @@
     align-items: center;
     gap: 0.25rem;
     padding-left: 1.25rem;
+  }
+
+  .upload-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    @include utils.use-font(label, medium);
+    color: vars.$primary;
   }
 }
