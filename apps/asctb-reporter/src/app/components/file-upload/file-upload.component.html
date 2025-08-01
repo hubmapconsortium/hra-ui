@@ -8,7 +8,12 @@
     </button>
   </div>
 } @else {
-  <button mat-flat-button hraButtonVariant="primary" hraButtonSize="medium" (click)="onClick(fileUpload)">
-    Upload
-  </button>
+  <div class="upload-button">
+    <button mat-flat-button hraButtonVariant="primary" hraButtonSize="medium" (click)="onClick(fileUpload)">
+      Upload
+    </button>
+    @if (!fileUpload.value) {
+      <div>Select a file to upload</div>
+    }
+  </div>
 }

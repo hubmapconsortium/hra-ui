@@ -1,17 +1,50 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, output } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { ButtonSizeDirective } from '@hra-ui/design-system/buttons/button';
 import { UploadForm } from '../../models/sheet.model';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { SidenavModule } from '../sidenav/sidenav.module';
 
 @Component({
   selector: 'app-upload',
+  imports: [
+    CommonModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SidenavModule,
+    MatButtonModule,
+    FileUploadComponent,
+    MatCardModule,
+    MatButtonToggleModule,
+    MatMenuModule,
+    ButtonSizeDirective,
+  ],
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss'],
-  standalone: false,
 })
 export class UploadComponent implements OnInit {
   readonly fb = inject(FormBuilder);
 
-  @Output() readonly uploadForm = new EventEmitter<UploadForm>();
+  readonly uploadForm = output<UploadForm>();
 
   formGroup!: FormGroup;
   formValid = true;
@@ -26,7 +59,7 @@ export class UploadComponent implements OnInit {
         formData: new FormControl(''),
         fileName: new FormControl(''),
       },
-      { validators: [this.atLeastOnePhoneRequired as ValidatorFn] },
+      { validators: [this.fileValidator as ValidatorFn] },
     );
 
     this.formGroup.valueChanges.subscribe((x) => {
@@ -38,7 +71,12 @@ export class UploadComponent implements OnInit {
     });
   }
 
-  atLeastOnePhoneRequired(group: FormGroup): { [s: string]: boolean } | null {
+  /**
+   * Custom validator to check if either link or fileName is provided
+   * @param group Form Group
+   * @returns Whether the form is valid or not
+   */
+  fileValidator(group: FormGroup): { [s: string]: boolean } | null {
     if (group) {
       if (group.controls['link'].value || group.controls['fileName'].value) {
         return null;
@@ -47,10 +85,17 @@ export class UploadComponent implements OnInit {
     return { error: true };
   }
 
+  /**
+   * Handles the file upload event
+   * @param fileFormDataEvent FormData event containing the uploaded file
+   */
   upload(fileFormDataEvent: FormData) {
     this.formGroup.patchValue({ formData: fileFormDataEvent });
   }
 
+  /**
+   * Submits the form data to the parent component
+   */
   submitData() {
     this.formValid = this.formGroup.status === 'VALID';
     if (this.formGroup.status !== 'VALID') {
@@ -72,6 +117,11 @@ export class UploadComponent implements OnInit {
     this.uploadForm.emit(data);
   }
 
+  /**
+   * Checks the format of the provided Google Sheets link
+   * @param url URL to check
+   * @returns An object containing the sheet ID, GID, and CSV URL
+   */
   checkLinkFormat(url: string) {
     if (url.startsWith('https://docs.google.com/spreadsheets/d/')) {
       const splitUrl = url.split('/');
