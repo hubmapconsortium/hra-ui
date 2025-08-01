@@ -127,7 +127,7 @@
   @let url = element[column.type.urlColumn];
   @let isInternal = column.type.internal;
   @if (isInternal) {
-    <a hraHyperlink class="link" tabindex="0" (keyup)="routeClick(url)" (click)="routeClick(url)">
+    <a hraHyperlink class="link internal" tabindex="0" (keyup)="routeClick(url)" (click)="routeClick(url)">
       {{ label }}
     </a>
   } @else {
