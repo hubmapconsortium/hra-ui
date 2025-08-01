@@ -29,6 +29,7 @@ const columns: TableColumn[] = [
     type: {
       type: 'link',
       urlColumn: 'objectUrl',
+      internal: true,
     },
   },
   {

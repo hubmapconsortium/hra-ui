@@ -54,6 +54,7 @@ export type LinkColumnType = z.infer<typeof LinkColumnTypeSchema>;
 export const LinkColumnTypeSchema = z.object({
   type: z.literal('link'),
   urlColumn: z.string(),
+  internal: z.boolean().optional(),
 });
 
 /** Type for MenuButton Column */

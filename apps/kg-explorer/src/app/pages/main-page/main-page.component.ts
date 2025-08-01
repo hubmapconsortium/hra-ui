@@ -5,6 +5,7 @@ import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { HraKgService, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
@@ -308,6 +309,8 @@ export class MainPageComponent {
   private readonly v1 = inject(V1Service);
   /** File download service */
   readonly download = inject(DownloadService);
+  /** Router service */
+  readonly router = inject(Router);
 
   /** Form control for search input */
   readonly searchControl = new UntypedFormControl();

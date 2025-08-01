@@ -125,7 +125,14 @@
 
 <ng-template hraLinkRowElement #link let-label let-column="column" let-element="element">
   @let url = element[column.type.urlColumn];
-  <a hraHyperlink class="link" [attr.href]="url">
-    {{ label }}
-  </a>
+  @let isInternal = column.type.internal;
+  @if (isInternal) {
+    <a hraHyperlink class="link" tabindex="0" (keyup)="routeClick(url)" (click)="routeClick(url)">
+      {{ label }}
+    </a>
+  } @else {
+    <a hraHyperlink class="link" [attr.href]="url">
+      {{ label }}
+    </a>
+  }
 </ng-template>

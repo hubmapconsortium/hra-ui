@@ -45,6 +45,7 @@
         [rows]="filteredRows()"
         [columns]="columns()"
         (downloadFile)="download.saveFile($event[0], $event[1])"
+        (routeClicked)="router.navigate([$event])"
       />
     </div>
   </mat-sidenav-content>

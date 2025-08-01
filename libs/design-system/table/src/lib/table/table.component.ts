@@ -251,6 +251,9 @@ export class TableComponent<T = TableRow> {
   /** Emits url and id when an item is to be downloaded */
   readonly downloadFile = output<[string, string]>();
 
+  /** Emits route */
+  readonly routeClicked = output<string>();
+
   /** Sort data on load and set columns */
   constructor() {
     effect(() => {
@@ -327,5 +330,10 @@ export class TableComponent<T = TableRow> {
    */
   getMenuOptions(options: string | number | boolean | MenuOptionsType[]) {
     return options as MenuOptionsType[];
+  }
+
+  /** Emits a route as string when object label is clicked */
+  routeClick(url: string | number | boolean | (string | number | boolean)[]) {
+    this.routeClicked.emit(url as string);
   }
 }
