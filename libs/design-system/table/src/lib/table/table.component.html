@@ -102,7 +102,7 @@
 <ng-template hraMenuButtonRowElement #menu let-column="column" let-element="element">
   @let icon = column.type.icon;
   @let options = element[column.type.options];
-  <button mat-icon-button [matMenuTriggerFor]="menuOptions">
+  <button mat-icon-button [matMenuTriggerFor]="menuOptions" (click)="downloadClick(element['lod'])">
     <hra-icon [fontIcon]="icon"></hra-icon>
   </button>
 

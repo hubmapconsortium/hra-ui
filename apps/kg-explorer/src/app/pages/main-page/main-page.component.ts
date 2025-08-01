@@ -339,10 +339,14 @@ export class MainPageComponent {
   readonly scrollHeight = signal(0);
   /** Records HRA version counts for the version filter */
   readonly versionCounts = signal<Record<string, number>>({});
+  /** Id of digital object to download */
+  readonly downloadId = signal<string | undefined>(undefined);
 
   /**
    * Sets filtered rows to all rows on init
    * Fetches file download metadata for each object
+   * Sets filter options
+   * Get download options for an object whenever the download button is clicked
    */
   constructor() {
     this.setScrollViewportHeight();
@@ -356,12 +360,15 @@ export class MainPageComponent {
       const objectData = this.resolveData(items['@graph']);
       this.allRows.set(objectData);
       this.setVersionCounts(items['@graph']);
-      this.attachDownloadOptions(items);
     });
 
     effect(() => {
       this.digitalObjectSearch().subscribe((results) => this.applyMoreFilters(results));
       this.populateFilterOptions();
+    });
+
+    effect(() => {
+      this.attachDownloadOptions();
     });
 
     this.searchControl.valueChanges.subscribe((result) => {
@@ -669,24 +676,14 @@ export class MainPageComponent {
   }
 
   /**
-   * Fetches metadata from a digital object entry
-   * @param entry Digital object entry data
-   * @returns Observable for digital object metadata JSON
+   * Makes metadata request for the object matching downloadId and attaches download options to the row
    */
-  private getMetadata(entry: DigitalObjectData): Observable<DigitalObjectMetadata> {
-    return this.http.get(entry.lod, { responseType: 'json' }) as Observable<DigitalObjectMetadata>;
-  }
-
-  /**
-   * Attaches download options to a row
-   */
-  private attachDownloadOptions(data: KnowledgeGraphObjectsData) {
-    const innerCalls = data['@graph'].map((d) => this.getMetadata(d));
-    for (const call of innerCalls) {
-      call.subscribe((result) => {
-        const match = this.allRows().find((row) => row['lod'] === result.id);
+  private attachDownloadOptions() {
+    if (this.downloadId()) {
+      this.http.get(this.downloadId() || '', { responseType: 'json' }).subscribe((data) => {
+        const match = this.allRows().find((row) => row['lod'] === this.downloadId());
         if (match) {
-          match['downloadOptions'] = this.download.getDownloadOptions(result);
+          match['downloadOptions'] = this.download.getDownloadOptions(data as DigitalObjectMetadata);
         }
       });
     }

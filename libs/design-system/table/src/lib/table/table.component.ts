@@ -11,6 +11,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { MarkdownModule } from 'ngx-markdown';
 import { parse } from 'papaparse';
 
@@ -28,7 +29,6 @@ import {
   TableVariant,
   TextColumnType,
 } from '../types/page-table.schema';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Type for the row element context */
 type RowElementContext<T, CT extends TableColumnType> = {
@@ -254,6 +254,9 @@ export class TableComponent<T = TableRow> {
   /** Emits route */
   readonly routeClicked = output<string>();
 
+  /** Emits download object id */
+  readonly downloadClicked = output<string>();
+
   /** Sort data on load and set columns */
   constructor() {
     effect(() => {
@@ -335,5 +338,10 @@ export class TableComponent<T = TableRow> {
   /** Emits a route as string when object label is clicked */
   routeClick(url: string | number | boolean | (string | number | boolean)[]) {
     this.routeClicked.emit(url as string);
+  }
+
+  /** Emits the id of a row when its download button its clicked */
+  downloadClick(id: string | number | boolean | (string | number | boolean)[]) {
+    this.downloadClicked.emit(id as string);
   }
 }
