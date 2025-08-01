@@ -36,7 +36,14 @@ export class AppComponent {
   private readonly data = routeData();
 
   /** Breadcrumbs data (computed from above signal). */
-  protected readonly crumbs = computed(() => this.data()['crumbs'] ?? [{ name: 'Apps' }, { name: this.pageTitle() }]);
+  protected readonly crumbs = computed(
+    () =>
+      this.data()['crumbs'] ?? [
+        { name: 'Apps', route: 'https://apps.humanatlas.io/' },
+        { name: 'Knowledge Graph', route: '/' },
+        { name: this.pageTitle() },
+      ],
+  );
 
   /** If the user is navigating to a different page */
   protected readonly isNavigating = isNavigating();

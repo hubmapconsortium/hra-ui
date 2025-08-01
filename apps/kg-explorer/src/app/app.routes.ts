@@ -29,6 +29,7 @@ const columns: TableColumn[] = [
     type: {
       type: 'link',
       urlColumn: 'objectUrl',
+      internal: true,
     },
   },
   {
@@ -79,7 +80,10 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: MainPageComponent,
     data: {
-      crumbs: [{ name: 'Apps' }, { name: 'Knowledge Graph' }] satisfies BreadcrumbItem[],
+      crumbs: [
+        { name: 'Apps', route: 'https://apps.humanatlas.io/' },
+        { name: 'Knowledge Graph' },
+      ] satisfies BreadcrumbItem[],
       helpUrl: 'https://docs.humanatlas.io/apps',
       columns: columns,
     },
