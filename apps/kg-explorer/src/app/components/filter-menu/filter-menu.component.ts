@@ -9,6 +9,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 import { FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Filter form controls */
 export interface FilterFormControls {
@@ -41,6 +42,7 @@ export interface FilterFormControls {
     FormsModule,
     MatFormFieldModule,
     ScrollingModule,
+    PlainTooltipDirective,
   ],
   templateUrl: './filter-menu.component.html',
   styleUrl: './filter-menu.component.scss',

@@ -14,6 +14,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
 import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/main-page.component';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Menu for searching and selecting individual filters in a filter category
@@ -34,6 +35,7 @@ import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/mai
     ReactiveFormsModule,
     MatListModule,
     MatChipsModule,
+    PlainTooltipDirective,
   ],
   templateUrl: './filter-menu-overlay.component.html',
   styleUrl: './filter-menu-overlay.component.scss',

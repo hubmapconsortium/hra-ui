@@ -21,6 +21,7 @@ const columns: TableColumn[] = [
       type: 'menu',
       icon: 'download',
       options: 'downloadOptions',
+      tooltip: 'Browse file formats',
     },
   },
   {
@@ -35,12 +36,20 @@ const columns: TableColumn[] = [
   {
     column: 'typeIcon',
     label: 'Type',
-    type: 'icon',
+    type: {
+      type: 'icon',
+      icon: 'typeIcon',
+      tooltip: 'typeTooltip',
+    },
   },
   {
     column: 'organIcon',
     label: 'Organ',
-    type: 'icon',
+    type: {
+      type: 'icon',
+      icon: 'organIcon',
+      tooltip: 'organTooltip',
+    },
   },
   {
     column: 'cellCount',

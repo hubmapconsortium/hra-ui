@@ -8,12 +8,13 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Main application component
  */
 @Component({
-  imports: [RouterModule, NavigationModule, MarkdownModule, ButtonsModule, IconsModule],
+  imports: [RouterModule, NavigationModule, MarkdownModule, ButtonsModule, IconsModule, PlainTooltipDirective],
   selector: 'hra-kg-explorer',
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',

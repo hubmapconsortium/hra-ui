@@ -657,6 +657,7 @@ export class MainPageComponent {
    */
   private resolveData(data: DigitalObjectData[]): TableRow[] {
     return data.map((item) => {
+      const organ = item.organs && item.organs.length === 1 ? item.organs[0] : undefined;
       return {
         id: item.purl,
         doType: item.doType,
@@ -666,8 +667,10 @@ export class MainPageComponent {
         lod: item.lod,
         objectUrl: `${item.doType}/${item.doName}/${item.doVersion}`,
         typeIcon: 'product:' + DO_INFO[item.doType].icon,
+        typeTooltip: DO_INFO[item.doType].label,
         // If more than one organ use all-organs icon
-        organIcon: this.getOrganIcon(item.organs && item.organs.length === 1 ? item.organs[0] : 'all-organs'),
+        organIcon: this.getOrganIcon(organ || 'all-organs'),
+        organTooltip: organ || 'All Organs',
         cellCount: item.cell_count,
         biomarkerCount: item.biomarker_count,
         lastModified: this.formatDateToYYYYMM(item.lastUpdated),

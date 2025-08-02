@@ -3,7 +3,12 @@
     <hra-icon class="filter-icon" fontIcon="filter_list" />
     <span class="drawer-title">Filters</span>
     <div class="filler"></div>
-    <button mat-icon-button (click)="toggleForm.emit()" aria-label="Open or close filters menu">
+    <button
+      mat-icon-button
+      (click)="toggleForm.emit()"
+      [hraPlainTooltip]="formClosed() ? 'Open menu' : 'Collapse menu'"
+      aria-label="Open or close filters menu"
+    >
       <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
     </button>
   </div>
