@@ -14,7 +14,8 @@
     color: vars.$on-primary-fixed;
     @include utils.use-font('label', 'small');
 
-    .crumb, .icon {
+    .crumb,
+    .icon {
       vertical-align: middle;
     }
 
