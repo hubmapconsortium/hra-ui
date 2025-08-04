@@ -98,17 +98,13 @@ export const appRoutes: Route[] = [
       doData: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
     },
   },
-  {
-    path: '404',
-    component: NotFoundPageComponent,
-  },
+
   {
     path: '500',
     component: ServerErrorPageComponent,
   },
   {
     path: '**',
-    pathMatch: 'full',
-    redirectTo: '404',
+    component: NotFoundPageComponent,
   },
 ];
