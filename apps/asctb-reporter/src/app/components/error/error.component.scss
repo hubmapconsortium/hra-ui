@@ -2,16 +2,23 @@
 @use 'vars';
 
 :host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 4rem;
+
   @include utils.use-font(label, medium);
 
-  .lh {
-    line-height: 1.5625rem;
+  .description {
+    color: vars.$primary;
   }
-  .error-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+  .error-message {
+    color: vars.$error;
+    margin-top: 1rem;
   }
+
   .contact-us-link {
     color: rgb(64, 132, 201);
   }

@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ErrorComponent } from '../../components/error/error.component';
 import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { UploadComponent } from '../../components/upload/upload.component';
 import { TreeModule } from '../tree/tree.module';
@@ -23,6 +24,7 @@ import { PlaygroundComponent } from './playground.component';
     ReactiveFormsModule,
     FileUploadComponent,
     UploadComponent,
+    ErrorComponent,
   ],
   exports: [PlaygroundComponent],
 })
