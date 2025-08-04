@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
+import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { FtuComponent } from './pages/ftu-page/ftu.component';
 import { ftuResolver } from './pages/ftu-page/ftu.resolver';
 import { LandingComponent } from './pages/landing-page/landing.component';
@@ -10,6 +11,7 @@ import { LandingComponent } from './pages/landing-page/landing.component';
 export const ROUTES: Route[] = [
   {
     path: '',
+    pathMatch: 'full',
     component: LandingComponent,
     data: {
       isLanding: true,
@@ -36,7 +38,6 @@ export const ROUTES: Route[] = [
   },
   {
     path: '**',
-    pathMatch: 'full',
-    redirectTo: '/',
+    component: NotFoundPageComponent,
   },
 ];

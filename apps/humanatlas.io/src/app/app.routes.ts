@@ -305,14 +305,10 @@ export const appRoutes: Route[] = [
 
   // Error pages and redirects
   {
-    path: '404',
+    path: '**',
     component: NotFoundPageComponent,
     data: {
       siteNavigation: false,
     },
-  },
-  {
-    path: '**',
-    redirectTo: '404',
   },
 ];

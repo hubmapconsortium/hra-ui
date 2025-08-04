@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
+import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { HomeComponent } from './components/home/home.component';
 import { RootComponent } from './modules/root/root.component';
 
@@ -25,6 +26,11 @@ export const appRoutes: Route[] = [
       ] satisfies BreadcrumbItem[],
       appControls: true,
     },
+  },
+
+  {
+    path: '**',
+    component: NotFoundPageComponent,
   },
 
   // TODO external redirect to docs.humanatlas.io
