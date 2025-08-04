@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
-import { UploadModule } from '../../components/upload/upload.module';
+import { UploadComponent } from '../../components/upload/upload.component';
 import { TreeModule } from '../tree/tree.module';
 import { PlaygroundComponent } from './playground.component';
 
@@ -22,7 +22,7 @@ import { PlaygroundComponent } from './playground.component';
     FormsModule,
     ReactiveFormsModule,
     FileUploadComponent,
-    UploadModule,
+    UploadComponent,
   ],
   exports: [PlaygroundComponent],
 })
