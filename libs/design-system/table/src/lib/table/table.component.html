@@ -105,7 +105,7 @@
     mat-icon-button
     [matMenuTriggerFor]="menuOptions"
     [hraPlainTooltip]="column.type.tooltip"
-    (click)="downloadClick(element['lod'])"
+    (click)="downloadClick(element['id'])"
   >
     <hra-icon [fontIcon]="column.type.icon"></hra-icon>
   </button>

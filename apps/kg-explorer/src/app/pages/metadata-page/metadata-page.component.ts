@@ -118,8 +118,8 @@ export class MetadataPageComponent {
           : '',
       },
       { provenance: 'HuBMAP ID', metadata: this.metadata().was_derived_from.hubmapId ?? '' },
-      { provenance: 'Date created', metadata: this.metadata().was_derived_from.creation_date ?? '' },
-      { provenance: 'Date last modified', metadata: this.metadata().creation_date ?? '' },
+      { provenance: 'Date published', metadata: this.metadata().was_derived_from.creation_date ?? '' },
+      { provenance: 'Date last processed', metadata: this.metadata().creation_date ?? '' },
     ].filter((item) => item.metadata !== ''),
   );
 

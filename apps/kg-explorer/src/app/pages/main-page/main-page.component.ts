@@ -553,7 +553,7 @@ export class MainPageComponent {
    */
   private applyMoreFilters(searchResults: string[]) {
     let newFilteredRows = this.allRows();
-    newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['id'] as string));
+    newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['purl'] as string));
 
     if (this.filters().searchTerm) {
       newFilteredRows = this.filterSearchFormResults(newFilteredRows);
@@ -659,7 +659,8 @@ export class MainPageComponent {
     return data.map((item) => {
       const organ = item.organs && item.organs.length === 1 ? item.organs[0] : undefined;
       return {
-        id: item.purl,
+        id: item.lod,
+        purl: item.purl,
         doType: item.doType,
         doVersion: item.doVersion,
         organs: item.organs,

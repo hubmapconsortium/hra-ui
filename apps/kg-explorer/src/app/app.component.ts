@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HraKgService } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Main application component
@@ -51,6 +52,12 @@ export class AppComponent {
   /** If the user is navigating to a different page */
   protected readonly isNavigating = isNavigating();
 
+  /** Route params used to calculate objectLod */
+  readonly params = signal<string[]>([]);
+
+  /** Lod of digital object computed from params */
+  readonly objectLod = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
+
   /**
    * Gets the page title for breadcrumbs
    */
@@ -59,11 +66,14 @@ export class AppComponent {
       const type = this.route.snapshot.root.firstChild?.params['type'];
       const name = this.route.snapshot.root.firstChild?.params['name'];
       const version = this.route.snapshot.root.firstChild?.params['version'];
+      if (type && name && version) {
+        this.params.set([type, name, version]);
+      }
+    });
 
+    toObservable(this.objectLod).subscribe((lod) => {
       this.kg.digitalObjects().subscribe((data) => {
-        const match = data['@graph']?.find(
-          (object) => object.lod === ['https://lod.humanatlas.io', type, name, version].join('/'),
-        );
+        const match = data['@graph']?.find((object) => object.lod === lod);
         this.pageTitle.set(match?.title || '');
       });
     });
