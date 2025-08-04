@@ -5,23 +5,23 @@
   display: block;
 
   .navigation .crumbs {
+    display: flex;
+    align-items: center;
     list-style-type: none;
-    align-content: center;
     height: 2.5rem;
     margin: 0;
     padding: 0;
     color: vars.$on-primary-fixed;
     @include utils.use-font('label', 'small');
-    display: flex;
-    align-items: center;
 
-    .crumb {
-      display: flex; // done to improve vertical alignment of text
-      align-items: center;
+    .crumb, .icon {
+      vertical-align: middle;
+    }
 
-      .icon {
-        vertical-align: middle;
-      }
+    .text-position-helper {
+      display: inline-block;
+      height: 1.5rem;
+      vertical-align: middle;
     }
   }
 }
