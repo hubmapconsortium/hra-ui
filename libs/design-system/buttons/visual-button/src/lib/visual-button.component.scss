@@ -21,6 +21,7 @@
     &:active,
     &:focus-visible {
       border: 0.125rem solid vars.$tertiary;
+      outline: none;
     }
 
     &:disabled {
