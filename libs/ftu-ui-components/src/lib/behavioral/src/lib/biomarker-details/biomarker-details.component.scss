@@ -27,12 +27,19 @@
   }
 
   &.no-data-full-screen-grid {
-    grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: 'empty';
 
     ftu-empty-biomarker {
       padding-top: 0;
+    }
+
+    ::ng-deep ftu-empty-biomarker .footer .collaborate-button {
+      width: 50%;
+    }
+
+    .absolute-toggle{
+      visibility: hidden;
     }
   }
 
