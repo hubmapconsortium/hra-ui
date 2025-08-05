@@ -35,14 +35,14 @@
   );
 
   &.no-data {
-      ::ng-deep ftu-empty-biomarker .footer {
-        display: flex;
-        justify-content: end;
-        border-top: 0.0625rem solid var(--mat-sys-outline);
+    ::ng-deep ftu-empty-biomarker .footer {
+      display: flex;
+      justify-content: end;
+      border-top: 0.0625rem solid var(--mat-sys-outline);
 
-        .collaborate-button {
-          width: auto !important;
-        }
+      .collaborate-button {
+        width: auto !important;
+      }
     }
   }
 
