@@ -17,17 +17,18 @@
     overflow: hidden;
     margin: 0;
     min-height: calc(34.625rem + 10rem);
+    position: relative;
 
     .splash-header-img {
-      position: absolute;
-      object-fit: cover;
       width: 100%;
-      height: 747px;
-      z-index: 0;
-      background-position: center;
-      background-size: cover;
+      height: 100%;
+      object-fit: cover;
     }
+
     .splash-section {
+      position: absolute;
+      top: 0;
+      left: 0;
       flex-direction: column;
       width: 100%;
       max-width: 46.25rem;
