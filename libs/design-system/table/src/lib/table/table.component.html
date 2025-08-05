@@ -96,7 +96,7 @@
 </ng-template>
 
 <ng-template hraIconRowElement #icon let-icon let-column="column" let-element="element">
-  <hra-icon [svgIcon]="icon" [hraPlainTooltip]="element[column.type.tooltip] | titlecase"></hra-icon>
+  <hra-icon [svgIcon]="icon" [hraPlainTooltip]="element[column.type.tooltip]"></hra-icon>
 </ng-template>
 
 <ng-template hraMenuButtonRowElement #menu let-column="column" let-element="element">

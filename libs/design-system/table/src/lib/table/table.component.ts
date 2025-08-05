@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Location, TitleCasePipe } from '@angular/common';
+import { Location } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -163,7 +163,6 @@ export class NumericRowElementDirective {
     PlainTooltipDirective,
     IconsModule,
     ButtonsModule,
-    TitleCasePipe,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',

@@ -26,7 +26,7 @@ const columns: TableColumn[] = [
   },
   {
     column: 'title',
-    label: 'Digital Objects',
+    label: 'Digital objects',
     type: {
       type: 'link',
       urlColumn: 'objectUrl',
