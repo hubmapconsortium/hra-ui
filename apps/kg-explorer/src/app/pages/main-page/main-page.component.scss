@@ -134,7 +134,11 @@
     }
 
     th:first-of-type {
-      pointer-events: none;
+      cursor: auto;
+
+      .mat-sort-header-container {
+        display: none;
+      }
     }
 
     tr {

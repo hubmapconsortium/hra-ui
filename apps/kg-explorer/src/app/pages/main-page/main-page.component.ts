@@ -732,7 +732,7 @@ export class MainPageComponent {
   private attachDownloadOptions() {
     if (this.downloadId()) {
       this.http.get(this.downloadId() || '', { responseType: 'json' }).subscribe((data) => {
-        const match = this.allRows().find((row) => row['lod'] === this.downloadId());
+        const match = this.allRows().find((row) => row['id'] === this.downloadId());
         if (match) {
           match['downloadOptions'] = this.download.getDownloadOptions(data as DigitalObjectMetadata);
         }

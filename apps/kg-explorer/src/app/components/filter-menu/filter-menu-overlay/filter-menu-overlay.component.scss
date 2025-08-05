@@ -5,7 +5,7 @@
     --mat-text-button-horizontal-padding: 0.5rem;
     display: flex;
     align-items: center;
-    color: var(--mat-sys-secondary);
+    color: vars.$secondary;
 
     .info-icon {
       padding: 0.5rem;
@@ -14,12 +14,20 @@
     .category-button {
       flex: 1;
       justify-content: flex-start;
+      font: vars.$label-medium;
     }
   }
 }
 
-::ng-deep .container .content {
-  width: 19.5rem;
+::ng-deep .container {
+  .content {
+    width: 19.5rem;
+  }
+
+  .actions button {
+    font: vars.$label-medium;
+    margin: 0.25rem 0.5rem;
+  }
 }
 
 .filter-menu-content {
@@ -36,8 +44,8 @@
   }
 
   ::ng-deep .mat-mdc-form-field-infix {
-    padding-top: 13.5px;
-    padding-bottom: 13.5px;
+    padding-top: 13.5008px;
+    padding-bottom: 13.5008px;
   }
 
   .option-content {

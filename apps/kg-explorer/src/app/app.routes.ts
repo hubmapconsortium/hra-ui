@@ -21,7 +21,7 @@ const columns: TableColumn[] = [
       type: 'menu',
       icon: 'download',
       options: 'downloadOptions',
-      tooltip: 'Browse file formats',
+      tooltip: 'View file formats and download files',
     },
   },
   {
