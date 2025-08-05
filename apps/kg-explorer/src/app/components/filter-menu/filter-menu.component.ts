@@ -6,10 +6,10 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-
-import { FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
-import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+
+import { CurrentFilters, FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
+import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 
 /** Filter form controls */
 export interface FilterFormControls {
@@ -69,6 +69,8 @@ export class FilterMenuComponent {
   readonly filterCategories = input.required<FilterOptionCategory[]>();
   /** Whether or not the form panel is closed */
   readonly formClosed = input(false);
+
+  readonly currentFilters = input<CurrentFilters>();
 
   /** Emits when the form opening state is toggled */
   readonly toggleForm = output();

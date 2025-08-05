@@ -11,10 +11,10 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
 import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/main-page.component';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Menu for searching and selecting individual filters in a filter category
@@ -64,10 +64,17 @@ export class FilterMenuOverlayComponent implements OnInit {
   /** Current selected options */
   selectedOptions: FilterOption[] = [];
 
+  readonly selected = input<string[] | undefined>();
+
   /**
    * Sets options for the filter category and subscribes to searchbar inputs
    */
   constructor() {
+    effect(() => {
+      const selected =
+        this.filterOptionCategory().options?.filter((option) => this.selected()?.includes(option.id)) || null;
+      this.form().patchValue(selected);
+    });
     effect(() => {
       this.filteredOptions.set(this.filterOptionCategory().options || []);
     });
