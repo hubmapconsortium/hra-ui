@@ -11,7 +11,9 @@
         <ng-container [ngTemplateOutlet]="sourceListTemplate()"></ng-container>
       </mat-tab>
       <mat-tab label="Cell types by biomarkers">
-        <ng-container [ngTemplateOutlet]="biomarkerTemplate()"></ng-container>
+        <ng-template matTabContent>
+          <ng-container [ngTemplateOutlet]="biomarkerTemplate()"></ng-container>
+        </ng-template>
       </mat-tab>
     </mat-tab-group>
     <button mat-icon-button class="closeButton" aria-label="Close fullscreen" (click)="closeFullscreen.emit()">
