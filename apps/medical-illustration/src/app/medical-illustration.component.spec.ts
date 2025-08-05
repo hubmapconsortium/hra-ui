@@ -7,7 +7,7 @@ import {
   RawIllustrationFile,
   RawIllustrationsJsonld,
 } from '@hra-ui/services';
-import { ReplaySubject, firstValueFrom } from 'rxjs';
+import { ReplaySubject, firstValueFrom, startWith } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { MedicalIllustrationComponent } from './medical-illustration.component';
 
@@ -101,7 +101,7 @@ describe('MedicalIllustrationComponent', () => {
 
     it('accepts an empty id', async () => {
       const { instance } = await shallow.render({ bind: { selectedIllustration: '' } });
-      const url = await firstValueFrom(instance.url$);
+      const url = await firstValueFrom(instance.url$.pipe(startWith(undefined)));
       expect(url).toBeUndefined();
     });
   });
