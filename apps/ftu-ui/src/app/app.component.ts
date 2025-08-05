@@ -74,7 +74,7 @@ import {
   ScreenNoticeBehaviorComponent,
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/ftu-ui-components/src/lib/behavioral';
-import { environment } from '../environments/environment.stage';
+import { environment } from '../environments/environment';
 
 /** Input property keys */
 type InputProps =
