@@ -1,0 +1,141 @@
+// data.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map, forkJoin, of } from 'rxjs';
+import { catchError, mergeMap } from 'rxjs/operators';
+import { parseAnatomical } from '../utils/parsers/anatomical-data.parser';
+import { parseExtractionSite } from '../utils/parsers/extraction-site-data.parser';
+import { parseDatasetCell } from '../utils/parsers/dataset-cell-data.parser';
+import { ParsedAnatomicalData, AnatomicalSparqlBinding } from '../utils/models/anatomical-data.model';
+import { ParsedExtractionSiteData, ExtractionSiteSparqlBinding } from '../utils/models/extraction-site-data.model';
+import { ParsedDatasetCellData, DatasetCellSparqlBinding } from '../utils/models/dataset-cell-data.model';
+
+// Interface for extraction site details API response
+interface ExtractionSiteDetails {
+  '@id': string;
+  creator_last_name?: string;
+  creation_date?: string;
+  [key: string]: unknown;
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DataService {
+  private anatomicalUrl =
+    'https://apps.humanatlas.io/api/grlc/hra-pop/cell_types_in_anatomical_structurescts_per_as.json';
+
+  private extractionSiteUrl = 'https://apps.humanatlas.io/api/grlc/hra-pop/cell-types-per-extraction-site.json';
+
+  private datasetCellUrl = 'https://apps.humanatlas.io/api/grlc/hra-pop/cell-types-per-dataset.json';
+
+  private extractionSiteDetailsUrl = 'https://apps.humanatlas.io/api/v1/extraction-site';
+
+  // Cache for extraction site details to avoid duplicate API calls
+  private extractionSiteDetailsCache = new Map<string, ExtractionSiteDetails>();
+
+  constructor(private http: HttpClient) {}
+
+  getAnatomicalData(): Observable<ParsedAnatomicalData[]> {
+    return this.http
+      .get<{ results: { bindings: AnatomicalSparqlBinding[] } }>(this.anatomicalUrl)
+      .pipe(map((response) => response.results.bindings.map(parseAnatomical)));
+  }
+
+  getExtractionSiteData(): Observable<ParsedExtractionSiteData[]> {
+    return this.http.get<{ results: { bindings: ExtractionSiteSparqlBinding[] } }>(this.extractionSiteUrl).pipe(
+      map((response) => response.results.bindings.map(parseExtractionSite)),
+      // Use mergeMap to handle the enhancement process
+      mergeMap((parsedData) => {
+        // Get unique extraction site IDs for enhancement
+        const uniqueExtractionSites = [...new Set(parsedData.map((d) => d.extractionSiteId))];
+
+        // If no extraction sites to enhance, return original data
+        if (uniqueExtractionSites.length === 0) {
+          return of(parsedData);
+        }
+
+        // Fetch details for all unique extraction sites
+        const detailRequests = uniqueExtractionSites.map((iri) => this.getExtractionSiteDetails(iri));
+
+        // Wait for all detail requests to complete
+        return forkJoin(detailRequests).pipe(
+          map(() => {
+            // Enhance the data with formatted labels
+            return parsedData.map((item) => ({
+              ...item,
+              extractionSiteLabel: this.formatExtractionSiteLabel(item.extractionSiteId, item.organ),
+            }));
+          }),
+          catchError(() => {
+            // If enhancement fails, return original data
+            return of(parsedData);
+          }),
+        );
+      }),
+    );
+  }
+
+  getDatasetCellData(): Observable<ParsedDatasetCellData[]> {
+    return this.http
+      .get<{ results: { bindings: DatasetCellSparqlBinding[] } }>(this.datasetCellUrl)
+      .pipe(map((response) => response.results.bindings.map(parseDatasetCell)));
+  }
+
+  /**
+   * Fetch extraction site details from the API
+   */
+  private getExtractionSiteDetails(iri: string): Observable<ExtractionSiteDetails | null> {
+    // Check cache first
+    if (this.extractionSiteDetailsCache.has(iri)) {
+      return of(this.extractionSiteDetailsCache.get(iri) as ExtractionSiteDetails);
+    }
+
+    // Fetch from API
+    const url = `${this.extractionSiteDetailsUrl}?iri=${encodeURIComponent(iri)}`;
+
+    return this.http.get<ExtractionSiteDetails>(url).pipe(
+      map((details) => {
+        // Cache the result
+        this.extractionSiteDetailsCache.set(iri, details);
+        return details;
+      }),
+      catchError(() => {
+        // Cache a null result to avoid repeated failed requests
+        this.extractionSiteDetailsCache.set(iri, {} as ExtractionSiteDetails);
+        return of(null);
+      }),
+    );
+  }
+
+  /**
+   * Format extraction site label in the format: htan-{organ}-{creator_last_name}-{creation_year}-{id}
+   */
+  private formatExtractionSiteLabel(iri: string, organ: string): string {
+    const details = this.extractionSiteDetailsCache.get(iri);
+
+    // Extract ID from IRI (whatever comes after the last slash)
+    const idMatch = iri.split('/').pop();
+    const extractedId = idMatch || 'unknown';
+
+    if (!details || !details.creator_last_name || !details.creation_date) {
+      // Fallback: use a shortened version of the ID if no details available
+      const shortId = extractedId !== 'unknown' ? extractedId.substring(0, 8) : 'unknown';
+      return `htan-${organ.toLowerCase()}-${shortId}-${extractedId}`;
+    }
+
+    const creatorLastName = details.creator_last_name as string;
+    const creationDate = details.creation_date as string;
+    const creationYear = creationDate.split('-')[0]; // Extract year from YYYY-MM-DD
+    const organFormatted = organ.toLowerCase().replace(/\s+/g, '-');
+
+    return `htan-${organFormatted}-${creatorLastName.toLowerCase()}-${creationYear}-${extractedId}`;
+  }
+
+  /**
+   * Get the formatted label for an extraction site (for external use)
+   */
+  getExtractionSiteLabel(iri: string, organ: string): string {
+    return this.formatExtractionSiteLabel(iri, organ);
+  }
+}

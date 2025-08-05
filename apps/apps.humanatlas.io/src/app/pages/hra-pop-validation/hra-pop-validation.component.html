@@ -1,0 +1,107 @@
+<!-- hra-pop-validation.component.html -->
+<hra-page-section tagline="HRApop Validation">
+  Validate cell populations datasets from different annotation tools
+  <div class="hra-pop-validation">
+    <!-- Data Viewer Container -->
+    <div class="data-viewer-container">
+      <!-- Graphs Section -->
+      <div class="header-section">
+        <div class="header">
+          <div class="icon">
+            <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>
+            <hra-icon svgIcon="organ:spleen"></hra-icon>
+            <span class="label">Cell Population Graphs</span>
+          </div>
+        </div>
+
+        <!-- Configurations Container -->
+        <div class="configurations-container">
+          <hra-config-selector
+            [dataTypeOptions]="dataTypeOptions"
+            [selectedDataType]="selectedDataType()"
+            [organOptions]="organOptions()"
+            [selectedOrgan]="selectedOrgan()"
+            [selectedTools]="selectedTools()"
+            [selectedSexes]="selectedSexes()"
+            [xAxisOptions]="xAxisOptions()"
+            [selectedXAxis]="selectedXAxis()"
+            [yAxisOptions]="yAxisOptions"
+            [selectedYAxis]="selectedYAxis()"
+            [sortOptions]="sortOptions"
+            [selectedSort]="selectedSort()"
+            [availableTools]="availableTools()"
+            [loading]="loading()"
+            (dataTypeChange)="onDataTypeChange($event)"
+            (organChange)="onOrganChange($event)"
+            (toolChange)="onToolChange($event)"
+            (sexChange)="onSexChange($event)"
+            (xAxisChange)="onXAxisChange($event)"
+            (yAxisChange)="onYAxisChange($event)"
+            (sortChange)="onSortChange($event)"
+          >
+          </hra-config-selector>
+        </div>
+
+        <!-- Charts Content Section -->
+        <div class="charts-content">
+          <!-- Loading State -->
+          @if (loading(); as isLoading) {
+            <div class="loading-state">
+              <p>Loading {{ dataTypeConfigs[selectedDataType()].label }}</p>
+            </div>
+          } @else {
+            <!-- Error State -->
+            @if (error(); as err) {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                <p>{{ err }}</p>
+              </div>
+            } @else {
+              <!-- Charts - Dynamic Layout Based on Selection -->
+              <div class="graphs">
+                @if (
+                  (!showPairedLayout() && vegaSpecs().length === 0) || (showPairedLayout() && chartPairs().length === 0)
+                ) {
+                  <div class="no-data">
+                    <p>No data available for the selected filters.</p>
+                  </div>
+                }
+
+                <!-- Paired layout: Male/Female side by side per tool -->
+                @if (showPairedLayout() && chartPairs().length > 0) {
+                  <div class="chart-pairs-container">
+                    @for (pair of chartPairs(); track pair) {
+                      <div class="chart-pair-row">
+                        <div class="chart-pair">
+                          @if (pair.maleChart) {
+                            <div class="chart-item">
+                              <hra-bar-graph [spec]="pair.maleChart"></hra-bar-graph>
+                            </div>
+                          }
+                          @if (pair.femaleChart) {
+                            <div class="chart-item">
+                              <hra-bar-graph [spec]="pair.femaleChart"></hra-bar-graph>
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+
+                <!-- Grid layout: All charts side by side -->
+                @if (!showPairedLayout() && vegaSpecs().length > 0) {
+                  <div class="charts-grid">
+                    @for (spec of vegaSpecs(); track spec) {
+                      <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</hra-page-section>

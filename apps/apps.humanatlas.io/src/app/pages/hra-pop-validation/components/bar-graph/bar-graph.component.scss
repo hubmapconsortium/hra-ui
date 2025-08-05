@@ -1,0 +1,17 @@
+@use 'utils' as utils;
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
+.bar-graph-container {
+  width: 100%;
+  min-height: 25rem;
+  margin: 1.25rem 0;
+  border: .0625rem solid vars.$outline-variant;
+  border-radius: .25rem;
+  padding: .625rem;
+}
+.vega-container {
+  width: 100%;
+  height: 100%;
+}
+
