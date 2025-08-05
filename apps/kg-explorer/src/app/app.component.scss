@@ -19,3 +19,17 @@
     }
   }
 }
+
+::ng-deep .help-menu {
+  width: 17.75rem;
+
+  .option {
+    min-height: 3rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+}

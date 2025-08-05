@@ -81,6 +81,7 @@ export interface ObjectTypeData {
   icon: string;
   /** Tooltip data for the digital object type */
   tooltip: TooltipData;
+  documentationUrl?: string;
 }
 
 /** HRA version data info */
@@ -153,6 +154,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
       actionUrl: 'https://humanatlas.io/3d-reference-library',
     },
     icon: '3d-organ',
+    documentationUrl: 'https://humanatlas.io/3d-reference-library',
   },
   'asct-b': {
     label: 'ASCT+B Tables',
@@ -163,6 +165,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
       actionUrl: 'https://humanatlas.io/asctb-tables',
     },
     icon: 'asctb-reporter',
+    documentationUrl: 'https://humanatlas.io/asctb-tables',
   },
   ctann: {
     label: 'Cell Type Annotations',
@@ -173,6 +176,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
       actionUrl: 'https://humanatlas.io/cell-type-annotations',
     },
     icon: 'cell-type-annotations',
+    documentationUrl: 'https://humanatlas.io/cell-type-annotations',
   },
   collection: {
     label: 'Collections',
@@ -190,7 +194,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
     icon: 'dataset-graphs',
   },
   '2d-ftu': {
-    label: 'FTU Illustrations',
+    label: 'Functional Tissue Unit Illustrations',
     tooltip: {
       description:
         'A functional tissue unit is the smallest tissue organization, i.e. a set of cells, that performs a unique physiologic function and is replicated multiple times in a whole organ. Functional Tissue Unit (FTU) Illustrations are linked to ASCT+B Tables.',
@@ -198,6 +202,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
       actionUrl: 'https://humanatlas.io/2d-ftu-illustrations',
     },
     icon: 'ftu',
+    documentationUrl: 'https://humanatlas.io/2d-ftu-illustrations',
   },
   graph: {
     label: 'Graphs',
@@ -223,6 +228,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
       actionUrl: 'https://humanatlas.io/millitome',
     },
     icon: 'millitome',
+    documentationUrl: 'https://humanatlas.io/millitome',
   },
   omap: {
     label: 'Organ Mapping Antibody Panels',
@@ -232,6 +238,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
       actionUrl: 'https://humanatlas.io/omap',
     },
     icon: 'omaps',
+    documentationUrl: 'https://humanatlas.io/omap',
   },
   schema: {
     label: 'Schema',
@@ -250,6 +257,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
       actionUrl: 'https://humanatlas.io/vccf',
     },
     icon: 'vascular-geometry',
+    documentationUrl: 'https://humanatlas.io/vccf',
   },
   vocab: {
     label: 'Vocabulary',

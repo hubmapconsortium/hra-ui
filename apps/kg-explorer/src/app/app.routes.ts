@@ -1,4 +1,4 @@
-import { Route } from '@angular/router';
+import { ActivatedRouteSnapshot, Route } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
@@ -6,7 +6,7 @@ import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/serv
 import { TableColumn } from '@hra-ui/design-system/table';
 
 import { KnowledgeGraphObjectsDataSchema } from './digital-objects.schema';
-import { MainPageComponent } from './pages/main-page/main-page.component';
+import { DO_INFO, MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
 
 /** Digital objects api */
@@ -68,6 +68,13 @@ const columns: TableColumn[] = [
   },
 ];
 
+export interface HelpMenuOptions {
+  label: string;
+  url: string;
+  description?: string;
+  divider?: boolean;
+}
+
 /** Column info for metadata table */
 const metadataColumns: TableColumn[] = [
   {
@@ -93,7 +100,6 @@ export const appRoutes: Route[] = [
         { name: 'Apps', route: 'https://apps.humanatlas.io/' },
         { name: 'Knowledge Graph' },
       ] satisfies BreadcrumbItem[],
-      helpUrl: 'https://docs.humanatlas.io/apps',
       columns: columns,
     },
     resolve: {
@@ -105,10 +111,13 @@ export const appRoutes: Route[] = [
     component: MetadataPageComponent,
     data: {
       columns: metadataColumns,
-      helpUrl: 'https://docs.humanatlas.io/apps',
     },
     resolve: {
       doData: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
+      documentationUrl: (route: ActivatedRouteSnapshot) => {
+        const type = route.params['type'];
+        return DO_INFO[type].documentationUrl;
+      },
     },
   },
 
