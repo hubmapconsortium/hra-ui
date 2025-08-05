@@ -98,7 +98,6 @@
         }
       }
 
-
       .logo-wrapper {
         display: flex;
         flex-direction: row;
@@ -147,8 +146,7 @@
 
     .collaborators-wrapper {
       height: 720px;
-      row-gap: .5rem;
-
+      row-gap: 0.5rem;
 
       .collaborators-section {
         row-gap: 56px;
@@ -158,7 +156,6 @@
         max-width: 740px;
       }
     }
-
   }
 }
 
