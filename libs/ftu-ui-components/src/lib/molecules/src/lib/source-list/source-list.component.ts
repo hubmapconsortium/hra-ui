@@ -62,6 +62,9 @@ export interface SourceListItem extends TableRow {
   templateUrl: './source-list.component.html',
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.no-data-full-screen]': 'hideTitle() && sources.length === 0',
+  },
 })
 export class SourceListComponent implements OnChanges {
   /** List of sources with titles and links displayed to the user */

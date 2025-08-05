@@ -34,6 +34,24 @@
     }
   }
 
+  &.no-data-full-screen {
+    .source-list-header {
+      display: none;
+    }
+    ::ng-deep ftu-empty-biomarker .footer {
+      display: flex;
+      justify-content: end;
+      border-top: 0.0625rem solid var(--mat-sys-outline);
+
+      .collaborate-button {
+        width: auto !important;
+      }
+    }
+    .table-content {
+      height: 100%;
+    }
+  }
+
   .table-content {
     overflow: auto;
 
