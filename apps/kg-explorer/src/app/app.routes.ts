@@ -96,6 +96,7 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: MainPageComponent,
     data: {
+      reuse: true,
       crumbs: [
         { name: 'Apps', route: 'https://apps.humanatlas.io/' },
         { name: 'Knowledge Graph' },
