@@ -112,4 +112,17 @@ describe('MedicalIllustrationComponent', () => {
       expect(instance.highlightId).toEqual(SAMPLE_CELL.representation_of);
     });
   });
+
+  describe('selectData function', () => {
+    it('should handle undefined input and return undefined', async () => {
+      const { instance } = await shallow.render({
+        bind: {
+          selectedIllustration: undefined,
+          illustrations: SAMPLE_ILLUSTRATIONS,
+        },
+      });
+      const url = await firstValueFrom(instance.url$.pipe(startWith(undefined)));
+      expect(url).toBeUndefined();
+    });
+  });
 });
