@@ -1,0 +1,222 @@
+@use 'utils' as utils;
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
+.graph-config-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start; 
+}
+
+.left-column{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  flex: 1;
+  gap: 2rem;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  flex: 1;
+  gap: .73rem;
+}
+
+
+h1 {
+  @include utils.use-font(title, large);
+  margin: 0;
+}
+
+.datatype-group,
+.sort-group,
+.organ-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.organ-group {
+  margin-top: 0.75rem;
+}
+
+.x-axis-group,
+.y-axis-group {
+  display: flex;
+  flex-direction: column;
+  gap: .375rem;
+}
+
+.toggle-group {
+  background-color: vars.$on-primary;
+
+  @include mat.button-toggle-overrides(
+    (
+      height: 2rem,
+    )
+  );
+
+  ::ng-deep .mat-button-toggle {
+    flex: 1 1 50%; // equal width for X and Y axis options
+    max-width: 50%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.sort-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sex-toggle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.sex-checkbox-row {
+  display: flex;
+  width: 100%;
+  gap: .5rem
+}
+
+.sex-option {
+  background-color: vars.$surface-container;
+  height: 2.875rem;
+  border-bottom: .0625rem solid;
+  border-radius: 0.25rem 0.25rem 0 0;
+  padding: 0.5rem 1rem;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.annotation-group {
+  @include utils.use-font(title, medium);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.annotation-checkbox-row {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.annotation-option {
+  background-color: vars.$surface-container;
+  height: 2.875rem;
+  border-bottom: .0625rem solid;
+  border-radius: .25rem .25rem 0 0;
+  padding: 0.5rem 0.5rem;
+  flex: 1 1 calc(25% - .375rem);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 999px) and (min-width: 640px) {
+  .graph-config-layout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .left-column,
+  .right-column {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .organ-group,
+  .datatype-group,
+  .sort-group,
+  .sex-toggle-group,
+  .x-axis-group,
+  .y-axis-group {
+    flex: 1 1 calc(33.33% - 1rem);
+    min-width: 12.5rem;
+  }
+
+  .toggle-group {
+
+    ::ng-deep .mat-button-toggle {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      justify-content: center;
+      text-align: center;
+      padding: 0 0.5rem;
+    }
+  }
+
+  .organ-group {
+    margin-top: 0rem;
+  }
+
+  .sex-option {
+    height: 2rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .annotation-group {
+    width: 100%;
+  }
+}
+
+@media (max-width: 639px) and (min-width: 320px) {
+  .graph-config-layout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .left-column,
+  .right-column {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .organ-group,
+  .datatype-group,
+  .sort-group,
+  .sex-toggle-group,
+  .x-axis-group,
+  .y-axis-group,
+  .annotation-group {
+    width: 100%;
+  }
+
+  .organ-group {
+    margin-top: 0rem;
+  }
+
+  .sex-checkbox-row,
+  .annotation-checkbox-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sex-option,
+  .annotation-option {
+    width: 100% !important;
+    flex: none;
+  }
+}
+

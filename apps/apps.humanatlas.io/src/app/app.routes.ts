@@ -18,6 +18,7 @@ import {
   HraPopPredictionsService,
   TissuePredictionData,
 } from './services/hra-pop-predictions/hra-pop-predictions.service';
+import { HraPopValidationComponent } from './pages/hra-pop-validation/hra-pop-validation.component';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -84,6 +85,14 @@ export const appRoutes: Route[] = [
     data: {
       crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 6' }] satisfies BreadcrumbItem[],
       helpUrl: 'https://humanatlas.io/user-story/6',
+    },
+  },
+  {
+    path: 'hra-pop-validation',
+    component: HraPopValidationComponent,
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'HRApop Validation' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/hra-pop-validation',
     },
   },
   {

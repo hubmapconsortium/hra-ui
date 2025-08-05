@@ -1,0 +1,115 @@
+@use 'utils' as utils;
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
+:host {
+  padding: 5rem 6.5rem;
+  .data-viewer-container {
+    width: 100%;
+  }
+
+  .header-section {
+      padding: 1rem;
+  }
+
+  .header {
+    @include utils.use-font(title, large);
+    display: flex;
+    align-items: center;
+    height: 4.5rem;
+    background-color: vars.$surface-container-low;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
+    gap: 1rem;
+
+    .label {
+      flex-grow: 1;
+      gap: .5rem;
+      padding: .25rem;
+    }
+
+
+    .icon {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.125rem;
+
+      mat-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 624.9375rem;
+      }
+    }
+  }
+
+  .configurations-container {
+    padding: 1rem 2rem;
+    background-color: vars.$on-primary;
+  }
+
+  .charts-content {
+    padding: 1rem;
+    background-color: vars.$on-primary;
+    min-height: 36.375rem;
+  }
+
+
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  @media (max-width: 999px) {
+    .charts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .chart-pairs-container {
+    width: 100%;
+  }
+
+  .chart-pair-row {
+    margin-bottom: 2rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .chart-pair {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+    
+    @media (max-width: 999px) {
+      flex-direction: column;
+    }
+
+    .chart-item {
+      width: 100%;
+    }
+  }
+
+  .chart-item {
+    background-color: vars.$on-primary;
+    border-radius: .25rem;
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+    box-shadow: 0 .0625rem .1875rem vars.$surface-container-low;
+    border: .0625rem solid vars.$outline-variant;
+    padding: .5rem;
+  }
+
+  @media (min-width: 640px) and (max-width: 999px) {
+    padding: 5rem 2.5rem;
+  }
+  @media (min-width: 320px) and (max-width: 639px) {
+    padding: 5rem 1rem;
+  }
+}
