@@ -11,7 +11,6 @@
     align-items: center;
     justify-content: space-between;
     height: 4rem;
-    border-bottom: 0.0625rem solid vars.$outline;
     padding: 0 16px;
 
     .view-fullscreen {
@@ -49,6 +48,14 @@
     }
     .table-content {
       height: 100%;
+    }
+  }
+
+  &.full-screen .table-content {
+    margin: 0 1rem 1rem 1rem;
+
+    hra-table {
+      border-radius: 0.25rem;
     }
   }
 

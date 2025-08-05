@@ -63,6 +63,7 @@ export interface SourceListItem extends TableRow {
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    '[class.full-screen]': 'hideTitle()',
     '[class.no-data-full-screen]': 'hideTitle() && sources.length === 0',
   },
 })
