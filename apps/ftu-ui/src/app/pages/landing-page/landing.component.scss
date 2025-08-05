@@ -4,20 +4,13 @@
 :host {
   display: block;
 
-  .splash-section,
-  .collaborators-section {
-    position: relative;
-    z-index: 1;
-    min-width: 17rem;
-    display: flex;
-  }
-
   .splash-wrapper {
-    max-height: 747px;
-    overflow: hidden;
-    margin: 0;
-    min-height: calc(34.625rem + 10rem);
+    display: flex;
     position: relative;
+    flex-direction: column;
+    row-gap: 40px;
+    margin: 0;
+    height: 720px;
 
     .splash-header-img {
       width: 100%;
@@ -29,46 +22,33 @@
       position: absolute;
       top: 0;
       left: 0;
+      display: flex;
       flex-direction: column;
+      row-gap: 56px;
       width: 100%;
-      max-width: 46.25rem;
-      min-width: 17rem;
-      min-height: 34.625rem;
-      margin-left: 2.5rem;
-      margin-right: auto;
-      margin-top: 6rem;
+      max-width: 740px;
+      padding: 80px 40px;
 
       .misc-logo {
-        width: 64px;
-        height: 64px;
-        margin-top: 80px;
-        margin-bottom: 32px;
-        margin-left: 2.5rem;
-      }
-
-      .splash-section-content {
-        display: flex;
-        flex-direction: column;
-        margin-left: 2.5rem;
+        width: 4rem;
+        height: 4rem;
       }
 
       .header {
         @include utils.use-font(display, large);
         color: vars.$on-background;
-        margin-bottom: 36px;
       }
 
       .description {
         font: vars.$body-xl;
-        color: vars.$on-secondary-fixed;
-        margin-bottom: 56px;
+        color: vars.$primary;
       }
 
       .actions {
         display: flex;
-        gap: 16px;
+        flex-direction: row;
+        column-gap: 32px;
         flex-wrap: wrap;
-        margin-bottom: 80px;
 
         .action {
           @include utils.use-font(label, medium);
@@ -78,72 +58,112 @@
   }
 
   .collaborators-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    height: 720px;
+    position: relative;
+
     .splash-header-img-2 {
-      position: absolute;
-      object-fit: cover;
       width: 100%;
-      height: 720px;
-      z-index: 0;
-      background-position: center;
-      background-size: cover;
+      height: 100%;
+      object-fit: cover;
     }
 
-    min-height: 720px;
     .collaborators-section {
-      flex-direction: row;
-      justify-content: flex-end;
+      position: absolute;
+      top: 7.875rem;
+      left: 820px;
+      display: flex;
+      flex-direction: column;
       width: 100%;
-      margin-right: 2.5rem;
-      padding: 6rem 2.5rem;
+      margin-right: 40px;
+      padding: 96px 0;
+      row-gap: 56px;
 
-      .collaborators-section-content {
-        margin-left: 2.5rem;
+      .thankyou-container {
         display: flex;
         flex-direction: column;
+        row-gap: 2rem;
+
+        .thank-you-header {
+          @include utils.use-font(headline, large);
+          color: vars.$on-background;
+        }
+
+        .thank-you-description {
+          font: vars.$body-xl;
+          color: vars.$on-secondary-fixed;
+          max-width: 660px;
+        }
       }
 
-      .thank-you-header {
-        @include utils.use-font(headline, large);
-        margin-top: 6rem;
-        margin-bottom: 2rem;
-        color: vars.$on-background;
-      }
-
-      .thank-you-description {
-        font: vars.$body-xl;
-        color: vars.$on-secondary-fixed;
-        margin-bottom: 56px;
-        max-width: 41.25rem;
-      }
 
       .logo-wrapper {
         display: flex;
+        flex-direction: row;
         align-items: center;
         flex-wrap: wrap;
-        gap: 4rem;
+        gap: 64px;
 
         .kpmp {
-          width: 119px;
-          height: 59px;
+          width: 7.4375rem;
+          height: 3.6875rem;
         }
 
         .partner {
-          width: 133px;
-          height: 41px;
+          width: 8.3125rem;
+          height: 2.5625rem;
         }
       }
     }
   }
 }
 
-@media (max-height: 639px) and (max-width: 320px) {
+@media (min-width: 20rem) and (max-width: 39.9375rem) {
   :host {
     .splash-wrapper {
-      min-height: 45rem;
+      height: 900px;
+      row-gap: 40px;
+
+      .splash-section {
+        padding: 96px 16px;
+        margin: 0;
+        min-height: 554px;
+        min-width: 272px;
+        max-width: 740px;
+        row-gap: 56px;
+
+        .actions {
+          display: flex;
+          row-gap: 32px;
+
+          .action {
+            flex: none;
+          }
+        }
+      }
     }
 
     .collaborators-wrapper {
-      max-height: 45rem;
+      height: 720px;
+      row-gap: .5rem;
+
+
+      .collaborators-section {
+        row-gap: 56px;
+        padding: 96px 0;
+        margin: 0;
+        min-width: 272px;
+        max-width: 740px;
+      }
     }
+
+  }
+}
+
+::ng-deep .navigation {
+  @media (min-width: 20rem) and (max-width: 39.9375rem) {
+    display: none !important;
   }
 }
