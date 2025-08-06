@@ -55,7 +55,7 @@ export interface FilterOption {
   tooltip?: TooltipData;
 }
 
-/** Current filter interface */
+/** Current filter interface (each category contains string of filter option IDs) */
 export interface CurrentFilters {
   /** Digital object filters */
   digitalObjects?: string[];
@@ -81,6 +81,7 @@ export interface ObjectTypeData {
   icon: string;
   /** Tooltip data for the digital object type */
   tooltip: TooltipData;
+  /** Documentation url, if available for the object type */
   documentationUrl?: string;
 }
 
@@ -352,10 +353,13 @@ export class MainPageComponent {
   readonly downloadId = signal<string | undefined>(undefined);
 
   /**
+   * Sets the initial filters according to query params
    * Sets filtered rows to all rows on init
    * Fetches file download metadata for each object
-   * Sets filter options
+   * Sets all filter options
    * Get download options for an object whenever the download button is clicked
+   * Update filter when searchbar input changes
+   * Set scroll viewport height when window is resized
    */
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
@@ -383,18 +387,17 @@ export class MainPageComponent {
       });
     });
 
-    this.setScrollViewportHeight();
-    this.filterCategories.set(
-      CATEGORY_LABELS.map((label) => {
-        return { label };
-      }),
-    );
-
     toObservable(this.data).subscribe((items) => {
       const objectData = this.resolveData(items['@graph']);
       this.allRows.set(objectData);
       this.setVersionCounts(items['@graph']);
     });
+
+    this.filterCategories.set(
+      CATEGORY_LABELS.map((label) => {
+        return { label };
+      }),
+    );
 
     effect(() => {
       this.populateFilterOptions();
@@ -411,6 +414,7 @@ export class MainPageComponent {
       this.onSearchChange(result);
     });
 
+    this.setScrollViewportHeight();
     fromEvent(window, 'resize').subscribe(() => this.setScrollViewportHeight());
   }
 

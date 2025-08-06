@@ -4,7 +4,7 @@
   </button>
 
   <mat-menu #menuOptions="matMenu" class="help-menu">
-    @for (option of finalOptions(); track option) {
+    @for (option of helpMenuOptions(); track option) {
       @if (option.divider) {
         <mat-divider></mat-divider>
       }

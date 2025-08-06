@@ -14,6 +14,7 @@ import { HelpMenuOptions } from './app.routes';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
 
+/** Default help menu options */
 export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
   {
     label: 'Data Overview',
@@ -78,11 +79,14 @@ export class AppComponent {
       ],
   );
 
+  /** Menu options to display in the help menu on the header */
+  readonly helpMenuOptions = signal<HelpMenuOptions[] | undefined>(undefined);
+
+  /** Url linking to documentation for an object type */
   protected readonly documentationUrl = computed<string>(() => this.data()['documentationUrl']);
 
+  /** Extra option containing the digital object type documentation on the metadata page help menu */
   protected readonly extraMenuOption = signal<HelpMenuOptions | undefined>({ label: '', url: '' });
-
-  readonly finalOptions = signal<HelpMenuOptions[] | undefined>(undefined);
 
   /** If the user is navigating to a different page */
   protected readonly isNavigating = isNavigating();
@@ -113,9 +117,9 @@ export class AppComponent {
       const a = DEFAULT_HELP_OPTIONS;
       const b = this.extraMenuOption();
       if (b) {
-        this.finalOptions.set([a[0], b].concat(a.slice(1)));
+        this.helpMenuOptions.set([a[0], b].concat(a.slice(1)));
       } else {
-        this.finalOptions.set(a);
+        this.helpMenuOptions.set(a);
       }
     });
     this.router.events.subscribe(() => {

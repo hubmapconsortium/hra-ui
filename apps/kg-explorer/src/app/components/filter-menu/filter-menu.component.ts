@@ -70,6 +70,7 @@ export class FilterMenuComponent {
   /** Whether or not the form panel is closed */
   readonly formClosed = input(false);
 
+  /** Contains current selected filter IDs */
   readonly currentFilters = input<CurrentFilters>();
 
   /** Emits when the form opening state is toggled */

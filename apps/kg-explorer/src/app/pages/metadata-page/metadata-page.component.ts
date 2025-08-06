@@ -222,10 +222,20 @@ export class MetadataPageComponent {
     return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join();
   }
 
+  /**
+   * Gets organ icon string from the organ id
+   * @param organ Organ id
+   * @returns organ icon string
+   */
   private getOrganIcon(organ: string): string {
     return `organ:${ORGAN_ICON_MAP[organ] ?? organ}`;
   }
 
+  /**
+   * Navigates to the main page with the correct filters when a tag is clicked
+   * @param id Filter id associated with tag
+   * @param type Filter type ('do' or 'organs')
+   */
   tagClick(id: string, type: string) {
     this.router.navigate([''], { queryParams: { [type]: id } });
   }

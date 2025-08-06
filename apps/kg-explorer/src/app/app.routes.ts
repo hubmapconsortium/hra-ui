@@ -68,13 +68,6 @@ const columns: TableColumn[] = [
   },
 ];
 
-export interface HelpMenuOptions {
-  label: string;
-  url: string;
-  description?: string;
-  divider?: boolean;
-}
-
 /** Column info for metadata table */
 const metadataColumns: TableColumn[] = [
   {
@@ -88,6 +81,18 @@ const metadataColumns: TableColumn[] = [
     type: 'markdown',
   },
 ];
+
+/** Help menu options interface */
+export interface HelpMenuOptions {
+  /** Option label */
+  label: string;
+  /** Option url */
+  url: string;
+  /** Optional description for option */
+  description?: string;
+  /** If the option should have a divider (on top) */
+  divider?: boolean;
+}
 
 /** Application routes */
 export const appRoutes: Route[] = [
