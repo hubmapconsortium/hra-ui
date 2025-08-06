@@ -41,6 +41,7 @@ import {
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
+import { environment } from '../environments/environment';
 
 /** Input property keys */
 type InputProps =
@@ -94,8 +95,7 @@ export class AppComponent implements OnInit, OnChanges {
   @Input() selectedIllustration?: string | RawIllustration;
 
   /** Set of all illustrations */
-  @Input() illustrations: string | RawIllustrationsJsonld =
-    'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
+  @Input() illustrations: string | RawIllustrationsJsonld = environment.illustrationsUrl;
 
   /** Cell summaries to display in tables */
   @Input() summaries: string | RawCellSummary = '';

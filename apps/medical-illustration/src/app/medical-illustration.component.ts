@@ -29,6 +29,7 @@ import {
 } from '@hra-ui/services';
 import { Observable, of, OperatorFunction, ReplaySubject, switchMap } from 'rxjs';
 import { z } from 'zod';
+import { environment } from '../environments/environment';
 
 /**
  * Helper for processing data either from an url or as an object
@@ -73,7 +74,7 @@ export class MedicalIllustrationComponent implements OnInit, OnChanges {
   @Input() selectedIllustration?: string | RawIllustration;
 
   /** Optional set of all illustrations. Used when selectedIllustration is an iri */
-  @Input() illustrations?: string | RawIllustrationsJsonld;
+  @Input() illustrations?: string | RawIllustrationsJsonld = environment.illustrationsUrl;
 
   /** A cell or id to highlight in the illustration */
   @Input() highlight?: string | RawCellEntry;

@@ -24,6 +24,14 @@
         "polyfills": ["zone.js"]
       },
       "configurations": {
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ftu-ui/src/environments/environment.ts",
+              "with": "apps/ftu-ui/src/environments/environment.stage.ts"
+            }
+          ]
+        },
         "production": {
           "budgets": [
             {
@@ -35,6 +43,12 @@
               "type": "anyComponentStyle",
               "maximumWarning": "3kb",
               "maximumError": "5.5kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ftu-ui/src/environments/environment.ts",
+              "with": "apps/ftu-ui/src/environments/environment.prod.ts"
             }
           ]
         }
