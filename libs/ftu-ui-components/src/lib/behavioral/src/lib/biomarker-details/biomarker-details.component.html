@@ -12,20 +12,18 @@
   </div>
 }
 
-@if (!isBiomarkerfullscreen()) {
-  <mat-button-toggle-group
-    hraButtonToggleSize="medium"
-    [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
-    (change)="onToggleChange($event.value)"
-    class="biomarker-toggle-group absolute-toggle"
-  >
-    @for (option of toggleOptions; track option.value) {
-      <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
-        option.label
-      }}</mat-button-toggle>
-    }
-  </mat-button-toggle-group>
-}
+<mat-button-toggle-group
+  hraButtonToggleSize="medium"
+  [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
+  (change)="onToggleChange($event.value)"
+  class="biomarker-toggle-group absolute-toggle"
+>
+  @for (option of toggleOptions; track option.value) {
+    <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
+      option.label
+    }}</mat-button-toggle>
+  }
+</mat-button-toggle-group>
 
 @if (tab.rows.length !== 0) {
   <ftu-biomarker-table
@@ -96,5 +94,6 @@
     (selectionChanged)="setSelectedSources($event)"
     class="content"
     (isFullscreen)="isSourceListfullscreen.set(true)"
+    [hideTitle]="true"
   ></ftu-source-list>
 </ng-template>
