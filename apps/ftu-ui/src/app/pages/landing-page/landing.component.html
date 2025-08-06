@@ -2,37 +2,35 @@
   <img [attr.src]="'assets/ui-images/ftu-splash.png' | assetUrl" alt="splash-img" class="splash-header-img" />
   <div class="splash-section">
     <hra-icon class="misc-logo" [svgIcon]="'product:ftu'" />
-    <div class="splash-section-content">
-      <span class="header">Explore functional tissue units</span>
-      <span class="description">
-        A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function
-        and is replicated multiple times in a whole organ. Use functional tissue unit illustrations to explore cell type
-        populations by gene, protein, and lipid biomarkers.
-      </span>
-      <div class="actions">
-        <a
-          mat-button
-          hraCtaButton
-          hraPrimaryButton
-          class="action"
-          routerLink="/ftu"
-          [queryParams]="{ id: 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle' }"
-        >
-          Explore FTUs
-          <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-        </a>
-        <a
-          mat-button
-          hraSecondaryButton
-          hraCtaButton
-          class="action"
-          [attr.href]="publicationLinkDefault()"
-          target="_blank"
-        >
-          Read publication
-          <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-        </a>
-      </div>
+    <div class="header">Explore functional tissue units</div>
+    <div class="description">
+      A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function and
+      is replicated multiple times in a whole organ. Use functional tissue unit illustrations to explore cell type
+      populations by gene, protein, and lipid biomarkers.
+    </div>
+    <div class="actions">
+      <a
+        mat-button
+        hraCtaButton
+        hraPrimaryButton
+        class="action"
+        routerLink="/ftu"
+        [queryParams]="{ id: 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle' }"
+      >
+        Explore FTUs
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+      <a
+        mat-button
+        hraSecondaryButton
+        hraCtaButton
+        class="action"
+        [attr.href]="publicationLinkDefault()"
+        target="_blank"
+      >
+        Read publication
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
     </div>
   </div>
 </div>
@@ -40,20 +38,20 @@
 <div class="collaborators-wrapper">
   <img [attr.src]="'assets/ui-images/ftu-splash-2.png' | assetUrl" alt="splas-img-2" class="splash-header-img-2" />
   <div class="collaborators-section">
-    <div class="collaborators-section-content">
+    <div class="thankyou-container">
       <div class="thank-you-header">A special thanks to our partners</div>
       <div class="thank-you-description">
         This application was designed in close collaboration with Kidney Precision Medicine Project and European
         Bioinformatics Institute. It showcases single-cell expression data from the Anatomogram site by EMBL-EBI.
       </div>
-      <div class="logo-wrapper">
-        <a [href]="kpmpLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
-          <hra-icon class="kpmp" [svgIcon]="'KPMP'" />
-        </a>
-        <a [href]="ebiLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
-          <hra-icon class="partner" [svgIcon]="'partner-logos'" />
-        </a>
-      </div>
+    </div>
+    <div class="logo-wrapper">
+      <a [href]="kpmpLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
+        <hra-icon class="kpmp" [svgIcon]="'KPMP'" />
+      </a>
+      <a [href]="ebiLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
+        <hra-icon class="partner" [svgIcon]="'partner-logos'" />
+      </a>
     </div>
   </div>
 </div>
