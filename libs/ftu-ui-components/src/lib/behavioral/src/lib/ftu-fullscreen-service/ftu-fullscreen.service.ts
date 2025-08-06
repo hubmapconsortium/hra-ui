@@ -5,8 +5,8 @@ import { Injectable, signal } from '@angular/core';
  */
 export enum FullscreenTab {
   Illustration = 0,
-  BiomarkerDetails = 1,
-  SourceList = 2,
+  SourceList = 1,
+  BiomarkerDetails = 2,
 }
 
 /**

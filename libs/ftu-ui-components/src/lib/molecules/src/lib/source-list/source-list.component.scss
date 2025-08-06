@@ -11,7 +11,6 @@
     align-items: center;
     justify-content: space-between;
     height: 4rem;
-    border-bottom: 0.0625rem solid vars.$outline;
     padding: 0 16px;
 
     .view-fullscreen {
@@ -31,6 +30,32 @@
     .source-list-title {
       @include utils.use-font(label, medium);
       color: vars.$secondary;
+    }
+  }
+
+  &.no-data-full-screen {
+    .source-list-header {
+      display: none;
+    }
+    ::ng-deep ftu-empty-biomarker .footer {
+      display: flex;
+      justify-content: end;
+      border-top: 0.0625rem solid vars.$outline;
+
+      .collaborate-button {
+        width: auto !important;
+      }
+    }
+    .table-content {
+      height: 100%;
+    }
+  }
+
+  &.full-screen .table-content {
+    margin: 0 1rem 1rem 1rem;
+
+    hra-table {
+      border-radius: 0.25rem;
     }
   }
 
