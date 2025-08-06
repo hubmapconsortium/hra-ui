@@ -3,16 +3,20 @@
 
 :host {
   display: block;
+  width: 0;
+  flex-grow: 1;
 
   .navigation .crumbs {
     display: flex;
     align-items: center;
     list-style-type: none;
     height: 2.5rem;
+    width: 100%;
     margin: 0;
     padding: 0;
     color: vars.$on-primary-fixed;
     @include utils.use-font('label', 'small');
+    white-space: nowrap;
 
     .crumb,
     .icon {
@@ -23,6 +27,11 @@
       display: inline-block;
       height: 1.5rem;
       vertical-align: middle;
+    }
+
+    .crumb:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
