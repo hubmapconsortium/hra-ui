@@ -20,6 +20,14 @@
         "polyfills": ["zone.js"]
       },
       "configurations": {
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/medical-illustration/src/environments/environment.ts",
+              "with": "apps/medical-illustration/src/environments/environment.stage.ts"
+            }
+          ]
+        },
         "production": {
           "budgets": [
             {
@@ -31,6 +39,12 @@
               "type": "anyComponentStyle",
               "maximumWarning": "2kb",
               "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/medical-illustration/src/environments/environment.ts",
+              "with": "apps/medical-illustration/src/environments/environment.prod.ts"
             }
           ]
         }
