@@ -1,6 +1,5 @@
 import '@google/model-viewer';
 
-import { TitleCasePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -15,6 +14,7 @@ import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
 import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
+import { sentenceCase } from '../../utils/sentence-case';
 import { DO_INFO, ORGAN_ICON_MAP } from '../main-page/main-page.component';
 
 /** Empty metadata object */
@@ -59,14 +59,7 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
  */
 @Component({
   selector: 'hra-metadata-page',
-  imports: [
-    PageSectionComponent,
-    MetadataLayoutModule,
-    MarkdownComponent,
-    ProvenanceMenuComponent,
-    MatChipsModule,
-    TitleCasePipe,
-  ],
+  imports: [PageSectionComponent, MetadataLayoutModule, MarkdownComponent, ProvenanceMenuComponent, MatChipsModule],
   templateUrl: './metadata-page.component.html',
   styleUrl: './metadata-page.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -97,7 +90,7 @@ export class MetadataPageComponent {
   /** File download options for this digital object */
   readonly downloadOptions = signal<MenuOptionsType[]>([]);
   /** Tags to display in Tags section (object type + organs) */
-  readonly tags = signal<string[]>([]);
+  readonly tags = signal<{ id: string; label: string; type: string }[]>([]);
 
   /** Data to display in the metadata table */
   readonly rows = computed(() =>
@@ -118,8 +111,8 @@ export class MetadataPageComponent {
           : '',
       },
       { provenance: 'HuBMAP ID', metadata: this.metadata().was_derived_from.hubmapId ?? '' },
-      { provenance: 'Date created', metadata: this.metadata().was_derived_from.creation_date ?? '' },
-      { provenance: 'Date last modified', metadata: this.metadata().creation_date ?? '' },
+      { provenance: 'Date published', metadata: this.metadata().was_derived_from.creation_date ?? '' },
+      { provenance: 'Date last processed', metadata: this.metadata().creation_date ?? '' },
     ].filter((item) => item.metadata !== ''),
   );
 
@@ -166,9 +159,13 @@ export class MetadataPageComponent {
       this.icons.set(icons);
       if (pageItem) {
         this.availableVersions.set(pageItem.versions);
-        const tags = [DO_INFO[pageItem.doType].label];
+        const tags = [{ id: pageItem.doType, label: DO_INFO[pageItem.doType].label, type: 'do' }];
         for (const organ of pageItem.organs || []) {
-          tags.push(organ);
+          tags.push({
+            id: organ,
+            label: sentenceCase(organ),
+            type: 'organs',
+          });
         }
         this.tags.set(tags);
       }
@@ -225,7 +222,21 @@ export class MetadataPageComponent {
     return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join();
   }
 
+  /**
+   * Gets organ icon string from the organ id
+   * @param organ Organ id
+   * @returns organ icon string
+   */
   private getOrganIcon(organ: string): string {
     return `organ:${ORGAN_ICON_MAP[organ] ?? organ}`;
+  }
+
+  /**
+   * Navigates to the main page with the correct filters when a tag is clicked
+   * @param id Filter id associated with tag
+   * @param type Filter type ('do' or 'organs')
+   */
+  tagClick(id: string, type: string) {
+    this.router.navigate([''], { queryParams: { [type]: id } });
   }
 }

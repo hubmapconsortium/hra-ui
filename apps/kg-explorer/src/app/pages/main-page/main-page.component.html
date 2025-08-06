@@ -23,6 +23,7 @@
       (toggleForm)="sidenav.toggle()"
       [formClosed]="!sidenav.opened"
       (formChanges)="handleFilterChanges($event)"
+      [currentFilters]="filters()"
     ></hra-filter-menu>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -46,6 +47,7 @@
         [columns]="columns()"
         (downloadFile)="download.saveFile($event[0], $event[1])"
         (routeClicked)="router.navigate([$event])"
+        (downloadClicked)="downloadId.set($event)"
       />
     </div>
   </mat-sidenav-content>

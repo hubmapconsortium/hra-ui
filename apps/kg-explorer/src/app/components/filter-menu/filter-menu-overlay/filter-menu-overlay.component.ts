@@ -11,6 +11,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
 import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/main-page.component';
@@ -34,6 +35,7 @@ import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/mai
     ReactiveFormsModule,
     MatListModule,
     MatChipsModule,
+    PlainTooltipDirective,
   ],
   templateUrl: './filter-menu-overlay.component.html',
   styleUrl: './filter-menu-overlay.component.scss',
@@ -51,6 +53,12 @@ export class FilterMenuOverlayComponent implements OnInit {
 
   /** Filter category containing options and other data */
   readonly filterOptionCategory = input.required<FilterOptionCategory>();
+
+  /** Initially selected filter IDs */
+  readonly initialFilters = input<string[] | undefined>();
+
+  /** Current selected options */
+  readonly selectedOptions = signal<FilterOption[]>([]);
   /** Filtered options */
   readonly filteredOptions = signal<FilterOption[]>([]);
   /** Displayed chip options */
@@ -59,13 +67,15 @@ export class FilterMenuOverlayComponent implements OnInit {
   /** Emits when filter selection is changed */
   readonly filterChanged = output();
 
-  /** Current selected options */
-  selectedOptions: FilterOption[] = [];
-
   /**
    * Sets options for the filter category and subscribes to searchbar inputs
    */
   constructor() {
+    effect(() => {
+      const initialFilters =
+        this.filterOptionCategory().options?.filter((option) => this.initialFilters()?.includes(option.id)) || null;
+      this.form().patchValue(initialFilters);
+    });
     effect(() => {
       this.filteredOptions.set(this.filterOptionCategory().options || []);
     });
@@ -93,12 +103,14 @@ export class FilterMenuOverlayComponent implements OnInit {
    * @param option Option name
    */
   selectOption(option: FilterOption) {
-    if (this.selectedOptions.map((x) => x.id).includes(option.id)) {
+    const options = this.selectedOptions();
+    if (options.map((x) => x.id).includes(option.id)) {
       this.remove(option);
     } else {
-      this.selectedOptions.push(option);
+      options.push(option);
     }
-    this.form().patchValue(this.selectedOptions);
+    this.selectedOptions.set(options);
+    this.form().patchValue(this.selectedOptions());
     this.filterChanged.emit();
   }
 
@@ -108,7 +120,8 @@ export class FilterMenuOverlayComponent implements OnInit {
    */
   remove(option: FilterOption): void {
     this.chips.update((chips) => {
-      this.selectedOptions = this.selectedOptions.filter((o) => o.id !== option.id);
+      const options = this.selectedOptions();
+      this.selectedOptions.set(options.filter((o) => o.id !== option.id));
       const updatedValue = chips.filter((o) => o !== option);
       this.form().setValue(updatedValue);
       this.filterChanged.emit();

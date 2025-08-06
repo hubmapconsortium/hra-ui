@@ -6,9 +6,13 @@
   ></hra-version-selector>
 
   <div class="provenance-buttons">
-    <button mat-flat-button class="downloads button" [matMenuTriggerFor]="options">
-      Downloads
-      <mat-icon>download</mat-icon>
+    <button
+      mat-flat-button
+      class="downloads button"
+      [matMenuTriggerFor]="options"
+      hraPlainTooltip="View file formats and download files"
+    >
+      Download options
     </button>
 
     <mat-menu #options="matMenu">
@@ -28,7 +32,7 @@
     </mat-menu>
 
     <!-- TODO: add this feature -->
-    <button mat-button hraButtonVariant="secondary" disabled class="view-app button">View in app</button>
+    <!-- <button mat-button hraButtonVariant="secondary" class="view-app button">View in app</button> -->
   </div>
 </div>
 

@@ -45,6 +45,7 @@ export type IconColumnType = z.infer<typeof IconColumnTypeSchema>;
 export const IconColumnTypeSchema = z.object({
   type: z.literal('icon'),
   icon: z.string(),
+  tooltip: z.string().optional(),
 });
 
 /** Type for Link Column */
@@ -65,6 +66,7 @@ export const MenuButtonColumnTypeSchema = z.object({
   type: z.literal('menu'),
   icon: z.string(),
   options: z.string(),
+  tooltip: z.string().optional(),
 });
 
 /** Type for MenuOptions Column */
