@@ -29,6 +29,7 @@
 
   mat-sidenav-content {
     background: inherit;
+    transition-property: transform, margin-left, margin-right, padding-left;
 
     @media (min-width: 640px) {
       padding-left: 4rem;
@@ -36,6 +37,7 @@
 
     @media (min-width: 1100px) {
       padding-left: 0;
+      margin-left: 18.5rem !important;
     }
   }
 
@@ -59,6 +61,7 @@
     @media (min-width: 1100px) {
       mat-sidenav-content {
         padding-left: 4rem;
+        margin-left: 0rem !important;
       }
     }
   }
