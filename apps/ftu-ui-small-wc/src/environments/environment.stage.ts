@@ -2,6 +2,6 @@
  * Environment configuration
  */
 export const environment = {
-  googleAnalyticsToken: 'G-1WRJHN9FM6',
+  tag: 'Staging',
   illustrationsUrl: 'https://apps.humanatlas.io/api--staging/v1/ftu-illustrations',
 };

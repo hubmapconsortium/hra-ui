@@ -3,7 +3,7 @@ import { ContactImplService } from './contact/contact.impl';
 import { ContactService } from './contact/contact.service';
 import { FTU_DATA_IMPL_ENDPOINTS, FtuDataImplService } from './ftu-data/ftu-data.impl';
 import { FtuDataService } from './ftu-data/ftu-data.service';
-import { of } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
 @NgModule({
   providers: [
@@ -17,12 +17,7 @@ import { of } from 'rxjs';
     },
     {
       provide: FTU_DATA_IMPL_ENDPOINTS,
-      useValue: of({
-        illustrations: 'assets/TEMP/2d-ftu-illustrations.jsonld',
-        summaries: 'assets/TEMP/ftu-cell-summaries.jsonld',
-        datasets: 'assets/TEMP/ftu-datasets.jsonld',
-        baseHref: '',
-      }),
+      useValue: new ReplaySubject(1),
     },
   ],
 })
