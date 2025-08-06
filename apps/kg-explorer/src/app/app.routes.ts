@@ -124,6 +124,10 @@ export const appRoutes: Route[] = [
         const type = route.params['type'];
         return DO_INFO[type].documentationUrl;
       },
+      typeLabel: (route: ActivatedRouteSnapshot) => {
+        const type = route.params['type'];
+        return DO_INFO[type].label;
+      },
     },
   },
   {

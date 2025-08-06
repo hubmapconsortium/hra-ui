@@ -85,6 +85,9 @@ export class AppComponent {
   /** Url linking to documentation for an object type */
   protected readonly documentationUrl = computed<string>(() => this.data()['documentationUrl']);
 
+  /** DO type label */
+  protected readonly typeLabel = computed<string>(() => this.data()['typeLabel']);
+
   /** Extra option containing the digital object type documentation on the metadata page help menu */
   protected readonly extraMenuOption = signal<HelpMenuOptions | undefined>({ label: '', url: '' });
 
@@ -102,9 +105,9 @@ export class AppComponent {
    */
   constructor() {
     effect(() => {
-      if (this.pageTitle() && this.documentationUrl()) {
+      if (this.typeLabel() && this.documentationUrl()) {
         this.extraMenuOption.set({
-          label: this.pageTitle(),
+          label: this.typeLabel(),
           url: this.documentationUrl(),
           description: 'Data documentation for this digital object type',
         });
