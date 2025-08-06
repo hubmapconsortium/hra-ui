@@ -58,11 +58,12 @@
   }
 
   .collaborators-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     row-gap: 8px;
+    margin: 0;
     height: 720px;
-    position: relative;
 
     .splash-header-img-2 {
       width: 100%;
@@ -73,7 +74,7 @@
     .collaborators-section {
       position: absolute;
       top: 7.875rem;
-      left: 820px;
+      margin-left: 820px;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -123,18 +124,13 @@
   :host {
     .splash-wrapper {
       height: 900px;
-      row-gap: 40px;
 
       .splash-section {
         padding: 96px 16px;
-        margin: 0;
         min-height: 554px;
         min-width: 272px;
-        max-width: 740px;
-        row-gap: 56px;
 
         .actions {
-          display: flex;
           row-gap: 32px;
 
           .action {
@@ -145,15 +141,12 @@
     }
 
     .collaborators-wrapper {
-      height: 720px;
       row-gap: 0.5rem;
 
       .collaborators-section {
-        row-gap: 56px;
-        padding: 96px 0;
+        padding: 96px 16px;
         margin: 0;
         min-width: 272px;
-        max-width: 740px;
       }
     }
   }
