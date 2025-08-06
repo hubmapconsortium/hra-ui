@@ -74,11 +74,12 @@
     .collaborators-section {
       position: absolute;
       top: 7.875rem;
-      margin-left: 820px;
+      left: 820px;
+      right: 40px;
       display: flex;
       flex-direction: column;
-      width: 100%;
-      margin-right: 40px;
+      // width: 100%;
+      // margin-right: 40px;
       padding: 96px 0;
       row-gap: 56px;
 
@@ -144,8 +145,9 @@
       row-gap: 0.5rem;
 
       .collaborators-section {
-        padding: 96px 16px;
-        margin: 0;
+        left: 16px;
+        right: 16px;
+        padding: 0;
         min-width: 272px;
       }
     }
