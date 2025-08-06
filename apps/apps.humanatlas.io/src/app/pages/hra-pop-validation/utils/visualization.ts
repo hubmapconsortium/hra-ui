@@ -1,6 +1,5 @@
 import { VisualizationSpec } from 'vega-embed';
 
-// utils/visualization.ts
 export interface AnatomicalBarGraphSpecOptions {
   graphTitle: string;
   values: Record<string, any>[];
@@ -23,23 +22,23 @@ export interface AnatomicalBarGraphSpecOptions {
 
 // Predefined color palette for top 14 cell types (ordered by priority)
 const PREDEFINED_COLORS = [
-  '#95CBCF', // 1st - teal
-  '#E5A8B2', // 2nd - pink
-  '#8498AD', // 3rd - blue-grey
-  '#B0F7EA', // 4th - light teal
-  '#898AB4', // 5th - purple-grey
-  '#D6B607', // 6th - yellow
-  '#59678E', // 7th - dark blue
-  '#D6E8F8', // 8th - light blue
-  '#C8DFBE', // 9th - light green
-  '#FFE9CB', // 10th - light orange
-  '#AEA7C1', // 11th - light purple
-  '#ACB4D2', // 12th - light blue-grey
-  '#FBC6D2', // 13th - light pink
-  '#B8C5D6', // 14th - additional light blue-grey
+  '#95CBCF',
+  '#E5A8B2',
+  '#8498AD',
+  '#B0F7EA',
+  '#898AB4',
+  '#D6B6D7',
+  '#59678E',
+  '#D6E8F8',
+  '#C8DFBE',
+  '#FFE9C8',
+  'FFC8BC',
+  '#AEA7C1',
+  '#ACB4D2',
+  '#FBC6D2',
 ];
 
-const OTHERS_COLOR = '#9E9E9E'; // Grey for "Others" category
+const OTHERS_COLOR = '#FCFCFC'; // Gray for "Others" category
 
 // Function to calculate global top cell types (to be called once in the main component)
 export function calculateGlobalTopCellTypes(
