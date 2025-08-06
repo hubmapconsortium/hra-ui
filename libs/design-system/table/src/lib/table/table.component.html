@@ -95,15 +95,19 @@
   <markdown class="markdown" [data]="markdown" />
 </ng-template>
 
-<ng-template hraIconRowElement #icon let-icon>
-  <hra-icon [svgIcon]="icon"></hra-icon>
+<ng-template hraIconRowElement #icon let-icon let-column="column" let-element="element">
+  <hra-icon [svgIcon]="icon" [hraPlainTooltip]="element[column.type.tooltip]"></hra-icon>
 </ng-template>
 
 <ng-template hraMenuButtonRowElement #menu let-column="column" let-element="element">
-  @let icon = column.type.icon;
   @let options = element[column.type.options];
-  <button mat-icon-button [matMenuTriggerFor]="menuOptions" (click)="downloadClick(element['lod'])">
-    <hra-icon [fontIcon]="icon"></hra-icon>
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menuOptions"
+    [hraPlainTooltip]="column.type.tooltip"
+    (click)="downloadClick(element['id'])"
+  >
+    <hra-icon [fontIcon]="column.type.icon"></hra-icon>
   </button>
 
   <mat-menu #menuOptions="matMenu" class="table-menu">
@@ -127,7 +131,7 @@
   @let url = element[column.type.urlColumn];
   @let isInternal = column.type.internal;
   @if (isInternal) {
-    <a hraHyperlink class="link" tabindex="0" (keyup)="routeClick(url)" (click)="routeClick(url)">
+    <a hraHyperlink class="link internal" tabindex="0" (keyup)="routeClick(url)" (click)="routeClick(url)">
       {{ label }}
     </a>
   } @else {

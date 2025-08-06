@@ -1,19 +1,51 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
-import { Router, RouterModule, RoutesRecognized } from '@angular/router';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HraKgService } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { MarkdownModule } from 'ngx-markdown';
 
+import { HelpMenuOptions } from './app.routes';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
+
+/** Default help menu options */
+export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
+  {
+    label: 'Data Overview',
+    url: 'https://humanatlas.io/overview-data',
+  },
+  {
+    label: 'Knowledge Graph',
+    url: 'https://docs.humanatlas.io/dev/kg',
+    description: 'App guidance & documentation',
+  },
+  {
+    label: 'Read publication',
+    url: 'https://doi.org/10.1038/s41597-025-05183-6',
+    divider: true,
+  },
+];
 
 /**
  * Main application component
  */
 @Component({
-  imports: [RouterModule, NavigationModule, MarkdownModule, ButtonsModule, IconsModule],
+  imports: [
+    RouterModule,
+    NavigationModule,
+    MarkdownModule,
+    ButtonsModule,
+    IconsModule,
+    PlainTooltipDirective,
+    MatMenuModule,
+    MatDividerModule,
+  ],
   selector: 'hra-kg-explorer',
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
@@ -25,12 +57,14 @@ import { routeData } from './utils/route-data';
 export class AppComponent {
   /** Router instance for navigation */
   private readonly router = inject(Router);
+  /** Activated route service */
+  private readonly route = inject(ActivatedRoute);
 
   /** HRA KG API service */
   private readonly kg = inject(HraKgService);
 
   /** Page title to display on the breadcrumbs */
-  private readonly pageTitle = signal<string | undefined>(undefined);
+  private readonly pageTitle = signal<string>('');
 
   /** Data for breadcrumbs in navigation header. */
   private readonly data = routeData();
@@ -45,44 +79,63 @@ export class AppComponent {
       ],
   );
 
+  /** Menu options to display in the help menu on the header */
+  readonly helpMenuOptions = signal<HelpMenuOptions[] | undefined>(undefined);
+
+  /** Url linking to documentation for an object type */
+  protected readonly documentationUrl = computed<string>(() => this.data()['documentationUrl']);
+
+  /** Extra option containing the digital object type documentation on the metadata page help menu */
+  protected readonly extraMenuOption = signal<HelpMenuOptions | undefined>({ label: '', url: '' });
+
   /** If the user is navigating to a different page */
   protected readonly isNavigating = isNavigating();
 
-  /** Params for metadata pages */
-  private readonly params = signal<{ name?: string; type?: string; version?: string }>({});
+  /** Route params used to calculate objectLod */
+  readonly params = signal<string[]>([]);
+
+  /** Lod of digital object computed from params */
+  readonly objectLod = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
 
   /**
    * Gets the page title for breadcrumbs
    */
   constructor() {
-    this.router.events.subscribe((val) => {
-      if (val instanceof RoutesRecognized) {
-        const name = val.state.root.firstChild?.params['name'];
-        const type = val.state.root.firstChild?.params['type'];
-        const version = val.state.root.firstChild?.params['version'];
-        this.params.set({ name, type, version });
+    effect(() => {
+      if (this.pageTitle() && this.documentationUrl()) {
+        this.extraMenuOption.set({
+          label: this.pageTitle(),
+          url: this.documentationUrl(),
+          description: 'Data documentation for this digital object type',
+        });
+      } else {
+        this.extraMenuOption.set(undefined);
       }
     });
 
     effect(() => {
+      const a = DEFAULT_HELP_OPTIONS;
+      const b = this.extraMenuOption();
+      if (b) {
+        this.helpMenuOptions.set([a[0], b].concat(a.slice(1)));
+      } else {
+        this.helpMenuOptions.set(a);
+      }
+    });
+    this.router.events.subscribe(() => {
+      const type = this.route.snapshot.root.firstChild?.params['type'];
+      const name = this.route.snapshot.root.firstChild?.params['name'];
+      const version = this.route.snapshot.root.firstChild?.params['version'];
+      if (type && name && version) {
+        this.params.set([type, name, version]);
+      }
+    });
+
+    toObservable(this.objectLod).subscribe((lod) => {
       this.kg.digitalObjects().subscribe((data) => {
-        this.pageTitle.set(
-          data['@graph']?.find(
-            (x) =>
-              x.lod ===
-              ['https://lod.humanatlas.io', this.params().type, this.params().name, this.params().version].join('/'),
-          )?.title,
-        );
+        const match = data['@graph']?.find((object) => object.lod === lod);
+        this.pageTitle.set(match?.title || '');
       });
     });
-  }
-
-  /** Help data for the current route */
-  getHelpUrl(): string {
-    const currentRouteData = this.data();
-    if (currentRouteData && currentRouteData['helpUrl']) {
-      return currentRouteData['helpUrl'] as string;
-    }
-    return `lod.humanatlas.io${this.router.url}`;
   }
 }

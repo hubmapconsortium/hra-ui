@@ -1,7 +1,25 @@
 <hra-header baseUrl="lod.humanatlas.io/" [breadcrumbs]="crumbs() ?? []" [progress]="isNavigating()">
-  <a mat-icon-button [href]="getHelpUrl()" target="_blank" rel="noopener noreferrer">
-    <mat-icon>help</mat-icon>
-  </a>
+  <button mat-icon-button [matMenuTriggerFor]="menuOptions" hraPlainTooltip="Help & documentation">
+    <hra-icon fontIcon="info"></hra-icon>
+  </button>
+
+  <mat-menu #menuOptions="matMenu" class="help-menu">
+    @for (option of helpMenuOptions(); track option) {
+      @if (option.divider) {
+        <mat-divider></mat-divider>
+      }
+      <a class="option" mat-menu-item [attr.href]="option.url" target="_blank" rel="noopener noreferrer">
+        <div class="option-text">
+          <span class="option-name">
+            {{ option.label }}
+          </span>
+          <span class="option-description">
+            {{ option.description }}
+          </span>
+        </div>
+      </a>
+    }
+  </mat-menu>
 </hra-header>
 <div class="content">
   <router-outlet></router-outlet>

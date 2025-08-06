@@ -3,7 +3,12 @@
     <hra-icon class="filter-icon" fontIcon="filter_list" />
     <span class="drawer-title">Filters</span>
     <div class="filler"></div>
-    <button mat-icon-button (click)="toggleForm.emit()" aria-label="Open or close filters menu">
+    <button
+      mat-icon-button
+      (click)="toggleForm.emit()"
+      [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"
+      aria-label="Open or close filters menu"
+    >
       <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
     </button>
   </div>
@@ -12,36 +17,42 @@
     <hra-filter-menu-overlay
       [form]="form.controls.digitalObjects"
       [filterOptionCategory]="filterCategories()[0]"
+      [initialFilters]="currentFilters()?.digitalObjects"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.releaseVersion"
       [filterOptionCategory]="filterCategories()[1]"
+      [initialFilters]="currentFilters()?.releaseVersion"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.organs"
       [filterOptionCategory]="filterCategories()[2]"
+      [initialFilters]="currentFilters()?.organs"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.anatomicalStructures"
       [filterOptionCategory]="filterCategories()[3]"
+      [initialFilters]="currentFilters()?.anatomicalStructures"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.cellTypes"
       [filterOptionCategory]="filterCategories()[4]"
+      [initialFilters]="currentFilters()?.cellTypes"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.biomarkers"
       [filterOptionCategory]="filterCategories()[5]"
+      [initialFilters]="currentFilters()?.biomarkers"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
