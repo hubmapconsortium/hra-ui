@@ -126,7 +126,10 @@ export const appRoutes: Route[] = [
       },
     },
   },
-
+  {
+    path: ':type/:name',
+    redirectTo: ':type/:name/latest',
+  },
   {
     path: '500',
     component: ServerErrorPageComponent,

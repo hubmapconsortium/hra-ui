@@ -94,8 +94,8 @@ export class AppComponent {
   /** Route params used to calculate objectLod */
   readonly params = signal<string[]>([]);
 
-  /** Lod of digital object computed from params */
-  readonly objectLod = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
+  /** Id of digital object computed from params */
+  readonly objectId = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
 
   /**
    * Gets the page title for breadcrumbs
@@ -125,15 +125,14 @@ export class AppComponent {
     this.router.events.subscribe(() => {
       const type = this.route.snapshot.root.firstChild?.params['type'];
       const name = this.route.snapshot.root.firstChild?.params['name'];
-      const version = this.route.snapshot.root.firstChild?.params['version'];
-      if (type && name && version) {
-        this.params.set([type, name, version]);
+      if (type && name) {
+        this.params.set([type, name]);
       }
     });
 
-    toObservable(this.objectLod).subscribe((lod) => {
+    toObservable(this.objectId).subscribe((id) => {
       this.kg.digitalObjects().subscribe((data) => {
-        const match = data['@graph']?.find((object) => object.lod === lod);
+        const match = data['@graph']?.find((object) => object['@id'] === id);
         this.pageTitle.set(match?.title || '');
       });
     });

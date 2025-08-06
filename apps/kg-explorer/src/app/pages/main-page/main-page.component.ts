@@ -717,7 +717,7 @@ export class MainPageComponent {
         doVersion: item.doVersion,
         organs: item.organs,
         title: item.title,
-        objectUrl: `${item.doType}/${item.doName}/${item.doVersion}`,
+        objectUrl: `${item.doType}/${item.doName}/latest`,
         typeIcon: 'product:' + DO_INFO[item.doType].icon,
         typeTooltip: DO_INFO[item.doType].label,
         // If more than one organ use all-organs icon
