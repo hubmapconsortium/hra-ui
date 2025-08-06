@@ -9,6 +9,7 @@ import { FetchSheetData, UpdatePlaygroundData } from '../../actions/sheet.action
 import { GaAction, GaCategory } from '../../models/ga.model';
 import { Sheet, UploadForm } from '../../models/sheet.model';
 import { SheetState } from '../../store/sheet.state';
+import { UIState } from '../../store/ui.state';
 
 @Component({
   selector: 'app-playground',
@@ -56,12 +57,17 @@ export class PlaygroundComponent implements AfterViewInit {
     ]) as ValidatorFn,
   ]);
 
+  /** Error State */
+  protected readonly error = this.store.selectSignal(UIState.getError);
+
+  /** Initialize component */
   constructor() {
     this.sheet$.subscribe((sheet) => {
       this.currentSheet = sheet;
     });
   }
 
+  /** Lifecycle hook - After view initialization */
   ngAfterViewInit() {
     this.data$.subscribe((data) => {
       if (data.length) {
@@ -77,7 +83,9 @@ export class PlaygroundComponent implements AfterViewInit {
   }
 
   /**
-   * Add colums
+   * Generate columns for the jexcel table
+   * @param len Length of the columns to generate
+   * @returns Array of column definitions
    */
   generateColumns(len: number): jexcel.Column[] {
     const columns = [];
@@ -92,7 +100,6 @@ export class PlaygroundComponent implements AfterViewInit {
 
   /**
    * Initialize jexcel table
-   *
    * @param data table data
    */
   initTable(data: string[][]) {
