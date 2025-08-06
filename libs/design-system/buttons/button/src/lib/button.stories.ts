@@ -86,7 +86,7 @@ export const CallToAction: StoryObj<CommonButtonArgs & WithVariant> = {
   render: (args) => ({
     template: `<button mat-button hraCtaButton hraButtonVariant="${args.variant}" disabled="${args.disabled}">
       Click me!
-      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </button>`,
   }),
 };
