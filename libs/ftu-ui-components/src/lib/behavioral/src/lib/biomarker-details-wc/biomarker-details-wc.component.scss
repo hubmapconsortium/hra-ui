@@ -38,7 +38,7 @@
     ::ng-deep ftu-empty-biomarker .footer {
       display: flex;
       justify-content: end;
-      border-top: 0.0625rem solid var(--mat-sys-outline);
+      border-top: 0.0625rem solid vars.$outline;
 
       .collaborate-button {
         width: auto !important;
