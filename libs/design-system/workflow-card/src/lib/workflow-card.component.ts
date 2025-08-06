@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { StepIndicatorComponent } from '@hra-ui/design-system/step-indicator';
+import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
 
 /** Actions placed next to the card title */
 @Component({

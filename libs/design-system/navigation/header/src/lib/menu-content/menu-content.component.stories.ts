@@ -31,6 +31,7 @@ const meta: Meta<MenuContentComponent> = {
   args: {
     variant: 'mobile',
     menu: MENUS[0],
+    baseUrl: '',
   },
 };
 
