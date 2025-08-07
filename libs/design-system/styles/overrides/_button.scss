@@ -8,7 +8,7 @@
       // Basic buttons styles
       text-label-text-color: vars.$on-tertiary-fixed,
       text-state-layer-color: vars.$on-tertiary-fixed,
-      text-disabled-label-text-color: utils.with-alpha(vars.$secondary, 38%),
+      text-disabled-label-text-color: utils.with-alpha(vars.$tertiary, 38%),
       text-ripple-color: utils.with-alpha(vars.$secondary, 8%),
       text-container-height: 2.5rem,
       text-container-shape: vars.$corner-extra-small,
@@ -59,6 +59,7 @@
         (
           text-label-text-color: vars.$secondary,
           text-state-layer-color: vars.$secondary,
+          text-disabled-label-text-color: utils.with-alpha(vars.$secondary, 38%),
         )
       );
     }
@@ -152,9 +153,9 @@
     }
 
     mat-icon {
-      width: 1.5rem;
-      height: 1.5rem;
-      font-size: 1.5rem;
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+      font-size: 1.5rem !important;
     }
   }
 

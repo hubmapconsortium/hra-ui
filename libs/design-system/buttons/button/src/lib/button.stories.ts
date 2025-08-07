@@ -27,7 +27,7 @@ const VARIANT_ARG_TYPES: ArgTypes<WithVariant> = {
 const SIZE_ARG_TYPES: ArgTypes<WithSize> = {
   size: {
     control: 'select',
-    options: ['small', 'medium'],
+    options: ['small', 'medium', 'large'],
   },
 };
 
