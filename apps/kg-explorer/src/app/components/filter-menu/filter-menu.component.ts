@@ -6,8 +6,9 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
-import { FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
+import { CurrentFilters, FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 
 /** Filter form controls */
@@ -41,6 +42,7 @@ export interface FilterFormControls {
     FormsModule,
     MatFormFieldModule,
     ScrollingModule,
+    PlainTooltipDirective,
   ],
   templateUrl: './filter-menu.component.html',
   styleUrl: './filter-menu.component.scss',
@@ -67,6 +69,9 @@ export class FilterMenuComponent {
   readonly filterCategories = input.required<FilterOptionCategory[]>();
   /** Whether or not the form panel is closed */
   readonly formClosed = input(false);
+
+  /** Contains current selected filter IDs */
+  readonly currentFilters = input<CurrentFilters>();
 
   /** Emits when the form opening state is toggled */
   readonly toggleForm = output();

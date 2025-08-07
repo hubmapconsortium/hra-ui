@@ -7,7 +7,7 @@ import {
   RawIllustrationFile,
   RawIllustrationsJsonld,
 } from '@hra-ui/services';
-import { ReplaySubject, firstValueFrom } from 'rxjs';
+import { ReplaySubject, firstValueFrom, startWith } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { MedicalIllustrationComponent } from './medical-illustration.component';
 
@@ -101,7 +101,7 @@ describe('MedicalIllustrationComponent', () => {
 
     it('accepts an empty id', async () => {
       const { instance } = await shallow.render({ bind: { selectedIllustration: '' } });
-      const url = await firstValueFrom(instance.url$);
+      const url = await firstValueFrom(instance.url$.pipe(startWith(undefined)));
       expect(url).toBeUndefined();
     });
   });
@@ -110,6 +110,19 @@ describe('MedicalIllustrationComponent', () => {
     it('can be set to a cell object', async () => {
       const { instance } = await shallow.render({ bind: { highlight: SAMPLE_CELL } });
       expect(instance.highlightId).toEqual(SAMPLE_CELL.representation_of);
+    });
+  });
+
+  describe('selectData function', () => {
+    it('should handle undefined input and return undefined', async () => {
+      const { instance } = await shallow.render({
+        bind: {
+          selectedIllustration: undefined,
+          illustrations: SAMPLE_ILLUSTRATIONS,
+        },
+      });
+      const url = await firstValueFrom(instance.url$.pipe(startWith(undefined)));
+      expect(url).toBeUndefined();
     });
   });
 });

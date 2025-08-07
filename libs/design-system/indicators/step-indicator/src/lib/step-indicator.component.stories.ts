@@ -1,11 +1,11 @@
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
-import { provideDesignSystem } from '../../../src/lib/providers';
+import { provideDesignSystem } from '../../../../src/lib/providers';
 import { StepIndicatorComponent } from './step-indicator.component';
 
 const meta: Meta<StepIndicatorComponent> = {
   component: StepIndicatorComponent,
-  title: 'StepIndicatorComponent',
+  title: 'Design System/Indicators/Step Indicator',
   decorators: [
     applicationConfig({
       providers: [provideDesignSystem()],

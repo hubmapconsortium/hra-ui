@@ -19,6 +19,7 @@
   .provenance-buttons {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
   }
 
   .metadata-table {
@@ -31,6 +32,14 @@
 
   .downloads {
     width: 9.75rem;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .view-app {
+    max-width: 6.75rem;
   }
 
   ::ng-deep .metadata-table {
@@ -65,6 +74,10 @@
     .button {
       width: 100%;
     }
+
+    .view-app {
+      max-width: 100%;
+    }
   }
 
   @media (min-width: 1100px) {
@@ -79,12 +92,8 @@
       flex-direction: row;
     }
 
-    .downloads {
-      width: 9.75rem;
-    }
-
     .view-app {
-      width: 8.75rem;
+      max-width: 6.75rem;
     }
   }
 }

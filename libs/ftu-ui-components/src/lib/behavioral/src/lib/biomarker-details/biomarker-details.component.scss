@@ -27,23 +27,39 @@
   }
 
   &.no-data-full-screen-grid {
-    grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: 'empty';
 
     ftu-empty-biomarker {
       padding-top: 0;
     }
+
+    ::ng-deep ftu-empty-biomarker .footer {
+      display: flex;
+      justify-content: end;
+      border-top: 0.0625rem solid vars.$outline;
+
+      .collaborate-button {
+        width: auto !important;
+      }
+    }
+
+    .absolute-toggle {
+      visibility: hidden;
+    }
   }
 
   &.no-data-sources {
     grid-template-areas:
       'headline headline'
-      'empty empty'
-      'source-list source-list' !important;
+      'empty empty' !important;
 
     .biomarker-header {
       height: 4rem;
+    }
+
+    .source-list {
+      display: none;
     }
 
     ftu-empty-biomarker {

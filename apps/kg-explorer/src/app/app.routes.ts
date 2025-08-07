@@ -1,4 +1,4 @@
-import { Route } from '@angular/router';
+import { ActivatedRouteSnapshot, Route } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
@@ -6,7 +6,7 @@ import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/serv
 import { TableColumn } from '@hra-ui/design-system/table';
 
 import { KnowledgeGraphObjectsDataSchema } from './digital-objects.schema';
-import { MainPageComponent } from './pages/main-page/main-page.component';
+import { DO_INFO, MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
 
 /** Digital objects api */
@@ -21,11 +21,12 @@ const columns: TableColumn[] = [
       type: 'menu',
       icon: 'download',
       options: 'downloadOptions',
+      tooltip: 'View file formats and download files',
     },
   },
   {
     column: 'title',
-    label: 'Digital Objects',
+    label: 'Digital objects',
     type: {
       type: 'link',
       urlColumn: 'objectUrl',
@@ -35,12 +36,20 @@ const columns: TableColumn[] = [
   {
     column: 'typeIcon',
     label: 'Type',
-    type: 'icon',
+    type: {
+      type: 'icon',
+      icon: 'typeIcon',
+      tooltip: 'typeTooltip',
+    },
   },
   {
     column: 'organIcon',
     label: 'Organ',
-    type: 'icon',
+    type: {
+      type: 'icon',
+      icon: 'organIcon',
+      tooltip: 'organTooltip',
+    },
   },
   {
     column: 'cellCount',
@@ -73,6 +82,18 @@ const metadataColumns: TableColumn[] = [
   },
 ];
 
+/** Help menu options interface */
+export interface HelpMenuOptions {
+  /** Option label */
+  label: string;
+  /** Option url */
+  url: string;
+  /** Optional description for option */
+  description?: string;
+  /** If the option should have a divider (on top) */
+  divider?: boolean;
+}
+
 /** Application routes */
 export const appRoutes: Route[] = [
   {
@@ -80,11 +101,11 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: MainPageComponent,
     data: {
+      reuse: true,
       crumbs: [
         { name: 'Apps', route: 'https://apps.humanatlas.io/' },
         { name: 'Knowledge Graph' },
       ] satisfies BreadcrumbItem[],
-      helpUrl: 'https://docs.humanatlas.io/apps',
       columns: columns,
     },
     resolve: {
@@ -96,10 +117,13 @@ export const appRoutes: Route[] = [
     component: MetadataPageComponent,
     data: {
       columns: metadataColumns,
-      helpUrl: 'https://docs.humanatlas.io/apps',
     },
     resolve: {
       doData: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
+      documentationUrl: (route: ActivatedRouteSnapshot) => {
+        const type = route.params['type'];
+        return DO_INFO[type].documentationUrl;
+      },
     },
   },
 

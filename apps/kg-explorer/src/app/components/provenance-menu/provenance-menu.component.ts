@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MenuOptionsType, TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 import { DownloadService } from '../../services/download.service';
 import { VersionSelectorComponent } from '../version-selector/version-selector.component';
@@ -12,7 +13,14 @@ import { VersionSelectorComponent } from '../version-selector/version-selector.c
  */
 @Component({
   selector: 'hra-provenance-menu',
-  imports: [MatIconModule, MatMenuModule, VersionSelectorComponent, ButtonsModule, TableComponent],
+  imports: [
+    MatIconModule,
+    MatMenuModule,
+    VersionSelectorComponent,
+    ButtonsModule,
+    TableComponent,
+    PlainTooltipDirective,
+  ],
   templateUrl: './provenance-menu.component.html',
   styleUrl: './provenance-menu.component.scss',
 })
