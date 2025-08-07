@@ -31,3 +31,7 @@
     }
   }
 }
+
+::ng-deep .mdc-button.mat-mdc-button.mat-accent {
+  @include utils.use-font(label, medium);
+}
