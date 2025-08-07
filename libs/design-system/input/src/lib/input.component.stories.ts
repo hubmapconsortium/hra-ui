@@ -79,6 +79,11 @@ export const RequiredInputWithValidation: Story = {
       emailFormControl: new FormControl('', [Validators.email, Validators.required]),
     },
     template: `
+    <style>
+        mat-error {
+          font-family: 'Metropolis';
+        }
+      </style>
       <mat-form-field>
         <mat-label>Input</mat-label>
         <input type="email" matInput [formControl]="emailFormControl" placeholder="Enter email">
