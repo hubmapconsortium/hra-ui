@@ -57,6 +57,7 @@
     "@turf/bbox": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@vivjs/layers": "^0.16.1",
+    "analytics": "^0.8.18",
     "angular-material-css-vars": "^8.0.0",
     "axios": "^1.8.1",
     "bootstrap": "^5.3.0",
