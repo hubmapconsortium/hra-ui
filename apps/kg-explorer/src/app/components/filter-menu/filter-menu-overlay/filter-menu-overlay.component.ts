@@ -1,5 +1,15 @@
 import { ConnectedPosition } from '@angular/cdk/overlay';
-import { ChangeDetectionStrategy, Component, effect, inject, input, OnInit, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
@@ -55,15 +65,29 @@ export class FilterMenuOverlayComponent implements OnInit {
   /** Filter category containing options and other data */
   readonly filterOptionCategory = input.required<FilterOptionCategory>();
 
-  /** Initially selected filter IDs */
-  readonly initialFilters = input<string[] | undefined>();
+  /** Currently selected filter IDs */
+  readonly currentFilters = input<string[] | undefined>();
 
-  /** Current selected options */
+  /** Currently selected options */
   readonly selectedOptions = signal<FilterOption[]>([]);
-  /** Filtered options */
-  readonly filteredOptions = signal<FilterOption[]>([]);
+
   /** Displayed chip options */
   readonly chips = signal([] as FilterOption[]);
+
+  /** Current search bar value */
+  readonly searchValue = signal<string>('');
+
+  /** Filtered options (after typing in search bar) */
+  readonly filteredOptions = computed(() => {
+    if (this.searchValue() !== '') {
+      return (
+        this.filterOptionCategory().options?.filter((option) =>
+          option.label.toLowerCase().includes(this.searchValue().toLowerCase()),
+        ) || []
+      );
+    }
+    return this.filterOptionCategory().options;
+  });
 
   /** Tooltip positions array */
   readonly tooltipPositions = signal<ConnectedPosition[]>([
@@ -117,22 +141,19 @@ export class FilterMenuOverlayComponent implements OnInit {
    */
   constructor() {
     effect(() => {
-      const initialFilters =
-        this.filterOptionCategory().options?.filter((option) => this.initialFilters()?.includes(option.id)) || null;
-      this.form().patchValue(initialFilters);
-      this.selectedOptions.set(initialFilters || []);
-    });
-    effect(() => {
-      this.filteredOptions.set(this.filterOptionCategory().options || []);
+      const selectedFilterOptions =
+        this.filterOptionCategory().options?.filter((option) => this.currentFilters()?.includes(option.id)) || []; //filter options remaining with current filters applied
+      this.selectedOptions.set(selectedFilterOptions); //set the currently selected options to the filtered options
+      this.form().patchValue(this.selectedOptions());
     });
 
-    this.searchControl.valueChanges.subscribe((result) => {
-      this.onSearchChange(result);
+    this.searchControl.valueChanges.subscribe(() => {
+      this.searchValue.set(this.searchControl.value);
     });
   }
 
   /**
-   * Syncs chips with the form control
+   * Set up syncing chips with the form control
    */
   ngOnInit() {
     const syncChips = (value: FilterOption[] | null) => {
@@ -183,17 +204,5 @@ export class FilterMenuOverlayComponent implements OnInit {
     if (url) {
       window.open(url, '_blank');
     }
-  }
-
-  /**
-   * Filters the options when user types in a search term
-   * @param searchTerm current search term
-   */
-  private onSearchChange(searchTerm: string): void {
-    this.filteredOptions.set(
-      (this.filterOptionCategory().options || []).filter((row) =>
-        Object.values(row).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase())),
-      ),
-    );
   }
 }

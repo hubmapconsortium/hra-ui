@@ -17,42 +17,42 @@
     <hra-filter-menu-overlay
       [form]="form.controls.digitalObjects"
       [filterOptionCategory]="filterCategories()[0]"
-      [initialFilters]="currentFilters()?.digitalObjects"
+      [currentFilters]="currentFilters()?.digitalObjects"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.releaseVersion"
       [filterOptionCategory]="filterCategories()[1]"
-      [initialFilters]="currentFilters()?.releaseVersion"
+      [currentFilters]="currentFilters()?.releaseVersion"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.organs"
       [filterOptionCategory]="filterCategories()[2]"
-      [initialFilters]="currentFilters()?.organs"
+      [currentFilters]="currentFilters()?.organs"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.anatomicalStructures"
       [filterOptionCategory]="filterCategories()[3]"
-      [initialFilters]="currentFilters()?.anatomicalStructures"
+      [currentFilters]="currentFilters()?.anatomicalStructures"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.cellTypes"
       [filterOptionCategory]="filterCategories()[4]"
-      [initialFilters]="currentFilters()?.cellTypes"
+      [currentFilters]="currentFilters()?.cellTypes"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
     <hra-filter-menu-overlay
       [form]="form.controls.biomarkers"
       [filterOptionCategory]="filterCategories()[5]"
-      [initialFilters]="currentFilters()?.biomarkers"
+      [currentFilters]="currentFilters()?.biomarkers"
       (filterChanged)="formChanges.emit(form.controls)"
     />
     <mat-divider />
