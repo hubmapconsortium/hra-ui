@@ -78,7 +78,7 @@
 /* As per https://fontsource.org/docs/getting-started/material-symbols */
 .material-symbols-outlined,
 .material-symbols-rounded {
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
   font-size: 24px;
   display: inline-block;
@@ -88,6 +88,7 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
 .material-symbols-outlined {
@@ -96,11 +97,6 @@
 
 .material-symbols-rounded {
   font-family: "Material Symbols Rounded Variable";
-}
-
-.material-symbols-filled, .material-symbols-outlined,
-.material-symbols-rounded {
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 20;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
