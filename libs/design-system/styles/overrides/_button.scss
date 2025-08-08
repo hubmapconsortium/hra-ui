@@ -107,7 +107,11 @@
       }
 
       &:disabled {
-        background-color: utils.with-alpha(vars.$outline-variant, 38%);
+        background-color: utils.with-alpha(vars.$tertiary, 38%);
+        @include mat.button-overrides(
+        (
+          text-disabled-label-text-color: utils.with-alpha(vars.$on-primary, 38%),
+        ));
       }
 
       &:hover:not(:active):not(:disabled) {
