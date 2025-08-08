@@ -15,7 +15,7 @@ import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
 import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
-import { getOrganIcon, getOrganId, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
+import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
 
 /** Empty metadata object */
 const EMPTY_METADATA: DigitalObjectMetadata = {
@@ -165,7 +165,7 @@ export class MetadataPageComponent {
           for (const organId of pageItem.organIds || []) {
             tags.push({
               id: organId,
-              label: sentenceCase(ontologyData.nodes[getOrganId(pageItem)].label || ''),
+              label: sentenceCase(ontologyData.nodes[organId].label || ''),
               type: 'organs',
             });
           }
