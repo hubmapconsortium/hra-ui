@@ -1225,10 +1225,10 @@ html .option-text {
   padding: 0.5rem 0;
 }
 html .option-text .option-name {
-  font: var(--mat-sys-label-medium-font);
+  font: var(--mat-sys-label-medium);
 }
 html .option-text .option-description {
-  font: var(--mat-sys-label-small-font);
+  font: var(--mat-sys-label-small);
   color: var(--mat-sys-primary);
 }
 html .table-menu {
