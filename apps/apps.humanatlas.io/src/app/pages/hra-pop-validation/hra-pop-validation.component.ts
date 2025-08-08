@@ -11,8 +11,15 @@ import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 import { ConfigSelectorComponent } from './components/config-selector/config-selector.component';
 import { DataService } from './service/data.service';
 import { VisualizationSpec } from 'vega-embed';
-import { getAnatomicalBarGraphSpec } from './utils/visualization';
-import { DataType, DATA_TYPE_CONFIGS, Y_AXIS_OPTIONS, SORT_OPTIONS, XAxisOption } from './utils/data-type-config';
+import { getBarGraphSpec } from './utils/visualization';
+import {
+  DataType,
+  DATA_TYPE_CONFIGS,
+  Y_AXIS_OPTIONS,
+  SORT_OPTIONS,
+  XAxisOption,
+  getToolDisplayName,
+} from './utils/data-type-config';
 
 type AllDataTypes = ParsedAnatomicalData | ParsedExtractionSiteData | ParsedDatasetCellData;
 
@@ -42,8 +49,6 @@ export class HraPopValidationComponent {
   readonly selectedSort = signal<'totalCellCount' | 'alphabetical'>('totalCellCount');
   readonly availableTools = signal<string[]>([]);
   readonly vegaSpecs = signal<VisualizationSpec[]>([]);
-  readonly chartPairs = signal<{ tool: string; maleChart?: VisualizationSpec; femaleChart?: VisualizationSpec }[]>([]);
-  readonly showPairedLayout = signal<boolean>(false);
   readonly loading = signal<boolean>(false);
   readonly error = signal<string | null>(null);
 
@@ -196,7 +201,10 @@ export class HraPopValidationComponent {
       return;
     }
 
-    let filtered = this.allData().filter((d) => d.organ === organ && (tools.length ? tools.includes(d.tool) : true));
+    // Filter data by organ, tools, and sexes - all at once
+    let filtered = this.allData().filter(
+      (d) => d.organ === organ && (tools.length ? tools.includes(d.tool) : true) && sexes.includes(d.sex),
+    );
 
     if (filtered.length === 0) {
       this.vegaSpecs.set([]);
@@ -211,95 +219,21 @@ export class HraPopValidationComponent {
       }));
     }
 
-    const availableTools = tools.length ? tools : [...new Set(filtered.map((d) => d.tool))];
-    const specs: VisualizationSpec[] = [];
-    const chartPairs: { tool: string; maleChart?: VisualizationSpec; femaleChart?: VisualizationSpec }[] = [];
+    const toolNames = tools.length ? tools.map((t) => getToolDisplayName(t)).join(', ') : 'All Tools';
+    const sexNames = sexes.join(' & ');
+    const title = `${config.label} - ${toolNames} - ${sexNames}`;
 
-    // Determine if we should use paired layout
-    const bothSexesSelected = sexes.includes('Male') && sexes.includes('Female');
-    let shouldUsePairedLayout = bothSexesSelected;
-
-    // Check if both sexes actually have data for any tool
-    if (bothSexesSelected) {
-      shouldUsePairedLayout = availableTools.some((tool) => {
-        const toolData = filtered.filter((d) => d.tool === tool);
-        const hasMaleData = toolData.some((d) => d.sex === 'Male');
-        const hasFemaleData = toolData.some((d) => d.sex === 'Female');
-        return hasMaleData && hasFemaleData;
-      });
-    }
-
-    this.showPairedLayout.set(shouldUsePairedLayout);
-
-    if (shouldUsePairedLayout) {
-      // Paired layout: Male and Female side by side for each tool
-      availableTools.forEach((tool) => {
-        const toolData = filtered.filter((d) => d.tool === tool);
-        if (toolData.length === 0) {
-          return;
-        }
-
-        const pair: { tool: string; maleChart?: VisualizationSpec; femaleChart?: VisualizationSpec } = { tool };
-
-        // Create chart for each selected sex for this tool
-        sexes.forEach((sex) => {
-          const sexData = toolData.filter((d) => d.sex === sex);
-          if (sexData.length === 0) {
-            return;
-          }
-
-          const spec = getAnatomicalBarGraphSpec({
-            graphTitle: `${sex} - ${tool.charAt(0).toUpperCase() + tool.slice(1)} - ${config.label}`,
-            values: sexData,
-            xField: xAxisOption.field,
-            yField: yField,
-            toolFilter: [tool],
-            sexFilter: sex as 'Male' | 'Female',
-            sortBy: sortBy,
-            order: 'descending',
-          });
-
-          if (sex === 'Male') {
-            pair.maleChart = spec;
-          } else {
-            pair.femaleChart = spec;
-          }
-        });
-
-        chartPairs.push(pair);
-      });
-    } else {
-      // Grid layout: All charts can sit side by side
-      availableTools.forEach((tool) => {
-        const toolData = filtered.filter((d) => d.tool === tool);
-        if (toolData.length === 0) {
-          return;
-        }
-
-        sexes.forEach((sex) => {
-          const sexData = toolData.filter((d) => d.sex === sex);
-          if (sexData.length === 0) {
-            return;
-          }
-
-          const spec = getAnatomicalBarGraphSpec({
-            graphTitle: `${sex} - ${tool.charAt(0).toUpperCase() + tool.slice(1)} - ${config.label}`,
-            values: sexData,
-            xField: xAxisOption.field,
-            yField: yField,
-            toolFilter: [tool],
-            sexFilter: sex as 'Male' | 'Female',
-            sortBy: sortBy,
-            order: 'descending',
-          });
-
-          specs.push(spec);
-        });
-      });
-    }
-
-    this.vegaSpecs.set(specs);
-    this.chartPairs.set(chartPairs);
+    const spec = getBarGraphSpec({
+      graphTitle: title,
+      values: filtered,
+      xField: xAxisOption.field,
+      yField: yField,
+      toolFilter: tools,
+      sexFilter: 'Both',
+      sortBy: sortBy,
+      order: 'descending',
+    });
+    this.vegaSpecs.set([spec]);
   }
 
   // Event handlers

@@ -57,40 +57,13 @@
                 <p>{{ err }}</p>
               </div>
             } @else {
-              <!-- Charts - Dynamic Layout Based on Selection -->
+              <!-- Charts - Single Row/Column Facet Chart -->
               <div class="graphs">
-                @if (
-                  (!showPairedLayout() && vegaSpecs().length === 0) || (showPairedLayout() && chartPairs().length === 0)
-                ) {
+                @if (vegaSpecs().length === 0) {
                   <div class="no-data">
                     <p>No data available for the selected filters.</p>
                   </div>
-                }
-
-                <!-- Paired layout: Male/Female side by side per tool -->
-                @if (showPairedLayout() && chartPairs().length > 0) {
-                  <div class="chart-pairs-container">
-                    @for (pair of chartPairs(); track pair) {
-                      <div class="chart-pair-row">
-                        <div class="chart-pair">
-                          @if (pair.maleChart) {
-                            <div class="chart-item">
-                              <hra-bar-graph [spec]="pair.maleChart"></hra-bar-graph>
-                            </div>
-                          }
-                          @if (pair.femaleChart) {
-                            <div class="chart-item">
-                              <hra-bar-graph [spec]="pair.femaleChart"></hra-bar-graph>
-                            </div>
-                          }
-                        </div>
-                      </div>
-                    }
-                  </div>
-                }
-
-                <!-- Grid layout: All charts side by side -->
-                @if (!showPairedLayout() && vegaSpecs().length > 0) {
+                } @else {
                   <div class="charts-grid">
                     @for (spec of vegaSpecs(); track spec) {
                       <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
