@@ -737,7 +737,7 @@ html {
   --mat-text-button-state-layer-color: var(--mat-sys-on-tertiary-fixed);
 }
 html {
-  --mdc-text-button-disabled-label-text-color: rgb(from var(--mat-sys-secondary) r g b/38%);
+  --mdc-text-button-disabled-label-text-color: rgb(from var(--mat-sys-tertiary) r g b/38%);
 }
 html {
   --mat-text-button-ripple-color: rgb(from var(--mat-sys-secondary) r g b/8%);
@@ -810,6 +810,9 @@ html [mat-button].hra-button-variant-secondary:not(.hra-cta-button) {
 html [mat-button].hra-button-variant-secondary:not(.hra-cta-button) {
   --mat-text-button-state-layer-color: var(--mat-sys-secondary);
 }
+html [mat-button].hra-button-variant-secondary:not(.hra-cta-button) {
+  --mdc-text-button-disabled-label-text-color: rgb(from var(--mat-sys-secondary) r g b/38%);
+}
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
   /* Order of path: bottom left -> top left -> top right -> bottom right y-axis -> bottom right x-axis */
 }
@@ -839,7 +842,10 @@ html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) .mat-ripple 
   clip-path: polygon(0 100%, 0 0, 100% 0%, 100% calc(100% - 0.8125rem), calc(100% - 0.9375rem) 100%);
 }
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):disabled {
-  background-color: rgb(from var(--mat-sys-outline-variant) r g b/38%);
+  background-color: rgb(from var(--mat-sys-tertiary) r g b/38%);
+}
+html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):disabled {
+  --mdc-text-button-disabled-label-text-color: rgb(from var(--mat-sys-on-primary) r g b/38%);
 }
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):hover:not(:active):not(:disabled):before {
   content: "";
@@ -874,7 +880,7 @@ html [mat-button]:focus-visible {
 html [mat-button]:focus-visible {
   --mdc-text-button-label-text-color: var(--mat-sys-secondary);
 }
-html [mat-button] mat-icon {
+html [mat-button] mat-icon.mat-icon {
   width: 1.5rem;
   height: 1.5rem;
   font-size: 1.5rem;
@@ -892,9 +898,20 @@ html [mat-flat-button]:focus-visible {
 html [mat-flat-button]:focus-visible {
   --mat-filled-button-focus-state-layer-opacity: 0;
 }
+html [mat-flat-button]:disabled {
+  background-color: rgb(from var(--mat-sys-tertiary) r g b/38%);
+}
+html [mat-flat-button]:disabled {
+  --mdc-filled-button-disabled-label-text-color: rgb(from var(--mat-sys-on-primary) r g b/38%);
+}
 html [mat-flat-button].hra-button-size-medium {
   font: var(--mat-sys-label-medium);
   letter-spacing: var(--mat-sys-label-medium-tracking);
+}
+html [mat-flat-button] mat-icon.mat-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.5rem;
 }
 html [mat-fab][extended] {
   filter: drop-shadow(0 0.0625rem 0.5rem rgb(from var(--mat-sys-on-background) r g b/30%)), drop-shadow(0 0.25rem 0.5rem 0.1875rem rgb(from var(--mat-sys-on-background) r g b/15%));
