@@ -6,8 +6,9 @@ import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/serv
 import { TableColumn } from '@hra-ui/design-system/table';
 
 import { KnowledgeGraphObjectsDataSchema } from './digital-objects.schema';
-import { DO_INFO, MainPageComponent } from './pages/main-page/main-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
+import { getDocumentationUrl, getProductTooltip } from './utils/utils';
 
 /** Digital objects api */
 const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
@@ -122,11 +123,11 @@ export const appRoutes: Route[] = [
       doData: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
       documentationUrl: (route: ActivatedRouteSnapshot) => {
         const type = route.params['type'];
-        return DO_INFO[type].documentationUrl;
+        return getDocumentationUrl(type);
       },
       typeLabel: (route: ActivatedRouteSnapshot) => {
         const type = route.params['type'];
-        return DO_INFO[type].label;
+        return getProductTooltip(type);
       },
     },
   },
