@@ -3,11 +3,20 @@
 @use '../../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
-  --mdc-dialog-container-color: white;
   display: block;
-  min-width: 20rem;
-  max-width: 29.5rem;
-  background: vars.$surface-container-low;
+
+  @include mat.dialog-overrides(
+    (
+      actions-padding: 1.5rem 1rem 1rem 1rem,
+      container-elevation-shadow: utils.with-alpha(vars.$on-surface, 24%),
+      container-max-width: 29.5rem,
+      container-min-width: 20rem,
+      container-shape: 0,
+      content-padding: 16px 16px 16px 24px,
+      headline-padding: 0 0 0 24px,
+      container-color: vars.$surface-container-low,
+    )
+  );
 
   &:has(.action) {
     @include mat.dialog-overrides(
@@ -40,7 +49,6 @@
   }
 
   .mat-mdc-dialog-content {
-    padding: 0 1rem 0 1.5rem;
     @include utils.use-font(label, large);
     color: vars.$primary;
 
@@ -50,23 +58,12 @@
       )
     );
   }
-
-  .mat-mdc-dialog-actions {
-    padding: 1.5rem 1rem 1rem 1rem;
-    min-height: auto;
-  }
 }
 
 ::ng-deep {
   .hra-dialog-panel {
     .mat-mdc-dialog-surface {
-      --mdc-dialog-container-color: vars.$on-primary;
-      --mdc-dialog-container-shape: 0;
       border-radius: 0.5rem;
     }
-  }
-
-  .mat-mdc-dialog-container {
-    box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$on-surface, 24%);
   }
 }

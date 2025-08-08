@@ -83,6 +83,10 @@ export const AdvancedTooltip: Story = {
       `tag {
         background: black;
       }`,
+      `::ng-deep .mdc-button.mat-mdc-button.mat-accent {
+          font-family: var(--mat-sys-label-medium-font);
+        }
+      `,
     ],
     template: `
         <hra-rich-tooltip-container #content class="container">
