@@ -67,9 +67,18 @@ export const Basic: StoryObj<CommonButtonArgs & WithVariant & WithSize> = {
   }),
 };
 
-export const FlatRound: StoryObj<CommonButtonArgs> = {
+export const FlatRound: StoryObj<CommonButtonArgs & WithSize> = {
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['medium', 'large'],
+    },
+  },
+  args: {
+    size: 'medium',
+  },
   render: (args) => ({
-    template: `<button mat-flat-button disabled="${args.disabled}">
+    template: `<button mat-flat-button hraButtonSize="${args.size}" disabled="${args.disabled}">
       Click me!
       <mat-icon>download</mat-icon>
     </button>`,

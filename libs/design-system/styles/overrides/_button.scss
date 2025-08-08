@@ -109,9 +109,10 @@
       &:disabled {
         background-color: utils.with-alpha(vars.$tertiary, 38%);
         @include mat.button-overrides(
-        (
-          text-disabled-label-text-color: utils.with-alpha(vars.$on-primary, 38%),
-        ));
+          (
+            text-disabled-label-text-color: utils.with-alpha(vars.$on-primary, 38%),
+          )
+        );
       }
 
       &:hover:not(:active):not(:disabled) {
@@ -156,10 +157,11 @@
       @include utils.inset-outline(vars.$tertiary);
     }
 
-    mat-icon {
-      width: 1.5rem !important;
-      height: 1.5rem !important;
-      font-size: 1.5rem !important;
+    mat-icon.mat-icon {
+      // when we upgrade to angular 20, check if icon button overrides work here
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
     }
   }
 
@@ -176,8 +178,24 @@
       @include utils.inset-outline(vars.$tertiary);
     }
 
+    &:disabled {
+      background-color: utils.with-alpha(vars.$tertiary, 38%);
+      @include mat.button-overrides(
+        (
+          filled-disabled-label-text-color: utils.with-alpha(vars.$on-primary, 38%),
+        )
+      );
+    }
+
     &.hra-button-size-medium {
       @include utils.use-font(label, medium);
+    }
+
+    mat-icon.mat-icon {
+      // when we upgrade to angular 20, check if icon button overrides work here
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
     }
   }
 
