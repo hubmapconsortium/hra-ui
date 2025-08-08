@@ -64,7 +64,7 @@
     padding: 0 0.5rem;
   }
 
-  .option::before {
+  .option:focus::before {
     background-color: inherit;
   }
 
