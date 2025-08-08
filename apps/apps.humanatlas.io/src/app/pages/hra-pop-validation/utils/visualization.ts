@@ -16,121 +16,22 @@ export interface AnatomicalBarGraphSpecOptions {
   order: 'ascending' | 'descending';
   widthStep?: number;
   height?: number;
-  // Add parameter for consistent global cell type ordering
-  globalTopCellTypes?: string[];
 }
 
-// Predefined color palette for top 14 cell types (ordered by priority)
-const PREDEFINED_COLORS = [
-  '#95CBCF',
-  '#E5A8B2',
-  '#8498AD',
-  '#B0F7EA',
-  '#898AB4',
-  '#D6B6D7',
-  '#59678E',
-  '#D6E8F8',
-  '#C8DFBE',
-  '#FFE9C8',
-  'FFC8BC',
-  '#AEA7C1',
-  '#ACB4D2',
-  '#FBC6D2',
-];
-
-const OTHERS_COLOR = '#FCFCFC'; // Gray for "Others" category
-
-// Function to calculate global top cell types (to be called once in the main component)
-export function calculateGlobalTopCellTypes(
-  allValues: Record<string, any>[],
-  yField: 'cellCount' | 'cellPercentage',
-): string[] {
-  // Calculate total counts for each cell type across ALL data
-  const cellTypeTotals = new Map<string, number>();
-
-  allValues.forEach((item) => {
-    const cellType = item['cellLabel'];
-    const count = Number(item[yField]) || 0;
-    cellTypeTotals.set(cellType, (cellTypeTotals.get(cellType) || 0) + count);
-  });
-
-  // Sort cell types by total count (descending) - most to least
-  const sortedCellTypes = Array.from(cellTypeTotals.entries())
-    .sort(([, a], [, b]) => b - a)
-    .map(([cellType]) => cellType);
-
-  return sortedCellTypes;
-}
-
-// Function to process data and assign colors using global top cell types
-function processDataWithGlobalTopCellTypes(values: Record<string, any>[], globalTopCellTypes?: string[]) {
-  // If no global top cell types provided, calculate locally (fallback)
-  if (!globalTopCellTypes) {
-    // Calculate local totals as fallback
-    const cellTypeTotals = new Map<string, number>();
-    values.forEach((item) => {
-      const cellType = item['cellLabel'];
-      const count = Number(item['cellCount']) || 0;
-      cellTypeTotals.set(cellType, (cellTypeTotals.get(cellType) || 0) + count);
-    });
-
-    globalTopCellTypes = Array.from(cellTypeTotals.entries())
-      .sort(([, a], [, b]) => b - a)
-      .map(([cellType]) => cellType);
-  }
-
-  // Get top 14 cell types from global list
-  const topCellTypes = globalTopCellTypes.slice(0, PREDEFINED_COLORS.length);
-  const otherCellTypes = globalTopCellTypes.slice(PREDEFINED_COLORS.length);
-
-  // Create color mapping
-  const colorMapping = new Map<string, string>();
-  topCellTypes.forEach((cellType, index) => {
-    colorMapping.set(cellType, PREDEFINED_COLORS[index]);
-  });
-
-  // Add Others color
-  if (otherCellTypes.length > 0) {
-    colorMapping.set('Others', OTHERS_COLOR);
-  }
-
-  // Transform data: group non-top cell types as "Others"
-  const transformedData = values.map((item) => ({
-    ...item,
-    originalCellLabel: item['cellLabel'], // Keep original for tooltip
-    cellLabel: topCellTypes.includes(item['cellLabel']) ? item['cellLabel'] : 'Others',
-  }));
-
-  // Create final color arrays for Vega-Lite
-  const finalCellTypes = [...topCellTypes];
-  if (otherCellTypes.length > 0) {
-    finalCellTypes.push('Others');
-  }
-
-  const finalColors = finalCellTypes.map((cellType) => colorMapping.get(cellType) ?? 'gray');
-
-  return {
-    transformedData,
-    cellTypes: finalCellTypes,
-    colors: finalColors,
-    otherCellTypesCount: otherCellTypes.length,
+// Tool name formatting for display
+function formatToolName(tool: string): string {
+  const toolDisplayNames: Record<string, string> = {
+    azimuth: 'Azimuth',
+    celltypist: 'CellTypist',
+    popv: 'popV',
+    sc_proteomics: 'Sc-proteomics',
   };
+  return toolDisplayNames[tool] || tool.charAt(0).toUpperCase() + tool.slice(1);
 }
 
-export function getAnatomicalBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): VisualizationSpec {
-  const {
-    graphTitle,
-    values,
-    xField,
-    yField,
-    sortBy,
-    order,
-    toolFilter,
-    sexFilter,
-    widthStep = 60,
-    height = 400,
-    globalTopCellTypes,
-  } = opts;
+// Main function using row/column faceting - rows=tools, columns=sex, independent scales per tool
+export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): VisualizationSpec {
+  const { graphTitle, values, xField, yField, sortBy, order, toolFilter, widthStep = 70, height = 400 } = opts;
 
   if (!values || values.length === 0) {
     return {
@@ -143,17 +44,17 @@ export function getAnatomicalBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): 
     };
   }
 
-  const filters: any[] = [];
+  // Format tool names for better display
+  const transformedValues = values.map((item) => ({
+    ...item,
+    toolFormatted: formatToolName(item['tool']),
+  }));
 
+  const filters: any[] = [];
   if (toolFilter && toolFilter.length > 0) {
     filters.push({ field: 'tool', oneOf: toolFilter });
   }
 
-  if (sexFilter && sexFilter !== 'Both') {
-    filters.push({ field: 'sex', equal: sexFilter });
-  }
-
-  // Dynamic axis title based on field
   const getAxisTitle = (field: string) => {
     switch (field) {
       case 'anatomicalStructureLabel':
@@ -171,114 +72,143 @@ export function getAnatomicalBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): 
     }
   };
 
-  // Configure sorting based on sortBy option
   const getSortConfig = (): any => {
     if (sortBy === 'alphabetical') {
-      return {
-        field: xField,
-        order: 'ascending', // Always ascending for alphabetical (A-Z)
-      };
-    } else if (sortBy === 'totalCellCount') {
-      // Default to totalCellCount (sum of yField)
-      return {
-        field: yField,
-        op: 'sum',
-        order: order, // Use the provided order (typically descending for counts)
-      };
+      return { field: xField, order: 'ascending' };
     }
+    return { field: yField, op: 'sum', order: order };
   };
-
-  // Process data with global top cell types for consistent coloring
-  const { transformedData, cellTypes, colors, otherCellTypesCount } = processDataWithGlobalTopCellTypes(
-    values,
-    globalTopCellTypes,
-  );
-
-  // Create global color sorting order based on globalTopCellTypes
-  const globalColorSortOrder = globalTopCellTypes
-    ? [
-        ...globalTopCellTypes.slice(0, PREDEFINED_COLORS.length),
-        ...(globalTopCellTypes.length > PREDEFINED_COLORS.length ? ['Others'] : []),
-      ]
-    : cellTypes;
 
   const spec: VisualizationSpec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     title: {
       text: graphTitle,
       font: 'Metropolis',
-      fontSize: 14,
-      fontWeight: 500,
+      fontSize: 16,
+      fontWeight: 600,
       anchor: 'start',
       offset: 20,
     },
-    width: { step: widthStep },
-    height,
-    data: {
-      values: transformedData,
-    },
+    data: { values: transformedValues },
     transform: filters.length > 0 ? [{ filter: { and: filters } }] : [],
-    mark: {
-      type: 'bar',
-      tooltip: true,
+    padding: { top: 100, bottom: 100, left: 50, right: 50 },
+
+    // ROWS = Annotation Tools, COLUMNS = Sex
+    facet: {
+      row: {
+        field: 'toolFormatted',
+        type: 'nominal',
+        header: {
+          title: 'Annotation Tool',
+          titleFont: 'Metropolis',
+          titleFontSize: 14,
+          titleFontWeight: 600,
+          labelFont: 'Metropolis',
+          labelFontSize: 13,
+          labelFontWeight: 600,
+          labelPadding: 10,
+        },
+      },
+      column: {
+        field: 'sex',
+        type: 'nominal',
+        header: {
+          title: 'Sex',
+          titleFont: 'Metropolis',
+          titleFontSize: 14,
+          titleFontWeight: 600,
+          labelFont: 'Metropolis',
+          labelFontSize: 13,
+          labelFontWeight: 600,
+          labelPadding: 10,
+        },
+      },
     },
-    encoding: {
-      x: {
-        field: xField,
-        type: 'nominal',
-        sort: getSortConfig(),
-        axis: {
-          title: getAxisTitle(xField),
-          labelAngle: -45,
-          labelFont: 'Metropolis',
-          labelFontSize: 14,
-          labelFontWeight: 500,
-          labelLimit: 100,
-        },
+    spacing: { row: 50, column: 100 },
+    resolve: {
+      scale: {
+        y: 'independent', // Each tool (row) gets its own Y scale
+        color: 'shared', // Colors stay consistent across all charts
+        x: 'independent', // Each column can have its own X scale if needed
       },
-      y: {
-        field: yField,
-        type: 'quantitative',
-        aggregate: 'sum',
-        axis: {
-          title: yField === 'cellCount' ? 'Cell Count' : 'Percentage (%)',
-          grid: true,
-          labelAngle: -45,
-          labelFont: 'Metropolis',
-          labelFontSize: 14,
-          labelFontWeight: 500,
-          labelLimit: 100,
+    },
+
+    //spec for each individual facet
+    spec: {
+      width: { step: widthStep },
+      height,
+      mark: { type: 'bar', tooltip: true },
+      encoding: {
+        x: {
+          field: xField,
+          type: 'nominal',
+          sort: getSortConfig(),
+          axis: {
+            title: getAxisTitle(xField),
+            labelAngle: -45,
+            labelFont: 'Metropolis',
+            labelFontSize: 10,
+            labelFontWeight: 400,
+            labelLimit: 100,
+            labelPadding: 8,
+            titlePadding: 20,
+          },
         },
-      },
-      color: {
-        field: 'cellLabel',
-        type: 'nominal',
-        legend: {
-          title: `Cell Type${otherCellTypesCount > 0 ? ` (Others: ${otherCellTypesCount} types)` : ''}`,
-          orient: 'right',
-          symbolLimit: 20,
-          clipHeight: 40,
-          columns: 2,
-        },
-        scale: {
-          domain: cellTypes,
-          range: colors,
-        },
-        sort: globalColorSortOrder,
-      },
-      tooltip: [
-        { field: xField, type: 'nominal', title: getAxisTitle(xField) },
-        { field: 'originalCellLabel', type: 'nominal', title: 'Original Cell Type' },
-        { field: 'cellLabel', type: 'nominal', title: 'Display Category' },
-        {
+
+        y: {
           field: yField,
           type: 'quantitative',
-          title: yField === 'cellCount' ? 'Cell Count' : 'Percentage',
-          format: ',.2f',
+          aggregate: 'sum',
+          axis: {
+            title: yField === 'cellCount' ? 'Cell Count' : 'Percentage (%)',
+            titleFont: 'Metropolis',
+            titleFontSize: 11,
+            titleFontWeight: 500,
+            grid: true,
+            labelFont: 'Metropolis',
+            labelFontSize: 10,
+            labelFontWeight: 400,
+            tickCount: 6,
+            labelPadding: 8,
+            titlePadding: 20,
+          },
         },
-        { field: 'tool', type: 'nominal', title: 'Tool' },
-        { field: 'sex', type: 'nominal', title: 'Sex' },
-      ],
+        color: {
+          field: 'cellLabel',
+          type: 'nominal',
+          legend: {
+            title: 'Cell Type',
+            titleFont: 'Metropolis',
+            titleFontSize: 12,
+            titleFontWeight: 600,
+            labelFont: 'Metropolis',
+            labelFontSize: 11,
+            labelLimit: 120,
+            rowPadding: 32,
+            columnPadding: 32,
+            symbolSize: 110,
+            orient: 'right',
+            columns: 2,
+            symbolLimit: 20,
+          },
+          scale: {
+            scheme: 'set3',
+          },
+        },
+
+        tooltip: [
+          { field: xField, type: 'nominal', title: getAxisTitle(xField) },
+          { field: 'cellLabel', type: 'nominal', title: 'Cell Type' },
+          {
+            field: yField,
+            type: 'quantitative',
+            title: yField === 'cellCount' ? 'Cell Count' : 'Percentage (%)',
+            format: ',.2f',
+          },
+          { field: 'toolFormatted', type: 'nominal', title: 'Annotation Tool' },
+          { field: 'sex', type: 'nominal', title: 'Sex' },
+        ],
+      },
     },
   };
 
