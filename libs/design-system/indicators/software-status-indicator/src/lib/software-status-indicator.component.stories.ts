@@ -5,7 +5,7 @@ import { SoftwareStatusIndicatorComponent } from './software-status-indicator.co
 
 const meta: Meta<SoftwareStatusIndicatorComponent> = {
   component: SoftwareStatusIndicatorComponent,
-  title: 'SoftwareStatusIndicatorComponent',
+  title: 'Design System/Indicators/Software Status Indicator',
   decorators: [
     applicationConfig({
       providers: [provideDesignSystem()],

@@ -1,23 +1,19 @@
-import { MatIconModule } from '@angular/material/icon';
-import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-
-import { provideDesignSystem } from './providers';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { IconComponent } from './icon.component';
 
 const meta: Meta = {
-  title: 'MaterialSymbols',
+  title: 'Design System/Icons',
   decorators: [
-    applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
     moduleMetadata({
-      imports: [MatIconModule],
+      imports: [IconComponent],
     }),
   ],
 };
+
 export default meta;
 type Story = StoryObj;
 
-export const BuiltinSymbols: Story = {
+export const FontIcons: Story = {
   args: {
     name: 'search',
   },
@@ -29,40 +25,39 @@ export const BuiltinSymbols: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<mat-icon>${args['name']}</mat-icon>`,
+    template: `<hra-icon [fontIcon]="name"></hra-icon>`,
   }),
 };
 
-export const CustomSymbols: Story = {
+export const MiscIcons: Story = {
   args: {
-    name: 'social:github',
+    name: 'misc:biomarker',
   },
   argTypes: {
     name: {
       control: 'select',
       options: [
-        'upload',
-        'settings_alert',
-        'social:github',
-        'social:facebook',
-        'social:instagram',
-        'social:linkedin',
-        'social:x',
-        'social:youtube',
+        'misc:biomarker',
+        'misc:cell-type',
+        'misc:contribute',
+        'misc:data',
+        'misc:experts',
+        'misc:explore',
+        'misc:publications',
+        'misc:training',
       ],
+      description: 'Icon name',
     },
   },
   render: (args) => ({
     props: args,
-    template: `<mat-icon svgIcon=${args['name']}></mat-icon>`,
+    template: `<hra-icon [svgIcon]="name"></hra-icon>`,
   }),
 };
 
 export const OrganIcons: Story = {
   args: {
-    name: 'organ:all_organs',
-    color: 'black',
-    size: 4,
+    name: 'organ:bladder',
   },
   argTypes: {
     name: {
@@ -113,25 +108,66 @@ export const OrganIcons: Story = {
         'organ:palatine_tonsil',
         'organ:trachea',
       ],
-    },
-    color: {
-      control: 'select',
-      options: ['black', 'red', 'blue', 'green'],
-    },
-    size: {
-      control: 'select',
-      options: [2, 4, 6],
+      description: 'Icon name',
     },
   },
   render: (args) => ({
     props: args,
-    template: `<mat-icon svgIcon=${args['name']}></mat-icon>`,
-    styles: [
-      `mat-icon {
-        --mat-icon-color: ${args['color']};
-        height: ${args['size']}rem;
-        width: ${args['size']}rem;
-      }`,
-    ],
+    template: `<hra-icon [svgIcon]="name"></hra-icon>`,
+  }),
+};
+
+export const ProductIcons: Story = {
+  args: {
+    name: 'product:cde',
+  },
+  argTypes: {
+    name: {
+      control: 'select',
+      options: [
+        'product:cde',
+        'product:ftu',
+        'product:eui',
+        'product:organ-gallery',
+        'product:cell-population',
+        'product:tissue-origin-pr',
+        'product:dashboard',
+        'product:cell-population',
+        'product:3d-organ',
+        'product:asctb-reporter',
+        'product:web-components',
+        'product:api',
+      ],
+      description: 'Icon name',
+    },
+  },
+  render: (args) => ({
+    props: args,
+    template: `<hra-icon [svgIcon]="name"></hra-icon>`,
+  }),
+};
+
+export const SocialIcons: Story = {
+  args: {
+    name: 'social:linkedin',
+  },
+  argTypes: {
+    name: {
+      control: 'select',
+      options: [
+        'social:linkedin',
+        'social:youtube',
+        'social:instagram',
+        'social:facebook',
+        'social:github',
+        'social:bluesky',
+        'social:x',
+      ],
+      description: 'Icon name',
+    },
+  },
+  render: (args) => ({
+    props: args,
+    template: `<hra-icon [svgIcon]="name"></hra-icon>`,
   }),
 };
