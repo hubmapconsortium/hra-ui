@@ -439,13 +439,9 @@ export class MainPageComponent {
    * @returns Filtered results
    */
   private filterSearchFormResults(currentResults: TableRow[]): TableRow[] {
-    return currentResults.filter((row) =>
-      Object.values(row).some((value) =>
-        String(value)
-          .toLowerCase()
-          .includes((this.filters().searchTerm ?? '').toLowerCase()),
-      ),
-    );
+    return currentResults.filter((row) => {
+      return (row['title'] as string).toLowerCase().includes((this.filters().searchTerm ?? '').toLowerCase());
+    });
   }
 
   /**
