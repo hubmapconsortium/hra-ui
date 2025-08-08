@@ -70,14 +70,16 @@ export class AppComponent {
   private readonly data = routeData();
 
   /** Breadcrumbs data (computed from above signal). */
-  protected readonly crumbs = computed(
-    () =>
-      this.data()['crumbs'] ?? [
+  protected readonly crumbs = computed(() => {
+    if (this.params().length > 0) {
+      return [
         { name: 'Apps', route: 'https://apps.humanatlas.io/' },
         { name: 'Knowledge Graph', route: '/' },
         { name: this.pageTitle() },
-      ],
-  );
+      ];
+    }
+    return [{ name: 'Apps', route: 'https://apps.humanatlas.io/' }, { name: 'Knowledge Graph' }];
+  });
 
   /** Menu options to display in the help menu on the header */
   readonly helpMenuOptions = signal<HelpMenuOptions[] | undefined>(undefined);
@@ -125,11 +127,14 @@ export class AppComponent {
         this.helpMenuOptions.set(a);
       }
     });
+
     this.router.events.subscribe(() => {
       const type = this.route.snapshot.root.firstChild?.params['type'];
       const name = this.route.snapshot.root.firstChild?.params['name'];
       if (type && name) {
         this.params.set([type, name]);
+      } else {
+        this.params.set([]);
       }
     });
 

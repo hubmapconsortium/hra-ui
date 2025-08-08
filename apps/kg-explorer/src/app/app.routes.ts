@@ -1,5 +1,4 @@
 import { ActivatedRouteSnapshot, Route } from '@angular/router';
-import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
@@ -103,10 +102,6 @@ export const appRoutes: Route[] = [
     component: MainPageComponent,
     data: {
       reuse: true,
-      crumbs: [
-        { name: 'Apps', route: 'https://apps.humanatlas.io/' },
-        { name: 'Knowledge Graph' },
-      ] satisfies BreadcrumbItem[],
       columns: columns,
     },
     resolve: {
