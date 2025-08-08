@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HraKgService, V1Service } from '@hra-api/ng-client';
+import { HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
@@ -139,8 +139,9 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   ovary: 'ovaries',
   skeleton: 'spinal-cord',
   'urinary bladder': 'bladder',
-  // 'lymph vasculature': '',
+  'lymph vasculature': 'lymph-nodes',
   'spinal cord': 'spinal-cord',
+  'thoracic thymus': 'thymus',
   ureter: 'ureter-left',
 };
 
@@ -352,6 +353,9 @@ export class MainPageComponent {
   /** Id of digital object to download */
   readonly downloadId = signal<string | undefined>(undefined);
 
+  /** Ontology model containing organ info */
+  readonly ontologyModel = signal<OntologyTree | undefined>(undefined);
+
   /**
    * Sets the initial filters according to query params
    * Sets filtered rows to all rows on init
@@ -388,9 +392,12 @@ export class MainPageComponent {
     });
 
     toObservable(this.data).subscribe((items) => {
-      const objectData = this.resolveData(items['@graph']);
-      this.allRows.set(objectData);
-      this.setVersionCounts(items['@graph']);
+      this.v1.ontologyTreeModel({}).subscribe((data) => {
+        this.ontologyModel.set(data);
+        const objectData = this.resolveData(items['@graph']);
+        this.allRows.set(objectData);
+        this.setVersionCounts(items['@graph']);
+      });
     });
 
     this.filterCategories.set(
@@ -474,7 +481,7 @@ export class MainPageComponent {
   private calculateCount(filterOption: string, category: string): number {
     return this.allRows().filter((row) => {
       if (Array.isArray(row[category])) {
-        return row[category].some((value) => String(value).toLowerCase().includes(filterOption));
+        return row[category].some((value) => String(value).toLowerCase().includes(filterOption.toLowerCase()));
       }
       return row[category] === filterOption;
     }).length;
@@ -535,8 +542,8 @@ export class MainPageComponent {
             .map((organOption) => {
               return {
                 id: organOption,
-                label: organOption,
-                count: this.calculateCount(organOption, 'organs'),
+                label: sentenceCase(this.ontologyModel()?.nodes[organOption]?.label || ''),
+                count: this.calculateCount(organOption, 'organIds'),
               };
             })
             .sort((o1, o2) => o1.label.localeCompare(o2.label)),
@@ -658,7 +665,7 @@ export class MainPageComponent {
       return currentResults;
     }
     return currentResults.filter((row) =>
-      ((row['organs'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
+      ((row['organIds'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
     );
   }
 
@@ -689,7 +696,7 @@ export class MainPageComponent {
     this.allRows().forEach((row) => {
       const type = row['doType'];
       objectFilterOptions.add(type as string);
-      const organs = row['organs'] as string[];
+      const organs = row['organIds'] as string[];
       if (organs) {
         for (const organ of organs) {
           organFilterOptions.add(organ);
@@ -709,13 +716,14 @@ export class MainPageComponent {
    */
   private resolveData(data: DigitalObjectData[]): TableRow[] {
     return data.map((item) => {
-      const organ = item.organs && item.organs.length === 1 ? item.organs[0] : undefined;
+      const organId = item.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
+      const organ = this.ontologyModel()?.nodes[organId]?.label;
       return {
         id: item.lod,
         purl: item.purl,
         doType: item.doType,
         doVersion: item.doVersion,
-        organs: item.organs,
+        organIds: item.organIds,
         title: item.title,
         objectUrl: `${item.doType}/${item.doName}/latest`,
         typeIcon: 'product:' + DO_INFO[item.doType].icon,
