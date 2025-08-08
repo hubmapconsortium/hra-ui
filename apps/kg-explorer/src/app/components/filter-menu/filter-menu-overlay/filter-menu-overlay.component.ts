@@ -1,3 +1,4 @@
+import { ConnectedPosition } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, effect, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -64,6 +65,50 @@ export class FilterMenuOverlayComponent implements OnInit {
   /** Displayed chip options */
   readonly chips = signal([] as FilterOption[]);
 
+  /** Tooltip positions array */
+  readonly tooltipPositions = signal<ConnectedPosition[]>([
+    {
+      originX: 'center',
+      originY: 'bottom',
+      overlayX: 'center',
+      overlayY: 'top',
+      offsetX: 283,
+      offsetY: -40,
+    },
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'top',
+    },
+    {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top',
+    },
+    {
+      originX: 'center',
+      originY: 'top',
+      overlayX: 'center',
+      overlayY: 'bottom',
+      offsetX: 283,
+      offsetY: 40,
+    },
+    {
+      originX: 'end',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'bottom',
+    },
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'end',
+      overlayY: 'bottom',
+    },
+  ]);
+
   /** Emits when filter selection is changed */
   readonly filterChanged = output();
 
@@ -75,6 +120,7 @@ export class FilterMenuOverlayComponent implements OnInit {
       const initialFilters =
         this.filterOptionCategory().options?.filter((option) => this.initialFilters()?.includes(option.id)) || null;
       this.form().patchValue(initialFilters);
+      this.selectedOptions.set(initialFilters || []);
     });
     effect(() => {
       this.filteredOptions.set(this.filterOptionCategory().options || []);
@@ -108,8 +154,8 @@ export class FilterMenuOverlayComponent implements OnInit {
       this.remove(option);
     } else {
       options.push(option);
+      this.selectedOptions.set(options);
     }
-    this.selectedOptions.set(options);
     this.form().patchValue(this.selectedOptions());
     this.filterChanged.emit();
   }

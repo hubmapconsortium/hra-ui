@@ -1,7 +1,8 @@
 import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Directive, effect, ElementRef, inject, input, output, ViewContainerRef } from '@angular/core';
+import { computed, Directive, effect, ElementRef, inject, input, output, ViewContainerRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 import { RichTooltipContainerComponent } from './content/rich-tooltip-content.component';
 import { RichTooltipController } from './rich-tooltip.types';
 
@@ -11,7 +12,7 @@ import { RichTooltipController } from './rich-tooltip.types';
 const VIEWPORT_MARGIN = 8;
 
 /**
- * Positions array for the rich tooltip
+ * Default positions array
  */
 const POSITIONS: ConnectedPosition[] = [
   {
@@ -87,6 +88,11 @@ export class RichTooltipDirective implements RichTooltipController {
   readonly actionText = input<string>('', { alias: 'hraRichTooltipActionText' });
 
   /**
+   * Positions array for the rich tooltip
+   */
+  readonly positions = input<ConnectedPosition[]>(POSITIONS, { alias: 'hraRichTooltipPositions' });
+
+  /**
    * Action Click Output Emitter for the rich tooltip
    * - Not required to be subscribed to if using the custom content variant
    */
@@ -110,13 +116,15 @@ export class RichTooltipDirective implements RichTooltipController {
   /**
    * Position strategy for the rich tooltip
    */
-  private readonly positionStrategy = this.overlay
-    .position()
-    .flexibleConnectedTo(this.elementRef)
-    .withFlexibleDimensions(true)
-    .withGrowAfterOpen(true)
-    .withPositions(POSITIONS)
-    .withViewportMargin(VIEWPORT_MARGIN);
+  private readonly positionStrategy = computed(() => {
+    return this.overlay
+      .position()
+      .flexibleConnectedTo(this.elementRef)
+      .withFlexibleDimensions(true)
+      .withGrowAfterOpen(true)
+      .withPositions(this.positions())
+      .withViewportMargin(VIEWPORT_MARGIN);
+  });
 
   /**
    * Reference variable for the overlay
@@ -124,7 +132,7 @@ export class RichTooltipDirective implements RichTooltipController {
   private readonly overlayRef = this.overlay.create({
     disposeOnNavigation: true,
     hasBackdrop: false,
-    positionStrategy: this.positionStrategy,
+    positionStrategy: this.positionStrategy(),
     scrollStrategy: this.overlay.scrollStrategies.reposition(),
   });
 
@@ -152,6 +160,10 @@ export class RichTooltipDirective implements RichTooltipController {
         this.container = ref.instance;
         onCleanup(() => ref.destroy());
       }
+    });
+
+    effect(() => {
+      this.overlayRef.updatePositionStrategy(this.positionStrategy());
     });
 
     this.overlayRef
