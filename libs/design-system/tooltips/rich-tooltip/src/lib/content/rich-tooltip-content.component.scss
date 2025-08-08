@@ -25,5 +25,9 @@
 
   .actions {
     padding: 0 0.5rem 0.25rem 0.5rem;
+
+    button {
+      @include utils.use-font(label, medium);
+    }
   }
 }
