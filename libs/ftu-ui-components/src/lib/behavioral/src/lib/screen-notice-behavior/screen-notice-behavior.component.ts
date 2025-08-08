@@ -37,10 +37,14 @@ export class ScreenNoticeBehaviorComponent implements OnInit {
 
   /** Opens the screen notice dialog using the DialogService */
   private openScreenNoticeDialog(): void {
-    this.dialogRef = this.dialogService.openNotice('Screen Size Notice', this.content(), {
-      label: 'Human Reference Atlas Portal',
-      callback: () => this.navigateToPortal(),
-    });
+    this.dialogRef = this.dialogService.openNotice(
+      'Screen Size Notice',
+      this.content() || 'Please use a larger screen for the best experience.',
+      {
+        label: 'Human Reference Atlas Portal',
+        callback: () => this.navigateToPortal(),
+      },
+    );
 
     // Handle dialog close
     this.dialogRef.afterClosed().subscribe(() => {

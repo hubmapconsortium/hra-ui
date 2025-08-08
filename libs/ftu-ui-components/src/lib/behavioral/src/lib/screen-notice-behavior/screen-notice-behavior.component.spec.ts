@@ -41,7 +41,7 @@ describe('ScreenNoticeBehaviorComponent', () => {
     const { instance } = await shallow.render();
 
     expect(mockDialogService.openNotice).toHaveBeenCalledWith('Screen Size Notice', 'Test content', {
-      label: 'Go to HRA Portal',
+      label: 'Human Reference Atlas Portal',
       callback: expect.any(Function),
     });
   });
@@ -55,7 +55,7 @@ describe('ScreenNoticeBehaviorComponent', () => {
       'Screen Size Notice',
       'Please use a larger screen for the best experience.',
       {
-        label: 'Go to HRA Portal',
+        label: 'Human Reference Atlas Portal',
         callback: expect.any(Function),
       },
     );
