@@ -12,6 +12,7 @@ import {
   SecondaryButtonVariantDirective,
 } from '@hra-ui/design-system/buttons/button';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
+import { CheckboxErrorVariantDirective } from '@hra-ui/design-system/buttons/checkbox';
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
@@ -33,6 +34,7 @@ const REEXPORTS = [
   SecondaryButtonVariantDirective,
   SocialMediaButtonComponent,
   TextHyperlinkDirective,
+  CheckboxErrorVariantDirective,
 ];
 
 /** Packages up subpackage angular exports for easier use */
