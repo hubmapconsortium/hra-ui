@@ -7,7 +7,7 @@ import { TableColumn } from '@hra-ui/design-system/table';
 import { KnowledgeGraphObjectsDataSchema } from './digital-objects.schema';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
-import { getDocumentationUrl, getProductTooltip } from './utils/utils';
+import { getDocumentationUrl, getProductLabel } from './utils/utils';
 
 /** Digital objects api */
 const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
@@ -122,7 +122,7 @@ export const appRoutes: Route[] = [
       },
       typeLabel: (route: ActivatedRouteSnapshot) => {
         const type = route.params['type'];
-        return getProductTooltip(type);
+        return getProductLabel(type);
       },
     },
   },
