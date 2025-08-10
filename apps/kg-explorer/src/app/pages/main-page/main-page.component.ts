@@ -584,6 +584,6 @@ export class MainPageComponent {
    * @returns viewport height
    */
   private setScrollViewportHeight(): void {
-    this.scrollHeight.set(window.innerHeight - 299);
+    this.scrollHeight.set(window.innerHeight - (this.isSmallScreen() ? 259 : 299));
   }
 }

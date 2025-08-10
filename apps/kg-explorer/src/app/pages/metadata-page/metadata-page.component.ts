@@ -16,6 +16,7 @@ import { ProvenanceMenuComponent } from '../../components/provenance-menu/proven
 import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
 import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
+import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 
 /** Empty metadata object */
 const EMPTY_METADATA: DigitalObjectMetadata = {
@@ -59,7 +60,14 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
  */
 @Component({
   selector: 'hra-metadata-page',
-  imports: [PageSectionComponent, MetadataLayoutModule, MarkdownComponent, ProvenanceMenuComponent, MatChipsModule],
+  imports: [
+    PageSectionComponent,
+    MetadataLayoutModule,
+    MarkdownComponent,
+    ProvenanceMenuComponent,
+    MatChipsModule,
+    FooterComponent,
+  ],
   templateUrl: './metadata-page.component.html',
   styleUrl: './metadata-page.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

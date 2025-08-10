@@ -10,9 +10,11 @@ import { APP_ASSETS_HREF, HraCommonModule, parseUrl } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconsModule } from '@hra-ui/design-system/icons';
+import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { MarkdownModule } from 'ngx-markdown';
+import { NgScrollbar } from 'ngx-scrollbar';
 import { parse } from 'papaparse';
 
 import {
@@ -163,6 +165,7 @@ export class NumericRowElementDirective {
     PlainTooltipDirective,
     IconsModule,
     ButtonsModule,
+    FooterComponent,
   ],
   host: {
     '[class]': '"hra-table-style-" + style()',
@@ -171,6 +174,9 @@ export class NumericRowElementDirective {
   },
 })
 export class TableComponent<T = TableRow> {
+  /** Scrollbar ref */
+  readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
+
   /** CSV URL input */
   readonly csvUrl = input<string>();
 
@@ -191,6 +197,9 @@ export class TableComponent<T = TableRow> {
 
   /** Enable row selection with checkboxes */
   readonly enableRowSelection = input<boolean>(false);
+
+  /** Whether to display the footer at the bottom of the scroll viewport */
+  readonly footerInTable = input<boolean>(false);
 
   /** Emits when selection changes */
   readonly selectionChange = output<T[]>();
@@ -343,5 +352,10 @@ export class TableComponent<T = TableRow> {
   /** Emits the id of a row when its download button its clicked */
   downloadClick(id: string | number | boolean | (string | number | boolean)[]) {
     this.downloadClicked.emit(id as string);
+  }
+
+  /** Scrolls to top of the table */
+  scrollToTop() {
+    this.scrollbar().scrollTo({ top: 0, duration: 0 });
   }
 }
