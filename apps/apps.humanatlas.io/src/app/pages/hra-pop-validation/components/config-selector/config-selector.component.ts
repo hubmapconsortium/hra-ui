@@ -12,6 +12,8 @@ import {
   XAxisOption,
   YAxisOption,
   SortOption,
+  YAxisValue,
+  SortValue,
   getToolDisplayName,
 } from '../../utils/data-type-config';
 
@@ -38,8 +40,8 @@ export class ConfigSelectorComponent {
   readonly selectedTools = model.required<string[]>();
   readonly selectedSexes = model.required<string[]>();
   readonly selectedXAxis = model.required<string>();
-  readonly selectedYAxis = model.required<'cellCount' | 'cellPercentage'>();
-  readonly selectedSort = model.required<'totalCellCount' | 'alphabetical'>();
+  readonly selectedYAxis = model.required<YAxisValue>();
+  readonly selectedSort = model.required<SortValue>();
 
   readonly allTools = ['azimuth', 'celltypist', 'popv', 'sc_proteomics'];
   readonly availableSexes = ['Male', 'Female'];

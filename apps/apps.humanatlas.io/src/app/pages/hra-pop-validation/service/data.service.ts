@@ -26,6 +26,7 @@ export interface ApiEndpointsConfig {
   extractionSiteDetailsUrl: string;
 }
 
+// InjectionToken for configurable API endpoints
 export const API_ENDPOINTS_CONFIG = new InjectionToken<ApiEndpointsConfig>('api.endpoints.config', {
   providedIn: 'root',
   factory: () => ({

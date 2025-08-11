@@ -5,9 +5,6 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatIconModule } from '@angular/material/icon';
-import { ParsedAnatomicalData } from './utils/models/anatomical-data.model';
-import { ParsedExtractionSiteData } from './utils/models/extraction-site-data.model';
-import { ParsedDatasetCellData } from './utils/models/dataset-cell-data.model';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 import { ConfigSelectorComponent } from './components/config-selector/config-selector.component';
 import { DataService } from './service/data.service';
@@ -19,6 +16,8 @@ import {
   Y_AXIS_OPTIONS,
   SORT_OPTIONS,
   XAxisOption,
+  YAxisValue,
+  SortValue,
   getToolDisplayName,
 } from './utils/data-type-config';
 
@@ -42,8 +41,8 @@ export class HraPopValidationComponent {
   readonly selectedSexes = signal<string[]>(['Male', 'Female']);
   readonly xAxisOptions = signal<XAxisOption[]>([]);
   readonly selectedXAxis = signal<string>('');
-  readonly selectedYAxis = signal<'cellCount' | 'cellPercentage'>('cellCount');
-  readonly selectedSort = signal<'totalCellCount' | 'alphabetical'>('totalCellCount');
+  readonly selectedYAxis = signal<YAxisValue>('cellCount');
+  readonly selectedSort = signal<SortValue>('totalCellCount');
   readonly availableTools = signal<string[]>([]);
   readonly vegaSpecs = signal<VisualizationSpec[]>([]);
 
