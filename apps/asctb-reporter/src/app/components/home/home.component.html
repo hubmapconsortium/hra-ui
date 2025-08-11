@@ -1,5 +1,5 @@
 <div class="splash-header">
-  <img class="splash-img" src="assets/images/splash.png" alt="Splash Image" />
+  <img class="splash-img" [src]="'assets/images/splash.png' | assetUrl" alt="Splash Image" />
   <div class="splash-content">
     <hra-icon class="icon" [svgIcon]="'product:asctb-reporter'"></hra-icon>
     <div class="title">Create and visualize Human Reference Atlas Data</div>
