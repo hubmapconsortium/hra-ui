@@ -1171,6 +1171,21 @@ html {
   --mdc-outlined-text-field-disabled-label-text-color: rgb(from var(--mat-sys-on-surface) r g b/38%);
 }
 html {
+  --mat-form-field-subscript-text-font: var(--mat-sys-label-medium-font);
+}
+html {
+  --mat-form-field-subscript-text-line-height: var(--mat-sys-label-medium-line-height);
+}
+html {
+  --mat-form-field-subscript-text-size: var(--mat-sys-label-medium-size);
+}
+html {
+  --mat-form-field-subscript-text-tracking: var(--mat-sys-label-medium-tracking);
+}
+html {
+  --mat-form-field-subscript-text-weight: var(--mat-sys-label-medium-weight);
+}
+html {
   --mat-menu-container-shape: 0.5rem;
 }
 html {
