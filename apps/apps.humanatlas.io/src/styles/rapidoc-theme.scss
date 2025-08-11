@@ -305,7 +305,7 @@ rapi-doc::part(btn-outline) {
         border-bottom: 0.0625rem solid vars.$outline-variant;
         box-shadow: none;
 
-        .summary {
+        .summary > .title {
           display: none;
         }
 
