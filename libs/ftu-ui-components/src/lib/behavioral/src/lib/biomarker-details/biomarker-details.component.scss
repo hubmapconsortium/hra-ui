@@ -6,7 +6,7 @@
   border-left: 0.0625rem solid vars.$outline;
   display: grid;
   grid-template-columns: 17.75rem 1fr;
-  grid-template-rows: 4rem 1fr 1fr;
+  grid-template-rows: 4rem auto 1fr;
   grid-template-areas:
     'headline legend-area'
     'table table'
@@ -20,7 +20,7 @@
 
   &.full-screen-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: 4rem 1fr;
+    grid-template-rows: 4rem auto;
     grid-template-areas:
       'legend-area'
       'table';
@@ -68,7 +68,7 @@
   }
 
   &.no-data {
-    grid-template-rows: 4rem 1fr;
+    grid-template-rows: 4rem auto;
     grid-template-areas:
       'headline headline'
       'empty empty';
