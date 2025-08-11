@@ -193,21 +193,22 @@ rapi-doc::part(btn-outline) {
       /* colors based on request type */
       --bg-post: #c8dfbe;
       --bg-get: #d6e8f8;
-
+      border-top: 1px solid vars.$outline-variant;
       background: vars.$on-primary;
 
       & > div.m-markdown {
-        font-weight: 400;
-        font-size: 1.125rem;
-        line-height: 1.6875rem;
-        letter-spacing: 0rem;
-        vertical-align: middle;
-        padding-top: 1rem;
-        padding-right: 1.75rem;
-        padding-bottom: 1rem;
-        padding-left: 1.75rem;
+        padding: 0 !important;
         p {
           margin: 0;
+          font-weight: 400;
+          font-size: 1.125rem;
+          line-height: 1.6875rem;
+          letter-spacing: 0rem;
+          vertical-align: middle;
+          padding-top: 1rem;
+          padding-right: 1.75rem;
+          padding-bottom: 1rem !important;
+          padding-left: 1.75rem;
         }
       }
 
@@ -305,8 +306,14 @@ rapi-doc::part(btn-outline) {
         border-bottom: 0.0625rem solid vars.$outline-variant;
         box-shadow: none;
 
-        .summary > .title {
-          display: none;
+        .summary {
+          .title {
+            display: none;
+          }
+          .m-markdown pre {
+            border: 1px solid vars.$outline-variant;
+            border-radius: 4px;
+          }
         }
 
         .req-resp-container {
