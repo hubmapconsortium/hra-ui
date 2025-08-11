@@ -70,20 +70,25 @@ export class AppComponent {
   private readonly data = routeData();
 
   /** Breadcrumbs data (computed from above signal). */
-  protected readonly crumbs = computed(
-    () =>
-      this.data()['crumbs'] ?? [
+  protected readonly crumbs = computed(() => {
+    if (this.params().length > 0) {
+      return [
         { name: 'Apps', route: 'https://apps.humanatlas.io/' },
         { name: 'Knowledge Graph', route: '/' },
         { name: this.pageTitle() },
-      ],
-  );
+      ];
+    }
+    return [{ name: 'Apps', route: 'https://apps.humanatlas.io/' }, { name: 'Knowledge Graph' }];
+  });
 
   /** Menu options to display in the help menu on the header */
   readonly helpMenuOptions = signal<HelpMenuOptions[] | undefined>(undefined);
 
   /** Url linking to documentation for an object type */
   protected readonly documentationUrl = computed<string>(() => this.data()['documentationUrl']);
+
+  /** DO type label */
+  protected readonly typeLabel = computed<string>(() => this.data()['typeLabel']);
 
   /** Extra option containing the digital object type documentation on the metadata page help menu */
   protected readonly extraMenuOption = signal<HelpMenuOptions | undefined>({ label: '', url: '' });
@@ -94,17 +99,17 @@ export class AppComponent {
   /** Route params used to calculate objectLod */
   readonly params = signal<string[]>([]);
 
-  /** Lod of digital object computed from params */
-  readonly objectLod = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
+  /** Id of digital object computed from params */
+  readonly objectId = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
 
   /**
    * Gets the page title for breadcrumbs
    */
   constructor() {
     effect(() => {
-      if (this.pageTitle() && this.documentationUrl()) {
+      if (this.typeLabel() && this.documentationUrl()) {
         this.extraMenuOption.set({
-          label: this.pageTitle(),
+          label: this.typeLabel(),
           url: this.documentationUrl(),
           description: 'Data documentation for this digital object type',
         });
@@ -122,18 +127,20 @@ export class AppComponent {
         this.helpMenuOptions.set(a);
       }
     });
+
     this.router.events.subscribe(() => {
       const type = this.route.snapshot.root.firstChild?.params['type'];
       const name = this.route.snapshot.root.firstChild?.params['name'];
-      const version = this.route.snapshot.root.firstChild?.params['version'];
-      if (type && name && version) {
-        this.params.set([type, name, version]);
+      if (type && name) {
+        this.params.set([type, name]);
+      } else {
+        this.params.set([]);
       }
     });
 
-    toObservable(this.objectLod).subscribe((lod) => {
+    toObservable(this.objectId).subscribe((id) => {
       this.kg.digitalObjects().subscribe((data) => {
-        const match = data['@graph']?.find((object) => object.lod === lod);
+        const match = data['@graph']?.find((object) => object['@id'] === id);
         this.pageTitle.set(match?.title || '');
       });
     });

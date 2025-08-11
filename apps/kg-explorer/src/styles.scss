@@ -1,7 +1,31 @@
+@use '@angular/material' as mat;
+@use 'vars';
 @use 'light-theme';
 @use 'theming';
 @use 'utils';
 
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
+  @include mat.chips-overrides(
+    (
+      outline-color: vars.$outline-variant,
+      label-text-color: vars.$on-primary-fixed,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: vars.$label-medium-line-height,
+      label-text-size: vars.$label-medium-size,
+      label-text-tracking: vars.$label-medium-tracking,
+      label-text-weight: vars.$label-medium-weight,
+    )
+  );
+}
+
+mat-chip {
+  max-width: calc(100% - 0.5rem) !important;
+}
+
+.mat-mdc-standard-chip .mdc-evolution-chip__cell--primary,
+.mat-mdc-standard-chip .mdc-evolution-chip__action--primary,
+.mat-mdc-standard-chip .mat-mdc-chip-action-label {
+  overflow: hidden !important;
+  cursor: pointer;
 }
