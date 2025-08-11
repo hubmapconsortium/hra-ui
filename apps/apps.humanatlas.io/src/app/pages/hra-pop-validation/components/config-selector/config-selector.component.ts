@@ -44,14 +44,6 @@ export class ConfigSelectorComponent {
   readonly allTools = ['azimuth', 'celltypist', 'popv', 'sc_proteomics'];
   readonly availableSexes = ['Male', 'Female'];
 
-  onDataTypeChange(dataType: DataType): void {
-    this.selectedDataType.set(dataType);
-  }
-
-  onOrganChange(organ: string): void {
-    this.selectedOrgan.set(organ);
-  }
-
   onToolChange(tool: string, checked: boolean): void {
     const currentTools = this.selectedTools();
     if (checked) {
@@ -68,18 +60,6 @@ export class ConfigSelectorComponent {
     } else {
       this.selectedSexes.set(currentSexes.filter((s) => s !== sex));
     }
-  }
-
-  onXAxisChange(xAxis: string): void {
-    this.selectedXAxis.set(xAxis);
-  }
-
-  onYAxisChange(yAxis: 'cellCount' | 'cellPercentage'): void {
-    this.selectedYAxis.set(yAxis);
-  }
-
-  onSortChange(sort: 'totalCellCount' | 'alphabetical'): void {
-    this.selectedSort.set(sort);
   }
 
   // Helper method to check if a tool is available (has data)

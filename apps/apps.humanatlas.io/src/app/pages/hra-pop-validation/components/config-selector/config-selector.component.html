@@ -7,7 +7,11 @@
       <h1>Organ dataset</h1>
       <mat-form-field subscriptSizing="dynamic">
         <mat-label>Organ</mat-label>
-        <mat-select [value]="selectedOrgan()" (selectionChange)="onOrganChange($event.value)" [disabled]="loading()">
+        <mat-select
+          [value]="selectedOrgan()"
+          (selectionChange)="selectedOrgan.set($event.value)"
+          [disabled]="loading()"
+        >
           @for (organ of organOptions(); track organ) {
             <mat-option [value]="organ">{{ organ | titlecase }}</mat-option>
           }
@@ -20,7 +24,7 @@
       <h1>Data Type</h1>
       <mat-form-field subscriptSizing="dynamic">
         <mat-label>Data Type</mat-label>
-        <mat-select [value]="selectedDataType()" (selectionChange)="onDataTypeChange($event.value)">
+        <mat-select [value]="selectedDataType()" (selectionChange)="selectedDataType.set($event.value)">
           @for (config of dataTypeOptions(); track config.key) {
             <mat-option [value]="config.key">{{ config.label }}</mat-option>
           }
@@ -33,7 +37,7 @@
       <h1>Sort</h1>
       <mat-form-field subscriptSizing="dynamic">
         <mat-label>Sort By</mat-label>
-        <mat-select [value]="selectedSort()" (selectionChange)="onSortChange($event.value)" [disabled]="loading()">
+        <mat-select [value]="selectedSort()" (selectionChange)="selectedSort.set($event.value)" [disabled]="loading()">
           @for (option of sortOptions(); track option.value) {
             <mat-option [value]="option.value">{{ option.label }}</mat-option>
           }
@@ -49,7 +53,7 @@
       <h1>X axis</h1>
       <mat-button-toggle-group
         [value]="selectedXAxis()"
-        (change)="onXAxisChange($event.value)"
+        (change)="selectedXAxis.set($event.value)"
         [disabled]="loading()"
         hraButtonToggleSize="medium"
         class="toggle-group"
@@ -67,7 +71,7 @@
       <h1>Y axis</h1>
       <mat-button-toggle-group
         [value]="selectedYAxis()"
-        (change)="onYAxisChange($event.value)"
+        (change)="selectedYAxis.set($event.value)"
         [disabled]="loading()"
         hraButtonToggleSize="medium"
         class="toggle-group"
