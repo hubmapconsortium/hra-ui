@@ -9,7 +9,8 @@
             <a hraHyperlink [routerLink]="crumb.route">{{ crumb.name }}</a>
           }
         } @else {
-          {{ crumb.name }}
+          <span>{{ crumb.name }}</span>
+          <div class="text-position-helper"></div>
         }
 
         @if (!$last) {

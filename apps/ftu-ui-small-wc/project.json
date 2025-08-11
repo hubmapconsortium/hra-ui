@@ -13,25 +13,43 @@
     "build": {
       "executor": "@nx/angular:application",
       "options": {
-        "assets": ["apps/ftu-ui-small-wc/src/favicon.png", "apps/ftu-ui-small-wc/src/assets"],
-        "styles": ["apps/ftu-ui-small-wc/src/styles.scss", "apps/ftu-ui-small-wc/src/assets/fonts/fonts.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
-        },
+        "assets": [
+          "apps/ftu-ui-small-wc/src/favicon.png",
+          "apps/ftu-ui-small-wc/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "polyfills": ["zone.js"]
       },
       "configurations": {
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ftu-ui-small-wc/src/environments/environment.ts",
+              "with": "apps/ftu-ui-small-wc/src/environments/environment.stage.ts"
+            }
+          ]
+        },
         "production": {
           "budgets": [
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1.5mb"
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4.5kb"
+              "maximumWarning": "3kb",
+              "maximumError": "5.5kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ftu-ui-small-wc/src/environments/environment.ts",
+              "with": "apps/ftu-ui-small-wc/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -39,6 +57,12 @@
     },
     "serve": {
       "executor": "@nx/angular:dev-server"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/ftu-ui-small-wc/tsconfig.app.json"
+      }
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ftu-ui-small-wc/browser/"

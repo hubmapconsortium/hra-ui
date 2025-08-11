@@ -14,11 +14,8 @@ import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
 import {
   BiomarkerDetailsWcComponent,
-  FooterBehaviorComponent,
-  HraLandingPageIntroWcBehaviourComponent,
   TissueLibraryBehaviorComponent,
-} from '@hra-ui/components/behavioral';
-import { FullscreenContainerComponent, FullscreenContentComponent } from '@hra-ui/components/molecules';
+} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -44,6 +41,7 @@ import {
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
+import { environment } from '../environments/environment';
 
 /** Input property keys */
 type InputProps =
@@ -83,14 +81,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 /** FTU ui small web component */
 @Component({
   selector: 'hra-root',
-  imports: [
-    TissueLibraryBehaviorComponent,
-    HraLandingPageIntroWcBehaviourComponent,
-    BiomarkerDetailsWcComponent,
-    FooterBehaviorComponent,
-    FullscreenContainerComponent,
-    FullscreenContentComponent,
-  ],
+  imports: [TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host: {
@@ -104,8 +95,7 @@ export class AppComponent implements OnInit, OnChanges {
   @Input() selectedIllustration?: string | RawIllustration;
 
   /** Set of all illustrations */
-  @Input() illustrations: string | RawIllustrationsJsonld =
-    'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
+  @Input() illustrations: string | RawIllustrationsJsonld = environment.illustrationsUrl;
 
   /** Cell summaries to display in tables */
   @Input() summaries: string | RawCellSummary = '';

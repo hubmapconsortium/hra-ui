@@ -1,21 +1,50 @@
-/* REPORT */
-.report {
-  border: 0.0625rem solid rgba(245, 159, 61);
-  border-radius: 0.5rem !important;
-  color: black;
-  transition: all 0.3s;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .control-pane-items {
+    height: calc(100vh - 12.1rem);
+    ng-scrollbar {
+      --_scrollbar-content-width: unset;
+    }
+    display: flex;
+    flex-direction: column;
+  }
+
+  ::ng-deep .scroller .ng-scroll-content {
+    width: 100% !important;
+  }
+
+  div[footer] {
+    flex: 1;
+  }
+
+  .report {
+    border: 0.0625rem solid rgba(245, 159, 61);
+    border-radius: 0.5rem !important;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  .report:hover {
+    background-color: rgb(245, 159, 61);
+  }
+
+  a {
+    color: grey;
+  }
+  .arrow-left-button {
+    border-radius: 0.5rem;
+  }
+  .arrow-left-icon {
+    font-weight: bold;
+  }
 }
 
-.report:hover {
-  background-color: rgb(245, 159, 61);
-}
-
-a {
-  color: grey;
-}
-.arrow-left-button {
-  border-radius: 0.5rem;
-}
-.arrow-left-icon {
-  font-weight: bold;
+::ng-deep .header-menu {
+  width: 13.5rem !important;
 }

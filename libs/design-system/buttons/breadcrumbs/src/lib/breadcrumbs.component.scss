@@ -5,22 +5,33 @@
   display: block;
 
   .navigation .crumbs {
+    display: flex;
+    align-items: center;
     list-style-type: none;
-    align-content: center;
     height: 2.5rem;
+    width: 100%;
     margin: 0;
     padding: 0;
     color: vars.$on-primary-fixed;
     @include utils.use-font('label', 'small');
-    display: flex;
-    align-items: center;
+    white-space: nowrap;
 
-    .crumb {
+    .crumb,
+    .icon {
+      display: flex;
+      vertical-align: middle;
+      align-items: center;
+    }
+
+    .text-position-helper {
       display: inline-block;
+      height: 1.5rem;
+      vertical-align: middle;
+    }
 
-      .icon {
-        vertical-align: middle;
-      }
+    .crumb:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

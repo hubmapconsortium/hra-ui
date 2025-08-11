@@ -1,3 +1,4 @@
+import { ConnectedPosition } from '@angular/cdk/overlay';
 import { OutputEmitterRef } from '@angular/core';
 
 /**
@@ -22,6 +23,9 @@ export interface RichTooltipController {
    * @returns Action button text.
    */
   actionText: () => string | undefined;
+
+  /** Signal for positions array to use for the tooltip */
+  positions: () => ConnectedPosition[] | undefined;
 
   /**
    * Output emitter reference for emitting action button click event.

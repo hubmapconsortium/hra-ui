@@ -8,7 +8,7 @@
       // Basic buttons styles
       text-label-text-color: vars.$on-tertiary-fixed,
       text-state-layer-color: vars.$on-tertiary-fixed,
-      text-disabled-label-text-color: utils.with-alpha(vars.$secondary, 38%),
+      text-disabled-label-text-color: utils.with-alpha(vars.$tertiary, 38%),
       text-ripple-color: utils.with-alpha(vars.$secondary, 8%),
       text-container-height: 2.5rem,
       text-container-shape: vars.$corner-extra-small,
@@ -50,11 +50,16 @@
       );
     }
 
+    &.hra-button-size-medium {
+      @include utils.use-font(label, medium);
+    }
+
     &.hra-button-variant-secondary:not(.hra-cta-button) {
       @include mat.button-overrides(
         (
           text-label-text-color: vars.$secondary,
           text-state-layer-color: vars.$secondary,
+          text-disabled-label-text-color: utils.with-alpha(vars.$secondary, 38%),
         )
       );
     }
@@ -102,7 +107,12 @@
       }
 
       &:disabled {
-        background-color: utils.with-alpha(vars.$outline-variant, 38%);
+        background-color: utils.with-alpha(vars.$tertiary, 38%);
+        @include mat.button-overrides(
+          (
+            text-disabled-label-text-color: utils.with-alpha(vars.$on-primary, 38%),
+          )
+        );
       }
 
       &:hover:not(:active):not(:disabled) {
@@ -147,7 +157,8 @@
       @include utils.inset-outline(vars.$tertiary);
     }
 
-    mat-icon {
+    mat-icon.mat-icon {
+      // when we upgrade to angular 20, check if icon button overrides work here
       width: 1.5rem;
       height: 1.5rem;
       font-size: 1.5rem;
@@ -165,6 +176,26 @@
       );
 
       @include utils.inset-outline(vars.$tertiary);
+    }
+
+    &:disabled {
+      background-color: utils.with-alpha(vars.$tertiary, 38%);
+      @include mat.button-overrides(
+        (
+          filled-disabled-label-text-color: utils.with-alpha(vars.$on-primary, 38%),
+        )
+      );
+    }
+
+    &.hra-button-size-medium {
+      @include utils.use-font(label, medium);
+    }
+
+    mat-icon.mat-icon {
+      // when we upgrade to angular 20, check if icon button overrides work here
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
     }
   }
 

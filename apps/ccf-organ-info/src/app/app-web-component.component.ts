@@ -1,11 +1,53 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+
+/** Type for Sex */
+export type Sex = 'Both' | 'Male' | 'Female';
+
+/** Type for Side */
+export type Side = 'Left' | 'Right';
+
+/**
+ * Function to parse value of type Sex
+ * @param value Value to parse
+ * @returns
+ */
+function parseSex(value: unknown): Sex {
+  const str = String(value).trim().toLowerCase();
+  switch (str) {
+    case 'male':
+      return 'Male';
+    case 'female':
+      return 'Female';
+    case 'both':
+      return 'Both';
+    default:
+      return 'Female';
+  }
+}
+
+/**
+ * Function to parse value of type Side
+ * @param value Value to parse
+ * @returns
+ */
+function parseSide(value: unknown): Side {
+  const str = String(value).trim().toLowerCase();
+
+  if (str === 'left') {
+    return 'Left';
+  } else if (str === 'right') {
+    return 'Right';
+  }
+  return 'Left';
+}
 
 /**
  * Parses user supplied data sources
- *
  * @param value Raw data
  * @returns Data sources
  */
@@ -27,7 +69,6 @@ function parseDataSources(value: unknown): string[] {
 
 /**
  * Parses user supplied data as an array of strings
- *
  * @param value Raw data
  * @returns An array of strings
  */
@@ -54,6 +95,7 @@ function parseStringArray(value: unknown): string[] {
 /** Web component */
 @Component({
   selector: 'ccf-root-wc',
+  imports: [AppComponent, NgIf],
   template: `<ccf-root
     *ngIf="initialized"
     (sexChange)="sexChange.emit($event)"
@@ -61,47 +103,34 @@ function parseStringArray(value: unknown): string[] {
     (sideChange)="sideChange.emit($event)"
   ></ccf-root>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Organ iri */
-  @Input() organIri?: string;
+  readonly organIri = input<string>();
   /** Model sex */
-  @Input() sex?: 'Both' | 'Male' | 'Female' = 'Female';
+  readonly sex = input('Female', { transform: parseSex });
   /** Organ side */
-  @Input() side?: 'Left' | 'Right' = 'Left';
+  readonly side = input('Left', { transform: parseSide });
   /** Data sources */
-  @Input() dataSources!: string | string[];
+  readonly dataSources = input([], { transform: parseDataSources });
   /** Highlight */
-  @Input() highlightProviders!: string | string[];
+  readonly highlightProviders = input([], { transform: parseStringArray });
 
   /** Api token */
-  @Input() token!: string;
+  readonly token = input<string>();
 
   /** Api endpoint */
-  @Input() remoteApiEndpoint!: string;
+  readonly remoteApiEndpoint = input<string>();
 
   /** Donor label */
-  @Input() donorLabel!: string;
-  /** Rui app url */
-  @Input() ruiUrl!: string;
-  /** Eui app url */
-  @Input() euiUrl!: string;
-  /** Asctb app url */
-  @Input() asctbUrl!: string;
-  /** Hra portal url */
-  @Input() hraPortalUrl!: string;
-  /** Course url */
-  @Input() onlineCourseUrl!: string;
-  /** Paper url */
-  @Input() paperUrl!: string;
+  readonly donorLabel = input<string>();
 
   /** Emits when the user switches the model sex */
-  @Output() readonly sexChange = new EventEmitter<'Male' | 'Female'>();
+  readonly sexChange = output<'Male' | 'Female'>();
   /** Emits when the user switches organ side */
-  @Output() readonly sideChange = new EventEmitter<'Left' | 'Right'>();
+  readonly sideChange = output<'Left' | 'Right'>();
   /** Emits when the user clicks a node */
-  @Output() readonly nodeClicked = new EventEmitter<NodeClickEvent>();
+  readonly nodeClicked = output<NodeClickEvent>();
 
   /** Initializes the component */
   constructor() {
@@ -109,12 +138,10 @@ export class AppWebComponent extends BaseWebComponent {
       initialDelay: 10,
 
       initialConfig: {
+        sex: 'Female',
+        side: 'Left',
         ...environment.dbOptions,
         ...(globalThis['dbOptions' as never] as object),
-      },
-      parse: {
-        dataSources: parseDataSources,
-        highlightProviders: parseStringArray,
       },
     });
   }

@@ -18,6 +18,7 @@ import {
   HraPopPredictionsService,
   TissuePredictionData,
 } from './services/hra-pop-predictions/hra-pop-predictions.service';
+import { CellPopulationGraphComponent } from './pages/cell-population-graph/cell-population-graph.component';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -87,6 +88,14 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'cell-population-graphs',
+    component: CellPopulationGraphComponent,
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'Cell Population Graphs' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/cell-population-graphs',
+    },
+  },
+  {
     path: 'api',
     children: [
       {
@@ -111,16 +120,11 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: '404',
-    component: NotFoundPageComponent,
-  },
-  {
     path: '500',
     component: ServerErrorPageComponent,
   },
   {
     path: '**',
-    pathMatch: 'full',
-    redirectTo: '404',
+    component: NotFoundPageComponent,
   },
 ];

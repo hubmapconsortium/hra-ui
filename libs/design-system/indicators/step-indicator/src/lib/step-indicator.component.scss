@@ -1,0 +1,17 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
+:host {
+  .step-number {
+    font: vars.$label-large;
+    letter-spacing: vars.$label-large-tracking;
+    background-color: vars.$inverse-surface;
+    color: vars.$on-primary;
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+}

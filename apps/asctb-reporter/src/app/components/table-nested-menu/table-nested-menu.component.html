@@ -1,20 +1,30 @@
-<mat-menu #childMenu="matMenu" [overlapTrigger]="false">
-  <span *ngFor="let sheet of sheetDetails">
-    <!-- Organ Names node menu items -->
-    <span *ngIf="sheet.version && sheet.name !== 'all'">
-      <button mat-menu-item color="primary" [matMenuTriggerFor]="menu">
-        <span>{{ sheet.display }}</span>
-      </button>
-    </span>
-    <mat-menu #menu="matMenu" [overlapTrigger]="false">
-      <span *ngFor="let version of sheet?.version">
-        <!-- Versions node menu items -->
-        <span *ngIf="version">
-          <button (click)="openURL(version)" mat-menu-item color="primary">
-            <span>{{ version.viewValue }}</span>
+<mat-menu #childMenu="matMenu">
+  <div class="nested-menu">
+    <ng-scrollbar>
+      @for (sheet of sheetDetails; track sheet) {
+        <ng-container *ngIf="sheet.version && sheet.name !== 'all'">
+          <button
+            class="expanded"
+            mat-menu-item
+            matRipple
+            matRippleColor="#201E3D14"
+            [matMenuTriggerFor]="submenu"
+            (focus)="(undefined)"
+          >
+            <span>{{ sheet.display }}</span>
+            <mat-icon class="expand-arrow">arrow_right</mat-icon>
+            <mat-icon class="expand-arrow">arrow_right</mat-icon>
           </button>
-        </span>
-      </span>
-    </mat-menu>
-  </span>
+
+          <mat-menu #submenu="matMenu">
+            @for (version of sheet?.version; track version) {
+              <a mat-menu-item [attr.href]="getUrl(version)" target="_blank">
+                <span>{{ version.viewValue }}</span>
+              </a>
+            }
+          </mat-menu>
+        </ng-container>
+      }
+    </ng-scrollbar>
+  </div>
 </mat-menu>

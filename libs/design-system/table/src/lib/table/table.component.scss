@@ -11,7 +11,7 @@
 
   .vertical-divider th:not(:first-child),
   .vertical-divider td:not(:first-child) {
-    border-left: 1px solid vars.$outline-variant;
+    border-left: 1px solid vars.$outline;
   }
 
   @include mat.table-overrides(
@@ -68,8 +68,20 @@
     justify-content: end;
   }
 
-  .numeric {
-    margin-right: 1.125rem;
+  th[data-column-type='checkbox'],
+  td[data-column-type='checkbox'] {
+    padding: 0;
+    text-align: center;
+    max-height: 2.0625rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.sortable {
+    .numeric {
+      margin-right: 1.125rem;
+    }
   }
 
   markdown ::ng-deep {
@@ -115,7 +127,6 @@
       td {
         padding-bottom: 0.5rem;
         padding-top: 0.5rem;
-        vertical-align: top;
       }
     }
   }
@@ -133,5 +144,10 @@
     ::ng-deep tbody tr:nth-child(even) {
       background-color: vars.$surface-container;
     }
+  }
+
+  .link.internal {
+    color: vars.$on-tertiary-fixed;
+    cursor: pointer;
   }
 }

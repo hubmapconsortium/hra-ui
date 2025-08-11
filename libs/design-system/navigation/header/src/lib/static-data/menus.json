@@ -136,6 +136,11 @@
                   "label": "Dashboard",
                   "url": "https://apps.humanatlas.io/dashboard/",
                   "external": true
+                },
+                {
+                  "type": "item",
+                  "label": "Cell Population Graphs",
+                  "url": "https://apps.humanatlas.io/cell-population-graphs/"
                 }
               ]
             },

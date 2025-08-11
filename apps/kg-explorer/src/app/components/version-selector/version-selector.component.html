@@ -1,0 +1,22 @@
+@if (availableVersions().length === 1) {
+  <div class="single-version-label">
+    <span class="label">Digital object version</span>
+    <span class="version">{{ availableVersions()[0] }}</span>
+  </div>
+} @else {
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>Digital object version</mat-label>
+    <mat-select
+      disableRipple
+      panelClass="options-container"
+      (selectionChange)="versionChange.emit($event.value)"
+      [value]="version() === 'latest' ? availableVersions()[0] : version()"
+    >
+      @for (version of availableVersions(); track $index) {
+        <mat-option [value]="version">
+          {{ version }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}

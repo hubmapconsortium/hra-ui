@@ -1,0 +1,16 @@
+<hra-page-section tagline="Cell Population Graphs">
+  Explore organ-specific datasets from publications and data portals.
+  <div class="cell-population-graph-content">
+    <div class="header">
+      <div class="logos">
+        <hra-icon svgIcon="product:cell-population-graphs" />
+      </div>
+      <span class="header-label"> Cell Population Graphs </span>
+    </div>
+    <div class="content">
+      <hra-config-selector [(graphSelections)]="graphSelections" (vegaSpecEvent)="onSpecUpdate($event)" />
+
+      <hra-bar-graph [spec]="currentSpec()"></hra-bar-graph>
+    </div>
+  </div>
+</hra-page-section>

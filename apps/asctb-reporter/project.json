@@ -1,7 +1,7 @@
 {
   "name": "asctb-reporter",
   "metadata": {
-    "version": "3.0.0"
+    "version": "4.0.0"
   },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
@@ -15,7 +15,12 @@
         "assets": [
           "apps/asctb-reporter/src/favicon.png",
           "apps/asctb-reporter/src/assets",
-          "apps/asctb-reporter/src/_redirects"
+          "apps/asctb-reporter/src/_redirects",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
         ],
         "polyfills": ["apps/asctb-reporter/src/polyfills.ts"],
         "scripts": ["./node_modules/marked/marked.min.js"]

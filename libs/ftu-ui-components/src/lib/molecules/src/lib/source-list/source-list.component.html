@@ -1,0 +1,41 @@
+<div class="source-list-header">
+  @if (!hideTitle()) {
+    <span class="source-list-title">Source data</span>
+  }
+  <div class="view-fullscreen" [class.hide-title]="hideTitle()">
+    <hra-results-indicator [value]="selectedCount()" [total]="sources.length" description="Viewing" />
+    @if (!hideTitle()) {
+      <button mat-icon-button hraIconButtonSize="large" (click)="isFullscreen.set(true)">
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    }
+  </div>
+</div>
+
+<div class="table-content" [class.hidden]="!showTable()">
+  @if (sources.length !== 0) {
+    <hra-table
+      [rows]="sources"
+      [columns]="tableColumns"
+      [enableRowSelection]="true"
+      [enableSort]="true"
+      [style]="'alternating'"
+      [verticalDividers]="true"
+      #sourceTable
+      (selectionChange)="onSelectionChange()"
+    >
+    </hra-table>
+  } @else {
+    <!--
+        TODO: Need to do in a way that FTU hides the source list completely from the grid,
+        will handle in the future.
+    -->
+    <ftu-empty-biomarker emptyBehaviorText="We currently do not have data for this functional tissue unit." />
+  }
+</div>
+
+<ng-template #dataHover let-columnName>
+  <div class="biomarker-table-hover full-column-name" [class.empty]="columnName.toString() === ''">
+    {{ columnName }}
+  </div>
+</ng-template>

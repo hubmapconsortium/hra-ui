@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PlaygroundComponent } from './playground.component';
-import { MatTabsModule } from '@angular/material/tabs';
-import { TreeModule } from '../tree/tree.module';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FileUploadModule } from '../../components/file-upload/file-upload.module';
-import { UploadModule } from '../../components/upload/upload.module';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ErrorComponent } from '../../components/error/error.component';
+import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
+import { UploadComponent } from '../../components/upload/upload.component';
+import { TreeModule } from '../tree/tree.module';
+import { PlaygroundComponent } from './playground.component';
 
 @NgModule({
   declarations: [PlaygroundComponent],
@@ -21,8 +22,9 @@ import { UploadModule } from '../../components/upload/upload.module';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule,
-    UploadModule,
+    FileUploadComponent,
+    UploadComponent,
+    ErrorComponent,
   ],
   exports: [PlaygroundComponent],
 })

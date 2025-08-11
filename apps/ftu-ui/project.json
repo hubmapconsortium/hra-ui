@@ -1,26 +1,37 @@
 {
   "name": "ftu-ui",
   "metadata": {
-    "version": "0.5.0"
+    "version": "1.0.0"
   },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/ftu-ui/src",
   "prefix": "ftu",
   "tags": ["type:app", "project:ftu"],
-  "implicitDependencies": ["shared-theming"],
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
       "options": {
-        "assets": ["apps/ftu-ui/src/favicon.png", "apps/ftu-ui/src/assets"],
-        "styles": ["apps/ftu-ui/src/styles.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
-        },
+        "assets": [
+          "apps/ftu-ui/src/favicon.png",
+          "apps/ftu-ui/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
         "polyfills": ["zone.js"]
       },
       "configurations": {
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ftu-ui/src/environments/environment.ts",
+              "with": "apps/ftu-ui/src/environments/environment.stage.ts"
+            }
+          ]
+        },
         "production": {
           "budgets": [
             {
@@ -30,8 +41,14 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4.5kb"
+              "maximumWarning": "3kb",
+              "maximumError": "5.5kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ftu-ui/src/environments/environment.ts",
+              "with": "apps/ftu-ui/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -39,6 +56,12 @@
     },
     "serve": {
       "executor": "@nx/angular:dev-server"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/ftu-ui/tsconfig.app.json"
+      }
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/ftu-ui/browser/"

@@ -1,33 +1,33 @@
+@use 'utils';
+@use 'vars';
+
 :host {
   display: block;
-  width: 25rem;
-  height: 6.25rem;
+  height: 3rem;
 
   .file-input {
     display: none;
   }
 
-  .file-upload {
-    color: #757575;
-  }
+  .selected-file {
+    @include utils.use-font(label, medium);
 
-  button {
-    margin-top: 2rem;
-    display: flex;
-    width: 14.688rem;
-    height: 3.125rem;
+    background-color: vars.$surface-container;
+    border-radius: 2rem;
+    color: vars.$primary;
+    display: inline-flex;
     align-items: center;
-    background: white;
-    border-radius: 0.3rem;
-    border-color: #9d9e9a;
-    border-style: solid;
+    gap: 0.25rem;
+    padding-left: 1.25rem;
   }
 
-  mat-icon {
-    color: #9d9e9a;
-  }
+  .upload-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
 
-  .file-name {
-    padding-top: 0.7rem;
+    @include utils.use-font(label, medium);
+    color: vars.$primary;
   }
 }

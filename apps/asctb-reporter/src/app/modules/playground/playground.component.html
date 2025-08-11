@@ -5,12 +5,16 @@
   [(selectedIndex)]="tabIndex"
 >
   <mat-tab label="Visualization">
-    <app-tree></app-tree>
+    @if (error().error.hasError) {
+      <app-error [error]="error().error"></app-error>
+    } @else {
+      <app-tree></app-tree>
+    }
   </mat-tab>
   <mat-tab label="Table">
     <div #spreadsheet></div>
   </mat-tab>
   <mat-tab label="Upload">
-    <app-upload class="upload" (uploadForm)="upload($event)"></app-upload>
+    <app-upload (uploadForm)="upload($event)"></app-upload>
   </mat-tab>
 </mat-tab-group>

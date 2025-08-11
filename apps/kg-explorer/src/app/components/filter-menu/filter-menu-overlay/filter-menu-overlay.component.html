@@ -1,0 +1,80 @@
+<div class="top-row">
+  <button
+    mat-icon-button
+    class="info-icon"
+    hraPlainTooltip="Info"
+    [hraRichTooltip]
+    [hraRichTooltipTagline]="filterOptionCategory().label"
+    [hraRichTooltipDescription]="filterOptionCategory().tooltip?.description ?? ''"
+    [hraRichTooltipActionText]="filterOptionCategory().tooltip?.actionText ?? ''"
+    (hraRichTooltipActionClick)="navigateToLink(filterOptionCategory().tooltip?.actionUrl ?? '')"
+  >
+    <mat-icon>info</mat-icon>
+  </button>
+  <button
+    mat-button
+    hraButtonVariant="secondary"
+    class="category-button"
+    color="primary"
+    [hraRichTooltip]="content"
+    [hraRichTooltipPositions]="tooltipPositions()"
+  >
+    {{ filterOptionCategory().label }}
+  </button>
+</div>
+
+<mat-chip-set>
+  @for (option of chips(); track option.id) {
+    <mat-chip (removed)="remove(option)">
+      {{ option.label }}
+      <button matChipRemove [attr.aria-label]="'remove ' + option">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-chip>
+  }
+</mat-chip-set>
+
+<hra-rich-tooltip-container #content class="filter-menu">
+  <hra-rich-tooltip-content class="filter-menu-content">
+    <mat-form-field class="search field" subscriptSizing="dynamic">
+      <mat-icon class="search-icon" matPrefix>search</mat-icon>
+      <input matInput type="text" [formControl]="searchControl" placeholder="Search" />
+    </mat-form-field>
+
+    <ng-scrollbar>
+      <mat-action-list>
+        @for (option of filteredOptions(); track option.id) {
+          <div
+            class="option-content"
+            [class.selected]="selectedOptions().includes(option)"
+            [class.large]="option.secondaryLabel"
+          >
+            @if (option.tooltip) {
+              <button
+                mat-icon-button
+                class="info-icon"
+                [hraRichTooltip]
+                [hraRichTooltipDescription]="option.tooltip.description"
+                [hraRichTooltipActionText]="option.tooltip.actionText || ''"
+                (hraRichTooltipActionClick)="navigateToLink(option.tooltip.actionUrl)"
+              >
+                <mat-icon>info</mat-icon>
+              </button>
+            }
+            <button mat-list-item class="option" (click)="selectOption(option)">
+              <div class="labels-count">
+                <span class="option-labels">
+                  <div class="option-primary-label">{{ option.label }}</div>
+                  @if (option.secondaryLabel) {
+                    <div class="option-secondary-label">{{ option.secondaryLabel }}</div>
+                  }
+                </span>
+                <span class="option-count">{{ option.count }}</span>
+              </div>
+            </button>
+          </div>
+        }
+      </mat-action-list>
+    </ng-scrollbar>
+  </hra-rich-tooltip-content>
+</hra-rich-tooltip-container>

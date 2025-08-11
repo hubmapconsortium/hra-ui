@@ -9,19 +9,17 @@
     ></app-sidenav-header>
   </div>
 
-  <div body class="debug-log">
-    <mat-tab-group mat-stretch-tabs class="tabs px-4">
-      <mat-tab [label]="currentSheet.display">
+  <div body>
+    <mat-tab-group mat-stretch-tabs>
+      <mat-tab [label]="currentSheet().display" bodyClass="tab-body">
         <div class="content">
-          <mat-list class="logsList mat-list-container mt-2">
-            <mat-list-item *ngFor="let l of logs.sheetLogs.messages" class="list-item-first py-2">
-              <mat-icon mat-list-icon class="error-icon-list" [ngClass]="l.icon">{{ l.icon }}</mat-icon>
-              <div mat-line class="error-list-container">
-                <span class="i2" [innerHTML]="l.text"></span>
-              </div>
-            </mat-list-item>
-            <mat-list-item *ngIf="logs.sheetLogs.MULTI_IN_LINKS.length" class="logsList list-item-section mt-2">
-              <mat-icon mat-list-icon class="error mt-1">error</mat-icon>
+          <div class="logs-list">
+            <div *ngFor="let l of logs().sheetLogs.messages" class="logs-list-item">
+              <mat-icon class="error-icon-list">{{ l.icon }}</mat-icon>
+              <div [innerHTML]="l.text"></div>
+            </div>
+            <div *ngIf="logs().sheetLogs.MULTI_IN_LINKS.length" class="logs-list">
+              <mat-icon class="error mt-1">error</mat-icon>
               <div mat-line class="error-list-container">
                 <mat-expansion-panel class="expansion-panel-container w-100">
                   <mat-expansion-panel-header
@@ -36,13 +34,13 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs.sheetLogs.MULTI_IN_LINKS" [innerHTML]="i"></p>
+                    <p class="i2" *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
-            </mat-list-item>
-            <mat-list-item *ngIf="logs.sheetLogs.SELF_LINKS.length" class="logsList list-item-section mt-2">
-              <mat-icon mat-list-icon class="error mt-1">error</mat-icon>
+            </div>
+            <div *ngIf="logs().sheetLogs.SELF_LINKS.length" class="logs-list-item">
+              <mat-icon class="error mt-1">error</mat-icon>
               <div mat-line class="error-list-container">
                 <mat-expansion-panel class="expansion-panel-container w-100">
                   <mat-expansion-panel-header
@@ -57,13 +55,13 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs.sheetLogs.SELF_LINKS" [innerHTML]="i"></p>
+                    <p class="i2" *ngFor="let i of logs().sheetLogs.SELF_LINKS" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
-            </mat-list-item>
-            <mat-list-item *ngIf="logs.sheetLogs.NO_IN_LINKS.length" class="logsList list-item-section mt-2">
-              <mat-icon mat-list-icon class="error mt-1">error</mat-icon>
+            </div>
+            <div *ngIf="logs().sheetLogs.NO_IN_LINKS.length" class="logs-list-item">
+              <mat-icon class="error mt-1">error</mat-icon>
               <div mat-line class="error-list-container">
                 <mat-expansion-panel class="expansion-panel-container w-100">
                   <mat-expansion-panel-header
@@ -78,13 +76,13 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs.sheetLogs.NO_IN_LINKS" [innerHTML]="i"></p>
+                    <p class="i2" *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
-            </mat-list-item>
-            <mat-list-item *ngIf="logs.sheetLogs.NO_OUT_LINKS.length" class="logsList list-item-section mt-2">
-              <mat-icon mat-list-icon class="error mt-1">error</mat-icon>
+            </div>
+            <div *ngIf="logs().sheetLogs.NO_OUT_LINKS.length" class="logs-list-item">
+              <mat-icon class="error mt-1">error</mat-icon>
               <div mat-line class="error-list-container">
                 <mat-expansion-panel class="expansion-panel-container w-100">
                   <mat-expansion-panel-header
@@ -99,24 +97,24 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs.sheetLogs.NO_OUT_LINKS" [innerHTML]="i"></p>
+                    <p class="i2" *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
-            </mat-list-item>
-          </mat-list>
+            </div>
+          </div>
         </div>
       </mat-tab>
-      <mat-tab label="All Logs">
-        <mat-list class="logsList mat-list-container mt-2" *ngFor="let AL of logs.allLogs">
-          <mat-list-item *ngFor="let l of AL.messages" class="list-item-first py-2">
-            <mat-icon mat-list-icon class="error-icon-list" [ngClass]="l.icon">{{ l.icon }}</mat-icon>
+      <mat-tab label="All Logs" bodyClass="tab-body">
+        <div class="logs-list mt-2" *ngFor="let AL of logs().allLogs">
+          <div *ngFor="let l of AL.messages" class="logs-list-item py-2">
+            <mat-icon class="error-icon-list">{{ l.icon }}</mat-icon>
             <div mat-line class="error-list-container">
               <span class="i2" [innerHTML]="l.text"></span>
             </div>
-          </mat-list-item>
-          <mat-list-item *ngIf="AL.MULTI_IN_LINKS.length" class="logsList list-item-section mt-2">
-            <mat-icon mat-list-icon class="error mt-1">error</mat-icon>
+          </div>
+          <div *ngIf="AL.MULTI_IN_LINKS.length" class="logs-list-item list-item-section mt-2">
+            <mat-icon class="error mt-1">error</mat-icon>
             <div mat-line class="error-list-container">
               <mat-expansion-panel class="expansion-panel-container w-100">
                 <mat-expansion-panel-header
@@ -131,13 +129,13 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs.sheetLogs.MULTI_IN_LINKS" [innerHTML]="i"></p>
+                  <p class="i2" *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
-          </mat-list-item>
-          <mat-list-item *ngIf="AL.SELF_LINKS.length" class="logsList list-item-section mt-2">
-            <mat-icon mat-list-icon class="error mt-1">error</mat-icon>
+          </div>
+          <div *ngIf="AL.SELF_LINKS.length" class="logs-list-item list-item-section mt-2">
+            <mat-icon class="error mt-1">error</mat-icon>
             <div mat-line class="error-list-container">
               <mat-expansion-panel class="expansion-panel-container w-100">
                 <mat-expansion-panel-header
@@ -152,13 +150,13 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs.sheetLogs.SELF_LINKS" [innerHTML]="i"></p>
+                  <p class="i2" *ngFor="let i of logs().sheetLogs.SELF_LINKS" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
-          </mat-list-item>
-          <mat-list-item *ngIf="AL.NO_IN_LINKS.length" class="logsList list-item-section mt-2">
-            <mat-icon mat-list-icon class="error mt-1">error</mat-icon>
+          </div>
+          <div *ngIf="AL.NO_IN_LINKS.length" class="logs-list-item list-item-section mt-2">
+            <mat-icon class="error mt-1">error</mat-icon>
             <div mat-line class="error-list-container">
               <mat-expansion-panel class="expansion-panel-container w-100">
                 <mat-expansion-panel-header
@@ -173,13 +171,13 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs.sheetLogs.NO_IN_LINKS" [innerHTML]="i"></p>
+                  <p class="i2" *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
-          </mat-list-item>
-          <mat-list-item *ngIf="AL.NO_OUT_LINKS.length" class="logsList list-item-section mt-2">
-            <mat-icon mat-list-icon class="error mt-1">error</mat-icon>
+          </div>
+          <div *ngIf="AL.NO_OUT_LINKS.length" class="logsList list-item-section mt-2">
+            <mat-icon class="error mt-1">error</mat-icon>
             <div mat-line class="error-list-container">
               <mat-expansion-panel class="expansion-panel-container w-100">
                 <mat-expansion-panel-header
@@ -194,12 +192,12 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs.sheetLogs.NO_OUT_LINKS" [innerHTML]="i"></p>
+                  <p class="i2" *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
-          </mat-list-item>
-        </mat-list>
+          </div>
+        </div>
       </mat-tab>
     </mat-tab-group>
   </div>

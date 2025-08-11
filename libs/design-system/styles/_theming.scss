@@ -16,4 +16,6 @@
   @include overrides.menu-overrides();
   @include overrides.slider-overrides();
   @include overrides.select-overrides();
+  @include overrides.slide-toggle-overrides();
+  @include overrides.tabs-overrides();
 }

@@ -16,7 +16,7 @@
 
       container-color: vars.$surface-container-low,
       item-hover-state-layer-color: rgb(from vars.$secondary r g b / 0.08),
-      item-focus-state-layer-color: rgb(from vars.$tertiary r g b / 0.2),
+      item-focus-state-layer-color: utils.with-alpha(vars.$secondary, 8%),
       item-label-text-tracking: vars.$label-medium-tracking,
       item-label-text-weight: vars.$label-medium-weight,
       item-label-text-size: vars.$label-medium-size,
@@ -26,8 +26,8 @@
 
   // TODO revisit
   .mat-mdc-menu-panel {
+    max-width: 19.5rem;
     button {
-      min-width: 12rem;
       border: 0.125rem solid transparent;
     }
 
@@ -53,7 +53,26 @@
 
     // selected state
     .mat-mdc-menu-item-highlighted {
-      background-color: rgb(from vars.$tertiary r g b / 0.2);
+      background-color: utils.with-alpha(vars.$secondary, 8%);
     }
+  }
+
+  .option-text {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+
+    .option-name {
+      font: vars.$label-medium;
+    }
+    .option-description {
+      font: vars.$label-small;
+      color: vars.$primary;
+    }
+  }
+
+  .table-menu {
+    --mat-menu-item-with-icon-leading-spacing: 0.75rem;
+    --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
   }
 }

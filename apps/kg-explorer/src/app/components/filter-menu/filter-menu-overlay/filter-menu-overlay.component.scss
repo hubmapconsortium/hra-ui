@@ -1,0 +1,115 @@
+@use 'vars';
+@use 'utils';
+
+:host {
+  .top-row {
+    --mat-text-button-horizontal-padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    color: vars.$secondary;
+
+    .info-icon {
+      padding: 0.5rem;
+    }
+
+    .category-button {
+      flex: 1;
+      justify-content: flex-start;
+      font: vars.$label-medium;
+    }
+  }
+}
+
+::ng-deep .container {
+  .content {
+    width: 19.5rem;
+  }
+
+  .actions button {
+    font: vars.$label-medium;
+    margin: 0.25rem 0.5rem;
+  }
+}
+
+.filter-menu-content {
+  width: calc(100% + 2rem);
+  display: flex;
+  flex-direction: column;
+  left: -16px;
+  position: relative;
+  padding-left: 0.75rem;
+
+  .search {
+    width: 100%;
+    padding-right: 0.75rem;
+  }
+
+  ::ng-deep .mat-mdc-form-field-infix {
+    padding-top: 13.5008px;
+    padding-bottom: 13.5008px;
+  }
+
+  .option-content {
+    --mdc-list-list-item-one-line-container-height: 2.5rem;
+    display: flex;
+    align-items: center;
+
+    &.large {
+      --mdc-list-list-item-one-line-container-height: 3rem;
+    }
+  }
+
+  .option {
+    margin: 0 0.75rem 0rem 0rem;
+    padding: 0 0.5rem;
+  }
+
+  .option:focus::before {
+    background-color: inherit;
+  }
+
+  .selected {
+    .option::before {
+      background-color: utils.with-alpha(vars.$tertiary, 20%);
+      opacity: 1;
+    }
+  }
+
+  .labels-count {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2.5rem;
+    gap: 0.75rem;
+    font: vars.$label-medium;
+  }
+
+  .option-labels {
+    display: flex;
+    flex-direction: column;
+    width: 0;
+    flex-grow: 1;
+  }
+
+  .option-primary-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .option-secondary-label {
+    font: vars.$label-small;
+  }
+
+  .option-secondary-label,
+  .option-count {
+    color: vars.$primary;
+  }
+
+  ng-scrollbar {
+    height: 15.75rem;
+
+    ::ng-deep .ng-scroll-content {
+      max-width: 100%;
+    }
+  }
+}

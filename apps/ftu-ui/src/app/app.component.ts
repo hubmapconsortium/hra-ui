@@ -1,21 +1,29 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
+import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
+  computed,
   HostBinding,
   HostListener,
   inject,
   Input,
+  model,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { LinkDirective } from '@hra-ui/cdk';
 import { dispatch, dispatch$, select$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
   BaseHrefActions,
+  CdkStateModule,
   createLinkId,
   InternalLinkEntry,
   LinkRegistryActions,
@@ -25,10 +33,16 @@ import {
   StorageId,
   StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { ScreenNoticeBehaviorComponent } from '@hra-ui/components/behavioral';
+import { routeData } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
+import { IconsModule } from '@hra-ui/design-system/icons';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
+  HraServiceModule,
   illustrationsInput,
   rawCellSummariesInput,
   RawCellSummary,
@@ -38,19 +52,29 @@ import {
   RawIllustrationsJsonld,
   selectedIllustrationInput,
   setUrl,
+  Tissue,
 } from '@hra-ui/services';
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
+  DownloadActions,
+  DownloadSelectors,
+  HraStateModule,
   IllustratorActions,
   IllustratorSelectors,
   LinkIds,
+  MouseTrackerModule,
   ScreenModeSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
+import {
+  ScreenNoticeBehaviorComponent,
+  TissueLibraryBehaviorComponent,
+} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
+import { environment } from '../environments/environment';
 
 /** Input property keys */
 type InputProps =
@@ -90,25 +114,43 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   return filter((value): value is T => value !== undefined);
 }
 
+/** Main application component
+ */
 @Component({
   selector: 'ftu-ui-root',
+  imports: [
+    ButtonsModule,
+    CommonModule,
+    IconsModule,
+    TissueLibraryBehaviorComponent,
+    MouseTrackerModule,
+    NavigationModule,
+    RouterModule,
+    CdkStateModule,
+    HraServiceModule,
+    HraStateModule,
+    MatMenuModule,
+    MatDividerModule,
+    PlainTooltipDirective,
+    LinkDirective,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MatDialogModule],
   host: {
     class: 'hra-app',
+    '[class.app-height]': '!isLanding()',
   },
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterContentInit, OnChanges, OnInit {
+  /** Host binding of app component */
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
   /** Illustration to display (choosen automatically if not provided) */
   @Input() selectedIllustration?: string | RawIllustration;
 
   /** Set of all illustrations */
-  @Input() illustrations: string | RawIllustrationsJsonld =
-    'https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld';
+  @Input() illustrations: string | RawIllustrationsJsonld = environment.illustrationsUrl;
 
   /** Cell summaries to display in tables */
   @Input() summaries: string | RawCellSummary = '';
@@ -121,6 +163,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   /** Application links */
   @Input() appLinks = 'assets/links.yml';
+
   /** Application resources */
   @Input() appResources = 'assets/resources.yml';
 
@@ -165,15 +208,45 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   private readonly clearActiveFtu = dispatch(ActiveFtuActions.Clear);
 
   /** The router */
-  private readonly router = inject(Router);
+  readonly router = inject(Router);
+
   /** Current route */
   private readonly activatedRoute = inject(ActivatedRoute);
+
+  /** Signal for route data */
+  private readonly data = routeData();
+
+  /** Whether the current route is the landing page */
+  protected readonly isLanding = computed(() => this.data()['isLanding'] === true || false);
+
+  /** Breadcrumbs */
+  protected readonly crumbs = computed(() => {
+    const crumbs = (this.data()['crumbs'] as BreadcrumbItem[]) ?? [];
+    const label = this.selectedFtu()?.label;
+    if (!label) {
+      return crumbs;
+    }
+    return [...crumbs, { name: label.slice(0, 1).toUpperCase() + label.slice(1) } satisfies BreadcrumbItem];
+  });
+
+  /** Selected FTU */
+  protected readonly selectedFtu = model<Tissue>();
 
   /** Enpoints used to load data */
   private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
   /** Whether the component is initialized */
   private initialized = false;
+
+  /** Data for Menus */
+  /** Illustration Metadata */
+  protected readonly illustrationMetadata = LinkIds.Illustration;
+
+  /** Available Download Formats */
+  protected readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);
+
+  /** Download Action Dispatcher */
+  protected readonly download = dispatch(DownloadActions.Download);
 
   /** Initializes the component */
   ngOnInit(): void {
@@ -212,7 +285,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
     const { baseHref } = this;
     let endpointsUpdated = false;
     const updateEndpointsOnce = () => {
-      if (!endpointsUpdated) {
+      if (!endpointsUpdated && this.endpoints && typeof this.endpoints.next === 'function') {
         const { illustrations, datasets, summaries } = this;
         this.endpoints.next({
           illustrations: illustrationsInput(illustrations) ?? '',
@@ -305,25 +378,31 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
       });
   }
 
+  /** Screen size notice open of app component */
   screenSizeNoticeOpen = false;
 
+  /** Determines whether shown small viewport notice has been displayed */
   private readonly hasShownSmallViewportNotice = selectQuerySnapshot(
     StorageSelectors.get,
     StorageId.Local,
     'screen-size-notice',
   );
 
+  /** Dialog  of app component */
   private readonly dialog = inject(MatDialog);
 
+  /** Host listener for window resize events */
   @HostListener('window:resize', ['$event'])
   onWindowResize(): void {
     this.detectSmallViewport();
   }
 
+  /** Lifecycle hook that is called after content has been projected into the component */
   ngAfterContentInit(): void {
     this.detectSmallViewport();
   }
 
+  /** Detect small viewport */
   detectSmallViewport(): void {
     if (
       window.innerWidth <= SMALL_VIEWPORT_THRESHOLD &&

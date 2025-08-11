@@ -34,6 +34,11 @@
     .description {
       @include utils.use-font(body, large);
       color: vars.$on-secondary-fixed;
+      margin-top: 0;
+
+      ::ng-deep p {
+        margin-top: 0;
+      }
     }
   }
 

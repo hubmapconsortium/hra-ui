@@ -1,0 +1,19 @@
+{
+  "name": "ftu-ui-components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ftu-ui-components/src",
+  "prefix": "ftu",
+  "projectType": "library",
+  "tags": ["type:lib", "project:ftu"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/design-system/tsconfig.lib.json"
+      }
+    }
+  }
+}

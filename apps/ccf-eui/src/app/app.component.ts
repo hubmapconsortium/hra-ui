@@ -10,6 +10,7 @@ import { Store } from '@ngxs/store';
 import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
+import { debounce } from 'lodash';
 import { combineLatest, take } from 'rxjs';
 import { OntologySelection } from './core/models/ontology-selection';
 import { actionAsFn } from './core/store/action-as-fn';
@@ -26,7 +27,6 @@ import { SceneState } from './core/store/scene/scene.state';
 import { RemoveSearch, SetSelectedSearches } from './core/store/spatial-search-filter/spatial-search-filter.actions';
 import { SpatialSearchFilterSelectors } from './core/store/spatial-search-filter/spatial-search-filter.selectors';
 import { SpatialSearchFlowService } from './shared/services/spatial-search-flow.service';
-import { debounce } from 'lodash';
 
 /** App options */
 interface AppOptions {
@@ -97,6 +97,9 @@ export class AppComponent implements OnInit {
   protected readonly technologyOptions = toSignal(this.data.technologyFilterData$, { initialValue: [] });
   /** Provider options */
   protected readonly providerOptions = toSignal(this.data.providerFilterData$, { initialValue: [] });
+
+  /** Consortia options */
+  protected readonly consortiaOptions = toSignal(this.data.consortiaFilterData$, { initialValue: [] });
   /** Spatial searches */
   protected readonly spatialSearchItems = this.store.selectSignal(SpatialSearchFilterSelectors.items);
   /** Database state */

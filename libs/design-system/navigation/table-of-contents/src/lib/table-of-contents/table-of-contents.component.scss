@@ -55,6 +55,7 @@
 
       .link.active {
         background-color: utils.with-alpha(vars.$tertiary, 20%);
+        color: vars.$secondary;
       }
     }
   }

@@ -1,7 +1,7 @@
 {
   "name": "ccf-organ-info",
   "metadata": {
-    "version": "4.0.0"
+    "version": "5.0.0"
   },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
@@ -12,8 +12,16 @@
     "build": {
       "executor": "@nx/angular:application",
       "options": {
-        "assets": ["apps/ccf-organ-info/src/favicon.png", "apps/ccf-organ-info/src/assets"],
-        "polyfills": ["apps/ccf-organ-info/src/polyfills.ts"]
+        "assets": [
+          "apps/ccf-organ-info/src/favicon.png",
+          "apps/ccf-organ-info/src/assets",
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ],
+        "polyfills": ["zone.js"]
       },
       "configurations": {
         "production": {

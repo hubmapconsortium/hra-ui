@@ -1,27 +1,25 @@
 <div>
-  <mat-expansion-panel class="mepNoPadding control-title" [expanded]="!error.hasError">
+  <!-- <mat-expansion-panel class="mepNoPadding control-title" [expanded]="!error.hasError">
     <mat-expansion-panel-header [expandedHeight]="'3.125rem'">
       <mat-panel-title>
         <div>
           <strong> Cell Types </strong>
         </div>
       </mat-panel-title>
-    </mat-expansion-panel-header>
+    </mat-expansion-panel-header> -->
 
-    <div class="py-1">
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="pr-3 mt-1" #tooltip="matTooltip" matTooltip="Sort Cell Types">
-          <mat-icon>sort_by_alpha</mat-icon>
-        </div>
-        <button
-          [disabled]="error.hasError"
-          mat-flat-button
-          #tooltip="matTooltip"
-          matTooltip="Select Order"
-          matTooltipPosition="below"
-          class="pt-2 w-100 function-button"
-        >
+  <div class="title">Visualization controls</div>
+
+  <div class="content">
+    <!-- Cell Type Controls -->
+    <div class="vis-controls">
+      <div class="control-title">Cell types</div>
+      <div class="filters">
+        <mat-form-field>
+          <mat-label>Sort</mat-label>
           <mat-select
+            disableRipple
+            panelClass="options-container"
             [disabled]="error.hasError"
             (selectionChange)="changeOptions('CT', 'sort', $event)"
             [value]="(config$ | async)?.CT?.sort"
@@ -32,23 +30,12 @@
               {{ option }}
             </mat-option>
           </mat-select>
-        </button>
-      </div>
-    </div>
-    <div class="pt-3">
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="pr-3 mt-1" #tooltip="matTooltip" matTooltip="Size Cell Types">
-          <mat-icon>bubble_chart</mat-icon>
-        </div>
-        <button
-          [disabled]="error.hasError"
-          mat-flat-button
-          #tooltip="matTooltip"
-          matTooltip="Select Sizing"
-          matTooltipPosition="below"
-          class="pt-2 function-button"
-        >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Size</mat-label>
           <mat-select
+            disableRipple
+            panelClass="options-container"
             [disabled]="error.hasError"
             (selectionChange)="changeOptions('CT', 'size', $event)"
             [value]="(config$ | async)?.CT?.size"
@@ -59,34 +46,19 @@
               {{ option }}
             </mat-option>
           </mat-select>
-        </button>
+        </mat-form-field>
       </div>
     </div>
-  </mat-expansion-panel>
 
-  <mat-expansion-panel class="mepNoPadding mt-4 control-title" [expanded]="!error.hasError">
-    <mat-expansion-panel-header [expandedHeight]="'3.125rem'">
-      <mat-panel-title>
-        <div>
-          <strong> Biomarkers </strong>
-        </div>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <div class="py-1">
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="pr-3 mt-1" #tooltip="matTooltip" matTooltip="Sort Biomarkers">
-          <mat-icon>sort_by_alpha</mat-icon>
-        </div>
-        <button
-          [disabled]="error.hasError"
-          mat-flat-button
-          #tooltip="matTooltip"
-          matTooltip="Select Order"
-          matTooltipPosition="below"
-          class="pt-2 function-button"
-        >
+    <!-- Biomarkers Controls -->
+    <div class="vis-controls">
+      <div class="control-title">Biomarkers</div>
+      <div class="filters">
+        <mat-form-field>
+          <mat-label>Sort</mat-label>
           <mat-select
+            disableRipple
+            panelClass="options-container"
             [disabled]="error.hasError"
             (selectionChange)="changeOptions('BM', 'sort', $event)"
             [value]="(config$ | async)?.BM?.sort"
@@ -97,23 +69,12 @@
               {{ option }}
             </mat-option>
           </mat-select>
-        </button>
-      </div>
-    </div>
-    <div class="pt-3">
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="pr-3 mt-1" #tooltip="matTooltip" matTooltip="Size Biomarkers">
-          <mat-icon>bubble_chart</mat-icon>
-        </div>
-        <button
-          [disabled]="error.hasError"
-          mat-flat-button
-          #tooltip="matTooltip"
-          matTooltip="Select Sizing"
-          matTooltipPosition="below"
-          class="pt-2 function-button"
-        >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Size</mat-label>
           <mat-select
+            disableRipple
+            panelClass="options-container"
             [disabled]="error.hasError"
             (selectionChange)="changeOptions('BM', 'size', $event)"
             [value]="(config$ | async)?.BM?.size"
@@ -124,23 +85,14 @@
               {{ option }}
             </mat-option>
           </mat-select>
-        </button>
+        </mat-form-field>
       </div>
-    </div>
-    <div class="pt-3">
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="pr-3 mt-1" #tooltip="matTooltip" matTooltip="Select Biomarker Type">
-          <fa-icon [icon]="faDna" class="px-1 biomarker-icon-type"></fa-icon>
-        </div>
-        <button
-          [disabled]="error.hasError"
-          mat-flat-button
-          #tooltip="matTooltip"
-          matTooltip="Select Biomarker Type"
-          matTooltipPosition="below"
-          class="pt-2 function-button"
-        >
+      <div class="filters">
+        <mat-form-field class="full-width">
+          <mat-label>Biomarker type</mat-label>
           <mat-select
+            disableRipple
+            panelClass="options-container"
             [disabled]="error.hasError"
             (selectionChange)="changeOptions('BM', 'type', $event)"
             [value]="(config$ | async)?.BM?.type"
@@ -151,9 +103,42 @@
               {{ option }}
             </mat-option>
           </mat-select>
-        </button>
+        </mat-form-field>
       </div>
     </div>
-    <div></div>
-  </mat-expansion-panel>
+
+    <!-- OMAP Controls -->
+    <div class="vis-controls">
+      <div class="control-title">Organ Mapping Antibody Panels filters</div>
+      <div class="filters">
+        <mat-button-toggle-group
+          hraButtonToggleSize="medium"
+          class="full-width"
+          multiple="true"
+          hideMultipleSelectionIndicator="false"
+        >
+          <mat-button-toggle
+            [checked]="omaps.organsOnly"
+            (change)="
+              handleOMAPOptionToggle({
+                organsOnly: !omaps.organsOnly,
+                proteinsOnly: omaps.proteinsOnly,
+              })
+            "
+            >Organs only</mat-button-toggle
+          >
+          <mat-button-toggle
+            [checked]="omaps.proteinsOnly"
+            (change)="
+              handleOMAPOptionToggle({
+                proteinsOnly: !omaps.proteinsOnly,
+                organsOnly: omaps.organsOnly,
+              })
+            "
+            >Proteins only</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </div>
 </div>

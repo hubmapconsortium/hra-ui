@@ -7,6 +7,8 @@
 @forward './radio-button' as radio-button-*;
 @forward './select' as select-*;
 @forward './slider' as slider-*;
+@forward './slide-toggle' as slide-toggle-*;
+@forward './tabs' as tabs-*;
 
 @mixin overrides() {
   @include button-overrides();
@@ -18,4 +20,6 @@
   @include radio-button-overrides();
   @include select-overrides();
   @include slider-overrides();
+  @include slide-toggle-overrides();
+  @include tabs-overrides();
 }

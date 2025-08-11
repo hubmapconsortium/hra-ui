@@ -7,12 +7,12 @@ carouselItems:
     action: Read
     link:
       url: https://www.nature.com/articles/s41592-024-02563-5
-  - tagline: New preprint
-    description: Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph for Linked Open Data
+  - tagline: New publication
+    description: Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph
     imageSrc: assets/content/landing-page/images/carousel2.png
     action: Read
     link:
-      url: https://doi.org/10.1101/2024.12.22.630006
+      url: https://www.nature.com/articles/s41597-025-05183-6
   - tagline: New publication
     description: Functional tissue units in the Human Reference Atlas
     imageSrc: assets/content/landing-page/images/carousel3.png

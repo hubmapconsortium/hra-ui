@@ -1,0 +1,34 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include mat.slide-toggle-overrides(
+    (
+      selected-track-color: vars.$on-tertiary-fixed,
+      selected-focus-track-color: vars.$on-tertiary-fixed,
+      selected-hover-track-color: vars.$on-tertiary-fixed,
+      selected-pressed-track-color: vars.$on-tertiary-fixed,
+      selected-handle-color: vars.$surface-container,
+      selected-focus-handle-color: vars.$surface-container,
+      selected-hover-handle-color: vars.$surface-container,
+      selected-pressed-handle-color: vars.$surface-container,
+      selected-focus-state-layer-color: vars.$on-tertiary-fixed,
+      selected-hover-state-layer-color: vars.$on-tertiary-fixed,
+      selected-pressed-state-layer-color: vars.$on-tertiary-fixed,
+
+      unselected-track-color: vars.$surface-container,
+      unselected-hover-track-color: vars.$surface-container,
+      unselected-focus-track-color: vars.$surface-container,
+      unselected-pressed-track-color: vars.$surface-container,
+      track-outline-color: vars.$on-secondary-fixed,
+      unselected-handle-color: vars.$on-secondary-fixed,
+      unselected-focus-handle-color: vars.$on-secondary-fixed,
+      unselected-hover-handle-color: vars.$on-secondary-fixed,
+      unselected-pressed-handle-color: vars.$on-secondary-fixed,
+      unselected-focus-state-layer-color: vars.$on-secondary-fixed,
+      unselected-hover-state-layer-color: vars.$on-secondary-fixed,
+      unselected-pressed-state-layer-color: vars.$on-secondary-fixed,
+    )
+  );
+}

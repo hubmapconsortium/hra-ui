@@ -1,11 +1,21 @@
-.lh {
-  line-height: 1.5625rem;
-}
-.error-container {
+@use 'utils';
+@use 'vars';
+
+:host {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-}
-.contact-us-link {
-  color: rgb(64, 132, 201);
+  height: 100%;
+  padding: 4rem;
+
+  @include utils.use-font(label, medium);
+
+  .description {
+    color: vars.$primary;
+  }
+
+  .error-message {
+    color: vars.$error;
+    margin-top: 1rem;
+  }
 }

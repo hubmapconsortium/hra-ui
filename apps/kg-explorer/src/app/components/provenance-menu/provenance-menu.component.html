@@ -1,0 +1,39 @@
+<div class="selector-and-buttons">
+  <hra-version-selector
+    [version]="version()"
+    [availableVersions]="availableVersions()"
+    (versionChange)="versionChange.emit($event)"
+  ></hra-version-selector>
+
+  <div class="provenance-buttons">
+    <button
+      mat-flat-button
+      class="downloads button"
+      [matMenuTriggerFor]="options"
+      hraPlainTooltip="View file formats and download files"
+    >
+      Download options
+    </button>
+
+    <mat-menu #options="matMenu">
+      @for (option of downloadOptions(); track $index) {
+        <button mat-menu-item (click)="download.saveFile(option.url || '', option.id)">
+          <mat-icon>{{ option.icon }}</mat-icon>
+          <div class="option-text">
+            <span class="option-name">
+              {{ option.name }}
+            </span>
+            <span class="option-description">
+              {{ option.description }}
+            </span>
+          </div>
+        </button>
+      }
+    </mat-menu>
+
+    <!-- TODO: add this feature -->
+    <!-- <button mat-button hraButtonVariant="secondary" class="view-app button">View in app</button> -->
+  </div>
+</div>
+
+<hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />

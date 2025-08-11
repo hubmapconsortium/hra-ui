@@ -1,93 +1,119 @@
-@import './../../../assets/stylesheets/_colors.scss';
+@use 'utils';
+@use 'vars';
+@use '@angular/material' as mat;
+@use './../../../assets/stylesheets/_colors.scss';
 
-.mat-expansion-panel:not([class*='mat-elevation-z']) {
-  box-shadow: none;
-}
+:host {
+  .controls {
+    padding: 0 1rem 0.5rem 1rem;
 
-.mat-expansion-panel-header:not(.compare) {
-  border-top-left-radius: 0.5rem !important;
-  border-top-right-radius: 0.5rem !important;
-}
+    .title {
+      @include utils.use-font(label, medium);
+      color: vars.$primary;
+      margin-bottom: 0.5rem;
+    }
 
-.mat-expansion-panel-header {
-  transition: all 0.3s;
-  background-color: $secondary !important;
-  padding-left: 0.9375rem !important;
-  padding-right: 0.9375rem !important;
-  border-top-left-radius: 0.5rem !important;
-  border-top-right-radius: 0.5rem !important;
-}
+    .toggle-full-width {
+      width: 100%;
+      mat-button-toggle {
+        flex: 1;
+      }
+    }
 
-.mat-expansion-panel-header:hover {
-  background-color: darken($color: $secondary, $amount: 8%) !important;
-}
-
-.numberInput {
-  background-color: #fafafa !important;
-  border-radius: 0.25rem !important;
-  font: inherit;
-  background: transparent;
-  color: currentColor;
-  border: none;
-  outline: none;
-  padding: 0;
-  margin: 0;
-  width: 500%;
-  max-width: 100%;
-  vertical-align: bottom;
-  text-align: inherit;
-}
-
-.controls .mat-expansion-panel-header-description {
-  justify-content: flex-end !important;
-  align-items: center;
-  margin-right: 0 !important;
-}
-
-.controls .mat-expansion-panel-header-description {
-  flex-basis: 0;
-}
-
-.controls .mat-expansion-panel-header-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-::ng-deep .mat-mdc-slide-toggle .mdc-switch.mdc-switch--selected:enabled .mdc-switch__icon {
-  fill: none !important;
-}
-
-::ng-deep .mat-mdc-slide-toggle .mdc-switch.mdc-switch--unselected:enabled .mdc-switch__icon {
-  fill: none !important;
-}
-
-.mat-mdc-slider .mdc-slider__track--active {
-  height: 0.125rem;
-}
-.mat-mdc-slider .mdc-slider__track--active {
-  height: 0.125rem;
-}
-
-mat-slider {
-  --mdc-slider-inactive-track-height: 0.18rem;
-  --mdc-slider-active-track-height: 0.18rem;
-  ::ng-deep .mdc-slider__thumb-knob {
-    border-width: 0.438rem;
-    height: 0.813rem;
-    width: 0.813rem;
+    .control {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      mat-form-field {
+        width: 5rem;
+      }
+      mat-slider {
+        flex: 1;
+        margin: 0;
+      }
+    }
   }
-}
 
-::ng-deep .mat-mdc-slide-toggle {
-  --mdc-switch-unselected-handle-color: #ffffff;
-  --mdc-switch-unselected-focus-handle-color: #ffffff;
-  --mdc-switch-unselected-hover-handle-color: #ffffff;
-  --mdc-switch-unselected-track-color: #989898;
-  --mdc-switch-unselected-hover-track-color: #989898;
-  --mdc-switch-unselected-focus-track-color: #989898;
-}
+  .numberInput {
+    background-color: #fafafa !important;
+    border-radius: 0.25rem !important;
+    font: inherit;
+    background: transparent;
+    color: currentColor;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: 500%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+  }
 
-.vis-controls {
-  font-size: 0.9rem;
+  .controls .mat-expansion-panel-header-description {
+    justify-content: flex-end !important;
+    align-items: center;
+    margin-right: 0 !important;
+  }
+
+  .controls .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+
+  .controls .mat-expansion-panel-header-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .vis-controls {
+    font-size: 0.9rem;
+  }
+
+  .ids {
+    margin: 0 1rem 1rem 1rem;
+
+    .label {
+      @include utils.use-font(label, medium);
+      color: vars.$primary;
+      margin-bottom: 0.5rem;
+    }
+
+    .checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+
+      @include mat.slide-toggle-overrides(
+        (
+          label-text-color: vars.$primary,
+          label-text-font: vars.$label-medium-font,
+          label-text-line-height: vars.$label-medium-line-height,
+          label-text-size: vars.$label-medium-size,
+          label-text-tracking: vars.$label-medium-tracking,
+          label-text-weight: vars.$label-medium-weight,
+        )
+      );
+    }
+
+    mat-button-toggle-group {
+      width: 100%;
+
+      @include mat.button-toggle-overrides(
+        (
+          label-text-font: vars.$label-small-font,
+          label-text-line-height: vars.$label-small-line-height,
+          label-text-size: vars.$label-small-size,
+          label-text-tracking: vars.$label-small-tracking,
+          label-text-weight: vars.$label-small-weight,
+        )
+      );
+
+      mat-button-toggle {
+        flex: 1;
+      }
+    }
+  }
 }

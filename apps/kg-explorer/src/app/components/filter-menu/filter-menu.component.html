@@ -1,0 +1,27 @@
+<ng-scrollbar>
+  <div class="drawer-header">
+    <hra-icon class="filter-icon" fontIcon="filter_list" />
+    <span class="drawer-title">Filters</span>
+    <div class="filler"></div>
+    <button
+      mat-icon-button
+      (click)="toggleForm.emit()"
+      [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"
+      aria-label="Open or close filters menu"
+    >
+      <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
+    </button>
+  </div>
+
+  <form class="menu-content" [formGroup]="form">
+    @for (value of formValues(); track $index) {
+      <hra-filter-menu-overlay
+        [form]="value[1]"
+        [filterOptionCategory]="filterCategories()[$index]"
+        [currentFilters]="currentFilters()[value[0]]"
+        (filterChanged)="handleFilterChange()"
+      />
+      <mat-divider />
+    }
+  </form>
+</ng-scrollbar>

@@ -1,5 +1,5 @@
-@use 'utils';
-@use 'variables' as vars;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: block;
@@ -16,7 +16,7 @@
   }
 
   .sr-only {
-    @include utils.sr-only();
+    // @include utils.sr-only();
   }
 
   hra-label-box {
@@ -29,8 +29,8 @@
     align-items: center;
     height: 2.5rem;
     grid-area: source-list-header;
-    border-top: 1px solid rgba(vars.$light-dividers);
-    border-bottom: 1px solid rgba(vars.$light-dividers);
+    // border-top: 1px solid rgba(vars.$light-dividers);
+    // border-bottom: 1px solid rgba(vars.$light-dividers);
   }
 
   .table-content {
@@ -89,8 +89,8 @@
       }
 
       tr {
-        color: rgba(vars.$primary-darker);
-        background: rgba(vars.$primary-lighter);
+        // color: rgba(vars.$primary-darker);
+        // background: rgba(vars.$primary-lighter);
         height: 2.5rem;
       }
     }
@@ -98,7 +98,7 @@
     ::ng-deep tbody {
       .mat-column-doi,
       .mat-column-link {
-        color: rgba(vars.$accent);
+        // color: rgba(vars.$accent);
         font-weight: 500;
       }
     }
@@ -110,7 +110,7 @@
     }
 
     .mat-mdc-header-cell {
-      border-bottom-color: rgba(vars.$light-dividers);
+      // border-bottom-color: rgba(vars.$light-dividers);
     }
 
     .mat-mdc-cell {
@@ -118,7 +118,7 @@
     }
 
     tr {
-      color: rgba(vars.$primary);
+      // color: rgba(vars.$primary);
       font-size: 0.75rem;
       height: 2.25rem;
 

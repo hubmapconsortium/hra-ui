@@ -1,38 +1,27 @@
-import { NgModule } from '@angular/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { RootComponent } from './root.component';
+import { NgModule } from '@angular/core';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ControlPaneModule } from '../control-pane/control-pane.module';
-import { ReportModule } from '../../components/report/report.module';
-import { IndentedListModule } from '../../components/indented-list/indented-list.module';
-import { DebugLogsModule } from '../../components/debug-logs/debug-logs.module';
-import { CompareModule } from '../../components/compare/compare.module';
-import { NavbarModule } from '../navbar/navbar.module';
-import { ErrorModule } from '../../components/error/error.module';
-import { LegendModule } from '../../components/legend/legend.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DoiModule } from '../../components/doi/doi.module';
+import { ErrorComponent } from '../../components/error/error.component';
+import { InfoComponent } from '../../components/info/info.component';
+import { LegendComponent } from '../../components/legend/legend.component';
+import { ControlPaneComponent } from '../control-pane/control-pane.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 import { PlaygroundModule } from '../playground/playground.module';
 import { TreeModule } from '../tree/tree.module';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { DoiModule } from '../../components/doi/doi.module';
-import { InfoModule } from '../../components/info/info.module';
-import { TableNestedMenuModule } from '../../components/table-nested-menu/table-nested-menu.module';
+import { RootComponent } from './root.component';
 
 @NgModule({
   declarations: [RootComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
-    ControlPaneModule,
-    ReportModule,
-    IndentedListModule,
-    DebugLogsModule,
-    CompareModule,
-    NavbarModule,
-    ErrorModule,
-    LegendModule,
+    NavbarComponent,
+    ErrorComponent,
     PlaygroundModule,
     TreeModule,
     MatDialogModule,
@@ -40,8 +29,9 @@ import { TableNestedMenuModule } from '../../components/table-nested-menu/table-
     MatBottomSheetModule,
     DragDropModule,
     DoiModule,
-    InfoModule,
-    TableNestedMenuModule,
+    InfoComponent,
+    ControlPaneComponent,
+    LegendComponent,
   ],
   exports: [RootComponent],
 })

@@ -106,11 +106,7 @@ export const appRoutes: Route[] = [
 
   // Error pages and redirects
   {
-    path: '404',
-    component: NotFoundPageComponent,
-  },
-  {
     path: '**',
-    redirectTo: '404',
+    component: NotFoundPageComponent,
   },
 ];
