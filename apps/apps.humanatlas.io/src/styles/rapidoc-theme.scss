@@ -1,4 +1,4 @@
-@use 'utils.scss';
+@use 'utils';
 @use 'vars';
 /* HRA-API Rapidoc Theme */
 
@@ -199,12 +199,8 @@ rapi-doc::part(btn-outline) {
       & > div.m-markdown {
         padding: 0 !important;
         p {
+          @include utils.use-font(title, small);
           margin: 0;
-          font-weight: 400;
-          font-size: 1.125rem;
-          line-height: 1.6875rem;
-          letter-spacing: 0rem;
-          vertical-align: middle;
           padding-top: 1rem;
           padding-right: 1.75rem;
           padding-bottom: 1rem !important;
