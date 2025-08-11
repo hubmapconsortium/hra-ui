@@ -7,6 +7,7 @@
   position: relative;
   min-height: 14rem;
   width: 100%;
+  table-layout: fixed;
 
   @include mat.table-overrides(
     (
@@ -64,7 +65,7 @@
       justify-content: center;
 
       &:not(:first-child) {
-        border-left: 1px solid vars.$outline;
+        border-left: 1px solid vars.$outline-variant;
       }
 
       .mat-button-toggle-label-content {
@@ -88,16 +89,8 @@
 
     th {
       padding: 0;
-      max-width: 2.75rem;
-      min-width: 2.75rem;
-      border-bottom: 1px solid vars.$outline;
+      border-bottom: 1px solid vars.$outline-variant;
       background-color: vars.$surface-container-low;
-
-      &:first-child {
-        max-width: 188px;
-        min-width: 188px;
-        width: 188px;
-      }
 
       &:nth-child(2) {
         max-width: 96px;
@@ -108,13 +101,18 @@
     }
 
     td {
-      padding: 0 0.5rem;
       border-bottom: none;
     }
 
     td:first-child,
     td:nth-child(2) {
       background: vars.$surface-container-low;
+    }
+
+    td:nth-child(2) {
+      padding-left: 0 !important;
+      padding-right: 30px;
+      max-width: 96px;
     }
 
     td:not(:first-child):not(:nth-child(2)) {
@@ -137,25 +135,33 @@
     height: 1.75rem;
     min-width: 4.25rem;
     max-width: 6rem;
-    padding-right: 1rem;
-    border-right: 1px solid vars.$outline;
+    border-right: 1px solid vars.$outline-variant;
     text-align: right;
   }
 
   th:first-child,
   th:nth-child(2) {
-    padding-left: 0.5rem !important;
     vertical-align: bottom;
+  }
+
+  th:first-child {
+    padding: 4px 12px 4px 16px !important;
+  }
+
+  th:nth-child(2) {
+    padding: 4px 0 !important;
+    max-width: 96px;
   }
 
   .icon-header {
     .header-column-text {
+      max-width: 28px;
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin: 0.5rem auto;
+      margin: auto;
       max-height: calc(6rem - 16px);
     }
   }
@@ -170,6 +176,6 @@
 ::ng-deep {
   hra-bottom-sheet hra-table tr td:first-child {
     color: vars.$secondary !important;
-    border-right: 1px solid vars.$outline;
+    border-right: 1px solid vars.$outline-variant;
   }
 }

@@ -9,6 +9,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
+import { AssetUrlPipe } from '@hra-ui/common';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
     IconButtonSizeDirective,
     FooterComponent,
     RouterModule,
+    AssetUrlPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

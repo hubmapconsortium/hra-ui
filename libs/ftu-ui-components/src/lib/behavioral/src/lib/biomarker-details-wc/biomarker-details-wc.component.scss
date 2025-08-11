@@ -38,7 +38,7 @@
     ::ng-deep ftu-empty-biomarker .footer {
       display: flex;
       justify-content: end;
-      border-top: 0.0625rem solid vars.$outline;
+      border-top: 0.0625rem solid vars.$outline-variant;
 
       .collaborate-button {
         width: auto !important;
@@ -71,12 +71,12 @@
           justify-content: center;
           row-gap: 0.25rem;
           flex-grow: 1;
-          border-right: 1px solid vars.$outline;
+          border-right: 1px solid vars.$outline-variant;
           max-width: 17.75rem;
 
           background: none;
           border: none;
-          border-right: 1px solid vars.$outline;
+          border-right: 1px solid vars.$outline-variant;
           padding: 0;
           cursor: pointer;
           transition: opacity 0.2s ease;
@@ -97,7 +97,7 @@
           justify-content: center;
           row-gap: 0.25rem;
           flex-grow: 1;
-          border-right: 1px solid vars.$outline;
+          border-right: 1px solid vars.$outline-variant;
           max-width: 14.25rem;
 
           .content {
@@ -106,7 +106,7 @@
 
           background: none;
           border: none;
-          border-right: 1px solid vars.$outline;
+          border-right: 1px solid vars.$outline-variant;
           padding: 0;
           cursor: pointer;
           transition: opacity 0.2s ease;
@@ -124,7 +124,7 @@
       ftu-biomarker-table {
         grid-area: table;
         width: 100%;
-        border-top: 1px solid vars.$outline;
+        border-top: 1px solid vars.$outline-variant;
         min-height: 21.25rem;
       }
 
@@ -140,7 +140,7 @@
           flex: 1;
 
           &:not(:first-child) {
-            border-left: 1px solid vars.$outline;
+            border-left: 1px solid vars.$outline-variant;
           }
 
           .mat-button-toggle-label-content {
@@ -152,7 +152,7 @@
     }
     ::ng-deep ftu-empty-biomarker {
       .footer {
-        border-top: 1px solid vars.$outline;
+        border-top: 1px solid vars.$outline-variant;
         button {
           width: auto !important;
           margin-left: 23.4375rem;

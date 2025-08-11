@@ -3,8 +3,11 @@
 @use '@angular/material' as mat;
 
 :host {
-  overflow-y: auto;
+  height: 100%;
+  overflow: hidden;
   max-width: 17rem;
+  min-width: 272px;
+  max-width: 272px;
 
   @include mat.tree-overrides(
     (
@@ -15,6 +18,10 @@
       node-text-weight: vars.$label-small-weight,
     )
   );
+
+  ng-scrollbar {
+    flex-grow: 1;
+  }
 
   .tree {
     background-color: transparent;
@@ -32,6 +39,7 @@
       &.selected {
         background-color: utils.with-alpha(vars.$tertiary, 20%);
         border-radius: 0.25rem;
+        padding: 2px 0 2px 8px;
       }
     }
 
@@ -44,7 +52,7 @@
     }
 
     &:has(.toggle):not(:first-child) {
-      border-top: 0.0625rem solid vars.$outline;
+      border-top: 0.0625rem solid vars.$outline-variant;
       padding-top: 0.25rem;
     }
 
@@ -70,6 +78,7 @@
 
       &.selected {
         background-color: utils.with-alpha(vars.$tertiary, 33%);
+        padding: 2px 0 2px 2px;
       }
     }
 
