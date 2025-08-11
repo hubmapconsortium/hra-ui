@@ -45,21 +45,15 @@ export class ConfigSelectorComponent {
   readonly availableSexes = ['Male', 'Female'];
 
   onToolChange(tool: string, checked: boolean): void {
-    const currentTools = this.selectedTools();
-    if (checked) {
-      this.selectedTools.set([...currentTools, tool]);
-    } else {
-      this.selectedTools.set(currentTools.filter((t) => t !== tool));
-    }
+    this.selectedTools.update((previous) => {
+      return checked ? [...previous, tool] : previous.filter((t) => t !== tool);
+    });
   }
 
   onSexChange(sex: string, checked: boolean): void {
-    const currentSexes = this.selectedSexes();
-    if (checked) {
-      this.selectedSexes.set([...currentSexes, sex]);
-    } else {
-      this.selectedSexes.set(currentSexes.filter((s) => s !== sex));
-    }
+    this.selectedSexes.update((previous) => {
+      return checked ? [...previous, sex] : previous.filter((s) => s !== sex);
+    });
   }
 
   // Helper method to check if a tool is available (has data)
