@@ -23,17 +23,12 @@ const meta: Meta<ButtonToggleArgs> = {
   },
   args: {
     disabled: false,
-    size: 'large',
   },
   decorators: [
     moduleMetadata({
       imports: [MatButtonToggleModule, ButtonToggleSizeDirective],
     }),
   ],
-};
-export default meta;
-
-export const Default: StoryObj<ButtonToggleArgs> = {
   render: (args) => ({
     props: args,
     template: `<mat-button-toggle-group hraButtonToggleSize="${args.size}" disabled="${args.disabled}">
@@ -42,4 +37,23 @@ export const Default: StoryObj<ButtonToggleArgs> = {
       <mat-button-toggle>Toggle 3</mat-button-toggle>
     </mat-button-toggle-group>`,
   }),
+};
+export default meta;
+
+export const Small: StoryObj<ButtonToggleArgs> = {
+  args: {
+    size: 'small',
+  },
+};
+
+export const Medium: StoryObj<ButtonToggleArgs> = {
+  args: {
+    size: 'medium',
+  },
+};
+
+export const Large: StoryObj<ButtonToggleArgs> = {
+  args: {
+    size: 'large',
+  },
 };

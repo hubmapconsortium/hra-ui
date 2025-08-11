@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { DigitalObjectMetadata, DistributionsInfo } from '../digital-objects.schema';
+import { DigitalObjectMetadata, DistributionsInfo } from '../digital-objects-metadata.schema';
 import { MenuOptionsType } from '@hra-ui/design-system/table';
 
 /** Maps mediaType to file type data */

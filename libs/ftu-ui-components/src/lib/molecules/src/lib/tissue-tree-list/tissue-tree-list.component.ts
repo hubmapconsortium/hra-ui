@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { CommonModule } from '@angular/common';
 import {
@@ -17,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 import { LinkDirective } from '@hra-ui/cdk';
 import { LinkId } from '@hra-ui/cdk/state';
+import { ScrollingModule as HraScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 
 /** Base node type */
 export interface DataNode<K extends string> {
@@ -57,6 +59,9 @@ interface InternalNode<K extends string, T extends DataNode<K>> {
     MatExpansionModule,
     MatRippleModule,
     LinkDirective,
+    HraScrollingModule,
+    ScrollOverflowFadeDirective,
+    ScrollingModule,
   ],
   templateUrl: './tissue-tree-list.component.html',
   styleUrls: ['./tissue-tree-list.component.scss'],

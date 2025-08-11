@@ -39,7 +39,7 @@ export const Default: Story = {
       </ul>
       <button mat-button hraCtaButton >
         Action
-        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
       </button>
     </hra-page-section>`,
     styles: ['.hra-app { margin: 0 2rem; }', 'ul { margin: 0;  margin-bottom: 1.5rem;}'],

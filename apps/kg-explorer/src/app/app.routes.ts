@@ -1,13 +1,12 @@
 import { ActivatedRouteSnapshot, Route } from '@angular/router';
-import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { TableColumn } from '@hra-ui/design-system/table';
 
-import { KnowledgeGraphObjectsDataSchema } from './digital-objects.schema';
-import { DO_INFO, MainPageComponent } from './pages/main-page/main-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
+import { kgResolver } from './utils/kg-resolver';
+import { getDocumentationUrl, getProductLabel } from './utils/utils';
 
 /** Digital objects api */
 const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
@@ -102,14 +101,10 @@ export const appRoutes: Route[] = [
     component: MainPageComponent,
     data: {
       reuse: true,
-      crumbs: [
-        { name: 'Apps', route: 'https://apps.humanatlas.io/' },
-        { name: 'Knowledge Graph' },
-      ] satisfies BreadcrumbItem[],
       columns: columns,
     },
     resolve: {
-      data: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
+      data: kgResolver(DO_URL),
     },
   },
   {
@@ -119,14 +114,21 @@ export const appRoutes: Route[] = [
       columns: metadataColumns,
     },
     resolve: {
-      doData: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
+      doData: kgResolver(DO_URL),
       documentationUrl: (route: ActivatedRouteSnapshot) => {
         const type = route.params['type'];
-        return DO_INFO[type].documentationUrl;
+        return getDocumentationUrl(type);
+      },
+      typeLabel: (route: ActivatedRouteSnapshot) => {
+        const type = route.params['type'];
+        return getProductLabel(type);
       },
     },
   },
-
+  {
+    path: ':type/:name',
+    redirectTo: ':type/:name/latest',
+  },
   {
     path: '500',
     component: ServerErrorPageComponent,
