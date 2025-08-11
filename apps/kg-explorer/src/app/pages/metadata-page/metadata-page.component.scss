@@ -1,4 +1,3 @@
-@use '@angular/material' as mat;
 @use 'vars';
 
 :host {
@@ -74,11 +73,4 @@
       padding-inline-start: 2rem;
     }
   }
-
-  @include mat.chips-overrides(
-    (
-      outline-color: vars.$outline-variant,
-      label-text-color: vars.$on-primary-fixed,
-    )
-  );
 }

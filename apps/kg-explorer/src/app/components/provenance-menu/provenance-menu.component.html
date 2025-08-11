@@ -16,7 +16,7 @@
     </button>
 
     <mat-menu #options="matMenu">
-      @for (option of downloadOptions(); track option) {
+      @for (option of downloadOptions(); track $index) {
         <button mat-menu-item (click)="download.saveFile(option.url || '', option.id)">
           <mat-icon>{{ option.icon }}</mat-icon>
           <div class="option-text">

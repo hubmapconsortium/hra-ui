@@ -5,17 +5,18 @@ import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, sig
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
+import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 import { MenuOptionsType, TableColumn } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
-import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
+import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
-import { sentenceCase } from '../../utils/sentence-case';
-import { DO_INFO, ORGAN_ICON_MAP } from '../main-page/main-page.component';
+import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
 
 /** Empty metadata object */
 const EMPTY_METADATA: DigitalObjectMetadata = {
@@ -59,7 +60,14 @@ const EMPTY_METADATA: DigitalObjectMetadata = {
  */
 @Component({
   selector: 'hra-metadata-page',
-  imports: [PageSectionComponent, MetadataLayoutModule, MarkdownComponent, ProvenanceMenuComponent, MatChipsModule],
+  imports: [
+    PageSectionComponent,
+    MetadataLayoutModule,
+    MarkdownComponent,
+    ProvenanceMenuComponent,
+    MatChipsModule,
+    FooterComponent,
+  ],
   templateUrl: './metadata-page.component.html',
   styleUrl: './metadata-page.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -73,9 +81,11 @@ export class MetadataPageComponent {
   private readonly route = inject(ActivatedRoute);
   /** File download service */
   private readonly download = inject(DownloadService);
+  /** HRA V1 API service */
+  private readonly v1 = inject(V1Service);
 
   /** Raw digital object data from API */
-  readonly doData = input.required<KnowledgeGraphObjectsData>();
+  readonly doData = input.required<DigitalObjectsJsonLd>();
   /** Column data for metadata table */
   readonly columns = input.required<TableColumn[]>();
 
@@ -146,28 +156,31 @@ export class MetadataPageComponent {
         });
     });
 
-    toObservable(this.doData).subscribe((data) => {
-      const pageItem = data['@graph'].find((item) => {
-        return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
-      });
-      const icons = [`product:${DO_INFO[type].icon}`];
-      if (pageItem?.organs) {
-        icons.push(
-          this.getOrganIcon(pageItem?.organs && pageItem?.organs.length === 1 ? pageItem?.organs[0] : 'all-organs'),
-        );
-      }
-      this.icons.set(icons);
-      if (pageItem) {
-        this.availableVersions.set(pageItem.versions);
-        const tags = [{ id: pageItem.doType, label: DO_INFO[pageItem.doType].label, type: 'do' }];
-        for (const organ of pageItem.organs || []) {
-          tags.push({
-            id: organ,
-            label: sentenceCase(organ),
-            type: 'organs',
-          });
+    toObservable(this.doData).subscribe((data: DigitalObjectsJsonLd) => {
+      if (data['@graph']) {
+        const pageItem = data['@graph'].find((item) => {
+          return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
+        });
+        const icons = [getProductIcon(type)];
+        if (pageItem?.organIds) {
+          icons.push(getOrganIcon(pageItem));
         }
-        this.tags.set(tags);
+        this.icons.set(icons);
+
+        this.v1.ontologyTreeModel({}).subscribe((ontologyData) => {
+          if (pageItem) {
+            this.availableVersions.set(pageItem.versions);
+            const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
+            for (const organId of pageItem.organIds || []) {
+              tags.push({
+                id: organId,
+                label: sentenceCase(ontologyData.nodes[organId].label || ''),
+                type: 'organs',
+              });
+            }
+            this.tags.set(tags);
+          }
+        });
       }
     });
   }
@@ -220,15 +233,6 @@ export class MetadataPageComponent {
       return this.createMarkdownLink(items[0].label, items[0].id);
     }
     return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join();
-  }
-
-  /**
-   * Gets organ icon string from the organ id
-   * @param organ Organ id
-   * @returns organ icon string
-   */
-  private getOrganIcon(organ: string): string {
-    return `organ:${ORGAN_ICON_MAP[organ] ?? organ}`;
   }
 
   /**

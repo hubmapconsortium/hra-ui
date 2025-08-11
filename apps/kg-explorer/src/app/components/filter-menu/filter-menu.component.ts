@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
-import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HraCommonModule } from '@hra-ui/common';
@@ -11,21 +11,24 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
 import { CurrentFilters, FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 
-/** Filter form controls */
-export interface FilterFormControls {
+/** Filter form values */
+export interface FilterFormValues {
   /** Digital object form control */
-  digitalObjects: FormControl<FilterOption[] | null>;
+  digitalObjects: FilterOption[] | null;
   /** Release version form control */
-  releaseVersion: FormControl<FilterOption[] | null>;
+  releaseVersion: FilterOption[] | null;
   /** Organs form control */
-  organs: FormControl<FilterOption[] | null>;
+  organs: FilterOption[] | null;
   /** Anatomical structures form control */
-  anatomicalStructures: FormControl<FilterOption[] | null>;
+  anatomicalStructures: FilterOption[] | null;
   /** Cell types form control */
-  cellTypes: FormControl<FilterOption[] | null>;
+  cellTypes: FilterOption[] | null;
   /** Biomarkers form control */
-  biomarkers: FormControl<FilterOption[] | null>;
+  biomarkers: FilterOption[] | null;
 }
+
+/** Filter types for the filter form */
+type FilterType = 'digitalObjects' | 'releaseVersion' | 'organs' | 'anatomicalStructures' | 'cellTypes' | 'biomarkers';
 
 /**
  * Filter menu for the KG Explorer
@@ -52,11 +55,8 @@ export interface FilterFormControls {
   },
 })
 export class FilterMenuComponent {
-  /** Form builder service */
-  private readonly fb = inject(FormBuilder);
-
   /** Filter form group */
-  protected readonly form = this.fb.group({
+  protected readonly form = new FormGroup({
     digitalObjects: new FormControl<FilterOption[] | null>(null),
     releaseVersion: new FormControl<FilterOption[] | null>(null),
     organs: new FormControl<FilterOption[] | null>(null),
@@ -71,15 +71,25 @@ export class FilterMenuComponent {
   readonly formClosed = input(false);
 
   /** Contains current selected filter IDs */
-  readonly currentFilters = input<CurrentFilters>();
+  readonly currentFilters = input.required<CurrentFilters>();
+
+  /** Key value pairs for the filter form group */
+  readonly formValues = computed<[FilterType, FormControl<FilterOption[] | null>][]>(() => [
+    ['digitalObjects', this.form.controls.digitalObjects || null],
+    ['releaseVersion', this.form.controls.releaseVersion || null],
+    ['organs', this.form.controls.organs || null],
+    ['anatomicalStructures', this.form.controls.anatomicalStructures || null],
+    ['cellTypes', this.form.controls.cellTypes || null],
+    ['biomarkers', this.form.controls.biomarkers || null],
+  ]);
 
   /** Emits when the form opening state is toggled */
   readonly toggleForm = output();
   /** Emits form controls */
-  readonly formChanges = output<FilterFormControls>();
+  readonly formChanges = output<FilterFormValues>();
 
   /** Emits the form controls on filter change */
   handleFilterChange() {
-    this.formChanges.emit(this.form.controls);
+    this.formChanges.emit(this.form.value as FilterFormValues);
   }
 }

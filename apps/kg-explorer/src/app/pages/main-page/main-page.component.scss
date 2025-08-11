@@ -3,10 +3,10 @@
 
 :host {
   display: flex;
-  height: calc(100vh - 4.5rem);
+  height: calc(100vh - 4.5rem - 1px);
 
   @media (min-width: 640px) {
-    height: calc(100vh - 7rem);
+    height: calc(100vh - 7rem - 1px);
   }
 
   @include mat.sidenav-overrides(
@@ -29,6 +29,7 @@
 
   mat-sidenav-content {
     background: inherit;
+    transition-property: transform, margin-left, margin-right, padding-left;
 
     @media (min-width: 640px) {
       padding-left: 4rem;
@@ -36,6 +37,7 @@
 
     @media (min-width: 1100px) {
       padding-left: 0;
+      margin-left: 18.5rem !important;
     }
   }
 
@@ -59,6 +61,7 @@
     @media (min-width: 1100px) {
       mat-sidenav-content {
         padding-left: 4rem;
+        margin-left: 0rem !important;
       }
     }
   }
@@ -66,14 +69,14 @@
   .page-content {
     display: flex;
     flex-direction: column;
-    padding: 2rem 1.5rem 0rem;
     height: 100%;
   }
 
   .search-header {
     display: flex;
     justify-content: space-between;
-    padding-left: 0.75rem;
+    margin-left: 0.75rem;
+    padding: 2rem 1.5rem 0rem;
     gap: 2.5rem;
   }
 
@@ -117,6 +120,12 @@
     --mat-table-header-container-height: 5.375rem;
     --mat-table-row-item-container-height: 4.75rem;
     border: none;
+    border-radius: 0;
+
+    .content-wrapper {
+      width: 100%;
+      min-width: 49.5rem;
+    }
 
     scrollbar-y {
       --viewport-height: var(--view-height);
@@ -126,7 +135,7 @@
     }
 
     table {
-      padding-bottom: 2rem;
+      padding: 0 1.5rem 2rem 1.5rem;
     }
 
     th {
@@ -150,6 +159,20 @@
       vertical-align: middle !important;
       padding-top: 0.25rem !important;
       padding-bottom: 0.5rem !important;
+    }
+
+    hra-footer {
+      position: sticky;
+      width: 100vw;
+      left: 0rem;
+
+      @media (min-width: 640px) {
+        width: calc(100vw - 4rem);
+      }
+
+      @media (min-width: 1100px) {
+        width: 100%;
+      }
     }
   }
 }
