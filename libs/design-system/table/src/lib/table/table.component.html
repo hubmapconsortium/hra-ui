@@ -108,13 +108,14 @@
     mat-icon-button
     [matMenuTriggerFor]="menuOptions"
     [hraPlainTooltip]="column.type.tooltip"
-    (click)="downloadClick(element['id'])"
+    (mouseover)="downloadClick(element['id'])"
+    (focus)="downloadClick(element['id'])"
   >
     <hra-icon [fontIcon]="column.type.icon"></hra-icon>
   </button>
 
   <mat-menu #menuOptions="matMenu" class="table-menu">
-    @for (option of getMenuOptions(options); track option) {
+    @for (option of getMenuOptions(options); track $index) {
       <button mat-menu-item (click)="downloadFile.emit([option.url || '', option.id])">
         <mat-icon>{{ option.icon }}</mat-icon>
         <div class="option-text">
