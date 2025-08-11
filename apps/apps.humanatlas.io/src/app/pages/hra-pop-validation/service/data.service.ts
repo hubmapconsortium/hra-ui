@@ -1,5 +1,5 @@
 // data.service.ts
-import { Injectable } from '@angular/core';
+import { Injectable, inject, InjectionToken } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, forkJoin, of } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
@@ -18,67 +18,79 @@ interface ExtractionSiteDetails {
   [key: string]: unknown;
 }
 
+// Configuration interface for API endpoints
+export interface ApiEndpointsConfig {
+  anatomicalUrl: string;
+  extractionSiteUrl: string;
+  datasetCellUrl: string;
+  extractionSiteDetailsUrl: string;
+}
+
+export const API_ENDPOINTS_CONFIG = new InjectionToken<ApiEndpointsConfig>('api.endpoints.config', {
+  providedIn: 'root',
+  factory: () => ({
+    anatomicalUrl: 'https://apps.humanatlas.io/api/grlc/hra-pop/cell_types_in_anatomical_structurescts_per_as.json',
+    extractionSiteUrl: 'https://apps.humanatlas.io/api/grlc/hra-pop/cell-types-per-extraction-site.json',
+    datasetCellUrl: 'https://apps.humanatlas.io/api/grlc/hra-pop/cell-types-per-dataset.json',
+    extractionSiteDetailsUrl: 'https://apps.humanatlas.io/api/v1/extraction-site',
+  }),
+});
+
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private anatomicalUrl =
-    'https://apps.humanatlas.io/api/grlc/hra-pop/cell_types_in_anatomical_structurescts_per_as.json';
-
-  private extractionSiteUrl = 'https://apps.humanatlas.io/api/grlc/hra-pop/cell-types-per-extraction-site.json';
-
-  private datasetCellUrl = 'https://apps.humanatlas.io/api/grlc/hra-pop/cell-types-per-dataset.json';
-
-  private extractionSiteDetailsUrl = 'https://apps.humanatlas.io/api/v1/extraction-site';
+  private readonly http = inject(HttpClient);
+  private readonly apiConfig = inject(API_ENDPOINTS_CONFIG);
 
   // Cache for extraction site details to avoid duplicate API calls
   private extractionSiteDetailsCache = new Map<string, ExtractionSiteDetails>();
 
-  constructor(private http: HttpClient) {}
-
   getAnatomicalData(): Observable<ParsedAnatomicalData[]> {
     return this.http
-      .get<{ results: { bindings: AnatomicalSparqlBinding[] } }>(this.anatomicalUrl)
+      .get<{ results: { bindings: AnatomicalSparqlBinding[] } }>(this.apiConfig.anatomicalUrl)
       .pipe(map((response) => response.results.bindings.map(parseAnatomical)));
   }
 
   getExtractionSiteData(): Observable<ParsedExtractionSiteData[]> {
-    return this.http.get<{ results: { bindings: ExtractionSiteSparqlBinding[] } }>(this.extractionSiteUrl).pipe(
-      map((response) => response.results.bindings.map(parseExtractionSite)),
-      // Use mergeMap to handle the enhancement process
-      mergeMap((parsedData) => {
-        // Get unique extraction site IDs for enhancement
-        const uniqueExtractionSites = [...new Set(parsedData.map((d) => d.extractionSiteId))];
+    return this.http
+      .get<{ results: { bindings: ExtractionSiteSparqlBinding[] } }>(this.apiConfig.extractionSiteUrl)
+      .pipe(
+        map((response) => response.results.bindings.map(parseExtractionSite)),
+        // Use mergeMap to handle the enhancement process
+        mergeMap((parsedData) => {
+          // Get unique extraction site IDs for enhancement
+          const uniqueExtractionSites = [...new Set(parsedData.map((d) => d.extractionSiteId))];
 
-        // If no extraction sites to enhance, return original data
-        if (uniqueExtractionSites.length === 0) {
-          return of(parsedData);
-        }
-
-        // Fetch details for all unique extraction sites
-        const detailRequests = uniqueExtractionSites.map((iri) => this.getExtractionSiteDetails(iri));
-
-        // Wait for all detail requests to complete
-        return forkJoin(detailRequests).pipe(
-          map(() => {
-            // Enhance the data with formatted labels
-            return parsedData.map((item) => ({
-              ...item,
-              extractionSiteLabel: this.formatExtractionSiteLabel(item.extractionSiteId, item.organ),
-            }));
-          }),
-          catchError(() => {
-            // If enhancement fails, return original data
+          // If no extraction sites to enhance, return original data
+          if (uniqueExtractionSites.length === 0) {
             return of(parsedData);
-          }),
-        );
-      }),
-    );
+          }
+
+          // Fetch details for all unique extraction sites
+          const detailRequests = uniqueExtractionSites.map((iri) => this.getExtractionSiteDetails(iri));
+
+          // Wait for all detail requests to complete
+          return forkJoin(detailRequests).pipe(
+            map(() => {
+              // Enhance the data with formatted labels
+              return parsedData.map((item) => ({
+                ...item,
+                extractionSiteLabel: this.formatExtractionSiteLabel(item.extractionSiteId, item.organ),
+              }));
+            }),
+            catchError(() => {
+              // If enhancement fails, return original data
+              return of(parsedData);
+            }),
+          );
+        }),
+      );
   }
 
   getDatasetCellData(): Observable<ParsedDatasetCellData[]> {
     return this.http
-      .get<{ results: { bindings: DatasetCellSparqlBinding[] } }>(this.datasetCellUrl)
+      .get<{ results: { bindings: DatasetCellSparqlBinding[] } }>(this.apiConfig.datasetCellUrl)
       .pipe(map((response) => response.results.bindings.map(parseDatasetCell)));
   }
 
@@ -91,21 +103,23 @@ export class DataService {
       return of(this.extractionSiteDetailsCache.get(iri) as ExtractionSiteDetails);
     }
 
-    // Fetch from API
-    const url = `${this.extractionSiteDetailsUrl}?iri=${encodeURIComponent(iri)}`;
-
-    return this.http.get<ExtractionSiteDetails>(url).pipe(
-      map((details) => {
-        // Cache the result
-        this.extractionSiteDetailsCache.set(iri, details);
-        return details;
-      }),
-      catchError(() => {
-        // Cache a null result to avoid repeated failed requests
-        this.extractionSiteDetailsCache.set(iri, {} as ExtractionSiteDetails);
-        return of(null);
-      }),
-    );
+    // Fetch from API using HttpClient params option
+    return this.http
+      .get<ExtractionSiteDetails>(this.apiConfig.extractionSiteDetailsUrl, {
+        params: { iri },
+      })
+      .pipe(
+        map((details) => {
+          // Cache the result
+          this.extractionSiteDetailsCache.set(iri, details);
+          return details;
+        }),
+        catchError(() => {
+          // Cache a null result to avoid repeated failed requests
+          this.extractionSiteDetailsCache.set(iri, {} as ExtractionSiteDetails);
+          return of(null);
+        }),
+      );
   }
 
   /**
