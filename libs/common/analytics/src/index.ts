@@ -1,1 +1,1 @@
-export const greeting = 'Hello World!';
+export { AnalyticsService } from './lib/analytics.service';
