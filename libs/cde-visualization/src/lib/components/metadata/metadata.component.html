@@ -41,7 +41,7 @@
         </span>
         <span>
           @if (metadata().sampleExtra; as extra) {
-            <a mat-button hraButtonSize="small" [attr.href]="extra.sampleUrl" target="_blank" rel="noreferrer noopener">
+            <a hraHyperlink [attr.href]="extra.sampleUrl" target="_blank" rel="noreferrer noopener">
               {{ metadata().title }}
             </a>
           } @else {
@@ -54,13 +54,7 @@
       <span>Source Data</span>
       <span>
         @if (metadata().sampleExtra; as extra) {
-          <a
-            mat-button
-            hraButtonSize="small"
-            [attr.href]="extra.sourceDataUrl"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
+          <a hraHyperlink [attr.href]="extra.sourceDataUrl" target="_blank" rel="noreferrer noopener">
             {{ metadata().sourceFileName }}
           </a>
         } @else {
