@@ -5,8 +5,9 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": []
+    "types": [],
+    "typeRoots": ["../../node_modules/@types", "src/typings"]
   },
   "exclude": ["**/*.spec.ts", "test-setup.ts", "jest.config.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "src/typings/**/*.d.ts"]
 }
