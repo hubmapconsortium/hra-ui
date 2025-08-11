@@ -87,19 +87,15 @@ export class HraPopValidationComponent {
     this.availableTools.set(toolsWithData);
 
     // Auto-select all available tools on first load, or filter existing selection
-    const currentSelectedTools = this.selectedTools();
-
-    if (currentSelectedTools.length === 0) {
-      // First load - select all available tools
-      this.selectedTools.set(toolsWithData);
-    } else {
+    this.selectedTools.update((currentSelectedTools) => {
+      if (currentSelectedTools.length === 0) {
+        // First load - select all available tools
+        return toolsWithData;
+      }
       // Filter existing selection to only include available tools
       const validSelectedTools = currentSelectedTools.filter((tool) => toolsWithData.includes(tool));
-
-      if (validSelectedTools.length !== currentSelectedTools.length) {
-        this.selectedTools.set(validSelectedTools);
-      }
-    }
+      return validSelectedTools.length !== currentSelectedTools.length ? validSelectedTools : currentSelectedTools;
+    });
   }
 
   private updateXAxisOptions(dataType: DataType) {
