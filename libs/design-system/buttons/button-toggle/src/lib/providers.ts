@@ -12,7 +12,6 @@ export function provideButtonToggle(): EnvironmentProviders {
       provide: MAT_BUTTON_TOGGLE_DEFAULT_OPTIONS,
       useValue: {
         hideMultipleSelectionIndicator: true,
-        hideSingleSelectionIndicator: true,
       } satisfies MatButtonToggleDefaultOptions,
     },
   ]);
