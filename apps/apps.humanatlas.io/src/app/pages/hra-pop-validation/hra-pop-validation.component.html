@@ -18,26 +18,19 @@
         <div class="configurations-container">
           <hra-config-selector
             [dataTypeOptions]="dataTypeOptions"
-            [selectedDataType]="selectedDataType()"
+            [(selectedDataType)]="selectedDataType"
             [organOptions]="organOptions()"
-            [selectedOrgan]="selectedOrgan()"
-            [selectedTools]="selectedTools()"
-            [selectedSexes]="selectedSexes()"
+            [(selectedOrgan)]="selectedOrgan"
+            [(selectedTools)]="selectedTools"
+            [(selectedSexes)]="selectedSexes"
             [xAxisOptions]="xAxisOptions()"
-            [selectedXAxis]="selectedXAxis()"
+            [(selectedXAxis)]="selectedXAxis"
             [yAxisOptions]="yAxisOptions"
-            [selectedYAxis]="selectedYAxis()"
+            [(selectedYAxis)]="selectedYAxis"
             [sortOptions]="sortOptions"
-            [selectedSort]="selectedSort()"
+            [(selectedSort)]="selectedSort"
             [availableTools]="availableTools()"
             [loading]="loading()"
-            (dataTypeChange)="onDataTypeChange($event)"
-            (organChange)="onOrganChange($event)"
-            (toolChange)="onToolChange($event)"
-            (sexChange)="onSexChange($event)"
-            (xAxisChange)="onXAxisChange($event)"
-            (yAxisChange)="onYAxisChange($event)"
-            (sortChange)="onSortChange($event)"
           >
           </hra-config-selector>
         </div>

@@ -235,43 +235,4 @@ export class HraPopValidationComponent {
     });
     this.vegaSpecs.set([spec]);
   }
-
-  // Event handlers
-  onDataTypeChange(dataType: DataType) {
-    this.selectedDataType.set(dataType);
-  }
-
-  onOrganChange(organ: string) {
-    this.selectedOrgan.set(organ);
-  }
-
-  onToolChange(event: { tool: string; checked: boolean }) {
-    const currentTools = this.selectedTools();
-    if (event.checked) {
-      this.selectedTools.set([...currentTools, event.tool]);
-    } else {
-      this.selectedTools.set(currentTools.filter((t) => t !== event.tool));
-    }
-  }
-
-  onSexChange(event: { sex: string; checked: boolean }) {
-    const currentSexes = this.selectedSexes();
-    if (event.checked) {
-      this.selectedSexes.set([...currentSexes, event.sex]);
-    } else {
-      this.selectedSexes.set(currentSexes.filter((s) => s !== event.sex));
-    }
-  }
-
-  onXAxisChange(xAxis: string) {
-    this.selectedXAxis.set(xAxis);
-  }
-
-  onYAxisChange(yAxis: 'cellCount' | 'cellPercentage') {
-    this.selectedYAxis.set(yAxis);
-  }
-
-  onSortChange(sort: 'totalCellCount' | 'alphabetical') {
-    this.selectedSort.set(sort);
-  }
 }

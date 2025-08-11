@@ -1,5 +1,5 @@
 // components/config-selector/config-selector.component.ts
-import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, model } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,61 +24,62 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfigSelectorComponent {
-  // Modern Angular signal-based inputs
+  // Read-only inputs that don't need outputs
   readonly dataTypeOptions = input.required<DataTypeConfig[]>();
-  readonly selectedDataType = input.required<DataType>();
   readonly organOptions = input.required<string[]>();
-  readonly selectedOrgan = input.required<string>();
-  readonly selectedTools = input.required<string[]>();
-  readonly selectedSexes = input.required<string[]>();
   readonly xAxisOptions = input.required<XAxisOption[]>();
-  readonly selectedXAxis = input.required<string>();
   readonly yAxisOptions = input.required<YAxisOption[]>();
-  readonly selectedYAxis = input.required<'cellCount' | 'cellPercentage'>();
   readonly sortOptions = input.required<SortOption[]>();
-  readonly selectedSort = input.required<'totalCellCount' | 'alphabetical'>();
   readonly loading = input<boolean>(false);
   readonly availableTools = input.required<string[]>(); // Tools that have data
 
-  // All possible tool options - these could also be inputs if you want more flexibility
+  readonly selectedDataType = model.required<DataType>();
+  readonly selectedOrgan = model.required<string>();
+  readonly selectedTools = model.required<string[]>();
+  readonly selectedSexes = model.required<string[]>();
+  readonly selectedXAxis = model.required<string>();
+  readonly selectedYAxis = model.required<'cellCount' | 'cellPercentage'>();
+  readonly selectedSort = model.required<'totalCellCount' | 'alphabetical'>();
+
   readonly allTools = ['azimuth', 'celltypist', 'popv', 'sc_proteomics'];
   readonly availableSexes = ['Male', 'Female'];
 
-  // Modern Angular signal-based outputs
-  readonly dataTypeChange = output<DataType>();
-  readonly organChange = output<string>();
-  readonly toolChange = output<{ tool: string; checked: boolean }>();
-  readonly sexChange = output<{ sex: string; checked: boolean }>();
-  readonly xAxisChange = output<string>();
-  readonly yAxisChange = output<'cellCount' | 'cellPercentage'>();
-  readonly sortChange = output<'totalCellCount' | 'alphabetical'>();
-
   onDataTypeChange(dataType: DataType): void {
-    this.dataTypeChange.emit(dataType);
+    this.selectedDataType.set(dataType);
   }
 
   onOrganChange(organ: string): void {
-    this.organChange.emit(organ);
+    this.selectedOrgan.set(organ);
   }
 
   onToolChange(tool: string, checked: boolean): void {
-    this.toolChange.emit({ tool, checked });
+    const currentTools = this.selectedTools();
+    if (checked) {
+      this.selectedTools.set([...currentTools, tool]);
+    } else {
+      this.selectedTools.set(currentTools.filter((t) => t !== tool));
+    }
   }
 
   onSexChange(sex: string, checked: boolean): void {
-    this.sexChange.emit({ sex, checked });
+    const currentSexes = this.selectedSexes();
+    if (checked) {
+      this.selectedSexes.set([...currentSexes, sex]);
+    } else {
+      this.selectedSexes.set(currentSexes.filter((s) => s !== sex));
+    }
   }
 
   onXAxisChange(xAxis: string): void {
-    this.xAxisChange.emit(xAxis);
+    this.selectedXAxis.set(xAxis);
   }
 
   onYAxisChange(yAxis: 'cellCount' | 'cellPercentage'): void {
-    this.yAxisChange.emit(yAxis);
+    this.selectedYAxis.set(yAxis);
   }
 
   onSortChange(sort: 'totalCellCount' | 'alphabetical'): void {
-    this.sortChange.emit(sort);
+    this.selectedSort.set(sort);
   }
 
   // Helper method to check if a tool is available (has data)
