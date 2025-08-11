@@ -1,4 +1,4 @@
-@use 'utils.scss';
+@use 'utils';
 @use 'vars';
 /* HRA-API Rapidoc Theme */
 
@@ -193,21 +193,15 @@ rapi-doc::part(btn-outline) {
       /* colors based on request type */
       --bg-post: #c8dfbe;
       --bg-get: #d6e8f8;
-
+      border-top: 0.0625rem solid vars.$outline-variant;
       background: vars.$on-primary;
 
       & > div.m-markdown {
-        font-weight: 400;
-        font-size: 1.125rem;
-        line-height: 1.6875rem;
-        letter-spacing: 0rem;
-        vertical-align: middle;
-        padding-top: 1rem;
-        padding-right: 1.75rem;
-        padding-bottom: 1rem;
-        padding-left: 1.75rem;
+        padding: 0 !important;
         p {
+          @include utils.use-font(title, small);
           margin: 0;
+          padding: 1rem 1.75rem;
         }
       }
 
@@ -306,7 +300,13 @@ rapi-doc::part(btn-outline) {
         box-shadow: none;
 
         .summary {
-          display: none;
+          .title {
+            display: none;
+          }
+          .m-markdown pre {
+            border: 0.0625rem solid vars.$outline-variant;
+            border-radius: 0.25rem;
+          }
         }
 
         .req-resp-container {

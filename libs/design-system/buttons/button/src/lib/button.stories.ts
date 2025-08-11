@@ -27,7 +27,7 @@ const VARIANT_ARG_TYPES: ArgTypes<WithVariant> = {
 const SIZE_ARG_TYPES: ArgTypes<WithSize> = {
   size: {
     control: 'select',
-    options: ['small', 'medium'],
+    options: ['small', 'medium', 'large'],
   },
 };
 
@@ -67,9 +67,18 @@ export const Basic: StoryObj<CommonButtonArgs & WithVariant & WithSize> = {
   }),
 };
 
-export const FlatRound: StoryObj<CommonButtonArgs> = {
+export const FlatRound: StoryObj<CommonButtonArgs & WithSize> = {
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['medium', 'large'],
+    },
+  },
+  args: {
+    size: 'medium',
+  },
   render: (args) => ({
-    template: `<button mat-flat-button disabled="${args.disabled}">
+    template: `<button mat-flat-button hraButtonSize="${args.size}" disabled="${args.disabled}">
       Click me!
       <mat-icon>download</mat-icon>
     </button>`,
@@ -86,7 +95,7 @@ export const CallToAction: StoryObj<CommonButtonArgs & WithVariant> = {
   render: (args) => ({
     template: `<button mat-button hraCtaButton hraButtonVariant="${args.variant}" disabled="${args.disabled}">
       Click me!
-      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </button>`,
   }),
 };

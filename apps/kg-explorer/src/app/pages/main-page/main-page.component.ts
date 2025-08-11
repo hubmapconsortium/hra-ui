@@ -6,29 +6,36 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HraKgService, V1Service } from '@hra-api/ng-client';
+import { DigitalObjectInfo, DigitalObjectsJsonLd, HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, fromEvent, Observable } from 'rxjs';
 
-import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
-import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
+import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
+import { DigitalObjectMetadata } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
-import { sentenceCase } from '../../utils/sentence-case';
+import {
+  CATEGORY_LABELS,
+  getOrganIcon,
+  getOrganId,
+  getProductIcon,
+  getProductLabel,
+  getProductTooltip,
+  HRA_VERSION_DATA,
+  sentenceCase,
+  TooltipData,
+} from '../../utils/utils';
 
-/** Tooltip data interface */
-export interface TooltipData {
-  /** Tooltip description */
-  description: string;
-  /** Text on action button */
-  actionText?: string;
-  /** Url on action button */
-  actionUrl?: string;
+/** Digital object info interface with hraVersions */
+interface DigitalObjectInfoVersions extends DigitalObjectInfo {
+  /** List of HRA versions for the object */
+  hraVersions: string[];
 }
 
 /** Filter option category interface */
@@ -73,215 +80,8 @@ export interface CurrentFilters {
   searchTerm?: string;
 }
 
-/** Interface for digital object type data */
-export interface ObjectTypeData {
-  /** Object type label */
-  label: string;
-  /** Design system icon to use for the object type */
-  icon: string;
-  /** Tooltip data for the digital object type */
-  tooltip: TooltipData;
-  /** Documentation url, if available for the object type */
-  documentationUrl?: string;
-}
-
-/** HRA version data info */
-const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
-  'v2.3': {
-    label: '9th Release (v2.3)',
-    date: 'June 2025',
-  },
-  'v2.2': {
-    label: '8th Release (v2.2)',
-    date: 'December 2024',
-  },
-  'v2.1': {
-    label: '7th Release (v2.1)',
-    date: 'June 2024',
-  },
-  'v2.0': {
-    label: '6th Release (v2.0)',
-    date: 'December 2023',
-  },
-  'v1.4': {
-    label: '5th Release (v1.4)',
-    date: 'June 2023',
-  },
-  'v1.3': {
-    label: '4th Release (v1.3)',
-    date: 'December 2022',
-  },
-  'v1.2': {
-    label: '3rd Release (v1.2)',
-    date: 'June 2022',
-  },
-  'v1.1': {
-    label: '2rd Release (v1.1)',
-    date: 'December 2021',
-  },
-  'v1.0': {
-    label: '1st Release (v1.0)',
-    date: 'June 2021',
-  },
-};
-
-/** Maps organ name to the correct icon in the design system */
-export const ORGAN_ICON_MAP: Record<string, string> = {
-  kidney: 'kidneys',
-  'large intestine': 'large-intestine',
-  lung: 'lungs',
-  'prostate gland': 'prostate',
-  'small intestine': 'small-intestine',
-  'blood vasculature': 'vasculature-thin',
-  'fallopian tube': 'fallopian-tube-left',
-  'lymph node': 'lymph-nodes',
-  'extrapulmonary bronchus': 'extrapulmonary-bronchus',
-  ovary: 'ovaries',
-  skeleton: 'spinal-cord',
-  'urinary bladder': 'bladder',
-  // 'lymph vasculature': '',
-  'spinal cord': 'spinal-cord',
-  ureter: 'ureter-left',
-};
-
-/** Stores data for a doType */
-export const DO_INFO: Record<string, ObjectTypeData> = {
-  'ref-organ': {
-    label: '3D Organs',
-    tooltip: {
-      description:
-        '3D models of human organ structures, complete with accurate size and position data, to support the creation of a comprehensive 3D model of the human body, with each 3D model object carefully annotated with a proper label and an identifier from the Uberon and FMA ontologies.',
-      actionText: 'Learn more',
-      actionUrl: 'https://humanatlas.io/3d-reference-library',
-    },
-    icon: '3d-organ',
-    documentationUrl: 'https://humanatlas.io/3d-reference-library',
-  },
-  'asct-b': {
-    label: 'ASCT+B Tables',
-    tooltip: {
-      description:
-        'Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables are authored by multiple experts across many consortia. Tables capture the partonomy of anatomical structures, cell types, and major biomarkers (e.g., gene, protein, lipid, or metabolic markers). Cellular identity is supported by scientific evidence and linked to ontologies.',
-      actionText: 'Learn more',
-      actionUrl: 'https://humanatlas.io/asctb-tables',
-    },
-    icon: 'asctb-reporter',
-    documentationUrl: 'https://humanatlas.io/asctb-tables',
-  },
-  ctann: {
-    label: 'Cell Type Annotations',
-    tooltip: {
-      description:
-        'Azimuth and other cell type annotation tools are used to assign cell types to cells from sc/snRNA-seq studies. Manually compiled crosswalks are used to assign ontology IDs to cell types.',
-      actionText: 'Learn more',
-      actionUrl: 'https://humanatlas.io/cell-type-annotations',
-    },
-    icon: 'cell-type-annotations',
-    documentationUrl: 'https://humanatlas.io/cell-type-annotations',
-  },
-  collection: {
-    label: 'Collections',
-    tooltip: {
-      description: 'Multiple digital objects that create a collection of data.',
-    },
-    icon: 'collections',
-  },
-  'ds-graph': {
-    label: 'Dataset Graphs',
-    tooltip: {
-      description:
-        "Sample registration information submitted by consortium members in HuBMAP or other efforts, including accurate sample sizes and positions. When combined with 3D Organ data, this information helps create 3D visual tissue sample placements. Additionally, the sample information is linked to datasets from researchers' assay analyses that offer deeper insights into the tissue samples.",
-    },
-    icon: 'dataset-graphs',
-  },
-  '2d-ftu': {
-    label: 'Functional Tissue Unit Illustrations',
-    tooltip: {
-      description:
-        'A functional tissue unit is the smallest tissue organization, i.e. a set of cells, that performs a unique physiologic function and is replicated multiple times in a whole organ. Functional Tissue Unit (FTU) Illustrations are linked to ASCT+B Tables.',
-      actionText: 'Learn more',
-      actionUrl: 'https://humanatlas.io/2d-ftu-illustrations',
-    },
-    icon: 'ftu',
-    documentationUrl: 'https://humanatlas.io/2d-ftu-illustrations',
-  },
-  graph: {
-    label: 'Graphs',
-    tooltip: {
-      description: 'Externally created RDF graph data.',
-    },
-    icon: 'graphs',
-  },
-  landmark: {
-    label: 'Landmarks',
-    tooltip: {
-      description:
-        '3D model shapes representing features near organs of interest (e.g., an artery or pelvis bone near a kidney) to help experts accurately orient themselves when registering tissue blocks into a 3D Organ.',
-    },
-    icon: 'landmark',
-  },
-  millitome: {
-    label: 'Millitome',
-    tooltip: {
-      description:
-        'Data for cutting tissue samples using a millitome device. A digital data package that includes an STL file and a spreadsheet for assigning spatial locations to HuBMAP IDs and gathering metadata with information about the size, dimensions, donor sex, and laterality of the reference organ for which the millitome is fitted.',
-      actionText: 'Learn more',
-      actionUrl: 'https://humanatlas.io/millitome',
-    },
-    icon: 'millitome',
-    documentationUrl: 'https://humanatlas.io/millitome',
-  },
-  omap: {
-    label: 'Organ Mapping Antibody Panels',
-    tooltip: {
-      description: 'Collections of antibodies spatially mapping anatomical structures and cell types.',
-      actionText: 'Learn more',
-      actionUrl: 'https://humanatlas.io/omap',
-    },
-    icon: 'omaps',
-    documentationUrl: 'https://humanatlas.io/omap',
-  },
-  schema: {
-    label: 'Schema',
-    tooltip: {
-      description:
-        'Describes the structure, i.e., the schema, of the normalized form of a single data type, its metadata, or shared concepts between data types.',
-    },
-    icon: 'schema',
-  },
-  'vascular-geometry': {
-    label: 'Vascular Geometry',
-    tooltip: {
-      description:
-        'Geometry information on the human blood vascular system capturing key attributes of different vessels, such as diameter and length, population, sample size, and reference to the source of data.',
-      actionText: 'Learn more',
-      actionUrl: 'https://humanatlas.io/vccf',
-    },
-    icon: 'vascular-geometry',
-    documentationUrl: 'https://humanatlas.io/vccf',
-  },
-  vocab: {
-    label: 'Vocabulary',
-    tooltip: {
-      description:
-        'Various reference ontologies and vocabularies that hold standard concepts and relationships used to construct data components. Vocabularies are typically external biomedical ontologies, like CL and Uberon, and they provide a convenient mechanism for querying reference ontologies alongside HRA-curated data.',
-    },
-    icon: 'vocabulary',
-  },
-};
-
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
-
-/** Filter cateogry labels */
-const CATEGORY_LABELS = [
-  'Digital objects',
-  'HRA release version',
-  'Organs',
-  'Anatomical structures',
-  'Cell types',
-  'Biomarkers',
-];
 
 /**
  * This component is used for rendering the main page of the application. Contains digital object table and filters.
@@ -300,6 +100,7 @@ const CATEGORY_LABELS = [
     FilterMenuComponent,
     MatSidenavModule,
     ButtonsModule,
+    NavigationModule,
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
@@ -331,7 +132,7 @@ export class MainPageComponent {
   protected isSmallScreen = watchBreakpoint('(max-width: 639px)');
 
   /** Raw digital objects data */
-  readonly data = input.required<KnowledgeGraphObjectsData>();
+  readonly data = input.required<DigitalObjectsJsonLd>();
   /** Column info */
   readonly columns = input.required<TableColumn[]>();
 
@@ -351,6 +152,9 @@ export class MainPageComponent {
   readonly versionCounts = signal<Record<string, number>>({});
   /** Id of digital object to download */
   readonly downloadId = signal<string | undefined>(undefined);
+
+  /** Ontology model containing organ info */
+  readonly ontologyModel = signal<OntologyTree | undefined>(undefined);
 
   /**
    * Sets the initial filters according to query params
@@ -383,14 +187,18 @@ export class MainPageComponent {
             : [queryParams['ct']]
           : [],
         biomarkers: queryParams['b'] ? (Array.isArray(queryParams['b']) ? queryParams['b'] : [queryParams['b']]) : [],
-        searchTerm: queryParams['search'],
+        searchTerm: queryParams['search'] ?? '',
       });
+      this.searchControl.patchValue(this.filters().searchTerm);
     });
 
     toObservable(this.data).subscribe((items) => {
-      const objectData = this.resolveData(items['@graph']);
-      this.allRows.set(objectData);
-      this.setVersionCounts(items['@graph']);
+      this.v1.ontologyTreeModel({}).subscribe((data) => {
+        this.ontologyModel.set(data);
+        const objectData = this.resolveData(items['@graph']);
+        this.allRows.set(objectData);
+        this.setVersionCounts(items['@graph'] as unknown as DigitalObjectInfoVersions[]);
+      });
     });
 
     this.filterCategories.set(
@@ -410,8 +218,8 @@ export class MainPageComponent {
       this.attachDownloadOptions();
     });
 
-    this.searchControl.valueChanges.subscribe((result) => {
-      this.onSearchChange(result);
+    this.searchControl.valueChanges.subscribe((result?: string) => {
+      this.onSearchChange(result === '' ? undefined : result);
     });
 
     this.setScrollViewportHeight();
@@ -422,34 +230,41 @@ export class MainPageComponent {
    * Sets the version filter counts from the data
    * @param data Digital object data
    */
-  private setVersionCounts(data: DigitalObjectData[]) {
-    const result: Record<string, number> = {};
-    const allVersions = data.map((object) => object.hraVersions);
-    const flatVersions = allVersions.flat();
-    for (const version of flatVersions) {
-      if (result[version]) {
-        result[version] += 1;
-      } else {
-        result[version] = 1;
+  private setVersionCounts(data?: DigitalObjectInfoVersions[]) {
+    if (data) {
+      const result: Record<string, number> = {};
+      const allVersions = data.map((object) => object.hraVersions);
+      const flatVersions = allVersions.flat();
+      for (const version of flatVersions) {
+        if (result[version]) {
+          result[version] += 1;
+        } else {
+          result[version] = 1;
+        }
       }
+      this.versionCounts.set(result);
     }
-    this.versionCounts.set(result);
   }
 
   /**
-   * Updates current filters when changed
+   * Updates current filter selections when changed
    * @param formControls
    */
-  handleFilterChanges(formControls: FilterFormControls) {
-    const updatedFilters = {
-      digitalObjects: formControls.digitalObjects.value?.map((obj) => obj.id) || undefined,
-      releaseVersion: formControls.releaseVersion.value?.map((obj) => obj.id) || undefined,
-      organs: formControls.organs.value?.map((obj) => obj.id) || undefined,
-      anatomicalStructures: formControls.anatomicalStructures.value?.map((obj) => obj.id) || undefined,
-      cellTypes: formControls.cellTypes.value?.map((obj) => obj.id) || undefined,
-      biomarkers: formControls.biomarkers.value?.map((obj) => obj.id) || undefined,
-      searchTerm: this.filters().searchTerm,
+  handleFilterSelectionChanges(formValues: FilterFormValues) {
+    const updatedFilters: CurrentFilters = {
+      digitalObjects: formValues.digitalObjects?.map((obj) => obj.id) || undefined,
+      releaseVersion: formValues.releaseVersion?.map((obj) => obj.id) || undefined,
+      organs: formValues.organs?.map((obj) => obj.id) || undefined,
+      anatomicalStructures: formValues.anatomicalStructures?.map((obj) => obj.id) || undefined,
+      cellTypes: formValues.cellTypes?.map((obj) => obj.id) || undefined,
+      biomarkers: formValues.biomarkers?.map((obj) => obj.id) || undefined,
+      searchTerm: this.filters().searchTerm || undefined,
     };
+
+    this.updateFilters(updatedFilters);
+  }
+
+  private updateFilters(updatedFilters: CurrentFilters) {
     this.filters.set(updatedFilters);
 
     this.router.navigate([''], {
@@ -474,7 +289,7 @@ export class MainPageComponent {
   private calculateCount(filterOption: string, category: string): number {
     return this.allRows().filter((row) => {
       if (Array.isArray(row[category])) {
-        return row[category].some((value) => String(value).toLowerCase().includes(filterOption));
+        return row[category].some((value) => String(value).toLowerCase().includes(filterOption.toLowerCase()));
       }
       return row[category] === filterOption;
     }).length;
@@ -500,9 +315,9 @@ export class MainPageComponent {
             .map((filterOption) => {
               return {
                 id: filterOption,
-                label: DO_INFO[filterOption].label,
+                label: getProductLabel(filterOption),
                 count: this.calculateCount(filterOption, 'doType'),
-                tooltip: DO_INFO[filterOption].tooltip,
+                tooltip: getProductTooltip(filterOption),
               };
             })
             .sort((o1, o2) => o1.label.localeCompare(o2.label)),
@@ -535,8 +350,8 @@ export class MainPageComponent {
             .map((organOption) => {
               return {
                 id: organOption,
-                label: organOption,
-                count: this.calculateCount(organOption, 'organs'),
+                label: sentenceCase(this.ontologyModel()?.nodes[organOption]?.label || ''),
+                count: this.calculateCount(organOption, 'organIds'),
               };
             })
             .sort((o1, o2) => o1.label.localeCompare(o2.label)),
@@ -625,13 +440,9 @@ export class MainPageComponent {
    * @returns Filtered results
    */
   private filterSearchFormResults(currentResults: TableRow[]): TableRow[] {
-    return currentResults.filter((row) =>
-      Object.values(row).some((value) =>
-        String(value)
-          .toLowerCase()
-          .includes((this.filters().searchTerm ?? '').toLowerCase()),
-      ),
-    );
+    return currentResults.filter((row) => {
+      return (row['title'] as string).toLowerCase().includes((this.filters().searchTerm ?? '').toLowerCase());
+    });
   }
 
   /**
@@ -658,7 +469,7 @@ export class MainPageComponent {
       return currentResults;
     }
     return currentResults.filter((row) =>
-      ((row['organs'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
+      ((row['organIds'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
     );
   }
 
@@ -689,7 +500,7 @@ export class MainPageComponent {
     this.allRows().forEach((row) => {
       const type = row['doType'];
       objectFilterOptions.add(type as string);
-      const organs = row['organs'] as string[];
+      const organs = row['organIds'] as string[];
       if (organs) {
         for (const organ of organs) {
           organFilterOptions.add(organ);
@@ -707,22 +518,25 @@ export class MainPageComponent {
    * @param data Raw digital object data
    * @returns Data as TableRow[]
    */
-  private resolveData(data: DigitalObjectData[]): TableRow[] {
+  private resolveData(data?: DigitalObjectInfo[]): TableRow[] {
+    if (!data) {
+      return [];
+    }
     return data.map((item) => {
-      const organ = item.organs && item.organs.length === 1 ? item.organs[0] : undefined;
+      const organId = getOrganId(item);
+      const organLabel = this.ontologyModel()?.nodes[organId]?.label;
       return {
         id: item.lod,
         purl: item.purl,
         doType: item.doType,
         doVersion: item.doVersion,
-        organs: item.organs,
+        organIds: item.organIds,
         title: item.title,
-        objectUrl: `${item.doType}/${item.doName}/${item.doVersion}`,
-        typeIcon: 'product:' + DO_INFO[item.doType].icon,
-        typeTooltip: DO_INFO[item.doType].label,
-        // If more than one organ use all-organs icon
-        organIcon: this.getOrganIcon(organ || 'all-organs'),
-        organTooltip: sentenceCase(organ || 'All Organs'),
+        objectUrl: `${item.doType}/${item.doName}/latest`,
+        typeIcon: getProductIcon(item.doType),
+        typeTooltip: getProductLabel(item.doType),
+        organIcon: getOrganIcon(item),
+        organTooltip: sentenceCase(organLabel || 'All Organs'),
         cellCount: item.cell_count,
         biomarkerCount: item.biomarker_count,
         lastModified: this.formatDateToYYYYMM(item.lastUpdated),
@@ -748,22 +562,13 @@ export class MainPageComponent {
    * Updates filteredRows on searchTerm input
    * @param searchTerm Search input
    */
-  private onSearchChange(searchTerm: string): void {
-    this.filters.update((value) => {
-      return {
-        ...value,
-        searchTerm,
-      };
-    });
-  }
+  private onSearchChange(searchTerm?: string): void {
+    const newFilters = {
+      ...this.filters(),
+      searchTerm,
+    };
 
-  /**
-   * Returns formatted organ name using organ icon map, if not in the map return the original organ name
-   * @param organ Organ name
-   * @returns Organ name in design system format
-   */
-  private getOrganIcon(organ: string): string {
-    return `organ:${ORGAN_ICON_MAP[organ] ?? organ}`;
+    this.updateFilters(newFilters);
   }
 
   /**
@@ -783,6 +588,6 @@ export class MainPageComponent {
    * @returns viewport height
    */
   private setScrollViewportHeight(): void {
-    this.scrollHeight.set(window.innerHeight - 299);
+    this.scrollHeight.set(window.innerHeight - (this.isSmallScreen() ? 259 : 299));
   }
 }

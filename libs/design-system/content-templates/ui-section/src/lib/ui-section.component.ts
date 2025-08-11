@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
 import { IconsModule } from '@hra-ui/design-system/icons';
-import { RouterModule } from '@angular/router';
-import { SoftwareStatus } from '@hra-ui/design-system/software-status-indicator';
+import { SoftwareStatus } from '@hra-ui/design-system/indicators/software-status-indicator';
 
 /** UI Section component for displaying app information and status */
 @Component({

@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
-import { SoftwareStatus, SoftwareStatusIndicatorComponent } from '@hra-ui/design-system/software-status-indicator';
+import {
+  SoftwareStatus,
+  SoftwareStatusIndicatorComponent,
+} from '@hra-ui/design-system/indicators/software-status-indicator';
 
 /**
  * App Label Component

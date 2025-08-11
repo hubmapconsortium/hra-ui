@@ -5,8 +5,9 @@
 <ng-scrollbar
   externalViewport=".scroll-viewport"
   externalContentWrapper=".content-wrapper"
-  externalSpacer="tbody"
+  externalSpacer="content-wrapper"
   asyncDetection="auto"
+  #scrollbar
 >
   <div class="scroll-viewport">
     <div class="content-wrapper">
@@ -79,6 +80,8 @@
         }
         <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>
       </table>
+
+      <ng-content />
     </div>
   </div>
 </ng-scrollbar>
