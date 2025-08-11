@@ -17,7 +17,7 @@ import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/tab
 import { forkJoin, fromEvent, Observable } from 'rxjs';
 
 import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
-import { DigitalObjectMetadata } from '../../digital-objects.schema';
+import { DigitalObjectMetadata } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import {
   CATEGORY_LABELS,
