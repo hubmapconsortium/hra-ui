@@ -1,4 +1,6 @@
 export type DataType = 'anatomical' | 'extraction-site' | 'dataset';
+export type YAxisValue = 'cellCount' | 'cellPercentage';
+export type SortValue = 'totalCellCount' | 'alphabetical';
 
 export interface XAxisOption {
   value: string;
@@ -12,12 +14,12 @@ export interface XAxisOption {
 }
 
 export interface YAxisOption {
-  value: 'cellCount' | 'cellPercentage';
+  value: YAxisValue;
   label: string;
 }
 
 export interface SortOption {
-  value: 'totalCellCount' | 'alphabetical';
+  value: SortValue;
   label: string;
 }
 

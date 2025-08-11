@@ -1,4 +1,5 @@
 import { VisualizationSpec } from 'vega-embed';
+import { YAxisValue, SortValue } from './data-type-config';
 
 export interface AnatomicalBarGraphSpecOptions {
   graphTitle: string;
@@ -9,10 +10,10 @@ export interface AnatomicalBarGraphSpecOptions {
     | 'extractionSiteId'
     | 'extractionSiteLabel'
     | 'datasetId';
-  yField: 'cellCount' | 'cellPercentage';
+  yField: YAxisValue;
   toolFilter: string[];
   sexFilter: 'Male' | 'Female' | 'Both';
-  sortBy: 'totalCellCount' | 'alphabetical';
+  sortBy: SortValue;
   order: 'ascending' | 'descending';
   widthStep?: number;
   height?: number;
