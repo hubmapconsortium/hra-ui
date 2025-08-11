@@ -1,4 +1,4 @@
-import { DigitalObjectData } from '../digital-objects.schema';
+import { DigitalObjectInfo } from '@hra-api/ng-client';
 
 /** Tooltip data interface */
 export interface TooltipData {
@@ -221,13 +221,23 @@ export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> =
   },
 };
 
+/** Filter cateogry labels */
+export const CATEGORY_LABELS = [
+  'Digital objects',
+  'HRA release version',
+  'Organs',
+  'Anatomical structures',
+  'Cell types',
+  'Biomarkers',
+];
+
 /**
  * Gets organ id from a digital object. If more than one organ is listed return blank string
  * @param item Digital object data item
  * @returns Organ id
  */
-export function getOrganId(item: DigitalObjectData): string {
-  return item.organIds && item.organIds.length > 0 ? item.organIds[0] : '';
+export function getOrganId(item: DigitalObjectInfo): string {
+  return item.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
 }
 
 /**
@@ -235,7 +245,7 @@ export function getOrganId(item: DigitalObjectData): string {
  * @param organ Organ UBERON id
  * @returns Organ name in design system format
  */
-export function getOrganIcon(item: DigitalObjectData): string {
+export function getOrganIcon(item: DigitalObjectInfo): string {
   return `organ:${ORGAN_ICON_MAP[getOrganId(item)] ?? 'all-organs'}`;
 }
 

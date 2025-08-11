@@ -1,12 +1,11 @@
 import { ActivatedRouteSnapshot, Route } from '@angular/router';
-import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { TableColumn } from '@hra-ui/design-system/table';
 
-import { KnowledgeGraphObjectsDataSchema } from './digital-objects.schema';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
+import { kgResolver } from './utils/kg-resolver';
 import { getDocumentationUrl, getProductLabel } from './utils/utils';
 
 /** Digital objects api */
@@ -105,7 +104,7 @@ export const appRoutes: Route[] = [
       columns: columns,
     },
     resolve: {
-      data: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
+      data: kgResolver(DO_URL),
     },
   },
   {
@@ -115,7 +114,7 @@ export const appRoutes: Route[] = [
       columns: metadataColumns,
     },
     resolve: {
-      doData: createJsonSpecResolver(DO_URL, KnowledgeGraphObjectsDataSchema),
+      doData: kgResolver(DO_URL),
       documentationUrl: (route: ActivatedRouteSnapshot) => {
         const type = route.params['type'];
         return getDocumentationUrl(type);

@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
+import { DigitalObjectInfo, DigitalObjectsJsonLd, HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
@@ -17,9 +17,10 @@ import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/tab
 import { forkJoin, fromEvent, Observable } from 'rxjs';
 
 import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
-import { DigitalObjectData, DigitalObjectMetadata, KnowledgeGraphObjectsData } from '../../digital-objects.schema';
+import { DigitalObjectMetadata } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
 import {
+  CATEGORY_LABELS,
   getOrganIcon,
   getOrganId,
   getProductIcon,
@@ -29,6 +30,12 @@ import {
   sentenceCase,
   TooltipData,
 } from '../../utils/utils';
+
+/** Digital object info interface with hraVersions */
+interface DigitalObjectInfoVersions extends DigitalObjectInfo {
+  /** List of HRA versions for the object */
+  hraVersions: string[];
+}
 
 /** Filter option category interface */
 export interface FilterOptionCategory {
@@ -74,16 +81,6 @@ export interface CurrentFilters {
 
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
-
-/** Filter cateogry labels */
-const CATEGORY_LABELS = [
-  'Digital objects',
-  'HRA release version',
-  'Organs',
-  'Anatomical structures',
-  'Cell types',
-  'Biomarkers',
-];
 
 /**
  * This component is used for rendering the main page of the application. Contains digital object table and filters.
@@ -133,7 +130,7 @@ export class MainPageComponent {
   protected isSmallScreen = watchBreakpoint('(max-width: 639px)');
 
   /** Raw digital objects data */
-  readonly data = input.required<KnowledgeGraphObjectsData>();
+  readonly data = input.required<DigitalObjectsJsonLd>();
   /** Column info */
   readonly columns = input.required<TableColumn[]>();
 
@@ -198,7 +195,7 @@ export class MainPageComponent {
         this.ontologyModel.set(data);
         const objectData = this.resolveData(items['@graph']);
         this.allRows.set(objectData);
-        this.setVersionCounts(items['@graph']);
+        this.setVersionCounts(items['@graph'] as unknown as DigitalObjectInfoVersions[]);
       });
     });
 
@@ -231,18 +228,20 @@ export class MainPageComponent {
    * Sets the version filter counts from the data
    * @param data Digital object data
    */
-  private setVersionCounts(data: DigitalObjectData[]) {
-    const result: Record<string, number> = {};
-    const allVersions = data.map((object) => object.hraVersions);
-    const flatVersions = allVersions.flat();
-    for (const version of flatVersions) {
-      if (result[version]) {
-        result[version] += 1;
-      } else {
-        result[version] = 1;
+  private setVersionCounts(data?: DigitalObjectInfoVersions[]) {
+    if (data) {
+      const result: Record<string, number> = {};
+      const allVersions = data.map((object) => object.hraVersions);
+      const flatVersions = allVersions.flat();
+      for (const version of flatVersions) {
+        if (result[version]) {
+          result[version] += 1;
+        } else {
+          result[version] = 1;
+        }
       }
+      this.versionCounts.set(result);
     }
-    this.versionCounts.set(result);
   }
 
   /**
@@ -517,7 +516,10 @@ export class MainPageComponent {
    * @param data Raw digital object data
    * @returns Data as TableRow[]
    */
-  private resolveData(data: DigitalObjectData[]): TableRow[] {
+  private resolveData(data?: DigitalObjectInfo[]): TableRow[] {
+    if (!data) {
+      return [];
+    }
     return data.map((item) => {
       const organId = getOrganId(item);
       const organLabel = this.ontologyModel()?.nodes[organId]?.label;

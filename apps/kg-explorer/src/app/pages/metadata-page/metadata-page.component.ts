@@ -5,18 +5,18 @@ import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, sig
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
-import { V1Service } from '@hra-api/ng-client';
+import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
+import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 import { MenuOptionsType, TableColumn } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
-import { DigitalObjectMetadata, KnowledgeGraphObjectsData, PersonInfo } from '../../digital-objects.schema';
+import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
 import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
-import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 
 /** Empty metadata object */
 const EMPTY_METADATA: DigitalObjectMetadata = {
@@ -85,7 +85,7 @@ export class MetadataPageComponent {
   private readonly v1 = inject(V1Service);
 
   /** Raw digital object data from API */
-  readonly doData = input.required<KnowledgeGraphObjectsData>();
+  readonly doData = input.required<DigitalObjectsJsonLd>();
   /** Column data for metadata table */
   readonly columns = input.required<TableColumn[]>();
 
@@ -156,30 +156,32 @@ export class MetadataPageComponent {
         });
     });
 
-    toObservable(this.doData).subscribe((data) => {
-      const pageItem = data['@graph'].find((item) => {
-        return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
-      });
-      const icons = [getProductIcon(type)];
-      if (pageItem?.organIds) {
-        icons.push(getOrganIcon(pageItem));
-      }
-      this.icons.set(icons);
-
-      this.v1.ontologyTreeModel({}).subscribe((ontologyData) => {
-        if (pageItem) {
-          this.availableVersions.set(pageItem.versions);
-          const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
-          for (const organId of pageItem.organIds || []) {
-            tags.push({
-              id: organId,
-              label: sentenceCase(ontologyData.nodes[organId].label || ''),
-              type: 'organs',
-            });
-          }
-          this.tags.set(tags);
+    toObservable(this.doData).subscribe((data: DigitalObjectsJsonLd) => {
+      if (data['@graph']) {
+        const pageItem = data['@graph'].find((item) => {
+          return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
+        });
+        const icons = [getProductIcon(type)];
+        if (pageItem?.organIds) {
+          icons.push(getOrganIcon(pageItem));
         }
-      });
+        this.icons.set(icons);
+
+        this.v1.ontologyTreeModel({}).subscribe((ontologyData) => {
+          if (pageItem) {
+            this.availableVersions.set(pageItem.versions);
+            const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
+            for (const organId of pageItem.organIds || []) {
+              tags.push({
+                id: organId,
+                label: sentenceCase(ontologyData.nodes[organId].label || ''),
+                type: 'organs',
+              });
+            }
+            this.tags.set(tags);
+          }
+        });
+      }
     });
   }
 
