@@ -10,7 +10,7 @@
       disableRipple
       panelClass="options-container"
       (selectionChange)="versionChange.emit($event.value)"
-      [value]="version()"
+      [value]="version() === 'latest' ? availableVersions()[0] : version()"
     >
       @for (version of availableVersions(); track $index) {
         <mat-option [value]="version">

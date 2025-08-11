@@ -45,7 +45,7 @@
       </hra-page-section>
       <hra-page-section tagline="Tags" [level]="2">
         <mat-chip-set>
-          @for (tag of tags(); track tag) {
+          @for (tag of tags(); track $index) {
             <mat-chip (click)="tagClick(tag.id, tag.type)">{{ tag.label }}</mat-chip>
           }
         </mat-chip-set>
@@ -62,3 +62,4 @@
     ></hra-provenance-menu>
   </hra-metadata-layout-content>
 </hra-metadata-layout>
+<hra-footer></hra-footer>

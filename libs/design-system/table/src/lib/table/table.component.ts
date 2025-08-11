@@ -13,6 +13,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { MarkdownModule } from 'ngx-markdown';
+import { NgScrollbar } from 'ngx-scrollbar';
 import { parse } from 'papaparse';
 
 import {
@@ -171,6 +172,9 @@ export class NumericRowElementDirective {
   },
 })
 export class TableComponent<T = TableRow> {
+  /** Scrollbar ref */
+  readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
+
   /** CSV URL input */
   readonly csvUrl = input<string>();
 
@@ -343,5 +347,10 @@ export class TableComponent<T = TableRow> {
   /** Emits the id of a row when its download button its clicked */
   downloadClick(id: string | number | boolean | (string | number | boolean)[]) {
     this.downloadClicked.emit(id as string);
+  }
+
+  /** Scrolls to top of the table */
+  scrollToTop() {
+    this.scrollbar().scrollTo({ top: 0, duration: 0 });
   }
 }

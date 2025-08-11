@@ -11,7 +11,14 @@
   >
     <mat-icon>info</mat-icon>
   </button>
-  <button mat-button hraButtonVariant="secondary" class="category-button" color="primary" [hraRichTooltip]="content">
+  <button
+    mat-button
+    hraButtonVariant="secondary"
+    class="category-button"
+    color="primary"
+    [hraRichTooltip]="content"
+    [hraRichTooltipPositions]="tooltipPositions()"
+  >
     {{ filterOptionCategory().label }}
   </button>
 </div>
@@ -37,7 +44,11 @@
     <ng-scrollbar>
       <mat-action-list>
         @for (option of filteredOptions(); track option.id) {
-          <div class="option-content" [class.large]="option.secondaryLabel">
+          <div
+            class="option-content"
+            [class.selected]="selectedOptions().includes(option)"
+            [class.large]="option.secondaryLabel"
+          >
             @if (option.tooltip) {
               <button
                 mat-icon-button
@@ -50,7 +61,7 @@
                 <mat-icon>info</mat-icon>
               </button>
             }
-            <button mat-list-item class="option" (mouseup)="selectOption(option)">
+            <button mat-list-item class="option" (click)="selectOption(option)">
               <div class="labels-count">
                 <span class="option-labels">
                   <div class="option-primary-label">{{ option.label }}</div>

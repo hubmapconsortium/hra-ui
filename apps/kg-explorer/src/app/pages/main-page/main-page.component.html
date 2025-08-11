@@ -22,7 +22,7 @@
       [filterCategories]="filterCategories()"
       (toggleForm)="sidenav.toggle()"
       [formClosed]="!sidenav.opened"
-      (formChanges)="handleFilterChanges($event)"
+      (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
       [currentFilters]="filters()"
     ></hra-filter-menu>
   </mat-sidenav>
@@ -41,6 +41,7 @@
         ></hra-results-indicator>
       </div>
       <hra-table
+        #table
         [style]="'divider'"
         [enableSort]="true"
         [rows]="filteredRows()"
@@ -48,7 +49,9 @@
         (downloadFile)="download.saveFile($event[0], $event[1])"
         (routeClicked)="router.navigate([$event])"
         (downloadClicked)="downloadId.set($event)"
-      />
+      >
+        <hra-footer />
+      </hra-table>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
