@@ -13,6 +13,7 @@ import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, fromEvent, Observable } from 'rxjs';
 
@@ -99,6 +100,7 @@ const SCROLLBAR_TOP_OFFSET = '86';
     FilterMenuComponent,
     MatSidenavModule,
     ButtonsModule,
+    NavigationModule,
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',

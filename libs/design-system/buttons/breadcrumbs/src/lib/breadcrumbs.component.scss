@@ -3,8 +3,6 @@
 
 :host {
   display: block;
-  width: 0;
-  flex-grow: 1;
 
   .navigation .crumbs {
     display: flex;
@@ -20,7 +18,9 @@
 
     .crumb,
     .icon {
+      display: flex;
       vertical-align: middle;
+      align-items: center;
     }
 
     .text-position-helper {

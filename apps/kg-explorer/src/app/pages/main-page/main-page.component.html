@@ -46,11 +46,12 @@
         [enableSort]="true"
         [rows]="filteredRows()"
         [columns]="columns()"
-        [footerInTable]="true"
         (downloadFile)="download.saveFile($event[0], $event[1])"
         (routeClicked)="router.navigate([$event])"
         (downloadClicked)="downloadId.set($event)"
-      />
+      >
+        <hra-footer />
+      </hra-table>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
