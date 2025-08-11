@@ -16,7 +16,7 @@ import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/resu
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { forkJoin, fromEvent, Observable } from 'rxjs';
 
-import { FilterFormControls, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
+import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import { DigitalObjectMetadata } from '../../digital-objects.schema';
 import { DownloadService } from '../../services/download.service';
 import {
@@ -248,14 +248,14 @@ export class MainPageComponent {
    * Updates current filter selections when changed
    * @param formControls
    */
-  handleFilterSelectionChanges(formControls: FilterFormControls) {
+  handleFilterSelectionChanges(formValues: FilterFormValues) {
     const updatedFilters: CurrentFilters = {
-      digitalObjects: formControls.digitalObjects.value?.map((obj) => obj.id) || undefined,
-      releaseVersion: formControls.releaseVersion.value?.map((obj) => obj.id) || undefined,
-      organs: formControls.organs.value?.map((obj) => obj.id) || undefined,
-      anatomicalStructures: formControls.anatomicalStructures.value?.map((obj) => obj.id) || undefined,
-      cellTypes: formControls.cellTypes.value?.map((obj) => obj.id) || undefined,
-      biomarkers: formControls.biomarkers.value?.map((obj) => obj.id) || undefined,
+      digitalObjects: formValues.digitalObjects?.map((obj) => obj.id) || undefined,
+      releaseVersion: formValues.releaseVersion?.map((obj) => obj.id) || undefined,
+      organs: formValues.organs?.map((obj) => obj.id) || undefined,
+      anatomicalStructures: formValues.anatomicalStructures?.map((obj) => obj.id) || undefined,
+      cellTypes: formValues.cellTypes?.map((obj) => obj.id) || undefined,
+      biomarkers: formValues.biomarkers?.map((obj) => obj.id) || undefined,
       searchTerm: this.filters().searchTerm || undefined,
     };
 

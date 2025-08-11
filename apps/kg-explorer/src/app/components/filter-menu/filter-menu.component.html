@@ -14,47 +14,14 @@
   </div>
 
   <form class="menu-content" [formGroup]="form">
-    <hra-filter-menu-overlay
-      [form]="form.controls.digitalObjects"
-      [filterOptionCategory]="filterCategories()[0]"
-      [currentFilters]="currentFilters()?.digitalObjects"
-      (filterChanged)="formChanges.emit(form.controls)"
-    />
-    <mat-divider />
-    <hra-filter-menu-overlay
-      [form]="form.controls.releaseVersion"
-      [filterOptionCategory]="filterCategories()[1]"
-      [currentFilters]="currentFilters()?.releaseVersion"
-      (filterChanged)="formChanges.emit(form.controls)"
-    />
-    <mat-divider />
-    <hra-filter-menu-overlay
-      [form]="form.controls.organs"
-      [filterOptionCategory]="filterCategories()[2]"
-      [currentFilters]="currentFilters()?.organs"
-      (filterChanged)="formChanges.emit(form.controls)"
-    />
-    <mat-divider />
-    <hra-filter-menu-overlay
-      [form]="form.controls.anatomicalStructures"
-      [filterOptionCategory]="filterCategories()[3]"
-      [currentFilters]="currentFilters()?.anatomicalStructures"
-      (filterChanged)="formChanges.emit(form.controls)"
-    />
-    <mat-divider />
-    <hra-filter-menu-overlay
-      [form]="form.controls.cellTypes"
-      [filterOptionCategory]="filterCategories()[4]"
-      [currentFilters]="currentFilters()?.cellTypes"
-      (filterChanged)="formChanges.emit(form.controls)"
-    />
-    <mat-divider />
-    <hra-filter-menu-overlay
-      [form]="form.controls.biomarkers"
-      [filterOptionCategory]="filterCategories()[5]"
-      [currentFilters]="currentFilters()?.biomarkers"
-      (filterChanged)="formChanges.emit(form.controls)"
-    />
-    <mat-divider />
+    @for (value of formValues(); track $index) {
+      <hra-filter-menu-overlay
+        [form]="value[1]"
+        [filterOptionCategory]="filterCategories()[$index]"
+        [currentFilters]="currentFilters()[value[0]]"
+        (filterChanged)="handleFilterChange()"
+      />
+      <mat-divider />
+    }
   </form>
 </ng-scrollbar>
