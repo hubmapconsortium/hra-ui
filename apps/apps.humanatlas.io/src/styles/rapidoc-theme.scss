@@ -193,7 +193,7 @@ rapi-doc::part(btn-outline) {
       /* colors based on request type */
       --bg-post: #c8dfbe;
       --bg-get: #d6e8f8;
-      border-top: 1px solid vars.$outline-variant;
+      border-top: 0.0625rem solid vars.$outline-variant;
       background: vars.$on-primary;
 
       & > div.m-markdown {
@@ -307,8 +307,8 @@ rapi-doc::part(btn-outline) {
             display: none;
           }
           .m-markdown pre {
-            border: 1px solid vars.$outline-variant;
-            border-radius: 4px;
+            border: 0.0625rem solid vars.$outline-variant;
+            border-radius: 0.25rem;
           }
         }
 
