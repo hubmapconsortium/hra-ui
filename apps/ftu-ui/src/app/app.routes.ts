@@ -29,7 +29,7 @@ export const ROUTES: Route[] = [
       id: 'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle',
       crumbs: [
         { name: 'Apps', route: 'https://apps.humanatlas.io' },
-        { name: 'Functional Tissue Unit Explorer' },
+        { name: 'Functional Tissue Unit Explorer', route: '/' },
       ] satisfies BreadcrumbItem[],
     },
     resolve: {

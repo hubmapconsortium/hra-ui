@@ -6,7 +6,7 @@
 
   ftu-label-box {
     height: 4.0625rem;
-    border-bottom: 0.0625rem solid vars.$outline;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
   }
 
   .illustration-header {
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid vars.$outline;
+    border-bottom: 1px solid vars.$outline-variant;
     background-color: vars.$surface-container-low;
 
     .content {
