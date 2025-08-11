@@ -539,7 +539,7 @@ export class MainPageComponent {
         organTooltip: sentenceCase(organLabel || 'All Organs'),
         cellCount: item.cell_count,
         biomarkerCount: item.biomarker_count,
-        lastModified: this.formatDateToYYYYMM(item.lastUpdated),
+        lastPublished: this.formatDateToYYYYMM(item.lastUpdated),
       } as TableRow;
     });
   }

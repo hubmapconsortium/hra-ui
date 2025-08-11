@@ -30,8 +30,7 @@
     }
 
     .crumb:last-child {
-      overflow: hidden;
-      text-overflow: ellipsis;
+      text-wrap: auto;
     }
   }
 }

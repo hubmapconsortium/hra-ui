@@ -19,7 +19,6 @@
   );
 
   mat-sidenav {
-    padding: 2rem 1rem;
     border-right: 1px solid vars.$outline;
   }
 
@@ -45,12 +44,7 @@
     @media (min-width: 640px) {
       mat-sidenav {
         transform: translateX(-14.5rem);
-        padding: 2rem 0.75rem;
         visibility: visible;
-      }
-
-      ::ng-deep .menu-content {
-        pointer-events: none;
       }
 
       ::ng-deep .mat-drawer-inner-container {
@@ -123,8 +117,9 @@
     border-radius: 0;
 
     .content-wrapper {
-      width: 100%;
-      min-width: 49.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     scrollbar-y {

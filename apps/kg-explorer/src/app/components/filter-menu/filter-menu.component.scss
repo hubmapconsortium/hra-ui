@@ -40,7 +40,20 @@
     }
 
     .menu-content {
+      pointer-events: none;
       opacity: 0;
+    }
+
+    ng-scrollbar {
+      overflow-y: hidden;
+    }
+
+    ::ng-deep scrollbars {
+      display: none;
+    }
+
+    ::ng-deep .ng-scroll-content {
+      --_viewport-padding-right: 0.75rem;
     }
   }
 
@@ -50,5 +63,8 @@
 
   ::ng-deep .ng-scroll-content {
     max-width: 100%;
+    --_viewport-padding-top: 2rem;
+    --_viewport-padding-right: 1rem;
+    --_viewport-padding-left: 1rem;
   }
 }
