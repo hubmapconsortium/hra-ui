@@ -1,6 +1,7 @@
 // hra-pop-validation.component.ts
-import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,8 +22,6 @@ import {
   getToolDisplayName,
 } from './utils/data-type-config';
 
-type AllDataTypes = ParsedAnatomicalData | ParsedExtractionSiteData | ParsedDatasetCellData;
-
 @Component({
   selector: 'hra-pop-validation',
   imports: [CommonModule, PageSectionComponent, IconsModule, MatIconModule, BarGraphComponent, ConfigSelectorComponent],
@@ -38,8 +37,6 @@ export class HraPopValidationComponent {
   readonly sortOptions = SORT_OPTIONS;
 
   readonly selectedDataType = signal<DataType>('anatomical');
-  readonly allData = signal<AllDataTypes[]>([]);
-  readonly organOptions = signal<string[]>([]);
   readonly selectedOrgan = signal<string>('');
   readonly selectedTools = signal<string[]>([]);
   readonly selectedSexes = signal<string[]>(['Male', 'Female']);
@@ -49,22 +46,102 @@ export class HraPopValidationComponent {
   readonly selectedSort = signal<'totalCellCount' | 'alphabetical'>('totalCellCount');
   readonly availableTools = signal<string[]>([]);
   readonly vegaSpecs = signal<VisualizationSpec[]>([]);
-  readonly loading = signal<boolean>(false);
-  readonly error = signal<string | null>(null);
+
+  // Resources for data loading
+  private readonly anatomicalDataResource = rxResource({
+    request: () => ({ dataType: 'anatomical' as const }),
+    loader: () => this.dataService.getAnatomicalData(),
+  });
+
+  private readonly extractionSiteDataResource = rxResource({
+    request: () => ({ dataType: 'extraction-site' as const }),
+    loader: () => this.dataService.getExtractionSiteData(),
+  });
+
+  private readonly datasetDataResource = rxResource({
+    request: () => ({ dataType: 'dataset' as const }),
+    loader: () => this.dataService.getDatasetCellData(),
+  });
+
+  // Computed signals derived from resources
+  readonly allData = computed(() => {
+    const dataType = this.selectedDataType();
+    switch (dataType) {
+      case 'anatomical':
+        return this.anatomicalDataResource.value() ?? [];
+      case 'extraction-site':
+        return this.extractionSiteDataResource.value() ?? [];
+      case 'dataset':
+        return this.datasetDataResource.value() ?? [];
+      default:
+        return [];
+    }
+  });
+
+  readonly organOptions = computed(() => {
+    const data = this.allData();
+    return [...new Set(data.map((d) => d.organ))];
+  });
+
+  readonly loading = computed(() => {
+    const dataType = this.selectedDataType();
+    switch (dataType) {
+      case 'anatomical':
+        return this.anatomicalDataResource.isLoading();
+      case 'extraction-site':
+        return this.extractionSiteDataResource.isLoading();
+      case 'dataset':
+        return this.datasetDataResource.isLoading();
+      default:
+        return false;
+    }
+  });
+
+  readonly error = computed(() => {
+    const dataType = this.selectedDataType();
+    let error: unknown;
+
+    switch (dataType) {
+      case 'anatomical':
+        error = this.anatomicalDataResource.error();
+        break;
+      case 'extraction-site':
+        error = this.extractionSiteDataResource.error();
+        break;
+      case 'dataset':
+        error = this.datasetDataResource.error();
+        break;
+      default:
+        return null;
+    }
+
+    if (error) {
+      return error instanceof Error ? error.message : 'An error occurred while loading data';
+    }
+
+    return null;
+  });
 
   constructor() {
     this.initializeEffects();
   }
 
   private initializeEffects() {
-    // Effect to load data when data type changes
+    // Effect to update X-axis options when data type changes
     effect(() => {
       const dataType = this.selectedDataType();
-      this.loadDataForType(dataType);
       this.updateXAxisOptions(dataType);
     });
 
-    // Effect to update charts when any filter changes
+    // Effect to auto-select first organ when organ options change
+    effect(() => {
+      const organs = this.organOptions();
+      if (organs.length > 0 && !this.selectedOrgan()) {
+        this.selectedOrgan.set(organs[0]);
+      }
+    });
+
+    // Effect to update available tools and charts when dependencies change
     effect(() => {
       this.updateAvailableTools();
       this.updateCharts();
@@ -103,75 +180,6 @@ export class HraPopValidationComponent {
     this.xAxisOptions.set(config.xAxisOptions);
     if (config.xAxisOptions.length > 0) {
       this.selectedXAxis.set(config.xAxisOptions[0].value);
-    }
-  }
-
-  private loadDataForType(dataType: DataType) {
-    this.loading.set(true);
-    this.error.set(null);
-    this.allData.set([]);
-    this.organOptions.set([]);
-    this.selectedOrgan.set('');
-
-    switch (dataType) {
-      case 'anatomical':
-        this.dataService.getAnatomicalData().subscribe({
-          next: (data) => {
-            this.allData.set(data);
-            const organs = [...new Set(data.map((d) => d.organ))];
-            this.organOptions.set(organs);
-            if (organs.length > 0) {
-              this.selectedOrgan.set(organs[0]);
-            }
-            this.loading.set(false);
-          },
-          error: (err) => {
-            this.error.set(err.message || 'Error loading anatomical data');
-            this.loading.set(false);
-          },
-        });
-        break;
-
-      case 'extraction-site':
-        this.dataService.getExtractionSiteData().subscribe({
-          next: (data) => {
-            this.allData.set(data);
-            const organs = [...new Set(data.map((d) => d.organ))];
-            this.organOptions.set(organs);
-            if (organs.length > 0) {
-              this.selectedOrgan.set(organs[0]);
-            }
-            this.loading.set(false);
-          },
-          error: (err) => {
-            this.error.set(err.message || 'Error loading extraction site data');
-            this.loading.set(false);
-          },
-        });
-        break;
-
-      case 'dataset':
-        this.dataService.getDatasetCellData().subscribe({
-          next: (data) => {
-            this.allData.set(data);
-            const organs = [...new Set(data.map((d) => d.organ))];
-            this.organOptions.set(organs);
-            if (organs.length > 0) {
-              this.selectedOrgan.set(organs[0]);
-            }
-            this.loading.set(false);
-          },
-          error: (err) => {
-            this.error.set(err.message || 'Error loading dataset data');
-            this.loading.set(false);
-          },
-        });
-        break;
-
-      default:
-        this.error.set('Unknown data type');
-        this.loading.set(false);
-        break;
     }
   }
 
