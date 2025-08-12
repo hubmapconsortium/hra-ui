@@ -36,8 +36,10 @@ export const Default: Story = {
         display: inline-flex;
         gap: 0.5rem;
         align-items: center;
-      }
-    }`,
+        font-family: Metropolis, sans-serif;
+        font-weight: 500;
+        font-size: 0.875rem;
+      }`,
     ],
     template: `
       <hra-profile-card
@@ -82,7 +84,7 @@ export const SocialIcons: Story = {
         [description]="description"
         [centerContent]="centerContent"
       >
-        <div class="social-media-actions" [class.centered]="alignment === 'center'">
+        <div class="social-media-actions" [class.centered]="centerContent">
           <a mat-icon-button [hraIconButtonVariant]="'color'" [hraIconButtonSize]="'small'">
             <mat-icon color="accent">mail</mat-icon>
           </a>
