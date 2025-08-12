@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 
 export enum EventType {
+  PageView = 'pageView',
   Click = 'click',
   Hover = 'hover',
   Error = 'error',

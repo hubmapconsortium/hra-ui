@@ -8,6 +8,17 @@ export interface HraAnalyticsOptions {
   injector?: Injector;
 }
 
+interface EventData {
+  config: {
+    sessionId: string;
+    writer: Pick<EventWriterService, 'write'>;
+  };
+  payload: {
+    event: string;
+    properties: object;
+  };
+}
+
 export function hraAnalyticsPlugin(options: HraAnalyticsOptions = {}): AnalyticsPlugin {
   if (!options.injector) {
     assertInInjectionContext(hraAnalyticsPlugin);
@@ -23,13 +34,11 @@ export function hraAnalyticsPlugin(options: HraAnalyticsOptions = {}): Analytics
       writer,
     },
     loaded: () => true,
-    page(payload) {
-      console.log('page', payload, this);
-      //
+    page({ config, payload }: EventData) {
+      config.writer.write('pageView', payload.properties, { sessionId: config.sessionId });
     },
-    track(payload) {
-      console.log('track', payload, this);
-      //
+    track({ config, payload }: EventData) {
+      config.writer.write(payload.event, payload.properties, { sessionId: config.sessionId });
     },
   };
 }
