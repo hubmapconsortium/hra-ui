@@ -22,7 +22,7 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <hra-workflow-card title="Title" [step]="1">
+    <hra-workflow-card tagline="Title" [step]="1">
       <div class="placeholder">placeholder row content</div>
       <div class="placeholder">placeholder row content</div>
       <div class="placeholder">placeholder row content</div>
@@ -31,12 +31,13 @@ export const Default: Story = {
     `,
     styles: [
       `.placeholder {
-        height: 3rem;
-        text-align: center;
-        font: var(--mat-sys-display-small);
-        letter-spacing: var(--mat-sys-display-small-tracking);
-        color: var(--mat-sys-tertiary);
-        background: var(--mat-sys-outline-variant);
+          height: 3rem;
+          text-align: center;
+          font: var(--mat-sys-display-small);
+          letter-spacing: var(--mat-sys-display-small-tracking);
+          color: var(--mat-sys-tertiary);
+          background: var(--mat-sys-outline-variant);
+          margin: 2rem 0;
       }`,
     ],
   }),
