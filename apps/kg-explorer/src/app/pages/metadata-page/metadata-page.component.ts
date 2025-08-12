@@ -1,7 +1,7 @@
 import '@google/model-viewer';
 
 import { HttpClient } from '@angular/common/http';
-import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,43 +17,6 @@ import { ProvenanceMenuComponent } from '../../components/provenance-menu/proven
 import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
-
-/** Empty metadata object */
-const EMPTY_METADATA: DigitalObjectMetadata = {
-  $schema: '',
-  '@context': '',
-  '@type': '',
-  creation_date: '',
-  creators: [],
-  description: '',
-  distributions: [],
-  id: '',
-  label: '',
-  license: '',
-  publisher: '',
-  see_also: '',
-  title: '',
-  type: '',
-  version: '',
-  was_derived_from: {
-    citation: '',
-    citationOverall: '',
-    creation_date: '',
-    creators: [],
-    description: '',
-    distributions: [],
-    doi: '',
-    funders: [],
-    hubmapId: '',
-    id: '',
-    label: '',
-    license: '',
-    project_leads: [],
-    publisher: '',
-    reviewers: [],
-    title: '',
-  },
-};
 
 /**
  * Metadata page for a digital object
@@ -88,43 +51,21 @@ export class MetadataPageComponent {
   readonly doData = input.required<DigitalObjectsJsonLd>();
   /** Column data for metadata table */
   readonly columns = input.required<TableColumn[]>();
-
   /** Metadata for the digital object */
-  readonly metadata = signal<DigitalObjectMetadata>(EMPTY_METADATA);
+  readonly metadata = input.required<DigitalObjectMetadata>();
+
   /** Versions available for this digital object */
   readonly availableVersions = signal<string[]>([]);
   /** Current version selected */
-  readonly currentVersion = signal<string>(this.metadata().version);
+  readonly currentVersion = signal<string>('');
   /** Icons to display on top of the page */
   readonly icons = signal<string[]>([]);
   /** File download options for this digital object */
   readonly downloadOptions = signal<MenuOptionsType[]>([]);
   /** Tags to display in Tags section (object type + organs) */
   readonly tags = signal<{ id: string; label: string; type: string }[]>([]);
-
   /** Data to display in the metadata table */
-  readonly rows = computed(() =>
-    [
-      { provenance: 'Creator(s)', metadata: this.createMarkdownList(this.metadata().was_derived_from.creators) },
-      {
-        provenance: 'Project lead(s)',
-        metadata: this.createMarkdownList(this.metadata().was_derived_from.project_leads),
-      },
-      {
-        provenance: 'Reviewer(s)',
-        metadata: this.createMarkdownList(this.metadata().was_derived_from.reviewers),
-      },
-      {
-        provenance: 'DOI',
-        metadata: this.metadata().was_derived_from.doi
-          ? `[${this.metadata().was_derived_from.doi}](${this.metadata().was_derived_from.doi})`
-          : '',
-      },
-      { provenance: 'HuBMAP ID', metadata: this.metadata().was_derived_from.hubmapId ?? '' },
-      { provenance: 'Date published', metadata: this.metadata().was_derived_from.creation_date ?? '' },
-      { provenance: 'Date last processed', metadata: this.metadata().creation_date ?? '' },
-    ].filter((item) => item.metadata !== ''),
-  );
+  readonly rows = signal<{ provenance: string; metadata: string }[]>([]);
 
   /** Determines if the screen is medium-sized */
   protected isWMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639px)');
@@ -148,12 +89,36 @@ export class MetadataPageComponent {
 
     effect(() => {
       this.router.navigate([type, name, this.currentVersion()]);
-      this.http
-        .get(`https://lod.humanatlas.io/${type}/${name}/${this.currentVersion()}`, { responseType: 'json' })
-        .subscribe((data) => {
-          this.metadata.set(data as DigitalObjectMetadata);
-          this.downloadOptions.set(this.download.getDownloadOptions(this.metadata()));
-        });
+    });
+
+    toObservable(this.metadata).subscribe((metadata) => {
+      if (metadata) {
+        this.downloadOptions.set(this.download.getDownloadOptions(metadata));
+        this.rows.set(
+          [
+            { provenance: 'Creator(s)', metadata: this.createMarkdownList(metadata.was_derived_from.creators) },
+            {
+              provenance: 'Project lead(s)',
+              metadata: this.createMarkdownList(metadata.was_derived_from.project_leads),
+            },
+            {
+              provenance: 'Reviewer(s)',
+              metadata: this.createMarkdownList(metadata.was_derived_from.reviewers),
+            },
+            {
+              provenance: 'DOI',
+              metadata: metadata.was_derived_from.doi
+                ? `[${metadata.was_derived_from.doi}](${metadata.was_derived_from.doi})`
+                : '',
+            },
+            { provenance: 'HuBMAP ID', metadata: metadata.was_derived_from.hubmapId ?? '' },
+            { provenance: 'Date published', metadata: metadata.was_derived_from.creation_date ?? '' },
+            { provenance: 'Date last processed', metadata: metadata.creation_date ?? '' },
+          ].filter((item) => item.metadata !== ''),
+        );
+      } else {
+        this.router.navigate([`404`]);
+      }
     });
 
     toObservable(this.doData).subscribe((data: DigitalObjectsJsonLd) => {

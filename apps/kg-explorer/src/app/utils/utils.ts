@@ -255,7 +255,7 @@ export function getOrganIcon(item: DigitalObjectInfo): string {
  * @returns Product icon string
  */
 export function getProductIcon(doType: string): string {
-  return `product:${DO_INFO[doType].icon}`;
+  return `product:${DO_INFO[doType]?.icon}`;
 }
 
 /**
@@ -264,7 +264,7 @@ export function getProductIcon(doType: string): string {
  * @returns Product label string
  */
 export function getProductLabel(doType: string): string {
-  return DO_INFO[doType].label;
+  return DO_INFO[doType]?.label || '';
 }
 
 /**
@@ -282,7 +282,7 @@ export function getProductTooltip(doType: string): TooltipData {
  * @returns Documentation url
  */
 export function getDocumentationUrl(doType: string): string {
-  return DO_INFO[doType].documentationUrl || '';
+  return DO_INFO[doType]?.documentationUrl || '';
 }
 
 /**
