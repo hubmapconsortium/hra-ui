@@ -43,6 +43,11 @@
       outlined-label-text-color: vars.$primary-fixed,
       outlined-focus-label-text-color: vars.$secondary,
       outlined-disabled-label-text-color: rgb(from vars.$on-surface r g b / 38%),
+      subscript-text-font: vars.$label-medium-font,
+      subscript-text-line-height: vars.$label-medium-line-height,
+      subscript-text-size: vars.$label-medium-size,
+      subscript-text-tracking: vars.$label-medium-tracking,
+      subscript-text-weight: vars.$label-medium-weight,
     )
   );
 }

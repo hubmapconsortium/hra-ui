@@ -138,6 +138,7 @@ export class SourceListComponent implements OnChanges {
         if (this.sourceTable && this.sources.length > 0) {
           this.sourceTable.selection.clear();
           this.sourceTable.selection.select(...this.sources);
+          this.selectedCount.set(this.sourceTable.selection.selected.length);
           this.selectionChanged.emit(this.sourceTable.selection.selected as SourceListItem[]);
         }
       });
