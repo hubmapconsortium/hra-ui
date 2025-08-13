@@ -36,9 +36,6 @@ export const Default: Story = {
         display: inline-flex;
         gap: 0.5rem;
         align-items: center;
-        font-family: Metropolis, sans-serif;
-        font-weight: 500;
-        font-size: 0.875rem;
       }`,
     ],
     template: `
@@ -67,13 +64,7 @@ export const SocialIcons: Story = {
         display: flex;
         gap: 0.5rem;
         align-items: center;
-
-        @include utils.use-font(label, large);
         color: vars.$on-tertiary-fixed;
-      }
-
-      .social-media-actions.centered {
-        justify-content: center;
       }
     }`,
     ],
@@ -84,7 +75,7 @@ export const SocialIcons: Story = {
         [description]="description"
         [centerContent]="centerContent"
       >
-        <div class="social-media-actions" [class.centered]="centerContent">
+        <div class="social-media-actions">
           <a mat-icon-button [hraIconButtonVariant]="'color'" [hraIconButtonSize]="'small'">
             <mat-icon color="accent">mail</mat-icon>
           </a>
