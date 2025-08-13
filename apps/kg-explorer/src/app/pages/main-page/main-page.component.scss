@@ -134,7 +134,7 @@
     }
 
     th {
-      padding-bottom: 0.75rem !important;
+      padding-bottom: 1.25rem !important;
     }
 
     th:first-of-type {
@@ -147,13 +147,42 @@
 
     tr {
       background-color: vars.$on-primary;
+
+      td {
+        max-width: 50rem;
+        padding-top: 1rem !important;
+        padding-bottom: 1.25rem !important;
+      }
     }
 
-    td {
-      max-width: 50rem;
-      vertical-align: middle !important;
-      padding-top: 0.25rem !important;
-      padding-bottom: 0.5rem !important;
+    tr:first-of-type {
+      td {
+        padding-top: 1.875rem !important;
+      }
+      .mat-column-title {
+        padding-top: 2.125rem !important;
+      }
+    }
+
+    tbody {
+      td {
+        vertical-align: top;
+
+        span {
+          display: block;
+          height: 2.5rem;
+          line-height: 2.5rem;
+        }
+
+        button {
+          margin: 0.25rem 0;
+        }
+      }
+
+      .mat-column-title {
+        padding: 1.25rem 1rem 1.5rem !important;
+        vertical-align: middle;
+      }
     }
 
     hra-footer {
