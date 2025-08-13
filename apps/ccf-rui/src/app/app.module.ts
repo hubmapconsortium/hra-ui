@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,15 +8,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
+import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { TrackingPopupModule } from 'ccf-shared';
 import { provideNgxMask } from 'ngx-mask';
 import { AppWebComponent } from './app-web-component.component';
@@ -24,7 +25,6 @@ import { CoreModule } from './core/core.module';
 import { ContentModule } from './modules/content/content.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [

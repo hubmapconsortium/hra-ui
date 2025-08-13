@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal,
+  model,
   output,
+  signal,
   TemplateRef,
   ViewChild,
-  AfterViewInit,
-  model,
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
@@ -47,7 +47,7 @@ import {
 
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 

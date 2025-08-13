@@ -2,7 +2,7 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, out
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**

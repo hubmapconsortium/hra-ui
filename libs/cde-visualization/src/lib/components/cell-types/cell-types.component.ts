@@ -20,11 +20,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { map } from 'rxjs';
 
 import { CellTypeEntry } from '../../models/cell-type';

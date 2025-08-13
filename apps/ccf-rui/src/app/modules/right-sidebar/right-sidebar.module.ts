@@ -6,12 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { InfoButtonModule } from 'ccf-shared';
 

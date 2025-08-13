@@ -3,7 +3,7 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } f
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 
 /**
  * Menu for violin plot expansion panel
