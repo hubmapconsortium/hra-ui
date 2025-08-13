@@ -32,7 +32,7 @@ function formatToolName(tool: string): string {
 
 // Main function using row/column faceting - rows=tools, columns=sex, independent scales per tool
 export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): VisualizationSpec {
-  const { graphTitle, values, xField, yField, sortBy, order, toolFilter, widthStep = 70, height = 400 } = opts;
+  const { graphTitle, values, xField, yField, sortBy, order, toolFilter, widthStep = 50, height = 300 } = opts;
 
   if (!values || values.length === 0) {
     return {
@@ -94,6 +94,7 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
     transform: filters.length > 0 ? [{ filter: { and: filters } }] : [],
     padding: { top: 100, bottom: 100, left: 50, right: 50 },
 
+    align: 'each',
     // ROWS = Annotation Tools, COLUMNS = Sex
     facet: {
       row: {
