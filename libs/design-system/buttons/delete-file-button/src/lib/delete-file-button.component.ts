@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { MatIconModule } from '@angular/material/icon';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 
 /**
  * Button to give users an option to delete their file if they upload the wrong file

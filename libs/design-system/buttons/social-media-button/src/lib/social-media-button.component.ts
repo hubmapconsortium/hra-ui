@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/icon-button';
-import { SocialMediaId } from './types/social-media.schema';
+import { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/buttons/icon-button';
 import { SOCIALS } from './static-data/parsed';
+import { SocialMediaId } from './types/social-media.schema';
 
 /**
  * Social media buttons for HRA apps

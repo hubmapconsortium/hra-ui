@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
+import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 
 /** Type for button position */
 export type ButtonPosition = 'start' | 'end';
