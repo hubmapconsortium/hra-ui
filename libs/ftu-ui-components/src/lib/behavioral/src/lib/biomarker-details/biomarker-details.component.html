@@ -1,14 +1,16 @@
 @if (!isBiomarkerfullscreen()) {
   <div class="biomarker-header">
     <span class="biomarker-header-title">Cell types by biomarkers</span>
-    <button
-      mat-icon-button
-      hraIconButtonSize="large"
-      hraPlainTooltip="Open in full screen"
-      (click)="isBiomarkerfullscreen.set(true)"
-    >
-      <mat-icon>fullscreen</mat-icon>
-    </button>
+    @if (tab.rows.length !== 0) {
+      <button
+        mat-icon-button
+        hraIconButtonSize="large"
+        hraPlainTooltip="Open in full screen"
+        (click)="isBiomarkerfullscreen.set(true)"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    }
   </div>
 }
 
@@ -42,6 +44,7 @@
 }
 
 @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
+  <mat-divider class="empty-state-divider"></mat-divider>
   <ftu-empty-biomarker
     emptyBehaviorText="We currently do not have cell type data for the selected biomarker."
   ></ftu-empty-biomarker>
