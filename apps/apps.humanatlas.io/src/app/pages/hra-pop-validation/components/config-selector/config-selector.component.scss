@@ -64,6 +64,12 @@ h1 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
+    // When there's only one option, take full width
+    &:only-child {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
   }
 }
 
@@ -161,6 +167,12 @@ h1 {
       justify-content: center;
       text-align: center;
       padding: 0 0.5rem;
+      
+      // When there's only one option, take full width
+      &:only-child {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
     }
   }
 
