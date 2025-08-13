@@ -1,1 +1,1 @@
-export { hraAnalyticsPlugin } from './lib/plugin';
+export { HraAnalyticsPluginOptions, hraAnalyticsPlugin } from './lib/plugin';

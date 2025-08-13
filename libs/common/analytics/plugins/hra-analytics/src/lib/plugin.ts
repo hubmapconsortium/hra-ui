@@ -1,25 +1,42 @@
 import { assertInInjectionContext, inject, Injector } from '@angular/core';
-import { type AnalyticsPlugin } from 'analytics';
-import { getSessionId } from './util/session-id';
+import { EventType } from '@hra-ui/common/analytics/events';
+import { AnalyticsInstance, type AnalyticsPlugin } from 'analytics';
 import { EventWriterService } from './event-writer.service';
+import { getSessionId } from './util/session-id';
 
-export interface HraAnalyticsOptions {
+/** Plugin options */
+export interface HraAnalyticsPluginOptions {
+  /** Session identifier */
   sessionId?: string;
+  /** Injector if not running inside an injection context */
   injector?: Injector;
 }
 
+/** Plugin configuration */
+interface PluginConfig {
+  /** Resolved session id */
+  sessionId: string;
+}
+
+/**
+ * Interface for data passed by the 'analytics' library to plugin callbacks.
+ * Only declares the fields that are used by the hra plugin.
+ */
 interface EventData {
-  config: {
-    sessionId: string;
-    writer: Pick<EventWriterService, 'write'>;
-  };
+  /** Plugin configuration */
+  config: PluginConfig;
+  /** Reference to the owning analytics instance */
+  instance: AnalyticsInstance;
+  /** Payload data */
   payload: {
-    event: string;
+    /** Event type */
+    event?: string;
+    /** User data */
     properties: object;
   };
 }
 
-export function hraAnalyticsPlugin(options: HraAnalyticsOptions = {}): AnalyticsPlugin {
+export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): AnalyticsPlugin {
   if (!options.injector) {
     assertInInjectionContext(hraAnalyticsPlugin);
   }
@@ -31,14 +48,18 @@ export function hraAnalyticsPlugin(options: HraAnalyticsOptions = {}): Analytics
     name: 'hra-analytics',
     config: {
       sessionId,
-      writer,
-    },
+    } satisfies PluginConfig,
     loaded: () => true,
-    page({ config, payload }: EventData) {
-      config.writer.write('pageView', payload.properties, { sessionId: config.sessionId });
+    page({ config, instance, payload }: EventData) {
+      writer.write(EventType.PageView, payload.properties, {
+        app: instance.getState('context.app'),
+        version: instance.getState('context.version'),
+        sessionId: config.sessionId,
+      });
     },
     track({ config, payload }: EventData) {
-      config.writer.write(payload.event, payload.properties, { sessionId: config.sessionId });
+      const { event = 'unknown', properties } = payload;
+      writer.write(event, properties, { sessionId: config.sessionId });
     },
   };
 }

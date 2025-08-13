@@ -1,12 +1,27 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+/**
+ * Service for writing events to a remote url with event data and
+ * metadata encoded in the url's query string.
+ */
 @Injectable({ providedIn: 'root' })
 export class EventWriterService {
+  /**
+   * Writes an event to remote data storage
+   *
+   * @param event Event type
+   * @param data Event data
+   * @param meta Event metadata
+   */
   write(event: string, data: object, meta: object): void {
-    let params = new HttpParams();
-    params = this.serializeParams(params, { event, ...meta });
-    params = this.serializeParams(params, data, 'e');
+    const metaKVPairs = this.serialize({ ...meta, event }, '');
+    const dataKVPairs = this.serialize(data, 'e');
+    const params = [...metaKVPairs, ...dataKVPairs].reduce(
+      (acc, [key, value]) => acc.append(key, value),
+      new HttpParams(),
+    );
+
     // TODO use HttpClient in angular v20
     // TODO url from token
     // TODO handle fetch errors (probably ignore)
@@ -22,7 +37,15 @@ export class EventWriterService {
     }
   }
 
+  /**
+   * Serialize data into key/value pairs
+   *
+   * @param data Data to serialize
+   * @param path Current key path
+   * @yields 2-element tuples containing the key path and associated value
+   */
   *serialize(data: unknown, path: string): Iterable<[path: string, value: string]> {
+    // TODO maybe handle Map, Set, etc.
     if (data === undefined || data === null) {
       return;
     } else if (typeof data !== 'object') {
@@ -41,12 +64,5 @@ export class EventWriterService {
         yield* this.serialize(value, `${prefix}${key}`);
       }
     }
-  }
-
-  private serializeParams(params: HttpParams, data: unknown, path = ''): HttpParams {
-    for (const [key, value] of this.serialize(data, path)) {
-      params = params.append(key, value);
-    }
-    return params;
   }
 }
