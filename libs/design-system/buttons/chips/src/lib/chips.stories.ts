@@ -39,7 +39,7 @@ export const Single: Story = {
 export const Group: Story = {
   render: () => ({
     template: `
-    <mat-chip-grid>
+    <mat-chip-set>
       <mat-chip-row>
         Label
         <button matChipRemove>
@@ -64,7 +64,7 @@ export const Group: Story = {
           <mat-icon>close</mat-icon>
         </button>
       </mat-chip-row>
-    </mat-chip-grid>
+    </mat-chip-set>
     `,
   }),
 };
