@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { DigitalObjectMetadata, DistributionsInfo } from '../digital-objects-metadata.schema';
+import { Injectable } from '@angular/core';
 import { MenuOptionsType } from '@hra-ui/design-system/table';
+
+import { DigitalObjectMetadata, DistributionsInfo } from '../digital-objects-metadata.schema';
 
 /** Maps mediaType to file type data */
 export const FILE_TYPE_MAP: Record<string, FileTypeData> = {
@@ -33,14 +33,16 @@ export const FILE_TYPE_MAP: Record<string, FileTypeData> = {
     name: 'MMD',
     typeSuffix: '.mmd',
   },
+
+  //TODO: Remove when data is fixed
   'application/vnd.chipnuts.karaoke-mmd': {
-    //TODO: Remove when data is fixed
     name: 'MMD',
     typeSuffix: '.mmd',
   },
+
+  // Doesn't apply to crosswalk CSVs
   'text/csv': {
-    name: 'CSV - Crosswalk',
-    description: 'A CSV file connecting digital objects to ontology terms in ASCT+B Tables.',
+    name: 'CSV',
     typeSuffix: '.csv',
   },
 
@@ -91,9 +93,6 @@ interface FileTypeData {
   providedIn: 'root',
 })
 export class DownloadService {
-  /** Http request service */
-  private readonly http = inject(HttpClient);
-
   /**
    * Gets distributions data from metadata JSON and returns resolved download data
    * @param metadata Metadata JSON
@@ -115,29 +114,16 @@ export class DownloadService {
   private resolveDownloadOptions(id: string, files: DistributionsInfo[]) {
     return files.map((file) => {
       const fileType = FILE_TYPE_MAP[file.mediaType];
+      const isCrosswalkCsv = file.mediaType === 'text/csv' && file.id.includes('crosswalk');
       return {
         id: id + fileType.typeSuffix,
-        name: fileType.name,
-        description: fileType.description,
+        name: isCrosswalkCsv ? 'CSV - Crosswalk' : fileType.name,
+        description: isCrosswalkCsv
+          ? 'A CSV file connecting digital objects to ontology terms in ASCT+B Tables.'
+          : fileType.description,
         icon: 'download',
         url: file.downloadUrl,
       };
-    });
-  }
-
-  /**
-   * Downloads file
-   * @param url Download url
-   * @param id File name to save as
-   */
-  saveFile(url: string, id: string) {
-    this.http.get(url, { responseType: 'blob' }).subscribe((blob) => {
-      const a = document.createElement('a');
-      const objectUrl = URL.createObjectURL(blob);
-      a.href = objectUrl;
-      a.download = id;
-      a.click();
-      URL.revokeObjectURL(objectUrl);
     });
   }
 }

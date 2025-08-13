@@ -12,6 +12,7 @@ import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyper
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import saveAs from 'file-saver';
 import { MarkdownModule } from 'ngx-markdown';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { parse } from 'papaparse';
@@ -252,14 +253,11 @@ export class TableComponent<T = TableRow> {
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);
 
-  /** Emits url and id when an item is to be downloaded */
-  readonly downloadFile = output<[string, string]>();
-
   /** Emits route */
   readonly routeClicked = output<string>();
 
-  /** Emits download object id */
-  readonly downloadClicked = output<string>();
+  /** Emits download object id on download button hover */
+  readonly downloadHovered = output<string>();
 
   /** Sort data on load and set columns */
   constructor() {
@@ -344,9 +342,17 @@ export class TableComponent<T = TableRow> {
     this.routeClicked.emit(url as string);
   }
 
-  /** Emits the id of a row when its download button its clicked */
-  downloadClick(id: string | number | boolean | (string | number | boolean)[]) {
-    this.downloadClicked.emit(id as string);
+  /** Emits the id of a row when its download button is hovered */
+  downloadButtonHover(id: string | number | boolean | (string | number | boolean)[]) {
+    this.downloadHovered.emit(id as string);
+  }
+
+  /**
+   * Downloads a file from the url
+   * @param url File url
+   */
+  download(url: string): void {
+    saveAs(url, url.split('/').pop());
   }
 
   /** Scrolls to top of the table */

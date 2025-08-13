@@ -46,9 +46,8 @@
         [enableSort]="true"
         [rows]="filteredRows()"
         [columns]="columns()"
-        (downloadFile)="download.saveFile($event[0], $event[1])"
         (routeClicked)="router.navigate([$event])"
-        (downloadClicked)="downloadId.set($event)"
+        (downloadHovered)="downloadId.set($event)"
       >
         <hra-footer />
       </hra-table>

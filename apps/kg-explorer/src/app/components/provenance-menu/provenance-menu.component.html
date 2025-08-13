@@ -17,7 +17,7 @@
 
     <mat-menu #options="matMenu">
       @for (option of downloadOptions(); track $index) {
-        <button mat-menu-item (click)="download.saveFile(option.url || '', option.id)">
+        <a mat-menu-item [attr.href]="option.url" download (click)="$event.preventDefault(); download(option.url!)">
           <mat-icon>{{ option.icon }}</mat-icon>
           <div class="option-text">
             <span class="option-name">
@@ -27,7 +27,7 @@
               {{ option.description }}
             </span>
           </div>
-        </button>
+        </a>
       }
     </mat-menu>
 
