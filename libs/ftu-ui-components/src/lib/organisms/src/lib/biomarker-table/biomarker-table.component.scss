@@ -80,7 +80,10 @@
     width: 100%;
 
     .highlight {
-      background-color: rgba(vars.$primary, 0.1);
+      &:first-child,
+      &:nth-child(2) {
+        background-color: utils.with-alpha(vars.$secondary, 8%);
+      }
     }
 
     td.type {
