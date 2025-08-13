@@ -77,6 +77,10 @@
   .object-search {
     width: 100%;
 
+    mat-label {
+      font: vars.$label-medium;
+    }
+
     @media (min-width: 640px) {
       max-width: 36.25rem;
       flex-grow: 1;
@@ -147,12 +151,6 @@
 
     tr {
       background-color: vars.$on-primary;
-
-      td {
-        max-width: 50rem;
-        padding-top: 1rem !important;
-        padding-bottom: 1.25rem !important;
-      }
     }
 
     tr:first-of-type {
@@ -164,21 +162,30 @@
       }
     }
 
-    tbody {
+    tr:last-child {
       td {
-        vertical-align: top;
+        border-bottom: 1px solid var(--mat-table-row-item-outline-color) !important;
+      }
+    }
 
-        span {
-          display: block;
-          height: 2.5rem;
-          line-height: 2.5rem;
-        }
+    td {
+      max-width: 50rem;
+      padding-top: 1rem !important;
+      padding-bottom: 1.25rem !important;
+      vertical-align: top;
 
-        button {
-          margin: 0.25rem 0;
-        }
+      span {
+        display: block;
+        height: 2.5rem;
+        line-height: 2.5rem;
       }
 
+      button {
+        margin: 0.25rem 0;
+      }
+    }
+
+    tbody {
       .mat-column-title {
         padding: 1.25rem 1rem 1.5rem !important;
         vertical-align: middle;

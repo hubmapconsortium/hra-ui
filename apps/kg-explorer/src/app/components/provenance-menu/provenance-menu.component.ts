@@ -1,7 +1,8 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { MenuOptionsType, TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { saveAs } from 'file-saver';
@@ -25,6 +26,9 @@ import { VersionSelectorComponent } from '../version-selector/version-selector.c
   styleUrl: './provenance-menu.component.scss',
 })
 export class ProvenanceMenuComponent {
+  /** Snackbar service for download notification */
+  readonly snackbar = inject(SnackbarService);
+
   /** Row data for the metadata table */
   readonly rows = input.required<TableRow[]>();
   /** Column data for the metadata table */

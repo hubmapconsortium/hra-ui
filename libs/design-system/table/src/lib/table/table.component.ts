@@ -11,6 +11,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import saveAs from 'file-saver';
 import { MarkdownModule } from 'ngx-markdown';
@@ -211,6 +212,9 @@ export class TableComponent<T = TableRow> {
 
   /** Assets URL provider for loading CSV with relative path */
   private readonly assetsHref = inject(APP_ASSETS_HREF);
+
+  /** Snackbar service for download notification */
+  readonly snackbar = inject(SnackbarService);
 
   /** CSV resource from remote URL */
   private readonly csv = httpResource.text<T[]>(
