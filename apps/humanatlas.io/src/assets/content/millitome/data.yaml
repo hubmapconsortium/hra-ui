@@ -58,7 +58,7 @@ content:
             label: Left/Right
         rows:
           - Organ: Kidney
-            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_L/,
+            organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_L/
             Sex: Female
             LeftRight: Left
           - Organ: Kidney
