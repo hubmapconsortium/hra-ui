@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, model, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, model, signal, ViewChild } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -87,6 +87,11 @@ export class TissueLibraryBehaviorComponent {
       if (iri === undefined) {
         this.list?.resetSelection();
       }
+    });
+
+    effect(() => {
+      const isFullscreen = this.fullScreenService.isFullscreen();
+      this.isCompactMode.set(isFullscreen);
     });
   }
 
