@@ -1,5 +1,5 @@
 import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
-import { EventPropsMap, EventType } from '@hra-ui/common/analytics/events';
+import { AnyEventType, EventPayloadFor } from '@hra-ui/common/analytics/events';
 import { injectAnalyticsLogEventFn } from '../analytics.service';
 
 /** Built-in event triggers */
@@ -15,21 +15,21 @@ export type EventTrigger = keyof GlobalEventHandlersEventMap;
  * @example <caption>Different trigger</caption>
  * <button [hraEvent]="EventType.Click" [hraEventProps]="{...}" hraEventTriggerOn="dblclick" >
  *
- * @example <caption>Manual/custom logging</caption>
- * <button [hraEvent]="EventType.Click" [hraEventProps]="{...}" hraEventTriggerOn="custom" #eventDir="hraEvent"
+ * @example <caption>Manual logging</caption>
+ * <button [hraEvent]="EventType.Click" [hraEventProps]="{...}" hraEventTriggerOn="none" #eventDir="hraEvent"
  *   (hover)="eventDir.logEvent(...)" >
  */
 @Directive({
   selector: '[hraEvent]',
   exportAs: 'hraEvent',
 })
-export class EventDirective<T extends EventType> {
+export class EventDirective<T extends AnyEventType> {
   /** Event type */
   readonly event = input.required<T>({ alias: 'hraEvent' });
   /** Event properties */
-  readonly props = input.required<EventPropsMap[T]>({ alias: 'hraEventProps' });
-  /** Built-in trigger to log events on or 'custom' if events are sent programatically */
-  readonly triggerOn = input<EventTrigger | 'custom' | undefined>(undefined, { alias: 'hraEventTriggerOn' });
+  readonly props = input.required<EventPayloadFor<T>>({ alias: 'hraEventProps' });
+  /** Built-in trigger to log events on or 'none' if events are sent programatically */
+  readonly triggerOn = input<EventTrigger | 'none' | undefined>(undefined, { alias: 'hraEventTriggerOn' });
 
   /** Reference to renderer for dom interactions */
   private readonly renderer = inject(Renderer2);
@@ -42,7 +42,7 @@ export class EventDirective<T extends EventType> {
   constructor() {
     effect((onCleanup) => {
       const trigger = this.triggerOn() ?? this.selectTrigger(this.event());
-      if (trigger && trigger !== 'custom') {
+      if (trigger && trigger !== 'none') {
         const { el, renderer } = this;
         const handler = this.logEvent.bind(this, trigger);
         const dispose = renderer.listen(el, trigger, handler);
@@ -71,7 +71,7 @@ export class EventDirective<T extends EventType> {
    * @param _type Hra event type
    * @returns A built-in trigger for the event type or undefined
    */
-  private selectTrigger(_type: EventType): EventTrigger | undefined {
+  private selectTrigger(_type: AnyEventType): EventTrigger | undefined {
     // TODO move to /events entrypoint
     return 'click';
   }
@@ -82,7 +82,7 @@ export class EventDirective<T extends EventType> {
    * @param _event Event object
    * @returns Extracted properties from the event
    */
-  private getPropsFromEvent(_event?: unknown): Partial<EventPropsMap[T]> {
+  private getPropsFromEvent(_event?: unknown): Partial<EventPayloadFor<T>> {
     // TODO
     return {};
   }

@@ -1,5 +1,5 @@
 import { assertInInjectionContext, inject, Injector } from '@angular/core';
-import { EventType } from '@hra-ui/common/analytics/events';
+import { CoreEventType } from '@hra-ui/common/analytics/events';
 import { AnalyticsInstance, type AnalyticsPlugin } from 'analytics';
 import { EventWriterService } from './event-writer.service';
 import { getSessionId } from './util/session-id';
@@ -51,7 +51,7 @@ export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): Ana
     } satisfies PluginConfig,
     loaded: () => true,
     page({ config, instance, payload }: EventData) {
-      writer.write(EventType.PageView, payload.properties, {
+      writer.write(CoreEventType.PageView, payload.properties, {
         app: instance.getState('context.app'),
         version: instance.getState('context.version'),
         sessionId: config.sessionId,
