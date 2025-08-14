@@ -8,7 +8,6 @@ import {
   TemplateRef,
   ViewChild,
   AfterViewInit,
-  model,
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
@@ -50,7 +49,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
-import { FtuFullScreenService } from '../ftu-fullscreen-service/ftu-fullscreen.service';
+import { FtuFullScreenService, FullscreenTab } from '../ftu-fullscreen-service/ftu-fullscreen.service';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -291,6 +290,7 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
     }, 250);
 
     this.isTableFullScreen = !this.isTableFullScreen;
+    this.fullscreenService.fullscreentabIndex.set(FullscreenTab.BiomarkerDetails);
     this.fullscreenService.isFullscreen.set(this.isTableFullScreen);
     this.setScreenMode(this.isTableFullScreen);
   }
