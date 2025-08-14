@@ -25,7 +25,50 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
-import { FilterOption, FilterOptionCategory } from '../../../pages/main-page/main-page.component';
+import { FilterOption, FilterOptionCategory } from '../../../utils/utils';
+
+const TOOLTIP_POSITIONS: ConnectedPosition[] = [
+  {
+    originX: 'center',
+    originY: 'bottom',
+    overlayX: 'center',
+    overlayY: 'top',
+    offsetX: 283,
+    offsetY: -40,
+  },
+  {
+    originX: 'end',
+    originY: 'bottom',
+    overlayX: 'start',
+    overlayY: 'top',
+  },
+  {
+    originX: 'start',
+    originY: 'bottom',
+    overlayX: 'end',
+    overlayY: 'top',
+  },
+  {
+    originX: 'center',
+    originY: 'top',
+    overlayX: 'center',
+    overlayY: 'bottom',
+    offsetX: 283,
+    offsetY: 40,
+  },
+  {
+    originX: 'end',
+    originY: 'top',
+    overlayX: 'start',
+    overlayY: 'bottom',
+  },
+  {
+    originX: 'start',
+    originY: 'top',
+    overlayX: 'end',
+    overlayY: 'bottom',
+  },
+];
 
 /**
  * Menu for searching and selecting individual filters in a filter category
@@ -77,6 +120,9 @@ export class FilterMenuOverlayComponent implements OnInit {
   /** Current search bar value */
   readonly searchValue = signal<string>('');
 
+  /** Tooltip positions array */
+  readonly tooltipPositions = signal<ConnectedPosition[]>(TOOLTIP_POSITIONS);
+
   /** Filtered options (after typing in search bar) */
   readonly filteredOptions = computed(() => {
     if (this.searchValue() !== '') {
@@ -88,50 +134,6 @@ export class FilterMenuOverlayComponent implements OnInit {
     }
     return this.filterOptionCategory().options;
   });
-
-  /** Tooltip positions array */
-  readonly tooltipPositions = signal<ConnectedPosition[]>([
-    {
-      originX: 'center',
-      originY: 'bottom',
-      overlayX: 'center',
-      overlayY: 'top',
-      offsetX: 283,
-      offsetY: -40,
-    },
-    {
-      originX: 'end',
-      originY: 'bottom',
-      overlayX: 'start',
-      overlayY: 'top',
-    },
-    {
-      originX: 'start',
-      originY: 'bottom',
-      overlayX: 'end',
-      overlayY: 'top',
-    },
-    {
-      originX: 'center',
-      originY: 'top',
-      overlayX: 'center',
-      overlayY: 'bottom',
-      offsetX: 283,
-      offsetY: 40,
-    },
-    {
-      originX: 'end',
-      originY: 'top',
-      overlayX: 'start',
-      overlayY: 'bottom',
-    },
-    {
-      originX: 'start',
-      originY: 'top',
-      overlayX: 'end',
-      overlayY: 'bottom',
-    },
-  ]);
 
   /** Emits when filter selection is changed */
   readonly filterChanged = output();

@@ -19,7 +19,7 @@
     [fixedTopGap]="isSmallScreen() ? 73 : 113"
   >
     <hra-filter-menu
-      [filterCategories]="filterCategories()"
+      [filterCategories]="filterCategoriesArray()"
       (toggleForm)="sidenav.toggle()"
       [formClosed]="!sidenav.opened"
       (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
