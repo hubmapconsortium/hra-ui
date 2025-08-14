@@ -50,6 +50,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
+import { FtuFullScreenService } from '../ftu-fullscreen-service/ftu-fullscreen.service';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -158,15 +159,18 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   /** Active tab index */
   private activeTabIndex = 0;
 
+  /** Fullscreen service */
+  private readonly fullscreenService = inject(FtuFullScreenService);
+
   /**
    * Determines whether biomarkerfullscreen is in fullscreen mode
    */
-  readonly isBiomarkerfullscreen = model<boolean>(false);
+  readonly isBiomarkerfullscreen = this.fullscreenService.isFullscreen;
 
   /**
    * Determines whether source listfullscreen is in fullscreen mode
    */
-  readonly isSourceListfullscreen = model<boolean>(false);
+  readonly isSourceListfullscreen = signal<boolean>(false);
 
   /**
    * View child of source list component
@@ -287,6 +291,7 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
     }, 250);
 
     this.isTableFullScreen = !this.isTableFullScreen;
+    this.fullscreenService.isFullscreen.set(this.isTableFullScreen);
     this.setScreenMode(this.isTableFullScreen);
   }
 
