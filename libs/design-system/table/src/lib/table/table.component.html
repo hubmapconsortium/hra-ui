@@ -120,7 +120,11 @@
         mat-menu-item
         [attr.href]="option.url"
         download
-        (click)="$event.preventDefault(); download(option.url!); snackbar.open('File downloaded', '', false, 'start')"
+        (click)="
+          $event.preventDefault();
+          download(option.url!);
+          snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })
+        "
       >
         <mat-icon>{{ option.icon }}</mat-icon>
         <div class="option-text">
