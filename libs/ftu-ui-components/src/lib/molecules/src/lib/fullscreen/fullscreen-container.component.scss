@@ -1,3 +1,25 @@
+@use '@angular/material' as mat;
+@use '../../../../../../../design-system/styles/vars';
+@use '../../../../../../../design-system/styles/utils';
+
+:host {
+  @include mat.tabs-overrides(
+    (
+      active-indicator-color: vars.$tertiary-fixed,
+      active-indicator-height: 2px,
+      active-label-text-color: vars.$secondary,
+      divider-color: vars.$outline-variant,
+      inactive-label-text-color: vars.$primary,
+      label-text-font: vars.$label-medium-font,
+      label-text-line-height: vars.$label-medium-line-height,
+      label-text-size: vars.$label-medium-size,
+      label-text-tracking: vars.$label-medium-tracking,
+      label-text-weight: vars.$label-medium-weight,
+      container-height: 4rem,
+    )
+  );
+}
+
 .fullscreen-overlay {
   display: flex;
   justify-content: space-between;
@@ -8,10 +30,6 @@
 
 .tabs-group {
   flex: 1;
-}
-
-::ng-deep .mat-mdc-tab.mdc-tab {
-  height: 4rem;
 }
 
 .closeButton {
