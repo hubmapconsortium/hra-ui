@@ -64,13 +64,13 @@ import {
   IllustratorSelectors,
   LinkIds,
   MouseTrackerModule,
-  ScreenModeSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 import {
+  FtuFullScreenService,
   ScreenNoticeBehaviorComponent,
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/ftu-ui-components/src/lib/behavioral';
@@ -183,8 +183,12 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
     map(({ selectedOnClick }) => selectedOnClick.source),
   );
 
-  /** Whether in full screen mode */
-  readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
+  /** Fullscreen service */
+  private readonly fullscreenService = inject(FtuFullScreenService);
+
+  /** Determines whether fullscreen is active */
+  readonly isFullscreen = this.fullscreenService.isFullscreen;
+
   /** Whether an illustration is active */
   private readonly isActive = selectSnapshot(ActiveFtuSelectors.isActive);
   /** Loaded tissues */

@@ -72,7 +72,11 @@
 @if (!screenSizeNoticeOpen) {
   <div class="main">
     @if (router.url !== '/') {
-      <ftu-tissue-library-behavior class="sidebar" [(selected)]="selectedFtu"></ftu-tissue-library-behavior>
+      <ftu-tissue-library-behavior
+        class="sidebar"
+        [(selected)]="selectedFtu"
+        [class.hidden]="isFullscreen()"
+      ></ftu-tissue-library-behavior>
     }
 
     <div class="content">
