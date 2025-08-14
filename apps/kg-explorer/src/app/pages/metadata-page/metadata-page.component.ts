@@ -1,6 +1,5 @@
 import '@google/model-viewer';
 
-import { HttpClient } from '@angular/common/http';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatChipsModule } from '@angular/material/chips';
@@ -36,8 +35,6 @@ import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MetadataPageComponent {
-  /** Http client service */
-  private readonly http = inject(HttpClient);
   /** Router service */
   private readonly router = inject(Router);
   /** Activated route service */

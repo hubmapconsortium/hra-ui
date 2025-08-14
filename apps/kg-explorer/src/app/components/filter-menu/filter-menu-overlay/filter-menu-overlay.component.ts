@@ -27,6 +27,7 @@ import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
 import { FilterOption, FilterOptionCategory } from '../../../utils/utils';
 
+/** Tooltip positions for filter overlay */
 const TOOLTIP_POSITIONS: ConnectedPosition[] = [
   {
     originX: 'center',
