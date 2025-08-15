@@ -20,9 +20,7 @@
   <ng-template #biomarker>
     <div class="fullscreen-content-container">
       <ftu-biomarker-details
-        [(isBiomarkerfullscreen)]="isFullscreen"
         (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"
-        [(isSourceListfullscreen)]="isFullscreen"
         (isSourceListfullscreenChange)="fullscreentabIndex.set(1)"
         class="illustration-details"
         (sourceListTemplate)="setSourceList($event)"

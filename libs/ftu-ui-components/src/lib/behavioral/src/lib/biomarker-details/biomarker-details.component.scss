@@ -59,6 +59,14 @@
     }
   }
 
+  .empty-state-divider {
+    grid-area: empty;
+    margin-top: 64px;
+    border-top-color: vars.$outline-variant;
+    align-self: start;
+    z-index: 1;
+  }
+
   &.no-data-sources {
     grid-template-areas:
       'headline headline'
@@ -105,8 +113,8 @@
       disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
       height: 2rem,
       label-text-font: vars.$label-medium-font,
-      label-text-line-height: 1.3125rem,
-      label-text-size: 0.875rem,
+      label-text-line-height: vars.$label-medium-line-height,
+      label-text-size: vars.$label-medium-size,
       label-text-weight: vars.$label-medium-weight,
       selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
       selected-state-text-color: vars.$secondary,

@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { OpacitySliderModule } from 'ccf-shared';
 import { VisibilityMenuComponent } from '../../shared/components/visibility-menu/visibility-menu.component';
@@ -24,7 +23,6 @@ import { LeftSidebarComponent } from './left-sidebar.component';
     ExpansionPanelComponent,
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,
-    IconButtonSizeDirective,
     ButtonsModule,
     PlainTooltipDirective,
   ],

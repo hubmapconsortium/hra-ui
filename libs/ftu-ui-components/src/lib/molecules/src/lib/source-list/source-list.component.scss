@@ -92,6 +92,13 @@
       ::ng-deep th[data-column-type='link'] {
         max-width: 196px;
       }
+
+      ::ng-deep th:nth-child(3)[data-column-type='text'],
+      ::ng-deep td:nth-child(3) {
+        width: 80px !important;
+        min-width: 80px !important;
+        max-width: 80px !important;
+      }
     }
   }
   .end {

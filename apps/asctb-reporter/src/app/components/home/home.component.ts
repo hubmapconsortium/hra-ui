@@ -2,14 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
+import { AssetUrlPipe } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
-import { IconButtonSizeDirective, IconButtonVariantDirective } from '@hra-ui/design-system/icon-button';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
-import { AssetUrlPipe } from '@hra-ui/common';
 
 @Component({
   selector: 'app-home',
@@ -22,8 +21,6 @@ import { AssetUrlPipe } from '@hra-ui/common';
     YouTubePlayerModule,
     ScrollingModule,
     ProfileCardComponent,
-    IconButtonVariantDirective,
-    IconButtonSizeDirective,
     FooterComponent,
     RouterModule,
     AssetUrlPipe,

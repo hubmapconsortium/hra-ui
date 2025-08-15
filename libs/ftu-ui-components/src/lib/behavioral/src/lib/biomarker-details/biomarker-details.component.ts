@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal,
   output,
+  signal,
   TemplateRef,
   ViewChild,
-  AfterViewInit,
-  model,
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
@@ -46,10 +45,13 @@ import {
 } from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
+import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
+import { FtuFullScreenService, FullscreenTab } from '../ftu-fullscreen-service/ftu-fullscreen.service';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -77,6 +79,9 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     EmptyBiomarkerComponent,
     MatButtonToggleModule,
     MessageIndicatorModule,
+    RichTooltipModule,
+    RichTooltipDirective,
+    MatDividerModule,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],
@@ -158,15 +163,18 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   /** Active tab index */
   private activeTabIndex = 0;
 
+  /** Fullscreen service */
+  private readonly fullscreenService = inject(FtuFullScreenService);
+
   /**
    * Determines whether biomarkerfullscreen is in fullscreen mode
    */
-  readonly isBiomarkerfullscreen = model<boolean>(false);
+  readonly isBiomarkerfullscreen = this.fullscreenService.isFullscreen;
 
   /**
    * Determines whether source listfullscreen is in fullscreen mode
    */
-  readonly isSourceListfullscreen = model<boolean>(false);
+  readonly isSourceListfullscreen = signal<boolean>(false);
 
   /**
    * View child of source list component
@@ -287,6 +295,8 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
     }, 250);
 
     this.isTableFullScreen = !this.isTableFullScreen;
+    this.fullscreenService.fullscreentabIndex.set(FullscreenTab.BiomarkerDetails);
+    this.fullscreenService.isFullscreen.set(this.isTableFullScreen);
     this.setScreenMode(this.isTableFullScreen);
   }
 
