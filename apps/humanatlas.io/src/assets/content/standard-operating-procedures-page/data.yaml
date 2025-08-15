@@ -28,7 +28,7 @@ content:
         &emsp;&emsp;&emsp;[Managing Human Reference Atlas Registrations](https://zenodo.org/records/11625379)<br>
         &emsp;&emsp;&emsp;[Using the Standalone Registration User Interface](https://zenodo.org/records/14346543)<br>
         &emsp;&emsp;&emsp;[Using the Embedded Registration User Interface](https://zenodo.org/records/14346342)<br>
-        &emsp;&emsp;&emsp;[Constructing a Millitome and Generating Virtual Tissue Blocks](https://zenodo.org/records/790100)<br>
+        &emsp;&emsp;&emsp;[Constructing a Millitome and Generating Virtual Tissue Blocks](https://doi.org/10.5281/zenodo.7901004)<br>
         &emsp;&emsp;&emsp;[Using a Millitome](https://zenodo.org/records/7382704)<br>
   - component: PageSection
     tagline: Anatomical Structures and Cell-Type Segmentation
