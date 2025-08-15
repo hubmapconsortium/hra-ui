@@ -3,7 +3,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
   height: min-content;
 
   .selector-and-buttons {
@@ -20,11 +20,6 @@
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-  }
-
-  .metadata-table {
-    display: flex;
-    min-height: fit-content;
   }
 
   .button {
@@ -44,6 +39,13 @@
   }
 
   ::ng-deep .metadata-table {
+    display: flex;
+    min-height: fit-content;
+
+    ng-scrollbar {
+      width: 100%;
+    }
+
     markdown {
       overflow-wrap: anywhere;
     }
@@ -59,10 +61,11 @@
   @media (min-width: 640px) {
     position: sticky;
     top: 10rem;
-    min-width: 15rem;
     max-width: 18rem;
-    margin: 0 0.75rem 1rem;
     max-height: calc(100vh - 11rem);
+    min-width: 15rem;
+
+
     overflow: auto;
 
     .selector-and-buttons {
