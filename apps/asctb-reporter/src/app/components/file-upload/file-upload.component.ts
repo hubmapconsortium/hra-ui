@@ -54,7 +54,8 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
     if (file) {
       this.fileName = file.name;
       const formData = new FormData();
-      formData.append('csvFile', file);
+      const csvFile = new File([file], file.name, { type: 'text/csv' });
+      formData.append('csvFile', csvFile);
       this.fileFormDataEvent.emit(formData);
       this.onChange(this.fileName);
     }
