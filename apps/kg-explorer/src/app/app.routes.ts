@@ -61,8 +61,8 @@ const columns: TableColumn[] = [
     type: 'numeric',
   },
   {
-    column: 'lastModified',
-    label: 'Date last modified',
+    column: 'lastPublished',
+    label: 'Date last published',
     type: 'text',
   },
 ];

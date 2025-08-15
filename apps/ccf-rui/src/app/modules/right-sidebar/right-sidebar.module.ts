@@ -11,7 +11,6 @@ import {
   ExpansionPanelComponent,
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { InfoButtonModule } from 'ccf-shared';
 
@@ -45,7 +44,6 @@ import { RightSidebarComponent } from './right-sidebar.component';
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,
     ButtonsModule,
-    IconButtonSizeDirective,
     PlainTooltipDirective,
   ],
   declarations: [RightSidebarComponent],
