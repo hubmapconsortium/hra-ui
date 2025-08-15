@@ -48,5 +48,14 @@
     .picture {
       margin: 0 auto 2rem auto;
     }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .actions {
+    @include utils.use-font(label, medium);
   }
 }
