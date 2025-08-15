@@ -112,18 +112,51 @@ export class DownloadService {
    * @returns Resolved download data
    */
   private resolveDownloadOptions(id: string, files: DistributionsInfo[]) {
-    return files.map((file) => {
+    const allDownloadOptions = files.map((file) => {
       const fileType = FILE_TYPE_MAP[file.mediaType];
       const isCrosswalkCsv = file.mediaType === 'text/csv' && file.id.includes('crosswalk');
       return {
         id: id + fileType.typeSuffix,
-        name: isCrosswalkCsv ? 'CSV - Crosswalk' : fileType.name,
-        description: isCrosswalkCsv
-          ? 'A CSV file connecting digital objects to ontology terms in ASCT+B Tables.'
-          : fileType.description,
+        name: isCrosswalkCsv ? 'CSV - Crosswalk' : `${fileType.name}`,
+        description: this.generateDescription(files, file.mediaType, file, fileType, isCrosswalkCsv),
         icon: 'download',
         url: file.downloadUrl,
       };
     });
+    return allDownloadOptions;
+  }
+
+  /**
+   * Determines whether the files list has multiple files of a specific media type
+   * @param files Files list
+   * @param mediaType File type to check for
+   * @returns True if multiple of type
+   */
+  private hasMultipleofType(files: DistributionsInfo[], mediaType: string): boolean {
+    return files.filter((file) => file.mediaType === mediaType).length > 1;
+  }
+
+  /**
+   * Generates description for the download option
+   * @param files Distributions files
+   * @param mediaType Media type of the file
+   * @param file File info
+   * @param fileType File type data
+   * @param crosswalk Whether the file is a crosswalk CSV
+   * @returns Description string
+   */
+  private generateDescription(
+    files: DistributionsInfo[],
+    mediaType: string,
+    file: DistributionsInfo,
+    fileType: FileTypeData,
+    crosswalk: boolean,
+  ): string {
+    if (this.hasMultipleofType(files, mediaType)) {
+      return file.title || fileType.description || '';
+    }
+    return crosswalk
+      ? 'A CSV file connecting digital objects to ontology terms in ASCT+B Tables.'
+      : fileType.description || '';
   }
 }
