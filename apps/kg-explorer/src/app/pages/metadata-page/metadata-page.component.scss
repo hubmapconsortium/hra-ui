@@ -3,6 +3,12 @@
 :host {
   min-width: 20rem;
 
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   .sections {
     display: flex;
     flex-direction: column;

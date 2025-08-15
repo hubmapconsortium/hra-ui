@@ -296,8 +296,8 @@ export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> =
  * @param item Digital object data item
  * @returns Organ id
  */
-export function getOrganId(item: DigitalObjectInfo): string {
-  return item.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
+export function getOrganId(item?: DigitalObjectInfo): string {
+  return item?.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
 }
 
 /**
@@ -305,7 +305,7 @@ export function getOrganId(item: DigitalObjectInfo): string {
  * @param organ Organ UBERON id
  * @returns Organ name in design system format
  */
-export function getOrganIcon(item: DigitalObjectInfo): string {
+export function getOrganIcon(item?: DigitalObjectInfo): string {
   return `organ:${ORGAN_ICON_MAP[getOrganId(item)] ?? 'all-organs'}`;
 }
 

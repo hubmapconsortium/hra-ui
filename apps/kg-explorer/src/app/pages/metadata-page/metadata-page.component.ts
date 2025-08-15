@@ -13,6 +13,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
+import { PurlContainerComponent } from '../../components/purl-container/purl-container.component';
 import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
@@ -29,6 +30,7 @@ import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../
     ProvenanceMenuComponent,
     MatChipsModule,
     FooterComponent,
+    PurlContainerComponent,
   ],
   templateUrl: './metadata-page.component.html',
   styleUrl: './metadata-page.component.scss',
@@ -63,6 +65,8 @@ export class MetadataPageComponent {
   readonly tags = signal<{ id: string; label: string; type: string }[]>([]);
   /** Data to display in the metadata table */
   readonly rows = signal<{ provenance: string; metadata: string }[]>([]);
+  /** PURL for the object */
+  readonly purl = signal<string>('');
 
   /** Determines if the screen is medium-sized */
   protected isWMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639px)');
@@ -123,6 +127,7 @@ export class MetadataPageComponent {
         const pageItem = data['@graph'].find((item) => {
           return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
         });
+        this.purl.set(pageItem?.purl || '');
         const icons = [getProductIcon(type)];
         if (pageItem?.organIds) {
           icons.push(getOrganIcon(pageItem));

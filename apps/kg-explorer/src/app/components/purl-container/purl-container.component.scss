@@ -1,0 +1,35 @@
+@use 'vars';
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  .purl-link {
+    padding-left: 0.5rem;
+    gap: 2px;
+    border-radius: 2rem;
+    background-color: var(--mat-sys-surface-container);
+    font: var(--mat-sys-label-medium);
+
+    mat-icon {
+      min-width: 24px;
+    }
+
+    .purl-text {
+      color: var(--mat-sys-primary);
+    }
+
+    ::ng-deep .mdc-button__label {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .purl-copy {
+    font: var(--mat-sys-label-medium);
+    --mat-text-button-with-icon-horizontal-padding: 0.75rem;
+    min-width: auto;
+  }
+}

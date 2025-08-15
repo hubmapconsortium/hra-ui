@@ -9,17 +9,20 @@
   >
     <hra-metadata-layout-header>
       <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()"> </hra-page-section>
-      @if (getImage()) {
-        @if (imageTypes[metadata().type] === 'image/svg+xml') {
-          <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />
+      <div class="header-content">
+        <hra-purl-container [purl]="purl()"></hra-purl-container>
+        @if (getImage()) {
+          @if (imageTypes[metadata().type] === 'image/svg+xml') {
+            <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />
+          }
+          @if (imageTypes[metadata().type] === 'model/gltf-binary') {
+            <div class="viewer-container">
+              <model-viewer class="model-viewer" [src]="getImage()" shadow-intensity="1" camera-controls auto-rotate>
+              </model-viewer>
+            </div>
+          }
         }
-        @if (imageTypes[metadata().type] === 'model/gltf-binary') {
-          <div class="viewer-container">
-            <model-viewer class="model-viewer" [src]="getImage()" shadow-intensity="1" camera-controls auto-rotate>
-            </model-viewer>
-          </div>
-        }
-      }
+      </div>
     </hra-metadata-layout-header>
 
     <hra-metadata-layout-content [class.medium-screen]="!isWMediumScreen()">
