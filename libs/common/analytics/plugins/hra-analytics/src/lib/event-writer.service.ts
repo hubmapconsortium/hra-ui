@@ -10,7 +10,7 @@ export class EventWriterService {
   /**
    * Writes an event to remote data storage
    *
-   * @param event Event type
+   * @param event Event name
    * @param data Event data
    * @param meta Event metadata
    */

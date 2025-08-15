@@ -1,8 +1,9 @@
-import { createEventType, payload } from '../event';
+import { createEvent, payload } from '../event';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type, @typescript-eslint/no-empty-interface
 export interface HoverEventProps {
   // TODO
 }
 
-export const Hover = createEventType('hover', payload<HoverEventProps>());
+/** Hover event */
+export const Hover = createEvent('hover', payload<HoverEventProps>());

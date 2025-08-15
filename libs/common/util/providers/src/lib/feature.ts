@@ -5,29 +5,10 @@ export type AnyProvider = Provider | EnvironmentProviders;
 
 /** A provider feature */
 export interface ProviderFeature<F, P extends AnyProvider = AnyProvider> {
-  /** Feature kind (usually an integer enum value) */
+  /** Feature kind. Usually an integer enum value but can be anything. */
   [FEATURE_KIND]: F;
   /** Array of providers */
   [FEATURE_PROVIDERS]: P[];
-}
-
-/** Methods to create and get providers from a feature belonging to this set */
-export interface ProviderFeatureSet<S, P extends AnyProvider = AnyProvider> {
-  /**
-   * Create a new feature
-   *
-   * @param kind Specific feature kind
-   * @param providers Array of providers
-   */
-  createFeature<const F extends S>(kind: F, providers: P[]): ProviderFeature<F, P>;
-
-  /**
-   * Get the providers for a feature
-   *
-   * @param feature Feature object
-   * @returns Array of providers
-   */
-  getFeatureProviders<F extends S>(feature: ProviderFeature<F, P>): P[];
 }
 
 /** Key used to store the feature kind */
@@ -36,13 +17,22 @@ const FEATURE_KIND = Symbol();
 const FEATURE_PROVIDERS = Symbol();
 
 /**
- * Create a feature set
+ * Create a new feature object with a kind and providers
  *
- * @returns An object with feature set methods
+ * @param kind Feature kind
+ * @param providers Feature providers
+ * @returns A feature object
  */
-export function createProviderFeatureSet<S, P extends AnyProvider = AnyProvider>(): ProviderFeatureSet<S, P> {
-  return {
-    createFeature: (kind, providers) => ({ [FEATURE_KIND]: kind, [FEATURE_PROVIDERS]: providers }),
-    getFeatureProviders: (feature) => feature[FEATURE_PROVIDERS],
-  };
+export function createFeature<const F, P extends AnyProvider>(kind: F, providers: P[]): ProviderFeature<F, P> {
+  return { [FEATURE_KIND]: kind, [FEATURE_PROVIDERS]: providers };
+}
+
+/**
+ * Get the providers from a feature object
+ *
+ * @param feature Feature object
+ * @returns Array of providers
+ */
+export function getFeatureProviders<F, P extends AnyProvider>(feature: ProviderFeature<F, P>): P[] {
+  return feature[FEATURE_PROVIDERS];
 }

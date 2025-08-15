@@ -1,1 +1,1 @@
-export { createProviderFeatureSet, ProviderFeature, ProviderFeatureSet } from './lib/feature';
+export { createFeature, getFeatureProviders, ProviderFeature } from './lib/feature';

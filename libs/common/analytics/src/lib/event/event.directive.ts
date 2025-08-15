@@ -1,6 +1,6 @@
 import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
-import { AnyEventType, EventPayloadFor } from '@hra-ui/common/analytics/events';
-import { injectAnalyticsLogEventFn } from '../analytics.service';
+import { AnyAnalyticsEvent, AnalyticsEventPayloadFor } from '@hra-ui/common/analytics/events';
+import { injectLogEvent } from '../analytics.service';
 
 /** Built-in event triggers */
 export type EventTrigger = keyof GlobalEventHandlersEventMap;
@@ -10,24 +10,30 @@ export type EventTrigger = keyof GlobalEventHandlersEventMap;
  * on the host element. It can also be configured for manual logging events programatically.
  *
  * @example <caption>Basic usage</caption>
+ * ```html
  * <button [hraEvent]="EventType.Click" [hraEventProps]="{...}" >
+ * ```
  *
  * @example <caption>Different trigger</caption>
+ * ```html
  * <button [hraEvent]="EventType.Click" [hraEventProps]="{...}" hraEventTriggerOn="dblclick" >
+ * ```
  *
  * @example <caption>Manual logging</caption>
+ * ```html
  * <button [hraEvent]="EventType.Click" [hraEventProps]="{...}" hraEventTriggerOn="none" #eventDir="hraEvent"
  *   (hover)="eventDir.logEvent(...)" >
+ * ```
  */
 @Directive({
   selector: '[hraEvent]',
   exportAs: 'hraEvent',
 })
-export class EventDirective<T extends AnyEventType> {
+export class EventDirective<T extends AnyAnalyticsEvent> {
   /** Event type */
   readonly event = input.required<T>({ alias: 'hraEvent' });
   /** Event properties */
-  readonly props = input.required<EventPayloadFor<T>>({ alias: 'hraEventProps' });
+  readonly props = input.required<AnalyticsEventPayloadFor<T>>({ alias: 'hraEventProps' });
   /** Built-in trigger to log events on or 'none' if events are sent programatically */
   readonly triggerOn = input<EventTrigger | 'none' | undefined>(undefined, { alias: 'hraEventTriggerOn' });
 
@@ -36,7 +42,7 @@ export class EventDirective<T extends AnyEventType> {
   /** Host element */
   private readonly el = inject(ElementRef).nativeElement;
   /** Raw logEvent function */
-  private readonly logEvent_ = injectAnalyticsLogEventFn();
+  private readonly logEvent_ = injectLogEvent();
 
   /** Initialize the directive */
   constructor() {
@@ -71,7 +77,7 @@ export class EventDirective<T extends AnyEventType> {
    * @param _type Hra event type
    * @returns A built-in trigger for the event type or undefined
    */
-  private selectTrigger(_type: AnyEventType): EventTrigger | undefined {
+  private selectTrigger(_type: AnyAnalyticsEvent): EventTrigger | undefined {
     // TODO move to /events entrypoint
     return 'click';
   }
@@ -82,8 +88,8 @@ export class EventDirective<T extends AnyEventType> {
    * @param _event Event object
    * @returns Extracted properties from the event
    */
-  private getPropsFromEvent(_event?: unknown): Partial<EventPayloadFor<T>> {
-    // TODO
+  private getPropsFromEvent(_event?: unknown): Partial<AnalyticsEventPayloadFor<T>> {
+    // TODO move
     return {};
   }
 }

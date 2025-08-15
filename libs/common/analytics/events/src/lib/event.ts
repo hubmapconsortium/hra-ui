@@ -8,19 +8,19 @@ declare const PAYLOAD: unique symbol;
 type Prettify<T> = { [K in keyof T]: T[K] };
 
 /** Event type with a payload */
-export type EventType<T extends string, P> = T & { [PAYLOAD]: EventPayload<P> };
-/** Any `EventType`. Primarily useful as a constraint for generics, i.e. `<T extends AnyEventType>` */
+export type AnalyticsEvent<T extends string, P> = T & { [PAYLOAD]: AnalyticsEventPayload<P> };
+/** Any `AnalyticsEvent`. Primarily useful as a constraint for generics, i.e. `<T extends AnyAnalyticsEvent>` */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyEventType = EventType<string, any>;
+export type AnyAnalyticsEvent = AnalyticsEvent<string, any>;
 
 /** Payload type that adds common event properties and generic properties to a user defined payload */
-export type EventPayload<P> = Prettify<CommonEventProps & P & { [prop: string]: unknown }>;
+export type AnalyticsEventPayload<P> = Prettify<CommonAnalyticsEventProps & P & { [prop: string]: unknown }>;
 
 /** Extract the payload of an event type */
-export type EventPayloadFor<T> = T extends AnyEventType ? T[typeof PAYLOAD] : never;
+export type AnalyticsEventPayloadFor<T> = T extends AnyAnalyticsEvent ? T[typeof PAYLOAD] : never;
 
 /** Common event properties shared by all event types */
-export interface CommonEventProps {
+export interface CommonAnalyticsEventProps {
   /** Feature path for this event */
   path?: string;
   /** DOM event that triggered this event */
@@ -34,9 +34,9 @@ export interface CommonEventProps {
  * @param _payload Event payload
  * @returns A new event type
  */
-export function createEventType<T extends string, P>(type: T, _payload: EventPayload<P>): EventType<T, P> {
+export function createEvent<T extends string, P>(type: T, _payload: AnalyticsEventPayload<P>): AnalyticsEvent<T, P> {
   void _payload; // Suppress unused parameter warnings
-  return type as EventType<T, P>;
+  return type as AnalyticsEvent<T, P>;
 }
 
 /**
@@ -45,6 +45,6 @@ export function createEventType<T extends string, P>(type: T, _payload: EventPay
  *
  * @returns A payload type
  */
-export function payload<P>(): EventPayload<P> {
-  return undefined as unknown as EventPayload<P>;
+export function payload<P>(): AnalyticsEventPayload<P> {
+  return undefined as unknown as AnalyticsEventPayload<P>;
 }

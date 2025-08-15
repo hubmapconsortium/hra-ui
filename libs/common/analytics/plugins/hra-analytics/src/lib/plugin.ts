@@ -1,5 +1,5 @@
 import { assertInInjectionContext, inject, Injector } from '@angular/core';
-import { CoreEventType } from '@hra-ui/common/analytics/events';
+import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { AnalyticsInstance, type AnalyticsPlugin } from 'analytics';
 import { EventWriterService } from './event-writer.service';
 import { getSessionId } from './util/session-id';
@@ -36,6 +36,12 @@ interface EventData {
   };
 }
 
+/**
+ * An `analytics` plugin that logs events to a hra endpoint
+ *
+ * @param options Plugin options
+ * @returns An analytics plugin
+ */
 export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): AnalyticsPlugin {
   if (!options.injector) {
     assertInInjectionContext(hraAnalyticsPlugin);
@@ -51,7 +57,7 @@ export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): Ana
     } satisfies PluginConfig,
     loaded: () => true,
     page({ config, instance, payload }: EventData) {
-      writer.write(CoreEventType.PageView, payload.properties, {
+      writer.write(CoreEvents.PageView, payload.properties, {
         app: instance.getState('context.app'),
         version: instance.getState('context.version'),
         sessionId: config.sessionId,

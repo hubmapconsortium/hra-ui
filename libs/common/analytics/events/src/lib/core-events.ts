@@ -3,7 +3,8 @@ import { Error } from './events/error';
 import { Hover } from './events/hover';
 import { PageView } from './events/page-view';
 
-export const CoreEventType = {
+/** Core events for use in all applications */
+export const CoreEvents = {
   PageView,
   Click,
   Hover,
