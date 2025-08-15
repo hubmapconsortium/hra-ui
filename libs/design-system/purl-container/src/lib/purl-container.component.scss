@@ -1,4 +1,4 @@
-@use 'vars';
+@use '../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
   display: flex;
@@ -7,13 +7,13 @@
 
   .purl-link {
     padding-left: 0.5rem;
-    gap: 2px;
+    gap: 0.125rem;
     border-radius: 2rem;
     background-color: var(--mat-sys-surface-container);
     font: var(--mat-sys-label-medium);
 
     mat-icon {
-      min-width: 24px;
+      min-width: 1.5rem;
     }
 
     .purl-text {

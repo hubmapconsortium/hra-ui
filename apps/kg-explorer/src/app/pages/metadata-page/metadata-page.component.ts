@@ -8,12 +8,12 @@ import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
+import { PurlContainerComponent } from '@hra-ui/design-system/purl-container';
 import { MenuOptionsType, TableColumn } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
-import { PurlContainerComponent } from '../../components/purl-container/purl-container.component';
 import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
