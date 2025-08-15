@@ -59,6 +59,14 @@
     }
   }
 
+  .empty-state-divider {
+    grid-area: empty;
+    margin-top: 64px;
+    border-top-color: vars.$outline-variant;
+    align-self: start;
+    z-index: 1;
+  }
+
   &.no-data-sources {
     grid-template-areas:
       'headline headline'
