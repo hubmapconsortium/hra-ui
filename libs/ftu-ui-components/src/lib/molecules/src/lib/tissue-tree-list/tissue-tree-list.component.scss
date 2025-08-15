@@ -39,7 +39,7 @@
       &.selected {
         background-color: utils.with-alpha(vars.$tertiary, 20%);
         border-radius: 0.25rem;
-        padding: 2px 0 2px 8px;
+        padding: 2px 0 2px 2px;
       }
     }
 

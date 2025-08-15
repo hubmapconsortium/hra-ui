@@ -36,14 +36,19 @@
           </div>
         </th>
 
-        <td class="icon-cell" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
+        <td
+          class="icon-cell"
+          mat-cell
+          *matCellDef="let element"
+          [class.highlight]="isHighlighted(element)"
+          (click)="openBottomSheet(element[index + 2])"
+          style="cursor: pointer"
+        >
           @if (element[index + 2] !== undefined) {
             <ftu-biomarker-table-data-icon
               class="icon"
               [color]="getColor(element[index + 2].color)"
               [size]="getSize(element[index + 2].size)"
-              (click)="openBottomSheet(element[index + 2])"
-              style="cursor: pointer"
             >
             </ftu-biomarker-table-data-icon>
           } @else {
