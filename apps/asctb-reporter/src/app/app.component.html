@@ -50,7 +50,7 @@
     ></app-compare>
   </mat-drawer>
   <mat-drawer-content>
-    <hra-header baseUrl="https://apps.humanatlas.io/" [breadcrumbs]="crumbs() ?? []">
+    <hra-header [breadcrumbs]="crumbs() ?? []">
       <a mat-icon-button hraPlainTooltip="ASCT+B Table metadata" [matMenuTriggerFor]="nestedMenu.childMenu">
         <mat-icon>table</mat-icon>
       </a>

@@ -2,10 +2,11 @@ import { Component, inject, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { MenuOptionsType, TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { saveAs } from 'file-saver';
 
-import { DownloadService } from '../../services/download.service';
 import { VersionSelectorComponent } from '../version-selector/version-selector.component';
 
 /**
@@ -25,8 +26,8 @@ import { VersionSelectorComponent } from '../version-selector/version-selector.c
   styleUrl: './provenance-menu.component.scss',
 })
 export class ProvenanceMenuComponent {
-  /** File download service */
-  readonly download = inject(DownloadService);
+  /** Snackbar service for download notification */
+  readonly snackbar = inject(SnackbarService);
 
   /** Row data for the metadata table */
   readonly rows = input.required<TableRow[]>();
@@ -41,4 +42,12 @@ export class ProvenanceMenuComponent {
 
   /** Emits on version change */
   readonly versionChange = output<string>();
+
+  /**
+   * Downloads a file from the url
+   * @param url File url
+   */
+  download(url: string): void {
+    saveAs(url, url.split('/').pop());
+  }
 }

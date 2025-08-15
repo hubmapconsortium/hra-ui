@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DigitalObjectInfo, DigitalObjectsJsonLd, HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DigitalObjectInfo, DigitalObjectsJsonLd, HraKgService, OntologyTree } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
@@ -15,13 +15,15 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { forkJoin, fromEvent, Observable } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 
 import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import { DigitalObjectMetadata } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import {
-  CATEGORY_LABELS,
+  FILTER_CATEGORY_INFO,
+  FilterOption,
+  FilterOptionCategory,
   getOrganIcon,
   getOrganId,
   getProductIcon,
@@ -29,37 +31,12 @@ import {
   getProductTooltip,
   HRA_VERSION_DATA,
   sentenceCase,
-  TooltipData,
 } from '../../utils/utils';
 
 /** Digital object info interface with hraVersions */
-interface DigitalObjectInfoVersions extends DigitalObjectInfo {
+interface DigitalObjectInfoWithHraVersions extends DigitalObjectInfo {
   /** List of HRA versions for the object */
   hraVersions: string[];
-}
-
-/** Filter option category interface */
-export interface FilterOptionCategory {
-  /** Category label */
-  label: string;
-  /** Filter options for the category */
-  options?: FilterOption[];
-  /** Tooltip data */
-  tooltip?: TooltipData;
-}
-
-/** Filter option interface */
-export interface FilterOption {
-  /** Option id */
-  id: string;
-  /** Option label */
-  label: string;
-  /** Secondary label (for release version options) */
-  secondaryLabel?: string;
-  /** Number of results for the filter option in the data */
-  count: number;
-  /** Tooltip data for the filter option (for digital objects category) */
-  tooltip?: TooltipData;
 }
 
 /** Current filter interface (each category contains string of filter option IDs) */
@@ -116,8 +93,6 @@ export class MainPageComponent {
   private readonly http = inject(HttpClient);
   /** HRA KG API service */
   private readonly kg = inject(HraKgService);
-  /** HRA V1 API service */
-  private readonly v1 = inject(V1Service);
   /** File download service */
   readonly download = inject(DownloadService);
   /** Router service */
@@ -135,6 +110,14 @@ export class MainPageComponent {
   readonly data = input.required<DigitalObjectsJsonLd>();
   /** Column info */
   readonly columns = input.required<TableColumn[]>();
+  /** ASCT+B term occurence data */
+  readonly asctbTermOccurrences = input.required<[string, number][]>();
+  /** Ontology tree data */
+  readonly ontologyTree = input.required<OntologyTree>();
+  /** Cell type tree data */
+  readonly cellTypeTree = input.required<OntologyTree>();
+  /** Biomarker tree data */
+  readonly biomarkerTree = input.required<OntologyTree>();
 
   /** All rows in the data */
   readonly allRows = signal<TableRow[]>([]);
@@ -143,7 +126,7 @@ export class MainPageComponent {
   /** Whether or not the filter menu is closed */
   readonly filterClosed = signal<boolean>(false);
   /** Filter categories */
-  readonly filterCategories = signal<FilterOptionCategory[]>([]);
+  readonly filterCategories = signal<Record<string, FilterOptionCategory>>(FILTER_CATEGORY_INFO);
   /** Currently selected filters */
   readonly filters = signal<CurrentFilters>({});
   /** Scroll viewport height for the digital object table */
@@ -153,59 +136,32 @@ export class MainPageComponent {
   /** Id of digital object to download */
   readonly downloadId = signal<string | undefined>(undefined);
 
-  /** Ontology model containing organ info */
-  readonly ontologyModel = signal<OntologyTree | undefined>(undefined);
+  /** Filter categories as an array */
+  readonly filterCategoriesArray = computed<FilterOptionCategory[]>(() => Object.values(this.filterCategories()));
 
   /**
    * Sets the initial filters according to query params
    * Sets filtered rows to all rows on init
    * Fetches file download metadata for each object
-   * Sets all filter options
-   * Get download options for an object whenever the download button is clicked
    * Update filter when searchbar input changes
+   * Populates all filter options
+   * Get download options for an object whenever the download button is clicked
    * Set scroll viewport height when window is resized
    */
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
-    queryParams$.subscribe((queryParams) => {
-      this.filters.set({
-        digitalObjects: queryParams['do'],
-        releaseVersion: queryParams['versions']
-          ? Array.isArray(queryParams['versions'])
-            ? queryParams['versions']
-            : [queryParams['versions']]
-          : [],
-        organs: queryParams['organs'],
-        anatomicalStructures: queryParams['as']
-          ? Array.isArray(queryParams['as'])
-            ? queryParams['as']
-            : [queryParams['as']]
-          : [],
-        cellTypes: queryParams['ct']
-          ? Array.isArray(queryParams['ct'])
-            ? queryParams['ct']
-            : [queryParams['ct']]
-          : [],
-        biomarkers: queryParams['b'] ? (Array.isArray(queryParams['b']) ? queryParams['b'] : [queryParams['b']]) : [],
-        searchTerm: queryParams['search'] ?? '',
-      });
-      this.searchControl.patchValue(this.filters().searchTerm);
-    });
+    queryParams$.subscribe((queryParams) => this.setFiltersFomParams(queryParams));
 
     toObservable(this.data).subscribe((items) => {
-      this.v1.ontologyTreeModel({}).subscribe((data) => {
-        this.ontologyModel.set(data);
-        const objectData = this.resolveData(items['@graph']);
-        this.allRows.set(objectData);
-        this.setVersionCounts(items['@graph'] as unknown as DigitalObjectInfoVersions[]);
-      });
+      const objectData = this.resolveData(items['@graph']);
+      this.allRows.set(objectData);
+      this.filteredRows.set(this.allRows());
+      this.setVersionCounts(items['@graph'] as DigitalObjectInfoWithHraVersions[]);
     });
 
-    this.filterCategories.set(
-      CATEGORY_LABELS.map((label) => {
-        return { label };
-      }),
-    );
+    this.searchControl.valueChanges.subscribe((result?: string) => {
+      this.onSearchChange(result === '' ? undefined : result);
+    });
 
     effect(() => {
       this.populateFilterOptions();
@@ -218,32 +174,51 @@ export class MainPageComponent {
       this.attachDownloadOptions();
     });
 
-    this.searchControl.valueChanges.subscribe((result?: string) => {
-      this.onSearchChange(result === '' ? undefined : result);
-    });
-
     this.setScrollViewportHeight();
     fromEvent(window, 'resize').subscribe(() => this.setScrollViewportHeight());
+  }
+
+  /**
+   * Sets filters from query params in the url
+   * @param queryParams Query params from the route
+   */
+  private setFiltersFomParams(queryParams: Params) {
+    const dObjects = queryParams['do'];
+    const versions = queryParams['versions'];
+    const organs = queryParams['organs'];
+    const as = queryParams['as'];
+    const ct = queryParams['ct'];
+    const b = queryParams['b'];
+    const search = queryParams['search'];
+
+    this.filters.set({
+      digitalObjects: dObjects,
+      releaseVersion: versions ? (Array.isArray(versions) ? versions : [versions]) : undefined,
+      organs: organs,
+      anatomicalStructures: as ? (Array.isArray(as) ? as : [as]) : undefined,
+      cellTypes: ct ? (Array.isArray(ct) ? ct : [ct]) : undefined,
+      biomarkers: b ? (Array.isArray(b) ? b : [b]) : undefined,
+      searchTerm: search ?? '',
+    });
+    this.searchControl.patchValue(this.filters().searchTerm);
   }
 
   /**
    * Sets the version filter counts from the data
    * @param data Digital object data
    */
-  private setVersionCounts(data?: DigitalObjectInfoVersions[]) {
-    if (data) {
-      const result: Record<string, number> = {};
-      const allVersions = data.map((object) => object.hraVersions);
-      const flatVersions = allVersions.flat();
-      for (const version of flatVersions) {
-        if (result[version]) {
-          result[version] += 1;
-        } else {
-          result[version] = 1;
-        }
+  private setVersionCounts(data: DigitalObjectInfoWithHraVersions[]) {
+    const result: Record<string, number> = {};
+    const allVersions = data.map((object) => object.hraVersions);
+    const flatVersions = allVersions.flat();
+    for (const version of flatVersions) {
+      if (result[version]) {
+        result[version] += 1;
+      } else {
+        result[version] = 1;
       }
-      this.versionCounts.set(result);
     }
+    this.versionCounts.set(result);
   }
 
   /**
@@ -261,12 +236,14 @@ export class MainPageComponent {
       searchTerm: this.filters().searchTerm || undefined,
     };
 
-    this.updateFilters(updatedFilters);
+    this.filters.set(updatedFilters);
+    this.updateQueryParamsFromFilters();
   }
 
-  private updateFilters(updatedFilters: CurrentFilters) {
-    this.filters.set(updatedFilters);
-
+  /**
+   * Updates query params based on current filters
+   */
+  private updateQueryParamsFromFilters() {
     this.router.navigate([''], {
       queryParams: {
         do: this.filters().digitalObjects,
@@ -296,122 +273,105 @@ export class MainPageComponent {
   }
 
   /**
-   * Populates filter categories with options using data from V1 and KG APIs
+   * Returns list of digital objects in the data as filter options
+   * @returns Filter options
+   */
+  private digitalObjectsOptions(): FilterOption[] {
+    return Array.from(this.kgFilterOptions().doOptions)
+      .map((filterOption) => {
+        return {
+          id: filterOption,
+          label: getProductLabel(filterOption),
+          count: this.calculateCount(filterOption, 'doType'),
+          tooltip: getProductTooltip(filterOption),
+        };
+      })
+      .sort((o1, o2) => o1.label.localeCompare(o2.label));
+  }
+
+  /**
+   * Returns HRA version data as filter options
+   * @returns Filter options
+   */
+  private hraVersionsOptions(): FilterOption[] {
+    return Object.keys(HRA_VERSION_DATA)
+      .map((filterOption) => {
+        const versionData = HRA_VERSION_DATA[filterOption];
+        return {
+          id: filterOption,
+          label: versionData ? versionData.label : filterOption,
+          count: this.versionCounts()[filterOption],
+          secondaryLabel: versionData ? versionData.date : undefined,
+        };
+      })
+      .sort((o1, o2) => o2.label.localeCompare(o1.label)); //Reverse order
+  }
+
+  /**
+   * Returns list of organs in the data as filter options
+   * @returns Filter options
+   */
+  private organsOptions(): FilterOption[] {
+    return Array.from(this.kgFilterOptions().organOptions)
+      .map((organOption) => {
+        return {
+          id: organOption,
+          label: sentenceCase(this.ontologyTree()?.nodes[organOption]?.label || ''),
+          count: this.calculateCount(organOption, 'organIds'),
+        };
+      })
+      .sort((o1, o2) => o1.label.localeCompare(o2.label));
+  }
+
+  /**
+   * Returns ontology option data as filter options
+   * @param data Tree data
+   * @returns Filter options
+   */
+  private ontologyOptions(data: OntologyTree): FilterOption[] {
+    return this.asctbTermOccurrences()
+      .filter((occurrence) => data.nodes[occurrence[0]])
+      .map((occurrence) => {
+        return {
+          id: occurrence[0],
+          label: data.nodes[occurrence[0]] ? data.nodes[occurrence[0]].label || '' : occurrence[0],
+          count: occurrence[1],
+        };
+      })
+      .sort((o1, o2) => o1.label.localeCompare(o2.label));
+  }
+
+  /**
+   * Populates filter categories with options
    */
   private populateFilterOptions() {
-    const kgOptions = this.kgFilterOptions();
-    forkJoin([
-      this.v1.ontologyTreeModel({}),
-      this.v1.cellTypeTreeModel({}),
-      this.v1.biomarkerTreeModel({}),
-      this.kg.asctbTermOccurences({}),
-    ]).subscribe(([as, ct, b, asctbTerms]) => {
-      const terms = Object.entries(asctbTerms);
-
-      this.filterCategories.set([
-        {
-          label: 'Digital objects',
-          options: Array.from(kgOptions.doOptions)
-            .map((filterOption) => {
-              return {
-                id: filterOption,
-                label: getProductLabel(filterOption),
-                count: this.calculateCount(filterOption, 'doType'),
-                tooltip: getProductTooltip(filterOption),
-              };
-            })
-            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
-          tooltip: {
-            description: 'Categories of unique data structures that construct the evolving Human Reference Atlas.',
-            actionText: 'Learn more',
-            actionUrl: 'https://humanatlas.io/overview-data',
-          },
+    this.filterCategories.update((categories) => {
+      return {
+        digitalObjects: {
+          ...categories['digitalObjects'],
+          options: this.digitalObjectsOptions(),
         },
-        {
-          label: 'HRA release version',
-          options: Object.keys(HRA_VERSION_DATA)
-            .map((filterOption) => {
-              const versionData = HRA_VERSION_DATA[filterOption];
-              return {
-                id: filterOption,
-                label: versionData ? versionData.label : filterOption,
-                count: this.versionCounts()[filterOption],
-                secondaryLabel: versionData ? versionData.date : undefined,
-              };
-            })
-            .sort((o1, o2) => o2.label.localeCompare(o1.label)), //Reverse order
-          tooltip: {
-            description: 'New and updated data is released twice a year on June 15 and December 15.',
-          },
+        releaseVersions: {
+          ...categories['releaseVersions'],
+          options: this.hraVersionsOptions(),
         },
-        {
-          label: 'Organs',
-          options: Array.from(kgOptions.organOptions)
-            .map((organOption) => {
-              return {
-                id: organOption,
-                label: sentenceCase(this.ontologyModel()?.nodes[organOption]?.label || ''),
-                count: this.calculateCount(organOption, 'organIds'),
-              };
-            })
-            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
-          tooltip: {
-            description:
-              'Organs are distinct body structures made of specialized cells and tissues that work together to perform specific biological functions.',
-          },
+        organs: {
+          ...categories['organs'],
+          options: this.organsOptions(),
         },
-        {
-          label: 'Anatomical structures',
-          options: terms
-            .filter((term) => as.nodes[term[0]])
-            .map((term) => {
-              return {
-                id: term[0],
-                label: as.nodes[term[0]] ? as.nodes[term[0]].label || '' : term[0],
-                count: term[1],
-              };
-            })
-            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
-          tooltip: {
-            description:
-              'A distinct biological entity with a 3D volume and shape, e.g., an organ, functional tissue unit, or cell.',
-          },
+        anatomicalStructures: {
+          ...categories['anatomicalStructures'],
+          options: this.ontologyOptions(this.ontologyTree()),
         },
-        {
-          label: 'Cell types',
-          options: terms
-            .filter((term) => ct.nodes[term[0]])
-            .map((term) => {
-              return {
-                id: term[0],
-                label: ct.nodes[term[0]] ? ct.nodes[term[0]].label || '' : term[0],
-                count: term[1],
-              };
-            })
-            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
-          tooltip: {
-            description:
-              'Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. Tissue is composed of different (resident and transitory) cell types that are characterized or identified via biomarkers.',
-          },
+        cellTypes: {
+          ...categories['cellTypes'],
+          options: this.ontologyOptions(this.cellTypeTree()),
         },
-        {
-          label: 'Biomarkers',
-          options: terms
-            .filter((term) => b.nodes[term[0]])
-            .map((term) => {
-              return {
-                id: term[0],
-                label: b.nodes[term[0]] ? b.nodes[term[0]].label || '' : term[0],
-                count: term[1],
-              };
-            })
-            .sort((o1, o2) => o1.label.localeCompare(o2.label)),
-          tooltip: {
-            description:
-              'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type. They include genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).',
-          },
+        biomarkers: {
+          ...categories['biomarkers'],
+          options: this.ontologyOptions(this.biomarkerTree()),
         },
-      ]);
+      };
     });
   }
 
@@ -422,7 +382,7 @@ export class MainPageComponent {
     let newFilteredRows = this.allRows();
     newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['purl'] as string));
 
-    if (this.filters().searchTerm) {
+    if (this.filters().searchTerm && this.filters().searchTerm !== '') {
       newFilteredRows = this.filterSearchFormResults(newFilteredRows);
     }
     if (this.filters().digitalObjects) {
@@ -478,10 +438,10 @@ export class MainPageComponent {
    * @returns object search
    */
   private digitalObjectSearch(): Observable<string[]> {
-    const currentAnatomicalStructuresFilters = this.filters().anatomicalStructures || [];
-    const currentCellTypesFilters = this.filters().cellTypes || [];
-    const currentBiomarkerFilters = this.filters().biomarkers || [];
-    const currentHraVersionFilters = this.filters().releaseVersion || [];
+    const currentAnatomicalStructuresFilters = this.filters().anatomicalStructures;
+    const currentCellTypesFilters = this.filters().cellTypes;
+    const currentBiomarkerFilters = this.filters().biomarkers;
+    const currentHraVersionFilters = this.filters().releaseVersion;
 
     return this.kg.doSearch({
       ontologyTerms: currentAnatomicalStructuresFilters,
@@ -524,7 +484,7 @@ export class MainPageComponent {
     }
     return data.map((item) => {
       const organId = getOrganId(item);
-      const organLabel = this.ontologyModel()?.nodes[organId]?.label;
+      const organLabel = this.ontologyTree()?.nodes[organId]?.label;
       return {
         id: item.lod,
         purl: item.purl,
@@ -563,12 +523,12 @@ export class MainPageComponent {
    * @param searchTerm Search input
    */
   private onSearchChange(searchTerm?: string): void {
-    const newFilters = {
+    this.filters.set({
       ...this.filters(),
       searchTerm,
-    };
+    });
 
-    this.updateFilters(newFilters);
+    this.updateQueryParamsFromFilters();
   }
 
   /**
