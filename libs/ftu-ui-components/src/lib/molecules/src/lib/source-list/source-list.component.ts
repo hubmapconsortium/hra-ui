@@ -19,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { Iri } from '@hra-ui/services';

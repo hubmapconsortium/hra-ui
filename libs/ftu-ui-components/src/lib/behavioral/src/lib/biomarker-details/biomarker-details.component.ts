@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal,
   output,
+  signal,
   TemplateRef,
   ViewChild,
-  AfterViewInit,
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
@@ -45,13 +45,13 @@ import {
 } from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonModule } from '@hra-ui/design-system/icon-button';
+import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
+import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { FtuFullScreenService, FullscreenTab } from '../ftu-fullscreen-service/ftu-fullscreen.service';
-import { RichTooltipModule, RichTooltipDirective } from '@hra-ui/design-system/tooltips/rich-tooltip';
-import { MatDividerModule } from '@angular/material/divider';
 
 /**
  * PlaceHolder for Empty Tissue Info

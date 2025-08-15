@@ -7,9 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Metadata } from '../../models/metadata';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
@@ -50,7 +49,6 @@ export class DefaultToPipe implements PipeTransform {
     OverlayModule,
     DefaultToPipe,
     MatMenuModule,
-    IconButtonSizeDirective,
     PlainTooltipDirective,
     ButtonsModule,
     ExpansionPanelComponent,

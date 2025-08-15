@@ -1,7 +1,7 @@
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
-import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 import { type Meta, type StoryObj } from '@storybook/angular';
 import { ProfileCardComponent } from './profile-card.component';
 
