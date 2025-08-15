@@ -50,6 +50,8 @@ import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { FtuFullScreenService, FullscreenTab } from '../ftu-fullscreen-service/ftu-fullscreen.service';
+import { RichTooltipModule, RichTooltipDirective } from '@hra-ui/design-system/tooltips/rich-tooltip';
+import { MatDividerModule } from '@angular/material/divider';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -77,6 +79,9 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     EmptyBiomarkerComponent,
     MatButtonToggleModule,
     MessageIndicatorModule,
+    RichTooltipModule,
+    RichTooltipDirective,
+    MatDividerModule,
   ],
   templateUrl: './biomarker-details.component.html',
   styleUrls: ['./biomarker-details.component.scss'],

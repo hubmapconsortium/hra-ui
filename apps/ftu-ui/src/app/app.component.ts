@@ -227,7 +227,7 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   protected readonly crumbs = computed(() => {
     const crumbs = (this.data()['crumbs'] as BreadcrumbItem[]) ?? [];
     const label = this.selectedFtu()?.label;
-    if (!label) {
+    if (!label || this.router.url === '/') {
       return crumbs;
     }
     return [...crumbs, { name: label.slice(0, 1).toUpperCase() + label.slice(1) } satisfies BreadcrumbItem];
