@@ -2,34 +2,36 @@
 
 :host {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.25rem;
+  flex-direction: column;
+
+  @media (min-width: 362px) {
+    flex-direction: row;
+  }
 
   .purl-link {
-    padding-left: 0.5rem;
+    padding-right: 1rem;
+    display: flex;
     gap: 0.125rem;
     border-radius: 2rem;
     background-color: var(--mat-sys-surface-container);
     font: var(--mat-sys-label-medium);
+    min-width: 16.25rem;
 
     mat-icon {
       min-width: 1.5rem;
     }
+  }
 
-    .purl-text {
-      color: var(--mat-sys-primary);
-    }
-
-    ::ng-deep .mdc-button__label {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
+  .purl-text {
+    color: var(--mat-sys-primary);
+    padding: 0.625rem 0;
   }
 
   .purl-copy {
     font: var(--mat-sys-label-medium);
-    --mat-text-button-with-icon-horizontal-padding: 0.75rem;
     min-width: auto;
+    border-radius: 2rem;
   }
 }
