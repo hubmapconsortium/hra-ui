@@ -5,26 +5,26 @@ import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
- * Contains a PURL link and a button to copy it to the clipboard.
+ * Contains a url link and a button to copy it to the clipboard.
  */
 @Component({
-  selector: 'hra-purl-container',
+  selector: 'hra-copyable-url-container',
   imports: [ButtonsModule, IconsModule, PlainTooltipDirective],
-  templateUrl: './purl-container.component.html',
-  styleUrl: './purl-container.component.scss',
+  templateUrl: './copyable-url-container.component.html',
+  styleUrl: './copyable-url-container.component.scss',
 })
-export class PurlContainerComponent {
+export class CopyableUrlContainerComponent {
   /** Snackbar service */
   readonly snackbar = inject(SnackbarService);
 
-  /** PURL to display */
-  readonly purl = input.required<string>();
+  /** Url to display */
+  readonly url = input.required<string>();
 
   /**
-   * Copys purl to clipboard and shows a snackbar notification.
+   * Copys url to clipboard and shows a snackbar notification.
    */
-  copyPurl() {
-    navigator.clipboard.writeText(this.purl());
+  copyUrl() {
+    navigator.clipboard.writeText(this.url());
     this.snackbar.open('Link copied', '', false, 'start', { duration: 5000 });
   }
 }

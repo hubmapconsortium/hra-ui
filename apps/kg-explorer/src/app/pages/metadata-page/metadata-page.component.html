@@ -10,7 +10,7 @@
     <hra-metadata-layout-header>
       <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()"> </hra-page-section>
       <div class="header-content">
-        <hra-purl-container [purl]="purl()"></hra-purl-container>
+        <hra-copyable-url-container [url]="purl()"></hra-copyable-url-container>
         @if (getImage()) {
           @if (imageTypes[metadata().type] === 'image/svg+xml') {
             <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />
