@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
@@ -45,7 +44,6 @@ import { RightSidebarComponent } from './right-sidebar.component';
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,
     ButtonsModule,
-    IconButtonSizeDirective,
     PlainTooltipDirective,
   ],
   declarations: [RightSidebarComponent],

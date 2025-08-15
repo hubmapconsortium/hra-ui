@@ -9,7 +9,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
@@ -43,7 +42,6 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     MatMenuModule,
-    IconButtonSizeDirective,
     ButtonsModule,
     MatDividerModule,
     BackButtonBarComponent,

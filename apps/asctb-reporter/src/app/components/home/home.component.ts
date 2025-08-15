@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { AssetUrlPipe } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective, IconButtonVariantDirective } from '@hra-ui/design-system/buttons/icon-button';
+import { IconButtonVariantDirective } from '@hra-ui/design-system/buttons/icon-button';
 import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
@@ -23,7 +23,6 @@ import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
     ScrollingModule,
     ProfileCardComponent,
     IconButtonVariantDirective,
-    IconButtonSizeDirective,
     FooterComponent,
     RouterModule,
     AssetUrlPipe,

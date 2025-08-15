@@ -3,14 +3,13 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } f
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 
 /**
  * Menu for histogram expansion panel
  */
 @Component({
   selector: 'cde-histogram-menu',
-  imports: [CommonModule, MatMenuModule, MatIconModule, IconButtonSizeDirective, ButtonsModule],
+  imports: [CommonModule, MatMenuModule, MatIconModule, ButtonsModule],
   templateUrl: './histogram-menu.component.html',
   styleUrl: './histogram-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppNavButtonComponent } from '@hra-ui/design-system/buttons/app-nav-button';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/buttons/icon-button';
 import { SoftwareStatus } from '@hra-ui/design-system/indicators/software-status-indicator';
 import { NavHeaderButtonsComponent, NavHeaderButtonsVariant } from '@hra-ui/design-system/nav-header-buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
@@ -38,7 +37,6 @@ export interface CardData {
     MatButtonModule,
     MatIconModule,
     NavHeaderButtonsComponent,
-    IconButtonSizeDirective,
     MatSidenavModule,
     AppNavButtonComponent,
     ScrollingModule,
