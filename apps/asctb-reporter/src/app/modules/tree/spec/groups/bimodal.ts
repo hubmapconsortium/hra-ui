@@ -471,6 +471,7 @@ export class BimodalMarkGroup {
           baseline: { value: 'middle' },
           text: { field: 'ontologyId' },
           fontSize: { value: 11 },
+          font: { value: 'Metropolis' },
           fill: [
             {
               value: 'grey',
@@ -551,6 +552,7 @@ export class BimodalMarkGroup {
           baseline: { value: 'middle' },
           text: { field: 'name' },
           fontSize: { field: 'fontSize' },
+          font: { value: 'Metropolis' },
           cursor: { value: 'pointer' },
           fill: [
             {

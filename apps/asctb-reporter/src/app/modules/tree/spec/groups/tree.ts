@@ -409,6 +409,7 @@ export class TreeMarkGroup {
         enter: {
           text: { field: 'ontologyId' },
           limit: { value: 180 },
+          font: { value: 'Metropolis' },
           fontSize: { value: 11 },
           baseline: { value: 'middle' },
           fontWeight: { value: 600 },
@@ -465,8 +466,9 @@ export class TreeMarkGroup {
           text: { field: 'name' },
           limit: { value: 180 },
           fontSize: { value: 14 },
+          font: { value: 'Metropolis' },
           baseline: { value: 'middle' },
-          fontWeight: { value: 400 },
+          fontWeight: { value: 500 },
           cursor: { signal: 'datum.children ? "pointer" : "null"' },
         },
         update: {

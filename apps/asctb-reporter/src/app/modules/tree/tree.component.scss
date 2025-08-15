@@ -1,13 +1,18 @@
-.title-wrapper {
-  white-space: nowrap;
-}
+@use 'vars';
 
-.title {
-  font-weight: 600;
-  display: inline-block;
-}
+:host {
+  .title-wrapper {
+    white-space: nowrap;
+  }
 
-.scroll-bar-horizontal {
-  overflow: scroll;
-  height: calc(100vh - 12.1rem);
+  .title {
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  .scroll-bar-horizontal {
+    background-color: vars.$surface-container-lowest;
+    overflow: scroll;
+    height: calc(100vh - 12.1rem);
+  }
 }
