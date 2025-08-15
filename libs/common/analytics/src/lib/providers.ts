@@ -17,9 +17,7 @@ const enum AnalyticsFeatureKind {
  * @param plugins Plugins and plugin factories
  * @returns An analytics feature
  */
-export function withPlugins(
-  ...plugins: (AnalyticsPlugin | (() => AnalyticsPlugin))[]
-): ProviderFeature<AnalyticsFeatureKind.Plugins> {
+export function withPlugins(...plugins: (AnalyticsPlugin | (() => AnalyticsPlugin))[]): AnalyticsFeature {
   return createFeature(AnalyticsFeatureKind.Plugins, [
     {
       provide: PLUGINS,

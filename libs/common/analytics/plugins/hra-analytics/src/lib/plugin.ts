@@ -58,9 +58,9 @@ export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): Ana
     loaded: () => true,
     page({ config, instance, payload }: EventData) {
       writer.write(CoreEvents.PageView, payload.properties, {
+        sessionId: config.sessionId,
         app: instance.getState('context.app'),
         version: instance.getState('context.version'),
-        sessionId: config.sessionId,
       });
     },
     track({ config, payload }: EventData) {

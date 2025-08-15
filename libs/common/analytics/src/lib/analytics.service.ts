@@ -1,6 +1,7 @@
 import { assertInInjectionContext, inject, Injectable, InjectionToken, isDevMode } from '@angular/core';
 import { AnalyticsEventPayloadFor, AnyAnalyticsEvent, CoreEvents } from '@hra-ui/common/analytics/events';
 import { hraAnalyticsPlugin } from '@hra-ui/common/analytics/plugins/hra-analytics';
+import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import { Analytics, AnalyticsPlugin } from 'analytics';
 import { injectFeaturePath } from './feature/feature.directive';
 
@@ -26,10 +27,13 @@ export function injectLogEvent(): <T extends AnyAnalyticsEvent>(event: T, props:
  */
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService {
+  /** Application configuration */
+  private appConfig = injectAppConfiguration();
+
   /** `analytics` instance. Direct use should generally be avoided. */
   readonly instance = Analytics({
-    app: '', // TODO
-    // version?
+    app: this.appConfig.name,
+    version: this.appConfig.version,
     debug: isDevMode(),
     plugins: [hraAnalyticsPlugin(), ...this.injectPlugins()],
   });
