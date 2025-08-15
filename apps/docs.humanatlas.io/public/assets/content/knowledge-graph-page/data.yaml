@@ -5,20 +5,36 @@ subtitle: |
   and biomarkers across the healthy human body into a unified, semantically-rich data graph designed for querying, visualization,
   and analysis.
 
-  The current version of the HRA-KG encompasses:
-  - 71 distinct human organs
-  - 5,800 detailed anatomical structures
-  - 2,268 precisely classified cell types
-  - 2,531 rigorously defined biomarkers
-  - 10 million nodes interconnected by 171 million edges
-  - Approximately 126 GB of graph data
-
-  The Knowledge Graph supports semantic queries, detailed analytics, and seamless integration with external applications and platforms.
 icons: product:knowledge-graph
 action:
-  label: Explore the Knowledge Graph
-  url: 'https://lod.humanatlas.io/graph'
+  label: Use app
+  url: 'https://lod.humanatlas.io/'
 content:
+- component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+          The current version of the HRA-KG encompasses:
+          - 71 distinct human organs
+          - 5,800 detailed anatomical structures
+          - 2,268 precisely classified cell types
+          - 2,531 rigorously defined biomarkers
+          - 10 million nodes interconnected by 171 million edges
+          - Approximately 126 GB of graph data
+          
+          The Knowledge Graph supports semantic queries, detailed analytics, and seamless integration with external applications and platforms.
+
+  - component: PageSection
+    tagline: Demo video
+    anchor: demo-video
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: KFIVSO5F8aE
+
   - component: PageSection
     tagline: Accessing the HRA Knowledge Graph
     anchor: accessing-the-hra-kg
