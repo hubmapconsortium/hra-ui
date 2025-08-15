@@ -8,7 +8,6 @@ import {
   TemplateRef,
   ViewChild,
   AfterViewInit,
-  model,
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
@@ -50,6 +49,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
 import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
+import { FtuFullScreenService, FullscreenTab } from '../ftu-fullscreen-service/ftu-fullscreen.service';
 import { RichTooltipModule, RichTooltipDirective } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -163,15 +163,18 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   /** Active tab index */
   private activeTabIndex = 0;
 
+  /** Fullscreen service */
+  private readonly fullscreenService = inject(FtuFullScreenService);
+
   /**
    * Determines whether biomarkerfullscreen is in fullscreen mode
    */
-  readonly isBiomarkerfullscreen = model<boolean>(false);
+  readonly isBiomarkerfullscreen = this.fullscreenService.isFullscreen;
 
   /**
    * Determines whether source listfullscreen is in fullscreen mode
    */
-  readonly isSourceListfullscreen = model<boolean>(false);
+  readonly isSourceListfullscreen = signal<boolean>(false);
 
   /**
    * View child of source list component
@@ -292,6 +295,8 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
     }, 250);
 
     this.isTableFullScreen = !this.isTableFullScreen;
+    this.fullscreenService.fullscreentabIndex.set(FullscreenTab.BiomarkerDetails);
+    this.fullscreenService.isFullscreen.set(this.isTableFullScreen);
     this.setScreenMode(this.isTableFullScreen);
   }
 
