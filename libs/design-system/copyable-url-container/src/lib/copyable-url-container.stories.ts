@@ -10,7 +10,6 @@ const meta: Meta<CopyableUrlContainerComponent> = {
       type: 'figma',
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=4453-105',
     },
-    layout: 'fullscreen',
   },
   args: {
     url: 'https://example.com/purl',

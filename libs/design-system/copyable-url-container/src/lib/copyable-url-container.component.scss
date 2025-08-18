@@ -1,4 +1,5 @@
 @use '../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../styles/utils';
 
 :host {
   display: flex;
@@ -10,13 +11,13 @@
     flex-direction: row;
   }
 
-  .purl-link {
+  .link {
+    @include utils.use-font('label', 'medium');
     padding-right: 1rem;
     display: flex;
     gap: 0.125rem;
     border-radius: 2rem;
-    background-color: var(--mat-sys-surface-container);
-    font: var(--mat-sys-label-medium);
+    background-color: vars.$surface-container;
     min-width: 16.25rem;
 
     mat-icon {
@@ -24,13 +25,13 @@
     }
   }
 
-  .purl-text {
-    color: var(--mat-sys-primary);
+  .text {
+    color: vars.$primary;
     padding: 0.625rem 0;
   }
 
-  .purl-copy {
-    font: var(--mat-sys-label-medium);
+  .copy {
+    @include utils.use-font('label', 'medium');
     min-width: auto;
     border-radius: 2rem;
   }

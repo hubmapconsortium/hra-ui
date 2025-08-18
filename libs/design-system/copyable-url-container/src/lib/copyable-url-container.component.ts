@@ -14,16 +14,16 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
   styleUrl: './copyable-url-container.component.scss',
 })
 export class CopyableUrlContainerComponent {
-  /** Snackbar service */
-  readonly snackbar = inject(SnackbarService);
-
   /** Url to display */
   readonly url = input.required<string>();
+
+  /** Snackbar service */
+  private readonly snackbar = inject(SnackbarService);
 
   /**
    * Copys url to clipboard and shows a snackbar notification.
    */
-  copyUrl() {
+  copyUrl(): void {
     navigator.clipboard.writeText(this.url());
     this.snackbar.open('Link copied', '', false, 'start', { duration: 5000 });
   }
