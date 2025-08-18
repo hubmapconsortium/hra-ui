@@ -8,7 +8,8 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
-import { CurrentFilters, FilterOption, FilterOptionCategory } from '../../pages/main-page/main-page.component';
+import { CurrentFilters } from '../../pages/main-page/main-page.component';
+import { FilterOption, FilterOptionCategory } from '../../utils/utils';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 
 /** Filter form values */
@@ -69,7 +70,6 @@ export class FilterMenuComponent {
   readonly filterCategories = input.required<FilterOptionCategory[]>();
   /** Whether or not the form panel is closed */
   readonly formClosed = input(false);
-
   /** Contains current selected filter IDs */
   readonly currentFilters = input.required<CurrentFilters>();
 

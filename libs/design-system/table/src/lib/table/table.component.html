@@ -108,15 +108,24 @@
     mat-icon-button
     [matMenuTriggerFor]="menuOptions"
     [hraPlainTooltip]="column.type.tooltip"
-    (mouseover)="downloadClick(element['id'])"
-    (focus)="downloadClick(element['id'])"
+    (mouseover)="downloadButtonHover(element['id'])"
+    (focus)="downloadButtonHover(element['id'])"
   >
     <hra-icon [fontIcon]="column.type.icon"></hra-icon>
   </button>
 
   <mat-menu #menuOptions="matMenu" class="table-menu">
     @for (option of getMenuOptions(options); track $index) {
-      <button mat-menu-item (click)="downloadFile.emit([option.url || '', option.id])">
+      <a
+        mat-menu-item
+        [attr.href]="option.url"
+        download
+        (click)="
+          $event.preventDefault();
+          download(option.url!);
+          snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })
+        "
+      >
         <mat-icon>{{ option.icon }}</mat-icon>
         <div class="option-text">
           <span class="option-name">
@@ -126,7 +135,7 @@
             {{ option.description }}
           </span>
         </div>
-      </button>
+      </a>
     }
   </mat-menu>
 </ng-template>
