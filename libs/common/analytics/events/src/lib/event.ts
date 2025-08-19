@@ -1,50 +1,61 @@
+import { Brand, Prettify } from './util/types';
+
 /**
- * Unique symbol type used to store the payload on event types.
+ * Unique symbol type used to store the payload type in event objects.
  * Doesn't need to be initialized as it should only ever be used as a type.
  */
 declare const PAYLOAD: unique symbol;
 
-/** Tiny helper to prettify intersection types */
-type Prettify<T> = { [K in keyof T]: T[K] };
+/** Event type */
+export type EventType = string & Brand<'EventType'>;
 
-/** Event type with a payload */
-export type AnalyticsEvent<T extends string, P> = T & { [PAYLOAD]: AnalyticsEventPayload<P> };
-/** Any `AnalyticsEvent`. Primarily useful as a constraint for generics, i.e. `<T extends AnyAnalyticsEvent>` */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyAnalyticsEvent = AnalyticsEvent<string, any>;
+/** Categories used to filter events */
+export enum EventCategory {
+  Necessary = 'necessary',
+  Statistics = 'statistics',
+  Preferences = 'preferences',
+  Marketing = 'marketing',
+}
 
-/** Payload type that adds common event properties and generic properties to a user defined payload */
-export type AnalyticsEventPayload<P> = Prettify<CommonAnalyticsEventProps & P & { [prop: string]: unknown }>;
+/** DOM events that can trigger an analytics events */
+export type EventTrigger = keyof GlobalEventHandlersEventMap;
 
-/** Extract the payload of an event type */
-export type AnalyticsEventPayloadFor<T> = T extends AnyAnalyticsEvent ? T[typeof PAYLOAD] : never;
+/** Event payload */
+export type EventPayload<P> = Prettify<CommonEventProps & { [K in keyof P]: P[K] } & { [key: string]: unknown }>;
 
-/** Common event properties shared by all event types */
-export interface CommonAnalyticsEventProps {
+/** Extract the event payload */
+export type EventPayloadFor<T> = T extends AnalyticsEvent ? NonNullable<T[typeof PAYLOAD]> : never;
+
+/** An event specification */
+export interface AnalyticsEvent<P = object> {
+  /** Event type */
+  type: EventType;
+  /** Event category */
+  category: EventCategory;
+  /** Event default trigger */
+  trigger?: EventTrigger;
+  /** Payload type. Never actually present on an event object */
+  [PAYLOAD]?: EventPayload<P>;
+}
+
+/** Common event properties shared by all events */
+export interface CommonEventProps {
   /** Feature path for this event */
   path?: string;
   /** DOM event that triggered this event */
   trigger?: string;
+  /** DOM event data */
+  triggerData?: Record<string, unknown>;
 }
 
 /**
- * Create a new event type with the specified name and payload
+ * Create a new event
  *
- * @param type Event type name
- * @param _payload Event payload
- * @returns A new event type
+ * @param type Event type
+ * @param category Event category
+ * @param trigger Default event trigger
+ * @returns A new event
  */
-export function createEvent<T extends string, P>(type: T, _payload: AnalyticsEventPayload<P>): AnalyticsEvent<T, P> {
-  void _payload; // Suppress unused parameter warnings
-  return type as AnalyticsEvent<T, P>;
-}
-
-/**
- * Create an event payload type.
- * Do **not** use the return value except as the second parameter to a `createEventType` call.
- *
- * @returns A payload type
- */
-export function payload<P>(): AnalyticsEventPayload<P> {
-  return undefined as unknown as AnalyticsEventPayload<P>;
+export function createEvent<P>(type: string, category: EventCategory, trigger?: EventTrigger): AnalyticsEvent<P> {
+  return { type: type as EventType, category, trigger };
 }

@@ -57,7 +57,7 @@ export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): Ana
     } satisfies PluginConfig,
     loaded: () => true,
     page({ config, instance, payload }: EventData) {
-      writer.write(CoreEvents.PageView, payload.properties, {
+      writer.write(CoreEvents.PageView.type, payload.properties, {
         sessionId: config.sessionId,
         app: instance.getState('context.app'),
         version: instance.getState('context.version'),

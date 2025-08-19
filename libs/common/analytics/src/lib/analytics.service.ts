@@ -1,5 +1,5 @@
 import { assertInInjectionContext, inject, Injectable, InjectionToken, isDevMode } from '@angular/core';
-import { AnalyticsEventPayloadFor, AnyAnalyticsEvent, CoreEvents } from '@hra-ui/common/analytics/events';
+import { AnalyticsEvent, EventPayloadFor, CoreEvents } from '@hra-ui/common/analytics/events';
 import { hraAnalyticsPlugin } from '@hra-ui/common/analytics/plugins/hra-analytics';
 import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import { Analytics, AnalyticsPlugin } from 'analytics';
@@ -15,7 +15,7 @@ export const PLUGINS = new InjectionToken<(AnalyticsPlugin | (() => AnalyticsPlu
  *
  * @returns A function that log events on calls
  */
-export function injectLogEvent(): <T extends AnyAnalyticsEvent>(event: T, props: AnalyticsEventPayloadFor<T>) => void {
+export function injectLogEvent(): <T extends AnalyticsEvent>(event: T, props: EventPayloadFor<T>) => void {
   assertInInjectionContext(injectLogEvent);
   const analytics = inject(AnalyticsService);
   const path = injectFeaturePath();
@@ -28,7 +28,7 @@ export function injectLogEvent(): <T extends AnyAnalyticsEvent>(event: T, props:
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService {
   /** Application configuration */
-  private appConfig = injectAppConfiguration();
+  private readonly appConfig = injectAppConfiguration();
 
   /** `analytics` instance. Direct use should generally be avoided. */
   readonly instance = Analytics({
@@ -44,9 +44,9 @@ export class AnalyticsService {
    * @param event Event to log
    * @param props Event data
    */
-  logEvent<T extends AnyAnalyticsEvent>(event: T, props: AnalyticsEventPayloadFor<T>): void {
-    this.instance.track(event, props).catch((reason) => {
-      if (event === CoreEvents.Error) {
+  logEvent<T extends AnalyticsEvent>(event: T, props: EventPayloadFor<T>): void {
+    this.instance.track(event.type, props).catch((reason) => {
+      if (event.type === CoreEvents.Error.type) {
         // eslint-disable-next-line no-console -- Fall back to console if analytics failed to log
         console.error('Failed to log error [reason, props]: ', reason, props);
         return;

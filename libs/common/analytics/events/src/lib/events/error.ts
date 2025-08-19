@@ -1,4 +1,4 @@
-import { createEvent, payload } from '../event';
+import { createEvent, EventCategory } from '../event';
 
 /** Error event properties */
 export interface ErrorEventProps {
@@ -11,4 +11,4 @@ export interface ErrorEventProps {
 }
 
 /** Error event */
-export const Error = createEvent('error', payload<ErrorEventProps>());
+export default createEvent<ErrorEventProps>('error', EventCategory.Necessary);

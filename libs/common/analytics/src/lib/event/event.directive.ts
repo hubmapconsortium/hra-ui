@@ -1,9 +1,6 @@
 import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
-import { AnyAnalyticsEvent, AnalyticsEventPayloadFor } from '@hra-ui/common/analytics/events';
+import { AnalyticsEvent, EventPayloadFor, EventTrigger } from '@hra-ui/common/analytics/events';
 import { injectLogEvent } from '../analytics.service';
-
-/** Built-in event triggers */
-export type EventTrigger = keyof GlobalEventHandlersEventMap;
 
 /**
  * Directive that log events to analytics whenever a built-in trigger event is dispatched
@@ -29,11 +26,11 @@ export type EventTrigger = keyof GlobalEventHandlersEventMap;
   selector: '[hraEvent]',
   exportAs: 'hraEvent',
 })
-export class EventDirective<T extends AnyAnalyticsEvent> {
+export class EventDirective<T extends AnalyticsEvent> {
   /** Event type */
   readonly event = input.required<T>({ alias: 'hraEvent' });
   /** Event properties */
-  readonly props = input.required<AnalyticsEventPayloadFor<T>>({ alias: 'hraEventProps' });
+  readonly props = input.required<EventPayloadFor<T>>({ alias: 'hraEventProps' });
   /** Built-in trigger to log events on or 'none' if events are sent programatically */
   readonly triggerOn = input<EventTrigger | 'none' | undefined>(undefined, { alias: 'hraEventTriggerOn' });
 
@@ -42,13 +39,13 @@ export class EventDirective<T extends AnyAnalyticsEvent> {
   /** Host element */
   private readonly el = inject(ElementRef).nativeElement;
   /** Raw logEvent function */
-  private readonly logEvent_ = injectLogEvent();
+  private readonly logEvent_ = injectLogEvent()<T>;
 
   /** Initialize the directive */
   constructor() {
     effect((onCleanup) => {
-      const trigger = this.triggerOn() ?? this.selectTrigger(this.event());
-      if (trigger && trigger !== 'none') {
+      const trigger = this.triggerOn() ?? this.event().trigger ?? 'click';
+      if (trigger !== 'none') {
         const { el, renderer } = this;
         const handler = this.logEvent.bind(this, trigger);
         const dispose = renderer.listen(el, trigger, handler);
@@ -66,20 +63,9 @@ export class EventDirective<T extends AnyAnalyticsEvent> {
   logEvent<E extends EventTrigger>(trigger?: E, event?: GlobalEventHandlersEventMap[E]): void {
     this.logEvent_(this.event(), {
       trigger: trigger,
-      ...this.getPropsFromEvent(event),
+      triggerData: this.getPropsFromEvent(event),
       ...this.props(),
     });
-  }
-
-  /**
-   * Selects a built-in trigger based on the event type
-   *
-   * @param _type Hra event type
-   * @returns A built-in trigger for the event type or undefined
-   */
-  private selectTrigger(_type: AnyAnalyticsEvent): EventTrigger | undefined {
-    // TODO move to /events entrypoint
-    return 'click';
   }
 
   /**
@@ -88,7 +74,7 @@ export class EventDirective<T extends AnyAnalyticsEvent> {
    * @param _event Event object
    * @returns Extracted properties from the event
    */
-  private getPropsFromEvent(_event?: unknown): Partial<AnalyticsEventPayloadFor<T>> {
+  private getPropsFromEvent(_event?: unknown): Partial<unknown> {
     // TODO move
     return {};
   }

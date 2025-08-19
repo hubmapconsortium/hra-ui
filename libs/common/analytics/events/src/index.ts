@@ -1,12 +1,13 @@
 export { CoreEvents } from './lib/core-events';
 export {
   AnalyticsEvent,
-  AnalyticsEventPayload,
-  AnalyticsEventPayloadFor,
-  AnyAnalyticsEvent,
-  CommonAnalyticsEventProps,
+  CommonEventProps,
   createEvent,
-  payload,
+  EventCategory,
+  EventPayload,
+  EventPayloadFor,
+  EventTrigger,
+  EventType,
 } from './lib/event';
 export { ClickEventProps } from './lib/events/click';
 export { ErrorEventProps } from './lib/events/error';

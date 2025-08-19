@@ -1,8 +1,8 @@
-import { createEvent, payload } from '../event';
+import { createEvent, EventCategory } from '../event';
 
 /**
  * Page view properties
- * Provided in [`analytics`](https://github.com/DavidWells/analytics/blob/analytics%400.8.19/packages/analytics-core/src/modules/page.js#L54)
+ * Provided by [`analytics`](https://github.com/DavidWells/analytics/blob/analytics%400.8.19/packages/analytics-core/src/modules/page.js#L54)
  */
 export interface PageViewEventProps {
   /** Page title */
@@ -24,4 +24,4 @@ export interface PageViewEventProps {
 }
 
 /** Page view event */
-export const PageView = createEvent('pageView', payload<PageViewEventProps>());
+export default createEvent<PageViewEventProps>('pageView', EventCategory.Statistics);

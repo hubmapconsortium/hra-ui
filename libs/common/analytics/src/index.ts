@@ -1,5 +1,5 @@
 export { AnalyticsModule } from './lib/analytics.module';
 export { AnalyticsService, injectLogEvent } from './lib/analytics.service';
-export { EventDirective, EventTrigger } from './lib/event/event.directive';
+export { EventDirective } from './lib/event/event.directive';
 export { FeatureDirective, injectFeaturePath } from './lib/feature/feature.directive';
 export { AnalyticsFeature, provideAnalytics, withPlugins } from './lib/providers';
