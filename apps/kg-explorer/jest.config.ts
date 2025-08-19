@@ -1,7 +1,7 @@
 export default {
   displayName: 'kg-explorer',
   preset: '../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
   coverageDirectory: '../../coverage/apps/kg-explorer',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
