@@ -1,0 +1,38 @@
+@use '../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../styles/utils';
+
+:host {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+  flex-direction: column;
+
+  @media (min-width: 362px) {
+    flex-direction: row;
+  }
+
+  .link {
+    @include utils.use-font('label', 'medium');
+    padding-right: 1rem;
+    display: flex;
+    gap: 0.125rem;
+    border-radius: 2rem;
+    background-color: vars.$surface-container;
+    min-width: 16.25rem;
+
+    mat-icon {
+      min-width: 1.5rem;
+    }
+  }
+
+  .text {
+    color: vars.$primary;
+    padding: 0.625rem 0;
+  }
+
+  .copy {
+    @include utils.use-font('label', 'medium');
+    min-width: auto;
+    border-radius: 2rem;
+  }
+}
