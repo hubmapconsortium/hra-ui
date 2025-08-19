@@ -9,6 +9,16 @@
   border: 0.0625rem solid vars.$outline;
   border-radius: 0.5rem;
 
+  .table-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .body-table {
+    table-layout: fixed;
+  }
+
   .vertical-divider th:not(:first-child),
   .vertical-divider td:not(:first-child) {
     border-left: 1px solid vars.$outline;
@@ -51,7 +61,7 @@
   );
 
   ng-scrollbar {
-    height: 100%;
+    flex: 1;
     overflow: hidden;
 
     ::ng-deep .ng-scroll-viewport {
