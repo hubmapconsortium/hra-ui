@@ -147,9 +147,12 @@
     "@nx/workspace": "21.3.11",
     "@schematics/angular": "20.1.6",
     "@storybook/addon-a11y": "9.1.2",
+    "@storybook/addon-designs": "^8.2.1",
     "@storybook/addon-essentials": "8.6.12",
     "@storybook/addon-interactions": "8.6.12",
     "@storybook/angular": "9.1.2",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/components": "^8.6.12",
     "@storybook/core-common": "8.6.12",
     "@storybook/core-server": "8.6.12",
     "@storybook/manager-api": "8.6.12",
@@ -194,6 +197,7 @@
     "jest": "29.7.0",
     "jest-mock-extended": "^3.0.7",
     "jest-preset-angular": "14.3.1",
+    "jest-util": "29.7.0",
     "jsdom": "^26.0.0",
     "lint-staged": "^15.2.7",
     "netlify-cli": "^21.1.0",
@@ -209,7 +213,6 @@
     "typescript": "5.8.3",
     "typescript-eslint": "^8.33.1",
     "webpack": "5.98.0",
-    "zod-to-json-schema": "^3.23.1",
-    "jest-util": "29.7.0"
+    "zod-to-json-schema": "^3.23.1"
   }
 }
