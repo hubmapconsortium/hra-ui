@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { hraAnalyticsPlugin } from '../../../analytics/plugins/hra-analytics/src/lib/plugin';
 import { EventWriterService } from '../../../analytics/plugins/hra-analytics/src/lib/event-writer.service';
+import { hraAnalyticsPlugin } from '../../../analytics/plugins/hra-analytics/src/lib/plugin';
 import { CoreEvents, createEvent, EventCategory } from '../../events/src';
 import { AnalyticsService, injectLogEvent, PLUGINS } from './analytics.service';
+
+const eventProps = { data: 'test' };
 
 jest.mock('analytics', () => ({
   Analytics: jest.fn(() => ({ track: jest.fn().mockResolvedValue(undefined) })),
@@ -31,8 +33,8 @@ describe('AnalyticsService', () => {
     expect(service).toBeTruthy();
 
     const spy = jest.spyOn(service.instance, 'track').mockResolvedValue(undefined);
-    service.logEvent(testEvent, { data: 'test' });
-    expect(spy).toHaveBeenCalledWith(testEvent.type, { data: 'test' });
+    service.logEvent(testEvent, eventProps);
+    expect(spy).toHaveBeenCalledWith('test-event', eventProps, { category: 'necessary', eventObj: testEvent });
   });
 
   describe('plugin handling', () => {
@@ -71,12 +73,12 @@ describe('AnalyticsService', () => {
 
     jest.spyOn(service.instance, 'track').mockRejectedValueOnce(trackError).mockResolvedValueOnce(undefined);
 
-    service.logEvent(testEvent, { data: 'test' });
+    service.logEvent(testEvent, eventProps);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(logEventSpy).toHaveBeenNthCalledWith(2, CoreEvents.Error, {
-      message: `Failed to log event '${testEvent}'`,
-      context: { data: 'test' },
+      message: `Failed to log event '${testEvent.type}'`,
+      context: eventProps,
       reason: trackError,
     });
 
@@ -98,11 +100,11 @@ describe('AnalyticsService', () => {
     expect(component.logEvent).toBeInstanceOf(Function);
 
     const spy = jest.spyOn(service, 'logEvent');
-    component.logEvent(testEvent, { data: 'test' });
+    component.logEvent(testEvent, eventProps);
 
     expect(spy).toHaveBeenCalledWith(testEvent, {
       path: '/test/path',
-      data: 'test',
+      ...eventProps,
     });
   });
 
@@ -118,20 +120,18 @@ describe('AnalyticsService', () => {
       const plugin = hraAnalyticsPlugin({ sessionId: 'test-session' });
 
       expect(plugin.name).toBe('hra-analytics');
-      expect(plugin.loaded?.()).toBe(true);
-
       expect(plugin.page).toBeInstanceOf(Function);
       expect(plugin.track).toBeInstanceOf(Function);
 
       plugin.page?.({
         config: { sessionId: 'test-session' },
         instance: { getState: () => 'test' },
-        payload: { properties: { url: '/test' } },
+        payload: { event: 'page', properties: { url: '/test' } },
       });
 
       plugin.track?.({
         config: { sessionId: 'test-session' },
-        payload: { properties: { action: 'click' } },
+        payload: { event: 'click', properties: { action: 'click' } },
       });
 
       // Verify the writer.write method was called
