@@ -30,7 +30,7 @@ interface EventData {
   /** Payload data */
   payload: {
     /** Event type */
-    event?: string;
+    event: string;
     /** User data */
     properties: object;
   };
@@ -55,7 +55,6 @@ export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): Ana
     config: {
       sessionId,
     } satisfies PluginConfig,
-    loaded: () => true,
     page({ config, instance, payload }: EventData) {
       writer.write(CoreEvents.PageView.type, payload.properties, {
         sessionId: config.sessionId,
@@ -64,7 +63,7 @@ export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): Ana
       });
     },
     track({ config, payload }: EventData) {
-      const { event = 'unknown', properties } = payload;
+      const { event, properties } = payload;
       writer.write(event, properties, { sessionId: config.sessionId });
     },
   };

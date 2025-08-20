@@ -1,4 +1,4 @@
-import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
+import { booleanAttribute, Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
 import { AnalyticsEvent, EventPayloadFor, EventTrigger } from '@hra-ui/common/analytics/events';
 import { injectLogEvent } from '../analytics.service';
 
@@ -33,6 +33,8 @@ export class EventDirective<T extends AnalyticsEvent> {
   readonly props = input.required<EventPayloadFor<T>>({ alias: 'hraEventProps' });
   /** Built-in trigger to log events on or 'none' if events are sent programatically */
   readonly triggerOn = input<EventTrigger | 'none' | undefined>(undefined, { alias: 'hraEventTriggerOn' });
+  /** Whether this event is disabled */
+  readonly disabled = input(false, { alias: 'hraEventDisabled', transform: booleanAttribute });
 
   /** Reference to renderer for dom interactions */
   private readonly renderer = inject(Renderer2);
@@ -45,7 +47,7 @@ export class EventDirective<T extends AnalyticsEvent> {
   constructor() {
     effect((onCleanup) => {
       const trigger = this.triggerOn() ?? this.event().trigger ?? 'click';
-      if (trigger !== 'none') {
+      if (trigger !== 'none' && !this.disabled()) {
         const { el, renderer } = this;
         const handler = this.logEvent.bind(this, trigger);
         const dispose = renderer.listen(el, trigger, handler);
