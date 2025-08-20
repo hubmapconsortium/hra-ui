@@ -128,7 +128,7 @@
     }
 
     .source-link {
-      --mdc-filled-button-label-text-tracking: 0.0178571429em;
+      --mat-button-filled-label-text-tracking: 0.0178571429em;
       font-size: 0.75rem;
       font-weight: 500;
       padding: 0;
@@ -171,7 +171,7 @@
         padding: 9px;
       }
     }
-    --mdc-checkbox-selected-checkmark-color: rgba(vars.$primary) !important;
+    --mat-checkbox-selected-checkmark-color: rgba(vars.$primary) !important;
 
     .mdc-checkbox__background {
       background-color: transparent !important;

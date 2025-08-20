@@ -1,13 +1,13 @@
 {
   "name": "body-ui",
-  "metadata": {
-    "version": "4.0.0"
-  },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/body-ui/src",
   "tags": ["type:app", "project:ccf"],
+  "metadata": {
+    "version": "4.0.0"
+  },
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
@@ -22,7 +22,8 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server"
+      "executor": "@nx/angular:dev-server",
+      "continuous": true
     }
   }
 }
