@@ -40,11 +40,14 @@ export class SpatialSearchConfigBehaviorComponent {
   /** Default sex */
   protected readonly defaultSex = FilterSexEnum.Female;
 
+  /** Dialog reference */
+  private readonly dialogRef = inject<MatDialogRef<SpatialSearchConfigComponent>>(MatDialogRef);
+
+  /** Spatial search dialog */
+  private readonly spatialSearchDialog = inject(MatDialog);
+
   /** Initialize the component */
-  constructor(
-    private readonly dialogRef: MatDialogRef<SpatialSearchConfigComponent>,
-    private readonly spatialSearchDialog: MatDialog,
-  ) {}
+  constructor() {}
 
   /** Handle button click */
   buttonClicked(): void {

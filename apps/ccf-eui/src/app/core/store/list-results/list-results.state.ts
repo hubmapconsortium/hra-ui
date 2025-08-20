@@ -1,6 +1,6 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { combineLatest } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
@@ -53,10 +53,8 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
 
   /**
    * Constructor to create an instance of ListResultsState.
-   *
-   * @param injector Injector service used to lazy load data state
    */
-  constructor(private readonly injector: Injector) {
+  constructor() {
     super();
   }
 
@@ -130,8 +128,8 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
 
     // Injecting page and model states in the constructor breaks things!?
     // Lazy load here
-    this.dataState = this.injector.get(DataState);
-    this.colorAssignments = this.injector.get(ColorAssignmentState);
+    this.dataState = inject(DataState);
+    this.colorAssignments = inject(ColorAssignmentState);
 
     combineLatest([this.dataState.tissueBlockData$, this.colorAssignments.colorAssignments$])
       .pipe(

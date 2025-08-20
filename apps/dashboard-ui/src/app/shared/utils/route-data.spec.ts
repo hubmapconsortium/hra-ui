@@ -1,5 +1,5 @@
 import { render } from '@testing-library/angular';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { provideRouter, Router, RouterOutlet } from '@angular/router';
 import { routeData } from './route-data';
 
@@ -16,8 +16,9 @@ class ChildComponent {}
 })
 class TestAppComponent {
   data = routeData();
+  private router = inject(Router);
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   navigateToChild() {
     return this.router.navigate(['/parent/child']);

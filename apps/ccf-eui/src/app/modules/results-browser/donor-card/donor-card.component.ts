@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, model, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
@@ -52,12 +52,13 @@ export class DonorCardComponent {
   /** Section links */
   readonly sectionLinks = computed(() => this.tissueBlock().sections?.map((section) => section.link) ?? []);
 
+  /** Google Analytics service */
+  private readonly ga = inject(GoogleAnalyticsService);
+
   /**
    * Creates an instance of donor card component.
-   *
-   * @param ga Analytics service
    */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
+  constructor() {}
 
   /**
    * Ensures that the expanded variable is only changed if selected first.
