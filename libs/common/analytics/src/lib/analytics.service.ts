@@ -47,7 +47,7 @@ export class AnalyticsService {
     storage: null, // Disable localStorage
     plugins: [
       hraEventFilterPlugin({
-        isEnabled: this.isEventEnabled.bind(this),
+        isEventEnabled: this.isEventEnabled.bind(this),
       }),
       hraAnalyticsPlugin(),
       ...this.injectPlugins(),

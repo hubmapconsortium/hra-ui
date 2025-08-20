@@ -4,7 +4,7 @@ import { AnalyticsPlugin } from 'analytics';
 /** Plugin options */
 export interface HraEventFilterPluginOptions {
   /** Callback to check whether an event is enabled */
-  isEnabled: (type: EventType, category?: EventCategory) => boolean;
+  isEventEnabled: (type: EventType, category?: EventCategory) => boolean;
 }
 
 /** Abort function */
@@ -36,9 +36,9 @@ interface EventData {
  * @returns An analytics plugin
  */
 export function hraEventFilterPlugin(options: HraEventFilterPluginOptions): AnalyticsPlugin {
-  const { isEnabled } = options;
+  const { isEventEnabled } = options;
   const abortIfDisabled = (type: EventType, category: EventCategory | undefined, abort: AbortFn) => {
-    if (!isEnabled(type, category)) {
+    if (!isEventEnabled(type, category)) {
       return abort(`Event '${type}' is disabled`);
     }
     return undefined;
