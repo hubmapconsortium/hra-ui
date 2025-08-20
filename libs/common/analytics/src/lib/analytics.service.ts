@@ -1,9 +1,16 @@
 import { assertInInjectionContext, inject, Injectable, InjectionToken, isDevMode } from '@angular/core';
-import { AnalyticsEvent, EventPayloadFor, CoreEvents } from '@hra-ui/common/analytics/events';
+import { AnalyticsEvent, EventPayloadFor, CoreEvents, EventType, EventCategory } from '@hra-ui/common/analytics/events';
 import { hraAnalyticsPlugin } from '@hra-ui/common/analytics/plugins/hra-analytics';
 import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import { Analytics, AnalyticsPlugin } from 'analytics';
 import { injectFeaturePath } from './feature/feature.directive';
+import { hraEventFilterPlugin } from '@hra-ui/common/analytics/plugins/hra-event-filter';
+import { PreferencesService } from './preferences/preferences.service';
+
+/** Extended `Analytics` options */
+type ExtendedAnalyticsOptions = Parameters<typeof Analytics>[0] & {
+  storage?: null;
+};
 
 /** Plugins token */
 export const PLUGINS = new InjectionToken<(AnalyticsPlugin | (() => AnalyticsPlugin))[][]>('Plugins');
@@ -30,13 +37,22 @@ export class AnalyticsService {
   /** Application configuration */
   private readonly appConfig = injectAppConfiguration();
 
+  private readonly preferences = inject(PreferencesService);
+
   /** `analytics` instance. Direct use should generally be avoided. */
   readonly instance = Analytics({
     app: this.appConfig.name,
     version: this.appConfig.version,
     debug: isDevMode(),
-    plugins: [hraAnalyticsPlugin(), ...this.injectPlugins()],
-  });
+    storage: null, // Disable localStorage
+    plugins: [
+      hraEventFilterPlugin({
+        isEnabled: this.isEventEnabled.bind(this),
+      }),
+      hraAnalyticsPlugin(),
+      ...this.injectPlugins(),
+    ],
+  } as ExtendedAnalyticsOptions);
 
   /**
    * Logs an event to analytics
@@ -45,15 +61,18 @@ export class AnalyticsService {
    * @param props Event data
    */
   logEvent<T extends AnalyticsEvent>(event: T, props: EventPayloadFor<T>): void {
-    this.instance.track(event.type, props).catch((reason) => {
-      if (event.type === CoreEvents.Error.type) {
+    const { type, category } = event;
+    const options = { eventObj: event, category };
+
+    this.instance.track(type, props, options).catch((reason) => {
+      if (type === CoreEvents.Error.type) {
         // eslint-disable-next-line no-console -- Fall back to console if analytics failed to log
         console.error('Failed to log error [reason, props]: ', reason, props);
         return;
       }
 
       this.logEvent(CoreEvents.Error, {
-        message: `Failed to log event '${event}'`,
+        message: `Failed to log event '${type}'`,
         context: props,
         reason: reason,
       });
@@ -69,5 +88,9 @@ export class AnalyticsService {
   private injectPlugins(): AnalyticsPlugin[] {
     const plugins = inject(PLUGINS, { optional: true }) ?? [];
     return plugins.flat().map((plugin) => (typeof plugin === 'function' ? plugin() : plugin));
+  }
+
+  private isEventEnabled(_type: EventType, category?: EventCategory): boolean {
+    return category !== undefined && this.preferences.isCategoryEnabled(category);
   }
 }
