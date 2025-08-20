@@ -43,6 +43,5 @@
     "ngxtension": "^4.1.0",
     "@hra-ui/common": "1.0.0"
   },
-  "dependencies": {},
   "sideEffects": false
 }
