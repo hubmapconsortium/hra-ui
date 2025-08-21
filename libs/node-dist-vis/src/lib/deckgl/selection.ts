@@ -23,7 +23,7 @@ import {
   StartDraggingEvent,
 } from '@nebula.gl/edit-modes';
 import { EditableGeoJsonLayer } from '@nebula.gl/layers';
-// @ts-expect-error Typescript fails to resolve the typings!?!?
+// @ts-expect-error Could not find a declaration file for module '@turf/bbox'
 import { default as bbox } from '@turf/bbox';
 import { NodesLayer } from './nodes';
 import { FILTER_EXCLUDE_VALUE, FILTER_INCLUDE_VALUE, FILTER_RANGE } from './utils/filters';
