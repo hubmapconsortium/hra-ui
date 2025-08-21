@@ -25,6 +25,10 @@ import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/tab
 import { Iri } from '@hra-ui/services';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { EmptyBiomarkerComponent } from '../../../../atoms/src';
+import {
+  FtuFullScreenService,
+  FullscreenTab,
+} from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem extends TableRow {
   /** Unique identifier for the source */
@@ -80,6 +84,9 @@ export class SourceListComponent implements OnChanges {
   /** Whether to hide the title of the source list */
   readonly hideTitle = input<boolean>(false);
 
+  /** Fullscreen service */
+  private readonly fullscreenService = inject(FtuFullScreenService);
+
   /** Whether to show the biomarker table */
   showTable = signal(true);
 
@@ -97,11 +104,6 @@ export class SourceListComponent implements OnChanges {
 
   /** Google analytics tracking service */
   private readonly ga = inject(GoogleAnalyticsService);
-
-  /**
-   * Determines whether fullscreen mode is on or off
-   */
-  readonly isFullscreen = model<boolean>(false);
 
   /** Table columns configuration */
   readonly tableColumns: TableColumn[] = [
@@ -129,6 +131,12 @@ export class SourceListComponent implements OnChanges {
       },
     },
   ];
+
+  /** Opens the source list in fullscreen mode */
+  openSourceListFullscreen(): void {
+    this.fullscreenService.fullscreentabIndex.set(FullscreenTab.SourceList);
+    this.fullscreenService.isFullscreen.set(true);
+  }
 
   /** On sources change, resets selection and selects all sources */
   ngOnChanges(changes: SimpleChanges) {

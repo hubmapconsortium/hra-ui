@@ -87,8 +87,6 @@
       [sources]="source()"
       (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
       class="content"
-      [(isFullscreen)]="isSourceListfullscreen"
-      (isFullscreenChange)="isSourceListfullscreen.set(true)"
     ></ftu-source-list>
   </div>
 }
