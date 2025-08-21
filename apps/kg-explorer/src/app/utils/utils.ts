@@ -22,6 +22,76 @@ export interface ObjectTypeData {
   documentationUrl?: string;
 }
 
+/** Filter option category interface */
+export interface FilterOptionCategory {
+  /** Category label */
+  label: string;
+  /** Filter options for the category */
+  options?: FilterOption[];
+  /** Tooltip data */
+  tooltip?: TooltipData;
+}
+
+/** Filter option interface */
+export interface FilterOption {
+  /** Option id */
+  id: string;
+  /** Option label */
+  label: string;
+  /** Secondary label (for release version options) */
+  secondaryLabel?: string;
+  /** Number of results for the filter option in the data */
+  count: number;
+  /** Tooltip data for the filter option (for digital objects category) */
+  tooltip?: TooltipData;
+}
+
+/** Filter category info */
+export const FILTER_CATEGORY_INFO: Record<string, FilterOptionCategory> = {
+  digitalObjects: {
+    label: 'Digital objects',
+    tooltip: {
+      description: 'Categories of unique data structures that construct the evolving Human Reference Atlas.',
+      actionText: 'Learn more',
+      actionUrl: 'https://humanatlas.io/overview-data',
+    },
+  },
+  releaseVersions: {
+    label: 'HRA release version',
+    tooltip: {
+      description: 'New and updated data is released twice a year on June 15 and December 15.',
+    },
+  },
+  organs: {
+    label: 'Organs',
+    tooltip: {
+      description:
+        'Organs are distinct body structures made of specialized cells and tissues that work together to perform specific biological functions.',
+    },
+  },
+  anatomicalStructures: {
+    label: 'Anatomical structures',
+    tooltip: {
+      description:
+        'A distinct biological entity with a 3D volume and shape, e.g., an organ, functional tissue unit, or cell.',
+    },
+  },
+  cellTypes: {
+    label: 'Cell types',
+    tooltip: {
+      description:
+        'Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. Tissue is composed of different (resident and transitory) cell types that are characterized or identified via biomarkers.',
+    },
+  },
+  biomarkers: {
+    label: 'Biomarkers',
+    tooltip: {
+      description:
+        'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type. They include genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).',
+    },
+  },
+};
+
 /** Stores data for a doType */
 export const DO_INFO: Record<string, ObjectTypeData> = {
   'ref-organ': {
@@ -221,23 +291,13 @@ export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> =
   },
 };
 
-/** Filter cateogry labels */
-export const CATEGORY_LABELS = [
-  'Digital objects',
-  'HRA release version',
-  'Organs',
-  'Anatomical structures',
-  'Cell types',
-  'Biomarkers',
-];
-
 /**
  * Gets organ id from a digital object. If more than one organ is listed return blank string
  * @param item Digital object data item
  * @returns Organ id
  */
-export function getOrganId(item: DigitalObjectInfo): string {
-  return item.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
+export function getOrganId(item?: DigitalObjectInfo): string {
+  return item?.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
 }
 
 /**
@@ -245,7 +305,7 @@ export function getOrganId(item: DigitalObjectInfo): string {
  * @param organ Organ UBERON id
  * @returns Organ name in design system format
  */
-export function getOrganIcon(item: DigitalObjectInfo): string {
+export function getOrganIcon(item?: DigitalObjectInfo): string {
   return `organ:${ORGAN_ICON_MAP[getOrganId(item)] ?? 'all-organs'}`;
 }
 
@@ -255,7 +315,7 @@ export function getOrganIcon(item: DigitalObjectInfo): string {
  * @returns Product icon string
  */
 export function getProductIcon(doType: string): string {
-  return `product:${DO_INFO[doType].icon}`;
+  return `product:${DO_INFO[doType]?.icon}`;
 }
 
 /**
@@ -264,7 +324,7 @@ export function getProductIcon(doType: string): string {
  * @returns Product label string
  */
 export function getProductLabel(doType: string): string {
-  return DO_INFO[doType].label;
+  return DO_INFO[doType]?.label || '';
 }
 
 /**
@@ -282,7 +342,7 @@ export function getProductTooltip(doType: string): TooltipData {
  * @returns Documentation url
  */
 export function getDocumentationUrl(doType: string): string {
-  return DO_INFO[doType].documentationUrl || '';
+  return DO_INFO[doType]?.documentationUrl || '';
 }
 
 /**

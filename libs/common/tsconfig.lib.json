@@ -6,8 +6,9 @@
     "declarationMap": true,
     "inlineSources": true,
     "types": [],
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "typeRoots": ["../../node_modules/@types", "src/typings"]
   },
   "exclude": ["**/*.spec.ts", "test-setup.ts", "jest.config.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "typings/**/*.d.ts"]
 }

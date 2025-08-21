@@ -48,6 +48,17 @@
         z-index: 1;
       }
     }
+
+    &:has(ftu-biomarker-details.no-data),
+    &:has(ftu-biomarker-details.no-data-sources) {
+      .left-side {
+        flex: 3.5;
+      }
+
+      .fullscreen-content-container {
+        flex: 1;
+      }
+    }
   }
 
   .fullscreen-on::ng-deep {

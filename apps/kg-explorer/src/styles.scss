@@ -29,3 +29,13 @@ mat-chip {
   overflow: hidden !important;
   cursor: pointer;
 }
+
+mat-snack-bar-container {
+  .mat-mdc-snackbar-surface {
+    min-width: auto !important;
+  }
+
+  hra-snackbar {
+    gap: 0 !important;
+  }
+}

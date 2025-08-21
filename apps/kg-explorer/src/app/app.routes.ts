@@ -5,7 +5,14 @@ import { TableColumn } from '@hra-ui/design-system/table';
 
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
-import { kgResolver } from './utils/kg-resolver';
+import {
+  asctbResolver,
+  biomarkersResolver,
+  cellTypeResolver,
+  doMetadataResolver,
+  kgResolver,
+  ontologyResolver,
+} from './utils/kg-resolver';
 import { getDocumentationUrl, getProductLabel } from './utils/utils';
 
 /** Digital objects api */
@@ -61,8 +68,8 @@ const columns: TableColumn[] = [
     type: 'numeric',
   },
   {
-    column: 'lastModified',
-    label: 'Date last modified',
+    column: 'lastPublished',
+    label: 'Date last published',
     type: 'text',
   },
 ];
@@ -105,6 +112,10 @@ export const appRoutes: Route[] = [
     },
     resolve: {
       data: kgResolver(DO_URL),
+      asctbTermOccurrences: asctbResolver(),
+      ontologyTree: ontologyResolver(),
+      cellTypeTree: cellTypeResolver(),
+      biomarkerTree: biomarkersResolver(),
     },
   },
   {
@@ -115,6 +126,7 @@ export const appRoutes: Route[] = [
     },
     resolve: {
       doData: kgResolver(DO_URL),
+      metadata: doMetadataResolver(),
       documentationUrl: (route: ActivatedRouteSnapshot) => {
         const type = route.params['type'];
         return getDocumentationUrl(type);

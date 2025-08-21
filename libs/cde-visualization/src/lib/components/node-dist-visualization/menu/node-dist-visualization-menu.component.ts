@@ -2,7 +2,6 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, out
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
@@ -10,7 +9,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
  */
 @Component({
   selector: 'cde-node-dist-visualization-menu',
-  imports: [MatMenuModule, MatIconModule, ButtonsModule, IconButtonSizeDirective, PlainTooltipDirective],
+  imports: [MatMenuModule, MatIconModule, ButtonsModule, PlainTooltipDirective],
   templateUrl: './node-dist-visualization-menu.component.html',
   styleUrl: './node-dist-visualization-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

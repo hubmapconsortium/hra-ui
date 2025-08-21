@@ -19,7 +19,6 @@
   );
 
   mat-sidenav {
-    padding: 2rem 1rem;
     border-right: 1px solid vars.$outline;
   }
 
@@ -45,12 +44,7 @@
     @media (min-width: 640px) {
       mat-sidenav {
         transform: translateX(-14.5rem);
-        padding: 2rem 0.75rem;
         visibility: visible;
-      }
-
-      ::ng-deep .menu-content {
-        pointer-events: none;
       }
 
       ::ng-deep .mat-drawer-inner-container {
@@ -82,6 +76,10 @@
 
   .object-search {
     width: 100%;
+
+    mat-label {
+      font: vars.$label-medium;
+    }
 
     @media (min-width: 640px) {
       max-width: 36.25rem;
@@ -123,8 +121,9 @@
     border-radius: 0;
 
     .content-wrapper {
-      width: 100%;
-      min-width: 49.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     scrollbar-y {
@@ -139,7 +138,7 @@
     }
 
     th {
-      padding-bottom: 0.75rem !important;
+      padding-bottom: 1.25rem !important;
     }
 
     th:first-of-type {
@@ -154,11 +153,44 @@
       background-color: vars.$on-primary;
     }
 
+    tr:first-of-type {
+      td {
+        padding-top: 1.875rem !important;
+      }
+      .mat-column-title {
+        padding-top: 2.125rem !important;
+      }
+    }
+
+    tr:last-child {
+      td {
+        border-bottom: 1px solid var(--mat-table-row-item-outline-color) !important;
+      }
+    }
+
     td {
       max-width: 50rem;
-      vertical-align: middle !important;
-      padding-top: 0.25rem !important;
-      padding-bottom: 0.5rem !important;
+      padding-top: 1rem !important;
+      padding-bottom: 1.25rem !important;
+      vertical-align: top;
+
+      span {
+        display: block;
+        height: 2.5rem;
+        line-height: 2.5rem;
+      }
+
+      button {
+        margin: 0.25rem 0;
+      }
+    }
+
+    tbody {
+      .mat-column-title {
+        padding: 1.25rem 1rem 1.5rem !important;
+        vertical-align: middle;
+        min-width: 10rem;
+      }
     }
 
     hra-footer {

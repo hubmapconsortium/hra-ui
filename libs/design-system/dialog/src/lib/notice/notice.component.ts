@@ -10,7 +10,6 @@ import {
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonSizeDirective } from '@hra-ui/design-system/icon-button';
 
 /** Interface for Dialog Data */
 export interface DialogData {
@@ -32,7 +31,6 @@ export interface DialogData {
   selector: 'hra-notice',
   imports: [
     CommonModule,
-    IconButtonSizeDirective,
     MatIconModule,
     ButtonsModule,
     MatButtonModule,
