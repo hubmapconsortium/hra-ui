@@ -3,8 +3,10 @@
 import { getSessionItem, setSessionItem } from '@analytics/session-storage-utils';
 // import { nanoid } from 'nanoid';
 
+/** Session id storage key */
 const SESSION_ID_KEY = 'hraAnalytics_SessionId';
 
+/** Get a session id */
 export function getSessionId(): string {
   let id = getSessionItem(SESSION_ID_KEY);
   if (!id) {

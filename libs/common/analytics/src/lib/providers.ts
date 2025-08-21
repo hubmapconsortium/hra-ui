@@ -1,7 +1,7 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { createFeature, getFeatureProviders, ProviderFeature } from '@hra-ui/common/util/providers';
 import { AnalyticsPlugin } from 'analytics';
-import { PLUGINS } from './analytics.service';
+import { PLUGINS } from './analytics/analytics.service';
 
 /** Features that can be passed to `provideAnalytics` */
 export type AnalyticsFeature = ProviderFeature<AnalyticsFeatureKind>;
