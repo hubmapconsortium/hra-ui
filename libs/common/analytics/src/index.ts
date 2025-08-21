@@ -7,5 +7,5 @@ export {
   HoverEventDirective,
 } from './lib/event/event.directive';
 export { FeatureDirective, injectFeaturePath } from './lib/feature/feature.directive';
-export { PreferencesService } from './lib/preferences/preferences.service';
+export { ConsentService } from './lib/consent/consent.service';
 export { AnalyticsFeature, provideAnalytics, withPlugins } from './lib/providers';
