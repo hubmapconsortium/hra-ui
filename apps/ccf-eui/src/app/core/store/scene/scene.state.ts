@@ -106,13 +106,6 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
   private readonly dataService = inject(DataSourceService);
 
   /**
-   * Creates an instance of scene state.
-   */
-  constructor() {
-    super();
-  }
-
-  /**
    * Sets the selected reference organs
    *
    * @param referenceOrgans The selected reference organs selected
