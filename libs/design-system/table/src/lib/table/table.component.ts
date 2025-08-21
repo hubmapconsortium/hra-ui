@@ -251,6 +251,9 @@ export class TableComponent<T = TableRow> {
     return this.enableRowSelection() ? ['select', ...columns] : columns;
   });
 
+  /** Whether the table has a totals footer */
+  protected readonly hasTotalsFooter = computed(() => this._columns().some((col) => this.shouldComputeTotal(col)));
+
   /** Table data source */
   protected readonly dataSource = new MatTableDataSource<T>([]);
 
@@ -272,6 +275,59 @@ export class TableComponent<T = TableRow> {
     effect(() => {
       this.dataSource.sort = this.sort();
     });
+  }
+
+  /**
+   * Column id where the "Total" label should appear (first data column)
+   * @returns Column ID
+   */
+  protected readonly footerLabelColumnId = computed(() => {
+    const ids = this.columnIds();
+    return this.enableRowSelection() ? ids[1] : ids[0];
+  });
+
+  /**
+   * Sum for each column that requests totals
+   * @returns A record of column IDs and their corresponding total values
+   */
+  protected readonly totalsByColumn = computed<Record<string, number>>(() => {
+    const totals: Record<string, number> = {};
+    const rows = this._rows() as TableRow[];
+
+    for (const col of this._columns()) {
+      if (!this.shouldComputeTotal(col)) {
+        continue;
+      }
+
+      let sum = 0;
+      for (const r of rows) {
+        const v = Number((r as TableRow)[col.column]);
+        if (!Number.isNaN(v)) {
+          sum += v;
+        }
+      }
+      totals[col.column] = sum;
+    }
+    return totals;
+  });
+
+  /**
+   * Whether the column is the footer label column
+   * @param columnId Column ID
+   * @returns Whether the column is the footer label column
+   */
+  protected readonly isFooterLabelColumn = (columnId: string): boolean => columnId === this.footerLabelColumnId();
+
+  /**
+   * Whether the column should compute a total
+   * @param column Table column data
+   * @returns Whether the column should compute a total
+   */
+  protected shouldComputeTotal(column: TableColumn): boolean {
+    if (typeof column.type === 'object' && column.type.type === 'numeric' && column.type.computeTotal === true) {
+      return true;
+    }
+    return false;
   }
 
   /**
