@@ -3,9 +3,9 @@ import { AnalyticsEvent, EventPayloadFor, CoreEvents, EventType, EventCategory }
 import { hraAnalyticsPlugin } from '@hra-ui/common/analytics/plugins/hra-analytics';
 import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import { Analytics, AnalyticsPlugin } from 'analytics';
-import { injectFeaturePath } from './feature/feature.directive';
+import { injectFeaturePath } from '../feature/feature.directive';
 import { hraEventFilterPlugin } from '@hra-ui/common/analytics/plugins/hra-event-filter';
-import { PreferencesService } from './preferences/preferences.service';
+import { PreferencesService } from '../preferences/preferences.service';
 
 /** Extended `Analytics` options */
 type ExtendedAnalyticsOptions = Parameters<typeof Analytics>[0] & {

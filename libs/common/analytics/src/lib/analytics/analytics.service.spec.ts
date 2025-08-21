@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { EventWriterService } from '../../../analytics/plugins/hra-analytics/src/lib/event-writer.service';
-import { hraAnalyticsPlugin } from '../../../analytics/plugins/hra-analytics/src/lib/plugin';
-import { CoreEvents, createEvent, EventCategory } from '../../events/src';
+import { EventWriterService } from '../../../plugins/hra-analytics/src/lib/event-writer.service';
+import { hraAnalyticsPlugin } from '../../../plugins/hra-analytics/src/lib/plugin';
+import { CoreEvents, createEvent, EventCategory } from '../../../events/src';
 import { AnalyticsService, injectLogEvent, PLUGINS } from './analytics.service';
 
 const eventProps = { data: 'test' };

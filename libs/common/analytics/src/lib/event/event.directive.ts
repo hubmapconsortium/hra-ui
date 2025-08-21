@@ -1,6 +1,6 @@
 import { booleanAttribute, Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
 import { AnalyticsEvent, EventPayloadFor, EventTrigger } from '@hra-ui/common/analytics/events';
-import { injectLogEvent } from '../analytics.service';
+import { injectLogEvent } from '../analytics/analytics.service';
 
 /**
  * Directive that log events to analytics whenever a built-in trigger event is dispatched
