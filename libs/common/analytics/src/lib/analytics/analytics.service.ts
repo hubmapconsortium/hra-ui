@@ -90,6 +90,13 @@ export class AnalyticsService {
     return plugins.flat().map((plugin) => (typeof plugin === 'function' ? plugin() : plugin));
   }
 
+  /**
+   * Check whether an event is enable will be logged when passed to `logEvent`
+   *
+   * @param _type Event type
+   * @param category Event category
+   * @returns Whether the event is enabled
+   */
   private isEventEnabled(_type: EventType, category?: EventCategory): boolean {
     return category !== undefined && this.preferences.isCategoryEnabled(category);
   }

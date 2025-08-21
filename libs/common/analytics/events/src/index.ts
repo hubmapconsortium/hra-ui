@@ -7,6 +7,7 @@ export {
   EventPayload,
   EventPayloadFor,
   EventTrigger,
+  EventTriggerPayloadFor,
   EventType,
 } from './lib/event';
 export { ClickEventProps } from './lib/events/click';
