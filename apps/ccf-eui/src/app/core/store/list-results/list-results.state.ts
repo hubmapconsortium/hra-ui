@@ -1,6 +1,6 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { combineLatest } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
@@ -32,6 +32,8 @@ export interface ListResultsStateModel {
 })
 @Injectable()
 export class ListResultsState extends NgxsImmutableDataRepository<ListResultsStateModel> implements NgxsOnInit {
+  private readonly injector = inject(Injector);
+
   /** Observable stream of list results */
   readonly listResults$ = this.state$.pipe(
     map((x) => x?.listResults),
@@ -50,13 +52,6 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
 
   /** Reference to the color assignments state */
   private colorAssignments!: ColorAssignmentState;
-
-  /**
-   * Constructor to create an instance of ListResultsState.
-   */
-  constructor() {
-    super();
-  }
 
   /**
    * Sets the list results
@@ -128,8 +123,8 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
 
     // Injecting page and model states in the constructor breaks things!?
     // Lazy load here
-    this.dataState = inject(DataState);
-    this.colorAssignments = inject(ColorAssignmentState);
+    this.dataState = this.injector.get(DataState);
+    this.colorAssignments = this.injector.get(ColorAssignmentState);
 
     combineLatest([this.dataState.tissueBlockData$, this.colorAssignments.colorAssignments$])
       .pipe(
