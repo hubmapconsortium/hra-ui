@@ -18,8 +18,6 @@ class TestAppComponent {
   data = routeData();
   private router = inject(Router);
 
-  constructor() {}
-
   navigateToChild() {
     return this.router.navigate(['/parent/child']);
   }
