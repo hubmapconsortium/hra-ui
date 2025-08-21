@@ -40,9 +40,9 @@ export class BarGraphComponent {
    * Vega resource of bar graph component
    */
   private readonly vega = resource({
-    request: () => this.spec(),
+    params: () => this.spec(),
     loader: async (params) => {
-      const { abortSignal, request: spec } = params;
+      const { abortSignal, params: spec } = params;
       this.clearContainer();
       if (!spec) {
         return null;
