@@ -44,7 +44,9 @@
 }
 
 @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
-  <mat-divider class="empty-state-divider"></mat-divider>
+  @if (!isBiomarkerfullscreen()) {
+    <mat-divider class="empty-state-divider"></mat-divider>
+  }
   <ftu-empty-biomarker
     emptyBehaviorText="We currently do not have cell type data for the selected biomarker."
   ></ftu-empty-biomarker>
@@ -104,7 +106,6 @@
     [sources]="source()"
     (selectionChanged)="setSelectedSources($event)"
     class="content"
-    (isFullscreen)="isSourceListfullscreen.set(true)"
     [hideTitle]="true"
   ></ftu-source-list>
 </ng-template>

@@ -6,7 +6,6 @@ import {
   inject,
   input,
   Input,
-  model,
   OnChanges,
   Output,
   signal,
