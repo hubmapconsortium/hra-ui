@@ -56,11 +56,6 @@ export class DonorCardComponent {
   private readonly ga = inject(GoogleAnalyticsService);
 
   /**
-   * Creates an instance of donor card component.
-   */
-  constructor() {}
-
-  /**
    * Ensures that the expanded variable is only changed if selected first.
    */
   toggleExpansion(): void {
