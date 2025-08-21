@@ -72,6 +72,14 @@
                 *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"
               />
             </td>
+
+            <!-- Total Footer -->
+            <td mat-footer-cell *matFooterCellDef [attr.data-column-type]="type">
+              <span class="total-label" *ngIf="isFooterLabelColumn(column.column)">Total</span>
+              <span class="numeric" *ngIf="!isFooterLabelColumn(column.column) && shouldComputeTotal(column)">
+                {{ totalsByColumn()[column.column] | number }}
+              </span>
+            </td>
           </ng-container>
         }
 
@@ -79,6 +87,10 @@
           <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
         }
         <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>
+
+        @if (hasTotalsFooter()) {
+          <tr mat-footer-row *matFooterRowDef="columnIds(); sticky: true"></tr>
+        }
       </table>
 
       <ng-content />
