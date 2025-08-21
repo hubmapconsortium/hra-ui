@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { CellSummaryReport, CellSummaryRow, HraPopService } from '@hra-api/ng-client';
 import { from, Observable, switchMap } from 'rxjs';
 
@@ -34,12 +34,18 @@ export class HraPopPredictionsService {
   /**
    * Supported organs of hra pop predictions service
    */
-  readonly supportedOrgans = toSignal(this.hraPop.supportedOrgans(), { initialValue: [] });
+  readonly supportedOrgans = rxResource({
+    loader: () => this.hraPop.supportedOrgans(),
+    defaultValue: [],
+  });
 
   /**
    * Supported tools of hra pop predictions service
    */
-  readonly supportedTools = toSignal(this.hraPop.supportedTools(), { initialValue: [] });
+  readonly supportedTools = rxResource({
+    loader: () => this.hraPop.supportedTools(),
+    defaultValue: [],
+  });
 
   /**
    * Get cell population predictions data
