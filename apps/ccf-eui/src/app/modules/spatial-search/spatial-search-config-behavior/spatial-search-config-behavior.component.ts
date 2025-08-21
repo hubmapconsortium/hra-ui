@@ -46,9 +46,6 @@ export class SpatialSearchConfigBehaviorComponent {
   /** Spatial search dialog */
   private readonly spatialSearchDialog = inject(MatDialog);
 
-  /** Initialize the component */
-  constructor() {}
-
   /** Handle button click */
   buttonClicked(): void {
     this.spatialSearchDialog.open(SpatialSearchUiBehaviorComponent, {
