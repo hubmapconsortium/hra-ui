@@ -12,7 +12,7 @@ jest.mock('analytics', () => ({
 }));
 
 // Mock feature path
-jest.mock('./feature/feature.directive', () => ({
+jest.mock('../feature/feature.directive', () => ({
   injectFeaturePath: () => () => '/test/path',
 }));
 
