@@ -245,11 +245,11 @@ rapi-doc::part(btn-outline) {
 
         /* API request method container */
         .method {
+          @include utils.use-font(code, large-bold);
           border: 0;
           border-radius: 0.25rem;
           padding: 0.375rem 1.0625rem;
           margin-right: 0.5rem;
-          font: vars.$code-large-500;
           vertical-align: middle;
           height: 2.25rem;
           width: 4.5rem;
@@ -265,7 +265,7 @@ rapi-doc::part(btn-outline) {
 
         /* API path container */
         .path {
-          font: vars.$code-large-500;
+          @include utils.use-font(code, large-bold);
           flex: 1 0 50%;
         }
 
