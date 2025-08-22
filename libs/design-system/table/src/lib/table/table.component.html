@@ -52,8 +52,9 @@
         }
 
         @for (column of _columns(); track column.column) {
-          @let type = getColumnType(column);
+          @let type = getColumnType(column).type;
           @let template = templates[type];
+          @let isTotalsLabelColumn = enableRowSelection() ? $index === 1 : $index === 0;
 
           <ng-container [matColumnDef]="column.column">
             @if (!hideHeaders()) {
@@ -72,6 +73,17 @@
                 *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"
               />
             </td>
+
+            <!-- Total Footer -->
+            <td mat-footer-cell *matFooterCellDef [attr.data-column-type]="type">
+              @if (isTotalsLabelColumn) {
+                <span class="total-label"> Total </span>
+              } @else if (totals().get(column)) {
+                <span class="numeric">
+                  {{ totals().get(column) | number }}
+                </span>
+              }
+            </td>
           </ng-container>
         }
 
@@ -79,6 +91,10 @@
           <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
         }
         <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>
+
+        @if (totals().size > 0) {
+          <tr mat-footer-row *matFooterRowDef="columnIds(); sticky: true"></tr>
+        }
       </table>
 
       <ng-content />
