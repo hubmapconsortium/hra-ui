@@ -15,10 +15,6 @@ import { ThemingContext, ThemingModel, THEMING_FILE_SCHEMA } from './theming.mod
    * name of the state
    */
   name: 'theming',
-  /**
-   * state variables default value
-   */
-  defaults: {},
 })
 /**
  * Theming state class
@@ -46,7 +42,7 @@ export class ThemingState {
       map((data) => load(data, { filename: url })),
       map((data) => THEMING_FILE_SCHEMA.parse(data)),
       tap((data) => ctx.setState(data)),
-      tap((data) => this.setVariables(data))
+      tap((data) => this.setVariables(data)),
     );
   }
 
