@@ -607,7 +607,7 @@
                 "anyOf": [
                   {
                     "type": "string",
-                    "enum": ["text", "numeric", "markdown"]
+                    "enum": ["text", "numeric", "markdown", "icon", "menu"]
                   },
                   {
                     "anyOf": [
@@ -628,6 +628,9 @@
                           "type": {
                             "type": "string",
                             "const": "numeric"
+                          },
+                          "computeTotal": {
+                            "type": "boolean"
                           }
                         },
                         "required": ["type"],
@@ -653,9 +656,49 @@
                           },
                           "urlColumn": {
                             "type": "string"
+                          },
+                          "internal": {
+                            "type": "boolean"
                           }
                         },
                         "required": ["type", "urlColumn"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "icon"
+                          },
+                          "icon": {
+                            "type": "string"
+                          },
+                          "tooltip": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["type", "icon"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "menu"
+                          },
+                          "icon": {
+                            "type": "string"
+                          },
+                          "options": {
+                            "type": "string"
+                          },
+                          "tooltip": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["type", "icon", "options"],
                         "additionalProperties": false
                       }
                     ]
@@ -673,7 +716,20 @@
           "items": {
             "type": "object",
             "additionalProperties": {
-              "type": ["string", "number", "boolean"]
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array"
+                }
+              ]
             }
           }
         },
@@ -685,6 +741,9 @@
           "type": "boolean"
         },
         "verticalDividers": {
+          "type": "boolean"
+        },
+        "enableSelection": {
           "type": "boolean"
         }
       },
