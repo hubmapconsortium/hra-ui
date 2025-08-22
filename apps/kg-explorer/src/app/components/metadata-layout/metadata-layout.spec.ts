@@ -1,4 +1,5 @@
 import { render } from '@testing-library/angular';
+
 import { MetadataLayoutComponent } from './metadata-layout.component';
 
 describe('MetadataLayoutComponent', () => {

@@ -1,4 +1,5 @@
 import { render } from '@testing-library/angular';
+
 import { VersionSelectorComponent } from './version-selector.component';
 
 describe('VersionSelectorComponent', () => {

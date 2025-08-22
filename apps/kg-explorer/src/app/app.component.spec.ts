@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   const mockRouter = {
-    events: of({}), // simulate router event
+    events: of({}),
     navigate: jest.fn(),
     createUrlTree: jest.fn().mockReturnValue({}),
     serializeUrl: jest.fn().mockReturnValue('mock-url'),
@@ -17,6 +17,10 @@ describe('AppComponent', () => {
 
   const mockActivatedRoute = {
     snapshot: {
+      data: {
+        documentationUrl: 'Neuron',
+        typeLabel: 'https://docs.io/neuron',
+      },
       root: {
         firstChild: {
           params: {
@@ -51,11 +55,7 @@ describe('AppComponent', () => {
       ],
     });
 
-    // Wait for async effects
     expect(mockKgService.digitalObjects).toHaveBeenCalled();
-
-    // You can also check internal signals if exposed via template
-    // For example, if breadcrumbs are rendered:
     expect(screen.getByText('Heart Object')).toBeInTheDocument();
   });
 
@@ -79,7 +79,6 @@ describe('AppComponent', () => {
       ],
     });
 
-    // Wait for async effects
     expect(mockKgService.digitalObjects).toHaveBeenCalled();
     expect(screen.getByText('Knowledge Graph')).toBeInTheDocument();
   });

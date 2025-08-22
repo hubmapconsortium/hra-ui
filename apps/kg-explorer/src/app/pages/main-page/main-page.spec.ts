@@ -514,9 +514,9 @@ describe('MainPageComponent', () => {
       digitalObjects: [{ id: '2d-ftu', label: 'Object 2', count: 5 }],
       releaseVersion: [{ id: 'v2.0', label: 'v2.0', count: 3 }],
       organs: [{ id: 'lung', label: 'Lung', count: 2 }],
-      anatomicalStructures: [],
-      cellTypes: [],
-      biomarkers: [],
+      anatomicalStructures: [{ id: 'aaa', label: 'aaa', count: 8 }],
+      cellTypes: [{ id: 'bbb', label: 'bbb', count: 9 }],
+      biomarkers: [{ id: 'ccc', label: 'ccc', count: 10 }],
     });
 
     expect(mockRouter.navigate).toHaveBeenCalledWith([''], {
@@ -524,9 +524,9 @@ describe('MainPageComponent', () => {
         do: ['2d-ftu'],
         versions: ['v2.0'],
         organs: ['lung'],
-        as: [],
-        ct: [],
-        b: [],
+        as: ['aaa'],
+        ct: ['bbb'],
+        b: ['ccc'],
         search: 'kidney', // preserved from initial filters
       },
     });
@@ -557,7 +557,7 @@ describe('MainPageComponent', () => {
     expect(instance.filters().searchTerm).toBe('brain');
   });
 
-  it('should handle null filter fields in handleFilterSelectionChanges', async () => {
+  it('should handle empty filter fields in handleFilterSelectionChanges', async () => {
     const { fixture } = await render(MainPageComponent, {
       componentInputs: {
         data: mockData,
@@ -578,6 +578,8 @@ describe('MainPageComponent', () => {
 
     const instance = fixture.componentInstance;
 
+    instance.filters().searchTerm = undefined;
+
     instance.handleFilterSelectionChanges({
       digitalObjects: null,
       releaseVersion: null,
@@ -594,7 +596,7 @@ describe('MainPageComponent', () => {
       digitalObjects: undefined,
       organs: undefined,
       releaseVersion: undefined,
-      searchTerm: 'kidney',
+      searchTerm: undefined,
     });
   });
 
