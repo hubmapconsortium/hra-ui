@@ -174,9 +174,6 @@ export class NumericRowElementDirective {
   },
 })
 export class TableComponent<T = TableRow> {
-  /** Scrollbar ref */
-  readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
-
   /** CSV URL input */
   readonly csvUrl = input<string>();
 
@@ -198,14 +195,26 @@ export class TableComponent<T = TableRow> {
   /** Enable row selection with checkboxes */
   readonly enableRowSelection = input<boolean>(false);
 
+  /** Hide table headers */
+  readonly hideHeaders = input<boolean>(false);
+
   /** Emits when selection changes */
   readonly selectionChange = output<T[]>();
 
+  /** Emits route */
+  readonly routeClicked = output<string>();
+
+  /** Emits download object id on download button hover */
+  readonly downloadHovered = output<string>();
+
+  /** Scrollbar ref */
+  readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
+
+  /** Mat sort element */
+  private readonly sort = viewChild.required(MatSort);
+
   /** Selection model for checkbox functionality */
   readonly selection = new SelectionModel<TableRow>(true, []);
-
-  /** Hide table headers */
-  readonly hideHeaders = input<boolean>(false);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
@@ -251,17 +260,24 @@ export class TableComponent<T = TableRow> {
     return this.enableRowSelection() ? ['select', ...columns] : columns;
   });
 
+  /** Totals by column for which `computeTotal` is enabled */
+  protected readonly totals = computed(() => {
+    const result = new Map<TableColumn, number>();
+    for (const col of this._columns()) {
+      const options = this.getColumnType(col);
+      if (options.type === 'numeric' && options.computeTotal) {
+        const total = this._rows().reduce((acc, row) => {
+          const value = Number(row[col.column as keyof T]);
+          return acc + (Number.isNaN(value) ? 0 : value);
+        }, 0);
+        result.set(col, total);
+      }
+    }
+    return result;
+  });
+
   /** Table data source */
   protected readonly dataSource = new MatTableDataSource<T>([]);
-
-  /** Mat sort element */
-  private readonly sort = viewChild.required(MatSort);
-
-  /** Emits route */
-  readonly routeClicked = output<string>();
-
-  /** Emits download object id on download button hover */
-  readonly downloadHovered = output<string>();
 
   /** Sort data on load and set columns */
   constructor() {
@@ -275,12 +291,12 @@ export class TableComponent<T = TableRow> {
   }
 
   /**
-   * Gets the type of the table column.
-   * @param column Table column data
-   * @returns Type of the column
+   * Returns the column type for a given column.
+   * @param column Table column
+   * @returns Column type
    */
-  getColumnType(column: TableColumn): TableColumnType['type'] {
-    return typeof column.type === 'string' ? column.type : column.type.type;
+  getColumnType(column: TableColumn): TableColumnType {
+    return typeof column.type === 'string' ? ({ type: column.type } as TableColumnType) : column.type;
   }
 
   /**
@@ -337,17 +353,17 @@ export class TableComponent<T = TableRow> {
    * @param options Menu options
    * @returns Menu options as an array of MenuOptionsType
    */
-  getMenuOptions(options: string | number | boolean | MenuOptionsType[]) {
+  getMenuOptions(options: string | number | boolean | MenuOptionsType[]): MenuOptionsType[] {
     return options as MenuOptionsType[];
   }
 
   /** Emits a route as string when object label is clicked */
-  routeClick(url: string | number | boolean | (string | number | boolean)[]) {
+  routeClick(url: string | number | boolean | (string | number | boolean)[]): void {
     this.routeClicked.emit(url as string);
   }
 
   /** Emits the id of a row when its download button is hovered */
-  downloadButtonHover(id: string | number | boolean | (string | number | boolean)[]) {
+  downloadButtonHover(id: string | number | boolean | (string | number | boolean)[]): void {
     this.downloadHovered.emit(id as string);
   }
 
@@ -360,7 +376,7 @@ export class TableComponent<T = TableRow> {
   }
 
   /** Scrolls to top of the table */
-  scrollToTop() {
+  scrollToTop(): void {
     this.scrollbar().scrollTo({ top: 0, duration: 0 });
   }
 }

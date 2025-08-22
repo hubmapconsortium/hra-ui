@@ -27,6 +27,7 @@ export type NumericColumnType = z.infer<typeof NumericColumnTypeSchema>;
 /** Schema for Numeric Column */
 export const NumericColumnTypeSchema = z.object({
   type: z.literal('numeric'),
+  computeTotal: z.boolean().optional(),
   // TODO add format
 });
 

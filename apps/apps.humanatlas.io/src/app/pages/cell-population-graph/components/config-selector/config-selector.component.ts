@@ -81,8 +81,8 @@ export class ConfigSelectorComponent {
 
   /** X-axis options */
   readonly xAxisOptions: { value: GraphAttribute; label: string }[] = [
-    { value: 'dataset_name', label: 'Dataset name' },
     { value: 'dataset_id', label: 'Dataset ID' },
+    { value: 'dataset_name', label: 'Dataset name' },
   ];
 
   /** Y-axis options */

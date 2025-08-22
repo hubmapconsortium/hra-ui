@@ -19,6 +19,14 @@ body {
   );
 
   .help-menu {
+    --mat-menu-item-with-icon-leading-spacing: 0.75rem;
+    --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
+
+    .mat-mdc-menu-item {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
     width: 15rem !important;
     a {
       .title {
