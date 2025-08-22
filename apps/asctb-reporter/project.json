@@ -23,7 +23,7 @@
           }
         ],
         "polyfills": ["apps/asctb-reporter/src/polyfills.ts"],
-        "scripts": ["./node_modules/marked/marked.min.js"]
+        "scripts": ["node_modules/marked/lib/marked.umd.js"]
       },
       "configurations": {
         "production": {
