@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { PreferencesService } from './preferences.service';
+import { ConsentService } from './consent.service';
 import { EventCategory } from '@hra-ui/common/analytics/events';
 
-describe('PreferencesService', () => {
+describe('ConsentService', () => {
   function setup() {
-    return TestBed.inject(PreferencesService);
+    return TestBed.inject(ConsentService);
   }
 
-  it('should handle updates to event category preferences', () => {
+  it('should handle updates to event category consent settings', () => {
     const { Necessary, Statistics } = EventCategory;
     const service = setup();
     const expectEnabled = (cat: EventCategory) => expect(service.isCategoryEnabled(cat)).toBeTruthy();
