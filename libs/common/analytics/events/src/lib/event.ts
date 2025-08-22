@@ -20,6 +20,9 @@ export enum EventCategory {
 /** DOM events that can trigger an analytics events */
 export type EventTrigger = keyof GlobalEventHandlersEventMap;
 
+/** DOM event data for a trigger */
+export type EventTriggerPayloadFor<T> = T extends EventTrigger ? GlobalEventHandlersEventMap[T] : never;
+
 /** Event payload */
 export type EventPayload<P> = Prettify<CommonEventProps & { [K in keyof P]: P[K] } & { [key: string]: unknown }>;
 
@@ -45,7 +48,7 @@ export interface CommonEventProps {
   /** DOM event that triggered this event */
   trigger?: string;
   /** DOM event data */
-  triggerData?: Record<string, unknown>;
+  triggerData?: Event;
 }
 
 /**

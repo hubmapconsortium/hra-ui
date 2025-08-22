@@ -30,6 +30,35 @@ const columns: TableColumn[] = [
   },
 ];
 
+const columnsWithTotals: TableColumn[] = [
+  {
+    column: 'position',
+    label: 'Position',
+    type: 'text',
+  },
+  {
+    column: 'name',
+    label: 'Name',
+    type: 'markdown',
+  },
+  {
+    column: 'weight',
+    label: 'Weight',
+    type: {
+      type: 'numeric',
+      computeTotal: true,
+    },
+  },
+  {
+    column: 'symbol',
+    label: 'Symbol',
+    type: {
+      type: 'link',
+      urlColumn: 'symbolUrl',
+    },
+  },
+];
+
 const symbolUrl = 'https://google.com';
 
 /** Example data */
@@ -143,5 +172,13 @@ export const WithoutHeaders: Story = {
   args: {
     style: 'alternating',
     hideHeaders: true,
+  },
+};
+
+export const WithTotalsFooter: Story = {
+  args: {
+    style: 'alternating',
+    columns: columnsWithTotals,
+    rows,
   },
 };
