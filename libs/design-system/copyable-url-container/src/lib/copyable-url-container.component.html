@@ -1,0 +1,12 @@
+<div class="link">
+  <a mat-icon-button [attr.href]="url()" target="_blank" rel="noopener noreferrer" hraPlainTooltip="Open in new tab">
+    <mat-icon>open_in_new</mat-icon>
+  </a>
+  <span class="text">
+    {{ url() }}
+  </span>
+</div>
+<button class="copy" mat-button hraPlainTooltip="Copy link" (click)="copyUrl()">
+  <mat-icon>content_copy</mat-icon>
+  Copy
+</button>
