@@ -24,7 +24,7 @@ const ALL_CATEGORIES_DISABLED = createCategoryPreferences(false);
 /** Record of categories that should always be enabled */
 const ALWAYS_ENABLED_CATEGORIES = { [EventCategory.Necessary]: true };
 /** Initial categories settings */
-const INITIAL_CATEGORY_PREFERENCES = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES };
+const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES };
 
 /**
  * User preferences manager service
@@ -32,9 +32,9 @@ const INITIAL_CATEGORY_PREFERENCES = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENA
 @Injectable({
   providedIn: 'root',
 })
-export class PreferencesService {
+export class ConsentService {
   /** Writable signal containing record of enabled/disable categories */
-  private readonly categoriesImpl = signal(INITIAL_CATEGORY_PREFERENCES);
+  private readonly categoriesImpl = signal(INITIAL_CATEGORY_SETTINGS);
 
   /** Record of enabled/disable categories */
   readonly categories = this.categoriesImpl.asReadonly();
@@ -60,7 +60,7 @@ export class PreferencesService {
    * Disable all event categories except the ones that should always be enabled, i.e. `EventCategory.Necessary`
    */
   disableAllCategories(): void {
-    this.categoriesImpl.set(INITIAL_CATEGORY_PREFERENCES);
+    this.categoriesImpl.set(INITIAL_CATEGORY_SETTINGS);
   }
 
   /**

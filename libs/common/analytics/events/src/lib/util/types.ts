@@ -8,4 +8,4 @@ declare const BRAND: unique symbol;
 export type Brand<T extends string> = { [BRAND]: { [K in T]: true } };
 
 /** Tiny helper to prettify intersection types */
-export type Prettify<T> = { [K in keyof T]: T[K] };
+export type Prettify<T> = { [K in keyof T]: T[K] } & {};
