@@ -13,8 +13,7 @@
   }
   .code-block-pre {
     margin: 0;
-    font: 400 0.875rem / 1.3125rem Roboto Mono;
-    letter-spacing: 0rem;
+    font: vars.$code-medium-400;
     text-align: left;
     display: flex;
     /* Disabled max-width for expanding the code-block in other places.
