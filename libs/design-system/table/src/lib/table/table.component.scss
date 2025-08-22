@@ -129,6 +129,18 @@
         padding-top: 0.5rem;
       }
     }
+
+    ::ng-deep tfoot {
+      background-color: vars.$surface-dim;
+
+      td {
+        color: vars.$secondary;
+        font-weight: 500;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-top: 0.0625rem solid vars.$outline;
+      }
+    }
   }
 
   &.hra-table-style-divider {

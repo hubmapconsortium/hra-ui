@@ -25,11 +25,12 @@
 
     .mat-button-toggle-label-content {
       padding: 0 1rem;
+      font-size: 0.875rem;
     }
   }
 
   h1 {
-    @include utils.use-font(title, medium);
+    @include utils.use-font(title, small);
     margin: 0;
   }
 
