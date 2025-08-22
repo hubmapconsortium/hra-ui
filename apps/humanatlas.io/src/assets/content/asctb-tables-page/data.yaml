@@ -52,52 +52,84 @@ content:
                 label: Table Version
               - column: AS
                 label: '#AS'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: CT
                 label: '#CT'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: B_Total
                 label: '#B'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: BG
                 label: '#BG'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: BP
                 label: '#BP'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: BM
                 label: '#BM'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: BF
                 label: '#BF'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: BL
                 label: '#BL'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: ASWithNoLink
                 label: '#AS with NoLink'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: CTWithNoLink
                 label: '#CT with NoLink'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: BWithNoLink
                 label: '#B with NoLink'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: ASWithNoCT
                 label: '#AS with NoCT'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: CTWithNoB
                 label: '#CT with NoB'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: AS_AS
                 label: '#AS-AS'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: AS_CT
                 label: '#AS-CT'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
               - column: CT_BM
                 label: '#CT-BM'
-                type: numeric
+                type:
+                  type: numeric
+                  computeTotal: true
           - label: 8th Release (v2.2)
             version: v2.2
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release8.csv
