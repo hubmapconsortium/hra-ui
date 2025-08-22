@@ -1,4 +1,4 @@
-// hra-pop-validation.component.ts
+// hra-pop-visualizer.component.ts
 import { ChangeDetectionStrategy, Component, effect, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { rxResource } from '@angular/core/rxjs-interop';
@@ -22,13 +22,13 @@ import {
 } from './utils/data-type-config';
 
 @Component({
-  selector: 'hra-pop-validation',
+  selector: 'hra-pop-visualizer',
   imports: [CommonModule, PageSectionComponent, IconsModule, MatIconModule, BarGraphComponent, ConfigSelectorComponent],
-  templateUrl: './hra-pop-validation.component.html',
-  styleUrl: './hra-pop-validation.component.scss',
+  templateUrl: './hra-pop-visualizer.component.html',
+  styleUrl: './hra-pop-visualizer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HraPopValidationComponent {
+export class HraPopVisualizerComponent {
   private readonly dataService = inject(DataService);
   readonly dataTypeConfigs = DATA_TYPE_CONFIGS;
   readonly dataTypeOptions = Object.values(DATA_TYPE_CONFIGS);

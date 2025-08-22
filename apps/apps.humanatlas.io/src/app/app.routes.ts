@@ -19,7 +19,7 @@ import {
   TissuePredictionData,
 } from './services/hra-pop-predictions/hra-pop-predictions.service';
 import { CellPopulationGraphComponent } from './pages/cell-population-graph/cell-population-graph.component';
-import { HraPopValidationComponent } from './pages/hra-pop-validation/hra-pop-validation.component';
+import { HraPopVisualizerComponent } from './pages/hra-pop-visualizer/hra-pop-visualizer.component';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -97,11 +97,11 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'hra-pop-validation',
-    component: HraPopValidationComponent,
+    path: 'hra-pop-visualizer',
+    component: HraPopVisualizerComponent,
     data: {
-      crumbs: [{ name: 'Apps', route: '/' }, { name: 'HRApop Validation' }] satisfies BreadcrumbItem[],
-      helpUrl: 'https://humanatlas.io/hra-pop-validation',
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'HRApop Visualizer' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/hra-pop-visualizer',
     },
   },
   {
