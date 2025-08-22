@@ -135,12 +135,12 @@ $overrides: (
     --mat-sys-code-large-bold-tracking: 0rem;
     --mat-sys-code-large-bold-weight: 500;
 
-    --mat-sys-code-large-regular: 400 1rem / 1.5rem #{$_plain-mono};
-    --mat-sys-code-large-regular-font: #{$_plain-mono};
-    --mat-sys-code-large-regular-line-height: 1.5rem;
-    --mat-sys-code-large-regular-size: 1rem;
-    --mat-sys-code-large-regular-tracking: 0rem;
-    --mat-sys-code-large-regular-weight: 400;
+    --mat-sys-code-large: 400 1rem / 1.5rem #{$_plain-mono};
+    --mat-sys-code-large-font: #{$_plain-mono};
+    --mat-sys-code-large-line-height: 1.5rem;
+    --mat-sys-code-large-size: 1rem;
+    --mat-sys-code-large-tracking: 0rem;
+    --mat-sys-code-large-weight: 400;
 
     --mat-sys-code-medium: 400 0.875rem / 1.3125rem #{$_plain-mono};
     --mat-sys-code-medium-font: #{$_plain-mono};
