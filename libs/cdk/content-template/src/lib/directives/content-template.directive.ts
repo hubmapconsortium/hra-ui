@@ -95,16 +95,20 @@ export class ContentTemplateOutletDirective {
       const mirror = this.reflectComponent(data.component, component);
       const inputs = mirror.inputs.map((o) => o.propName);
       const selectors = [...mirror.ngContentSelectors];
-      const controllers = this.getControllers(parsedData.controllers);
+      const controllers = this.getControllers(parsedData['controllers']);
       const injector = Injector.create({ providers: controllers, parent: this.viewContainerRef.injector });
-      const projectableNodes = this.renderProjectedContent(selectors, projectedProperties, parsedData);
+      const projectableNodes = this.renderProjectedContent(
+        selectors,
+        projectedProperties,
+        parsedData as AnyContentTemplate,
+      );
       const ref = this.viewContainerRef.createComponent(component, { injector, projectableNodes });
       const el = coerceElement(ref.location);
 
-      this.bindClasses(el, parsedData.classes);
-      this.bindStyles(el, parsedData.styles);
-      this.bindInputs(ref, inputs, parsedData);
-      this.attachControllers(ref, controllers, parsedData);
+      this.bindClasses(el, parsedData['classes']);
+      this.bindStyles(el, parsedData['styles']);
+      this.bindInputs(ref, inputs, parsedData as AnyContentTemplate);
+      this.attachControllers(ref, controllers, parsedData as AnyContentTemplate);
 
       return ref;
     } catch (error: unknown) {
@@ -247,12 +251,12 @@ export class ContentTemplateOutletDirective {
     controllers: ContentTemplateControllerConstructor[],
     data: AnyContentTemplate,
   ): void {
-    if (data.controllers === undefined) {
+    if (data['controllers'] === undefined) {
       return;
     }
 
     for (const controller of controllers) {
-      const options = findOrThrow(data.controllers, (o) => o.id === controller.id);
+      const options = findOrThrow(data['controllers'], (o) => o.id === controller.id);
       const instance = ref.injector.get<ContentTemplateController>(controller);
       instance.attach(ref, options);
       ref.onDestroy(() => instance.detach());
