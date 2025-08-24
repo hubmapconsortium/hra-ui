@@ -1,12 +1,12 @@
 <div class="graph-config-layout">
-  <!-- Left Column -->
-  <div class="left-column">
-    <!-- Organ Selection -->
+  <!-- First Column - Data configurations -->
+  <div class="config-column">
+    <h2 class="column-title">Data configurations</h2>
 
+    <!-- Organ Selection -->
     <div class="organ-group">
-      <h1>Organ dataset</h1>
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label>Organ</mat-label>
+        <mat-label>Organ dataset</mat-label>
         <mat-select
           [value]="selectedOrgan()"
           (selectionChange)="selectedOrgan.set($event.value)"
@@ -21,9 +21,8 @@
 
     <!-- Data Type Selection -->
     <div class="datatype-group">
-      <h1>Data Type</h1>
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label>Data Type</mat-label>
+        <mat-label>Data type</mat-label>
         <mat-select [value]="selectedDataType()" (selectionChange)="selectedDataType.set($event.value)">
           @for (config of dataTypeOptions(); track config.key) {
             <mat-option [value]="config.key">{{ config.label }}</mat-option>
@@ -32,11 +31,35 @@
       </mat-form-field>
     </div>
 
+    <!-- Sex Selection -->
+    <div class="sex-toggle-group">
+      <h3>Sex</h3>
+      <mat-button-toggle-group
+        multiple
+        [value]="selectedSexes()"
+        (change)="onSexesChange($event.value)"
+        [disabled]="loading()"
+        [hideMultipleSelectionIndicator]="false"
+        hraButtonToggleSize="medium"
+        class="toggle-group"
+      >
+        @for (sex of availableSexes; track sex) {
+          <mat-button-toggle [value]="sex">
+            {{ sex }}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <!-- Second Column - Sort & organize -->
+  <div class="config-column">
+    <h2 class="column-title">Sort & organize</h2>
+
     <!-- Sort Selection -->
     <div class="sort-group">
-      <h1>Sort</h1>
       <mat-form-field subscriptSizing="dynamic">
-        <mat-label>Sort By</mat-label>
+        <mat-label>Sort by</mat-label>
         <mat-select [value]="selectedSort()" (selectionChange)="selectedSort.set($event.value)" [disabled]="loading()">
           @for (option of sortOptions(); track option.value) {
             <mat-option [value]="option.value">{{ option.label }}</mat-option>
@@ -44,13 +67,10 @@
         </mat-select>
       </mat-form-field>
     </div>
-  </div>
 
-  <!-- Right Column -->
-  <div class="right-column">
     <!-- X Axis Group -->
     <div class="x-axis-group">
-      <h1>X axis</h1>
+      <h3>X axis</h3>
       <mat-button-toggle-group
         [value]="selectedXAxis()"
         (change)="selectedXAxis.set($event.value)"
@@ -68,7 +88,7 @@
 
     <!-- Y Axis Group -->
     <div class="y-axis-group">
-      <h1>Y axis</h1>
+      <h3>Y axis</h3>
       <mat-button-toggle-group
         [value]="selectedYAxis()"
         (change)="selectedYAxis.set($event.value)"
@@ -83,24 +103,19 @@
         }
       </mat-button-toggle-group>
     </div>
+  </div>
 
-    <!-- Sex Selection -->
-    <div class="sex-toggle-group">
-      <h1>Sex</h1>
-      <div class="sex-checkbox-row">
-        @for (sex of availableSexes; track sex) {
-          <div class="sex-option">
-            <mat-checkbox [checked]="selectedSexes().includes(sex)" (change)="onSexChange(sex, $event.checked)">
-              {{ sex }}
-            </mat-checkbox>
-          </div>
-        }
-      </div>
-    </div>
-
+  <!-- Third Column - Annotation tools -->
+  <div class="config-column">
+    <h2 class="column-title">
+      Annotation tools<hra-results-indicator
+        [value]="availableTools().length"
+        [total]="allTools.length"
+        [description]="'Available'"
+      ></hra-results-indicator>
+    </h2>
     <div class="annotation-group">
-      <h1>Annotation Tool ({{ availableTools().length }}/{{ allTools.length }} available)</h1>
-      <div class="annotation-checkbox-row">
+      <div class="annotation-checkbox-column">
         @for (tool of allTools; track tool) {
           <div class="annotation-option">
             <mat-checkbox

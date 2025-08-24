@@ -16,11 +16,20 @@ import {
   SortValue,
   getToolDisplayName,
 } from '../../utils/data-type-config';
+import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 
 @Component({
   selector: 'hra-config-selector',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatButtonToggleModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatButtonToggleModule,
+    ResultsIndicatorComponent,
+  ],
   templateUrl: './config-selector.component.html',
   styleUrl: './config-selector.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,10 +61,8 @@ export class ConfigSelectorComponent {
     });
   }
 
-  onSexChange(sex: string, checked: boolean): void {
-    this.selectedSexes.update((previous) => {
-      return checked ? [...previous, sex] : previous.filter((s) => s !== sex);
-    });
+  onSexesChange(selectedSexes: string[]): void {
+    this.selectedSexes.set(selectedSexes);
   }
 
   // Helper method to check if a tool is available (has data)

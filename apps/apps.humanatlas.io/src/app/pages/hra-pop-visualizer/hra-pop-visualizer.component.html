@@ -1,21 +1,31 @@
 <!-- hra-pop-visualizer.component.html -->
 <hra-page-section tagline="HRApop Visualizer">
-  Visualize cell type populations of the HRA (HRApop v1.0)
+  <div class="title-line">
+    <span>Explore cell type populations of</span>
+    <a
+      href="https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="highlight-link"
+    >
+      HRApop v1.0 </a
+    >.
+  </div>
   <div class="hra-pop-visualizer">
     <!-- Data Viewer Container -->
     <div class="data-viewer-container">
       <!-- Graphs Section -->
       <div class="header-section">
-        <div class="header">
-          <div class="icon">
-            <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>
-            <hra-icon svgIcon="organ:spleen"></hra-icon>
-            <span class="label">Cell Population Graphs</span>
-          </div>
-        </div>
-
-        <!-- Configurations Container -->
+        <!-- Configurations Container with integrated header -->
         <div class="configurations-container">
+          <div class="header">
+            <div class="icon">
+              <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>
+              <span class="label">HRApop Visualizer</span>
+            </div>
+          </div>
+
+          <!-- Config selector within the same border -->
           <hra-config-selector
             [dataTypeOptions]="dataTypeOptions"
             [(selectedDataType)]="selectedDataType"
@@ -33,39 +43,39 @@
             [loading]="loading()"
           >
           </hra-config-selector>
-        </div>
 
-        <!-- Charts Content Section -->
-        <div class="charts-content">
-          <!-- Loading State -->
-          @if (loading(); as isLoading) {
-            <div class="loading-state">
-              <p>Loading {{ dataTypeConfigs[selectedDataType()].label }}</p>
-            </div>
-          } @else {
-            <!-- Error State -->
-            @if (error(); as err) {
-              <div class="error-state">
-                <mat-icon>error</mat-icon>
-                <p>{{ err }}</p>
+          <!-- Charts Content Section -->
+          <div class="charts-content">
+            <!-- Loading State -->
+            @if (loading(); as isLoading) {
+              <div class="loading-state">
+                <p>Loading {{ dataTypeConfigs[selectedDataType()].label }}</p>
               </div>
             } @else {
-              <!-- Charts - Single Row/Column Facet Chart -->
-              <div class="graphs">
-                @if (vegaSpecs().length === 0) {
-                  <div class="no-data">
-                    <p>No data available for the selected filters.</p>
-                  </div>
-                } @else {
-                  <div class="charts-grid">
-                    @for (spec of vegaSpecs(); track spec) {
-                      <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
-                    }
-                  </div>
-                }
-              </div>
+              <!-- Error State -->
+              @if (error(); as err) {
+                <div class="error-state">
+                  <mat-icon>error</mat-icon>
+                  <p>{{ err }}</p>
+                </div>
+              } @else {
+                <!-- Charts - Single Row/Column Facet Chart -->
+                <div class="graphs">
+                  @if (vegaSpecs().length === 0) {
+                    <div class="no-data">
+                      <p>No data available for the selected filters.</p>
+                    </div>
+                  } @else {
+                    <div class="charts-grid">
+                      @for (spec of vegaSpecs(); track spec) {
+                        <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
+                      }
+                    </div>
+                  }
+                </div>
+              }
             }
-          }
+          </div>
         </div>
       </div>
     </div>
