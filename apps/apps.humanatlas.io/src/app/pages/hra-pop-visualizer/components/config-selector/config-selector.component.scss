@@ -165,48 +165,77 @@ h3 {
   }
 }
 
-@media (max-width: 1200px) and (min-width: 768px) {
+// 919px to 640px: 2-column layout with annotation tools full width below
+@media (max-width: 919px) and (min-width: 640px) {
   .graph-config-layout {
-    flex-direction: column;
-    gap: 2rem;
+    flex-wrap: wrap;
   }
 
-  .config-column {
-    width: 100%;
-    
-    &:first-child,
-    &:nth-child(2) {
-      width: 100%;
-    }
-  }
-
+  // First two columns take 50% width each and sit side by side
   .config-column:nth-child(1),
   .config-column:nth-child(2) {
+    flex: 0 0 50%;
+    width: 50%;
+    min-width: auto;
+    max-width: none;
+  }
+
+  // Third column (annotation tools) takes full width and wraps to next row
+  .config-column:nth-child(3) {
+    flex: 0 0 100%;
+    width: 100%;
+    border-right: none;
+    border-top: 0.0625rem solid vars.$outline-variant;
+  }
+
+  // Remove right border from second column since it's now the last in its row
+  .config-column:nth-child(2) {
+    border-right: none;
+  }
+
+  // Make annotation tools horizontal for this breakpoint with equal spacing
+  .annotation-checkbox-column {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 0;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .annotation-option {
+    margin-bottom: 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
     
-    > div {
-      flex: 1 1 calc(50% - 0.75rem);
-      min-width: 15rem;
+    &:not(:last-child) {
+      margin-bottom: 0;
     }
   }
 }
 
-@media (max-width: 767px) {
+// 639px to 320px: Single column layout (mobile)
+@media (max-width: 639px) {
   .graph-config-layout {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0;
   }
 
   .config-column {
     width: 100%;
     gap: 1rem;
+    border-right: none !important;
+    
+    &:not(:last-child) {
+      border-bottom: 0.0625rem solid vars.$outline-variant;
+    }
     
     // Reset specific column widths for mobile
     &:first-child,
     &:nth-child(2) {
       width: 100%;
+      min-width: auto;
+      max-width: none;
     }
   }
 
@@ -222,17 +251,31 @@ h3 {
     }
   }
 
+  // Make annotation tools 2 per row for mobile
   .annotation-checkbox-column {
-    gap: 0.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: center;
+  }
+
+  .annotation-option {
+    flex: 0 0 50%;
+    width: 50%;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: left;
+    
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
   }
 
   .column-title {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-    
-    hra-results-indicator {
-      align-self: flex-end;
-    }
+    // Keep title and indicator on same line for mobile
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
   }
 }

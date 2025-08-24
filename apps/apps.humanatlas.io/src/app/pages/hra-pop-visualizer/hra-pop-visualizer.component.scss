@@ -73,10 +73,23 @@
     }
   }
 
-  @media (min-width: 640px) and (max-width: 999px) {
+  // 919px to 640px
+  @media (min-width: 640px) and (max-width: 919px) {
     padding: 5rem 2.5rem;
   }
+  
+  // 639px to 320px
   @media (min-width: 320px) and (max-width: 639px) {
     padding: 5rem 1rem;
+    
+    .title-line {
+      display: inline;
+      line-height: 1.4;
+      word-wrap: break-word;
+      
+      span, a {
+        display: inline;
+      }
+    }
   }
 }
