@@ -1,11 +1,11 @@
 import { assertInInjectionContext, inject, Injectable, InjectionToken, isDevMode } from '@angular/core';
-import { AnalyticsEvent, EventPayloadFor, CoreEvents, EventType, EventCategory } from '@hra-ui/common/analytics/events';
+import { AnalyticsEvent, CoreEvents, EventCategory, EventPayloadFor, EventType } from '@hra-ui/common/analytics/events';
 import { hraAnalyticsPlugin } from '@hra-ui/common/analytics/plugins/hra-analytics';
+import { hraEventFilterPlugin } from '@hra-ui/common/analytics/plugins/hra-event-filter';
 import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import { Analytics, AnalyticsPlugin } from 'analytics';
+import { ConsentService } from '../consent/consent.service';
 import { injectFeaturePath } from '../feature/feature.directive';
-import { hraEventFilterPlugin } from '@hra-ui/common/analytics/plugins/hra-event-filter';
-import { PreferencesService } from '../preferences/preferences.service';
 
 /** Extended `Analytics` options */
 type ExtendedAnalyticsOptions = Parameters<typeof Analytics>[0] & {
@@ -37,7 +37,8 @@ export class AnalyticsService {
   /** Application configuration */
   private readonly appConfig = injectAppConfiguration();
 
-  private readonly preferences = inject(PreferencesService);
+  /** User consent settings */
+  private readonly consent = inject(ConsentService);
 
   /** `analytics` instance. Direct use should generally be avoided. */
   readonly instance = Analytics({
@@ -90,7 +91,14 @@ export class AnalyticsService {
     return plugins.flat().map((plugin) => (typeof plugin === 'function' ? plugin() : plugin));
   }
 
+  /**
+   * Check whether an event will be logged when passed to `logEvent`
+   *
+   * @param _type Event type
+   * @param category Event category
+   * @returns Whether the event is enabled
+   */
   private isEventEnabled(_type: EventType, category?: EventCategory): boolean {
-    return category !== undefined && this.preferences.isCategoryEnabled(category);
+    return category !== undefined && this.consent.isCategoryEnabled(category);
   }
 }
