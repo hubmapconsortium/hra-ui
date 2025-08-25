@@ -35,12 +35,12 @@
       <mat-select
         disableRipple
         panelClass="options-container"
-        [ngModel]="releaseVersion()"
-        (ngModelChange)="releaseVersion.set($event)"
+        [ngModel]="releaseVersion_()"
+        (ngModelChange)="releaseVersion.set($event.version)"
       >
         <mat-select-trigger>{{ releaseVersion_().label }}</mat-select-trigger>
         @for (dataset of releaseVersionData(); track dataset) {
-          <mat-option [value]="dataset.version">
+          <mat-option [value]="dataset">
             <div class="release-label">
               <span class="release-name">{{ dataset.label }}</span>
               <span class="release-date">{{ dataset.date }}</span>
@@ -61,7 +61,7 @@
         class="organ-selector"
       >
         @for (organ of releaseVersion_().organData; track organ) {
-          <mat-option [value]="organ.label">{{ organ.label }}</mat-option>
+          <mat-option [value]="organ">{{ organ.label }}</mat-option>
         }
       </mat-select>
       @if (organ_() === undefined) {
