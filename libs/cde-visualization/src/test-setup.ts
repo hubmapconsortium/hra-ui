@@ -8,3 +8,11 @@ setupZonelessTestEnv({
 });
 
 setupScrollTesting();
+
+// Polyfill for structuredClone if not available (needed for vega-embed)
+if (!global.structuredClone) {
+  global.structuredClone = (obj: unknown) => JSON.parse(JSON.stringify(obj));
+}
+
+// Mock vega-embed to avoid canvas issues in Jest
+jest.mock('vega-embed', () => ({}));

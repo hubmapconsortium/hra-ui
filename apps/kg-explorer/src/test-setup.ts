@@ -4,3 +4,6 @@ setupZonelessTestEnv({
   errorOnUnknownElements: true,
   errorOnUnknownProperties: true,
 });
+
+// Mock @google/model-viewer to avoid ES module issues
+jest.mock('@google/model-viewer', () => ({}));

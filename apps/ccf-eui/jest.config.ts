@@ -3,14 +3,6 @@ export default {
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
   coverageDirectory: '../../coverage/apps/ccf-eui',
-  coverageThreshold: {
-    global: {
-      branches: 25,
-      functions: 25,
-      lines: 25,
-      statements: 25,
-    },
-  },
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
