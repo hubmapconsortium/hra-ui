@@ -1,3 +1,3 @@
-export * from './lib/url-configuration';
-export * from './lib/url-pipes';
-export * from './lib/utils';
+export * from '../../src/lib/url/url-configuration';
+export * from '../../src/lib/url/url-pipes';
+export * from '../../src/lib/url/utils';
