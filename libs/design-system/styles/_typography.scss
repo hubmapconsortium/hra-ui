@@ -1,5 +1,6 @@
 $_brand: 'Metropolis';
 $_plain: 'Nunito Sans Variable';
+$_plain-mono: 'Roboto Mono';
 
 $typography: (
   brand-family: $_brand,
@@ -125,5 +126,27 @@ $overrides: (
     --mat-sys-label-micro-size: 0.625rem;
     --mat-sys-label-micro-tracking: 0rem;
     --mat-sys-label-micro-weight: 500;
+
+    // Code
+    --mat-sys-code-large-bold: 500 1rem / 1.5rem #{$_plain-mono};
+    --mat-sys-code-large-bold-font: #{$_plain-mono};
+    --mat-sys-code-large-bold-line-height: 1.5rem;
+    --mat-sys-code-large-bold-size: 1rem;
+    --mat-sys-code-large-bold-tracking: 0rem;
+    --mat-sys-code-large-bold-weight: 500;
+
+    --mat-sys-code-large: 400 1rem / 1.5rem #{$_plain-mono};
+    --mat-sys-code-large-font: #{$_plain-mono};
+    --mat-sys-code-large-line-height: 1.5rem;
+    --mat-sys-code-large-size: 1rem;
+    --mat-sys-code-large-tracking: 0rem;
+    --mat-sys-code-large-weight: 400;
+
+    --mat-sys-code-medium: 400 0.875rem / 1.3125rem #{$_plain-mono};
+    --mat-sys-code-medium-font: #{$_plain-mono};
+    --mat-sys-code-medium-line-height: 1.3125rem;
+    --mat-sys-code-medium-size: 0.875rem;
+    --mat-sys-code-medium-tracking: 0rem;
+    --mat-sys-code-medium-weight: 400;
   }
 }
