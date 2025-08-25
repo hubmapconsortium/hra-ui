@@ -21,6 +21,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CtaConfig, DEFAULT_MENUS, HeaderComponent, Menu } from '@hra-ui/design-system/navigation/header';
 import { isNavigating } from './utils/navigation';
 import { MatDividerModule } from '@angular/material/divider';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Padding when scrolling to an anchor in px */
 const ANCHOR_SCROLL_PADDING = 24;
@@ -28,7 +29,16 @@ const ANCHOR_SCROLL_PADDING = 24;
 /** Main application component */
 @Component({
   selector: 'hra-root',
-  imports: [ButtonsModule, CommonModule, RouterModule, IconsModule, NavigationModule, MatMenuModule, MatDividerModule],
+  imports: [
+    ButtonsModule,
+    CommonModule,
+    RouterModule,
+    IconsModule,
+    NavigationModule,
+    MatMenuModule,
+    MatDividerModule,
+    PlainTooltipDirective,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {

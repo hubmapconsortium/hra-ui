@@ -209,7 +209,7 @@ h3 {
     margin-bottom: 0;
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     
     &:not(:last-child) {
       margin-bottom: 0;
@@ -265,7 +265,7 @@ h3 {
     width: 50%;
     margin-bottom: 0.5rem;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     
     &:not(:last-child) {
       margin-bottom: 0.5rem;

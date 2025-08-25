@@ -72,6 +72,11 @@
     }
   }
 
+  // 920px and above - max width constraint
+  @media (min-width: 920px) {
+    max-width: 100rem; // 1600px
+  }
+  
   // 919px to 640px
   @media (min-width: 640px) and (max-width: 919px) {
     padding: 5rem 2.5rem;

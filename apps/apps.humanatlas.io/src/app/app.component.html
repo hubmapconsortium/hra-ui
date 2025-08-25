@@ -11,7 +11,14 @@
       <mat-icon>help</mat-icon>
     </a>
   } @else {
-    <a mat-icon-button [matMenuTriggerFor]="helpMenu" target="_blank" rel="noopener noreferrer">
+    <a
+      mat-icon-button
+      hraPlainTooltip="Help & documentation"
+      aria-label="Help & documentation"
+      [matMenuTriggerFor]="helpMenu"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <mat-icon>help</mat-icon>
     </a>
     <!-- Help & documentation Menu -->
