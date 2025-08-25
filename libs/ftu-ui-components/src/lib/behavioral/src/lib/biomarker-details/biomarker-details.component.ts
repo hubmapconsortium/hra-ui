@@ -172,11 +172,6 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   readonly isBiomarkerfullscreen = this.fullscreenService.isFullscreen;
 
   /**
-   * Determines whether source listfullscreen is in fullscreen mode
-   */
-  readonly isSourceListfullscreen = signal<boolean>(false);
-
-  /**
    * View child of source list component
    */
   @ViewChild('sourceList', { static: true }) sourceListRef!: TemplateRef<unknown>;
