@@ -26,19 +26,19 @@ export interface UrlConfiguration {
 }
 
 /** Injection token for the application wide base url for all asset links */
-export const ASSET_HREF = new InjectionToken<Signal<string>>('AssetHref', {
+const ASSET_HREF = new InjectionToken<Signal<string>>('AssetHref', {
   providedIn: 'root',
   factory: () => signal(getDefaultAssetsHref()),
 });
 
 /** Injection token for the application base href */
-export const APP_HREF = new InjectionToken<Signal<string>>('AppHref', {
+const APP_HREF = new InjectionToken<Signal<string>>('AppHref', {
   providedIn: 'root',
   factory: () => signal(''),
 });
 
 /** Injection token for the page base href */
-export const BASE_HREF = new InjectionToken<Signal<string>>('BaseHref', {
+const BASE_HREF = new InjectionToken<Signal<string>>('BaseHref', {
   providedIn: 'root',
   factory: () => signal(getDefaultBaseHref()),
 });
