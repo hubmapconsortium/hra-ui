@@ -70,25 +70,13 @@ export class DataViewerComponent {
   /** constructor to set the release version and organ from the model from effect*/
   constructor() {
     effect(() => {
-      const data = this.releaseVersionData();
-      const currentReleaseVersion = this.releaseVersion();
-      const releaseVersion = data.find((item) => item.version === currentReleaseVersion) ?? data[0];
-
-      if (this.releaseVersion() !== releaseVersion.version) {
-        this.releaseVersion.set(releaseVersion.version);
-      }
+      const releaseVersion = this.releaseVersion_();
+      this.releaseVersion.set(releaseVersion.version);
     });
 
     effect(() => {
-      const data = this.releaseVersionData();
-      const currentReleaseVersion = this.releaseVersion();
-      const releaseVersion = data.find((item) => item.version === currentReleaseVersion) ?? data[0];
-      const currentOrgan = this.organ() ?? releaseVersion.organData[0].label;
-      const organ = releaseVersion.organData.find((item) => item.label === currentOrgan);
-
-      if (this.organ() !== (organ?.label ?? '')) {
-        this.organ.set(organ?.label ?? '');
-      }
+      const organ = this.organ_();
+      this.organ.set(organ?.label ?? '');
     });
   }
 }
