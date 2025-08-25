@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AssetUrlPipe } from './assets-href/asset-url.pipe';
+import { AssetUrlPipe } from './url/url-pipes';
 
 /**
  * Provides common directives and pipes.
