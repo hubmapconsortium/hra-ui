@@ -34,18 +34,17 @@
 }
 
 .column-title {
-  @include utils.use-font(title, large);
+  @include utils.use-font(label, large);
+  color: vars.$on-surface;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
 
-  // Style for the results indicator within the column title
   hra-results-indicator {
     flex-shrink: 0;
     
-    // Override any default styling from the results indicator component
     ::ng-deep {
       .results-indicator {
         background-color: transparent;
@@ -56,7 +55,6 @@
         color: vars.$on-surface-variant;
         white-space: nowrap;
         
-        // Ensure proper layout for the indicator content
         .indicator-content {
           display: inline-flex;
           align-items: center;
@@ -74,7 +72,8 @@
 }
 
 h3 {
-  @include utils.use-font(title, medium);
+  @include utils.use-font(label, medium); 
+  color: vars.$on-surface-variant;
   margin: 0;
 }
 
@@ -84,6 +83,12 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  // Style for mat-form-field labels
+  ::ng-deep .mat-form-field-label {
+    @include utils.use-font(label, medium); 
+    color: vars.$on-surface-variant;
+  }
 }
 
 .x-axis-group,
@@ -120,9 +125,9 @@ h3 {
     }
     
     .mat-button-toggle-label-content {
+      @include utils.use-font(label, small);
+      color: vars.$on-surface;
       padding: 0.25rem;
-      font-size: 0.875rem;
-      line-height: 1.2;
     }
   }
 }
@@ -138,15 +143,9 @@ h3 {
   }
 }
 
-.annotation-group {
-  // Add proper spacing for the annotation tools section
-  margin-top: 0.5rem;
-}
-
 .annotation-checkbox-column {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .annotation-option {
@@ -163,15 +162,21 @@ h3 {
   &:not(:last-child) {
     margin-bottom: 0.5rem;
   }
+
+  ::ng-deep {
+    .mdc-label {
+        @include utils.use-font(label, medium);
+        color: vars.$on-surface-variant;
+      }
+  }
 }
 
-// 919px to 640px: 2-column layout with annotation tools full width below
+// 919px to 640px
 @media (max-width: 919px) and (min-width: 640px) {
   .graph-config-layout {
     flex-wrap: wrap;
   }
 
-  // First two columns take 50% width each and sit side by side
   .config-column:nth-child(1),
   .config-column:nth-child(2) {
     flex: 0 0 50%;
@@ -180,7 +185,7 @@ h3 {
     max-width: none;
   }
 
-  // Third column (annotation tools) takes full width and wraps to next row
+
   .config-column:nth-child(3) {
     flex: 0 0 100%;
     width: 100%;
@@ -188,12 +193,10 @@ h3 {
     border-top: 0.0625rem solid vars.$outline-variant;
   }
 
-  // Remove right border from second column since it's now the last in its row
   .config-column:nth-child(2) {
     border-right: none;
   }
 
-  // Make annotation tools horizontal for this breakpoint with equal spacing
   .annotation-checkbox-column {
     flex-direction: row;
     flex-wrap: wrap;
@@ -214,7 +217,7 @@ h3 {
   }
 }
 
-// 639px to 320px: Single column layout (mobile)
+// 639px to 320px
 @media (max-width: 639px) {
   .graph-config-layout {
     flex-direction: column;
@@ -230,7 +233,6 @@ h3 {
       border-bottom: 0.0625rem solid vars.$outline-variant;
     }
     
-    // Reset specific column widths for mobile
     &:first-child,
     &:nth-child(2) {
       width: 100%;
@@ -251,7 +253,6 @@ h3 {
     }
   }
 
-  // Make annotation tools 2 per row for mobile
   .annotation-checkbox-column {
     flex-direction: row;
     flex-wrap: wrap;
@@ -264,7 +265,7 @@ h3 {
     width: 50%;
     margin-bottom: 0.5rem;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     
     &:not(:last-child) {
       margin-bottom: 0.5rem;
@@ -272,7 +273,6 @@ h3 {
   }
 
   .column-title {
-    // Keep title and indicator on same line for mobile
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
