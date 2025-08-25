@@ -61,7 +61,7 @@
         class="organ-selector"
       >
         @for (organ of releaseVersion_().organData; track organ) {
-          <mat-option [value]="organ.label">{{ organ.label }}</mat-option>
+          <mat-option [value]="organ">{{ organ.label }}</mat-option>
         }
       </mat-select>
       @if (organ_() === undefined) {
