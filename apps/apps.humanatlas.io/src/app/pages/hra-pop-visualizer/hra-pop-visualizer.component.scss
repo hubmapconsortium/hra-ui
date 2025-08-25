@@ -12,21 +12,6 @@
     align-items: center;
     gap: 0.25rem;
   }
-  
-  .highlight-link {
-    color: vars.$on-tertiary-fixed; 
-    text-decoration: none;
-  
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &:visited {
-      color: vars.$on-tertiary-fixed !important;
-    }
-  }
-  
-
   .data-viewer-container {
     width: 100%;
   }
@@ -50,7 +35,7 @@
     background-color: vars.$surface-container-low;
     border-bottom: 0.0625rem solid vars.$outline-variant;
     gap: 1rem;
-    padding: 0 1rem; 
+    padding: 0 1rem;
 
     .label {
       flex-grow: 1;
@@ -76,22 +61,23 @@
   @media (min-width: 920px) {
     max-width: 100rem; // 1600px
   }
-  
+
   // 919px to 640px
   @media (min-width: 640px) and (max-width: 919px) {
     padding: 5rem 2.5rem;
   }
-  
+
   // 639px to 320px
   @media (min-width: 320px) and (max-width: 639px) {
     padding: 5rem 1rem;
-    
+
     .title-line {
       display: inline;
       line-height: 1.4;
       word-wrap: break-word;
-      
-      span, a {
+
+      span,
+      a {
         display: inline;
       }
     }

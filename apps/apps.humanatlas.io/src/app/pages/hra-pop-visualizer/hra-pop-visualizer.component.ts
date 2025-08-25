@@ -20,10 +20,19 @@ import {
   SortValue,
   getToolDisplayName,
 } from './utils/data-type-config';
+import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 @Component({
   selector: 'hra-pop-visualizer',
-  imports: [CommonModule, PageSectionComponent, IconsModule, MatIconModule, BarGraphComponent, ConfigSelectorComponent],
+  imports: [
+    CommonModule,
+    PageSectionComponent,
+    IconsModule,
+    MatIconModule,
+    BarGraphComponent,
+    ConfigSelectorComponent,
+    TextHyperlinkComponent,
+  ],
   templateUrl: './hra-pop-visualizer.component.html',
   styleUrl: './hra-pop-visualizer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -2,14 +2,11 @@
 <hra-page-section tagline="HRApop Visualizer">
   <div class="title-line">
     <span>Explore cell type populations of</span>
-    <a
-      href="https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="highlight-link"
-    >
-      HRApop v1.0 </a
-    >.
+    <hra-text-hyperlink
+      [text]="'HRApop v1.0'"
+      [url]="'https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest'"
+    ></hra-text-hyperlink>
+    .
   </div>
   <div class="hra-pop-visualizer">
     <!-- Data Viewer Container -->
