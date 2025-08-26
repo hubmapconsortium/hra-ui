@@ -14,9 +14,9 @@
   @include overrides.icon-button-overrides();
   @include overrides.form-field-overrides();
   @include overrides.menu-overrides();
+  @include overrides.radio-button-overrides();
   @include overrides.slider-overrides();
   @include overrides.select-overrides();
   @include overrides.slide-toggle-overrides();
   @include overrides.tabs-overrides();
-  @include overrides.radio-button-overrides();
 }
