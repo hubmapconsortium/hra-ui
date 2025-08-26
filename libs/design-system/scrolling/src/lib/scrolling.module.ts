@@ -1,5 +1,5 @@
 import { EnvironmentProviders, NgModule, makeEnvironmentProviders } from '@angular/core';
-import { getDefaultAssetsHref } from '@hra-ui/common';
+import { injectAssetHref } from '@hra-ui/common/url';
 import { provideStyleComponents } from '@hra-ui/cdk/styling';
 import {
   NgScrollbarModule,
@@ -26,7 +26,8 @@ const DEFAULT_POLYFILL_URL = 'assets/polyfills/scroll-timeline-polyfill.js';
  * @returns An environment provider
  */
 export function provideScrolling(options?: ScrollingOptions): EnvironmentProviders {
-  const polyfillUrl = getDefaultAssetsHref() + (options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
+  const assetHref = injectAssetHref();
+  const polyfillUrl = assetHref() + (options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
 
   return makeEnvironmentProviders([
     provideStyleComponents(ScrollbarStylesComponent),
