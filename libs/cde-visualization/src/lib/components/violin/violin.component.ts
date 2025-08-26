@@ -14,6 +14,7 @@ import {
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
+import { fromEvent } from 'rxjs';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
@@ -42,7 +43,7 @@ interface ModifiableViolinSpec {
   /** Encoding configuration for the violin */
   spec: {
     /** Width of the violin */
-    width: string | number;
+    width?: string | number;
     /** Height of the violin */
     height: string | number;
     layer: {
@@ -155,6 +156,8 @@ export class ViolinComponent {
   /** Vega view instance for the violin */
   private readonly view = signal<View | undefined>(undefined);
 
+  readonly fullScreenEnabled = signal<boolean>(false);
+
   /** Effect for updating view data */
   protected readonly viewDataRef = effect(() => {
     const view = this.view();
@@ -182,6 +185,7 @@ export class ViolinComponent {
           layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
         }
       }
+      draft.spec.width = el.clientWidth - 159;
     });
 
     const { finalize, view } = await embed(el, spec as VisualizationSpec, {
@@ -192,17 +196,22 @@ export class ViolinComponent {
     this.view.set(view);
   });
 
-  /** Resizes view after full screen toggle */
+  constructor() {
+    fromEvent(window, 'resize').subscribe(() => {
+      this.resizeAndSyncView();
+    });
+  }
+
+  /** Resizes view after full screen toggle or viewport resize */
   /* istanbul ignore next */
   resizeAndSyncView() {
-    const container = this.view()?.container();
     setTimeout(() => {
+      const container = this.view()?.container();
       const bbox = container?.getBoundingClientRect();
       if (bbox) {
-        this.view()?.width(bbox.width).height(bbox.height);
+        this.view()?.signal('child_width', bbox.width - 159);
       }
       this.view()?.resize().runAsync();
-      window.dispatchEvent(new Event('resize'));
     });
   }
 
