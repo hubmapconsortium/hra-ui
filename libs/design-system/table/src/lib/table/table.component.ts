@@ -7,7 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule, parseUrl } from '@hra-ui/common';
-import { injectUrlConfiguration } from '@hra-ui/common/url';
+import { injectAssetHref } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -220,8 +220,8 @@ export class TableComponent<T = TableRow> {
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
 
-  /** URL configuration for loading CSV with relative path */
-  private readonly urlConfig = injectUrlConfiguration();
+  /** Asset href for loading CSV with relative path */
+  private readonly assetHref = injectAssetHref();
 
   /** Snackbar service for download notification */
   readonly snackbar = inject(SnackbarService);
@@ -235,7 +235,7 @@ export class TableComponent<T = TableRow> {
       } else if (parseUrl(url)) {
         return url;
       }
-      return Location.joinWithSlash(this.urlConfig.assetHref || '', url);
+      return Location.joinWithSlash(this.assetHref(), url);
     },
     {
       defaultValue: [],
