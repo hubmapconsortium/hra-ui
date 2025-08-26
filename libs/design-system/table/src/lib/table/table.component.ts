@@ -6,7 +6,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { APP_ASSETS_HREF, HraCommonModule, parseUrl } from '@hra-ui/common';
+import { HraCommonModule, parseUrl } from '@hra-ui/common';
+import { injectUrlConfiguration } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -219,8 +220,8 @@ export class TableComponent<T = TableRow> {
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
 
-  /** Assets URL provider for loading CSV with relative path */
-  private readonly assetsHref = inject(APP_ASSETS_HREF);
+  /** URL configuration for loading CSV with relative path */
+  private readonly urlConfig = injectUrlConfiguration();
 
   /** Snackbar service for download notification */
   readonly snackbar = inject(SnackbarService);
@@ -234,7 +235,7 @@ export class TableComponent<T = TableRow> {
       } else if (parseUrl(url)) {
         return url;
       }
-      return Location.joinWithSlash(this.assetsHref(), url);
+      return Location.joinWithSlash(this.urlConfig.assetHref || '', url);
     },
     {
       defaultValue: [],
