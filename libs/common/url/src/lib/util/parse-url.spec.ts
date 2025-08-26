@@ -1,4 +1,4 @@
-import { parseUrl } from './utils';
+import { parseUrl } from '../utils';
 
 describe('URL Utils', () => {
   describe('parseUrl', () => {
