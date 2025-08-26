@@ -26,3 +26,7 @@ Portal:
 Embed:
   type: external
   url: https://github.com/hubmapconsortium/hra-ui#readme
+Illustration:
+  type: external
+  url: https://apps.humanatlas.io/kg-explorer/2d-ftu/large-intestine-crypt-lieberkuhn/latest
+  target: _blank
