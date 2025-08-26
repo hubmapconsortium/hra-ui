@@ -1336,6 +1336,39 @@ html .table-menu {
   --mat-menu-item-with-icon-trailing-spacing: 0.75rem;
 }
 html {
+  --mdc-radio-selected-icon-color: var(--mat-sys-on-tertiary-fixed);
+}
+html {
+  --mdc-radio-selected-pressed-icon-color: var(--mat-sys-on-tertiary-fixed);
+}
+html {
+  --mdc-radio-selected-focus-icon-color: var(--mat-sys-on-tertiary-fixed);
+}
+html {
+  --mdc-radio-selected-hover-icon-color: var(--mat-sys-on-tertiary-fixed);
+}
+html {
+  --mdc-radio-unselected-icon-color: var(--mat-sys-primary);
+}
+html {
+  --mdc-radio-unselected-pressed-icon-color: var(--mat-sys-primary);
+}
+html {
+  --mdc-radio-unselected-focus-icon-color: var(--mat-sys-primary);
+}
+html {
+  --mdc-radio-unselected-hover-icon-color: var(--mat-sys-primary);
+}
+html {
+  --mat-radio-ripple-color: var(--mat-sys-primary);
+}
+html {
+  --mat-radio-checked-ripple-color: var(--mat-sys-on-tertiary-fixed);
+}
+html {
+  --mat-radio-label-text-font: var(--mat-sys-label-medium-font);
+}
+html {
   --mdc-slider-inactive-track-color: var(--mat-sys-outline);
 }
 html {
