@@ -1,5 +1,6 @@
 @use '../../../../../../../design-system/styles/utils';
 @use '../../../../../../../design-system/styles/vars';
+@use '@angular/material' as mat;
 
 :host {
   display: block;
@@ -71,6 +72,12 @@
       border-radius: 0;
       border-left: none;
       border-right: none;
+
+      @include mat.table-overrides(
+        (
+          row-item-label-text-size: vars.$label-small-size,
+        )
+      );
 
       ::ng-deep td {
         max-width: 143.6704px;
