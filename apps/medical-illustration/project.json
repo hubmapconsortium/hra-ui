@@ -5,7 +5,6 @@
   "sourceRoot": "apps/medical-illustration/src",
   "prefix": "hra",
   "tags": ["type:app", "project:ftu", "webcomponent"],
-  "implicitDependencies": ["shared-theming"],
   "metadata": {
     "version": "0.5.0"
   },
@@ -15,7 +14,7 @@
       "options": {
         "assets": ["apps/medical-illustration/src/favicon.png", "apps/medical-illustration/src/assets"],
         "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+          "includePaths": ["node_modules/"]
         },
         "polyfills": ["zone.js"]
       },
