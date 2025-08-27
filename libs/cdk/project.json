@@ -12,7 +12,7 @@
     "build-storybook": {
       "options": {
         "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
+          "includePaths": ["node_modules/"]
         }
       }
     },
