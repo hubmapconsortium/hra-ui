@@ -31,9 +31,6 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "paths": {
-      "@components/*": [
-        "apps/human-atlas/src/app/components/*"
-      ],
       "@hra-ui/cde-visualization": [
         "libs/cde-visualization/src/index.ts"
       ],
@@ -78,9 +75,6 @@
       ],
       "@hra-ui/state": [
         "libs/state/src/index.ts"
-      ],
-      "@hra-ui/theming": [
-        "libs/shared/theming/src/index.ts"
       ],
       "@hra-ui/utils": [
         "libs/shared/utils/src/index.ts"
