@@ -73,16 +73,18 @@
       border-left: none;
       border-right: none;
 
+      @include mat.table-overrides(
+        (
+          row-item-label-text-size: vars.$label-small-size,
+        )
+      );
+
       ::ng-deep td {
         max-width: 143.6704px;
         max-height: 32px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-
-        span {
-          @include utils.use-font(label, small);
-        }
       }
 
       ::ng-deep th[data-column-type='text'] {
