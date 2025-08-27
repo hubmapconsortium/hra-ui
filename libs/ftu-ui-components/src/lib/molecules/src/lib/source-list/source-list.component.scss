@@ -1,5 +1,6 @@
 @use '../../../../../../../design-system/styles/utils';
 @use '../../../../../../../design-system/styles/vars';
+@use '@angular/material' as mat;
 
 :host {
   display: block;
@@ -78,6 +79,10 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        span {
+          @include utils.use-font(label, small);
+        }
       }
 
       ::ng-deep th[data-column-type='text'] {
