@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "bin": "./cli.js",
   "peerDependencies": {
-    "@angular/core": "^19.2.0",
+    "@angular/core": "20.2.1",
     "@hra-ui/webcomponents": "1.0.0",
     "papaparse": "^5.4.1",
     "rxjs": "^7.8.2",
@@ -12,13 +12,12 @@
     "@deck.gl/extensions": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
     "@vivjs/layers": "0.16.1",
-    "ngxtension": "^4.1.0",
+    "ngxtension": "^5.1.0",
     "@hra-ui/common": "1.0.0",
     "@nebula.gl/edit-modes": "^1.1.0-alpha.5",
     "@nebula.gl/layers": "^1.1.0-alpha.5",
-    "@turf/bbox": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "commander": "^13.1.0"
+    "@turf/bbox": "^7.2.0",
+    "commander": "^14.0.0"
   },
   "sideEffects": [
     "index.ts"

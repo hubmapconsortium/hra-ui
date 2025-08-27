@@ -2,11 +2,24 @@
   "name": "ccf-body-ui",
   "version": "4.0.0",
   "peerDependencies": {
-    "@angular/common": "^9.1.1",
-    "@angular/core": "^9.1.1",
-    "lodash": "^4.17.21"
+    "@angular/common": "20.2.1",
+    "@angular/core": "20.2.1",
+    "lodash": "^4.17.21",
+    "@deck.gl/core": "~8.8.20",
+    "@deck.gl/layers": "~8.8.20",
+    "@deck.gl/mesh-layers": "~8.8.20",
+    "@math.gl/core": "~3.6.3",
+    "@luma.gl/core": "~8.5.16",
+    "@hra-api/ng-client": "^0.16.0",
+    "rxjs": "^7.8.2",
+    "ngxtension": "^5.1.0",
+    "zod": "^4.1.3",
+    "jsonld": "^8.3.3",
+    "@loaders.gl/core": "~3.2.10",
+    "@loaders.gl/draco": "~3.2.10",
+    "@loaders.gl/gltf": "~3.2.10",
+    "papaparse": "^5.5.3",
+    "cannon-es": "^0.20.0"
   },
-  "dependencies": {
-    "tslib": "^2.0.0"
-  }
+  "dependencies": {}
 }

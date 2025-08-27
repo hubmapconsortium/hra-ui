@@ -2,22 +2,23 @@
   "name": "ccf-shared",
   "version": "4.0.0",
   "peerDependencies": {
-    "angular-ru/ngxs": "^14.1.4",
-    "@angular/common": "^10.0.6",
-    "@angular/core": "^10.0.6",
-    "@angular/material": "^10.1.1",
-    "@angular/youtube-player": "^11.2.2",
+    "@angular/common": "20.2.1",
+    "@angular/core": "20.2.1",
+    "@angular/material": "20.2.0",
+    "@angular/youtube-player": "20.2.0",
     "@math.gl/core": "^3.5.5",
-    "@ngxs/store": "^3.7.1",
-    "@ngxs-labs/data": "^4.1.1",
-    "css-element-queries": "^1.2.3",
-    "ngx-google-analytics": "^11.2.1",
-    "ngx-markdown": "^11.1.1",
-    "rxjs": "~6.6.6",
-    "shallow-render": "^10.0.1",
-    "ts-cacheable": "^1.0.6"
+    "@ngxs/store": "^20.1.0",
+    "ngx-google-analytics": "^14.0.1",
+    "ngx-markdown": "^20.0.0",
+    "rxjs": "^7.8.2",
+    "ts-cacheable": "^1.0.6",
+    "@angular-ru/ngxs": "^18.11.0",
+    "@hra-api/ng-client": "^0.16.0",
+    "ccf-body-ui": "4.0.0",
+    "@ngxs-labs/dispatch-decorator": "^5.0.0",
+    "@hra-ui/design-system": "1.0.0",
+    "@angular/forms": "20.2.1",
+    "@angular-ru/cdk": "^18.11.0"
   },
-  "dependencies": {
-    "tslib": "^2.0.0"
-  }
+  "dependencies": {}
 }
