@@ -5,7 +5,6 @@
   "prefix": "hra",
   "sourceRoot": "apps/ftu-ui-small-wc/src",
   "tags": ["type:app", "project:ftu"],
-  "implicitDependencies": ["shared-theming"],
   "metadata": {
     "version": "0.5.0"
   },
