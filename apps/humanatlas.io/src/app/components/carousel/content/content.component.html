@@ -7,13 +7,13 @@
   @if (getLinkType(item()) === 'url') {
     <a mat-button hraCtaButton class="action" [href]="getLink(item())" target="_blank">
       {{ item().action }}
-      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   } @else {
     <!-- <a mat-stroked-button class="get-button" [routerLink]="['', item().route]">{{ item().buttonText }}</a> -->
     <a mat-button hraCtaButton class="action" target="_blank">
       {{ item().action }}
-      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   }
 </div>
