@@ -30,7 +30,7 @@ interface EventData {
 }
 
 /**
- * An `analytics` plugin that filters events based on an `isEnabled` callback
+ * An `analytics` plugin that filters events based on an `isEventEnabled` callback
  *
  * @param options Plugin options
  * @returns An analytics plugin

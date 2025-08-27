@@ -40,8 +40,8 @@ export class AnalyticsService {
   /** User consent settings */
   private readonly consent = inject(ConsentService);
 
-  /** `analytics` instance. Direct use should generally be avoided. */
-  readonly instance = Analytics({
+  /** `analytics` instance */
+  private readonly instance = Analytics({
     app: this.appConfig.name,
     version: this.appConfig.version,
     debug: isDevMode(),
@@ -50,7 +50,9 @@ export class AnalyticsService {
       hraEventFilterPlugin({
         isEventEnabled: this.isEventEnabled.bind(this),
       }),
-      hraAnalyticsPlugin(),
+      hraAnalyticsPlugin({
+        sessionId: 'TODO', // TODO get/set from session storage
+      }),
       ...this.injectPlugins(),
     ],
   } as ExtendedAnalyticsOptions);
@@ -92,7 +94,7 @@ export class AnalyticsService {
   }
 
   /**
-   * Check whether an event will be logged when passed to `logEvent`
+   * Check whether an event is enabled and will be logged when passed to `logEvent`
    *
    * @param _type Event type
    * @param category Event category
