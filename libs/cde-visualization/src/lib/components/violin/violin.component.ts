@@ -185,7 +185,7 @@ export class ViolinComponent {
           layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
         }
       }
-      draft.spec.width = el.clientWidth - 159;
+      draft.spec.width = el.clientWidth - 161;
     });
 
     const { finalize, view } = await embed(el, spec as VisualizationSpec, {
@@ -209,7 +209,7 @@ export class ViolinComponent {
       const container = this.view()?.container();
       const bbox = container?.getBoundingClientRect();
       if (bbox) {
-        this.view()?.signal('child_width', bbox.width - 159);
+        this.view()?.signal('child_width', bbox.width - 161);
       }
       this.view()?.resize().runAsync();
     });

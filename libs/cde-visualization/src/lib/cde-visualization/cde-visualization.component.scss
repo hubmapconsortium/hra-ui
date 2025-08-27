@@ -6,9 +6,9 @@
   display: grid;
   position: relative;
   grid-template-columns: 22.75rem minmax(64.1875rem, calc(100vw - 22.75rem));
-  grid-template-rows: 4rem minmax(42.375rem, calc(100vh - 4rem));
+  grid-template-rows: 3.5rem minmax(42.375rem, calc(100vh - 3.5rem));
   grid-template-areas:
-    'header visualization'
+    'metadata visualization'
     'metadata visualization';
   color: vars.$secondary;
   background: vars.$surface-container-low;
@@ -23,22 +23,27 @@
     );
   }
 
-  .header {
-    grid-area: header;
-    border-color: vars.$outline-variant;
-    border-width: 0 0px 2px 0px;
-    border-style: solid;
-    height: 4rem;
+  // .header {
+  //   grid-area: header;
+  //   border-color: vars.$outline-variant;
+  //   border-width: 0 0px 2px 0px;
+  //   border-style: solid;
+  //   height: 4rem;
 
-    hra-nav-header-buttons {
-      margin: 0.75rem;
-    }
-  }
+  //   hra-nav-header-buttons {
+  //     margin: 0.75rem;
+  //   }
+  // }
 
   .metadata {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-area: metadata;
-    grid-template-rows: auto 1fr;
+
+    cde-metadata {
+      width: 100%;
+      height: fit-content;
+    }
   }
 
   .visualizations {
@@ -64,8 +69,9 @@
 
     cde-violin {
       height: 100%;
-      min-width: 24.25rem;
-      max-width: 31.5rem;
+      // min-width: 24.25rem;
+      // max-width: 31.5rem;
+      width: 31.5rem;
     }
   }
 }

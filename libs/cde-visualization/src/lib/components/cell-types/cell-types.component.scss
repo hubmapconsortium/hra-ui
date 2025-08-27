@@ -4,10 +4,10 @@
 
 :host {
   border-color: vars.$outline-variant;
-  padding: 0.75rem 1rem;
   border-width: 0 2px 0px 0px;
   border-style: solid;
   overflow: hidden;
+  flex-grow: 1;
 
   @include mat.checkbox-overrides(
     (
@@ -38,7 +38,7 @@
 
   @include mat.table-overrides(
     (
-      background-color: white,
+      background-color: vars.$surface-container-low,
       row-item-container-height: 1.75rem,
       row-item-outline-width: 0,
       header-headline-color: vars.$arrow-color,
@@ -57,18 +57,15 @@
       cdk-accordion {
         display: block;
         height: 100%;
-
-        cdk-accordion-item {
-          height: 100%;
-
-          .content {
-            height: calc(100% - 2.5rem);
-          }
-        }
       }
 
       .header {
-        margin-bottom: 0.25rem;
+        padding: 0.5rem 1rem 0.25rem 1rem;
+      }
+
+      .content {
+        padding: 0 0.75rem;
+        height: calc(100% - 3.5rem);
       }
 
       .expansion-body {
@@ -94,7 +91,7 @@
   .total-cell-links {
     font: vars.$label-small;
     letter-spacing: vars.$label-medium-tracking;
-    margin: 0.25rem 0;
+    margin: 0.25rem;
 
     span {
       display: block;

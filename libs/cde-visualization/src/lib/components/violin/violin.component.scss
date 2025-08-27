@@ -12,11 +12,11 @@
     height: 100%;
 
     .header {
-      padding: 1rem;
+      padding: 0.5rem 1rem;
     }
 
     .content {
-      height: calc(100% - 4.5rem);
+      height: calc(100% - 3.5rem);
     }
 
     .expansion-body {
@@ -30,7 +30,6 @@
 
   hra-fullscreen-portal-content {
     display: flex;
-    width: 31.5rem;
   }
 
   hra-fullscreen-portal {
@@ -41,13 +40,13 @@
 ::ng-deep hra-fullscreen-portal-content {
   .ng-scroll-content {
     width: 100% !important;
-    height: fit-content;
+    // height: fit-content;
   }
 }
 
 ::ng-deep .violin-container {
   width: 100%;
-  height: fit-content;
+  // height: fit-content;
 
   &.full-screen {
     width: 100%;

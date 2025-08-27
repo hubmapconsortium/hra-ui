@@ -6,10 +6,10 @@
   "config": {
     "font": "Metropolis",
     "padding": {
-      "top": 4,
+      "top": 0,
       "right": 16,
-      "bottom": 4,
-      "left": 4
+      "bottom": 16,
+      "left": 16
     },
     "axis": {
       "labelFontSize": 12,
