@@ -26,7 +26,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
-import { DataItem } from '@hra-ui/components/molecules';
+import { DataItem } from '@hra-ui/design-system/info-modal';
 
 /**
  * RGBTriblet of type RGB to store color
