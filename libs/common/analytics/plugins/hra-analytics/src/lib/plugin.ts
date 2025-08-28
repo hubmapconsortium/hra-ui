@@ -3,8 +3,8 @@ import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { AnalyticsInstance, type AnalyticsPlugin } from 'analytics';
 import { TelemetryService } from './telemetry/telemetry.service';
 
-/** Plugin options */
-export interface HraAnalyticsPluginOptions {
+/** Plugin configuration */
+export interface HraAnalyticsPluginConfig {
   /** Session identifier */
   sessionId: string;
 }
@@ -15,7 +15,7 @@ export interface HraAnalyticsPluginOptions {
  */
 interface EventData {
   /** Plugin configuration */
-  config: HraAnalyticsPluginOptions;
+  config: HraAnalyticsPluginConfig;
   /** Reference to the owning analytics instance */
   instance: AnalyticsInstance;
   /** Payload data */
@@ -30,28 +30,28 @@ interface EventData {
 /**
  * An `analytics` plugin that logs events to a hra endpoint
  *
- * @param options Plugin options
+ * @param config Plugin configuration
  * @returns An analytics plugin
  */
-export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions): AnalyticsPlugin {
+export function hraAnalyticsPlugin(config: HraAnalyticsPluginConfig): AnalyticsPlugin {
   assertInInjectionContext(hraAnalyticsPlugin);
   const telemetry = inject(TelemetryService);
 
   return {
     name: 'hra-analytics',
-    config: options,
-    page({ config, instance, payload }: EventData) {
+    config: config,
+    page({ config: config_, instance, payload }: EventData) {
       telemetry.send({
-        sessionId: config.sessionId,
+        sessionId: config_.sessionId,
         app: instance.getState('context.app'),
         version: instance.getState('context.version'),
         event: CoreEvents.PageView.type,
         e: payload.properties,
       });
     },
-    track({ config, payload: { event, properties } }: EventData) {
+    track({ config: config_, payload: { event, properties } }: EventData) {
       telemetry.send({
-        sessionId: config.sessionId,
+        sessionId: config_.sessionId,
         event,
         e: properties,
       });

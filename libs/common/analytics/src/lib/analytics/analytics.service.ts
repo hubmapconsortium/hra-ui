@@ -1,26 +1,34 @@
-import { assertInInjectionContext, inject, Injectable, InjectionToken, isDevMode } from '@angular/core';
-import { AnalyticsEvent, EventPayloadFor, CoreEvents, EventType, EventCategory } from '@hra-ui/common/analytics/events';
+import { assertInInjectionContext, inject, Injectable, isDevMode } from '@angular/core';
+import { AnalyticsEvent, CoreEvents, EventCategory, EventPayloadFor, EventType } from '@hra-ui/common/analytics/events';
 import { hraAnalyticsPlugin } from '@hra-ui/common/analytics/plugins/hra-analytics';
-import { injectAppConfiguration } from '@hra-ui/common/injectors';
-import { Analytics, AnalyticsPlugin } from 'analytics';
-import { injectFeaturePath } from '../feature/feature.directive';
 import { hraEventFilterPlugin } from '@hra-ui/common/analytics/plugins/hra-event-filter';
+import { injectAppConfiguration } from '@hra-ui/common/injectors';
+import { Analytics, AnalyticsPlugin, PageData } from 'analytics';
+import { createNoopInjectionToken } from 'ngxtension/create-injection-token';
 import { ConsentService } from '../consent/consent.service';
+import { injectFeaturePath } from '../feature/feature.directive';
 
 /** Extended `Analytics` options */
 type ExtendedAnalyticsOptions = Parameters<typeof Analytics>[0] & {
   storage?: null;
 };
 
-/** Plugins token */
-export const PLUGINS = new InjectionToken<(AnalyticsPlugin | (() => AnalyticsPlugin))[][]>('Plugins');
+/** User defined `analytics` plugins */
+const PLUGINS = createNoopInjectionToken<AnalyticsPlugin, true>('Analytics plugins', {
+  multi: true,
+});
+
+/** Inject all user defined `analytics` plugins */
+const injectPlugins = PLUGINS[0];
+/** Provide an user defined `analytics` plugin */
+export const providePlugin = PLUGINS[1];
 
 /**
  * Injects a functional equivalent of `AnalyticsService.logEvent`
  * for ease of use in components/directive/etc.
  * The function also automatically adds the feature path to the event props on each call.
  *
- * @returns A function that log events on calls
+ * @returns A function to log events
  */
 export function injectLogEvent(): <T extends AnalyticsEvent>(event: T, props: EventPayloadFor<T>) => void {
   assertInInjectionContext(injectLogEvent);
@@ -36,6 +44,9 @@ export function injectLogEvent(): <T extends AnalyticsEvent>(event: T, props: Ev
 export class AnalyticsService {
   /** Application configuration */
   private readonly appConfig = injectAppConfiguration();
+
+  /** Application specific `analytics` plugins */
+  private readonly plugins = injectPlugins({ optional: true }) ?? [];
 
   /** User consent settings */
   private readonly consent = inject(ConsentService);
@@ -53,9 +64,18 @@ export class AnalyticsService {
       hraAnalyticsPlugin({
         sessionId: 'TODO', // TODO get/set from session storage
       }),
-      ...this.injectPlugins(),
+      ...this.plugins,
     ],
   } as ExtendedAnalyticsOptions);
+
+  /**
+   * Logs a page view to analytics
+   *
+   * @param data Additional page data
+   */
+  logPageView(data?: PageData): void {
+    this.instance.page(data);
+  }
 
   /**
    * Logs an event to analytics
@@ -80,17 +100,6 @@ export class AnalyticsService {
         reason: reason,
       });
     });
-  }
-
-  /**
-   * Injects user provided plugins.
-   * Plugin factories are run in this service's injection context.
-   *
-   * @returns Array of `analytics` plugins
-   */
-  private injectPlugins(): AnalyticsPlugin[] {
-    const plugins = inject(PLUGINS, { optional: true }) ?? [];
-    return plugins.flat().map((plugin) => (typeof plugin === 'function' ? plugin() : plugin));
   }
 
   /**

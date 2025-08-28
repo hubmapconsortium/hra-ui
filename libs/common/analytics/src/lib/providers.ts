@@ -1,14 +1,46 @@
-import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
+import {
+  EnvironmentProviders,
+  ErrorHandler as ErrorHandlerToken,
+  isDevMode,
+  makeEnvironmentProviders,
+  provideAppInitializer,
+} from '@angular/core';
 import { createFeature, getFeatureProviders, ProviderFeature } from '@hra-ui/common/util/providers';
 import { AnalyticsPlugin } from 'analytics';
-import { PLUGINS } from './analytics/analytics.service';
+import {
+  AnalyticsErrorHandler,
+  AnalyticsErrorHandlerConfig,
+  provideAnalyticsErrorHandlerConfig,
+} from './analytics-features/error-handler';
+import { setupRouterEventListener } from './analytics-features/router-events';
+import { providePlugin } from './analytics/analytics.service';
 
 /** Features that can be passed to `provideAnalytics` */
 export type AnalyticsFeature = ProviderFeature<AnalyticsFeatureKind>;
 
 /** Different kinds of features */
 const enum AnalyticsFeatureKind {
+  ErrorHandler,
   Plugins,
+  RouterEvents,
+}
+
+/**
+ * Install a global `ErrorHandler` that logs errors to analytics
+ *
+ * @returns An analytics feature
+ */
+export function withErrorHandler(config: AnalyticsErrorHandlerConfig = {}): AnalyticsFeature {
+  return createFeature(AnalyticsFeatureKind.ErrorHandler, [
+    provideAnalyticsErrorHandlerConfig({
+      console: isDevMode(),
+      ...config,
+    }),
+    {
+      provide: ErrorHandlerToken,
+      useExisting: AnalyticsErrorHandler,
+    },
+  ]);
 }
 
 /**
@@ -18,13 +50,19 @@ const enum AnalyticsFeatureKind {
  * @returns An analytics feature
  */
 export function withPlugins(...plugins: (AnalyticsPlugin | (() => AnalyticsPlugin))[]): AnalyticsFeature {
-  return createFeature(AnalyticsFeatureKind.Plugins, [
-    {
-      provide: PLUGINS,
-      multi: true,
-      useValue: plugins,
-    },
-  ]);
+  return createFeature(
+    AnalyticsFeatureKind.Plugins,
+    plugins.map((plugin) => providePlugin(plugin)),
+  );
+}
+
+/**
+ * Log events from the angular router to analytics
+ *
+ * @returns An analytics feature
+ */
+export function withRouterEvents(): AnalyticsFeature {
+  return createFeature(AnalyticsFeatureKind.RouterEvents, [provideAppInitializer(setupRouterEventListener)]);
 }
 
 /**

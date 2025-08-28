@@ -1,4 +1,4 @@
-export { hraAnalyticsPlugin, HraAnalyticsPluginOptions } from './lib/plugin';
+export { hraAnalyticsPlugin, HraAnalyticsPluginConfig } from './lib/plugin';
 export { TelemetryService } from './lib/telemetry/telemetry.service';
 export {
   injectTelemetryEndpoint,
