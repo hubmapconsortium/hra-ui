@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 
 /**
  * Dialog for user to confirm metadata updates
