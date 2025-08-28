@@ -54,7 +54,7 @@ describe('ActiveFtuState', () => {
 
   describe('setIllustrationUrl(ctx)', () => {
     it('set the illustartion url and dispatch action', () => {
-      const mockurl = 'https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/2d-ftu/2d-ftu-test-iri.html';
+      const mockurl = 'https://apps.humanatlas.io/kg-explorer/2d-ftu/test-iri/latest';
       ctx.getState.mockReturnValue({ iri: testIri });
       state.setIllustrationUrl(ctx, new SetIllustrationUrl(testIri));
       expect(ctx.dispatch).toHaveBeenCalledWith(
