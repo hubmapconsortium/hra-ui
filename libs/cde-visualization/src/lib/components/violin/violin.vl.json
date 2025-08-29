@@ -22,7 +22,6 @@
       "labelLineHeight": 18,
       "titleColor": "#201E3D",
       "labelColor": "#4B4B5E",
-      "labelAngle": -45,
       "ticks": false,
       "labelPadding": 8
     },
@@ -99,6 +98,7 @@
             "type": "quantitative",
             "title": "Distance (µm)",
             "axis": {
+              "orient": "top",
               "minExtent": 25,
               "labelFlush": false,
               "grid": true,

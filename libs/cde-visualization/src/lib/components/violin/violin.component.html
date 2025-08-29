@@ -11,7 +11,7 @@
       <cde-violin-menu dialogOpen (download)="download($event)"></cde-violin-menu>
     </hra-fullscreen-actions>
     <hra-fullscreen-portal-content>
-      <ng-scrollbar class="violin">
+      <ng-scrollbar class="violin" hraScrollOverflowFade>
         <div class="violin-container" [class.full-screen]="fullScreenEnabled()" data-testid="violin" #violin></div>
       </ng-scrollbar>
     </hra-fullscreen-portal-content>

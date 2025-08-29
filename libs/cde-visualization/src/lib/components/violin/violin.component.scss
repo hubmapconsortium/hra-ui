@@ -40,13 +40,16 @@
 ::ng-deep hra-fullscreen-portal-content {
   .ng-scroll-content {
     width: 100% !important;
-    // height: fit-content;
   }
+}
+
+::ng-deep .ng-scroll-content {
+  height: 100%;
 }
 
 ::ng-deep .violin-container {
   width: 100%;
-  // height: fit-content;
+  height: 100%;
 
   &.full-screen {
     width: 100%;

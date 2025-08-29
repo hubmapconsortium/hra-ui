@@ -156,7 +156,11 @@ export class ViolinComponent {
   /** Vega view instance for the violin */
   private readonly view = signal<View | undefined>(undefined);
 
+  /** If full screen mode is enabled */
   readonly fullScreenEnabled = signal<boolean>(false);
+
+  /** Number of colors (cell types) in the visualization */
+  readonly colorCount = signal<number>(0);
 
   /** Effect for updating view data */
   protected readonly viewDataRef = effect(() => {
@@ -170,7 +174,8 @@ export class ViolinComponent {
   /** Effect for updating view colors */
   protected readonly viewColorsRef = effect(() => {
     this.view()?.signal('colors', this.colors()).run();
-    this.view()?.resize();
+    this.colorCount.set(this.view()?.getState().signals.colors.length);
+    this.resizeAndSyncView();
   });
 
   /** Effect for creating the Vega view */
@@ -185,7 +190,8 @@ export class ViolinComponent {
           layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
         }
       }
-      draft.spec.width = el.clientWidth - 161;
+      draft.spec.width = el.clientWidth - 170;
+      draft.spec.height = 35;
     });
 
     const { finalize, view } = await embed(el, spec as VisualizationSpec, {
@@ -209,7 +215,8 @@ export class ViolinComponent {
       const container = this.view()?.container();
       const bbox = container?.getBoundingClientRect();
       if (bbox) {
-        this.view()?.signal('child_width', bbox.width - 161);
+        this.view()?.signal('child_width', bbox.width - 170);
+        this.view()?.signal('child_height', Math.min((bbox.height - 60) / this.colorCount(), 35));
       }
       this.view()?.resize().runAsync();
     });

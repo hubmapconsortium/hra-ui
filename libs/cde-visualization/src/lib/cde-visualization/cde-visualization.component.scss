@@ -3,10 +3,11 @@
 
 :host {
   width: 100%;
+  height: 100%;
   display: grid;
   position: relative;
-  grid-template-columns: 22.75rem minmax(64.1875rem, calc(100vw - 22.75rem));
-  grid-template-rows: 3.5rem minmax(42.375rem, calc(100vh - 3.5rem));
+  grid-template-columns: 22.75rem minmax(64.1875rem, calc(100% - 22.75rem));
+  grid-template-rows: 3.5rem minmax(548px, calc(100% - 3.5rem));
   grid-template-areas:
     'metadata visualization'
     'metadata visualization';
