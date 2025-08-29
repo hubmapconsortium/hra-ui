@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { IconsModule } from '@hra-ui/design-system/icons';
 
@@ -13,12 +13,12 @@ import { IconsModule } from '@hra-ui/design-system/icons';
   styleUrl: './count-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CountCardComponent implements OnInit {
+export class CountCardComponent {
   /** Count */
   readonly count = input.required<number>();
 
   /** Show suffix for the count */
-  readonly showSuffix = input<boolean>();
+  readonly suffix = input<boolean>();
 
   /** Label text*/
   readonly label = input.required<string>();
@@ -27,21 +27,40 @@ export class CountCardComponent implements OnInit {
   readonly icon = input.required<string>();
 
   /** Number currently displayed in count */
-  readonly currentCount = signal(0);
+  protected readonly currentCount = signal(0);
 
   /**
-   * Initializes count up animation on init
+   * Constructor that initializes the count card component.
+   * Starts the count up animation.
    */
-  ngOnInit() {
+  constructor() {
+    effect((onCleanup) => {
+      const cleanup = this.startCountUp(this.count(), 100);
+      onCleanup(cleanup);
+    });
+  }
+
+  /**
+   *  Starts the count up animation.
+   *  @param target The target count to reach.
+   *  @param numSteps The number of steps in the animation.
+   */
+  private startCountUp(target: number, numSteps: number): () => void {
+    let animationFrameId: number | undefined;
+    const step = Math.ceil(target / numSteps);
     const updateCounter = () => {
-      const d = Math.ceil(this.count() / 100); //Counts faster if count is larger
-      if (this.currentCount() && this.currentCount() + d >= this.count()) {
-        this.currentCount.set(this.count());
-        return;
+      this.currentCount.update((count) => Math.min(count + step, target));
+      if (this.currentCount() < target) {
+        animationFrameId = requestAnimationFrame(updateCounter);
       }
-      this.currentCount.update((count) => count + d);
-      requestAnimationFrame(updateCounter);
     };
-    requestAnimationFrame(updateCounter);
+
+    this.currentCount.set(0);
+    animationFrameId = requestAnimationFrame(updateCounter);
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }
 }
