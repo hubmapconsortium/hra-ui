@@ -4,8 +4,8 @@
     <div class="error">
       {{ error }}
     </div>
-    @if (actionLink()) {
-      <a class="link" hraHyperlink [attr.href]="actionLink()">{{ actionLinkLabel() }}</a>
-    }
+  }
+  @if (actionLink()) {
+    <a class="link" hraHyperlink [attr.href]="actionLink()">{{ actionLinkLabel() }}</a>
   }
 </div>
