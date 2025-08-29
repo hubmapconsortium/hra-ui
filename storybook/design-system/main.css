@@ -493,15 +493,15 @@ markdown ul {
 }
 
 html {
-  --mat-sys-background: #f5fafb;
+  --mat-sys-background: #f8fafc;
   --mat-sys-error: #883700;
-  --mat-sys-error-container: #ffdcc4;
+  --mat-sys-error-container: #ffe8d8;
   --mat-sys-inverse-on-surface: #ecf2f3;
   --mat-sys-inverse-primary: #c7c5d3;
   --mat-sys-inverse-surface: #4b4b5e;
   --mat-sys-on-background: #201e3d;
   --mat-sys-on-error: #ffffff;
-  --mat-sys-on-error-container: #93000a;
+  --mat-sys-on-error-container: #2f1400;
   --mat-sys-on-primary: #ffffff;
   --mat-sys-on-primary-container: #464652;
   --mat-sys-on-primary-fixed: #464954;
@@ -528,8 +528,8 @@ html {
   --mat-sys-secondary-fixed: #fcfcfc;
   --mat-sys-secondary-fixed-dim: #c6c2ea;
   --mat-sys-shadow: #201e3d;
-  --mat-sys-surface: #f5fafb;
-  --mat-sys-surface-bright: #f5fafb;
+  --mat-sys-surface: #f8fafc;
+  --mat-sys-surface-bright: #f8fafc;
   --mat-sys-surface-container: #eff2f5;
   --mat-sys-surface-container-high: #e6eaf0;
   --mat-sys-surface-container-highest: #d5dbe3;
