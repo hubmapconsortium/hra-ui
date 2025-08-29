@@ -18,7 +18,7 @@ import {
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
 import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
