@@ -65,7 +65,7 @@
               "label": {
                 "type": "string"
               },
-              "showSuffix": {
+              "suffix": {
                 "type": "boolean"
               },
               "icon": {

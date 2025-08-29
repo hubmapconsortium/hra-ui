@@ -32,11 +32,11 @@ countInfo:
     icon: misc:contribute
   - count: 250
     label: experts
-    showSuffix: true
+    suffix: true
     icon: misc:experts
   - count: 1000
     label: publications
-    showSuffix: true
+    suffix: true
     icon: misc:publications
   - count: 73
     label: organs
