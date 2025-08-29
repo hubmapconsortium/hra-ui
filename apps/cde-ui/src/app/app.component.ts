@@ -11,6 +11,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { CommonModule } from '@angular/common';
 
 /** Max width to show screen size notice */
 export const SCREEN_SIZE_NOTICE_MAX_WIDTH = 1280;
@@ -30,6 +31,7 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
     PlainTooltipDirective,
     MatMenuModule,
     MatDividerModule,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
