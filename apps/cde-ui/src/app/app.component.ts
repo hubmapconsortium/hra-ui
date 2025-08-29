@@ -1,7 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { routeData } from '@hra-ui/common';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 
 import { ScreenSizeNoticeComponent } from './components/screen-size-notice/screen-size-notice.component';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 /** Max width to show screen size notice */
 export const SCREEN_SIZE_NOTICE_MAX_WIDTH = 1280;
@@ -13,7 +22,15 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
  */
 @Component({
   selector: 'cde-root',
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    MatIconModule,
+    NavigationModule,
+    ButtonsModule,
+    PlainTooltipDirective,
+    MatMenuModule,
+    MatDividerModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {
@@ -21,6 +38,9 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
   },
 })
 export class AppComponent {
+  private readonly data = routeData();
+
+  protected readonly crumbs = computed(() => this.data()['crumbs'] as BreadcrumbItem[] | undefined);
   /**
    * Screen size notice detector of app component
    */

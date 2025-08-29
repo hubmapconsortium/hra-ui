@@ -17,10 +17,8 @@ import {
 } from '@hra-ui/cde-visualization';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
 import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
-import { NavHeaderComponent } from '@hra-ui/design-system/nav-header';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { DeprecatedWorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
@@ -30,7 +28,6 @@ import { ParseError } from 'papaparse';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
-import SIDENAV_CONTENT from '../../shared/data/sidenav-content.json';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
 
@@ -65,13 +62,11 @@ function optionalValue<T>(): T | null {
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-    BreadcrumbsComponent,
     ButtonsModule,
     DeprecatedWorkflowCardComponent,
     FileUploadComponent,
     MarkEmptyFormControlDirective,
     NavigationModule,
-    NavHeaderComponent,
     OverlayModule,
     StepIndicatorComponent,
     TooltipCardComponent,
@@ -84,9 +79,6 @@ function optionalValue<T>(): T | null {
 export class CreateVisualizationPageComponent {
   /** Organ entries */
   readonly organs = input.required<OrganEntry[]>();
-
-  /** Data for sidenav cards */
-  readonly sideNavData = SIDENAV_CONTENT;
 
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');

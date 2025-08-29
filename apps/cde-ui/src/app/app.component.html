@@ -1,1 +1,30 @@
+<hra-header [breadcrumbs]="crumbs()">
+  <a mat-icon-button [matMenuTriggerFor]="exploreMenu" rel="noopener noreferrer" hraPlainTooltip="Explore sample data">
+    <mat-icon>explore</mat-icon>
+  </a>
+  <a mat-icon-button routerLink="/create" hraPlainTooltip="Upload data">
+    <mat-icon>upload</mat-icon>
+  </a>
+  <a
+    mat-icon-button
+    href="https://humanatlas.io/user-story/5"
+    rel="noopener noreferrer"
+    hraPlainTooltip="Help & Documentation"
+  >
+    <mat-icon>help</mat-icon>
+  </a>
+
+  <!-- Explore sample data Menu -->
+  <mat-menu #exploreMenu class="more-menu">
+    <a mat-menu-item href="/example/0" target="_blank">
+      <div class="title">2D intestine data</div>
+      <div class="description">CyCIF colorectal cancer data from Peter Sorger Lab</div>
+    </a>
+    <mat-divider />
+    <a mat-menu-item href="/example/1" target="_blank">
+      <div class="title">3D skin data</div>
+      <div class="description">Cell DIVE skin data from GE Healthcare</div>
+    </a>
+  </mat-menu>
+</hra-header>
 <router-outlet></router-outlet>

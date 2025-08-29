@@ -11,6 +11,7 @@ import {
 import { exampleDataResolver } from './shared/resolvers/example-data/example-data.resolver';
 import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolver';
 import { organsResolver } from './shared/resolvers/organs/organs.resolver';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 
 /** Landing page cards json file url */
 const LANDING_PAGE_CARDS_URL = getDefaultAssetsHref() + 'assets/data/landing-page/cards.json';
@@ -24,6 +25,13 @@ export const ROUTES: Routes = [
   {
     path: '',
     component: LandingPageComponent,
+    data: {
+      isLanding: true,
+      crumbs: [
+        { name: 'Apps', route: 'https://apps.humanatlas.io' },
+        { name: 'Cell Distance Explorer' },
+      ] satisfies BreadcrumbItem[],
+    },
     resolve: {
       cards: jsonFileResolver<VisualCard[]>(LANDING_PAGE_CARDS_URL, { cache: true }),
     },
@@ -31,6 +39,13 @@ export const ROUTES: Routes = [
   {
     path: 'create',
     component: CreateVisualizationPageComponent,
+    data: {
+      crumbs: [
+        { name: 'Apps', route: 'https://apps.humanatlas.io' },
+        { name: 'Cell Distance Explorer', route: '/' },
+        { name: 'Create Visualization' },
+      ] satisfies BreadcrumbItem[],
+    },
     resolve: {
       organs: organsResolver(),
     },
