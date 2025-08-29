@@ -202,6 +202,9 @@ export class ViolinComponent {
     this.view.set(view);
   });
 
+  /**
+   * Listens for window resize and updates the view.
+   */
   constructor() {
     fromEvent(window, 'resize').subscribe(() => {
       this.resizeAndSyncView();
@@ -216,7 +219,12 @@ export class ViolinComponent {
       const bbox = container?.getBoundingClientRect();
       if (bbox) {
         this.view()?.signal('child_width', bbox.width - 170);
-        this.view()?.signal('child_height', Math.min((bbox.height - 60) / this.colorCount(), 35));
+        this.view()?.signal(
+          'child_height',
+          this.fullScreenEnabled()
+            ? (bbox.height - 60) / this.colorCount()
+            : Math.min((bbox.height - 60) / this.colorCount(), 50),
+        );
       }
       this.view()?.resize().runAsync();
     });
