@@ -41,7 +41,7 @@ export class AnalyticsErrorHandler implements ErrorHandler {
 
     if (this.config.console) {
       // eslint-disable-next-line no-console
-      console.error('Uncaught error: ', error);
+      console.error('Uncaught error:', error);
     }
   }
 }

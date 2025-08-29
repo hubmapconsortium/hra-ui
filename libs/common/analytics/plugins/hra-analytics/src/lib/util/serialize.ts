@@ -16,7 +16,8 @@ export function serialize(value: unknown): unknown {
   }
 
   if (value instanceof Error) {
-    return pick(value, ['name', 'message', 'stack']);
+    const obj = pick(value, ['name', 'message', 'stack']);
+    return { ...obj, stack: obj.stack && limitStackTrace(obj.stack, 4000) };
   } else if (value instanceof Event) {
     if (value instanceof ErrorEvent) {
       return pick(value, ['message', 'filename', 'lineno', 'colno']);
@@ -70,4 +71,31 @@ function filterFalse<T>(obj: T): Partial<T> {
   }
 
   return result;
+}
+
+/**
+ * Truncates a stack trace to a maximum length
+ *
+ * @param stack Original stack
+ * @param maxLength Maximum stack length
+ * @returns A stack with a length no greater than `maxLength`
+ */
+function limitStackTrace(stack: string, maxLength: number): string {
+  if (stack.length <= maxLength) {
+    return stack;
+  }
+
+  const truncatedMsg = 'Stack truncated...';
+  const lines: string[] = [];
+  let total = truncatedMsg.length + 1;
+  for (const line of stack.split('\n')) {
+    const newTotal = total + line.length + 1;
+    if (newTotal < maxLength) {
+      lines.push(line);
+      total = newTotal;
+    }
+  }
+
+  lines.push(truncatedMsg);
+  return lines.join('\n');
 }

@@ -17,6 +17,11 @@ describe('serialize(value)', () => {
 
     const error2 = new TypeError(msg);
     expect(serialize(error2)).toEqual({ message: msg, name: error2.name, stack: expect.any(String) });
+
+    const stack = 'a line of a long stack trace\n'.repeat(1000);
+    const error3 = Object.defineProperty(new Error(msg), 'stack', { value: stack });
+    const result = serialize(error3) as { stack: string };
+    expect(result.stack.length).toBeLessThanOrEqual(4000);
   });
 
   it('should serialize events into plain objects or undefined', () => {

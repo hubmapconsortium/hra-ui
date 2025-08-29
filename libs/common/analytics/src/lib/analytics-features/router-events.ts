@@ -14,7 +14,7 @@ export function setupRouterEventListener(): void {
   router.events.subscribe((event) => {
     switch (event.type) {
       case EventType.NavigationEnd:
-        analytics.logPageView({ url: event.url });
+        analytics.logPageView();
         break;
 
       case EventType.NavigationError:
