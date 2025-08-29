@@ -3,10 +3,9 @@
   @for (error of errors(); track error) {
     <div class="error">
       {{ error }}
-
-      @if (actionLink()) {
-        <a class="link" hraHyperlink [attr.href]="actionLink()">{{ actionLinkLabel() }}</a>
-      }
     </div>
+    @if (actionLink()) {
+      <a class="link" hraHyperlink [attr.href]="actionLink()">{{ actionLinkLabel() }}</a>
+    }
   }
 </div>
