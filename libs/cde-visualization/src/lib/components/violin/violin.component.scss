@@ -46,11 +46,20 @@
 
   .ng-scroll-content {
     width: 100% !important;
+    height: 100%;
   }
-}
 
-::ng-deep .ng-scroll-content {
-  height: 100%;
+  &.many-entries {
+    .ng-scroll-content {
+      height: unset !important;
+    }
+
+    &.fullscreen {
+      .ng-scroll-content {
+        height: 100% !important;
+      }
+    }
+  }
 }
 
 ::ng-deep .violin-container {
