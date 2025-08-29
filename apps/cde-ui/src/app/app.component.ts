@@ -40,8 +40,12 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
   },
 })
 export class AppComponent {
+  /**
+   * Route data of app component
+   */
   private readonly data = routeData();
 
+  /** Breadcrumbs data (computed from above signal). */
   protected readonly crumbs = computed(() => this.data()['crumbs'] as BreadcrumbItem[] | undefined);
   /**
    * Screen size notice detector of app component

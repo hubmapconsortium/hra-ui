@@ -32,6 +32,9 @@ export class LandingPageComponent {
   /** Visual cards to display on the landing page */
   readonly cards = input<VisualCard[]>([]);
 
+  /**
+   * Route data of app component
+   */
   private readonly data = routeData();
 
   /**
