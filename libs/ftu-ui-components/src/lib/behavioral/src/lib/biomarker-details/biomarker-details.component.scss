@@ -36,6 +36,10 @@
       'table';
   }
 
+  ::ng-deep ftu-empty-biomarker .footer {
+    border-top: 0.0625rem solid vars.$outline-variant;
+  }
+
   &.no-data-full-screen-grid {
     grid-template-rows: 1fr;
     grid-template-areas: 'empty';
@@ -47,7 +51,6 @@
     ::ng-deep ftu-empty-biomarker .footer {
       display: flex;
       justify-content: end;
-      border-top: 0.0625rem solid vars.$outline-variant;
 
       .collaborate-button {
         width: auto !important;
