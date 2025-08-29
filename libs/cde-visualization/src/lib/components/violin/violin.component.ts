@@ -173,9 +173,11 @@ export class ViolinComponent {
 
   /** Effect for updating view colors */
   protected readonly viewColorsRef = effect(() => {
-    this.view()?.signal('colors', this.colors()).run();
-    this.colorCount.set(this.view()?.getState().signals.colors.length);
-    this.resizeAndSyncView();
+    if (this.view() && this.view()?.getState()) {
+      this.view()?.signal('colors', this.colors()).run();
+      this.colorCount.set(this.view()?.getState().signals.colors.length);
+      this.resizeAndSyncView();
+    }
   });
 
   /** Effect for creating the Vega view */
@@ -215,18 +217,20 @@ export class ViolinComponent {
   /* istanbul ignore next */
   resizeAndSyncView() {
     setTimeout(() => {
-      const container = this.view()?.container();
-      const bbox = container?.getBoundingClientRect();
-      if (bbox) {
-        this.view()?.signal('child_width', bbox.width - 170);
-        this.view()?.signal(
-          'child_height',
-          this.fullScreenEnabled()
-            ? (bbox.height - 60) / this.colorCount()
-            : Math.min((bbox.height - 60) / this.colorCount(), 50),
-        );
+      if (this.view()) {
+        const container = this.view()?.container();
+        const bbox = container?.getBoundingClientRect();
+        if (bbox) {
+          this.view()?.signal('child_width', bbox.width - 170);
+          this.view()?.signal(
+            'child_height',
+            this.fullScreenEnabled()
+              ? (bbox.height - 60) / this.colorCount()
+              : Math.min((bbox.height - 60) / this.colorCount(), 50),
+          );
+        }
+        this.view()?.resize().runAsync();
       }
-      this.view()?.resize().runAsync();
     });
   }
 
