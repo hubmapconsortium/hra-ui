@@ -193,7 +193,7 @@ export class ViolinComponent {
         }
       }
       draft.spec.width = el.clientWidth - 170;
-      draft.spec.height = 35;
+      draft.spec.height = 50;
     });
 
     const { finalize, view } = await embed(el, spec as VisualizationSpec, {
@@ -222,16 +222,23 @@ export class ViolinComponent {
         const bbox = container?.getBoundingClientRect();
         if (bbox) {
           this.view()?.signal('child_width', bbox.width - 170);
-          this.view()?.signal(
-            'child_height',
-            this.fullScreenEnabled()
-              ? (bbox.height - 60) / this.colorCount()
-              : Math.min((bbox.height - 60) / this.colorCount(), 50),
-          );
+          this.view()?.signal('child_height', this.calculateViolinHeight(bbox.height));
         }
         this.view()?.resize().runAsync();
       }
     });
+  }
+
+  /**
+   * Calculates violin plot height (in px) based on container height and number of entries
+   * @param boxH container height
+   * @returns Violin plot height
+   */
+  private calculateViolinHeight(boxH: number) {
+    if (this.colorCount() < 14 || this.fullScreenEnabled()) {
+      return Math.max((boxH - 60) / this.colorCount(), 20);
+    }
+    return 50;
   }
 
   /** Download the violin as an image in the specified format */
