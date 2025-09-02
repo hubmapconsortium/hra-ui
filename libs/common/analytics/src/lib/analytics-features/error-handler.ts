@@ -1,4 +1,4 @@
-import { ErrorHandler, inject, Injectable } from '@angular/core';
+import { ErrorHandler, inject, Injectable, isDevMode } from '@angular/core';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { createNoopInjectionToken } from 'ngxtension/create-injection-token';
 import { AnalyticsService } from '../analytics/analytics.service';
@@ -39,7 +39,7 @@ export class AnalyticsErrorHandler implements ErrorHandler {
       reason: error,
     });
 
-    if (this.config.console) {
+    if (this.config.console ?? isDevMode()) {
       // eslint-disable-next-line no-console
       console.error('Uncaught error:', error);
     }

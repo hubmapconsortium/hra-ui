@@ -17,8 +17,8 @@ describe('TelemetryService', () => {
     return value;
   }
 
-  const data = { value: 'abc', options: { range: new Range(10, 30) } };
-  const dataQueryString = 'value=abc&options.range=10..30';
+  const data = { value: 'abc', options: { range: new Range(10, 30) }, date: new Date(0) };
+  const dataQueryString = 'value=abc&options.range=10..30&date=1970-01-01T00%3A00%3A00.000Z';
 
   beforeEach(() => {
     TestBed.configureTestingModule({

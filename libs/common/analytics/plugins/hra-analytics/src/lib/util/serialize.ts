@@ -15,7 +15,9 @@ export function serialize(value: unknown): unknown {
     return value;
   }
 
-  if (value instanceof Error) {
+  if (value instanceof Date) {
+    return value.toISOString();
+  } else if (value instanceof Error) {
     const obj = pick(value, ['name', 'message', 'stack']);
     return { ...obj, stack: obj.stack && limitStackTrace(obj.stack, 4000) };
   } else if (value instanceof Event) {

@@ -1,5 +1,5 @@
 import { assertInInjectionContext, inject, Injectable, isDevMode } from '@angular/core';
-import { AnalyticsEvent, CoreEvents, EventCategory, EventPayloadFor, EventType } from '@hra-ui/common/analytics/events';
+import { AnalyticsEvent, EventCategory, EventPayloadFor, EventType } from '@hra-ui/common/analytics/events';
 import { hraAnalyticsPlugin } from '@hra-ui/common/analytics/plugins/hra-analytics';
 import { hraEventFilterPlugin } from '@hra-ui/common/analytics/plugins/hra-event-filter';
 import { injectAppConfiguration } from '@hra-ui/common/injectors';
@@ -85,21 +85,7 @@ export class AnalyticsService {
    */
   logEvent<T extends AnalyticsEvent>(event: T, props: EventPayloadFor<T>): void {
     const { type, category } = event;
-    const options = { eventObj: event, category };
-
-    this.instance.track(type, props, options).catch((reason) => {
-      if (type === CoreEvents.Error.type) {
-        // eslint-disable-next-line no-console -- Fall back to console if analytics failed to log
-        console.error('Failed to log error [reason, props]: ', reason, props);
-        return;
-      }
-
-      this.logEvent(CoreEvents.Error, {
-        message: `Failed to log event '${type}'`,
-        context: props,
-        reason: reason,
-      });
-    });
+    this.instance.track(type, props, { eventObj: event, category });
   }
 
   /**

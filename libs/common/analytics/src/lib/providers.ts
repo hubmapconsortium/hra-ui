@@ -1,7 +1,6 @@
 import {
   EnvironmentProviders,
   ErrorHandler as ErrorHandlerToken,
-  isDevMode,
   makeEnvironmentProviders,
   provideAppInitializer,
 } from '@angular/core';
@@ -32,10 +31,7 @@ const enum AnalyticsFeatureKind {
  */
 export function withErrorHandler(config: AnalyticsErrorHandlerConfig = {}): AnalyticsFeature {
   return createFeature(AnalyticsFeatureKind.ErrorHandler, [
-    provideAnalyticsErrorHandlerConfig({
-      console: isDevMode(),
-      ...config,
-    }),
+    provideAnalyticsErrorHandlerConfig(config),
     {
       provide: ErrorHandlerToken,
       useExisting: AnalyticsErrorHandler,

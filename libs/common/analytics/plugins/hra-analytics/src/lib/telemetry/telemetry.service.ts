@@ -41,7 +41,6 @@ export class TelemetryService {
       allowDots: true,
       arrayFormat: 'brackets',
       skipNulls: true,
-      serializeDate: (date) => date.toISOString(),
       filter: (prefix, value) => {
         for (const filter of this.filters) {
           const result = filter(prefix, value);

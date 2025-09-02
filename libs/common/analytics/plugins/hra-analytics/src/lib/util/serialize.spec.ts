@@ -10,6 +10,11 @@ describe('serialize(value)', () => {
     expect(serialize(null)).toEqual(null);
   });
 
+  it('should serialize dates into ISO strings', () => {
+    const date = new Date(0);
+    expect(serialize(date)).toEqual(date.toISOString());
+  });
+
   it('should serialize errors into plain objects', () => {
     const msg = 'my error message';
     const error = new Error(msg);
