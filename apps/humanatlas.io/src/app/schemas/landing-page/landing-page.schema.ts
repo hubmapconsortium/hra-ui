@@ -13,7 +13,7 @@ export const LandingPageDataSchema = z.object({
     .object({
       count: z.number(),
       label: z.string(),
-      suffix: z.boolean().optional(),
+      suffix: z.string().optional(),
       icon: z.string(),
     })
     .array(),

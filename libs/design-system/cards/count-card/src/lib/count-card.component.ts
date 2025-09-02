@@ -18,7 +18,7 @@ export class CountCardComponent {
   readonly count = input.required<number>();
 
   /** Show suffix for the count */
-  readonly suffix = input<boolean>();
+  readonly suffix = input<string>();
 
   /** Label text*/
   readonly label = input.required<string>();
