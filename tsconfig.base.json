@@ -5,7 +5,7 @@
     "rootDir": ".",
     "target": "ES2022",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "lib": [
       "ES2022",
       "DOM"
