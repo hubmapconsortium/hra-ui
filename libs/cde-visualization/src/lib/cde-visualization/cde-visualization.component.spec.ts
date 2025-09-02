@@ -1,6 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { NodeDistVisComponent } from '@hra-ui/node-dist-vis';
 import {
@@ -52,6 +53,7 @@ describe('CdeVisualizationComponent', () => {
       },
       providers: [
         provideDesignSystemCommon(),
+        provideNoopAnimations(),
         provideHttpClient(),
         provideHttpClientTesting(),
         ...(options?.providers ?? []),
