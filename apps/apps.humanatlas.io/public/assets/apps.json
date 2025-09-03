@@ -103,6 +103,14 @@
           "tagline": "Developer applications",
           "cards": [
             {
+              "tagline": "Knowledge Graph",
+              "description": "Query, filter, and download digital objects.",
+              "imagePath": "assets/ui-images/knowledge-graph-metadata.png",
+              "logoPath": "product:knowledge-graph",
+              "appUrl": "https://lod.humanatlas.io/",
+              "documentLink": "https://docs.humanatlas.io/dev/kg"
+            },
+            {
               "tagline": "Web Components",
               "description": "Explore, use, and share web components to improve Human Reference Atlas data access and analysis.",
               "imagePath": "assets/ui-images/web_components.png",
