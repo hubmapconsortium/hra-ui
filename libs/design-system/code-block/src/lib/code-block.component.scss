@@ -1,4 +1,5 @@
 @use '../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
   display: flex;
@@ -12,9 +13,8 @@
     flex: 1 1;
   }
   .code-block-pre {
+    @include utils.use-font(code, medium);
     margin: 0;
-    font: 400 0.875rem / 1.3125rem Roboto Mono;
-    letter-spacing: 0rem;
     text-align: left;
     display: flex;
     /* Disabled max-width for expanding the code-block in other places.

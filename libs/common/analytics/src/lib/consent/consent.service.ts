@@ -34,10 +34,10 @@ const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLE
 })
 export class ConsentService {
   /** Writable signal containing record of enabled/disable categories */
-  private readonly categoriesImpl = signal(INITIAL_CATEGORY_SETTINGS);
+  private readonly categories_ = signal(INITIAL_CATEGORY_SETTINGS); // TODO initialize from storage
 
   /** Record of enabled/disable categories */
-  readonly categories = this.categoriesImpl.asReadonly();
+  readonly categories = this.categories_.asReadonly();
 
   /**
    * Test whether a category is enabled or disabled
@@ -53,14 +53,14 @@ export class ConsentService {
    * Enables all event categories
    */
   enableAllCategories(): void {
-    this.categoriesImpl.set(ALL_CATEGORIES_ENABLED);
+    this.categories_.set(ALL_CATEGORIES_ENABLED);
   }
 
   /**
    * Disable all event categories except the ones that should always be enabled, i.e. `EventCategory.Necessary`
    */
   disableAllCategories(): void {
-    this.categoriesImpl.set(INITIAL_CATEGORY_SETTINGS);
+    this.categories_.set(INITIAL_CATEGORY_SETTINGS);
   }
 
   /**
@@ -69,7 +69,7 @@ export class ConsentService {
    * @param category Category to enable
    */
   enableCategory(category: EventCategory): void {
-    this.categoriesImpl.update((current) => ({ ...current, [category]: true }));
+    this.categories_.update((current) => ({ ...current, [category]: true }));
   }
 
   /**
@@ -78,6 +78,6 @@ export class ConsentService {
    * @param category Category to disable
    */
   disableCategory(category: EventCategory): void {
-    this.categoriesImpl.update((current) => ({ ...current, [category]: false, ...ALWAYS_ENABLED_CATEGORIES }));
+    this.categories_.update((current) => ({ ...current, [category]: false, ...ALWAYS_ENABLED_CATEGORIES }));
   }
 }

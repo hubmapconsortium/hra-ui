@@ -60,9 +60,9 @@ export class ActiveFtuState {
    */
   @Action(SetIllustrationUrl)
   setIllustrationUrl({ dispatch }: Context, { iri }: SetIllustrationUrl): Observable<void> | void {
-    const BASE_URL = 'https://hubmapconsortium.github.io/ccf-releases/v1.4/docs/2d-ftu/';
+    const BASE_URL = 'https://apps.humanatlas.io/kg-explorer/2d-ftu/';
     const [name] = iri.split('/').slice(-1);
-    const url = `${BASE_URL}2d-ftu-${name}.html`;
+    const url = `${BASE_URL}${name}/latest`;
     return dispatch(new LinkRegistryActions.Add(Illustration, { type: LinkType.External, url }));
   }
 

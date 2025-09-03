@@ -5,7 +5,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@ang
 import { MatIconModule } from '@angular/material/icon';
 import { JsonFileLoaderService } from '@hra-ui/common/fs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';

@@ -1,1 +1,1 @@
-export { hraEventFilterPlugin, HraEventFilterPluginOptions } from './lib/plugin';
+export { hraEventFilterPlugin, HraEventFilterPluginConfig } from './lib/plugin';
