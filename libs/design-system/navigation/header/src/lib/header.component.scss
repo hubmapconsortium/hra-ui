@@ -9,7 +9,7 @@
   width: 100%;
   z-index: 200;
   background-color: utils.with-alpha(vars.$surface-bright, 80%);
-  backdrop-filter: blur(5rem);
+  backdrop-filter: blur(10rem);
   box-shadow: 0rem 0.25rem 0.25rem 0rem utils.with-alpha(vars.$secondary, 20%);
 
   .header {
