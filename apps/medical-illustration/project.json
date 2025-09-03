@@ -13,9 +13,6 @@
       "executor": "@nx/angular:application",
       "options": {
         "assets": ["apps/medical-illustration/src/favicon.png", "apps/medical-illustration/src/assets"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/"]
-        },
         "polyfills": ["zone.js"]
       },
       "configurations": {
