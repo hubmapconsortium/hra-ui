@@ -1,7 +1,6 @@
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
 import { ActiveFtuSelectors, TissueLibrarySelectors } from '@hra-ui/state';
@@ -38,12 +37,10 @@ describe('BiomarkerDetailsWcComponent', () => {
     selectSnapshotSpy.calledWith(TissueLibrarySelectors.tissues).mockReturnValue(() => TISSUES);
     selectQuerySnapshotSpy.calledWith(ResourceRegistrySelectors.anyText).mockReturnValue(() => '');
 
-    shallow = new Shallow(BiomarkerDetailsWcComponent)
-      .dontMock(MatTableModule, HoverDirective, MatDialogModule)
-      .provideMock({
-        provide: MatDialog,
-        useValue: dialog,
-      });
+    shallow = new Shallow(BiomarkerDetailsWcComponent).dontMock(MatTableModule, MatDialogModule).provideMock({
+      provide: MatDialog,
+      useValue: dialog,
+    });
   });
 
   it('should create', async () => {

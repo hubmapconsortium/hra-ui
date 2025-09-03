@@ -15,10 +15,9 @@
         "tsConfig": "libs/design-system/tsconfig.lib.json"
       }
     },
-
     "storybook": {
+      "executor": "@storybook/angular:start-storybook",
       "options": {
-        "experimentalZoneless": true,
         "assets": [
           {
             "input": "libs/design-system/assets",
@@ -29,10 +28,9 @@
         "styles": ["libs/design-system/.storybook/styles/preview.scss"]
       }
     },
-
     "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
       "options": {
-        "experimentalZoneless": true,
         "assets": [
           {
             "input": "libs/design-system/assets",

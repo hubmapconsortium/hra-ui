@@ -152,6 +152,8 @@
     },
     "storybook": {
       "options": {
+        "configDir": "{projectRoot}/.storybook",
+        "browserTarget": "{projectName}:build-storybook",
         "port": 4400,
         "compodoc": true,
         "compodocArgs": ["-e", "json", "-d", "{projectRoot}/.storybook/compodoc", "--silent"]
@@ -159,6 +161,8 @@
     },
     "build-storybook": {
       "options": {
+        "configDir": "{projectRoot}/.storybook",
+        "browserTarget": "{projectName}:build-storybook",
         "outputDir": "dist/storybook/{projectName}",
         "compodoc": true,
         "compodocArgs": ["-e", "json", "-d", "{projectRoot}/.storybook/compodoc", "--silent"]
