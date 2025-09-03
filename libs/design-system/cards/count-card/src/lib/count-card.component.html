@@ -2,7 +2,9 @@
 <div class="count-card-content">
   <div class="count">
     {{ currentCount() | number }}
-    <span *ngIf="suffix()">{{ suffix() }}</span>
+    @if (suffix()) {
+      <span>{{ suffix() }}</span>
+    }
   </div>
   <p class="label-text">{{ label() }}</p>
 </div>
