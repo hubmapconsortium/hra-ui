@@ -1,11 +1,10 @@
-<hra-header baseUrl="https://humanatlas.io/" [cta]="cta" [(ctaDismissed)]="ctaDismissed">
-  <div class="main" [class.navigation-visible]="siteNavigationEnabled()" [class.cta-active]="!ctaDismissed()">
-    @if (siteNavigationEnabled()) {
-      <hra-site-navigation baseUrl="https://humanatlas.io/" />
-    }
-    <div class="content">
-      <router-outlet />
-    </div>
+<hra-header baseUrl="https://humanatlas.io/" [cta]="cta" [(ctaDismissed)]="ctaDismissed" />
+<div class="main" [class.navigation-visible]="siteNavigationEnabled()" [class.cta-active]="!ctaDismissed()">
+  @if (siteNavigationEnabled()) {
+    <hra-site-navigation baseUrl="https://humanatlas.io/" />
+  }
+  <div class="content">
+    <router-outlet />
   </div>
-  <hra-footer />
-</hra-header>
+</div>
+<hra-footer />
