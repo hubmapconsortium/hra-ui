@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
 
+/** YouTube Player wrapper component for Content Pages */
 @Component({
   selector: 'hra-youtube-player',
   imports: [CommonModule, YouTubePlayer],
