@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
@@ -42,4 +43,10 @@
     position: absolute;
     --mdc-linear-progress-active-indicator-color: #{vars.$tertiary};
   }
+
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
 }
