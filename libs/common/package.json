@@ -7,9 +7,10 @@
     "papaparse": "^5.4.1",
     "rxjs": "^7.8.2",
     "analytics": "^0.8.19",
-    "@analytics/session-storage-utils": "^0.0.9",
     "@angular/router": "20.2.1",
-    "@angular/cdk": "20.2.0"
+    "@angular/cdk": "20.2.0",
+    "qs": "^6.14.0",
+    "ngxtension": "^5.1.0"
   },
   "sideEffects": false
 }

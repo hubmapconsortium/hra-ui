@@ -1,9 +1,0 @@
-[16:34:19.404] [DEBUG] Extracting storybook data...
-[16:34:19.405] [DEBUG] Getting Storybook info...
-[16:34:19.407] [DEBUG] Loading main config...
-[16:34:19.431] [ERROR] Error: Unable to find or evaluate null: SB_CORE-SERVER_0006 (MainFileMissingError): No configuration files have been found in your configDir: .storybook.
-Storybook needs a "main.js" file, please add it.
-
-You can pass a --config-dir flag to tell Storybook, where your main.js file is located at.
-
-More info: https://storybook.js.org/docs/configure?ref=error
