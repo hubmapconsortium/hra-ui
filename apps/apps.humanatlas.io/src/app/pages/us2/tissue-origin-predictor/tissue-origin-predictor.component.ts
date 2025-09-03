@@ -10,7 +10,7 @@ import { APP_ASSETS_HREF } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import {

@@ -369,7 +369,7 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   get defaultPosition(): XYZTriplet {
     const dims = this.snapshot.organDimensions;
     const block = this.snapshot.blockSize;
-    return { x: dims.x + 2 * block.x, y: dims.y / 2, z: dims.z / 2 };
+    return { x: +dims.x + 2 * block.x, y: dims.y / 2, z: dims.z / 2 };
   }
 
   /**

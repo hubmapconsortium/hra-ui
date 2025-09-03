@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
@@ -7,7 +8,7 @@
   top: 0;
   width: 100%;
   z-index: 200;
-  background-color: utils.with-alpha(vars.$surface-dim, 80%);
+  background-color: utils.with-alpha(vars.$surface-bright, 80%);
   backdrop-filter: blur(10rem);
   box-shadow: 0rem 0.25rem 0.25rem 0rem utils.with-alpha(vars.$secondary, 20%);
 
@@ -42,4 +43,10 @@
     position: absolute;
     --mat-progress-bar-active-indicator-color: #{vars.$tertiary};
   }
+
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
 }
