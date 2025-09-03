@@ -1,80 +1,73 @@
 <!-- hra-pop-visualizer.component.html -->
 <hra-page-section tagline="HRApop Visualizer">
   <div class="title-line">
-    <span>Explore cell type populations of</span>
+    <span>Explore cell type populations of </span>
     <hra-text-hyperlink
       [text]="'HRApop v1.0'"
       [url]="'https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest'"
     ></hra-text-hyperlink>
     .
   </div>
-  <div class="hra-pop-visualizer">
-    <!-- Data Viewer Container -->
-    <div class="data-viewer-container">
-      <!-- Graphs Section -->
-      <div class="header-section">
-        <!-- Configurations Container with integrated header -->
-        <div class="configurations-container">
-          <div class="header">
-            <div class="icon">
-              <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>
-              <span class="label">HRApop Visualizer</span>
-            </div>
+
+  <!-- Configurations Container with integrated header -->
+  <div class="configurations-container">
+    <div class="header">
+      <div class="icon">
+        <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>
+        <span class="label">HRApop Visualizer</span>
+      </div>
+    </div>
+
+    <!-- Config selector within the same border -->
+    <hra-config-selector
+      [dataTypeOptions]="dataTypeOptions"
+      [(selectedDataType)]="selectedDataType"
+      [organOptions]="organOptions()"
+      [(selectedOrgan)]="selectedOrgan"
+      [(selectedTools)]="selectedTools"
+      [(selectedSexes)]="selectedSexes"
+      [xAxisOptions]="xAxisOptions()"
+      [(selectedXAxis)]="selectedXAxis"
+      [yAxisOptions]="yAxisOptions"
+      [(selectedYAxis)]="selectedYAxis"
+      [sortOptions]="sortOptions"
+      [(selectedSort)]="selectedSort"
+      [availableTools]="availableTools()"
+      [loading]="loading()"
+    >
+    </hra-config-selector>
+
+    <!-- Charts Content Section -->
+    <div class="charts-content">
+      <!-- Loading State -->
+      @if (loading(); as isLoading) {
+        <div class="loading-state">
+          <p>Loading {{ dataTypeConfigs[selectedDataType()].label }}</p>
+        </div>
+      } @else {
+        <!-- Error State -->
+        @if (error(); as err) {
+          <div class="error-state">
+            <mat-icon>error</mat-icon>
+            <p>{{ err }}</p>
           </div>
-
-          <!-- Config selector within the same border -->
-          <hra-config-selector
-            [dataTypeOptions]="dataTypeOptions"
-            [(selectedDataType)]="selectedDataType"
-            [organOptions]="organOptions()"
-            [(selectedOrgan)]="selectedOrgan"
-            [(selectedTools)]="selectedTools"
-            [(selectedSexes)]="selectedSexes"
-            [xAxisOptions]="xAxisOptions()"
-            [(selectedXAxis)]="selectedXAxis"
-            [yAxisOptions]="yAxisOptions"
-            [(selectedYAxis)]="selectedYAxis"
-            [sortOptions]="sortOptions"
-            [(selectedSort)]="selectedSort"
-            [availableTools]="availableTools()"
-            [loading]="loading()"
-          >
-          </hra-config-selector>
-
-          <!-- Charts Content Section -->
-          <div class="charts-content">
-            <!-- Loading State -->
-            @if (loading(); as isLoading) {
-              <div class="loading-state">
-                <p>Loading {{ dataTypeConfigs[selectedDataType()].label }}</p>
+        } @else {
+          <!-- Charts - Single Row/Column Facet Chart -->
+          <div class="graphs">
+            @if (vegaSpecs().length === 0) {
+              <div class="no-data">
+                <p>No data available for the selected filters.</p>
               </div>
             } @else {
-              <!-- Error State -->
-              @if (error(); as err) {
-                <div class="error-state">
-                  <mat-icon>error</mat-icon>
-                  <p>{{ err }}</p>
-                </div>
-              } @else {
-                <!-- Charts - Single Row/Column Facet Chart -->
-                <div class="graphs">
-                  @if (vegaSpecs().length === 0) {
-                    <div class="no-data">
-                      <p>No data available for the selected filters.</p>
-                    </div>
-                  } @else {
-                    <div class="charts-grid">
-                      @for (spec of vegaSpecs(); track spec) {
-                        <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
-                      }
-                    </div>
-                  }
-                </div>
-              }
+              <div class="charts-grid">
+                @for (spec of vegaSpecs(); track spec) {
+                  <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
+                }
+              </div>
             }
           </div>
-        </div>
-      </div>
+        }
+      }
     </div>
   </div>
 </hra-page-section>

@@ -1,12 +1,11 @@
-@use 'utils' as utils;
-@use 'vars' as vars;
-@use '@angular/material' as mat;
-
-.bar-graph-container {
-  width: 100%;
-  min-height: 25rem;
-}
-.vega-container {
-  width: 100%;
-  height: 100%;
+:host {
+  .bar-graph-container {
+    width: 100%;
+    min-height: 25rem;
+  }
+  
+  .vega-container {
+    width: 100%;
+    height: 100%;
+  }
 }

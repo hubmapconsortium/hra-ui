@@ -7,20 +7,25 @@
   [(ctaDismissed)]="ctaDismissed"
 >
   @if (!isHraPopVisualizerPage()) {
-    <a mat-icon-button [href]="getHelpUrl()" target="_blank" rel="noopener noreferrer">
-      <mat-icon>help</mat-icon>
-    </a>
-  } @else {
     <a
       mat-icon-button
+      [href]="getHelpUrl()"
+      target="_blank"
       hraPlainTooltip="Help & documentation"
       aria-label="Help & documentation"
-      [matMenuTriggerFor]="helpMenu"
-      target="_blank"
       rel="noopener noreferrer"
     >
       <mat-icon>help</mat-icon>
     </a>
+  } @else {
+    <button
+      mat-icon-button
+      hraPlainTooltip="Help & documentation"
+      aria-label="Help & documentation"
+      [matMenuTriggerFor]="helpMenu"
+    >
+      <mat-icon>help</mat-icon>
+    </button>
     <!-- Help & documentation Menu -->
     <mat-menu #helpMenu class="more-menu">
       <a mat-menu-item href="https://youtu.be/Ueei7BOctzY?si=WGE7HydMaFW1ABqv" target="_blank">

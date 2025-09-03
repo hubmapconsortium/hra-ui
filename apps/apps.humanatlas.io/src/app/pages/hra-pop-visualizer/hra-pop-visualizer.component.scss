@@ -12,13 +12,6 @@
     align-items: center;
     gap: 0.25rem;
   }
-  .data-viewer-container {
-    width: 100%;
-  }
-
-  .header-section {
-    padding: 1rem;
-  }
 
   .configurations-container {
     border: 0.0625rem solid vars.$outline-variant;
@@ -57,9 +50,9 @@
     }
   }
 
-  // 920px and above - max width constraint
+  // 920px and above
   @media (min-width: 920px) {
-    max-width: 100rem; // 1600px
+    max-width: 100rem; 
   }
 
   // 919px to 640px
