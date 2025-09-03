@@ -2,8 +2,8 @@
 <div class="count-card-content">
   <div class="count">
     {{ currentCount() | number }}
-    @if (showSuffix()) {
-      <span>+</span>
+    @if (suffix()) {
+      <span>{{ suffix() }}</span>
     }
   </div>
   <p class="label-text">{{ label() }}</p>
