@@ -17,7 +17,7 @@
 
 <div class="count-cards">
   @for (card of data().countInfo; track card) {
-    <hra-count-card [count]="card.count" [label]="card.label" [showSuffix]="card.showSuffix" [icon]="card.icon" />
+    <hra-count-card [count]="card.count" [label]="card.label" [suffix]="card.suffix" [icon]="card.icon" />
   }
 </div>
 
