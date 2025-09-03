@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -25,6 +25,7 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
   selector: 'cde-root',
   imports: [
     RouterOutlet,
+    RouterModule,
     MatIconModule,
     NavigationModule,
     ButtonsModule,
