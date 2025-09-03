@@ -1,5 +1,5 @@
-@if (crumbs(); as crumbs) {
-  <hra-header [breadcrumbs]="crumbs">
+@if (header() !== false) {
+  <hra-header [breadcrumbs]="crumbs()">
     <a
       mat-icon-button
       [matMenuTriggerFor]="exploreMenu"

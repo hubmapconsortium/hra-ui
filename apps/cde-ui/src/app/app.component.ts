@@ -47,6 +47,10 @@ export class AppComponent {
 
   /** Breadcrumbs data (computed from above signal). */
   protected readonly crumbs = computed(() => this.data()['crumbs'] as BreadcrumbItem[] | undefined);
+
+  /** Header visibility (whether to show header or not) */
+  protected readonly header = computed(() => this.data()['header'] as boolean | undefined);
+
   /**
    * Screen size notice detector of app component
    */

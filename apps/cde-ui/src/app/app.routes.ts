@@ -53,6 +53,9 @@ export const ROUTES: Routes = [
   {
     path: 'example/:index',
     component: VisualizationPageComponent,
+    data: {
+      header: false,
+    },
     resolve: {
       data: exampleDataResolver(EXAMPLE_DATA_INDEX_URL),
     },
@@ -63,6 +66,7 @@ export const ROUTES: Routes = [
     canActivate: [visualizationDataCanActivate()],
     data: {
       isCustomVisualization: true,
+      header: false,
     },
     resolve: {
       data: visualizationDataResolver(),
