@@ -11,7 +11,8 @@
       "DOM"
     ],
     "typeRoots": [
-      "node_modules/@types"
+      "./node_modules/@types",
+      "./node_modules/@testing-library"
     ],
     "allowSyntheticDefaultImports": true,
     "declaration": false,
@@ -97,6 +98,9 @@
       ],
       "ccf-shared/*": [
         "libs/ccf-shared/*/src/public-api.ts"
+      ],
+      "vega-embed": [
+        "node_modules/vega-embed/build/embed.d.ts"
       ]
     }
   },

@@ -1,12 +1,17 @@
-const nxPreset = require('@nx/jest/preset').default;
+const { default: nxPreset } = require('@nx/jest/preset');
+const { createCjsPreset } = require('jest-preset-angular/presets');
 
 module.exports = {
   ...nxPreset,
-  testEnvironment: 'jest-preset-angular/environments/jest-jsdom-env',
+  ...createCjsPreset({
+    testEnvironment: 'jest-preset-angular/environments/jest-jsdom-env',
+    tsconfig: 'tsconfig.spec.json',
+  }),
+
   moduleNameMapper: {
     '.*import-meta': 'libs/common/import-meta/src/import-meta.mock.ts',
   },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|vega-embed)'],
+
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/', 'index.ts', '.*-routing.module.ts'],
   coverageThreshold: {

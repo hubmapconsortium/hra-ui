@@ -38,8 +38,8 @@ describe('BiomarkerDetailsComponent', () => {
     },
   ];
 
-  const selectSnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
-  const selectQuerySnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
+  const selectSnapshotSpy = calledWithFn<Any>({ fallbackMockImplementation: () => () => [] });
+  const selectQuerySnapshotSpy = calledWithFn<Any>({ fallbackMockImplementation: () => () => [] });
   const iriSpy = jest.fn((): string | undefined => 'test');
   const dataService = mock<FtuDataService>();
   let shallow: Shallow<BiomarkerDetailsComponent>;

@@ -5,10 +5,8 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": [],
-    "moduleResolution": "bundler",
-    "typeRoots": ["../../node_modules/@types", "src/typings"]
+    "types": []
   },
   "exclude": ["**/*.spec.ts", "test-setup.ts", "jest.config.ts", "**/*.test.ts"],
-  "include": ["**/*.ts", "typings/**/*.d.ts"]
+  "include": ["**/*.ts"]
 }

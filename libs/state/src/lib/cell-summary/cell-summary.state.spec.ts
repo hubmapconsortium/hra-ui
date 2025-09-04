@@ -42,7 +42,7 @@ describe('CellSummaryState', () => {
   let ctx: MockProxy<StateContext<CellSummaryModel>>;
   let dataService: MockProxy<FtuDataService>;
 
-  const selectSnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
+  const selectSnapshotSpy = calledWithFn<Any>({ fallbackMockImplementation: () => () => [] });
   const iriSpy = jest.fn((): string | undefined => 'test');
 
   beforeEach(() => {
