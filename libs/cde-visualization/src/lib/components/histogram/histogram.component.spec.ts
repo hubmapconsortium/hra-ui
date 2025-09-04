@@ -7,7 +7,7 @@ import { Rgb } from '@hra-ui/design-system/color-picker';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { mockClear, mockDeep } from 'jest-mock-extended';
-import { default as embed, Result } from 'vega-embed';
+import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
 

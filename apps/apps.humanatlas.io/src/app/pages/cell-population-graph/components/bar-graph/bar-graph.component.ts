@@ -1,17 +1,17 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   effect,
   ElementRef,
-  input,
-  viewChild,
-  resource,
   inject,
+  input,
   Renderer2,
+  resource,
+  viewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import embed, { VisualizationSpec } from 'vega-embed';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import embed, { VisualizationSpec } from 'vega-embed';
 
 /**
  * Component for rendering a bar graph using Vega-Lite.

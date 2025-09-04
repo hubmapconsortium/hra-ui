@@ -15,7 +15,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { View } from 'vega';
-
+import embed from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
@@ -174,9 +174,6 @@ export class ViolinComponent {
     const container: HTMLElement = this.violinEl().rootNodes()[0];
     const el = container.querySelector('.violin-container') as HTMLElement;
     await this.ensureFontsLoaded();
-
-    const { default: embed } = await import('vega-embed');
-
     const spec = produce(VIOLIN_SPEC, (draft) => {
       for (const layer of draft.spec.layer) {
         if (layer.encoding.color.legend === null) {
@@ -211,8 +208,6 @@ export class ViolinComponent {
   /** Download the violin as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise<void> {
-    const { default: embed } = await import('vega-embed');
-
     const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec, (draft) => {
       draft.spec.width = EXPORT_IMAGE_WIDTH;
       for (const layer of draft.spec.layer) {

@@ -16,7 +16,7 @@ import {
 import { render, RenderComponentOptions } from '@testing-library/angular';
 import { mock, mockDeep } from 'jest-mock-extended';
 import { EMPTY } from 'rxjs';
-import { default as embed, Result } from 'vega-embed';
+import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 

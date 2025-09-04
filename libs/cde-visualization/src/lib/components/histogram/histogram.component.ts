@@ -36,7 +36,7 @@ import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { ColorPickerDirective } from 'ngx-color-picker';
 import { View } from 'vega';
-import { default as embed, VisualizationSpec } from 'vega-embed';
+import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
