@@ -6,7 +6,9 @@
     "declarationMap": true,
     "inlineSources": true,
     "types": [],
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
   "exclude": ["src/**/*.spec.ts", "src/test-setup.ts", "jest.config.ts", "src/**/*.test.ts"],
   "include": ["src/**/*.ts"]

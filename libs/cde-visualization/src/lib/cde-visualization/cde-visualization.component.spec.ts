@@ -20,7 +20,8 @@ import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 
-jest.mock('vega-embed', () => jest.fn());
+// Use the manual mock
+jest.mock('vega-embed');
 jest.mock('@hra-ui/node-dist-vis', () => ({}));
 jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({
   createEdgeGenerator: () => () => EMPTY,
