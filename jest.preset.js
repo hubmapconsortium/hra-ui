@@ -6,6 +6,7 @@ module.exports = {
   moduleNameMapper: {
     '.*import-meta': 'libs/common/import-meta/src/import-meta.mock.ts',
   },
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|vega-embed)'],
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/', 'index.ts', '.*-routing.module.ts'],
   coverageThreshold: {
