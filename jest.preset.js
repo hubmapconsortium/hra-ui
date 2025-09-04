@@ -5,9 +5,8 @@ module.exports = {
   testEnvironment: 'jest-preset-angular/environments/jest-jsdom-env',
   moduleNameMapper: {
     '.*import-meta': 'libs/common/import-meta/src/import-meta.mock.ts',
-    '^vega-embed$': '<rootDir>/node_modules/vega-embed/build/embed.js',
   },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|vega-embed|vega|vega-lite)'],
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|vega-embed)'],
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/', 'index.ts', '.*-routing.module.ts'],
   coverageThreshold: {
