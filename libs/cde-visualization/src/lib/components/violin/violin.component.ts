@@ -15,7 +15,6 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { View } from 'vega';
-import embed, { VisualizationSpec } from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
@@ -176,6 +175,8 @@ export class ViolinComponent {
     const el = container.querySelector('.violin-container') as HTMLElement;
     await this.ensureFontsLoaded();
 
+    const { default: embed } = await import('vega-embed');
+
     const spec = produce(VIOLIN_SPEC, (draft) => {
       for (const layer of draft.spec.layer) {
         if (layer.encoding.color.legend === null) {
@@ -184,7 +185,8 @@ export class ViolinComponent {
       }
     });
 
-    const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { finalize, view } = await embed(el, spec as any, {
       actions: false,
     });
 
@@ -209,6 +211,8 @@ export class ViolinComponent {
   /** Download the violin as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise<void> {
+    const { default: embed } = await import('vega-embed');
+
     const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec, (draft) => {
       draft.spec.width = EXPORT_IMAGE_WIDTH;
       for (const layer of draft.spec.layer) {
@@ -226,7 +230,8 @@ export class ViolinComponent {
     });
 
     const el = this.renderer.createElement('div');
-    const { view, finalize } = await embed(el, spec as VisualizationSpec, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { view, finalize } = await embed(el, spec as any, {
       actions: false,
     });
 

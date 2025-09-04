@@ -36,7 +36,6 @@ import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { ColorPickerDirective } from 'ngx-color-picker';
 import { View } from 'vega';
-import embed, { VisualizationSpec } from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
@@ -233,10 +232,13 @@ export class HistogramComponent {
     const el = this.histogramEl().rootNodes()[0];
     await this.ensureFontsLoaded();
 
+    const { default: embed } = await import('vega-embed');
+
     const spec = produce(HISTOGRAM_SPEC, (draft) => {
       draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
     });
-    const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { finalize, view } = await embed(el, spec as any, {
       actions: false,
     });
 
@@ -258,6 +260,8 @@ export class HistogramComponent {
   /** Download the histogram as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise<void> {
+    const { default: embed } = await import('vega-embed');
+
     const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) => {
       draft.width = EXPORT_IMAGE_WIDTH;
       draft.height = EXPORT_IMAGE_HEIGHT;
@@ -271,7 +275,8 @@ export class HistogramComponent {
     });
 
     const el = this.renderer.createElement('div');
-    const { view, finalize } = await embed(el, spec as VisualizationSpec, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { view, finalize } = await embed(el, spec as any, {
       actions: false,
     });
 
