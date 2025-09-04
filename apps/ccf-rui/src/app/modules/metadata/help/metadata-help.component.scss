@@ -4,7 +4,7 @@
 ::ng-deep .metadata-help {
   @include mat.divider-overrides(
     (
-      color: vars.$outline,
+      color: vars.$outline-variant,
     )
   );
 

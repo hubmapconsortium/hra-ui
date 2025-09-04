@@ -12,12 +12,12 @@
 
     &:link,
     &:link mat-icon {
-      color: vars.$on-tertiary-fixed;
+      color: vars.$tertiary;
     }
 
     &:visited,
     &:visited mat-icon {
-      color: vars.$on-tertiary-fixed;
+      color: vars.$tertiary;
     }
 
     &:focus-visible,
@@ -39,12 +39,12 @@
 
     &:hover,
     &:hover mat-icon {
-      color: vars.$on-tertiary-fixed;
+      color: vars.$tertiary;
     }
 
     &:active,
     &:active mat-icon {
-      color: vars.$on-tertiary-fixed-variant;
+      color: vars.$tertiary;
     }
   }
 
