@@ -4,7 +4,7 @@ import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, InjectionToken, Renderer2 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { APP_ASSETS_HREF } from '@hra-ui/common';
+import { injectAssetHref } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
@@ -42,7 +42,7 @@ export const SAMPLE_JSON_FILE = new InjectionToken('Sample file', {
  * @returns A HttpResourceRef that resolves to a File or undefined
  */
 function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
-  const assetsHref = inject(APP_ASSETS_HREF);
+  const assetsHref = injectAssetHref();
   const fileUrl = inject(SAMPLE_JSON_FILE_URL);
   const url = Location.joinWithSlash(assetsHref(), fileUrl);
   return httpResource.text(url, {
