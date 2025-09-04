@@ -2,8 +2,8 @@
   "name": "@hra-ui/state",
   "version": "1.0.0",
   "peerDependencies": {
-    "@angular/common": "20.2.1",
-    "@angular/core": "20.2.1",
+    "@angular/common": "^20.2.1",
+    "@angular/core": "^20.2.1",
     "@hra-ui/cdk": "1.0.0",
     "@hra-ui/services": "1.0.0",
     "@ngxs/store": "^20.1.0",

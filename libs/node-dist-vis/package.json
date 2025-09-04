@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "bin": "./cli.js",
   "peerDependencies": {
-    "@angular/core": "20.2.1",
+    "@angular/core": "^20.2.1",
     "@hra-ui/webcomponents": "1.0.0",
     "papaparse": "^5.4.1",
     "rxjs": "^7.8.2",

@@ -2,10 +2,10 @@
   "name": "ccf-shared",
   "version": "4.0.0",
   "peerDependencies": {
-    "@angular/common": "20.2.1",
-    "@angular/core": "20.2.1",
-    "@angular/material": "20.2.0",
-    "@angular/youtube-player": "20.2.0",
+    "@angular/common": "^20.2.1",
+    "@angular/core": "^20.2.1",
+    "@angular/material": "^20.2.0",
+    "@angular/youtube-player": "^20.2.0",
     "@math.gl/core": "^3.5.5",
     "@ngxs/store": "^20.1.0",
     "ngx-google-analytics": "^14.0.1",
@@ -17,7 +17,7 @@
     "ccf-body-ui": "4.0.0",
     "@ngxs-labs/dispatch-decorator": "^5.0.0",
     "@hra-ui/design-system": "1.0.0",
-    "@angular/forms": "20.2.1",
+    "@angular/forms": "^20.2.1",
     "@angular-ru/cdk": "^18.11.0"
   },
   "dependencies": {}

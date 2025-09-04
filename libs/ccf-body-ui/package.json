@@ -2,8 +2,8 @@
   "name": "ccf-body-ui",
   "version": "4.0.0",
   "peerDependencies": {
-    "@angular/common": "20.2.1",
-    "@angular/core": "20.2.1",
+    "@angular/common": "^20.2.1",
+    "@angular/core": "^20.2.1",
     "lodash": "^4.17.21",
     "@deck.gl/core": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
