@@ -1,4 +1,4 @@
-import { EnvironmentProviders, inject, InjectionToken, makeEnvironmentProviders } from '@angular/core';
+import { createInjectionToken } from 'ngxtension/create-injection-token';
 
 /** Application configuration */
 export interface AppConfiguration {
@@ -10,32 +10,10 @@ export interface AppConfiguration {
   url?: string;
 }
 
-/** Application configuration token */
-const APP_CONFIGURATION = new InjectionToken<AppConfiguration>('AppConfiguration', {
-  providedIn: 'root',
-  factory: () => ({}),
-});
+/** Application configuration */
+const APP_CONFIGURATION = createInjectionToken((): AppConfiguration => ({}));
 
-/**
- * Inject the global application configuration
- *
- * @returns The application configuration
- */
-export function injectAppConfiguration(): AppConfiguration {
-  return inject(APP_CONFIGURATION);
-}
-
-/**
- * Set the application configuration
- *
- * @param config New configuration
- * @returns An environment provider
- */
-export function provideAppConfiguration(config: AppConfiguration): EnvironmentProviders {
-  return makeEnvironmentProviders([
-    {
-      provide: APP_CONFIGURATION,
-      useValue: config,
-    },
-  ]);
-}
+/** Inject the global application configuration */
+export const injectAppConfiguration = APP_CONFIGURATION[0];
+/** Set the application configuration */
+export const provideAppConfiguration = APP_CONFIGURATION[1];
