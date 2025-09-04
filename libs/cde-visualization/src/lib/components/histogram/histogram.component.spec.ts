@@ -11,8 +11,7 @@ import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
 
-// Use the manual mock
-jest.mock('vega-embed');
+jest.mock('vega-embed', () => jest.fn());
 
 describe('HistogramComponent', () => {
   const sampleData = [
