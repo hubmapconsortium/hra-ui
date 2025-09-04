@@ -97,9 +97,6 @@
       ],
       "ccf-shared/*": [
         "libs/ccf-shared/*/src/public-api.ts"
-      ],
-      "vega-embed": [
-        "node_modules/vega-embed/build/embed.d.ts"
       ]
     }
   },
