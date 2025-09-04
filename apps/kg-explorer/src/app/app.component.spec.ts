@@ -10,65 +10,11 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
 import * as mockDoData from './testing/mock-data.json';
 import * as mockMetadata from './testing/mock-metadata.json';
+import { DO_COLUMNS } from './app.routes';
 
 jest.mock('@google/model-viewer', () => ({}));
 
 describe('AppComponent', () => {
-  const columns = [
-    {
-      column: 'download',
-      label: '',
-      type: {
-        type: 'menu',
-        icon: 'download',
-        options: 'downloadOptions',
-        tooltip: 'View file formats and download files',
-      },
-    },
-    {
-      column: 'title',
-      label: 'Digital objects',
-      type: {
-        type: 'link',
-        urlColumn: 'objectUrl',
-        internal: true,
-      },
-    },
-    {
-      column: 'typeIcon',
-      label: 'Type',
-      type: {
-        type: 'icon',
-        icon: 'typeIcon',
-        tooltip: 'typeTooltip',
-      },
-    },
-    {
-      column: 'organIcon',
-      label: 'Organ',
-      type: {
-        type: 'icon',
-        icon: 'organIcon',
-        tooltip: 'organTooltip',
-      },
-    },
-    {
-      column: 'cellCount',
-      label: '#Cell types',
-      type: 'numeric',
-    },
-    {
-      column: 'biomarkerCount',
-      label: '#Biomarker types',
-      type: 'numeric',
-    },
-    {
-      column: 'lastPublished',
-      label: 'Date last published',
-      type: 'text',
-    },
-  ];
-
   const metadataColumns = [
     {
       column: 'provenance',
@@ -94,7 +40,7 @@ describe('AppComponent', () => {
               component: MainPageComponent,
               data: {
                 reuse: true,
-                columns,
+                columns: DO_COLUMNS,
               },
               resolve: {
                 data: mockKgResolver,
