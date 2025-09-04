@@ -11,11 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { BodyUiModule, InfoButtonModule, TrackingPopupModule } from 'ccf-shared';
 
+import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
+import { BodyUiComponent } from 'ccf-body-ui';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -23,7 +26,6 @@ import { FiltersContentComponent } from './modules/filters/filters-content/filte
 import { OntologySelectionComponent } from './modules/ontology-exploration/ontology-selection/ontology-selection.component';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 import { OrganSelectComponent } from './shared/components/organ-select/organ-select.component';
-import { BodyUiComponent } from 'ccf-body-ui';
 
 @NgModule({
   imports: [
@@ -52,6 +54,14 @@ import { BodyUiComponent } from 'ccf-body-ui';
     BodyUiComponent,
   ],
   declarations: [AppComponent, AppWebComponent],
-  providers: [provideDesignSystem()],
+  providers: [
+    provideAppConfiguration({
+      name: 'ccf-eui',
+      version: '4.1.0',
+      url: 'https://apps.humanatlas.io/eui/',
+    }),
+    provideAnalytics(withErrorHandler()),
+    provideDesignSystem(),
+  ],
 })
 export class AppModule {}

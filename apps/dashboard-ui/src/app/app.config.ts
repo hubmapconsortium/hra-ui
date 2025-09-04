@@ -15,10 +15,18 @@ import {
 } from '@hra-ui/dashboard';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { appRoutes } from './app.routes';
+import { provideAnalytics, withRouterEvents, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 
 /** Application config */
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAppConfiguration({
+      name: 'dashboard-ui',
+      version: '1.0.0',
+      url: 'https://apps.humanatlas.io/dashboard/',
+    }),
+    provideAnalytics(withRouterEvents(), withErrorHandler()),
     provideNothrowPlatformLocation(),
     provideRouter(
       appRoutes,

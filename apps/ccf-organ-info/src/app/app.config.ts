@@ -1,6 +1,8 @@
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { HraApiConfiguration, HraApiModule } from '@hra-api/ng-client';
+import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
@@ -16,6 +18,11 @@ export const ROOT_STATES = [GlobalConfigState];
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAppConfiguration({
+      name: 'ccf-organ-info',
+      version: '5.0.0',
+    }),
+    provideAnalytics(withErrorHandler()),
     { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
     provideDesignSystem(),
     importProvidersFrom(

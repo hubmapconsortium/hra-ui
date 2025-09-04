@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AnalyticsModule } from '@hra-ui/common/analytics';
 import { AssetUrlPipe } from './assets-href/asset-url.pipe';
 
 /**
@@ -8,6 +9,6 @@ import { AssetUrlPipe } from './assets-href/asset-url.pipe';
  */
 @NgModule({
   imports: [AssetUrlPipe],
-  exports: [CommonModule, AssetUrlPipe],
+  exports: [CommonModule, AnalyticsModule, AssetUrlPipe],
 })
 export class HraCommonModule {}

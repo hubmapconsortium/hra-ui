@@ -12,7 +12,7 @@ describe('AnalyticsService', () => {
       providers: [
         {
           provide: ConsentService,
-          useValue: { isCategoryEnabled: jest.fn().mockReturnValue(true) },
+          useValue: { isEventEnabled: jest.fn().mockReturnValue(true) },
         },
         {
           provide: TelemetryService,
