@@ -1,20 +1,11 @@
-import { assertInInjectionContext, inject, Injector } from '@angular/core';
+import { assertInInjectionContext, inject } from '@angular/core';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { AnalyticsInstance, type AnalyticsPlugin } from 'analytics';
-import { EventWriterService } from './event-writer.service';
-import { getSessionId } from './util/session-id';
-
-/** Plugin options */
-export interface HraAnalyticsPluginOptions {
-  /** Session identifier */
-  sessionId?: string;
-  /** Injector if not running inside an injection context */
-  injector?: Injector;
-}
+import { TelemetryService } from './telemetry/telemetry.service';
 
 /** Plugin configuration */
-interface PluginConfig {
-  /** Resolved session id */
+export interface HraAnalyticsPluginConfig {
+  /** Session identifier */
   sessionId: string;
 }
 
@@ -24,7 +15,7 @@ interface PluginConfig {
  */
 interface EventData {
   /** Plugin configuration */
-  config: PluginConfig;
+  config: HraAnalyticsPluginConfig;
   /** Reference to the owning analytics instance */
   instance: AnalyticsInstance;
   /** Payload data */
@@ -39,32 +30,31 @@ interface EventData {
 /**
  * An `analytics` plugin that logs events to a hra endpoint
  *
- * @param options Plugin options
+ * @param config Plugin configuration
  * @returns An analytics plugin
  */
-export function hraAnalyticsPlugin(options: HraAnalyticsPluginOptions = {}): AnalyticsPlugin {
-  if (!options.injector) {
-    assertInInjectionContext(hraAnalyticsPlugin);
-  }
-
-  const { sessionId = getSessionId(), injector = inject(Injector) } = options;
-  const writer = injector.get(EventWriterService);
+export function hraAnalyticsPlugin(config: HraAnalyticsPluginConfig): AnalyticsPlugin {
+  assertInInjectionContext(hraAnalyticsPlugin);
+  const telemetry = inject(TelemetryService);
 
   return {
     name: 'hra-analytics',
-    config: {
-      sessionId,
-    } satisfies PluginConfig,
-    page({ config, instance, payload }: EventData) {
-      writer.write(CoreEvents.PageView.type, payload.properties, {
-        sessionId: config.sessionId,
+    config: config,
+    page({ config: config_, instance, payload }: EventData) {
+      telemetry.send({
+        sessionId: config_.sessionId,
         app: instance.getState('context.app'),
         version: instance.getState('context.version'),
+        event: CoreEvents.PageView.type,
+        e: payload.properties,
       });
     },
-    track({ config, payload }: EventData) {
-      const { event, properties } = payload;
-      writer.write(event, properties, { sessionId: config.sessionId });
+    track({ config: config_, payload: { event, properties } }: EventData) {
+      telemetry.send({
+        sessionId: config_.sessionId,
+        event,
+        e: properties,
+      });
     },
   };
 }

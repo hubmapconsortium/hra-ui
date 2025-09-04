@@ -8,7 +8,7 @@
       "organData": [
         {
           "label": "Kidneys",
-          "icon": "kidneys",
+          "icon": "organ:kidneys",
           "cards": [
             {
               "label": "Ascending Thin Limb of Loop of Henle",
@@ -190,7 +190,7 @@
         },
         {
           "label": "Large Intestine",
-          "icon": "large-intestine",
+          "icon": "organ:large-intestine",
           "cards": [
             {
               "label": "Crypt of Lieberkuhn",
@@ -218,7 +218,7 @@
         },
         {
           "label": "Liver",
-          "icon": "liver",
+          "icon": "organ:liver",
           "cards": [
             {
               "label": "Liver Lobule",
@@ -246,7 +246,7 @@
         },
         {
           "label": "Lung",
-          "icon": "lungs",
+          "icon": "organ:lungs",
           "cards": [
             {
               "label": "Bronchial Submucosal Gland",
@@ -304,7 +304,7 @@
       "organData": [
         {
           "label": "Kidneys",
-          "icon": "kidneys",
+          "icon": "organ:kidneys",
           "cards": [
             {
               "label": "Ascending Thin Limb of Loop of Henle",
@@ -486,7 +486,7 @@
         },
         {
           "label": "Large Intestine",
-          "icon": "large-intestine",
+          "icon": "organ:large-intestine",
           "cards": [
             {
               "label": "Crypt of Lieberkuhn",
@@ -526,7 +526,7 @@
       "organData": [
         {
           "label": "All Organs",
-          "icon": "all-organs",
+          "icon": "organ:all-organs",
           "cards": [
             {
               "label": "Female",
@@ -554,7 +554,7 @@
         },
         {
           "label": "Brain",
-          "icon": "brain",
+          "icon": "organ:brain",
           "cards": [
             {
               "label": "Female",
@@ -582,7 +582,7 @@
         },
         {
           "label": "Eye",
-          "icon": "eye",
+          "icon": "organ:eye",
           "cards": [
             {
               "label": "Female, L",
@@ -632,7 +632,7 @@
         },
         {
           "label": "Fallopian Tube",
-          "icon": "fallopian-tube-left",
+          "icon": "organ:fallopian-tube-left",
           "cards": [
             {
               "label": "Female, L",
@@ -670,7 +670,7 @@
       "organData": [
         {
           "label": "All Organs",
-          "icon": "all-organs",
+          "icon": "organ:all-organs",
           "cards": [
             {
               "label": "Female",
@@ -698,7 +698,7 @@
         },
         {
           "label": "Brain",
-          "icon": "brain",
+          "icon": "organ:brain",
           "cards": [
             {
               "label": "Female",
