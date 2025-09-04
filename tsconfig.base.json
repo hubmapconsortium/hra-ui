@@ -13,6 +13,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "allowSyntheticDefaultImports": true,
     "declaration": false,
     "sourceMap": true,
     "importHelpers": true,
