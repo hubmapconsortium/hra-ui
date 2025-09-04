@@ -1,4 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { render } from '@testing-library/angular';
 import { saveAs } from 'file-saver';
 
@@ -7,23 +8,9 @@ import { ProvenanceMenuComponent } from './provenance-menu.component';
 jest.mock('file-saver');
 
 describe('ProvenanceMenuComponent', () => {
-  it('should render', async () => {
-    const promise = render(ProvenanceMenuComponent, {
-      providers: [provideHttpClient()],
-      inputs: {
-        rows: [],
-        columns: [],
-        version: '1.0',
-        availableVersions: ['1.0', '2.0'],
-        downloadOptions: [],
-      },
-    });
-    await expect(promise).resolves.toBeTruthy();
-  });
-
   it('should download a file', async () => {
     const { fixture } = await render(ProvenanceMenuComponent, {
-      providers: [provideHttpClient()],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
       inputs: {
         rows: [],
         columns: [],

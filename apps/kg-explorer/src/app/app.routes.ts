@@ -16,10 +16,10 @@ import {
 import { getDocumentationUrl, getProductLabel } from './utils/utils';
 
 /** Digital objects api */
-const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
+export const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
 
 /** Column info for digital object table */
-const columns: TableColumn[] = [
+export const DO_COLUMNS: TableColumn[] = [
   {
     column: 'download',
     label: '',
@@ -108,7 +108,7 @@ export const appRoutes: Route[] = [
     component: MainPageComponent,
     data: {
       reuse: true,
-      columns: columns,
+      columns: DO_COLUMNS,
     },
     resolve: {
       data: kgResolver(DO_URL),

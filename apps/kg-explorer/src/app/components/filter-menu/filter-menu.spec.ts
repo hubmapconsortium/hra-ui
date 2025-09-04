@@ -24,16 +24,6 @@ const mockFilterCategories = [
 ];
 
 describe('FilterMenuComponent', () => {
-  it('should render', async () => {
-    const promise = render(FilterMenuComponent, {
-      inputs: {
-        filterCategories: mockFilterCategories,
-        currentFilters: {},
-      },
-    });
-    await expect(promise).resolves.toBeTruthy();
-  });
-
   it('emits the form controls on filter change', async () => {
     const { fixture } = await render(FilterMenuComponent, {
       inputs: {
