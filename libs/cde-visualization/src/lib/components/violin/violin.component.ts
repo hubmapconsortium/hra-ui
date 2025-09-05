@@ -163,7 +163,7 @@ export class ViolinComponent {
   readonly colorCount = signal<number>(0);
 
   /** Effect for updating view data */
-  protected readonly viewDataRef = effect(() => {
+  protected readonly viewDataRef = effect(async () => {
     const view = this.view();
     const data = this.data();
     if (view && data.length > 0) {
@@ -172,7 +172,7 @@ export class ViolinComponent {
   });
 
   /** Effect for updating view colors */
-  protected readonly viewColorsRef = effect(() => {
+  protected readonly viewColorsRef = effect(async () => {
     if (this.view() && this.view()?.getState()) {
       this.view()?.signal('colors', this.colors()).run();
       this.colorCount.set(this.view()?.getState().signals.colors.length);
@@ -236,7 +236,7 @@ export class ViolinComponent {
    */
   private calculateViolinHeight(boxH: number) {
     if (this.colorCount() < 14 || this.fullScreenEnabled()) {
-      return Math.max((boxH - 60) / this.colorCount(), 20);
+      return Math.min(50, Math.max((boxH - 60) / this.colorCount(), 20));
     }
     return 50;
   }
