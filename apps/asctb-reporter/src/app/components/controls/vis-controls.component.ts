@@ -93,7 +93,7 @@ export class VisControlsComponent {
       property: 'show-discrepency-id',
       config: this.config,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.CONTROLS, 'Toggle Discrepency ID', +this.config.discrepencyLabel);
+    this.ga.event(GaAction.TOGGLE, GaCategory.CONTROLS, 'Toggle Discrepency ID', +this.config.discrepencyId);
   }
 
   showDuplicateId() {
