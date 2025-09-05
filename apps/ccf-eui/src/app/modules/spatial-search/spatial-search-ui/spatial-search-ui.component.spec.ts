@@ -1,5 +1,4 @@
 import { FilterSexEnum } from '@hra-api/ng-client';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { render, RenderComponentOptions } from '@testing-library/angular';
 import { BodyUI } from 'ccf-body-ui';
 import { mockDeep } from 'jest-mock-extended';
@@ -12,7 +11,7 @@ describe('SpatialSearchUiComponent', () => {
   async function setup(options?: RenderComponentOptions<SpatialSearchUiComponent>) {
     return render(SpatialSearchUiComponent, {
       ...options,
-      providers: [provideDesignSystemCommon(), ...(options?.providers ?? [])],
+      providers: [...(options?.providers ?? [])],
     });
   }
 

@@ -1,24 +1,30 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { signal } from '@angular/core';
 import { render, screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
 import { CellPopulationPredictorComponent, SAMPLE_JSON_FILE } from './cell-population-predictor.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 describe('CellPopulationPredictorComponent', () => {
-  const providers = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystemCommon()];
+  const providers = [provideHttpClient(), provideHttpClientTesting()];
 
   it('should create', async () => {
-    const result = render(CellPopulationPredictorComponent, { providers });
+    const result = render(CellPopulationPredictorComponent, {
+      providers,
+      imports: [MatIconTestingModule],
+    });
     await expect(result).resolves.toBeTruthy();
   });
 
   it('should set file when user clicks on upload button is called', async () => {
     const mockFile = new File([''], 'uploaded-file.json', { type: 'application/json' });
-    const { fixture } = await render(CellPopulationPredictorComponent, { providers });
+    const { fixture } = await render(CellPopulationPredictorComponent, {
+      providers,
+      imports: [MatIconTestingModule],
+    });
 
     const fileInput = screen.getByTestId('file-input');
     await userEvent.upload(fileInput, mockFile);
@@ -36,6 +42,7 @@ describe('CellPopulationPredictorComponent', () => {
         ...providers,
         { provide: SAMPLE_JSON_FILE, useValue: { value: { asReadonly: () => signal(mockFile) } } },
       ],
+      imports: [MatIconTestingModule],
     });
 
     const useSampleButton = screen.getByText('Use sample');
@@ -47,7 +54,10 @@ describe('CellPopulationPredictorComponent', () => {
   });
 
   it('should navigate to the result page when predict button is clicked', async () => {
-    await render(CellPopulationPredictorComponent, { providers });
+    await render(CellPopulationPredictorComponent, {
+      providers,
+      imports: [MatIconTestingModule],
+    });
 
     const router = TestBed.inject(Router);
     const routerSpy = jest.spyOn(router, 'navigate').mockResolvedValue(true);

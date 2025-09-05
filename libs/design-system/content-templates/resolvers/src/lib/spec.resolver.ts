@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { APP_ASSETS_HREF } from '@hra-ui/common';
+import { injectAssetHref } from '@hra-ui/common/url';
 import { load } from 'js-yaml';
 import { map } from 'rxjs';
 import { z } from 'zod';
@@ -49,5 +49,5 @@ function resolveUrl(url: string): string {
     return url;
   }
 
-  return Location.joinWithSlash(inject(APP_ASSETS_HREF)(), url);
+  return Location.joinWithSlash(injectAssetHref()(), url);
 }

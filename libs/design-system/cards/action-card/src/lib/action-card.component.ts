@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { AssetUrlPipe } from '@hra-ui/common/url';
 import { MatDividerModule } from '@angular/material/divider';
 import { HraCommonModule } from '@hra-ui/common';
 import { coerceIconList, IconsModule } from '@hra-ui/design-system/icons';
@@ -22,7 +23,7 @@ export class ActionCardActionComponent {
  */
 @Component({
   selector: 'hra-action-card',
-  imports: [HraCommonModule, MatDividerModule, IconsModule],
+  imports: [AssetUrlPipe, HraCommonModule, MatDividerModule, IconsModule],
   templateUrl: './action-card.component.html',
   styleUrl: './action-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

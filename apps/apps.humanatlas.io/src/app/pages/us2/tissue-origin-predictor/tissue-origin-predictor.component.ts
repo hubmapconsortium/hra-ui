@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
-import { APP_ASSETS_HREF } from '@hra-ui/common';
+import { injectAssetHref } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
@@ -36,7 +36,7 @@ export const SAMPLE_FILE = new InjectionToken('Sample file', {
  * @returns A HttpResourceRef that resolves to a File or undefined
  */
 function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
-  const assetsHref = inject(APP_ASSETS_HREF);
+  const assetsHref = injectAssetHref();
   const fileUrl = inject(SAMPLE_FILE_URL);
   const url = Location.joinWithSlash(assetsHref(), fileUrl);
   return httpResource.text(url, {

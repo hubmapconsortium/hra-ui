@@ -1,7 +1,6 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture } from '@angular/core/testing';
 import { MatButtonToggleGroupHarness } from '@angular/material/button-toggle/testing';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { NodeDistVisComponent, NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -17,6 +16,7 @@ import { mock } from 'jest-mock-extended';
 import { NodeDistVisualizationComponent } from './node-dist-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { MatButtonHarness } from '@angular/material/button/testing';
+import { provideAssetHref } from '@hra-ui/common/url';
 
 jest.mock('@hra-ui/node-dist-vis', () => ({}));
 jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({}));
@@ -40,7 +40,7 @@ describe('NodeDistVisualizationComponent', () => {
         maxEdgeDistance: 1,
         ...options?.inputs,
       },
-      providers: [provideDesignSystemCommon(), ...(options?.providers ?? [])],
+      providers: [provideAssetHref('http://localhost/'), ...(options?.providers ?? [])],
     });
   }
 

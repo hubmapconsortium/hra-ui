@@ -12,7 +12,8 @@ import {
   model,
   viewChild,
 } from '@angular/core';
-import { APP_ASSETS_HREF, HraCommonModule } from '@hra-ui/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { injectAssetHref } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import 'rapidoc';
@@ -33,7 +34,7 @@ const RAPIDOC_STYLES = new InjectionToken<void>('Rapidoc styles', {
  */
 function loadRapidocStyles(): void {
   const document = inject(DOCUMENT);
-  const assetsHref = inject(APP_ASSETS_HREF);
+  const assetsHref = injectAssetHref();
   const el = document.createElement('link');
   el.rel = 'stylesheet';
   el.href = Location.joinWithSlash(assetsHref(), 'rapidoc-theme.css');
