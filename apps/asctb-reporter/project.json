@@ -58,6 +58,12 @@
     },
     "serve": {
       "executor": "@nx/angular:dev-server"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/asctb-reporter/tsconfig.app.json"
+      }
     }
   }
 }

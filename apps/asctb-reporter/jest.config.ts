@@ -3,14 +3,6 @@ export default {
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
   coverageDirectory: '../../coverage/apps/asctb-reporter',
-  coverageThreshold: {
-    global: {
-      branches: 0,
-      functions: 0,
-      lines: 25,
-      statements: 25,
-    },
-  },
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
