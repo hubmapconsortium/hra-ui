@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, OnInit, inject, input, output } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -18,11 +18,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+
 import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
+
 import { GaAction, GaCategory, GaCompareInfo } from '../../models/ga.model';
 import { CompareData } from '../../models/sheet.model';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
@@ -54,25 +57,43 @@ import { SidenavModule } from '../sidenav/sidenav.module';
   styleUrls: ['./compare.component.scss'],
 })
 export class CompareComponent implements OnInit {
-  readonly fb = inject(UntypedFormBuilder);
-  readonly ga = inject(GoogleAnalyticsService);
+  /** Observable of compare data sheets */
+  readonly compareSheets = input.required<Observable<CompareData[]>>();
 
-  @Output() readonly closeCompare = new EventEmitter<boolean>();
-  @Output() readonly compareData = new EventEmitter<CompareData[]>();
+  /** Close compare event emitter */
+  protected readonly closeCompare = output<boolean>();
 
-  @Input() compareSheets!: Observable<CompareData[]>;
+  /** Compare data event emitter */
+  protected readonly compareData = output<CompareData[]>();
 
-  formGroup!: UntypedFormGroup;
-  formSheets!: UntypedFormArray;
-  formValid = true;
+  /** Form group for the compare form */
+  protected formGroup!: UntypedFormGroup;
 
+  /** Form array for the compare sheets */
+  protected formSheets!: UntypedFormArray;
+
+  /** Boolean value indicating whether the form is valid or not */
+  protected formValid = true;
+
+  /** FormBuilder instance */
+  private readonly fb = inject(UntypedFormBuilder);
+
+  /** Google Analytics service instance -- TODO: change to new analytics */
+  private readonly ga = inject(GoogleAnalyticsService);
+
+  /** Getter for compare sheet controls */
+  get CSControls() {
+    return this.formGroup.get('sheets') as UntypedFormArray;
+  }
+
+  /** Initialize the component */
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       sheets: this.fb.array([]),
     });
     this.formSheets = this.formGroup.get('sheets') as UntypedFormArray;
 
-    this.compareSheets.subscribe((sheets) => {
+    this.compareSheets().subscribe((sheets) => {
       if (sheets.length) {
         for (const source of sheets) {
           this.formSheets.push(
@@ -105,23 +126,20 @@ export class CompareComponent implements OnInit {
     });
   }
 
-  upload(fileFormDataEvent: FormData, control: AbstractControl) {
+  /**
+   * Upload file event handler
+   * @param fileFormDataEvent Form data from the uploaded file
+   * @param control The form control to update
+   */
+  upload(fileFormDataEvent: FormData, control: AbstractControl): void {
     const sheet = control as UntypedFormGroup;
     sheet.controls['formData'].setValue(fileFormDataEvent);
   }
 
-  markFormGroupTouched(formGroup: UntypedFormGroup) {
-    Object.values(formGroup.controls).forEach((control) => {
-      const form = control as UntypedFormGroup;
-      form.markAsTouched();
-
-      if (form.controls) {
-        this.markFormGroupTouched(form);
-      }
-    });
-  }
-
-  compare() {
+  /**
+   * Starts the comparison process if the form is valid
+   */
+  compare(): void {
     this.markFormGroupTouched(this.formGroup);
     this.formValid = this.formGroup.status === 'VALID';
     if (this.formGroup.status !== 'VALID') {
@@ -152,7 +170,55 @@ export class CompareComponent implements OnInit {
     this.compareData.emit(data);
   }
 
-  checkLinkFormat(url: string) {
+  /**
+   * Adds a new row for comparing additional sheets
+   */
+  addCompareSheetRow(): void {
+    const sheet = this.createCompareForm();
+    this.formSheets.push(sheet);
+    this.ga.event(GaAction.CLICK, GaCategory.COMPARE, 'Add new compare row', undefined);
+  }
+
+  /**
+   * Removes a compare sheet row at the specified index
+   * @param i The index of the row to remove
+   */
+  removeCompareSheetRow(i: number): void {
+    this.formSheets.removeAt(i);
+    this.ga.event(GaAction.CLICK, GaCategory.COMPARE, 'Delete compare row', i);
+  }
+
+  /**
+   * Handles data source change for a specific sheet
+   * @param idx The index of the sheet to update
+   */
+  onDataSourceChange(idx: number): void {
+    const sheets = this.formGroup.get('sheets') as FormArray;
+    const grp = sheets.at(idx) as FormGroup;
+    grp.patchValue({ link: '', fileName: '', formData: {} });
+  }
+
+  /**
+   * Recursively mark all controls in a form group as touched
+   * @param formGroup The form group to mark as touched
+   */
+  private markFormGroupTouched(formGroup: UntypedFormGroup): void {
+    Object.values(formGroup.controls).forEach((control) => {
+      const form = control as UntypedFormGroup;
+      form.markAsTouched();
+
+      if (form.controls) {
+        this.markFormGroupTouched(form);
+      }
+    });
+  }
+
+  /**
+   * Checks the format of a Google Sheets link
+   * @param url The URL to check
+   * @returns An object containing the sheet ID, GID, and CSV URL
+   */
+  private checkLinkFormat(url: string) {
     if (url.startsWith('https://docs.google.com/spreadsheets/d/')) {
       const splitUrl = url.split('/');
       if (splitUrl.length === 7) {
@@ -170,7 +236,17 @@ export class CompareComponent implements OnInit {
     };
   }
 
-  createCompareForm(
+  /**
+   * Creates a form group for comparing sheets
+   * @param link The Google Sheets link (optional)
+   * @param color The color for the sheet (optional)
+   * @param title The title of the sheet (optional)
+   * @param description The description of the sheet (optional)
+   * @param formData The form data for file upload (optional)
+   * @param fileName The name of the uploaded file (optional)
+   * @returns A form group configured for sheet comparison
+   */
+  private createCompareForm(
     link = '',
     color?: string,
     title = '',
@@ -198,7 +274,12 @@ export class CompareComponent implements OnInit {
     );
   }
 
-  atLeastOnePhoneRequired(group: UntypedFormGroup): { [s: string]: boolean } | null {
+  /**
+   * Custom validator to ensure at least one data source (link or file) is provided
+   * @param group The form group to validate
+   * @returns Validation error object or null if valid
+   */
+  private atLeastOnePhoneRequired(group: UntypedFormGroup): { [s: string]: boolean } | null {
     if (group) {
       if (group.controls['link'].value || group.controls['fileName'].value) {
         return null;
@@ -207,41 +288,16 @@ export class CompareComponent implements OnInit {
     return { error: true };
   }
 
-  get CSControls() {
-    return this.formGroup.get('sheets') as UntypedFormArray;
-  }
-
-  getRandomColor() {
+  /**
+   * Generates a random color for sheet identification
+   * @returns A random hex color string
+   */
+  private getRandomColor(): string {
     const letters = '3456789BC'.split('');
     let color = '#';
     for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * letters.length)];
     }
     return color;
-  }
-
-  doesFormHaveError() {
-    (this.formGroup.controls['sheets'].value as UntypedFormGroup[]).forEach((sheet) => {
-      // mark as touched for all controls
-      sheet.controls['link'].markAsTouched();
-    });
-    return this.formGroup.status !== 'VALID';
-  }
-
-  addCompareSheetRow() {
-    const sheet = this.createCompareForm();
-    this.formSheets.push(sheet);
-    this.ga.event(GaAction.CLICK, GaCategory.COMPARE, 'Add new compare row', undefined);
-  }
-
-  removeCompareSheetRow(i: number) {
-    this.formSheets.removeAt(i);
-    this.ga.event(GaAction.CLICK, GaCategory.COMPARE, 'Delete compare row', i);
-  }
-
-  onDataSourceChange(idx: number) {
-    const sheets = this.formGroup.get('sheets') as FormArray;
-    const grp = sheets.at(idx) as FormGroup;
-    grp.patchValue({ link: '', fileName: '', formData: {} });
   }
 }
