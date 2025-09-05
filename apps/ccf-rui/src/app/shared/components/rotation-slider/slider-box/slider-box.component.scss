@@ -46,11 +46,11 @@
     }
 
     mat-slider {
-      --mdc-slider-active-track-color: #{vars.$on-tertiary-fixed};
-      --mdc-slider-inactive-track-color: #acb5c3;
-      --mdc-slider-handle-color: #{vars.$on-tertiary-fixed};
-      --mdc-slider-active-track-height: 2px;
-      --mdc-slider-inactive-track-height: 2px;
+      --mat-slider-active-track-color: #{vars.$on-tertiary-fixed};
+      --mat-slider-inactive-track-color: #acb5c3;
+      --mat-slider-handle-color: #{vars.$on-tertiary-fixed};
+      --mat-slider-active-track-height: 2px;
+      --mat-slider-inactive-track-height: 2px;
       width: 11.5rem;
       margin: 0 1.5rem;
 

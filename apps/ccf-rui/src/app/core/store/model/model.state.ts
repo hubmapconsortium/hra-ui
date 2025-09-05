@@ -288,7 +288,12 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
    */
   @DataAction()
   setBlockSize(blockSize: XYZTriplet): void {
-    this.ctx.patchState({ blockSize });
+    const numericBlockSize = {
+      x: Number(blockSize.x),
+      y: Number(blockSize.y),
+      z: Number(blockSize.z),
+    };
+    this.ctx.patchState({ blockSize: numericBlockSize });
   }
 
   /**
@@ -298,7 +303,12 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
    */
   @DataAction()
   setRotation(rotation: XYZTriplet): void {
-    this.ctx.patchState({ rotation });
+    const numericRotation = {
+      x: Number(rotation.x),
+      y: Number(rotation.y),
+      z: Number(rotation.z),
+    };
+    this.ctx.patchState({ rotation: numericRotation });
   }
 
   /**
@@ -308,12 +318,18 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
    */
   @DataAction()
   setPosition(position: XYZTriplet): void {
+    const numericPosition = {
+      x: Number(position.x),
+      y: Number(position.y),
+      z: Number(position.z),
+    };
+
     this.ga.event(
       'placement',
       `${this.snapshot.organ?.name}_placement`,
-      `${position.x.toFixed(1)}_${position.y.toFixed(1)}_${position.z.toFixed(1)}`,
+      `${numericPosition.x.toFixed(1)}_${numericPosition.y.toFixed(1)}_${numericPosition.z.toFixed(1)}`,
     );
-    this.ctx.patchState({ position });
+    this.ctx.patchState({ position: numericPosition });
   }
 
   /**

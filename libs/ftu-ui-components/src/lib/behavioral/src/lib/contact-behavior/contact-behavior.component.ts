@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, TemplateRef, ViewChild } fr
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { ContactData, ContactModalComponent, InfoModalComponent } from '@hra-ui/components/molecules';
+import { ContactData, ContactModalComponent, InfoModalComponent } from '../../../../molecules/src';
 import { ResourceIds as Ids, ContactActions } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 

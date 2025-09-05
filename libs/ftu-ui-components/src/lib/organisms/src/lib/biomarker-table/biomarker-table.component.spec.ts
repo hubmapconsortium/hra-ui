@@ -1,12 +1,11 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { MatTableModule } from '@angular/material/table';
-import { HoverDirective } from '@hra-ui/cdk';
-import { SizeLegend } from '../../../../atoms/src/lib/size-legend/size-legend.component';
-import { GradientPoint } from '../../../../atoms/src/lib/gradient-legend/gradient-legend.component';
-import { of } from 'rxjs';
-import { Shallow } from 'shallow-render';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
+import { of } from 'rxjs';
+import { Shallow } from 'shallow-render';
+import { GradientPoint } from '../../../../atoms/src/lib/gradient-legend/gradient-legend.component';
+import { SizeLegend } from '../../../../atoms/src/lib/size-legend/size-legend.component';
 import { BiomarkerTableComponent, DataCell, DataRow, TissueInfo } from './biomarker-table.component';
 
 describe('BiomarkerTableComponent', () => {
@@ -115,7 +114,7 @@ describe('BiomarkerTableComponent', () => {
 
   beforeEach(() => {
     shallow = new Shallow(BiomarkerTableComponent<DataCell>)
-      .dontMock(MatTableModule, HoverDirective, TableVirtualScrollModule, PlainTooltipDirective)
+      .dontMock(MatTableModule, TableVirtualScrollModule, PlainTooltipDirective)
       .provide(CdkVirtualScrollViewport)
       .mock(CdkVirtualScrollViewport, {
         scrollable: {

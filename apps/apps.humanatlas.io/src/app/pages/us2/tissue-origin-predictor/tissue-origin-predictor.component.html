@@ -60,7 +60,7 @@
       <mat-form-field class="filters">
         <mat-label>Organ</mat-label>
         <mat-select hraPlainTooltip="Organs that have cell type populations." [(ngModel)]="organ">
-          @for (organ of supportedOrgans(); track $index) {
+          @for (organ of supportedOrgans.value(); track $index) {
             <mat-option [value]="organ.id">{{ organ.label | titlecase }}</mat-option>
           }
         </mat-select>
@@ -72,7 +72,7 @@
           hraPlainTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
           [(ngModel)]="tool"
         >
-          @for (tool of supportedTools(); track $index) {
+          @for (tool of supportedTools.value(); track $index) {
             <mat-option [value]="tool.id">{{ tool.label | titlecase }}</mat-option>
           }
         </mat-select>

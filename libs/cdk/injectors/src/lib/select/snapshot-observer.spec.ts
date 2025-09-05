@@ -17,7 +17,7 @@ describe('SnapshotObserver', () => {
     it('should throw the error if an error has been emitted', () => {
       const error = new Error('test');
       observer.error(error);
-      expect(() => observer.get()).toThrowError(error);
+      expect(() => observer.get()).toThrow(error);
     });
   });
 
@@ -35,7 +35,7 @@ describe('SnapshotObserver', () => {
       const error = new Error('test');
       expect(observer.get()).toBeUndefined();
       observer.error(error);
-      expect(() => observer.get()).toThrowError(error);
+      expect(() => observer.get()).toThrow(error);
     });
   });
 });

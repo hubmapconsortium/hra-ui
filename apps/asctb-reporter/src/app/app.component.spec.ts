@@ -32,11 +32,7 @@ describe('AppComponent', () => {
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideIcons(),
-        provideStore(
-          [SheetState, TreeState, UIState, LogsState],
-          withNgxsLoggerPlugin({ disabled: environment.production }),
-          withNgxsResetPlugin(),
-        ),
+        provideStore([SheetState, TreeState, UIState, LogsState], withNgxsResetPlugin()),
         ConsentService,
         ConfigService,
       ],

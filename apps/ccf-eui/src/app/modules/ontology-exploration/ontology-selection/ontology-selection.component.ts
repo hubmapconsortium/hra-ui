@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, output } from '@angular/core';
 import { OntologyTree, OntologyTreeNode } from '@hra-api/ng-client';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap } from 'rxjs/operators';
@@ -51,14 +51,16 @@ export class OntologySelectionComponent {
     ['lipids', 'Lipids'],
   ]);
 
+  /** Ontology search service */
+  readonly ontologySearchService = inject(OntologySearchService);
+
   /**
    * Creates an instance of ontology selection component
    * Gets and sets biomarker menu options if applicable
    * Updates the ontology tree model in the state if it changes
-   * @param ontologySearchService Service for searching the ontology
    */
-  constructor(public ontologySearchService: OntologySearchService) {
-    this.rootNode$ = ontologySearchService.rootNode$.pipe(
+  constructor() {
+    this.rootNode$ = this.ontologySearchService.rootNode$.pipe(
       tap((rootNode) => {
         this.rootNode = { ...rootNode };
         if (this.rootNode.id === 'biomarkers') {

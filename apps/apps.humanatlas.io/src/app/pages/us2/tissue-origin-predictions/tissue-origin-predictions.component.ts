@@ -29,7 +29,6 @@ import { saveAs } from 'file-saver';
 import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 import { SimilarAnatomicalStructuresTableComponent } from './components/similar-anatomical-structures-table/similar-anatomical-structures-table.component';
 import { SimilarDatasetsTableComponent } from './components/similar-datasets-table/similar-datasets-table.component';
-import moment from 'moment';
 
 /**
  * Script URL for EUI
@@ -53,6 +52,12 @@ export const EMPTY_PREDICTIONS: CellSummaryReport = {
   rui_locations: [],
   sources: [],
 };
+
+/** Date format */
+const PREDICTION_DATE_FORMAT = new Intl.DateTimeFormat(undefined, {
+  dateStyle: 'long',
+  timeStyle: 'long',
+});
 
 /**
  * Tissue Origin Predictions result page
@@ -84,14 +89,17 @@ export class TissueOriginPredictionsComponent {
   /** Input data for predictions page */
   readonly data = input<TissuePredictionData>(EMPTY_DATA);
 
-  /** Prediction date */
-  readonly predictionDate = moment(this.data().date).format('MMMM D, YYYY h:mm:ss A');
-
   /** Predictions */
   readonly predictions = input<CellSummaryReport>(EMPTY_PREDICTIONS);
 
   /** Whether to show EUI */
   protected readonly euiOpen = signal<boolean>(false);
+
+  /** Prediction date */
+  protected readonly predictionDate = computed(() => {
+    const { date } = this.data();
+    return date && PREDICTION_DATE_FORMAT.format(date);
+  });
 
   /** RUI locations JSON string */
   protected readonly ruiLocationsJsonString = JSON.stringify([JSON.stringify(this.predictions().rui_locations)]);

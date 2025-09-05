@@ -15,6 +15,7 @@ import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './creat
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
 jest.mock('@hra-ui/node-dist-vis', () => ({}));
 jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({}));
+jest.mock('@hra-ui/webcomponents', () => ({ createCustomElement: jest.fn() }));
 
 const resizeObserverInstance = mock<ResizeObserver>();
 global.ResizeObserver = jest.fn(() => resizeObserverInstance);

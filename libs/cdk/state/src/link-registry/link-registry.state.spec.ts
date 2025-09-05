@@ -83,6 +83,7 @@ describe('LinkRegistryState', () => {
         [TestId]: {
           type: LinkType.External,
           url: 'foobar',
+          rel: 'noopener',
         },
       });
     });

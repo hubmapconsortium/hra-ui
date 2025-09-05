@@ -41,7 +41,7 @@
 
   .progress-bar {
     position: absolute;
-    --mdc-linear-progress-active-indicator-color: #{vars.$tertiary};
+    --mat-progress-bar-active-indicator-color: #{vars.$tertiary};
   }
 
   @include mat.divider-overrides(

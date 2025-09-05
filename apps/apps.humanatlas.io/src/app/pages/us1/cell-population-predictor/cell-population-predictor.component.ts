@@ -45,7 +45,7 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
   const assetsHref = inject(APP_ASSETS_HREF);
   const fileUrl = inject(SAMPLE_JSON_FILE_URL);
   const url = Location.joinWithSlash(assetsHref(), fileUrl);
-  return httpResource.text(url, {
+  return httpResource.text(() => ({ url }), {
     parse: (content) => new File([content], 'sample.json', { type: 'application/json' }),
   });
 }
@@ -112,7 +112,7 @@ export class CellPopulationPredictorComponent {
   ];
 
   /** Supported organs */
-  protected readonly supportedOrgans = this.predictionsService.supportedOrgans.value.asReadonly();
+  protected readonly supportedOrgans = this.predictionsService.supportedOrgans;
 
   /** For accessing DOM  */
   private readonly document = inject(DOCUMENT);

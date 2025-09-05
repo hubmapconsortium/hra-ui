@@ -1,4 +1,5 @@
 import { FilterSexEnum } from '@hra-api/ng-client';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { render, RenderComponentOptions } from '@testing-library/angular';
 import { BodyUI } from 'ccf-body-ui';
@@ -12,7 +13,7 @@ describe('SpatialSearchUiComponent', () => {
   async function setup(options?: RenderComponentOptions<SpatialSearchUiComponent>) {
     return render(SpatialSearchUiComponent, {
       ...options,
-      providers: [provideDesignSystemCommon(), ...(options?.providers ?? [])],
+      providers: [provideDesignSystemCommon(), provideNoopAnimations(), ...(options?.providers ?? [])],
     });
   }
 

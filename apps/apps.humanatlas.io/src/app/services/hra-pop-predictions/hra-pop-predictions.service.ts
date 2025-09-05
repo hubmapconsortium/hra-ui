@@ -35,7 +35,7 @@ export class HraPopPredictionsService {
    * Supported organs of hra pop predictions service
    */
   readonly supportedOrgans = rxResource({
-    loader: () => this.hraPop.supportedOrgans(),
+    stream: () => this.hraPop.supportedOrgans(),
     defaultValue: [],
   });
 
@@ -43,7 +43,7 @@ export class HraPopPredictionsService {
    * Supported tools of hra pop predictions service
    */
   readonly supportedTools = rxResource({
-    loader: () => this.hraPop.supportedTools(),
+    stream: () => this.hraPop.supportedTools(),
     defaultValue: [],
   });
 

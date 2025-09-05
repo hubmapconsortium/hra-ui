@@ -60,7 +60,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "3mb"
             },
             {
               "type": "anyComponentStyle",
@@ -152,6 +152,8 @@
     },
     "storybook": {
       "options": {
+        "configDir": "{projectRoot}/.storybook",
+        "browserTarget": "{projectName}:build-storybook",
         "port": 4400,
         "compodoc": true,
         "compodocArgs": ["-e", "json", "-d", "{projectRoot}/.storybook/compodoc", "--silent"]
@@ -159,6 +161,8 @@
     },
     "build-storybook": {
       "options": {
+        "configDir": "{projectRoot}/.storybook",
+        "browserTarget": "{projectName}:build-storybook",
         "outputDir": "dist/storybook/{projectName}",
         "compodoc": true,
         "compodocArgs": ["-e", "json", "-d", "{projectRoot}/.storybook/compodoc", "--silent"]
@@ -217,7 +221,59 @@
       "changeDetection": "OnPush",
       "displayBlock": true,
       "export": true,
-      "standalone": true
+      "standalone": true,
+      "type": "component"
+    },
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@nx/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@nx/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@nx/angular:scam": {
+      "type": "component"
+    },
+    "@nx/angular:scam-directive": {
+      "type": "directive"
+    },
+    "@nx/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@nx/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@nx/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@nx/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@nx/angular:resolver": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   },
   "nxCloudAccessToken": "NWM3NTZiNjktMDcyMS00ZmQ3LWFlNzYtZDZkZmY0OTVjYzU3fHJlYWQtd3JpdGU="

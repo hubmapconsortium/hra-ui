@@ -61,9 +61,9 @@
     // Workaround
     // Material doesn't set the icon size correctly when inside a button
     mat-icon {
-      width: var(--mdc-icon-button-icon-size);
-      height: var(--mdc-icon-button-icon-size);
-      font-size: var(--mdc-icon-button-icon-size);
+      width: var(--mat-icon-button-icon-size);
+      height: var(--mat-icon-button-icon-size);
+      font-size: var(--mat-icon-button-icon-size);
     }
   }
 }

@@ -87,7 +87,7 @@ describe('DownlodState', () => {
 
     it('should through error if does not contain entry', () => {
       const error = new Error('Cannot download file without data');
-      expect(() => state.download(ctx, action)).toThrowError(error);
+      expect(() => state.download(ctx, action)).toThrow(error);
     });
 
     it('should guess empty extension if not format available', async () => {

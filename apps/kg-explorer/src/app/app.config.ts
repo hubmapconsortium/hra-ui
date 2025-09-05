@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, RouteReuseStrategy, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideMarkdown } from 'ngx-markdown';
@@ -10,7 +10,7 @@ import { CustomRouteReuseStrategy } from './utils/route-strategy';
 export const appConfig: ApplicationConfig = {
   providers: [
     { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy },
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideDesignSystem(),
     provideMarkdown(),
     provideRouter(

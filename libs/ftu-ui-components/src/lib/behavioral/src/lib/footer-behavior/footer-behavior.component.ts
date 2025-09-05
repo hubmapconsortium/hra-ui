@@ -3,15 +3,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { FooterComponent } from '@hra-ui/components/molecules';
+import { FooterComponent } from '../../../../molecules/src';
 import { DownloadActions, DownloadSelectors, ResourceIds as Ids, LinkIds, ScreenModeSelectors } from '@hra-ui/state';
-
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 
 /** A component for footer behavior which provides functionality for various buttons in footer */
 @Component({
   selector: 'ftu-footer-behavior',
-  imports: [CommonModule, MatDialogModule, FooterComponent, ContactBehaviorComponent],
+  imports: [CommonModule, MatDialogModule, FooterComponent],
   templateUrl: './footer-behavior.component.html',
   styleUrls: ['./footer-behavior.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

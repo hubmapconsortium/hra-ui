@@ -9,13 +9,6 @@
     "build": {
       "executor": "@nx/angular:package"
     },
-    "build-storybook": {
-      "options": {
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
-        }
-      }
-    },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {

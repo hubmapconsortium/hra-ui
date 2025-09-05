@@ -91,6 +91,19 @@ export class AppComponent implements OnInit {
   protected readonly data = inject(DataState);
   /** Spatial flow service */
   protected readonly spatialFlowService = inject(SpatialSearchFlowService);
+  /** Scene state */
+  readonly scene = inject(SceneState);
+  /** List results state */
+  readonly listResultsState = inject(ListResultsState);
+  /** Consent service */
+  readonly consentService = inject(ConsentService);
+  /** Local storage sync service */
+  readonly localStorageSyncService = inject(LocalStorageSyncService);
+  /** Snackbar service */
+  readonly snackbar = inject(SnackbarService);
+  /** Global config */
+  private readonly globalConfig = inject<GlobalConfigState<AppOptions>>(GlobalConfigState);
+
   /** Filter */
   protected readonly filter = toSignal(this.data.filter$, { requireSync: true });
   /** Technology options */
@@ -141,14 +154,7 @@ export class AppComponent implements OnInit {
   /**
    * Creates an instance of app component.
    */
-  constructor(
-    readonly scene: SceneState,
-    readonly listResultsState: ListResultsState,
-    readonly consentService: ConsentService,
-    readonly localStorageSyncService: LocalStorageSyncService,
-    readonly snackbar: SnackbarService,
-    private readonly globalConfig: GlobalConfigState<AppOptions>,
-  ) {
+  constructor() {
     this.data.tissueBlockData$.subscribe();
     this.data.aggregateData$.subscribe();
     this.data.ontologyTermOccurencesData$.subscribe();
@@ -158,8 +164,8 @@ export class AppComponent implements OnInit {
     this.filter$.subscribe((filter = {}) => this.data.updateFilter(filter));
     this.baseHref$.subscribe((ref) => this.globalConfig.patchState({ baseHref: ref ?? '' }));
 
-    combineLatest([scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
-      scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
+    combineLatest([this.scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
+      this.scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
     });
 
     this.selectedToggleOptions = this.menuOptions;

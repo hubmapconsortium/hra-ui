@@ -1,11 +1,8 @@
-import { ActionGroup } from '@hra-ui/cdk/state';
+import { Action } from '@hra-ui/cdk/state';
 import { Iri } from '@hra-ui/services';
 
-/** Action base class factory */
-const Action = ActionGroup('ActiveFtu');
-
 /** Loads the Iri */
-export class Load extends Action('Load') {
+export class Load extends Action('[ActiveFtu] Load') {
   /**
    * Creates an instance of set iri.
    * @param iri
@@ -16,7 +13,7 @@ export class Load extends Action('Load') {
 }
 
 /** Action to set the illustration url of the active FTU */
-export class SetIllustrationUrl extends Action('Set Illustration Url') {
+export class SetIllustrationUrl extends Action('[ActiveFtu] Set Illustration Url') {
   /**
    * Creates an instance of set iri.
    * @param iri
@@ -27,7 +24,7 @@ export class SetIllustrationUrl extends Action('Set Illustration Url') {
 }
 
 /** Clears the Iri */
-export class Clear extends Action('Clear') {}
+export class Clear extends Action('[ActiveFtu] Clear') {}
 
 /** Resets state */
-export class Reset extends Action('Reset') {}
+export class Reset extends Action('[ActiveFtu] Reset') {}

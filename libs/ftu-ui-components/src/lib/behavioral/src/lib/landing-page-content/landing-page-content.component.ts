@@ -16,7 +16,7 @@ import {
   LandingPageIntroComponent,
   MetricItem,
   MetricsComponent,
-} from '@hra-ui/components/molecules';
+} from '../../../../molecules/src';
 import { LinkIds, ResourceIds as RIds, ResourceTypes as RTypes } from '@hra-ui/state';
 
 /** Component for LandingPageContent Behavior */

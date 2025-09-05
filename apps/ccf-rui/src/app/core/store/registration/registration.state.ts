@@ -184,7 +184,11 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     const reg = this.ctx.getState().initialRegistration;
     if (reg) {
       const place = this.refData.normalizePlacement(Array.isArray(reg.placement) ? reg.placement[0] : reg.placement);
-      this.model.setPosition({ x: place.x_translation, y: place.y_translation, z: place.z_translation });
+      this.model.setPosition({
+        x: Number(place.x_translation),
+        y: Number(place.y_translation),
+        z: Number(place.z_translation),
+      });
     }
   }
 
@@ -220,10 +224,18 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
     }
 
     this.model.setBlockSize({ x: reg.x_dimension, y: reg.y_dimension, z: reg.z_dimension });
-    this.model.setRotation({ x: place.x_rotation, y: place.y_rotation, z: place.z_rotation });
+    this.model.setRotation({
+      x: Number(place.x_rotation),
+      y: Number(place.y_rotation),
+      z: Number(place.z_rotation),
+    });
     this.model.setSlicesConfig({ thickness: reg.slice_thickness || NaN, numSlices: reg.slice_count || NaN });
 
-    this.model.setPosition({ x: place.x_translation, y: place.y_translation, z: place.z_translation });
+    this.model.setPosition({
+      x: Number(place.x_translation),
+      y: Number(place.y_translation),
+      z: Number(place.z_translation),
+    });
     this.model.setPlacementDate(place.placement_date);
     const iris = new Set<string>(reg.ccf_annotations);
     this.tags.addTags(
@@ -435,9 +447,9 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
       slice_thickness: undefIfNaN(model.slicesConfig.thickness),
       slice_count: undefIfNaN(model.slicesConfig.numSlices),
 
-      x_dimension: +model.blockSize.x.toFixed(3),
-      y_dimension: +model.blockSize.y.toFixed(3),
-      z_dimension: +model.blockSize.z.toFixed(3),
+      x_dimension: +Number(model.blockSize.x).toFixed(3),
+      y_dimension: +Number(model.blockSize.y).toFixed(3),
+      z_dimension: +Number(model.blockSize.z).toFixed(3),
       dimension_units: 'millimeter',
       publication_doi: model.doi,
       consortium: model.consortium,
@@ -454,15 +466,15 @@ export class RegistrationState extends NgxsImmutableDataRepository<RegistrationS
         z_scaling: 1,
         scaling_units: 'ratio',
 
-        x_rotation: +model.rotation.x.toFixed(3),
-        y_rotation: +model.rotation.y.toFixed(3),
-        z_rotation: +model.rotation.z.toFixed(3),
+        x_rotation: +Number(model.rotation.x).toFixed(3),
+        y_rotation: +Number(model.rotation.y).toFixed(3),
+        z_rotation: +Number(model.rotation.z).toFixed(3),
         rotation_order: 'XYZ',
         rotation_units: 'degree',
 
-        x_translation: +model.position.x.toFixed(3),
-        y_translation: +model.position.y.toFixed(3),
-        z_translation: +model.position.z.toFixed(3),
+        x_translation: +Number(model.position.x).toFixed(3),
+        y_translation: +Number(model.position.y).toFixed(3),
+        z_translation: +Number(model.position.z).toFixed(3),
         translation_units: 'millimeter',
       },
     };

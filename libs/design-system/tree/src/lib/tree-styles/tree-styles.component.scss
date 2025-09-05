@@ -36,8 +36,8 @@
 
     @include mat.button-overrides(
       (
-        hover-state-layer-opacity: 0,
-        pressed-state-layer-opacity: 0,
+        text-hover-state-layer-opacity: 0,
+        text-pressed-state-layer-opacity: 0,
       )
     );
 

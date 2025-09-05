@@ -1,3 +1,7 @@
-@use '@angular/cdk' as mat-cdk;
+@use 'utils';
+@use 'light-theme';
+@use 'theming';
 
-@include mat-cdk.overlay();
+@include utils.global-styles() {
+  @include theming.theme(light-theme.$theme);
+}

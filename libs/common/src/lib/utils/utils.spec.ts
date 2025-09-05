@@ -2,7 +2,7 @@ describe('Utils', () => {
   describe('parseUrl', () => {
     it('should work with native URL.parse implementation', () => {
       const mockURLParse = jest.fn().mockReturnValue(new URL('https://example.com/native'));
-      Object.defineProperty(URL, 'parse', { value: mockURLParse });
+      Object.defineProperty(URL, 'parse', { value: mockURLParse, configurable: true });
 
       jest.resetModules();
       const { parseUrl } = require('./url');
@@ -13,7 +13,7 @@ describe('Utils', () => {
     });
 
     it('should work with ponyfill implementation', () => {
-      Object.defineProperty(URL, 'parse', { value: null });
+      Object.defineProperty(URL, 'parse', { value: null, configurable: true });
 
       jest.resetModules();
       const { parseUrl } = require('./url');

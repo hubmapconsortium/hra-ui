@@ -1,3 +1,4 @@
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { render, screen } from '@testing-library/angular';
 
 import { Metadata } from '../../models/metadata';
@@ -22,6 +23,7 @@ describe('MetadataComponent', () => {
       componentInputs: {
         metadata,
       },
+      providers: [provideNoopAnimations()],
     });
 
     expect(screen.getByText(metadata.title ?? '')).toBeInTheDocument();
@@ -41,6 +43,7 @@ describe('MetadataComponent', () => {
       componentInputs: {
         metadata,
       },
+      providers: [provideNoopAnimations()],
     });
     const component = fixture.componentInstance;
     component.toggleEmptyFields();

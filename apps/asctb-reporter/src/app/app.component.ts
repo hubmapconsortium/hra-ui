@@ -14,6 +14,7 @@ import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { createFileNameTimestamp } from './util/file-timestamp';
 
 import { environment } from '../environments/environment';
 import {
@@ -42,7 +43,6 @@ import { ConfigService } from './app-config.service';
 
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import moment from 'moment';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { StateReset } from 'ngxs-reset-plugin';
 import { UpdateBimodalConfig } from './actions/tree.actions';
@@ -588,7 +588,7 @@ export class AppComponent implements OnDestroy {
    * @param option Export option. PNG | SVG | Vega Spec
    */
   exportVis(option: string) {
-    const dt = moment(new Date()).format('YYYY.MM.DD_hh.mm');
+    const dt = createFileNameTimestamp();
     const sn = this.sheet.display.toLowerCase().replace(' ', '_');
     const formatType = option.toLowerCase();
     let csvURL;

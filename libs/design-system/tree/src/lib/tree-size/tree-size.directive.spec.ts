@@ -15,7 +15,7 @@ describe('Tree Size Directive', () => {
     const styles = window.getComputedStyle(directive);
     expect(styles.getPropertyValue('--mat-tree-node-text-size')).toBe('0.75rem');
     expect(styles.getPropertyValue('--mat-tree-node-min-height')).toBe('1.5rem');
-    expect(styles.getPropertyValue('--mdc-icon-button-state-layer-size')).toBe('1.5rem');
-    expect(styles.getPropertyValue('--mdc-icon-button-icon-size')).toBe('1.25rem');
+    expect(styles.getPropertyValue('--mat-icon-button-state-layer-size')).toBe('1.5rem');
+    expect(styles.getPropertyValue('--mat-icon-button-icon-size')).toBe('1.25rem');
   });
 });

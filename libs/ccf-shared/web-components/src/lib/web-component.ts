@@ -20,12 +20,15 @@ export class BaseWebComponent implements OnInit, OnChanges, OnDestroy {
   initialized = false;
   /** Config manager */
   configManager: ConfigManager;
+  /** Component options */
+  readonly options: BaseWebComponentOptions;
 
   /** Init timeout reference */
   private _init?: ReturnType<typeof setTimeout>;
 
   /** Initialize the component */
-  constructor(readonly options: BaseWebComponentOptions = {}) {
+  constructor(options: BaseWebComponentOptions = {}) {
+    this.options = options;
     this.configManager = new ConfigManager(this.configState, this.options);
   }
 
