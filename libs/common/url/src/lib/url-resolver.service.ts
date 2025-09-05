@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 /** URL type enum */
 export type UrlType = 'app' | 'asset' | 'page';
 
+/** Provider for UrlResolverService */
 export function provideUrlResolver(): Provider {
   return UrlResolverService;
 }
