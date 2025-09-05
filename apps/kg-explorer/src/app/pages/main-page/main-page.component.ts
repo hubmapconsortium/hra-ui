@@ -334,7 +334,7 @@ export class MainPageComponent {
       .map((occurrence) => {
         return {
           id: occurrence[0],
-          label: data.nodes[occurrence[0]] ? data.nodes[occurrence[0]].label || '' : occurrence[0],
+          label: data.nodes[occurrence[0]].label || '',
           count: occurrence[1],
         };
       })
@@ -385,9 +385,11 @@ export class MainPageComponent {
     if (this.filters().searchTerm && this.filters().searchTerm !== '') {
       newFilteredRows = this.filterSearchFormResults(newFilteredRows);
     }
+
     if (this.filters().digitalObjects) {
       newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
     }
+
     if (this.filters().organs) {
       newFilteredRows = this.filterOrganResults(newFilteredRows);
     }
@@ -424,12 +426,12 @@ export class MainPageComponent {
    * @returns Filtered results
    */
   private filterOrganResults(currentResults: TableRow[]): TableRow[] {
-    const currentOrganFilters = this.filters().organs || [];
+    const currentOrganFilters = this.filters().organs;
     if (currentOrganFilters && currentOrganFilters.length === 0) {
       return currentResults;
     }
     return currentResults.filter((row) =>
-      ((row['organIds'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
+      ((row['organIds'] as string[]) ?? []).some((value) => currentOrganFilters?.includes(value)),
     );
   }
 

@@ -75,12 +75,12 @@ export class FilterMenuComponent {
 
   /** Key value pairs for the filter form group */
   readonly formValues = computed<[FilterType, FormControl<FilterOption[] | null>][]>(() => [
-    ['digitalObjects', this.form.controls.digitalObjects || null],
-    ['releaseVersion', this.form.controls.releaseVersion || null],
-    ['organs', this.form.controls.organs || null],
-    ['anatomicalStructures', this.form.controls.anatomicalStructures || null],
-    ['cellTypes', this.form.controls.cellTypes || null],
-    ['biomarkers', this.form.controls.biomarkers || null],
+    ['digitalObjects', this.form.controls.digitalObjects],
+    ['releaseVersion', this.form.controls.releaseVersion],
+    ['organs', this.form.controls.organs],
+    ['anatomicalStructures', this.form.controls.anatomicalStructures],
+    ['cellTypes', this.form.controls.cellTypes],
+    ['biomarkers', this.form.controls.biomarkers],
   ]);
 
   /** Emits when the form opening state is toggled */

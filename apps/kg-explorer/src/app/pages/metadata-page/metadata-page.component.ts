@@ -7,8 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
-import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 import { CopyableUrlContainerComponent } from '@hra-ui/design-system/copyable-url-container';
+import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 import { MenuOptionsType, TableColumn } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 

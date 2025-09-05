@@ -297,6 +297,7 @@ export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> =
  * @returns Organ id
  */
 export function getOrganId(item?: DigitalObjectInfo): string {
+  // console.log(item)
   return item?.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
 }
 
@@ -333,7 +334,7 @@ export function getProductLabel(doType: string): string {
  * @returns Product tooltip data object
  */
 export function getProductTooltip(doType: string): TooltipData {
-  return DO_INFO[doType].tooltip;
+  return DO_INFO[doType]?.tooltip || '';
 }
 
 /**

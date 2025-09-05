@@ -153,7 +153,7 @@ export class DownloadService {
     crosswalk: boolean,
   ): string {
     if (this.hasMultipleofType(files, mediaType)) {
-      return file.title || fileType.description || '';
+      return file.title;
     }
     return crosswalk
       ? 'A CSV file connecting digital objects to ontology terms in ASCT+B Tables.'

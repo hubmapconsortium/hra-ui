@@ -1,0 +1,73 @@
+{
+  "@graph": [
+    {
+      "@id": "https://lod.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
+      "@type": "dcat:Catalog",
+      "cell_count": 6,
+      "hraVersions": ["v2.3", "v2.2", "v2.1", "v2.0", "v1.4", "v1.3"],
+      "doVersion": "v1.2",
+      "organs": ["kidney"],
+      "organIds": ["http://purl.obolibrary.org/obo/UBERON_0002113"],
+      "title": "2D Ascending Thin Limb of Loop of Henle FTU for Kidney",
+      "doType": "2d-ftu",
+      "lastUpdated": "2024-12-15",
+      "doName": "kidney-ascending-thin-loop-of-henle",
+      "versions": ["v1.2", "v1.1", "v1.0"],
+      "purl": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
+      "datasets": [
+        "https://lod.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2",
+        "https://lod.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.0",
+        "https://lod.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.1"
+      ],
+      "lod": "https://lod.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2"
+    },
+    {
+      "@id": "https://lod.humanatlas.io/asct-b/ureter",
+      "@type": "dcat:Catalog",
+      "biomarker_count": "31",
+      "cell_count": "22",
+      "hraVersions": ["v2.3", "v2.2", "v2.1", "v2.0", "v1.4", "v1.3", "v1.2", "v1.1"],
+      "doVersion": "v1.0",
+      "organs": ["ureter"],
+      "organIds": ["http://purl.obolibrary.org/obo/UBERON_0000056"],
+      "title": "Anatomical Structures, Cell Types, plus Biomarkers (ASCT+B) table for Ureter",
+      "doType": "asct-b",
+      "lastUpdated": "2021-12-01",
+      "doName": "ureter",
+      "versions": ["v1.0"],
+      "purl": "https://purl.humanatlas.io/asct-b/ureter",
+      "datasets": "https://lod.humanatlas.io/asct-b/ureter/v1.0",
+      "lod": "https://lod.humanatlas.io/asct-b/ureter/v1.0"
+    },
+    {
+      "@id": "https://lod.humanatlas.io/landmark/main-bronchus-female-landmarks",
+      "@type": "dcat:Catalog",
+      "doVersion": "v1.0",
+      "title": "3D Landmarks for Main Bronchus Female",
+      "doType": "landmark",
+      "lastUpdated": "2023-06-15",
+      "doName": "main-bronchus-female-landmarks",
+      "versions": ["v1.0"],
+      "purl": "https://purl.humanatlas.io/landmark/main-bronchus-female-landmarks",
+      "datasets": "https://lod.humanatlas.io/landmark/main-bronchus-female-landmarks/v1.0",
+      "lod": "https://lod.humanatlas.io/landmark/main-bronchus-female-landmarks/v1.0",
+      "hraVersions": []
+    },
+    {
+      "@id": "",
+      "@type": "",
+      "hraVersions": [],
+      "doVersion": "",
+      "organs": [],
+      "organIds": [],
+      "title": "",
+      "doType": "not-a-real-type",
+      "lastUpdated": "",
+      "doName": "",
+      "versions": [],
+      "purl": "",
+      "datasets": [],
+      "lod": ""
+    }
+  ]
+}
