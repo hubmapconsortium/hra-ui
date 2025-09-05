@@ -18,7 +18,7 @@ describe('MedicalIllustrationBehaviorComponent', () => {
     },
   };
 
-  const selectSnapshotSpy = calledWithFn<Any>({ fallbackMockImplementation: () => () => [] });
+  const selectSnapshotSpy = calledWithFn<Any, Any[]>({ fallbackMockImplementation: () => () => [] });
   const iriSpy = jest.fn((): string | undefined => 'test');
   const iriSpy2 = jest.fn((): string | undefined => undefined);
   let shallow: Shallow<MedicalIllustrationBehaviorComponent>;

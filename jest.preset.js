@@ -5,7 +5,6 @@ module.exports = {
   ...nxPreset,
   ...createCjsPreset({
     testEnvironment: 'jest-preset-angular/environments/jest-jsdom-env',
-    tsconfig: 'tsconfig.spec.json',
   }),
 
   moduleNameMapper: {
