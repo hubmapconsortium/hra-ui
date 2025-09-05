@@ -1,10 +1,10 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
 import { CellTypesComponent } from './cell-types.component';
+import { provideAssetHref } from '@hra-ui/common/url';
 
 describe('CellTypesComponent', () => {
   const cellTypes: CellTypeEntry[] = [
@@ -17,7 +17,7 @@ describe('CellTypesComponent', () => {
   async function setup(options?: RenderComponentOptions<CellTypesComponent>) {
     return render(CellTypesComponent, {
       ...options,
-      providers: [provideDesignSystemCommon(), ...(options?.providers ?? [])],
+      providers: [provideAssetHref('http://localhost/'), ...(options?.providers ?? [])],
     });
   }
 

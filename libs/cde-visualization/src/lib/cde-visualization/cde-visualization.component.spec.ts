@@ -1,7 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { NodeDistVisComponent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -18,6 +17,7 @@ import { EMPTY } from 'rxjs';
 import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 jest.mock('vega-embed', () => jest.fn());
 jest.mock('@hra-ui/node-dist-vis', () => ({}));
@@ -50,12 +50,8 @@ describe('CdeVisualizationComponent', () => {
         age: 40,
         ...options?.inputs,
       },
-      providers: [
-        provideDesignSystemCommon(),
-        provideHttpClient(),
-        provideHttpClientTesting(),
-        ...(options?.providers ?? []),
-      ],
+      providers: [provideHttpClient(), provideHttpClientTesting(), ...(options?.providers ?? [])],
+      imports: [MatIconTestingModule],
     });
 
     await result.fixture.whenStable();
