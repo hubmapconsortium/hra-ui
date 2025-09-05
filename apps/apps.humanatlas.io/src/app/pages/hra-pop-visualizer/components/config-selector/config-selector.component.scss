@@ -3,31 +3,29 @@
 @use '@angular/material' as mat;
 
 :host {
-
   display: flex;
-  gap: 0; 
-  align-items: stretch; 
+  gap: 0;
+  align-items: stretch;
   border-bottom: 0.0625rem solid vars.$outline-variant;
   .config-column {
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 0.75rem; 
-    padding: 1rem; 
-    
+    gap: 0.75rem;
+    padding: 1rem;
+
     &:not(:last-child) {
       border-right: 0.0625rem solid vars.$outline-variant;
     }
-    
-    
+
     &:first-child {
-      min-width: 16.25rem; 
-      max-width: 35rem; 
-      width: 16.875rem; 
+      min-width: 16.25rem;
+      max-width: 35rem;
+      width: 16.875rem;
     }
-    
+
     &:nth-child(2) {
-      width: 16.25rem; 
+      width: 16.25rem;
       gap: 1rem;
     }
   }
@@ -43,7 +41,7 @@
 
     hra-results-indicator {
       flex-shrink: 0;
-      
+
       ::ng-deep {
         .results-indicator {
           background-color: transparent;
@@ -53,7 +51,7 @@
           font-weight: 400;
           color: vars.$on-surface-variant;
           white-space: nowrap;
-          
+
           .indicator-content {
             display: inline-flex;
             align-items: center;
@@ -71,7 +69,7 @@
   }
 
   h3 {
-    @include utils.use-font(label, medium); 
+    @include utils.use-font(label, medium);
     color: vars.$on-surface-variant;
     margin: 0;
   }
@@ -83,10 +81,11 @@
     flex-direction: column;
     gap: 0.75rem;
 
-
-    @include mat.form-field-overrides((
-      label-text-color: vars.$on-surface-variant,
-    ));
+    @include mat.form-field-overrides(
+      (
+        label-text-color: vars.$on-surface-variant,
+      )
+    );
   }
 
   .x-axis-group,
@@ -94,7 +93,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    
+
     .toggle-group {
       border-radius: 0.25rem;
     }
@@ -113,15 +112,14 @@
       flex: 1 1 50%;
       max-width: 50%;
       text-align: center;
-      white-space: normal; 
+      white-space: normal;
       word-wrap: break-word;
-      
 
       &:only-child {
         flex: 1 1 100%;
         max-width: 100%;
       }
-      
+
       .mat-button-toggle-label-content {
         @include utils.use-font(label, small);
         color: vars.$on-surface;
@@ -135,9 +133,9 @@
     flex-direction: column;
     gap: 0.75rem;
     width: 100%;
-    
+
     .toggle-group {
-      border-radius: 0.25rem; 
+      border-radius: 0.25rem;
     }
   }
 
@@ -156,15 +154,15 @@
     &.unavailable {
       opacity: 0.6;
     }
-    
+
     &:not(:last-child) {
       margin-bottom: 0.5rem;
     }
 
     ::ng-deep {
       .mdc-label {
-          @include utils.use-font(label, medium);
-          color: vars.$on-surface-variant;
+        @include utils.use-font(label, medium);
+        color: vars.$on-surface-variant;
       }
     }
   }
@@ -205,7 +203,7 @@
       flex: 1;
       display: flex;
       justify-content: left;
-      
+
       &:not(:last-child) {
         margin-bottom: 0;
       }
@@ -221,11 +219,11 @@
       width: 100%;
       gap: 1rem;
       border-right: none !important;
-      
+
       &:not(:last-child) {
         border-bottom: 0.0625rem solid vars.$outline-variant;
       }
-      
+
       &:first-child,
       &:nth-child(2) {
         width: 100%;
@@ -238,7 +236,7 @@
       ::ng-deep .mat-button-toggle {
         flex: 1 1 100%;
         max-width: 100%;
-        
+
         &:only-child {
           flex: 1 1 100%;
           max-width: 100%;
@@ -259,7 +257,7 @@
       margin-bottom: 0.5rem;
       display: flex;
       justify-content: left;
-      
+
       &:not(:last-child) {
         margin-bottom: 0.5rem;
       }
