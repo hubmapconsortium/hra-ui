@@ -3,13 +3,14 @@
 // Base case is for <639px screens
 :host {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   font: vars.$label-medium;
   letter-spacing: vars.$label-medium-tracking;
+  padding: 2rem 1rem;
+  background-color: vars.$surface-bright;
+  width: 100%;
 
   .left {
-    background-color: vars.$inverse-surface;
-
     .container {
       align-items: center;
       justify-content: center;
@@ -44,7 +45,6 @@
   }
 
   .right {
-    background-color: vars.$surface-container-high;
     padding: 2rem 1rem;
 
     .container {
@@ -53,11 +53,9 @@
 
     .content {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      text-align: center;
-      gap: 2.5rem;
-      max-width: 78.5rem;
+      gap: 6rem;
       margin: 0 auto;
       color: vars.$on-primary-fixed;
 
@@ -82,10 +80,6 @@
 
     .right {
       flex-grow: 1;
-
-      .content {
-        gap: 0;
-      }
 
       .disclaimer {
         padding: 3rem 0 2rem;
