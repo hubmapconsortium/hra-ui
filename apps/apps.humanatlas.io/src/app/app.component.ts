@@ -106,6 +106,11 @@ export class AppComponent {
     return `https://humanatlas.io${this.router.url}`;
   }
 
+  /**
+   * Checks if the current page is the HRApop Visualizer page
+   *
+   * @returns True if the current URL includes '/hra-pop-visualizer', false otherwise
+   */
   isHraPopVisualizerPage(): boolean {
     return this.router.url.includes('/hra-pop-visualizer');
   }

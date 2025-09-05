@@ -1,25 +1,42 @@
 import { VisualizationSpec } from 'vega-embed';
 import { YAxisValue, SortValue } from './data-type-config';
 
+/**
+ * Configuration options for generating bar graph specifications
+ */
 export interface AnatomicalBarGraphSpecOptions {
+  /** Title displayed at the top of the graph */
   graphTitle: string;
+  /** Array of data objects to visualize */
   values: Record<string, any>[];
+  /** Field name to use for X-axis values */
   xField:
     | 'anatomicalStructureId'
     | 'anatomicalStructureLabel'
     | 'extractionSiteId'
     | 'extractionSiteLabel'
     | 'datasetId';
+  /** Field name to use for Y-axis values */
   yField: YAxisValue;
+  /** Array of tools to filter data by */
   toolFilter: string[];
+  /** Sex filter option */
   sexFilter: 'Male' | 'Female' | 'Both';
+  /** Method to sort the data */
   sortBy: SortValue;
+  /** Sort order direction */
   order: 'ascending' | 'descending';
+  /** Width step for each bar in pixels */
   widthStep?: number;
+  /** Height of the chart in pixels */
   height?: number;
 }
 
-// Tool name formatting for display
+/**
+ * Formats tool names for better display in charts
+ * @param tool - The tool identifier to format
+ * @returns The formatted tool name
+ */
 function formatToolName(tool: string): string {
   const toolDisplayNames: Record<string, string> = {
     azimuth: 'Azimuth',
@@ -30,7 +47,15 @@ function formatToolName(tool: string): string {
   return toolDisplayNames[tool] || tool.charAt(0).toUpperCase() + tool.slice(1);
 }
 
-// Main function using row/column faceting - rows=tools, columns=sex, independent scales per tool
+/**
+ * Generates a Vega-Lite specification for bar graph visualization
+ *
+ * Creates a faceted bar chart with rows for annotation tools and columns for sex,
+ * with independent scales per tool for optimal data visualization.
+ *
+ * @param opts - Configuration options for the bar graph
+ * @returns A complete Vega-Lite visualization specification
+ */
 export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): VisualizationSpec {
   const { graphTitle, values, xField, yField, sortBy, order, toolFilter, widthStep = 50, height = 300 } = opts;
 
@@ -56,6 +81,11 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
     filters.push({ field: 'tool', oneOf: toolFilter });
   }
 
+  /**
+   * Gets the appropriate axis title for a given field
+   * @param field - The field name
+   * @returns The formatted axis title
+   */
   const getAxisTitle = (field: string) => {
     switch (field) {
       case 'anatomicalStructureLabel':
@@ -73,6 +103,10 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
     }
   };
 
+  /**
+   * Gets the sort configuration based on sort options
+   * @returns Vega-Lite sort configuration object
+   */
   const getSortConfig = (): any => {
     if (sortBy === 'alphabetical') {
       return { field: xField, order: 'ascending' };

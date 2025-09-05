@@ -1,4 +1,3 @@
-// data.service.ts
 import { Injectable, inject, InjectionToken } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, forkJoin, of } from 'rxjs';
@@ -20,23 +19,37 @@ import {
 } from '../utils/models/dataset-cell-data.model';
 import { z } from 'zod';
 
-// Interface for extraction site details API response
+/**
+ * Interface for extraction site details returned by the API
+ */
 interface ExtractionSiteDetails {
+  /** Unique identifier for the extraction site */
   '@id': string;
+  /** Last name of the creator */
   creator_last_name?: string;
+  /** Creation date in ISO format */
   creation_date?: string;
+  /** Additional properties */
   [key: string]: unknown;
 }
 
-// Configuration interface for API endpoints
+/**
+ * Configuration interface for API endpoints
+ */
 export interface ApiEndpointsConfig {
+  /** URL for anatomical structure data */
   anatomicalUrl: string;
+  /** URL for extraction site data */
   extractionSiteUrl: string;
+  /** URL for dataset cell data */
   datasetCellUrl: string;
+  /** URL for extraction site details */
   extractionSiteDetailsUrl: string;
 }
 
-// InjectionToken for configurable API endpoints
+/**
+ * InjectionToken for configurable API endpoints
+ */
 export const API_ENDPOINTS_CONFIG = new InjectionToken<ApiEndpointsConfig>('api.endpoints.config', {
   providedIn: 'root',
   factory: () => ({
@@ -47,16 +60,29 @@ export const API_ENDPOINTS_CONFIG = new InjectionToken<ApiEndpointsConfig>('api.
   }),
 });
 
+/**
+ * Service for fetching and processing HRApop data from various endpoints
+ *
+ * Handles data retrieval for anatomical structures, extraction sites, and datasets,
+ * with enhanced processing for extraction site labels and caching.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
+  /** HTTP client for making API requests */
   private readonly http = inject(HttpClient);
+
+  /** API configuration with endpoint URLs */
   private readonly apiConfig = inject(API_ENDPOINTS_CONFIG);
 
-  // Cache for extraction site details to avoid duplicate API calls
+  /** Cache for extraction site details to avoid duplicate API calls */
   private extractionSiteDetailsCache = new Map<string, ExtractionSiteDetails>();
 
+  /**
+   * Retrieves and parses anatomical structure data
+   * @returns Observable of parsed anatomical data
+   */
   getAnatomicalData(): Observable<ParsedAnatomicalData[]> {
     return this.http.get<{ results: { bindings: unknown[] } }>(this.apiConfig.anatomicalUrl).pipe(
       map((response) => {
@@ -75,6 +101,10 @@ export class DataService {
     );
   }
 
+  /**
+   * Retrieves and parses extraction site data with enhanced labels
+   * @returns Observable of parsed extraction site data
+   */
   getExtractionSiteData(): Observable<ParsedExtractionSiteData[]> {
     return this.http.get<{ results: { bindings: unknown[] } }>(this.apiConfig.extractionSiteUrl).pipe(
       map((response) => {
@@ -121,6 +151,10 @@ export class DataService {
     );
   }
 
+  /**
+   * Retrieves and parses dataset cell data
+   * @returns Observable of parsed dataset cell data
+   */
   getDatasetCellData(): Observable<ParsedDatasetCellData[]> {
     return this.http.get<{ results: { bindings: unknown[] } }>(this.apiConfig.datasetCellUrl).pipe(
       map((response) => {
@@ -140,7 +174,10 @@ export class DataService {
   }
 
   /**
-   * Fetch extraction site details from the API
+   * Fetches extraction site details from the API
+   * @param iri - The IRI identifier for the extraction site
+   * @returns Observable of extraction site details or null if not found
+   * @private
    */
   private getExtractionSiteDetails(iri: string): Observable<ExtractionSiteDetails | null> {
     // Check cache first
@@ -168,7 +205,11 @@ export class DataService {
   }
 
   /**
-   * Format extraction site label in the format: htan-{organ}-{creator_last_name}-{creation_year}-{id}
+   * Formats extraction site label in the format: htan-{organ}-{creator_last_name}-{creation_year}-{id}
+   * @param iri - The IRI identifier for the extraction site
+   * @param organ - The organ name
+   * @returns Formatted extraction site label
+   * @private
    */
   private formatExtractionSiteLabel(iri: string, organ: string): string {
     const details = this.extractionSiteDetailsCache.get(iri);
@@ -192,7 +233,10 @@ export class DataService {
   }
 
   /**
-   * Get the formatted label for an extraction site (for external use)
+   * Gets the formatted label for an extraction site (for external use)
+   * @param iri - The IRI identifier for the extraction site
+   * @param organ - The organ name
+   * @returns Formatted extraction site label
    */
   getExtractionSiteLabel(iri: string, organ: string): string {
     return this.formatExtractionSiteLabel(iri, organ);

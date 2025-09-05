@@ -1,4 +1,4 @@
-// hra-pop-visualizer.component.ts
+// 1. hra-pop-visualizer.component.ts
 import { ChangeDetectionStrategy, Component, effect, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { rxResource } from '@angular/core/rxjs-interop';
@@ -22,6 +22,13 @@ import {
 } from './utils/data-type-config';
 import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyperlink';
 
+/**
+ * HRApop Visualizer Component
+ *
+ * Main component for visualizing cell type populations from HRApop data.
+ * Provides interactive controls for filtering and organizing data visualization
+ * across different data types (anatomical structures, extraction sites, datasets).
+ */
 @Component({
   selector: 'hra-pop-visualizer',
   imports: [
@@ -38,40 +45,70 @@ import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyper
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HraPopVisualizerComponent {
+  /** Data service for fetching HRApop data */
   private readonly dataService = inject(DataService);
+
+  /** Configuration objects for different data types */
   readonly dataTypeConfigs = DATA_TYPE_CONFIGS;
+
+  /** Available data type options for selection */
   readonly dataTypeOptions = Object.values(DATA_TYPE_CONFIGS);
+
+  /** Y-axis options for chart display */
   readonly yAxisOptions = Y_AXIS_OPTIONS;
+
+  /** Sort options for organizing data */
   readonly sortOptions = SORT_OPTIONS;
 
+  /** Currently selected data type (anatomical, extraction-site, or dataset) */
   readonly selectedDataType = signal<DataType>('anatomical');
+
+  /** Currently selected organ for filtering */
   readonly selectedOrgan = signal<string>('');
+
+  /** Currently selected annotation tools for filtering */
   readonly selectedTools = signal<string[]>([]);
+
+  /** Currently selected sexes for filtering */
   readonly selectedSexes = signal<string[]>(['Male', 'Female']);
+
+  /** Available X-axis options based on selected data type */
   readonly xAxisOptions = signal<XAxisOption[]>([]);
+
+  /** Currently selected X-axis field */
   readonly selectedXAxis = signal<string>('');
+
+  /** Currently selected Y-axis value type */
   readonly selectedYAxis = signal<YAxisValue>('cellCount');
+
+  /** Currently selected sort method */
   readonly selectedSort = signal<SortValue>('totalCellCount');
+
+  /** Tools that have data available for the current organ */
   readonly availableTools = signal<string[]>([]);
+
+  /** Generated Vega-Lite specifications for chart rendering */
   readonly vegaSpecs = signal<VisualizationSpec[]>([]);
 
-  // Resources for data loading
+  /** Resource for loading anatomical structure data */
   private readonly anatomicalDataResource = rxResource({
     request: () => ({ dataType: 'anatomical' as const }),
     loader: () => this.dataService.getAnatomicalData(),
   });
 
+  /** Resource for loading extraction site data */
   private readonly extractionSiteDataResource = rxResource({
     request: () => ({ dataType: 'extraction-site' as const }),
     loader: () => this.dataService.getExtractionSiteData(),
   });
 
+  /** Resource for loading dataset data */
   private readonly datasetDataResource = rxResource({
     request: () => ({ dataType: 'dataset' as const }),
     loader: () => this.dataService.getDatasetCellData(),
   });
 
-  // Computed signals derived from resources
+  /** Computed signal that returns data based on currently selected data type */
   readonly allData = computed(() => {
     const dataType = this.selectedDataType();
     switch (dataType) {
@@ -86,11 +123,13 @@ export class HraPopVisualizerComponent {
     }
   });
 
+  /** Computed signal that returns unique organ options from current data */
   readonly organOptions = computed(() => {
     const data = this.allData();
     return [...new Set(data.map((d) => d.organ))];
   });
 
+  /** Computed signal that returns loading state based on selected data type */
   readonly loading = computed(() => {
     const dataType = this.selectedDataType();
     switch (dataType) {
@@ -105,6 +144,7 @@ export class HraPopVisualizerComponent {
     }
   });
 
+  /** Computed signal that returns error state from data resources */
   readonly error = computed(() => {
     const dataType = this.selectedDataType();
     let error: unknown;
@@ -130,10 +170,18 @@ export class HraPopVisualizerComponent {
     return null;
   });
 
+  /**
+   * Component constructor
+   * Initializes reactive effects for data management
+   */
   constructor() {
     this.initializeEffects();
   }
 
+  /**
+   * Initializes reactive effects for component state management
+   * @private
+   */
   private initializeEffects() {
     // Effect to update X-axis options when data type changes
     effect(() => {
@@ -156,6 +204,10 @@ export class HraPopVisualizerComponent {
     });
   }
 
+  /**
+   * Updates available tools based on current organ selection
+   * @private
+   */
   private updateAvailableTools() {
     const organ = this.selectedOrgan();
     const data = this.allData();
@@ -183,6 +235,11 @@ export class HraPopVisualizerComponent {
     });
   }
 
+  /**
+   * Updates X-axis options based on selected data type
+   * @param dataType - The selected data type
+   * @private
+   */
   private updateXAxisOptions(dataType: DataType) {
     const config = this.dataTypeConfigs[dataType];
     this.xAxisOptions.set(config.xAxisOptions);
@@ -191,6 +248,10 @@ export class HraPopVisualizerComponent {
     }
   }
 
+  /**
+   * Updates chart specifications based on current filter selections
+   * @private
+   */
   private updateCharts() {
     const dataType = this.selectedDataType();
     const organ = this.selectedOrgan();
