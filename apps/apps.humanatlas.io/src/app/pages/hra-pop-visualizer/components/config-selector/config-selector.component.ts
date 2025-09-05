@@ -1,5 +1,5 @@
 // components/config-selector/config-selector.component.ts
-import { Component, ChangeDetectionStrategy, input, output, model } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, model } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';

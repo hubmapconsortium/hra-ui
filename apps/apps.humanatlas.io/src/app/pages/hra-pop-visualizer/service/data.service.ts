@@ -1,7 +1,7 @@
 // data.service.ts
 import { Injectable, inject, InjectionToken } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, forkJoin, of, throwError } from 'rxjs';
+import { Observable, map, forkJoin, of } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 import {
   parseAnatomical,
