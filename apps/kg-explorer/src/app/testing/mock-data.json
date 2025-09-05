@@ -38,6 +38,36 @@
       "purl": "https://purl.humanatlas.io/asct-b/ureter",
       "datasets": "https://lod.humanatlas.io/asct-b/ureter/v1.0",
       "lod": "https://lod.humanatlas.io/asct-b/ureter/v1.0"
+    },
+    {
+      "@id": "https://lod.humanatlas.io/landmark/main-bronchus-female-landmarks",
+      "@type": "dcat:Catalog",
+      "doVersion": "v1.0",
+      "title": "3D Landmarks for Main Bronchus Female",
+      "doType": "landmark",
+      "lastUpdated": "2023-06-15",
+      "doName": "main-bronchus-female-landmarks",
+      "versions": ["v1.0"],
+      "purl": "https://purl.humanatlas.io/landmark/main-bronchus-female-landmarks",
+      "datasets": "https://lod.humanatlas.io/landmark/main-bronchus-female-landmarks/v1.0",
+      "lod": "https://lod.humanatlas.io/landmark/main-bronchus-female-landmarks/v1.0",
+      "hraVersions": []
+    },
+    {
+      "@id": "",
+      "@type": "",
+      "hraVersions": [],
+      "doVersion": "",
+      "organs": [],
+      "organIds": [],
+      "title": "",
+      "doType": "not-a-real-type",
+      "lastUpdated": "",
+      "doName": "",
+      "versions": [],
+      "purl": "",
+      "datasets": [],
+      "lod": ""
     }
   ]
 }

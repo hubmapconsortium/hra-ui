@@ -1,88 +1,33 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
-import { HraKgService } from '@hra-api/ng-client';
+import {
+  ActivatedRouteSnapshot,
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+} from '@angular/router';
+import { HraKgService, V1Service } from '@hra-api/ng-client';
 import { render, screen } from '@testing-library/angular';
 import { of } from 'rxjs';
 
 import { AppComponent } from './app.component';
+import { DO_COLUMNS, METADATA_COLUMNS } from './app.routes';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
-import * as mockDoData from './testing/mock-data.json';
-import * as mockMetadata from './testing/mock-metadata.json';
-import { DO_COLUMNS } from './app.routes';
+import {
+  asctbResolver,
+  biomarkersResolver,
+  cellTypeResolver,
+  documentationUrlResolver,
+  doMetadataResolver,
+  kgResolver,
+  ontologyResolver,
+  productLabelResolver,
+} from './utils/kg-resolver';
 
 jest.mock('@google/model-viewer', () => ({}));
 
 describe('AppComponent', () => {
-  const metadataColumns = [
-    {
-      column: 'provenance',
-      label: 'Provenance',
-      type: 'text',
-    },
-    {
-      column: 'metadata',
-      label: 'Metadata',
-      type: 'markdown',
-    },
-  ];
-
-  async function setup(kg: HraKgService) {
-    return render(AppComponent, {
-      providers: [
-        { provide: HraKgService, useValue: kg },
-        provideRouter(
-          [
-            {
-              path: '',
-              pathMatch: 'full',
-              component: MainPageComponent,
-              data: {
-                reuse: true,
-                columns: DO_COLUMNS,
-              },
-              resolve: {
-                data: mockKgResolver,
-                asctbTermOccurrences: mockAsctbResolver,
-                ontologyTree: mockOntologyResolver,
-                cellTypeTree: mockCellTypeResolver,
-                biomarkerTree: mockBiomarkersResolver,
-              },
-            },
-            {
-              path: ':type/:name',
-              component: MetadataPageComponent,
-              data: {
-                columns: metadataColumns,
-              },
-              resolve: {
-                doData: mockKgResolver,
-                metadata: mockMetadataResolver,
-                documentationUrl: documentationUrlResolver,
-                typeLabel: typeLabelResolver,
-              },
-            },
-          ],
-          withComponentInputBinding(),
-          withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'enabled' }),
-        ),
-        provideHttpClient(),
-        provideHttpClientTesting(),
-      ],
-    });
-  }
-
-  const mockKgResolver = jest.fn().mockReturnValue(mockDoData);
-  const mockAsctbResolver = jest.fn().mockReturnValue([]);
-  const mockOntologyResolver = jest.fn().mockReturnValue({ root: '', nodes: [] });
-  const mockCellTypeResolver = jest.fn().mockReturnValue({ root: '', nodes: [] });
-  const mockBiomarkersResolver = jest.fn().mockReturnValue({ root: '', nodes: [] });
-
-  const mockMetadataResolver = jest.fn().mockReturnValue(mockMetadata);
-  const documentationUrlResolver = jest.fn().mockReturnValue('documentationurl');
-  const typeLabelResolver = jest.fn().mockReturnValue('typelabel');
-
   const mockKgService = {
     doSearch: jest.fn().mockReturnValue(of([])),
     digitalObjects: jest.fn().mockReturnValue(
@@ -95,7 +40,76 @@ describe('AppComponent', () => {
         ],
       }),
     ),
+    asctbTermOccurences: jest.fn().mockReturnValue(of({ root: '', nodes: [] })),
   };
+
+  const mockV1Service = {
+    asctbTermOccurences: jest.fn().mockReturnValue(of([])),
+    ontologyTreeModel: jest.fn().mockReturnValue(of({ root: '', nodes: {} })),
+    cellTypeTreeModel: jest.fn().mockReturnValue(of({ root: '', nodes: {} })),
+    biomarkerTreeModel: jest.fn().mockReturnValue(of({ root: '', nodes: {} })),
+  };
+
+  const mockActivatedRouteSnapshot = {
+    params: {
+      type: 'ref-organ',
+      name: 'heart',
+      version: '1.0',
+    },
+    paramMap: {
+      get: jest.fn().mockImplementation((key: string) => {
+        const params: Record<string, string> = { type: 'ref-organ', name: 'heart', version: 'v1.0' };
+        return params[key];
+      }),
+    },
+  };
+
+  async function setup(kg: HraKgService) {
+    return render(AppComponent, {
+      providers: [
+        { provide: HraKgService, useValue: kg },
+        { provide: V1Service, useValue: mockV1Service },
+        { provide: ActivatedRouteSnapshot, useValue: mockActivatedRouteSnapshot },
+        provideRouter(
+          [
+            {
+              path: '',
+              pathMatch: 'full',
+              component: MainPageComponent,
+              data: {
+                reuse: true,
+                columns: DO_COLUMNS,
+              },
+              resolve: {
+                data: kgResolver(''),
+                asctbTermOccurrences: asctbResolver(),
+                ontologyTree: ontologyResolver(),
+                cellTypeTree: cellTypeResolver(),
+                biomarkerTree: biomarkersResolver(),
+              },
+            },
+            {
+              path: ':type/:name/:version',
+              component: MetadataPageComponent,
+              data: {
+                columns: METADATA_COLUMNS,
+              },
+              resolve: {
+                doData: kgResolver(''),
+                metadata: jest.mocked(doMetadataResolver),
+                documentationUrl: documentationUrlResolver(),
+                typeLabel: jest.mocked(productLabelResolver()),
+              },
+            },
+          ],
+          withComponentInputBinding(),
+          withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'enabled' }),
+        ),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
+    });
+  }
 
   it('should render the component and compute breadcrumbs', async () => {
     const { fixture } = await setup(mockKgService as unknown as HraKgService);

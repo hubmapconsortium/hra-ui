@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { HttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,6 +22,7 @@ describe('MainPageComponent', () => {
     actRoute?: ActivatedRoute,
     kgService?: HraKgService,
     httpService?: HttpClient,
+    mobile?: boolean,
   ) {
     return render(MainPageComponent, {
       componentInputs: {
@@ -38,6 +40,7 @@ describe('MainPageComponent', () => {
         { provide: HraKgService, useValue: kgService },
         { provide: HttpClient, useValue: httpService },
         provideHttpClientTesting(),
+        mobile ? mobileBreakpointsProvider : screenBreakpointsProvider,
       ],
     });
   }
@@ -120,6 +123,26 @@ describe('MainPageComponent', () => {
   const mockKgService = {
     doSearch: jest.fn().mockReturnValue(of([])),
   };
+
+  const mobileBreakpointsProvider = {
+    provide: BreakpointObserver,
+    useValue: { observe: () => of({ matches: true, breakpoints: {} }) },
+  };
+
+  const screenBreakpointsProvider = {
+    provide: BreakpointObserver,
+    useValue: { observe: () => of({ matches: false, breakpoints: {} }) },
+  };
+
+  beforeAll(() => {
+    if (typeof ResizeObserver === 'undefined') {
+      window.ResizeObserver = jest.fn().mockImplementation(() => ({
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+      }));
+    }
+  });
 
   it('should initialize filters from query params', async () => {
     const { fixture } = await setup(
@@ -416,12 +439,38 @@ describe('MainPageComponent', () => {
       { root: '', nodes: {} },
       mockActivatedRoute as unknown as ActivatedRoute,
       mockKgService as unknown as HraKgService,
+      undefined,
+      false,
     );
     const instance = fixture.componentInstance;
 
     window.innerHeight = 1000;
-    instance['setScrollViewportHeight']();
+    window.dispatchEvent(new Event('resize'));
+
+    // instance['setScrollViewportHeight']();
     expect(instance.scrollHeight()).toBe(701);
+  });
+
+  it('should calculate scroll height on a small screen', async () => {
+    const { fixture } = await setup(
+      mockData as DigitalObjectsJsonLd,
+      [],
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      mockActivatedRoute as unknown as ActivatedRoute,
+      mockKgService as unknown as HraKgService,
+      undefined,
+      true,
+    );
+    const instance = fixture.componentInstance;
+
+    window.innerHeight = 1000;
+    window.innerWidth = 500;
+    window.dispatchEvent(new Event('resize'));
+
+    // instance['setScrollViewportHeight']();
+    expect(instance.scrollHeight()).toBe(741);
   });
 
   it('should attach download options to a row', async () => {
@@ -443,5 +492,57 @@ describe('MainPageComponent', () => {
     instance.downloadId.set('https://lod.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle/v1.2');
     instance['attachDownloadOptions']();
     expect(instance.download.getDownloadOptions).toHaveBeenCalled();
+  });
+
+  it('handles empty organ filters', async () => {
+    const mockActivatedRoute2 = {
+      queryParams: of({
+        do: ['2d-ftu'],
+        versions: ['v1.2', 'v2.2'],
+        organs: [],
+        as: ['aaa'],
+        ct: ['bbb'],
+        b: ['ccc'],
+        search: 'kidney',
+      }),
+    };
+
+    const { fixture } = await setup(
+      mockData as DigitalObjectsJsonLd,
+      [],
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      mockActivatedRoute2 as unknown as ActivatedRoute,
+      mockKgService as unknown as HraKgService,
+    );
+    const instance = fixture.componentInstance;
+    expect(instance.filteredRows()).toEqual([]);
+  });
+
+  it('handles empty do filters', async () => {
+    const mockActivatedRoute3 = {
+      queryParams: of({
+        do: [],
+        versions: ['v1.2', 'v2.2'],
+        organs: ['http://purl.obolibrary.org/obo/UBERON_0002113'],
+        as: ['aaa'],
+        ct: ['bbb'],
+        b: ['ccc'],
+        search: 'kidney',
+      }),
+    };
+
+    const { fixture } = await setup(
+      mockData as DigitalObjectsJsonLd,
+      [],
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      mockActivatedRoute3 as unknown as ActivatedRoute,
+      mockKgService as unknown as HraKgService,
+    );
+    const instance = fixture.componentInstance;
+    expect(instance.filteredRows()).toEqual([]);
   });
 });

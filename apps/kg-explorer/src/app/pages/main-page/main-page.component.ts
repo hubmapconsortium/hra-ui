@@ -426,12 +426,12 @@ export class MainPageComponent {
    * @returns Filtered results
    */
   private filterOrganResults(currentResults: TableRow[]): TableRow[] {
-    const currentOrganFilters = this.filters().organs || [];
+    const currentOrganFilters = this.filters().organs;
     if (currentOrganFilters && currentOrganFilters.length === 0) {
       return currentResults;
     }
     return currentResults.filter((row) =>
-      ((row['organIds'] as string[]) ?? []).some((value) => currentOrganFilters.includes(value)),
+      ((row['organIds'] as string[]) ?? []).some((value) => currentOrganFilters?.includes(value)),
     );
   }
 

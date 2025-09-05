@@ -5,6 +5,7 @@ import { DigitalObjectsJsonLd, HraKgService, OntologyTree, V1Service } from '@hr
 import { catchError, map, of } from 'rxjs';
 
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
+import { getDocumentationUrl, getProductLabel } from './utils';
 
 /**
  * Creates a resolver that fetches the digital object data from a url
@@ -76,5 +77,19 @@ export function biomarkersResolver(): ResolveFn<OntologyTree> {
   return () => {
     const v1 = inject(V1Service);
     return v1.biomarkerTreeModel({}).pipe(map((data) => data));
+  };
+}
+
+export function documentationUrlResolver(): ResolveFn<string> {
+  return (route: ActivatedRouteSnapshot) => {
+    const type = route.params['type'];
+    return getDocumentationUrl(type);
+  };
+}
+
+export function productLabelResolver(): ResolveFn<string> {
+  return (route: ActivatedRouteSnapshot) => {
+    const type = route.params['type'];
+    return getProductLabel(type);
   };
 }
