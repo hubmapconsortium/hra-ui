@@ -17,8 +17,11 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { MatMenuModule } from '@angular/material/menu';
 import { CtaConfig, DEFAULT_MENUS, HeaderComponent, Menu } from '@hra-ui/design-system/navigation/header';
 import { isNavigating } from './utils/navigation';
+import { MatDividerModule } from '@angular/material/divider';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Padding when scrolling to an anchor in px */
 const ANCHOR_SCROLL_PADDING = 24;
@@ -26,7 +29,16 @@ const ANCHOR_SCROLL_PADDING = 24;
 /** Main application component */
 @Component({
   selector: 'hra-root',
-  imports: [ButtonsModule, CommonModule, RouterModule, IconsModule, NavigationModule],
+  imports: [
+    ButtonsModule,
+    CommonModule,
+    RouterModule,
+    IconsModule,
+    NavigationModule,
+    MatMenuModule,
+    MatDividerModule,
+    PlainTooltipDirective,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {
@@ -92,5 +104,14 @@ export class AppComponent {
       return currentRouteData['helpUrl'] as string;
     }
     return `https://humanatlas.io${this.router.url}`;
+  }
+
+  /**
+   * Checks if the current page is the HRApop Visualizer page
+   *
+   * @returns True if the current URL includes '/hra-pop-visualizer', false otherwise
+   */
+  isHraPopVisualizerPage(): boolean {
+    return this.router.url.includes('/hra-pop-visualizer');
   }
 }
