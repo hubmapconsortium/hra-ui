@@ -79,7 +79,6 @@
     "marked": "^15.0.12",
     "marked-gfm-heading-id": "^4.1.2",
     "memory-cache": "^0.2.0",
-    "moment": "^2.30.1",
     "nanoid": "^5.1.5",
     "ng-inline-svg-2": "^20.0.1",
     "ng-table-virtual-scroll": "^1.6.1",
@@ -113,7 +112,6 @@
   },
   "devDependencies": {
     "@angular-devkit/architect": "^0.2002.0",
-    "@angular-devkit/build-angular": "^20.2.2",
     "@angular-devkit/core": "^20.2.0",
     "@angular-devkit/schematics": "^20.2.0",
     "@angular-eslint/eslint-plugin": "^20.2.0",
@@ -184,7 +182,6 @@
     "lint-staged": "^16.1.5",
     "netlify-cli": "^23.4.0",
     "ng-packagr": "20.2.0",
-    "ngx-build-plus": "^20.0.0",
     "nx": "21.4.1",
     "prettier": "^3.3.3",
     "shallow-render": "^20.0.0",
