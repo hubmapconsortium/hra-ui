@@ -80,6 +80,10 @@ export function biomarkersResolver(): ResolveFn<OntologyTree> {
   };
 }
 
+/**
+ * Creates documentation url resolver from the route
+ * @returns url resolver
+ */
 export function documentationUrlResolver(): ResolveFn<string> {
   return (route: ActivatedRouteSnapshot) => {
     const type = route.params['type'];
@@ -87,6 +91,10 @@ export function documentationUrlResolver(): ResolveFn<string> {
   };
 }
 
+/**
+ * Creates product label resolver from the route
+ * @returns product label resolver
+ */
 export function productLabelResolver(): ResolveFn<string> {
   return (route: ActivatedRouteSnapshot) => {
     const type = route.params['type'];
