@@ -47,17 +47,7 @@
   .ng-scroll-content {
     width: 100% !important;
     height: 100%;
-  }
-
-  &.many-entries {
-    &.fullscreen {
-      .ng-scroll-content {
-        height: 100% !important;
-      }
-    }
-    .ng-scroll-content {
-      height: unset !important;
-    }
+    min-height: 0rem !important;
   }
 }
 

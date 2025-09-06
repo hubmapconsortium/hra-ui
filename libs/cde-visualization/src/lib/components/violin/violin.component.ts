@@ -235,10 +235,7 @@ export class ViolinComponent {
    * @returns Violin plot height
    */
   private calculateViolinHeight(boxH: number) {
-    if (this.colorCount() < 14 || this.fullScreenEnabled()) {
-      return Math.min(50, Math.max((boxH - 60) / this.colorCount(), 20));
-    }
-    return 50;
+    return Math.min(50, (boxH - 60) / this.colorCount());
   }
 
   /** Download the violin as an image in the specified format */
