@@ -2,16 +2,6 @@
   <mat-progress-bar class="progress" mode="indeterminate"></mat-progress-bar>
 }
 
-<div class="header">
-  <hra-nav-header-buttons
-    app="product:cde"
-    appTitle="Cell Distance Explorer"
-    [appLink]="homeLink()"
-    variant="basic"
-    appStatus="Beta"
-  ></hra-nav-header-buttons>
-</div>
-
 <div class="metadata">
   <cde-metadata [metadata]="metadataView()"></cde-metadata>
   <cde-cell-types

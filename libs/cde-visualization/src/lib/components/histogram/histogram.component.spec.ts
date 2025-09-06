@@ -9,6 +9,7 @@ import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
+import { CellTypeEntry } from '../../models/cell-type';
 
 jest.mock('vega-embed', () => jest.fn());
 
@@ -23,6 +24,21 @@ describe('HistogramComponent', () => {
       edge: [],
       type: 'B',
       distance: 7,
+    },
+  ];
+
+  const sampleCellTypes: CellTypeEntry[] = [
+    {
+      name: 'test2',
+      count: 9,
+      outgoingEdgeCount: 7,
+      color: [1, 2, 3],
+    },
+    {
+      name: 'test1',
+      count: 2,
+      outgoingEdgeCount: 3,
+      color: [4, 5, 6],
     },
   ];
 
@@ -56,7 +72,7 @@ describe('HistogramComponent', () => {
       inputs: {
         data: sampleData,
         colors: [],
-        filteredCellTypes: [],
+        filteredCellTypes: sampleCellTypes,
       },
     });
     await fixture.whenStable();

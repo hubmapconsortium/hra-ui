@@ -6,9 +6,9 @@
     "font": "Metropolis",
     "padding": {
       "top": 0,
-      "right": 0,
-      "bottom": 0,
-      "left": 0
+      "right": 12,
+      "bottom": 12,
+      "left": 12
     },
     "view": {
       "stroke": "transparent"
@@ -22,7 +22,6 @@
       "labelLineHeight": 18,
       "titleColor": "#201E3D",
       "labelColor": "#4B4B5E",
-      "labelAngle": -45,
       "ticks": false,
       "labelPadding": 8
     },
@@ -78,7 +77,7 @@
   },
   "spec": {
     "height": 35,
-    "width": "container",
+    "width": 0,
     "layer": [
       {
         "mark": {
@@ -99,6 +98,7 @@
             "type": "quantitative",
             "title": "Distance (µm)",
             "axis": {
+              "orient": "top",
               "minExtent": 25,
               "labelFlush": false,
               "grid": true,
