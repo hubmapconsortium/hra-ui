@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/common/fs';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { reduce, Subscription } from 'rxjs';
 
 /**

@@ -25,6 +25,12 @@ carouselItems:
     action: Read
     link:
       url: https://www.nature.com/articles/s41556-021-00788-6
+  - tagline: New preprint
+    description: Constructing and Using Cell Type Populations of the Human Reference Atlas
+    imageSrc: assets/content/landing-page/images/carousel5.png
+    action: Read
+    link:
+      url: https://doi.org/10.1101/2025.08.14.670406
 
 countInfo:
   - count: 26
@@ -32,11 +38,11 @@ countInfo:
     icon: misc:contribute
   - count: 250
     label: experts
-    showSuffix: true
+    suffix: +
     icon: misc:experts
   - count: 1000
     label: publications
-    showSuffix: true
+    suffix: +
     icon: misc:publications
   - count: 73
     label: organs

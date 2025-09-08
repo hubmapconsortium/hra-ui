@@ -20,6 +20,14 @@ content:
           - This app can be used to add granularity to our understanding of how disease develops (e.g., how tumor cells grow or metastasize) in support of targeted therapies.
 
   - component: PageSection
+    tagline: App features
+    anchor: app-features
+    level: 3
+    content:
+      - component: Image
+        src: assets/content/cell-distance-explorer-page/images/app-features.png
+
+  - component: PageSection
     tagline: Demo video
     anchor: demo-video
     level: 3

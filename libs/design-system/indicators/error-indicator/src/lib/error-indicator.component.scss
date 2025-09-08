@@ -1,4 +1,5 @@
-@use '../../../../../libs/design-system/styles/vars';
+@use '../../../../../../libs/design-system/styles/vars';
+@use '../../../../../../libs/design-system/styles/utils';
 
 :host {
   display: flex;
@@ -17,5 +18,9 @@
   .error {
     font: vars.$label-large;
     letter-spacing: vars.$label-large-tracking;
+  }
+
+  .link {
+    @include utils.use-font(label, large);
   }
 }

@@ -1,7 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { Router, RouterOutlet, RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { routeData } from '@hra-ui/common';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 
 import { ScreenSizeNoticeComponent } from './components/screen-size-notice/screen-size-notice.component';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { CommonModule } from '@angular/common';
 
 /** Max width to show screen size notice */
 export const SCREEN_SIZE_NOTICE_MAX_WIDTH = 1280;
@@ -13,7 +23,17 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
  */
 @Component({
   selector: 'cde-root',
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    MatIconModule,
+    NavigationModule,
+    ButtonsModule,
+    PlainTooltipDirective,
+    MatMenuModule,
+    MatDividerModule,
+    CommonModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {
@@ -21,6 +41,17 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
   },
 })
 export class AppComponent {
+  /**
+   * Route data of app component
+   */
+  private readonly data = routeData();
+
+  /** Breadcrumbs data (computed from above signal). */
+  protected readonly crumbs = computed(() => this.data()['crumbs'] as BreadcrumbItem[] | undefined);
+
+  /** Header visibility (whether to show header or not) */
+  protected readonly header = computed(() => this.data()['header'] as boolean | undefined);
+
   /**
    * Screen size notice detector of app component
    */
