@@ -947,7 +947,7 @@ Cesium-derived code can be found in the submodule: modules/3d-tiles
 Package: gl-matrix
 License: "MIT"
 
-Copyright (c) 2015-2021, Brandon Jones, Colin MacKenzie IV.
+Copyright (c) 2015-2025, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1484,7 +1484,7 @@ License: "MIT"
 
 The MIT License
 
-Copyright (c) 2010-2024 Google LLC. https://angular.io/license
+Copyright (c) 2010-2025 Google LLC. https://angular.dev/license
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

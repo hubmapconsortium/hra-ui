@@ -644,7 +644,7 @@ This software is provided by the copyright holders and contributors “as is” 
 
 --------------------------------------------------------------------------------
 Package: @hra-api/ng-client
-License: "Unlicense"
+License: "MIT"
 
 
 --------------------------------------------------------------------------------
