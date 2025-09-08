@@ -93,13 +93,9 @@
 
   hra-results-indicator {
     display: none;
-    line-height: 2rem;
-    height: 3rem;
-    min-width: 139px;
-    text-align: center;
 
     @media (min-width: 640px) {
-      display: unset;
+      display: flex;
     }
   }
 
