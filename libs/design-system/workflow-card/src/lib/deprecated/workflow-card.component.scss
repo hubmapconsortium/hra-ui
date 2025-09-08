@@ -20,14 +20,14 @@
   }
 
   mat-progress-bar {
-    --mdc-linear-progress-track-height: 0.5rem;
-    --mdc-linear-progress-active-indicator-height: 0.5rem;
-    --mdc-linear-progress-active-indicator-color: #{vars.$inverse-surface};
-    --mdc-linear-progress-track-color: #{vars.$surface-container-high};
+    --mat-progress-bar-track-height: 0.5rem;
+    --mat-progress-bar-active-indicator-height: 0.5rem;
+    --mat-progress-bar-active-indicator-color: #{vars.$inverse-surface};
+    --mat-progress-bar-track-color: #{vars.$surface-container-high};
 
     &.ready {
-      --mdc-linear-progress-track-color: transparent;
-      --mdc-linear-progress-active-indicator-color: transparent;
+      --mat-progress-bar-track-color: transparent;
+      --mat-progress-bar-active-indicator-color: transparent;
     }
 
     &.fully-loaded {

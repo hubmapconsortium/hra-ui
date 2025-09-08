@@ -1,5 +1,5 @@
 import { Signal, Type } from '@angular/core';
-import { SafeParseReturnType, ZodLiteral, ZodTypeAny, z } from 'zod';
+import { ZodSafeParseResult, ZodLiteral, ZodTypeAny, z } from 'zod';
 
 /** Type representing any DashboardComponent specification */
 export type DashboardComponentAnySpec = { type: string };
@@ -64,6 +64,6 @@ export function validateSpec(
 export function safeValidateSpec(
   cls: DashboardComponentAnyClass,
   spec: DashboardComponentAnySpec,
-): SafeParseReturnType<DashboardComponentAnySpec, DashboardComponentAnySpec> {
+): ZodSafeParseResult<DashboardComponentAnySpec> {
   return defFor(cls).safeParse(spec);
 }

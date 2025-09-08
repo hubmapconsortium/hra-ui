@@ -7,23 +7,14 @@ export enum LinkType {
   External = 'external',
 }
 
+/** Schema for link ID */
+export const LINK_ID_SCHEMA = z
+  .string()
+  .transform((id) => `LinkId:'${id}'`)
+  .brand('LinkId');
+
 /** Type for unique identifier for link */
-export type LinkId = z.infer<(typeof LINK_REGISTRY_SCHEMA)['keySchema']>;
-
-/** entry for link registry */
-export type LinkEntry = z.infer<(typeof LINK_REGISTRY_SCHEMA)['valueSchema']>;
-
-/** type for internal link entry */
-export type InternalLinkEntry = z.infer<typeof INTERNAL_LINK_SCHEMA>;
-
-/** type for external link entry */
-export type ExternalLinkEntry = z.infer<typeof EXTERNAL_LINK_SCHEMA>;
-
-/** Model for LinkRegistry State */
-export type LinkRegistryModel = z.infer<typeof LINK_REGISTRY_SCHEMA>;
-
-/** type for State Context of LinkRegistry */
-export type LinkRegistryContext = StateContext<LinkRegistryModel>;
+export type LinkId = z.infer<typeof LINK_ID_SCHEMA>;
 
 /** Type for external link entry */
 export const EXTERNAL_LINK_SCHEMA = z
@@ -42,7 +33,7 @@ export const INTERNAL_LINK_SCHEMA = z
     commands: z.any().array(),
     extras: z
       .object({
-        queryParams: z.record(z.any()).nullable(),
+        queryParams: z.record(z.string(), z.any()).nullable(),
         fragment: z.string(),
         queryParamsHandling: z.enum(['merge', 'preserve', '']).nullable(),
         preserveFragment: z.boolean(),
@@ -54,18 +45,30 @@ export const INTERNAL_LINK_SCHEMA = z
   })
   .partial({ extras: true });
 
+/** Schema for link entry */
+export const LINK_ENTRY_SCHEMA = z.discriminatedUnion('type', [EXTERNAL_LINK_SCHEMA, INTERNAL_LINK_SCHEMA]);
+
+/** entry for link registry */
+export type LinkEntry = z.infer<typeof LINK_ENTRY_SCHEMA>;
+
+/** type for internal link entry */
+export type InternalLinkEntry = z.infer<typeof INTERNAL_LINK_SCHEMA>;
+
+/** type for external link entry */
+export type ExternalLinkEntry = z.infer<typeof EXTERNAL_LINK_SCHEMA>;
+
 /** Schema for link registry */
-export const LINK_REGISTRY_SCHEMA = z.record(
-  z
-    .string()
-    .transform((id) => `LinkId:'${id}'`)
-    .brand('LinkId'),
-  z.discriminatedUnion('type', [EXTERNAL_LINK_SCHEMA, INTERNAL_LINK_SCHEMA])
-);
+export const LINK_REGISTRY_SCHEMA = z.record(LINK_ID_SCHEMA, LINK_ENTRY_SCHEMA);
+
+/** Model for LinkRegistry State */
+export type LinkRegistryModel = z.infer<typeof LINK_REGISTRY_SCHEMA>;
+
+/** type for State Context of LinkRegistry */
+export type LinkRegistryContext = StateContext<LinkRegistryModel>;
 
 /** function to createa unique link ids */
 export function createLinkId(id: string): LinkId {
-  return LINK_REGISTRY_SCHEMA.keySchema.parse(id);
+  return LINK_ID_SCHEMA.parse(id);
 }
 
 /** Empty link id */
