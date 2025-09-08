@@ -1,13 +1,13 @@
 {
   "name": "asctb-reporter",
-  "metadata": {
-    "version": "4.0.0"
-  },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/asctb-reporter/src",
   "prefix": "app",
   "tags": ["type:app", "project:asctb"],
+  "metadata": {
+    "version": "4.0.0"
+  },
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
@@ -23,7 +23,7 @@
           }
         ],
         "polyfills": ["apps/asctb-reporter/src/polyfills.ts"],
-        "scripts": ["./node_modules/marked/marked.min.js"]
+        "scripts": ["node_modules/marked/lib/marked.umd.js"]
       },
       "configurations": {
         "production": {
@@ -57,7 +57,8 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server"
+      "executor": "@nx/angular:dev-server",
+      "continuous": true
     }
   }
 }

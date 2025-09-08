@@ -1,17 +1,17 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   effect,
   ElementRef,
-  input,
-  viewChild,
-  resource,
   inject,
+  input,
   Renderer2,
+  resource,
+  viewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import embed, { VisualizationSpec } from 'vega-embed';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import embed, { VisualizationSpec } from 'vega-embed';
 
 /**
  * Component for rendering a bar graph using Vega-Lite.
@@ -40,9 +40,9 @@ export class BarGraphComponent {
    * Vega resource of bar graph component
    */
   private readonly vega = resource({
-    request: () => this.spec(),
+    params: () => this.spec(),
     loader: async (params) => {
-      const { abortSignal, request: spec } = params;
+      const { abortSignal, params: spec } = params;
       this.clearContainer();
       if (!spec) {
         return null;
