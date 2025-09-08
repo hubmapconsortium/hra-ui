@@ -5,7 +5,6 @@
 :host {
   display: block;
   position: relative;
-  min-height: 14rem;
   width: 100%;
   table-layout: fixed;
 
@@ -39,7 +38,6 @@
   );
 
   cdk-virtual-scroll-viewport {
-    height: 100%;
     width: 100%;
   }
 
