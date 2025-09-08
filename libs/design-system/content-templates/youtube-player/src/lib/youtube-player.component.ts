@@ -6,7 +6,7 @@ import { YouTubePlayer } from '@angular/youtube-player';
 @Component({
   selector: 'hra-youtube-player',
   imports: [CommonModule, YouTubePlayer],
-  template: `<youtube-player [videoId]="videoId()" />`,
+  template: `<youtube-player [videoId]="videoId()" [disableCookies]="true" />`,
   styleUrl: './youtube-player.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
