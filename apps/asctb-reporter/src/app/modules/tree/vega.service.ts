@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Spec, View, parse } from 'vega';
-import vegaTooltip from 'vega-tooltip';
 import { ReportLog } from '../../actions/logs.actions';
 import { UpdateLinksData, UpdateVegaView } from '../../actions/tree.actions';
 import { CloseLoading, HasError, OpenBottomSheet, OpenBottomSheetDOI } from '../../actions/ui.actions';
@@ -45,7 +44,10 @@ export class VegaService {
       const runtime = parse(config, {});
       const treeView = new View(runtime).renderer('svg').initialize('#vis').hover();
 
-      vegaTooltip(treeView, { theme: 'custom' });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const tooltip = await import('vega-tooltip');
+      tooltip.default(treeView, { theme: 'custom' });
       treeView.runAsync();
 
       this.addSignalListeners(treeView);

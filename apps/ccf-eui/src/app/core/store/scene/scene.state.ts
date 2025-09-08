@@ -1,6 +1,6 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { SpatialEntity, SpatialSceneNode } from '@hra-api/ng-client';
 import { NgxsOnInit, Selector, State } from '@ngxs/store';
 import { NodeClickEvent } from 'ccf-body-ui';
@@ -102,17 +102,8 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
   /** The list results state */
   private listResults!: ListResultsState;
 
-  /**
-   * Creates an instance of scene state.
-   * @param dataService Data source service used to fetch reference organs
-   * @param injector Injector service used to lazy load data state
-   */
-  constructor(
-    private readonly dataService: DataSourceService,
-    private readonly injector: Injector,
-  ) {
-    super();
-  }
+  /** Data source service */
+  private readonly dataService = inject(DataSourceService);
 
   /**
    * Sets the selected reference organs
@@ -215,9 +206,9 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
 
     // Injecting page and model states in the constructor breaks things!?
     // Lazy load here
-    this.dataState = this.injector.get(DataState);
-    this.colorAssignments = this.injector.get(ColorAssignmentState);
-    this.listResults = this.injector.get(ListResultsState);
+    this.dataState = inject(DataState);
+    this.colorAssignments = inject(ColorAssignmentState);
+    this.listResults = inject(ListResultsState);
     // Initialize reference organ info
     this.dataService
       .getReferenceOrgans()
