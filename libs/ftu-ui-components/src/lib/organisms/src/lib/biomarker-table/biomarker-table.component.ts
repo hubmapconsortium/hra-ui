@@ -142,6 +142,23 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /** Injects BottomSheetService */
   private readonly bottomSheetService = inject(BottomSheetService);
 
+  /** row height */
+  readonly rowHeight = 28;
+  /** header height */
+  readonly headerHeight = 97;
+  /** max visible rows */
+  readonly maxVisibleRows = 10;
+
+  /**
+   * Gets viewport height
+   * @returns viewport height in pixels
+   */
+  get viewportHeight(): number {
+    const rows = this.dataSource.data.length;
+    const visible = Math.min(rows, this.maxVisibleRows) + 1; // offset
+    return this.headerHeight + visible * this.rowHeight;
+  }
+
   /** Gets the current width of the prefiller column */
   get preFillerWidth(): string {
     return `${this.cellWidth * this.displayedColumnOffset}px`;
