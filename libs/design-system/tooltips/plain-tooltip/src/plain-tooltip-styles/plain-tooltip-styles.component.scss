@@ -3,8 +3,8 @@
 
 @include utils.global-styles() {
   .hra-plain-tooltip {
-    --mdc-plain-tooltip-supporting-text-color: #{vars.$on-primary};
-    --mdc-plain-tooltip-container-color: color-mix(in srgb, #{vars.$secondary 96%}, transparent);
+    --mat-tooltip-supporting-text-color: #{vars.$on-primary};
+    --mat-tooltip-container-color: color-mix(in srgb, #{vars.$secondary 96%}, transparent);
 
     .mat-mdc-tooltip-surface {
       padding: 0.25rem 0.5rem;

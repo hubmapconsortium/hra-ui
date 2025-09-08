@@ -1,13 +1,10 @@
-import { ActionGroup } from '@hra-ui/cdk/state';
+import { Action } from '@hra-ui/cdk/state';
 import { IllustrationMappingItem, Iri } from '@hra-ui/services';
-
-/** Action base class factory */
-const Action = ActionGroup('Illustrator');
 
 /**
  * Loads the state with the current Iri
  */
-export class Load extends Action('Load') {
+export class Load extends Action('[Illustrator] Load') {
   /** Intializes the set iri */
   constructor(readonly iri: Iri) {
     super();
@@ -17,7 +14,7 @@ export class Load extends Action('Load') {
 /**
  * Sets the selection for the Item in the current state on SetHover
  */
-export class SetHover extends Action('Set Selection on Hover') {
+export class SetHover extends Action('[Illustrator] Set Selection on Hover') {
   /** Initializes the Mapping Item */
   constructor(readonly selectedOnHover: IllustrationMappingItem | undefined) {
     super();
@@ -27,7 +24,7 @@ export class SetHover extends Action('Set Selection on Hover') {
 /**
  * Sets the selection for the Item in the current state on SetClicked
  */
-export class SetClicked extends Action('Set Selection on Clicked') {
+export class SetClicked extends Action('[Illustrator] Set Selection on Clicked') {
   /** Initializes the Mapping Item */
   constructor(readonly selectedOnClick: IllustrationMappingItem) {
     super();
@@ -37,7 +34,7 @@ export class SetClicked extends Action('Set Selection on Clicked') {
 /**
  * Sets highlighted cell type id in the state from label
  */
-export class HighlightCellType extends Action('Highlight Cell Type Id') {
+export class HighlightCellType extends Action('[Illustrator] Highlight Cell Type Id') {
   /** Initializes the Mapping Item */
   constructor(readonly hoverLabel?: string) {
     super();
@@ -47,9 +44,9 @@ export class HighlightCellType extends Action('Highlight Cell Type Id') {
 /**
  * Clears the selection for the current state
  */
-export class ClearSelection extends Action('Clear Selection') {}
+export class ClearSelection extends Action('[Illustrator] Clear Selection') {}
 
 /**
  * Resets the state
  */
-export class Reset extends Action('Reset') {}
+export class Reset extends Action('[Illustrator] Reset') {}

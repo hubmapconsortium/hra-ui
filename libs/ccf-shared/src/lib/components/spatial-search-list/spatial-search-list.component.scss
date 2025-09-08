@@ -2,8 +2,8 @@
 
 :host {
   .list {
-    --mdc-list-list-item-one-line-container-height: 2.5rem;
-    --mdc-list-list-item-label-text-color: #{vars.$primary};
+    --mat-list-list-item-one-line-container-height: 2.5rem;
+    --mat-list-list-item-label-text-color: #{vars.$primary};
     padding: 0.25rem 0;
   }
 

@@ -144,13 +144,13 @@ export class AppComponent {
 
   /** Organ Info */
   protected readonly organInfo = rxResource({
-    request: () => ({
+    params: () => ({
       iri: this.organIri(),
       sex: this.sex(),
       side: this.side(),
     }),
-    loader: (params) => {
-      const { iri, sex, side } = params.request;
+    stream: (params) => {
+      const { iri, sex, side } = params.params;
       if (iri === undefined) {
         return of(undefined);
       }
@@ -162,12 +162,12 @@ export class AppComponent {
 
   /** Organ */
   protected readonly organ = rxResource({
-    request: () => ({
+    params: () => ({
       info: this.organInfo.value(),
       sex: untracked(this.sex),
     }),
-    loader: (params) => {
-      const { info, sex } = params.request;
+    stream: (params) => {
+      const { info, sex } = params.params;
       if (info === undefined) {
         return of(undefined);
       }
@@ -184,12 +184,12 @@ export class AppComponent {
 
   /** Organ Scene */
   protected readonly scene = rxResource({
-    request: () => ({
+    params: () => ({
       organ: this.organ.value(),
       info: untracked(this.organInfo.value),
     }),
-    loader: (params) => {
-      const { organ, info } = params.request;
+    stream: (params) => {
+      const { organ, info } = params.params;
       if (organ === undefined || info === undefined) {
         return of(EMPTY_SCENE);
       }
@@ -201,12 +201,12 @@ export class AppComponent {
 
   /** Blocks */
   protected readonly blocks = rxResource({
-    request: () => ({
+    params: () => ({
       organ: this.organ.value(),
       info: untracked(this.organInfo.value),
     }),
-    loader: (params) => {
-      const { organ, info } = params.request;
+    stream: (params) => {
+      const { organ, info } = params.params;
       if (organ === undefined || info === undefined) {
         return of([]);
       }
@@ -218,12 +218,12 @@ export class AppComponent {
 
   /** Raw Statistics */
   private readonly rawStats = rxResource({
-    request: () => ({
+    params: () => ({
       organ: this.organ.value(),
       info: untracked(this.organInfo.value),
     }),
-    loader: (params) => {
-      const { organ, info } = params.request;
+    stream: (params) => {
+      const { organ, info } = params.params;
       if (organ === undefined || info === undefined) {
         return of([]);
       }
