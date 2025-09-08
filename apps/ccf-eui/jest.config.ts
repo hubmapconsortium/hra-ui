@@ -1,7 +1,7 @@
 export default {
   displayName: 'ccf-eui',
   preset: '../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../coverage/apps/ccf-eui',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
@@ -18,4 +18,13 @@ export default {
     'jest-preset-angular/build/serializers/ng-snapshot',
     'jest-preset-angular/build/serializers/html-comment',
   ],
+  // TODO increase to 85%!
+  coverageThreshold: {
+    global: {
+      branches: 25,
+      functions: 25,
+      lines: 25,
+      statements: 25,
+    },
+  },
 };

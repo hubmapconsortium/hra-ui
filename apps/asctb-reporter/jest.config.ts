@@ -1,7 +1,7 @@
 export default {
   displayName: 'asctb-reporter',
   preset: '../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '@testing-library/jest-dom'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../coverage/apps/asctb-reporter',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
@@ -18,4 +18,13 @@ export default {
     'jest-preset-angular/build/serializers/ng-snapshot',
     'jest-preset-angular/build/serializers/html-comment',
   ],
+  // TODO increase to 85%!
+  coverageThreshold: {
+    global: {
+      branches: 0,
+      functions: 0,
+      lines: 25,
+      statements: 25,
+    },
+  },
 };

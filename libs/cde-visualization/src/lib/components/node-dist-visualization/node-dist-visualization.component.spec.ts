@@ -1,6 +1,7 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture } from '@angular/core/testing';
 import { MatButtonToggleGroupHarness } from '@angular/material/button-toggle/testing';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { NodeDistVisComponent, NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
@@ -40,7 +41,7 @@ describe('NodeDistVisualizationComponent', () => {
         maxEdgeDistance: 1,
         ...options?.inputs,
       },
-      providers: [provideDesignSystemCommon(), ...(options?.providers ?? [])],
+      providers: [provideDesignSystemCommon(), provideNoopAnimations(), ...(options?.providers ?? [])],
     });
   }
 
