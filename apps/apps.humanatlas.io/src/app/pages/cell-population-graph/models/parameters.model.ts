@@ -43,7 +43,7 @@ export const ConfigurationSchema = z.object({
   label: z.string(),
   basePath: z.string(),
   datasets: z.array(z.string()),
-  groupTypes: z.record(z.string()),
+  groupTypes: z.record(z.string(), z.string()),
   fixed: z.number().optional(),
   colorPalette: z.array(z.string()),
   sortAttributes: z.array(GraphAttributeSchema),

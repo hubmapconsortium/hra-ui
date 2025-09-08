@@ -1,3 +1,4 @@
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { FullscreenPortalComponent } from './fullscreen-portal.component';
 
@@ -5,6 +6,7 @@ describe('FullscreenComponent', () => {
   async function setup(options?: RenderComponentOptions<FullscreenPortalComponent>) {
     return render(FullscreenPortalComponent, {
       ...options,
+      providers: [provideNoopAnimations(), ...(options?.providers || [])],
       inputs: {
         tagline: 'Test Title',
         ...options?.inputs,

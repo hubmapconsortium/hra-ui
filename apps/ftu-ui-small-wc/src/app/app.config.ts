@@ -3,7 +3,7 @@ import {
   ApplicationConfig,
   importProvidersFrom,
   provideAppInitializer,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -42,7 +42,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideNothrowPlatformLocation(),
     provideDesignSystem(),
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideMarkdown({ loader: HttpClient }),
     provideStore([]),
     importProvidersFrom(CdkStateModule, HraServiceModule, HraStateModule, MouseTrackerModule),
