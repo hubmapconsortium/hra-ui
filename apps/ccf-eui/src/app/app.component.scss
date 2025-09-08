@@ -204,15 +204,6 @@
       z-index: 1;
     }
   }
-
-  ::ng-deep .cdk-global-overlay-wrapper:has(.usage-snackbar) {
-    @include mat.snack-bar-overrides(
-      (
-        container-color: vars.$surface-dim,
-        supporting-text-color: vars.$secondary,
-      )
-    );
-  }
 }
 
 ::ng-deep ccf-eui.embedded .page-content {

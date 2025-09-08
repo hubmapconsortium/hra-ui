@@ -11,7 +11,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { InteractiveSvgComponent } from '@hra-ui/components/molecules';
+import { InteractiveSvgComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,

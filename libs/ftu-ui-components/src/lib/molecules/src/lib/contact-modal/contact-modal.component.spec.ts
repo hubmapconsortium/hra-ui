@@ -30,6 +30,6 @@ describe('ContactModalComponent', () => {
     const { instance, outputs } = await shallow.render();
     instance.contactData = testContactData;
     instance.submit();
-    expect(outputs.submitClick.emit).toBeCalledWith(testContactData);
+    expect(outputs.submitClick.emit).toHaveBeenCalledWith(testContactData);
   });
 });
