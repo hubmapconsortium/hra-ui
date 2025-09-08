@@ -41,7 +41,7 @@ $menu-height: 2.5rem;
 
 ::ng-deep .viewer-card-modal {
   @include utils.use-font(title, large);
-  --mdc-dialog-container-shape: 0;
+  --mat-dialog-container-shape: 0;
 
   .dialog-container {
     display: flex;

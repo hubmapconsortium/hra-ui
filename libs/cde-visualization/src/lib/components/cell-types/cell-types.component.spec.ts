@@ -1,6 +1,7 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
@@ -17,7 +18,7 @@ describe('CellTypesComponent', () => {
   async function setup(options?: RenderComponentOptions<CellTypesComponent>) {
     return render(CellTypesComponent, {
       ...options,
-      providers: [provideDesignSystemCommon(), ...(options?.providers ?? [])],
+      providers: [provideDesignSystemCommon(), provideNoopAnimations(), ...(options?.providers ?? [])],
     });
   }
 

@@ -3,7 +3,7 @@ import {
   ApplicationConfig,
   importProvidersFrom,
   provideAppInitializer,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideNothrowPlatformLocation(),
     provideDesignSystem(),
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideMarkdown({ loader: HttpClient }),
     provideRouter(
       ROUTES,

@@ -81,6 +81,14 @@ export const configs = {
       },
     },
   ],
+  lib: [
+    ...json.configs['flat/base'],
+    {
+      rules: {
+        '@nx/dependency-checks': 'error',
+      },
+    },
+  ],
   angular: [
     ...nx.configs['flat/angular'],
     ...nx.configs['flat/angular-template'],
