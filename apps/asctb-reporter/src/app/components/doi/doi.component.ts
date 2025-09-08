@@ -11,7 +11,7 @@ import { DOI } from '../../models/sheet.model';
 })
 export class DoiComponent implements OnInit {
   data = inject<DOI[]>(MAT_BOTTOM_SHEET_DATA);
-  readonly sheetRef = inject(MatBottomSheetRef);
+  private readonly sheetRef = inject(MatBottomSheetRef);
 
   loading = true;
   noId = false;
