@@ -2,7 +2,11 @@
 @use '../../../../styles/vars';
 
 :host {
-  display: inline;
+  --hra-results-indicator-height: 3rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--hra-results-indicator-height);
   color: vars.$primary;
   padding: 0.5rem 0.75rem;
   border: 0.0625rem solid vars.$outline-variant;

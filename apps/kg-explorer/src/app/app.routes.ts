@@ -134,7 +134,8 @@ export const appRoutes: Route[] = [
   },
   {
     path: ':type/:name',
-    redirectTo: ':type/:name/latest',
+    pathMatch: 'full',
+    redirectTo: '/:type/:name/latest',
   },
   {
     path: '500',
