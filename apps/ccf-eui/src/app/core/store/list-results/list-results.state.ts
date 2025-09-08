@@ -1,6 +1,6 @@
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { NgxsOnInit, State } from '@ngxs/store';
 import { combineLatest } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
@@ -32,6 +32,8 @@ export interface ListResultsStateModel {
 })
 @Injectable()
 export class ListResultsState extends NgxsImmutableDataRepository<ListResultsStateModel> implements NgxsOnInit {
+  private readonly injector = inject(Injector);
+
   /** Observable stream of list results */
   readonly listResults$ = this.state$.pipe(
     map((x) => x?.listResults),
@@ -50,15 +52,6 @@ export class ListResultsState extends NgxsImmutableDataRepository<ListResultsSta
 
   /** Reference to the color assignments state */
   private colorAssignments!: ColorAssignmentState;
-
-  /**
-   * Constructor to create an instance of ListResultsState.
-   *
-   * @param injector Injector service used to lazy load data state
-   */
-  constructor(private readonly injector: Injector) {
-    super();
-  }
 
   /**
    * Sets the list results

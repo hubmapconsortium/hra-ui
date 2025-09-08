@@ -13,7 +13,6 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import moment from 'moment';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import * as XLSX from 'xlsx';
@@ -21,6 +20,7 @@ import { GaAction, GaCategory } from '../../models/ga.model';
 import { BmCtPairings, LinksASCTBData } from '../../models/tree.model';
 import { TreeService } from '../../modules/tree/tree.service';
 import { OrderByPipe } from '../../pipes/order-by/order-by.pipe';
+import { createFileNameTimestamp } from '../../util/file-timestamp';
 import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
 import { SidenavModule } from '../sidenav/sidenav.module';
 
@@ -313,7 +313,7 @@ export class ReportComponent implements OnInit {
     for (let i = 0; i < totalRows; i++) {
       sheetWS['!cols'].push({ wch: 30 });
     }
-    const dt = moment(new Date()).format('YYYY.MM.DD_hh.mm');
+    const dt = createFileNameTimestamp();
     const sn = this.currentSheet.display.toLowerCase().replace(' ', '_');
 
     return {
@@ -422,7 +422,7 @@ export class ReportComponent implements OnInit {
     for (let j = 0; j < totalRows; j++) {
       sheetWS['!cols'].push({ wch: 30 });
     }
-    const dt = moment(new Date()).format('YYYY.MM.DD_hh.mm');
+    const dt = createFileNameTimestamp();
     const sn = sheet.title.toLowerCase().replace(' ', '_');
 
     this.ga.event(GaAction.CLICK, GaCategory.REPORT, 'Compare sheet download', sn as never);
