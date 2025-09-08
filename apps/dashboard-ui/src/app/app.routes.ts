@@ -62,5 +62,5 @@ export const appRoutes: Route[] = [
       },
     },
   },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '/' },
 ];
