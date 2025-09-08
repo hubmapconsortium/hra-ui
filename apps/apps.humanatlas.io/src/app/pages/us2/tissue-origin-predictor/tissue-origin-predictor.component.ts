@@ -39,7 +39,7 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
   const assetsHref = injectAssetHref();
   const fileUrl = inject(SAMPLE_FILE_URL);
   const url = Location.joinWithSlash(assetsHref(), fileUrl);
-  return httpResource.text(url, {
+  return httpResource.text(() => ({ url }), {
     parse: (content) => new File([content], 'sample.csv', { type: 'text/csv' }),
   });
 }
@@ -83,10 +83,10 @@ export class TissueOriginPredictorComponent {
   private readonly predictionsService = inject(HraPopPredictionsService);
 
   /** Supported organs */
-  protected readonly supportedOrgans = this.predictionsService.supportedOrgans.value.asReadonly();
+  protected readonly supportedOrgans = this.predictionsService.supportedOrgans;
 
   /** Supported tools */
-  protected readonly supportedTools = this.predictionsService.supportedTools.value.asReadonly();
+  protected readonly supportedTools = this.predictionsService.supportedTools;
 
   /** Sample file */
   private readonly sampleFile = inject(SAMPLE_FILE).value.asReadonly();

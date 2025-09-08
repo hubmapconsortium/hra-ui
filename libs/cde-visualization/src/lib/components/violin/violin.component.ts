@@ -15,8 +15,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { View } from 'vega';
-import embed, { VisualizationSpec } from 'vega-embed';
-
+import embed from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
@@ -175,7 +174,6 @@ export class ViolinComponent {
     const container: HTMLElement = this.violinEl().rootNodes()[0];
     const el = container.querySelector('.violin-container') as HTMLElement;
     await this.ensureFontsLoaded();
-
     const spec = produce(VIOLIN_SPEC, (draft) => {
       for (const layer of draft.spec.layer) {
         if (layer.encoding.color.legend === null) {
@@ -184,7 +182,8 @@ export class ViolinComponent {
       }
     });
 
-    const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { finalize, view } = await embed(el, spec as any, {
       actions: false,
     });
 
@@ -226,7 +225,8 @@ export class ViolinComponent {
     });
 
     const el = this.renderer.createElement('div');
-    const { view, finalize } = await embed(el, spec as VisualizationSpec, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { view, finalize } = await embed(el, spec as any, {
       actions: false,
     });
 

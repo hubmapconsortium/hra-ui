@@ -1,19 +1,19 @@
-<hra-contact-modal
+<ftu-contact-modal
   class="contact-modal"
   [productLogoUrl]="productLogoUrl()"
   [productTitle]="productTitle()"
   (submitClick)="submit($event)"
   (closeClick)="close()"
 >
-</hra-contact-modal>
+</ftu-contact-modal>
 
 <ng-template #postMessage>
-  <hra-info-modal
+  <ftu-info-modal
     class="info-modal"
     [productLogoUrl]="productLogoUrl()"
     [productTitle]="productTitle()"
     [description]="description()"
     (closeClick)="close()"
   >
-  </hra-info-modal>
+  </ftu-info-modal>
 </ng-template>
