@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  position: relative;
+
+  youtube-player {
+    display: block;
+  }
+
+  ::ng-deep youtube-player > * {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: unset !important;
+  }
+}
