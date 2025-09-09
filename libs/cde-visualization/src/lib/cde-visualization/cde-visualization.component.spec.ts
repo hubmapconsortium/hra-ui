@@ -18,6 +18,9 @@ import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { AnimationDriver } from '@angular/animations/browser';
+import { MockAnimationDriver } from '@angular/animations/browser/testing';
 
 jest.mock('vega-embed', () => jest.fn());
 jest.mock('@hra-ui/node-dist-vis', () => ({}));
@@ -50,7 +53,16 @@ describe('CdeVisualizationComponent', () => {
         age: 40,
         ...options?.inputs,
       },
-      providers: [provideHttpClient(), provideHttpClientTesting(), ...(options?.providers ?? [])],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideAnimations(),
+        {
+          provide: AnimationDriver,
+          useClass: MockAnimationDriver,
+        },
+        ...(options?.providers ?? []),
+      ],
       imports: [MatIconTestingModule],
     });
 
