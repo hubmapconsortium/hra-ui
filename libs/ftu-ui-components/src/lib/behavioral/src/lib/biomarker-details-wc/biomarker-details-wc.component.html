@@ -18,9 +18,7 @@
     <div class="source-list">
       @if (source().length > 0) {
         <ftu-source-list
-          [collaborateText]="collaborateText"
           [message]="message"
-          (collaborateClick)="collaborate()"
           [sources]="source()"
           [hideTitle]="true"
           (selectionChanged)="setSelectedSources($event)"
