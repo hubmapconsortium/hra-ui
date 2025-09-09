@@ -9,10 +9,10 @@
 
   .content-container {
     display: flex;
-  flex-direction: row;
-  gap: 2.5rem;
-  font: vars.$label-medium;
-  letter-spacing: vars.$label-medium-tracking;
+    flex-direction: row;
+    gap: 2.5rem;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
   }
 
   .left {
