@@ -21,6 +21,10 @@
     )
   );
 
+  ::ng-deep .mat-mdc-tab-body-content {
+    overflow: hidden;
+  }
+
   @include mat.button-toggle-overrides(
     (
       disabled-state-text-color: utils.with-alpha(vars.$secondary, 38%),
