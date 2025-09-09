@@ -1,25 +1,30 @@
-<div class="container">
-  <div class="content">
-    <hra-brand-logo class="logo"></hra-brand-logo>
+<div class="content-container">
+  <hra-brand-logo class="logo"></hra-brand-logo>
+
+  <hra-funding [funders]="funders()"></hra-funding>
+  <div class="disclaimer">
+    <p>
+      Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or
+      medical or professional advice.
+    </p>
+    <p>
+      HuBMAP data is managed and published in the Data Portal and HRA according to FAIR principles, including
+      standardized processing with reproducible pipelines. HuBMAP data may also be processed by other methods in
+      scientific results published by HuBMAP consortium collaborations.
+    </p>
   </div>
 </div>
 
-<div class="content">
-  <hra-funding [funders]="funders()"></hra-funding>
-  <p class="disclaimer">
-    Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or
-    medical or professional advice. HuBMAP data is managed and published in the Data Portal and HRA according to FAIR
-    principles, including standardized processing with reproducible pipelines. HuBMAP data may also be processed by
-    other methods in scientific results published by HuBMAP consortium collaborations.
-  </p>
-</div>
+<mat-divider></mat-divider>
 
-<span class="copyright">
-  <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
-  2025 CNS at Indiana University
-</span>
-<div class="socials">
-  @for (id of socials(); track id) {
-    <hra-social-media-button [id]="$any(id)" size="large" variant="light"></hra-social-media-button>
-  }
+<div class="socials-container">
+  <span class="copyright">
+    <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
+    2025 CNS at Indiana University
+  </span>
+  <div class="socials">
+    @for (id of socials(); track id) {
+      <hra-social-media-button [id]="$any(id)" size="large" variant="light"></hra-social-media-button>
+    }
+  </div>
 </div>

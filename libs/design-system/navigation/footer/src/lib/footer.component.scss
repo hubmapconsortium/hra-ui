@@ -3,12 +3,17 @@
 // Base case is for <639px screens
 :host {
   display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  background-color: vars.$surface-bright;
+
+  .content-container {
+    display: flex;
   flex-direction: row;
+  gap: 2.5rem;
   font: vars.$label-medium;
   letter-spacing: vars.$label-medium-tracking;
-  padding: 2rem 1rem;
-  background-color: vars.$surface-bright;
-  width: 100%;
+  }
 
   .left {
     .container {
