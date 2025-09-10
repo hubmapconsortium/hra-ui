@@ -1,18 +1,10 @@
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { Store } from '@ngxs/store';
 import { render } from '@testing-library/angular';
-import { mock } from 'jest-mock-extended';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { of } from 'rxjs';
 
+import { of } from 'rxjs';
 import { CompareData } from '../../models/sheet.model';
 import { CompareComponent } from './compare.component';
 
 describe('CompareComponent', () => {
-  let providers: unknown[];
-
   const VALID_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit';
 
   const createMockSheet = (overrides?: Partial<CompareData>): CompareData => ({
@@ -30,9 +22,9 @@ describe('CompareComponent', () => {
 
   const renderComponent = async (compareSheets: CompareData[] = []) => {
     const { fixture } = await render(CompareComponent, {
-      providers,
       componentInputs: { compareSheets: of(compareSheets) },
     });
+
     return fixture.componentInstance;
   };
 
@@ -41,16 +33,6 @@ describe('CompareComponent', () => {
   };
 
   const createGaSpy = (component: CompareComponent) => jest.spyOn(component['ga'], 'event');
-
-  beforeEach(() => {
-    providers = [
-      provideHttpClient(),
-      provideHttpClientTesting(),
-      provideAnimations(),
-      { provide: Store, useValue: mock<Store>() },
-      { provide: GoogleAnalyticsService, useValue: mock<GoogleAnalyticsService>() },
-    ];
-  });
 
   it('should render with compare sheets data', async () => {
     const component = await renderComponent([createMockSheet()]);
