@@ -5,7 +5,8 @@
   display: flex;
   flex-direction: column;
   width: fit-content;
-  max-width: 272px;
+  min-width: 16.75rem;
+  max-width: 17rem;
 
   .picture {
     width: 11.25rem;

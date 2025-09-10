@@ -15,9 +15,10 @@ content:
         data: |
           Whether you are building web applications using HRA APIs, visualizing organs in 3D, or contributing your own data and tools to the ecosystem,
           this documentation has everything needed to get started.
-      - component: FlexContainer
+      - component: GridContainer
         rowGap: 1.5rem
         columnGap: 1.5rem
+        minWidth: 17rem
         content:
           - component: ActionCard
             variant: outlined

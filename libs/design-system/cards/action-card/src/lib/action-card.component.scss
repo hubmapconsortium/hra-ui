@@ -33,6 +33,8 @@
 
     .description {
       flex-grow: 1;
+      width: 999px;
+      max-width: 100%;
     }
 
     .actions {
@@ -105,8 +107,8 @@
   }
 
   &.hra-action-card-variant-outlined {
-    width: 17rem;
-    max-width: 17rem;
+    min-width: 17rem;
+    // max-width: 22.25rem;
 
     .content {
       margin: 0.75rem 1rem;
@@ -119,7 +121,7 @@
 
   &.hra-action-card-variant-outlined-with-icons {
     min-width: 17rem;
-    max-width: 19.25rem;
+    // max-width: 22.25rem;
 
     .content {
       margin: 1rem;

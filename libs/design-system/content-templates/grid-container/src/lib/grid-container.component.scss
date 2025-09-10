@@ -1,0 +1,5 @@
+:host {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min-width), max-content));
+  margin: 0;
+}

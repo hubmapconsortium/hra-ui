@@ -116,3 +116,133 @@ export const OutlinedWithIcons: Story = {
     </hra-action-card-action>`,
   ),
 };
+
+export const ResponsiveCardGroup: Story = {
+  args: {
+    icons: ['misc:data'],
+  },
+  render: (args) => ({
+    props: args,
+    template: `<div class="card-container">
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+      </div>`,
+    styles: [
+      `@media (min-width: 640px) {
+        .card-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }`,
+      `@media (min-width: 1100px) {
+        .card-container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }`,
+      `.card-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        gap: 1rem;
+      }`,
+      `hra-action-card {
+        max-width: 356px !important;
+      }`,
+      `a {
+        font-family: Metropolis;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+      }`,
+    ],
+  }),
+};

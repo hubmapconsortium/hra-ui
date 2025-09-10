@@ -12,6 +12,7 @@ import { CodeBlockSchema } from '@hra-ui/design-system/code-block';
 import { ApiCommandSchema } from '@hra-ui/design-system/content-templates/api-command';
 import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { FlexContainerSchema } from '@hra-ui/design-system/content-templates/flex-container';
+import { GridContainerSchema } from '@hra-ui/design-system/content-templates/grid-container';
 import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
@@ -31,6 +32,7 @@ export {
   CodeBlockSchema,
   DataViewerSchema,
   FlexContainerSchema,
+  GridContainerSchema,
   IconSchema,
   ImageSchema,
   MarkdownSchema,
@@ -51,6 +53,7 @@ export default z.lazy(() => {
     CodeBlockSchema,
     DataViewerSchema,
     FlexContainerSchema,
+    GridContainerSchema,
     IconSchema,
     ImageSchema,
     MarkdownSchema,

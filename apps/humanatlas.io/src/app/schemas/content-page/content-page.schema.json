@@ -126,6 +126,9 @@
           "$ref": "#/definitions/FlexContainer"
         },
         {
+          "$ref": "#/definitions/GridContainer"
+        },
+        {
           "$ref": "#/definitions/Icon"
         },
         {
@@ -440,6 +443,41 @@
           "type": "string"
         },
         "columnGap": {
+          "type": "string"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnyContentTemplate"
+          }
+        }
+      },
+      "required": ["component", "content"],
+      "additionalProperties": false
+    },
+    "GridContainer": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "GridContainer"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "rowGap": {
+          "type": "string"
+        },
+        "columnGap": {
+          "type": "string"
+        },
+        "minWidth": {
           "type": "string"
         },
         "content": {

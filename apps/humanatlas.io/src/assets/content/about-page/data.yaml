@@ -35,11 +35,12 @@ content:
         type: cta
         styles:
           margin-top: 1.5rem
-      - component: FlexContainer
+      - component: GridContainer
         styles:
           margin-top: 3rem
         rowGap: 2.5rem
         columnGap: 5rem
+        minWidth: 16.75rem
         content:
           - component: ProfileCard
             name: Katy Börner
@@ -88,11 +89,12 @@ content:
           - optimize incentive structures (e.g., HRA papers in major journals, awards for highest-quality contributions by organ teams/editors/reviewers),
           - discuss commercial and other means to sustain the HRA effort beyond current NIH funding, and
           - act as ambassadors for the HRA—promoting the HRA at relevant conferences and within key communities.
-      - component: FlexContainer
+      - component: GridContainer
         styles:
           margin-top: 3rem
         rowGap: 2.5rem
         columnGap: 5rem
+        minWidth: 16.75rem
         content:
           - component: ProfileCard
             name: Kristin Ardlie

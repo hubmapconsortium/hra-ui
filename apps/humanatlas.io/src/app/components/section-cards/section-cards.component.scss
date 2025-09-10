@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: center;
   gap: 5rem;
+  width: 100%;
 
   .section-title {
     @include utils.use-font(headline, large);
@@ -15,10 +16,13 @@
   }
 
   .cards {
-    display: flex;
+    // display: flex;
+    // justify-content: center;
+    // gap: 4.5rem;
+    // flex-wrap: wrap;
+
+    width: 100%;
     justify-content: center;
-    gap: 4.5rem;
-    flex-wrap: wrap;
 
     hra-action-card-action {
       @include utils.use-font(label, large);

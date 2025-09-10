@@ -5,9 +5,9 @@
     {{ data().tagline }}
   </span>
 
-  <hra-flex-container rowGap="1.5rem" columnGap="1.5rem">
+  <hra-grid-container rowGap="1.5rem" columnGap="1.5rem" minWidth="17rem">
     @for (card of data().cards; track card) {
       <ng-container *hraContentTemplateOutlet="card" />
     }
-  </hra-flex-container>
+  </hra-grid-container>
 </div>
