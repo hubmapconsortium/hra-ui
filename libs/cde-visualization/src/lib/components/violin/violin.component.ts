@@ -14,9 +14,9 @@ import {
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
-import { fromEvent } from 'rxjs';
 import { View } from 'vega';
 import embed from 'vega-embed';
+
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
@@ -118,6 +118,9 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'resizeAndSyncView()',
+  },
 })
 export class ViolinComponent {
   /** Tooltip position configuration */
@@ -162,7 +165,7 @@ export class ViolinComponent {
   readonly colorCount = signal<number>(0);
 
   /** Effect for updating view data */
-  protected readonly viewDataRef = effect(async () => {
+  protected readonly viewDataRef = effect(() => {
     const view = this.view();
     const data = this.data();
     if (view && data.length > 0) {
@@ -171,7 +174,7 @@ export class ViolinComponent {
   });
 
   /** Effect for updating view colors */
-  protected readonly viewColorsRef = effect(async () => {
+  protected readonly viewColorsRef = effect(() => {
     if (this.view() && this.view()?.getState()) {
       this.view()?.signal('colors', this.colors()).run();
       this.colorCount.set(this.view()?.getState().signals.colors.length);
@@ -203,27 +206,19 @@ export class ViolinComponent {
     this.view.set(view);
   });
 
-  /**
-   * Listens for window resize and updates the view.
-   */
-  constructor() {
-    fromEvent(window, 'resize').subscribe(() => {
-      this.resizeAndSyncView();
-    });
-  }
-
   /** Resizes view after full screen toggle or viewport resize */
   /* istanbul ignore next */
   resizeAndSyncView() {
     setTimeout(() => {
-      if (this.view()) {
-        const container = this.view()?.container();
+      const view = this.view();
+      if (view) {
+        const container = view.container();
         const bbox = container?.getBoundingClientRect();
         if (bbox) {
-          this.view()?.signal('child_width', bbox.width - 170);
-          this.view()?.signal('child_height', this.calculateViolinHeight(bbox.height));
+          view.signal('child_width', bbox.width - 170);
+          view.signal('child_height', this.calculateViolinHeight(bbox.height));
         }
-        this.view()?.resize().runAsync();
+        view.resize().runAsync();
       }
     });
   }

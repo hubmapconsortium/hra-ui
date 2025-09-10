@@ -24,18 +24,6 @@
     );
   }
 
-  // .header {
-  //   grid-area: header;
-  //   border-color: vars.$outline-variant;
-  //   border-width: 0 0px 2px 0px;
-  //   border-style: solid;
-  //   height: 4rem;
-
-  //   hra-nav-header-buttons {
-  //     margin: 0.75rem;
-  //   }
-  // }
-
   .metadata {
     display: flex;
     flex-direction: column;
@@ -70,8 +58,6 @@
 
     cde-violin {
       height: 100%;
-      // min-width: 24.25rem;
-      // max-width: 31.5rem;
       width: 31.5rem;
     }
   }
