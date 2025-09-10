@@ -23,5 +23,6 @@ export class GridContainerComponent {
   /** Column gap between items */
   readonly columnGap = input<string>();
 
+  /** Minimum width for items */
   readonly minWidth = input<string>();
 }
