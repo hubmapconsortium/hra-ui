@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
+import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
-import { ActionCardDef } from '@hra-ui/design-system/cards/action-card';
 import { ButtonDef } from '@hra-ui/design-system/buttons/button';
 import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ActionCardDef } from '@hra-ui/design-system/cards/action-card';
 import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
+import { CodeBlockDef } from '@hra-ui/design-system/code-block';
 import { ApiCommandDef } from '@hra-ui/design-system/content-templates/api-command';
 import { FlexContainerDef } from '@hra-ui/design-system/content-templates/flex-container';
 import { GridContainerDef } from '@hra-ui/design-system/content-templates/grid-container';
@@ -20,11 +23,16 @@ import { IconDef } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { MARKED_OPTIONS, provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
-import { CodeBlockDef } from '@hra-ui/design-system/code-block';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAppConfiguration({
+      name: 'docs.humanatlas.io',
+      version: '0.1.0',
+      url: 'https://docs.humanatlas.io/',
+    }),
+    provideAnalytics(withRouterEvents(), withErrorHandler()),
     provideContentTemplateDefs([
       ActionCardDef,
       ApiCommandDef,
