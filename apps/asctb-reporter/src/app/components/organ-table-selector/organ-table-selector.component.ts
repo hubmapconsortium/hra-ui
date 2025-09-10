@@ -86,7 +86,7 @@ export class OrganTableSelectorComponent {
     'select',
     'Organs',
     'Multiplexed antibody-based imaging method',
-    'Tissue presevation method',
+    'Tissue preservation method',
     'OMAP-ID',
     'Version',
   ];
