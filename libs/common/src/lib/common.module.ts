@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { UrlModule } from '@hra-ui/common/url';
+import { AnalyticsModule } from '@hra-ui/common/analytics';
 
 /**
  * Provides common directives and pipes.
@@ -8,6 +9,6 @@ import { UrlModule } from '@hra-ui/common/url';
  */
 @NgModule({
   imports: [],
-  exports: [CommonModule, UrlModule],
+  exports: [CommonModule, AnalyticsModule, UrlModule],
 })
 export class HraCommonModule {}
