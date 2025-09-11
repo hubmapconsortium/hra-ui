@@ -59,6 +59,38 @@
     }
   }
 
+  th:focus-visible {
+    background-color: utils.with-alpha(vars.$secondary, 12%);
+    border-radius: 4px;
+    min-height: 2.5rem;
+    width: 10rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-bottom: none;
+    outline: none;
+  }
+
+  th ::ng-deep .mat-sort-header-button:focus-visible {
+    background-color: utils.with-alpha(vars.$secondary, 12%);
+    border-radius: 4px;
+    min-height: 2.5rem;
+    width: 10rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-bottom: none;
+    outline: none;
+  }
+
+  th ::ng-deep .mat-sort-header-button {
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  th ::ng-deep .mat-sort-header-container {
+    text-decoration: none;
+    border-bottom: none;
+  }
+
   th[data-column-type='numeric'],
   td[data-column-type='numeric'] {
     text-align: right;
