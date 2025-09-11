@@ -1,6 +1,8 @@
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideIcons } from '@hra-ui/design-system/icons';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
@@ -26,6 +28,12 @@ export function initializeApp(configService: ConfigService): () => Promise<void>
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAppConfiguration({
+      name: 'asct+b-reporter',
+      version: '4.0.0',
+      url: 'https://apps.humanatlas.io/asctb-reporter/',
+    }),
+    provideAnalytics(withRouterEvents(), withErrorHandler()),
     ConfigService,
     importProvidersFrom(AnalyticsModule.forRoot({ gaToken: environment.googleAnalyticsId, appName: 'reporter' })),
     provideAppInitializer(() => {
