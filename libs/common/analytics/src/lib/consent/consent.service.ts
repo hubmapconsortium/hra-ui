@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { EventCategory } from '@hra-ui/common/analytics/events';
+import { EventCategory, EventType } from '@hra-ui/common/analytics/events';
 
 /**
  * Helper for creating categories enabled/disabled records
@@ -47,6 +47,17 @@ export class ConsentService {
    */
   isCategoryEnabled(category: EventCategory): boolean {
     return this.categories()[category];
+  }
+
+  /**
+   * Check whether an event is enabled or disabled
+   *
+   * @param _type Event type
+   * @param category Event category
+   * @returns Whether the event is enabled
+   */
+  isEventEnabled(_type: EventType, category?: EventCategory): boolean {
+    return category !== undefined && this.isCategoryEnabled(category);
   }
 
   /**

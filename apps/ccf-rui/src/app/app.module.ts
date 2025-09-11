@@ -24,6 +24,8 @@ import { CoreModule } from './core/core.module';
 import { ContentModule } from './modules/content/content.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
+import { provideAnalytics, withRouterEvents, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 
 @NgModule({
   imports: [
@@ -48,6 +50,12 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [
+    provideAppConfiguration({
+      name: 'ccf-rui',
+      version: '4.2.0',
+      url: 'https://apps.humanatlas.io/rui/',
+    }),
+    provideAnalytics(withErrorHandler()),
     provideNgxMask(),
     provideDesignSystem(),
     {
