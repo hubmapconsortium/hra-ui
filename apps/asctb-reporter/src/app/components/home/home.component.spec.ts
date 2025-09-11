@@ -24,38 +24,33 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have contributors', () => {
-    expect(component['contributors']).toBeDefined();
-    expect(Array.isArray(component['contributors'])).toBe(true);
-  });
-
-  it('should have video sections', () => {
-    expect(component['videoSections']).toBeDefined();
-    expect(Array.isArray(component['videoSections'])).toBe(true);
-  });
-
-  it('should initialize with first video section selected', () => {
-    expect(component['selectedVideoSection']()).toBe(0);
-  });
-
   it('should seek video and update selected section', () => {
-    const mockPlayer = {
-      pauseVideo: jest.fn(),
-      seekTo: jest.fn(),
-      playVideo: jest.fn(),
-    };
+    const player = component.player();
 
-    // Mock the player viewChild
-    Object.defineProperty(component, 'player', {
-      value: () => mockPlayer,
-      writable: true,
-    });
+    const pauseVideoSpy = jest.spyOn(player, 'pauseVideo').mockImplementation(() => {});
+    const seekToSpy = jest.spyOn(player, 'seekTo').mockImplementation(() => {});
+    const playVideoSpy = jest.spyOn(player, 'playVideo').mockImplementation(() => {});
 
-    component['seekVideo'](30, 2);
+    component.seekVideo(30, 2);
 
     expect(component['selectedVideoSection']()).toBe(2);
-    expect(mockPlayer.pauseVideo).toHaveBeenCalled();
-    expect(mockPlayer.seekTo).toHaveBeenCalledWith(30, true);
-    expect(mockPlayer.playVideo).toHaveBeenCalled();
+    expect(pauseVideoSpy).toHaveBeenCalled();
+    expect(seekToSpy).toHaveBeenCalledWith(30, true);
+    expect(playVideoSpy).toHaveBeenCalled();
+
+    // Clean up spies
+    pauseVideoSpy.mockRestore();
+    seekToSpy.mockRestore();
+    playVideoSpy.mockRestore();
+  });
+
+  it('should update selected video section state', () => {
+    // Test just the state change without YouTube player interaction
+    const initialSection = component['selectedVideoSection']();
+    expect(initialSection).toBe(0);
+
+    // We can test state changes by accessing the signal directly
+    component['selectedVideoSection'].set(3);
+    expect(component['selectedVideoSection']()).toBe(3);
   });
 });

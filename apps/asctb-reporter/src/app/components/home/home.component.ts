@@ -35,17 +35,17 @@ export class HomeComponent {
   protected readonly videoSections = VIDEO_SECTIONS;
 
   /** ViewChild reference to the YouTube player */
-  private readonly player = viewChild.required<YouTubePlayer>('tutorialVideo');
+  readonly player = viewChild.required<YouTubePlayer>('tutorialVideo');
 
   /** Signal for selected video section state */
-  protected readonly selectedVideoSection = signal<number>(0);
+  readonly selectedVideoSection = signal<number>(0);
 
   /**
    * Seeks the YouTube player to the selected video section.
    * @param seconds The target time in seconds to seek to.
    * @param id Unique identifier of the video section.
    */
-  protected seekVideo(seconds: number, id: number) {
+  seekVideo(seconds: number, id: number) {
     this.selectedVideoSection.set(id);
     this.player().pauseVideo();
     this.player().seekTo(seconds, true);
