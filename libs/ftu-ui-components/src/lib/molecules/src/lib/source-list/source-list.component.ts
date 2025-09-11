@@ -74,9 +74,6 @@ export class SourceListComponent implements OnChanges {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] = [];
 
-  /** Text that appears in the empty biomarker collaborate button */
-  @Input() collaborateText = '';
-
   /** Text that appears in the empty biomarker message */
   @Input() message = '';
 
@@ -91,9 +88,6 @@ export class SourceListComponent implements OnChanges {
 
   /** Number of selected sources */
   selectedCount = signal(0);
-
-  /** Emits when the contact button is clicked */
-  @Output() readonly collaborateClick = new EventEmitter<void>();
 
   /** Emits when source selection changed */
   @Output() readonly selectionChanged = new EventEmitter<SourceListItem[]>();
