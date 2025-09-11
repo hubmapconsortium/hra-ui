@@ -84,8 +84,6 @@
 @if (!(source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
   <div class="source-list" [style.display]="isBiomarkerfullscreen() ? 'none' : undefined">
     <ftu-source-list
-      [collaborateText]="collaborateText"
-      (collaborateClick)="collaborate()"
       [sources]="source()"
       (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
       class="content"
@@ -101,8 +99,6 @@
 
 <ng-template #sourceList>
   <ftu-source-list
-    [collaborateText]="collaborateText"
-    (collaborateClick)="collaborate()"
     [sources]="source()"
     (selectionChanged)="setSelectedSources($event)"
     class="content"

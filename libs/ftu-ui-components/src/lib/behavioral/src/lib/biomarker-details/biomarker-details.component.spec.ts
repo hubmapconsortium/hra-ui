@@ -105,14 +105,6 @@ describe('BiomarkerDetailsComponent', () => {
       });
     });
   });
-  describe('collaborate', () => {
-    it('should open the contact modal dialog box', async () => {
-      const open = jest.fn();
-      const { instance } = await shallow.mock(MatDialog, { open }).render();
-      instance.collaborate();
-      expect(open).toHaveBeenCalled();
-    });
-  });
 
   describe('illustrationIds', () => {
     it('should get illustration ids', async () => {
