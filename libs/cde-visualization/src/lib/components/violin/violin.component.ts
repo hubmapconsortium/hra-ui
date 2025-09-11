@@ -71,6 +71,18 @@ const EXPORT_IMAGE_HEIGHT = 40;
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING = 16;
 
+/** Minimum height for individual violin plots */
+const MIN_VIOLIN_HEIGHT = 20;
+
+/** Maximum height for individual violin plots */
+const MAX_VIOLIN_HEIGHT = 35;
+
+/** Width offset for individual violin plots */
+const VIOLIN_WIDTH_OFFSET = 170;
+
+/** Height offset for individual violin plots */
+const VIOLIN_HEIGHT_OFFSET = 76;
+
 /** Configuration for the legend in the exported image */
 const EXPORT_IMAGE_LEGEND_CONFIG = {
   title: null,
@@ -158,11 +170,11 @@ export class ViolinComponent {
   /** Vega view instance for the violin */
   private readonly view = signal<View | undefined>(undefined);
 
-  /** If full screen mode is enabled */
-  readonly fullScreenEnabled = signal<boolean>(false);
-
   /** Number of colors (cell types) in the visualization */
   readonly colorCount = signal<number>(0);
+
+  /** Whether vertical scrolling should be enabled for the violin visualization */
+  readonly enableScroll = signal<boolean>(false);
 
   /** Effect for updating view data */
   protected readonly viewDataRef = effect(() => {
@@ -193,8 +205,8 @@ export class ViolinComponent {
           layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
         }
       }
-      draft.spec.width = el.clientWidth - 170;
-      draft.spec.height = 50;
+      draft.spec.width = el.clientWidth - VIOLIN_WIDTH_OFFSET;
+      draft.spec.height = MAX_VIOLIN_HEIGHT;
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -212,11 +224,17 @@ export class ViolinComponent {
     setTimeout(() => {
       const view = this.view();
       if (view) {
-        const container = view.container();
-        const bbox = container?.getBoundingClientRect();
-        if (bbox) {
-          view.signal('child_width', bbox.width - 170);
-          view.signal('child_height', this.calculateViolinHeight(bbox.height));
+        const container: HTMLElement = this.violinEl().rootNodes()[0];
+        const el = container.querySelector('.violin') as HTMLElement;
+        if (el) {
+          if (this.calculateViolinHeight(el.clientHeight) < MIN_VIOLIN_HEIGHT) {
+            view.signal('child_height', MAX_VIOLIN_HEIGHT);
+            this.enableScroll.set(true);
+          } else {
+            view.signal('child_height', this.calculateViolinHeight(el.clientHeight));
+            this.enableScroll.set(false);
+          }
+          view.signal('child_width', el.clientWidth - VIOLIN_WIDTH_OFFSET);
         }
         view.resize().runAsync();
       }
@@ -229,7 +247,7 @@ export class ViolinComponent {
    * @returns Violin plot height
    */
   private calculateViolinHeight(boxH: number) {
-    return Math.min(50, (boxH - 60) / this.colorCount());
+    return Math.min(MAX_VIOLIN_HEIGHT, (boxH - VIOLIN_HEIGHT_OFFSET) / this.colorCount());
   }
 
   /** Download the violin as an image in the specified format */
