@@ -3,14 +3,18 @@
 
   <hra-funding [funders]="funders()"></hra-funding>
   <div class="disclaimer">
-    <p>
+    <p style="margin-bottom: 0.75rem">
       Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or
       medical or professional advice.
     </p>
     <p>
-      HuBMAP data is managed and published in the Data Portal and HRA according to FAIR principles, including
-      standardized processing with reproducible pipelines. HuBMAP data may also be processed by other methods in
-      scientific results published by HuBMAP consortium collaborations.
+      <a hraHyperlink href="https://hubmapconsortium.org/">HuBMAP</a>
+      data is managed and published in the
+      <a hraHyperlink href="https://portal.hubmapconsortium.org/">Data Portal</a> and
+      <a hraHyperlink href="https://humanatlas.io/">Human Reference Atlas</a> according to
+      <a hraHyperlink href="https://www.go-fair.org/fair-principles/">FAIR principles</a>, including standardized
+      processing with reproducible pipelines. HuBMAP data may also be processed by other methods in scientific results
+      published by HuBMAP consortium collaborations.
     </p>
   </div>
 </div>
@@ -18,13 +22,20 @@
 <mat-divider></mat-divider>
 
 <div class="socials-container">
-  <span class="copyright">
-    <mat-icon fontSet="material-symbols-outlined">copyright</mat-icon>
-    2025 CNS at Indiana University
-  </span>
   <div class="socials">
     @for (id of socials(); track id) {
-      <hra-social-media-button [id]="$any(id)" size="large" variant="light"></hra-social-media-button>
+      <hra-social-media-button [id]="$any(id)" size="large" variant="color"></hra-social-media-button>
     }
   </div>
+
+  <span class="privacy">
+    <a hraHyperlink href="">Privacy Preferences</a>
+    &#183;
+    <a hraHyperlink href="">Privacy Policy</a>
+  </span>
+
+  <span class="copyright">
+    © 2025 <a hraHyperlink href="https://cns.iu.edu/">Cyberinfrastructure for Network Science Center</a> at
+    <a hraHyperlink href="https://www.iu.edu/">Indiana University</a>
+  </span>
 </div>
