@@ -128,14 +128,6 @@ describe('BiomarkerDetailsWcComponent', () => {
         label: '',
       });
     });
-    describe('collaborate', () => {
-      it('should open the contact modal dialog box', async () => {
-        const { instance, inject } = await shallow.render();
-        const spy = jest.spyOn(inject(MatDialog), 'open');
-        instance.collaborate();
-        expect(spy).toHaveBeenCalled();
-      });
-    });
   });
 
   describe('trackByIndex', () => {

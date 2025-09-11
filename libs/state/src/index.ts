@@ -1,5 +1,4 @@
 export * from './lib/cell-summary';
-export * from './lib/contact';
 export * from './lib/download';
 export * from './lib/screen-mode';
 export * from './lib/illustrator';
