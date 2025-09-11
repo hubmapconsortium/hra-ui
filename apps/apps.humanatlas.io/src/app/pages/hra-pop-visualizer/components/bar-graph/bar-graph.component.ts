@@ -37,9 +37,9 @@ export class BarGraphComponent {
 
   /** Vega resource for handling async visualization rendering */
   private readonly vega = resource({
-    request: () => this.spec(),
+    params: () => this.spec(),
     loader: async (params) => {
-      const { abortSignal, request: spec } = params;
+      const { abortSignal, params: spec } = params;
 
       // Clear any existing content
       this.clearContainer();

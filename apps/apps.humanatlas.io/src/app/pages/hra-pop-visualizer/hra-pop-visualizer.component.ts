@@ -92,20 +92,20 @@ export class HraPopVisualizerComponent {
 
   /** Resource for loading anatomical structure data */
   private readonly anatomicalDataResource = rxResource({
-    request: () => ({ dataType: 'anatomical' as const }),
-    loader: () => this.dataService.getAnatomicalData(),
+    params: () => ({ dataType: 'anatomical' as const }),
+    stream: () => this.dataService.getAnatomicalData(),
   });
 
   /** Resource for loading extraction site data */
   private readonly extractionSiteDataResource = rxResource({
-    request: () => ({ dataType: 'extraction-site' as const }),
-    loader: () => this.dataService.getExtractionSiteData(),
+    params: () => ({ dataType: 'extraction-site' as const }),
+    stream: () => this.dataService.getExtractionSiteData(),
   });
 
   /** Resource for loading dataset data */
   private readonly datasetDataResource = rxResource({
-    request: () => ({ dataType: 'dataset' as const }),
-    loader: () => this.dataService.getDatasetCellData(),
+    params: () => ({ dataType: 'dataset' as const }),
+    stream: () => this.dataService.getDatasetCellData(),
   });
 
   /** Computed signal that returns data based on currently selected data type */
@@ -125,7 +125,7 @@ export class HraPopVisualizerComponent {
 
   /** Computed signal that returns unique organ options from current data */
   readonly organOptions = computed(() => {
-    const data = this.allData();
+    const data = this.allData() as { organ: string }[];
     return [...new Set(data.map((d) => d.organ))];
   });
 

@@ -37,4 +37,22 @@ describe('ConfigSelectorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should handle tool selection changes', () => {
+    component.onToolChange('celltypist', true);
+    expect(component.selectedTools()).toContain('celltypist');
+
+    component.onToolChange('azimuth', false);
+    expect(component.selectedTools()).not.toContain('azimuth');
+  });
+
+  it('should handle sex selection changes', () => {
+    component.onSexesChange(['Male']);
+    expect(component.selectedSexes()).toEqual(['Male']);
+  });
+
+  it('should check tool availability', () => {
+    expect(component.isToolAvailable('azimuth')).toBe(true);
+    expect(component.isToolAvailable('nonexistent')).toBe(false);
+  });
 });
