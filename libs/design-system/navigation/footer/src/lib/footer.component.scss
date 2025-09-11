@@ -40,8 +40,11 @@
     gap: 0.75rem;
   }
 
-  @include mat.divider-overrides((color: vars.$outline-variant,
-    ));
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
 
   .disclaimer p {
     margin: 0;
