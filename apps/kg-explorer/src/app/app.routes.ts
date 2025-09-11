@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, Route } from '@angular/router';
+import { Route } from '@angular/router';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { TableColumn } from '@hra-ui/design-system/table';
@@ -9,17 +9,18 @@ import {
   asctbResolver,
   biomarkersResolver,
   cellTypeResolver,
+  documentationUrlResolver,
   doMetadataResolver,
   kgResolver,
   ontologyResolver,
+  productLabelResolver,
 } from './utils/kg-resolver';
-import { getDocumentationUrl, getProductLabel } from './utils/utils';
 
 /** Digital objects api */
-const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
+export const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
 
 /** Column info for digital object table */
-const columns: TableColumn[] = [
+export const DO_COLUMNS: TableColumn[] = [
   {
     column: 'download',
     label: '',
@@ -75,7 +76,7 @@ const columns: TableColumn[] = [
 ];
 
 /** Column info for metadata table */
-const metadataColumns: TableColumn[] = [
+export const METADATA_COLUMNS: TableColumn[] = [
   {
     column: 'provenance',
     label: 'Provenance',
@@ -108,7 +109,7 @@ export const appRoutes: Route[] = [
     component: MainPageComponent,
     data: {
       reuse: true,
-      columns: columns,
+      columns: DO_COLUMNS,
     },
     resolve: {
       data: kgResolver(DO_URL),
@@ -122,24 +123,19 @@ export const appRoutes: Route[] = [
     path: ':type/:name/:version',
     component: MetadataPageComponent,
     data: {
-      columns: metadataColumns,
+      columns: METADATA_COLUMNS,
     },
     resolve: {
       doData: kgResolver(DO_URL),
       metadata: doMetadataResolver(),
-      documentationUrl: (route: ActivatedRouteSnapshot) => {
-        const type = route.params['type'];
-        return getDocumentationUrl(type);
-      },
-      typeLabel: (route: ActivatedRouteSnapshot) => {
-        const type = route.params['type'];
-        return getProductLabel(type);
-      },
+      documentationUrl: documentationUrlResolver(),
+      typeLabel: productLabelResolver(),
     },
   },
   {
     path: ':type/:name',
-    redirectTo: ':type/:name/latest',
+    pathMatch: 'full',
+    redirectTo: '/:type/:name/latest',
   },
   {
     path: '500',

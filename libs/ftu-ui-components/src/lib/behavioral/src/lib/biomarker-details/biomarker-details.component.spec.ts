@@ -1,7 +1,6 @@
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
 import { FtuDataService } from '@hra-ui/services';
@@ -59,7 +58,7 @@ describe('BiomarkerDetailsComponent', () => {
 
     shallow = new Shallow(BiomarkerDetailsComponent)
       .import(MarkdownModule.forRoot())
-      .dontMock(MatTableModule, HoverDirective, MatDialogModule)
+      .dontMock(MatTableModule, MatDialogModule)
       .provideMock({ provide: FtuDataService, useValue: dataService });
   });
 
@@ -104,14 +103,6 @@ describe('BiomarkerDetailsComponent', () => {
         id: '',
         label: '',
       });
-    });
-  });
-  describe('collaborate', () => {
-    it('should open the contact modal dialog box', async () => {
-      const open = jest.fn();
-      const { instance } = await shallow.mock(MatDialog, { open }).render();
-      instance.collaborate();
-      expect(open).toHaveBeenCalled();
     });
   });
 

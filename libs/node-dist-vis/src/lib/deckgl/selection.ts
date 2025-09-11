@@ -23,8 +23,9 @@ import {
   StartDraggingEvent,
 } from '@nebula.gl/edit-modes';
 import { EditableGeoJsonLayer } from '@nebula.gl/layers';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore Typescript fails to resolve the typings!?!?
 import { default as bbox } from '@turf/bbox';
-import { BBox } from '@turf/helpers';
 import { NodesLayer } from './nodes';
 import { FILTER_EXCLUDE_VALUE, FILTER_INCLUDE_VALUE, FILTER_RANGE } from './utils/filters';
 
@@ -34,6 +35,8 @@ type _SelectionLayerProps = {
 };
 
 export type SelectionLayerProps = _SelectionLayerProps & CompositeLayerProps;
+
+type BBox = [number, number, number, number];
 
 enum SelectionSubLayerId {
   LassoLayer = 'lasso',
@@ -221,7 +224,7 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
       this.setState(EMPTY_STATE);
       onSelect([]);
     } else if (editType === SelectionEditType.SetSelection) {
-      const boundingBox = bbox(data);
+      const boundingBox = bbox(data as any) as BBox;
       const mask = this.createMaskPolygon(data, boundingBox);
 
       this.setState({ data, boundingBox, mask } satisfies SelectionLayerState);
