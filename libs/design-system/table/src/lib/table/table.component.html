@@ -25,7 +25,7 @@
         @if (enableRowSelection()) {
           <ng-container matColumnDef="select">
             @if (!hideHeaders()) {
-              <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">
+              <th tabindex="0" mat-header-cell *matHeaderCellDef data-column-type="checkbox">
                 <mat-checkbox
                   aria-label="Hide all"
                   hraPlainTooltip="Hide all"
@@ -59,6 +59,7 @@
           <ng-container [matColumnDef]="column.column">
             @if (!hideHeaders()) {
               <th
+                tabindex="0"
                 mat-header-cell
                 *matHeaderCellDef
                 mat-sort-header
