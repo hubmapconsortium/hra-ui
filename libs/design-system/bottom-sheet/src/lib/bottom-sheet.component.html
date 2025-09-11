@@ -4,7 +4,7 @@
   </button>
 </div>
 
-<div class="sheet-content">
+<div class="sheet-content" tabindex="-1" cdkFocusInitial>
   @switch (data.variant) {
     @case ('table') {
       <hra-table [rows]="data.rows" [columns]="data.columns" [hideHeaders]="data.hideHeaders ?? false" />
