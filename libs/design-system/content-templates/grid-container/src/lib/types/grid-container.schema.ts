@@ -7,5 +7,6 @@ export const GridContainerSchema = ContentTemplateSchema.extend({
   rowGap: z.string().optional(),
   columnGap: z.string().optional(),
   minWidth: z.string(),
+  maxContainerWidth: z.string().optional(),
   content: AnyContentTemplateSchema.array(),
 });

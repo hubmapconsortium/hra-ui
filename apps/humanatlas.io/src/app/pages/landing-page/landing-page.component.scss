@@ -47,17 +47,23 @@
 
   .count-cards {
     display: flex;
-    padding: 2rem 2.5rem;
+    justify-content: center;
     background: vars.$surface-dim;
-    justify-content: space-between;
+  }
+
+  .cards-container {
+    display: flex;
+    padding: 2rem 2.5rem;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.75rem;
+    max-width: 739px;
   }
 
   hra-section-cards {
     padding: 6rem 1rem;
-    max-width: 87.5rem;
+    // max-width: 87.5rem;
+    max-width: 1023px;
     align-self: center;
   }
 
@@ -77,6 +83,24 @@
     hra-section-cards {
       padding: 7.5rem 2.5rem;
       align-self: center;
+    }
+  }
+
+  @media (min-width: 1360px) {
+    hra-section-cards {
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 912px) {
+    .cards-container {
+      max-width: 912px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .cards-container {
+      max-width: 100%;
     }
   }
 }

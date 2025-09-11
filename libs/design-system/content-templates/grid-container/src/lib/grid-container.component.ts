@@ -14,6 +14,7 @@ import { HraCommonModule } from '@hra-ui/common';
     '[style.row-gap]': 'rowGap()',
     '[style.column-gap]': 'columnGap()',
     '[style.--min-width]': 'minWidth()',
+    '[style.--max-container-width]': 'maxContainerWidth()',
   },
 })
 export class GridContainerComponent {
@@ -25,4 +26,7 @@ export class GridContainerComponent {
 
   /** Minimum width for items */
   readonly minWidth = input<string>();
+
+  /** Maximum width for item container */
+  readonly maxContainerWidth = input<string>();
 }

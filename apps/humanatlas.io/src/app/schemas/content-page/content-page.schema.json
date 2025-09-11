@@ -480,6 +480,9 @@
         "minWidth": {
           "type": "string"
         },
+        "maxContainerWidth": {
+          "type": "string"
+        },
         "content": {
           "type": "array",
           "items": {

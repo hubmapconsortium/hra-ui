@@ -2,4 +2,5 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--min-width), max-content));
   margin: 0;
+  max-width: var(--max-container-width);
 }

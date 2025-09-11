@@ -3,6 +3,7 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { ActionCardActionComponent, ActionCardComponent } from './action-card.component';
 import { ActionCardVariant } from './action-card.schema';
 import { MatIconModule } from '@angular/material/icon';
+import { GridContainerComponent } from '../../../../content-templates/grid-container/src/lib/grid-container.component';
 
 interface WithContent {
   content?: string;
@@ -25,7 +26,7 @@ const meta: Meta<ActionCardComponent & WithContent> = {
   },
   decorators: [
     moduleMetadata({
-      imports: [ButtonsModule, MatIconModule, ActionCardActionComponent],
+      imports: [ButtonsModule, MatIconModule, ActionCardActionComponent, GridContainerComponent],
     }),
   ],
 };
@@ -123,7 +124,8 @@ export const ResponsiveCardGroup: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<div class="card-container">
+    template: `
+    <hra-grid-container minWidth="17rem" columnGap="1.5rem" rowGap="1.5rem">
         <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
           ${args.content}
           <hra-action-card-action>
@@ -215,34 +217,33 @@ export const ResponsiveCardGroup: Story = {
             </a>
           </hra-action-card-action>
         </hra-action-card>
-      </div>`,
-    styles: [
-      `@media (min-width: 640px) {
-        .card-container {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }`,
-      `@media (min-width: 1100px) {
-        .card-container {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }`,
-      `.card-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        gap: 1rem;
-      }`,
-      `hra-action-card {
-        max-width: 356px !important;
-      }`,
-      `a {
-        font-family: Metropolis;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0px;
-      }`,
-    ],
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+      </hra-grid-container>
+    `,
   }),
 };
