@@ -32,6 +32,7 @@
     cde-metadata {
       width: 100%;
       height: fit-content;
+      border-bottom: 2px solid vars.$outline-variant;
     }
   }
 
@@ -48,17 +49,24 @@
     }
 
     cde-node-dist-visualization {
-      border-color: vars.$outline-variant;
-      border-width: 0 0 2px 0;
-      border-style: solid;
       height: 100%;
       min-width: 32.75rem;
       flex-grow: 1;
+
+      ::ng-deep .header {
+        border-left: 2px solid vars.$outline-variant;
+        border-right: 2px solid vars.$outline-variant;
+      }
+    }
+
+    cde-histogram {
+      border-left: 2px solid vars.$outline-variant;
     }
 
     cde-violin {
       height: 100%;
       width: 31.5rem;
+      border-bottom: 2px solid vars.$outline-variant;
     }
   }
 }

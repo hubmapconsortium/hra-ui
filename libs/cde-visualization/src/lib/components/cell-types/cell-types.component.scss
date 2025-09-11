@@ -3,9 +3,6 @@
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
-  border-color: vars.$outline-variant;
-  border-width: 0 2px 0px 0px;
-  border-style: solid;
   overflow: hidden;
   flex-grow: 1;
 

@@ -17,9 +17,6 @@
   );
 
   hra-expansion-panel {
-    border-color: vars.$outline-variant;
-    border-width: 0 2px 2px 0px;
-    border-style: solid;
     box-shadow: none;
 
     @include mat.expansion-overrides(
