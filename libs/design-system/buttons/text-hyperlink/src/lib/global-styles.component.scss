@@ -28,10 +28,7 @@
     }
 
     &:hover,
-    &:hover mat-icon {
-      color: vars.$tertiary;
-    }
-
+    &:hover mat-icon,
     &:active,
     &:active mat-icon {
       color: vars.$tertiary;
