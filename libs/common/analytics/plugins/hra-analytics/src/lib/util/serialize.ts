@@ -24,11 +24,18 @@ export function serialize(value: unknown): unknown {
     if (value instanceof ErrorEvent) {
       return pick(value, ['message', 'filename', 'lineno', 'colno']);
     } else if (value instanceof KeyboardEvent) {
-      const keys: (keyof KeyboardEvent)[] = ['key', 'altKey', 'ctrlKey', 'metaKey', 'shiftKey', 'repeat'];
+      const keys = ['key', 'altKey', 'ctrlKey', 'metaKey', 'shiftKey', 'repeat'] satisfies (keyof KeyboardEvent)[];
       return filterFalse(pick(value, keys));
     } else if (value instanceof MouseEvent) {
-      const keys: (keyof MouseEvent)[] = ['button', 'buttons', 'altKey', 'ctrlKey', 'metaKey', 'shiftKey'];
-      return filterFalse(pick(value, keys));
+      const keys = ['button', 'buttons', 'altKey', 'ctrlKey', 'metaKey', 'shiftKey'] satisfies (keyof MouseEvent)[];
+      const props = pick(value, keys);
+
+      const { type, target } = value;
+      const isAnchorClick = type === 'click' && target instanceof HTMLAnchorElement;
+      const targetKeys = ['href', 'type', 'target', 'download'] satisfies (keyof HTMLAnchorElement)[];
+      const targetProps = isAnchorClick ? pickAttributes(target, targetKeys) : {};
+
+      return filterFalse({ ...props, ...targetProps });
     }
 
     return undefined;
@@ -55,6 +62,27 @@ function pick<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
       return acc;
     },
     {} as Pick<T, K>,
+  );
+}
+
+/**
+ * Pick a set of attributes from an element.
+ * Excludes attributes not present on the element.
+ *
+ * @param el Element reference
+ * @param attributes Attributes to pick
+ * @returns Values by attribute name
+ */
+function pickAttributes<T extends Element, K extends string>(el: T, attributes: K[]): Partial<Record<K, string>> {
+  return attributes.reduce(
+    (acc, attr) => {
+      const value = el.getAttribute(attr);
+      if (value !== null) {
+        acc[attr] = value;
+      }
+      return acc;
+    },
+    {} as Partial<Record<K, string>>,
   );
 }
 
