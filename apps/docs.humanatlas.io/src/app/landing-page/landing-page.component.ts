@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
 import { FlexContainerComponent } from '@hra-ui/design-system/content-templates/flex-container';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 
 import { LandingPageData } from '../schemas/landing-page/landing-page.schema';
 
@@ -10,7 +11,7 @@ import { LandingPageData } from '../schemas/landing-page/landing-page.schema';
  */
 @Component({
   selector: 'hra-docs-landing-page',
-  imports: [ContentTemplateOutletDirective, FlexContainerComponent, HraCommonModule],
+  imports: [ContentTemplateOutletDirective, FlexContainerComponent, HraCommonModule, NavigationModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
 
