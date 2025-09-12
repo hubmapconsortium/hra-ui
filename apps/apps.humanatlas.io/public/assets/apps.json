@@ -70,6 +70,14 @@
               "logoPath": "product:cell-population-graphs",
               "appUrl": "https://apps.humanatlas.io/cell-population-graphs/",
               "documentLink": "https://humanatlas.io/cell-population-graphs"
+            },
+            {
+              "tagline": "HRApop Visualizer",
+              "description": "TODO: Insert description (also update images, etc.)",
+              "imagePath": "assets/ui-images/cell_population_graphs.png",
+              "logoPath": "product:cell-population-graphs",
+              "appUrl": "/hra-pop-visualizer",
+              "documentLink": "https://humanatlas.io/cell-population-graphs"
             }
           ]
         },

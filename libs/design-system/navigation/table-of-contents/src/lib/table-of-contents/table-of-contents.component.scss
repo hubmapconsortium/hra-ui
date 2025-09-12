@@ -29,6 +29,7 @@
       padding: 0.3438rem 1rem;
       margin-left: calc((var(--indentation-level, 1) - 1) * 0.75rem);
       color: vars.$primary;
+      text-decoration: none;
 
       &:hover {
         background-color: utils.with-alpha(vars.$secondary, 8%);
