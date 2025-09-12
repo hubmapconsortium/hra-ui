@@ -52,11 +52,11 @@ describe('serialize(value)', () => {
 
     const href = 'https://example.com';
     const anchorEl4 = createAnchorElement({ href, target: '_blank' });
-    const event4 = Object.defineProperty(new MouseEvent('click'), 'target', { value: anchorEl4 });
+    const event4 = Object.defineProperty(new MouseEvent('click'), 'currentTarget', { value: anchorEl4 });
     expect(serialize(event4)).toMatchObject({ href, target: '_blank' });
 
     const anchorEl5 = createAnchorElement({ href, download: 'file.csv', type: 'text/csv' });
-    const event5 = Object.defineProperty(new MouseEvent('click'), 'target', { value: anchorEl5 });
+    const event5 = Object.defineProperty(new MouseEvent('click'), 'currentTarget', { value: anchorEl5 });
     const result5 = serialize(event5);
     expect(result5).toMatchObject({ href, download: 'file.csv', type: 'text/csv' });
     expect(result5).not.toMatchObject({ target: expect.anything() });
