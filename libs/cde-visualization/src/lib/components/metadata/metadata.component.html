@@ -34,24 +34,22 @@
     </mat-menu>
   </hra-expansion-panel-actions>
   <div class="metadata-details">
-    <div>
+    <div class="metadata-row">
       @if (isFieldVisible('title')) {
-        <span>
-          {{ titleLabel() }}
-        </span>
-        <span>
+        <span class="metadata-row-label"> Source publication </span>
+        <span class="metadata-row-value">
           @if (metadata().sampleExtra; as extra) {
             <a hraHyperlink [attr.href]="extra.sampleUrl" target="_blank" rel="noreferrer noopener">
-              {{ metadata().title }}
+              {{ extra.sampleUrl }}
             </a>
           } @else {
-            <span>{{ metadata().title | defaultTo: 'Unknown' }}</span>
+            <span class="metadata-row-value">{{ metadata().title | defaultTo: 'Unknown' }}</span>
           }
         </span>
       }
     </div>
-    <div>
-      <span>Source Data</span>
+    <div class="metadata-row">
+      <span class="metadata-row-label">Source data</span>
       <span>
         @if (metadata().sampleExtra; as extra) {
           <a hraHyperlink [attr.href]="extra.sourceDataUrl" target="_blank" rel="noreferrer noopener">
@@ -63,54 +61,54 @@
       </span>
     </div>
     @if (isFieldVisible('colorMapFileName')) {
-      <div>
-        <span>Color Map</span>
-        <span>{{ metadata().colorMapFileName | defaultTo: 'Default' }}</span>
+      <div class="metadata-row">
+        <span class="metadata-row-label">Color map</span>
+        <span class="metadata-row-value">{{ metadata().colorMapFileName | defaultTo: 'Default' }}</span>
       </div>
     }
     @if (isFieldVisible('organ')) {
-      <div>
-        <span>Organ</span>
-        <span>{{ metadata().organ | defaultTo: 'Unknown' }}</span>
+      <div class="metadata-row">
+        <span class="metadata-row-label">Organ</span>
+        <span class="metadata-row-value">{{ metadata().organ | defaultTo: 'Unknown' }}</span>
       </div>
     }
     @if (isFieldVisible('technology')) {
-      <div>
-        <span>Technology</span>
-        <span>{{ metadata().technology | defaultTo: 'Unknown' }}</span>
+      <div class="metadata-row">
+        <span class="metadata-row-label">Technology</span>
+        <span class="metadata-row-value">{{ metadata().technology | defaultTo: 'Unknown' }}</span>
       </div>
     }
     @if (isFieldVisible('sex')) {
-      <div>
-        <span>Sex</span>
-        <span>{{ metadata().sex | defaultTo: 'Unknown' }}</span>
+      <div class="metadata-row">
+        <span class="metadata-row-label">Sex</span>
+        <span class="metadata-row-value">{{ metadata().sex | defaultTo: 'Unknown' }}</span>
       </div>
     }
     @if (isFieldVisible('age')) {
-      <div>
-        <span>Age</span>
-        <span>{{ metadata().age | defaultTo: 'Unknown' }}</span>
+      <div class="metadata-row">
+        <span class="metadata-row-label">Age</span>
+        <span class="metadata-row-value">{{ metadata().age | defaultTo: 'Unknown' }}</span>
       </div>
     }
     @if (isFieldVisible('thickness')) {
-      <div>
-        <span>Thickness (µm)</span>
-        <span>{{ metadata().thickness | defaultTo: 'Unknown' }}</span>
+      <div class="metadata-row">
+        <span class="metadata-row-label">Thickness (µm)</span>
+        <span class="metadata-row-value">{{ metadata().thickness | defaultTo: 'Unknown' }}</span>
       </div>
     }
     @if (isFieldVisible('pixelSize')) {
-      <div>
-        <span>Pixel Size (µm/pixel)</span>
-        <span>{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
+      <div class="metadata-row">
+        <span class="metadata-row-label">Pixel size (µm/pixel)</span>
+        <span class="metadata-row-value">{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
       </div>
     }
-    <div>
-      <span>Creation Date</span>
-      <span>{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
+    <div class="metadata-row">
+      <span class="metadata-row-label">Creation date</span>
+      <span class="metadata-row-value">{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
     </div>
-    <div>
-      <span>Creation Time</span>
-      <span>{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
+    <div class="metadata-row">
+      <span class="metadata-row-label">Creation time</span>
+      <span class="metadata-row-value">{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
     </div>
   </div>
 </hra-expansion-panel>

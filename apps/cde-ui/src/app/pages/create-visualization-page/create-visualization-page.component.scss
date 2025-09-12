@@ -136,6 +136,10 @@
   }
 
   .color-config {
+    mat-button-toggle-group {
+      width: fit-content;
+    }
+
     table {
       width: 66%;
 
