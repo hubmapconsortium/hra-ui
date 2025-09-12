@@ -73,11 +73,11 @@
             },
             {
               "tagline": "HRApop Visualizer",
-              "description": "TODO: Insert description (also update images, etc.)",
-              "imagePath": "assets/ui-images/cell_population_graphs.png",
-              "logoPath": "product:cell-population-graphs",
+              "description": "Explore cell type populations.",
+              "imagePath": "assets/ui-images/hra-pop-visualizer.png",
+              "logoPath": "product:cell-population-predictor",
               "appUrl": "/hra-pop-visualizer",
-              "documentLink": "https://humanatlas.io/cell-population-graphs"
+              "documentLink": "https://doi.org/10.1101/2025.08.14.670406"
             }
           ]
         },
