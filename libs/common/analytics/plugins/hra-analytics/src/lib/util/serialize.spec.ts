@@ -1,5 +1,14 @@
 import { serialize } from './serialize';
 
+function createAnchorElement(attrs: Record<string, string>): HTMLAnchorElement {
+  const el = document.createElement('a');
+  for (const [attr, value] of Object.entries(attrs)) {
+    el.setAttribute(attr, value);
+  }
+
+  return el;
+}
+
 describe('serialize(value)', () => {
   it('should return primitive (including null) values unchanged', () => {
     expect(serialize('a')).toEqual('a');
@@ -41,8 +50,19 @@ describe('serialize(value)', () => {
     const event3 = new MouseEvent('click', { button: 0, buttons: 2, ctrlKey: true });
     expect(serialize(event3)).toEqual({ button: 0, buttons: 2, ctrlKey: true });
 
-    const event4 = new CustomEvent('custom');
-    expect(serialize(event4)).toEqual(undefined);
+    const href = 'https://example.com';
+    const anchorEl4 = createAnchorElement({ href, target: '_blank' });
+    const event4 = Object.defineProperty(new MouseEvent('click'), 'currentTarget', { value: anchorEl4 });
+    expect(serialize(event4)).toMatchObject({ href, target: '_blank' });
+
+    const anchorEl5 = createAnchorElement({ href, download: 'file.csv', type: 'text/csv' });
+    const event5 = Object.defineProperty(new MouseEvent('click'), 'currentTarget', { value: anchorEl5 });
+    const result5 = serialize(event5);
+    expect(result5).toMatchObject({ href, download: 'file.csv', type: 'text/csv' });
+    expect(result5).not.toMatchObject({ target: expect.anything() });
+
+    const event6 = new CustomEvent('custom');
+    expect(serialize(event6)).toEqual(undefined);
   });
 
   it('should serialize maps into an object containing an array of entries', () => {

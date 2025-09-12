@@ -1,3 +1,4 @@
+import { HasRequiredKeys, OmitIndexSignature } from 'type-fest';
 import { Brand, Prettify } from './util/types';
 
 /**
@@ -28,6 +29,11 @@ export type EventPayload<P> = Prettify<CommonEventProps & { [K in keyof P]: P[K]
 
 /** Extract the event payload */
 export type EventPayloadFor<T> = T extends AnalyticsEvent ? NonNullable<T[typeof PAYLOAD]> : never;
+
+/** Same as the event payload or the empty string if all payload properties are optional */
+export type EventPropsFor<T extends AnalyticsEvent> =
+  | EventPayloadFor<T>
+  | (HasRequiredKeys<OmitIndexSignature<EventPayloadFor<T>>> extends true ? never : '');
 
 /** An event specification */
 export interface AnalyticsEvent<P = object> {
