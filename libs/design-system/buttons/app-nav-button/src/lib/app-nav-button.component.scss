@@ -15,6 +15,7 @@
     max-width: 38rem;
     padding: var(--hra-app-nav-button-padding, 0.5rem);
     border-radius: 0.5rem;
+    text-decoration: none;
 
     &:hover {
       background: utils.with-alpha(vars.$secondary, 8%);

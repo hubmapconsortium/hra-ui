@@ -6,7 +6,7 @@
     }
   </a>
 } @else {
-  <a hraHyperlink [href]="url()" target="_blank" rel="noopener noreferrer">
+  <a hraHyperlink [attr.href]="url()" target="_blank" rel="noopener noreferrer">
     {{ text() }}
     @if (icon(); as fontIcon) {
       <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>
