@@ -2,7 +2,6 @@
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
-  border-radius: 0.5rem;
   height: fit-content;
   position: sticky;
   max-height: 22.5rem;
@@ -17,15 +16,14 @@
     (
       header-hover-state-layer-color: transparent,
       container-shape: 0,
-      container-background-color: vars.$surface-container-low,
     )
   );
 
   ::ng-deep {
     .header {
+      padding: 0.5rem 1rem 0.25rem 0.5rem;
       hra-expansion-panel-header-content {
         display: block;
-        margin-right: 1rem;
 
         .label {
           max-width: unset;
