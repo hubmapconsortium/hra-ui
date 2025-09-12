@@ -3,12 +3,13 @@
 
 :host {
   width: 100%;
+  height: 100%;
   display: grid;
   position: relative;
-  grid-template-columns: 22.75rem minmax(57.1875rem, calc(100vw - 22.75rem));
-  grid-template-rows: 4rem minmax(42.375rem, calc(100vh - 4rem));
+  grid-template-columns: 22.75rem minmax(64.1875rem, calc(100% - 22.75rem));
+  grid-template-rows: 3.5rem minmax(548px, calc(100% - 3.5rem));
   grid-template-areas:
-    'header visualization'
+    'metadata visualization'
     'metadata visualization';
   color: vars.$secondary;
   background: vars.$surface-container-low;
@@ -23,22 +24,16 @@
     );
   }
 
-  .header {
-    grid-area: header;
-    border-color: vars.$outline-variant;
-    border-width: 0 0px 2px 0px;
-    border-style: solid;
-    height: 4rem;
-
-    hra-nav-header-buttons {
-      margin: 0.75rem;
-    }
-  }
-
   .metadata {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-area: metadata;
-    grid-template-rows: auto 1fr;
+
+    cde-metadata {
+      width: 100%;
+      height: fit-content;
+      border-bottom: 2px solid vars.$outline-variant;
+    }
   }
 
   .visualizations {
@@ -54,18 +49,24 @@
     }
 
     cde-node-dist-visualization {
-      border-color: vars.$outline-variant;
-      border-width: 0 0 2px 0;
-      border-style: solid;
       height: 100%;
       min-width: 32.75rem;
       flex-grow: 1;
+
+      ::ng-deep .header {
+        border-left: 2px solid vars.$outline-variant;
+        border-right: 2px solid vars.$outline-variant;
+      }
+    }
+
+    cde-histogram {
+      border-left: 2px solid vars.$outline-variant;
     }
 
     cde-violin {
       height: 100%;
-      min-width: 24.25rem;
-      max-width: 31.5rem;
+      width: 31.5rem;
+      border-bottom: 2px solid vars.$outline-variant;
     }
   }
 }
