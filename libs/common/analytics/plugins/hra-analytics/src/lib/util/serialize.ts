@@ -30,10 +30,10 @@ export function serialize(value: unknown): unknown {
       const keys = ['button', 'buttons', 'altKey', 'ctrlKey', 'metaKey', 'shiftKey'] satisfies (keyof MouseEvent)[];
       const props = pick(value, keys);
 
-      const { type, target } = value;
-      const isAnchorClick = type === 'click' && target instanceof HTMLAnchorElement;
+      const { type, currentTarget: el } = value;
+      const isAnchorClick = type === 'click' && el instanceof HTMLAnchorElement;
       const targetKeys = ['href', 'type', 'target', 'download'] satisfies (keyof HTMLAnchorElement)[];
-      const targetProps = isAnchorClick ? pickAttributes(target, targetKeys) : {};
+      const targetProps = isAnchorClick ? pickAttributes(el, targetKeys) : {};
 
       return filterFalse({ ...props, ...targetProps });
     }
