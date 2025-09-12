@@ -20,10 +20,10 @@
           height: 100%;
 
           .header {
-            background-color: white;
-            height: calc(4rem - 2px);
-            padding: 0.75rem 1rem;
-            border-left: 2px solid vars.$outline-variant;
+            background-color: vars.$surface-container-low;
+            height: 3.5rem;
+            align-items: center;
+            padding: 0 1rem;
 
             hra-expansion-panel-header-content {
               mat-icon {
@@ -34,7 +34,6 @@
 
           .content {
             height: calc(100% - 4rem + 2px);
-            border-top: 2px solid vars.$outline-variant;
 
             .expansion-body {
               height: 100%;
@@ -56,7 +55,7 @@
 }
 
 ::ng-deep div.node-dist-vis-fullscreen-panel {
-  --mdc-dialog-container-color: black;
+  --mat-dialog-container-color: black;
 
   .header {
     background-color: white;

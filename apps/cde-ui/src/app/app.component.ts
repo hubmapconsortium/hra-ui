@@ -1,5 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { routeData } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 import { ScreenSizeNoticeComponent } from './components/screen-size-notice/screen-size-notice.component';
 
@@ -13,7 +21,17 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
  */
 @Component({
   selector: 'cde-root',
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    MatIconModule,
+    NavigationModule,
+    ButtonsModule,
+    PlainTooltipDirective,
+    MatMenuModule,
+    MatDividerModule,
+    CommonModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {
@@ -21,6 +39,22 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
   },
 })
 export class AppComponent {
+  /**
+   * Route data of app component
+   */
+  private readonly data = routeData();
+
+  /** Breadcrumbs data (computed from above signal). */
+  protected readonly crumbs = computed(() => {
+    if (this.data()['data']) {
+      return this.data()['crumbs'].concat([{ name: this.data()['data'].metadata.sourceFileName }]);
+    }
+    return this.data()['crumbs'];
+  });
+
+  /** Header visibility (whether to show header or not) */
+  protected readonly header = computed(() => this.data()['header'] as boolean | undefined);
+
   /**
    * Screen size notice detector of app component
    */

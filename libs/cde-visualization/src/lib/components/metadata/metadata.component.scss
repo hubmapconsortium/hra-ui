@@ -13,15 +13,10 @@
   @include mat.expansion-overrides(
     (
       container-shape: 0,
-      container-background-color: vars.$surface-container-low,
     )
   );
 
   hra-expansion-panel {
-    border-color: vars.$outline-variant;
-    background-color: vars.$secondary-container;
-    border-width: 0 2px 2px 0px;
-    border-style: solid;
     box-shadow: none;
 
     @include mat.expansion-overrides(
@@ -46,29 +41,17 @@
     .metadata-details {
       display: flex;
       flex-direction: column;
-      margin: 0 0.75rem;
-      margin-bottom: 0.75rem;
+      margin: 0 0.5rem 1rem 1rem;
 
       > div {
         display: inline-flex;
         margin: 1px 0;
 
         span {
-          width: 50%;
+          font: vars.$label-small;
 
-          a[mat-button] {
-            height: auto;
-            padding: 0.0625rem 0.5rem;
-          }
-
-          &:first-child {
-            font: vars.$label-small;
-            color: vars.$secondary;
-          }
-
-          &:last-child {
-            font: vars.$label-small;
-            color: vars.$primary;
+          a {
+            color: vars.$tertiary;
           }
         }
       }
@@ -76,6 +59,23 @@
       span {
         display: block;
       }
+    }
+
+    .metadata-row {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .metadata-row-label {
+      color: vars.$secondary;
+      min-width: 7.25rem;
+    }
+
+    .metadata-row-value {
+      color: vars.$primary;
+      overflow: hidden;
+      text-wrap: nowrap;
+      text-overflow: ellipsis;
     }
 
     .show-hide {

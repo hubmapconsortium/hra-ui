@@ -1,51 +1,60 @@
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
 :host {
-  --mdc-filled-button-container-height: 2rem;
+  --mat-button-filled-container-height: 2rem;
   display: block;
   overflow: hidden;
-  border-width: 0px 0px 2px 2px;
-  border-style: solid;
-  border-color: vars.$outline-variant;
 
-  ::ng-deep {
-    hra-expansion-panel {
+  ::ng-deep hra-expansion-panel {
+    height: 100%;
+
+    .header {
+      padding: 0.5rem 1rem;
+    }
+
+    .content {
+      height: calc(100% - 3.5rem);
+    }
+
+    .expansion-body {
       height: 100%;
+    }
 
-      cdk-accordion {
-        display: block;
-        height: 100%;
-
-        cdk-accordion-item {
-          height: 100%;
-
-          .header {
-            padding: 1rem;
-          }
-
-          .content {
-            height: calc(100% - 4.5rem);
-
-            .expansion-body {
-              height: 100%;
-
-              hra-fullscreen-portal {
-                height: 100%;
-              }
-            }
-          }
-        }
-      }
+    ng-scrollbar {
+      width: 100%;
     }
   }
 
-  .violin {
-    padding: 0.5rem;
+  hra-fullscreen-portal-content {
+    display: flex;
+  }
+
+  hra-fullscreen-portal {
+    height: 100%;
   }
 }
 
-::ng-deep {
-  .violin-container {
+::ng-deep hra-fullscreen-portal-content {
+  display: flex;
+
+  ng-scrollbar {
     width: 100%;
   }
+
+  .ng-scroll-content {
+    width: 100% !important;
+    max-height: 100%;
+    min-height: 0rem !important;
+  }
+}
+
+.enableScroll {
+  ::ng-deep .ng-scroll-content {
+    max-height: unset;
+  }
+}
+
+::ng-deep .violin-container {
+  width: 100%;
+  height: 100%;
 }

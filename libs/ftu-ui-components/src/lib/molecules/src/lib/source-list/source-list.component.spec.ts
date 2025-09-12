@@ -6,6 +6,10 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import '@testing-library/jest-dom';
 import { Iri } from '@hra-ui/services';
+import {
+  FtuFullScreenService,
+  FullscreenTab,
+} from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
 
 describe('SourceListComponent', () => {
   let shallow: Shallow<SourceListComponent>;
@@ -29,6 +33,22 @@ describe('SourceListComponent', () => {
   it('should initialize showTable to be true', async () => {
     const { instance } = await shallow.render();
     expect(instance.showTable()).toBe(true);
+  });
+
+  it('should openFullscreen', async () => {
+    const fullscreenMock = {
+      fullscreentabIndex: { set: jest.fn() },
+      isFullscreen: { set: jest.fn() },
+    } as unknown as FtuFullScreenService;
+    const { instance } = await shallow.render();
+    (
+      instance as unknown as {
+        fullscreenService?: FtuFullScreenService;
+      }
+    ).fullscreenService = fullscreenMock;
+    instance.openSourceListFullscreen();
+    expect(fullscreenMock.fullscreentabIndex.set).toHaveBeenCalledWith(FullscreenTab.SourceList);
+    expect(fullscreenMock.isFullscreen.set).toHaveBeenCalledWith(true);
   });
 
   it('should toggle showTable on toggleTable() method call', async () => {

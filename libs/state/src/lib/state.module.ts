@@ -2,7 +2,6 @@ import { ModuleWithProviders, NgModule, importProvidersFrom } from '@angular/cor
 import { NGXS_PLUGINS, NgxsModule } from '@ngxs/store';
 import { ActiveFtuState } from './active-ftu';
 import { CellSummaryState } from './cell-summary';
-import { ContactState } from './contact';
 import { DownloadState } from './download';
 import { IllustratorState } from './illustrator';
 import { ScreenModeState } from './screen-mode';
@@ -23,7 +22,6 @@ export interface HraStateModuleOptions {
     NgxsModule.forFeature([
       ActiveFtuState,
       CellSummaryState,
-      ContactState,
       DownloadState,
       IllustratorState,
       ScreenModeState,

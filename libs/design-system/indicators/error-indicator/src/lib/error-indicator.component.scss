@@ -1,0 +1,26 @@
+@use '../../../../../../libs/design-system/styles/vars';
+@use '../../../../../../libs/design-system/styles/utils';
+
+:host {
+  display: flex;
+  width: fit-content;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  color: vars.$on-error-container;
+  background-color: color-mix(in srgb, vars.$error-container 80%, transparent);
+
+  mat-icon {
+    margin-right: 0.5rem;
+    color: vars.$error;
+    min-width: 1.5rem;
+  }
+
+  .error {
+    font: vars.$label-large;
+    letter-spacing: vars.$label-large-tracking;
+  }
+
+  .link {
+    @include utils.use-font(label, large);
+  }
+}

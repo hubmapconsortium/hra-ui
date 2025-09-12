@@ -10,7 +10,7 @@ import { APP_ASSETS_HREF } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import {
@@ -39,7 +39,7 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
   const assetsHref = inject(APP_ASSETS_HREF);
   const fileUrl = inject(SAMPLE_FILE_URL);
   const url = Location.joinWithSlash(assetsHref(), fileUrl);
-  return httpResource.text(url, {
+  return httpResource.text(() => ({ url }), {
     parse: (content) => new File([content], 'sample.csv', { type: 'text/csv' }),
   });
 }
@@ -83,10 +83,10 @@ export class TissueOriginPredictorComponent {
   private readonly predictionsService = inject(HraPopPredictionsService);
 
   /** Supported organs */
-  protected readonly supportedOrgans = this.predictionsService.supportedOrgans.value.asReadonly();
+  protected readonly supportedOrgans = this.predictionsService.supportedOrgans;
 
   /** Supported tools */
-  protected readonly supportedTools = this.predictionsService.supportedTools.value.asReadonly();
+  protected readonly supportedTools = this.predictionsService.supportedTools;
 
   /** Sample file */
   private readonly sampleFile = inject(SAMPLE_FILE).value.asReadonly();

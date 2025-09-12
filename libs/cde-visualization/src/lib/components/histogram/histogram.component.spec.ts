@@ -2,6 +2,7 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { render, RenderComponentOptions, screen } from '@testing-library/angular';
@@ -9,6 +10,7 @@ import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
+import { CellTypeEntry } from '../../models/cell-type';
 
 jest.mock('vega-embed', () => jest.fn());
 
@@ -26,12 +28,27 @@ describe('HistogramComponent', () => {
     },
   ];
 
+  const sampleCellTypes: CellTypeEntry[] = [
+    {
+      name: 'test2',
+      count: 9,
+      outgoingEdgeCount: 7,
+      color: [1, 2, 3],
+    },
+    {
+      name: 'test1',
+      count: 2,
+      outgoingEdgeCount: 3,
+      color: [4, 5, 6],
+    },
+  ];
+
   const embedResult = mockDeep<Result>();
 
   async function setup(options?: RenderComponentOptions<HistogramComponent>) {
     return render(HistogramComponent, {
       ...options,
-      providers: [provideScrolling({ disableSensor: true }), ...(options?.providers ?? [])],
+      providers: [provideScrolling({ disableSensor: true }), provideNoopAnimations(), ...(options?.providers ?? [])],
     });
   }
 
@@ -56,7 +73,7 @@ describe('HistogramComponent', () => {
       inputs: {
         data: sampleData,
         colors: [],
-        filteredCellTypes: [],
+        filteredCellTypes: sampleCellTypes,
       },
     });
     await fixture.whenStable();

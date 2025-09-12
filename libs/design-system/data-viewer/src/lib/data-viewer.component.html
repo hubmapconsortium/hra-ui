@@ -31,7 +31,7 @@
   <div class="text-fields">
     <mat-form-field class="select" subscriptSizing="dynamic">
       <mat-icon matPrefix class="search-icon">search</mat-icon>
-      <mat-label>Release Version</mat-label>
+      <mat-label>Release version</mat-label>
       <mat-select
         disableRipple
         panelClass="options-container"
@@ -56,7 +56,7 @@
       <mat-select
         disableRipple
         panelClass="options-container"
-        [(ngModel)]="organ_"
+        [ngModel]="organ_()"
         (ngModelChange)="organ.set($event.label)"
         class="organ-selector"
       >

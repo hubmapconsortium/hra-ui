@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
@@ -50,7 +50,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
 import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { FtuFullScreenService, FullscreenTab } from '../ftu-fullscreen-service/ftu-fullscreen.service';
 
 /**
@@ -170,11 +169,6 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
    * Determines whether biomarkerfullscreen is in fullscreen mode
    */
   readonly isBiomarkerfullscreen = this.fullscreenService.isFullscreen;
-
-  /**
-   * Determines whether source listfullscreen is in fullscreen mode
-   */
-  readonly isSourceListfullscreen = signal<boolean>(false);
 
   /**
    * View child of source list component
@@ -298,14 +292,6 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
     this.fullscreenService.fullscreentabIndex.set(FullscreenTab.BiomarkerDetails);
     this.fullscreenService.isFullscreen.set(this.isTableFullScreen);
     this.setScreenMode(this.isTableFullScreen);
-  }
-
-  /** A function which opens the contact modal dialog box */
-  collaborate(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    this.ga.event('contact_open', 'modal');
-    this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
 
   /**

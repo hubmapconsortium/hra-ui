@@ -111,7 +111,7 @@
         cdkConnectedOverlayWidth="100vw"
       >
         <hra-embedded-rui
-          [supportedOrgans]="supportedOrgans()"
+          [supportedOrgans]="supportedOrgans.value()"
           (locationCreated)="onFileCreated($event); ruiOpen = false"
           (closed)="ruiOpen = false"
         ></hra-embedded-rui>

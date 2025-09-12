@@ -4,7 +4,7 @@ import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/an
 import { IconButtonModule } from './icon-button.module';
 
 const meta: Meta = {
-  title: 'Design System/IconButton',
+  title: 'Design System/Buttons/Icon Button',
   parameters: {
     design: {
       type: 'figma',

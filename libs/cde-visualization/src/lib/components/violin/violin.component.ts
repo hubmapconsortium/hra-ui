@@ -15,7 +15,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { View } from 'vega';
-import embed, { VisualizationSpec } from 'vega-embed';
+import embed from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
@@ -42,7 +42,7 @@ interface ModifiableViolinSpec {
   /** Encoding configuration for the violin */
   spec: {
     /** Width of the violin */
-    width: string | number;
+    width?: string | number;
     /** Height of the violin */
     height: string | number;
     layer: {
@@ -70,6 +70,18 @@ const EXPORT_IMAGE_HEIGHT = 40;
 
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING = 16;
+
+/** Minimum height for individual violin plots */
+const MIN_VIOLIN_HEIGHT = 20;
+
+/** Maximum height for individual violin plots */
+const MAX_VIOLIN_HEIGHT = 35;
+
+/** Width offset for individual violin plots */
+const VIOLIN_WIDTH_OFFSET = 170;
+
+/** Height offset for individual violin plots */
+const VIOLIN_HEIGHT_OFFSET = 76;
 
 /** Configuration for the legend in the exported image */
 const EXPORT_IMAGE_LEGEND_CONFIG = {
@@ -118,6 +130,9 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:resize)': 'resizeAndSyncView()',
+  },
 })
 export class ViolinComponent {
   /** Tooltip position configuration */
@@ -155,6 +170,12 @@ export class ViolinComponent {
   /** Vega view instance for the violin */
   private readonly view = signal<View | undefined>(undefined);
 
+  /** Number of colors (cell types) in the visualization */
+  readonly colorCount = signal<number>(0);
+
+  /** Whether vertical scrolling should be enabled for the violin visualization */
+  readonly enableScroll = signal<boolean>(false);
+
   /** Effect for updating view data */
   protected readonly viewDataRef = effect(() => {
     const view = this.view();
@@ -166,8 +187,11 @@ export class ViolinComponent {
 
   /** Effect for updating view colors */
   protected readonly viewColorsRef = effect(() => {
-    this.view()?.signal('colors', this.colors()).run();
-    this.view()?.resize();
+    if (this.view() && this.view()?.getState()) {
+      this.view()?.signal('colors', this.colors()).run();
+      this.colorCount.set(this.view()?.getState().signals.colors.length);
+      this.resizeAndSyncView();
+    }
   });
 
   /** Effect for creating the Vega view */
@@ -175,16 +199,18 @@ export class ViolinComponent {
     const container: HTMLElement = this.violinEl().rootNodes()[0];
     const el = container.querySelector('.violin-container') as HTMLElement;
     await this.ensureFontsLoaded();
-
     const spec = produce(VIOLIN_SPEC, (draft) => {
       for (const layer of draft.spec.layer) {
         if (layer.encoding.color.legend === null) {
           layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
         }
       }
+      draft.spec.width = el.clientWidth - VIOLIN_WIDTH_OFFSET;
+      draft.spec.height = MAX_VIOLIN_HEIGHT;
     });
 
-    const { finalize, view } = await embed(el, spec as VisualizationSpec, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { finalize, view } = await embed(el, spec as any, {
       actions: false,
     });
 
@@ -192,18 +218,36 @@ export class ViolinComponent {
     this.view.set(view);
   });
 
-  /** Resizes view after full screen toggle */
+  /** Resizes view after full screen toggle or viewport resize */
   /* istanbul ignore next */
   resizeAndSyncView() {
-    const container = this.view()?.container();
     setTimeout(() => {
-      const bbox = container?.getBoundingClientRect();
-      if (bbox) {
-        this.view()?.width(bbox.width).height(bbox.height);
+      const view = this.view();
+      if (view) {
+        const container: HTMLElement = this.violinEl().rootNodes()[0];
+        const el = container.querySelector('.violin') as HTMLElement;
+        if (el) {
+          if (this.calculateViolinHeight(el.clientHeight) < MIN_VIOLIN_HEIGHT) {
+            view.signal('child_height', MAX_VIOLIN_HEIGHT);
+            this.enableScroll.set(true);
+          } else {
+            view.signal('child_height', this.calculateViolinHeight(el.clientHeight));
+            this.enableScroll.set(false);
+          }
+          view.signal('child_width', el.clientWidth - VIOLIN_WIDTH_OFFSET);
+        }
+        view.resize().runAsync();
       }
-      this.view()?.resize().runAsync();
-      window.dispatchEvent(new Event('resize'));
     });
+  }
+
+  /**
+   * Calculates violin plot height (in px) based on container height and number of entries
+   * @param boxH container height
+   * @returns Violin plot height
+   */
+  private calculateViolinHeight(boxH: number) {
+    return Math.min(MAX_VIOLIN_HEIGHT, (boxH - VIOLIN_HEIGHT_OFFSET) / this.colorCount());
   }
 
   /** Download the violin as an image in the specified format */
@@ -226,7 +270,8 @@ export class ViolinComponent {
     });
 
     const el = this.renderer.createElement('div');
-    const { view, finalize } = await embed(el, spec as VisualizationSpec, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { view, finalize } = await embed(el, spec as any, {
       actions: false,
     });
 
