@@ -2,30 +2,31 @@
   display: block;
 
   .main {
-    display: flex;
-
+    hra-site-navigation {
+      display: none;
+    }
     .content {
       flex: 1 1;
       width: 100%;
     }
-
-    &.cta-active {
-      --hra-table-of-contents-layout-top-offset: 10rem;
-      --hra-site-navigation-top-offset: 7.5rem;
-    }
-  }
-
-  @media (max-width: 1099.99px) {
-    .main {
-      hra-site-navigation {
-        display: none;
-      }
-    }
   }
 
   @media (min-width: 1100px) {
-    .main.navigation-visible .content {
-      max-width: calc(100% - 20rem);
+    .main {
+      display: flex;
+
+      hra-site-navigation {
+        display: unset;
+      }
+
+      .content {
+        width: calc(100% - 20rem);
+      }
+
+      &.cta-active {
+        --hra-table-of-contents-layout-top-offset: 10rem;
+        --hra-site-navigation-top-offset: 7.5rem;
+      }
     }
   }
 }
