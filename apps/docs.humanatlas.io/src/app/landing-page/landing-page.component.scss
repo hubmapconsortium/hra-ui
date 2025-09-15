@@ -12,16 +12,11 @@
     flex-direction: column;
     gap: 2rem;
     padding: 2.5rem;
+    max-width: 87.5rem;
+    margin: auto;
   }
 
   .header {
     @include utils.use-font(display, medium);
   }
-
-  // @media (min-width: 1560px) {
-  //   .content {
-  //     width: fit-content;
-  //     margin: 0 auto;
-  //   }
-  // }
 }
