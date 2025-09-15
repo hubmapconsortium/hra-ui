@@ -211,7 +211,7 @@ content:
     level: 2
     content:
       - component: Image
-        src: assets/ui-images/ftu.png
+        src: assets/ui-images/FTU_explorer.png
 
       - component: Markdown
         data: |
