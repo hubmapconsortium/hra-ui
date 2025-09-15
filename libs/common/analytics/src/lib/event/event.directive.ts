@@ -3,6 +3,7 @@ import {
   AnalyticsEvent,
   CoreEvents,
   EventPayloadFor,
+  EventPropsFor,
   EventTrigger,
   EventTriggerPayloadFor,
 } from '@hra-ui/common/analytics/events';
@@ -14,7 +15,7 @@ abstract class BaseEventDirective<T extends AnalyticsEvent> {
   /** Event type */
   abstract readonly event: () => T;
   /** Event properties */
-  abstract readonly props: () => EventPayloadFor<T>;
+  abstract readonly props: () => EventPropsFor<T>;
   /** Built-in trigger to log events on or 'none' if events are sent programatically */
   abstract readonly triggerOn: () => EventTrigger | 'none' | undefined;
   /** Whether this event is disabled */
@@ -34,8 +35,8 @@ abstract class BaseEventDirective<T extends AnalyticsEvent> {
       if (trigger !== 'none' && !this.disabled()) {
         const { el, renderer } = this;
         const handler = this.logEvent.bind(this, trigger);
-        const dispose = renderer.listen(el, trigger, handler);
-        onCleanup(dispose);
+        const unlisten = renderer.listen(el, trigger, handler);
+        onCleanup(unlisten);
       }
     });
   }
@@ -47,10 +48,11 @@ abstract class BaseEventDirective<T extends AnalyticsEvent> {
    * @param event Event object
    */
   logEvent<E extends EventTrigger>(trigger?: E, event?: EventTriggerPayloadFor<E>): void {
+    const props = this.props();
     this.logEvent_(this.event(), {
       trigger: trigger,
       triggerData: event,
-      ...this.props(),
+      ...(props !== '' ? props : ({} as EventPayloadFor<T>)),
     });
   }
 }
@@ -83,7 +85,7 @@ export class EventDirective<T extends AnalyticsEvent> extends BaseEventDirective
   /** Event type */
   override readonly event = input.required<T>({ alias: 'hraEvent' });
   /** Event properties */
-  override readonly props = input.required<EventPayloadFor<T>>({ alias: 'hraEventProps' });
+  override readonly props = input.required<EventPropsFor<T>>({ alias: 'hraEventProps' });
   /** Built-in trigger to log events on or 'none' if events are sent programatically */
   override readonly triggerOn = input<EventTrigger | 'none' | undefined>(undefined, { alias: 'hraEventTriggerOn' });
   /** Whether this event is disabled */
@@ -103,7 +105,7 @@ export class ClickEventDirective extends BaseEventDirective<CoreEvents['Click']>
   /** Event type */
   override readonly event = () => CoreEvents.Click;
   /** Event properties */
-  override readonly props = input<EventPayloadFor<CoreEvents['Click']>>({}, { alias: 'hraClickEventProps' });
+  override readonly props = input<EventPropsFor<CoreEvents['Click']>>('', { alias: 'hraClickEvent' });
   /** 'none' if events are sent programatically */
   override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraClickEventTriggerOn' });
   /** Whether this event is disabled */
@@ -123,7 +125,7 @@ export class HoverEventDirective extends BaseEventDirective<CoreEvents['Hover']>
   /** Event type */
   override readonly event = () => CoreEvents.Hover;
   /** Event properties */
-  override readonly props = input<EventPayloadFor<CoreEvents['Hover']>>({}, { alias: 'hraHoverEventProps' });
+  override readonly props = input<EventPropsFor<CoreEvents['Hover']>>('', { alias: 'hraHoverEvent' });
   /** 'none' if events are sent programatically */
   override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraHoverEventTriggerOn' });
   /** Whether this event is disabled */
@@ -143,10 +145,7 @@ export class DoubleClickEventDirective extends BaseEventDirective<CoreEvents['Do
   /** Event type */
   override readonly event = () => CoreEvents.DoubleClick;
   /** Event properties */
-  override readonly props = input<EventPayloadFor<CoreEvents['DoubleClick']>>(
-    {},
-    { alias: 'hraDoubleClickEventProps' },
-  );
+  override readonly props = input<EventPropsFor<CoreEvents['DoubleClick']>>('', { alias: 'hraDoubleClickEvent' });
   /** 'none' if events are sent programatically */
   override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraDoubleClickEventTriggerOn' });
   /** Whether this event is disabled */
