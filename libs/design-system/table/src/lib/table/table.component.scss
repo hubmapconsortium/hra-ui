@@ -9,6 +9,14 @@
   border: 0.0625rem solid vars.$outline;
   border-radius: 0.5rem;
 
+  // Position scrollbar to start after header
+  ng-scrollbar {
+    ::ng-deep scrollbar-y {
+      top: 2.5rem;
+      height: calc(100% - 2.5rem);
+    }
+  }
+
   .vertical-divider th:not(:first-child),
   .vertical-divider td:not(:first-child) {
     border-left: 1px solid vars.$outline;
@@ -50,6 +58,26 @@
     )
   );
 
+  th[mat-sort-header].cdk-focused,
+  .cdk-keyboard-focused {
+    position: relative;
+    background-color: none;
+
+    // Use a pseudo element since we still want a straight border on the th
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 0.25rem;
+      z-index: -1;
+      background-color: utils.with-alpha(vars.$secondary, 12%);
+    }
+
+    ::ng-deep .mat-focus-indicator {
+      border-bottom: none !important;
+    }
+  }
+
   ng-scrollbar {
     height: 100%;
     overflow: hidden;
@@ -57,38 +85,6 @@
     ::ng-deep .ng-scroll-viewport {
       max-height: var(--hra-table-max-height);
     }
-  }
-
-  th:focus-visible {
-    background-color: utils.with-alpha(vars.$secondary, 12%);
-    border-radius: 4px;
-    min-height: 2.5rem;
-    width: 10rem;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-bottom: none;
-    outline: none;
-  }
-
-  th ::ng-deep .mat-sort-header-button:focus-visible {
-    background-color: utils.with-alpha(vars.$secondary, 12%);
-    border-radius: 4px;
-    min-height: 2.5rem;
-    width: 10rem;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-bottom: none;
-    outline: none;
-  }
-
-  th ::ng-deep .mat-sort-header-button {
-    text-decoration: none;
-    border-bottom: none;
-  }
-
-  th ::ng-deep .mat-sort-header-container {
-    text-decoration: none;
-    border-bottom: none;
   }
 
   th[data-column-type='numeric'],
