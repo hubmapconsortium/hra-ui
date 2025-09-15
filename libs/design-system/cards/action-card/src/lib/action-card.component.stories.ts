@@ -126,6 +126,7 @@ export const ResponsiveCardGroup: Story = {
     props: args,
     template: `
     <hra-grid-container minWidth="17rem" columnGap="1.5rem" rowGap="1.5rem">
+      @for (i of [1,2,3,4,5,6,7,8,9]; track i) {
         <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
           ${args.content}
           <hra-action-card-action>
@@ -139,111 +140,8 @@ export const ResponsiveCardGroup: Story = {
             </a>
           </hra-action-card-action>
         </hra-action-card>
-        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
-          ${args.content}
-          <hra-action-card-action>
-            <a hraHyperlink href="https://google.com">
-              Action 1
-            </a>
-          </hra-action-card-action>
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink href="https://google.com">
-              Action 2
-            </a>
-          </hra-action-card-action>
-        </hra-action-card>
-        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
-          ${args.content}
-          <hra-action-card-action>
-            <a hraHyperlink href="https://google.com">
-              Action 1
-            </a>
-          </hra-action-card-action>
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink href="https://google.com">
-              Action 2
-            </a>
-          </hra-action-card-action>
-        </hra-action-card>
-        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
-          ${args.content}
-          <hra-action-card-action>
-            <a hraHyperlink href="https://google.com">
-              Action 1
-            </a>
-          </hra-action-card-action>
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink href="https://google.com">
-              Action 2
-            </a>
-          </hra-action-card-action>
-        </hra-action-card>
-        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
-          ${args.content}
-          <hra-action-card-action>
-            <a hraHyperlink href="https://google.com">
-              Action 1
-            </a>
-          </hra-action-card-action>
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink href="https://google.com">
-              Action 2
-            </a>
-          </hra-action-card-action>
-        </hra-action-card>
-        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
-          ${args.content}
-          <hra-action-card-action>
-            <a hraHyperlink href="https://google.com">
-              Action 1
-            </a>
-          </hra-action-card-action>
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink href="https://google.com">
-              Action 2
-            </a>
-          </hra-action-card-action>
-        </hra-action-card>
-        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
-          ${args.content}
-          <hra-action-card-action>
-            <a hraHyperlink href="https://google.com">
-              Action 1
-            </a>
-          </hra-action-card-action>
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink href="https://google.com">
-              Action 2
-            </a>
-          </hra-action-card-action>
-        </hra-action-card>
-        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
-          ${args.content}
-          <hra-action-card-action>
-            <a hraHyperlink href="https://google.com">
-              Action 1
-            </a>
-          </hra-action-card-action>
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink href="https://google.com">
-              Action 2
-            </a>
-          </hra-action-card-action>
-        </hra-action-card>
-        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
-          ${args.content}
-          <hra-action-card-action>
-            <a hraHyperlink href="https://google.com">
-              Action 1
-            </a>
-          </hra-action-card-action>
-          <hra-action-card-action alignment="right">
-            <a hraHyperlink href="https://google.com">
-              Action 2
-            </a>
-          </hra-action-card-action>
-        </hra-action-card>
-      </hra-grid-container>
+      }
+    </hra-grid-container>
     `,
   }),
 };
