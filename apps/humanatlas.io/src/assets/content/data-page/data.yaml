@@ -19,9 +19,6 @@ content:
           Digital objects may be connected to ontology terminology, such as <a href="https://www.ebi.ac.uk/ols4/ontologies/uberon" target="_blank">Uberon</a>, <a href="https://www.ebi.ac.uk/ols4/ontologies/cl" target="_blank">Cell Ontology (CL)</a>,
           and <a href="https://www.ebi.ac.uk/ols4/ontologies/pcl" target="_blank">Provisional Cell Ontology (PCL)</a>, via CSV files called crosswalk tables.
       - component: GridContainer
-        rowGap: 1.5rem
-        columnGap: 1.5rem
-        minWidth: 17rem
         content:
           - component: ActionCard
             variant: outlined-with-icons
@@ -139,9 +136,6 @@ content:
         data: |
           Explore data repositories from collaborators who help build the evolving Human Reference Atlas.
       - component: GridContainer
-        rowGap: 1.5rem
-        columnGap: 1.5rem
-        minWidth: 17rem
         content:
           - component: ActionCard
             variant: outlined

@@ -4,9 +4,6 @@ import { z } from 'zod';
 /** Schema structure of a grid container */
 export const GridContainerSchema = ContentTemplateSchema.extend({
   component: z.literal('GridContainer'),
-  rowGap: z.string().optional(),
-  columnGap: z.string().optional(),
-  minWidth: z.string(),
-  maxContainerWidth: z.string().optional(),
+  itemMinWidth: z.string().optional(),
   content: AnyContentTemplateSchema.array(),
 });

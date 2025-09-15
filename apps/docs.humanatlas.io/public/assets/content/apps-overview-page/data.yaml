@@ -11,9 +11,6 @@ content:
     level: 2
     content:
       - component: GridContainer
-        rowGap: 1.5rem
-        columnGap: 1.5rem
-        minWidth: 17rem
         content:
           - component: ActionCard
             variant: outlined-with-icons
@@ -219,9 +216,6 @@ content:
         data: |
           Explore apps from collaborators who help build the evolving Human Reference Atlas.
       - component: GridContainer
-        rowGap: 1.5rem
-        columnGap: 1.5rem
-        minWidth: 17rem
         content:
           - component: ActionCard
             variant: outlined-with-icons

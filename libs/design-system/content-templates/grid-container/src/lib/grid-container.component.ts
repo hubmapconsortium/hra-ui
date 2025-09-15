@@ -11,22 +11,10 @@ import { HraCommonModule } from '@hra-ui/common';
   styleUrl: './grid-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[style.row-gap]': 'rowGap()',
-    '[style.column-gap]': 'columnGap()',
-    '[style.--min-width]': 'minWidth()',
-    '[style.--max-container-width]': 'maxContainerWidth()',
+    '[style.--hra-grid-container-item-min-width]': 'itemMinWidth()',
   },
 })
 export class GridContainerComponent {
-  /** Row gap between items */
-  readonly rowGap = input<string>();
-
-  /** Column gap between items */
-  readonly columnGap = input<string>();
-
-  /** Minimum width for items */
-  readonly minWidth = input<string>();
-
-  /** Maximum width for item container */
-  readonly maxContainerWidth = input<string>();
+  /** Minimum item width */
+  readonly itemMinWidth = input<string>();
 }

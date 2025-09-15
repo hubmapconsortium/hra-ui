@@ -125,7 +125,7 @@ export const ResponsiveCardGroup: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <hra-grid-container minWidth="17rem" columnGap="1.5rem" rowGap="1.5rem">
+    <hra-grid-container>
       @for (i of [1,2,3,4,5,6,7,8,9]; track i) {
         <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
           ${args.content}

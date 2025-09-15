@@ -5,8 +5,7 @@
   display: flex;
   flex-direction: column;
 
-  .intro,
-  hra-section-cards {
+  .intro {
     align-self: center;
   }
 
@@ -57,12 +56,10 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.75rem;
-    max-width: 739px;
   }
 
   hra-section-cards {
-    --max-container-width: 58.5rem;
-
+    max-width: 87.5rem;
     padding: 6rem 1rem;
     align-self: center;
   }
@@ -82,25 +79,6 @@
 
     hra-section-cards {
       padding: 7.5rem 2.5rem;
-      align-self: center;
-    }
-  }
-
-  @media (min-width: 912px) {
-    .cards-container {
-      max-width: 57rem;
-    }
-  }
-
-  @media (min-width: 1360px) {
-    hra-section-cards {
-      --max-container-width: 87.5rem;
-    }
-  }
-
-  @media (min-width: 1600px) {
-    .cards-container {
-      max-width: 100%;
     }
   }
 }

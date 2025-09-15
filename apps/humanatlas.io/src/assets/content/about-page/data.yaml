@@ -38,10 +38,7 @@ content:
       - component: GridContainer
         styles:
           margin-top: 3rem
-        rowGap: 2.5rem
-        columnGap: 2.5rem
-        minWidth: 16.75rem
-        maxContainerWidth: 896px
+          row-gap: 2.5rem
         content:
           - component: ProfileCard
             name: Katy Börner
@@ -93,10 +90,7 @@ content:
       - component: GridContainer
         styles:
           margin-top: 3rem
-        rowGap: 2.5rem
-        columnGap: 2.5rem
-        minWidth: 16.75rem
-        maxContainerWidth: 904px
+          row-gap: 2.5rem
         content:
           - component: ProfileCard
             name: Kristin Ardlie

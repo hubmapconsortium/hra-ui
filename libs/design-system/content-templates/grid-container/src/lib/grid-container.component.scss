@@ -1,6 +1,8 @@
 :host {
+  --_hra-grid-container-item-min-width: var(--hra-grid-container-item-min-width, 17rem);
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--min-width), max-content));
-  margin: 0;
-  max-width: var(--max-container-width);
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(var(--_hra-grid-container-item-min-width), 1fr));
+  justify-items: center;
 }

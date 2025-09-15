@@ -471,18 +471,6 @@
         "controllers": {
           "$ref": "#/definitions/ActionCard/properties/controllers"
         },
-        "rowGap": {
-          "type": "string"
-        },
-        "columnGap": {
-          "type": "string"
-        },
-        "minWidth": {
-          "type": "string"
-        },
-        "maxContainerWidth": {
-          "type": "string"
-        },
         "content": {
           "type": "array",
           "items": {

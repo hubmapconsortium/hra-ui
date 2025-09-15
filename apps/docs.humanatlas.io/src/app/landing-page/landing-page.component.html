@@ -5,7 +5,7 @@
     {{ data().tagline }}
   </span>
 
-  <hra-grid-container rowGap="1.5rem" columnGap="1.5rem" minWidth="17rem" maxContainerWidth="87.5rem">
+  <hra-grid-container>
     @for (card of data().cards; track card) {
       <ng-container *hraContentTemplateOutlet="card" />
     }
