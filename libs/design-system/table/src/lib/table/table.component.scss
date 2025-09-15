@@ -9,8 +9,8 @@
   border: 0.0625rem solid vars.$outline;
   border-radius: 0.5rem;
 
-  // Position scrollbar to start after header
-  ng-scrollbar {
+  // Position scrollbar to start after header (only when headers are visible)
+  &:has(tr[mat-header-row]) ng-scrollbar {
     ::ng-deep scrollbar-y {
       top: 2.5rem;
       height: calc(100% - 2.5rem);
