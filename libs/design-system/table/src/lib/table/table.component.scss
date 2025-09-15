@@ -58,6 +58,25 @@
     )
   );
 
+  th[mat-sort-header].cdk-focused {
+    position: relative;
+    background-color: none;
+
+    // Use a pseudo element since we still want a straight border on the th
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 0.25rem;
+      z-index: -1;
+      background-color: utils.with-alpha(vars.$secondary, 12%);
+    }
+
+    ::ng-deep .mat-focus-indicator {
+      border-bottom: none !important;
+    }
+  }
+
   th[mat-sort-header].cdk-focused,
   .cdk-keyboard-focused {
     position: relative;
