@@ -6,6 +6,7 @@ export {
   EventCategory,
   EventPayload,
   EventPayloadFor,
+  EventPropsFor,
   EventTrigger,
   EventTriggerPayloadFor,
   EventType,

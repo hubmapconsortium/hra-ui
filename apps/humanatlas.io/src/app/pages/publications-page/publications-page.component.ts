@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { AssetUrlPipe, HraCommonModule } from '@hra-ui/common';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates/';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { MarkdownModule } from 'ngx-markdown';
+
 import { PublicationsPageData } from '../../schemas/publications-page/publications-page.schema';
 
 /** A single publication item */
@@ -22,7 +24,14 @@ interface PublicationItem {
  */
 @Component({
   selector: 'hra-publications-page',
-  imports: [HraCommonModule, ContentTemplatesModule, MarkdownModule, TableOfContentsLayoutModule, AssetUrlPipe],
+  imports: [
+    HraCommonModule,
+    ContentTemplatesModule,
+    MarkdownModule,
+    TableOfContentsLayoutModule,
+    AssetUrlPipe,
+    NavigationModule,
+  ],
   templateUrl: './publications-page.component.html',
   styleUrl: './publications-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
