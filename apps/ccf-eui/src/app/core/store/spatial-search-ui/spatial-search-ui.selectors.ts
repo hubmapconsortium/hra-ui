@@ -117,9 +117,9 @@ export class SpatialSearchUiSelectors {
     const { x_dimension: x = 0, y_dimension: y = 0, z_dimension: z = 0 } = organEntity ?? {};
     const margin = Math.max(x, y, z) * 0.42;
     return {
-      x: (margin + x) / 1000,
-      y: (margin + y) / 1000,
-      z: (margin + z) / 1000,
+      x: (margin + +x) / 1000,
+      y: (margin + +y) / 1000,
+      z: (margin + +z) / 1000,
     };
   }
 
