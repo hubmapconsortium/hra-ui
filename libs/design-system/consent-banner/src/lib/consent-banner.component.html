@@ -1,22 +1,21 @@
 <div class="left">
-  <div class="content">
-    <hra-brand-logo></hra-brand-logo>
-  </div>
+  <hra-brand-logo></hra-brand-logo>
 </div>
 <div class="middle">
   <div class="content">
-    <p class="text1">Manage your privacy preferences</p>
-    <p class="text2">Cookies and similar technologies are used to play videos and to improve this website.</p>
-  </div>
-  <div class="hyperlink">
-    <a href="#">Privacy Policy</a>
-    <mat-icon>arrow_right_alt</mat-icon>
+    <div class="text-area">
+      <span class="text1">Manage your privacy preferences</span>
+      <span class="text2">Cookies and similar technologies are used to play videos and to improve this website.</span>
+    </div>
+    <div class="hyperlink">
+      <hra-text-hyperlink [text]="'Privacy Policy'" [url]="'#'" [icon]="'arrow_right_alt'"> </hra-text-hyperlink>
+    </div>
   </div>
 </div>
 <div class="right">
-  <div class="content">
-    <button mat-button hraButtonVariant="primary">Allow all</button>
-    <button mat-button hraButtonVariant="primary">Allow necessary only</button>
-    <button mat-button hraButtonVariant="secondary">Customize</button>
+  <div class="consent-buttons">
+    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary">Allow all</button>
+    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary">Allow necessary only</button>
   </div>
+  <button mat-button hraButtonSize="large" hraButtonVariant="primary" class="customize-button">Customize</button>
 </div>
