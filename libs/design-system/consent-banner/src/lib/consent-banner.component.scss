@@ -7,28 +7,62 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1.5rem;
+  width: 100%;
 
   hra-brand-logo {
     --hra-brand-logo-text-color: vars.$secondary;
+  }
+
+  .left {
+    padding: 0 1.5rem;
   }
 
   .middle,
   .right {
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   .middle {
-    min-width: 11.25rem;
-    max-width: 44.75rem;
     .content {
-      .text1 {
-        @include utils.use-font(title, small);
-      }
+      padding: 0 1.5rem;
 
-      .text2 {
+      .text-area {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        padding-bottom: 1.5rem;
+        .text1 {
+          @include utils.use-font(title, small);
+        }
+
+        .text2 {
+          @include utils.use-font(label, large);
+        }
+      }
+    }
+
+    .hyperlink {
+      hra-text-hyperlink {
         @include utils.use-font(label, large);
       }
+    }
+  }
+
+  .right {
+    row-gap: 0.75rem;
+    padding-left: 1rem;
+    min-width: 11.25rem;
+
+    .consent-buttons {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.75rem;
+    }
+
+    .customize-button {
+      padding: 0.25rem 1rem;
     }
   }
 }
