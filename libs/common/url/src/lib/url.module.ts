@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
-import { AppUrlPipe, AssetUrlPipe, CssUrlPipe, PageUrlPipe, ResolveUrlPipe } from './url-resolver.pipe';
+import { AppUrlPipe } from './url/app';
+import { AssetUrlPipe } from './url/asset';
+import { CssUrlPipe } from './url/css';
+import { PageUrlPipe } from './url/page';
 
 @NgModule({
-  imports: [ResolveUrlPipe, AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe],
-  exports: [ResolveUrlPipe, AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe],
+  imports: [AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe],
+  exports: [AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe],
 })
 export class UrlModule {}
