@@ -3,9 +3,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
-import { ConsentService } from 'ccf-shared/analytics';
+import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { combineLatest, Subscription } from 'rxjs';
+
 import { GlobalConfig } from './core/services/config/config';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
@@ -60,6 +61,8 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly registration = inject(RegistrationState);
   /** Consent service */
   readonly consentService = inject(ConsentService);
+  /** Local storage sync service */
+  readonly localStorageSyncService = inject(LocalStorageSyncService);
   /** Snackbar service */
   readonly snackbar = inject(MatSnackBar);
   /** Global config */
