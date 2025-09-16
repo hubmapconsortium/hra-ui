@@ -14,6 +14,10 @@ const meta: Meta<TextHyperlinkComponent> = {
     text: 'Link Text',
     url: 'https://google.com',
   },
+  render: (args) => ({
+    props: args,
+    styles: ['hra-text-hyperlink { font: var(--mat-sys-body-xl); }'],
+  }),
 };
 export default meta;
 type Story = StoryObj<TextHyperlinkComponent>;
