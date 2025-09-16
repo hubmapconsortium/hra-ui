@@ -18,6 +18,7 @@ import {
   filter,
   map,
   share,
+  shareReplay,
   startWith,
   switchMap,
   take,
@@ -102,6 +103,7 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
         ...axis,
         ...(this.snapshot.showCollisions ? collisions : []),
       ]),
+      shareReplay(1),
     );
   }
 
