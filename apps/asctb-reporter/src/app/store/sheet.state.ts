@@ -47,7 +47,7 @@ import {
   Structure,
   VersionDetail,
 } from '../models/sheet.model';
-import { SheetService } from '../services/sheet.service';
+import { SheetService } from '../services/sheet/sheet.service';
 import { TreeState } from './tree.state';
 
 /** Class to keep track of the sheet */

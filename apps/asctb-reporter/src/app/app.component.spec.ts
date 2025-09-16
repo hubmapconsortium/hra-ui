@@ -1,13 +1,11 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideIcons } from '@hra-ui/design-system/icons';
-import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
 import { provideStore } from '@ngxs/store';
 import { render } from '@testing-library/angular';
 import { withNgxsResetPlugin } from 'ngxs-reset-plugin';
-import { environment } from '../environments/environment';
 import { ConfigService } from './app-config.service';
 import { AppComponent } from './app.component';
-import { ConsentService } from './services/consent.service';
+import { ConsentService } from './services/consent/consent.service';
 import { LogsState } from './store/logs.state';
 import { SheetState } from './store/sheet.state';
 import { TreeState } from './store/tree.state';

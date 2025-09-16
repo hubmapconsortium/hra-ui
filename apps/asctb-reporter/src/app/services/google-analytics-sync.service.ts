@@ -2,7 +2,7 @@ import { Injectable, OnDestroy, inject } from '@angular/core';
 import { NGX_GOOGLE_ANALYTICS_SETTINGS_TOKEN, NGX_WINDOW } from 'ngx-google-analytics';
 import { Subscription } from 'rxjs';
 
-import { ConsentService } from './consent.service';
+import { ConsentService } from './consent/consent.service';
 
 @Injectable()
 export class GoogleAnalyticsSyncService implements OnDestroy {

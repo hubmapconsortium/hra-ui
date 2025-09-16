@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Row, Sheet, SheetInfo, Structure } from '../models/sheet.model';
-import { URL, getAssetsURL } from './../static/url';
+import { Row, Sheet, SheetInfo, Structure } from '../../models/sheet.model';
+import { URL, getAssetsURL } from '../../static/url';
 
 @Injectable({
   providedIn: 'root',

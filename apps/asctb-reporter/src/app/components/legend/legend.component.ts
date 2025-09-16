@@ -10,7 +10,7 @@ import { Error } from '../../models/response.model';
 import { CompareData } from '../../models/sheet.model';
 import { TNode } from '../../models/tree.model';
 import { OrderByPipe } from '../../pipes/order-by/order-by.pipe';
-import { LegendService } from './legend.service';
+import { LegendService } from '../../services/legend/legend.service';
 
 @Component({
   selector: 'app-legend',

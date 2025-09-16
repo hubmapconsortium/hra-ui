@@ -1,7 +1,7 @@
 import { Injectable, InjectionToken, OnDestroy, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Consent, ConsentService } from './consent.service';
+import { Consent, ConsentService } from './consent/consent.service';
 
 export const LOCAL_STORAGE_CONSENT_KEY = new InjectionToken('Key under which consent is stored', {
   providedIn: 'root',

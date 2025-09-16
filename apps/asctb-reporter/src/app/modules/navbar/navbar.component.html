@@ -20,52 +20,6 @@
         <mat-icon matSuffix>arrow_drop_down</mat-icon>
       </mat-form-field>
     </div>
-
-    <!--
-
-    <app-nav-item
-      [label]="'Refresh'"
-      (click)="refreshData()"
-      #tooltip="matTooltip"
-      matTooltip="Refresh"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">refresh</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Export'"
-      [disabled]="(ui$ | async)?.error?.hasError ?? false"
-      autofocus="false"
-      mat-icon-button
-      #tooltip="matTooltip"
-      matTooltip="Export"
-      matTooltipPosition="below"
-      [matMenuTriggerFor]="downloadMenu"
-    >
-      <mat-icon class="toolbar-icons">get_app</mat-icon>
-    </app-nav-item>
-
-    <mat-menu #downloadMenu="matMenu">
-      <button mat-menu-item *ngFor="let option of imgOptions" (click)="exportImage(option)">
-        {{ option }}
-      </button>
-    </mat-menu>
-
-    <app-nav-item
-      [label]="'Menu'"
-      #tooltip="matTooltip"
-      matTooltip="Menu"
-      matTooltipPosition="below"
-      [matMenuTriggerFor]="menu"
-    >
-      <mat-icon class="toolbar-icons">more_vert</mat-icon>
-    </app-nav-item>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item *ngFor="let option of moreOptions" (click)="onOptionClick(option.type, option.url)">
-        {{ option.name }}
-      </button>
-    </mat-menu> -->
   </div>
 </div>
 

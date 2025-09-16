@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule, provideAppInitializer } from '@angular/core';
 import { IGoogleAnalyticsCommand, NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
-import { ConsentService } from './consent.service';
+import { ConsentService } from './consent/consent.service';
 import { GoogleAnalyticsSyncService } from './google-analytics-sync.service';
 import { LocalStorageSyncService } from './local-storage-sync.service';
 

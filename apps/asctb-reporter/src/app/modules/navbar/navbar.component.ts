@@ -19,7 +19,6 @@ import { ClearSheetLogs } from '../../actions/logs.actions';
 import { UpdateGetFromCache } from '../../actions/sheet.actions';
 import { ToggleControlPane, ToggleDebugLogs } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
-import { NavItemModule } from '../../components/nav-item/nav-item.module';
 import { OrganTableSelectorComponent } from '../../components/organ-table-selector/organ-table-selector.component';
 import { GaAction, GaCategory } from '../../models/ga.model';
 import {
@@ -30,7 +29,7 @@ import {
   Version,
   VersionDetail,
 } from '../../models/sheet.model';
-import { SheetService } from '../../services/sheet.service';
+import { SheetService } from '../../services/sheet/sheet.service';
 import { SheetState, SheetStateModel } from '../../store/sheet.state';
 import { UIState, UIStateModel } from '../../store/ui.state';
 import { SearchComponent } from '../search/search.component';
@@ -41,7 +40,6 @@ import { SearchComponent } from '../search/search.component';
     CommonModule,
     MatToolbarModule,
     MatIconModule,
-    NavItemModule,
     SearchComponent,
     MatFormFieldModule,
     MatButtonModule,
