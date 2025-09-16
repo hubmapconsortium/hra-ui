@@ -6,13 +6,14 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';
 import { FundingComponent } from './funding/funding.component';
 import { FUNDER_IDS } from './static-data/parsed';
+import { MatDividerModule } from '@angular/material/divider';
 
 /**
  * Global footer component
  */
 @Component({
   selector: 'hra-footer',
-  imports: [CommonModule, MatIconModule, BrandModule, ButtonsModule, FundingComponent],
+  imports: [CommonModule, MatIconModule, BrandModule, ButtonsModule, FundingComponent, MatDividerModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

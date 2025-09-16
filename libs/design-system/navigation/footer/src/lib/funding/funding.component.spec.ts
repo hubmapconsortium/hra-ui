@@ -9,7 +9,8 @@ describe('FundingComponent', () => {
 
     const links = screen.getAllByRole('link');
     expect(links.length).toEqual(FUNDER_IDS.length);
-    expect(links[0].querySelector('img')).toBeInTheDocument();
-    expect(links[0].querySelector('span')).toBeInTheDocument();
+    links.forEach((link) => {
+      expect(link.querySelector('img')).toBeInTheDocument();
+    });
   });
 });
