@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject, signal, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
@@ -26,7 +26,6 @@ import {
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -277,14 +276,6 @@ export class BiomarkerDetailsWcComponent {
 
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
-  }
-
-  /** A function which opens the contact modal dialog box */
-  collaborate(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    this.ga.event('contact_open', 'modal');
-    this.dialog.open(ContactBehaviorComponent, dialogConfig);
   }
 
   /**

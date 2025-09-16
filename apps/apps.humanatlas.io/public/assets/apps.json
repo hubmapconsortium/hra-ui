@@ -70,6 +70,14 @@
               "logoPath": "product:cell-population-graphs",
               "appUrl": "https://apps.humanatlas.io/cell-population-graphs/",
               "documentLink": "https://humanatlas.io/cell-population-graphs"
+            },
+            {
+              "tagline": "HRApop Visualizer",
+              "description": "Explore cell type populations.",
+              "imagePath": "assets/ui-images/hra-pop-visualizer.png",
+              "logoPath": "product:cell-population-predictor",
+              "appUrl": "/hra-pop-visualizer",
+              "documentLink": "https://doi.org/10.1101/2025.08.14.670406"
             }
           ]
         },
