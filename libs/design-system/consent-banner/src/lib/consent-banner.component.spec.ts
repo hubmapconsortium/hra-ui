@@ -1,21 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConsentBannerComponent } from './consent-banner.component';
+import { render } from '@testing-library/angular';
 
-describe('ConsentBannerComponent', () => {
-  let component: ConsentBannerComponent;
-  let fixture: ComponentFixture<ConsentBannerComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ConsentBannerComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ConsentBannerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
+describe('ConsentBannerComponent', async () => {
+  it('should create the component', async () => {
+    const component = await render(ConsentBannerComponent, {
+      imports: [],
+      providers: [],
+    });
     expect(component).toBeTruthy();
   });
 });
