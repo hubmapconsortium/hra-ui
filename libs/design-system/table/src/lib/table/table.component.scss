@@ -9,6 +9,18 @@
   border: 0.0625rem solid vars.$outline;
   border-radius: 0.5rem;
 
+  // Position scrollbar to start after header (only when headers are visible)
+  &:has(tr[mat-header-row]) ng-scrollbar {
+    ::ng-deep scrollbar-y {
+      top: 2.5rem;
+      height: calc(100% - 2.5rem);
+
+      .ng-scrollbar-sticky {
+        top: 2.5rem;
+      }
+    }
+  }
+
   .vertical-divider th:not(:first-child),
   .vertical-divider td:not(:first-child) {
     border-left: 1px solid vars.$outline;
@@ -49,6 +61,38 @@
       arrow-color: vars.$secondary,
     )
   );
+
+  th[mat-sort-header].cdk-focused,
+  .cdk-keyboard-focused {
+    position: relative;
+    background-color: none;
+
+    // Use a pseudo element since we still want a straight border on the th
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 0.25rem;
+      z-index: -1;
+      background-color: utils.with-alpha(vars.$secondary, 12%);
+    }
+
+    ::ng-deep .mat-focus-indicator {
+      border-bottom: none !important;
+    }
+  }
+
+  th[mat-sort-header]:hover {
+    .mat-sort-header-arrow {
+      color: vars.$outline;
+    }
+  }
+
+  th[mat-sort-header] {
+    ::ng-deep .mat-sort-header-arrow {
+      color: vars.$secondary;
+    }
+  }
 
   ng-scrollbar {
     height: 100%;
