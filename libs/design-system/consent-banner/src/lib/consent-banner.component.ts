@@ -5,6 +5,7 @@ import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyperlink';
 
+/** Consent Banner Component */
 @Component({
   selector: 'hra-consent-banner',
   imports: [CommonModule, MatIconModule, BrandModule, ButtonsModule, TextHyperlinkComponent],
