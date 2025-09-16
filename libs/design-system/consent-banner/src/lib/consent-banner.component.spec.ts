@@ -1,7 +1,7 @@
 import { ConsentBannerComponent } from './consent-banner.component';
 import { render } from '@testing-library/angular';
 
-describe('ConsentBannerComponent', async () => {
+describe('ConsentBannerComponent', () => {
   it('should create the component', async () => {
     const component = await render(ConsentBannerComponent, {
       imports: [],
