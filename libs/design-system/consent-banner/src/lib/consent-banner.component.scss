@@ -59,10 +59,52 @@
       display: flex;
       flex-direction: column;
       row-gap: 0.75rem;
+
+      button {
+        width: 100%;
+      }
     }
 
     .customize-button {
       padding: 0.25rem 1rem;
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 639px) {
+  :host {
+    flex-direction: column;
+    row-gap: 2rem;
+    padding: 1.5rem;
+
+    .middle,
+    .right {
+      align-items: stretch;
+    }
+
+    .middle {
+      .content {
+        .text-area {
+          padding-bottom: 1rem;
+          gap: 1rem;
+        }
+      }
+
+      .hyperlink {
+        padding: 0.25rem 0;
+      }
+    }
+
+    .right {
+      min-width: auto;
+      row-gap: 0.75rem;
+
+      .consent-buttons {
+        button {
+          width: 100%;
+        }
+      }
     }
   }
 }
