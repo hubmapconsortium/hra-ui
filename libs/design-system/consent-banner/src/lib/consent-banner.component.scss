@@ -54,20 +54,24 @@
     row-gap: 0.75rem;
     padding-left: 1rem;
     min-width: 11.25rem;
+    width: max-content;
 
     .consent-buttons {
       display: flex;
       flex-direction: column;
       row-gap: 0.75rem;
+      width: 100%;
 
       button {
         width: 100%;
+        white-space: nowrap;
       }
     }
 
     .customize-button {
       padding: 0.25rem 1rem;
       width: 100%;
+      white-space: nowrap;
     }
   }
 }
@@ -99,11 +103,20 @@
     .right {
       min-width: auto;
       row-gap: 0.75rem;
+      width: max-content;
 
       .consent-buttons {
+        width: 100%;
+
         button {
           width: 100%;
+          white-space: nowrap;
         }
+      }
+
+      .customize-button {
+        width: 100%;
+        white-space: nowrap;
       }
     }
   }
