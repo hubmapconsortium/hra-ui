@@ -14,8 +14,20 @@
 </div>
 <div class="right">
   <div class="consent-buttons">
-    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary">Allow all</button>
-    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary">Allow necessary only</button>
+    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary" (click)="allowAll.emit()">
+      Allow all
+    </button>
+    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary" (click)="allowNecessaryOnly.emit()">
+      Allow necessary only
+    </button>
   </div>
-  <button mat-button hraButtonSize="large" hraButtonVariant="primary" class="customize-button">Customize</button>
+  <button
+    mat-button
+    hraButtonSize="large"
+    hraButtonVariant="primary"
+    class="customize-button"
+    (click)="customize.emit()"
+  >
+    Customize
+  </button>
 </div>
