@@ -8,9 +8,27 @@
   justify-content: space-between;
   padding: 1.5rem;
 
+  hra-brand-logo {
+    --hra-brand-logo-text-color: vars.$secondary;
+  }
+
   .middle,
   .right {
     display: flex;
     flex-direction: column;
+  }
+
+  .middle {
+    min-width: 11.25rem;
+    max-width: 44.75rem;
+    .content {
+      .text1 {
+        @include utils.use-font(title, small);
+      }
+
+      .text2 {
+        @include utils.use-font(label, large);
+      }
+    }
   }
 }
