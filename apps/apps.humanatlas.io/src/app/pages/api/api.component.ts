@@ -1,4 +1,3 @@
-import { DOCUMENT, Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +12,8 @@ import {
   viewChild,
 } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
-import { injectAssetHref } from '@hra-ui/common/url';
+import { injectDocument } from '@hra-ui/common/injectors';
+import { assetUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import 'rapidoc';
@@ -33,11 +33,10 @@ const RAPIDOC_STYLES = new InjectionToken<void>('Rapidoc styles', {
  * Factory function that loads the Rapidoc theme when component is initialized.
  */
 function loadRapidocStyles(): void {
-  const document = inject(DOCUMENT);
-  const assetsHref = injectAssetHref();
+  const document = injectDocument();
   const el = document.createElement('link');
   el.rel = 'stylesheet';
-  el.href = Location.joinWithSlash(assetsHref(), 'rapidoc-theme.css');
+  el.href = assetUrl('rapidoc-theme.css')();
   document.head.appendChild(el);
 }
 
