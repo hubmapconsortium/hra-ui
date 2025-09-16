@@ -49,7 +49,10 @@
   &.hra-action-card-variant-flat,
   &.hra-action-card-variant-outlined,
   &.hra-action-card-variant-outlined-with-icons {
+    width: 100%;
     min-width: 17rem;
+    max-width: 25.5rem;
+
     .content {
       .subtagline {
         @include utils.use-font(title, small);
@@ -71,8 +74,6 @@
   }
 
   &.hra-action-card-variant-elevated {
-    min-width: 17rem;
-    max-width: 21rem;
     border-radius: 0.75rem;
     background-color: vars.$surface-container-low;
     box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$secondary, 24%);
@@ -83,9 +84,6 @@
   }
 
   &.hra-action-card-variant-flat {
-    min-width: 17rem;
-    max-width: 24.75rem;
-
     .content {
       margin-top: 1.5rem;
     }
@@ -105,9 +103,6 @@
   }
 
   &.hra-action-card-variant-outlined {
-    width: 17rem;
-    max-width: 17rem;
-
     .content {
       margin: 0.75rem 1rem;
 
@@ -118,9 +113,6 @@
   }
 
   &.hra-action-card-variant-outlined-with-icons {
-    min-width: 17rem;
-    max-width: 19.25rem;
-
     .content {
       margin: 1rem;
 

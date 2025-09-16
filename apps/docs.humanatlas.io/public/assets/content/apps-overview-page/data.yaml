@@ -10,9 +10,7 @@ content:
     anchor: apps-overview
     level: 2
     content:
-      - component: FlexContainer
-        rowGap: 1.5rem
-        columnGap: 1.5rem
+      - component: GridContainer
         content:
           - component: ActionCard
             variant: outlined-with-icons
@@ -217,9 +215,7 @@ content:
       - component: Markdown
         data: |
           Explore apps from collaborators who help build the evolving Human Reference Atlas.
-      - component: FlexContainer
-        rowGap: 1.5rem
-        columnGap: 1.5rem
+      - component: GridContainer
         content:
           - component: ActionCard
             variant: outlined-with-icons
