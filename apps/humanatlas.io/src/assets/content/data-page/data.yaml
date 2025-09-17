@@ -18,9 +18,7 @@ content:
           Digital objects are unique data categories building the Human Reference Atlas. Digital objects are organized within the <a href="https://lod.humanatlas.io" target="_blank">Knowledge Graph database application</a>.
           Digital objects may be connected to ontology terminology, such as <a href="https://www.ebi.ac.uk/ols4/ontologies/uberon" target="_blank">Uberon</a>, <a href="https://www.ebi.ac.uk/ols4/ontologies/cl" target="_blank">Cell Ontology (CL)</a>,
           and <a href="https://www.ebi.ac.uk/ols4/ontologies/pcl" target="_blank">Provisional Cell Ontology (PCL)</a>, via CSV files called crosswalk tables.
-      - component: FlexContainer
-        rowGap: 1.5rem
-        columnGap: 1.5rem
+      - component: GridContainer
         content:
           - component: ActionCard
             variant: outlined-with-icons
@@ -137,9 +135,7 @@ content:
       - component: Markdown
         data: |
           Explore data repositories from collaborators who help build the evolving Human Reference Atlas.
-      - component: FlexContainer
-        rowGap: 1.5rem
-        columnGap: 1.5rem
+      - component: GridContainer
         content:
           - component: ActionCard
             variant: outlined

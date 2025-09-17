@@ -3,6 +3,7 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { ActionCardActionComponent, ActionCardComponent } from './action-card.component';
 import { ActionCardVariant } from './action-card.schema';
 import { MatIconModule } from '@angular/material/icon';
+import { GridContainerComponent } from '../../../../content-templates/grid-container/src/lib/grid-container.component';
 
 interface WithContent {
   content?: string;
@@ -25,7 +26,7 @@ const meta: Meta<ActionCardComponent & WithContent> = {
   },
   decorators: [
     moduleMetadata({
-      imports: [ButtonsModule, MatIconModule, ActionCardActionComponent],
+      imports: [ButtonsModule, MatIconModule, ActionCardActionComponent, GridContainerComponent],
     }),
   ],
 };
@@ -115,4 +116,32 @@ export const OutlinedWithIcons: Story = {
       </a>
     </hra-action-card-action>`,
   ),
+};
+
+export const ResponsiveCardGroup: Story = {
+  args: {
+    icons: ['misc:data'],
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <hra-grid-container>
+      @for (i of [1,2,3,4,5,6,7,8,9]; track i) {
+        <hra-action-card variant="outlined-with-icons" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+          ${args.content}
+          <hra-action-card-action>
+            <a hraHyperlink href="https://google.com">
+              Action 1
+            </a>
+          </hra-action-card-action>
+          <hra-action-card-action alignment="right">
+            <a hraHyperlink href="https://google.com">
+              Action 2
+            </a>
+          </hra-action-card-action>
+        </hra-action-card>
+      }
+    </hra-grid-container>
+    `,
+  }),
 };
