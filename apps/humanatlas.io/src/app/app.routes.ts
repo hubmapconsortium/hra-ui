@@ -195,6 +195,16 @@ export const appRoutes: Route[] = [
     ...createExternalRedirectRoute('https://docs.humanatlas.io/apps'),
   },
   {
+    path: 'privacy-policy',
+    component: ContentPageComponent,
+    data: {
+      siteNavigation: false,
+    },
+    resolve: {
+      data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {

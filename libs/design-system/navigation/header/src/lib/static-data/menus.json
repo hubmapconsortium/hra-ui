@@ -8,27 +8,19 @@
       "items": [
         {
           "type": "group",
-          "label": "Knowledge Graph",
-          "url": "https://lod.humanatlas.io/",
-          "description": "Query, filter, and download digital objects"
-        },
-        {
-          "type": "divider"
-        },
-        {
-          "type": "group",
           "label": "Data Overview",
+          "description": "Learn about digital objects, the unique data structures, constructing the Human Reference Atlas",
           "url": "https://humanatlas.io/overview-data/",
           "items": [
             {
               "type": "item",
-              "label": "Anatomical Structure, Cell Type, and Biomarker (ASCT+B) Tables",
-              "url": "https://humanatlas.io/asctb-tables/"
+              "label": "3D Reference Object Library",
+              "url": "https://humanatlas.io/3d-reference-library/"
             },
             {
               "type": "item",
-              "label": "Vasculature Common Coordinate Framework",
-              "url": "https://humanatlas.io/vccf/"
+              "label": "Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables",
+              "url": "https://humanatlas.io/asctb-tables/"
             },
             {
               "type": "item",
@@ -37,25 +29,28 @@
             },
             {
               "type": "item",
-              "label": "2D Functional Tissue Unit (FTU) Illustrations",
+              "label": "Functional Tissue Unit Illustrations",
               "url": "https://humanatlas.io/2d-ftu-illustrations/"
             },
             {
               "type": "item",
-              "label": "3D Reference Object Library",
-              "url": "https://humanatlas.io/3d-reference-library/"
-            },
-            {
-              "type": "item",
-              "label": "Organ Mapping Antibody Panel (OMAP) Tables",
-              "url": "https://humanatlas.io/omap/"
-            },
-            {
-              "type": "item",
-              "label": "Millitome",
+              "label": "Millitomes",
               "url": "https://humanatlas.io/millitome/"
+            },
+            {
+              "type": "item",
+              "label": "Organ Mapping Antibody Panels",
+              "url": "https://humanatlas.io/omap/"
             }
           ]
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "group",
+          "label": "Vasculature Common Coordinate Framework",
+          "url": "https://humanatlas.io/vccf/"
         },
         {
           "type": "divider"
@@ -65,6 +60,12 @@
           "label": "HRA API",
           "description": "Get API access to all Human Reference Atlas datasets.",
           "url": "https://apps.humanatlas.io/api/"
+        },
+        {
+          "type": "group",
+          "label": "Knowledge Graph",
+          "url": "https://lod.humanatlas.io/",
+          "description": "Query, filter, and download digital objects"
         },
         {
           "type": "divider"
@@ -105,8 +106,18 @@
                 },
                 {
                   "type": "item",
-                  "label": "Functional Tissue Unit Explorer",
-                  "url": "https://apps.humanatlas.io/ftu-explorer/",
+                  "label": "Cell Population Graphs",
+                  "url": "https://apps.humanatlas.io/cell-population-graphs/"
+                },
+                {
+                  "type": "item",
+                  "label": "Cell Population Predictor",
+                  "url": "https://apps.humanatlas.io/us1/"
+                },
+                {
+                  "type": "item",
+                  "label": "Dashboard",
+                  "url": "https://apps.humanatlas.io/dashboard/",
                   "external": true
                 },
                 {
@@ -117,30 +128,25 @@
                 },
                 {
                   "type": "item",
+                  "label": "Functional Tissue Unit Explorer",
+                  "url": "https://apps.humanatlas.io/ftu-explorer/",
+                  "external": true
+                },
+                {
+                  "type": "item",
                   "label": "HRA Organ Gallery",
                   "url": "https://humanatlas.io/hra-organ-gallery",
                   "target": "_blank"
                 },
                 {
                   "type": "item",
-                  "label": "Cell Population Predictor",
-                  "url": "https://apps.humanatlas.io/us1/"
+                  "label": "HRApop Visualizer",
+                  "url": "https://apps.humanatlas.io/hra-pop-visualizer"
                 },
                 {
                   "type": "item",
                   "label": "Tissue Origin Predictor",
                   "url": "https://apps.humanatlas.io/us2/"
-                },
-                {
-                  "type": "item",
-                  "label": "Dashboard",
-                  "url": "https://apps.humanatlas.io/dashboard/",
-                  "external": true
-                },
-                {
-                  "type": "item",
-                  "label": "Cell Population Graphs",
-                  "url": "https://apps.humanatlas.io/cell-population-graphs/"
                 }
               ]
             },
@@ -150,14 +156,14 @@
               "items": [
                 {
                   "type": "item",
-                  "label": "Registration User Interface",
-                  "url": "https://apps.humanatlas.io/rui/",
+                  "label": "ASCT+B Reporter",
+                  "url": "https://apps.humanatlas.io/asctb-reporter/",
                   "external": true
                 },
                 {
                   "type": "item",
-                  "label": "ASCT+B Reporter",
-                  "url": "https://apps.humanatlas.io/asctb-reporter/",
+                  "label": "Registration User Interface",
+                  "url": "https://apps.humanatlas.io/rui/",
                   "external": true
                 }
               ]
@@ -170,6 +176,11 @@
                   "type": "item",
                   "label": "APIs",
                   "url": "https://apps.humanatlas.io/api/"
+                },
+                {
+                  "type": "item",
+                  "label": "Knowledge Graph",
+                  "url": "https://lod.humanatlas.io/"
                 },
                 {
                   "type": "item",
