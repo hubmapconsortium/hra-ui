@@ -28,6 +28,10 @@
     {
       "plugin": "@nx/storybook/plugin",
       "options": {}
+    },
+    {
+      "plugin": "@hra-ui/zod-to-json-schema-plugin",
+      "options": {}
     }
   ],
   "targetDefaults": {
