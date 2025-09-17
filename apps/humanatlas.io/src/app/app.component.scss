@@ -15,15 +15,15 @@
     }
   }
 
-  @media (max-width: 1099.99px) {
-    .main {
-      hra-site-navigation {
-        display: none;
-      }
-    }
+  hra-site-navigation {
+    display: none;
   }
 
   @media (min-width: 1100px) {
+    hra-site-navigation {
+      display: block;
+    }
+
     .main.navigation-visible .content {
       max-width: calc(100% - 20rem);
     }

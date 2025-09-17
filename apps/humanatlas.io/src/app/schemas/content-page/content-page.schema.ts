@@ -23,6 +23,7 @@ import { z } from 'zod';
 import { ReleaseNotesVersionSelectorSchema } from '../../components/release-notes-version-selector/release-notes-version-selector.schema';
 import { SummaryStatisticsTableSchema } from '../../components/summary-statistics-table/summary-statistics-table.schema';
 import { DataViewerWithQueryParamsSchema } from '../../components/data-viewer-with-query-params/data-viewer-with-query-params.schema';
+import { GridContainerSchema } from '@hra-ui/design-system/content-templates/grid-container';
 
 export {
   ActionCardSchema,
@@ -33,6 +34,7 @@ export {
   DataViewerSchema,
   DataViewerWithQueryParamsSchema,
   FlexContainerSchema,
+  GridContainerSchema,
   IconSchema,
   ImageSchema,
   MarkdownSchema,
@@ -55,6 +57,7 @@ export default z.lazy(() => {
     DataViewerSchema,
     DataViewerWithQueryParamsSchema,
     FlexContainerSchema,
+    GridContainerSchema,
     IconSchema,
     ImageSchema,
     MarkdownSchema,
