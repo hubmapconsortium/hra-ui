@@ -1,0 +1,41 @@
+{
+  "name": "zod-to-json-schema",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tools/plugins/zod-to-json-schema/src",
+  "projectType": "library",
+  "tags": ["type:plugin"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/tools/plugins/zod-to-json-schema",
+        "main": "tools/plugins/zod-to-json-schema/src/index.ts",
+        "tsConfig": "tools/plugins/zod-to-json-schema/tsconfig.lib.json",
+        "assets": [
+          "tools/plugins/zod-to-json-schema/*.md",
+          {
+            "input": "./tools/plugins/zod-to-json-schema/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./tools/plugins/zod-to-json-schema/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./tools/plugins/zod-to-json-schema",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./tools/plugins/zod-to-json-schema",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
+}
