@@ -33,7 +33,7 @@ type Story = StoryObj<BreadcrumbsComponent>;
 
 export const Short: Story = {
   args: {
-    crumbs: [SAMPLE_CRUMB, { name: 'Current Page' }],
+    crumbs: [SAMPLE_CRUMB, SAMPLE_CRUMB, { name: 'Current Page' }],
   },
 };
 
