@@ -11,6 +11,7 @@ import { ActionCardDef } from '@hra-ui/design-system/cards/action-card';
 import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
 import { ApiCommandDef } from '@hra-ui/design-system/content-templates/api-command';
 import { FlexContainerDef } from '@hra-ui/design-system/content-templates/flex-container';
+import { GridContainerDef } from '@hra-ui/design-system/content-templates/grid-container';
 import { ImageDef } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
@@ -44,6 +45,7 @@ export const appConfig: ApplicationConfig = {
       DataViewerDef,
       DataViewerWithQueryParamsDef,
       FlexContainerDef,
+      GridContainerDef,
       IconDef,
       ImageDef,
       MarkdownDef,
