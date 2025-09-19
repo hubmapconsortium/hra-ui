@@ -1,14 +1,19 @@
 @let value = action();
 
 @if (typeof value === 'string') {
-  <a mat-icon-button [href]="value" aria-label="Help & documentation" hraPlainTooltip="Help & documentation">
+  <a
+    mat-icon-button
+    [attr.href]="value"
+    aria-label="Visit help and documentation page"
+    hraPlainTooltip="Help & documentation"
+  >
     <mat-icon>help</mat-icon>
   </a>
 } @else {
   <button
     mat-icon-button
     [matMenuTriggerFor]="value"
-    aria-label="Open help menu"
+    aria-label="Open help and documentation menu"
     hraPlainTooltip="Help & documentation"
   >
     <mat-icon>help</mat-icon>
