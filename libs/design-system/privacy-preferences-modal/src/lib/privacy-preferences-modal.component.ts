@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, model } from '@angular/core';
 import { BrandLogoComponent } from '../../../brand/logo/src/lib/logo.component';
-import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -8,11 +7,15 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { ScrollingModule as HraScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { HraCommonModule } from '@hra-ui/common';
 
+/**
+ * Privacy Preferences Modal Component
+ */
 @Component({
   selector: 'hra-privacy-preferences-modal',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     BrandLogoComponent,

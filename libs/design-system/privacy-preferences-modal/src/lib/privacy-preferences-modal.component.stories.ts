@@ -2,7 +2,7 @@ import { type Meta, type StoryObj } from '@storybook/angular';
 
 import { PrivacyPreferencesModalComponent } from './privacy-preferences-modal.component';
 
-const meta: Meta = {
+const meta: Meta<PrivacyPreferencesModalComponent> = {
   component: PrivacyPreferencesModalComponent,
   title: 'Design System/PrivacyPreferencesModalComponent',
   parameters: {

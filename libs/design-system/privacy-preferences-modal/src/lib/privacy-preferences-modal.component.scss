@@ -25,12 +25,12 @@
     flex-grow: 1;
   }
 
-  .consent-tab-content {
+  .consent-content {
     padding: 1.5rem;
     font: vars.$label-large;
   }
 
-  .details-tab-content {
+  .preference-row {
     display: flex;
     align-items: center;
     padding: 1rem 1.5rem 0 1.5rem;
