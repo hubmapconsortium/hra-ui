@@ -1,7 +1,6 @@
-import { provideDesignSystem } from '@hra-ui/design-system';
-import { Meta, StoryObj, applicationConfig, moduleMetadata } from '@storybook/angular';
-import { HelpButtonComponent } from './help-button.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { HelpButtonComponent } from './help-button.component';
 
 const meta: Meta<HelpButtonComponent> = {
   title: 'Design System/Buttons/Help Button',
@@ -16,16 +15,13 @@ const meta: Meta<HelpButtonComponent> = {
     moduleMetadata({
       imports: [MatMenuModule],
     }),
-    applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
   ],
 };
 export default meta;
 
 type Story = StoryObj<HelpButtonComponent>;
 
-export const Default: Story = {
+export const WithUrl: Story = {
   render: () => ({
     template: `
       <hra-help-button [action]="'https://humanatlas.io/overview-training-outreach#introduction'"></hra-help-button>
@@ -33,15 +29,7 @@ export const Default: Story = {
   }),
 };
 
-export const AsLink: Story = {
-  render: () => ({
-    template: `
-      <hra-help-button [action]="'https://humanatlas.io/overview-training-outreach#introduction'"></hra-help-button>
-    `,
-  }),
-};
-
-export const AsMenu: Story = {
+export const WithMenu: Story = {
   render: () => ({
     template: `
       <mat-menu #helpMenu="matMenu">
