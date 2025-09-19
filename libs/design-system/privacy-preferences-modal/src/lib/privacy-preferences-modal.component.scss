@@ -3,7 +3,7 @@
 
 :host {
   display: block;
-  box-shadow: 0px 5px 16px 0px #201E3D3D;
+  box-shadow: 0px 5px 16px 0px #201e3d3d;
   border-radius: 0.5rem;
   background-color: vars.$surface-container-low;
 
@@ -48,7 +48,7 @@
   .description {
     font: vars.$label-medium;
     margin: 0;
-    padding: .75rem 1.5rem 1rem 1.5rem;
+    padding: 0.75rem 1.5rem 1rem 1.5rem;
   }
 
   .filler {
@@ -64,5 +64,4 @@
       flex: 1;
     }
   }
-
 }
