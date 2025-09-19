@@ -1,37 +1,23 @@
 @use '../../../../styles/utils';
+@use '@angular/material' as mat;
+@use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
-  mat-chip-row.mat-mdc-chip {
-    --mat-chip-outline-color: vars.$outline-variant;
-    --mat-chip-focus-outline-color: vars.$outline-variant;
+  @include mat.chips-overrides(
+    (
+      focus-outline-color: vars.$tertiary,
+      outline-color: vars.$outline-variant,
+      elevated-selected-container-color: vars.$secondary,
+      focus-state-layer-color: vars.$on-primary,
+      hover-state-layer-color: vars.$secondary,
+      selected-focus-state-layer-color: vars.$secondary,
+    )
+  );
 
-    --mat-chip-elevated-container-color: vars.$surface-container-low;
-    --mat-chip-hover-state-layer-color: vars.$secondary;
-    --mat-chip-focus-state-layer-color: vars.$on-primary;
-
-    --mat-chip-with-trailing-icon-trailing-icon-color: vars.$on-primary-fixed;
-    --mat-chip-label-text-color: vars.$on-primary-fixed;
-
+  .mat-mdc-chip {
     .mat-mdc-chip-action-label {
       @include utils.use-font(label, medium);
       line-height: 1.25rem;
-    }
-
-    &:focus-visible {
-      outline: none;
-      --mat-chip-outline-color: vars.$tertiary;
-      --mat-chip-elevated-container-color: vars.$on-primary;
-    }
-  }
-
-  mat-chip-grid.mat-mdc-chip-set {
-    .mdc-evolution-chip-set__chips {
-      margin: 0;
-      gap: 0.25rem;
-
-      mat-chip-row {
-        margin: 0;
-      }
     }
   }
 }
