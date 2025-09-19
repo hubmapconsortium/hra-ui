@@ -1,3 +1,9 @@
+/**
+ * Test whether a path is an absolute url
+ *
+ * @param path Path to test
+ * @returns true if the path is absolute, false otherwise
+ */
 export function isAbsolute(path: string): boolean {
   try {
     new URL(path);
@@ -7,6 +13,13 @@ export function isAbsolute(path: string): boolean {
   }
 }
 
+/**
+ * Joins two paths with a signle slash between them
+ *
+ * @param start First path
+ * @param end Second path
+ * @returns The concatenated path
+ */
 export function joinWithSlash(start: string, end: string): string {
   if (!start) {
     return end;
