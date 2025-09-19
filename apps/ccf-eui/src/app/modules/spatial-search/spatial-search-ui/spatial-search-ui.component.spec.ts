@@ -1,6 +1,7 @@
+import { AnimationDriver } from '@angular/animations/browser';
+import { MockAnimationDriver } from '@angular/animations/browser/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { FilterSexEnum } from '@hra-api/ng-client';
-import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { render, RenderComponentOptions } from '@testing-library/angular';
 import { BodyUI } from 'ccf-body-ui';
 import { mockDeep } from 'jest-mock-extended';
@@ -13,7 +14,14 @@ describe('SpatialSearchUiComponent', () => {
   async function setup(options?: RenderComponentOptions<SpatialSearchUiComponent>) {
     return render(SpatialSearchUiComponent, {
       ...options,
-      providers: [provideDesignSystemCommon(), provideNoopAnimations(), ...(options?.providers ?? [])],
+      providers: [
+        provideAnimations(),
+        {
+          provide: AnimationDriver,
+          useClass: MockAnimationDriver,
+        },
+        ...(options?.providers ?? []),
+      ],
     });
   }
 

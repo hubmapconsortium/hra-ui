@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { parseUrl } from '@hra-ui/common';
+import { isAbsolute } from '@hra-ui/common/url';
 import { TextHyperlinkDirective } from './directives/text-hyperlink.directive';
 
 /**
@@ -42,7 +42,7 @@ export class TextHyperlinkComponent {
    */
   protected readonly urlTree = computed(() => {
     const url = this.url();
-    if (this.router && parseUrl(url) === null) {
+    if (this.router && !isAbsolute(url)) {
       return this.router.parseUrl(url);
     }
     return undefined;

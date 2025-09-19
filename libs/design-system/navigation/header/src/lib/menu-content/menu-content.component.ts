@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Directive, inject, input } from '@a
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule, UrlTree } from '@angular/router';
-import { parseUrl } from '@hra-ui/common';
+import { isAbsolute as isAbsoluteUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Menu, MenuGroup, MenuItem, MenuSubGroup } from '../types/menus.schema';
 
@@ -92,7 +92,7 @@ export class MenuContentComponent {
   resolveUrl(url: string, forceExternal = false): { isAbsolute: boolean; value: string | UrlTree } {
     const { router } = this;
     const baseUrl = Location.stripTrailingSlash(this.baseUrl() ?? '') + '/';
-    let isAbsolute = forceExternal || parseUrl(url) !== null;
+    let isAbsolute = forceExternal || isAbsoluteUrl(url);
     if (!forceExternal && baseUrl && url.startsWith(baseUrl)) {
       isAbsolute = false;
       url = url.slice(baseUrl.length);

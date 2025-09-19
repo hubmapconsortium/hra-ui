@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { AssetUrlPipe } from '@hra-ui/common';
+import { AssetUrlPipe } from '@hra-ui/common/url';
 import { MarkdownComponent as NgxMarkdownComponent } from 'ngx-markdown';
 
 /**

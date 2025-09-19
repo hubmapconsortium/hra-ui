@@ -1,14 +1,15 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { render, screen } from '@testing-library/angular';
 import { FooterComponent } from './footer.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('FooterComponent', () => {
-  const globalProviders = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystemCommon()];
+  const globalProviders = [provideHttpClient(), provideHttpClientTesting()];
+  const imports = [MatIconTestingModule];
 
   beforeEach(async () => {
-    await render(FooterComponent, { providers: globalProviders });
+    await render(FooterComponent, { providers: globalProviders, imports });
   });
 
   it('should render the Human Reference Atlas logo', async () => {

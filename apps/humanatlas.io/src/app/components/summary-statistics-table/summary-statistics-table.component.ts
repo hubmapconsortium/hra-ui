@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { assetsUrl } from '@hra-ui/common';
+import { assetUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -80,7 +80,7 @@ export class SummaryStatisticsTableComponent {
   private readonly organ = injectQueryParams('organ');
 
   /** Fetches the CSV data and parses it into TableRow objects */
-  private readonly items = httpResource.text<TableRow[]>(assetsUrl(this.csvUrl), {
+  private readonly items = httpResource.text<TableRow[]>(assetUrl(this.csvUrl), {
     parse: (text) => parse<TableRow>(text, { header: true, dynamicTyping: true, skipEmptyLines: 'greedy' }).data,
     defaultValue: [],
   });
