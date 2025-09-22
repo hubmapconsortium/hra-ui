@@ -1,3 +1,3 @@
 export * from './lib/privacy.module';
 export * from './lib/privacy-preferences.service';
-export * from '../consent-banner/src';
+export * from './lib/consent-banner/consent-banner.component';
