@@ -5,8 +5,6 @@
     [attr.aria-expanded]="accordionItem.expanded"
     [attr.aria-controls]="bodyId"
     [expanded]="expanded"
-    (opened)="opened.emit()"
-    (closed)="closed.emit()"
   >
     <div class="header">
       @if (!disabled()) {

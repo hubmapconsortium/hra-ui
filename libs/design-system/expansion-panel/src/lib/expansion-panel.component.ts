@@ -9,7 +9,6 @@ import {
   ElementRef,
   inject,
   input,
-  output,
   Renderer2,
   viewChild,
 } from '@angular/core';
@@ -61,9 +60,6 @@ export class ExpansionPanelComponent {
 
   /** Tooltip for header title */
   readonly tooltip = input<string>();
-
-  readonly opened = output();
-  readonly closed = output();
 
   /** Increments the counter on every declaration */
   protected readonly id = idCounter++;

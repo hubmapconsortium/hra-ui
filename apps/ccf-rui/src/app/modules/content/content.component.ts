@@ -6,13 +6,11 @@ import {
   HostBinding,
   inject,
   Input,
-  OnDestroy,
   OnInit,
   viewChild,
 } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
 import { BodyUiComponent } from 'ccf-shared';
-import { ResizeSensor } from 'css-element-queries';
 import { combineLatest } from 'rxjs';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
 
@@ -32,7 +30,7 @@ import { SceneState } from '../../core/store/scene/scene.state';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ContentComponent implements OnInit, OnDestroy {
+export class ContentComponent implements OnInit {
   /** Model state */
   readonly model = inject(ModelState);
   /** Page state */
@@ -74,9 +72,6 @@ export class ContentComponent implements OnInit, OnDestroy {
     distinctUntilKeyChanged('y'),
   );
 
-  /** Whether the content area is very narrow */
-  isNarrowView = false;
-
   /**
    * Shows / hides the state debug component for testing purposes.
    */
@@ -87,33 +82,15 @@ export class ContentComponent implements OnInit, OnDestroy {
    */
   showDebugButtons = !environment.production;
 
-  /** Resize detection */
-  private sensor!: ResizeSensor;
-
   /**
-   * Sets up the resize sensor
+   * Updates the gizmo rotation based on the scene rotation when not in 3D view
    */
   ngOnInit(): void {
-    this.sensor = new ResizeSensor(this.rootRef.nativeElement, ({ width }) => {
-      const isNarrowView = width < 440; // 27.5rem
-      if (this.isNarrowView !== isNarrowView) {
-        this.isNarrowView = isNarrowView;
-        this.cdr.markForCheck();
-      }
-    });
-
     combineLatest([this.is3DView$, this.scene.rotation$]).subscribe(([is3D, rotation]) => {
       if (!is3D) {
         this.setGizmoRotation([rotation, 0]);
       }
     });
-  }
-
-  /**
-   * Detaches the resize sensor
-   */
-  ngOnDestroy(): void {
-    this.sensor.detach();
   }
 
   /**

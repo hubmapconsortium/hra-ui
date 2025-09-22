@@ -8,14 +8,7 @@
       (changePosition)="model.setPosition($event)"
     ></ccf-spatial-search-keyboard-ui-behavior>
   }
-  <ccf-body-ui
-    class="gizmo"
-    [scene]="(scene.gizmo$ | async)!"
-    [rotation]="(scene.rotation$ | async) ?? 0"
-    [interactive]="false"
-    [zoom]="9.5"
-    #gizmo
-  ></ccf-body-ui>
+  <ccf-body-ui class="gizmo" [scene]="(scene.gizmo$ | async)!" [interactive]="false" [zoom]="9.5" #gizmo></ccf-body-ui>
 </div>
 
 <div class="main-content">
