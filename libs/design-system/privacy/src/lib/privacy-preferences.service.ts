@@ -90,7 +90,9 @@ export class PrivacyPreferencesService {
   private handleAllowAll(): void {
     this.savePrivacyPreferences({
       necessary: true,
-      analytics: true,
+      preferences: true,
+      statistics: true,
+      marketing: true,
     });
 
     this.closeConsentBanner();
@@ -103,7 +105,9 @@ export class PrivacyPreferencesService {
   private handleAllowNecessaryOnly(): void {
     this.savePrivacyPreferences({
       necessary: true,
-      analytics: false,
+      preferences: false,
+      statistics: false,
+      marketing: false,
     });
 
     this.closeConsentBanner();
@@ -122,7 +126,12 @@ export class PrivacyPreferencesService {
    * Save privacy preferences to local storage or backend
    * @param preferences The privacy preferences to save
    */
-  private savePrivacyPreferences(preferences: { necessary: boolean; analytics: boolean }): void {
+  private savePrivacyPreferences(preferences: {
+    necessary: boolean;
+    preferences: boolean;
+    statistics: boolean;
+    marketing: boolean;
+  }): void {
     localStorage.setItem('privacy-preferences', JSON.stringify(preferences));
 
     // TODO: Send to backend service
@@ -134,7 +143,9 @@ export class PrivacyPreferencesService {
    */
   getPrivacyPreferences(): {
     necessary: boolean;
-    analytics: boolean;
+    preferences: boolean;
+    statistics: boolean;
+    marketing: boolean;
   } | null {
     const saved = localStorage.getItem('privacy-preferences');
     return saved ? JSON.parse(saved) : null;
