@@ -9,9 +9,16 @@ import { isAbsolute, joinWithSlash } from '../util/path';
  * Get the default asset href
  */
 function assetHref(): Signal<string> {
-  const metaUrl = getImportMetaUrl();
-  const href = /^https?:/.test(metaUrl) ? metaUrl : '';
-  return signal(href).asReadonly();
+  try {
+    const url = new URL('./', getImportMetaUrl());
+    if (/https?:/.test(url.protocol)) {
+      return signal(url.href).asReadonly();
+    }
+  } catch {
+    // Ignore URL errors
+  }
+
+  return signal('').asReadonly();
 }
 
 /**
