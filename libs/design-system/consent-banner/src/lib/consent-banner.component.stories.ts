@@ -1,6 +1,5 @@
 import { ConsentBannerComponent } from './consent-banner.component';
-import { provideDesignSystem } from '@hra-ui/design-system';
-import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<ConsentBannerComponent> = {
   component: ConsentBannerComponent,
@@ -12,11 +11,6 @@ const meta: Meta<ConsentBannerComponent> = {
     },
     layout: 'fullscreen',
   },
-  decorators: [
-    applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
-  ],
 };
 
 export default meta;
