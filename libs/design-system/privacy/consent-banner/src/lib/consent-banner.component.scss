@@ -1,5 +1,5 @@
-@use '../../../../design-system/styles/utils' as utils;
-@use '../../../../design-system/styles/vars' as vars;
+@use '../../../../styles/utils' as utils;
+@use '../../../../styles/vars' as vars;
 
 :host {
   background-color: utils.with-alpha(vars.$surface-bright, 80%);
