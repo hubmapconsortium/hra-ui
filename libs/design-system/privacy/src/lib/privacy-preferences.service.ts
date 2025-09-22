@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ConsentBannerComponent } from '../../consent-banner/src/lib/consent-banner.component';
+import { ConsentBannerComponent } from '../../consent-banner/src';
 
 /** Configuration options for the consent banner dialog */
 export interface ConsentBannerConfig {
