@@ -1,7 +1,8 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { EnvironmentProviders, makeEnvironmentProviders, NgModule } from '@angular/core';
 import { provideStyleComponents } from '@hra-ui/cdk/styling';
-import { getDefaultAssetsHref } from '@hra-ui/common';
+import { getImportMetaUrl } from '@hra-ui/common/import-meta';
+import { joinWithSlash } from '@hra-ui/common/url';
 import {
   NgScrollbarModule,
   NgScrollbarOptions,
@@ -28,7 +29,10 @@ const DEFAULT_POLYFILL_URL = 'assets/polyfills/scroll-timeline-polyfill.js';
  * @returns An environment provider
  */
 export function provideScrolling(options?: ScrollingOptions): EnvironmentProviders {
-  const polyfillUrl = getDefaultAssetsHref() + (options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
+  const metaUrl = getImportMetaUrl();
+  const href = /^https?:/.test(metaUrl) ? metaUrl : '';
+  // TODO: Find a better way to resolve the polyfill url
+  const polyfillUrl = joinWithSlash(href, options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
 
   return makeEnvironmentProviders([
     provideStyleComponents(ScrollbarStylesComponent),
