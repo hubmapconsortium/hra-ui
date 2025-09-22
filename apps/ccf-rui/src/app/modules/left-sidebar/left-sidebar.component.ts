@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, Input, signal, viewChild } from '@angular/core';
-import { ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { ModelState } from '../../core/store/model/model.state';
@@ -15,11 +14,6 @@ import { RegistrationState } from '../../core/store/registration/registration.st
   styleUrls: ['./left-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
-  host: {
-    '[attr.as-expanded]': 'asExpanded() && !landmarkExpanded()',
-    '[attr.landmark-expanded]': '!asExpanded() && landmarkExpanded()',
-    '[attr.both-expanded]': 'landmarkExpanded() && asExpanded()',
-  },
 })
 export class LeftSidebarComponent {
   /** Page state */
@@ -37,15 +31,6 @@ export class LeftSidebarComponent {
 
   /** Whether an organ is selected */
   readonly organSelected$ = this.model.organ$.pipe(map((organ) => (organ === undefined ? false : true)));
-
-  /** Anatomical structures panel component */
-  readonly asPanel = viewChild.required<ExpansionPanelComponent>('asPanel');
-  /** Landmarks panel component */
-  readonly landmarkPanel = viewChild.required<ExpansionPanelComponent>('landmarkPanel');
-  /** Whether the anatomical structures panel is expanded */
-  readonly asExpanded = signal(true);
-  /** Whether the landmarks panel is expanded */
-  readonly landmarkExpanded = signal(true);
 
   /**
    * Variable that keeps track of the extraction site tooltip to display on
