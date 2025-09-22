@@ -111,6 +111,17 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #asTagsActionMenu="matMenu" class="settings-overlay">
+      <button class="expanded" mat-menu-item matRipple matRippleColor="#201E3D14" [matMenuTriggerFor]="submenu">
+        Info
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </button>
+
+      <mat-menu #submenu="matMenu" class="info-submenu">
+        Tags identify major anatomical components of the tissue block being registered.
+      </mat-menu>
+
+      <mat-divider class="menu-divider"></mat-divider>
+
       <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="astags.reset()">
         Reset all anatomical structure tags
       </button>
@@ -119,16 +130,31 @@
 
   <div class="as-tags-content">
     <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>
-    @if (addedTags().length > 0) {
-      <ccf-tag-list class="tag-list" label="Added" [tags]="addedTags()" (tagRemoved)="astags.removeTag($event)">
+    @if (assignedTags().length > 0) {
+      <ccf-tag-list
+        class="tag-list"
+        label="Automatically Detected"
+        [tags]="assignedTags()"
+        (tagRemoved)="astags.removeTag($event)"
+      >
       </ccf-tag-list>
     }
-    @if (assignedTags().length > 0) {
-      <ccf-tag-list class="tag-list" label="Detected" [tags]="assignedTags()" (tagRemoved)="astags.removeTag($event)">
+    @if (addedTags().length > 0) {
+      <ccf-tag-list
+        class="tag-list"
+        label="Manually Added"
+        [tags]="addedTags()"
+        (tagRemoved)="astags.removeTag($event)"
+      >
       </ccf-tag-list>
     }
     @if (removedTags().length > 0) {
-      <ccf-tag-list class="tag-list" label="Removed" [tags]="removedTags()" (tagRemoved)="astags.removeTag($event)">
+      <ccf-tag-list
+        class="tag-list"
+        label="Manually Removed"
+        [tags]="removedTags()"
+        (tagRemoved)="astags.removeTag($event)"
+      >
       </ccf-tag-list>
     }
   </div>
