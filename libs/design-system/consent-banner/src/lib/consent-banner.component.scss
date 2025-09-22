@@ -120,4 +120,22 @@
       }
     }
   }
+
+  hra-brand-logo {
+    --hra-brand-logo-text-color: vars.$secondary;
+  }
+
+  .middle {
+    min-width: 11.25rem;
+    max-width: 44.75rem;
+    .content {
+      .text1 {
+        @include utils.use-font(title, small);
+      }
+
+      .text2 {
+        @include utils.use-font(label, large);
+      }
+    }
+  }
 }
