@@ -8,17 +8,17 @@
       <span class="text2">Cookies and similar technologies are used to play videos and to improve this website.</span>
     </div>
     <div class="hyperlink">
-      <hra-text-hyperlink [text]="'Privacy Policy'" [url]="'/privacy-policy'" [icon]="'arrow_right_alt'">
+      <hra-text-hyperlink text="Privacy Policy" url="https://humanatlas.io/privacy-policy" [icon]="'arrow_right_alt'">
       </hra-text-hyperlink>
     </div>
   </div>
 </div>
 <div class="right">
   <div class="consent-buttons">
-    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary" (click)="allowAll.emit()">
+    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary" (click)="allowAllClick.emit()">
       Allow all
     </button>
-    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary" (click)="allowNecessaryOnly.emit()">
+    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary" (click)="allowNecessaryOnlyClick.emit()">
       Allow necessary only
     </button>
   </div>
@@ -27,7 +27,7 @@
     hraButtonSize="large"
     hraButtonVariant="primary"
     class="customize-button"
-    (click)="customize.emit()"
+    (click)="customizeClick.emit()"
   >
     Customize
   </button>
