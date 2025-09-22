@@ -1,12 +1,12 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { render, screen } from '@testing-library/angular';
-import { provideDesignSystem } from '@hra-ui/design-system';
+import { provideRouter } from '@angular/router';
 
 import { SectionCardsComponent } from './section-cards.component';
 
 describe('SectionCardsComponent', () => {
-  const providers = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystem()];
+  const providers = [provideHttpClient(), provideHttpClientTesting(), provideRouter([])];
 
   it('should display cards', async () => {
     await render(SectionCardsComponent, {
@@ -15,7 +15,7 @@ describe('SectionCardsComponent', () => {
         cardInfo: [
           {
             tagline: 'Tagline',
-            icon: 'test-image-src',
+            icon: '',
             route: 'test-route',
             action: 'Test',
           },
