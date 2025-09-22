@@ -1,12 +1,14 @@
-import { EnvironmentProviders, NgModule, makeEnvironmentProviders } from '@angular/core';
-import { getDefaultAssetsHref } from '@hra-ui/common';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { EnvironmentProviders, makeEnvironmentProviders, NgModule } from '@angular/core';
 import { provideStyleComponents } from '@hra-ui/cdk/styling';
+import { getDefaultAssetsHref } from '@hra-ui/common';
 import {
   NgScrollbarModule,
   NgScrollbarOptions,
   provideScrollbarOptions,
   provideScrollbarPolyfill,
 } from 'ngx-scrollbar';
+
 import { ScrollOverflowFadeDirective } from './scroll-overflow-fade/scroll-overflow-fade.directive';
 import { ScrollbarStylesComponent } from './scrollbar-styles/scrollbar-styles.component';
 
@@ -43,7 +45,7 @@ export function provideScrolling(options?: ScrollingOptions): EnvironmentProvide
 
 /** Module exporting ng-scrollbar and related scrolling utilities */
 @NgModule({
-  imports: [ScrollOverflowFadeDirective],
-  exports: [NgScrollbarModule, ScrollOverflowFadeDirective],
+  imports: [ScrollOverflowFadeDirective, CdkScrollable],
+  exports: [NgScrollbarModule, ScrollOverflowFadeDirective, CdkScrollable],
 })
 export class ScrollingModule {}

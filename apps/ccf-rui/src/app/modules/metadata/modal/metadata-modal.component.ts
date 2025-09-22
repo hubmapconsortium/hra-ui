@@ -1,3 +1,4 @@
+import { CdkScrollable } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -10,6 +11,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { OrganInfo } from 'ccf-shared';
+
 import { ModelStateModel } from '../../../core/store/model/model.state';
 import { PageStateModel, Person } from '../../../core/store/page/page.state';
 import { ReferenceDataState } from '../../../core/store/reference-data/reference-data.state';
@@ -69,6 +71,7 @@ export interface MetadataModalResult {
   templateUrl: './metadata-modal.component.html',
   styleUrls: ['./metadata-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [CdkScrollable],
 })
 export class MetadataModalComponent {
   /** Initial configuration */
