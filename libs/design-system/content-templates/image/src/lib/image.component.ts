@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { AssetUrlPipe } from '@hra-ui/common';
+import { AssetUrlPipe } from '@hra-ui/common/url';
 
 /**
  * Component for displaying an image in the content template
