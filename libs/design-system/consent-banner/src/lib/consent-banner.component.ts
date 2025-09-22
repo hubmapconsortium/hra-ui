@@ -14,12 +14,12 @@ import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyper
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConsentBannerComponent {
-  /** Emitted when the "Allow all" button is clicked */
-  readonly allowAll = output<void>();
+  /** Emitted when the "Allow all Click" button is clicked */
+  readonly allowAllClick = output<void>();
 
-  /** Emitted when the "Allow necessary only" button is clicked */
-  readonly allowNecessaryOnly = output<void>();
+  /** Emitted when the "Allow necessary only Click" button is clicked */
+  readonly allowNecessaryOnlyClick = output<void>();
 
-  /** Emitted when the "Customize" button is clicked */
-  readonly customize = output<void>();
+  /** Emitted when the "Customize Click" button is clicked */
+  readonly customizeClick = output<void>();
 }
