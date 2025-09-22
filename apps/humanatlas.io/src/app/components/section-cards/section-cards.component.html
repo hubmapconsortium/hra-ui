@@ -1,6 +1,6 @@
 <span class="section-title">Explore the Human Reference Atlas</span>
 
-<div class="cards">
+<hra-grid-container class="cards">
   @for (card of cardInfo(); track card) {
     @if (card.url; as url) {
       <hra-action-card variant="outlined-with-icons" [tagline]="card.tagline" [icons]="[card.icon]">
@@ -16,4 +16,4 @@
       </hra-action-card>
     }
   }
-</div>
+</hra-grid-container>
