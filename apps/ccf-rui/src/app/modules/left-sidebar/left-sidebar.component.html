@@ -23,7 +23,14 @@
   </mat-menu>
 </div>
 
-<hra-expansion-panel tagline="Anatomical Structures" class="as-expansion" [tooltip]="asTooltip">
+<hra-expansion-panel
+  #asPanel
+  tagline="Anatomical Structures"
+  class="as-expansion"
+  [tooltip]="asTooltip"
+  (opened)="asExpanded.set(true)"
+  (closed)="asExpanded.set(false)"
+>
   <ccf-visibility-menu
     #anatomical
     [items]="$any(model.anatomicalStructures$ | async) ?? []"
@@ -32,7 +39,14 @@
   </ccf-visibility-menu>
 </hra-expansion-panel>
 
-<hra-expansion-panel tagline="Landmarks" [tooltip]="landmarksTooltip">
+<hra-expansion-panel
+  #landmarkPanel
+  class="landmarks-expansion"
+  tagline="Landmarks"
+  [tooltip]="landmarksTooltip"
+  (opened)="landmarkExpanded.set(true)"
+  (closed)="landmarkExpanded.set(false)"
+>
   <ccf-visibility-menu
     #landmarks
     [items]="$any(model.extractionSites$ | async)"

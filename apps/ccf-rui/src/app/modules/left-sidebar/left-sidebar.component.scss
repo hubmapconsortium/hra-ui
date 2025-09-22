@@ -1,8 +1,54 @@
 @use 'vars';
 
 :host {
-  display: block;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &[both-expanded='true'] {
+    ccf-visibility-menu {
+      max-height: 55vh;
+    }
+  }
+
+  &[as-expanded='true'] {
+    .as-expansion {
+      max-height: calc(100% - 6rem);
+      display: flex;
+    }
+  }
+
+  &[landmark-expanded='true'] {
+    .landmarks-expansion {
+      max-height: calc(100% - 6rem);
+      display: flex;
+    }
+  }
+
+  ::ng-deep cdk-accordion {
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    cdk-accordion-item {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .content {
+        height: calc(100% - 2.5rem);
+
+        .expansion-body {
+          height: 100%;
+
+          ccf-visibility-menu {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
 
   .opacity-settings {
     display: flex;
@@ -12,6 +58,7 @@
   }
 
   hra-expansion-panel {
+    overflow: hidden;
     ccf-visibility-menu {
       padding: 0 0.75rem;
     }

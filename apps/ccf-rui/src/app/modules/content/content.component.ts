@@ -4,14 +4,18 @@ import {
   Component,
   ElementRef,
   HostBinding,
+  inject,
   Input,
   OnDestroy,
   OnInit,
-  inject,
+  viewChild,
 } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
+import { BodyUiComponent } from 'ccf-shared';
 import { ResizeSensor } from 'css-element-queries';
+import { combineLatest } from 'rxjs';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
+
 import { environment } from '../../../environments/environment';
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
@@ -41,6 +45,9 @@ export class ContentComponent implements OnInit, OnDestroy {
   private readonly rootRef = inject<ElementRef<HTMLElement>>(ElementRef);
   /** Change detector */
   private readonly cdr = inject(ChangeDetectorRef);
+
+  /** Mini model gizmo */
+  readonly gizmo = viewChild.required<BodyUiComponent>('gizmo');
 
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-content';
@@ -94,6 +101,12 @@ export class ContentComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
     });
+
+    combineLatest([this.is3DView$, this.scene.rotation$]).subscribe(([is3D, rotation]) => {
+      if (!is3D) {
+        this.setGizmoRotation([rotation, 0]);
+      }
+    });
   }
 
   /**
@@ -104,12 +117,12 @@ export class ContentComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Sets view type
-   *
-   * @param is3DView Set view type to '3d' if this is true otherwise set it to 'register'
+   * Sets gizmo rotation
+   * @param rotation Rotation values
    */
-  setViewType(is3DView: boolean): void {
-    this.model.setViewType(is3DView ? '3d' : 'register');
+  setGizmoRotation(rotation: [number, number]): void {
+    this.gizmo().rotation = rotation[0];
+    this.gizmo().rotationX = rotation[1];
   }
 
   /** Handle node drag */

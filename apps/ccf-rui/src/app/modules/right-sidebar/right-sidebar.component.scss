@@ -83,6 +83,8 @@
   }
 
   .as-tags {
+    flex-grow: 1;
+
     ccf-tag-list {
       margin-top: 1rem;
     }

@@ -9,13 +9,15 @@ import {
   ElementRef,
   inject,
   input,
+  output,
   Renderer2,
   viewChild,
 } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { BODY_EXPANSION } from './expansion-panel-animations';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+
+import { BODY_EXPANSION } from './expansion-panel-animations';
 
 /** Counter to keep track of distinct panels */
 let idCounter = 0;
@@ -59,6 +61,9 @@ export class ExpansionPanelComponent {
 
   /** Tooltip for header title */
   readonly tooltip = input<string>();
+
+  readonly opened = output();
+  readonly closed = output();
 
   /** Increments the counter on every declaration */
   protected readonly id = idCounter++;
