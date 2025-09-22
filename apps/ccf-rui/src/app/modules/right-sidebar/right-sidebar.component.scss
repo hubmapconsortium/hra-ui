@@ -36,9 +36,20 @@
       display: flex;
       flex-direction: column;
 
-      .label {
+      .header {
+        display: flex;
+        flex-direction: column;
         padding: 0.5rem 0;
-        font: vars.$label-medium;
+
+        .title {
+          font: vars.$label-medium;
+          color: vars.$secondary;
+        }
+
+        .units {
+          font: vars.$label-small;
+          color: vars.$primary;
+        }
       }
 
       .box {

@@ -64,16 +64,19 @@
   </hra-expansion-panel-header-content>
 
   <div class="position">
-    <span class="label">Position</span>
-    <div class="x-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
+    <div class="header">
+      <span class="text title">Position</span>
+      <span class="units">Millimeters</span>
+    </div>
+    <div class="x-position box" hraPlainTooltip="Use mouse/keyboard to adjust block position">
       <span class="position-label">X</span>
       <span class="position-value">{{ (position$ | async)?.x }}</span>
     </div>
-    <div class="y-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
+    <div class="y-position box" hraPlainTooltip="Use mouse/keyboard to adjust block position">
       <span class="position-label">Y</span>
       <span class="position-value">{{ (position$ | async)?.y }}</span>
     </div>
-    <div class="z-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
+    <div class="z-position box" hraPlainTooltip="Use mouse/keyboard to adjust block position">
       <span class="position-label">Z</span>
       <span class="position-value">{{ (position$ | async)?.z }}</span>
     </div>
