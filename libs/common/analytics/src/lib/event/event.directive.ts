@@ -168,8 +168,10 @@ export class HoverEventDirective extends BaseEventDirective<CoreEvents['Hover']>
   override readonly event = () => CoreEvents.Hover;
   /** Event properties */
   override readonly props = input<EventPropsFor<CoreEvents['Hover']>>('', { alias: 'hraHoverEvent' });
-  /** 'none' if events are sent programatically */
-  override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraHoverEventTriggerOn' });
+  /** mouseenter, mouseleave, mouseover, mouseout, or 'none' if events are sent programatically */
+  override readonly triggerOn = input<
+    EventTrigger<'mouseenter' | 'mouseleave' | 'mouseover' | 'mouseout'> | 'none' | undefined
+  >(undefined, { alias: 'hraHoverEventTriggerOn' });
   /** Whether this event is disabled */
   override readonly disabled = input(false, { alias: 'hraHoverEventDisabled', transform: booleanAttribute });
 }
