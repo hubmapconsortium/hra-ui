@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   booleanAttribute,
-  computed,
   DestroyRef,
   Directive,
   effect,
@@ -9,7 +8,6 @@ import {
   inject,
   input,
   Renderer2,
-  signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgControl } from '@angular/forms';
@@ -62,13 +60,19 @@ export abstract class BaseEventDirective<T extends AnalyticsEvent> {
    *
    * @param trigger Built-in event that triggered the call
    * @param event Event object
+   * @param extraProps Additional event properties
    */
-  logEvent<E extends EventTrigger>(trigger?: E, event?: EventTriggerPayloadFor<E>): void {
+  logEvent<E extends EventTrigger>(
+    trigger?: E,
+    event?: EventTriggerPayloadFor<E>,
+    extraProps: Partial<EventPayloadFor<T>> = {},
+  ): void {
     const props = this.props();
     this.logEvent_(this.event(), {
       trigger: trigger,
       triggerData: event,
       ...(props !== '' ? props : ({} as EventPayloadFor<T>)),
+      ...extraProps,
     });
   }
 }
@@ -185,18 +189,14 @@ export type ModelChangePropsOrFilter = EventPropsFor<CoreEvents['ModelChange']> 
 export class ModelChangeEventDirective extends BaseEventDirective<CoreEvents['ModelChange']> implements AfterViewInit {
   /** Event type */
   override readonly event = () => CoreEvents.ModelChange;
+  /** Event properties */
+  override readonly props = () => '' as const;
   /** Event props or a model value filter */
   readonly propsOrFilter = input<ModelChangePropsOrFilter>('', { alias: 'hraModelChangeEvent' });
   /** Always triggered programatically */
   override readonly triggerOn = () => 'none' as const;
   /** Whether this event is disabled */
   override readonly disabled = input(false, { alias: 'hraModelChangeEventDisabled', transform: booleanAttribute });
-
-  /** Latest model value */
-  readonly value = signal<unknown>(null);
-
-  /** Event properties */
-  override readonly props = computed(() => this.selectProps(this.value(), this.propsOrFilter()));
 
   /** Model control reference */
   private readonly ngControl = inject(NgControl);
@@ -208,8 +208,8 @@ export class ModelChangeEventDirective extends BaseEventDirective<CoreEvents['Mo
   ngAfterViewInit(): void {
     const { valueChanges } = this.ngControl;
     valueChanges?.pipe(takeUntilDestroyed(this.destroyRef), skip(1)).subscribe((value) => {
-      this.value.set(value);
-      this.logEvent();
+      const props = this.selectProps(value, this.propsOrFilter());
+      this.logEvent(undefined, undefined, props);
     });
   }
 
