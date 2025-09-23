@@ -1,15 +1,17 @@
 import {
+  AfterViewInit,
   booleanAttribute,
   computed,
+  DestroyRef,
   Directive,
   effect,
   ElementRef,
   inject,
   input,
   Renderer2,
-  untracked,
+  signal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgControl } from '@angular/forms';
 import {
   AnalyticsEvent,
@@ -19,7 +21,7 @@ import {
   EventTrigger,
   EventTriggerPayloadFor,
 } from '@hra-ui/common/analytics/events';
-import { EMPTY } from 'rxjs';
+import { skip } from 'rxjs';
 import { UnknownRecord } from 'type-fest';
 import { injectLogEvent } from '../analytics/analytics.service';
 
@@ -171,9 +173,6 @@ export type ModelChangeFilter = PropertyKey[] | ((value: unknown) => unknown);
 /** Either additional event props or a model value filter */
 export type ModelChangePropsOrFilter = EventPropsFor<CoreEvents['ModelChange']> | ModelChangeFilter;
 
-/** Unique value to indicate that a value has not been set */
-const NOT_SET_VALUE = Symbol('not set');
-
 /**
  * Specialized version of `hraEvent` that only emits when a NgControl's value changes
  *
@@ -183,7 +182,7 @@ const NOT_SET_VALUE = Symbol('not set');
   selector: '[hraModelChangeEvent]',
   exportAs: 'hraModelChangeEvent',
 })
-export class ModelChangeEventDirective extends BaseEventDirective<CoreEvents['ModelChange']> {
+export class ModelChangeEventDirective extends BaseEventDirective<CoreEvents['ModelChange']> implements AfterViewInit {
   /** Event type */
   override readonly event = () => CoreEvents.ModelChange;
   /** Event props or a model value filter */
@@ -193,22 +192,24 @@ export class ModelChangeEventDirective extends BaseEventDirective<CoreEvents['Mo
   /** Whether this event is disabled */
   override readonly disabled = input(false, { alias: 'hraModelChangeEventDisabled', transform: booleanAttribute });
 
-  /** Model control reference */
-  private readonly ngControl = inject(NgControl);
-
   /** Latest model value */
-  private readonly value = toSignal(this.ngControl.valueChanges ?? EMPTY, { initialValue: NOT_SET_VALUE });
+  readonly value = signal<unknown>(null);
 
   /** Event properties */
   override readonly props = computed(() => this.selectProps(this.value(), this.propsOrFilter()));
 
-  /** Setup model value change listeners */
-  constructor() {
-    super();
-    effect(() => {
-      if (this.value() !== NOT_SET_VALUE) {
-        untracked(() => this.logEvent());
-      }
+  /** Model control reference */
+  private readonly ngControl = inject(NgControl);
+
+  /** Cleanup manager */
+  private readonly destroyRef = inject(DestroyRef);
+
+  /** Connect to the NgControl */
+  ngAfterViewInit(): void {
+    const { valueChanges } = this.ngControl;
+    valueChanges?.pipe(takeUntilDestroyed(this.destroyRef), skip(1)).subscribe((value) => {
+      this.value.set(value);
+      this.logEvent();
     });
   }
 
