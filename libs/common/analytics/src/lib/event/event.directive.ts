@@ -1,4 +1,16 @@
-import { booleanAttribute, Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
+import {
+  booleanAttribute,
+  computed,
+  Directive,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  Renderer2,
+  untracked,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NgControl } from '@angular/forms';
 import {
   AnalyticsEvent,
   CoreEvents,
@@ -7,11 +19,13 @@ import {
   EventTrigger,
   EventTriggerPayloadFor,
 } from '@hra-ui/common/analytics/events';
+import { EMPTY } from 'rxjs';
+import { UnknownRecord } from 'type-fest';
 import { injectLogEvent } from '../analytics/analytics.service';
 
 /** Shared base implementation for event directives */
 @Directive()
-abstract class BaseEventDirective<T extends AnalyticsEvent> {
+export abstract class BaseEventDirective<T extends AnalyticsEvent> {
   /** Event type */
   abstract readonly event: () => T;
   /** Event properties */
@@ -150,4 +164,83 @@ export class DoubleClickEventDirective extends BaseEventDirective<CoreEvents['Do
   override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraDoubleClickEventTriggerOn' });
   /** Whether this event is disabled */
   override readonly disabled = input(false, { alias: 'hraDoubleClickEventDisabled', transform: booleanAttribute });
+}
+
+/** A list of property keys or a filter function */
+export type ModelChangeFilter = PropertyKey[] | ((value: unknown) => unknown);
+/** Either additional event props or a model value filter */
+export type ModelChangePropsOrFilter = EventPropsFor<CoreEvents['ModelChange']> | ModelChangeFilter;
+
+/** Unique value to indicate that a value has not been set */
+const NOT_SET_VALUE = Symbol('not set');
+
+/**
+ * Specialized version of `hraEvent` that only emits when a NgControl's value changes
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: '[hraModelChangeEvent]',
+  exportAs: 'hraModelChangeEvent',
+})
+export class ModelChangeEventDirective extends BaseEventDirective<CoreEvents['ModelChange']> {
+  /** Event type */
+  override readonly event = () => CoreEvents.ModelChange;
+  /** Event props or a model value filter */
+  readonly propsOrFilter = input<ModelChangePropsOrFilter>('', { alias: 'hraModelChangeEvent' });
+  /** Always triggered programatically */
+  override readonly triggerOn = () => 'none' as const;
+  /** Whether this event is disabled */
+  override readonly disabled = input(false, { alias: 'hraModelChangeEventDisabled', transform: booleanAttribute });
+
+  /** Model control reference */
+  private readonly ngControl = inject(NgControl);
+
+  /** Latest model value */
+  private readonly value = toSignal(this.ngControl.valueChanges ?? EMPTY, { initialValue: NOT_SET_VALUE });
+
+  /** Event properties */
+  override readonly props = computed(() => this.selectProps(this.value(), this.propsOrFilter()));
+
+  /** Setup model value change listeners */
+  constructor() {
+    super();
+    effect(() => {
+      if (this.value() !== NOT_SET_VALUE) {
+        untracked(() => this.logEvent());
+      }
+    });
+  }
+
+  /**
+   * Selects event properties based on the current model value
+   *
+   * @param value Latest model value
+   * @param propsOrFilter Additional event properties or a value filter
+   * @returns Event properties
+   */
+  private selectProps(
+    value: unknown,
+    propsOrFilter: ModelChangePropsOrFilter,
+  ): EventPayloadFor<CoreEvents['ModelChange']> {
+    if (propsOrFilter === '') {
+      return { value };
+    } else if (typeof propsOrFilter === 'function') {
+      return { value: propsOrFilter(value) };
+    } else if (typeof propsOrFilter === 'object' && !Array.isArray(propsOrFilter)) {
+      return { value, ...propsOrFilter };
+    } else if (value === undefined || value === null) {
+      return {};
+    }
+
+    const source = value as UnknownRecord;
+    const result: UnknownRecord = {};
+    for (const key of propsOrFilter) {
+      if (key in source) {
+        result[key] = source[key];
+      }
+    }
+
+    return { value: result };
+  }
 }
