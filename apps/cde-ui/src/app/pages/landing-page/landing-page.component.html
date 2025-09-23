@@ -1,4 +1,4 @@
-<section class="create-and-explore">
+<section class="create-and-explore" hraFeature="cde-landing-page-create-and-explore-section">
   <div class="create-explore-content">
     <div class="header">
       <h1 class="title">Create and explore cell distance visualizations</h1>
@@ -11,7 +11,7 @@
     <cde-visual-card [cardData]="cards()"></cde-visual-card>
   </div>
 </section>
-<section class="vccf-container">
+<section class="vccf-container" hraFeature="cde-landing-page-vccf-section">
   <div class="vccf">
     <div class="content-container">
       <h2 class="background-header">
@@ -35,6 +35,8 @@
               href="https://doi.org/10.3389/fcvm.2020.00029"
               target="_blank"
               rel="noopener noreferrer"
+              hraFeature="vccf-paper"
+              hraClickEvent
             >
               Read VCCF Paper
               <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
@@ -48,6 +50,8 @@
               [attr.href]="'assets/VCCF_March2024.pdf' | assetUrl"
               target="_blank"
               rel="noopener noreferrer"
+              hraFeature="vccf-poster"
+              hraClickEvent
             >
               VCCF Visualization Poster
               <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
@@ -57,7 +61,7 @@
       </div>
     </div>
     <div class="youtube-player">
-      <youtube-player videoId="zQeMgxo8n_U"></youtube-player>
+      <youtube-player videoId="zQeMgxo8n_U" hraFeature="cde-landing-page-youtube-video" hraClickEvent></youtube-player>
     </div>
   </div>
 </section>
