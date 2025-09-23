@@ -5,7 +5,15 @@
 @if (file && !errorMessage()) {
   <hra-delete-file-button [fileName]="file.name" (cancelLoad)="cancelLoad()"></hra-delete-file-button>
 } @else {
-  <button mat-flat-button class="upload" (click)="fileInput.click()" hraPrimaryButton hraButtonSize="large">
+  <button
+    mat-flat-button
+    class="upload"
+    (click)="fileInput.click()"
+    hraPrimaryButton
+    hraButtonSize="large"
+    hraFeature="cde-file-upload-button"
+    hraClickEvent
+  >
     Upload CSV
   </button>
   <input
