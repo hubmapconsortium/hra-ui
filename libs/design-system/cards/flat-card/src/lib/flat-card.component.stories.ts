@@ -23,7 +23,7 @@ const meta: Meta<FlatCardComponent> = {
   },
   decorators: [
     moduleMetadata({
-      imports: [ButtonsModule],
+      imports: [ButtonsModule, FlatCardActionsComponent],
     }),
   ],
 };
