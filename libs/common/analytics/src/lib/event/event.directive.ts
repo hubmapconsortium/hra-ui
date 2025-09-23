@@ -36,7 +36,8 @@ abstract class BaseEventDirective<T extends AnalyticsEvent> {
         const { el, renderer } = this;
         const handler = this.logEvent.bind(this, trigger);
         const unlisten = renderer.listen(el, trigger, handler);
-        onCleanup(unlisten);
+        // Delay cleanup to avoid issues with Angular destroying the element before the event is fully processed
+        onCleanup(() => setTimeout(() => unlisten()));
       }
     });
   }
