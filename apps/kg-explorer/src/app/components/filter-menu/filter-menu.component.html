@@ -8,6 +8,8 @@
       (click)="toggleForm.emit()"
       [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"
       aria-label="Open or close filters menu"
+      hraFeature="filter-menu-toggle"
+      [hraClickEvent]="{ opened: formClosed() }"
     >
       <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
     </button>
@@ -20,6 +22,7 @@
         [filterOptionCategory]="filterCategories()[$index]"
         [currentFilters]="currentFilters()[value[0]]"
         (filterChanged)="handleFilterChange()"
+        [hraFeature]="`filter-menu-overlay-${filterCategories()[$index].label}`"
       />
       <mat-divider />
     }

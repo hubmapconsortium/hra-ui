@@ -13,7 +13,7 @@
       [value]="version() === 'latest' ? availableVersions()[0] : version()"
     >
       @for (version of availableVersions(); track $index) {
-        <mat-option [value]="version">
+        <mat-option [value]="version" hraFeature="version-option" [hraClickEvent]="{ version: version }">
           {{ version }}
         </mat-option>
       }

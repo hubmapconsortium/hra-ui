@@ -126,6 +126,8 @@
     [hraPlainTooltip]="column.type.tooltip"
     (mouseover)="downloadButtonHover(element['id'])"
     (focus)="downloadButtonHover(element['id'])"
+    hraFeature="download-menu-button"
+    [hraClickEvent]="{ id: element['id'] }"
   >
     <hra-icon [fontIcon]="column.type.icon"></hra-icon>
   </button>
@@ -141,6 +143,8 @@
           download(option.url!);
           snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })
         "
+        hraFeature="download-option"
+        hraClickEvent
       >
         <mat-icon>{{ option.icon }}</mat-icon>
         <div class="option-text">

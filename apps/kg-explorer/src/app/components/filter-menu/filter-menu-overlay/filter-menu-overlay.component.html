@@ -8,6 +8,8 @@
     [hraRichTooltipDescription]="filterOptionCategory().tooltip?.description ?? ''"
     [hraRichTooltipActionText]="filterOptionCategory().tooltip?.actionText ?? ''"
     (hraRichTooltipActionClick)="navigateToLink(filterOptionCategory().tooltip?.actionUrl ?? '')"
+    hraFeature="filter-category-info-button"
+    hraClickEvent
   >
     <mat-icon>info</mat-icon>
   </button>
@@ -18,6 +20,8 @@
     color="primary"
     [hraRichTooltip]="content"
     [hraRichTooltipPositions]="tooltipPositions()"
+    hraFeature="filter-category-button"
+    hraClickEvent
   >
     {{ filterOptionCategory().label }}
   </button>
@@ -25,18 +29,18 @@
 
 <mat-chip-set>
   @for (option of chips(); track option.id) {
-    <mat-chip (removed)="remove(option)">
+    <mat-chip (removed)="remove(option)" hraFeature="filter-option-chip">
       {{ option.label }}
-      <button matChipRemove [attr.aria-label]="'remove ' + option">
+      <button matChipRemove [attr.aria-label]="'remove ' + option" hraFeature="filter-option-chip-remove" hraClickEvent>
         <mat-icon>close</mat-icon>
       </button>
     </mat-chip>
   }
 </mat-chip-set>
 
-<hra-rich-tooltip-container #content class="filter-menu">
+<hra-rich-tooltip-container #content class="filter-menu" hraFeature="filter-option-menu">
   <hra-rich-tooltip-content class="filter-menu-content">
-    <mat-form-field class="search field" subscriptSizing="dynamic">
+    <mat-form-field class="search field" subscriptSizing="dynamic" hraFeature="filter-option-search" hraClickEvent>
       <mat-icon class="search-icon" matPrefix>search</mat-icon>
       <input matInput type="text" [formControl]="searchControl" placeholder="Search" />
     </mat-form-field>
@@ -57,11 +61,19 @@
                 [hraRichTooltipDescription]="option.tooltip.description"
                 [hraRichTooltipActionText]="option.tooltip.actionText || ''"
                 (hraRichTooltipActionClick)="navigateToLink(option.tooltip.actionUrl)"
+                hraFeature="filter-option-info-button"
+                hraClickEvent
               >
                 <mat-icon>info</mat-icon>
               </button>
             }
-            <button mat-list-item class="option" (click)="selectOption(option)">
+            <button
+              mat-list-item
+              class="option"
+              (click)="selectOption(option)"
+              hraFeature="filter-option"
+              hraClickEvent
+            >
               <div class="labels-count">
                 <span class="option-labels">
                   <div class="option-primary-label">{{ option.label }}</div>

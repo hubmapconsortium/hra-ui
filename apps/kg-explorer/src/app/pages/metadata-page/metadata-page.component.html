@@ -50,7 +50,9 @@
         <hra-page-section tagline="Tags" [level]="2">
           <mat-chip-set>
             @for (tag of tags(); track $index) {
-              <mat-chip (click)="tagClick(tag.id, tag.type)">{{ tag.label }}</mat-chip>
+              <mat-chip (click)="tagClick(tag.id, tag.type)" hraFeature="tag" [hraClickEvent]="{ id: tag.id }">{{
+                tag.label
+              }}</mat-chip>
             }
           </mat-chip-set>
         </hra-page-section>
@@ -63,6 +65,7 @@
         [availableVersions]="availableVersions()"
         [downloadOptions]="downloadOptions()"
         (versionChange)="currentVersion.set($event)"
+        hraFeature="provenance-menu"
       ></hra-provenance-menu>
     </hra-metadata-layout-content>
   </hra-metadata-layout>

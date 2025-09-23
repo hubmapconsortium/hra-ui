@@ -6,6 +6,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
+import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { CopyableUrlContainerComponent } from '@hra-ui/design-system/copyable-url-container';
 import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
@@ -24,6 +25,7 @@ import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../
 @Component({
   selector: 'hra-metadata-page',
   imports: [
+    HraCommonModule,
     PageSectionComponent,
     MetadataLayoutModule,
     MarkdownComponent,

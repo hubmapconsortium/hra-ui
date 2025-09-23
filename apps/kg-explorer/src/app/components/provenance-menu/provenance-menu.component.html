@@ -3,6 +3,7 @@
     [version]="version()"
     [availableVersions]="availableVersions()"
     (versionChange)="versionChange.emit($event)"
+    hraFeature="version-selector"
   ></hra-version-selector>
 
   <div class="provenance-buttons">
@@ -11,6 +12,8 @@
       class="downloads button"
       [matMenuTriggerFor]="options"
       hraPlainTooltip="View file formats and download files"
+      hraFeature="download-options-button"
+      hraClickEvent
     >
       Download options
     </button>
@@ -26,6 +29,8 @@
             download(option.url!);
             snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })
           "
+          hraFeature="download-option"
+          hraClickEvent
         >
           <mat-icon>{{ option.icon }}</mat-icon>
           <div class="option-text">
