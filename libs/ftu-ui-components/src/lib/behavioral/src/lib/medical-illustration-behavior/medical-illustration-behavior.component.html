@@ -1,15 +1,19 @@
 @if (!isFullscreen()) {
-  <div class="illustration-header">
-    <span class="content">Illustration</span>
-    <button
-      mat-icon-button
-      hraIconButtonSize="large"
-      hraPlainTooltip="Open in full screen"
-      (click)="isFullscreen.set(true)"
-    >
-      <mat-icon>fullscreen</mat-icon>
-    </button>
-  </div>
+  <ng-container hraFeature="medical-illustration">
+    <div class="illustration-header" hraFeature="header">
+      <span class="content">Illustration</span>
+      <button
+        mat-icon-button
+        hraIconButtonSize="large"
+        hraPlainTooltip="Open in full screen"
+        hraClickEvent
+        hraFeature="open-fullscreen"
+        (click)="isFullscreen.set(true)"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    </div>
+  </ng-container>
 }
 <ftu-interactive-svg
   [url]="currentUrl()"

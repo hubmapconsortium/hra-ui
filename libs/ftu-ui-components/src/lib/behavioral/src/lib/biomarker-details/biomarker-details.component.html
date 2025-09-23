@@ -1,17 +1,21 @@
 @if (!isBiomarkerfullscreen()) {
-  <div class="biomarker-header">
-    <span class="biomarker-header-title">Cell types by biomarkers</span>
-    @if (tab.rows.length !== 0) {
-      <button
-        mat-icon-button
-        hraIconButtonSize="large"
-        hraPlainTooltip="Open in full screen"
-        (click)="toggleFullscreen()"
-      >
-        <mat-icon>fullscreen</mat-icon>
-      </button>
-    }
-  </div>
+  <ng-container hraFeature="cell-types-biomarkers">
+    <div class="biomarker-header" hraFeature="header">
+      <span class="biomarker-header-title">Cell types by biomarkers</span>
+      @if (tab.rows.length !== 0) {
+        <button
+          mat-icon-button
+          hraIconButtonSize="large"
+          hraPlainTooltip="Open in full screen"
+          hraClickEvent
+          hraFeature="open-fullscreen"
+          (click)="toggleFullscreen()"
+        >
+          <mat-icon>fullscreen</mat-icon>
+        </button>
+      }
+    </div>
+  </ng-container>
 }
 
 <mat-button-toggle-group
@@ -21,9 +25,13 @@
   class="biomarker-toggle-group absolute-toggle"
 >
   @for (option of toggleOptions; track option.value) {
-    <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
-      option.label
-    }}</mat-button-toggle>
+    <mat-button-toggle
+      [value]="option.value"
+      [disabled]="isToggleOptionDisabled($index)"
+      hraFeature="biomarker-toggle"
+      [hraClickEvent]="{ selectedToggle: option.value }"
+      >{{ option.label }}</mat-button-toggle
+    >
   }
 </mat-button-toggle-group>
 
@@ -62,6 +70,8 @@
   <div class="legend">
     <button
       class="legend-percentage"
+      hraClickEvent
+      hraFeature="click-percentage-tooltip"
       [hraRichTooltip]
       hraRichTooltipTagline="Percentage of cells"
       [hraRichTooltipDescription]="percentageTooltipText"
@@ -71,6 +81,8 @@
     </button>
     <button
       class="legend-gradient"
+      hraClickEvent
+      hraFeature="click-expression-tooltip"
       [hraRichTooltip]
       hraRichTooltipTagline="Biomarker expression mean"
       [hraRichTooltipDescription]="expressionTooltipText"
