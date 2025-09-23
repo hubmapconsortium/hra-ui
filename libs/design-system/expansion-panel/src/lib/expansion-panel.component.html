@@ -1,4 +1,4 @@
-<cdk-accordion>
+<cdk-accordion hraFeature="expansion-panel">
   <cdk-accordion-item
     #accordionItem="cdkAccordionItem"
     tabindex="0"
@@ -8,7 +8,12 @@
   >
     <div class="header">
       @if (!disabled()) {
-        <button mat-icon-button data-testid="toggle" (click)="accordionItem.toggle()">
+        <button
+          mat-icon-button
+          [hraClickEvent]="{ expanded: accordionItem.expanded }"
+          data-testid="toggle"
+          (click)="accordionItem.toggle()"
+        >
           <mat-icon [hraPlainTooltip]="accordionItem.expanded ? 'Collapse' : 'Expand'">
             {{ accordionItem.expanded ? 'remove' : 'add' }}
           </mat-icon>
