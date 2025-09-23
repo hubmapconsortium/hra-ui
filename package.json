@@ -56,6 +56,8 @@
     "@ngxs/storage-plugin": "^20.1.0",
     "@ngxs/store": "^20.1.0",
     "@rdfjs-elements/formats-pretty": "^0.6.8",
+    "@swc-node/register": "^1.11.1",
+    "@swc/core": "^1.13.5",
     "@swimlane/ngx-charts": "^23.0.1",
     "@turf/bbox": "^7.2.0",
     "@turf/helpers": "^7.2.0",
