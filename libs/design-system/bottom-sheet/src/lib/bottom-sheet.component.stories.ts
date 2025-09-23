@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { type Meta, type StoryObj } from '@storybook/angular';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
 import { BottomSheetService, PageSectionData } from '../';
@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'hra-bottom-sheet-demo',
   standalone: true,
   imports: [MatButtonModule],
-  template: ` <button mat-flat-button (click)="openBottomSheet()">Open {{ getButtonLabel() }} Bottom Sheet</button> `,
+  template: ` <button mat-flat-button (click)="openBottomSheet()">Open {{ buttonLabel() }} Bottom Sheet</button> `,
 })
 class BottomSheetDemoComponent {
   readonly variant = input.required<'table' | 'page-section' | 'page-sections'>();
@@ -20,7 +20,7 @@ class BottomSheetDemoComponent {
 
   private readonly service = inject(BottomSheetService);
 
-  getButtonLabel(): string {
+  protected readonly buttonLabel = computed(() => {
     switch (this.variant()) {
       case 'table':
         return 'Table';
@@ -31,7 +31,7 @@ class BottomSheetDemoComponent {
       default:
         return 'Bottom Sheet';
     }
-  }
+  });
 
   openBottomSheet() {
     switch (this.variant()) {
