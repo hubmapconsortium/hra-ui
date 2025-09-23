@@ -15,6 +15,7 @@ import {
   DEFAULT_COLOR_MAP_VALUE_KEY,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { HraCommonModule } from '@hra-ui/common';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
@@ -62,6 +63,7 @@ function optionalValue<T>(): T | null {
     MatInputModule,
     MatSelectModule,
     MatTableModule,
+    HraCommonModule,
     ButtonsModule,
     DeprecatedWorkflowCardComponent,
     FileUploadComponent,

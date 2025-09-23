@@ -1,5 +1,11 @@
-@for (card of cardData(); track card.label) {
-  <a [routerLink]="card.route" class="visual-card cta-flat" rel="noopener noreferrer">
+@for (card of cardData(); track card.label; let i = $index) {
+  <a
+    [routerLink]="card.route"
+    class="visual-card cta-flat"
+    rel="noopener noreferrer"
+    [hraFeature]="featureNames()[i]"
+    hraClickEvent
+  >
     <img [attr.src]="card.image" [alt]="card.alt" />
     <button class="label" mat-button hraCtaButton hraSecondaryButton>
       {{ card.label }}
