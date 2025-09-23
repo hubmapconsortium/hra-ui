@@ -1,5 +1,5 @@
-@if (!isFullscreen()) {
-  <ng-container hraFeature="medical-illustration">
+<ng-container hraFeature="medical-illustration">
+  @if (!isFullscreen()) {
     <div class="illustration-header" hraFeature="header">
       <span class="content">Illustration</span>
       <button
@@ -13,13 +13,15 @@
         <mat-icon>fullscreen</mat-icon>
       </button>
     </div>
-  </ng-container>
-}
-<ftu-interactive-svg
-  [url]="currentUrl()"
-  [mapping]="mapping()"
-  [highlightId]="highlightId()"
-  (nodeHover)="updateNodeOnHover($event)"
-  (nodeClick)="updateNodeOnClicked($event)"
->
-</ftu-interactive-svg>
+  }
+  <ftu-interactive-svg
+    hraHoverEvent
+    hraFeature="hover-illustration"
+    [url]="currentUrl()"
+    [mapping]="mapping()"
+    [highlightId]="highlightId()"
+    (nodeHover)="updateNodeOnHover($event)"
+    (nodeClick)="updateNodeOnClicked($event)"
+  >
+  </ftu-interactive-svg>
+</ng-container>

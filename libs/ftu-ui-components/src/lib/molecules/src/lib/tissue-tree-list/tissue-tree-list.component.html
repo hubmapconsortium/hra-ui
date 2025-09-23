@@ -15,7 +15,14 @@
       [class.selected]="node.data === selected"
       (mouseup)="selectNode(node.data)"
     >
-      <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
+      <button
+        mat-icon-button
+        matTreeNodeToggle
+        class="toggle"
+        [attr.aria-label]="'Toggle ' + node.label"
+        hraClickEvent
+        [hraFeature]="(control.isExpanded(node) ? 'click-closed-' : 'click-open-') + node.label"
+      >
         <mat-icon class="material-symbols-outlined">
           {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}
         </mat-icon>
@@ -34,6 +41,8 @@
       [queryParams]="{ id: data.id }"
       class="link"
       (mouseup)="selectNode(data)"
+      hraClickEvent
+      [hraFeature]="'select-' + label.split(' ').join('-')"
     >
       {{ label }}
     </a>
