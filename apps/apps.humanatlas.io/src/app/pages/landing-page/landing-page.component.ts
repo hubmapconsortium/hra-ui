@@ -49,4 +49,9 @@ export class LandingPageComponent {
   onOpenDocumentationLink(docLink: string): void {
     this.window.open(docLink, '_blank');
   }
+
+  /** Convert a label to a feature name for analytics */
+  toFeatureName(label: string): string {
+    return label.replace(/\s+/g, '-').toLowerCase();
+  }
 }
