@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
@@ -28,4 +28,11 @@ import { GridContainerComponent } from '@hra-ui/design-system/content-templates/
 export class SectionCardsComponent {
   /** List of card info */
   readonly cardInfo = input.required<SectionCardItem[]>();
+
+  /**
+   * Gets the feature names for tracking based on card info
+   */
+  readonly featureNames = computed(() =>
+    this.cardInfo().map((card) => 'section-cards-' + card.tagline.toLowerCase().replace(/\s+/g, '-')),
+  );
 }
