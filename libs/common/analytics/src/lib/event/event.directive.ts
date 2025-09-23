@@ -38,7 +38,7 @@ export abstract class BaseEventDirective<T extends AnalyticsEvent> {
   /** Reference to renderer for dom interactions */
   private readonly renderer = inject(Renderer2);
   /** Host element */
-  private readonly el = inject(ElementRef).nativeElement;
+  private readonly el = inject(ElementRef).nativeElement as Element;
   /** Raw logEvent function */
   private readonly logEvent_ = injectLogEvent();
 
@@ -49,7 +49,9 @@ export abstract class BaseEventDirective<T extends AnalyticsEvent> {
       if (trigger !== 'none' && !this.disabled()) {
         const { el, renderer } = this;
         const handler = this.logEvent.bind(this, trigger);
-        const unlisten = renderer.listen(el, trigger, handler);
+        const parts = trigger.split(':', 2);
+        const [target, eventName] = parts.length === 2 ? parts : [el, trigger];
+        const unlisten = renderer.listen(target, eventName, handler);
         // Delay cleanup to avoid issues with Angular destroying the element before the event is fully processed
         onCleanup(() => setTimeout(() => unlisten()));
       }
@@ -167,8 +169,10 @@ export class HoverEventDirective extends BaseEventDirective<CoreEvents['Hover']>
   override readonly event = () => CoreEvents.Hover;
   /** Event properties */
   override readonly props = input<EventPropsFor<CoreEvents['Hover']>>('', { alias: 'hraHoverEvent' });
-  /** 'none' if events are sent programatically */
-  override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraHoverEventTriggerOn' });
+  /** mouseenter, mouseleave, mouseover, mouseout, or 'none' if events are sent programatically */
+  override readonly triggerOn = input<
+    EventTrigger<'mouseenter' | 'mouseleave' | 'mouseover' | 'mouseout'> | 'none' | undefined
+  >(undefined, { alias: 'hraHoverEventTriggerOn' });
   /** Whether this event is disabled */
   override readonly disabled = input(false, { alias: 'hraHoverEventDisabled', transform: booleanAttribute });
 }
@@ -188,7 +192,7 @@ export class KeyboardEventDirective extends BaseEventDirective<CoreEvents['Keybo
   /** Event properties */
   override readonly props = input<EventPropsFor<CoreEvents['Keyboard']>>('', { alias: 'hraKeyboardEvent' });
   /** keydown (default), keyup, or 'none' if events are sent programatically */
-  override readonly triggerOn = input<'keyup' | 'keydown' | 'none' | undefined>(undefined, {
+  override readonly triggerOn = input<EventTrigger<'keyup' | 'keydown'> | 'none' | undefined>(undefined, {
     alias: 'hraKeyboardEventTriggerOn',
   });
   /** Whether this event is disabled */

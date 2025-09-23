@@ -8,6 +8,7 @@ export {
   EventPayloadFor,
   EventPropsFor,
   EventTrigger,
+  EventTriggerModifier,
   EventTriggerPayloadFor,
   EventType,
 } from './lib/event';

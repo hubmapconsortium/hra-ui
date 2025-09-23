@@ -29,10 +29,7 @@
                 <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">
                   <mat-checkbox
                     hraFeature="toggle-all"
-                    [hraClickEvent]="{
-                      checked: selection.hasValue() && isAllSelected(),
-                      indeterminate: selection.hasValue() && !isAllSelected(),
-                    }"
+                    [hraClickEvent]="{ checked: !(selection.hasValue() && isAllSelected()) }"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()"
                     (change)="toggleAllRows()"
