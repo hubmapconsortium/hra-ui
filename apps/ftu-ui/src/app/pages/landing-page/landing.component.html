@@ -12,6 +12,8 @@
       <a
         mat-button
         hraCtaButton
+        hraClickEvent
+        hraFeature="explore-ftus"
         hraPrimaryButton
         class="action"
         routerLink="/ftu"
@@ -24,6 +26,8 @@
         mat-button
         hraSecondaryButton
         hraCtaButton
+        hraClickEvent
+        hraFeature="read-publication"
         class="action"
         [attr.href]="publicationLinkDefault()"
         target="_blank"
@@ -46,10 +50,24 @@
       </div>
     </div>
     <div class="logo-wrapper">
-      <a [href]="kpmpLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
+      <a
+        [href]="kpmpLink()"
+        hraClickEvent
+        hraFeature="go-kpmp"
+        class="app-logo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <hra-icon class="kpmp" [svgIcon]="'KPMP'" />
       </a>
-      <a [href]="ebiLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
+      <a
+        [href]="ebiLink()"
+        hraClickEvent
+        hraFeature="go-ebi"
+        class="app-logo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <hra-icon class="partner" [svgIcon]="'partner-logos'" />
       </a>
     </div>
