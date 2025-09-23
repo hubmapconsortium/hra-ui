@@ -14,6 +14,10 @@
           *matCellDef="let element"
           [class.highlight]="isHighlighted(element)"
           [hraPlainTooltip]="element[0]"
+          hraHoverEvent
+          hraFeature="hover-cell-type"
+          (mouseover)="$event.stopPropagation()"
+          (mouseout)="$event.stopPropagation()"
         >
           {{ element[0] }}
         </td>
@@ -78,6 +82,8 @@
         *matRowDef="let row; columns: (columns$ | async) ?? []"
         (mouseover)="setHoverId(getHoverId(row))"
         (mouseout)="setHoverId(undefined)"
+        hraHoverEvent
+        hraFeature="hover-cell-ID"
       ></tr>
     </table>
   </cdk-virtual-scroll-viewport>
