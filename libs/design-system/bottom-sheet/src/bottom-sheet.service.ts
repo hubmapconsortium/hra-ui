@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { BottomSheetComponent } from './lib/bottom-sheet.component';
+import { BottomSheetComponent, PageSectionData } from './lib/bottom-sheet.component';
 import { TableRow, TableColumn } from '@hra-ui/design-system/table';
-import { PageSectionData } from './';
 
 /**
  * Service to handle bottom sheet operations.
