@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, input, output, ViewChild } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +14,7 @@ import {
   XYZPositionModule,
 } from 'ccf-shared';
 
+import { HraCommonModule } from '@hra-ui/common';
 import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
 import { TermOccurrenceListComponent } from '../term-occurence-list/term-occurrence.component';
@@ -28,7 +28,7 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
   templateUrl: './spatial-search-ui.component.html',
   styleUrls: ['./spatial-search-ui.component.scss'],
   imports: [
-    CommonModule,
+    HraCommonModule,
     BodyUiModule,
     XYZPositionModule,
     SpatialSearchKeyboardUIBehaviorModule,

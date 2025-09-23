@@ -1,91 +1,113 @@
-<ng-scrollbar>
-  <form [formGroup]="filterForm">
-    <div class="input-container">
-      <div class="section">
-        <div class="section-header">
-          <div class="section-title">Demographics</div>
+<ng-container hraFeature="filters">
+  <ng-scrollbar>
+    <form [formGroup]="filterForm">
+      <div class="input-container">
+        <div class="section">
+          <div class="section-header">
+            <div class="section-title">Demographics</div>
+          </div>
+          <div class="patient-filters" hraFeature="donor">
+            <mat-form-field hraFeature="sex" class="dropdown-form-field">
+              <mat-label>Sex</mat-label>
+              <mat-select
+                hraModelChangeEvent
+                hraClickEvent
+                disableOptionCentering="true"
+                panelClass="options-container"
+                disableRipple
+                formControlName="sex"
+              >
+                @for (option of sexOptions; track option) {
+                  <mat-option class="dropdown-option" [value]="option" [disabled]="isSexOptionDisabled(option)">
+                    <div>{{ option }}</div>
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field hraFeature="bmi" class="dropdown-form-field">
+              <mat-label>BMI</mat-label>
+              <ccf-dual-slider formControlName="bmiRange" [min]="bmiMin" [max]="bmiMax" />
+            </mat-form-field>
+
+            <mat-form-field hraFeature="age" class="dropdown-form-field">
+              <mat-label>Age</mat-label>
+              <ccf-dual-slider formControlName="ageRange" [min]="ageMin" [max]="ageMax" />
+            </mat-form-field>
+          </div>
         </div>
-        <div class="patient-filters">
-          <mat-form-field class="dropdown-form-field">
-            <mat-label>Sex</mat-label>
-            <mat-select
-              disableOptionCentering="true"
-              panelClass="options-container"
-              disableRipple
-              formControlName="sex"
+
+        <div hraFeature="provenance" class="section">
+          <div class="section-header">
+            <div class="section-title">Provenance</div>
+          </div>
+          <ccf-autocomplete-chips-form
+            hraFeature="assays"
+            class="assay-form"
+            label="Assay Types"
+            [filterOptions]="technologyOptions()"
+            [form]="filterForm.controls.technologies"
+          />
+
+          <ccf-autocomplete-chips-form
+            hraFeature="consortia"
+            class="consortia-form"
+            label="Consortia"
+            [filterOptions]="consortiaOptions()"
+            [form]="filterForm.controls.consortiums"
+          />
+
+          <ccf-autocomplete-chips-form
+            hraFeature="tissue-providers"
+            class="providers-form"
+            label="Tissue Data Providers"
+            [filterOptions]="providerOptions()"
+            [form]="filterForm.controls.tmc"
+          />
+        </div>
+
+        <div hraFeature="spatial-search" class="section spatial-search">
+          <div class="section-header">
+            <div class="section-title">Spatial Locations</div>
+            <button
+              hraFeature="add"
+              hraClickEvent=""
+              class="run-spatial-search-button"
+              mat-button
+              (click)="spatialFlowService.startSpatialSearchFlow(false)"
             >
-              @for (option of sexOptions; track option) {
-                <mat-option class="dropdown-option" [value]="option" [disabled]="isSexOptionDisabled(option)">
-                  <div>{{ option }}</div>
-                </mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field class="dropdown-form-field">
-            <mat-label>BMI</mat-label>
-            <ccf-dual-slider formControlName="bmiRange" [min]="bmiMin" [max]="bmiMax" />
-          </mat-form-field>
-
-          <mat-form-field class="dropdown-form-field">
-            <mat-label>Age</mat-label>
-            <ccf-dual-slider formControlName="ageRange" [min]="ageMin" [max]="ageMax" />
-          </mat-form-field>
+              Spatial Search
+              <mat-icon>add_circle</mat-icon>
+            </button>
+          </div>
+          <ccf-spatial-search-list
+            [items]="spatialSearchItems()"
+            (selectionChanged)="spatialSearchSelectionChange.emit($event)"
+            (itemRemoved)="spatialSearchRemoved.emit($event.id)"
+          />
         </div>
       </div>
+    </form>
+  </ng-scrollbar>
 
-      <div class="section">
-        <div class="section-header">
-          <div class="section-title">Provenance</div>
-        </div>
-        <ccf-autocomplete-chips-form
-          class="assay-form"
-          label="Assay Types"
-          [filterOptions]="technologyOptions()"
-          [form]="filterForm.controls.technologies"
-        />
-
-        <ccf-autocomplete-chips-form
-          class="consortia-form"
-          label="Consortia"
-          [filterOptions]="consortiaOptions()"
-          [form]="filterForm.controls.consortiums"
-        />
-
-        <ccf-autocomplete-chips-form
-          class="providers-form"
-          label="Tissue Data Providers"
-          [filterOptions]="providerOptions()"
-          [form]="filterForm.controls.tmc"
-        />
-      </div>
-
-      <div class="section spatial-search">
-        <div class="section-header">
-          <div class="section-title">Spatial Locations</div>
-          <button
-            class="run-spatial-search-button"
-            mat-button
-            (click)="spatialFlowService.startSpatialSearchFlow(false)"
-          >
-            Spatial Search
-            <mat-icon>add_circle</mat-icon>
-          </button>
-        </div>
-        <ccf-spatial-search-list
-          [items]="spatialSearchItems()"
-          (selectionChanged)="spatialSearchSelectionChange.emit($event)"
-          (itemRemoved)="spatialSearchRemoved.emit($event.id)"
-        />
-      </div>
-    </div>
-  </form>
-</ng-scrollbar>
-
-<div class="button-container">
-  <button mat-button [disabled]="filterForm.pristine && isEmpty()" (click)="resetFilter()">
-    Reset
-    <mat-icon class="reset icon">reset_settings</mat-icon>
-  </button>
-  <button mat-flat-button (click)="applyFilter()" [disabled]="filterForm.pristine || filterForm.invalid">Apply</button>
-</div>
+  <div class="button-container">
+    <button
+      hraFeature="reset"
+      hraClickEvent
+      mat-button
+      [disabled]="filterForm.pristine && isEmpty()"
+      (click)="resetFilter()"
+    >
+      Reset
+      <mat-icon class="reset icon">reset_settings</mat-icon>
+    </button>
+    <button
+      hraFeature="apply"
+      hraClickEvent
+      (click)="applyFilter()"
+      [disabled]="filterForm.pristine || filterForm.invalid"
+    >
+      Apply
+    </button>
+  </div>
+</ng-container>

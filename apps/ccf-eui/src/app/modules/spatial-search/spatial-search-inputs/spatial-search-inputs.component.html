@@ -1,7 +1,8 @@
-<div class="sex-toggle">
+<div hraFeature="sex" class="sex-toggle">
   <mat-form-field class="sex field" subscriptSizing="dynamic">
     <mat-label>Donor Sex</mat-label>
     <mat-select
+      hraClickEvent
       panelClass="options-container"
       disableOptionCentering="true"
       disableRipple
@@ -17,12 +18,14 @@
   </mat-form-field>
 </div>
 
-<div class="organ-selector">
+<div hraFeature="organ" class="organ-selector">
   <form class="organ-selector">
     <mat-form-field class="organ field" subscriptSizing="dynamic">
       <mat-label>Organ</mat-label>
       <mat-icon class="search-icon" matPrefix>search</mat-icon>
       <input
+        hraFeature="organ-search"
+        hraClickEvent
         matInput
         hideSingleSelectionIndicator="true"
         type="text"
@@ -32,6 +35,7 @@
         [matAutocomplete]="auto"
       />
       <mat-autocomplete
+        hraFeature="organ-list"
         #auto="matAutocomplete"
         [displayWith]="displayFn"
         (optionSelected)="updateOrgan.emit($event.option.value)"
