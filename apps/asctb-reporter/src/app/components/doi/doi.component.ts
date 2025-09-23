@@ -1,13 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { Error } from '../../models/response.model';
 import { DOI } from '../../models/sheet.model';
 
 @Component({
   selector: 'app-doi',
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatBottomSheetModule, HraCommonModule],
   templateUrl: './doi.component.html',
   styleUrls: ['./doi.component.scss'],
-  standalone: false,
 })
 export class DoiComponent implements OnInit {
   data = inject<DOI[]>(MAT_BOTTOM_SHEET_DATA);

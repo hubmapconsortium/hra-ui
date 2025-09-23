@@ -1,4 +1,4 @@
-<div class="controls">
+<div class="controls" hraFeature="vis-tree-controls">
   <div class="title">Tree controls</div>
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
@@ -20,7 +20,7 @@
   </div>
 </div>
 
-<div class="controls">
+<div class="controls" hraFeature="vis-bimodal-distance-controls">
   <div class="title">Bimodal distance controls</div>
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
@@ -50,7 +50,7 @@
   </div>
 </div>
 
-<div class="ids">
+<div class="ids" hraFeature="vis-ids-labels">
   <div class="label">IDs & labels</div>
 
   <div class="checkboxes">
@@ -60,6 +60,8 @@
       (change)="changeShowAS()"
       matTooltip="Toggle Visibility of Anatomical Structures"
       matTooltipPosition="below"
+      hraFeature="asctb-reporter-show-all-as"
+      [hraClickEvent]="{ enabled: config.show_all_AS }"
     >
       Show all AS
     </mat-slide-toggle>
@@ -68,12 +70,23 @@
       (change)="changeShowOntology()"
       matTooltip="Toggle Visibility of Ontology Links"
       matTooltipPosition="below"
+      hraFeature="asctb-reporter-show-ontology"
+      [hraClickEvent]="{ enabled: config.show_ontology }"
     >
       Show ontology IDs
     </mat-slide-toggle>
   </div>
 
-  <mat-button-toggle-group hraButtonToggleSize="medium" hideSingleSelectionIndicator="false">
+  <mat-button-toggle-group
+    hraButtonToggleSize="medium"
+    hideSingleSelectionIndicator="false"
+    hraFeature="asctb-reporter-discrepencies"
+    [hraClickEvent]="{
+      showDiscrepencyLabel: config.discrepencyLabel,
+      showDiscrepencyId: config.discrepencyId,
+      showDuplicateId: config.duplicateId,
+    }"
+  >
     <mat-button-toggle value="1" [checked]="config.discrepencyLabel" (change)="showDiscrepencyLabel()">
       Label mismatch
     </mat-button-toggle>

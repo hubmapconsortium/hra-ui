@@ -1,19 +1,28 @@
-<input type="file" class="file-input" required accept=".csv" (change)="onFileSelected($event)" #fileUpload />
+<ng-container hraFeature="file-upload">
+  <input type="file" class="file-input" required accept=".csv" (change)="onFileSelected($event)" #fileUpload />
 
-@if (fileName) {
-  <div class="selected-file">
-    <div class="filename">{{ fileName }}</div>
-    <button mat-icon-button (click)="onFileRemove(fileUpload)">
-      <mat-icon color="red">delete</mat-icon>
-    </button>
-  </div>
-} @else {
-  <div class="upload-button">
-    <button mat-flat-button hraButtonVariant="primary" hraButtonSize="medium" (click)="onClick(fileUpload)">
-      Upload
-    </button>
-    @if (!fileUpload.value) {
-      <div>Select a file to upload</div>
-    }
-  </div>
-}
+  @if (fileName) {
+    <div class="selected-file">
+      <div class="filename">{{ fileName }}</div>
+      <button mat-icon-button (click)="onFileRemove(fileUpload)" hraFeature="file-upload" hraClickEvent>
+        <mat-icon color="red">delete</mat-icon>
+      </button>
+    </div>
+  } @else {
+    <div class="upload-button">
+      <button
+        mat-flat-button
+        hraButtonVariant="primary"
+        hraButtonSize="medium"
+        hraFeature="upload"
+        hraClickEvent
+        (click)="onClick(fileUpload)"
+      >
+        Upload
+      </button>
+      @if (!fileUpload.value) {
+        <div>Select a file to upload</div>
+      }
+    </div>
+  }
+</ng-container>

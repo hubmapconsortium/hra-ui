@@ -18,6 +18,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
@@ -49,6 +50,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     ButtonVariantDirective,
     MatMenuModule,
     ScrollingModule,
+    HraCommonModule,
   ],
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],

@@ -1,4 +1,4 @@
-<app-sidenav>
+<app-sidenav hraFeature="report-drawer">
   <div header>
     <app-sidenav-header
       [title]="'Report for ' + currentSheet.display"
@@ -96,7 +96,13 @@
                     <small class="fw-normal">Counts by Organ</small>
                   </p>
                   <div class="display-option" #tooltip="matTooltip" matTooltip="Export as Xlsx">
-                    <button mat-icon-button (click)="downloadReportByOrgan()" class="mr-2">
+                    <button
+                      mat-icon-button
+                      (click)="downloadReportByOrgan()"
+                      class="mr-2"
+                      hraFeature="download-report"
+                      hraClickEvent
+                    >
                       <mat-icon>get_app</mat-icon>
                     </button>
                   </div>
@@ -484,10 +490,22 @@
                   </div>
                 </mat-panel-title>
                 <mat-panel-description>
-                  <button mat-icon-button (click)="downloadReport(i)" class="download-report">
+                  <button
+                    mat-icon-button
+                    (click)="downloadReport(i)"
+                    class="download-report"
+                    hraFeature="download-report"
+                    hraClickEvent
+                  >
                     <mat-icon>get_app</mat-icon>
                   </button>
-                  <button mat-icon-button (click)="deleteCompareSheetReport(i)" class="delete-report">
+                  <button
+                    mat-icon-button
+                    (click)="deleteCompareSheetReport(i)"
+                    class="delete-report"
+                    hraFeature="delete-report"
+                    hraClickEvent
+                  >
                     <mat-icon>delete</mat-icon>
                   </button>
                 </mat-panel-description>

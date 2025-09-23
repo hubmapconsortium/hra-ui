@@ -5,7 +5,7 @@
   <mat-icon matSuffix>arrow_drop_down</mat-icon>
 </mat-form-field>
 
-<div class="search-modal" *ngIf="searchOpen() && !disabled()">
+<div class="search-modal" *ngIf="searchOpen() && !disabled()" hraFeature="search-modal">
   <div class="search-controls">
     <mat-form-field cdkTrapFocus [cdkTrapFocusAutoCapture]="true" subscriptSizing="dynamic">
       <mat-icon matPrefix>search</mat-icon>
@@ -17,10 +17,20 @@
         aria-label="Clear search"
         matTooltip="Clear search"
         (click)="searchValue.set('')"
+        hraFeature="clear-search-btn"
+        hraClickEvent
       >
         <mat-icon>close</mat-icon>
       </button>
-      <button matSuffix mat-icon-button aria-label="Close" matTooltip="Close" (click)="closeSearchList()">
+      <button
+        matSuffix
+        mat-icon-button
+        aria-label="Close"
+        matTooltip="Close"
+        (click)="closeSearchList()"
+        hraFeature="close-search-btn"
+        hraClickEvent
+      >
         <mat-icon>arrow_drop_up</mat-icon>
       </button>
     </mat-form-field>
@@ -51,6 +61,8 @@
           hraButtonSize="small"
           aria-label="Select All"
           (click)="selectAllOptions()"
+          hraFeature="select-all-btn"
+          hraClickEvent
         >
           Select All
         </button>
@@ -60,6 +72,8 @@
           hraButtonSize="small"
           aria-label="Deselect All"
           (click)="deselectAllOptions()"
+          hraFeature="deselect-all-btn"
+          hraClickEvent
         >
           Deselect All
         </button>

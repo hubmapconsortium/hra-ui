@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" hraFeature="uploader">
   <div class="information">
     <p>
       Through this feature, you can upload your own data (ASCT+B to ASCT+B, ASCT+B to experimental data, or ASCT+B to
@@ -14,12 +14,20 @@
       hraButtonToggleSize="medium"
       [hideSingleSelectionIndicator]="false"
       #dataSource="matButtonToggleGroup"
+      hraFeature="data-source-selector"
     >
-      <mat-button-toggle value="file" checked>Upload file</mat-button-toggle>
-      <mat-button-toggle value="link">Link URL</mat-button-toggle>
+      <mat-button-toggle value="file" checked hraFeature="upload-file" hraClickEvent>Upload file</mat-button-toggle>
+      <mat-button-toggle value="link" hraFeature="link-url" hraClickEvent>Link URL</mat-button-toggle>
     </mat-button-toggle-group>
 
-    <button mat-button hraButtonVariant="primary" hraButtonSize="medium" [matMenuTriggerFor]="templatesMenu">
+    <button
+      mat-button
+      hraButtonVariant="primary"
+      hraButtonSize="medium"
+      [matMenuTriggerFor]="templatesMenu"
+      hraFeature="templates-menu"
+      hraClickEvent
+    >
       Templates
     </button>
 
@@ -28,12 +36,16 @@
         mat-menu-item
         href="https://docs.google.com/spreadsheets/d/1smQ8_3F-KSRlY7bmozsoM1EonQL4ahNaXP7zeQFf3Ko/edit#gid=0"
         target="_blank"
+        hraFeature="asctb-table-template"
+        hraClickEvent
         >ASCT+B Table template</a
       >
       <a
         mat-menu-item
         href="https://docs.google.com/spreadsheets/d/1DE4Bh2PI7mgaMciMOky2OTduNwYNRU-DyYQPT8szJ-Y/edit#gid=0"
         target="_blank"
+        hraFeature="omap-compare-template"
+        hraClickEvent
         >OMAP Compare template</a
       >
     </mat-menu>
@@ -53,6 +65,8 @@
   </div>
 
   <div class="submit-button">
-    <button mat-flat-button hraButtonSize="medium" (click)="submitData()">Submit</button>
+    <button mat-flat-button hraButtonSize="medium" (click)="submitData()" hraFeature="submit-button" hraClickEvent>
+      Submit
+    </button>
   </div>
 </div>

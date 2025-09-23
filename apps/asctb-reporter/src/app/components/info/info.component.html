@@ -1,89 +1,91 @@
-@if (loading || info.name === '') {
-  <div class="loader-container">
-    <hra-progress-spinner [size]="'large'" [color]="'color'"></hra-progress-spinner>
-    <div>Please wait while the data loads...</div>
-  </div>
-} @else {
-  <div class="sheet-header">
-    <div class="name">{{ info.name }}</div>
-    <button mat-icon-button (click)="close()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
-  <mat-divider class="header" />
-  <div *ngIf="error.hasError; else infoBlock" class="pt-3">
-    Could not fetch data {{ !info.notes ? 'and notes' : '' }} for
-    <strong>{{ info.name }}</strong>
-    {{ info.notes ? 'but we have some notes available' : '' }}. This could be because,
-    <ul class="pl-3 pt-2">
-      <li>Structure does not have an ontology ID.</li>
-      <li>Structure has an invalid ontology ID.</li>
-      <li>Broken network connection.</li>
-    </ul>
-    <div *ngIf="info.notes">
-      <div class="info-title">Notes</div>
-      <div>
-        {{ info.notes }}
-      </div>
+<ng-container hraFeature="info-bottom-sheet">
+  @if (loading || info.name === '') {
+    <div class="loader-container">
+      <hra-progress-spinner [size]="'large'" [color]="'color'"></hra-progress-spinner>
+      <div>Please wait while the data loads...</div>
     </div>
-    <div *ngIf="info?.references?.length">
-      <div class="pt-3"></div>
-      <div class="info-title">DOI</div>
+  } @else {
+    <div class="sheet-header">
+      <div class="name">{{ info.name }}</div>
+      <button mat-icon-button (click)="close()" hraFeature="close-info-sheet" hraClickEvent>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-divider class="header" />
+    <div *ngIf="error.hasError; else infoBlock" class="pt-3">
+      Could not fetch data {{ !info.notes ? 'and notes' : '' }} for
+      <strong>{{ info.name }}</strong>
+      {{ info.notes ? 'but we have some notes available' : '' }}. This could be because,
       <ul class="pl-3 pt-2">
-        <li *ngFor="let refer of info?.references ?? []">
-          {{ refer.doi }}
-        </li>
+        <li>Structure does not have an ontology ID.</li>
+        <li>Structure has an invalid ontology ID.</li>
+        <li>Broken network connection.</li>
       </ul>
-    </div>
-  </div>
-
-  <ng-template #infoBlock>
-    <div *ngIf="!error.hasError" class="py-3 info">
-      <div class="info-title">Description</div>
-      <div class="info-description">
-        {{ info.desc ? info.desc : 'No description found.' }}
-      </div>
-
-      <div class="info-title">Ontology ID</div>
-      <div class="info-description">
-        {{ info.ontologyId ? info.ontologyId : 'No ID found.' }}
-      </div>
-
-      <div class="info-title">{{ info.ontologyCode === 'HGNC' ? 'Link' : 'IRI' }}</div>
-      <div class="info-description">
-        <a [href]="info.iri" target="_blank" hraHyperlink>{{ info.iri ? info.iri : 'No IRI found.' }}</a>
-      </div>
-
-      <div *ngIf="info.extraLinks">
-        <div *ngFor="let item of info.extraLinks | keyvalue">
-          <div class="info-title">{{ item.key }}</div>
-
-          <div class="info-description">
-            <a [href]="item.value" target="_blank" hraHyperlink>{{
-              item.value
-                ? item.value
-                : 'No ' +
-                  item.key +
-                  '
-              found.'
-            }}</a>
-          </div>
+      <div *ngIf="info.notes">
+        <div class="info-title">Notes</div>
+        <div>
+          {{ info.notes }}
         </div>
       </div>
-
-      <!-- REMOVE ME -->
-      <div class="info-title">Notes</div>
-      <markdown class="info-description" [data]="info.notes ? info.notes : 'No notes found.'"> </markdown>
-
-      <div class="info-title">DOI</div>
       <div *ngIf="info?.references?.length">
-        <ul class="info-description">
+        <div class="pt-3"></div>
+        <div class="info-title">DOI</div>
+        <ul class="pl-3 pt-2">
           <li *ngFor="let refer of info?.references ?? []">
             {{ refer.doi }}
           </li>
         </ul>
       </div>
-      <div class="info-description" *ngIf="!info?.references?.length">No DOI references found.</div>
     </div>
-  </ng-template>
-}
+
+    <ng-template #infoBlock>
+      <div *ngIf="!error.hasError" class="py-3 info">
+        <div class="info-title">Description</div>
+        <div class="info-description">
+          {{ info.desc ? info.desc : 'No description found.' }}
+        </div>
+
+        <div class="info-title">Ontology ID</div>
+        <div class="info-description">
+          {{ info.ontologyId ? info.ontologyId : 'No ID found.' }}
+        </div>
+
+        <div class="info-title">{{ info.ontologyCode === 'HGNC' ? 'Link' : 'IRI' }}</div>
+        <div class="info-description">
+          <a [href]="info.iri" target="_blank" hraHyperlink>{{ info.iri ? info.iri : 'No IRI found.' }}</a>
+        </div>
+
+        <div *ngIf="info.extraLinks">
+          <div *ngFor="let item of info.extraLinks | keyvalue">
+            <div class="info-title">{{ item.key }}</div>
+
+            <div class="info-description">
+              <a [href]="item.value" target="_blank" hraHyperlink>{{
+                item.value
+                  ? item.value
+                  : 'No ' +
+                    item.key +
+                    '
+              found.'
+              }}</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- REMOVE ME -->
+        <div class="info-title">Notes</div>
+        <markdown class="info-description" [data]="info.notes ? info.notes : 'No notes found.'"> </markdown>
+
+        <div class="info-title">DOI</div>
+        <div *ngIf="info?.references?.length">
+          <ul class="info-description">
+            <li *ngFor="let refer of info?.references ?? []">
+              {{ refer.doi }}
+            </li>
+          </ul>
+        </div>
+        <div class="info-description" *ngIf="!info?.references?.length">No DOI references found.</div>
+      </div>
+    </ng-template>
+  }
+</ng-container>

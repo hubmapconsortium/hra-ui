@@ -1,18 +1,9 @@
-<div>
-  <!-- <mat-expansion-panel class="mepNoPadding control-title" [expanded]="!error.hasError">
-    <mat-expansion-panel-header [expandedHeight]="'3.125rem'">
-      <mat-panel-title>
-        <div>
-          <strong> Cell Types </strong>
-        </div>
-      </mat-panel-title>
-    </mat-expansion-panel-header> -->
-
+<div hraFeature="visualization-controls-functions">
   <div class="title">Visualization controls</div>
 
   <div class="content">
     <!-- Cell Type Controls -->
-    <div class="vis-controls">
+    <div class="vis-controls" hraFeature="cell-type">
       <div class="control-title">Cell types</div>
       <div class="filters">
         <mat-form-field>
@@ -25,6 +16,8 @@
             [value]="(config$ | async)?.CT?.sort"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
+            hraFeature="ct-sort"
+            [hraModelChangeEvent]="{ value: (config$ | async)?.CT?.sort }"
           >
             <mat-option *ngFor="let option of sortOptions" [value]="option">
               {{ option }}
@@ -41,6 +34,8 @@
             [value]="(config$ | async)?.CT?.size"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
+            hraFeature="ct-size"
+            [hraModelChangeEvent]="{ value: (config$ | async)?.CT?.size }"
           >
             <mat-option *ngFor="let option of ctSizeOptions" [value]="option">
               {{ option }}
@@ -51,7 +46,7 @@
     </div>
 
     <!-- Biomarkers Controls -->
-    <div class="vis-controls">
+    <div class="vis-controls" hraFeature="biomarkers">
       <div class="control-title">Biomarkers</div>
       <div class="filters">
         <mat-form-field>
@@ -64,6 +59,8 @@
             [value]="(config$ | async)?.BM?.sort"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
+            hraFeature="bm-sort"
+            [hraModelChangeEvent]="{ value: (config$ | async)?.BM?.sort }"
           >
             <mat-option *ngFor="let option of sortOptions" [value]="option">
               {{ option }}
@@ -80,6 +77,8 @@
             [value]="(config$ | async)?.BM?.size"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
+            hraFeature="bm-size"
+            [hraModelChangeEvent]="{ value: (config$ | async)?.BM?.size }"
           >
             <mat-option *ngFor="let option of bmSizeOptions" [value]="option">
               {{ option }}
@@ -98,6 +97,8 @@
             [value]="(config$ | async)?.BM?.type"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
+            hraFeature="bm-type"
+            [hraModelChangeEvent]="{ value: (config$ | async)?.BM?.type }"
           >
             <mat-option *ngFor="let option of bimodalBTypeOptions" [value]="option">
               {{ option }}
@@ -108,7 +109,7 @@
     </div>
 
     <!-- OMAP Controls -->
-    <div class="vis-controls">
+    <div class="vis-controls" hraFeature="omap">
       <div class="control-title">Organ Mapping Antibody Panels filters</div>
       <div class="filters">
         <mat-button-toggle-group
@@ -116,6 +117,8 @@
           class="full-width"
           multiple="true"
           hideMultipleSelectionIndicator="false"
+          hraFeature="organs-only"
+          [hraModelChangeEvent]="{ organsOnly: omaps.organsOnly, proteinsOnly: omaps.proteinsOnly }"
         >
           <mat-button-toggle
             [checked]="omaps.organsOnly"

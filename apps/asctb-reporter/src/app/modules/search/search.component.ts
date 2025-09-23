@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule, MatListOption, MatSelectionList } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -39,6 +40,7 @@ import { TreeState } from '../../store/tree.state';
     MatButtonToggleModule,
     A11yModule,
     ButtonsModule,
+    HraCommonModule,
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],

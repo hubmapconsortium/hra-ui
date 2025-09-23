@@ -4,6 +4,7 @@ import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef } from '
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { ProgressSpinnerComponent } from '@hra-ui/design-system/indicators/progress-spinner';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -24,6 +25,7 @@ import { SheetInfo } from '../../models/sheet.model';
     MatDivider,
     ProgressSpinnerComponent,
     TextHyperlinkDirective,
+    HraCommonModule,
   ],
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],

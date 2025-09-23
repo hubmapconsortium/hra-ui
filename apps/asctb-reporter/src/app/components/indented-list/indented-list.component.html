@@ -1,4 +1,4 @@
-<app-sidenav>
+<app-sidenav hraFeature="indented-list">
   <div header>
     <app-sidenav-header
       [title]="currentSheet.display + ' Indented List'"
@@ -27,7 +27,14 @@
         [ngClass]="{ 'background-highlight': activateNode === node }"
         (click)="activateNode = node; openBottomSheet.emit({ name: node.name, ontologyId: node.ontologyId })"
       >
-        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle' + node.name" class="node-button">
+        <button
+          mat-icon-button
+          matTreeNodeToggle
+          [attr.aria-label]="'toggle' + node.name"
+          class="node-button"
+          hraFeature="expand-collapse-node"
+          hraClickEvent
+        >
           <mat-icon class="mat-icon-rtl-mirror node-button-icon">
             {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
           </mat-icon>
