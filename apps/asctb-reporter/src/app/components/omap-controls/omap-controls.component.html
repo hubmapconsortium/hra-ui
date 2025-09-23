@@ -18,7 +18,7 @@
           })
         "
         hraFeature="omap-organs-only"
-        [hraClickEvent]="{ organsOnly: omaps.organsOnly }"
+        [hraModelChangeEvent]="{ organsOnly: omaps.organsOnly }"
       >
         <mat-label class="checkbox-label">OMAP Organs Only</mat-label>
       </mat-checkbox>
@@ -33,7 +33,7 @@
           })
         "
         hraFeature="omap-proteins-only"
-        [hraClickEvent]="{ proteinsOnly: omaps.proteinsOnly }"
+        [hraModelChangeEvent]="{ proteinsOnly: omaps.proteinsOnly }"
       >
         <mat-label class="checkbox-label">OMAP Proteins Only</mat-label>
       </mat-checkbox>

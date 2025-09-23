@@ -33,6 +33,8 @@
                     [hideSingleSelectionIndicator]="false"
                     #dataSource="matButtonToggleGroup"
                     (change)="onDataSourceChange(i)"
+                    hraFeature="data-source-selector"
+                    [hraModelChangeEvent]="{ selected: dataSource.value }"
                   >
                     <mat-button-toggle value="file" checked>Upload file</mat-button-toggle>
                     <mat-button-toggle value="link">Link URL</mat-button-toggle>

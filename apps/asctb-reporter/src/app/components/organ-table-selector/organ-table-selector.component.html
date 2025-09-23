@@ -34,6 +34,8 @@
                   [checked]="selection.hasValue() && isAllSelected()"
                   [indeterminate]="selection.hasValue() && !isAllSelected()"
                   [aria-label]="checkboxLabel()"
+                  hraFeature="select-all"
+                  [hraClickEvent]="{ allSelected: isAllSelected() }"
                 >
                 </mat-checkbox>
               </th>
@@ -43,6 +45,8 @@
                   (change)="$event ? selectRow(row) : null"
                   [checked]="selection.isSelected(row)"
                   [aria-label]="checkboxLabel(row)"
+                  hraFeature="select-row"
+                  [hraClickEvent]="{ selected: selection.isSelected(row) }"
                 >
                 </mat-checkbox>
               </td>
@@ -92,6 +96,8 @@
                   [checked]="omapselection.hasValue() && isAllSelected()"
                   [indeterminate]="omapselection.hasValue() && !isAllSelected()"
                   [aria-label]="checkboxLabel()"
+                  hraFeature="select-all"
+                  [hraClickEvent]="{ allSelected: isAllSelected() }"
                 >
                 </mat-checkbox>
               </th>
@@ -101,6 +107,8 @@
                   (change)="$event ? selectRow(row) : null"
                   [checked]="omapselection.isSelected(row)"
                   [aria-label]="checkboxLabel(row)"
+                  hraFeature="select-row"
+                  [hraClickEvent]="{ selected: omapselection.isSelected(row) }"
                 >
                 </mat-checkbox>
               </td>
