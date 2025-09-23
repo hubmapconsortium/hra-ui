@@ -1,4 +1,11 @@
-<button mat-icon-button class="download" hraPlainTooltip="Download data" (click)="download()">
+<button
+  mat-icon-button
+  class="download"
+  hraPlainTooltip="Download data"
+  (click)="download()"
+  hraFeature="download-statistics-table"
+  hraClickEvent
+>
   <mat-icon>download</mat-icon>
 </button>
 <hra-table [csvUrl]="csvUrl()" [columns]="columns()" [rows]="rows()" />
