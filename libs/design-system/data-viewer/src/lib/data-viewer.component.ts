@@ -80,6 +80,12 @@ export class DataViewerComponent {
     });
   }
 
+  /**
+   * Get a feature name for a card
+   *
+   * @param card Card data
+   * @returns A feature name
+   */
   getCardFeatureId(card: ViewerCard): string {
     const url = card.sourceDataUrl;
     const endIndex = url.lastIndexOf('/');
