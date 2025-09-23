@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /** Type for button position */
@@ -22,7 +22,7 @@ export interface SnackbarData {
 /** Snackbar component */
 @Component({
   selector: 'hra-snackbar',
-  imports: [CommonModule, MatIconModule, ButtonsModule],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule],
   templateUrl: './snackbar.component.html',
   styleUrl: './snackbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -14,4 +14,6 @@ export {
 export { ClickEventProps } from './lib/events/click';
 export { ErrorEventProps } from './lib/events/error';
 export { HoverEventProps } from './lib/events/hover';
+export { KeyboardEventProps } from './lib/events/keyboard';
+export { ModelChangeEventProps } from './lib/events/model-change';
 export { PageViewEventProps } from './lib/events/page-view';
