@@ -16,7 +16,7 @@
             <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />
           }
           @if (imageTypes[metadata().type] === 'model/gltf-binary') {
-            <div class="viewer-container">
+            <div class="viewer-container" hraFeature="3d-model-viewer" hraClickEvent>
               <model-viewer class="model-viewer" [src]="getImage()" shadow-intensity="1" camera-controls auto-rotate>
               </model-viewer>
             </div>
@@ -25,7 +25,7 @@
       </div>
     </hra-metadata-layout-header>
 
-    <hra-metadata-layout-content [class.medium-screen]="!isWMediumScreen()">
+    <hra-metadata-layout-content [class.medium-screen]="!isNotMediumScreen()">
       <div class="sections">
         <hra-page-section class="description" tagline="Description" [level]="2">
           <markdown [data]="metadata().was_derived_from.description" />
@@ -58,15 +58,17 @@
         </hra-page-section>
       </div>
 
-      <hra-provenance-menu
-        [rows]="rows()"
-        [columns]="columns()"
-        [version]="currentVersion()"
-        [availableVersions]="availableVersions()"
-        [downloadOptions]="downloadOptions()"
-        (versionChange)="currentVersion.set($event)"
-        hraFeature="provenance-menu"
-      ></hra-provenance-menu>
+      @if (!isNotMediumScreen()) {
+        <hra-provenance-menu
+          [rows]="rows()"
+          [columns]="columns()"
+          [version]="currentVersion()"
+          [availableVersions]="availableVersions()"
+          [downloadOptions]="downloadOptions()"
+          (versionChange)="currentVersion.set($event)"
+          hraFeature="provenance-menu"
+        ></hra-provenance-menu>
+      }
     </hra-metadata-layout-content>
   </hra-metadata-layout>
   <hra-footer></hra-footer>

@@ -30,7 +30,7 @@
             snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })
           "
           hraFeature="download-option"
-          hraClickEvent
+          [hraClickEvent]="{ option: option.name }"
         >
           <mat-icon>{{ option.icon }}</mat-icon>
           <div class="option-text">
@@ -50,4 +50,10 @@
   </div>
 </div>
 
-<hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" />
+<hra-table
+  class="metadata-table"
+  [rows]="rows()"
+  [columns]="columns()"
+  [verticalDividers]="true"
+  hraFeature="metadata-table"
+/>

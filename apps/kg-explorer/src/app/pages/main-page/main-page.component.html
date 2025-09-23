@@ -1,5 +1,5 @@
 @if (isSmallScreen() && !sidenav.opened) {
-  <button mat-fab extended class="filter-button" (click)="sidenav.toggle()">
+  <button mat-fab extended class="filter-button" (click)="sidenav.toggle()" hraFeature="filter-fab" hraClickEvent>
     <mat-icon>filter_list</mat-icon>
     Filters
   </button>

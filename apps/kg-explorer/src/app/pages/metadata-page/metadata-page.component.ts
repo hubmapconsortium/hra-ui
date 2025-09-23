@@ -70,8 +70,8 @@ export class MetadataPageComponent {
   /** PURL for the object */
   readonly purl = signal<string>('');
 
-  /** Determines if the screen is medium-sized */
-  protected isWMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639px)');
+  /** Determines if the screen is not medium-sized */
+  protected isNotMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639px)');
 
   /** For these DoTypes the corresponding image types will be displayed on the page */
   readonly imageTypes: Record<string, string> = {
