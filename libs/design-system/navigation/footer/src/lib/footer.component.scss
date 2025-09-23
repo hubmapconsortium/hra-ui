@@ -1,113 +1,63 @@
+@use '@angular/material' as mat;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
-// Base case is for <639px screens
 :host {
   display: flex;
   flex-direction: column;
-  font: vars.$label-medium;
-  letter-spacing: vars.$label-medium-tracking;
+  padding: 2.5rem;
+  background-color: vars.$surface-bright;
 
-  .left {
-    background-color: vars.$inverse-surface;
-
-    .container {
-      align-items: center;
-      justify-content: center;
-      height: 18.125rem;
-      max-width: 25.75rem;
-      display: flex;
-      margin: 0 auto;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      width: 17.25rem;
-      height: 14.125rem;
-      color: var(--mat-sys-on-primary);
-      --hra-brand-logo-text-color: vars .$ on-primary;
-
-      .copyright {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-      }
-
-      .socials {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(2, auto);
-      }
-    }
-  }
-
-  .right {
-    background-color: vars.$surface-container-high;
-    padding: 2rem 1rem;
-
-    .container {
-      margin: 0 0 0 auto;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 2.5rem;
-      max-width: 78.5rem;
-      margin: 0 auto;
-      color: vars.$on-primary-fixed;
-
-      p {
-        margin: 0;
-      }
-    }
-  }
-
-  @media (min-width: 640px) {
+  .content-container {
+    display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+    margin-bottom: 2.5rem;
 
-    .left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      .container {
-        min-width: 25.75rem;
-      }
+    hra-brand-logo,
+    hra-funding {
+      flex: 0 0 auto;
     }
 
-    .right {
-      flex-grow: 1;
-
-      .content {
-        gap: 0;
-      }
-
-      .disclaimer {
-        padding: 3rem 0 2rem;
-      }
+    .disclaimer {
+      flex: 1 1 560px;
+      min-width: 0;
     }
   }
 
-  @media (min-width: 1920px) {
-    .left {
-      flex-grow: 1;
+  .socials-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    font: vars.$label-medium;
+    margin-top: 2.5rem;
+    gap: 0.75rem;
+  }
 
-      .container {
-        margin: 0 0 0 auto;
-      }
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
+
+  .disclaimer p {
+    margin: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .content-container {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
     }
+  }
 
-    .right {
-      padding: 2.5rem 7.875rem;
-
-      .content {
-        margin: 0 auto 0 0;
-      }
-    }
+  @media (min-width: 320px) and (max-width: 639px) {
+    padding: 2.5rem 1.25rem;
   }
 }

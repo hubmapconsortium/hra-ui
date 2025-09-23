@@ -1,14 +1,15 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { render, screen } from '@testing-library/angular';
 import { FooterComponent } from './footer.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('FooterComponent', () => {
-  const globalProviders = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystemCommon()];
+  const globalProviders = [provideHttpClient(), provideHttpClientTesting()];
+  const imports = [MatIconTestingModule];
 
   beforeEach(async () => {
-    await render(FooterComponent, { providers: globalProviders });
+    await render(FooterComponent, { providers: globalProviders, imports });
   });
 
   it('should render the Human Reference Atlas logo', async () => {
@@ -17,9 +18,11 @@ describe('FooterComponent', () => {
   });
 
   it('should display copyright information correctly', async () => {
-    const copyrightText = screen.getByText(/2025 CNS at Indiana University/);
-    expect(screen.getByText(/copyright/)).toBeInTheDocument();
-    expect(copyrightText).toBeInTheDocument();
+    expect(screen.getByText(/© 2025/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Cyberinfrastructure for Network Science Center/i })).toBeInTheDocument();
+
+    const iuLinks = screen.getAllByRole('link', { name: /Indiana University/i });
+    expect(iuLinks[0]).toHaveAttribute('href', 'https://www.iu.edu/');
   });
 
   it('should display medical disclaimer', async () => {
@@ -31,7 +34,8 @@ describe('FooterComponent', () => {
   });
 
   it('should display a data notice', async () => {
-    const notice = screen.getByText(/HuBMAP data is managed/);
-    expect(notice).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /HuBMAP/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Data Portal/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /FAIR principles/i })).toBeInTheDocument();
   });
 });

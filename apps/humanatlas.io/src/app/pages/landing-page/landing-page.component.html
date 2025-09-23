@@ -16,9 +16,12 @@
 </div>
 
 <div class="count-cards">
-  @for (card of data().countInfo; track card) {
-    <hra-count-card [count]="card.count" [label]="card.label" [suffix]="card.suffix" [icon]="card.icon" />
-  }
+  <div class="cards-container">
+    @for (card of data().countInfo; track card) {
+      <hra-count-card [count]="card.count" [label]="card.label" [suffix]="card.suffix" [icon]="card.icon" />
+    }
+  </div>
 </div>
 
 <hra-section-cards [cardInfo]="data().sectionCardInfo" />
+<hra-footer />

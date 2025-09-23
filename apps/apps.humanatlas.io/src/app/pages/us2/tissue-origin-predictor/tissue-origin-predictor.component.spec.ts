@@ -6,20 +6,25 @@ import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { SAMPLE_FILE, TissueOriginPredictorComponent } from './tissue-origin-predictor.component';
 import { Router } from '@angular/router';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
+import { provideAssetHref } from '@hra-ui/common/url';
 
 describe('TissueOriginPredictorComponent', () => {
-  const providers = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystemCommon()];
+  const providers = [provideHttpClient(), provideHttpClientTesting(), provideAssetHref('http://localhost/')];
+  const imports = [MatIconTestingModule];
 
   it('should create', async () => {
-    const result = render(TissueOriginPredictorComponent, { providers });
+    const result = render(TissueOriginPredictorComponent, {
+      imports,
+      providers,
+    });
     await expect(result).resolves.toBeTruthy();
   });
 
   it('should use user uploaded file when user clicks on the Upload File', async () => {
     const mockCSVFile = new File([''], 'uploaded-file.csv', { type: 'text/csv' });
 
-    const { fixture } = await render(TissueOriginPredictorComponent, { providers });
+    const { fixture } = await render(TissueOriginPredictorComponent, { imports, providers });
 
     const fileInput = screen.getByTestId('file-input');
     await userEvent.upload(fileInput, mockCSVFile);
@@ -33,6 +38,7 @@ describe('TissueOriginPredictorComponent', () => {
     const mockFile = new File([''], 'sample.csv', { type: 'text/plain' });
 
     const { fixture } = await render(TissueOriginPredictorComponent, {
+      imports,
       providers: [...providers, { provide: SAMPLE_FILE, useValue: { value: { asReadonly: () => signal(mockFile) } } }],
     });
 
@@ -47,7 +53,7 @@ describe('TissueOriginPredictorComponent', () => {
   });
 
   it('should navigate to the result page when user clicks on the Predict button', async () => {
-    await render(TissueOriginPredictorComponent, { providers });
+    await render(TissueOriginPredictorComponent, { imports, providers });
 
     const router = TestBed.inject(Router);
     const routerSpy = jest.spyOn(router, 'navigate').mockResolvedValue(true);
