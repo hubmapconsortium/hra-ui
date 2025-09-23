@@ -12,20 +12,22 @@
       }
 
       @case ('page-section') {
-        <hra-page-section [tagline]="data.tagline" />
-        @if (data.content) {
-          <div class="section-content">{{ data.content }}</div>
-        }
+        <hra-page-section [tagline]="data.tagline">
+          @if (data.content) {
+            {{ data.content }}
+          }
+        </hra-page-section>
       }
 
       @case ('page-sections') {
         <div class="multiple-sections">
           @for (section of data.sections; track section.tagline) {
             <div class="section-item">
-              <hra-page-section [tagline]="section.tagline" />
-              @if (section.content) {
-                <div class="section-content">{{ section.content }}</div>
-              }
+              <hra-page-section [tagline]="section.tagline">
+                @if (section.content) {
+                  {{ section.content }}
+                }
+              </hra-page-section>
             </div>
           }
         </div>
