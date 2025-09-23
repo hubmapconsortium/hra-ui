@@ -1,5 +1,5 @@
-@if (!isBiomarkerfullscreen()) {
-  <ng-container hraFeature="cell-types-biomarkers">
+<ng-container hraFeature="biomarker-details">
+  @if (!isBiomarkerfullscreen()) {
     <div class="biomarker-header" hraFeature="header">
       <span class="biomarker-header-title">Cell types by biomarkers</span>
       @if (tab.rows.length !== 0) {
@@ -15,105 +15,116 @@
         </button>
       }
     </div>
-  </ng-container>
-}
-
-<mat-button-toggle-group
-  hraButtonToggleSize="medium"
-  [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
-  (change)="onToggleChange($event.value)"
-  class="biomarker-toggle-group absolute-toggle"
->
-  @for (option of toggleOptions; track option.value) {
-    <mat-button-toggle
-      [value]="option.value"
-      [disabled]="isToggleOptionDisabled($index)"
-      hraFeature="biomarker-toggle"
-      [hraClickEvent]="{ selectedToggle: option.value }"
-      >{{ option.label }}</mat-button-toggle
-    >
   }
-</mat-button-toggle-group>
 
-@if (tab.rows.length !== 0) {
-  <ftu-biomarker-table
-    #table
-    [class.small]="tab.rows.length < 10"
-    [data]="$any(tab.rows)"
-    [columns]="tab.columns"
-    [gradient]="gradients()"
-    [sizes]="sizes()"
-    [tissueInfo]="tissueInfo"
-    [illustrationIds]="illustrationIds"
-    [dataSources]="source()"
-    [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
-    (rowHover)="highlightCells($event)"
-  ></ftu-biomarker-table>
-}
+  <mat-button-toggle-group
+    class="biomarker-toggle-group absolute-toggle"
+    hraFeature="biomarker-toggle"
+    hraButtonToggleSize="medium"
+    [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
+    (change)="onToggleChange($event.value)"
+  >
+    @for (option of toggleOptions; track option.value) {
+      <mat-button-toggle
+        [hraClickEvent]="{ toggle: option.value }"
+        [value]="option.value"
+        [disabled]="isToggleOptionDisabled($index)"
+      >
+        {{ option.label }}
+      </mat-button-toggle>
+    }
+  </mat-button-toggle-group>
 
-@if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
-  @if (!isBiomarkerfullscreen()) {
-    <mat-divider class="empty-state-divider"></mat-divider>
+  @if (tab.rows.length !== 0) {
+    <ftu-biomarker-table
+      #table
+      [class.small]="tab.rows.length < 10"
+      [data]="$any(tab.rows)"
+      [columns]="tab.columns"
+      [gradient]="gradients()"
+      [sizes]="sizes()"
+      [tissueInfo]="tissueInfo"
+      [illustrationIds]="illustrationIds"
+      [dataSources]="source()"
+      [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
+      (rowHover)="highlightCells($event)"
+    ></ftu-biomarker-table>
   }
-  <ftu-empty-biomarker
-    emptyBehaviorText="We currently do not have cell type data for the selected biomarker."
-  ></ftu-empty-biomarker>
-}
 
-@if (source().length > 0 && selectedSources().length === 0) {
-  <div class="select-data-message">
-    <hra-info-message-indicator> Select source data to view cell types by biomarkers. </hra-info-message-indicator>
-  </div>
-}
+  @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
+    @if (!isBiomarkerfullscreen()) {
+      <mat-divider class="empty-state-divider"></mat-divider>
+    }
+    <ftu-empty-biomarker
+      emptyBehaviorText="We currently do not have cell type data for the selected biomarker."
+    ></ftu-empty-biomarker>
+  }
 
-@if (tab.rows.length > 0) {
-  <div class="legend">
-    <button
-      class="legend-percentage"
-      hraClickEvent
-      hraFeature="click-percentage-tooltip"
-      [hraRichTooltip]
-      hraRichTooltipTagline="Percentage of cells"
-      [hraRichTooltipDescription]="percentageTooltipText"
-    >
-      <span class="legend-header-percentage">Percentage of cells</span>
-      <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
-    </button>
-    <button
-      class="legend-gradient"
-      hraClickEvent
-      hraFeature="click-expression-tooltip"
-      [hraRichTooltip]
-      hraRichTooltipTagline="Biomarker expression mean"
-      [hraRichTooltipDescription]="expressionTooltipText"
-    >
-      <span class="legend-header-gradient">Biomarker expression mean</span>
-      <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
-    </button>
-  </div>
-}
+  @if (source().length > 0 && selectedSources().length === 0) {
+    <div class="select-data-message">
+      <hra-info-message-indicator> Select source data to view cell types by biomarkers. </hra-info-message-indicator>
+    </div>
+  }
 
-@if (!(source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
-  <div class="source-list" [style.display]="isBiomarkerfullscreen() ? 'none' : undefined">
+  @if (tab.rows.length > 0) {
+    <div class="legend" hraFeature="legends">
+      <button
+        class="legend-percentage"
+        hraClickEvent
+        hraFeature="click-percentage-tooltip"
+        [hraRichTooltip]
+        hraRichTooltipTagline="Percentage of cells"
+        [hraRichTooltipDescription]="percentageTooltipText"
+      >
+        <span class="legend-header-percentage">Percentage of cells</span>
+        <ftu-size-legend
+          hraClickEvent
+          hraFeature="open-percentage-tooltip"
+          [sizes]="sizes()"
+          class="content"
+        ></ftu-size-legend>
+      </button>
+      <button
+        class="legend-gradient"
+        hraClickEvent
+        hraFeature="click-expression-tooltip"
+        [hraRichTooltip]
+        hraRichTooltipTagline="Biomarker expression mean"
+        [hraRichTooltipDescription]="expressionTooltipText"
+      >
+        <span class="legend-header-gradient">Biomarker expression mean</span>
+        <ftu-gradient-legend
+          hraClickEvent
+          hraFeature="open-gradient-tooltip"
+          [gradient]="gradients()"
+          class="content"
+        ></ftu-gradient-legend>
+      </button>
+    </div>
+  }
+
+  @if (!(source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
+    <div class="source-list" [style.display]="isBiomarkerfullscreen() ? 'none' : undefined">
+      <ftu-source-list
+        [sources]="source()"
+        (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
+        class="content"
+      ></ftu-source-list>
+    </div>
+  }
+
+  <ng-template #infoTooltip let-tooltip>
+    <div class="biomarker-details info-tooltip">
+      {{ tooltip }}
+    </div>
+  </ng-template>
+
+  <ng-template #sourceList>
     <ftu-source-list
       [sources]="source()"
-      (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
+      (selectionChanged)="setSelectedSources($event)"
       class="content"
+      [hideTitle]="true"
     ></ftu-source-list>
-  </div>
-}
-
-<ng-template #infoTooltip let-tooltip>
-  <div class="biomarker-details info-tooltip">
-    {{ tooltip }}
-  </div>
-</ng-template>
-
-<ng-template #sourceList>
-  <ftu-source-list
-    [sources]="source()"
-    (selectionChanged)="setSelectedSources($event)"
-    class="content"
-    [hideTitle]="true"
-  ></ftu-source-list>
-</ng-template>
+  </ng-template>
+</ng-container>
