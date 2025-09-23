@@ -134,6 +134,26 @@ export class ClickEventDirective extends BaseEventDirective<CoreEvents['Click']>
 }
 
 /**
+ * Specialized version of `hraEvent` that only emits double click events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: '[hraDoubleClickEvent]',
+  exportAs: 'hraDoubleClickEvent',
+})
+export class DoubleClickEventDirective extends BaseEventDirective<CoreEvents['DoubleClick']> {
+  /** Event type */
+  override readonly event = () => CoreEvents.DoubleClick;
+  /** Event properties */
+  override readonly props = input<EventPropsFor<CoreEvents['DoubleClick']>>('', { alias: 'hraDoubleClickEvent' });
+  /** 'none' if events are sent programatically */
+  override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraDoubleClickEventTriggerOn' });
+  /** Whether this event is disabled */
+  override readonly disabled = input(false, { alias: 'hraDoubleClickEventDisabled', transform: booleanAttribute });
+}
+
+/**
  * Specialized version of `hraEvent` that only emits hover events
  *
  * @see {@link EventDirective}
@@ -154,23 +174,25 @@ export class HoverEventDirective extends BaseEventDirective<CoreEvents['Hover']>
 }
 
 /**
- * Specialized version of `hraEvent` that only emits double click events
+ * Specialized version of `hraEvent` that only emits keyboard events
  *
  * @see {@link EventDirective}
  */
 @Directive({
-  selector: '[hraDoubleClickEvent]',
-  exportAs: 'hraDoubleClickEvent',
+  selector: '[hraKeyboardEvent]',
+  exportAs: 'hraKeyboardEvent',
 })
-export class DoubleClickEventDirective extends BaseEventDirective<CoreEvents['DoubleClick']> {
+export class KeyboardEventDirective extends BaseEventDirective<CoreEvents['Keyboard']> {
   /** Event type */
-  override readonly event = () => CoreEvents.DoubleClick;
+  override readonly event = () => CoreEvents.Keyboard;
   /** Event properties */
-  override readonly props = input<EventPropsFor<CoreEvents['DoubleClick']>>('', { alias: 'hraDoubleClickEvent' });
-  /** 'none' if events are sent programatically */
-  override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraDoubleClickEventTriggerOn' });
+  override readonly props = input<EventPropsFor<CoreEvents['Keyboard']>>('', { alias: 'hraKeyboardEvent' });
+  /** keydown (default), keyup, or 'none' if events are sent programatically */
+  override readonly triggerOn = input<'keyup' | 'keydown' | 'none' | undefined>(undefined, {
+    alias: 'hraKeyboardEventTriggerOn',
+  });
   /** Whether this event is disabled */
-  override readonly disabled = input(false, { alias: 'hraDoubleClickEventDisabled', transform: booleanAttribute });
+  override readonly disabled = input(false, { alias: 'hraKeyboardEventDisabled', transform: booleanAttribute });
 }
 
 /** A list of property keys or a filter function */
