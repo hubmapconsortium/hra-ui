@@ -1,4 +1,13 @@
-<mat-expansion-panel class="category" [expanded]="expanded()" (expandedChange)="expandedChange.emit($event)">
+<mat-expansion-panel
+  class="category"
+  [expanded]="expanded()"
+  (expandedChange)="expandedChange.emit($event)"
+  hraFeature="navigation-category-expansion"
+  [hraClickEvent]="{
+    label: navigationCategory().label,
+    action: expanded() ? 'collapse' : 'expand',
+  }"
+>
   <mat-expansion-panel-header class="header">
     <mat-icon>{{ navigationCategory().icon }}</mat-icon>
     <div>{{ navigationCategory().label }}</div>
