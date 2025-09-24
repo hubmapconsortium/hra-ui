@@ -1,4 +1,4 @@
-<div class="splash-header" hraFeature="home-splash-header">
+<div class="splash-header" hraFeature="header">
   <img class="splash-img" [src]="'assets/images/splash.png' | assetUrl" alt="Splash Image" />
   <div class="splash-content">
     <hra-icon class="icon" [svgIcon]="'product:asctb-reporter'"></hra-icon>
@@ -8,7 +8,7 @@
         mat-button
         hraCtaButton
         hraButtonVariant="primary"
-        hraFeature="explore-visualization-btn"
+        hraFeature="explore-visualization"
         hraClickEvent
         routerLink="/vis"
       >
@@ -19,7 +19,7 @@
         mat-button
         hraCtaButton
         hraButtonVariant="secondary"
-        hraFeature="launch-playground-btn"
+        hraFeature="launch-playground"
         hraClickEvent
         routerLink="/vis"
         [queryParams]="{ playground: true, selectedOrgans: 'example' }"
@@ -47,7 +47,7 @@
               class="section-selector"
               [class.section-selected]="$index === selectedVideoSection()"
               hraButtonVariant="primary"
-              hraFeature="video-section-{{ section.sec }}"
+              [hraFeature]="section.sec | slugify"
               hraClickEvent
               [disableRipple]="true"
               (click)="seekVideo(section.sec, $index)"
@@ -73,6 +73,7 @@
         [name]="contributor.name"
         [description]="contributor.desc"
         [centerContent]="true"
+        [hraFeature]="contributor.name | slugify"
       >
         <div class="social-media-actions">
           <a
@@ -81,7 +82,7 @@
             [hraIconButtonVariant]="'color'"
             [hraIconButtonSize]="'large'"
             hraFeature="email"
-            [hraClickEvent]="{ contributor: contributor.name }"
+            hraClickEvent
             [href]="'mailto:' + contributor.mail"
             target="_blank"
           >
@@ -93,7 +94,7 @@
             [hraIconButtonVariant]="'color'"
             [hraIconButtonSize]="'large'"
             hraFeature="personal-website"
-            [hraClickEvent]="{ contributor: contributor.name }"
+            hraClickEvent
             [href]="contributor.link"
             target="_blank"
           >
@@ -105,7 +106,7 @@
             [hraIconButtonVariant]="'color'"
             [hraIconButtonSize]="'large'"
             hraFeature="linkedin"
-            [hraClickEvent]="{ contributor: contributor.name }"
+            hraClickEvent
             [href]="contributor.linkedin"
             target="_blank"
           >
@@ -117,7 +118,7 @@
             [hraIconButtonVariant]="'color'"
             [hraIconButtonSize]="'large'"
             hraFeature="github"
-            [hraClickEvent]="{ contributor: contributor.name }"
+            hraClickEvent
             [href]="contributor.github"
             target="_blank"
           >

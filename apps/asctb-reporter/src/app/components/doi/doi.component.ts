@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +8,7 @@ import { DOI } from '../../models/sheet.model';
 
 @Component({
   selector: 'app-doi',
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatBottomSheetModule, HraCommonModule],
+  imports: [HraCommonModule, MatIconModule, MatButtonModule, MatBottomSheetModule],
   templateUrl: './doi.component.html',
   styleUrls: ['./doi.component.scss'],
 })

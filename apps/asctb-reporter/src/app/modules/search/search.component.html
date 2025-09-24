@@ -17,7 +17,7 @@
         aria-label="Clear search"
         matTooltip="Clear search"
         (click)="searchValue.set('')"
-        hraFeature="clear-search-btn"
+        hraFeature="clear-search"
         hraClickEvent
       >
         <mat-icon>close</mat-icon>
@@ -28,7 +28,7 @@
         aria-label="Close"
         matTooltip="Close"
         (click)="closeSearchList()"
-        hraFeature="close-search-btn"
+        hraFeature="close-search"
         hraClickEvent
       >
         <mat-icon>arrow_drop_up</mat-icon>
@@ -72,7 +72,7 @@
           hraButtonSize="small"
           aria-label="Select All"
           (click)="selectAllOptions()"
-          hraFeature="select-all-btn"
+          hraFeature="select-all"
           hraClickEvent
         >
           Select All
@@ -83,7 +83,7 @@
           hraButtonSize="small"
           aria-label="Deselect All"
           (click)="deselectAllOptions()"
-          hraFeature="deselect-all-btn"
+          hraFeature="deselect-all"
           hraClickEvent
         >
           Deselect All

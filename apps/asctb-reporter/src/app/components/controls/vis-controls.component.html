@@ -1,4 +1,4 @@
-<div class="controls" hraFeature="vis-tree-controls">
+<div class="controls" hraFeature="tree-controls">
   <div class="title">Tree controls</div>
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
@@ -20,7 +20,7 @@
   </div>
 </div>
 
-<div class="controls" hraFeature="vis-bimodal-distance-controls">
+<div class="controls" hraFeature="bimodal-distance-controls">
   <div class="title">Bimodal distance controls</div>
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
@@ -50,7 +50,7 @@
   </div>
 </div>
 
-<div class="ids" hraFeature="vis-ids-labels">
+<div class="ids" hraFeature="ids-labels">
   <div class="label">IDs & labels</div>
 
   <div class="checkboxes">
@@ -60,7 +60,7 @@
       (change)="changeShowAS()"
       matTooltip="Toggle Visibility of Anatomical Structures"
       matTooltipPosition="below"
-      hraFeature="asctb-reporter-show-all-as"
+      hraFeature="show-all-as"
       [hraClickEvent]="{ enabled: config.show_all_AS }"
     >
       Show all AS
@@ -70,7 +70,7 @@
       (change)="changeShowOntology()"
       matTooltip="Toggle Visibility of Ontology Links"
       matTooltipPosition="below"
-      hraFeature="asctb-reporter-show-ontology"
+      hraFeature="show-ontology"
       [hraClickEvent]="{ enabled: config.show_ontology }"
     >
       Show ontology IDs
@@ -82,7 +82,7 @@
       value="1"
       [checked]="config.discrepencyLabel"
       (change)="showDiscrepencyLabel()"
-      hraFeature="asctb-reporter-discrepency-label"
+      hraFeature="discrepency-label"
       hraClickEvent
     >
       Label mismatch
@@ -91,7 +91,7 @@
       value="2"
       [checked]="config.discrepencyId"
       (change)="showDiscrepencyId()"
-      hraFeature="asctb-reporter-discrepency-id"
+      hraFeature="discrepency-id"
       hraClickEvent
     >
       ID Missing
@@ -100,7 +100,7 @@
       value="3"
       [checked]="config.duplicateId"
       (change)="showDuplicateId()"
-      hraFeature="asctb-reporter-duplicate-id"
+      hraFeature="duplicate-id"
       hraClickEvent
     >
       ID Duplicates
