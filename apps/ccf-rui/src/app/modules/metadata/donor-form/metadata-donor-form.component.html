@@ -1,17 +1,17 @@
 <div class="subheader">Donor</div>
 <div class="fields" [formGroup]="form()">
-  <mat-form-field class="field sex">
+  <mat-form-field class="field sex" hraFeature="sex-select" hraClickEvent>
     <mat-label>Sex</mat-label>
     <mat-select formControlName="sex" panelClass="options-container" disableRipple>
-      <mat-option value="male">Male</mat-option>
-      <mat-option value="female">Female</mat-option>
+      <mat-option value="male" hraFeature="sex-select-option" [hraClickEvent]="{ sex: 'male' }">Male</mat-option>
+      <mat-option value="female" hraFeature="sex-select-option" [hraClickEvent]="{ sex: 'female' }">Female</mat-option>
     </mat-select>
     @if (form().hasError('required', 'sex')) {
       <mat-error>Sex is required</mat-error>
     }
   </mat-form-field>
 
-  <mat-form-field class="field organ">
+  <mat-form-field class="field organ" hraFeature="organ-select" hraClickEvent>
     <mat-label>Organ</mat-label>
     <input
       type="text"
@@ -21,6 +21,8 @@
       (input)="organInput.next(organ.value)"
       (focus)="organInput.next(organ.value)"
       #organ
+      hraFeature="organ-input"
+      hraClickEvent
     />
     <mat-icon class="search-icon" matPrefix>search</mat-icon>
     @if (form().hasError('required', 'organ')) {
@@ -35,24 +37,28 @@
       #organAutocomplete="matAutocomplete"
     >
       @for (organ of filteredOrgans(); track organ) {
-        <mat-option [value]="organ">{{ organ.name }}</mat-option>
+        <mat-option [value]="organ" hraFeature="organ-select-option" [hraClickEvent]="{ organ: organ.name }">{{
+          organ.name
+        }}</mat-option>
       }
     </mat-autocomplete>
   </mat-form-field>
 
-  <mat-form-field class="field consortium">
+  <mat-form-field class="field consortium" hraFeature="consortium-select" hraClickEvent>
     <mat-label>Consortium</mat-label>
     <input type="text" matInput formControlName="consortium" [matAutocomplete]="consortium" />
     <mat-icon class="search-icon" matPrefix>search</mat-icon>
 
     <mat-autocomplete #consortium="matAutocomplete">
       @for (consortium of filteredConsortiums(); track consortium) {
-        <mat-option [value]="consortium">{{ consortium }}</mat-option>
+        <mat-option [value]="consortium" hraFeature="consortium-select-option" [hraClickEvent]="{ consortium }">{{
+          consortium
+        }}</mat-option>
       }
     </mat-autocomplete>
   </mat-form-field>
 
-  <mat-form-field class="field doi">
+  <mat-form-field class="field doi" hraFeature="doi-input" hraClickEvent>
     <mat-label>Publication DOI</mat-label>
     <input
       matInput
