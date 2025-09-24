@@ -8,7 +8,6 @@
       <mat-form-field hraFeature="organ" subscriptSizing="dynamic">
         <mat-label>Organ dataset</mat-label>
         <mat-select
-          hraModelChangeEvent
           [value]="selectedOrgan()"
           (selectionChange)="selectedOrgan.set($event.value)"
           [disabled]="loading()"
@@ -24,11 +23,7 @@
     <div class="datatype-group">
       <mat-form-field hraFeature="data-type" subscriptSizing="dynamic">
         <mat-label>Data type</mat-label>
-        <mat-select
-          hraModelChangeEvent
-          [value]="selectedDataType()"
-          (selectionChange)="selectedDataType.set($event.value)"
-        >
+        <mat-select [value]="selectedDataType()" (selectionChange)="selectedDataType.set($event.value)">
           @for (config of dataTypeOptions(); track config.key) {
             <mat-option [value]="config.key">{{ config.label }}</mat-option>
           }
@@ -66,12 +61,7 @@
     <div class="sort-group">
       <mat-form-field hraFeature="sort-by" subscriptSizing="dynamic">
         <mat-label>Sort by</mat-label>
-        <mat-select
-          hraModelChangeEvent
-          [value]="selectedSort()"
-          (selectionChange)="selectedSort.set($event.value)"
-          [disabled]="loading()"
-        >
+        <mat-select [value]="selectedSort()" (selectionChange)="selectedSort.set($event.value)" [disabled]="loading()">
           @for (option of sortOptions(); track option.value) {
             <mat-option [value]="option.value">{{ option.label }}</mat-option>
           }
