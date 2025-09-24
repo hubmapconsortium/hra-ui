@@ -4,7 +4,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-
 import { ViewerCard } from '../types/data-viewer.schema';
 
 /**
@@ -12,7 +11,7 @@ import { ViewerCard } from '../types/data-viewer.schema';
  */
 @Component({
   selector: 'hra-card-menu',
-  imports: [HraCommonModule, MatMenuModule, MatIconModule, ButtonsModule, MatDividerModule],
+  imports: [HraCommonModule, ButtonsModule, MatDividerModule, MatIconModule, MatMenuModule],
   templateUrl: './card-menu.component.html',
   styleUrl: './card-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

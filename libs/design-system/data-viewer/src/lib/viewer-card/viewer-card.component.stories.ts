@@ -44,7 +44,7 @@ const testOrgan: ViewerCard = {
 
 const meta: Meta = {
   component: ViewerCardComponent,
-  title: 'Design System / Data Viewer / Viewer Card',
+  title: 'Design System/Data Viewer/Viewer Card',
 
   parameters: {
     design: {
