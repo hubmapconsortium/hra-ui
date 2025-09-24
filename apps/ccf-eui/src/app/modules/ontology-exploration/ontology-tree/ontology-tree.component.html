@@ -34,12 +34,18 @@
   <mat-tree [dataSource]="nodes()" [childrenAccessor]="getChildren()" hraTreeSize="small" #tree>
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node
+      hraFeature="leaf"
       *matTreeNodeDef="let node"
       matTreeNodePadding
       (click)="select($event.ctrlKey, node, true, !isSelected(node))"
       matTreeNodePaddingIndent="12"
     >
-      <div hraFeature="leaf" class="node-content leaf" [class.selected]="isSelected(node)">
+      <div
+        [hraFeature]="node.label | slugify"
+        hraClickEvent
+        class="node-content leaf"
+        [class.selected]="isSelected(node)"
+      >
         <div hraFeature="label" hraClickEvent class="node-label">{{ node.label }}</div>
         <div hraFeature="count" hraClickEvent class="num-results">{{ getCount(node) }}</div>
       </div>
@@ -47,6 +53,7 @@
 
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node
+      hraFeature="branch"
       *matTreeNodeDef="let node; when: hasChildren"
       matTreeNodePadding
       matTreeNodeToggle
@@ -54,7 +61,7 @@
       (click)="select($event.ctrlKey, node, true, !isSelected(node))"
       matTreeNodePaddingIndent="12"
     >
-      <div hraFeature="branch" class="node-content" [class.selected]="isSelected(node)">
+      <div [hraFeature]="node.label | slugify" hraClickEvent class="node-content" [class.selected]="isSelected(node)">
         <button
           hraFeature="toggle"
           hraClickEvent
