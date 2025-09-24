@@ -117,8 +117,6 @@
           class="full-width"
           multiple="true"
           hideMultipleSelectionIndicator="false"
-          hraFeature="organs-only"
-          [hraModelChangeEvent]="{ organsOnly: omaps.organsOnly, proteinsOnly: omaps.proteinsOnly }"
         >
           <mat-button-toggle
             [checked]="omaps.organsOnly"
@@ -128,6 +126,8 @@
                 proteinsOnly: omaps.proteinsOnly,
               })
             "
+            hraFeature="organs-only"
+            hraClickEvent
             >Organs only</mat-button-toggle
           >
           <mat-button-toggle
@@ -138,6 +138,8 @@
                 organsOnly: omaps.organsOnly,
               })
             "
+            hraFeature="proteins-only"
+            hraClickEvent
             >Proteins only</mat-button-toggle
           >
         </mat-button-toggle-group>

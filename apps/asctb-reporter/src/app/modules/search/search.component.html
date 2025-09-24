@@ -47,12 +47,21 @@
           (change)="categories.set($event.value)"
           name="searchFilterButtons"
           [hideMultipleSelectionIndicator]="false"
-          hraFeature="search-filter-buttons"
-          [hraModelChangeEvent]="{ selected: categories() }"
         >
-          <mat-button-toggle value="Anatomical Structures" matTooltip="Anatomical Structures">AS</mat-button-toggle>
-          <mat-button-toggle value="Cell Types" matTooltip="Cell Types">CT</mat-button-toggle>
-          <mat-button-toggle value="Biomarkers" matTooltip="Biomarkers">B</mat-button-toggle>
+          <mat-button-toggle
+            value="Anatomical Structures"
+            matTooltip="Anatomical Structures"
+            hraFeature="as"
+            hraClickEvent
+            >AS</mat-button-toggle
+          >
+          >
+          <mat-button-toggle value="Cell Types" matTooltip="Cell Types" hraFeature="ct" hraClickEvent
+            >CT</mat-button-toggle
+          >
+          <mat-button-toggle value="Biomarkers" matTooltip="Biomarkers" hraFeature="b" hraClickEvent
+            >B</mat-button-toggle
+          >
         </mat-button-toggle-group>
       </div>
 

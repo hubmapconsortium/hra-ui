@@ -77,23 +77,32 @@
     </mat-slide-toggle>
   </div>
 
-  <mat-button-toggle-group
-    hraButtonToggleSize="medium"
-    hideSingleSelectionIndicator="false"
-    hraFeature="asctb-reporter-discrepencies"
-    [hraModelChangeEvent]="{
-      showDiscrepencyLabel: config.discrepencyLabel,
-      showDiscrepencyId: config.discrepencyId,
-      showDuplicateId: config.duplicateId,
-    }"
-  >
-    <mat-button-toggle value="1" [checked]="config.discrepencyLabel" (change)="showDiscrepencyLabel()">
+  <mat-button-toggle-group hraButtonToggleSize="medium" hideSingleSelectionIndicator="false">
+    <mat-button-toggle
+      value="1"
+      [checked]="config.discrepencyLabel"
+      (change)="showDiscrepencyLabel()"
+      hraFeature="asctb-reporter-discrepency-label"
+      hraClickEvent
+    >
       Label mismatch
     </mat-button-toggle>
-    <mat-button-toggle value="2" [checked]="config.discrepencyId" (change)="showDiscrepencyId()">
+    <mat-button-toggle
+      value="2"
+      [checked]="config.discrepencyId"
+      (change)="showDiscrepencyId()"
+      hraFeature="asctb-reporter-discrepency-id"
+      hraClickEvent
+    >
       ID Missing
     </mat-button-toggle>
-    <mat-button-toggle value="3" [checked]="config.duplicateId" (change)="showDuplicateId()">
+    <mat-button-toggle
+      value="3"
+      [checked]="config.duplicateId"
+      (change)="showDuplicateId()"
+      hraFeature="asctb-reporter-duplicate-id"
+      hraClickEvent
+    >
       ID Duplicates
     </mat-button-toggle>
   </mat-button-toggle-group>
