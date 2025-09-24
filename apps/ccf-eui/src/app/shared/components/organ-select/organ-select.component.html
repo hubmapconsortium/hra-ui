@@ -22,7 +22,7 @@
     >
       <mat-chip-grid hraFeature="chips" class="organ-select-chips" #chipGrid aria-label="Organ selection">
         @for (organ of selectedOrgans(); track organ) {
-          <mat-chip-row [hraFeature]="organ.name.toLowerCase().replace(' ', '-')" (removed)="remove(organ)">
+          <mat-chip-row [hraFeature]="organ.name | slugify" (removed)="remove(organ)">
             <span hraFeature="label" hraClickEvent>{{ organ.name }}</span>
             <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + organ.name">
               <mat-icon>close</mat-icon>
@@ -32,7 +32,7 @@
       </mat-chip-grid>
       <ng-scrollbar hraFeature="list" class="organ-list">
         @for (organ of filteredOrgans(); track organ) {
-          <div [hraFeature]="organ.name.toLowerCase().replace(' ', '-')" class="autocomplete-option">
+          <div [hraFeature]="organ.name | slugify" class="autocomplete-option">
             <mat-checkbox
               hraFeature="toggle"
               hraClickEvent

@@ -7,8 +7,8 @@
   <div class="chips-area">
     <mat-chip-grid #chipGrid aria-label="Option selection" [formControl]="form()">
       @for (option of chips(); track option) {
-        <mat-chip-row (removed)="remove(option)">
-          {{ option }}
+        <mat-chip-row [hraFeature]="option | slugify" (removed)="remove(option)">
+          <span hraFeature="label" hraClickEvent>{{ option }}</span>
           <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + option">
             <mat-icon>close</mat-icon>
           </button>
@@ -25,8 +25,6 @@
   <mat-label>{{ label() }}</mat-label>
   <div hraFeature="search" class="search-container">
     <input
-      hraClickEvent
-      hraModelChangeEvent
       placeholder="Search"
       class="search-input"
       #searchInput="matAutocompleteTrigger"
@@ -44,7 +42,7 @@
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
     <ng-scrollbar>
       @for (option of filteredOptions(); track option) {
-        <div class="autocomplete-option">
+        <div [hraFeature]="option | slugify" class="autocomplete-option">
           <mat-checkbox
             hraFeature="checkbox"
             hraClickEvent
@@ -52,7 +50,7 @@
             (change)="checkboxSelected($event, option); auto.showPanel = false"
             [checked]="chips().includes(option)"
           ></mat-checkbox>
-          <mat-option [value]="option">{{ option }}</mat-option>
+          <mat-option hraFeature="label" hraClickEvent [value]="option">{{ option }}</mat-option>
         </div>
       }
     </ng-scrollbar>

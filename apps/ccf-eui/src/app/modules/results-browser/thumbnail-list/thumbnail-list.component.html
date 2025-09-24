@@ -1,7 +1,7 @@
 @for (item of data(); track item.thumbnail) {
   <div hraFeature="thumbnail" class="slide">
     <a
-      [hraFeature]="item.technology?.toLowerCase()?.replace(' ', '-') ?? 'no-technology'"
+      [hraFeature]="item.technology ?? 'no-technology' | slugify"
       hraClickEvent
       class="thumbnail"
       target="_blank"

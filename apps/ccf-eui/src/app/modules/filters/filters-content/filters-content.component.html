@@ -11,14 +11,19 @@
               <mat-label>Sex</mat-label>
               <mat-select
                 hraModelChangeEvent
-                hraClickEvent
                 disableOptionCentering="true"
                 panelClass="options-container"
                 disableRipple
                 formControlName="sex"
               >
                 @for (option of sexOptions; track option) {
-                  <mat-option class="dropdown-option" [value]="option" [disabled]="isSexOptionDisabled(option)">
+                  <mat-option
+                    [hraFeature]="option | slugify"
+                    hraClickEvent
+                    class="dropdown-option"
+                    [value]="option"
+                    [disabled]="isSexOptionDisabled(option)"
+                  >
                     <div>{{ option }}</div>
                   </mat-option>
                 }

@@ -76,7 +76,7 @@
           >
             @for (option of menuOptions; track option) {
               <mat-button-toggle
-                [hraFeature]="option.toLowerCase().replace(' ', '-')"
+                [hraFeature]="option | slugify"
                 hraClickEvent
                 [value]="option"
                 checked
