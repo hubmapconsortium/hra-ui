@@ -1,28 +1,50 @@
-<hra-header baseUrl="https://apps.humanatlas.io/dashboard/" [breadcrumbs]="crumbs() ?? []">
-  <a mat-icon-button routerLink="/data" hraPlainTooltip="Data Dashboard">
-    <mat-icon>database</mat-icon>
-  </a>
-  <a mat-icon-button routerLink="/usage" hraPlainTooltip="Usage Dashboard">
-    <mat-icon>data_usage</mat-icon>
-  </a>
-  <a mat-icon-button routerLink="/publications" hraPlainTooltip="Publications Dashboard">
-    <mat-icon>newsmode</mat-icon>
-  </a>
-  <a mat-icon-button routerLink="/experimental-data" hraPlainTooltip="Experimental Data Dashboard">
-    <mat-icon>experiment</mat-icon>
-  </a>
-  <a mat-icon-button routerLink="/diversity-and-inclusion" hraPlainTooltip="Diversity Dashboard">
-    <mat-icon>diversity_4</mat-icon>
-  </a>
-  <a
-    mat-icon-button
-    href="https://humanatlas.io/user-story/7"
-    rel="noopener noreferrer"
-    hraPlainTooltip="Help & Documentation"
-  >
-    <mat-icon>help</mat-icon>
-  </a>
-</hra-header>
+<ng-container hraFeature="dashboard-ui">
+  <hra-header baseUrl="https://apps.humanatlas.io/dashboard/" [breadcrumbs]="crumbs() ?? []">
+    <a mat-icon-button routerLink="/data" hraFeature="data-dashboard" hraClickEvent hraPlainTooltip="Data Dashboard">
+      <mat-icon>database</mat-icon>
+    </a>
+    <a mat-icon-button routerLink="/usage" hraFeature="usage-dashboard" hraClickEvent hraPlainTooltip="Usage Dashboard">
+      <mat-icon>data_usage</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      routerLink="/publications"
+      hraFeature="publications-dashboard"
+      hraClickEvent
+      hraPlainTooltip="Publications Dashboard"
+    >
+      <mat-icon>newsmode</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      routerLink="/experimental-data"
+      hraFeature="experimental-data-dashboard"
+      hraClickEvent
+      hraPlainTooltip="Experimental Data Dashboard"
+    >
+      <mat-icon>experiment</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      routerLink="/diversity-and-inclusion"
+      hraFeature="diversity-dashboard"
+      hraClickEvent
+      hraPlainTooltip="Diversity Dashboard"
+    >
+      <mat-icon>diversity_4</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      href="https://humanatlas.io/user-story/7"
+      rel="noopener noreferrer"
+      hraClickEvent
+      hraFeature="help-documentation"
+      hraPlainTooltip="Help & Documentation"
+    >
+      <mat-icon>help</mat-icon>
+    </a>
+  </hra-header>
 
-<router-outlet />
-<hra-footer />
+  <router-outlet />
+  <hra-footer />
+</ng-container>
