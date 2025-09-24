@@ -1,6 +1,7 @@
 import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, linkedSignal } from '@angular/core';
-import { assetsUrl, HraCommonModule } from '@hra-ui/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { assetUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates';
 import AppCardsSchema from './types/app-cards.schema';
@@ -25,7 +26,7 @@ export class LandingPageComponent {
   private readonly window = inject(WINDOW);
 
   /** Tabs data resource */
-  private readonly tabsResource = httpResource(assetsUrl('assets/apps.json'), {
+  private readonly tabsResource = httpResource(assetUrl('assets/apps.json'), {
     parse: (data) => AppCardsSchema.parse(data).tabs,
     defaultValue: [],
   });

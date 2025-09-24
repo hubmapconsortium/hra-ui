@@ -1,11 +1,11 @@
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { MatButtonToggleGroupHarness } from '@angular/material/button-toggle/testing';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { TestBed } from '@angular/core/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { assetsUrl } from '@hra-ui/common';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
+import { provideAssetHref } from '@hra-ui/common/url';
 import { LandingPageComponent, WINDOW } from './landing-page.component';
 import apps from '../../../../public/assets/apps.json';
 
@@ -13,19 +13,19 @@ describe('LandingPageComponent', () => {
   function setup(options: RenderComponentOptions<LandingPageComponent> = {}) {
     return render(LandingPageComponent, {
       ...options,
+      imports: [MatIconTestingModule, ...(options.imports ?? [])],
       providers: [
-        ...provideDesignSystemCommon(),
         provideHttpClient(),
         provideHttpClientTesting(),
+        provideAssetHref('http://localhost/'),
         ...(options.providers ?? []),
       ],
     });
   }
 
   function flushAppsJson() {
-    const url = TestBed.runInInjectionContext(() => assetsUrl('assets/apps.json'));
     const controller = TestBed.inject(HttpTestingController);
-    controller.expectOne(url()).flush(apps);
+    controller.expectOne('http://localhost/assets/apps.json').flush(apps);
   }
 
   it('should create the component', async () => {

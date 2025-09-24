@@ -1,12 +1,12 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Location } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { APP_ASSETS_HREF, HraCommonModule, parseUrl } from '@hra-ui/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { injectAssetUrlResolver } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -17,7 +17,6 @@ import saveAs from 'file-saver';
 import { MarkdownModule } from 'ngx-markdown';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { parse } from 'papaparse';
-
 import {
   IconColumnType,
   LinkColumnType,
@@ -219,8 +218,8 @@ export class TableComponent<T = TableRow> {
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
 
-  /** Assets URL provider for loading CSV with relative path */
-  private readonly assetsHref = inject(APP_ASSETS_HREF);
+  /** Resolver for asset urls */
+  private readonly resolveAssetUrl = injectAssetUrlResolver();
 
   /** Snackbar service for download notification */
   readonly snackbar = inject(SnackbarService);
@@ -229,12 +228,7 @@ export class TableComponent<T = TableRow> {
   private readonly csv = httpResource.text<T[]>(
     () => {
       const url = this.csvUrl();
-      if (url === undefined) {
-        return undefined;
-      } else if (parseUrl(url)) {
-        return url;
-      }
-      return Location.joinWithSlash(this.assetsHref(), url);
+      return url ? this.resolveAssetUrl(url) : url;
     },
     {
       defaultValue: [],
