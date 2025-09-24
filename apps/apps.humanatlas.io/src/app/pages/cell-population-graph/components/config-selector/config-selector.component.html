@@ -62,7 +62,7 @@
         class="toggle-group"
       >
         @for (option of xAxisOptions; track option.value) {
-          <mat-button-toggle hraClickEvent [hraFeature]="getAxesLabel(option.label)" [value]="option.value">{{
+          <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{
             option.label
           }}</mat-button-toggle>
         }
@@ -79,7 +79,7 @@
         class="toggle-group"
       >
         @for (option of yAxisOptions; track option.value) {
-          <mat-button-toggle hraClickEvent [hraFeature]="getAxesLabel(option.label)" [value]="option.value">{{
+          <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{
             option.label
           }}</mat-button-toggle>
         }

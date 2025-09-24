@@ -154,9 +154,4 @@ export class ConfigSelectorComponent {
       ...result.config.sortAttributes.map((attr) => GRAPH_ATTRIBUTE_LABELS[attr]),
     ]);
   }
-
-  /** Generate feature label for button toggles */
-  getAxesLabel(label: string): string {
-    return label.replace(/\s+/g, '-').toLowerCase();
-  }
 }

@@ -10,7 +10,14 @@
         This API provides programmatic access to data registered to the Human Reference Atlas.
       </div>
       <div class="splash-action">
-        <button hraClickEvent mat-button hraCtaButton hraButtonVariant="primary" (click)="scrollTo(apiContainer)">
+        <button
+          hraClickEvent
+          hraFeature="scroll-down"
+          mat-button
+          hraCtaButton
+          hraButtonVariant="primary"
+          (click)="scrollTo(apiContainer)"
+        >
           Use APIs
           <mat-icon iconPositionEnd>arrow_forward</mat-icon>
         </button>

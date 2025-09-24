@@ -124,9 +124,4 @@ export class ConfigSelectorComponent {
   getToolDisplayName(tool: string): string {
     return getToolDisplayName(tool);
   }
-
-  /** Converts a label to a feature name for event tracking */
-  getFeatureName(label: string): string {
-    return label.replace(/\s+/g, '-').toLowerCase();
-  }
 }

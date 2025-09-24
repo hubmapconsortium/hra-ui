@@ -11,7 +11,7 @@
         [(ngModel)]="activeTab"
       >
         @for (tab of tabs(); track tab.name) {
-          <mat-button-toggle [hraFeature]="toFeatureName(tab.name)" hraClickEvent [value]="tab">
+          <mat-button-toggle [hraFeature]="tab.name | slugify" hraClickEvent [value]="tab">
             {{ tab.name }}
           </mat-button-toggle>
         }
@@ -26,7 +26,7 @@
         <div class="apps-list">
           @for (card of section.cards; track card.tagline) {
             <hra-ui-section
-              [hraFeature]="toFeatureName(card.tagline)"
+              [hraFeature]="card.tagline | slugify"
               [tagline]="card.tagline"
               [description]="card.description"
               [imagePath]="card.imagePath"

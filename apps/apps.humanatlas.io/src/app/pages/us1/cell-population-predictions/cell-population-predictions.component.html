@@ -20,9 +20,9 @@
       </button>
 
       <!-- MENU -->
-      <mat-menu #options="matMenu" class="custom-menu">
+      <mat-menu hraFeature="table-menu" #options="matMenu" class="custom-menu">
         <button
-          hraHoverEvent
+          hraClickEvent
           hraFeature="info"
           mat-menu-item
           matRipple
@@ -54,6 +54,7 @@
     <!-- TABLE -->
     <ng-scrollbar class="table-overflow-container">
       <table
+        hraFeature="predictions-table"
         mat-table
         [dataSource]="dataSource"
         matSortActive="tool"

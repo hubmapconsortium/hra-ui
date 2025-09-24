@@ -8,14 +8,13 @@
       <mat-form-field hraFeature="organ" subscriptSizing="dynamic">
         <mat-label>Organ dataset</mat-label>
         <mat-select
+          hraModelChangeEvent
           [value]="selectedOrgan()"
           (selectionChange)="selectedOrgan.set($event.value)"
           [disabled]="loading()"
         >
           @for (organ of organOptions(); track organ) {
-            <mat-option [hraClickEvent]="{ value: getFeatureName(organ) }" [value]="organ">{{
-              organ | titlecase
-            }}</mat-option>
+            <mat-option [value]="organ">{{ organ | titlecase }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -25,11 +24,13 @@
     <div class="datatype-group">
       <mat-form-field hraFeature="data-type" subscriptSizing="dynamic">
         <mat-label>Data type</mat-label>
-        <mat-select [value]="selectedDataType()" (selectionChange)="selectedDataType.set($event.value)">
+        <mat-select
+          hraModelChangeEvent
+          [value]="selectedDataType()"
+          (selectionChange)="selectedDataType.set($event.value)"
+        >
           @for (config of dataTypeOptions(); track config.key) {
-            <mat-option [hraClickEvent]="{ value: getFeatureName(config.key) }" [value]="config.key">{{
-              config.label
-            }}</mat-option>
+            <mat-option [value]="config.key">{{ config.label }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -65,11 +66,14 @@
     <div class="sort-group">
       <mat-form-field hraFeature="sort-by" subscriptSizing="dynamic">
         <mat-label>Sort by</mat-label>
-        <mat-select [value]="selectedSort()" (selectionChange)="selectedSort.set($event.value)" [disabled]="loading()">
+        <mat-select
+          hraModelChangeEvent
+          [value]="selectedSort()"
+          (selectionChange)="selectedSort.set($event.value)"
+          [disabled]="loading()"
+        >
           @for (option of sortOptions(); track option.value) {
-            <mat-option [hraClickEvent]="{ value: getFeatureName(option.label) }" [value]="option.value">{{
-              option.label
-            }}</mat-option>
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -87,7 +91,7 @@
         class="toggle-group"
       >
         @for (option of xAxisOptions(); track option.value) {
-          <mat-button-toggle hraClickEvent [hraFeature]="getFeatureName(option.label)" [value]="option.value">
+          <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">
             {{ option.label }}
           </mat-button-toggle>
         }
@@ -106,7 +110,7 @@
         class="toggle-group"
       >
         @for (option of yAxisOptions(); track option.value) {
-          <mat-button-toggle hraClickEvent [hraFeature]="getFeatureName(option.label)" [value]="option.value">
+          <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">
             {{ option.label }}
           </mat-button-toggle>
         }
