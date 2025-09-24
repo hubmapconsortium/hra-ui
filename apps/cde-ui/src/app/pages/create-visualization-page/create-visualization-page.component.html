@@ -3,7 +3,12 @@
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
-  <hra-workflow-card class="card data-upload" [allowUpload]="true" [loadProgress]="nodeProgress">
+  <hra-workflow-card
+    class="card data-upload"
+    [allowUpload]="true"
+    [loadProgress]="nodeProgress"
+    hraFeature="upload-data"
+  >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
@@ -81,7 +86,7 @@
     </cde-file-upload>
   </hra-workflow-card>
 
-  <hra-workflow-card class="card organize-data" formGroupName="headers">
+  <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
@@ -200,7 +205,7 @@
     </div>
   </hra-workflow-card>
 
-  <hra-workflow-card class="card parameters" formGroupName="parameters">
+  <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
@@ -270,7 +275,7 @@
     </div>
   </hra-workflow-card>
 
-  <hra-workflow-card class="card metadata" formGroupName="metadata">
+  <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
@@ -357,6 +362,7 @@
     [class.custom]="useCustomColorMap"
     [allowUpload]="true"
     [loadProgress]="colorProgress"
+    hraFeature="configure-colors"
   >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
@@ -445,7 +451,7 @@
     }
   </hra-workflow-card>
 
-  <hra-workflow-card class="card visualize">
+  <hra-workflow-card class="card visualize" hraFeature="visualize-data">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
