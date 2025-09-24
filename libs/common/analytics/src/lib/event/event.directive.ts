@@ -52,7 +52,8 @@ export abstract class BaseEventDirective<T extends AnalyticsEvent> {
         const parts = trigger.split(':', 2);
         const [target, eventName] = parts.length === 2 ? parts : [el, trigger];
         const unlisten = renderer.listen(target, eventName, handler);
-        onCleanup(unlisten);
+        // Delay cleanup to avoid issues with Angular destroying the element before the event is fully processed
+        onCleanup(() => setTimeout(() => unlisten()));
       }
     });
   }
