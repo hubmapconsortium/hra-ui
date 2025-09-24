@@ -1,27 +1,29 @@
-<div class="intro">
-  <span class="header">Human Reference Atlas</span>
-  <span class="subheader">
-    3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage
-  </span>
+<ng-container hraFeature="landing-page">
+  <div class="intro">
+    <span class="header">Human Reference Atlas</span>
+    <span class="subheader">
+      3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage
+    </span>
 
-  <span class="description">
-    The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures
-    and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing
-    specimens, biological structures, and spatial positions linked to existing ontologies.
-  </span>
-</div>
-
-<div class="carousel-container" hraFeature="carousel-container">
-  <hra-carousel [items]="data().carouselItems" />
-</div>
-
-<div class="count-cards">
-  <div class="cards-container">
-    @for (card of data().countInfo; track card) {
-      <hra-count-card [count]="card.count" [label]="card.label" [suffix]="card.suffix" [icon]="card.icon" />
-    }
+    <span class="description">
+      The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures
+      and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing
+      specimens, biological structures, and spatial positions linked to existing ontologies.
+    </span>
   </div>
-</div>
 
-<hra-section-cards [cardInfo]="data().sectionCardInfo" hraFeature="section-cards" />
-<hra-footer />
+  <div class="carousel-container" hraFeature="carousel">
+    <hra-carousel [items]="data().carouselItems" />
+  </div>
+
+  <div class="count-cards">
+    <div class="cards-container">
+      @for (card of data().countInfo; track card) {
+        <hra-count-card [count]="card.count" [label]="card.label" [suffix]="card.suffix" [icon]="card.icon" />
+      }
+    </div>
+  </div>
+
+  <hra-section-cards [cardInfo]="data().sectionCardInfo" />
+  <hra-footer />
+</ng-container>

@@ -1,13 +1,13 @@
 <span class="section-title">Explore the Human Reference Atlas</span>
 
-<hra-grid-container class="cards">
-  @for (card of cardInfo(); track card; let i = $index) {
+<hra-grid-container class="cards" hraFeature="section-cards">
+  @for (card of cardInfo(); track card) {
     @if (card.url; as url) {
       <hra-action-card
         variant="outlined-with-icons"
         [tagline]="card.tagline"
         [icons]="[card.icon]"
-        [hraFeature]="featureNames()[i]"
+        [hraFeature]="card.tagline | slugify"
       >
         <hra-action-card-action>
           <a hraHyperlink [attr.href]="card.url" target="_blank">{{ card.action }}</a>
@@ -18,7 +18,7 @@
         variant="outlined-with-icons"
         [tagline]="card.tagline"
         [icons]="[card.icon]"
-        [hraFeature]="featureNames()[i]"
+        [hraFeature]="card.tagline | slugify"
       >
         <hra-action-card-action>
           <a hraHyperlink [routerLink]="card.route">{{ card.action }}</a>
