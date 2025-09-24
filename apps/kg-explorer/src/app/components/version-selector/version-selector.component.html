@@ -7,13 +7,15 @@
   <mat-form-field subscriptSizing="dynamic">
     <mat-label>Digital object version</mat-label>
     <mat-select
+      hraFeature="version"
+      hraModelChangeEvent
       disableRipple
       panelClass="options-container"
-      (selectionChange)="versionChange.emit($event.value)"
-      [value]="version() === 'latest' ? availableVersions()[0] : version()"
+      [ngModel]="version() === 'latest' ? availableVersions()[0] : version()"
+      (ngModelChange)="versionChange.emit($event.value)"
     >
       @for (version of availableVersions(); track $index) {
-        <mat-option [value]="version" hraFeature="version-option" [hraClickEvent]="{ version: version }">
+        <mat-option [value]="version">
           {{ version }}
         </mat-option>
       }

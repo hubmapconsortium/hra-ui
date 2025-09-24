@@ -1,15 +1,15 @@
-<div class="content-container" hraFeature="metadata-content">
+<div hraFeature="metadata" class="content-container">
   <ng-content select="hra-metadata-layout-header" />
 
   @if (isSmallScreen()) {
     <hra-provenance-menu
+      hraFeature="provenance"
       [rows]="rows()"
       [columns]="columns()"
       [version]="version()"
       [availableVersions]="availableVersions()"
       [downloadOptions]="downloadOptions()"
       (versionChange)="versionChange.emit($event)"
-      hraFeature="provenance-menu"
     ></hra-provenance-menu>
   }
 
@@ -18,12 +18,12 @@
 
 @if (isWideScreen()) {
   <hra-provenance-menu
+    hraFeature="provenance"
     [rows]="rows()"
     [columns]="columns()"
     [version]="version()"
     [availableVersions]="availableVersions()"
     [downloadOptions]="downloadOptions()"
     (versionChange)="versionChange.emit($event)"
-    hraFeature="provenance-menu"
   ></hra-provenance-menu>
 }

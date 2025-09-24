@@ -1,75 +1,82 @@
-@if (metadata()) {
-  <hra-metadata-layout
-    [rows]="rows()"
-    [columns]="columns()"
-    [version]="currentVersion()"
-    [availableVersions]="availableVersions()"
-    [downloadOptions]="downloadOptions()"
-    (versionChange)="currentVersion.set($event)"
-  >
-    <hra-metadata-layout-header>
-      <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()"> </hra-page-section>
-      <div class="header-content">
-        <hra-copyable-url-container [url]="purl()"></hra-copyable-url-container>
-        @if (getImage()) {
-          @if (imageTypes[metadata().type] === 'image/svg+xml') {
-            <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />
-          }
-          @if (imageTypes[metadata().type] === 'model/gltf-binary') {
-            <div class="viewer-container" hraFeature="3d-model-viewer" hraClickEvent>
-              <model-viewer class="model-viewer" [src]="getImage()" shadow-intensity="1" camera-controls auto-rotate>
-              </model-viewer>
-            </div>
-          }
-        }
-      </div>
-    </hra-metadata-layout-header>
-
-    <hra-metadata-layout-content [class.medium-screen]="!isNotMediumScreen()">
-      <div class="sections">
-        <hra-page-section class="description" tagline="Description" [level]="2">
-          <markdown [data]="metadata().was_derived_from.description" />
-        </hra-page-section>
-        @if (metadata().was_derived_from.publisher) {
-          <hra-page-section tagline="Publisher" [level]="2">
-            <markdown [data]="metadata().was_derived_from.publisher" />
-          </hra-page-section>
-        }
-        @if (metadata().was_derived_from.funders) {
-          <hra-page-section tagline="Funder" [level]="2">
-            <ul>
-              @for (funder of metadata().was_derived_from.funders; track $index) {
-                <li>{{ `${funder.funder} (Award number ${funder.awardNumber})` }}</li>
-              }
-            </ul>
-          </hra-page-section>
-        }
-        <hra-page-section tagline="License" [level]="2">
-          <markdown [data]="metadata().was_derived_from.license" />
-        </hra-page-section>
-        <hra-page-section tagline="Tags" [level]="2">
-          <mat-chip-set>
-            @for (tag of tags(); track $index) {
-              <mat-chip (click)="tagClick(tag.id, tag.type)" hraFeature="tag" [hraClickEvent]="{ id: tag.id }">{{
-                tag.label
-              }}</mat-chip>
+<ng-container hraFeature="metadata-page">
+  @if (metadata()) {
+    <hra-metadata-layout
+      [rows]="rows()"
+      [columns]="columns()"
+      [version]="currentVersion()"
+      [availableVersions]="availableVersions()"
+      [downloadOptions]="downloadOptions()"
+      (versionChange)="currentVersion.set($event)"
+    >
+      <hra-metadata-layout-header>
+        <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()" />
+        <div class="header-content">
+          <hra-copyable-url-container [url]="purl()" />
+          @if (getImage()) {
+            @if (imageTypes[metadata().type] === 'image/svg+xml') {
+              <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />
             }
-          </mat-chip-set>
-        </hra-page-section>
-      </div>
+            @if (imageTypes[metadata().type] === 'model/gltf-binary') {
+              <div hraFeature="3d-model-viewer" hraClickEvent class="viewer-container">
+                <model-viewer
+                  class="model-viewer"
+                  [src]="getImage()"
+                  shadow-intensity="1"
+                  camera-controls
+                  auto-rotate
+                />
+              </div>
+            }
+          }
+        </div>
+      </hra-metadata-layout-header>
 
-      @if (!isNotMediumScreen()) {
-        <hra-provenance-menu
-          [rows]="rows()"
-          [columns]="columns()"
-          [version]="currentVersion()"
-          [availableVersions]="availableVersions()"
-          [downloadOptions]="downloadOptions()"
-          (versionChange)="currentVersion.set($event)"
-          hraFeature="provenance-menu"
-        ></hra-provenance-menu>
-      }
-    </hra-metadata-layout-content>
-  </hra-metadata-layout>
-  <hra-footer></hra-footer>
-}
+      <hra-metadata-layout-content [class.medium-screen]="!isNotMediumScreen()">
+        <div class="sections">
+          <hra-page-section class="description" tagline="Description" [level]="2">
+            <markdown [data]="metadata().was_derived_from.description" />
+          </hra-page-section>
+          @if (metadata().was_derived_from.publisher) {
+            <hra-page-section tagline="Publisher" [level]="2">
+              <markdown [data]="metadata().was_derived_from.publisher" />
+            </hra-page-section>
+          }
+          @if (metadata().was_derived_from.funders) {
+            <hra-page-section tagline="Funder" [level]="2">
+              <ul>
+                @for (funder of metadata().was_derived_from.funders; track $index) {
+                  <li>{{ `${funder.funder} (Award number ${funder.awardNumber})` }}</li>
+                }
+              </ul>
+            </hra-page-section>
+          }
+          <hra-page-section tagline="License" [level]="2">
+            <markdown [data]="metadata().was_derived_from.license" />
+          </hra-page-section>
+          <hra-page-section tagline="Tags" [level]="2">
+            <mat-chip-set hraFeature="tags">
+              @for (tag of tags(); track $index) {
+                <mat-chip [hraFeature]="tag.id" hraClickEvent (click)="tagClick(tag.id, tag.type)">
+                  {{ tag.label }}
+                </mat-chip>
+              }
+            </mat-chip-set>
+          </hra-page-section>
+        </div>
+
+        @if (!isNotMediumScreen()) {
+          <hra-provenance-menu
+            hraFeature="provenance-menu"
+            [rows]="rows()"
+            [columns]="columns()"
+            [version]="currentVersion()"
+            [availableVersions]="availableVersions()"
+            [downloadOptions]="downloadOptions()"
+            (versionChange)="currentVersion.set($event)"
+          ></hra-provenance-menu>
+        }
+      </hra-metadata-layout-content>
+    </hra-metadata-layout>
+    <hra-footer></hra-footer>
+  }
+</ng-container>

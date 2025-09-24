@@ -1,59 +1,60 @@
-@if (isSmallScreen() && !sidenav.opened) {
-  <button mat-fab extended class="filter-button" (click)="sidenav.toggle()" hraFeature="filter-fab" hraClickEvent>
-    <mat-icon>filter_list</mat-icon>
-    Filters
-  </button>
-}
+<ng-container hraFeature="main-page">
+  @if (isSmallScreen() && !sidenav.opened) {
+    <button hraFeature="filter-fab" hraClickEvent mat-fab extended class="filter-button" (click)="sidenav.toggle()">
+      <mat-icon>filter_list</mat-icon>
+      Filters
+    </button>
+  }
 
-<mat-sidenav-container
-  autosize
-  [hasBackdrop]="!isWideScreen()"
-  [class.small]="isSmallScreen()"
-  [class.filter-closed]="!sidenav.opened"
->
-  <mat-sidenav
-    #sidenav
-    [mode]="!isWideScreen() ? 'over' : 'side'"
-    [opened]="isWideScreen()"
-    [fixedInViewport]="true"
-    [fixedTopGap]="isSmallScreen() ? 73 : 113"
-    hraFeature="sidenav"
+  <mat-sidenav-container
+    autosize
+    [hasBackdrop]="!isWideScreen()"
+    [class.small]="isSmallScreen()"
+    [class.filter-closed]="!sidenav.opened"
   >
-    <hra-filter-menu
-      [filterCategories]="filterCategoriesArray()"
-      (toggleForm)="sidenav.toggle()"
-      [formClosed]="!sidenav.opened"
-      (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
-      [currentFilters]="filters()"
-      hraFeature="filter-menu"
-    ></hra-filter-menu>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div class="page-content">
-      <div class="search-header">
-        <mat-form-field class="object-search" hraFeature="filter-object-search" hraClickEvent>
-          <hra-icon matPrefix>search</hra-icon>
-          <mat-label>Search</mat-label>
-          <input matInput [formControl]="searchControl" />
-        </mat-form-field>
-        <hra-results-indicator
-          description="Viewing"
-          [value]="filteredRows().length"
-          [total]="allRows().length"
-        ></hra-results-indicator>
+    <mat-sidenav
+      hraFeature="sidenav"
+      #sidenav
+      [mode]="!isWideScreen() ? 'over' : 'side'"
+      [opened]="isWideScreen()"
+      [fixedInViewport]="true"
+      [fixedTopGap]="isSmallScreen() ? 73 : 113"
+    >
+      <hra-filter-menu
+        hraFeature="filter-menu"
+        [filterCategories]="filterCategoriesArray()"
+        (toggleForm)="sidenav.toggle()"
+        [formClosed]="!sidenav.opened"
+        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
+        [currentFilters]="filters()"
+      ></hra-filter-menu>
+    </mat-sidenav>
+    <mat-sidenav-content hraFeature="digital-objects">
+      <div class="page-content">
+        <div class="search-header">
+          <mat-form-field hraFeature="search" hraClickEvent class="object-search">
+            <hra-icon matPrefix>search</hra-icon>
+            <mat-label>Search</mat-label>
+            <input matInput [formControl]="searchControl" />
+          </mat-form-field>
+          <hra-results-indicator
+            description="Viewing"
+            [value]="filteredRows().length"
+            [total]="allRows().length"
+          ></hra-results-indicator>
+        </div>
+        <hra-table
+          #table
+          [style]="'divider'"
+          [enableSort]="true"
+          [rows]="filteredRows()"
+          [columns]="columns()"
+          (routeClicked)="router.navigate([$event])"
+          (downloadHovered)="downloadId.set($event)"
+        >
+          <hra-footer />
+        </hra-table>
       </div>
-      <hra-table
-        #table
-        [style]="'divider'"
-        [enableSort]="true"
-        [rows]="filteredRows()"
-        [columns]="columns()"
-        (routeClicked)="router.navigate([$event])"
-        (downloadHovered)="downloadId.set($event)"
-        hraFeature="digital-object-table"
-      >
-        <hra-footer />
-      </hra-table>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>
