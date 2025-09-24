@@ -38,7 +38,7 @@ export abstract class BaseEventDirective<T extends AnalyticsEvent> {
   /** Reference to renderer for dom interactions */
   private readonly renderer = inject(Renderer2);
   /** Host element */
-  private readonly el = inject(ElementRef).nativeElement;
+  private readonly el = inject(ElementRef).nativeElement as Element;
   /** Raw logEvent function */
   private readonly logEvent_ = injectLogEvent();
 
@@ -49,8 +49,11 @@ export abstract class BaseEventDirective<T extends AnalyticsEvent> {
       if (trigger !== 'none' && !this.disabled()) {
         const { el, renderer } = this;
         const handler = this.logEvent.bind(this, trigger);
-        const unlisten = renderer.listen(el, trigger, handler);
-        onCleanup(unlisten);
+        const parts = trigger.split(':', 2);
+        const [target, eventName] = parts.length === 2 ? parts : [el, trigger];
+        const unlisten = renderer.listen(target, eventName, handler);
+        // Delay cleanup to avoid issues with Angular destroying the element before the event is fully processed
+        onCleanup(() => setTimeout(() => unlisten()));
       }
     });
   }
@@ -133,26 +136,6 @@ export class ClickEventDirective extends BaseEventDirective<CoreEvents['Click']>
 }
 
 /**
- * Specialized version of `hraEvent` that only emits hover events
- *
- * @see {@link EventDirective}
- */
-@Directive({
-  selector: '[hraHoverEvent]',
-  exportAs: 'hraHoverEvent',
-})
-export class HoverEventDirective extends BaseEventDirective<CoreEvents['Hover']> {
-  /** Event type */
-  override readonly event = () => CoreEvents.Hover;
-  /** Event properties */
-  override readonly props = input<EventPropsFor<CoreEvents['Hover']>>('', { alias: 'hraHoverEvent' });
-  /** 'none' if events are sent programatically */
-  override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraHoverEventTriggerOn' });
-  /** Whether this event is disabled */
-  override readonly disabled = input(false, { alias: 'hraHoverEventDisabled', transform: booleanAttribute });
-}
-
-/**
  * Specialized version of `hraEvent` that only emits double click events
  *
  * @see {@link EventDirective}
@@ -170,6 +153,50 @@ export class DoubleClickEventDirective extends BaseEventDirective<CoreEvents['Do
   override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraDoubleClickEventTriggerOn' });
   /** Whether this event is disabled */
   override readonly disabled = input(false, { alias: 'hraDoubleClickEventDisabled', transform: booleanAttribute });
+}
+
+/**
+ * Specialized version of `hraEvent` that only emits hover events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: '[hraHoverEvent]',
+  exportAs: 'hraHoverEvent',
+})
+export class HoverEventDirective extends BaseEventDirective<CoreEvents['Hover']> {
+  /** Event type */
+  override readonly event = () => CoreEvents.Hover;
+  /** Event properties */
+  override readonly props = input<EventPropsFor<CoreEvents['Hover']>>('', { alias: 'hraHoverEvent' });
+  /** mouseenter, mouseleave, mouseover, mouseout, or 'none' if events are sent programatically */
+  override readonly triggerOn = input<
+    EventTrigger<'mouseenter' | 'mouseleave' | 'mouseover' | 'mouseout'> | 'none' | undefined
+  >(undefined, { alias: 'hraHoverEventTriggerOn' });
+  /** Whether this event is disabled */
+  override readonly disabled = input(false, { alias: 'hraHoverEventDisabled', transform: booleanAttribute });
+}
+
+/**
+ * Specialized version of `hraEvent` that only emits keyboard events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: '[hraKeyboardEvent]',
+  exportAs: 'hraKeyboardEvent',
+})
+export class KeyboardEventDirective extends BaseEventDirective<CoreEvents['Keyboard']> {
+  /** Event type */
+  override readonly event = () => CoreEvents.Keyboard;
+  /** Event properties */
+  override readonly props = input<EventPropsFor<CoreEvents['Keyboard']>>('', { alias: 'hraKeyboardEvent' });
+  /** keydown (default), keyup, or 'none' if events are sent programatically */
+  override readonly triggerOn = input<EventTrigger<'keyup' | 'keydown'> | 'none' | undefined>(undefined, {
+    alias: 'hraKeyboardEventTriggerOn',
+  });
+  /** Whether this event is disabled */
+  override readonly disabled = input(false, { alias: 'hraKeyboardEventDisabled', transform: booleanAttribute });
 }
 
 /** A list of property keys or a filter function */

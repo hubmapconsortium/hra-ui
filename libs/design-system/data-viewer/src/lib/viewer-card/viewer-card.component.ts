@@ -68,7 +68,6 @@ export class ViewerCardComponent {
         maxHeight: '100%',
         maxWidth: '100%',
         autoFocus: '.close',
-        // TODO: tweak
         enterAnimationDuration: 200,
         exitAnimationDuration: 200,
       });

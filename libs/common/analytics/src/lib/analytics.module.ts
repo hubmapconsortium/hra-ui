@@ -4,6 +4,7 @@ import {
   DoubleClickEventDirective,
   EventDirective,
   HoverEventDirective,
+  KeyboardEventDirective,
   ModelChangeEventDirective,
 } from './event/event.directive';
 import { FeatureDirective } from './feature/feature.directive';
@@ -15,6 +16,7 @@ import { FeatureDirective } from './feature/feature.directive';
     EventDirective,
     FeatureDirective,
     HoverEventDirective,
+    KeyboardEventDirective,
     ModelChangeEventDirective,
   ],
   exports: [
@@ -23,6 +25,7 @@ import { FeatureDirective } from './feature/feature.directive';
     EventDirective,
     FeatureDirective,
     HoverEventDirective,
+    KeyboardEventDirective,
     ModelChangeEventDirective,
   ],
 })

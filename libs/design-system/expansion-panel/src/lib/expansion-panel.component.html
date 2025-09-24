@@ -4,7 +4,7 @@
     tabindex="0"
     [attr.aria-expanded]="accordionItem.expanded"
     [attr.aria-controls]="bodyId"
-    [expanded]="expanded"
+    [expanded]="expanded()"
   >
     <div class="header">
       @if (!disabled()) {
