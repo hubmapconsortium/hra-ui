@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { Component, ChangeDetectionStrategy, computed, effect, inject, model, output, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,7 +22,7 @@ import { getStackedBarsSpec, StackedBarsSpecOptions } from '../../utils/visualiz
  */
 @Component({
   selector: 'hra-config-selector',
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonToggleModule],
+  imports: [HraCommonModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonToggleModule],
   templateUrl: './config-selector.component.html',
   styleUrl: './config-selector.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -153,5 +153,10 @@ export class ConfigSelectorComponent {
       'Total Cell Count',
       ...result.config.sortAttributes.map((attr) => GRAPH_ATTRIBUTE_LABELS[attr]),
     ]);
+  }
+
+  /** Generate feature label for button toggles */
+  getAxesLabel(label: string): string {
+    return label.replace(/\s+/g, '-').toLowerCase();
   }
 }

@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy, input, model } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -16,6 +15,7 @@ import {
   getToolDisplayName,
 } from '../../utils/data-type-config';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * Configuration Selector Component
@@ -27,7 +27,7 @@ import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/resu
   selector: 'hra-config-selector',
   standalone: true,
   imports: [
-    CommonModule,
+    HraCommonModule,
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -123,5 +123,10 @@ export class ConfigSelectorComponent {
    */
   getToolDisplayName(tool: string): string {
     return getToolDisplayName(tool);
+  }
+
+  /** Converts a label to a feature name for event tracking */
+  getFeatureName(label: string): string {
+    return label.replace(/\s+/g, '-').toLowerCase();
   }
 }
