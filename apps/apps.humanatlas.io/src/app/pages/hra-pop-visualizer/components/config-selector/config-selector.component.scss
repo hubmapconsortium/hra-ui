@@ -40,25 +40,8 @@
     gap: 0.5rem;
 
     hra-results-indicator {
-      flex-shrink: 0;
-
-      ::ng-deep {
-        .results-indicator {
-          background-color: transparent;
-          border: none;
-          padding: 0;
-          font-size: 0.75rem;
-          font-weight: 400;
-          color: vars.$on-surface-variant;
-          white-space: nowrap;
-
-          .indicator-content {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-          }
-        }
-      }
+      height: 2.125rem;
+      background-color: vars.$surface-container-lowest;
     }
   }
 
