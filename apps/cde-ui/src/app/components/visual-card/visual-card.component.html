@@ -4,7 +4,7 @@
       [routerLink]="card.route"
       class="visual-card cta-flat"
       rel="noopener noreferrer"
-      [hraFeature]="featureNames()[i]"
+      [hraFeature]="card.label | slugify"
       hraClickEvent
     >
       <img [attr.src]="card.image" [alt]="card.alt" />

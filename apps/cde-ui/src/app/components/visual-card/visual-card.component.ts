@@ -31,11 +31,4 @@ export interface VisualCard {
 export class VisualCardComponent {
   /** Input for the card(s) */
   cardData = input.required<VisualCard[]>();
-
-  /**
-   * Gets the feature names for tracking based on card info
-   */
-  readonly featureNames = computed(() =>
-    this.cardData().map((card) => 'cde-visual-card-' + card.label.toLowerCase().replace(/\s+/g, '-')),
-  );
 }
