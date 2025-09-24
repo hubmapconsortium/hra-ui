@@ -1,6 +1,7 @@
 import { Overlay, OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -66,7 +67,7 @@ const PREDICTION_DATE_FORMAT = new Intl.DateTimeFormat(undefined, {
   selector: 'hra-tissue-origin-predictions',
   standalone: true,
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     MatSortModule,
     MatTableModule,
