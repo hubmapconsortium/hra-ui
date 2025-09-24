@@ -1,28 +1,35 @@
-@if (!file && errorMessage()) {
-  <hra-error-indicator [errors]="[errorMessage(), errorActionMessage()]"></hra-error-indicator>
-}
+<ng-container hraFeature="file-upload">
+  @if (!file && errorMessage()) {
+    <hra-error-indicator [errors]="[errorMessage(), errorActionMessage()]"></hra-error-indicator>
+  }
 
-@if (file && !errorMessage()) {
-  <hra-delete-file-button [fileName]="file.name" (cancelLoad)="cancelLoad()"></hra-delete-file-button>
-} @else {
-  <button
-    mat-flat-button
-    class="upload"
-    (click)="fileInput.click()"
-    hraPrimaryButton
-    hraButtonSize="large"
-    hraFeature="upload-csv-button"
-    hraClickEvent
-  >
-    Upload CSV
-  </button>
-  <input
-    type="file"
-    style="display: none"
-    name="fileInput"
-    [attr.accept]="accept()"
-    (change)="load(fileInput)"
-    data-testid="file-upload"
-    #fileInput
-  />
-}
+  @if (file && !errorMessage()) {
+    <hra-delete-file-button
+      [fileName]="file.name"
+      (cancelLoad)="cancelLoad()"
+      hraFeature="delete-file-button"
+      hraClickEvent
+    ></hra-delete-file-button>
+  } @else {
+    <button
+      mat-flat-button
+      class="upload"
+      (click)="fileInput.click()"
+      hraPrimaryButton
+      hraButtonSize="large"
+      hraFeature="upload"
+      hraClickEvent
+    >
+      Upload CSV
+    </button>
+    <input
+      type="file"
+      style="display: none"
+      name="fileInput"
+      [attr.accept]="accept()"
+      (change)="load(fileInput)"
+      data-testid="file-upload"
+      #fileInput
+    />
+  }
+</ng-container>

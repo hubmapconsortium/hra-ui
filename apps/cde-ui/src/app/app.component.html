@@ -1,5 +1,5 @@
 @if (header() !== false) {
-  <hra-header baseUrl="https://apps.humanatlas.io/cde/" [breadcrumbs]="crumbs()" hraFeature="cde-app-header">
+  <hra-header baseUrl="https://apps.humanatlas.io/cde/" [breadcrumbs]="crumbs()" hraFeature="header">
     <a
       mat-icon-button
       [matMenuTriggerFor]="exploreMenu"
@@ -25,7 +25,7 @@
     </a>
 
     <!-- Explore sample data Menu -->
-    <mat-menu #exploreMenu class="more-menu" hraFeature="explore-sample-data-menu">
+    <mat-menu #exploreMenu class="more-menu" hraFeature="explore-menu">
       <a mat-menu-item routerLink="/example/0" target="_blank" hraFeature="2d-intestine-data" hraClickEvent>
         <div class="title">2D intestine data</div>
         <div class="description">CyCIF colorectal cancer data from Peter Sorger Lab</div>
