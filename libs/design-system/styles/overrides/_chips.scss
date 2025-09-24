@@ -1,8 +1,8 @@
-@use '../../../../styles/utils';
 @use '@angular/material' as mat;
-@use '../../../../styles/vars' as vars;
+@use '../utils';
+@use '../vars';
 
-@include utils.global-styles() {
+@mixin overrides() {
   @include mat.chips-overrides(
     (
       focus-outline-color: vars.$tertiary,
@@ -11,13 +11,7 @@
       focus-state-layer-color: vars.$on-primary,
       hover-state-layer-color: vars.$secondary,
       selected-focus-state-layer-color: vars.$secondary,
+      label-text-font: vars.$label-medium-font,
     )
   );
-
-  .mat-mdc-chip {
-    .mat-mdc-chip-action-label {
-      @include utils.use-font(label, medium);
-      line-height: 1.25rem;
-    }
-  }
 }

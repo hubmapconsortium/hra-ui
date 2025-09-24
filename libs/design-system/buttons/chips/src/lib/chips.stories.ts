@@ -38,7 +38,7 @@ export const Single: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <mat-chip-row>
+      <mat-chip-row [disabled]="disabled">
         Label
         @if (closeButton) {
           <button matChipRemove>
