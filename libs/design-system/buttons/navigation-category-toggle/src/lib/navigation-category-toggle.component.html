@@ -1,4 +1,10 @@
-<mat-button-toggle class="toggle" [checked]="toggled()" (change)="toggled.set($event.source.checked)">
+<mat-button-toggle
+  class="toggle"
+  hraFeature="navigation-category"
+  [hraClickEvent]="{ toggled: toggled() }"
+  [checked]="toggled()"
+  (change)="toggled.set($event.source.checked)"
+>
   <span class="text">
     <ng-content></ng-content>
   </span>

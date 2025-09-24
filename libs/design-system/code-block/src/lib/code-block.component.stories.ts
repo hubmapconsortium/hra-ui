@@ -1,12 +1,11 @@
-import { provideDesignSystem } from '@hra-ui/design-system';
-import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { CodeBlockComponent } from './code-block.component';
 
 /**
  * Metadata of the CodeBlockComponent.
  */
 const meta: Meta = {
-  title: 'CodeBlockComponent',
+  title: 'Design System/Code Block',
   component: CodeBlockComponent,
   parameters: {
     design: {
@@ -14,11 +13,6 @@ const meta: Meta = {
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=8607-29904&t=liDlwupj5RSoj2Mb-4',
     },
   },
-  decorators: [
-    applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
-  ],
 };
 export default meta;
 type Story = StoryObj<CodeBlockComponent>;

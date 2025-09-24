@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** An item which defines a string label and a string value */
 export interface DataItem {
@@ -20,7 +20,7 @@ export type InfoModalVariant = 'tabular' | 'center';
  */
 @Component({
   selector: 'hra-info-modal',
-  imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule],
+  imports: [HraCommonModule, MatTableModule, MatIconModule, MatButtonModule],
   templateUrl: './info-modal.component.html',
   styleUrl: './info-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

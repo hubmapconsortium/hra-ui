@@ -1,4 +1,11 @@
 <span class="file-name">{{ fileName() }}</span>
-<button mat-icon-button hraClickEvent hraIconButtonSize="large" aria-label="Delete file" (click)="cancelLoad.emit()">
+<button
+  mat-icon-button
+  hraFeature="delete-file"
+  hraClickEvent
+  hraIconButtonSize="large"
+  aria-label="Delete file"
+  (click)="cancelLoad.emit()"
+>
   <mat-icon>delete</mat-icon>
 </button>
