@@ -42,15 +42,22 @@
         [hraTooltip]="(logoTooltip$ | async) ?? 'Human Reference Atlas Portal'"
       ></hra-nav-header-buttons>
 
-      <div class="left-panel">
+      <div hraFeature="left-panel" class="left-panel">
         <div class="filter-data">
           <div class="filter-button-container" hraPlainTooltip="Select filters">
             <div class="filter-button-label">Filters</div>
-            <button mat-icon-button hraIconButtonSize="large" disableRipple (click)="sidenav.toggle()">
+            <button
+              hraFeature="open-filters"
+              hraClickEvent
+              mat-icon-button
+              hraIconButtonSize="large"
+              disableRipple
+              (click)="sidenav.toggle()"
+            >
               <mat-icon>filter_list</mat-icon>
             </button>
           </div>
-          <div class="filter-text" hraPlainTooltip="Current filters">
+          <div hraFeature="filter-text" hraHoverEvent class="filter-text" hraPlainTooltip="Current filters">
             <div class="sex filter-tag">Sex: {{ filter().sex }}</div>
             <div class="bmi filter-tag">BMI: {{ bmiRangeValue() }}</div>
             <div class="age filter-tag">Age: {{ ageRangeValue() }}</div>
@@ -59,6 +66,7 @@
 
         <div class="toggle-settings">
           <mat-button-toggle-group
+            hraFeature="asctb-toggle"
             multiple
             name="multiSelect"
             aria-label="Multi Select"
@@ -68,6 +76,8 @@
           >
             @for (option of menuOptions; track option) {
               <mat-button-toggle
+                [hraFeature]="option.toLowerCase().replace(' ', '-')"
+                hraClickEvent
                 [value]="option"
                 checked
                 [hraPlainTooltip]="(isItemSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
@@ -76,9 +86,10 @@
             }
           </mat-button-toggle-group>
         </div>
-        <div class="ontologies">
+        <div hraFeature="asctb-trees" class="ontologies">
           @if (isItemSelected('Anatomical Structures')) {
             <ccf-ontology-selection
+              hraFeature="anatomical-structures"
               class="ontology-selection"
               [treeModel]="ontologyTree()"
               [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
@@ -90,6 +101,7 @@
           }
           @if (isItemSelected('Cell Types')) {
             <ccf-ontology-selection
+              hraFeature="cell-types"
               class="cell-type-selection"
               [treeModel]="cellTypeTree()"
               [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
@@ -101,6 +113,7 @@
           }
           @if (isItemSelected('Biomarkers')) {
             <ccf-ontology-selection
+              hraFeature="biomarkers"
               class="biomarker-selection"
               [treeModel]="biomarkerTree()"
               [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
@@ -120,9 +133,11 @@
         </div>
       </div>
 
-      <div class="vis-panel">
+      <div hraFeature="body-ui-controls" class="vis-panel">
         <span class="tagline">Body Visualization</span>
         <button
+          hraFeature="menu-open"
+          hraClickEvent
           mat-icon-button
           [matMenuTriggerFor]="menu"
           hraIconButtonSize="large"
@@ -131,40 +146,40 @@
         >
           <mat-icon>more_vert</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item [matMenuTriggerFor]="submenu">
+        <mat-menu hraFeature="menu" #menu="matMenu">
+          <button hraFeature="info" hraClickEvent hraHoverEvent mat-menu-item [matMenuTriggerFor]="submenu">
             <mat-icon>info</mat-icon>
             Info
             <mat-icon class="expand-arrow">arrow_right</mat-icon>
           </button>
-          <button mat-menu-item [matMenuTriggerFor]="submenu2">
+          <button hraFeature="visibility" hraClickEvent hraHoverEvent mat-menu-item [matMenuTriggerFor]="submenu2">
             <mat-icon>visibility</mat-icon>
             Organ visibility
             <mat-icon class="expand-arrow">arrow_right</mat-icon>
           </button>
           <mat-divider class="menu-divider"></mat-divider>
-          <button mat-menu-item (click)="bodyUI.resetView()">
+          <button hraFeature="reset-settings" hraClickEvent mat-menu-item (click)="bodyUI.resetView()">
             <mat-icon class="reset icon">reset_settings</mat-icon>
             Reset visualization view
           </button>
         </mat-menu>
         <mat-menu #submenu="matMenu">
-          <button mat-menu-item>
+          <button hraFeature="info-text" hraClickEvent hraHoverEvent mat-menu-item>
             All Human Reference Atlas organs may be viewed in the Body Visualization section. Show/hide organs with the
             organ search feature. Hiding and showing organs does not filter data results.
           </button>
         </mat-menu>
         <mat-menu #submenu2="matMenu">
-          <button mat-menu-item (click)="selectAllOrgans()">
+          <button hraFeature="show-all-organs" hraClickEvent mat-menu-item (click)="selectAllOrgans()">
             <mat-icon>visibility</mat-icon>
             Show all organs
           </button>
-          <button mat-menu-item (click)="clearAllOrgans()">
+          <button hraFeature="hide-all-organs" hraClickEvent mat-menu-item (click)="clearAllOrgans()">
             <mat-icon>visibility_off</mat-icon>
             Hide all organs
           </button>
           <mat-divider class="menu-divider"></mat-divider>
-          <button mat-menu-item (click)="scene.setDefaultOrgans()">
+          <button hraFeature="reset-organ-view" hraClickEvent mat-menu-item (click)="scene.setDefaultOrgans()">
             <mat-icon class="reset icon">reset_settings</mat-icon>
             Reset to default organ view
           </button>
@@ -175,8 +190,10 @@
         <ccf-organ-select hraPlainTooltip="Select organs to show/hide"></ccf-organ-select>
       </div>
 
-      <div class="content">
+      <div hraFeature="body-ui" class="content">
         <button
+          hraFeature="spatial-search-button"
+          hraClickEvent
           class="spatial-search-button"
           mat-flat-button
           (click)="spatialFlowService.startSpatialSearchFlow(true)"
@@ -185,18 +202,25 @@
           Spatial Search
         </button>
         <hra-body-ui
+          hraFeature="scene"
+          hraClickEvent
+          hraClickEventTriggerOn="none"
+          hraHoverEvent
+          hraHoverEventTriggerOn="none"
           #bodyUI
           class="stage-content"
           [scene]="$any(scene.scene$ | async)"
-          (nodeClick)="scene.sceneNodeClicked($event)"
-          (nodeHoverStart)="scene.sceneNodeHovered($event)"
+          (nodeClick)="scene.sceneNodeClicked($event); sceneEvent.logEvent('click')"
+          (nodeHoverStart)="scene.sceneNodeHovered($event); sceneHoverEvent.logEvent('mouseenter')"
           (nodeHoverStop)="scene.sceneNodeUnhover()"
           [bounds]="{ x: 1, y: 0.5, z: 0.4 }"
+          #sceneEvent="hraClickEvent"
+          #sceneHoverEvent="hraHoverEvent"
         >
         </hra-body-ui>
       </div>
 
-      <div class="right-panel">
+      <div hraFeature="right-panel" class="right-panel">
         <ccf-results-browser
           [listResults]="(listResultsState.listResults$ | async) ?? []"
           [aggregateData]="(data.aggregateData$ | async) ?? []"

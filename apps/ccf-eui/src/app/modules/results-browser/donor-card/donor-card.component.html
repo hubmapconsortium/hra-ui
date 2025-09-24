@@ -1,4 +1,5 @@
 <ccf-metadata-card
+  hraFeature="donor"
   class="donor-card"
   [class.highlighted]="highlighted()"
   [tagline]="'Donor: ' + tissueBlock().donor?.label"
@@ -11,6 +12,7 @@
 @if (expanded()) {
   <div class="expanded-cards">
     <ccf-metadata-card
+      hraFeature="block"
       class="block-card"
       tagline="Tissue Block"
       [label]="'3D size: ' + size()"
@@ -19,6 +21,8 @@
     >
       @if ((tissueBlock().sections?.length ?? 0) > 1) {
         <ccf-tissue-section-vis
+          hraFeature="section-vis"
+          hraHoverEvent
           [totalTissueSections]="tissueBlock().sectionCount ?? 0"
           [tissueSections]="tissueBlock().sections ?? []"
         ></ccf-tissue-section-vis>
@@ -26,12 +30,24 @@
 
       @if (tissueBlock().datasets.length > 0) {
         <div>Datasets</div>
-        <ccf-thumbnail-list [data]="tissueBlock().datasets" (linkClicked)="linkHandler()"> </ccf-thumbnail-list>
+        <ccf-thumbnail-list
+          hraFeature="thumbnail"
+          hraClickEvent
+          [data]="tissueBlock().datasets"
+          (linkClicked)="linkHandler()"
+        >
+        </ccf-thumbnail-list>
       }
     </ccf-metadata-card>
 
     @for (section of tissueBlock().sections; track section; let i = $index) {
-      <ccf-metadata-card class="section-card" tagline="Tissue Section" label="Datasets" [menuLink]="sectionLinks()[i]">
+      <ccf-metadata-card
+        hraFeature="section"
+        class="section-card"
+        tagline="Tissue Section"
+        label="Datasets"
+        [menuLink]="sectionLinks()[i]"
+      >
         @if (section.datasets.length > 0) {
           <ccf-thumbnail-list [data]="section.datasets" (linkClicked)="linkHandler()"> </ccf-thumbnail-list>
         }
