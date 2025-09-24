@@ -30,13 +30,7 @@
 
       @if (tissueBlock().datasets.length > 0) {
         <div>Datasets</div>
-        <ccf-thumbnail-list
-          hraFeature="thumbnail"
-          hraClickEvent
-          [data]="tissueBlock().datasets"
-          (linkClicked)="linkHandler()"
-        >
-        </ccf-thumbnail-list>
+        <ccf-thumbnail-list [data]="tissueBlock().datasets" (linkClicked)="linkHandler()"> </ccf-thumbnail-list>
       }
     </ccf-metadata-card>
 

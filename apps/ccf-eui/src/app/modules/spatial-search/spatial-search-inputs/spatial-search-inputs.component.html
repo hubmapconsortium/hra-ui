@@ -2,6 +2,7 @@
   <mat-form-field class="sex field" subscriptSizing="dynamic">
     <mat-label>Donor Sex</mat-label>
     <mat-select
+      hraFeature="search"
       hraClickEvent
       panelClass="options-container"
       disableOptionCentering="true"
@@ -10,7 +11,7 @@
       (selectionChange)="updateSex.emit($event.value)"
     >
       @for (option of sexOptions; track option) {
-        <mat-option class="dropdown-option" [value]="option">
+        <mat-option [hraFeature]="option | slugify" hraClickEvent class="dropdown-option" [value]="option">
           <div>{{ option | titlecase }}</div>
         </mat-option>
       }
@@ -24,7 +25,7 @@
       <mat-label>Organ</mat-label>
       <mat-icon class="search-icon" matPrefix>search</mat-icon>
       <input
-        hraFeature="organ-search"
+        hraFeature="search"
         hraClickEvent
         matInput
         hideSingleSelectionIndicator="true"
@@ -35,14 +36,13 @@
         [matAutocomplete]="auto"
       />
       <mat-autocomplete
-        hraFeature="organ-list"
         #auto="matAutocomplete"
         [displayWith]="displayFn"
         (optionSelected)="updateOrgan.emit($event.option.value)"
       >
         <ng-scrollbar>
           @for (organ of filteredOrgans | async; track organ) {
-            <mat-option [value]="organ">{{ organ.name }}</mat-option>
+            <mat-option [hraFeature]="organ.name | slugify" hraClickEvent [value]="organ">{{ organ.name }}</mat-option>
           }
         </ng-scrollbar>
       </mat-autocomplete>

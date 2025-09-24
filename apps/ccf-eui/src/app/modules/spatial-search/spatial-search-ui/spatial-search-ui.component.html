@@ -1,4 +1,4 @@
-<ng-container hraFeature="spatial-search">
+<ng-container hraFeature="eui.body-ui.spatial-search">
   <div class="spatial-search-scene">
     <div class="primary-scene-wrapper">
       <ccf-body-ui
@@ -125,30 +125,37 @@
       ></ccf-term-occurrence-list>
     </div>
 
-    <div class="button-container">
-      <button mat-button [matMenuTriggerFor]="menu">
+    <div hraFeature="buttons" class="button-container">
+      <button hraFeature="reset-options" hraClickEvent mat-button [matMenuTriggerFor]="menu">
         Reset Options<mat-icon class="reset icon">reset_settings</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="resetSphere.emit()">
-          <mat-icon class="reset icon">reset_settings</mat-icon>
+          <mat-icon hraFeature="reset-probing-sphere" hraClickEvent class="reset icon">reset_settings</mat-icon>
           Reset probing sphere size
         </button>
-        <button mat-menu-item (click)="resetView()">
+        <button hraFeature="reset-camera" hraClickEvent mat-menu-item (click)="resetView()">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset camera view
         </button>
-        <button mat-menu-item (click)="resetPosition.emit()">
+        <button hraFeature="reset-position" hraClickEvent mat-menu-item (click)="resetPosition.emit()">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset position
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item (click)="resetSphere.emit(); resetPosition.emit(); resetView()">
+        <button
+          hraFeature="reset-all"
+          hraClickEvent
+          mat-menu-item
+          (click)="resetSphere.emit(); resetPosition.emit(); resetView()"
+        >
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset all settings
         </button>
       </mat-menu>
       <button
+        hraFeature="apply"
+        hraClickEvent
         mat-flat-button
         class="run-spatial-search button"
         (click)="addSpatialSearch.emit()"
