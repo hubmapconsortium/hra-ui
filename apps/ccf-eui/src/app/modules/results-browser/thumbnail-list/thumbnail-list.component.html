@@ -1,7 +1,7 @@
 @for (item of data(); track item.thumbnail) {
-  <div class="slide">
+  <div hraFeature="thumbnail" class="slide">
     <a
-      hraFeature="thumbnail"
+      [hraFeature]="item.technology?.toLowerCase()?.replace(' ', '-') ?? 'no-technology'"
       hraClickEvent
       class="thumbnail"
       target="_blank"
