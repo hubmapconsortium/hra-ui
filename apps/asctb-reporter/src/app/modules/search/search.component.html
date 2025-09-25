@@ -1,4 +1,10 @@
-<mat-form-field class="search-field" subscriptSizing="dynamic" (click)="openSearchList()">
+<mat-form-field
+  hraFeature="search"
+  hraClickEvent
+  class="search-field"
+  subscriptSizing="dynamic"
+  (click)="openSearchList()"
+>
   <mat-label>Search Structures</mat-label>
   <mat-icon matPrefix>search</mat-icon>
   <input matInput readonly [value]="selectionLabel()" [disabled]="searchOpen() || disabled()" />
@@ -55,7 +61,7 @@
             hraClickEvent
             >AS</mat-button-toggle
           >
-          >
+
           <mat-button-toggle value="Cell Types" matTooltip="Cell Types" hraFeature="ct" hraClickEvent
             >CT</mat-button-toggle
           >
@@ -101,6 +107,8 @@
       <div>No matches.</div>
     </mat-list-item>
     <mat-list-option
+      hraFeature="structure"
+      [hraClickEvent]="{ structure: structure.name }"
       *ngFor="let structure of filteredStructures()"
       [value]="structure"
       [selected]="selectionSet().has(structure)"
