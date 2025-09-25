@@ -1,5 +1,5 @@
 <ng-container hraFeature="visual-cards">
-  @for (card of cardData(); track card.label; let i = $index) {
+  @for (card of cardData(); track card.label) {
     <a
       [routerLink]="card.route"
       class="visual-card cta-flat"
