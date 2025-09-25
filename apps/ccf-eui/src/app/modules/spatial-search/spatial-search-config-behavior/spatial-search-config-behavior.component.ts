@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FilterSexEnum } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { OrganInfo } from 'ccf-shared';
@@ -16,7 +16,7 @@ import { SpatialSearchUiBehaviorComponent } from '../spatial-search-ui-behavior/
 @Component({
   selector: 'ccf-spatial-search-config-behavior',
   templateUrl: './spatial-search-config-behavior.component.html',
-  imports: [CommonModule, SpatialSearchConfigComponent, MatDialogModule],
+  imports: [HraCommonModule, SpatialSearchConfigComponent, MatDialogModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigBehaviorComponent {

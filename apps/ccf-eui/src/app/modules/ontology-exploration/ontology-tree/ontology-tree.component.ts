@@ -4,9 +4,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
 import { OntologyTreeNode } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TreeSizeDirective } from '@hra-ui/design-system/tree';
 import { produce } from 'immer';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -28,6 +29,7 @@ type GetChildrenFunc = (o: OntologyTreeNode) => OntologyTreeNode[];
   templateUrl: './ontology-tree.component.html',
   styleUrls: ['./ontology-tree.component.scss'],
   imports: [
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     MatTreeModule,

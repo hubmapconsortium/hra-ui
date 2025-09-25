@@ -9,6 +9,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { Filter, FilterSexEnum } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SpatialSearchListComponent } from 'ccf-shared';
@@ -37,6 +38,7 @@ import { DualSliderComponent } from '../dual-slider/dual-slider.component';
   templateUrl: './filters-content.component.html',
   styleUrls: ['./filters-content.component.scss'],
   imports: [
+    HraCommonModule,
     ReactiveFormsModule,
     MatIconModule,
     SpatialSearchListComponent,
