@@ -1,6 +1,6 @@
 <ng-container hraFeature="landing-page">
   <div class="splash-wrapper">
-    <img [attr.src]="'assets/ui-images/ftu-splash.png' | assetUrl" alt="splash-img" class="splash-header-img" />
+    <img [attr.src]="'assets/ui-images/ftu-splash.png' | assetUrl" alt="" class="splash-header-img" />
     <div class="splash-section">
       <hra-icon class="misc-logo" [svgIcon]="'product:ftu'" />
       <div class="header">Explore functional tissue units</div>
@@ -11,10 +11,10 @@
       </div>
       <div class="actions">
         <a
+          hraFeature="explore-ftus"
+          hraClickEvent
           mat-button
           hraCtaButton
-          hraClickEvent
-          hraFeature="explore-ftus"
           hraPrimaryButton
           class="action"
           routerLink="/ftu"
@@ -24,11 +24,11 @@
           <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
         </a>
         <a
+          hraFeature="read-publication"
+          hraClickEvent
           mat-button
           hraSecondaryButton
           hraCtaButton
-          hraClickEvent
-          hraFeature="read-publication"
           class="action"
           [attr.href]="publicationLinkDefault()"
           target="_blank"
@@ -52,23 +52,16 @@
       </div>
       <div class="logo-wrapper">
         <a
-          [href]="kpmpLink()"
+          hraFeature="kpmp"
           hraClickEvent
-          hraFeature="go-kpmp"
+          [href]="kpmpLink()"
           class="app-logo"
           target="_blank"
           rel="noopener noreferrer"
         >
           <hra-icon class="kpmp" [svgIcon]="'KPMP'" />
         </a>
-        <a
-          [href]="ebiLink()"
-          hraClickEvent
-          hraFeature="go-ebi"
-          class="app-logo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a hraClickEvent hraFeature="ebi" [href]="ebiLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
           <hra-icon class="partner" [svgIcon]="'partner-logos'" />
         </a>
       </div>

@@ -1,14 +1,14 @@
 <ng-container hraFeature="biomarker-details">
   @if (!isBiomarkerfullscreen()) {
-    <div class="biomarker-header" hraFeature="header">
+    <div hraFeature="header" class="biomarker-header">
       <span class="biomarker-header-title">Cell types by biomarkers</span>
       @if (tab.rows.length !== 0) {
         <button
+          hraFeature="open-fullscreen"
+          hraClickEvent
           mat-icon-button
           hraIconButtonSize="large"
           hraPlainTooltip="Open in full screen"
-          hraClickEvent
-          hraFeature="open-fullscreen"
           (click)="toggleFullscreen()"
         >
           <mat-icon>fullscreen</mat-icon>
@@ -18,8 +18,8 @@
   }
 
   <mat-button-toggle-group
-    class="biomarker-toggle-group absolute-toggle"
     hraFeature="biomarker-toggle"
+    class="biomarker-toggle-group absolute-toggle"
     hraButtonToggleSize="medium"
     [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
     (change)="onToggleChange($event.value)"
@@ -69,36 +69,26 @@
   @if (tab.rows.length > 0) {
     <div class="legend" hraFeature="legends">
       <button
-        class="legend-percentage"
         hraClickEvent
-        hraFeature="click-percentage-tooltip"
+        hraFeature="percentage"
+        class="legend-percentage"
         [hraRichTooltip]
         hraRichTooltipTagline="Percentage of cells"
         [hraRichTooltipDescription]="percentageTooltipText"
       >
         <span class="legend-header-percentage">Percentage of cells</span>
-        <ftu-size-legend
-          hraClickEvent
-          hraFeature="open-percentage-tooltip"
-          [sizes]="sizes()"
-          class="content"
-        ></ftu-size-legend>
+        <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
       </button>
       <button
-        class="legend-gradient"
         hraClickEvent
-        hraFeature="click-expression-tooltip"
+        hraFeature="expression"
+        class="legend-gradient"
         [hraRichTooltip]
         hraRichTooltipTagline="Biomarker expression mean"
         [hraRichTooltipDescription]="expressionTooltipText"
       >
         <span class="legend-header-gradient">Biomarker expression mean</span>
-        <ftu-gradient-legend
-          hraClickEvent
-          hraFeature="open-gradient-tooltip"
-          [gradient]="gradients()"
-          class="content"
-        ></ftu-gradient-legend>
+        <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
       </button>
     </div>
   }

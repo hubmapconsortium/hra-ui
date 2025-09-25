@@ -1,4 +1,4 @@
-<ng-container hraFeature="empty-biomarker-state">
+<ng-container hraFeature="empty-biomarker">
   <div class="content">
     <p>{{ emptyBehaviorText() }}</p>
     <p>Please email the Human Reference Atlas team at infoccf&#64;iu.edu about your dataset.</p>
@@ -6,12 +6,12 @@
 
   <div class="footer">
     <button
+      hraFeature="copy-email"
+      hraClickEvent
       mat-flat-button
       class="collaborate-button"
       color="primary"
       cdkCopyToClipboard="infoccf@iu.edu"
-      hraFeature="copy-contact-email"
-      hraClickEvent
       (click)="showCopiedMessage()"
     >
       <mat-icon>content_copy</mat-icon>

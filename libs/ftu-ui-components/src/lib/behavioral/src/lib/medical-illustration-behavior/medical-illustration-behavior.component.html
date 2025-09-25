@@ -1,13 +1,13 @@
 <ng-container hraFeature="medical-illustration">
   @if (!isFullscreen()) {
-    <div class="illustration-header" hraFeature="header">
+    <div hraFeature="header" class="illustration-header">
       <span class="content">Illustration</span>
       <button
+        hraClickEvent
+        hraFeature="open-fullscreen"
         mat-icon-button
         hraIconButtonSize="large"
         hraPlainTooltip="Open in full screen"
-        hraClickEvent
-        hraFeature="open-fullscreen"
         (click)="isFullscreen.set(true)"
       >
         <mat-icon>fullscreen</mat-icon>
@@ -16,7 +16,7 @@
   }
   <ftu-interactive-svg
     hraHoverEvent
-    hraFeature="hover-illustration"
+    hraFeature="illustration"
     [url]="currentUrl()"
     [mapping]="mapping()"
     [highlightId]="highlightId()"
