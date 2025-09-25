@@ -1,89 +1,91 @@
-<hra-header [breadcrumbs]="crumbs()">
-  @if (!isLanding()) {
-    <a mat-icon-button [matMenuTriggerFor]="downloadMenu" hraPlainTooltip="Download illustration">
-      <mat-icon>download</mat-icon>
-    </a>
-    <a mat-icon-button [hraLink]="illustrationMetadata" hraPlainTooltip="View illustration metadata">
-      <mat-icon>database</mat-icon>
-    </a>
-  } @else {
-    <a
-      mat-icon-button
-      href="https://lod.humanatlas.io/2d-ftu/"
-      target="_blank"
-      hraPlainTooltip="View in Knowledge Graph"
-    >
-      <mat-icon>database</mat-icon>
-    </a>
-  }
-
-  <a mat-icon-button [matMenuTriggerFor]="embedMenu" rel="noopener noreferrer" hraPlainTooltip="Embed app">
-    <mat-icon>code</mat-icon>
-  </a>
-  <a mat-icon-button [matMenuTriggerFor]="helpMenu" rel="noopener noreferrer" hraPlainTooltip="Help & documentation">
-    <mat-icon>help</mat-icon>
-  </a>
-
-  <!-- Help & documentation Menu -->
-  <mat-menu #helpMenu class="more-menu">
-    <a mat-menu-item href="https://humanatlas.io/2d-ftu-illustrations" target="_blank">
-      <div class="title">Functional Tissue Unit Illustrations</div>
-      <div class="description">Data documentation</div>
-    </a>
-    <a mat-menu-item href="https://humanatlas.io/user-story/4" target="_blank">
-      <div class="title">Functional Tissue Unit Explorer</div>
-      <div class="description">App guidance & documentation</div>
-    </a>
-    <mat-divider />
-    <a mat-menu-item href="https://doi.org/10.1038/s41467-024-54591-6" target="_blank">
-      <div>Read publication</div>
-    </a>
-  </mat-menu>
-
-  <!-- Embed Menu -->
-  <mat-menu #embedMenu>
-    <a mat-menu-item href="https://docs.humanatlas.io/dev/web-components#ftu-explorer" target="_blank">
-      <mat-icon>code</mat-icon>
-      <div>Full app</div>
-    </a>
-    <a mat-menu-item href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-swc" target="_blank">
-      <mat-icon>code</mat-icon>
-      <div>Web component</div>
-    </a>
-    <a
-      mat-menu-item
-      href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-illustration-viewer"
-      target="_blank"
-    >
-      <mat-icon>code</mat-icon>
-      <div>Illustration viewer</div>
-    </a>
-  </mat-menu>
-
-  <!-- Download Menu -->
-  <mat-menu #downloadMenu>
-    @for (format of downloadFormats(); track format.label) {
-      <button mat-menu-item (click)="download(format.id)">
-        <div>{{ format.label }}</div>
-      </button>
-    }
-  </mat-menu>
-</hra-header>
-@if (!screenSizeNoticeOpen) {
-  <div class="main">
-    @if (router.url !== '/') {
-      <ftu-tissue-library-behavior
-        class="sidebar"
-        [(selected)]="selectedFtu"
-        [class.hidden]="isFullscreen()"
-      ></ftu-tissue-library-behavior>
+<ng-container hraFeature="ftu-ui">
+  <hra-header [breadcrumbs]="crumbs()">
+    @if (!isLanding()) {
+      <a mat-icon-button [matMenuTriggerFor]="downloadMenu" hraPlainTooltip="Download illustration">
+        <mat-icon>download</mat-icon>
+      </a>
+      <a mat-icon-button [hraLink]="illustrationMetadata" hraPlainTooltip="View illustration metadata">
+        <mat-icon>database</mat-icon>
+      </a>
+    } @else {
+      <a
+        mat-icon-button
+        href="https://lod.humanatlas.io/2d-ftu/"
+        target="_blank"
+        hraPlainTooltip="View in Knowledge Graph"
+      >
+        <mat-icon>database</mat-icon>
+      </a>
     }
 
-    <div class="content">
-      <router-outlet />
+    <a mat-icon-button [matMenuTriggerFor]="embedMenu" rel="noopener noreferrer" hraPlainTooltip="Embed app">
+      <mat-icon>code</mat-icon>
+    </a>
+    <a mat-icon-button [matMenuTriggerFor]="helpMenu" rel="noopener noreferrer" hraPlainTooltip="Help & documentation">
+      <mat-icon>help</mat-icon>
+    </a>
+
+    <!-- Help & documentation Menu -->
+    <mat-menu #helpMenu class="more-menu">
+      <a mat-menu-item href="https://humanatlas.io/2d-ftu-illustrations" target="_blank">
+        <div class="title">Functional Tissue Unit Illustrations</div>
+        <div class="description">Data documentation</div>
+      </a>
+      <a mat-menu-item href="https://humanatlas.io/user-story/4" target="_blank">
+        <div class="title">Functional Tissue Unit Explorer</div>
+        <div class="description">App guidance & documentation</div>
+      </a>
+      <mat-divider />
+      <a mat-menu-item href="https://doi.org/10.1038/s41467-024-54591-6" target="_blank">
+        <div>Read publication</div>
+      </a>
+    </mat-menu>
+
+    <!-- Embed Menu -->
+    <mat-menu #embedMenu>
+      <a mat-menu-item href="https://docs.humanatlas.io/dev/web-components#ftu-explorer" target="_blank">
+        <mat-icon>code</mat-icon>
+        <div>Full app</div>
+      </a>
+      <a mat-menu-item href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-swc" target="_blank">
+        <mat-icon>code</mat-icon>
+        <div>Web component</div>
+      </a>
+      <a
+        mat-menu-item
+        href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-illustration-viewer"
+        target="_blank"
+      >
+        <mat-icon>code</mat-icon>
+        <div>Illustration viewer</div>
+      </a>
+    </mat-menu>
+
+    <!-- Download Menu -->
+    <mat-menu #downloadMenu>
+      @for (format of downloadFormats(); track format.label) {
+        <button mat-menu-item (click)="download(format.id)">
+          <div>{{ format.label }}</div>
+        </button>
+      }
+    </mat-menu>
+  </hra-header>
+  @if (!screenSizeNoticeOpen) {
+    <div class="main">
+      @if (router.url !== '/') {
+        <ftu-tissue-library-behavior
+          class="sidebar"
+          [(selected)]="selectedFtu"
+          [class.hidden]="isFullscreen()"
+        ></ftu-tissue-library-behavior>
+      }
+
+      <div class="content">
+        <router-outlet />
+      </div>
     </div>
-  </div>
-}
-@if (isLanding()) {
-  <hra-footer />
-}
+  }
+  @if (isLanding()) {
+    <hra-footer />
+  }
+</ng-container>
