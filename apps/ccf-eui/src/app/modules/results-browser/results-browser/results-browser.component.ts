@@ -1,22 +1,12 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { CdkVirtualScrollViewport, ScrollingModule, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  input,
-  output,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { ScrollingModule, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule as HraScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
@@ -36,7 +26,7 @@ import { ResultsVirtualScrollStrategy } from '../virtual-scroll-strategy/results
   templateUrl: './results-browser.component.html',
   styleUrls: ['./results-browser.component.scss'],
   imports: [
-    CommonModule,
+    HraCommonModule,
     DonorCardComponent,
     ExpansionPanelModule,
     MatMenuModule,
