@@ -5,14 +5,18 @@
         hraFeature="scene"
         hraClickEvent
         hraClickEventTriggerOn="none"
+        hraHoverEvent
+        hraHoverEventTriggerOn="none"
         #primary
         class="primary-scene"
         [scene]="scene()"
         [bounds]="sceneBounds()"
         [target]="sceneTarget()"
         (nodeClick)="nodeClicked.emit($event.node); sceneEvent.logEvent('click')"
+        (nodeHoverStart)="sceneHoverEvent.logEvent('mouseenter')"
         (rotationChange)="minimap.rotation = $event[0]; minimap.rotationX = $event[1]"
         #sceneEvent="hraClickEvent"
+        #sceneHoverEvent="hraHoverEvent"
       ></ccf-body-ui>
     </div>
     <div class="sidebar">
@@ -20,14 +24,18 @@
         hraFeature="minimap"
         hraClickEvent
         hraClickEventTriggerOn="none"
+        hraHoverEvent
+        hraHoverEventTriggerOn="none"
         #minimap
         class="minimap-scene"
         [interactive]="false"
         [scene]="scene()"
         [bounds]="sceneBounds()"
         [target]="sceneTarget()"
-        (nodeClick)="nodeClicked.emit($event.node); minmapEvent.logEvent('click')"
-        #minmapEvent="hraClickEvent"
+        (nodeClick)="nodeClicked.emit($event.node); minimapEvent.logEvent('click')"
+        (nodeHoverStart)="minimapHoverEvent.logEvent('mouseenter')"
+        #minimapEvent="hraClickEvent"
+        #minimapHoverEvent="hraHoverEvent"
       ></ccf-body-ui>
       <ccf-spatial-search-keyboard-ui-behavior
         [delta]="1"
