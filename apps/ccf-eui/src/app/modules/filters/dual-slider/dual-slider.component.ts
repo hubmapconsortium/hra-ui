@@ -1,7 +1,6 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { hasModifierKey } from '@angular/cdk/keycodes';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
@@ -23,6 +22,7 @@ import { ControlValueAccessor, NgControl, NonNullableFormBuilder, ReactiveFormsM
 import { MAT_FORM_FIELD, MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderRangeThumb } from '@angular/material/slider';
+import { HraCommonModule } from '@hra-ui/common';
 import { SliderModule } from '@hra-ui/design-system/slider';
 import { explicitEffect } from 'ngxtension/explicit-effect';
 import { skip, Subject } from 'rxjs';
@@ -42,7 +42,7 @@ let nextId = 0;
   styleUrls: ['./dual-slider.component.scss'],
   imports: [
     A11yModule,
-    CommonModule,
+    HraCommonModule,
     MatFormFieldModule,
     MatInputModule,
     OverlayModule,
