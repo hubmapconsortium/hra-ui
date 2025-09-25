@@ -1,131 +1,116 @@
-<div class="header" hraFeature="header">
-  <div class="left">
-    <div class="icons">
-      <hra-icon [svgIcon]="'product:eui'" hraFeature="eui-icon-click" hraClickEvent></hra-icon>
-      @if (organLogo(); as logo) {
-        <hra-icon [svgIcon]="logo" hraFeature="organ-icon-click" [hraClickEvent]="{ organLogo: logo }"></hra-icon>
-      }
+<ng-container hraFeature="ccf-organ-info">
+  <div hraFeature="header" class="header">
+    <div class="left">
+      <div class="icons">
+        <hra-icon [svgIcon]="'product:eui'"></hra-icon>
+        @if (organLogo(); as logo) {
+          <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo"></hra-icon>
+        }
+      </div>
+      <div class="title">Organ Information</div>
     </div>
-    <div class="title">Organ Information</div>
+    <button
+      hraFeature="more-menu"
+      hraClickEvent
+      mat-icon-button
+      hraIconButtonSize="large"
+      hraIconButtonVariant="dark"
+      [matMenuTriggerFor]="headerMenu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </div>
-  <button
-    mat-icon-button
-    hraIconButtonSize="large"
-    hraIconButtonVariant="dark"
-    [matMenuTriggerFor]="headerMenu"
-    hraFeature="header-more-menu"
-    hraClickEvent
-  >
-    <mat-icon>more_vert</mat-icon>
-  </button>
-</div>
-<div class="content" #contentContainer>
-  <div class="info-view" hraFeature="metadata-view">
-    <div class="organ-title" [hraFeature]="statsLabel()">
-      {{ isLoading() ? 'Loading...' : statsLabel() }}
+  <div class="content" #contentContainer>
+    <div hraFeature="metadata" class="info-view">
+      <div class="organ-title">
+        {{ isLoading() ? 'Loading...' : statsLabel() }}
+      </div>
+      <div class="params">
+        @let sex = organ.value()?.sex;
+        <mat-button-toggle-group
+          hraFeature="sex-toggle"
+          hraButtonToggleSize="medium"
+          [hideSingleSelectionIndicator]="false"
+          [value]="sex"
+          [disabled]="sex === undefined || isLoading()"
+          (change)="updateInput('sex', $event.value)"
+        >
+          <mat-button-toggle [hraClickEvent]="{ value: 'Male' }" value="Male"> Male </mat-button-toggle>
+          <mat-button-toggle [hraClickEvent]="{ value: 'Female' }" value="Female"> Female </mat-button-toggle>
+        </mat-button-toggle-group>
+        @let side = organ.value()?.side;
+        <mat-button-toggle-group
+          hraFeature="side-toggle"
+          hraButtonToggleSize="medium"
+          [disabled]="side === undefined || isLoading()"
+          [hideSingleSelectionIndicator]="false"
+          [value]="side"
+          (change)="updateInput('side', $event.value)"
+        >
+          <mat-button-toggle [hraClickEvent]="{ value: 'Left' }" value="Left"> Left </mat-button-toggle>
+          <mat-button-toggle [hraClickEvent]="{ value: 'Right' }" value="Right"> Right </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+      <div>
+        @if (isLoading()) {
+          <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>
+        } @else {
+          <hra-table
+            class="stats-table"
+            [columns]="tableColumns"
+            [rows]="stats()"
+            [style]="'alternating'"
+            [verticalDividers]="true"
+          ></hra-table>
+        }
+      </div>
     </div>
-    <div class="params">
-      @let sex = organ.value()?.sex;
-      <mat-button-toggle-group
-        hraButtonToggleSize="medium"
-        [hideSingleSelectionIndicator]="false"
-        [value]="sex"
-        [disabled]="sex === undefined || isLoading()"
-        (change)="updateInput('sex', $event.value)"
-        hraFeature="sex-toggle"
-      >
-        <mat-button-toggle value="Male" hraFeature="sex-toggle-click" [hraClickEvent]="{ value: 'Male' }">
-          Male
-        </mat-button-toggle>
-        <mat-button-toggle value="Female" hraFeature="sex-toggle-click" [hraClickEvent]="{ value: 'Female' }">
-          Female
-        </mat-button-toggle>
-      </mat-button-toggle-group>
-      @let side = organ.value()?.side;
-      <mat-button-toggle-group
-        hraButtonToggleSize="medium"
-        [disabled]="side === undefined || isLoading()"
-        [hideSingleSelectionIndicator]="false"
-        [value]="side"
-        (change)="updateInput('side', $event.value)"
-        hraFeature="side-toggle"
-      >
-        <mat-button-toggle value="Left" hraFeature="side-toggle-click" [hraClickEvent]="{ value: 'Left' }">
-          Left
-        </mat-button-toggle>
-        <mat-button-toggle value="Right" hraFeature="side-toggle-click" [hraClickEvent]="{ value: 'Right' }">
-          Right
-        </mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
-    <div>
+    <div class="organ-view" [style.height.px]="contentHeightMonitor()">
       @if (isLoading()) {
         <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>
-      } @else {
-        <hra-table
-          class="stats-table"
-          [columns]="tableColumns"
-          [rows]="stats()"
-          [style]="'alternating'"
-          [verticalDividers]="true"
-          hraFeature="metadata-stats-table"
-          [hraHoverEvent]="{ component: 'stats-table' }"
-          hraHoverEventTriggerOn="mouseenter"
-        ></hra-table>
       }
+      <ccf-organ
+        hraFeature="organ-viewer"
+        hraClickEvent
+        hraHoverEvent
+        hraHoverEventTriggerOn="mouseenter"
+        [organ]="organ.value()"
+        [scene]="scene.value()"
+        [blocks]="blocks.value()"
+        [filter]="filter()"
+        (nodeClick)="nodeClicked.emit($event)"
+      >
+      </ccf-organ>
     </div>
-  </div>
-  <div class="organ-view" [style.height.px]="contentHeightMonitor()" hraFeature="canvas">
-    @if (isLoading()) {
-      <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>
-    }
-    <ccf-organ
-      [organ]="organ.value()"
-      [scene]="scene.value()"
-      [blocks]="blocks.value()"
-      [filter]="filter()"
-      (nodeClick)="nodeClicked.emit($event)"
-      hraFeature="organ-viewer-click"
-      hraClickEvent
-      [hraHoverEvent]="{ component: 'organ-viewer' }"
-      hraHoverEventTriggerOn="mouseenter"
-    >
-    </ccf-organ>
-  </div>
 
-  <mat-menu #headerMenu="matMenu" hraFeature="more-menu">
-    <a
-      mat-menu-item
-      [href]="organ.value()?.['@id']"
-      target="_blank"
-      hraFeature="source-data-click"
-      [hraClickEvent]="{ url: organ.value()?.['@id'] }"
-    >
-      <mat-icon>database</mat-icon>
-      Source data
-    </a>
-    <a
-      mat-menu-item
-      href="https://docs.humanatlas.io/dev/web-components#eui-organ-information"
-      target="_blank"
-      hraFeature="help-documentation-click"
-      hraClickEvent
-    >
-      <mat-icon>help</mat-icon>
-      Help & documentation
-    </a>
-    <mat-divider class="menu-divider"></mat-divider>
-    <a
-      mat-menu-item
-      href="https://humanatlas.io/publications"
-      target="_blank"
-      hraFeature="publications-click"
-      hraClickEvent
-    >
-      View publications
-    </a>
-    <a mat-menu-item href="https://humanatlas.io" target="_blank" hraFeature="hra-portal-click" hraClickEvent>
-      Human Reference Atlas Portal
-    </a>
-  </mat-menu>
-</div>
+    <mat-menu #headerMenu="matMenu" hraFeature="more-menu">
+      <a hraFeature="source-data" hraClickEvent mat-menu-item [href]="organ.value()?.['@id']" target="_blank">
+        <mat-icon>database</mat-icon>
+        Source data
+      </a>
+      <a
+        hraFeature="help-documentation"
+        hraClickEvent
+        mat-menu-item
+        href="https://docs.humanatlas.io/dev/web-components#eui-organ-information"
+        target="_blank"
+      >
+        <mat-icon>help</mat-icon>
+        Help & documentation
+      </a>
+      <mat-divider class="menu-divider"></mat-divider>
+      <a
+        hraFeature="publications"
+        hraClickEvent
+        mat-menu-item
+        href="https://humanatlas.io/publications"
+        target="_blank"
+      >
+        View publications
+      </a>
+      <a mat-menu-item href="https://humanatlas.io" target="_blank" hraFeature="hra-portal" hraClickEvent>
+        Human Reference Atlas Portal
+      </a>
+    </mat-menu>
+  </div>
+</ng-container>
