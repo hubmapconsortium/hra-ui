@@ -3,7 +3,14 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Width</mat-label>
-      <input [(ngModel)]="config.width" type="number" matInput (change)="changeWidth()" />
+      <input
+        hraFeature="width"
+        hraModelChangeEvent
+        [(ngModel)]="config.width"
+        type="number"
+        matInput
+        (change)="changeWidth()"
+      />
     </mat-form-field>
     <mat-slider tickInterval="100" min="100" max="1000" (change)="changeWidth()" discrete>
       <input matSliderThumb [(ngModel)]="config.width" />
@@ -12,7 +19,14 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Height</mat-label>
-      <input [(ngModel)]="config.height" type="number" matInput (change)="changeHeight()" />
+      <input
+        hraFeature="height"
+        hraModelChangeEvent
+        [(ngModel)]="config.height"
+        type="number"
+        matInput
+        (change)="changeHeight()"
+      />
     </mat-form-field>
     <mat-slider tickInterval="100" min="100" max="7000" (change)="changeHeight()" discrete>
       <input matSliderThumb [(ngModel)]="config.height"
@@ -25,7 +39,14 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>X</mat-label>
-      <input [(ngModel)]="config.bimodal_distance_x" type="number" matInput (change)="changeBimodalDistanceX()" />
+      <input
+        hraFeature="x"
+        hraModelChangeEvent
+        [(ngModel)]="config.bimodal_distance_x"
+        type="number"
+        matInput
+        (change)="changeBimodalDistanceX()"
+      />
     </mat-form-field>
     <mat-slider
       thumbLabel
@@ -36,13 +57,20 @@
       (change)="changeBimodalDistanceX()"
       discrete
     >
-      <input matSliderThumb [(ngModel)]="config.bimodal_distance_x"
-    /></mat-slider>
+      <input matSliderThumb [(ngModel)]="config.bimodal_distance_x" />
+    </mat-slider>
   </div>
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Y</mat-label>
-      <input [(ngModel)]="config.bimodal_distance_y" type="number" matInput (change)="changeBimodalDistanceY()" />
+      <input
+        hraFeature="y"
+        hraModelChangeEvent
+        [(ngModel)]="config.bimodal_distance_y"
+        type="number"
+        matInput
+        (change)="changeBimodalDistanceY()"
+      />
     </mat-form-field>
     <mat-slider tickInterval="100" min="10" max="200" (change)="changeBimodalDistanceY()" discrete>
       <input matSliderThumb [(ngModel)]="config.bimodal_distance_y" />
@@ -70,7 +98,7 @@
       (change)="changeShowOntology()"
       matTooltip="Toggle Visibility of Ontology Links"
       matTooltipPosition="below"
-      hraFeature="show-ontology"
+      hraFeature="show-ontology-ids"
       [hraClickEvent]="{ enabled: config.show_ontology }"
     >
       Show ontology IDs

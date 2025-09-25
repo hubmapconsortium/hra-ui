@@ -47,7 +47,7 @@
               class="section-selector"
               [class.section-selected]="$index === selectedVideoSection()"
               hraButtonVariant="primary"
-              [hraFeature]="section.sec | slugify"
+              [hraFeature]="section.header | slugify"
               hraClickEvent
               [disableRipple]="true"
               (click)="seekVideo(section.sec, $index)"

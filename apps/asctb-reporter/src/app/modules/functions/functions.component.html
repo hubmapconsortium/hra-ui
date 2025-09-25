@@ -17,7 +17,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
             hraFeature="sort"
-            [hraModelChangeEvent]="{ value: (config$ | async)?.CT?.sort }"
+            hraModelChangeEvent
           >
             <mat-option *ngFor="let option of sortOptions" [value]="option">
               {{ option }}
@@ -35,7 +35,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
             hraFeature="size"
-            [hraModelChangeEvent]="{ value: (config$ | async)?.CT?.size }"
+            hraModelChangeEvent
           >
             <mat-option *ngFor="let option of ctSizeOptions" [value]="option">
               {{ option }}
@@ -60,7 +60,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
             hraFeature="sort"
-            [hraModelChangeEvent]="{ value: (config$ | async)?.BM?.sort }"
+            hraModelChangeEvent
           >
             <mat-option *ngFor="let option of sortOptions" [value]="option">
               {{ option }}
@@ -78,7 +78,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
             hraFeature="size"
-            [hraModelChangeEvent]="{ value: (config$ | async)?.BM?.size }"
+            hraModelChangeEvent
           >
             <mat-option *ngFor="let option of bmSizeOptions" [value]="option">
               {{ option }}
@@ -98,7 +98,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
             hraFeature="type"
-            [hraModelChangeEvent]="{ value: (config$ | async)?.BM?.type }"
+            hraModelChangeEvent
           >
             <mat-option *ngFor="let option of bimodalBTypeOptions" [value]="option">
               {{ option }}
