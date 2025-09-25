@@ -15,9 +15,13 @@
   </div>
 
   <mat-tab-group
+    hraClickEvent
+    hraClickEventTriggerOn="none"
+    #event="hraClickEvent"
     class="remove-border"
     [selectedIndex]="componentActive"
     (selectedIndexChange)="changeTab($event)"
+    (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
     [mat-stretch-tabs]="false"
     [fitInkBarToContent]="false"
     animationDuration="0"

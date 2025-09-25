@@ -11,7 +11,13 @@
   </div>
 
   <div body>
-    <mat-tab-group mat-stretch-tabs c>
+    <mat-tab-group
+      mat-stretch-tabs
+      hraClickEvent
+      hraClickEventTriggerOn="none"
+      #event="hraClickEvent"
+      (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
+    >
       <mat-tab [label]="'Main Sheet'">
         <div class="content">
           <div class="section">
