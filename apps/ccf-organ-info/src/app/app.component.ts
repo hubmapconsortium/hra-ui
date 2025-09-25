@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -96,7 +95,6 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
     TableComponent,
     MatMenuModule,
     MatDivider,
-    CommonModule,
     ProgressSpinnerComponent,
   ],
   templateUrl: './app.component.html',
