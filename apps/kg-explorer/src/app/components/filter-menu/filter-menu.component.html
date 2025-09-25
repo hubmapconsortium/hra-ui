@@ -6,6 +6,7 @@
     <button
       hraFeature="toggle"
       [hraClickEvent]="{ opened: formClosed() }"
+      hraHoverEvent
       mat-icon-button
       (click)="toggleForm.emit()"
       [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"

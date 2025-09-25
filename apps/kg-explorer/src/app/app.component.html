@@ -16,6 +16,7 @@
           <mat-divider />
         }
         <a
+          [hraFeature]="option.label | slugify"
           hraClickEvent
           class="option"
           mat-menu-item

@@ -1,6 +1,7 @@
 <ng-container hraFeature="metadata-page">
   @if (metadata()) {
     <hra-metadata-layout
+      [hraFeature]="metadata().was_derived_from.title | slugify"
       [rows]="rows()"
       [columns]="columns()"
       [version]="currentVersion()"
@@ -56,7 +57,7 @@
           <hra-page-section tagline="Tags" [level]="2">
             <mat-chip-set hraFeature="tags">
               @for (tag of tags(); track $index) {
-                <mat-chip [hraFeature]="tag.id" hraClickEvent (click)="tagClick(tag.id, tag.type)">
+                <mat-chip [hraFeature]="tag.label | slugify" hraClickEvent (click)="tagClick(tag.id, tag.type)">
                   {{ tag.label }}
                 </mat-chip>
               }

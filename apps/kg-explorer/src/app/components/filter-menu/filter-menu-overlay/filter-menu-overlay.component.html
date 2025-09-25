@@ -1,4 +1,4 @@
-<ng-container hraFeature="filter-menu">
+<ng-container hraFeature="filter-overlay">
   <div class="top-row">
     <button
       hraFeature="info"
@@ -15,7 +15,7 @@
       <mat-icon>info</mat-icon>
     </button>
     <button
-      hraFeature="toggle-menu"
+      hraFeature="toggle"
       hraClickEvent
       mat-button
       hraButtonVariant="secondary"
@@ -30,7 +30,7 @@
 
   <mat-chip-set hraFeature="active-options">
     @for (option of chips(); track option.id) {
-      <mat-chip [hraFeature]="option.label | slugify" (removed)="remove(option)">
+      <mat-chip [hraFeature]="option.label | slugify" hraClickEvent (removed)="remove(option)" disableRipple>
         {{ option.label }}
         <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + option.label">
           <mat-icon>close</mat-icon>
@@ -39,7 +39,7 @@
     }
   </mat-chip-set>
 
-  <hra-rich-tooltip-container hraFeature="menu" #content class="filter-menu">
+  <hra-rich-tooltip-container #content class="filter-menu">
     <hra-rich-tooltip-content class="filter-menu-content">
       <mat-form-field hraFeature="search" hraClickEvent class="search field" subscriptSizing="dynamic">
         <mat-icon class="search-icon" matPrefix>search</mat-icon>
@@ -57,7 +57,7 @@
             >
               @if (option.tooltip) {
                 <button
-                  hraFeature="option-info"
+                  hraFeature="info"
                   hraClickEvent
                   mat-icon-button
                   class="info-icon"
@@ -70,8 +70,8 @@
                 </button>
               }
               <button
-                hraFeature="toggle"
-                [hraClickEvent]="{ selected: !selectedOptions().includes(option) }"
+                [hraFeature]="selectedOptions().includes(option) ? 'deselect' : 'select'"
+                hraClickEvent
                 mat-list-item
                 class="option"
                 (click)="selectOption(option)"
