@@ -1,6 +1,5 @@
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
 import {
@@ -89,24 +88,6 @@ describe('BiomarkerDetailsWcComponent', () => {
     instance.isTableFullScreen = false;
     instance.toggleFullscreen();
     expect(instance.isTableFullScreen).toBeTruthy();
-  });
-
-  it('should change tabs', async () => {
-    const { instance } = await shallow.render();
-    const mockEvent = {
-      tab: {
-        textLabel: 'label',
-      },
-    } as MatTabChangeEvent;
-
-    const mockEvent2 = {
-      tab: null,
-    } as unknown as MatTabChangeEvent;
-
-    const spy = jest.spyOn(instance, 'logTabChange');
-    instance.logTabChange(mockEvent);
-    instance.logTabChange(mockEvent2);
-    expect(spy).toHaveBeenCalled();
   });
 
   describe('.tissueInfo', () => {
