@@ -1,56 +1,40 @@
 <button
+  hraFeature="help"
+  hraClickEvent
   mat-icon-button
   [matMenuTriggerFor]="help"
   class="help"
   aria-label="Open the help menu"
-  hraFeature="metadata-help-button"
-  hraClickEvent
 >
   <mat-icon>help</mat-icon>
 </button>
 
-<mat-menu class="metadata-help" backdropClass="metadata-help-backdrop" #help="matMenu" hraFeature="metadata-help-menu">
-  <a
-    mat-menu-item
-    href="https://youtu.be/18imQj068Iw"
-    target="_blank"
-    rel="noopener noreferrer"
-    hraFeature="metadata-help-menu-option"
-    [hraClickEvent]="{ option: 'watch tutorial' }"
-  >
+<mat-menu hraFeature="menu" class="metadata-help" backdropClass="metadata-help-backdrop" #help="matMenu">
+  <a hraClickEvent mat-menu-item href="https://youtu.be/18imQj068Iw" target="_blank" rel="noopener noreferrer">
     Watch video tutorial
   </a>
   <a
+    hraClickEvent
     mat-menu-item
     href="https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#registration-user-interface"
     target="_blank"
     rel="noopener noreferrer"
-    hraFeature="metadata-help-menu-option"
-    [hraClickEvent]="{ option: 'app guide' }"
   >
     Use app guide
   </a>
   <a
+    hraClickEvent
     mat-menu-item
     href="https://doi.org/10.5281/zenodo.5575776"
     target="_blank"
     rel="noopener noreferrer"
-    hraFeature="metadata-help-menu-option"
-    [hraClickEvent]="{ option: 'sop' }"
   >
     Use standard operating procedure
   </a>
 
   <mat-divider class="menu-divider"></mat-divider>
 
-  <a
-    mat-menu-item
-    href="https://apps.humanatlas.io/eui/"
-    target="_blank"
-    rel="noopener noreferrer"
-    hraFeature="metadata-help-menu-option"
-    [hraClickEvent]="{ option: 'explore all registrations' }"
-  >
+  <a hraClickEvent mat-menu-item href="https://apps.humanatlas.io/eui/" target="_blank" rel="noopener noreferrer">
     Explore all registrations
   </a>
 </mat-menu>

@@ -1,4 +1,6 @@
 <button
+  [hraFeature]="registrationCallbackSet ? 'register' : 'download'"
+  hraClickEvent
   mat-flat-button
   class="review-button"
   [disabled]="disabled"

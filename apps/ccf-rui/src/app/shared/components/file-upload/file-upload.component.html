@@ -1,19 +1,19 @@
 @if (file) {
   <hra-delete-file-button
+    hraFeature="delete-file"
     [fileName]="file.name"
     (cancelLoad)="cancelLoad()"
-    hraFeature="delete-file-button"
   ></hra-delete-file-button>
 } @else {
   <button
+    hraFeature="upload-file"
+    hraClickEvent
     mat-flat-button
     class="upload"
     type="button"
     (click)="fileInput.click()"
     hraPrimaryButton
     hraButtonSize="large"
-    hraFeature="upload-file-button"
-    hraClickEvent
   >
     <ng-content></ng-content>
   </button>

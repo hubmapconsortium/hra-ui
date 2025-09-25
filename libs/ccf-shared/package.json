@@ -18,7 +18,8 @@
     "@ngxs-labs/dispatch-decorator": "^5.0.0",
     "@hra-ui/design-system": "1.0.0",
     "@angular/forms": "^20.2.1",
-    "@angular-ru/cdk": "^18.11.0"
+    "@angular-ru/cdk": "^18.11.0",
+    "@hra-ui/common": "1.0.0"
   },
   "dependencies": {}
 }
