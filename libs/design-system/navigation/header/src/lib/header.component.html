@@ -25,7 +25,7 @@
     @if (!isMobile()) {
       @for (menu of menus(); track menu.id) {
         <hra-navigation-category-toggle
-          [hraFeature]="'menu-' + menu.id"
+          [hraFeature]="'menu-' + (menu.id | slugify)"
           cdkOverlayOrigin
           [toggled]="isMenuActive(menu)"
           (toggledChange)="toggleMenu(menu)"
@@ -45,7 +45,7 @@
           (overlayOutsideClick)="closeMenu()"
         >
           <hra-desktop-menu
-            [hraFeature]="'desktop-menu-' + menu.id"
+            hraFeature="desktop-menu"
             [menu]="menu"
             [baseUrl]="baseUrl()"
             [style.max-height]="desktopMenuMaxHeight()"
