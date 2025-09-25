@@ -7,19 +7,20 @@
 
     <!-- More Menu -->
     <mat-menu hraFeature="more-menu" #moreMenu="matMenu" class="more-menu">
-      <a hraFeature="help-menu" hraClickEvent mat-menu-item [matMenuTriggerFor]="helpMenu">
+      <a hraFeature="help-menu" hraHoverEvent hraClickEvent mat-menu-item [matMenuTriggerFor]="helpMenu">
         <mat-icon>help</mat-icon>
         <div>Help & documentation</div>
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </a>
       <mat-divider />
-      <a hraFeature="fullscreen-menu" hraClickEvent mat-menu-item [matMenuTriggerFor]="fullScreenMenu">
+      <a hraFeature="fullscreen-menu" hraHoverEvent hraClickEvent mat-menu-item [matMenuTriggerFor]="fullScreenMenu">
         <mat-icon>fullscreen</mat-icon>
         <div>Open in full screen</div>
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </a>
       <button
         hraClickEvent
+        hraHoverEvent
         hraFeature="toggle-compact-mode"
         mat-menu-item
         (click)="isCompactMode.set(!isCompactMode())"
@@ -28,18 +29,24 @@
         <div>{{ isCompactMode() ? 'Show' : 'Hide' }} functional tissue unit list</div>
       </button>
       <mat-divider />
-      <button hraClickEvent hraFeature="view-illustration-metadata" mat-menu-item [hraLink]="illustrationMetadata">
+      <button
+        hraClickEvent
+        hraHoverEvent
+        hraFeature="view-illustration-metadata"
+        mat-menu-item
+        [hraLink]="illustrationMetadata"
+      >
         <mat-icon>database</mat-icon>
         <div>View illustration metadata</div>
       </button>
-      <a hraFeature="download-menu" hraClickEvent mat-menu-item [matMenuTriggerFor]="downloadMenu">
+      <a hraFeature="download-menu" hraHoverEvent hraClickEvent mat-menu-item [matMenuTriggerFor]="downloadMenu">
         <mat-icon>download</mat-icon>
         <div>Download illustation</div>
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </a>
       <mat-divider />
 
-      <a hraFeature="embed-menu" hraClickEvent mat-menu-item [matMenuTriggerFor]="embedMenu">
+      <a hraFeature="embed-menu" hraHoverEvent hraClickEvent mat-menu-item [matMenuTriggerFor]="embedMenu">
         <mat-icon>code</mat-icon>
         <div>Embed app</div>
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
