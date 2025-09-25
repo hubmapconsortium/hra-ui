@@ -11,7 +11,7 @@
     </button>
 
     <!-- MENU -->
-    <mat-menu hraFeature="table-menu" #optionsForDatasetTable="matMenu" class="custom-menu">
+    <mat-menu hraFeature="options" #optionsForDatasetTable="matMenu" class="custom-menu">
       <button
         hraClickEvent
         hraFeature="info"
@@ -37,14 +37,7 @@
 
   <!-- SIMILAR DATASETS TABLE -->
   <ng-scrollbar class="table-overflow-container">
-    <table
-      hraFeature="dataset-table"
-      mat-table
-      matSort
-      #sort2="matSort"
-      [dataSource]="dataSource"
-      class="dataset-table"
-    >
+    <table hraFeature="dataset" mat-table matSort #sort2="matSort" [dataSource]="dataSource" class="dataset-table">
       <caption>
         Table displaying similar anatomical structures
       </caption>

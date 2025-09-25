@@ -7,11 +7,7 @@
     <div class="organ-group">
       <mat-form-field hraFeature="organ" subscriptSizing="dynamic">
         <mat-label>Organ dataset</mat-label>
-        <mat-select
-          [value]="selectedOrgan()"
-          (selectionChange)="selectedOrgan.set($event.value)"
-          [disabled]="loading()"
-        >
+        <mat-select hraModelChangeEvent [(ngModel)]="selectedOrgan" [disabled]="loading()">
           @for (organ of organOptions(); track organ) {
             <mat-option [value]="organ">{{ organ | titlecase }}</mat-option>
           }
@@ -23,7 +19,7 @@
     <div class="datatype-group">
       <mat-form-field hraFeature="data-type" subscriptSizing="dynamic">
         <mat-label>Data type</mat-label>
-        <mat-select [value]="selectedDataType()" (selectionChange)="selectedDataType.set($event.value)">
+        <mat-select hraModelChangeEvent [(ngModel)]="selectedDataType">
           @for (config of dataTypeOptions(); track config.key) {
             <mat-option [value]="config.key">{{ config.label }}</mat-option>
           }
@@ -35,17 +31,17 @@
     <div class="sex-toggle-group">
       <h3>Sex</h3>
       <mat-button-toggle-group
+        hraFeature="active-sex"
         multiple
         [value]="selectedSexes()"
         (change)="onSexesChange($event.value)"
         [disabled]="loading()"
         [hideMultipleSelectionIndicator]="false"
-        hraFeature="active-sex"
         hraButtonToggleSize="medium"
         class="toggle-group"
       >
         @for (sex of availableSexes; track sex) {
-          <mat-button-toggle hraClickEvent [value]="sex">
+          <mat-button-toggle [hraClickEvent]="{ sex: sex, selected: !selectedSexes().includes(sex) }" [value]="sex">
             {{ sex }}
           </mat-button-toggle>
         }
@@ -61,7 +57,7 @@
     <div class="sort-group">
       <mat-form-field hraFeature="sort-by" subscriptSizing="dynamic">
         <mat-label>Sort by</mat-label>
-        <mat-select [value]="selectedSort()" (selectionChange)="selectedSort.set($event.value)" [disabled]="loading()">
+        <mat-select hraModelChangeEvent [(ngModel)]="selectedSort" [disabled]="loading()">
           @for (option of sortOptions(); track option.value) {
             <mat-option [value]="option.value">{{ option.label }}</mat-option>
           }

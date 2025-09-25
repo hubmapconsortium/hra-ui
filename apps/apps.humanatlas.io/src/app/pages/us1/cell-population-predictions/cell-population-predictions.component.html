@@ -8,7 +8,7 @@
   </p>
 
   <hra-workflow-card tagline="Cell Population Predictions" class="table-container">
-    <hra-workflow-card-actions hraFeature="table-menu">
+    <hra-workflow-card-actions>
       <button
         hraClickEvent
         mat-icon-button
@@ -20,7 +20,7 @@
       </button>
 
       <!-- MENU -->
-      <mat-menu hraFeature="table-menu" #options="matMenu" class="custom-menu">
+      <mat-menu hraFeature="options" #options="matMenu" class="custom-menu">
         <button
           hraClickEvent
           hraFeature="info"
@@ -54,7 +54,7 @@
     <!-- TABLE -->
     <ng-scrollbar class="table-overflow-container">
       <table
-        hraFeature="predictions-table"
+        hraFeature="predictions"
         mat-table
         [dataSource]="dataSource"
         matSortActive="tool"

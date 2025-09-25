@@ -15,7 +15,7 @@
     </button>
 
     <!-- MENU -->
-    <mat-menu hraFeature="table-menu" #optionsForAnatomicalTable="matMenu" class="custom-menu">
+    <mat-menu hraFeature="options" #optionsForAnatomicalTable="matMenu" class="custom-menu">
       <button
         hraFeature="info"
         hraClickEvent
@@ -41,7 +41,7 @@
 
   <!-- ANATOMICAL STRUCTURES TABLE -->
   <ng-scrollbar class="table-overflow-container">
-    <table hraFeature="predictions-table" mat-table matSort [dataSource]="dataSource" class="predictions-table">
+    <table hraFeature="predictions" mat-table matSort [dataSource]="dataSource" class="predictions-table">
       <caption>
         Table displaying similar anatomical structures
       </caption>
