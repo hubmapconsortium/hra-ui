@@ -10,23 +10,23 @@
 }
 
 <header
+  hraFeature="header"
   class="header"
   cdkOverlayOrigin
-  hraFeature="header"
   [class.mobile-menu-open]="isMobile() && isMenuActive('main')"
   #mobileMenuOrigin="cdkOverlayOrigin"
   data-testid="header"
 >
-  <div class="menus" hraFeature="navigation" #desktopMenuOrigin>
-    <hra-brand-logo size="small" hraFeature="brand-logo" />
+  <div hraFeature="navigation" class="menus" #desktopMenuOrigin>
+    <hra-brand-logo hraFeature="brand-logo" size="small" />
 
     <div class="filler"></div>
 
     @if (!isMobile()) {
       @for (menu of menus(); track menu.id) {
         <hra-navigation-category-toggle
-          cdkOverlayOrigin
           [hraFeature]="'menu-' + menu.id"
+          cdkOverlayOrigin
           [toggled]="isMenuActive(menu)"
           (toggledChange)="toggleMenu(menu)"
           #navigationCategoryMenuOrigin="cdkOverlayOrigin"
@@ -55,12 +55,12 @@
     }
 
     <button
+      hraFeature="menu-toggle"
+      [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('main') }"
       mat-icon-button
       cdkOverlayOrigin
-      hraFeature="menu-toggle"
       aria-label="Open the main navigation menu"
       (click)="toggleMenu('main')"
-      [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('main') }"
       #mainMenuOrigin="cdkOverlayOrigin"
     >
       <mat-icon>
@@ -114,7 +114,7 @@
   @if (breadcrumbs(); as crumbs) {
     <mat-divider />
 
-    <div class="navigation" hraFeature="breadcrumbs">
+    <div hraFeature="breadcrumbs" class="navigation">
       <hra-breadcrumbs [crumbs]="crumbs" />
       <ng-content />
     </div>
@@ -122,5 +122,5 @@
 </header>
 
 @if (progress() !== false) {
-  <mat-progress-bar class="progress-bar" hraFeature="progress-bar" [mode]="progressMode()" [value]="progress()" />
+  <mat-progress-bar hraFeature="progress-bar" class="progress-bar" [mode]="progressMode()" [value]="progress()" />
 }
