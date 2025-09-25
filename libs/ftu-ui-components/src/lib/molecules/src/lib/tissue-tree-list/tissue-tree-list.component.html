@@ -30,7 +30,8 @@
         </mat-icon>
       </button>
 
-      <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>
+      <ng-container [hraFeature]="node.label | slugify" [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node">
+      </ng-container>
     </mat-tree-node>
   </mat-tree>
 </ng-scrollbar>
@@ -39,7 +40,7 @@
   <div class="label-container">
     <a
       hraClickEvent
-      hraFeature="select"
+      [hraFeature]="label | slugify"
       *ngIf="data.link; else noLink"
       [hraLink]="data.link"
       [queryParams]="{ id: data.id }"
