@@ -9,6 +9,8 @@
         <mat-form-field>
           <mat-label>Sort</mat-label>
           <mat-select
+            hraFeature="sort"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -16,10 +18,8 @@
             [value]="(config$ | async)?.CT?.sort"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
-            hraFeature="sort"
-            hraModelChangeEvent
           >
-            <mat-option *ngFor="let option of sortOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of sortOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -27,6 +27,8 @@
         <mat-form-field>
           <mat-label>Size</mat-label>
           <mat-select
+            hraFeature="size"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -34,10 +36,8 @@
             [value]="(config$ | async)?.CT?.size"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
-            hraFeature="size"
-            hraModelChangeEvent
           >
-            <mat-option *ngFor="let option of ctSizeOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of ctSizeOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -52,6 +52,8 @@
         <mat-form-field>
           <mat-label>Sort</mat-label>
           <mat-select
+            hraFeature="sort"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -59,10 +61,8 @@
             [value]="(config$ | async)?.BM?.sort"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
-            hraFeature="sort"
-            hraModelChangeEvent
           >
-            <mat-option *ngFor="let option of sortOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of sortOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -70,6 +70,8 @@
         <mat-form-field>
           <mat-label>Size</mat-label>
           <mat-select
+            hraFeature="size"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -77,10 +79,8 @@
             [value]="(config$ | async)?.BM?.size"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
-            hraFeature="size"
-            hraModelChangeEvent
           >
-            <mat-option *ngFor="let option of bmSizeOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of bmSizeOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -90,6 +90,8 @@
         <mat-form-field class="full-width">
           <mat-label>Biomarker type</mat-label>
           <mat-select
+            hraFeature="type"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -97,10 +99,8 @@
             [value]="(config$ | async)?.BM?.type"
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
-            hraFeature="type"
-            hraModelChangeEvent
           >
-            <mat-option *ngFor="let option of bimodalBTypeOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of bimodalBTypeOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>

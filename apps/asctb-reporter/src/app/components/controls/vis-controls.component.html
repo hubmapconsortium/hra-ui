@@ -3,32 +3,34 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Width</mat-label>
-      <input
-        hraFeature="width"
-        hraModelChangeEvent
-        [(ngModel)]="config.width"
-        type="number"
-        matInput
-        (change)="changeWidth()"
-      />
+      <input [(ngModel)]="config.width" type="number" matInput (change)="changeWidth()" />
     </mat-form-field>
-    <mat-slider tickInterval="100" min="100" max="1000" (change)="changeWidth()" discrete>
+    <mat-slider
+      hraFeature="width"
+      [hraClickEvent]="{ width: config.width }"
+      tickInterval="100"
+      min="100"
+      max="1000"
+      (change)="changeWidth()"
+      discrete
+    >
       <input matSliderThumb [(ngModel)]="config.width" />
     </mat-slider>
   </div>
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Height</mat-label>
-      <input
-        hraFeature="height"
-        hraModelChangeEvent
-        [(ngModel)]="config.height"
-        type="number"
-        matInput
-        (change)="changeHeight()"
-      />
+      <input [(ngModel)]="config.height" type="number" matInput (change)="changeHeight()" />
     </mat-form-field>
-    <mat-slider tickInterval="100" min="100" max="7000" (change)="changeHeight()" discrete>
+    <mat-slider
+      hraFeature="height"
+      [hraClickEvent]="{ height: config.height }"
+      tickInterval="100"
+      min="100"
+      max="7000"
+      (change)="changeHeight()"
+      discrete
+    >
       <input matSliderThumb [(ngModel)]="config.height"
     /></mat-slider>
   </div>
@@ -39,16 +41,11 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>X</mat-label>
-      <input
-        hraFeature="x"
-        hraModelChangeEvent
-        [(ngModel)]="config.bimodal_distance_x"
-        type="number"
-        matInput
-        (change)="changeBimodalDistanceX()"
-      />
+      <input [(ngModel)]="config.bimodal_distance_x" type="number" matInput (change)="changeBimodalDistanceX()" />
     </mat-form-field>
     <mat-slider
+      hraFeature="x"
+      [hraClickEvent]="{ x: config.bimodal_distance_x }"
       thumbLabel
       color="primary"
       tickInterval="100"
@@ -63,16 +60,17 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Y</mat-label>
-      <input
-        hraFeature="y"
-        hraModelChangeEvent
-        [(ngModel)]="config.bimodal_distance_y"
-        type="number"
-        matInput
-        (change)="changeBimodalDistanceY()"
-      />
+      <input [(ngModel)]="config.bimodal_distance_y" type="number" matInput (change)="changeBimodalDistanceY()" />
     </mat-form-field>
-    <mat-slider tickInterval="100" min="10" max="200" (change)="changeBimodalDistanceY()" discrete>
+    <mat-slider
+      hraFeature="y"
+      [hraClickEvent]="{ y: config.bimodal_distance_y }"
+      tickInterval="100"
+      min="10"
+      max="200"
+      (change)="changeBimodalDistanceY()"
+      discrete
+    >
       <input matSliderThumb [(ngModel)]="config.bimodal_distance_y" />
     </mat-slider>
   </div>
