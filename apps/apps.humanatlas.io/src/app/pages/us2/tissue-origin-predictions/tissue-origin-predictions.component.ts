@@ -10,6 +10,7 @@ import {
   effect,
   inject,
   input,
+  isDevMode,
   Renderer2,
   signal,
   TemplateRef,
@@ -33,15 +34,13 @@ import { SimilarDatasetsTableComponent } from './components/similar-datasets-tab
 
 /**
  * Script URL for EUI
- * TODO: Currently using Staging URL, need to change to production URL.
  * */
-const SCRIPT_URL = 'https://cdn.humanatlas.io/ui--staging/ccf-eui/wc.js';
+const SCRIPT_URL = `https://cdn.humanatlas.io/ui${isDevMode() ? '--staging' : ''}/ccf-eui/wc.js`;
 
 /**
  * Style URLs for EUI
- * TODO: Currently using Staging URL, need to change to production URL.
  */
-const STYLE_URLS = ['https://cdn.humanatlas.io/ui--staging/ccf-eui/styles.css'];
+const STYLE_URLS = [`https://cdn.humanatlas.io/ui${isDevMode() ? '--staging' : ''}/ccf-eui/styles.css`];
 
 /** Empty Inputs for Predictions page */
 const EMPTY_DATA: TissuePredictionData = {
