@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, input } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { ModelState } from '../../core/store/model/model.state';
@@ -27,7 +27,7 @@ export class LeftSidebarComponent {
   @HostBinding('class') readonly clsName = 'ccf-left-sidebar';
 
   /** Whether or not the initial registration modal has been closed */
-  @Input() modalClosed = false;
+  readonly modalClosed = input(false);
 
   /** Whether an organ is selected */
   readonly organSelected$ = this.model.organ$.pipe(map((organ) => (organ === undefined ? false : true)));

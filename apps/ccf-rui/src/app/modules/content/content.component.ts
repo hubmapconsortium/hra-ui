@@ -1,12 +1,12 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
+  effect,
   HostBinding,
   inject,
-  Input,
+  input,
   OnInit,
+  signal,
   viewChild,
 } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
@@ -14,7 +14,6 @@ import { BodyUiComponent } from 'ccf-shared';
 import { combineLatest } from 'rxjs';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
@@ -39,19 +38,18 @@ export class ContentComponent implements OnInit {
   readonly registration = inject(RegistrationState);
   /** Scene state */
   readonly scene = inject(SceneState);
-  /** Element reference */
-  private readonly rootRef = inject<ElementRef<HTMLElement>>(ElementRef);
-  /** Change detector */
-  private readonly cdr = inject(ChangeDetectorRef);
-
-  /** Mini model gizmo */
-  readonly gizmo = viewChild.required<BodyUiComponent>('gizmo');
 
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-content';
 
+  /** Mini model gizmo */
+  readonly gizmo = viewChild.required<BodyUiComponent>('gizmo');
+
   /** Disable keyboard position interactions */
-  @Input() disablePositionChange = false;
+  readonly disablePositionChange = input(false);
+
+  /** Rotation values for mini model gizmo [y-axis rotation, x-axis rotation] */
+  readonly gizmoRotation = signal<[number, number]>([0, 0]);
 
   /** Current position of block */
   readonly position$ = this.model.position$.pipe(
@@ -73,14 +71,14 @@ export class ContentComponent implements OnInit {
   );
 
   /**
-   * Shows / hides the state debug component for testing purposes.
+   * Update gizmo rotation
    */
-  debugMode = false;
-
-  /**
-   * Show debug buttons of content component
-   */
-  showDebugButtons = !environment.production;
+  constructor() {
+    effect(() => {
+      this.gizmo().rotation = this.gizmoRotation()[0];
+      this.gizmo().rotationX = this.gizmoRotation()[1];
+    });
+  }
 
   /**
    * Updates the gizmo rotation based on the scene rotation when not in 3D view
@@ -88,18 +86,9 @@ export class ContentComponent implements OnInit {
   ngOnInit(): void {
     combineLatest([this.is3DView$, this.scene.rotation$]).subscribe(([is3D, rotation]) => {
       if (!is3D) {
-        this.setGizmoRotation([rotation, 0]);
+        this.gizmoRotation.set([rotation, 0]);
       }
     });
-  }
-
-  /**
-   * Sets gizmo rotation
-   * @param rotation Rotation values
-   */
-  setGizmoRotation(rotation: [number, number]): void {
-    this.gizmo().rotation = rotation[0];
-    this.gizmo().rotationX = rotation[1];
   }
 
   /** Handle node drag */

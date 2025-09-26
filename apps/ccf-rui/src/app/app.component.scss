@@ -3,7 +3,7 @@
 
 :host {
   display: grid;
-  grid-template-columns: 21rem minmax(586px, calc(100vw - 43.25rem - 4px)) 22.25rem;
+  grid-template-columns: 21rem minmax(36.625rem, calc(100% - 43.5rem)) 22.25rem;
   grid-template-rows: 0rem 4.5rem auto;
   grid-template-areas:
     'back back back'

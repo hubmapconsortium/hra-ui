@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  HostBinding,
-  Input,
-  OnChanges,
-  Output,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, HostBinding, inject, input, output, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
@@ -24,7 +15,7 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ReviewButtonComponent implements OnChanges {
+export class ReviewButtonComponent {
   /** Dialog service */
   private readonly dialog = inject(MatDialog);
   /** Analytics service */
@@ -35,43 +26,33 @@ export class ReviewButtonComponent implements OnChanges {
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-review-button';
 
-  /**
-   * Input to set whether the component should be in register (true) or download (false) mode
-   */
-  @Input() registrationCallbackSet = true;
+  /** Input to set whether the component should be in register (true) or download (false) mode */
+  readonly registrationCallbackSet = input(true);
 
-  /**
-   * Input object of information to display in the modal
-   */
-  @Input() metaData: MetaData = [];
+  /** Input object of information to display in the modal */
+  readonly metaData = input<MetaData>([]);
 
   /**
    * Whether or not the app is currently displaying errors
    * Decides how the button should be styled
    */
-  @Input() displayErrors = true;
+  readonly displayErrors = input(true);
 
-  /**
-   * Whether or not all the necessary data has been inputted from the user.
-   */
-  @Input() userValid = false;
+  /** Whether or not all the necessary data has been inputted from the user. */
+  readonly userValid = input(false);
 
-  /**
-   * Output that emits when the modal's register button was clicked
-   */
-  @Output() readonly registerData = new EventEmitter<void>();
+  /** Decides whether or not to let the user open the registration / download modal */
+  readonly registrationIsValid = signal(false);
+
+  /** Output that emits when the modal's register button was clicked */
+  readonly registerData = output();
 
   /**
    * Turns on the 'error mode' for the application.
    * Used to begin showing the user what they need to
    * do to be able to register / download.
    */
-  @Output() readonly enterErrorMode = new EventEmitter<void>();
-
-  /**
-   * Decides whether or not to let the user open the registration / download modal
-   */
-  registrationIsValid = false;
+  readonly enterErrorMode = output();
 
   /** Tooltip for the button */
   get tooltip(): string {
@@ -84,12 +65,14 @@ export class ReviewButtonComponent implements OnChanges {
    * Updates the value of registrationIsValid based on the
    * meta data.
    */
-  ngOnChanges(): void {
-    const organ = this.metaDataLookup('Reference Organ Name');
-    const dimensions = this.metaDataLookup('Tissue Block Dimensions (mm)');
-    const pos = this.metaDataLookup('Tissue Block Position (mm)');
-    const tags = this.metaDataLookup('Anatomical Structure Tags');
-    this.registrationIsValid = this.userValid && [organ, dimensions, pos, tags].every((value) => value !== '');
+  constructor() {
+    effect(() => {
+      const organ = this.metaDataLookup('Reference Organ Name');
+      const dimensions = this.metaDataLookup('Tissue Block Dimensions (mm)');
+      const pos = this.metaDataLookup('Tissue Block Position (mm)');
+      const tags = this.metaDataLookup('Anatomical Structure Tags');
+      this.registrationIsValid.set(this.userValid() && [organ, dimensions, pos, tags].every((value) => value !== ''));
+    });
   }
 
   /**
@@ -97,7 +80,7 @@ export class ReviewButtonComponent implements OnChanges {
    * be disabled.
    */
   get disabled(): boolean {
-    return !this.registrationIsValid;
+    return !this.registrationIsValid();
   }
 
   /**
@@ -106,7 +89,7 @@ export class ReviewButtonComponent implements OnChanges {
    * @returns Metadata value
    */
   private metaDataLookup(field: string): string | undefined {
-    return this.metaData.find((data) => data.label === field)?.value;
+    return this.metaData().find((data) => data.label === field)?.value;
   }
 
   /**
@@ -117,7 +100,7 @@ export class ReviewButtonComponent implements OnChanges {
       event.preventDefault();
     }
     this.enterErrorMode.emit();
-    if (this.registrationIsValid) {
+    if (this.registrationIsValid()) {
       this.ga.event('review_start', 'review_button');
       this.launchReviewModal();
     }
@@ -134,8 +117,8 @@ export class ReviewButtonComponent implements OnChanges {
       minWidth: '40rem',
       maxWidth: '40rem',
       data: {
-        registrationCallbackSet: this.registrationCallbackSet,
-        metaData: this.metaData,
+        registrationCallbackSet: this.registrationCallbackSet(),
+        metaData: this.metaData(),
       },
     });
 

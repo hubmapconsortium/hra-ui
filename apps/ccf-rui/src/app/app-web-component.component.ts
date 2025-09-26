@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 import { ObservableInput } from 'rxjs';
@@ -42,37 +42,37 @@ function parseOrgan(value: unknown): string | Organ {
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Base url to fetch relative links */
-  @Input() baseHref!: string;
+  readonly baseHref = input.required<string>();
   /** Whether to download the registration on review */
-  @Input() useDownload!: string | boolean;
+  readonly useDownload = input.required<string | boolean>();
   /** Reference data api endpoint */
-  @Input() referenceData!: string;
+  readonly referenceData = input.required<string>();
   /** Prepopulated user object */
-  @Input() user!: string | User;
+  readonly user = input.required<string | User>();
   /** Prepopulated organ object */
-  @Input() organ!: string | Organ;
+  readonly organ = input.required<string | Organ>();
   /** Prepopulated consortium */
-  @Input() consortium!: string;
+  readonly consortium = input.required<string>();
   /** Prepopulated registration */
-  @Input() editRegistration!: string | SpatialEntityJsonLd;
+  readonly editRegistration = input.required<string | SpatialEntityJsonLd>();
   /** Callback that recieves the registration on review */
-  @Input() register!: string | RegistrationCallback;
+  readonly register = input.required<string | RegistrationCallback>();
   /** Callback when the user leaves the application */
-  @Input() cancelRegistration!: string | CancelRegistrationCallback;
+  readonly cancelRegistration = input.required<string | CancelRegistrationCallback>();
   /** A callback to fetch previous registrations */
-  @Input() fetchPreviousRegistrations!: string | FetchPreviousRegistrationsCallback;
+  readonly fetchPreviousRegistrations = input.required<string | FetchPreviousRegistrationsCallback>();
   /** Whether to disable the unsaved changes prompt when the user leaves the application */
-  @Input() skipUnsavedChangesConfirmation!: string | boolean;
+  readonly skipUnsavedChangesConfirmation = input.required<string | boolean>();
   /** Url visited when the user clicks the RUI logo */
-  @Input() homeUrl!: string;
+  readonly homeUrl = input.required<string>();
   /** A list of enabled organs */
-  @Input() organOptions!: string | string[];
+  readonly organOptions = input.required<string | string[]>();
   /** Collision query api endpoint */
-  @Input() collisionsEndpoint!: string;
+  readonly collisionsEndpoint = input.required<string>();
   /** Initial view mode */
-  @Input() view!: ViewType;
+  readonly view = input.required<ViewType>();
   /** Initial view side */
-  @Input() viewSide!: ViewSide;
+  readonly viewSide = input.required<ViewSide>();
 
   /**
    * Initializes the component with default configurations and parsers. Merges environment options, global configuration, and customizations.
