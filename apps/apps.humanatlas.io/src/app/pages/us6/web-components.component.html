@@ -13,7 +13,7 @@
       <p>Select organ:</p>
       <mat-form-field hraFeature="organ" appearance="fill" class="organ-select">
         <mat-label>Organ</mat-label>
-        <mat-select hraModelChangeEvent [(ngModel)]="activeOrgan">
+        <mat-select [hraModelChangeEvent]="['id']" [(ngModel)]="activeOrgan">
           @for (organ of organs; track organ.id) {
             <mat-option [value]="organ">{{ organ.label }}</mat-option>
           }

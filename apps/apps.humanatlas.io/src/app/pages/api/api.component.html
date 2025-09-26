@@ -36,6 +36,11 @@
     </div>
     <div class="rapidoc-embed">
       <rapi-doc
+        hraClickEvent
+        hraFeature="rapi-doc"
+        #beforeTry="hraClickEvent"
+        hraClickEventTriggerOn="none"
+        (before-try)="onBeforeTry($event, beforeTry)"
         #rapidoc
         [attr.spec-url]="selectedServer().spec"
         fill-request-fields-with-example="false"
@@ -51,7 +56,6 @@
         css-classes="rapidoc-hra-api-theme"
         show-info="false"
         allow-server-selection="false"
-        [hraClickEvent]="{ name: 'use-api', data: selectedServer() }"
       >
       </rapi-doc>
     </div>
