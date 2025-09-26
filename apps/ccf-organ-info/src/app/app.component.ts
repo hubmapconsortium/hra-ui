@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +15,7 @@ import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode } from '@hra-api/ng-client';
-import { monitorHeight } from '@hra-ui/common';
+import { HraCommonModule, monitorHeight } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconComponent } from '@hra-ui/design-system/icons';
 import { ProgressSpinnerComponent } from '@hra-ui/design-system/indicators/progress-spinner';
@@ -85,6 +84,7 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
 @Component({
   selector: 'ccf-root',
   imports: [
+    HraCommonModule,
     OrganComponent,
     IconComponent,
     MatIcon,
@@ -95,7 +95,6 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
     TableComponent,
     MatMenuModule,
     MatDivider,
-    CommonModule,
     ProgressSpinnerComponent,
   ],
   templateUrl: './app.component.html',
