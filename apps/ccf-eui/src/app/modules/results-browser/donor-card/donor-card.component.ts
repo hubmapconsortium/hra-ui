@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, model, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
+import { HraCommonModule } from '@hra-ui/common';
 import { MetadataCardComponent } from '../metadata-card/metadata-card.component';
 import { ThumbnailListComponent } from '../thumbnail-list/thumbnail-list.component';
 import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-vis.component';
@@ -17,7 +17,7 @@ import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-
   templateUrl: './donor-card.component.html',
   styleUrls: ['./donor-card.component.scss'],
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatCheckboxModule,
     MatIconModule,
     MetadataCardComponent,
