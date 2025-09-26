@@ -1,75 +1,102 @@
-@if (config.mode === 'edit') {
-  <button mat-icon-button mat-dialog-title mat-dialog-close class="close">
-    <mat-icon>close</mat-icon>
-  </button>
-}
+<ng-container hraFeature="metadata">
+  @if (config.mode === 'edit') {
+    <button hraFeature="close" hraClickEvent mat-icon-button mat-dialog-title mat-dialog-close class="close">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
 
-<ng-scrollbar>
-  <div mat-dialog-content class="content">
-    <div class="header">
-      <span class="title">Tissue Registration Metadata</span>
-      <ccf-metadata-help></ccf-metadata-help>
-    </div>
+  <ng-scrollbar>
+    <div mat-dialog-content class="content">
+      <div class="header">
+        <span class="title">Tissue Registration Metadata</span>
+        <ccf-metadata-help></ccf-metadata-help>
+      </div>
 
-    <form class="form" [formGroup]="metadataForm" (ngSubmit)="submit()">
-      <hra-workflow-card class="upload" tagline="Optional: Upload Previous Registration" step="1">
-        @if (fileErrors) {
-          <hra-error-indicator class="errors" [errors]="fileErrors"></hra-error-indicator>
-        }
-
-        <ccf-file-upload
-          accept="application/json,.json,application/ld+json,.jsonld"
-          [loader]="fileLoader"
-          [options]="{}"
-          (loadCancelled)="clearPreviousRegistration()"
-          (loadCompleted)="clearPreviousRegistration(); setPreviousRegistration($event[0])"
-          (loadErrored)="clearPreviousRegistration(); setFileErrors($event)"
+      <form class="form" [formGroup]="metadataForm" (ngSubmit)="submit()">
+        <hra-workflow-card
+          hraFeature="upload-prev-registration"
+          class="upload"
+          tagline="Optional: Upload Previous Registration"
+          step="1"
         >
-          Upload
-        </ccf-file-upload>
-      </hra-workflow-card>
+          @if (fileErrors) {
+            <hra-error-indicator class="errors" [errors]="fileErrors"></hra-error-indicator>
+          }
 
-      <hra-workflow-card class="metadata" tagline="Add Metadata" step="2">
-        <hra-workflow-card-extra>
-          <a
-            mat-button
-            hraSecondaryButton
-            hraCtaButton
-            class="orcid-help"
-            href="https://orcid.org/register"
-            target="_blank"
-            rel="noopener noreferrer"
+          <ccf-file-upload
+            accept="application/json,.json,application/ld+json,.jsonld"
+            [loader]="fileLoader"
+            [options]="{}"
+            (loadCancelled)="clearPreviousRegistration()"
+            (loadCompleted)="clearPreviousRegistration(); setPreviousRegistration($event[0])"
+            (loadErrored)="clearPreviousRegistration(); setFileErrors($event)"
           >
-            Get ORCID
-            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-          </a>
-        </hra-workflow-card-extra>
+            Upload
+          </ccf-file-upload>
+        </hra-workflow-card>
 
-        <ccf-metadata-author-form class="author" [form]="metadataForm.controls.author"></ccf-metadata-author-form>
-        <ccf-metadata-donor-form class="donor" [form]="metadataForm.controls.donor"></ccf-metadata-donor-form>
-      </hra-workflow-card>
+        <hra-workflow-card hraFeature="add-metadata" class="metadata" tagline="Add Metadata" step="2">
+          <hra-workflow-card-extra>
+            <a
+              hraFeature="orcid-help"
+              hraClickEvent
+              mat-button
+              hraSecondaryButton
+              hraCtaButton
+              class="orcid-help"
+              href="https://orcid.org/register"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get ORCID
+              <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+            </a>
+          </hra-workflow-card-extra>
 
-      <hra-workflow-card class="register" tagline="Register Data Spatially" step="3">
-        @if (metadataForm.invalid) {
-          <hra-error-indicator class="error" [errors]="['Please add required metadata.']"></hra-error-indicator>
-        }
+          <ccf-metadata-author-form
+            hraFeature="author"
+            class="author"
+            [form]="metadataForm.controls.author"
+          ></ccf-metadata-author-form>
+          <ccf-metadata-donor-form
+            hraFeature="donor"
+            class="donor"
+            [form]="metadataForm.controls.donor"
+          ></ccf-metadata-donor-form>
+        </hra-workflow-card>
 
-        @if (config.mode === 'create') {
-          <button mat-button hraPrimaryButton hraCtaButton type="submit" [disabled]="metadataForm.invalid">
-            Register
-            <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
-          </button>
-        } @else {
-          <button
-            mat-flat-button
-            hraPrimaryButton
-            type="submit"
-            [disabled]="metadataForm.pristine || metadataForm.invalid"
-          >
-            Update Metadata
-          </button>
-        }
-      </hra-workflow-card>
-    </form>
-  </div>
-</ng-scrollbar>
+        <hra-workflow-card hraFeature="register-data" class="register" tagline="Register Data Spatially" step="3">
+          @if (metadataForm.invalid) {
+            <hra-error-indicator class="error" [errors]="['Please add required metadata.']"></hra-error-indicator>
+          }
+
+          @if (config.mode === 'create') {
+            <button
+              hraFeature="register"
+              hraClickEvent
+              mat-button
+              hraPrimaryButton
+              hraCtaButton
+              type="submit"
+              [disabled]="metadataForm.invalid"
+            >
+              Register
+              <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+            </button>
+          } @else {
+            <button
+              hraFeature="update-metadata"
+              hraClickEvent
+              mat-flat-button
+              hraPrimaryButton
+              type="submit"
+              [disabled]="metadataForm.pristine || metadataForm.invalid"
+            >
+              Update Metadata
+            </button>
+          }
+        </hra-workflow-card>
+      </form>
+    </div>
+  </ng-scrollbar>
+</ng-container>

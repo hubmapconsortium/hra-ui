@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject, signal, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
 import { InteractiveSvgComponent, SourceListComponent, SourceListItem } from '../../../../molecules/src';
@@ -36,6 +35,8 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DialogService } from '@hra-ui/design-system/dialog';
+import { HraCommonModule } from '@hra-ui/common';
+import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 /**
  * PlaceHolder for Empty Tissue Info
  */
@@ -49,7 +50,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   selector: 'ftu-wc-biomarker-details',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
@@ -59,6 +60,8 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     GradientLegendComponent,
     SizeLegendComponent,
     BiomarkerTableComponent,
+    RichTooltipModule,
+    RichTooltipDirective,
   ],
   templateUrl: './biomarker-details-wc.component.html',
   styleUrls: ['./biomarker-details-wc.component.scss'],
@@ -71,6 +74,19 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   },
 })
 export class BiomarkerDetailsWcComponent {
+  /** Tooltip text for percentage of cells legend */
+  static readonly PERCENTAGE_TOOLTIP_TEXT =
+    'The percentage of cells in the functional tissue unit (FTU) is calculated by dividing the total number of cells in all FTUs by the number of all cells in that tissue section.';
+
+  /** Tooltip text for biomarker expression mean legend */
+  static readonly EXPRESSION_TOOLTIP_TEXT =
+    'Functional tissue unit expression is scaled linearly to the range [0,1]. Scaling is done by designating the minimum value in the current view to 0 and the max is assigned to 1.';
+
+  /** Instance access to percentage tooltip text */
+  readonly percentageTooltipText = BiomarkerDetailsWcComponent.PERCENTAGE_TOOLTIP_TEXT;
+  /** Instance access to expression tooltip text */
+  readonly expressionTooltipText = BiomarkerDetailsWcComponent.EXPRESSION_TOOLTIP_TEXT;
+
   /** A dialog box which shows contact modal after clicking on contact */
   private readonly dialog = inject(MatDialog);
 
@@ -276,14 +292,6 @@ export class BiomarkerDetailsWcComponent {
 
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
-  }
-
-  /**
-   * Logs tab change event
-   * @param event tab change event
-   */
-  logTabChange(event: MatTabChangeEvent) {
-    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
   }
 
   /** Toggle options for the biomarker table */

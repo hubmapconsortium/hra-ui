@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { filter, fromEvent, map, startWith, Subscription, switchAll, take, throttleTime } from 'rxjs';
 import { EMPTY_SUBSCRIPTION } from 'rxjs/internal/Subscription';
@@ -49,7 +49,7 @@ export function openScreenSizeNotice(dialog: MatDialog): Subscription {
  */
 @Component({
   selector: 'ccf-screen-size-notice',
-  imports: [CommonModule, ButtonsModule, MatDialogModule, MatIconModule],
+  imports: [HraCommonModule, ButtonsModule, MatDialogModule, MatIconModule],
   templateUrl: './screen-size-notice.component.html',
   styleUrl: './screen-size-notice.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

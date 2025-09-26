@@ -91,7 +91,10 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Whether to use the embedded app */
   protected readonly embedded = toSignal(this.page.useCancelRegistrationCallback$);
 
-  /** The current view side, either 'register' or 'preview', default is register */
+  /** The current view side */
+  protected readonly viewSide = toSignal(this.model.viewSide$);
+
+  /** The current view type, either 'register' or 'preview', default is register */
   protected readonly viewType = toSignal(this.model.viewType$, { initialValue: 'register' });
 
   /** All subscriptions managed by the container. */

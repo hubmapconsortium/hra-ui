@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -51,6 +50,7 @@ import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
 import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { FtuFullScreenService, FullscreenTab } from '../ftu-fullscreen-service/ftu-fullscreen.service';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * PlaceHolder for Empty Tissue Info
@@ -65,7 +65,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   selector: 'ftu-biomarker-details',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,

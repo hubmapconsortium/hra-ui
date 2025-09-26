@@ -1,8 +1,10 @@
 <mat-form-field [class.expanded]="resultsVisible" subscriptSizing="dynamic">
   <mat-label class="form-input-label">Search</mat-label>
-  <input matInput [formControl]="searchControl" #search />
+  <input hraFeature="search" hraClickEvent matInput [formControl]="searchControl" #search />
   <mat-icon class="search-icon" matPrefix>search</mat-icon>
   <button
+    hraFeature="add"
+    hraClickEvent
     matSuffix
     mat-icon-button
     class="add-icon"
@@ -16,10 +18,15 @@
 </mat-form-field>
 
 @if (resultsVisible && searchResults.totalCount > 0) {
-  <div class="results">
+  <div hraFeature="results" class="results">
     @for (result of searchResults.results; track result.id) {
       <div class="item">
-        <mat-checkbox labelPosition="after" [(ngModel)]="checkedResults[result.id]">
+        <mat-checkbox
+          [hraFeature]="result.label | slugify"
+          hraModelChangeEvent
+          labelPosition="after"
+          [(ngModel)]="checkedResults[result.id]"
+        >
           {{ result.label }}
         </mat-checkbox>
       </div>

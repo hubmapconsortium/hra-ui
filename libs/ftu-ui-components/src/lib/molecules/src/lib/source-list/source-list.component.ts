@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,6 +27,8 @@ import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
+import { HraCommonModule } from '@hra-ui/common';
+
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem extends TableRow {
   /** Unique identifier for the source */
@@ -51,7 +52,7 @@ export interface SourceListItem extends TableRow {
   selector: 'ftu-source-list',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatTableModule,
     MatIconModule,

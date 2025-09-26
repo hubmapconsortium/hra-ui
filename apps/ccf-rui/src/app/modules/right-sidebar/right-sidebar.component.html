@@ -1,6 +1,7 @@
-<hra-expansion-panel tagline="Tissue Block Settings" class="tissue-block-settings">
+<hra-expansion-panel hraFeature="tissue-block-settings" tagline="Tissue Block Settings" class="tissue-block-settings">
   <hra-expansion-panel-actions>
     <button
+      hraFeature="toggle"
       mat-icon-button
       [matMenuTriggerFor]="menu"
       hraIconButtonSize="large"
@@ -9,8 +10,10 @@
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" class="settings-overlay">
+    <mat-menu hraFeature="menu" #menu="matMenu" class="settings-overlay">
       <button
+        hraFeature="reset-all"
+        hraClickEvent
         mat-menu-item
         matRipple
         matRippleColor="#201E3D14"
@@ -21,11 +24,34 @@
         Reset all settings
       </button>
       <mat-divider class="menu-divider"></mat-divider>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="setDefaultPosition()">Reset position</button>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="blocksize.refreshBlockSize()">
+      <button
+        hraFeature="reset-position"
+        hraClickEvent
+        mat-menu-item
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="setDefaultPosition()"
+      >
+        Reset position
+      </button>
+      <button
+        hraFeature="reset-size"
+        hraClickEvent
+        mat-menu-item
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="blocksize.refreshBlockSize()"
+      >
         Reset size
       </button>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="rotation.resetAllRotations()">
+      <button
+        hraFeature="reset-rotation"
+        hraClickEvent
+        mat-menu-item
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="rotation.resetAllRotations()"
+      >
         Reset rotation
       </button>
     </mat-menu>
@@ -33,6 +59,8 @@
 
   <hra-expansion-panel-header-content>
     <button
+      hraFeature="help"
+      hraClickEvent
       mat-icon-button
       [matMenuTriggerFor]="help"
       hraIconButtonSize="large"
@@ -41,11 +69,20 @@
     >
       <mat-icon>help</mat-icon>
     </button>
-    <mat-menu #help="matMenu">
-      <a mat-menu-item href="https://youtu.be/18imQj068Iw" target="_blank" rel="noopener noreferrer">
+    <mat-menu hraFeature="menu" #help="matMenu">
+      <a
+        hraFeature="watch-video"
+        hraClickEvent
+        mat-menu-item
+        href="https://youtu.be/18imQj068Iw"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Watch video tutorial
       </a>
       <a
+        hraFeature="app-guide"
+        hraClickEvent
         mat-menu-item
         href="https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#registration-user-interface"
         target="_blank"
@@ -53,17 +90,31 @@
       >
         Use app guide
       </a>
-      <a mat-menu-item href="https://doi.org/10.5281/zenodo.5575776" target="_blank" rel="noopener noreferrer">
+      <a
+        hraFeature="sop"
+        hraClickEvent
+        mat-menu-item
+        href="https://doi.org/10.5281/zenodo.5575776"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Use standard operating procedure
       </a>
       <mat-divider class="menu-divider"></mat-divider>
-      <a mat-menu-item href="https://apps.humanatlas.io/eui/" target="_blank" rel="noopener noreferrer">
+      <a
+        hraFeature="explore-registrations"
+        hraClickEvent
+        mat-menu-item
+        href="https://apps.humanatlas.io/eui/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Explore all registrations
       </a>
     </mat-menu>
   </hra-expansion-panel-header-content>
 
-  <div class="position">
+  <div hraFeature="position" class="position">
     <span class="label">Position</span>
     <div class="x-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
       <span class="position-label">X</span>
@@ -80,18 +131,21 @@
   </div>
 
   <ccf-block-size-input
+    hraFeature="block-size"
     #blocksize
     [blockSize]="(model.blockSize$ | async)!"
     (blockSizeChange)="model.setBlockSize($event)"
   >
   </ccf-block-size-input>
   <ccf-rotation-slider
+    hraFeature="rotation"
     #rotation
     [rotation]="$any(model.rotation$ | async)"
     (rotationChange)="model.setRotation($event)"
   >
   </ccf-rotation-slider>
   <ccf-slices-input
+    hraFeature="slices"
     #slices
     [slicesConfig]="$any(model.slicesConfig$ | async)"
     (slicesConfigChange)="model.setSlicesConfig($event)"
@@ -99,9 +153,11 @@
   </ccf-slices-input>
 </hra-expansion-panel>
 
-<hra-expansion-panel tagline="Anatomical Structure Tags" class="as-tags">
+<hra-expansion-panel hraFeature="as-tags" tagline="Anatomical Structure Tags" class="as-tags">
   <hra-expansion-panel-actions>
     <button
+      hraFeature="toggle"
+      hraClickEvent
       mat-icon-button
       [matMenuTriggerFor]="asTagsActionMenu"
       hraIconButtonSize="large"
@@ -110,24 +166,50 @@
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #asTagsActionMenu="matMenu" class="settings-overlay">
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="astags.reset()">
+    <mat-menu hraFeature="menu" #asTagsActionMenu="matMenu" class="settings-overlay">
+      <button
+        hraFeature="reset"
+        hraClickEvent
+        mat-menu-item
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="astags.reset()"
+      >
         Reset all anatomical structure tags
       </button>
     </mat-menu>
   </hra-expansion-panel-actions>
 
-  <ccf-tag-search [search]="astags.searchExternal" (added)="astags.addTags($event)"> </ccf-tag-search>
+  <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)">
+  </ccf-tag-search>
   @if (addedTags().length > 0) {
-    <ccf-tag-list class="tag-list" label="Added" [tags]="addedTags()" (tagRemoved)="astags.removeTag($event)">
+    <ccf-tag-list
+      hraFeature="tags-added"
+      class="tag-list"
+      label="Added"
+      [tags]="addedTags()"
+      (tagRemoved)="astags.removeTag($event)"
+    >
     </ccf-tag-list>
   }
   @if (assignedTags().length > 0) {
-    <ccf-tag-list class="tag-list" label="Detected" [tags]="assignedTags()" (tagRemoved)="astags.removeTag($event)">
+    <ccf-tag-list
+      hraFeature="tags-detected"
+      class="tag-list"
+      label="Detected"
+      [tags]="assignedTags()"
+      (tagRemoved)="astags.removeTag($event)"
+    >
     </ccf-tag-list>
   }
   @if (removedTags().length > 0) {
-    <ccf-tag-list class="tag-list" label="Removed" [tags]="removedTags()" (tagRemoved)="astags.removeTag($event)">
+    <ccf-tag-list
+      hraFeature="tags-removed"
+      class="tag-list"
+      label="Removed"
+      [tags]="removedTags()"
+      (tagRemoved)="astags.removeTag($event)"
+    >
     </ccf-tag-list>
   }
 </hra-expansion-panel>
@@ -135,7 +217,15 @@
 <div style="flex-grow: 1"></div>
 
 <div class="buttons">
-  <button mat-button hraButtonSize="medium" (click)="metadata.openModal('edit')">Edit Metadata</button>
+  <button
+    hraFeature="edit-metadata"
+    hraClickEvent
+    mat-button
+    hraButtonSize="medium"
+    (click)="metadata.openModal('edit')"
+  >
+    Edit Metadata
+  </button>
 
   <ccf-review-button
     class="review-button"

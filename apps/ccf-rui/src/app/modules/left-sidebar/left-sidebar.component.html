@@ -1,6 +1,8 @@
 <div class="opacity-settings">
   Opacity Settings
   <button
+    hraFeature="opacity-settings"
+    hraClickEvent
     mat-icon-button
     [matMenuTriggerFor]="menu"
     hraIconButtonSize="large"
@@ -9,15 +11,15 @@
   >
     <mat-icon>more_vert</mat-icon>
   </button>
-  <mat-menu #menu="matMenu" class="opacity-overlay">
-    <button mat-menu-item matRipple matRippleColor="#201E3D14">
+  <mat-menu hraFeature="menu" #menu="matMenu" class="opacity-overlay">
+    <button hraFeature="reset-all" hraClickEvent mat-menu-item matRipple matRippleColor="#201E3D14">
       <span (click)="anatomical.setAllOpacity(20); landmarks.setAllOpacity(0)">Reset All Settings</span>
     </button>
     <mat-divider class="menu-divider"></mat-divider>
-    <button mat-menu-item matRipple matRippleColor="#201E3D14">
+    <button hraFeature="reset-as" hraClickEvent mat-menu-item matRipple matRippleColor="#201E3D14">
       <span (click)="anatomical.setAllOpacity(20)">Reset anatomical structures</span>
     </button>
-    <button mat-menu-item matRipple matRippleColor="#201E3D14">
+    <button hraFeature="reset-landmarks" hraClickEvent mat-menu-item matRipple matRippleColor="#201E3D14">
       <span (click)="landmarks.setAllOpacity(0)">Reset landmarks</span>
     </button>
   </mat-menu>
@@ -25,6 +27,7 @@
 
 <hra-expansion-panel tagline="Anatomical Structures" class="as-expansion" [tooltip]="asTooltip">
   <ccf-visibility-menu
+    hraFeature="as-visibility"
     #anatomical
     [items]="$any(model.anatomicalStructures$ | async) ?? []"
     (itemsChange)="model.setAnatomicalStructures($event)"
@@ -34,6 +37,7 @@
 
 <hra-expansion-panel tagline="Landmarks" [tooltip]="landmarksTooltip">
   <ccf-visibility-menu
+    hraFeature="landmarks-visibility"
     #landmarks
     [items]="$any(model.extractionSites$ | async)"
     (itemsChange)="model.setExtractionSites($event)"

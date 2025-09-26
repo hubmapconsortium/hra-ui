@@ -7,6 +7,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HraCommonModule } from '@hra-ui/common';
+import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
@@ -18,17 +21,17 @@ import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-butt
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { TrackingPopupModule } from 'ccf-shared';
 import { provideNgxMask } from 'ngx-mask';
+
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ContentModule } from './modules/content/content.module';
 import { LeftSidebarModule } from './modules/left-sidebar/left-sidebar.module';
 import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module';
-import { provideAnalytics, withRouterEvents, withErrorHandler } from '@hra-ui/common/analytics';
-import { provideAppConfiguration } from '@hra-ui/common/injectors';
 
 @NgModule({
   imports: [
+    HraCommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
