@@ -16,8 +16,7 @@
     @include utils.use-font('label', 'small');
     white-space: nowrap;
 
-    .crumb,
-    .icon {
+    .crumb {
       display: flex;
       vertical-align: middle;
       align-items: center;
