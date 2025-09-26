@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatDividerModule } from '@angular/material/divider';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
