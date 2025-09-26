@@ -5,13 +5,13 @@
 @mixin overrides() {
   @include mat.chips-overrides(
     (
-      focus-outline-color: vars.$tertiary,
-      outline-color: vars.$outline-variant,
       elevated-selected-container-color: vars.$secondary,
+      focus-outline-color: vars.$tertiary,
       focus-state-layer-color: vars.$on-primary,
       hover-state-layer-color: vars.$secondary,
-      selected-focus-state-layer-color: vars.$secondary,
       label-text-font: vars.$label-medium-font,
+      outline-color: vars.$outline-variant,
+      selected-focus-state-layer-color: vars.$secondary,
     )
   );
 }
