@@ -25,7 +25,9 @@
     @if (!isMobile()) {
       @for (menu of menus(); track menu.id) {
         <hra-navigation-category-toggle
-          [hraFeature]="'menu-' + (menu.id | slugify)"
+          [hraFeature]="menu.id | slugify"
+          hraClickEvent
+          hraHoverEvent
           cdkOverlayOrigin
           [toggled]="isMenuActive(menu)"
           (toggledChange)="toggleMenu(menu)"
