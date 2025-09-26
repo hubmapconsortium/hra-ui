@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 import { HraCommonModule } from '@hra-ui/common';
 import { MetadataCardComponent } from '../metadata-card/metadata-card.component';
 import { ThumbnailListComponent } from '../thumbnail-list/thumbnail-list.component';
@@ -52,31 +50,16 @@ export class DonorCardComponent {
   /** Section links */
   readonly sectionLinks = computed(() => this.tissueBlock().sections?.map((section) => section.link) ?? []);
 
-  /** Google Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /**
    * Ensures that the expanded variable is only changed if selected first.
    */
   toggleExpansion(): void {
     if (this.selected()) {
       this.expanded.update((value) => !value);
-      this.ga.event('expanded_toggled', 'donor_card', this.tissueBlock().label, +this.expanded());
       this.expansionChange.emit(this.expanded());
     } else {
       this.selected.set(true);
       this.selectOption.emit();
     }
-  }
-
-  /**
-   * Handles what happens when an info card is clicked.
-   * Passes up the link click event unless the card isn't selected
-   * In which case it selects it for ease of use.
-   *
-   * @param url the URL to emit up.
-   */
-  linkHandler(): void {
-    this.ga.event('link_clicked', 'donor_card', this.tissueBlock().label);
   }
 }

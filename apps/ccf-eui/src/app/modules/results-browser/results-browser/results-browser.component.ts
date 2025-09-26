@@ -11,7 +11,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule as HraScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ListResult } from '../../../core/models/list-result';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
 import { ResultsVirtualScrollStrategy } from '../virtual-scroll-strategy/results-virtual-scroll-strategy';
@@ -92,9 +91,6 @@ export class ResultsBrowserComponent {
     return items;
   });
 
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   private readonly scrollStrategy = inject(ResultsVirtualScrollStrategy);
 
   /** Resize viewport on changes to the items */
@@ -109,7 +105,6 @@ export class ResultsBrowserComponent {
    * @param selected whether to select or deselect the result
    */
   handleSelection(result: Immutable<ListResult>, selected: boolean): void {
-    this.ga.event('list_result_selected', 'results_browser', result.tissueBlock.label, +selected);
     if (!this.hasSelectedItems()) {
       this.showSelected.set(false);
     }

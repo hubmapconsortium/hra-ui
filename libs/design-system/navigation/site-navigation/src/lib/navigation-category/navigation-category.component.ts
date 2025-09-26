@@ -27,7 +27,7 @@ export class NavigationCategoryComponent {
   /** Navigation category expanded state change event */
   readonly expandedChange = output<boolean>();
 
-  /** Handle expansion state change with analytics tracking */
+  /** Handle expansion state change */
   onExpandedChange(expanded: boolean): void {
     this.expandedChange.emit(expanded);
   }

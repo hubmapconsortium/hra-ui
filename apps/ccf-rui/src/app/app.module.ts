@@ -19,9 +19,7 @@ import {
 } from '@hra-ui/design-system/expansion-panel';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
-import { TrackingPopupModule } from 'ccf-shared';
 import { provideNgxMask } from 'ngx-mask';
-
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -40,7 +38,6 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
     ContentModule,
     LeftSidebarModule,
     RightSidebarModule,
-    TrackingPopupModule,
     MatSnackBarModule,
     NavHeaderButtonsComponent,
     ExpansionPanelComponent,

@@ -5,17 +5,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LinkDirective } from '@hra-ui/cdk';
 import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, DownloadActions, DownloadSelectors, LinkIds, TissueLibrarySelectors } from '@hra-ui/state';
+import { LabelBoxComponent } from '../../../../atoms/src';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
-import { LabelBoxComponent } from '../../../../atoms/src';
 import { TissueTreeListComponent } from '../../../../molecules/src';
-import { HraCommonModule } from '@hra-ui/common';
 /**
  * Component for Tissue Library Behavior
  */
@@ -101,14 +101,5 @@ export class TissueLibraryBehaviorComponent {
   openFullScreen(mode: FullscreenTab) {
     this.fullScreenService.fullscreentabIndex.set(mode);
     this.fullScreenService.isFullscreen.set(true);
-  }
-
-  /**
-   * Generates the feature name for download analytics
-   */
-  protected getDownloadFeatureName(formatId: string): string {
-    // Convert "DownloadFormatId:'svg'" to "download-svg"
-    const formatType = formatId.replace("DownloadFormatId:'", '').replace("'", '');
-    return `download-${formatType}`;
   }
 }

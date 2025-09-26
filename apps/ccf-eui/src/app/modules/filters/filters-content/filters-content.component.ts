@@ -14,7 +14,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SpatialSearchListComponent } from 'ccf-shared';
 import { isEqual } from 'lodash';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import {
   DEFAULT_FILTER,
   DEFAULT_FILTER_AGE_HIGH,
@@ -86,8 +85,6 @@ export class FiltersContentComponent {
   /** Sex options */
   protected readonly sexOptions = [FilterSexEnum.Both, FilterSexEnum.Female, FilterSexEnum.Male];
 
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
   /** Spatial search flow service */
   protected readonly spatialFlowService = inject(SpatialSearchFlowService);
 
@@ -139,7 +136,6 @@ export class FiltersContentComponent {
 
   /** Applies the filter */
   applyFilter(): void {
-    this.ga.event('filters_applied', 'filter_content');
     this.filter.set({
       ...this.filterForm.value,
       spatialSearches: this.selectedSpatialSearches(),
@@ -148,7 +144,6 @@ export class FiltersContentComponent {
 
   /** Reset the filter */
   resetFilter(): void {
-    this.ga.event('filters_reset', 'filter_content');
     this.filterForm.setValue({
       sex: DEFAULT_FILTER_SEX,
       ageRange: [DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH],

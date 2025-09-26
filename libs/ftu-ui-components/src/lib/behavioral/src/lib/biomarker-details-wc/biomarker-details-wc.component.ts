@@ -1,30 +1,27 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { InteractiveSvgComponent, SourceListComponent, SourceListItem } from '../../../../molecules/src';
-import {
-  BiomarkerTableComponent,
-  DataCell,
-  TissueInfo,
-} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
+import { HraCommonModule } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { DialogService } from '@hra-ui/design-system/dialog';
+import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
   CellSummaryAggregate,
   CellSummarySelectors,
+  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
-  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsActions,
   SourceRefsSelectors,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -32,11 +29,12 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '../../../../atoms/src';
-import { MatButtonModule } from '@angular/material/button';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { DialogService } from '@hra-ui/design-system/dialog';
-import { HraCommonModule } from '@hra-ui/common';
-import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
+import { InteractiveSvgComponent, SourceListComponent, SourceListItem } from '../../../../molecules/src';
+import {
+  BiomarkerTableComponent,
+  DataCell,
+  TissueInfo,
+} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 /**
  * PlaceHolder for Empty Tissue Info
  */
@@ -87,14 +85,8 @@ export class BiomarkerDetailsWcComponent {
   /** Instance access to expression tooltip text */
   readonly expressionTooltipText = BiomarkerDetailsWcComponent.EXPRESSION_TOOLTIP_TEXT;
 
-  /** A dialog box which shows contact modal after clicking on contact */
-  private readonly dialog = inject(MatDialog);
-
   /** Dialog service for opening notice dialogs */
   private readonly dialogService = inject(DialogService);
-
-  /** Google analytics tracking service */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** Text to be copied to clipboard */
   emailText = 'infoccf@iu.edu';
@@ -133,10 +125,8 @@ export class BiomarkerDetailsWcComponent {
   /**
    * Copies email to clipboard
    */
-  private copyEmailToClipboard(): void {
-    navigator.clipboard.writeText(this.emailText).then(() => {
-      this.ga.event('email_copied', 'clipboard');
-    });
+  copyEmailToClipboard(): Promise<void> {
+    return navigator.clipboard.writeText(this.emailText);
   }
 
   /**
@@ -302,7 +292,7 @@ export class BiomarkerDetailsWcComponent {
   ];
 
   /** Active tab index */
-  private activeTabIndex = 0;
+  activeTabIndex = 0;
 
   /** Selected toggle value */
   selectedToggleValue = 'genes';

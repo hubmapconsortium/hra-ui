@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, Signal, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +13,6 @@ import { Router, RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { Select, Store } from '@ngxs/store';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { ClearSheetLogs } from '../../actions/logs.actions';
 import { UpdateGetFromCache } from '../../actions/sheet.actions';
@@ -22,7 +20,6 @@ import { ToggleControlPane, ToggleDebugLogs } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
 import { NavItemModule } from '../../components/nav-item/nav-item.module';
 import { OrganTableSelectorComponent } from '../../components/organ-table-selector/organ-table-selector.component';
-import { GaAction, GaCategory } from '../../models/ga.model';
 import {
   PlaygroundSheetOptions,
   Sheet,
@@ -39,7 +36,7 @@ import { SearchComponent } from '../search/search.component';
 @Component({
   selector: 'app-navbar',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatToolbarModule,
     MatIconModule,
     NavItemModule,
@@ -54,7 +51,6 @@ import { SearchComponent } from '../search/search.component';
     RouterModule,
     MatInputModule,
     IconsModule,
-    HraCommonModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
@@ -64,7 +60,6 @@ export class NavbarComponent implements OnInit {
   readonly configService = inject(ConfigService);
   readonly store = inject(Store);
   readonly router = inject(Router);
-  readonly ga = inject(GoogleAnalyticsService);
   readonly dialog = inject(MatDialog);
 
   /**
@@ -233,7 +228,6 @@ export class NavbarComponent implements OnInit {
       queryParams: { sheet: selectedSheet?.sheet ?? '' },
       queryParamsHandling: 'merge',
     });
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, `Select Organ Set Dropdown: ${selectedSheet?.sheet}`);
   }
 
   getVersionSelection(version: string) {
@@ -245,7 +239,6 @@ export class NavbarComponent implements OnInit {
   }
 
   openMasterDataTables() {
-    this.ga.event(GaAction.NAV, GaCategory.NAVBAR, 'Go to Master Data Tables', undefined);
     window.open(this.masterSheetLink, '_blank');
   }
 
@@ -257,8 +250,6 @@ export class NavbarComponent implements OnInit {
         omapSelectedOrgans: this.omapSelectedOrgans?.join(','),
       },
     });
-
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Refresh Visualization Button', undefined);
   }
 
   /** Toggles the side pane */
@@ -273,7 +264,6 @@ export class NavbarComponent implements OnInit {
 
   exportImage(imageType: string) {
     this.export.emit(imageType);
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, `Export Image: ${imageType}`, 0);
   }
 
   onOptionClick(type: string, url: string) {

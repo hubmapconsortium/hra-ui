@@ -22,8 +22,7 @@ import { ProgressSpinnerComponent } from '@hra-ui/design-system/indicators/progr
 import { TableColumn, TableComponent } from '@hra-ui/design-system/table';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { GlobalConfigState, OrganInfo, sexFromString } from 'ccf-shared';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { of, tap } from 'rxjs';
+import { of } from 'rxjs';
 import { Side } from './app-web-component.component';
 import { OrganComponent } from './components/organ/organ.component';
 import { OrganLookupService } from './services/organ-lookup/organ-lookup.service';
@@ -114,9 +113,6 @@ export class AppComponent {
   /** Emits when the user clicks a node */
   readonly nodeClicked = output<NodeClickEvent>();
 
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /** Global Configuration State */
   private readonly configState = inject<GlobalConfigState<GlobalConfig>>(GlobalConfigState);
 
@@ -155,7 +151,7 @@ export class AppComponent {
       }
 
       const info$ = this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo['side'], sex);
-      return info$.pipe(tap((info) => this.logOrganLookup(info, iri, sex, side)));
+      return info$;
     },
   });
 
@@ -284,15 +280,5 @@ export class AppComponent {
       parts = [sex, info.organ, side];
     }
     return parts.filter((seg) => !!seg).join(', ');
-  }
-
-  /**
-   * Creates an analytics event for the organ info.
-   * @param info Organ information
-   */
-  private logOrganLookup(info: OrganInfo | undefined, iri: string, sex?: string, side?: string): void {
-    const event = info ? 'organ_lookup_success' : 'organ_lookup_failure';
-    const inputs = `Iri: ${iri} - Sex: ${sex} - Side: ${side}`;
-    this.ga.event(event, 'organ', inputs);
   }
 }

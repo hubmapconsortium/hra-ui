@@ -15,7 +15,7 @@ import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideTabs } from '@hra-ui/design-system/tabs';
 import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
-import { HraStateModule, MouseTrackerModule } from '@hra-ui/state';
+import { HraStateModule } from '@hra-ui/state';
 import { provideStore } from '@ngxs/store';
 import { provideMarkdown } from 'ngx-markdown';
 import { ReplaySubject } from 'rxjs';
@@ -45,7 +45,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideMarkdown({ loader: HttpClient }),
     provideStore([]),
-    importProvidersFrom(CdkStateModule, HraServiceModule, HraStateModule, MouseTrackerModule),
+    importProvidersFrom(CdkStateModule, HraServiceModule, HraStateModule),
     {
       // Replace full routing with a partial implementation
       provide: Router,

@@ -13,12 +13,10 @@ import { NavigationEnd, Router } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Store } from '@ngxs/store';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { UpdateConfig } from '../../actions/sheet.actions';
 import { DiscrepencyId, DiscrepencyLabel, DoSearch, DuplicateId } from '../../actions/tree.actions';
 import { CloseSearch, OpenSearch } from '../../actions/ui.actions';
-import { GaAction, GaCategory } from '../../models/ga.model';
 import { SearchStructure } from '../../models/tree.model';
 import { SheetState } from '../../store/sheet.state';
 import { TreeState } from '../../store/tree.state';
@@ -26,6 +24,7 @@ import { TreeState } from '../../store/tree.state';
 @Component({
   selector: 'app-search',
   imports: [
+    HraCommonModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
@@ -38,7 +37,6 @@ import { TreeState } from '../../store/tree.state';
     MatButtonToggleModule,
     A11yModule,
     ButtonsModule,
-    HraCommonModule,
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
@@ -49,7 +47,6 @@ export class SearchComponent {
   private readonly multiSelect = viewChild<MatSelectionList>('multiSelect');
 
   private readonly store = inject(Store);
-  private readonly ga = inject(GoogleAnalyticsService);
   private readonly elementRef = inject(ElementRef);
 
   private readonly treeData = this.store.selectSignal(TreeState.getTreeData);
@@ -145,8 +142,6 @@ export class SearchComponent {
     this.store.dispatch(new DiscrepencyLabel([]));
     this.store.dispatch(new DiscrepencyId([]));
     this.store.dispatch(new DuplicateId([]));
-
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Select/Deselect Search Filters');
   }
 
   deselectAllOptions() {
@@ -159,7 +154,6 @@ export class SearchComponent {
     const structures = new Set(options.map((opt) => opt.value as SearchStructure));
     this.selection.update((values) => values.filter((struct) => !structures.has(struct)));
     this.store.dispatch(new DoSearch(this.selection(), null as unknown as SearchStructure));
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Deselect All Search Options');
   }
 
   selectAllOptions() {
@@ -172,7 +166,6 @@ export class SearchComponent {
     const structures = options.map((opt) => opt.value as SearchStructure);
     this.selection.update((values) => [...values, ...structures]);
     this.store.dispatch(new DoSearch(this.selection(), structures[0]));
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Select All Searched Options');
   }
 
   openSearchList() {

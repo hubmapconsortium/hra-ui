@@ -1,13 +1,11 @@
-import { Injectable, inject } from '@angular/core';
+import { ErrorHandler, Injectable, inject } from '@angular/core';
 import { injectLogEvent } from '@hra-ui/common/analytics';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { Store } from '@ngxs/store';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Spec, View, parse } from 'vega';
 import { ReportLog } from '../../actions/logs.actions';
 import { UpdateLinksData, UpdateVegaView } from '../../actions/tree.actions';
 import { CloseLoading, HasError, OpenBottomSheet, OpenBottomSheetDOI } from '../../actions/ui.actions';
-import { GaNodeInfo } from '../../models/ga.model';
 import { LOG_ICONS, LOG_TYPES } from '../../models/logs.model';
 import { Error } from '../../models/response.model';
 import { DOI, Sheet, SheetConfig } from '../../models/sheet.model';
@@ -28,8 +26,8 @@ import { Signals } from './spec/signals';
 export class VegaService {
   readonly store = inject(Store);
   readonly bm = inject(BimodalService);
-  readonly ga = inject(GoogleAnalyticsService);
   readonly logEvent = injectLogEvent();
+  private readonly errorHandler = inject(ErrorHandler);
 
   /**
    * Sheet configuration to be applied while building
@@ -58,7 +56,7 @@ export class VegaService {
       this.store.dispatch(new UpdateLinksData(0, 0, {}, {}, treeView.data('links').length, {}));
       this.makeBimodal(treeView);
     } catch (error) {
-      console.log(error);
+      this.errorHandler.handleError(error);
       const error2 = error as { name: string; status: number };
       const err: Error = {
         msg: `${error2.name} (Status: ${error2.status})`,
@@ -68,19 +66,6 @@ export class VegaService {
       this.store.dispatch(new ReportLog(LOG_TYPES.MSG, 'Failed to create Tree', LOG_ICONS.error));
       this.store.dispatch(new HasError(err));
     }
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  makeNodeInfoString(node: any) {
-    const nodeInfo: GaNodeInfo = {
-      name: node.name,
-      groupName: node.groupName,
-      oid: node.ontologyId,
-      type: node.type,
-      x: node.x,
-      y: node.y,
-    };
-    return JSON.stringify(nodeInfo);
   }
 
   /**
@@ -95,7 +80,7 @@ export class VegaService {
         this.store.dispatch(new OpenBottomSheet(node));
         this.logEvent(CoreEvents.Click, {
           path: 'asctb-reporter.visualization',
-          nodeLabel: this.makeNodeInfoString(node),
+          node: node.name,
         });
       }
     });
