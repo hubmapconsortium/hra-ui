@@ -1,7 +1,6 @@
 <div class="top-bar">
   <ccf-spatial-search-keyboard-ui-behavior
     hraFeature="directional-controls"
-    hraClickEvent
     *ngIf="page.registrationStarted$ | async"
     [delta]="1"
     [shiftDelta]="2"
@@ -22,6 +21,7 @@
 <div class="main-content">
   <ccf-body-ui
     hraFeature="3d"
+    hraClickEvent
     class="body-ui"
     *ngIf="(model.viewType$ | async) === '3d'"
     [scene]="(scene.nodes$ | async) ?? []"
@@ -35,6 +35,7 @@
 
   <ccf-body-ui
     hraFeature="register"
+    hraClickEvent
     class="body-ui"
     *ngIf="(model.viewType$ | async) === 'register'"
     [scene]="(scene.rotatedNodes$ | async) ?? []"

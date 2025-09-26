@@ -7,7 +7,7 @@
     <div cdkOverlayOrigin class="item-entry" [class.selected]="selected" #origin="cdkOverlayOrigin">
       <mat-icon
         hraFeature="opacity-toggle"
-        hraClickEvent
+        [hraClickEvent]="{ visible: item.visible }"
         hraPlainTooltip="Edit opacity"
         class="opacity-icon"
         [class.fade]="!item.visible"
@@ -15,7 +15,7 @@
         (click)="selection.set(item)"
       ></mat-icon>
 
-      <div class="item-name" [hraPlainTooltip]="name">
+      <div hraFeature="name" hraClickEvent class="item-name" [hraPlainTooltip]="name">
         {{ name }}
       </div>
     </div>

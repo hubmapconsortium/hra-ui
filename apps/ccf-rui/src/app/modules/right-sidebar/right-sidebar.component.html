@@ -2,6 +2,7 @@
   <hra-expansion-panel-actions>
     <button
       hraFeature="toggle"
+      hraClickEvent
       mat-icon-button
       [matMenuTriggerFor]="menu"
       hraIconButtonSize="large"
@@ -116,15 +117,30 @@
 
   <div hraFeature="position" class="position">
     <span class="label">Position</span>
-    <div class="x-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
+    <div
+      hraFeature="x"
+      hraClickEvent
+      class="x-position box"
+      hraPlainTooltip="Current position of the tissue block measured in millimeters"
+    >
       <span class="position-label">X</span>
       <span class="position-value">{{ (position$ | async)?.x }}</span>
     </div>
-    <div class="y-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
+    <div
+      hraFeature="y"
+      hraClickEvent
+      class="y-position box"
+      hraPlainTooltip="Current position of the tissue block measured in millimeters"
+    >
       <span class="position-label">Y</span>
       <span class="position-value">{{ (position$ | async)?.y }}</span>
     </div>
-    <div class="z-position box" hraPlainTooltip="Current position of the tissue block measured in millimeters">
+    <div
+      hraFeature="z"
+      hraClickEvent
+      class="z-position box"
+      hraPlainTooltip="Current position of the tissue block measured in millimeters"
+    >
       <span class="position-label">Z</span>
       <span class="position-value">{{ (position$ | async)?.z }}</span>
     </div>
@@ -153,7 +169,7 @@
   </ccf-slices-input>
 </hra-expansion-panel>
 
-<hra-expansion-panel hraFeature="as-tags" tagline="Anatomical Structure Tags" class="as-tags">
+<hra-expansion-panel hraFeature="AS-tags" tagline="Anatomical Structure Tags" class="as-tags">
   <hra-expansion-panel-actions>
     <button
       hraFeature="toggle"
@@ -180,37 +196,15 @@
     </mat-menu>
   </hra-expansion-panel-actions>
 
-  <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)">
-  </ccf-tag-search>
+  <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)" />
   @if (addedTags().length > 0) {
-    <ccf-tag-list
-      hraFeature="tags-added"
-      class="tag-list"
-      label="Added"
-      [tags]="addedTags()"
-      (tagRemoved)="astags.removeTag($event)"
-    >
-    </ccf-tag-list>
+    <ccf-tag-list class="tag-list" label="Added" [tags]="addedTags()" (tagRemoved)="astags.removeTag($event)" />
   }
   @if (assignedTags().length > 0) {
-    <ccf-tag-list
-      hraFeature="tags-detected"
-      class="tag-list"
-      label="Detected"
-      [tags]="assignedTags()"
-      (tagRemoved)="astags.removeTag($event)"
-    >
-    </ccf-tag-list>
+    <ccf-tag-list class="tag-list" label="Detected" [tags]="assignedTags()" (tagRemoved)="astags.removeTag($event)" />
   }
   @if (removedTags().length > 0) {
-    <ccf-tag-list
-      hraFeature="tags-removed"
-      class="tag-list"
-      label="Removed"
-      [tags]="removedTags()"
-      (tagRemoved)="astags.removeTag($event)"
-    >
-    </ccf-tag-list>
+    <ccf-tag-list class="tag-list" label="Removed" [tags]="removedTags()" (tagRemoved)="astags.removeTag($event)" />
   }
 </hra-expansion-panel>
 
@@ -235,6 +229,5 @@
     [metaData]="(registration.metadata$ | async) ?? []"
     (registerData)="registration.register()"
     (enterErrorMode)="registration.setDisplayErrors(!registration.isValid)"
-  >
-  </ccf-review-button>
+  />
 </div>

@@ -1,9 +1,5 @@
 @if (file) {
-  <hra-delete-file-button
-    hraFeature="delete-file"
-    [fileName]="file.name"
-    (cancelLoad)="cancelLoad()"
-  ></hra-delete-file-button>
+  <hra-delete-file-button [fileName]="file.name" (cancelLoad)="cancelLoad()"></hra-delete-file-button>
 } @else {
   <button
     hraFeature="upload-file"
