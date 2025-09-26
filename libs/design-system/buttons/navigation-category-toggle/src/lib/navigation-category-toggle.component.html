@@ -1,6 +1,5 @@
 <mat-button-toggle
   class="toggle"
-  hraFeature="navigation-category"
   [hraClickEvent]="{ toggled: toggled() }"
   [checked]="toggled()"
   (change)="toggled.set($event.source.checked)"

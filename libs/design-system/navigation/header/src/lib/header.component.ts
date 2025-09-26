@@ -1,5 +1,4 @@
 import { CdkConnectedOverlay, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,6 +27,7 @@ import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { HUBMAP_MENU, MENUS } from './static-data/parsed';
 import { Menu } from './types/menus.schema';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Call to action configuration */
 export interface CtaConfig {
@@ -55,7 +55,7 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
 @Component({
   selector: 'hra-header',
   imports: [
-    CommonModule,
+    HraCommonModule,
     OverlayModule,
     MatDividerModule,
     MatIconModule,
