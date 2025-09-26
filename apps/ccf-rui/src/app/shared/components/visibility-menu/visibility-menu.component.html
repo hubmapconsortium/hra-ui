@@ -3,36 +3,41 @@
   @let selected = selection()?.id === item.id;
   @let overlayScrollStrategy = overlay.scrollStrategies.close();
 
-  <div cdkOverlayOrigin class="item-entry" [class.selected]="selected" #origin="cdkOverlayOrigin">
-    <mat-icon
-      hraPlainTooltip="Edit opacity"
-      class="opacity-icon"
-      [class.fade]="!item.visible"
-      svgIcon="app:opacity"
-      (click)="selection.set(item)"
-    ></mat-icon>
+  <ng-container [hraFeature]="name | slugify">
+    <div cdkOverlayOrigin class="item-entry" [class.selected]="selected" #origin="cdkOverlayOrigin">
+      <mat-icon
+        hraFeature="opacity-toggle"
+        hraClickEvent
+        hraPlainTooltip="Edit opacity"
+        class="opacity-icon"
+        [class.fade]="!item.visible"
+        svgIcon="app:opacity"
+        (click)="selection.set(item)"
+      ></mat-icon>
 
-    <div class="item-name" [hraPlainTooltip]="name">
-      {{ name }}
+      <div class="item-name" [hraPlainTooltip]="name">
+        {{ name }}
+      </div>
     </div>
-  </div>
 
-  <ng-template
-    cdkConnectedOverlay
-    [cdkConnectedOverlayHasBackdrop]="false"
-    [cdkConnectedOverlayOpen]="selected"
-    [cdkConnectedOverlayOrigin]="origin"
-    [cdkConnectedOverlayPositions]="overlayPosition"
-    [cdkConnectedOverlayScrollStrategy]="overlayScrollStrategy"
-    (overlayOutsideClick)="selection.set(undefined)"
-    (detach)="selection.set(undefined)"
-  >
-    <ccf-opacity-slider
-      [opacity]="item.opacity ?? 20"
-      (opacityChange)="updateOpacity($event)"
-      (opacityReset)="resetItem()"
-      (visibilityToggle)="toggleVisibility(item)"
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayHasBackdrop]="false"
+      [cdkConnectedOverlayOpen]="selected"
+      [cdkConnectedOverlayOrigin]="origin"
+      [cdkConnectedOverlayPositions]="overlayPosition"
+      [cdkConnectedOverlayScrollStrategy]="overlayScrollStrategy"
+      (overlayOutsideClick)="selection.set(undefined)"
+      (detach)="selection.set(undefined)"
     >
-    </ccf-opacity-slider>
-  </ng-template>
+      <ccf-opacity-slider
+        hraFeature="opacity-slider"
+        [opacity]="item.opacity ?? 20"
+        (opacityChange)="updateOpacity($event)"
+        (opacityReset)="resetItem()"
+        (visibilityToggle)="toggleVisibility(item)"
+      >
+      </ccf-opacity-slider>
+    </ng-template>
+  </ng-container>
 }
