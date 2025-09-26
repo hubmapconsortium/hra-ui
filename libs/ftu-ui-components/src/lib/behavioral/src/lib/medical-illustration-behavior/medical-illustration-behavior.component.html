@@ -1,21 +1,27 @@
-@if (!isFullscreen()) {
-  <div class="illustration-header">
-    <span class="content">Illustration</span>
-    <button
-      mat-icon-button
-      hraIconButtonSize="large"
-      hraPlainTooltip="Open in full screen"
-      (click)="isFullscreen.set(true)"
-    >
-      <mat-icon>fullscreen</mat-icon>
-    </button>
-  </div>
-}
-<ftu-interactive-svg
-  [url]="currentUrl()"
-  [mapping]="mapping()"
-  [highlightId]="highlightId()"
-  (nodeHover)="updateNodeOnHover($event)"
-  (nodeClick)="updateNodeOnClicked($event)"
->
-</ftu-interactive-svg>
+<ng-container hraFeature="medical-illustration">
+  @if (!isFullscreen()) {
+    <div hraFeature="header" class="illustration-header">
+      <span class="content">Illustration</span>
+      <button
+        hraClickEvent
+        hraFeature="open-fullscreen"
+        mat-icon-button
+        hraIconButtonSize="large"
+        hraPlainTooltip="Open in full screen"
+        (click)="isFullscreen.set(true)"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    </div>
+  }
+  <ftu-interactive-svg
+    hraHoverEvent
+    hraFeature="illustration"
+    [url]="currentUrl()"
+    [mapping]="mapping()"
+    [highlightId]="highlightId()"
+    (nodeHover)="updateNodeOnHover($event)"
+    (nodeClick)="updateNodeOnClicked($event)"
+  >
+  </ftu-interactive-svg>
+</ng-container>
