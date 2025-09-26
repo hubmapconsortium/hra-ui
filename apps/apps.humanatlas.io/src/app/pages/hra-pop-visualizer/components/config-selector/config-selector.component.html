@@ -7,9 +7,11 @@
     <div class="organ-group">
       <mat-form-field hraFeature="organ" subscriptSizing="dynamic">
         <mat-label>Organ dataset</mat-label>
-        <mat-select hraModelChangeEvent [(ngModel)]="selectedOrgan" [disabled]="loading()">
+        <mat-select [(ngModel)]="selectedOrgan" [disabled]="loading()">
           @for (organ of organOptions(); track organ) {
-            <mat-option [value]="organ">{{ organ | titlecase }}</mat-option>
+            <mat-option hraClickEvent [hraFeature]="organ | slugify" [value]="organ">{{
+              organ | titlecase
+            }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -19,9 +21,11 @@
     <div class="datatype-group">
       <mat-form-field hraFeature="data-type" subscriptSizing="dynamic">
         <mat-label>Data type</mat-label>
-        <mat-select hraModelChangeEvent [(ngModel)]="selectedDataType">
+        <mat-select [(ngModel)]="selectedDataType">
           @for (config of dataTypeOptions(); track config.key) {
-            <mat-option [value]="config.key">{{ config.label }}</mat-option>
+            <mat-option hraClickEvent [hraFeature]="config.label | slugify" [value]="config.key">{{
+              config.label
+            }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -31,7 +35,7 @@
     <div class="sex-toggle-group">
       <h3>Sex</h3>
       <mat-button-toggle-group
-        hraFeature="active-sex"
+        hraFeature="sex"
         multiple
         [value]="selectedSexes()"
         (change)="onSexesChange($event.value)"
@@ -41,7 +45,7 @@
         class="toggle-group"
       >
         @for (sex of availableSexes; track sex) {
-          <mat-button-toggle [hraClickEvent]="{ sex: sex, selected: !selectedSexes().includes(sex) }" [value]="sex">
+          <mat-button-toggle hraClickEvent [hraFeature]="sex | slugify" [value]="sex">
             {{ sex }}
           </mat-button-toggle>
         }
@@ -57,9 +61,11 @@
     <div class="sort-group">
       <mat-form-field hraFeature="sort-by" subscriptSizing="dynamic">
         <mat-label>Sort by</mat-label>
-        <mat-select hraModelChangeEvent [(ngModel)]="selectedSort" [disabled]="loading()">
+        <mat-select [(ngModel)]="selectedSort" [disabled]="loading()">
           @for (option of sortOptions(); track option.value) {
-            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+            <mat-option hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{
+              option.label
+            }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -116,10 +122,10 @@
     <div class="annotation-group">
       <div class="annotation-checkbox-column">
         @for (tool of allTools; track tool) {
-          <div class="annotation-option">
+          <div hraFeature="annotation-tool" class="annotation-option">
             <mat-checkbox
-              hraFeature="annotation-tool"
-              [hraClickEvent]="{ checked: !selectedTools().includes(tool), tool: getToolDisplayName(tool) }"
+              hraClickEvent
+              [hraFeature]="tool | slugify"
               [checked]="selectedTools().includes(tool)"
               [disabled]="!isToolAvailable(tool) || loading()"
               [class.unavailable]="!isToolAvailable(tool)"

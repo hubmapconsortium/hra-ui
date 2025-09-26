@@ -2,11 +2,13 @@
   <!-- Organ dataset selection -->
   <div class="organ-dataset-group">
     <h1>Organ dataset</h1>
-    <mat-form-field class="select" hraFeature="dataset" subscriptSizing="dynamic">
+    <mat-form-field hraFeature="dataset" class="select" subscriptSizing="dynamic">
       <mat-label>Dataset</mat-label>
-      <mat-select hraModelChangeEvent formControlName="datasetSource" panelClass="options-container" disableRipple>
+      <mat-select formControlName="datasetSource" panelClass="options-container" disableRipple>
         @for (dataset of datasetOptions(); track dataset.key) {
-          <mat-option [value]="dataset.key">{{ dataset.label }}</mat-option>
+          <mat-option hraClickEvent [hraFeature]="dataset.label | slugify" [value]="dataset.key">{{
+            dataset.label
+          }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -17,15 +19,15 @@
     <div class="sort-controls">
       <mat-form-field hraFeature="sort-by" class="select" subscriptSizing="dynamic">
         <mat-label>Sort by</mat-label>
-        <mat-select hraModelChangeEvent formControlName="sortBy" disableRipple panelClass="options-container">
+        <mat-select formControlName="sortBy" disableRipple panelClass="options-container">
           <mat-optgroup label="Tissue Block Attribute">
             @for (label of generalSortLabels(); track label) {
-              <mat-option [value]="label">{{ label }}</mat-option>
+              <mat-option hraClickEvent [hraFeature]="label | slugify" [value]="label">{{ label }}</mat-option>
             }
           </mat-optgroup>
           <mat-optgroup label="Cell Type Count">
             @for (cellType of cellTypes(); track cellType) {
-              <mat-option [value]="cellType">{{ cellType }}</mat-option>
+              <mat-option hraClickEvent [hraFeature]="cellType | slugify" [value]="cellType">{{ cellType }}</mat-option>
             }
           </mat-optgroup>
         </mat-select>
@@ -33,18 +35,22 @@
 
       <mat-form-field hraFeature="sort-order" class="select" subscriptSizing="dynamic">
         <mat-label>Sort order</mat-label>
-        <mat-select hraModelChangeEvent formControlName="orderType" disableRipple panelClass="options-container">
+        <mat-select formControlName="orderType" disableRipple panelClass="options-container">
           @for (option of orderTypeOptions; track option.value) {
-            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+            <mat-option hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{
+              option.label
+            }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
       <mat-form-field hraFeature="group-by" class="select" subscriptSizing="dynamic">
         <mat-label>Group by</mat-label>
-        <mat-select hraModelChangeEvent formControlName="groupBy" disableRipple panelClass="options-container">
+        <mat-select formControlName="groupBy" disableRipple panelClass="options-container">
           @for (group of groupOptions(); track group.key) {
-            <mat-option [value]="group.key">{{ group.label }}</mat-option>
+            <mat-option hraClickEvent [hraFeature]="group.label | slugify" [value]="group.key">{{
+              group.label
+            }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -55,10 +61,10 @@
     <div class="x-axis-group">
       <h1>X axis</h1>
       <mat-button-toggle-group
+        hraFeature="x-axis"
         formControlName="xAxisField"
         [hideSingleSelectionIndicator]="false"
         hraButtonToggleSize="medium"
-        hraFeature="x-axis"
         class="toggle-group"
       >
         @for (option of xAxisOptions; track option.value) {
@@ -72,10 +78,10 @@
     <div class="y-axis-group">
       <h1>Y axis</h1>
       <mat-button-toggle-group
+        hraFeature="y-axis"
         formControlName="yAxisField"
         [hideSingleSelectionIndicator]="false"
         hraButtonToggleSize="medium"
-        hraFeature="y-axis"
         class="toggle-group"
       >
         @for (option of yAxisOptions; track option.value) {
