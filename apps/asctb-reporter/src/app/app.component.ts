@@ -7,7 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { routeData } from '@hra-ui/common';
+import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
@@ -101,6 +101,7 @@ declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
     IndentedListComponent,
     DebugLogsComponent,
     CompareComponent,
+    HraCommonModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

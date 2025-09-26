@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterModule } from '@angular/router';
+import { HraCommonModule } from '@hra-ui/common';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { Select, Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -53,6 +54,7 @@ import { SearchComponent } from '../search/search.component';
     RouterModule,
     MatInputModule,
     IconsModule,
+    HraCommonModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],

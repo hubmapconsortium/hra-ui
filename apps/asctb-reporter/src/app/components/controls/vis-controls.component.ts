@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { GaAction, GaCategory } from '../../models/ga.model';
@@ -32,6 +33,7 @@ import { Sheet, SheetConfig } from '../../models/sheet.model';
     MatCheckboxModule,
     MatButtonToggleModule,
     ButtonsModule,
+    HraCommonModule,
   ],
   templateUrl: './vis-controls.component.html',
   styleUrls: ['./vis-controls.component.scss'],

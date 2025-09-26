@@ -1,5 +1,4 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, computed, inject, input, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule, MatListOption, MatSelectionList } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationEnd, Router } from '@angular/router';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -26,7 +26,6 @@ import { TreeState } from '../../store/tree.state';
 @Component({
   selector: 'app-search',
   imports: [
-    CommonModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
@@ -39,6 +38,7 @@ import { TreeState } from '../../store/tree.state';
     MatButtonToggleModule,
     A11yModule,
     ButtonsModule,
+    HraCommonModule,
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],

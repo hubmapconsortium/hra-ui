@@ -15,6 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ConfigService } from '../../app-config.service';
@@ -42,6 +43,7 @@ import { OrganTableOnClose, OrganTableSelect, SheetDetails } from '../../models/
     ButtonVariantDirective,
     ButtonSizeDirective,
     MatDivider,
+    HraCommonModule,
   ],
   templateUrl: './organ-table-selector.component.html',
   styleUrls: ['./organ-table-selector.component.scss'],

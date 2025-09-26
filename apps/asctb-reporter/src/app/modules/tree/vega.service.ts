@@ -1,11 +1,13 @@
 import { Injectable, inject } from '@angular/core';
+import { injectLogEvent } from '@hra-ui/common/analytics';
+import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { Store } from '@ngxs/store';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Spec, View, parse } from 'vega';
 import { ReportLog } from '../../actions/logs.actions';
 import { UpdateLinksData, UpdateVegaView } from '../../actions/tree.actions';
 import { CloseLoading, HasError, OpenBottomSheet, OpenBottomSheetDOI } from '../../actions/ui.actions';
-import { GaAction, GaCategory, GaNodeInfo } from '../../models/ga.model';
+import { GaNodeInfo } from '../../models/ga.model';
 import { LOG_ICONS, LOG_TYPES } from '../../models/logs.model';
 import { Error } from '../../models/response.model';
 import { DOI, Sheet, SheetConfig } from '../../models/sheet.model';
@@ -27,6 +29,7 @@ export class VegaService {
   readonly store = inject(Store);
   readonly bm = inject(BimodalService);
   readonly ga = inject(GoogleAnalyticsService);
+  readonly logEvent = injectLogEvent();
 
   /**
    * Sheet configuration to be applied while building
@@ -90,16 +93,19 @@ export class VegaService {
     view.addSignalListener('bimodal_text__click', (_signal: unknown, node: OpenBottomSheetData) => {
       if (node && Object.entries(node).length) {
         this.store.dispatch(new OpenBottomSheet(node));
-        this.ga.event(GaAction.CLICK, GaCategory.GRAPH, `Clicked a node label: ${this.makeNodeInfoString(node)}`);
+        this.logEvent(CoreEvents.Click, {
+          path: 'asctb-reporter.visualization',
+          nodeLabel: this.makeNodeInfoString(node),
+        });
       }
     });
 
     // node click listener to emit ga event
     view.addSignalListener('node__click', (_signal: string, nodeId: unknown) => {
       if (nodeId != null) {
-        this.ga.event(GaAction.CLICK, GaCategory.GRAPH, 'Selected (clicked) a node', 0);
+        this.logEvent(CoreEvents.Click, { path: 'asctb-reporter.visualization', message: 'Selected a node' });
       } else {
-        this.ga.event(GaAction.CLICK, GaCategory.GRAPH, 'Deselected a node');
+        this.logEvent(CoreEvents.Click, { path: 'asctb-reporter.visualization', message: 'Deselected a node' });
       }
     });
 

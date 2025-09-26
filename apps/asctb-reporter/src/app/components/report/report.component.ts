@@ -12,6 +12,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HraCommonModule } from '@hra-ui/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
@@ -40,6 +41,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     MatTooltipModule,
     MatSortModule,
     MatDividerModule,
+    HraCommonModule,
   ],
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
