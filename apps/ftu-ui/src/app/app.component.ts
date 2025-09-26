@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
-import { CommonModule } from '@angular/common';
+import { HraCommonModule, routeData } from '@hra-ui/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -33,7 +33,6 @@ import {
   StorageId,
   StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -120,7 +119,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   selector: 'ftu-ui-root',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     IconsModule,
     TissueLibraryBehaviorComponent,
     MouseTrackerModule,

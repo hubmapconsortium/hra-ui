@@ -4,7 +4,9 @@ import { hraAnalyticsPlugin } from '@hra-ui/common/analytics/plugins/hra-analyti
 import { hraEventFilterPlugin } from '@hra-ui/common/analytics/plugins/hra-event-filter';
 import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import { Analytics, AnalyticsPlugin, PageData } from 'analytics';
+import { nanoid } from 'nanoid';
 import { createNoopInjectionToken } from 'ngxtension/create-injection-token';
+import store from 'store2';
 import { ConsentService } from '../consent/consent.service';
 import { injectFeaturePath } from '../feature/feature.directive';
 
@@ -12,6 +14,9 @@ import { injectFeaturePath } from '../feature/feature.directive';
 type ExtendedAnalyticsOptions = Parameters<typeof Analytics>[0] & {
   storage?: null;
 };
+
+/** Storage key for session id */
+const SESSION_ID_STORAGE_KEY = '__hra-analytics-session-id';
 
 /** User defined `analytics` plugins */
 const PLUGINS = createNoopInjectionToken<AnalyticsPlugin, true>('Analytics plugins', {
@@ -62,7 +67,7 @@ export class AnalyticsService {
         isEventEnabled: (type, category) => this.consent.isEventEnabled(type, category),
       }),
       hraAnalyticsPlugin({
-        sessionId: 'TODO', // TODO get/set from session storage
+        sessionId: this.getSessionId(),
       }),
       ...this.plugins,
     ],
@@ -86,5 +91,20 @@ export class AnalyticsService {
   logEvent<T extends AnalyticsEvent>(event: T, props: EventPayloadFor<T>): void {
     const { type, category } = event;
     this.instance.track(type, props, { eventObj: event, category });
+  }
+
+  /**
+   * Retrieves or creates a session id
+   *
+   * @returns A session id
+   */
+  private getSessionId(): string {
+    let id = store.session.get(SESSION_ID_STORAGE_KEY);
+    if (!id || typeof id !== 'string') {
+      id = nanoid(10);
+      store.session.set(SESSION_ID_STORAGE_KEY, id);
+    }
+
+    return id;
   }
 }

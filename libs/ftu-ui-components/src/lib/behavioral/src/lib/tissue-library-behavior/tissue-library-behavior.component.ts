@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject, model, signal, ViewChild } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,13 +15,14 @@ import {
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
 import { LabelBoxComponent } from '../../../../atoms/src';
 import { TissueTreeListComponent } from '../../../../molecules/src';
+import { HraCommonModule } from '@hra-ui/common';
 /**
  * Component for Tissue Library Behavior
  */
 @Component({
   selector: 'ftu-tissue-library-behavior',
   imports: [
-    CommonModule,
+    HraCommonModule,
     LabelBoxComponent,
     TissueTreeListComponent,
     MatDivider,
@@ -101,5 +101,14 @@ export class TissueLibraryBehaviorComponent {
   openFullScreen(mode: FullscreenTab) {
     this.fullScreenService.fullscreentabIndex.set(mode);
     this.fullScreenService.isFullscreen.set(true);
+  }
+
+  /**
+   * Generates the feature name for download analytics
+   */
+  protected getDownloadFeatureName(formatId: string): string {
+    // Convert "DownloadFormatId:'svg'" to "download-svg"
+    const formatType = formatId.replace("DownloadFormatId:'", '').replace("'", '');
+    return `download-${formatType}`;
   }
 }

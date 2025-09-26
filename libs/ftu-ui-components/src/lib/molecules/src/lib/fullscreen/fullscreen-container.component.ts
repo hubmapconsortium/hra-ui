@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, model, output, TemplateRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 
@@ -10,7 +10,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
  */
 @Component({
   selector: 'ftu-fullscreen-container',
-  imports: [CommonModule, MatTabsModule, IconsModule, MatIconModule, ButtonsModule],
+  imports: [HraCommonModule, MatTabsModule, IconsModule, MatIconModule, ButtonsModule],
   templateUrl: './fullscreen-container.component.html',
   styleUrl: './fullscreen-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
