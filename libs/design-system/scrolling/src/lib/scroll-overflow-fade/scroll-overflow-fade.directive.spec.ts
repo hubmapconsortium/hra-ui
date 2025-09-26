@@ -1,7 +1,7 @@
 import { WritableSignal, signal } from '@angular/core';
 import { RenderTemplateOptions, render } from '@testing-library/angular';
 import { SCROLL_TIMELINE, ScrollTimelineFunc } from '../scroll-timeline/scroll-timeline';
-import { ScrollingModule, provideScrolling } from '../scrolling.module';
+import { ScrollingModule } from '../scrolling.module';
 import { ScrollOverflowFadeDirective } from './scroll-overflow-fade.directive';
 import { TestBed } from '@angular/core/testing';
 import { mock } from 'jest-mock-extended';
@@ -16,7 +16,7 @@ describe('ScrollOverflowFadeDirective', () => {
   function getSharedOptions(): RenderTemplateOptions<ScrollOverflowFadeDirective> {
     return {
       imports: [ScrollingModule],
-      providers: [provideScrolling(), { provide: SCROLL_TIMELINE, useValue: signal(null) }],
+      providers: [{ provide: SCROLL_TIMELINE, useValue: signal(null) }],
     };
   }
 
