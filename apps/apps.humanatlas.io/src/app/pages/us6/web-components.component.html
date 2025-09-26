@@ -26,7 +26,7 @@
         <div class="cards">
           @for (component of components; track component.id) {
             <hra-action-card
-              [hraFeature]="component.productTitle | slugify"
+              [hraFeature]="(organ.label | slugify) + '.' + (component.productTitle | slugify)"
               class="component-card"
               variant="elevated"
               [tagline]="component.webComponentName || component.productTitle"
@@ -38,7 +38,7 @@
               <hra-action-card-action>
                 <button
                   hraClickEvent
-                  [hraFeature]="'use-app.' + (organ.label | slugify)"
+                  hraFeature="use-app"
                   mat-button
                   hraPrimaryButton
                   hraButtonSize="medium"
@@ -52,7 +52,7 @@
                 <hra-action-card-action alignment="right">
                   <button
                     hraClickEvent
-                    [hraFeature]="'embed.' + (organ.label | slugify)"
+                    hraFeature="embed"
                     mat-flat-button
                     hraPrimaryButton
                     hraButtonSize="medium"
