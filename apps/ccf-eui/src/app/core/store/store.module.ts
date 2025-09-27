@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
-import { CallToActionState, GlobalConfigState } from 'ccf-shared';
+import { GlobalConfigState } from 'ccf-shared';
 
 import { environment } from '../../../environments/environment';
 import { ColorAssignmentState } from './color-assignment/color-assignment.state';
@@ -22,7 +22,6 @@ export const ROOT_STATES = [
   ListResultsState,
   DataState,
   SceneState,
-  CallToActionState,
   SpatialSearchUiState,
   SpatialSearchFilterState,
 ];
