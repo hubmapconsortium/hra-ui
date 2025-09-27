@@ -1,5 +1,5 @@
 <div class="icons">
-  @if (opacity > 0) {
+  @if (opacity() > 0) {
     <button mat-icon-button class="visibility icon visible" (click)="toggleVisibility()" hraPlainTooltip="Hide">
       <mat-icon>visibility_off</mat-icon>
     </button>
@@ -13,11 +13,17 @@
   </button>
 </div>
 
-<mat-slider class="slider" [class.disabled]="!visible" [step]="1" [min]="0" [max]="100">
-  <input matSliderThumb class="opacity-slider" [value]="opacity" (input)="opacityChange.emit(+slider.value)" #slider />
+<mat-slider class="slider" [class.disabled]="!visible()" [step]="1" [min]="0" [max]="100">
+  <input
+    matSliderThumb
+    class="opacity-slider"
+    [value]="opacity()"
+    (input)="opacityChange.emit(+slider.value)"
+    #slider
+  />
 </mat-slider>
 
 <mat-form-field subscriptSizing="dynamic">
   <mat-label>Opacity</mat-label>
-  <input matInput [value]="opacity" (input)="opacityChange.emit(+input.value || 0)" type="number" #input />
+  <input matInput [value]="opacity()" (input)="opacityChange.emit(+input.value || 0)" type="number" #input />
 </mat-form-field>

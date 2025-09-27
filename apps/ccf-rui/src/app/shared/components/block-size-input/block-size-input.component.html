@@ -11,7 +11,7 @@
       class="input"
       type="number"
       placeholder=""
-      [value]="blockSize.x"
+      [value]="blockSize().x"
       (keyup)="updateBlockSizes($event, 'x')"
       matTooltip="Enter tissue block width."
     />
@@ -24,7 +24,7 @@
       class="input"
       type="number"
       placeholder=""
-      [value]="blockSize.y"
+      [value]="blockSize().y"
       (keyup)="updateBlockSizes($event, 'y')"
       matTooltip="Enter tissue block height."
     />
@@ -37,7 +37,7 @@
       class="input"
       type="number"
       placeholder=""
-      [value]="blockSize.z"
+      [value]="blockSize().z"
       (keyup)="updateBlockSizes($event, 'z')"
       matTooltip="Enter tissue block depth."
     />

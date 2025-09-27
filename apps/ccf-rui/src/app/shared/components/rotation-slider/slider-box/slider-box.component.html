@@ -6,10 +6,10 @@
   cdkOverlayOrigin
   #trigger="cdkOverlayOrigin"
 >
-  <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
+  <mat-label class="text form-input-label">{{ sliderAxis().toUpperCase() }}</mat-label>
   <input
     matInput
-    [value]="rotation[sliderAxis]"
+    [value]="rotation()[sliderAxis()]"
     class="input"
     type="number"
     [min]="-180"
@@ -43,7 +43,7 @@
       <input
         class="slider-input"
         matSliderThumb
-        [value]="rotation[sliderAxis]"
+        [value]="rotation()[sliderAxis()]"
         (input)="changeRotation.emit(slider.value)"
         #slider
       />

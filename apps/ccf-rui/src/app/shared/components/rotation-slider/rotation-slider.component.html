@@ -7,7 +7,7 @@
   <ccf-slider-box
     class="slider-box"
     [sliderAxis]="axis"
-    [rotation]="rotation"
+    [rotation]="rotation()"
     [step]="step"
     (resetRotation)="resetRotation(axis)"
     (changeRotation)="changeRotation($event, axis)"

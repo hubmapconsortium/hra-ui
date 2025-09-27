@@ -4,7 +4,7 @@
       [delta]="1"
       [shiftDelta]="2"
       [position]="(position$ | async)!"
-      [disablePositionChange]="disablePositionChange"
+      [disablePositionChange]="disablePositionChange()"
       (changePosition)="model.setPosition($event)"
     ></ccf-spatial-search-keyboard-ui-behavior>
   }
@@ -17,7 +17,7 @@
       class="body-ui"
       [scene]="(scene.nodes$ | async) ?? []"
       [rotation]="(scene.rotation$ | async) ?? 0"
-      (rotationChange)="setGizmoRotation($event)"
+      (rotationChange)="this.gizmoRotation.set($event)"
       [bounds]="(bounds$ | async)!"
       [zoom]="11.5"
       [interactive]="true"
