@@ -20,7 +20,7 @@ describe('BlockSizeInputComponent', () => {
     const mockEvent = { target: { value: 5 } } as unknown as KeyboardEvent;
     instance.updateBlockSizes(mockEvent, 'z');
 
-    expect(instance.blockSize.z).toBe(5);
+    expect(instance.blockSize().z).toBe(5);
     expect(outputs.blockSizeChange.emit).toHaveBeenCalled();
   });
 
@@ -33,7 +33,7 @@ describe('BlockSizeInputComponent', () => {
 
     instance.refreshBlockSize();
 
-    expect(instance.blockSize).toEqual({ x: 10, y: 10, z: 10 });
+    expect(instance.blockSize()).toEqual({ x: 10, y: 10, z: 10 });
     expect(outputs.blockSizeChange.emit).toHaveBeenCalled();
   });
 });

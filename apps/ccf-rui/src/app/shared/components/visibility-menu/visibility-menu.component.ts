@@ -4,9 +4,10 @@ import { ChangeDetectionStrategy, Component, inject, model } from '@angular/core
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { OpacitySliderModule } from 'ccf-shared';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+
 import { VisibilityItem } from '../../../core/models/visibility-item';
+import { OpacitySliderComponent } from '../opacity-slider/opacity-slider.component';
 
 /** Slider overlay position */
 const SLIDER_OVERLAY_POSITION: ConnectedPosition[] = [
@@ -24,7 +25,7 @@ const SLIDER_OVERLAY_POSITION: ConnectedPosition[] = [
  */
 @Component({
   selector: 'ccf-visibility-menu',
-  imports: [CommonModule, MatIconModule, MatRippleModule, OverlayModule, OpacitySliderModule, PlainTooltipDirective],
+  imports: [CommonModule, MatIconModule, MatRippleModule, OverlayModule, OpacitySliderComponent, PlainTooltipDirective],
   templateUrl: './visibility-menu.component.html',
   styleUrls: ['./visibility-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
