@@ -1,8 +1,8 @@
-<mat-dialog-content>
+<mat-dialog-content hraFeature="review">
   <div class="header">
     <div class="title">Review and Download</div>
     <div class="filler"></div>
-    <button mat-icon-button class="close" hraIconButtonSize="large">
+    <button hraFeature="close" hraClickEvent mat-icon-button class="close" hraIconButtonSize="large">
       <mat-icon (click)="close()">clear</mat-icon>
     </button>
   </div>
@@ -23,7 +23,14 @@
     }
   </div>
 
-  <button mat-button mat-flat-button class="download-button" (click)="downloadClicked()">
+  <button
+    [hraFeature]="data.registrationCallbackSet ? 'register' : 'download'"
+    hraClickEvent
+    mat-button
+    mat-flat-button
+    class="download-button"
+    (click)="downloadClicked()"
+  >
     {{ data.registrationCallbackSet ? 'Register' : 'Download' }}
   </button>
 </mat-dialog-content>

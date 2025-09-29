@@ -1,6 +1,7 @@
 <div class="top-bar">
   @if (page.registrationStarted$ | async) {
     <ccf-spatial-search-keyboard-ui-behavior
+      hraFeature="directional-controls"
       [delta]="1"
       [shiftDelta]="2"
       [position]="(position$ | async)!"
@@ -14,6 +15,8 @@
 <div class="main-content">
   @if ((model.viewType$ | async) === '3d') {
     <ccf-body-ui
+      hraFeature="3d"
+      hraClickEvent
       class="body-ui"
       [scene]="(scene.nodes$ | async) ?? []"
       [rotation]="(scene.rotation$ | async) ?? 0"
@@ -27,6 +30,8 @@
 
   @if ((model.viewType$ | async) === 'register') {
     <ccf-body-ui
+      hraFeature="register"
+      hraClickEvent
       class="body-ui"
       [scene]="(scene.rotatedNodes$ | async) ?? []"
       [interactive]="false"

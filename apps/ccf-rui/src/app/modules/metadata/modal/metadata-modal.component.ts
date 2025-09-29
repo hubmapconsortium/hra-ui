@@ -4,6 +4,7 @@ import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } 
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { JsonFileLoaderService } from '@hra-ui/common/fs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
@@ -48,6 +49,7 @@ export interface MetadataModalResult {
 @Component({
   selector: 'ccf-metadata-modal',
   imports: [
+    HraCommonModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,

@@ -1,19 +1,16 @@
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
 import {
   ActiveFtuSelectors,
-  TissueLibrarySelectors,
   CellSummarySelectors,
-  IllustratorSelectors,
   IllustratorActions,
+  IllustratorSelectors,
+  TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { calledWithFn, mock } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
-
 import { BiomarkerDetailsWcComponent } from './biomarker-details-wc.component';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,7 +39,6 @@ describe('BiomarkerDetailsWcComponent', () => {
   const getTabsSpy = jest.fn(() => MOCK_TABS);
   const mappingSpy = jest.fn(() => MOCK_MAPPING);
   const dialog = mock<MatDialog>();
-  const ga = mock<GoogleAnalyticsService>();
   const highlightCellSpy = jest.fn();
   let shallow: Shallow<BiomarkerDetailsWcComponent>;
   beforeEach(() => {
@@ -68,16 +64,10 @@ describe('BiomarkerDetailsWcComponent', () => {
     selectSnapshotSpy.calledWith(IllustratorSelectors.mapping).mockReturnValue(mappingSpy);
     selectQuerySnapshotSpy.calledWith(ResourceRegistrySelectors.anyText).mockReturnValue(() => '');
 
-    shallow = new Shallow(BiomarkerDetailsWcComponent)
-      .dontMock(MatTableModule, MatDialogModule)
-      .provideMock({
-        provide: MatDialog,
-        useValue: dialog,
-      })
-      .provideMock({
-        provide: GoogleAnalyticsService,
-        useValue: ga,
-      });
+    shallow = new Shallow(BiomarkerDetailsWcComponent).dontMock(MatTableModule, MatDialogModule).provideMock({
+      provide: MatDialog,
+      useValue: dialog,
+    });
   });
 
   it('should create', async () => {
@@ -89,24 +79,6 @@ describe('BiomarkerDetailsWcComponent', () => {
     instance.isTableFullScreen = false;
     instance.toggleFullscreen();
     expect(instance.isTableFullScreen).toBeTruthy();
-  });
-
-  it('should change tabs', async () => {
-    const { instance } = await shallow.render();
-    const mockEvent = {
-      tab: {
-        textLabel: 'label',
-      },
-    } as MatTabChangeEvent;
-
-    const mockEvent2 = {
-      tab: null,
-    } as unknown as MatTabChangeEvent;
-
-    const spy = jest.spyOn(instance, 'logTabChange');
-    instance.logTabChange(mockEvent);
-    instance.logTabChange(mockEvent2);
-    expect(spy).toHaveBeenCalled();
   });
 
   describe('.tissueInfo', () => {
@@ -139,14 +111,13 @@ describe('BiomarkerDetailsWcComponent', () => {
   });
 
   describe('copyEmailToClipboard', () => {
-    it('should copy email to clipboard and track analytics', async () => {
+    it('should copy email to clipboard', async () => {
       const { instance } = await shallow.render();
       const clipboardSpy = jest.spyOn(navigator.clipboard, 'writeText');
 
-      await (instance as any).copyEmailToClipboard();
+      await instance.copyEmailToClipboard();
 
       expect(clipboardSpy).toHaveBeenCalledWith('infoccf@iu.edu');
-      expect(ga.event).toHaveBeenCalledWith('email_copied', 'clipboard');
     });
   });
 
@@ -206,16 +177,16 @@ describe('BiomarkerDetailsWcComponent', () => {
 
       instance.onToggleChange('proteins');
 
-      expect((instance as any).activeTabIndex).toBe(1);
+      expect(instance.activeTabIndex).toBe(1);
     });
 
     it('should not change activeTabIndex when invalid value is provided', async () => {
       const { instance } = await shallow.render();
-      const initialIndex = (instance as any).activeTabIndex;
+      const initialIndex = instance.activeTabIndex;
 
       instance.onToggleChange('invalid-value');
 
-      expect((instance as any).activeTabIndex).toBe(initialIndex);
+      expect(instance.activeTabIndex).toBe(initialIndex);
     });
   });
 });

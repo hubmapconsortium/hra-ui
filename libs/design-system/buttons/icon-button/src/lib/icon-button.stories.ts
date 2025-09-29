@@ -72,9 +72,9 @@ export const Dark: Story = {
 };
 
 export const Light: Story = {
-  parameters: {
+  globals: {
     backgrounds: {
-      default: 'dark',
+      value: 'dark',
     },
   },
   args: {

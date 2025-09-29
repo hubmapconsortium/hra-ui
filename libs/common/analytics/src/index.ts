@@ -7,6 +7,8 @@ export {
   DoubleClickEventDirective,
   EventDirective,
   HoverEventDirective,
+  KeyboardEventDirective,
+  ModelChangeEventDirective,
 } from './lib/event/event.directive';
 export { FeatureDirective, injectFeaturePath } from './lib/feature/feature.directive';
 export { AnalyticsFeature, provideAnalytics, withErrorHandler, withPlugins, withRouterEvents } from './lib/providers';

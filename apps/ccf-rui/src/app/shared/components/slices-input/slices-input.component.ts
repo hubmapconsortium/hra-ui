@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, model, output } from '@angular/core';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { ChangeDetectionStrategy, Component, HostBinding, model, output } from '@angular/core';
 
 /**
  * Interface containing slices data of the tissue block
@@ -28,9 +27,6 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
   standalone: false,
 })
 export class SlicesInputComponent {
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-slices-input';
 
@@ -63,7 +59,6 @@ export class SlicesInputComponent {
   updateSlicesData(event: KeyboardEvent, key: string): void {
     const { value: strValue } = event.target as HTMLInputElement;
     this.slicesConfig.set({ ...this.slicesConfig(), [key]: strValue !== '' ? +strValue : NaN });
-    this.ga.event('slice_config_update', 'slice_input', key, this.slicesConfig()[key as never]);
     this.slicesConfigChange.emit(this.slicesConfig());
   }
 
@@ -72,7 +67,6 @@ export class SlicesInputComponent {
    */
   refreshSlices(): void {
     this.slicesConfig.set(DEFAULT_SLICES_CONFIG);
-    this.ga.event('slice_config_reset', 'slice_input');
     this.slicesConfigChange.emit(this.slicesConfig());
   }
 }

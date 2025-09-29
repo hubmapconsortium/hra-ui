@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, model, output } from '@angular/core';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 /**
  * Interface for objects containing tissue block dimensions
@@ -31,9 +30,6 @@ const DEFAULT_BLOCK_SIZE: BlockSize = {
   standalone: false,
 })
 export class BlockSizeInputComponent {
-  /** Google Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-block-size-input';
 
@@ -52,7 +48,6 @@ export class BlockSizeInputComponent {
   updateBlockSizes(event: KeyboardEvent, key: string): void {
     const inputTarget = event.target as HTMLInputElement;
     this.blockSize.set({ ...this.blockSize(), [key]: +inputTarget.value });
-    this.ga.event('block_size_change', 'block_size_input', key, this.blockSize()[key as never]);
     this.blockSizeChange.emit(this.blockSize());
   }
 
@@ -61,7 +56,6 @@ export class BlockSizeInputComponent {
    */
   refreshBlockSize(): void {
     this.blockSize.set(DEFAULT_BLOCK_SIZE);
-    this.ga.event('block_size_reset', 'block_size_input');
     this.blockSizeChange.emit(this.blockSize());
   }
 }

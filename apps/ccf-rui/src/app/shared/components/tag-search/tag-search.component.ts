@@ -10,10 +10,8 @@ import {
   output,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { from, interval, ObservableInput, Subject } from 'rxjs';
 import { catchError, map, switchMap, takeUntil, throttle } from 'rxjs/operators';
-
 import { Tag, TagId, TagSearchResult } from '../../../core/models/anatomical-structure-tag';
 
 /** Default search results limit */
@@ -41,7 +39,6 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
 })
 export class TagSearchComponent implements OnDestroy {
   private readonly el = inject<ElementRef<Node>>(ElementRef);
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-tag-search';
@@ -119,7 +116,6 @@ export class TagSearchComponent implements OnDestroy {
       searchControl.reset();
       this.searchResults = EMPTY_RESULT;
       this.checkedResults = {};
-      this.ga.event('tags_added', 'tag_search', tags.map((tag) => tag.label).join(','));
       this.added.emit(tags);
     }
   }

@@ -1,5 +1,4 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,16 +14,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ConfigService } from '../../app-config.service';
-import { GaAction, GaCategory, GaOrgansInfo } from '../../models/ga.model';
 import { OrganTableOnClose, OrganTableSelect, SheetDetails } from '../../models/sheet.model';
 
 @Component({
   selector: 'app-organ-table-selector',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatDialogModule,
     MatInputModule,
     FormsModule,
@@ -50,7 +48,6 @@ export class OrganTableSelectorComponent {
   readonly configService = inject(ConfigService);
   readonly dialogRef = inject<MatDialogRef<OrganTableSelectorComponent>>(MatDialogRef);
   readonly data = inject<OrganTableSelect>(MAT_DIALOG_DATA);
-  readonly ga = inject(GoogleAnalyticsService);
 
   /**
    * Sheet configs
@@ -155,10 +152,6 @@ export class OrganTableSelectorComponent {
   }
 
   addSheets() {
-    const ga_details: GaOrgansInfo = {
-      selectedOrgans: [],
-      numOrgans: 0,
-    };
     this.organs = [];
     this.selection.selected.map((item) => {
       if (item.name === 'all') {
@@ -166,18 +159,8 @@ export class OrganTableSelectorComponent {
       }
       if (item.symbol) {
         this.organs.push(item.symbol);
-        ga_details.selectedOrgans.push({
-          organ: item.display,
-          version: item.symbol.split('-').slice(1).join('-'),
-        });
       }
     });
-    ga_details.numOrgans = ga_details.selectedOrgans.length;
-    if (this.data.isIntilalSelect === true) {
-      this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, `SELECTED ORGANS INITIAL: ${JSON.stringify(ga_details)}`, 0);
-    } else {
-      this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, `SELECTED ORGANS EDIT: ${JSON.stringify(ga_details)}`, 0);
-    }
     const omapOrgans: string[] = [];
     this.omapselection.selected.forEach((element) => {
       omapOrgans.push(element.symbol ?? '');

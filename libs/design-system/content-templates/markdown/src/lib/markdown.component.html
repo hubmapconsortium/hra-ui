@@ -1,1 +1,5 @@
-<markdown [data]="data()" [src]="src() ? (src()! | assetUrl) : undefined" />
+<markdown
+  [data]="data()"
+  [src]="src() ? (src()! | assetUrl) : undefined"
+  (ready)="clearEventListeners(); attachEventListeners()"
+/>

@@ -2,21 +2,36 @@
   <ng-container [ngTemplateOutlet]="illustrationTemplate()"></ng-container>
   <ng-container [ngTemplateOutlet]="biomarkerTemplate()"></ng-container>
 } @else {
-  <div class="fullscreen-overlay">
-    <mat-tab-group [(selectedIndex)]="fullscreentabIndex" class="tabs-group">
-      <mat-tab label="Illustration">
+  <div hraFeature="fullscreen-overlay" class="fullscreen-overlay">
+    <mat-tab-group
+      hraFeature="fullscreen-tabs"
+      hraClickEvent
+      hraClickEventTriggerOn="none"
+      #tabEvent="hraClickEvent"
+      [(selectedIndex)]="fullscreentabIndex"
+      class="tabs-group"
+      (selectedTabChange)="tabEvent.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
+    >
+      <mat-tab hraFeature="illustration-tab" label="Illustration">
         <ng-container [ngTemplateOutlet]="illustrationTemplate()"></ng-container>
       </mat-tab>
-      <mat-tab label="Source data">
+      <mat-tab hraFeature="source-data-tab" label="Source data">
         <ng-container [ngTemplateOutlet]="sourceListTemplate()"></ng-container>
       </mat-tab>
-      <mat-tab label="Cell types by biomarkers">
+      <mat-tab hraFeature="biomarkers-tab" label="Cell types by biomarkers">
         <ng-template matTabContent>
           <ng-container [ngTemplateOutlet]="biomarkerTemplate()"></ng-container>
         </ng-template>
       </mat-tab>
     </mat-tab-group>
-    <button mat-icon-button class="closeButton" aria-label="Close fullscreen" (click)="closeFullscreen.emit()">
+    <button
+      hraFeature="close"
+      hraClickEvent
+      mat-icon-button
+      class="closeButton"
+      aria-label="Close fullscreen"
+      (click)="closeFullscreen.emit()"
+    >
       <mat-icon>close</mat-icon>
     </button>
   </div>
