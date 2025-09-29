@@ -15,9 +15,13 @@ export interface ConsentBannerConfig {
 
 /** Privacy preferences data structure */
 export interface PrivacyPreferences {
+  /** Whether necessary cookies are allowed */
   necessary: boolean;
+  /** Whether preference cookies are allowed */
   preferences: boolean;
+  /** Whether statistical cookies are allowed */
   statistics: boolean;
+  /** Whether marketing cookies are allowed */
   marketing: boolean;
 }
 
