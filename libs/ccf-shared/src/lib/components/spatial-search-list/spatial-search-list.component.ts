@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * Base interface of items in the spatial search list
@@ -23,7 +23,7 @@ export interface SpatialSearchListItem {
   selector: 'ccf-spatial-search-list',
   templateUrl: './spatial-search-list.component.html',
   styleUrls: ['./spatial-search-list.component.scss'],
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatCheckboxModule, MatListModule],
+  imports: [HraCommonModule, MatButtonModule, MatIconModule, MatCheckboxModule, MatListModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchListComponent<T extends SpatialSearchListItem> {

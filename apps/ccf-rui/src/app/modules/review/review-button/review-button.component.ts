@@ -9,8 +9,6 @@ import {
   inject,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
 import { MetaData } from '../../../core/models/meta-data';
 import { PageState } from '../../../core/store/page/page.state';
 import { ReviewModalComponent } from '../review-modal/review-modal.component';
@@ -27,8 +25,6 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
 export class ReviewButtonComponent implements OnChanges {
   /** Dialog service */
   private readonly dialog = inject(MatDialog);
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
   /** Page state */
   readonly page = inject(PageState);
 
@@ -118,7 +114,6 @@ export class ReviewButtonComponent implements OnChanges {
     }
     this.enterErrorMode.emit();
     if (this.registrationIsValid) {
-      this.ga.event('review_start', 'review_button');
       this.launchReviewModal();
     }
     return false;
@@ -142,7 +137,6 @@ export class ReviewButtonComponent implements OnChanges {
     dialogRef.afterClosed().subscribe((data) => {
       this.page.registrationStarted();
       if (data) {
-        this.ga.event('register', 'review_button');
         this.registerData.emit();
       }
     });

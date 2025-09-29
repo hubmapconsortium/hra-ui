@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
   ExpansionPanelActionsComponent,
@@ -24,7 +24,7 @@ import { RightSidebarComponent } from './right-sidebar.component';
 
 @NgModule({
   imports: [
-    CommonModule,
+    HraCommonModule,
 
     MatExpansionModule,
     MatDividerModule,

@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
 import { Action, Select, Selector, State, StateContext, Store } from '@ngxs/store';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ReportLog } from '../actions/logs.actions';
 import { UpdateBottomSheetDOI, UpdateBottomSheetInfo } from '../actions/sheet.actions';
 import { UpdateBottomSheetData } from '../actions/tree.actions';
@@ -25,7 +24,6 @@ import {
   ToggleReport,
   UpdateLoadingText,
 } from '../actions/ui.actions';
-import { GaAction, GaCategory } from '../models/ga.model';
 import { LOG_ICONS, LOG_TYPES } from '../models/logs.model';
 import { Error, SnackbarType } from '../models/response.model';
 import { Snackbar } from '../models/ui.model';
@@ -103,7 +101,6 @@ export interface UIStateModel {
 @Injectable()
 export class UIState {
   readonly store = inject(Store);
-  readonly ga = inject(GoogleAnalyticsService);
 
   /**
    * Select the snackbar state
@@ -267,7 +264,6 @@ export class UIState {
       ...state,
       controlPaneOpen: !state.controlPaneOpen,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, 'Toggle Control Pane', undefined, getState().controlPaneOpen);
   }
 
   /**
@@ -342,7 +338,6 @@ export class UIState {
       ...state,
       indentListOpen: !state.indentListOpen,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, 'Toggle Indent List', undefined, getState().indentListOpen);
   }
 
   /**
@@ -355,7 +350,6 @@ export class UIState {
       ...state,
       reportOpen: !state.reportOpen,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, 'Toggle Report', undefined, getState().reportOpen);
   }
 
   /**
@@ -371,7 +365,6 @@ export class UIState {
       debugLogOpen: false,
       compareOpen: false,
     });
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Close All Right-Sidenav Elements ', undefined, false);
   }
 
   /**
@@ -384,7 +377,6 @@ export class UIState {
       ...state,
       debugLogOpen: !state.debugLogOpen,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.NAVBAR, 'Toggle Debug Logs', undefined, getState().debugLogOpen);
   }
 
   /**
@@ -458,7 +450,6 @@ export class UIState {
       ...state,
       compareOpen: true,
     });
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Open Compare', undefined, getState().compareOpen);
   }
 
   /**
@@ -471,7 +462,6 @@ export class UIState {
       ...state,
       compareOpen: false,
     });
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Close Compare', undefined, getState().compareOpen);
   }
 
   @Action(OpenSearch)
@@ -481,7 +471,6 @@ export class UIState {
       ...state,
       searchOpen: true,
     });
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Open Search', undefined, getState().searchOpen);
   }
 
   @Action(CloseSearch)
@@ -491,6 +480,5 @@ export class UIState {
       ...state,
       searchOpen: false,
     });
-    this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, 'Close Search', undefined, getState().searchOpen);
   }
 }

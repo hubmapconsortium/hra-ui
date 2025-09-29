@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { NavigationItemComponent } from '../navigation-item/navigation-item.component';
 import { DocsNavigationCategory } from '../types/docs-navigation.schema';
 
 /** Navigation Category Component */
 @Component({
   selector: 'hra-navigation-category',
-  imports: [CommonModule, MatExpansionModule, MatIconModule, NavigationItemComponent],
+  imports: [CommonModule, MatExpansionModule, MatIconModule, NavigationItemComponent, HraCommonModule],
   templateUrl: './navigation-category.component.html',
   styleUrl: './navigation-category.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,4 +26,9 @@ export class NavigationCategoryComponent {
 
   /** Navigation category expanded state change event */
   readonly expandedChange = output<boolean>();
+
+  /** Handle expansion state change */
+  onExpandedChange(expanded: boolean): void {
+    this.expandedChange.emit(expanded);
+  }
 }

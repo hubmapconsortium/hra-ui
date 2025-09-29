@@ -1,8 +1,9 @@
-<div class="content-container">
+<div hraFeature="metadata" class="content-container">
   <ng-content select="hra-metadata-layout-header" />
 
   @if (isSmallScreen()) {
     <hra-provenance-menu
+      hraFeature="provenance"
       [rows]="rows()"
       [columns]="columns()"
       [version]="version()"
@@ -17,6 +18,7 @@
 
 @if (isWideScreen()) {
   <hra-provenance-menu
+    hraFeature="provenance"
     [rows]="rows()"
     [columns]="columns()"
     [version]="version()"

@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Type for the visual button */
 export type VisualButtonVariant = 'bottom' | 'top';
@@ -8,7 +8,7 @@ export type VisualButtonVariant = 'bottom' | 'top';
 /** Visual Button Component */
 @Component({
   selector: 'hra-visual-button',
-  imports: [CommonModule, MatIconModule],
+  imports: [HraCommonModule, MatIconModule],
   templateUrl: './visual-button.component.html',
   styleUrl: './visual-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, WritableSignal } from '@angular/core';
 import { DataViewerComponent, DataViewerVariant, ReleaseVersionData } from '@hra-ui/design-system/data-viewer';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
 
 /**
@@ -8,7 +8,7 @@ import { linkedQueryParam } from 'ngxtension/linked-query-param';
  */
 @Component({
   selector: 'hra-data-viewer-with-query-params',
-  imports: [CommonModule, DataViewerComponent],
+  imports: [HraCommonModule, DataViewerComponent],
   templateUrl: './data-viewer-with-query-params.component.html',
   styleUrl: './data-viewer-with-query-params.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

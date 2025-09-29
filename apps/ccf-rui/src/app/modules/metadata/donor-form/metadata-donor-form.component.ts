@@ -12,6 +12,7 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { derivedAsync } from 'ngxtension/derived-async';
 import { distinctUntilChanged, map, Observable, startWith, Subject } from 'rxjs';
 import { removeDoiBase } from '../../../shared/utils/doi';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Donor form controls */
 export interface DonorFormControls {
@@ -79,6 +80,7 @@ function filterAutocompleteOptions<T>(
 @Component({
   selector: 'ccf-metadata-donor-form',
   imports: [
+    HraCommonModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatFormFieldModule,

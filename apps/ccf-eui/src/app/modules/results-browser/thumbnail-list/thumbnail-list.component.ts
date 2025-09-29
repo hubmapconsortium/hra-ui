@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueDataset } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { GlobalConfigState } from 'ccf-shared';
 
 /**
@@ -13,7 +13,7 @@ import { GlobalConfigState } from 'ccf-shared';
   selector: 'ccf-thumbnail-list',
   templateUrl: './thumbnail-list.component.html',
   styleUrls: ['./thumbnail-list.component.scss'],
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [HraCommonModule, MatButtonModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThumbnailListComponent {

@@ -19,7 +19,9 @@ const geneBiomarker = 'gene';
 const cell1 = 'cell1' as Iri;
 const cell2 = 'cell2' as Iri;
 const gene1 = 'gene1' as Iri;
+const gene2 = 'gene1' as Iri;
 const ensembleId1 = 'ensemble1';
+const ensembleId2 = 'ensemble2';
 
 const summary1: CellSummary = {
   biomarker_type: geneBiomarker,
@@ -58,6 +60,12 @@ const summary2: CellSummary = {
           ensemble_id: ensembleId1,
           mean_expression: 0.6,
         },
+        {
+          gene_id: gene2,
+          gene_label: gene2,
+          ensemble_id: ensembleId2,
+          mean_expression: 0.8,
+        },
       ],
     },
   ],
@@ -90,7 +98,7 @@ describe('Cell Summary Helpers', () => {
     it('creates aggregate data for display in a table', () => {
       const [summary] = combineSummariesByBiomarkerType(summaries, [geneBiomarker]);
       const { rows, columns } = computeAggregate(summary);
-      expect(columns).toEqual([`${gene1} [${ensembleId1}]`]);
+      expect(columns).toEqual([`${gene1} [${ensembleId1}]`, `${gene2} [${ensembleId2}]`]);
       expect(rows.length).toBe(2);
 
       const [row1] = rows;

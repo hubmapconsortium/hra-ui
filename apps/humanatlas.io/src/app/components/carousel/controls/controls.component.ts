@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -8,7 +8,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
  */
 @Component({
   selector: 'hra-carousel-controls',
-  imports: [CommonModule, MatIconModule, ButtonsModule],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule],
   templateUrl: './controls.component.html',
   styleUrl: './controls.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

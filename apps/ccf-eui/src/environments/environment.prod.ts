@@ -15,5 +15,4 @@ export const environment = {
     homeUrl: 'https://portal.hubmapconsortium.org/',
     logoTooltip: 'Human Reference Atlas Portal',
   },
-  googleAnalyticsToken: window.location.hostname === 'portal.hubmapconsortium.org' ? 'G-1WRJHN9FM6' : 'G-J9HWV9QPJ4',
 };

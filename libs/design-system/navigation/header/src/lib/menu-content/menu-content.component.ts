@@ -1,4 +1,4 @@
-import { CommonModule, Location } from '@angular/common';
+import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Directive, inject, input } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,6 +6,7 @@ import { Router, RouterModule, UrlTree } from '@angular/router';
 import { isAbsolute as isAbsoluteUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Menu, MenuGroup, MenuItem, MenuSubGroup } from '../types/menus.schema';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Display modes of the menu content component */
 export type MenuContentVariant = 'desktop' | 'mobile';
@@ -56,7 +57,7 @@ export class MenuSubGroupDirective {
 @Component({
   selector: 'hra-menu-content',
   imports: [
-    CommonModule,
+    HraCommonModule,
     RouterModule,
     MatDivider,
     MatIconModule,
