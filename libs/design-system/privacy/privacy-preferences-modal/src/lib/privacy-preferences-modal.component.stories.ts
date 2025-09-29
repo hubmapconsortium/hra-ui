@@ -4,7 +4,7 @@ import { PrivacyPreferencesModalComponent } from './privacy-preferences-modal.co
 
 const meta: Meta<PrivacyPreferencesModalComponent> = {
   component: PrivacyPreferencesModalComponent,
-  title: 'Design System/PrivacyPreferencesModalComponent',
+  title: 'Design System/Privacy Preferences Modal',
   parameters: {
     design: {
       type: 'figma',
