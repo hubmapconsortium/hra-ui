@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, model, output } from '@angular/core';
 
 /**
  * Interface for objects containing tissue block dimensions

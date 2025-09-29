@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, effect, HostBinding, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, HostBinding, inject, input, output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
 import { MetaData } from '../../../core/models/meta-data';
 import { PageState } from '../../../core/store/page/page.state';
 import { ReviewModalComponent } from '../review-modal/review-modal.component';
@@ -38,7 +39,13 @@ export class ReviewButtonComponent {
   readonly userValid = input(false);
 
   /** Decides whether or not to let the user open the registration / download modal */
-  readonly registrationIsValid = signal(false);
+  readonly registrationIsValid = computed(() => {
+    const organ = this.metaDataLookup('Reference Organ Name');
+    const dimensions = this.metaDataLookup('Tissue Block Dimensions (mm)');
+    const pos = this.metaDataLookup('Tissue Block Position (mm)');
+    const tags = this.metaDataLookup('Anatomical Structure Tags');
+    return this.userValid() && [organ, dimensions, pos, tags].every((value) => value !== '');
+  });
 
   /** Output that emits when the modal's register button was clicked */
   readonly registerData = output();
@@ -55,20 +62,6 @@ export class ReviewButtonComponent {
     return this.disabled
       ? 'Tissue block does not collide with any anatomical structures'
       : 'Review registration and submit/download.';
-  }
-
-  /**
-   * Updates the value of registrationIsValid based on the
-   * meta data.
-   */
-  constructor() {
-    effect(() => {
-      const organ = this.metaDataLookup('Reference Organ Name');
-      const dimensions = this.metaDataLookup('Tissue Block Dimensions (mm)');
-      const pos = this.metaDataLookup('Tissue Block Position (mm)');
-      const tags = this.metaDataLookup('Anatomical Structure Tags');
-      this.registrationIsValid.set(this.userValid() && [organ, dimensions, pos, tags].every((value) => value !== ''));
-    });
   }
 
   /**
