@@ -1,5 +1,4 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
-import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -33,12 +32,17 @@ import {
   StorageId,
   StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { routeData } from '@hra-ui/common';
+import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import {
+  FtuFullScreenService,
+  ScreenNoticeBehaviorComponent,
+  TissueLibraryBehaviorComponent,
+} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -63,17 +67,11 @@ import {
   IllustratorActions,
   IllustratorSelectors,
   LinkIds,
-  MouseTrackerModule,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
-import {
-  FtuFullScreenService,
-  ScreenNoticeBehaviorComponent,
-  TissueLibraryBehaviorComponent,
-} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
 import { environment } from '../environments/environment';
 
 /** Input property keys */
@@ -120,10 +118,9 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   selector: 'ftu-ui-root',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     IconsModule,
     TissueLibraryBehaviorComponent,
-    MouseTrackerModule,
     NavigationModule,
     RouterModule,
     CdkStateModule,

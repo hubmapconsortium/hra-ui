@@ -17,16 +17,21 @@ const preview: Preview = {
   tags: ['autodocs'],
   parameters: {
     backgrounds: {
-      values: [
-        {
-          name: 'light',
+      options: {
+        light: {
+          name: 'Light',
           value: '#ffffff',
         },
-        {
-          name: 'dark',
+        dark: {
+          name: 'Dark',
           value: '#4b4b5e',
         },
-      ],
+      },
+    },
+  },
+  initialGlobals: {
+    backgrounds: {
+      value: 'light',
     },
   },
   decorators: [

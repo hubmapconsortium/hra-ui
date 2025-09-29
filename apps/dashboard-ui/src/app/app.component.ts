@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -12,7 +13,7 @@ import { routeData } from './shared/utils/route-data';
  */
 @Component({
   selector: 'hra-root',
-  imports: [ButtonsModule, IconsModule, NavigationModule, RouterModule, PlainTooltipDirective],
+  imports: [ButtonsModule, IconsModule, NavigationModule, RouterModule, PlainTooltipDirective, HraCommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {

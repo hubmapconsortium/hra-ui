@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import type { CallToActionBehaviorComponent } from '../../components/call-to-action-behavior/call-to-action-behavior.component';
@@ -57,8 +56,6 @@ const SPATIAL_SEARCH_README = 'assets/docs/SPATIAL_SEARCH_README.md';
 export class CallToActionState implements NgxsOnInit {
   /** Dialog service */
   private readonly dialog = inject(MatDialog);
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
   /** Local storage service */
   private readonly storage = inject(LocalStorageService);
   /** Info button service */
@@ -125,7 +122,6 @@ export class CallToActionState implements NgxsOnInit {
   @Action(LearnMore)
   learnMore(): Observable<DocumentationContent[]> {
     this.dialog.closeAll();
-    this.ga.event('open_learn_more', 'call_to_action');
 
     return this.getDialogData().pipe(tap((data) => this.launchLearnMore(data)));
   }
@@ -143,7 +139,6 @@ export class CallToActionState implements NgxsOnInit {
       height: '36.688rem',
     });
 
-    this.ga.event('open', 'call_to_action');
     this.storage.setItem(POPUP_SHOWN_STORAGE_KEY, 'true');
     ctx.patchState({ popupShown: true });
   }
@@ -155,6 +150,5 @@ export class CallToActionState implements NgxsOnInit {
   @Action(CloseDialog)
   close(): void {
     this.dialog.closeAll();
-    this.ga.event('close', 'call_to_action');
   }
 }

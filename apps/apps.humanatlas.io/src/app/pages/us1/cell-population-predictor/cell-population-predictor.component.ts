@@ -1,5 +1,5 @@
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, InjectionToken, Renderer2 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +12,7 @@ import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tool
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { HraPopPredictionsService } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
@@ -57,12 +58,11 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
   standalone: true,
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     OverlayModule,
     RouterModule,
     WorkflowCardModule,
-
     AppLabelComponent,
     DeleteFileButtonComponent,
     EmbeddedRuiComponent,
