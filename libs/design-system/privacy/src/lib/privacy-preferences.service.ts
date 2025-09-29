@@ -1,29 +1,16 @@
-import { Injectable, inject } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ConsentBannerComponent } from '@hra-ui/design-system/privacy/consent-banner';
+import { Injectable, effect, inject, signal } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConsentService } from '@hra-ui/common/analytics';
+import {
+  CONSENT_BANNER_ARIA_LABELLEDBY_ID,
+  ConsentBannerComponent,
+  ConsentBannerResult,
+} from '@hra-ui/design-system/privacy/consent-banner';
 import store from 'store2';
 
-/** Configuration options for the consent banner dialog */
-export interface ConsentBannerConfig {
-  /** Whether the dialog can be closed by clicking outside or pressing escape */
-  disableClose?: boolean;
-  /** Custom width for the dialog */
-  width?: string;
-  /** Custom height for the dialog */
-  height?: string;
-}
-
-/** Privacy preferences data structure */
-export interface PrivacyPreferences {
-  /** Whether necessary cookies are allowed */
-  necessary: boolean;
-  /** Whether preference cookies are allowed */
-  preferences: boolean;
-  /** Whether statistical cookies are allowed */
-  statistics: boolean;
-  /** Whether marketing cookies are allowed */
-  marketing: boolean;
-}
+const PRIVACY_PREFERENCES_STORAGE_KEY = '__hra-analytics-privacy-preferences';
+const CONSENT_BANNER_DIALOG_ID = 'consentBannerDialog';
+const PRIVACY_PREFERENCES_DIALOG_ID = 'privacyPreferencesDialog';
 
 /** Service for managing privacy preferences and consent banner */
 @Injectable({
@@ -31,140 +18,89 @@ export interface PrivacyPreferences {
 })
 export class PrivacyPreferencesService {
   private readonly dialog = inject(MatDialog);
-  private dialogRef: MatDialogRef<ConsentBannerComponent> | null = null;
+  private readonly consent = inject(ConsentService);
+  private readonly syncEnabled = signal(false);
 
-  /**
-   * Opens the consent banner as a Material dialog positioned at the bottom of the page
-   * @param config Optional configuration for the dialog
-   * @returns Reference to the opened dialog
-   */
-  openConsentBanner(config?: ConsentBannerConfig): MatDialogRef<ConsentBannerComponent> {
-    if (this.dialogRef) {
-      this.dialogRef.close();
+  constructor() {
+    effect(() => {
+      if (this.syncEnabled()) {
+        const categories = this.consent.categories();
+        store.local.set(PRIVACY_PREFERENCES_STORAGE_KEY, categories);
+      }
+    });
+  }
+
+  launch(): void {
+    if (this.hasPrivacyPreferences()) {
+      this.consent.updateCategories(this.getPrivacyPreferences());
+      this.enableSync();
+    } else {
+      this.openConsentBanner();
+    }
+  }
+
+  hasPrivacyPreferences(): boolean {
+    return store.local.has(PRIVACY_PREFERENCES_STORAGE_KEY);
+  }
+
+  getPrivacyPreferences(): Record<string, boolean> {
+    return store.local.get(PRIVACY_PREFERENCES_STORAGE_KEY) ?? {};
+  }
+
+  enableSync(): void {
+    this.syncEnabled.set(true);
+  }
+
+  openConsentBanner(): void {
+    if (this.hasActiveDialog()) {
+      return;
     }
 
-    const dialogConfig: MatDialogConfig = {
+    const ref = this.dialog.open<ConsentBannerComponent, never, ConsentBannerResult>(ConsentBannerComponent, {
+      ariaLabelledBy: CONSENT_BANNER_ARIA_LABELLEDBY_ID,
+      // ariaModal: true, ??
+      closeOnNavigation: false,
+      disableClose: true,
+      hasBackdrop: false,
+      id: CONSENT_BANNER_DIALOG_ID,
       position: {
         bottom: '0px',
         left: '0px',
         right: '0px',
       },
-      width: config?.width || '100vw',
-      height: config?.height || 'auto',
-      hasBackdrop: false,
-      disableClose: config?.disableClose ?? true,
-      autoFocus: false,
-      restoreFocus: true,
-    };
-
-    this.dialogRef = this.dialog.open(ConsentBannerComponent, dialogConfig);
-
-    this.dialogRef.componentInstance.allowAllClick.subscribe(() => {
-      this.handleAllowAll();
     });
 
-    this.dialogRef.componentInstance.allowNecessaryOnlyClick.subscribe(() => {
-      this.handleAllowNecessaryOnly();
-    });
-
-    this.dialogRef.componentInstance.customizeClick.subscribe(() => {
-      this.handleCustomize();
-    });
-
-    this.dialogRef.afterClosed().subscribe(() => {
-      this.dialogRef = null;
-    });
-
-    return this.dialogRef;
+    ref.afterClosed().subscribe((result) => this.handleConsentBannerResult(result));
   }
 
-  /**
-   * Closes the consent banner dialog if it's open
-   */
-  closeConsentBanner(): void {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-      this.dialogRef = null;
+  openPrivacyPreferences(): void {
+    if (this.hasActiveDialog()) {
+      return;
     }
+
+    // TODO
   }
 
-  /**
-   * Checks if the consent banner dialog is currently open
-   * @returns True if the dialog is open, false otherwise
-   */
-  isConsentBannerOpen(): boolean {
-    return this.dialogRef !== null;
+  private hasActiveDialog(): boolean {
+    const ids = [CONSENT_BANNER_DIALOG_ID, PRIVACY_PREFERENCES_DIALOG_ID];
+    return ids.some((id) => this.dialog.getDialogById(id) !== undefined);
   }
 
-  /**
-   * Handle the "Allow All" action
-   * Override this method or subscribe to events to implement custom logic
-   */
-  private handleAllowAll(): void {
-    this.savePrivacyPreferences({
-      necessary: true,
-      preferences: true,
-      statistics: true,
-      marketing: true,
-    });
+  private handleConsentBannerResult(result: ConsentBannerResult = 'allow-necessary'): void {
+    switch (result) {
+      case 'customize':
+        this.openPrivacyPreferences();
+        break;
 
-    this.closeConsentBanner();
-  }
+      case 'allow-all':
+        this.consent.enableAllCategories();
+        this.enableSync();
+        break;
 
-  /**
-   * Handle the "Allow Necessary Only" action
-   * Override this method or subscribe to events to implement custom logic
-   */
-  private handleAllowNecessaryOnly(): void {
-    this.savePrivacyPreferences({
-      necessary: true,
-      preferences: false,
-      statistics: false,
-      marketing: false,
-    });
-
-    this.closeConsentBanner();
-  }
-
-  /**
-   * Handle the "Customize" action
-   * Override this method or subscribe to events to implement custom logic
-   */
-  private handleCustomize(): void {
-    this.closeConsentBanner();
-    // TODO: Open detailed privacy preferences dialog
-  }
-
-  /**
-   * Save privacy preferences to local storage or backend
-   * @param preferences The privacy preferences to save
-   */
-  private savePrivacyPreferences(preferences: PrivacyPreferences): void {
-    store.set('privacy-preferences', preferences);
-
-    // TODO: Send to backend service
-  }
-
-  /**
-   * Get saved privacy preferences
-   * @returns The saved privacy preferences or null if none exist
-   */
-  getPrivacyPreferences(): PrivacyPreferences | null {
-    return store.get('privacy-preferences') || null;
-  }
-
-  /**
-   * Check if user has made privacy choices
-   * @returns True if preferences have been set, false otherwise
-   */
-  hasPrivacyChoices(): boolean {
-    return this.getPrivacyPreferences() !== null;
-  }
-
-  /**
-   * Clear all saved privacy preferences
-   */
-  clearPrivacyPreferences(): void {
-    store.remove('privacy-preferences');
+      case 'allow-necessary':
+        this.consent.disableAllCategories();
+        this.enableSync();
+        break;
+    }
   }
 }
