@@ -4,7 +4,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-
 import { ReleaseVersionData } from '../types/data-viewer.schema';
 
 /**
@@ -12,7 +11,7 @@ import { ReleaseVersionData } from '../types/data-viewer.schema';
  */
 @Component({
   selector: 'hra-viewer-menu',
-  imports: [HraCommonModule, MatMenuModule, MatIconModule, ButtonsModule, MatDividerModule],
+  imports: [HraCommonModule, ButtonsModule, MatDividerModule, MatIconModule, MatMenuModule],
   templateUrl: './viewer-menu.component.html',
   styleUrl: './viewer-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

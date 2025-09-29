@@ -1,17 +1,15 @@
 # Add files here to ignore them from prettier formatting
 
+/.angular
+/.nx
 /dist
 /coverage
 nx.json
 tsconfig.base.json
 
-.angular
-.nx/cache
 
 # Ignore big asset files
 *.n3store.json
-
-/.nx/workspace-data
 
 # Ignore polyfills
 **/assets/polyfills/*

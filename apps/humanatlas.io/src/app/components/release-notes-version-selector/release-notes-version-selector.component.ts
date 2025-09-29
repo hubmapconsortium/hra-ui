@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { injectParams } from 'ngxtension/inject-params';
 import { injectRouteData } from 'ngxtension/inject-route-data';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
  */
 @Component({
   selector: 'hra-release-notes-version-selector',
-  imports: [CommonModule, MatSelectModule],
+  imports: [HraCommonModule, MatSelectModule],
   templateUrl: './release-notes-version-selector.component.html',
   styleUrl: './release-notes-version-selector.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

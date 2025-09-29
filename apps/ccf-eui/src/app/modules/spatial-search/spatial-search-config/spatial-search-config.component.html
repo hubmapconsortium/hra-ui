@@ -1,29 +1,41 @@
-<div class="header">
-  <div class="header-left">
-    <div class="title">Configure Spatial Search</div>
-    <a
-      class="help"
-      mat-icon-button
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://humanatlas.io/exploration-user-interface#using-spatial-search"
-    >
-      <mat-icon>help</mat-icon>
-    </a>
+<ng-container hraFeature="eui.body-ui.spatial-search-config">
+  <div class="header">
+    <div class="header-left">
+      <div class="title">Configure Spatial Search</div>
+      <a
+        hraFeature="help"
+        hraClickEvent
+        class="help"
+        mat-icon-button
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://humanatlas.io/exploration-user-interface#using-spatial-search"
+      >
+        <mat-icon>help</mat-icon>
+      </a>
+    </div>
+    <button class="close" mat-icon-button (click)="closeDialog.emit()">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
-  <button class="close" mat-icon-button (click)="closeDialog.emit()">
-    <mat-icon>close</mat-icon>
+
+  <ccf-spatial-search-inputs
+    hraFeature="organ-sex-selection"
+    [organs]="organs()"
+    [sex]="sex()"
+    [selectedOrgan]="selectedOrgan()"
+    (updateOrgan)="updateOrgan.emit($event)"
+    (updateSex)="updateSex.emit($event)"
+  ></ccf-spatial-search-inputs>
+
+  <button
+    hraFeature="continue"
+    hraClickEvent
+    mat-flat-button
+    class="continue-button"
+    [disabled]="!selectedOrgan()"
+    (click)="buttonClicked.emit()"
+  >
+    Continue
   </button>
-</div>
-
-<ccf-spatial-search-inputs
-  [organs]="organs()"
-  [sex]="sex()"
-  [selectedOrgan]="selectedOrgan()"
-  (updateOrgan)="updateOrgan.emit($event)"
-  (updateSex)="updateSex.emit($event)"
-></ccf-spatial-search-inputs>
-
-<button mat-flat-button class="continue-button" [disabled]="!selectedOrgan()" (click)="buttonClicked.emit()">
-  Continue
-</button>
+</ng-container>
