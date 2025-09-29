@@ -1,16 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  HostBinding,
-  inject,
-  input,
-  OnInit,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, input, OnInit, signal } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
-import { BodyUiComponent } from 'ccf-shared';
 import { combineLatest } from 'rxjs';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
 
