@@ -19,7 +19,8 @@
       hraClickEvent
       class="body-ui"
       [scene]="(scene.nodes$ | async) ?? []"
-      [rotation]="(scene.rotation$ | async) ?? 0"
+      [rotation]="gizmoRotation()[0]"
+      [rotationX]="gizmoRotation()[1]"
       (rotationChange)="this.gizmoRotation.set($event)"
       [bounds]="(bounds$ | async)!"
       [zoom]="11.5"

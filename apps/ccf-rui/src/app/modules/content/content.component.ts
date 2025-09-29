@@ -42,9 +42,6 @@ export class ContentComponent implements OnInit {
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-content';
 
-  /** Mini model gizmo */
-  readonly gizmo = viewChild.required<BodyUiComponent>('gizmo');
-
   /** Disable keyboard position interactions */
   readonly disablePositionChange = input(false);
 
@@ -69,16 +66,6 @@ export class ContentComponent implements OnInit {
     distinctUntilKeyChanged('x'),
     distinctUntilKeyChanged('y'),
   );
-
-  /**
-   * Update gizmo rotation
-   */
-  constructor() {
-    effect(() => {
-      this.gizmo().rotation = this.gizmoRotation()[0];
-      this.gizmo().rotationX = this.gizmoRotation()[1];
-    });
-  }
 
   /**
    * Updates the gizmo rotation based on the scene rotation when not in 3D view
