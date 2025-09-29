@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { HraCommonModule } from '@hra-ui/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -31,7 +31,7 @@ export class FlatCardActionsComponent {}
 @Component({
   selector: 'hra-flat-card',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatMenuModule, MatDividerModule, ButtonsModule, ScrollingModule],
+  imports: [HraCommonModule, MatIconModule, MatMenuModule, MatDividerModule, ButtonsModule, ScrollingModule],
   templateUrl: './flat-card.component.html',
   styleUrl: './flat-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

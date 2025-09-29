@@ -1,5 +1,5 @@
 <mat-menu #menu="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="submenu">
+  <button mat-menu-item hraFeature="download-submenu" hraClickEvent [matMenuTriggerFor]="submenu">
     <mat-icon>download</mat-icon>
     Downloads
     <mat-icon class="expand-arrow">arrow_right</mat-icon>
@@ -7,15 +7,22 @@
 
   <mat-divider class="menu-divider" />
 
-  <a mat-menu-item [href]="card().sourceDataUrl" target="_blank" rel="noopener noreferrer">
+  <a
+    mat-menu-item
+    hraFeature="source-data"
+    hraClickEvent
+    [attr.href]="card().sourceDataUrl"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     <mat-icon class="reset icon">database</mat-icon>
     View source data
   </a>
 </mat-menu>
 
-<mat-menu class="hra-data-viewer-download-menu" #submenu="matMenu">
+<mat-menu class="hra-data-viewer-download-menu" hraFeature="download" #submenu="matMenu">
   @for (file of card().files; track file) {
-    <a mat-menu-item [attr.href]="file.url" download>
+    <a mat-menu-item hraClickEvent [attr.href]="file.url" download>
       <mat-icon>download</mat-icon>
       {{ file.label }}
     </a>
@@ -23,7 +30,7 @@
 
   <mat-divider class="menu-divider" />
 
-  <a mat-menu-item class="download-csv" [attr.href]="card().crosswalkUrl" download>
+  <a mat-menu-item hraClickEvent class="download-csv" [attr.href]="card().crosswalkUrl" download>
     <mat-icon>download</mat-icon>
     <div class="container">
       <span class="label">CSV-Crosswalk</span>

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +18,7 @@ import { parse, unparse } from 'papaparse';
  */
 @Component({
   selector: 'hra-summary-statistics-table',
-  imports: [CommonModule, ButtonsModule, MatIconModule, PlainTooltipDirective, TableComponent],
+  imports: [HraCommonModule, ButtonsModule, MatIconModule, PlainTooltipDirective, TableComponent],
   templateUrl: './summary-statistics-table.component.html',
   styleUrl: './summary-statistics-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

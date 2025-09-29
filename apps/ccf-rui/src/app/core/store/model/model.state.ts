@@ -5,10 +5,8 @@ import { State } from '@ngxs/store';
 import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
 import { sortBy } from 'lodash';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { EMPTY, Observable } from 'rxjs';
 import { delay, distinctUntilChanged, filter, map, skipUntil, switchMap, tap, throttleTime } from 'rxjs/operators';
-
 import { ExtractionSet } from '../../models/extraction-set';
 import { VisibilityItem } from '../../models/visibility-item';
 import { GlobalConfig, OrganConfig } from '../../services/config/config';
@@ -119,8 +117,6 @@ export const MODEL_DEFAULTS: ModelStateModel = {
 })
 @Injectable()
 export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
-  /** Google Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
   /** Injector service */
   private readonly injector = inject(Injector);
   /** Global config state */
@@ -324,11 +320,6 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
       z: Number(position.z),
     };
 
-    this.ga.event(
-      'placement',
-      `${this.snapshot.organ?.name}_placement`,
-      `${numericPosition.x.toFixed(1)}_${numericPosition.y.toFixed(1)}_${numericPosition.z.toFixed(1)}`,
-    );
     this.ctx.patchState({ position: numericPosition });
   }
 
@@ -380,7 +371,6 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   @DataAction()
   setOrgan(organ: OrganInfo): void {
     if (organ) {
-      this.ga.event('organ_select', 'organ', organ.name);
       this.ctx.patchState({ organ });
       if (organ.side) {
         this.ctx.patchState({ side: organ.side });

@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { HraCommonModule } from '@hra-ui/common';
 import { MatIconModule } from '@angular/material/icon';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -13,7 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
  */
 @Component({
   selector: 'hra-footer',
-  imports: [CommonModule, MatIconModule, BrandModule, ButtonsModule, FundingComponent, MatDividerModule],
+  imports: [HraCommonModule, MatIconModule, BrandModule, ButtonsModule, FundingComponent, MatDividerModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

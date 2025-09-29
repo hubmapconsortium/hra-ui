@@ -1,128 +1,141 @@
-<!-- First Column - Data configurations -->
-<div class="config-column">
-  <h2 class="column-title">Data configurations</h2>
+<ng-container hraFeature="configuration-selector">
+  <!-- First Column - Data configurations -->
+  <div class="config-column">
+    <h2 class="column-title">Data configurations</h2>
 
-  <!-- Organ Selection -->
-  <div class="organ-group">
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Organ dataset</mat-label>
-      <mat-select [value]="selectedOrgan()" (selectionChange)="selectedOrgan.set($event.value)" [disabled]="loading()">
-        @for (organ of organOptions(); track organ) {
-          <mat-option [value]="organ">{{ organ | titlecase }}</mat-option>
+    <!-- Organ Selection -->
+    <div class="organ-group">
+      <mat-form-field hraFeature="organ" subscriptSizing="dynamic">
+        <mat-label>Organ dataset</mat-label>
+        <mat-select [(ngModel)]="selectedOrgan" [disabled]="loading()">
+          @for (organ of organOptions(); track organ) {
+            <mat-option hraClickEvent [hraFeature]="organ | slugify" [value]="organ">{{
+              organ | titlecase
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Data Type Selection -->
+    <div class="datatype-group">
+      <mat-form-field hraFeature="data-type" subscriptSizing="dynamic">
+        <mat-label>Data type</mat-label>
+        <mat-select [(ngModel)]="selectedDataType">
+          @for (config of dataTypeOptions(); track config.key) {
+            <mat-option hraClickEvent [hraFeature]="config.label | slugify" [value]="config.key">{{
+              config.label
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Sex Selection -->
+    <div class="sex-toggle-group">
+      <h3>Sex</h3>
+      <mat-button-toggle-group
+        hraFeature="sex"
+        multiple
+        [value]="selectedSexes()"
+        (change)="onSexesChange($event.value)"
+        [disabled]="loading()"
+        [hideMultipleSelectionIndicator]="false"
+        hraButtonToggleSize="medium"
+        class="toggle-group"
+      >
+        @for (sex of availableSexes; track sex) {
+          <mat-button-toggle hraClickEvent [hraFeature]="sex | slugify" [value]="sex">
+            {{ sex }}
+          </mat-button-toggle>
         }
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <!-- Data Type Selection -->
-  <div class="datatype-group">
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Data type</mat-label>
-      <mat-select [value]="selectedDataType()" (selectionChange)="selectedDataType.set($event.value)">
-        @for (config of dataTypeOptions(); track config.key) {
-          <mat-option [value]="config.key">{{ config.label }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <!-- Sex Selection -->
-  <div class="sex-toggle-group">
-    <h3>Sex</h3>
-    <mat-button-toggle-group
-      multiple
-      [value]="selectedSexes()"
-      (change)="onSexesChange($event.value)"
-      [disabled]="loading()"
-      [hideMultipleSelectionIndicator]="false"
-      hraButtonToggleSize="medium"
-      class="toggle-group"
-    >
-      @for (sex of availableSexes; track sex) {
-        <mat-button-toggle [value]="sex">
-          {{ sex }}
-        </mat-button-toggle>
-      }
-    </mat-button-toggle-group>
-  </div>
-</div>
-
-<!-- Second Column - Sort & organize -->
-<div class="config-column">
-  <h2 class="column-title">Sort & organize</h2>
-
-  <!-- Sort Selection -->
-  <div class="sort-group">
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Sort by</mat-label>
-      <mat-select [value]="selectedSort()" (selectionChange)="selectedSort.set($event.value)" [disabled]="loading()">
-        @for (option of sortOptions(); track option.value) {
-          <mat-option [value]="option.value">{{ option.label }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <!-- X Axis Group -->
-  <div class="x-axis-group">
-    <h3>X axis</h3>
-    <mat-button-toggle-group
-      [value]="selectedXAxis()"
-      (change)="selectedXAxis.set($event.value)"
-      [disabled]="loading()"
-      hraButtonToggleSize="medium"
-      class="toggle-group"
-    >
-      @for (option of xAxisOptions(); track option.value) {
-        <mat-button-toggle [value]="option.value">
-          {{ option.label }}
-        </mat-button-toggle>
-      }
-    </mat-button-toggle-group>
-  </div>
-
-  <!-- Y Axis Group -->
-  <div class="y-axis-group">
-    <h3>Y axis</h3>
-    <mat-button-toggle-group
-      [value]="selectedYAxis()"
-      (change)="selectedYAxis.set($event.value)"
-      [disabled]="loading()"
-      hraButtonToggleSize="medium"
-      class="toggle-group"
-    >
-      @for (option of yAxisOptions(); track option.value) {
-        <mat-button-toggle [value]="option.value">
-          {{ option.label }}
-        </mat-button-toggle>
-      }
-    </mat-button-toggle-group>
-  </div>
-</div>
-
-<!-- Third Column - Annotation tools -->
-<div class="config-column">
-  <h2 class="column-title">
-    Annotation tool<hra-results-indicator
-      [value]="availableTools().length"
-      [total]="allTools.length"
-      [description]="'Available'"
-    ></hra-results-indicator>
-  </h2>
-  <div class="annotation-group">
-    <div class="annotation-checkbox-column">
-      @for (tool of allTools; track tool) {
-        <div class="annotation-option">
-          <mat-checkbox
-            [checked]="selectedTools().includes(tool)"
-            [disabled]="!isToolAvailable(tool) || loading()"
-            [class.unavailable]="!isToolAvailable(tool)"
-            (change)="onToolChange(tool, $event.checked)"
-          >
-            {{ getToolDisplayName(tool) }}
-          </mat-checkbox>
-        </div>
-      }
+      </mat-button-toggle-group>
     </div>
   </div>
-</div>
+
+  <!-- Second Column - Sort & organize -->
+  <div class="config-column">
+    <h2 class="column-title">Sort & organize</h2>
+
+    <!-- Sort Selection -->
+    <div class="sort-group">
+      <mat-form-field hraFeature="sort-by" subscriptSizing="dynamic">
+        <mat-label>Sort by</mat-label>
+        <mat-select [(ngModel)]="selectedSort" [disabled]="loading()">
+          @for (option of sortOptions(); track option.value) {
+            <mat-option hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{
+              option.label
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- X Axis Group -->
+    <div class="x-axis-group">
+      <h3>X axis</h3>
+      <mat-button-toggle-group
+        [value]="selectedXAxis()"
+        (change)="selectedXAxis.set($event.value)"
+        [disabled]="loading()"
+        hraButtonToggleSize="medium"
+        hraFeature="x-axis"
+        class="toggle-group"
+      >
+        @for (option of xAxisOptions(); track option.value) {
+          <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">
+            {{ option.label }}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+
+    <!-- Y Axis Group -->
+    <div class="y-axis-group">
+      <h3>Y axis</h3>
+      <mat-button-toggle-group
+        [value]="selectedYAxis()"
+        (change)="selectedYAxis.set($event.value)"
+        [disabled]="loading()"
+        hraButtonToggleSize="medium"
+        hraFeature="y-axis"
+        class="toggle-group"
+      >
+        @for (option of yAxisOptions(); track option.value) {
+          <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">
+            {{ option.label }}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <!-- Third Column - Annotation tools -->
+  <div class="config-column">
+    <h2 class="column-title">
+      Annotation tool<hra-results-indicator
+        [value]="availableTools().length"
+        [total]="allTools.length"
+        [description]="'Available'"
+      ></hra-results-indicator>
+    </h2>
+    <div class="annotation-group">
+      <div class="annotation-checkbox-column">
+        @for (tool of allTools; track tool) {
+          <div hraFeature="annotation-tool" class="annotation-option">
+            <mat-checkbox
+              hraClickEvent
+              [hraFeature]="tool | slugify"
+              [checked]="selectedTools().includes(tool)"
+              [disabled]="!isToolAvailable(tool) || loading()"
+              [class.unavailable]="!isToolAvailable(tool)"
+              (change)="onToolChange(tool, $event.checked)"
+            >
+              {{ getToolDisplayName(tool) }}
+            </mat-checkbox>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</ng-container>

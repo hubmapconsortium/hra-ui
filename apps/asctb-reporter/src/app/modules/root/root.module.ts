@@ -5,7 +5,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { DoiModule } from '../../components/doi/doi.module';
+
+import { DoiComponent } from '../../components/doi/doi.component';
 import { ErrorComponent } from '../../components/error/error.component';
 import { InfoComponent } from '../../components/info/info.component';
 import { LegendComponent } from '../../components/legend/legend.component';
@@ -28,7 +29,7 @@ import { RootComponent } from './root.component';
     MatSnackBarModule,
     MatBottomSheetModule,
     DragDropModule,
-    DoiModule,
+    DoiComponent,
     InfoComponent,
     ControlPaneComponent,
     LegendComponent,
