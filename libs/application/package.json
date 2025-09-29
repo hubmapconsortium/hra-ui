@@ -1,0 +1,8 @@
+{
+  "name": "@hra-ui/application",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^20.2.0"
+  },
+  "sideEffects": false
+}
