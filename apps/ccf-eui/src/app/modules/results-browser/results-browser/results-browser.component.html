@@ -4,6 +4,8 @@
       Experimental Data
     </div>
     <a
+      hraFeature="help"
+      hraClickEvent
       class="help"
       mat-icon-button
       hraPlainTooltip="Help & documentation"
@@ -14,7 +16,12 @@
       <mat-icon>help</mat-icon>
     </a>
   </div>
-  <div class="stat-box" hraPlainTooltip="Summarizes the experimental data shown given the current filters.">
+  <div
+    hraFeature="statistics"
+    hraHoverEvent
+    class="stat-box"
+    hraPlainTooltip="Summarizes the experimental data shown given the current filters."
+  >
     <div id="title">Summary Statistics</div>
     <div class="stat-table">
       @for (stat of aggregateData(); track stat.label) {
@@ -26,9 +33,11 @@
     </div>
   </div>
 
-  <hra-expansion-panel tagline="Tissue Block Metadata & Data Links" disabled>
+  <hra-expansion-panel hraFeature="results" tagline="Tissue Block Metadata & Data Links" disabled>
     <hra-expansion-panel-actions>
       <button
+        hraFeature="menu"
+        hraClickEvent
         mat-icon-button
         [matMenuTriggerFor]="menu"
         hraIconButtonSize="large"
@@ -37,21 +46,35 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item matRipple [matMenuTriggerFor]="submenu">
+        <button hraFeature="info" hraClickEvent mat-menu-item matRipple [matMenuTriggerFor]="submenu">
           <mat-icon>info</mat-icon>
           Info
         </button>
-        <button mat-menu-item matRipple (click)="toggleShowSelected()" [disabled]="!hasSelectedItems()">
+        <button
+          hraFeature="visibility"
+          hraClickEvent
+          mat-menu-item
+          matRipple
+          (click)="toggleShowSelected()"
+          [disabled]="!hasSelectedItems()"
+        >
           <mat-icon>visibility</mat-icon>
           {{ showSelected() ? 'Show all' : 'Show selected' }}
         </button>
-        <button mat-menu-item matRipple (click)="resetSelections()" [disabled]="!hasSelectedItems()">
+        <button
+          hraFeature="reset-settings"
+          hraClickEvent
+          mat-menu-item
+          matRipple
+          (click)="resetSelections()"
+          [disabled]="!hasSelectedItems()"
+        >
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset all selections
         </button>
       </mat-menu>
       <mat-menu #submenu="matMenu">
-        <button mat-menu-item>
+        <button hraFeature="info-text" hraHoverEvent mat-menu-item>
           Metadata on donors, tissue blocks/sections, and datasets given the current filters. Use the “More” menu to
           access additional information. Selecting metadata in the Tissue Block Metadata list results in a selected
           checkbox of a unique color. The selected metadata’s corresponding 3D tissue block in the 3D Body Visualization
@@ -64,7 +87,7 @@
 
   <ng-scrollbar hraScrollOverflowFade cdkVirtualScrollingElement>
     <cdk-virtual-scroll-viewport #viewport>
-      <div class="results-browser-list">
+      <div hraFeature="results" class="results-browser-list">
         <ng-container *cdkVirtualFor="let result of items(); trackBy: trackByResult">
           <div
             class="browser-item-container"
@@ -72,6 +95,8 @@
             (mouseleave)="itemUnhovered.emit()"
           >
             <mat-checkbox
+              hraFeature="select"
+              hraClickEvent
               class="checkbox"
               (click)="handleSelection(result, !result.selected)"
               [ngStyle]="{

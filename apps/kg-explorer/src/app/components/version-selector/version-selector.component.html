@@ -9,11 +9,11 @@
     <mat-select
       disableRipple
       panelClass="options-container"
-      (selectionChange)="versionChange.emit($event.value)"
       [value]="version() === 'latest' ? availableVersions()[0] : version()"
+      (selectionChange)="versionChange.emit($event.value)"
     >
       @for (version of availableVersions(); track $index) {
-        <mat-option [value]="version">
+        <mat-option [hraFeature]="version" hraClickEvent [value]="version">
           {{ version }}
         </mat-option>
       }

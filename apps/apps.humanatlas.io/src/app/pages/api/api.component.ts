@@ -20,6 +20,7 @@ import 'rapidoc';
 import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
 import { servers } from '../../constants/server.constants';
 import { Server } from '../../interfaces/server.interface';
+import { ClickEventDirective } from '@hra-ui/common/analytics';
 
 /**
  * Custom injection token to lazy load the theme for Rapidoc.
@@ -116,5 +117,18 @@ export class ApiComponent {
    */
   scrollTo(element: HTMLElement) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  }
+
+  /** Tracking before-try in rapidoc for analytics */
+  onBeforeTry(event: any, beforeTry: ClickEventDirective) {
+    const request = event.detail?.request;
+    const url = request?.url || '';
+    const endpoint = url ? new URL(url).pathname : 'unknown';
+
+    beforeTry.logEvent('click', undefined, {
+      endpoint,
+      method: request?.method || 'GET',
+      server: this.selectedServer().id,
+    });
   }
 }

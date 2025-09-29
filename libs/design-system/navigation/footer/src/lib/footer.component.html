@@ -1,41 +1,47 @@
-<div class="content-container">
-  <hra-brand-logo class="logo"></hra-brand-logo>
+<ng-container hraFeature="footer">
+  <div class="content-container">
+    <hra-brand-logo class="logo"></hra-brand-logo>
 
-  <hra-funding [funders]="funders()"></hra-funding>
-  <div class="disclaimer">
-    <p style="margin-bottom: 0.75rem">
-      Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or
-      medical or professional advice.
-    </p>
-    <p>
-      <a hraHyperlink href="https://hubmapconsortium.org/">HuBMAP</a>
-      data is managed and published in the
-      <a hraHyperlink href="https://portal.hubmapconsortium.org/">Data Portal</a> and
-      <a hraHyperlink href="https://humanatlas.io/">Human Reference Atlas</a> according to
-      <a hraHyperlink href="https://www.go-fair.org/fair-principles/">FAIR principles</a>, including standardized
-      processing with reproducible pipelines. HuBMAP data may also be processed by other methods in scientific results
-      published by HuBMAP consortium collaborations.
-    </p>
-  </div>
-</div>
-
-<mat-divider></mat-divider>
-
-<div class="socials-container">
-  <div class="socials">
-    @for (id of socials(); track id) {
-      <hra-social-media-button [id]="$any(id)" size="large" variant="color"></hra-social-media-button>
-    }
+    <hra-funding [funders]="funders()"></hra-funding>
+    <div class="disclaimer">
+      <p style="margin-bottom: 0.75rem">
+        Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies
+        or medical or professional advice.
+      </p>
+      <p>
+        <a hraHyperlink hraFeature="hubmap-consortium" href="https://hubmapconsortium.org/">HuBMAP</a>
+        data is managed and published in the
+        <a hraHyperlink hraFeature="hubmap-data-portal" href="https://portal.hubmapconsortium.org/">Data Portal</a> and
+        <a hraHyperlink hraFeature="hra" href="https://humanatlas.io/">Human Reference Atlas</a> according to
+        <a hraHyperlink hraFeature="fair-principles" href="https://www.go-fair.org/fair-principles/">FAIR principles</a
+        >, including standardized processing with reproducible pipelines. HuBMAP data may also be processed by other
+        methods in scientific results published by HuBMAP consortium collaborations.
+      </p>
+    </div>
   </div>
 
-  <span class="privacy">
-    <a hraHyperlink href="">Privacy Preferences</a>
-    &#183;
-    <a hraHyperlink href="https://humanatlas.io/privacy-policy">Privacy Policy</a>
-  </span>
+  <mat-divider></mat-divider>
 
-  <span class="copyright">
-    © 2025 <a hraHyperlink href="https://cns.iu.edu/">Cyberinfrastructure for Network Science Center</a> at
-    <a hraHyperlink href="https://www.iu.edu/">Indiana University</a>
-  </span>
-</div>
+  <div class="socials-container">
+    <div class="socials">
+      @for (id of socials(); track id) {
+        <hra-social-media-button [id]="$any(id)" size="large" variant="color"></hra-social-media-button>
+      }
+    </div>
+
+    <span class="privacy">
+      <a hraHyperlink href="">Privacy Preferences</a>
+      &#183;
+      <a hraHyperlink hraFeature="hra-privacy-policy" href="https://humanatlas.io/privacy-policy">Privacy Policy</a>
+    </span>
+
+    <span class="copyright">
+      © 2025
+      <a hraHyperlink hraFeature="cns-landing-page" href="https://cns.iu.edu/"
+        >Cyberinfrastructure for Network Science Center</a
+      >
+      at
+      <a hraHyperlink hraFeature="iu-landing-page" href="https://www.iu.edu/">Indiana University</a>
+    </span>
+  </div>
+</ng-container>

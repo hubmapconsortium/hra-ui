@@ -10,7 +10,13 @@
   </div>
 
   <div body>
-    <mat-tab-group mat-stretch-tabs>
+    <mat-tab-group
+      mat-stretch-tabs
+      hraClickEvent
+      hraClickEventTriggerOn="none"
+      #event="hraClickEvent"
+      (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
+    >
       <mat-tab [label]="currentSheet().display" bodyClass="tab-body">
         <div class="content">
           <div class="logs-list">

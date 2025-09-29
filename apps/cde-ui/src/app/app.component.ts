@@ -4,7 +4,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { routeData } from '@hra-ui/common';
+import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -31,6 +31,7 @@ export const SCREEN_SIZE_NOTICE_MAX_HEIGHT = 832;
     MatMenuModule,
     MatDividerModule,
     CommonModule,
+    HraCommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

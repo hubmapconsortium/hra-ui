@@ -12,9 +12,9 @@
     "ngx-markdown": "^20.0.0",
     "@hra-ui/services": "1.0.0",
     "@hra-ui/state": "1.0.0",
-    "ngx-google-analytics": "^14.0.1",
     "ng-inline-svg-2": "^20.0.0",
-    "ng-table-virtual-scroll": "^1.6.1"
+    "ng-table-virtual-scroll": "^1.6.1",
+    "@hra-ui/common": "1.0.0"
   },
   "sideEffects": false
 }
