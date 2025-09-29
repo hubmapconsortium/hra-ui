@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ConsentBannerComponent } from '../../consent-banner/consent-banner.component';
+import { ConsentBannerComponent } from '@hra-ui/design-system/privacy/consent-banner';
 import store from 'store2';
 
 /** Configuration options for the consent banner dialog */
