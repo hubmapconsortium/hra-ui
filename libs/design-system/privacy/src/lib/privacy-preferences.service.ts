@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ConsentBannerComponent } from './consent-banner/consent-banner.component';
+import store from 'store2';
 
 /** Configuration options for the consent banner dialog */
 export interface ConsentBannerConfig {
@@ -10,6 +11,14 @@ export interface ConsentBannerConfig {
   width?: string;
   /** Custom height for the dialog */
   height?: string;
+}
+
+/** Privacy preferences data structure */
+export interface PrivacyPreferences {
+  necessary: boolean;
+  preferences: boolean;
+  statistics: boolean;
+  marketing: boolean;
 }
 
 /** Service for managing privacy preferences and consent banner */
@@ -126,13 +135,8 @@ export class PrivacyPreferencesService {
    * Save privacy preferences to local storage or backend
    * @param preferences The privacy preferences to save
    */
-  private savePrivacyPreferences(preferences: {
-    necessary: boolean;
-    preferences: boolean;
-    statistics: boolean;
-    marketing: boolean;
-  }): void {
-    localStorage.setItem('privacy-preferences', JSON.stringify(preferences));
+  private savePrivacyPreferences(preferences: PrivacyPreferences): void {
+    store.set('privacy-preferences', preferences);
 
     // TODO: Send to backend service
   }
@@ -141,14 +145,8 @@ export class PrivacyPreferencesService {
    * Get saved privacy preferences
    * @returns The saved privacy preferences or null if none exist
    */
-  getPrivacyPreferences(): {
-    necessary: boolean;
-    preferences: boolean;
-    statistics: boolean;
-    marketing: boolean;
-  } | null {
-    const saved = localStorage.getItem('privacy-preferences');
-    return saved ? JSON.parse(saved) : null;
+  getPrivacyPreferences(): PrivacyPreferences | null {
+    return store.get('privacy-preferences') || null;
   }
 
   /**
@@ -163,6 +161,6 @@ export class PrivacyPreferencesService {
    * Clear all saved privacy preferences
    */
   clearPrivacyPreferences(): void {
-    localStorage.removeItem('privacy-preferences');
+    store.remove('privacy-preferences');
   }
 }
