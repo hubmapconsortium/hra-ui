@@ -1,6 +1,6 @@
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { FlatCardActionsComponent, FlatCardComponent } from './flat-card.component';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
  * Metadata of FlatCardComponent.
@@ -45,7 +45,10 @@ export const Default: Story = {
     >
       <div class="placeholder">placeholder content</div>
       <hra-flat-card-actions>
-        <button mat-button>Action</button>
+        <div class="buttons">
+          <button mat-button>Action</button>
+          <button mat-flat-button>Action</button>
+        </div>
       </hra-flat-card-actions>
     </hra-flat-card>
     `,
@@ -59,6 +62,15 @@ export const Default: Story = {
           font: vars.$display-small;
           letter-spacing: vars.$display-small-tracking;
           color: vars.$tertiary;
+      }
+
+      hra-flat-card-actions {
+        width: 100%;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
       }`,
     ],
   }),
