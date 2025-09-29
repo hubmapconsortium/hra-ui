@@ -1,23 +1,11 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule, inject } from '@angular/core';
-import { MousePositionTrackerModule } from 'ccf-shared';
-import { AnalyticsModule } from 'ccf-shared/analytics';
-
-import { environment } from '../../environments/environment';
 import { ConfigModule } from './services/config/config.module';
 import { StoreModule } from './store/store.module';
 
 @NgModule({
   exports: [],
-  imports: [
-    AnalyticsModule.forRoot({
-      gaToken: environment.googleAnalyticsToken,
-      appName: 'rui',
-    }),
-    MousePositionTrackerModule,
-    ConfigModule,
-    StoreModule,
-  ],
+  imports: [ConfigModule, StoreModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class CoreModule {

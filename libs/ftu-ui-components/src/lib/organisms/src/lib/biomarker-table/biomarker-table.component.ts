@@ -1,5 +1,4 @@
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -27,6 +26,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
 import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
 import { DataItem } from '@hra-ui/design-system/info-modal';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * RGBTriblet of type RGB to store color
@@ -71,7 +71,7 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
 @Component({
   selector: 'ftu-biomarker-table',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatTableModule,
     BiomarkerTableDataIconComponent,
     ScrollingModule,

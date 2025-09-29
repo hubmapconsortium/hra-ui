@@ -1,10 +1,23 @@
-<div cdkOverlayOrigin class="content" aria-hidden="true" (click)="open()" #fallbackOrigin="cdkOverlayOrigin">
+<div
+  hraFeature="open-slider"
+  hraClickEvent
+  hraClickEventTriggerOn="none"
+  cdkOverlayOrigin
+  class="content"
+  aria-hidden="true"
+  (click)="open(); openEvent.logEvent('click')"
+  #fallbackOrigin="cdkOverlayOrigin"
+  #openEvent="hraClickEvent"
+>
   <span class="label">{{ label() }}</span>
 
   <!-- TODO icon -->
 </div>
 
 <ng-template
+  hraFeature="slider"
+  hraClickEvent
+  hraClickEventTriggerOn="none"
   cdkConnectedOverlay
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayLockPosition
@@ -12,8 +25,9 @@
   [cdkConnectedOverlayOpen]="panelOpen()"
   [cdkConnectedOverlayOrigin]="panelOrigin() ?? fallbackOrigin"
   [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
-  (overlayOutsideClick)="panelOpen.set(false)"
+  (overlayOutsideClick)="panelOpen.set(false); sliderEvent.logEvent('click')"
   (detach)="afterClose()"
+  #sliderEvent="hraClickEvent"
 >
   <div
     cdkTrapFocus
@@ -24,17 +38,17 @@
     [attr.aria-labelledby]="panelLabelledBy()"
   >
     <form class="dual-slider-form" [formGroup]="range">
-      <mat-form-field class="number-input min" floatLabel="always">
+      <mat-form-field hraFeature="min-field" hraClickEvent class="number-input min" floatLabel="always">
         <mat-label>≥{{ min() }}</mat-label>
         <input matInput type="number" formControlName="low" />
       </mat-form-field>
 
-      <mat-slider discrete [min]="min()" [max]="max()" step="1" [disabled]="disabled">
+      <mat-slider hraFeature="slider" hraClickEvent discrete [min]="min()" [max]="max()" step="1" [disabled]="disabled">
         <input matSliderStartThumb [value]="low()" />
         <input matSliderEndThumb [value]="high()" />
       </mat-slider>
 
-      <mat-form-field class="number-input max" floatLabel="always">
+      <mat-form-field hraFeature="max-field" hraClickEvent class="number-input max" floatLabel="always">
         <mat-label>≤{{ max() }}</mat-label>
         <input matInput type="number" formControlName="high" />
       </mat-form-field>

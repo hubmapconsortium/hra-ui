@@ -1,11 +1,17 @@
-<mat-form-field class="search-field" subscriptSizing="dynamic" (click)="openSearchList()">
+<mat-form-field
+  hraFeature="search"
+  hraClickEvent
+  class="search-field"
+  subscriptSizing="dynamic"
+  (click)="openSearchList()"
+>
   <mat-label>Search Structures</mat-label>
   <mat-icon matPrefix>search</mat-icon>
   <input matInput readonly [value]="selectionLabel()" [disabled]="searchOpen() || disabled()" />
   <mat-icon matSuffix>arrow_drop_down</mat-icon>
 </mat-form-field>
 
-<div class="search-modal" *ngIf="searchOpen() && !disabled()">
+<div class="search-modal" *ngIf="searchOpen() && !disabled()" hraFeature="search-modal">
   <div class="search-controls">
     <mat-form-field cdkTrapFocus [cdkTrapFocusAutoCapture]="true" subscriptSizing="dynamic">
       <mat-icon matPrefix>search</mat-icon>
@@ -17,10 +23,20 @@
         aria-label="Clear search"
         matTooltip="Clear search"
         (click)="searchValue.set('')"
+        hraFeature="clear-search"
+        hraClickEvent
       >
         <mat-icon>close</mat-icon>
       </button>
-      <button matSuffix mat-icon-button aria-label="Close" matTooltip="Close" (click)="closeSearchList()">
+      <button
+        matSuffix
+        mat-icon-button
+        aria-label="Close"
+        matTooltip="Close"
+        (click)="closeSearchList()"
+        hraFeature="close-search"
+        hraClickEvent
+      >
         <mat-icon>arrow_drop_up</mat-icon>
       </button>
     </mat-form-field>
@@ -38,9 +54,20 @@
           name="searchFilterButtons"
           [hideMultipleSelectionIndicator]="false"
         >
-          <mat-button-toggle value="Anatomical Structures" matTooltip="Anatomical Structures">AS</mat-button-toggle>
-          <mat-button-toggle value="Cell Types" matTooltip="Cell Types">CT</mat-button-toggle>
-          <mat-button-toggle value="Biomarkers" matTooltip="Biomarkers">B</mat-button-toggle>
+          <mat-button-toggle
+            value="Anatomical Structures"
+            matTooltip="Anatomical Structures"
+            hraFeature="as"
+            hraClickEvent
+            >AS</mat-button-toggle
+          >
+
+          <mat-button-toggle value="Cell Types" matTooltip="Cell Types" hraFeature="ct" hraClickEvent
+            >CT</mat-button-toggle
+          >
+          <mat-button-toggle value="Biomarkers" matTooltip="Biomarkers" hraFeature="b" hraClickEvent
+            >B</mat-button-toggle
+          >
         </mat-button-toggle-group>
       </div>
 
@@ -51,6 +78,8 @@
           hraButtonSize="small"
           aria-label="Select All"
           (click)="selectAllOptions()"
+          hraFeature="select-all"
+          hraClickEvent
         >
           Select All
         </button>
@@ -60,6 +89,8 @@
           hraButtonSize="small"
           aria-label="Deselect All"
           (click)="deselectAllOptions()"
+          hraFeature="deselect-all"
+          hraClickEvent
         >
           Deselect All
         </button>
@@ -76,6 +107,8 @@
       <div>No matches.</div>
     </mat-list-item>
     <mat-list-option
+      hraFeature="structure"
+      [hraClickEvent]="{ structure: structure.name }"
       *ngFor="let structure of filteredStructures()"
       [value]="structure"
       [selected]="selectionSet().has(structure)"

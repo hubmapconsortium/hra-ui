@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, model } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Navigation toggle button */
 @Component({
   selector: 'hra-navigation-category-toggle',
-  imports: [CommonModule, MatButtonToggleModule, MatIconModule],
+  imports: [HraCommonModule, MatButtonToggleModule, MatIconModule],
   templateUrl: './navigation-category-toggle.component.html',
   styleUrl: './navigation-category-toggle.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

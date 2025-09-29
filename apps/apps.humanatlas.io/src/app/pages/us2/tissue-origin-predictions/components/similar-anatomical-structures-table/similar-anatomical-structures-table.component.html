@@ -1,6 +1,11 @@
-<hra-workflow-card tagline="Similar Anatomical Structures" class="table-container">
+<hra-workflow-card
+  hraFeature="similar-anatomical-structures"
+  tagline="Similar Anatomical Structures"
+  class="table-container"
+>
   <hra-workflow-card-actions>
     <button
+      hraClickEvent
       mat-icon-button
       class="similar-anatomical-structures-menu-trigger"
       aria-label="Open table action menu"
@@ -10,13 +15,20 @@
     </button>
 
     <!-- MENU -->
-    <mat-menu #optionsForAnatomicalTable="matMenu" class="custom-menu">
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" [matMenuTriggerFor]="submenu">
+    <mat-menu hraFeature="menu" #optionsForAnatomicalTable="matMenu" class="custom-menu">
+      <button
+        hraHoverEvent
+        hraFeature="info"
+        mat-menu-item
+        matRipple
+        matRippleColor="#201E3D14"
+        [matMenuTriggerFor]="submenu"
+      >
         <mat-icon fontIcon="info" class="icon-style"></mat-icon>
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button mat-menu-item (click)="onDownloadCSVButtonClicked()">
+      <button hraFeature="download-csv" hraClickEvent mat-menu-item (click)="onDownloadCSVButtonClicked()">
         <mat-icon>download</mat-icon>
         CSV
       </button>
@@ -29,7 +41,7 @@
 
   <!-- ANATOMICAL STRUCTURES TABLE -->
   <ng-scrollbar class="table-overflow-container">
-    <table mat-table matSort [dataSource]="dataSource" class="predictions-table">
+    <table hraFeature="predictions" mat-table matSort [dataSource]="dataSource" class="predictions-table">
       <caption>
         Table displaying similar anatomical structures
       </caption>

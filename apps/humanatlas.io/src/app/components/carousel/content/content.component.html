@@ -1,17 +1,25 @@
 <img class="image" [src]="item().imageSrc | assetUrl" alt="" />
 
-<div class="info">
+<div class="info" hraFeature="content">
   <div class="tagline">{{ item().tagline }}</div>
   <div class="description">{{ item().description }}</div>
 
   @if (getLinkType(item()) === 'url') {
-    <a mat-button hraCtaButton class="action" [href]="getLink(item())" target="_blank">
+    <a
+      mat-button
+      hraCtaButton
+      class="action"
+      [href]="getLink(item())"
+      target="_blank"
+      hraFeature="carousel-external-link"
+      hraClickEvent
+    >
       {{ item().action }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   } @else {
     <!-- <a mat-stroked-button class="get-button" [routerLink]="['', item().route]">{{ item().buttonText }}</a> -->
-    <a mat-button hraCtaButton class="action" target="_blank">
+    <a mat-button hraCtaButton class="action" hraFeature="action" hraClickEvent target="_blank">
       {{ item().action }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>

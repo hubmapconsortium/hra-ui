@@ -1,52 +1,112 @@
-<hra-back-button-bar class="back-bar" (backClick)="page.cancelRegistration()"></hra-back-button-bar>
-<hra-nav-header-buttons
-  app="product:rui"
-  [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/rui/'"
-  appTitle="Registration User Interface"
-  [brandmark]="true"
-></hra-nav-header-buttons>
-<ccf-left-sidebar [modalClosed]="registrationStarted"> </ccf-left-sidebar>
-<hra-expansion-panel tagline="Registration" disabled class="registration">
-  <hra-expansion-panel-actions>
-    <button mat-icon-button [matMenuTriggerFor]="menu" hraIconButtonSize="large" aria-label="Icon to open nested menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetStage()">Reset all</button>
-      <mat-divider class="menu-divider"></mat-divider>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetCamera()">Reset camera view</button>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetBlock()">Reset tissue block</button>
-      <mat-divider class="menu-divider"></mat-divider>
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" (click)="resetMetadata()">
-        Reset registration metadata
+<ng-container hraFeature="rui">
+  <hra-back-button-bar
+    hraFeature="back-bar"
+    class="back-bar"
+    (backClick)="page.cancelRegistration()"
+  ></hra-back-button-bar>
+  <hra-nav-header-buttons
+    hraFeature="nav-header"
+    app="product:rui"
+    [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/rui/'"
+    appTitle="Registration User Interface"
+    [brandmark]="true"
+  ></hra-nav-header-buttons>
+  <ccf-left-sidebar hraFeature="left-sidebar" [modalClosed]="registrationStarted"> </ccf-left-sidebar>
+  <hra-expansion-panel hraFeature="registration-controls" tagline="Registration" disabled class="registration">
+    <hra-expansion-panel-actions>
+      <button
+        hraFeature="registration"
+        hraClickEvent
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        hraIconButtonSize="large"
+        aria-label="Icon to open nested menu"
+      >
+        <mat-icon>more_vert</mat-icon>
       </button>
-    </mat-menu>
-  </hra-expansion-panel-actions>
-  <hra-expansion-panel-header-content>
-    <mat-button-toggle-group
-      name="sideSelect"
-      aria-label="Side Select"
-      hideSingleSelectionIndicator
-      hraButtonToggleSize="medium"
-      (change)="updateSide($event.value)"
-    >
-      <mat-button-toggle value="left">Left</mat-button-toggle>
-      <mat-button-toggle value="right">Right</mat-button-toggle>
-      <mat-button-toggle value="anterior" checked>Anterior</mat-button-toggle>
-      <mat-button-toggle value="posterior">Posterior</mat-button-toggle>
-    </mat-button-toggle-group>
-    <mat-button-toggle-group
-      name="modeSelect"
-      aria-label="Mode Select"
-      hideSingleSelectionIndicator
-      hraButtonToggleSize="medium"
-      [ngModel]="viewType()"
-      (ngModelChange)="updateView($event)"
-    >
-      <mat-button-toggle value="register">Register</mat-button-toggle>
-      <mat-button-toggle value="3d">Preview</mat-button-toggle>
-    </mat-button-toggle-group>
-  </hra-expansion-panel-header-content>
-</hra-expansion-panel>
-<ccf-content class="stage-content" [disablePositionChange]="disablePositionChange"></ccf-content>
-<ccf-right-sidebar (registrationExpanded)="registrationToggle($event)"></ccf-right-sidebar>
+      <mat-menu hraFeature="menu" #menu="matMenu">
+        <button
+          hraFeature="reset-all"
+          hraClickEvent
+          mat-menu-item
+          matRipple
+          matRippleColor="#201E3D14"
+          (click)="resetStage()"
+        >
+          Reset all
+        </button>
+        <mat-divider class="menu-divider"></mat-divider>
+        <button
+          hraFeature="reset-camera"
+          hraClickEvent
+          mat-menu-item
+          matRipple
+          matRippleColor="#201E3D14"
+          (click)="resetCamera()"
+        >
+          Reset camera view
+        </button>
+        <button
+          hraFeature="reset-block"
+          hraClickEvent
+          mat-menu-item
+          matRipple
+          matRippleColor="#201E3D14"
+          (click)="resetBlock()"
+        >
+          Reset tissue block
+        </button>
+        <mat-divider class="menu-divider"></mat-divider>
+        <button
+          hraFeature="reset-metadata"
+          hraClickEvent
+          mat-menu-item
+          matRipple
+          matRippleColor="#201E3D14"
+          (click)="resetMetadata()"
+        >
+          Reset registration metadata
+        </button>
+      </mat-menu>
+    </hra-expansion-panel-actions>
+    <hra-expansion-panel-header-content>
+      <mat-button-toggle-group
+        hraFeature="side"
+        hraModelChangeEvent
+        name="sideSelect"
+        aria-label="Side Select"
+        hideSingleSelectionIndicator
+        hraButtonToggleSize="medium"
+        [ngModel]="viewSide()"
+        (ngModelChange)="updateSide($event)"
+      >
+        <mat-button-toggle value="left">Left</mat-button-toggle>
+        <mat-button-toggle value="right">Right</mat-button-toggle>
+        <mat-button-toggle value="anterior" checked>Anterior</mat-button-toggle>
+        <mat-button-toggle value="posterior">Posterior</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-button-toggle-group
+        hraFeature="view-type"
+        hraModelChangeEvent
+        name="modeSelect"
+        aria-label="Mode Select"
+        hideSingleSelectionIndicator
+        hraButtonToggleSize="medium"
+        [ngModel]="viewType()"
+        (ngModelChange)="updateView($event)"
+      >
+        <mat-button-toggle value="register">Register</mat-button-toggle>
+        <mat-button-toggle value="3d">Preview</mat-button-toggle>
+      </mat-button-toggle-group>
+    </hra-expansion-panel-header-content>
+  </hra-expansion-panel>
+  <ccf-content
+    hraFeature="stage-content"
+    class="stage-content"
+    [disablePositionChange]="disablePositionChange"
+  ></ccf-content>
+  <ccf-right-sidebar
+    hra-feature="right-sidebar"
+    (registrationExpanded)="registrationToggle($event)"
+  ></ccf-right-sidebar>
+</ng-container>

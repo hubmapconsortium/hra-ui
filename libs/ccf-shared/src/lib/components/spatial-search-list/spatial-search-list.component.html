@@ -1,8 +1,10 @@
-<mat-list class="list">
+<mat-list hraFeature="list" class="list">
   @if (items().length > 1) {
     <mat-list-item class="item">
       <div class="item-content">
         <mat-checkbox
+          hraFeature="select-all-toggle"
+          hraClickEvent
           class="description"
           labelPosition="after"
           [checked]="allSelected"
@@ -17,13 +19,15 @@
     <mat-list-item class="item">
       <div class="item-content">
         <mat-checkbox
+          hraFeature="select"
+          hraClickEvent
           class="description"
           labelPosition="after"
           [checked]="item.selected"
           (change)="updateItemSelection($index, $event.checked)"
         >
         </mat-checkbox>
-        <button mat-icon-button class="delete" (click)="removeItem($index)">
+        <button hraFeature="remove" hraClickEvent mat-icon-button class="delete" (click)="removeItem($index)">
           <mat-icon>delete_outlined</mat-icon>
         </button>
         <div class="checkbox-label">{{ item.description }}</div>

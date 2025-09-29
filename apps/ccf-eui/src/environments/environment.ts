@@ -20,7 +20,6 @@ export const environment = {
     logoTooltip: 'Human Reference Atlas Portal',
     loginDisabled: false,
   },
-  googleAnalyticsToken: 'G-B3DT7XPMRT',
 };
 
 /*
