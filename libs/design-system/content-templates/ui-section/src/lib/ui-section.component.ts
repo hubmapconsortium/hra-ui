@@ -1,3 +1,4 @@
+import { AssetUrlPipe } from '@hra-ui/common/url';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
@@ -9,7 +10,7 @@ import { SoftwareStatus } from '@hra-ui/design-system/indicators/software-status
 /** UI Section component for displaying app information and status */
 @Component({
   selector: 'hra-ui-section',
-  imports: [AppLabelComponent, ButtonsModule, IconsModule, HraCommonModule, RouterModule],
+  imports: [AppLabelComponent, AssetUrlPipe, ButtonsModule, IconsModule, HraCommonModule, RouterModule],
   templateUrl: './ui-section.component.html',
   styleUrl: './ui-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
