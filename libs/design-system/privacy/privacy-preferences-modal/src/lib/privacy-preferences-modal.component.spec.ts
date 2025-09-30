@@ -40,6 +40,17 @@ describe('PrivacyPreferencesModalComponent', () => {
       await renderComponent(true);
       expect(screen.getByLabelText(/close/i)).toBeInTheDocument();
     });
+
+    it('should initialize to Consent tab when hasProvidedPreferences is false', async () => {
+      const { fixture } = await renderComponent(false);
+      expect(fixture.componentInstance.tabIndex()).toBe(0);
+    });
+
+    it('should initialize to Details tab when hasProvidedPreferences is true', async () => {
+      const { fixture } = await renderComponent(true);
+      fixture.componentInstance.tabIndex.set(fixture.componentInstance.hasProvidedPreferences() ? 1 : 0);
+      expect(fixture.componentInstance.tabIndex()).toBe(1);
+    });
   });
 
   describe('Tabs', () => {
@@ -89,6 +100,22 @@ describe('PrivacyPreferencesModalComponent', () => {
       });
     });
 
+    it('should collapse category when minus button is clicked', async () => {
+      const expandBtn = screen.getAllByRole('button', { name: /expand/i })[0];
+      fireEvent.click(expandBtn);
+
+      await waitFor(() => {
+        expect(screen.getByText('Human Reference Atlas')).toBeInTheDocument();
+      });
+
+      const collapseBtn = screen.getByRole('button', { name: /collapse necessary/i });
+      fireEvent.click(collapseBtn);
+
+      await waitFor(() => {
+        expect(screen.queryByText('Human Reference Atlas')).not.toBeInTheDocument();
+      });
+    });
+
     it('should change icon from add to remove when expanded', async () => {
       const expandBtn = screen.getAllByRole('button', { name: /expand/i })[0];
       expect(screen.getAllByText('add')[0]).toBeInTheDocument();
@@ -119,7 +146,31 @@ describe('PrivacyPreferencesModalComponent', () => {
     });
   });
 
-  describe('Footer buttons', () => {
+  describe('Toggle Interactions', () => {
+    it('should enable category when toggle is switched on', async () => {
+      const { fixture } = await renderComponent();
+      await switchToDetailsTab();
+      fixture.componentInstance.toggleEnabled('preferences', true);
+      expect(fixture.componentInstance.categories()[1].enabled).toBe(true);
+    });
+
+    it('should disable category when toggle is switched off', async () => {
+      const { fixture } = await renderComponent();
+      await switchToDetailsTab();
+      fixture.componentInstance.toggleEnabled('preferences', true);
+      fixture.componentInstance.toggleEnabled('preferences', false);
+      expect(fixture.componentInstance.categories()[1].enabled).toBe(false);
+    });
+
+    it('should not allow disabling required categories', async () => {
+      const { fixture } = await renderComponent();
+      fixture.componentInstance.toggleEnabled('necessary', false);
+      expect(fixture.componentInstance.categories()[0].enabled).toBe(true);
+      expect(fixture.componentInstance.categories()[0].isRequired).toBe(true);
+    });
+  });
+
+  describe('Footer Buttons', () => {
     it('should display all footer buttons', async () => {
       await renderComponent();
 
@@ -199,6 +250,23 @@ describe('PrivacyPreferencesModalComponent', () => {
       fireEvent.click(screen.getByLabelText(/close/i));
 
       expect(fixture.componentInstance.close()).toBe(true);
+    });
+  });
+
+  describe('Testing expand and collapse', () => {
+    it('should toggle expanded category', async () => {
+      const { fixture } = await renderComponent();
+      const initialState = fixture.componentInstance.categories()[0].expanded;
+      fixture.componentInstance.expandCategory('necessary');
+      expect(fixture.componentInstance.categories()[0].expanded).toBe(!initialState);
+    });
+
+    it('should toggle collapsed categori', async () => {
+      const { fixture } = await renderComponent();
+      fixture.componentInstance.expandCategory('necessary');
+      expect(fixture.componentInstance.categories()[0].expanded).toBe(true);
+      fixture.componentInstance.expandCategory('necessary');
+      expect(fixture.componentInstance.categories()[0].expanded).toBe(false);
     });
   });
 });
