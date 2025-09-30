@@ -5,8 +5,10 @@ import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
+/** Result of the consent banner */
 export type ConsentBannerResult = 'allow-all' | 'allow-necessary' | 'customize';
 
+/** Aria labelledby id of consent banner component */
 export const CONSENT_BANNER_ARIA_LABELLEDBY_ID = 'consentBannerDialogTitle';
 
 /** Consent Banner Component */
@@ -18,5 +20,8 @@ export const CONSENT_BANNER_ARIA_LABELLEDBY_ID = 'consentBannerDialogTitle';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConsentBannerComponent {
+  /**
+   * Aria labelledby id
+   */
   readonly ariaLabelledbyId = CONSENT_BANNER_ARIA_LABELLEDBY_ID;
 }
