@@ -29,6 +29,7 @@
               hraIconButtonSize="large"
               class="expand-button"
               (click)="expandCategory(category.id)"
+              [attr.aria-label]="category.expanded ? 'Collapse ' + category.title : 'Expand ' + category.title"
             >
               <mat-icon>{{ category.expanded ? 'remove' : 'add' }}</mat-icon>
             </button>
@@ -38,9 +39,11 @@
             <div class="filler"></div>
 
             <mat-slide-toggle
+              role="switch"
               [checked]="category.enabled"
               [disabled]="category.isRequired"
               (change)="toggleEnabled(category.id, $event.checked)"
+              [attr.aria-label]="category.title"
             >
             </mat-slide-toggle>
           </div>
@@ -81,29 +84,17 @@
     hraCtaButton
     hraPrimaryButton
     (click)="onAllowNecessaryOnly()"
-    aria-label="Allow necessary cookies only"
+    aria-label="allow necessary only"
   >
     Allow necessary only
   </button>
 
   @if (tabIndex() === 0) {
-    <button
-      mat-button
-      hraCtaButton
-      hraSecondaryButton
-      (click)="tabIndex.set(1)"
-      aria-label="Customize cookie preferences"
-    >
+    <button mat-button hraCtaButton hraSecondaryButton (click)="tabIndex.set(1)" aria-label="customize">
       Customize
     </button>
   } @else {
-    <button
-      mat-flat-button
-      hraCtaButton
-      hraPrimaryButton
-      (click)="onAllowSelection()"
-      aria-label="Allow selected cookies"
-    >
+    <button mat-flat-button hraCtaButton hraPrimaryButton (click)="onAllowSelection()" aria-label="allow selection">
       Allow selection
     </button>
   }
