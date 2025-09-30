@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { MatIconModule } from '@angular/material/icon';
 import { BrandModule } from '@hra-ui/design-system/brand';
@@ -7,6 +7,7 @@ import { SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';
 import { FundingComponent } from './funding/funding.component';
 import { FUNDER_IDS } from './static-data/parsed';
 import { MatDividerModule } from '@angular/material/divider';
+import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 
 /**
  * Global footer component
@@ -23,4 +24,11 @@ export class FooterComponent {
   readonly funders = input(FUNDER_IDS);
   /** List of social media link to show */
   readonly socials = input(SOCIAL_IDS);
+
+  private readonly privacyPreferences = inject(PrivacyPreferencesService);
+
+  openPrivacyPreferences(event: Event): void {
+    event.preventDefault();
+    this.privacyPreferences.openPrivacyPreferences('manage');
+  }
 }
