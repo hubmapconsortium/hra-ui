@@ -249,6 +249,16 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
   /** Download Action Dispatcher */
   protected readonly download = dispatch(DownloadActions.Download);
 
+  /** Whether the current page is the ftu page */
+  protected get isFtuPage(): boolean {
+    return this.router.isActive('/ftu', {
+      paths: 'exact',
+      queryParams: 'ignored',
+      fragment: 'ignored',
+      matrixParams: 'ignored',
+    });
+  }
+
   /** Initializes the component */
   ngOnInit(): void {
     this.router.initialNavigation();
