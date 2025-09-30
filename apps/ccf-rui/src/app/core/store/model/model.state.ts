@@ -219,10 +219,12 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
     map((x) => x?.doi),
     distinctUntilChanged(),
   );
+  /** Disable block axis observable */
   readonly disableBlockAxis$ = this.state$.pipe(
     map((x) => x?.disableBlockAxis),
     distinctUntilChanged(),
   );
+  /** Disable organ axis observable */
   readonly disableOrganAxis$ = this.state$.pipe(
     map((x) => x?.disableOrganAxis),
     distinctUntilChanged(),
