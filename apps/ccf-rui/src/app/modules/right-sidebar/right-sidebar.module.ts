@@ -3,7 +3,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
@@ -12,7 +11,6 @@ import {
   ExpansionPanelHeaderContentComponent,
 } from '@hra-ui/design-system/expansion-panel';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { InfoButtonModule } from 'ccf-shared';
 
 import { BlockSizeInputModule } from '../../shared/components/block-size-input/block-size-input.module';
 import { RotationSliderModule } from '../../shared/components/rotation-slider/rotation-slider.module';
@@ -29,16 +27,12 @@ import { RightSidebarComponent } from './right-sidebar.component';
     MatExpansionModule,
     MatDividerModule,
     MatIconModule,
-    BrowserAnimationsModule,
-
     BlockSizeInputModule,
     ReviewButtonModule,
     RotationSliderModule,
     SlicesInputModule,
     TagListModule,
     TagSearchModule,
-    InfoButtonModule,
-
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
