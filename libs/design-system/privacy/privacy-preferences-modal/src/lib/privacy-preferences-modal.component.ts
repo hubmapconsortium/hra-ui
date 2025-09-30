@@ -12,14 +12,23 @@ import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyper
 
 /** Privacy category interface */
 interface PrivacyCategory {
+  /** Whether the category is required */
   isRequired?: boolean;
+  /** Unique identifier */
   id: string;
+  /** Title of the category */
   title: string;
+  /** Description of the category */
   description: string;
+  /** Whether the category is expanded to show more details */
   expanded: boolean;
+  /** Whether the category is enabled */
   enabled: boolean;
+  /** Additional privacy details */
   privacyDetails?: string;
+  /** Name of the provider */
   providerName?: string;
+  /** Link to the provider's privacy policy */
   providerLink?: string;
 }
 
@@ -108,6 +117,7 @@ export class PrivacyPreferencesModalComponent {
     },
   ]);
 
+  /** Constructor of Preferences modal*/
   constructor() {
     this.tabIndex.set(this.hasProvidedPreferences() ? 1 : 0);
   }
