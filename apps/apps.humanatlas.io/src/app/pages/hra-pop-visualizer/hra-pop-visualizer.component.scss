@@ -50,6 +50,11 @@
     }
   }
 
+  @media (min-width: 1600px) {
+    width: 100%;
+    margin: 0 auto;
+  }
+
   // 920px and above
   @media (min-width: 920px) {
     max-width: 100rem;
