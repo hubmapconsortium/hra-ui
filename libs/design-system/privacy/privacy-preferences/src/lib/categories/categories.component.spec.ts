@@ -5,6 +5,7 @@ import { INITIAL_CATEGORY_SETTINGS } from '@hra-ui/common/analytics';
 
 @Component({
   template: '<hra-categories [(categories)]="categories" />',
+  imports: [CategoriesComponent],
 })
 class TestHostComponent {
   readonly categories = signal(INITIAL_CATEGORY_SETTINGS);
