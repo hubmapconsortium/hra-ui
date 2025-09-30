@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { GlobalConfigState } from 'ccf-shared';
 import { combineLatest, Subscription } from 'rxjs';
+
 import { GlobalConfig } from './core/services/config/config';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';

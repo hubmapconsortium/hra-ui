@@ -13,6 +13,17 @@ const meta: Meta = {
   },
   args: {
     disabled: false,
+    closeButton: true,
+  },
+  argTypes: {
+    disabled: {
+      control: 'boolean',
+      description: 'Disables the chip if true',
+    },
+    closeButton: {
+      control: 'boolean',
+      description: 'Shows or hides the close button',
+    },
   },
   decorators: [
     moduleMetadata({
@@ -24,47 +35,37 @@ export default meta;
 type Story = StoryObj;
 
 export const Single: Story = {
-  render: () => ({
+  render: (args) => ({
+    props: args,
     template: `
-      <mat-chip-row>
+      <mat-chip-row [disabled]="disabled">
         Label
-        <button matChipRemove>
-          <mat-icon>close</mat-icon>
-        </button>
+        @if (closeButton) {
+          <button matChipRemove>
+            <mat-icon>close</mat-icon>
+          </button>
+        }
       </mat-chip-row>
     `,
   }),
 };
 
 export const Group: Story = {
-  render: () => ({
+  render: (args) => ({
+    props: args,
     template: `
-    <mat-chip-grid>
+    <mat-chip-set>
+    @for (item of [1,2,3,4,5]; track item) {
       <mat-chip-row>
         Label
-        <button matChipRemove>
-          <mat-icon>close</mat-icon>
-        </button>
+        @if (closeButton) {
+          <button matChipRemove>
+            <mat-icon>close</mat-icon>
+          </button>
+        }
       </mat-chip-row>
-            <mat-chip-row>
-        Label
-        <button matChipRemove>
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-chip-row>
-            <mat-chip-row>
-        Label
-        <button matChipRemove>
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-chip-row>
-            <mat-chip-row>
-        Label
-        <button matChipRemove>
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-chip-row>
-    </mat-chip-grid>
+    }
+    </mat-chip-set>
     `,
   }),
 };

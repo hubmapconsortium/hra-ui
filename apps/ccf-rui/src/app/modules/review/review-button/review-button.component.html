@@ -7,5 +7,5 @@
   [hraPlainTooltip]="tooltip"
   (click)="registerButtonClick($event)"
 >
-  {{ registrationCallbackSet ? 'Review and Register' : 'Review and Download' }}
+  {{ registrationCallbackSet() ? 'Review and Register' : 'Review and Download' }}
 </button>

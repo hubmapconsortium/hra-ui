@@ -1,8 +1,9 @@
 @use 'vars';
 
 :host {
-  display: block;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
   .opacity-settings {
     display: flex;
@@ -12,9 +13,26 @@
   }
 
   hra-expansion-panel {
-    ccf-visibility-menu {
-      padding: 0 0.75rem;
+    overflow: hidden;
+    min-height: 2.5rem;
+
+    ::ng-deep cdk-accordion {
+      height: 100%;
+      width: 100%;
+
+      .content {
+        height: calc(100% - 2.5rem);
+
+        .expansion-body {
+          height: 100%;
+        }
+      }
     }
+  }
+
+  ccf-visibility-menu {
+    height: 100%;
+    padding: 0 0.75rem;
   }
 
   .as-expansion {
