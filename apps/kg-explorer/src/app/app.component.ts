@@ -4,6 +4,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HraKgService } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
@@ -37,6 +38,7 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
  */
 @Component({
   imports: [
+    HraCommonModule,
     RouterModule,
     NavigationModule,
     MarkdownModule,

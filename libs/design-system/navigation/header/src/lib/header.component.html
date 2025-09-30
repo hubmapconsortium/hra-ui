@@ -1,6 +1,7 @@
 @let ctaConfig = cta();
 @if (ctaConfig && !ctaDismissed()) {
   <hra-cta-bar
+    hraFeature="cta-bar"
     [action]="ctaConfig.action"
     [description]="ctaConfig.description"
     [url]="ctaConfig.url"
@@ -9,20 +10,24 @@
 }
 
 <header
+  hraFeature="header"
   class="header"
   cdkOverlayOrigin
   [class.mobile-menu-open]="isMobile() && isMenuActive('main')"
   #mobileMenuOrigin="cdkOverlayOrigin"
   data-testid="header"
 >
-  <div class="menus" #desktopMenuOrigin>
-    <hra-brand-logo size="small" />
+  <div hraFeature="navigation" class="menus" #desktopMenuOrigin>
+    <hra-brand-logo hraFeature="brand-logo" size="small" />
 
     <div class="filler"></div>
 
     @if (!isMobile()) {
       @for (menu of menus(); track menu.id) {
         <hra-navigation-category-toggle
+          [hraFeature]="menu.id | slugify"
+          hraClickEvent
+          hraHoverEvent
           cdkOverlayOrigin
           [toggled]="isMenuActive(menu)"
           (toggledChange)="toggleMenu(menu)"
@@ -41,12 +46,19 @@
           [cdkConnectedOverlayPositions]="desktopMenuPositions"
           (overlayOutsideClick)="closeMenu()"
         >
-          <hra-desktop-menu [menu]="menu" [baseUrl]="baseUrl()" [style.max-height]="desktopMenuMaxHeight()" />
+          <hra-desktop-menu
+            hraFeature="desktop-menu"
+            [menu]="menu"
+            [baseUrl]="baseUrl()"
+            [style.max-height]="desktopMenuMaxHeight()"
+          />
         </ng-template>
       }
     }
 
     <button
+      hraFeature="menu-toggle"
+      [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('main') }"
       mat-icon-button
       cdkOverlayOrigin
       aria-label="Open the main navigation menu"
@@ -78,7 +90,7 @@
         [cdkConnectedOverlayWidth]="'100%'"
         #mobileMenuOverlay
       >
-        <hra-mobile-menu [hubmapMenu]="hubmapMenu()" [menus]="menus()" [baseUrl]="baseUrl()" />
+        <hra-mobile-menu hraFeature="mobile-menu" [hubmapMenu]="hubmapMenu()" [menus]="menus()" [baseUrl]="baseUrl()" />
       </ng-template>
     } @else {
       <ng-template
@@ -91,7 +103,12 @@
         [cdkConnectedOverlayPositions]="desktopMenuPositions"
         (overlayOutsideClick)="closeMenu()"
       >
-        <hra-desktop-menu [menu]="hubmapMenu()" [baseUrl]="baseUrl()" [style.max-height]="desktopMenuMaxHeight()" />
+        <hra-desktop-menu
+          hraFeature="desktop-menu-main"
+          [menu]="hubmapMenu()"
+          [baseUrl]="baseUrl()"
+          [style.max-height]="desktopMenuMaxHeight()"
+        />
       </ng-template>
     }
   </div>
@@ -99,7 +116,7 @@
   @if (breadcrumbs(); as crumbs) {
     <mat-divider />
 
-    <div class="navigation">
+    <div hraFeature="breadcrumbs" class="navigation">
       <hra-breadcrumbs [crumbs]="crumbs" />
       <ng-content />
     </div>
@@ -107,5 +124,5 @@
 </header>
 
 @if (progress() !== false) {
-  <mat-progress-bar class="progress-bar" [mode]="progressMode()" [value]="progress()" />
+  <mat-progress-bar hraFeature="progress-bar" class="progress-bar" [mode]="progressMode()" [value]="progress()" />
 }

@@ -1,4 +1,4 @@
-import { CommonModule, ViewportScroller } from '@angular/common';
+import { ViewportScroller } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +11,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { monitorHeight, routeData } from '@hra-ui/common';
+import { HraCommonModule, monitorHeight, routeData } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
@@ -31,7 +31,7 @@ const ANCHOR_SCROLL_PADDING = 24;
   selector: 'hra-root',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     RouterModule,
     IconsModule,
     NavigationModule,

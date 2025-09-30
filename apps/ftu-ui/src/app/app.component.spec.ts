@@ -1,33 +1,10 @@
-import { ENVIRONMENT_INITIALIZER } from '@angular/core';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import {
-  dispatch,
-  dispatch$,
-  dispatchAction$,
-  select$,
-  selectQuerySnapshot,
-  selectSnapshot,
-} from '@hra-ui/cdk/injectors';
-import { LinkRegistryActions } from '@hra-ui/cdk/state';
-import { FTU_DATA_IMPL_ENDPOINTS, IllustrationMappingItem, Iri, RawIllustration } from '@hra-ui/services';
-import {
-  ActiveFtuActions,
-  IllustratorActions,
-  IllustratorSelectors,
-  LinkIds,
-  TissueLibraryActions,
-} from '@hra-ui/state';
-import { ActionContext, ActionStatus, Actions } from '@ngxs/store';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { dispatch, dispatch$, select$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { ActionContext } from '@ngxs/store';
 import { mock } from 'jest-mock-extended';
-import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
-import { ReplaySubject, firstValueFrom, from, of, take, toArray } from 'rxjs';
+import { ReplaySubject, of } from 'rxjs';
 import { Shallow } from 'shallow-render';
 import { AppComponent } from './app.component';
-import { initFactory } from './app.init';
-import { appConfig } from './app.config';
 
 jest.mock('@hra-ui/cdk/injectors');
 
@@ -52,7 +29,7 @@ describe('AppComponent', () => {
     // shallow = new Shallow(AppComponent, appConfig)
     //   .replaceModule(RouterModule, RouterTestingModule)
     //   .replaceModule(BrowserAnimationsModule, NoopAnimationsModule)
-    //   .dontMock(MatDialogModule, NgxGoogleAnalyticsModule, FTU_DATA_IMPL_ENDPOINTS, ENVIRONMENT_INITIALIZER)
+    //   .dontMock(MatDialogModule, FTU_DATA_IMPL_ENDPOINTS, ENVIRONMENT_INITIALIZER)
     //   .provideMock(
     //     {
     //       provide: MatDialog,

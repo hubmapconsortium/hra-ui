@@ -18,6 +18,7 @@ import { MetadataAuthorFormComponent } from '../author-form/metadata-author-form
 import { MetadataConfirmationDialogComponent } from '../confirmation-dialog/metadata-confirmation-dialog.component';
 import { MetadataDonorFormComponent } from '../donor-form/metadata-donor-form.component';
 import { MetadataHelpComponent } from '../help/metadata-help.component';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Modal mode */
 export type MetadataModalMode = 'create' | 'edit';
@@ -46,6 +47,7 @@ export interface MetadataModalResult {
 @Component({
   selector: 'ccf-metadata-modal',
   imports: [
+    HraCommonModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,

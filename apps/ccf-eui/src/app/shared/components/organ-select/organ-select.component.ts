@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { ALL_ORGANS, OrganInfo } from 'ccf-shared';
 
+import { HraCommonModule } from '@hra-ui/common';
 import { SceneState } from '../../../core/store/scene/scene.state';
 
 /**
@@ -18,7 +18,7 @@ import { SceneState } from '../../../core/store/scene/scene.state';
 @Component({
   selector: 'ccf-organ-select',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatFormFieldModule,
     MatAutocompleteModule,
     MatChipsModule,

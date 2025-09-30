@@ -1,6 +1,6 @@
 import { AnimationDriver } from '@angular/animations/browser';
 import { MockAnimationDriver, MockAnimationPlayer } from '@angular/animations/browser/testing';
-import { provideDesignSystem } from '@hra-ui/design-system';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
 import { ExpansionPanelComponent } from './expansion-panel.component';
@@ -14,7 +14,7 @@ describe('ExpansionPanelComponent', () => {
         ...options?.inputs,
       },
       providers: [
-        provideDesignSystem(),
+        provideAnimations(),
         {
           provide: AnimationDriver,
           useClass: MockAnimationDriver,

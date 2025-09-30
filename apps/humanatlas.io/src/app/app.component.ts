@@ -1,7 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, computed, effect, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { monitorHeight } from '@hra-ui/common';
+import { HraCommonModule, monitorHeight } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { CtaConfig, HeaderComponent } from '@hra-ui/design-system/navigation/header';
@@ -15,7 +15,7 @@ const ANCHOR_SCROLL_PADDING = 24;
  */
 @Component({
   selector: 'hra-portal',
-  imports: [RouterModule, NavigationModule],
+  imports: [HraCommonModule, RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host: {

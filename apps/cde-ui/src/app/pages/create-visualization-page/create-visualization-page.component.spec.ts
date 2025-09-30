@@ -3,8 +3,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
+import { provideAssetHref } from '@hra-ui/common/url';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY, Metadata } from '@hra-ui/cde-visualization';
-import { provideIcons } from '@hra-ui/design-system/icons';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
@@ -13,14 +14,24 @@ import { VisualizationDataService } from '../../services/visualization-data-serv
 import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
-jest.mock('@hra-ui/node-dist-vis', () => ({}));
-jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({}));
-jest.mock('@hra-ui/webcomponents', () => ({ createCustomElement: jest.fn() }));
+jest.mock('@hra-ui/node-dist-vis', () => ({
+  DEFAULT_NODE_TARGET_SELECTOR: 'Default',
+}));
+jest.mock('@hra-ui/node-dist-vis/models', () => ({
+  ColorMapView: class MockColorMapView {},
+  NodesView: class MockNodesView {},
+}));
+jest.mock('@hra-ui/cde-visualization', () => ({
+  ...jest.requireActual('@hra-ui/cde-visualization'),
+  CdeVisualizationModule: class MockCdeVisualizationModule {},
+}));
+jest.mock('@hra-ui/design-system', () => ({
+  ...jest.requireActual('@hra-ui/design-system'),
+  provideDesignSystem: () => [],
+}));
 
 const resizeObserverInstance = mock<ResizeObserver>();
 global.ResizeObserver = jest.fn(() => resizeObserverInstance);
-
-const globalProviders = [provideIcons(), provideHttpClient(), provideHttpClientTesting()];
 const nodeTargetKey = 'Cell Type';
 const testId = 'file-upload';
 
@@ -86,6 +97,8 @@ const csvColorMapWrongKeys = `BADKEY,cell_type,cell_color
   1,cell2,"[1,1,1]"`;
 
 describe('CreateVisualizationPageComponent', () => {
+  const providers = [provideAssetHref('http://localhost/'), provideHttpClient(), provideHttpClientTesting()];
+
   let instance: CreateVisualizationPageComponent;
   let fixture: ComponentFixture<CreateVisualizationPageComponent>;
 
@@ -93,7 +106,8 @@ describe('CreateVisualizationPageComponent', () => {
     jest.spyOn(Date, 'now').mockReturnValue(0);
 
     const context = await render(CreateVisualizationPageComponent, {
-      providers: globalProviders,
+      providers,
+      imports: [MatIconTestingModule],
       componentInputs: {
         organs: [],
       },

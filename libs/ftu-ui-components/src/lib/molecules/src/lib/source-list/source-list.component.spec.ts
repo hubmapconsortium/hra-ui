@@ -1,15 +1,13 @@
-import { render, screen } from '@testing-library/angular';
-import { MatTableModule } from '@angular/material/table';
-import { Shallow } from 'shallow-render';
-import { SourceListComponent, SourceListItem } from './source-list.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import '@testing-library/jest-dom';
+import { MatTableModule } from '@angular/material/table';
 import { Iri } from '@hra-ui/services';
+import { render, screen } from '@testing-library/angular';
+import { Shallow } from 'shallow-render';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
+import { SourceListComponent, SourceListItem } from './source-list.component';
 
 describe('SourceListComponent', () => {
   let shallow: Shallow<SourceListComponent>;
@@ -85,14 +83,6 @@ describe('SourceListComponent', () => {
         sources: testSources,
       },
       imports: [MatTableModule, HttpClientTestingModule],
-      providers: [
-        {
-          provide: GoogleAnalyticsService,
-          useValue: {
-            event: () => {},
-          },
-        },
-      ],
     });
 
     expect(screen.getByText('Authors')).toBeInTheDocument();
@@ -117,14 +107,6 @@ describe('SourceListComponent', () => {
         sources: [testSourceItem],
       },
       imports: [MatTableModule, HttpClientTestingModule],
-      providers: [
-        {
-          provide: GoogleAnalyticsService,
-          useValue: {
-            event: () => {},
-          },
-        },
-      ],
     });
 
     expect(

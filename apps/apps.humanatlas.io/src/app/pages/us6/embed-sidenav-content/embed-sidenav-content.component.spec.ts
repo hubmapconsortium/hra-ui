@@ -1,8 +1,8 @@
 import { MatTabsModule } from '@angular/material/tabs';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
+import { CodeBlockComponent, provideCodeBlock } from '@hra-ui/design-system/code-block';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { FlatCardModule } from '@hra-ui/design-system/cards/flat-card';
-import { CodeBlockComponent } from '@hra-ui/design-system/code-block';
+import { provideAssetHref } from '@hra-ui/common/url';
 import { fireEvent, render, RenderComponentOptions, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { EmbedSidenavContentComponent } from './embed-sidenav-content.component';
@@ -12,7 +12,7 @@ describe('EmbedSidenavContentComponent', () => {
     return render(EmbedSidenavContentComponent, {
       ...options,
       imports: [MatTabsModule, ButtonsModule, CodeBlockComponent, FlatCardModule],
-      providers: [provideDesignSystemCommon()],
+      providers: [provideAssetHref('http://localhost/'), provideCodeBlock(), ...(options.providers ?? [])],
       inputs: {
         tagline: '',
         code: '<p>Test Code</p>',

@@ -1,6 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { MenuOptionsType, TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
@@ -15,6 +16,7 @@ import { VersionSelectorComponent } from '../version-selector/version-selector.c
 @Component({
   selector: 'hra-provenance-menu',
   imports: [
+    HraCommonModule,
     MatIconModule,
     MatMenuModule,
     VersionSelectorComponent,

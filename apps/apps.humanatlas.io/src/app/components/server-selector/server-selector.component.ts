@@ -2,6 +2,7 @@ import { Component, input, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Server } from '../../interfaces/server.interface';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * Server Selector Component
@@ -15,7 +16,7 @@ import { Server } from '../../interfaces/server.interface';
  */
 @Component({
   selector: 'hra-server-selector',
-  imports: [FormsModule, MatSelectModule],
+  imports: [HraCommonModule, FormsModule, MatSelectModule],
   templateUrl: './server-selector.component.html',
   styleUrl: './server-selector.component.scss',
 })
