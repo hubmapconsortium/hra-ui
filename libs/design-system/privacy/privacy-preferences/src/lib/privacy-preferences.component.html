@@ -1,15 +1,16 @@
 <div class="header">
-  <hra-brand-logo size="small"></hra-brand-logo>
-  @if (hasProvidedPreferences()) {
-    <button mat-icon-button (click)="this.close.set(true)" aria-label="Close">
+  <hra-brand-logo size="small" />
+
+  @if (!data.disableClose) {
+    <button mat-icon-button mat-dialog-close="dismiss" aria-label="Close privacy preferences">
       <mat-icon>close</mat-icon>
     </button>
   }
 </div>
 
-<mat-divider></mat-divider>
+<mat-divider />
 
-<mat-tab-group mat-stretch-tabs [(selectedIndex)]="tabIndex" class="tab-group">
+<mat-tab-group mat-stretch-tabs class="tab-group" [(selectedIndex)]="tabIndex">
   <mat-tab label="Consent">
     <div class="consent-content">
       <p>This website uses cookies and similar technologies.</p>
@@ -21,85 +22,21 @@
   </mat-tab>
   <mat-tab label="Details">
     <ng-scrollbar hraScrollOverflowFade>
-      @for (category of categories(); track category.id; let isLast = $last) {
-        <div class="category-container">
-          <div class="preference-row">
-            <button
-              mat-icon-button
-              hraIconButtonSize="large"
-              class="expand-button"
-              (click)="expandCategory(category.id)"
-              [attr.aria-label]="category.expanded ? 'Collapse ' + category.title : 'Expand ' + category.title"
-            >
-              <mat-icon>{{ category.expanded ? 'remove' : 'add' }}</mat-icon>
-            </button>
-
-            <p>{{ category.title }}</p>
-
-            <div class="filler"></div>
-
-            <mat-slide-toggle
-              role="switch"
-              [checked]="category.enabled"
-              [disabled]="category.isRequired"
-              (change)="toggleEnabled(category.id, $event.checked)"
-              [attr.aria-label]="category.title"
-            >
-            </mat-slide-toggle>
-          </div>
-
-          <p class="description">
-            {{ category.description }}
-          </p>
-
-          @if (category.expanded) {
-            <div class="privacy-details">
-              @if (category.privacyDetails) {
-                <p class="privacy-text">{{ category.privacyDetails }}</p>
-              }
-              @if (category.providerName && category.providerLink) {
-                <p class="provider-title">{{ category.providerName }}</p>
-                <div class="provider-link">
-                  <hra-text-hyperlink text="Learn more about this provider" [url]="category.providerLink">
-                  </hra-text-hyperlink>
-                  <mat-icon>open_in_new</mat-icon>
-                </div>
-              }
-            </div>
-          }
-          @if (!isLast) {
-            <mat-divider></mat-divider>
-          }
-        </div>
-      }
+      <hra-categories [(categories)]="categories" />
     </ng-scrollbar>
   </mat-tab>
 </mat-tab-group>
 
-<mat-divider></mat-divider>
+<mat-divider />
 
 <div class="footer-buttons">
-  <button
-    mat-flat-button
-    hraCtaButton
-    hraPrimaryButton
-    (click)="onAllowNecessaryOnly()"
-    aria-label="allow necessary only"
-  >
-    Allow necessary only
-  </button>
+  <button mat-flat-button hraCtaButton hraPrimaryButton mat-dialog-close="allow-necessary">Allow necessary only</button>
 
   @if (tabIndex() === 0) {
-    <button mat-button hraCtaButton hraSecondaryButton (click)="tabIndex.set(1)" aria-label="customize">
-      Customize
-    </button>
+    <button mat-button hraCtaButton hraSecondaryButton (click)="tabIndex.set(1)">Customize</button>
   } @else {
-    <button mat-flat-button hraCtaButton hraPrimaryButton (click)="onAllowSelection()" aria-label="allow selection">
-      Allow selection
-    </button>
+    <button mat-flat-button hraCtaButton hraPrimaryButton [mat-dialog-close]="categories()">Allow selection</button>
   }
 
-  <button mat-flat-button hraCtaButton hraPrimaryButton (click)="onAllowAll()" aria-label="Allow all cookies">
-    Allow all
-  </button>
+  <button mat-flat-button hraCtaButton hraPrimaryButton mat-dialog-close="allow-all">Allow all</button>
 </div>
