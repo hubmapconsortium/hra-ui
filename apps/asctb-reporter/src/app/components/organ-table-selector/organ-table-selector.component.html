@@ -15,6 +15,7 @@
   </div>
 
   <mat-tab-group
+    hraFeature="tabs"
     hraClickEvent
     hraClickEventTriggerOn="none"
     #event="hraClickEvent"
@@ -26,7 +27,7 @@
     [fitInkBarToContent]="false"
     animationDuration="0"
   >
-    <mat-tab [tabIndex]="0" label="ASCT+B Tables">
+    <mat-tab [tabIndex]="0" label="ASCT+B Tables" hraFeature="asctb-tables">
       <ng-template matTabContent>
         <div class="table-container">
           <table mat-table [dataSource]="dataSource" class="asctb">
@@ -66,7 +67,12 @@
               <td mat-cell *matCellDef="let element">
                 <div *ngIf="element.version.length > 1">
                   <mat-form-field appearance="fill" subscriptSizing="dynamic">
-                    <mat-select (selectionChange)="changeVersion($event.value, element)" [(ngModel)]="element.symbol">
+                    <mat-select
+                      (selectionChange)="changeVersion($event.value, element)"
+                      [(ngModel)]="element.symbol"
+                      hraFeature="data-version"
+                      hraModelChangeEvent
+                    >
                       <mat-option *ngFor="let option of element.version" [value]="option.value">
                         {{ option.viewValue }}
                       </mat-option>
@@ -88,7 +94,7 @@
         </div>
       </ng-template>
     </mat-tab>
-    <mat-tab [tabIndex]="1" label="OMAPs">
+    <mat-tab [tabIndex]="1" label="OMAPs" hraFeature="omaps">
       <ng-template matTabContent>
         <div class="table-container">
           <table mat-table [dataSource]="omapdataSource" class="omaps">
@@ -146,7 +152,12 @@
               <td mat-cell *matCellDef="let element">
                 <div *ngIf="element.version.length > 1">
                   <mat-form-field class="version-dropdown" appearance="fill" subscriptSizing="dynamic">
-                    <mat-select (selectionChange)="changeVersion($event.value, element)" [(ngModel)]="element.symbol">
+                    <mat-select
+                      (selectionChange)="changeVersion($event.value, element)"
+                      [(ngModel)]="element.symbol"
+                      hraFeature="data-version"
+                      hraModelChangeEvent
+                    >
                       <mat-option *ngFor="let option of element.version" [value]="option.value">
                         {{ option.viewValue }}
                       </mat-option>
@@ -228,7 +239,7 @@
       >Read publications</a
     >
     <mat-divider></mat-divider>
-    <a mat-menu-item [matMenuTriggerFor]="hubmapMenu">
+    <a mat-menu-item [matMenuTriggerFor]="hubmapMenu" hraHoverEvent hraFeature="hubmap-menu">
       Human Biomolecular Atlas Program (HuBMAP)
       <mat-icon class="expand-arrow">arrow_right</mat-icon>
     </a>
