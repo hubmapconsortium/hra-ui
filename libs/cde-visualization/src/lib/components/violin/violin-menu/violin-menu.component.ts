@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -9,7 +9,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
  */
 @Component({
   selector: 'cde-violin-menu',
-  imports: [CommonModule, MatIconModule, MatMenuModule, ButtonsModule],
+  imports: [HraCommonModule, MatIconModule, MatMenuModule, ButtonsModule],
   templateUrl: './violin-menu.component.html',
   styleUrl: './violin-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

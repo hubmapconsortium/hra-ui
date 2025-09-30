@@ -6,6 +6,8 @@
   hraPlainTooltip="Select at least one cell to delete it from this dataset"
   [disabled]="deleteDisabled()"
   (click)="deleteClick.emit()"
+  hraFeature="delete-selected-cells"
+  hraClickEvent
 >
   <mat-icon>delete</mat-icon>
 </button>
@@ -15,14 +17,30 @@
   hraButtonToggleSize="medium"
   [value]="viewMode()"
   (change)="viewMode.set($event.value)"
+  hraFeature="toggle"
 >
-  <mat-button-toggle value="select" hraPlainTooltip="Select cells to delete from this dataset">
+  <mat-button-toggle
+    value="select"
+    hraPlainTooltip="Select cells to delete from this dataset"
+    hraFeature="select"
+    hraClickEvent
+  >
     Select
   </mat-button-toggle>
-  <mat-button-toggle value="inspect" hraPlainTooltip="Get information about individual cell types">
+  <mat-button-toggle
+    value="inspect"
+    hraPlainTooltip="Get information about individual cell types"
+    hraFeature="inspect"
+    hraClickEvent
+  >
     Inspect
   </mat-button-toggle>
-  <mat-button-toggle value="explore" hraPlainTooltip="Zoom, pan, and rotate the view of this visualization">
+  <mat-button-toggle
+    value="explore"
+    hraPlainTooltip="Zoom, pan, and rotate the view of this visualization"
+    hraFeature="explore"
+    hraClickEvent
+  >
     Explore
   </mat-button-toggle>
 </mat-button-toggle-group>
