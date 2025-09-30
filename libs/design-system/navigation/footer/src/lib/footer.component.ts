@@ -24,9 +24,10 @@ export class FooterComponent {
   readonly funders = input(FUNDER_IDS);
   /** List of social media link to show */
   readonly socials = input(SOCIAL_IDS);
-
+  /** inject Privacy Preference Service */
   private readonly privacyPreferences = inject(PrivacyPreferencesService);
 
+  /** Open Privacy Preferences Modal */
   openPrivacyPreferences(event: Event): void {
     event.preventDefault();
     this.privacyPreferences.openPrivacyPreferences('manage');
