@@ -1,0 +1,76 @@
+<cdk-accordion>
+  @for (def of categoryDefs; track def.id) {
+    @let headerId = `privacy-preferences-category-${def.id}-header`;
+    @let bodyId = `privacy-preferences-category-${def.id}-body`;
+
+    <cdk-accordion-item #item="cdkAccordionItem">
+      <div [attr.id]="headerId" class="header" [attr.aria-label]="def.title + ' cookies'">
+        @let checked = categories()[def.id];
+        @let detailToggleLabel = `${item.expanded ? 'Close' : 'Open'} ${def.id.toLowerCase()} details`;
+        @let categoryToggleLabel = `${checked ? 'Disallow' : 'Allow'} ${def.id.toLowerCase()} cookies`;
+
+        <button
+          mat-icon-button
+          class="detail-toggle"
+          [attr.aria-controls]="bodyId"
+          [attr.aria-expanded]="item.expanded"
+          [attr.aria-label]="detailToggleLabel"
+          (click)="item.toggle()"
+        >
+          <mat-icon>
+            {{ item.expanded ? 'remove' : 'add' }}
+          </mat-icon>
+        </button>
+
+        <span class="title">{{ def.title }}</span>
+
+        <div class="filler"></div>
+
+        <mat-slide-toggle
+          [checked]="checked"
+          [disabled]="def.required"
+          [attr.aria-label]="categoryToggleLabel"
+          (change)="toggleCategory(def.id, $event.checked)"
+        />
+      </div>
+
+      @if (item.expanded) {
+        <div [attr.id]="bodyId" class="details" role="region" [attr.aria-labelledby]="headerId">aaaaaaaaaa</div>
+      }
+
+      @if (!$last) {
+        <mat-divider />
+      }
+    </cdk-accordion-item>
+  }
+</cdk-accordion>
+
+<!-- @for (category of categories(); track category.id) { -->
+<!-- <div class="category-container"> -->
+<!-- <div class="preference-row">
+
+          <p class="description">
+            {{ category.description }}
+          </p>
+
+          @if (category.expanded) {
+            <div class="privacy-details">
+              @if (category.privacyDetails) {
+                <p class="privacy-text">{{ category.privacyDetails }}</p>
+              }
+              @if (category.providerName && category.providerLink) {
+                <p class="provider-title">{{ category.providerName }}</p>
+                <div class="provider-link">
+                  <hra-text-hyperlink text="Learn more about this provider" [url]="category.providerLink">
+                  </hra-text-hyperlink>
+                  <mat-icon>open_in_new</mat-icon>
+                </div>
+              }
+            </div>
+          } -->
+
+<!-- @if (!$last) {
+            <mat-divider></mat-divider>
+          } -->
+<!-- </div> -->
+<!-- } -->
