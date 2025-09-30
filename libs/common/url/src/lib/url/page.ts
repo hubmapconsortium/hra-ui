@@ -1,9 +1,9 @@
 import { LocationStrategy } from '@angular/common';
 import { inject, Pipe, PipeTransform, signal, Signal } from '@angular/core';
 import { createInjectionToken } from 'ngxtension/create-injection-token';
-import { createHrefProvider } from '../util/href-provider';
-import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';
+import { createChainedHrefProvider, createHrefProvider } from '../util/href-provider';
 import { isAbsolute, joinWithSlash } from '../util/path';
+import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';
 
 /**
  * Get the default page href
@@ -31,6 +31,8 @@ const PAGE_HREF = createInjectionToken(pageHref);
 export const injectPageHref = PAGE_HREF[0];
 /** Provide a new page href */
 export const providePageHref = createHrefProvider(PAGE_HREF[1]);
+/** Provide a possibly undefined href that falls back to the global page href */
+export const provideChainedPageHref = createChainedHrefProvider(injectPageHref, PAGE_HREF[1]);
 /** Inject an url resolver that resolve urls against the page href */
 export const injectPageUrlResolver = createUrlResolverInjector(injectPageHref, resolvePageUrl);
 /** Create a derived signal that resolves an url against the page href */
