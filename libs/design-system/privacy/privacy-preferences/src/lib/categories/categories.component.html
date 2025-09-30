@@ -33,9 +33,26 @@
           (change)="toggleCategory(def.id, $event.checked)"
         />
       </div>
+      <p class="description">
+        {{ def.description }}
+      </p>
 
       @if (item.expanded) {
-        <div [attr.id]="bodyId" class="details" role="region" [attr.aria-labelledby]="headerId">aaaaaaaaaa</div>
+        <div [attr.id]="bodyId" class="details" role="region" [attr.aria-labelledby]="headerId">
+          <div class="privacy-details">
+            @if (def.details) {
+              <p class="privacy-text">{{ def.details }}</p>
+            }
+            @if (def.provider && def.providerLink) {
+              <p class="provider-title">{{ def.provider }}</p>
+              <div class="provider-link">
+                <hra-text-hyperlink text="Learn more about this provider" [url]="def.providerLink">
+                </hra-text-hyperlink>
+                <mat-icon>open_in_new</mat-icon>
+              </div>
+            }
+          </div>
+        </div>
       }
 
       @if (!$last) {
@@ -44,33 +61,3 @@
     </cdk-accordion-item>
   }
 </cdk-accordion>
-
-<!-- @for (category of categories(); track category.id) { -->
-<!-- <div class="category-container"> -->
-<!-- <div class="preference-row">
-
-          <p class="description">
-            {{ category.description }}
-          </p>
-
-          @if (category.expanded) {
-            <div class="privacy-details">
-              @if (category.privacyDetails) {
-                <p class="privacy-text">{{ category.privacyDetails }}</p>
-              }
-              @if (category.providerName && category.providerLink) {
-                <p class="provider-title">{{ category.providerName }}</p>
-                <div class="provider-link">
-                  <hra-text-hyperlink text="Learn more about this provider" [url]="category.providerLink">
-                  </hra-text-hyperlink>
-                  <mat-icon>open_in_new</mat-icon>
-                </div>
-              }
-            </div>
-          } -->
-
-<!-- @if (!$last) {
-            <mat-divider></mat-divider>
-          } -->
-<!-- </div> -->
-<!-- } -->
