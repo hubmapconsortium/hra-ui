@@ -6,5 +6,4 @@ export const environment = {
   dbOptions: {
     remoteApiEndpoint: 'https://apps.humanatlas.io/api',
   },
-  googleAnalyticsToken: window.location.hostname === 'portal.hubmapconsortium.org' ? 'G-1WRJHN9FM6' : 'G-J9HWV9QPJ4',
 };

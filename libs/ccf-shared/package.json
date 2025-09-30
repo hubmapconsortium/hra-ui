@@ -8,7 +8,6 @@
     "@angular/youtube-player": "^20.2.0",
     "@math.gl/core": "^3.5.5",
     "@ngxs/store": "^20.1.0",
-    "ngx-google-analytics": "^14.0.1",
     "ngx-markdown": "^20.0.0",
     "rxjs": "^7.8.2",
     "ts-cacheable": "^1.0.6",
@@ -18,7 +17,8 @@
     "@ngxs-labs/dispatch-decorator": "^5.0.0",
     "@hra-ui/design-system": "1.0.0",
     "@angular/forms": "^20.2.1",
-    "@angular-ru/cdk": "^18.11.0"
+    "@angular-ru/cdk": "^18.11.0",
+    "@hra-ui/common": "1.0.0"
   },
   "dependencies": {}
 }

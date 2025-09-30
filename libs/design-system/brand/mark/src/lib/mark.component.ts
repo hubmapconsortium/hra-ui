@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { AssetUrlPipe } from '@hra-ui/common/url';
 import { HraCommonModule } from '@hra-ui/common';
 import { findOrThrow } from '@hra-ui/common/array-util';
 import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
@@ -11,7 +10,7 @@ import { BrandMarkVariant } from './types/marks.schema';
  */
 @Component({
   selector: 'hra-brand-mark',
-  imports: [AssetUrlPipe, HraCommonModule, InlineSVGModule],
+  imports: [HraCommonModule, InlineSVGModule],
   templateUrl: './mark.component.html',
   styleUrl: './mark.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

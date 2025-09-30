@@ -1,74 +1,78 @@
-<h1 class="title">Tissue Origin Predictions</h1>
+<ng-container hraFeature="tissue-origin-predictions">
+  <h1 class="title">Tissue Origin Predictions</h1>
 
-<p class="info-text">
-  The Tissue Origin Predictions return three types of entities with similar cell type populations: (1) anatomical
-  structures table, (2) experimental datasets table, and (3) extraction sites explorable in 3D. Similarity is computed
-  using weighted cosine similarity between the user-provided cell type population for the experimental data and
-  reference cell type populations for these three HRA entities. Note that different annotation tools predict different
-  cell types and different percentages for the very same cell type. Hover over column headers for details.
-</p>
+  <p class="info-text">
+    The Tissue Origin Predictions return three types of entities with similar cell type populations: (1) anatomical
+    structures table, (2) experimental datasets table, and (3) extraction sites explorable in 3D. Similarity is computed
+    using weighted cosine similarity between the user-provided cell type population for the experimental data and
+    reference cell type populations for these three HRA entities. Note that different annotation tools predict different
+    cell types and different percentages for the very same cell type. Hover over column headers for details.
+  </p>
 
-<!-- SIMILAR ANATOMICAL STRUCTURES TABLE -->
-<hra-similar-anatomical-structures-table [predictions]="predictions()"></hra-similar-anatomical-structures-table>
+  <!-- SIMILAR ANATOMICAL STRUCTURES TABLE -->
+  <hra-similar-anatomical-structures-table [predictions]="predictions()"></hra-similar-anatomical-structures-table>
 
-<!-- SIMILAR DATASETS TABLE -->
-<hra-similar-datasets-table [predictions]="predictions()"></hra-similar-datasets-table>
+  <!-- SIMILAR DATASETS TABLE -->
+  <hra-similar-datasets-table [predictions]="predictions()"></hra-similar-datasets-table>
 
-<!-- BOTTOM CARDS -->
-<div class="bottom-cards">
-  <hra-workflow-card tagline="Similar Extraction Sites" class="card card-1">
-    <p>Download or explore similar extraction sites spatially using the Exploration User Interface (EUI).</p>
-    <div class="buttons">
-      <button
-        (click)="onDownloadJSONButtonClicked()"
-        mat-button
-        hraButtonVariant="primary"
-        hraButtonSize="medium"
-        disabled="false"
-      >
-        JSON-LD
-        <mat-icon>download</mat-icon>
-      </button>
-      <button mat-flat-button (click)="euiOpen.set(true)">Explore</button>
-    </div>
-  </hra-workflow-card>
-  <hra-workflow-card tagline="Metadata" class="card card-2">
-    <div class="metadata-container">
-      <div class="titles">
-        <div class="metadata-row">
-          <span class="label">Source Data</span>
-          <span class="value">{{ data().file.name }}</span>
-        </div>
-        <div class="metadata-row">
-          <span class="label">Organ</span>
-          <span class="value">{{ data().organ ?? 'no organ selected' }}</span>
-        </div>
-        <div class="metadata-row">
-          <span class="label">Annotation Tool</span>
-          <span class="value">{{ data().tool ?? 'no tool selected' }}</span>
-        </div>
-        <div class="metadata-row">
-          <span class="label">Creation Date/Time</span>
-          <span class="value">{{ predictionDate() }}</span>
+  <!-- BOTTOM CARDS -->
+  <div class="bottom-cards">
+    <hra-workflow-card hraFeature="similar-extraction-site" tagline="Similar Extraction Sites" class="card card-1">
+      <p>Download or explore similar extraction sites spatially using the Exploration User Interface (EUI).</p>
+      <div class="buttons">
+        <button
+          hraClickEvent
+          hraFeature="download-json"
+          (click)="onDownloadJSONButtonClicked()"
+          mat-button
+          hraButtonVariant="primary"
+          hraButtonSize="medium"
+          disabled="false"
+        >
+          JSON-LD
+          <mat-icon>download</mat-icon>
+        </button>
+        <button hraClickEvent hraFeature="explore" mat-flat-button (click)="euiOpen.set(true)">Explore</button>
+      </div>
+    </hra-workflow-card>
+    <hra-workflow-card hraFeature="metadata" tagline="Metadata" class="card card-2">
+      <div hraHoverEvent class="metadata-container">
+        <div class="titles">
+          <div class="metadata-row">
+            <span class="label">Source Data</span>
+            <span class="value">{{ data().file.name }}</span>
+          </div>
+          <div class="metadata-row">
+            <span class="label">Organ</span>
+            <span class="value">{{ data().organ ?? 'no organ selected' }}</span>
+          </div>
+          <div class="metadata-row">
+            <span class="label">Annotation Tool</span>
+            <span class="value">{{ data().tool ?? 'no tool selected' }}</span>
+          </div>
+          <div class="metadata-row">
+            <span class="label">Creation Date/Time</span>
+            <span class="value">{{ predictionDate() }}</span>
+          </div>
         </div>
       </div>
-    </div>
-  </hra-workflow-card>
-</div>
-
-<!-- EUI OVERLAY -->
-<ng-template #euiTemplate>
-  <div>
-    <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>
-    <ccf-eui
-      class="embedded"
-      base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
-      use-remote-api="false"
-      hubmap-data-url=""
-      login-disabled="true"
-      header="false"
-      data-sources="{{ ruiLocationsJsonString }}"
-    >
-    </ccf-eui>
+    </hra-workflow-card>
   </div>
-</ng-template>
+
+  <!-- EUI OVERLAY -->
+  <ng-template #euiTemplate>
+    <div>
+      <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>
+      <ccf-eui
+        class="embedded"
+        base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
+        use-remote-api="false"
+        hubmap-data-url=""
+        login-disabled="true"
+        header="false"
+        data-sources="{{ ruiLocationsJsonString }}"
+      >
+      </ccf-eui>
+    </div>
+  </ng-template>
+</ng-container>

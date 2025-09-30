@@ -5,7 +5,6 @@ import { FilterSexEnum } from '@hra-api/ng-client';
 import { NgxsModule, StateContext } from '@ngxs/store';
 import { ApiEndpointDataSourceService, DataSourceService, GlobalConfigState } from 'ccf-shared';
 import { mock, MockProxy } from 'jest-mock-extended';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { of } from 'rxjs';
 import { DataState } from '../data/data.state';
 import { SceneState } from '../scene/scene.state';
@@ -19,13 +18,11 @@ describe('SpatialSearchUiState', () => {
   };
   let ctx: MockProxy<StateContext<SpatialSearchUiModel>>;
   let http: MockProxy<HttpClient>;
-  let ga: MockProxy<GoogleAnalyticsService>;
   let spatialSearchState: SpatialSearchUiState;
 
   beforeEach(() => {
     ctx = mock();
     http = mock();
-    ga = mock();
 
     TestBed.configureTestingModule({
       imports: [
@@ -34,7 +31,6 @@ describe('SpatialSearchUiState', () => {
       ],
       providers: [
         { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
-        { provide: GoogleAnalyticsService, useValue: ga },
         { provide: HttpClient, useValue: http },
       ],
     });

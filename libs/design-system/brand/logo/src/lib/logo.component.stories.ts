@@ -27,9 +27,9 @@ type Story = StoryObj<BrandLogoComponent>;
 export const Default: Story = {};
 
 export const WhiteLogoText: Story = {
-  parameters: {
+  globals: {
     backgrounds: {
-      default: 'dark',
+      value: 'dark',
     },
   },
   render: (args) => ({

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, inject, InjectionToken, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -54,7 +54,7 @@ const SAMPLE_URL_LINK =
   selector: 'hra-tissue-origin-predictor',
   standalone: true,
   imports: [
-    CommonModule,
+    HraCommonModule,
     ButtonsModule,
     FormsModule,
     MatFormFieldModule,

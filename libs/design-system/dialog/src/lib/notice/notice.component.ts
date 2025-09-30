@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -9,6 +8,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /** Interface for Dialog Data */
@@ -30,7 +30,7 @@ export interface DialogData {
 @Component({
   selector: 'hra-notice',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     ButtonsModule,
     MatButtonModule,

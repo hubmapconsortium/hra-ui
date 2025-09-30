@@ -42,6 +42,7 @@ import {
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 import { environment } from '../environments/environment';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Input property keys */
 type InputProps =
@@ -81,7 +82,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 /** FTU ui small web component */
 @Component({
   selector: 'hra-root',
-  imports: [TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
+  imports: [HraCommonModule, TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host: {
