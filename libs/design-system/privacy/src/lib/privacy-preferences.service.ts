@@ -57,14 +57,17 @@ export class PrivacyPreferencesService {
   hasPrivacyPreferences(): boolean {
     return store.local.has(PRIVACY_PREFERENCES_STORAGE_KEY);
   }
+
   /** Retrieve privacy preferences from local storage */
   getPrivacyPreferences(): Record<string, boolean> {
     return store.local.get(PRIVACY_PREFERENCES_STORAGE_KEY) ?? {};
   }
+
   /** Enable syncing of preferences to local storage */
   enableSync(): void {
     this.syncEnabled.set(true);
   }
+
   /** Open the consent banner dialog */
   openConsentBanner(): void {
     if (this.hasActiveDialog()) {
@@ -87,8 +90,9 @@ export class PrivacyPreferencesService {
 
     ref.afterClosed().subscribe((result) => this.handleDialogResult(result));
   }
+
   /** Open the privacy preferences dialog */
-  openPrivacyPreferences(tab?: PrivacyPreferencesTab, disableClose?: boolean): void {
+  openPrivacyPreferences(tab?: PrivacyPreferencesTab): void {
     if (this.hasActiveDialog()) {
       return;
     }
@@ -103,9 +107,7 @@ export class PrivacyPreferencesService {
         data: {
           categories: this.consent.categories(),
           tab,
-          disableClose,
         },
-        disableClose: disableClose,
         hasBackdrop: true,
         id: PRIVACY_PREFERENCES_DIALOG_ID,
         restoreFocus: true,
@@ -134,10 +136,13 @@ export class PrivacyPreferencesService {
         break;
 
       case 'customize':
-        this.openPrivacyPreferences('manage', true);
+        this.openPrivacyPreferences('consent');
         break;
 
       case 'dismiss':
+        if (!this.syncEnabled()) {
+          this.openConsentBanner();
+        }
         break;
 
       default:
