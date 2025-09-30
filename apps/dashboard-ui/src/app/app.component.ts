@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
@@ -20,7 +21,7 @@ import { routeData } from './shared/utils/route-data';
     class: 'hra-app',
   },
 })
-export class AppComponent {
+export class AppComponent extends BaseApplicationComponent {
   /** Route Data */
   private readonly data = routeData();
   /**
@@ -30,6 +31,7 @@ export class AppComponent {
 
   /** Initialize app */
   constructor() {
+    super();
     inject(Router).initialNavigation();
   }
 }

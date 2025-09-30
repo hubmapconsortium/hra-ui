@@ -1,21 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, OnDestroy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Select, Store } from '@ngxs/store';
+import { StateReset } from 'ngxs-reset-plugin';
 import { Observable } from 'rxjs';
-import { createFileNameTimestamp } from './util/file-timestamp';
-
 import { environment } from '../environments/environment';
 import {
   DeleteCompareSheet,
@@ -28,6 +30,7 @@ import {
   UpdateMode,
   UpdateReport,
 } from './actions/sheet.actions';
+import { UpdateBimodalConfig } from './actions/tree.actions';
 import {
   CloseCompare,
   CloseLoading,
@@ -40,11 +43,6 @@ import {
   ToggleReport,
 } from './actions/ui.actions';
 import { ConfigService } from './app-config.service';
-
-import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { StateReset } from 'ngxs-reset-plugin';
-import { UpdateBimodalConfig } from './actions/tree.actions';
 import { CompareComponent } from './components/compare/compare.component';
 import { DebugLogsComponent } from './components/debug-logs/debug-logs.component';
 import { DoiComponent } from './components/doi/doi.component';
@@ -76,6 +74,7 @@ import { LogsState } from './store/logs.state';
 import { SheetState } from './store/sheet.state';
 import { TreeState } from './store/tree.state';
 import { UIState, UIStateModel } from './store/ui.state';
+import { createFileNameTimestamp } from './util/file-timestamp';
 
 @Component({
   selector: 'app-reporter',
@@ -101,7 +100,7 @@ import { UIState, UIStateModel } from './store/ui.state';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent extends BaseApplicationComponent implements OnDestroy {
   /** Configuration Service */
   readonly configService = inject(ConfigService);
 
@@ -198,6 +197,8 @@ export class AppComponent implements OnDestroy {
 
   /** Initialize the component */
   constructor() {
+    super();
+
     switch (environment.tag) {
       case 'Staging':
         document.title = 'ASCT+B Reporter | Staging';

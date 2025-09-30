@@ -15,6 +15,7 @@ import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode } from '@hra-api/ng-client';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule, monitorHeight } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconComponent } from '@hra-ui/design-system/icons';
@@ -103,7 +104,7 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class AppComponent extends BaseApplicationComponent {
   /** Emits when the user switches the model sex */
   readonly sexChange = output<'Male' | 'Female'>();
 
@@ -256,6 +257,11 @@ export class AppComponent {
 
   /** Height monitor for content container height used to update the height of Body UI container */
   protected readonly contentHeightMonitor = monitorHeight(this.contentContainer);
+
+  /** Initialize the app */
+  constructor() {
+    super({ analytics: false });
+  }
 
   /**
    * Apply latest changes to the global configuration state.

@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Filter } from '@hra-api/ng-client';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
@@ -63,7 +64,7 @@ interface AppOptions {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class AppComponent {
+export class AppComponent extends BaseApplicationComponent {
   /** Set selected searches */
   @Dispatch()
   readonly setSelectedSearches = actionAsFn(SetSelectedSearches);
@@ -150,6 +151,8 @@ export class AppComponent {
    * Creates an instance of app component.
    */
   constructor() {
+    super();
+
     this.data.tissueBlockData$.subscribe();
     this.data.aggregateData$.subscribe();
     this.data.ontologyTermOccurencesData$.subscribe();
