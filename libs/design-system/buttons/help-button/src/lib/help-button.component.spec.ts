@@ -21,7 +21,7 @@ import { MatMenuModule } from '@angular/material/menu';
 })
 class HostWithMenuComponent {}
 
-describe('HelpButtonComponent (with Angular Testing Library)', () => {
+describe('HelpButtonComponent', () => {
   it('renders a link when `action` is a string URL', async () => {
     await render(HelpButtonComponent, {
       inputs: { action: 'https://example.com/help' },
