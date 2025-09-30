@@ -2,14 +2,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { render, screen, fireEvent, waitFor } from '@testing-library/angular';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
-import { PrivacyPreferencesModalComponent } from './privacy-preferences-modal.component';
+import { PrivacyPreferencesComponent } from './privacy-preferences.component';
 
-describe('PrivacyPreferencesModalComponent', () => {
+describe('PrivacyPreferencesComponent', () => {
   const globalProviders = [provideHttpClient(), provideHttpClientTesting()];
   const imports = [MatIconTestingModule];
 
   const renderComponent = (hasProvidedPreferences = false) =>
-    render(PrivacyPreferencesModalComponent, {
+    render(PrivacyPreferencesComponent, {
       providers: globalProviders,
       imports,
       componentInputs: { hasProvidedPreferences },

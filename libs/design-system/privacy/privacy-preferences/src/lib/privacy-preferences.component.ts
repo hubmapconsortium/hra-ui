@@ -36,7 +36,7 @@ interface PrivacyCategory {
  * Privacy Preferences Modal Component
  */
 @Component({
-  selector: 'hra-privacy-preferences-modal',
+  selector: 'hra-privacy-preferences',
   imports: [
     HraCommonModule,
     BrandModule,
@@ -50,11 +50,11 @@ interface PrivacyCategory {
     ScrollOverflowFadeDirective,
     TextHyperlinkComponent,
   ],
-  templateUrl: './privacy-preferences-modal.component.html',
-  styleUrl: './privacy-preferences-modal.component.scss',
+  templateUrl: './privacy-preferences.component.html',
+  styleUrl: './privacy-preferences.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PrivacyPreferencesModalComponent {
+export class PrivacyPreferencesComponent {
   /** Whether user has already provided preferences */
   readonly hasProvidedPreferences = input(false);
 
