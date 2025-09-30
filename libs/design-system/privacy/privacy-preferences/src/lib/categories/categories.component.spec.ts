@@ -1,21 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, signal } from '@angular/core';
+import { render } from '@testing-library/angular';
 import { CategoriesComponent } from './categories.component';
+import { INITIAL_CATEGORY_SETTINGS } from '@hra-ui/common/analytics';
+
+@Component({
+  template: '<hra-categories [(categories)]="categories" />',
+})
+class TestHostComponent {
+  readonly categories = signal(INITIAL_CATEGORY_SETTINGS);
+}
 
 describe('CategoriesComponent', () => {
-  let component: CategoriesComponent;
-  let fixture: ComponentFixture<CategoriesComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  it('should create the component', async () => {
+    const result = await render(TestHostComponent, {
       imports: [CategoriesComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(CategoriesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    });
+    expect(result).toBeTruthy();
   });
 });
