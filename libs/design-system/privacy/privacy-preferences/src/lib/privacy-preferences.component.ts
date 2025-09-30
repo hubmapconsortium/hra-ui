@@ -45,10 +45,10 @@ const tabIdToIndex: Record<PrivacyPreferencesTab, number> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivacyPreferencesComponent {
+  /** Injected data */
   protected readonly data = inject<PrivacyPreferencesData>(MAT_DIALOG_DATA);
-
   /** Tab index */
   protected readonly tabIndex = signal(tabIdToIndex[this.data.tab ?? 'consent']);
-
+  /** Categories */
   protected readonly categories = signal(this.data.categories);
 }
