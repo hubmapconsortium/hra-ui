@@ -1,1 +1,1 @@
-export * from './lib/application/application.component';
+export { BaseApplicationComponent, BaseApplicationDirective, BaseApplicationOptions } from './lib/base-application';

@@ -2,7 +2,10 @@
   "name": "@hra-ui/application",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^20.2.0"
+    "@angular/core": "^20.2.0",
+    "@hra-ui/common": "1.0.0",
+    "ngxtension": "^5.1.0",
+    "zod": "^4.1.3"
   },
   "sideEffects": false
 }
