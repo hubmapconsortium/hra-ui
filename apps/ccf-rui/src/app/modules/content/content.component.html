@@ -9,7 +9,15 @@
       (changePosition)="model.setPosition($event)"
     ></ccf-spatial-search-keyboard-ui-behavior>
   }
-  <ccf-body-ui class="gizmo" [scene]="(scene.gizmo$ | async)!" [interactive]="false" [zoom]="9.5" #gizmo></ccf-body-ui>
+  <ccf-body-ui
+    class="gizmo"
+    [rotation]="gizmoRotation()[0]"
+    [rotationX]="gizmoRotation()[1]"
+    [scene]="(scene.gizmo$ | async)!"
+    [interactive]="false"
+    [zoom]="9.5"
+    #gizmo
+  ></ccf-body-ui>
 </div>
 
 <div class="main-content">
@@ -19,8 +27,6 @@
       hraClickEvent
       class="body-ui"
       [scene]="(scene.nodes$ | async) ?? []"
-      [rotation]="gizmoRotation()[0]"
-      [rotationX]="gizmoRotation()[1]"
       (rotationChange)="this.gizmoRotation.set($event)"
       [bounds]="(bounds$ | async)!"
       [zoom]="11.5"
