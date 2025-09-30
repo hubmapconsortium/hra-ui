@@ -17,10 +17,17 @@ import { CATEGORY_DEFS } from './category-defs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesComponent {
+  /**
+   * Categories  of categories component
+   */
   readonly categories = model.required<Categories>();
-
+  /** Definitions of all categories */
   protected readonly categoryDefs = CATEGORY_DEFS;
 
+  /** Toggle a category on or off
+   * @param id - ID of the category to toggle
+   * @param checked - Whether the category is enabled or disabled
+   */
   toggleCategory(id: EventCategory, checked: boolean): void {
     this.categories.update((current) => ({ ...current, [id]: checked }));
   }
