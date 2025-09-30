@@ -1,5 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -126,7 +127,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
 @Component({
   selector: 'cde-histogram',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
