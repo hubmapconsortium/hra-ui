@@ -6,6 +6,12 @@ import {
   ConsentBannerComponent,
   ConsentBannerResult,
 } from '@hra-ui/design-system/privacy/consent-banner';
+import {
+  PrivacyPreferencesComponent,
+  PrivacyPreferencesData,
+  PrivacyPreferencesResult,
+  PrivacyPreferencesTab,
+} from '@hra-ui/design-system/privacy/privacy-preferences';
 import store from 'store2';
 
 /** Key used to store privacy preferences in local storage */
@@ -67,7 +73,6 @@ export class PrivacyPreferencesService {
 
     const ref = this.dialog.open<ConsentBannerComponent, never, ConsentBannerResult>(ConsentBannerComponent, {
       ariaLabelledBy: CONSENT_BANNER_ARIA_LABELLEDBY_ID,
-      // ariaModal: true, ??
       closeOnNavigation: false,
       disableClose: true,
       hasBackdrop: false,
@@ -80,28 +85,44 @@ export class PrivacyPreferencesService {
       autoFocus: false,
     });
 
-    ref.afterClosed().subscribe((result) => this.handleConsentBannerResult(result));
+    ref.afterClosed().subscribe((result) => this.handleDialogResult(result));
   }
   /** Open the privacy preferences dialog */
-  openPrivacyPreferences(): void {
+  openPrivacyPreferences(tab?: PrivacyPreferencesTab, disableClose?: boolean): void {
     if (this.hasActiveDialog()) {
       return;
     }
 
-    // TODO
+    const ref = this.dialog.open<PrivacyPreferencesComponent, PrivacyPreferencesData, PrivacyPreferencesResult>(
+      PrivacyPreferencesComponent,
+      {
+        ariaLabel: 'Manage privacy preferences',
+        ariaModal: true,
+        autoFocus: true,
+        closeOnNavigation: false,
+        data: {
+          categories: this.consent.categories(),
+          tab,
+          disableClose,
+        },
+        disableClose: disableClose,
+        hasBackdrop: true,
+        id: PRIVACY_PREFERENCES_DIALOG_ID,
+        restoreFocus: true,
+      },
+    );
+
+    ref.afterClosed().subscribe((result) => this.handleDialogResult(result));
   }
+
   /** Check whether a privacy-related dialog is currently open */
   private hasActiveDialog(): boolean {
     const ids = [CONSENT_BANNER_DIALOG_ID, PRIVACY_PREFERENCES_DIALOG_ID];
     return ids.some((id) => this.dialog.getDialogById(id) !== undefined);
   }
-  /** Handle the result from the consent banner dialog */
-  private handleConsentBannerResult(result: ConsentBannerResult = 'allow-necessary'): void {
-    switch (result) {
-      case 'customize':
-        this.openPrivacyPreferences();
-        break;
 
+  private handleDialogResult(result: ConsentBannerResult | PrivacyPreferencesResult = 'dismiss'): void {
+    switch (result) {
       case 'allow-all':
         this.consent.enableAllCategories();
         this.enableSync();
@@ -109,6 +130,18 @@ export class PrivacyPreferencesService {
 
       case 'allow-necessary':
         this.consent.disableAllCategories();
+        this.enableSync();
+        break;
+
+      case 'customize':
+        this.openPrivacyPreferences('manage', true);
+        break;
+
+      case 'dismiss':
+        break;
+
+      default:
+        this.consent.updateCategories(result);
         this.enableSync();
         break;
     }
