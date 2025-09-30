@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -8,9 +7,9 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faDna } from '@fortawesome/free-solid-svg-icons';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { Select, Store } from '@ngxs/store';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { UpdateBimodalConfig } from '../../actions/tree.actions';
 import {
@@ -20,7 +19,6 @@ import {
   bimodalCTSizeOptions,
   bimodalSortOptions,
 } from '../../models/bimodal.model';
-import { GaAction, GaCategory } from '../../models/ga.model';
 import { OmapConfig } from '../../models/omap.model';
 import { Error } from '../../models/response.model';
 import { BimodalService } from '../../modules/tree/bimodal.service';
@@ -30,7 +28,7 @@ import { TreeState } from '../../store/tree.state';
 @Component({
   selector: 'app-functions',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatExpansionModule,
     MatSelectModule,
     MatIconModule,
@@ -46,7 +44,6 @@ import { TreeState } from '../../store/tree.state';
 export class FunctionsComponent {
   readonly store = inject(Store);
   readonly bms = inject(BimodalService);
-  readonly ga = inject(GoogleAnalyticsService);
 
   bmSizeOptions = bimodalBSizeOptions;
   sortOptions = bimodalSortOptions;
@@ -71,11 +68,6 @@ export class FunctionsComponent {
   changeOptions(type: string, field: string, event: MatSelectChange) {
     (this.bimodalConfig as unknown as Record<string, Record<string, unknown>>)[type][field] = event.value;
     this.updateBimodal();
-    this.ga.event(
-      GaAction.CLICK,
-      GaCategory.CONTROLS,
-      `Change Cell Type (CT) or Biomarker (BM) Options: ${field}:${event.value}.toLowerCase()`,
-    );
   }
 
   updateBimodal() {

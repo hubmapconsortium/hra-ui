@@ -1,8 +1,8 @@
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -13,7 +13,7 @@ import { MarkdownModule } from 'ngx-markdown';
  */
 @Component({
   selector: 'ftu-empty-biomarker',
-  imports: [CommonModule, MatButtonModule, MarkdownModule, MatIconModule, CdkCopyToClipboard],
+  imports: [HraCommonModule, MatButtonModule, MarkdownModule, MatIconModule, CdkCopyToClipboard],
   templateUrl: './empty-biomarker.component.html',
   styleUrls: ['./empty-biomarker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

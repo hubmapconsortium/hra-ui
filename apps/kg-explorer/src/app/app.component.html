@@ -1,26 +1,42 @@
-<hra-header baseUrl="lod.humanatlas.io/" [breadcrumbs]="crumbs()" [progress]="isNavigating()">
-  <button mat-icon-button [matMenuTriggerFor]="menuOptions" hraPlainTooltip="Help & documentation">
-    <hra-icon fontIcon="help"></hra-icon>
-  </button>
+<ng-container hraFeature="kg-explorer">
+  <hra-header baseUrl="lod.humanatlas.io/" [breadcrumbs]="crumbs()" [progress]="isNavigating()" hraFeature="header">
+    <button
+      hraFeature="help"
+      hraClickEvent
+      mat-icon-button
+      [matMenuTriggerFor]="menuOptions"
+      hraPlainTooltip="Help & documentation"
+    >
+      <hra-icon fontIcon="help"></hra-icon>
+    </button>
 
-  <mat-menu #menuOptions="matMenu" class="help-menu">
-    @for (option of helpMenuOptions(); track option) {
-      @if (option.divider) {
-        <mat-divider></mat-divider>
+    <mat-menu hraFeature="help-menu" #menuOptions="matMenu" class="help-menu">
+      @for (option of helpMenuOptions(); track option) {
+        @if (option.divider) {
+          <mat-divider />
+        }
+        <a
+          [hraFeature]="option.label | slugify"
+          hraClickEvent
+          class="option"
+          mat-menu-item
+          [attr.href]="option.url"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="option-text">
+            <span class="option-name">
+              {{ option.label }}
+            </span>
+            <span class="option-description">
+              {{ option.description }}
+            </span>
+          </div>
+        </a>
       }
-      <a class="option" mat-menu-item [attr.href]="option.url" target="_blank" rel="noopener noreferrer">
-        <div class="option-text">
-          <span class="option-name">
-            {{ option.label }}
-          </span>
-          <span class="option-description">
-            {{ option.description }}
-          </span>
-        </div>
-      </a>
-    }
-  </mat-menu>
-</hra-header>
-<div class="content">
-  <router-outlet></router-outlet>
-</div>
+    </mat-menu>
+  </hra-header>
+  <div class="content">
+    <router-outlet />
+  </div>
+</ng-container>

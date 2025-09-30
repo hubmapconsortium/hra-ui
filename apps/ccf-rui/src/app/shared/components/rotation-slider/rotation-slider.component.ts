@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { ChangeDetectionStrategy, Component, model, output } from '@angular/core';
 
 /** Type in which the values of the sliders are stored. */
 export interface Rotation {
@@ -37,14 +36,11 @@ export type Axis = 'x' | 'y' | 'z';
   standalone: false,
 })
 export class RotationSliderComponent {
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /** Input that allows the rotation to be changed from outside of the component */
-  @Input() rotation = DEFAULT_ROTATION;
+  readonly rotation = model(DEFAULT_ROTATION);
 
   /** Output that emits the new rotation whenever it is changed from within the component */
-  @Output() readonly rotationChange = new EventEmitter<Rotation>();
+  readonly rotationChange = output<Rotation>();
 
   /** List of all axis */
   axisOptions: Axis[] = ['x', 'y', 'z'];
@@ -60,18 +56,16 @@ export class RotationSliderComponent {
    */
   changeRotation(newRotation: number | string, axis: string): void {
     const updatedNewRotation = +newRotation > 180 ? 180 : +newRotation < -180 ? -180 : +newRotation;
-    this.rotation = { ...this.rotation, [axis]: +updatedNewRotation };
-    this.ga.event('rotation_update', 'rotation_slider', axis, +updatedNewRotation);
-    this.rotationChange.emit(this.rotation);
+    this.rotation.set({ ...this.rotation(), [axis]: +updatedNewRotation });
+    this.rotationChange.emit(this.rotation());
   }
 
   /**
    * Function to easily reset the rotations to 0 and emit this change.
    */
   resetRotation(dimension: Axis): void {
-    this.rotation = { ...this.rotation, [dimension]: 0 };
-    this.ga.event('rotation_reset', 'rotation_slider');
-    this.rotationChange.emit(this.rotation);
+    this.rotation.set({ ...this.rotation(), [dimension]: 0 });
+    this.rotationChange.emit(this.rotation());
   }
 
   /** Resets all rotations to 0 */

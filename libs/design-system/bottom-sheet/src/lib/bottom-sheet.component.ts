@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatIconModule } from '@angular/material/icon';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
+import { HraCommonModule } from '@hra-ui/common';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
 /**
@@ -67,7 +67,7 @@ export type BottomSheetData =
  */
 @Component({
   selector: 'hra-bottom-sheet',
-  imports: [CommonModule, ButtonsModule, MatIconModule, TableComponent, PageSectionComponent, ScrollingModule],
+  imports: [HraCommonModule, ButtonsModule, MatIconModule, TableComponent, PageSectionComponent, ScrollingModule],
   templateUrl: './bottom-sheet.component.html',
   styleUrl: './bottom-sheet.component.scss',
 })

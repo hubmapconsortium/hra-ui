@@ -3,10 +3,8 @@ import { UntypedFormControl, ValidatorFn, Validators } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Select, Store } from '@ngxs/store';
 import jexcel from 'jspreadsheet-ce';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import { FetchSheetData, UpdatePlaygroundData } from '../../actions/sheet.actions';
-import { GaAction, GaCategory } from '../../models/ga.model';
 import { Sheet, UploadForm } from '../../models/sheet.model';
 import { SheetState } from '../../store/sheet.state';
 import { UIState } from '../../store/ui.state';
@@ -19,7 +17,6 @@ import { UIState } from '../../store/ui.state';
 })
 export class PlaygroundComponent implements AfterViewInit {
   readonly store = inject(Store);
-  readonly ga = inject(GoogleAnalyticsService);
 
   @ViewChild('spreadsheet') spreadsheet!: ElementRef;
 
@@ -262,7 +259,6 @@ export class PlaygroundComponent implements AfterViewInit {
       this.store.dispatch(new UpdatePlaygroundData(this.spreadSheetData));
     }
     this.prevTab = tab.index;
-    this.ga.event(GaAction.NAV, GaCategory.PLAYGROUND, 'Change playground tab', tab.index);
   }
 
   /**
@@ -279,7 +275,6 @@ export class PlaygroundComponent implements AfterViewInit {
       sheet.formData = data.formData;
     }
     this.store.dispatch(new FetchSheetData(sheet));
-    this.ga.event(GaAction.CLICK, GaCategory.PLAYGROUND, 'Upload Playground Sheet', sheet.sheetId);
   }
 
   /**

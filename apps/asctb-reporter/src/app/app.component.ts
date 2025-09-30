@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { routeData } from '@hra-ui/common';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
@@ -43,7 +43,6 @@ import { ConfigService } from './app-config.service';
 
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { StateReset } from 'ngxs-reset-plugin';
 import { UpdateBimodalConfig } from './actions/tree.actions';
 import { CompareComponent } from './components/compare/compare.component';
@@ -72,14 +71,11 @@ import { LinksASCTBData } from './models/tree.model';
 import { Logs, OpenBottomSheetData, Snackbar } from './models/ui.model';
 import { BimodalService } from './modules/tree/bimodal.service';
 import { TreeService } from './modules/tree/tree.service';
-import { ConsentService } from './services/consent.service';
 import { SheetService } from './services/sheet.service';
 import { LogsState } from './store/logs.state';
 import { SheetState } from './store/sheet.state';
 import { TreeState } from './store/tree.state';
 import { UIState, UIStateModel } from './store/ui.state';
-
-declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
 
 @Component({
   selector: 'app-reporter',
@@ -101,13 +97,11 @@ declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
     IndentedListComponent,
     DebugLogsComponent,
     CompareComponent,
+    HraCommonModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnDestroy {
-  /** Consent Service */
-  readonly consentService = inject(ConsentService);
-
   /** Configuration Service */
   readonly configService = inject(ConfigService);
 
@@ -146,9 +140,6 @@ export class AppComponent implements OnDestroy {
 
   /** Bottom Sheet Service */
   private readonly infoSheet = inject(MatBottomSheet);
-
-  /** Google Analytics Service */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** State Store */
   protected readonly store = inject(Store);
@@ -217,14 +208,6 @@ export class AppComponent implements OnDestroy {
       default:
         document.title = 'ASCT+B Reporter';
     }
-
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        gtag('config', environment.googleAnalyticsId, {
-          page_path: event.urlAfterRedirects,
-        });
-      }
-    });
 
     effect(() => {
       if (this.appControlsEnabled()) {
@@ -468,7 +451,6 @@ export class AppComponent implements OnDestroy {
         queryParams: { playground: true, selectedOrgans: 'example' },
         queryParamsHandling: 'merge',
       });
-      // this.ga.event(GaAction.NAV, GaCategory.NAVBAR, 'Enter Playground Mode', undefined);
     } else if (this.mode() === 'playground') {
       this.router.navigate(['/vis'], {
         queryParams: {
@@ -477,7 +459,6 @@ export class AppComponent implements OnDestroy {
         },
         queryParamsHandling: 'merge',
       });
-      // this.ga.event(GaAction.NAV, GaCategory.NAVBAR, 'Exit Playground Mode', undefined);
     }
   }
 
@@ -504,7 +485,6 @@ export class AppComponent implements OnDestroy {
   /** Exports image */
   exportImage(imageType: string) {
     this.exportVis(imageType);
-    // this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, `Export Image: ${imageType}`, 0);
   }
 
   /** Deletes a sheeet from the compare
