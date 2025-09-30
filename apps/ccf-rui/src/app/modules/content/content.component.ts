@@ -1,18 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostBinding,
-  Input,
-  OnDestroy,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, input, OnInit, signal } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
-import { ResizeSensor } from 'css-element-queries';
+import { combineLatest } from 'rxjs';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
@@ -28,7 +18,7 @@ import { SceneState } from '../../core/store/scene/scene.state';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class ContentComponent implements OnInit, OnDestroy {
+export class ContentComponent implements OnInit {
   /** Model state */
   readonly model = inject(ModelState);
   /** Page state */
@@ -37,16 +27,15 @@ export class ContentComponent implements OnInit, OnDestroy {
   readonly registration = inject(RegistrationState);
   /** Scene state */
   readonly scene = inject(SceneState);
-  /** Element reference */
-  private readonly rootRef = inject<ElementRef<HTMLElement>>(ElementRef);
-  /** Change detector */
-  private readonly cdr = inject(ChangeDetectorRef);
 
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-content';
 
   /** Disable keyboard position interactions */
-  @Input() disablePositionChange = false;
+  readonly disablePositionChange = input(false);
+
+  /** Rotation values for mini model gizmo [y-axis rotation, x-axis rotation] */
+  readonly gizmoRotation = signal<[number, number]>([0, 0]);
 
   /** Current position of block */
   readonly position$ = this.model.position$.pipe(
@@ -67,49 +56,15 @@ export class ContentComponent implements OnInit, OnDestroy {
     distinctUntilKeyChanged('y'),
   );
 
-  /** Whether the content area is very narrow */
-  isNarrowView = false;
-
   /**
-   * Shows / hides the state debug component for testing purposes.
-   */
-  debugMode = false;
-
-  /**
-   * Show debug buttons of content component
-   */
-  showDebugButtons = !environment.production;
-
-  /** Resize detection */
-  private sensor!: ResizeSensor;
-
-  /**
-   * Sets up the resize sensor
+   * Updates the gizmo rotation based on the scene rotation when not in 3D view
    */
   ngOnInit(): void {
-    this.sensor = new ResizeSensor(this.rootRef.nativeElement, ({ width }) => {
-      const isNarrowView = width < 440; // 27.5rem
-      if (this.isNarrowView !== isNarrowView) {
-        this.isNarrowView = isNarrowView;
-        this.cdr.markForCheck();
+    combineLatest([this.is3DView$, this.scene.rotation$]).subscribe(([is3D, rotation]) => {
+      if (!is3D) {
+        this.gizmoRotation.set([rotation, 0]);
       }
     });
-  }
-
-  /**
-   * Detaches the resize sensor
-   */
-  ngOnDestroy(): void {
-    this.sensor.detach();
-  }
-
-  /**
-   * Sets view type
-   *
-   * @param is3DView Set view type to '3d' if this is true otherwise set it to 'register'
-   */
-  setViewType(is3DView: boolean): void {
-    this.model.setViewType(is3DView ? '3d' : 'register');
   }
 
   /** Handle node drag */

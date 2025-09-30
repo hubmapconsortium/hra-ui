@@ -3,12 +3,11 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
   HostBinding,
   inject,
-  Input,
+  input,
   OnDestroy,
-  Output,
+  output,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { from, interval, ObservableInput, Subject } from 'rxjs';
@@ -45,16 +44,16 @@ export class TagSearchComponent implements OnDestroy {
   @HostBinding('class') readonly clsName = 'ccf-tag-search';
 
   /** Search method */
-  @Input() search?: (text: string, limit: number) => ObservableInput<TagSearchResult>;
+  readonly search = input<(text: string, limit: number) => ObservableInput<TagSearchResult>>();
 
   /** Maximum number of results to show */
-  @Input() searchLimit?: number;
+  readonly searchLimit = input<number>(DEFAULT_SEARCH_LIMIT);
 
   /** Throttle time between search calls */
-  @Input() searchThrottle?: number;
+  readonly searchThrottle = input<number>(DEFAULT_SEARCH_THROTTLE);
 
   /** Emits when tags are added */
-  @Output() readonly added = new EventEmitter<Tag[]>();
+  readonly added = output<Tag[]>();
 
   /** Search field controller */
   readonly searchControl = new UntypedFormControl();
@@ -80,7 +79,7 @@ export class TagSearchComponent implements OnDestroy {
     this.searchControl.valueChanges
       .pipe(
         takeUntil(this.destroy$),
-        throttle(() => interval(this.searchThrottle ?? DEFAULT_SEARCH_THROTTLE), { leading: true, trailing: true }),
+        throttle(() => interval(this.searchThrottle()), { leading: true, trailing: true }),
         switchMap(this.executeSearch),
       )
       .subscribe((result) => {
@@ -150,12 +149,12 @@ export class TagSearchComponent implements OnDestroy {
    * @returns An observable of the search result.
    */
   private readonly executeSearch = (text: string): ObservableInput<TagSearchResult> => {
-    const { search, searchLimit = DEFAULT_SEARCH_LIMIT } = this;
+    const search = this.search();
     if (!text || !search) {
       return [EMPTY_RESULT];
     }
 
-    return from(search(text, searchLimit)).pipe(
+    return from(search(text, this.searchLimit())).pipe(
       catchError(() => [EMPTY_RESULT]),
       map(this.truncateResults),
     );
@@ -168,13 +167,13 @@ export class TagSearchComponent implements OnDestroy {
    * @returns Results with at most `searchLimit` items
    */
   private readonly truncateResults = (result: TagSearchResult): TagSearchResult => {
-    const { searchLimit = DEFAULT_SEARCH_LIMIT } = this;
+    const { searchLimit } = this;
     const items = result.results;
 
-    if (items.length > searchLimit) {
+    if (items.length > searchLimit()) {
       return {
         ...result,
-        results: items.slice(0, searchLimit),
+        results: items.slice(0, searchLimit()),
       };
     }
 

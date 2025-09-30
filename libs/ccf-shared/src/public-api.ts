@@ -15,7 +15,6 @@ export * from './lib/components/text-search/text-search.component';
 export * from './lib/components/text-search/text-search.module';
 
 export * from './lib/components/opacity-slider/opacity-slider.component';
-export * from './lib/components/opacity-slider/opacity-slider.module';
 
 export * from './lib/components/info/info-dialog/info-dialog.component';
 export * from './lib/components/info/info-dialog/info-dialog.module';
