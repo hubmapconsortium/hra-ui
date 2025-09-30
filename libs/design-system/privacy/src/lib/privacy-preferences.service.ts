@@ -77,6 +77,7 @@ export class PrivacyPreferencesService {
         left: '0px',
         right: '0px',
       },
+      autoFocus: false,
     });
 
     ref.afterClosed().subscribe((result) => this.handleConsentBannerResult(result));
