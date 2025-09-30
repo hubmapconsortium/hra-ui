@@ -15,7 +15,6 @@ export type PrivacyPreferencesTab = 'consent' | 'manage';
 export interface PrivacyPreferencesData {
   categories: Categories;
   tab?: PrivacyPreferencesTab;
-  disableClose?: boolean;
 }
 
 export type PrivacyPreferencesResult = 'allow-all' | 'allow-necessary' | 'dismiss' | Categories;
