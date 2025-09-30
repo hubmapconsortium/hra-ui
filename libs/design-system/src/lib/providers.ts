@@ -4,7 +4,6 @@ import { EnvironmentProviders, inject, makeEnvironmentProviders, provideAppIniti
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideBrand } from '@hra-ui/design-system/brand';
 import { provideButtons } from '@hra-ui/design-system/buttons';
-import { provideRadioButton } from '@hra-ui/design-system/buttons/radio-button';
 import { provideCodeBlock } from '@hra-ui/design-system/code-block';
 import { provideIcons } from '@hra-ui/design-system/icons';
 import { provideScrolling, ScrollingOptions } from '@hra-ui/design-system/scrolling';
@@ -30,7 +29,6 @@ export function provideDesignSystemCommon(options?: DesignSystemOptions) {
     provideButtons(),
     provideCodeBlock(),
     provideIcons(),
-    provideRadioButton(),
     provideScrolling(options?.scrolling),
     provideTrees(),
     provideTabs(),
