@@ -1,24 +1,24 @@
-import { Pipe, PipeTransform, signal, Signal } from '@angular/core';
+import { Pipe, PipeTransform, signal, WritableSignal } from '@angular/core';
 import { getImportMetaUrl } from '@hra-ui/common/import-meta';
 import { createInjectionToken } from 'ngxtension/create-injection-token';
-import { createChainedHrefProvider, createHrefProvider } from '../util/href-provider';
+import { createHrefProvider } from '../util/href-provider';
 import { isAbsolute, joinWithSlash } from '../util/path';
 import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';
 
 /**
  * Get the default asset href
  */
-function assetHref(): Signal<string> {
+function assetHref(): WritableSignal<string> {
   try {
     const url = new URL('./', getImportMetaUrl());
     if (/https?:/.test(url.protocol)) {
-      return signal(url.href).asReadonly();
+      return signal(url.href);
     }
   } catch {
     // Ignore URL errors
   }
 
-  return signal('').asReadonly();
+  return signal('');
 }
 
 /**
@@ -39,8 +39,6 @@ const ASSET_HREF = createInjectionToken(assetHref);
 export const injectAssetHref = ASSET_HREF[0];
 /** Provide a new asset href */
 export const provideAssetHref = createHrefProvider(ASSET_HREF[1]);
-/** Provide a possibly undefined href that falls back to the global asset href */
-export const provideChainedAssetHref = createChainedHrefProvider(injectAssetHref, ASSET_HREF[1]);
 /** Inject an url resolver that resolve urls against the asset href */
 export const injectAssetUrlResolver = createUrlResolverInjector(injectAssetHref, resolveAssetUrl);
 /** Create a derived signal that resolves an url against the asset href */
