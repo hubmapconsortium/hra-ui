@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HraCommonModule } from '@hra-ui/common';
-import { Categories } from '@hra-ui/common/analytics';
+import { ConsentCategories } from '@hra-ui/common/analytics';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -16,7 +16,7 @@ export type PrivacyPreferencesTab = 'consent' | 'manage';
 /** Interface of data passed to the Privacy Preferences Modal */
 export interface PrivacyPreferencesData {
   /** Categories */
-  categories: Categories;
+  categories: ConsentCategories;
   /**
    * Privacy preferences tab
    */
@@ -24,7 +24,7 @@ export interface PrivacyPreferencesData {
 }
 
 /** Result type returned when the Privacy Preferences Modal is closed */
-export type PrivacyPreferencesResult = 'allow-all' | 'allow-necessary' | 'dismiss' | Categories;
+export type PrivacyPreferencesResult = 'allow-all' | 'allow-necessary' | 'dismiss' | ConsentCategories;
 
 /** Mapping of tab IDs to their respective index */
 const tabIdToIndex: Record<PrivacyPreferencesTab, number> = {
