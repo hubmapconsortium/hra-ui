@@ -24,7 +24,7 @@ const ALL_CATEGORIES_DISABLED = createCategoryPreferences(false);
 /** Record of categories that should always be enabled */
 const ALWAYS_ENABLED_CATEGORIES = { [EventCategory.Necessary]: true };
 /** Initial categories settings */
-const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES };
+export const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES };
 
 /**
  * User preferences manager service
