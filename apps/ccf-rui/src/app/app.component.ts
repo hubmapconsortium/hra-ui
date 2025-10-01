@@ -59,6 +59,8 @@ export class AppComponent implements OnDestroy, OnInit {
   readonly registration = inject(RegistrationState);
   /** Snackbar service */
   readonly snackbar = inject(MatSnackBar);
+  /** Metadata service */
+  readonly metadata = inject(MetadataService);
   /** Global config */
   private readonly globalConfig = inject<GlobalConfigState<AppOptions>>(GlobalConfigState);
 
@@ -80,9 +82,6 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Preset view side */
   readonly viewSide$ = this.globalConfig.getOption('viewSide');
 
-  /** Metadata service */
-  private readonly metadata = inject(MetadataService);
-
   /** Whether to use the embedded app */
   protected readonly embedded = toSignal(this.page.useCancelRegistrationCallback$);
 
@@ -91,6 +90,9 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** The current view type, either 'register' or 'preview', default is register */
   protected readonly viewType = toSignal(this.model.viewType$, { initialValue: 'register' });
+
+  /** Whether the organ axis is hidden */
+  protected readonly disableOrganAxis = toSignal(this.model.disableOrganAxis$, { initialValue: false });
 
   /** All subscriptions managed by the container. */
   private readonly subscriptions = new Subscription();

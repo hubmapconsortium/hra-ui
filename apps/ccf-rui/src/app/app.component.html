@@ -21,19 +21,21 @@
         [matMenuTriggerFor]="menu"
         hraIconButtonSize="large"
         aria-label="Icon to open nested menu"
+        hraPlainTooltip="More"
       >
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu hraFeature="menu" #menu="matMenu">
         <button
-          hraFeature="reset-all"
+          hraFeature="toggle-organ-axis"
           hraClickEvent
           mat-menu-item
           matRipple
           matRippleColor="#201E3D14"
-          (click)="resetStage()"
+          (click)="model.toggleOrganAxis()"
         >
-          Reset all
+          <mat-icon>{{ disableOrganAxis() ? 'visibility_on' : 'visibility_off' }}</mat-icon>
+          {{ `${disableOrganAxis() ? 'Show' : 'Hide'} 3D axes` }}
         </button>
         <mat-divider class="menu-divider"></mat-divider>
         <button
@@ -54,7 +56,7 @@
           matRippleColor="#201E3D14"
           (click)="resetBlock()"
         >
-          Reset tissue block
+          Reset tissue block position
         </button>
         <mat-divider class="menu-divider"></mat-divider>
         <button
@@ -63,9 +65,9 @@
           mat-menu-item
           matRipple
           matRippleColor="#201E3D14"
-          (click)="resetMetadata()"
+          (click)="metadata.openModal('edit')"
         >
-          Reset registration metadata
+          Edit metadata
         </button>
       </mat-menu>
     </hra-expansion-panel-actions>

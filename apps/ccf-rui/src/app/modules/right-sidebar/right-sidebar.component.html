@@ -13,6 +13,18 @@
     </button>
     <mat-menu hraFeature="menu" #menu="matMenu" class="settings-overlay">
       <button
+        hraFeature="toggle-block-axes"
+        hraClickEvent
+        mat-menu-item
+        matRipple
+        matRippleColor="#201E3D14"
+        (click)="model.toggleBlockAxis()"
+      >
+        <mat-icon>{{ disableBlockAxis() ? 'visibility_on' : 'visibility_off' }}</mat-icon>
+        {{ `${disableBlockAxis() ? 'Show' : 'Hide'} 3D axes` }}
+      </button>
+      <mat-divider class="menu-divider"></mat-divider>
+      <button
         hraFeature="reset-all"
         hraClickEvent
         mat-menu-item
@@ -22,9 +34,8 @@
           setDefaultPosition(); blocksize.refreshBlockSize(); slices.refreshSlices(); rotation.resetAllRotations()
         "
       >
-        Reset all settings
+        Reset all tissue block settings
       </button>
-      <mat-divider class="menu-divider"></mat-divider>
       <button
         hraFeature="reset-position"
         hraClickEvent
