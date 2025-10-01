@@ -1,6 +1,5 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
-import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -17,7 +16,6 @@ import { SliderBoxComponent } from './slider-box.component';
     HraCommonModule,
     MatIconModule,
     MatSliderModule,
-    MatRippleModule,
     MatInputModule,
     MatFormFieldModule,
     ButtonsModule,

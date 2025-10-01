@@ -26,47 +26,17 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu hraFeature="menu" #menu="matMenu">
-        <button
-          hraFeature="toggle-organ-axis"
-          hraClickEvent
-          mat-menu-item
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="model.toggleOrganAxis()"
-        >
+        <button hraFeature="toggle-organ-axis" hraClickEvent mat-menu-item (click)="model.toggleOrganAxis()">
           <mat-icon>{{ disableOrganAxis() ? 'visibility_on' : 'visibility_off' }}</mat-icon>
           {{ `${disableOrganAxis() ? 'Show' : 'Hide'} 3D axes` }}
         </button>
         <mat-divider class="menu-divider"></mat-divider>
-        <button
-          hraFeature="reset-camera"
-          hraClickEvent
-          mat-menu-item
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="resetCamera()"
-        >
-          Reset camera view
-        </button>
-        <button
-          hraFeature="reset-block"
-          hraClickEvent
-          mat-menu-item
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="resetBlock()"
-        >
+        <button hraFeature="reset-camera" hraClickEvent mat-menu-item (click)="resetCamera()">Reset camera view</button>
+        <button hraFeature="reset-block" hraClickEvent mat-menu-item (click)="resetBlock()">
           Reset tissue block position
         </button>
         <mat-divider class="menu-divider"></mat-divider>
-        <button
-          hraFeature="reset-metadata"
-          hraClickEvent
-          mat-menu-item
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="metadata.openModal('edit')"
-        >
+        <button hraFeature="reset-metadata" hraClickEvent mat-menu-item (click)="metadata.openModal('edit')">
           Edit metadata
         </button>
       </mat-menu>
