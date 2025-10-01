@@ -201,7 +201,7 @@ export class MetadataPageComponent {
     if (items.length === 1) {
       return this.createMarkdownLink(items[0].label, items[0].id);
     }
-    return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join();
+    return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join(' ');
   }
 
   /**
