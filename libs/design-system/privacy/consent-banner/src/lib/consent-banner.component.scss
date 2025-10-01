@@ -159,6 +159,7 @@
 }
 
 ::ng-deep .hra-consent-banner-panel {
+  border-radius: 1.75rem;
   box-shadow: 0rem -0.75rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
   animation: slideUpFromBottom 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
 }

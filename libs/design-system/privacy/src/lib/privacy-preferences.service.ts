@@ -1,3 +1,4 @@
+import { ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { Injectable, effect, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConsentService } from '@hra-ui/common/analytics';
@@ -31,6 +32,8 @@ export class PrivacyPreferencesService {
   private readonly dialog = inject(MatDialog);
   /** Reference to consent service */
   private readonly consent = inject(ConsentService);
+  /** Scroll strategy that repositions the dialog on scroll */
+  private readonly repositionScrollStrategy = inject(ScrollStrategyOptions).reposition();
   /** Whether to sync preferences to local storage */
   private readonly syncEnabled = signal(false);
 
@@ -89,6 +92,7 @@ export class PrivacyPreferencesService {
         left: '0px',
         right: '0px',
       },
+      scrollStrategy: this.repositionScrollStrategy,
     });
 
     ref.afterClosed().subscribe((result) => this.handleDialogResult(result));
