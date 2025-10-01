@@ -1,5 +1,8 @@
 import { EventCategory } from '@hra-ui/common/analytics/events';
 
+/**
+ * Category def interface
+ */
 export interface CategoryDef {
   id: EventCategory;
   title: string;
@@ -10,6 +13,9 @@ export interface CategoryDef {
   required?: boolean;
 }
 
+/**
+ * Definitions for each category
+ */
 export const CATEGORY_DEFS: CategoryDef[] = [
   {
     id: EventCategory.Necessary,

@@ -10,15 +10,19 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule as HraScrollingModule } from '@hra-ui/design-system/scrolling';
 import { CategoriesComponent } from './categories/categories.component';
 
+/** Tab identifiers */
 export type PrivacyPreferencesTab = 'consent' | 'manage';
 
+/** Interface of data passed to the Privacy Preferences Modal */
 export interface PrivacyPreferencesData {
   categories: Categories;
   tab?: PrivacyPreferencesTab;
 }
 
+/** Result type returned when the Privacy Preferences Modal is closed */
 export type PrivacyPreferencesResult = 'allow-all' | 'allow-necessary' | 'dismiss' | Categories;
 
+/** Mapping of tab IDs to their respective index */
 const tabIdToIndex: Record<PrivacyPreferencesTab, number> = {
   consent: 0,
   manage: 1,

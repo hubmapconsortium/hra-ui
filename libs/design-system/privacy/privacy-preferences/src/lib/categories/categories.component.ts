@@ -9,6 +9,9 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { CATEGORY_DEFS } from './category-defs';
 
+/**
+ * Categories Component
+ */
 @Component({
   selector: 'hra-categories',
   imports: [HraCommonModule, CdkAccordionModule, ButtonsModule, IconsModule, MatDividerModule, MatSlideToggleModule],
