@@ -1,4 +1,4 @@
-<button (click)="cardClick.emit()" [attr.disabled]="disabled() ? '' : null">
+<button hraFeature="visual-button" hraClickEvent [attr.disabled]="disabled() ? '' : null" (click)="cardClick.emit()">
   <div class="label-container">
     <span class="label">{{ label() }}</span>
     @if (variant() === 'bottom') {

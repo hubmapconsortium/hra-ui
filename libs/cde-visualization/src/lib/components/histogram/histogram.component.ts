@@ -1,5 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,7 +38,6 @@ import { produce } from 'immer';
 import { ColorPickerDirective } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
-
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
@@ -127,7 +127,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
 @Component({
   selector: 'cde-histogram',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,

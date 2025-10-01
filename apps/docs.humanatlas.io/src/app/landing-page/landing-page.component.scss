@@ -2,7 +2,7 @@
 
 :host {
   .banner {
-    height: 18.75rem;
+    aspect-ratio: 4 / 1;
     width: 100%;
     object-fit: cover;
   }
@@ -12,6 +12,8 @@
     flex-direction: column;
     gap: 2rem;
     padding: 2.5rem;
+    max-width: 87.5rem;
+    margin: auto;
   }
 
   .header {

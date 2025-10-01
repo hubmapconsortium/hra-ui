@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/common/fs';
-import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ErrorIndicatorComponent } from '@hra-ui/design-system/error-indicator';
+import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
+import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { reduce, Subscription } from 'rxjs';
 
 /**
@@ -35,7 +35,7 @@ export type FileLoadError = FileTypeError | FileParseError;
 /** Component for loading a file from disk */
 @Component({
   selector: 'cde-file-upload',
-  imports: [CommonModule, MatIconModule, ButtonsModule, ErrorIndicatorComponent, DeleteFileButtonComponent],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule, ErrorIndicatorComponent, DeleteFileButtonComponent],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

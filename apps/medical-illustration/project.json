@@ -1,22 +1,18 @@
 {
   "name": "medical-illustration",
-  "metadata": {
-    "version": "0.5.0"
-  },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/medical-illustration/src",
   "prefix": "hra",
   "tags": ["type:app", "project:ftu", "webcomponent"],
-  "implicitDependencies": ["shared-theming"],
+  "metadata": {
+    "version": "0.6.0"
+  },
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
       "options": {
         "assets": ["apps/medical-illustration/src/favicon.png", "apps/medical-illustration/src/assets"],
-        "stylePreprocessorOptions": {
-          "includePaths": ["node_modules/", "libs/shared/theming/src/lib/styles"]
-        },
         "polyfills": ["zone.js"]
       },
       "configurations": {
@@ -29,18 +25,6 @@
           ]
         },
         "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
           "fileReplacements": [
             {
               "replace": "apps/medical-illustration/src/environments/environment.ts",
@@ -51,7 +35,8 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server"
+      "executor": "@nx/angular:dev-server",
+      "continuous": true
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/medical-illustration/browser/"

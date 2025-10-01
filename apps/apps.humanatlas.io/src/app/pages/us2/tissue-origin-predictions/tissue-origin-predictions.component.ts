@@ -1,6 +1,7 @@
 import { Overlay, OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,6 +10,7 @@ import {
   effect,
   inject,
   input,
+  isDevMode,
   Renderer2,
   signal,
   TemplateRef,
@@ -29,19 +31,16 @@ import { saveAs } from 'file-saver';
 import { TissuePredictionData } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 import { SimilarAnatomicalStructuresTableComponent } from './components/similar-anatomical-structures-table/similar-anatomical-structures-table.component';
 import { SimilarDatasetsTableComponent } from './components/similar-datasets-table/similar-datasets-table.component';
-import moment from 'moment';
 
 /**
  * Script URL for EUI
- * TODO: Currently using Staging URL, need to change to production URL.
  * */
-const SCRIPT_URL = 'https://cdn.humanatlas.io/ui--staging/ccf-eui/wc.js';
+const SCRIPT_URL = `https://cdn.humanatlas.io/ui${isDevMode() ? '--staging' : ''}/ccf-eui/wc.js`;
 
 /**
  * Style URLs for EUI
- * TODO: Currently using Staging URL, need to change to production URL.
  */
-const STYLE_URLS = ['https://cdn.humanatlas.io/ui--staging/ccf-eui/styles.css'];
+const STYLE_URLS = [`https://cdn.humanatlas.io/ui${isDevMode() ? '--staging' : ''}/ccf-eui/styles.css`];
 
 /** Empty Inputs for Predictions page */
 const EMPTY_DATA: TissuePredictionData = {
@@ -54,6 +53,12 @@ export const EMPTY_PREDICTIONS: CellSummaryReport = {
   sources: [],
 };
 
+/** Date format */
+const PREDICTION_DATE_FORMAT = new Intl.DateTimeFormat(undefined, {
+  dateStyle: 'long',
+  timeStyle: 'long',
+});
+
 /**
  * Tissue Origin Predictions result page
  */
@@ -61,7 +66,7 @@ export const EMPTY_PREDICTIONS: CellSummaryReport = {
   selector: 'hra-tissue-origin-predictions',
   standalone: true,
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     MatSortModule,
     MatTableModule,
@@ -84,14 +89,17 @@ export class TissueOriginPredictionsComponent {
   /** Input data for predictions page */
   readonly data = input<TissuePredictionData>(EMPTY_DATA);
 
-  /** Prediction date */
-  readonly predictionDate = moment(this.data().date).format('MMMM D, YYYY h:mm:ss A');
-
   /** Predictions */
   readonly predictions = input<CellSummaryReport>(EMPTY_PREDICTIONS);
 
   /** Whether to show EUI */
   protected readonly euiOpen = signal<boolean>(false);
+
+  /** Prediction date */
+  protected readonly predictionDate = computed(() => {
+    const { date } = this.data();
+    return date && PREDICTION_DATE_FORMAT.format(date);
+  });
 
   /** RUI locations JSON string */
   protected readonly ruiLocationsJsonString = JSON.stringify([JSON.stringify(this.predictions().rui_locations)]);

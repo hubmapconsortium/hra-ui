@@ -1,7 +1,4 @@
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { HoverDirective } from '@hra-ui/cdk';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors } from '@hra-ui/cdk/state';
 import { FtuDataService } from '@hra-ui/services';
@@ -59,7 +56,7 @@ describe('BiomarkerDetailsComponent', () => {
 
     shallow = new Shallow(BiomarkerDetailsComponent)
       .import(MarkdownModule.forRoot())
-      .dontMock(MatTableModule, HoverDirective, MatDialogModule)
+      .dontMock(MatTableModule)
       .provideMock({ provide: FtuDataService, useValue: dataService });
   });
 
@@ -72,18 +69,6 @@ describe('BiomarkerDetailsComponent', () => {
     instance.isTableFullScreen = false;
     instance.toggleFullscreen();
     expect(instance.isTableFullScreen).toBeTruthy();
-  });
-
-  it('should change tabs', async () => {
-    const { instance } = await shallow.render();
-    const mockEvent = {
-      tab: {
-        textLabel: 'label',
-      },
-    } as MatTabChangeEvent;
-    const spy = jest.spyOn(instance, 'logTabChange');
-    instance.logTabChange(mockEvent);
-    expect(spy).toHaveBeenCalled();
   });
 
   describe('.tissueInfo', () => {
@@ -104,14 +89,6 @@ describe('BiomarkerDetailsComponent', () => {
         id: '',
         label: '',
       });
-    });
-  });
-  describe('collaborate', () => {
-    it('should open the contact modal dialog box', async () => {
-      const open = jest.fn();
-      const { instance } = await shallow.mock(MatDialog, { open }).render();
-      instance.collaborate();
-      expect(open).toHaveBeenCalled();
     });
   });
 

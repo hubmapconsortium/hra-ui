@@ -1,5 +1,8 @@
 import { Injectable, signal } from '@angular/core';
-import { EventCategory } from '@hra-ui/common/analytics/events';
+import { EventCategory, EventType } from '@hra-ui/common/analytics/events';
+
+/** Set of categories and whether each is enabled/disabled */
+export type ConsentCategories = Record<EventCategory, boolean>;
 
 /**
  * Helper for creating categories enabled/disabled records
@@ -7,14 +10,11 @@ import { EventCategory } from '@hra-ui/common/analytics/events';
  * @param enabled Whether to set categories to enabled or disabled
  * @returns A record of all categories with their values set to `enabled`
  */
-function createCategoryPreferences(enabled: boolean): Record<EventCategory, boolean> {
-  return Object.values(EventCategory).reduce(
-    (acc, category) => {
-      acc[category] = enabled;
-      return acc;
-    },
-    {} as Record<EventCategory, boolean>,
-  );
+function createCategoryPreferences(enabled: boolean): ConsentCategories {
+  return Object.values(EventCategory).reduce((acc, category) => {
+    acc[category] = enabled;
+    return acc;
+  }, {} as ConsentCategories);
 }
 
 /** Record where every category is set to enabled */
@@ -24,7 +24,7 @@ const ALL_CATEGORIES_DISABLED = createCategoryPreferences(false);
 /** Record of categories that should always be enabled */
 const ALWAYS_ENABLED_CATEGORIES = { [EventCategory.Necessary]: true };
 /** Initial categories settings */
-const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES };
+export const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES };
 
 /**
  * User preferences manager service
@@ -34,10 +34,10 @@ const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLE
 })
 export class ConsentService {
   /** Writable signal containing record of enabled/disable categories */
-  private readonly categoriesImpl = signal(INITIAL_CATEGORY_SETTINGS);
+  private readonly categories_ = signal(INITIAL_CATEGORY_SETTINGS);
 
   /** Record of enabled/disable categories */
-  readonly categories = this.categoriesImpl.asReadonly();
+  readonly categories = this.categories_.asReadonly();
 
   /**
    * Test whether a category is enabled or disabled
@@ -50,17 +50,42 @@ export class ConsentService {
   }
 
   /**
-   * Enables all event categories
+   * Check whether an event is enabled or disabled
+   *
+   * @param _type Event type
+   * @param category Event category
+   * @returns Whether the event is enabled
    */
-  enableAllCategories(): void {
-    this.categoriesImpl.set(ALL_CATEGORIES_ENABLED);
+  isEventEnabled(_type: EventType, category?: EventCategory): boolean {
+    return category !== undefined && this.isCategoryEnabled(category);
   }
 
   /**
-   * Disable all event categories except the ones that should always be enabled, i.e. `EventCategory.Necessary`
+   * Enables all event categories
+   */
+  enableAllCategories(): void {
+    this.categories_.set(ALL_CATEGORIES_ENABLED);
+  }
+
+  /**
+   * Disable all event categories except the ones
+   * that should always be enabled, i.e. `EventCategory.Necessary`
    */
   disableAllCategories(): void {
-    this.categoriesImpl.set(INITIAL_CATEGORY_SETTINGS);
+    this.categories_.set(INITIAL_CATEGORY_SETTINGS);
+  }
+
+  /**
+   * Update the enabled/disabled event categories
+   *
+   * @param updates Category updates
+   */
+  updateCategories(updates: Partial<ConsentCategories>): void {
+    this.categories_.update((current) => ({
+      ...current,
+      ...updates,
+      ...ALWAYS_ENABLED_CATEGORIES,
+    }));
   }
 
   /**
@@ -69,15 +94,16 @@ export class ConsentService {
    * @param category Category to enable
    */
   enableCategory(category: EventCategory): void {
-    this.categoriesImpl.update((current) => ({ ...current, [category]: true }));
+    this.updateCategories({ [category]: true });
   }
 
   /**
-   * Disable a single event category except if it is a category that is always enabled, i.e. `EventCategory.Necessary`
+   * Disable a single event category except if it is a category
+   * that is always enabled, i.e. `EventCategory.Necessary`
    *
    * @param category Category to disable
    */
   disableCategory(category: EventCategory): void {
-    this.categoriesImpl.update((current) => ({ ...current, [category]: false, ...ALWAYS_ENABLED_CATEGORIES }));
+    this.updateCategories({ [category]: false });
   }
 }

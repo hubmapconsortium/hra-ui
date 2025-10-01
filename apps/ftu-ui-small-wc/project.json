@@ -1,14 +1,13 @@
 {
   "name": "ftu-ui-small-wc",
-  "metadata": {
-    "version": "0.5.0"
-  },
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "hra",
   "sourceRoot": "apps/ftu-ui-small-wc/src",
   "tags": ["type:app", "project:ftu"],
-  "implicitDependencies": ["shared-theming"],
+  "metadata": {
+    "version": "0.6.0"
+  },
   "targets": {
     "build": {
       "executor": "@nx/angular:application",
@@ -56,7 +55,8 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server"
+      "executor": "@nx/angular:dev-server",
+      "continuous": true
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",

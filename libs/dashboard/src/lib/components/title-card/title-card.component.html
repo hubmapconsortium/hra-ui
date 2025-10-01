@@ -1,6 +1,8 @@
-<h3 class="title">
+<h3 class="title" hraFeature="title-card">
   {{ spec().title }}
   <mat-icon
+    hraFeature="info"
+    [hraHoverEvent]="{ title: spec().title }"
     class="material-symbols-rounded"
     cdkOverlayOrigin
     #resetTrigger="cdkOverlayOrigin"

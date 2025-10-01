@@ -1,32 +1,27 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject, signal, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
-import { InteractiveSvgComponent, SourceListComponent, SourceListItem } from '../../../../molecules/src';
-import {
-  BiomarkerTableComponent,
-  DataCell,
-  TissueInfo,
-} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
+import { HraCommonModule } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { DialogService } from '@hra-ui/design-system/dialog';
+import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
   CellSummaryAggregate,
   CellSummarySelectors,
+  ResourceIds as Ids,
   IllustratorActions,
   IllustratorSelectors,
-  ResourceIds as Ids,
   ResourceTypes as RTypes,
   ScreenModeAction,
   SourceRefsActions,
   SourceRefsSelectors,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -34,9 +29,12 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '../../../../atoms/src';
-import { MatButtonModule } from '@angular/material/button';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { DialogService } from '@hra-ui/design-system/dialog';
+import { InteractiveSvgComponent, SourceListComponent, SourceListItem } from '../../../../molecules/src';
+import {
+  BiomarkerTableComponent,
+  DataCell,
+  TissueInfo,
+} from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
 /**
  * PlaceHolder for Empty Tissue Info
  */
@@ -50,7 +48,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   selector: 'ftu-wc-biomarker-details',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
@@ -60,6 +58,8 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     GradientLegendComponent,
     SizeLegendComponent,
     BiomarkerTableComponent,
+    RichTooltipModule,
+    RichTooltipDirective,
   ],
   templateUrl: './biomarker-details-wc.component.html',
   styleUrls: ['./biomarker-details-wc.component.scss'],
@@ -72,14 +72,21 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   },
 })
 export class BiomarkerDetailsWcComponent {
-  /** A dialog box which shows contact modal after clicking on contact */
-  private readonly dialog = inject(MatDialog);
+  /** Tooltip text for percentage of cells legend */
+  static readonly PERCENTAGE_TOOLTIP_TEXT =
+    'The percentage of cells in the functional tissue unit (FTU) is calculated by dividing the total number of cells in all FTUs by the number of all cells in that tissue section.';
+
+  /** Tooltip text for biomarker expression mean legend */
+  static readonly EXPRESSION_TOOLTIP_TEXT =
+    'Functional tissue unit expression is scaled linearly to the range [0,1]. Scaling is done by designating the minimum value in the current view to 0 and the max is assigned to 1.';
+
+  /** Instance access to percentage tooltip text */
+  readonly percentageTooltipText = BiomarkerDetailsWcComponent.PERCENTAGE_TOOLTIP_TEXT;
+  /** Instance access to expression tooltip text */
+  readonly expressionTooltipText = BiomarkerDetailsWcComponent.EXPRESSION_TOOLTIP_TEXT;
 
   /** Dialog service for opening notice dialogs */
   private readonly dialogService = inject(DialogService);
-
-  /** Google analytics tracking service */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** Text to be copied to clipboard */
   emailText = 'infoccf@iu.edu';
@@ -118,10 +125,8 @@ export class BiomarkerDetailsWcComponent {
   /**
    * Copies email to clipboard
    */
-  private copyEmailToClipboard(): void {
-    navigator.clipboard.writeText(this.emailText).then(() => {
-      this.ga.event('email_copied', 'clipboard');
-    });
+  copyEmailToClipboard(): Promise<void> {
+    return navigator.clipboard.writeText(this.emailText);
   }
 
   /**
@@ -279,22 +284,6 @@ export class BiomarkerDetailsWcComponent {
     this.setScreenMode(this.isTableFullScreen);
   }
 
-  /** A function which opens the contact modal dialog box */
-  collaborate(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    this.ga.event('contact_open', 'modal');
-    this.dialog.open(ContactBehaviorComponent, dialogConfig);
-  }
-
-  /**
-   * Logs tab change event
-   * @param event tab change event
-   */
-  logTabChange(event: MatTabChangeEvent) {
-    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
-  }
-
   /** Toggle options for the biomarker table */
   readonly toggleOptions = [
     { value: 'genes', label: 'Genes' },
@@ -303,7 +292,7 @@ export class BiomarkerDetailsWcComponent {
   ];
 
   /** Active tab index */
-  private activeTabIndex = 0;
+  activeTabIndex = 0;
 
   /** Selected toggle value */
   selectedToggleValue = 'genes';

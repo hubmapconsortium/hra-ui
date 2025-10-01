@@ -1,3 +1,7 @@
+app-tree::ng-deep > div {
+  height: calc(100vh - 15.2rem) !important;
+}
+
 .jexcel_about {
   visibility: none !important;
 }

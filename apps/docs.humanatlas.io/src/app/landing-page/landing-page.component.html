@@ -1,13 +1,14 @@
 <img class="banner" [attr.src]="data().bannerUrl | assetUrl" alt="" />
 
-<div class="content">
+<div hraFeature="help-and-documentation" class="content">
   <span class="header">
     {{ data().tagline }}
   </span>
 
-  <hra-flex-container rowGap="1.5rem" columnGap="1.5rem">
+  <hra-grid-container hraFeature="landing-page-cards">
     @for (card of data().cards; track card) {
       <ng-container *hraContentTemplateOutlet="card" />
     }
-  </hra-flex-container>
+  </hra-grid-container>
 </div>
+<hra-footer />

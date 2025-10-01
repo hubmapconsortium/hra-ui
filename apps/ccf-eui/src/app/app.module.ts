@@ -8,14 +8,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HraCommonModule } from '@hra-ui/common';
+import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
-import { BodyUiModule, InfoButtonModule, TrackingPopupModule } from 'ccf-shared';
-
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { BodyUiComponent } from 'ccf-body-ui';
+import { BodyUiModule, InfoButtonModule } from 'ccf-shared';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -23,10 +26,10 @@ import { FiltersContentComponent } from './modules/filters/filters-content/filte
 import { OntologySelectionComponent } from './modules/ontology-exploration/ontology-selection/ontology-selection.component';
 import { ResultsBrowserComponent } from './modules/results-browser/results-browser/results-browser.component';
 import { OrganSelectComponent } from './shared/components/organ-select/organ-select.component';
-import { BodyUiComponent } from 'ccf-body-ui';
 
 @NgModule({
   imports: [
+    HraCommonModule,
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
@@ -35,7 +38,6 @@ import { BodyUiComponent } from 'ccf-body-ui';
     ResultsBrowserComponent,
     BodyUiModule,
     InfoButtonModule,
-    TrackingPopupModule,
     MatSnackBarModule,
     MatButtonToggleModule,
     NavHeaderButtonsComponent,
@@ -52,6 +54,14 @@ import { BodyUiComponent } from 'ccf-body-ui';
     BodyUiComponent,
   ],
   declarations: [AppComponent, AppWebComponent],
-  providers: [provideDesignSystem()],
+  providers: [
+    provideAppConfiguration({
+      name: 'ccf-eui',
+      version: '4.1.0',
+      url: 'https://apps.humanatlas.io/eui/',
+    }),
+    provideAnalytics(withErrorHandler()),
+    provideDesignSystem(),
+  ],
 })
 export class AppModule {}

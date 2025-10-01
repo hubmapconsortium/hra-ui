@@ -1,5 +1,4 @@
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -26,7 +25,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
-import { DataItem } from '@hra-ui/components/molecules';
+import { DataItem } from '@hra-ui/design-system/info-modal';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * RGBTriblet of type RGB to store color
@@ -71,7 +71,7 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
 @Component({
   selector: 'ftu-biomarker-table',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatTableModule,
     BiomarkerTableDataIconComponent,
     ScrollingModule,
@@ -141,6 +141,23 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
 
   /** Injects BottomSheetService */
   private readonly bottomSheetService = inject(BottomSheetService);
+
+  /** row height */
+  readonly rowHeight = 28;
+  /** header height */
+  readonly headerHeight = 97;
+  /** max visible rows */
+  readonly maxVisibleRows = 10;
+
+  /**
+   * Gets viewport height
+   * @returns viewport height in pixels
+   */
+  get viewportHeight(): number {
+    const rows = this.dataSource.data.length;
+    const visible = Math.min(rows, this.maxVisibleRows) + 1; // offset
+    return this.headerHeight + visible * this.rowHeight;
+  }
 
   /** Gets the current width of the prefiller column */
   get preFillerWidth(): string {

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,17 +16,18 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { Iri } from '@hra-ui/services';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { EmptyBiomarkerComponent } from '../../../../atoms/src';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
+
 /** SourceListItem interface contains title and link to the dataset for the SourceList*/
 export interface SourceListItem extends TableRow {
   /** Unique identifier for the source */
@@ -51,7 +51,7 @@ export interface SourceListItem extends TableRow {
   selector: 'ftu-source-list',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatTableModule,
     MatIconModule,
@@ -74,9 +74,6 @@ export class SourceListComponent implements OnChanges {
   /** List of sources with titles and links displayed to the user */
   @Input() sources: SourceListItem[] = [];
 
-  /** Text that appears in the empty biomarker collaborate button */
-  @Input() collaborateText = '';
-
   /** Text that appears in the empty biomarker message */
   @Input() message = '';
 
@@ -92,17 +89,11 @@ export class SourceListComponent implements OnChanges {
   /** Number of selected sources */
   selectedCount = signal(0);
 
-  /** Emits when the contact button is clicked */
-  @Output() readonly collaborateClick = new EventEmitter<void>();
-
   /** Emits when source selection changed */
   @Output() readonly selectionChanged = new EventEmitter<SourceListItem[]>();
 
   /** Reference to the table component */
   @ViewChild('sourceTable') sourceTable!: TableComponent<TableRow>;
-
-  /** Google analytics tracking service */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** Table columns configuration */
   readonly tableColumns: TableColumn[] = [
@@ -158,15 +149,6 @@ export class SourceListComponent implements OnChanges {
    */
   toggleTable(): void {
     this.showTable.set(!this.showTable());
-    this.ga.event('source_table_toggle', this.showTable().toString());
-  }
-
-  /**
-   * Logs source link click
-   * @param item Source list item
-   */
-  sourceLinkClicked(item: TableRow): void {
-    this.ga.event('source_link_clicked', 'link_click', item['link'] as string);
   }
 
   /**

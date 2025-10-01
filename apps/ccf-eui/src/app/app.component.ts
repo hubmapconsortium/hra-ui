@@ -1,17 +1,17 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Filter } from '@hra-api/ng-client';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
-import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { debounce } from 'lodash';
-import { combineLatest, take } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { OntologySelection } from './core/models/ontology-selection';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
@@ -64,7 +64,7 @@ interface AppOptions {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends BaseApplicationComponent {
   /** Set selected searches */
   @Dispatch()
   readonly setSelectedSearches = actionAsFn(SetSelectedSearches);
@@ -91,6 +91,15 @@ export class AppComponent implements OnInit {
   protected readonly data = inject(DataState);
   /** Spatial flow service */
   protected readonly spatialFlowService = inject(SpatialSearchFlowService);
+  /** Scene state */
+  readonly scene = inject(SceneState);
+  /** List results state */
+  readonly listResultsState = inject(ListResultsState);
+  /** Snackbar service */
+  readonly snackbar = inject(SnackbarService);
+  /** Global config */
+  private readonly globalConfig = inject<GlobalConfigState<AppOptions>>(GlobalConfigState);
+
   /** Filter */
   protected readonly filter = toSignal(this.data.filter$, { requireSync: true });
   /** Technology options */
@@ -141,14 +150,9 @@ export class AppComponent implements OnInit {
   /**
    * Creates an instance of app component.
    */
-  constructor(
-    readonly scene: SceneState,
-    readonly listResultsState: ListResultsState,
-    readonly consentService: ConsentService,
-    readonly localStorageSyncService: LocalStorageSyncService,
-    readonly snackbar: SnackbarService,
-    private readonly globalConfig: GlobalConfigState<AppOptions>,
-  ) {
+  constructor() {
+    super();
+
     this.data.tissueBlockData$.subscribe();
     this.data.aggregateData$.subscribe();
     this.data.ontologyTermOccurencesData$.subscribe();
@@ -158,8 +162,8 @@ export class AppComponent implements OnInit {
     this.filter$.subscribe((filter = {}) => this.data.updateFilter(filter));
     this.baseHref$.subscribe((ref) => this.globalConfig.patchState({ baseHref: ref ?? '' }));
 
-    combineLatest([scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
-      scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
+    combineLatest([this.scene.referenceOrgans$, this.selectedOrgans$]).subscribe(([refOrgans, selected]) => {
+      this.scene.setSelectedReferenceOrgansWithDefaults(refOrgans as OrganInfo[], selected ?? []);
     });
 
     this.selectedToggleOptions = this.menuOptions;
@@ -169,36 +173,6 @@ export class AppComponent implements OnInit {
     if (!overlayEl.isConnected) {
       inject(DOCUMENT).body.appendChild(overlayEl);
     }
-  }
-
-  /** Initialize the component */
-  ngOnInit(): void {
-    this.showConsentSnackBar();
-  }
-
-  /** Shows the consent snackbar with user tracking preferences */
-  showConsentSnackBar(): void {
-    const { consent } = this.consentService;
-    const isInitialConsent = consent === 'not-set';
-    const shouldOptIn = isInitialConsent || consent === 'rescinded';
-
-    const config = {
-      message: 'We log usage to improve this service.',
-      action: shouldOptIn ? (isInitialConsent ? 'I understand' : 'Opt in') : 'Opt out',
-      persistent: isInitialConsent,
-      duration: isInitialConsent ? Infinity : 6000,
-    };
-
-    this.snackbar
-      .open(config.message, config.action, config.persistent, 'start', { duration: config.duration })
-      .afterDismissed()
-      .pipe(take(1))
-      .subscribe(({ dismissedByAction }) => {
-        const newConsent = dismissedByAction ? (shouldOptIn ? 'given' : 'rescinded') : 'rescinded';
-        if (dismissedByAction || isInitialConsent) {
-          this.consentService.setConsent(newConsent);
-        }
-      });
   }
 
   /** Format a range of values */

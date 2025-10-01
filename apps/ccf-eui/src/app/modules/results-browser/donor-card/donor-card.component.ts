@@ -1,10 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueBlock } from '@hra-api/ng-client';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
+import { HraCommonModule } from '@hra-ui/common';
 import { MetadataCardComponent } from '../metadata-card/metadata-card.component';
 import { ThumbnailListComponent } from '../thumbnail-list/thumbnail-list.component';
 import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-vis.component';
@@ -17,7 +15,7 @@ import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-
   templateUrl: './donor-card.component.html',
   styleUrls: ['./donor-card.component.scss'],
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatCheckboxModule,
     MatIconModule,
     MetadataCardComponent,
@@ -53,34 +51,15 @@ export class DonorCardComponent {
   readonly sectionLinks = computed(() => this.tissueBlock().sections?.map((section) => section.link) ?? []);
 
   /**
-   * Creates an instance of donor card component.
-   *
-   * @param ga Analytics service
-   */
-  constructor(private readonly ga: GoogleAnalyticsService) {}
-
-  /**
    * Ensures that the expanded variable is only changed if selected first.
    */
   toggleExpansion(): void {
     if (this.selected()) {
       this.expanded.update((value) => !value);
-      this.ga.event('expanded_toggled', 'donor_card', this.tissueBlock().label, +this.expanded());
       this.expansionChange.emit(this.expanded());
     } else {
       this.selected.set(true);
       this.selectOption.emit();
     }
-  }
-
-  /**
-   * Handles what happens when an info card is clicked.
-   * Passes up the link click event unless the card isn't selected
-   * In which case it selects it for ease of use.
-   *
-   * @param url the URL to emit up.
-   */
-  linkHandler(): void {
-    this.ga.event('link_clicked', 'donor_card', this.tissueBlock().label);
   }
 }

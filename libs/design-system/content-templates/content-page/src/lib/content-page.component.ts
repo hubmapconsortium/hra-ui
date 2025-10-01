@@ -5,9 +5,11 @@ import { RouterModule } from '@angular/router';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
-import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
+import { NavigationModule } from '@hra-ui/design-system/navigation';
+
 import { ContentPageData } from './types/content-page.schema';
 
 /**
@@ -24,6 +26,7 @@ import { ContentPageData } from './types/content-page.schema';
     PageSectionComponent,
     RouterModule,
     TableOfContentsLayoutModule,
+    NavigationModule,
   ],
   templateUrl: './content-page.component.html',
   styleUrl: './content-page.component.scss',

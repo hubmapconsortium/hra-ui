@@ -2,29 +2,19 @@
 @use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
-  a:not(.hra-text-hyperlink) {
-    text-decoration: none;
-  }
-
   a.hra-text-hyperlink,
   markdown a {
-    text-decoration: none;
+    text-decoration: underline solid currentColor 0.0625rem;
+    text-underline-offset: 0.125rem;
 
     &:link,
     &:link mat-icon {
-      color: vars.$on-tertiary-fixed;
+      color: vars.$tertiary;
     }
 
     &:visited,
     &:visited mat-icon {
-      color: vars.$on-tertiary-fixed;
-    }
-
-    &:focus-visible,
-    &:hover,
-    &:active {
-      text-decoration: underline solid currentColor 0.0625rem;
-      text-underline-offset: 0.125rem;
+      color: vars.$tertiary;
     }
 
     &:focus-visible {
@@ -38,13 +28,10 @@
     }
 
     &:hover,
-    &:hover mat-icon {
-      color: vars.$on-tertiary-fixed;
-    }
-
+    &:hover mat-icon,
     &:active,
     &:active mat-icon {
-      color: vars.$on-tertiary-fixed-variant;
+      color: vars.$tertiary;
     }
   }
 

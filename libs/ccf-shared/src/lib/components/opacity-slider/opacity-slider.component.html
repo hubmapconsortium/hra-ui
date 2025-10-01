@@ -1,23 +1,58 @@
 <div class="icons">
-  @if (opacity > 0) {
-    <button mat-icon-button class="visibility icon visible" (click)="toggleVisibility()" hraPlainTooltip="Hide">
+  @if (opacity() > 0) {
+    <button
+      hraFeature="visibility-off"
+      hraClickEvent
+      mat-icon-button
+      class="visibility icon visible"
+      (click)="toggleVisibility()"
+      hraPlainTooltip="Hide"
+    >
       <mat-icon>visibility_off</mat-icon>
     </button>
   } @else {
-    <button mat-icon-button class="visibility icon invisible" (click)="toggleVisibility()" hraPlainTooltip="Show">
+    <button
+      hraFeature="visibility-on"
+      hraClickEvent
+      mat-icon-button
+      class="visibility icon invisible"
+      (click)="toggleVisibility()"
+      hraPlainTooltip="Show"
+    >
       <mat-icon>visibility_on</mat-icon>
     </button>
   }
-  <button mat-icon-button class="icon reset" (click)="resetOpacity()" hraPlainTooltip="Reset">
+  <button
+    hraFeature="reset"
+    hraClickEvent
+    mat-icon-button
+    class="icon reset"
+    (click)="resetOpacity()"
+    hraPlainTooltip="Reset"
+  >
     <mat-icon>reset_settings</mat-icon>
   </button>
 </div>
 
-<mat-slider class="slider" [class.disabled]="!visible" [step]="1" [min]="0" [max]="100">
-  <input matSliderThumb class="opacity-slider" [value]="opacity" (input)="opacityChange.emit(+slider.value)" #slider />
+<mat-slider
+  hraFeature="slider"
+  hraClickEvent
+  class="slider"
+  [class.disabled]="!visible()"
+  [step]="1"
+  [min]="0"
+  [max]="100"
+>
+  <input
+    matSliderThumb
+    class="opacity-slider"
+    [value]="opacity()"
+    (input)="opacityChange.emit(+slider.value)"
+    #slider
+  />
 </mat-slider>
 
-<mat-form-field subscriptSizing="dynamic">
+<mat-form-field hraFeature="input" hraClickEvent subscriptSizing="dynamic">
   <mat-label>Opacity</mat-label>
-  <input matInput [value]="opacity" (input)="opacityChange.emit(+input.value || 0)" type="number" #input />
+  <input matInput [value]="opacity()" (input)="opacityChange.emit(+input.value || 0)" type="number" #input />
 </mat-form-field>

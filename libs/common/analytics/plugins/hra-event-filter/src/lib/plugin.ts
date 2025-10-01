@@ -1,8 +1,10 @@
+import { isPlatformBrowser } from '@angular/common';
+import { assertInInjectionContext, inject, PLATFORM_ID } from '@angular/core';
 import { CoreEvents, EventCategory, EventType } from '@hra-ui/common/analytics/events';
 import { AnalyticsPlugin } from 'analytics';
 
-/** Plugin options */
-export interface HraEventFilterPluginOptions {
+/** Plugin configuration */
+export interface HraEventFilterPluginConfig {
   /** Callback to check whether an event is enabled */
   isEventEnabled: (type: EventType, category?: EventCategory) => boolean;
 }
@@ -30,15 +32,17 @@ interface EventData {
 }
 
 /**
- * An `analytics` plugin that filters events based on an `isEnabled` callback
+ * An `analytics` plugin that filters events based on an `isEventEnabled` callback
  *
- * @param options Plugin options
+ * @param config Plugin configuration
  * @returns An analytics plugin
  */
-export function hraEventFilterPlugin(options: HraEventFilterPluginOptions): AnalyticsPlugin {
-  const { isEventEnabled } = options;
+export function hraEventFilterPlugin(config: HraEventFilterPluginConfig): AnalyticsPlugin {
+  assertInInjectionContext(hraEventFilterPlugin);
+  const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  const { isEventEnabled } = config;
   const abortIfDisabled = (type: EventType, category: EventCategory | undefined, abort: AbortFn) => {
-    if (!isEventEnabled(type, category)) {
+    if (!isBrowser || !isEventEnabled(type, category)) {
       return abort(`Event '${type}' is disabled`);
     }
     return undefined;

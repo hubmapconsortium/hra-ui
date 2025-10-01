@@ -1,4 +1,3 @@
-import { DOCUMENT, Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,13 +11,16 @@ import {
   model,
   viewChild,
 } from '@angular/core';
-import { APP_ASSETS_HREF, HraCommonModule } from '@hra-ui/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { injectDocument } from '@hra-ui/common/injectors';
+import { assetUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import 'rapidoc';
 import { ServerSelectorComponent } from '../../components/server-selector/server-selector.component';
 import { servers } from '../../constants/server.constants';
 import { Server } from '../../interfaces/server.interface';
+import { ClickEventDirective } from '@hra-ui/common/analytics';
 
 /**
  * Custom injection token to lazy load the theme for Rapidoc.
@@ -32,11 +34,10 @@ const RAPIDOC_STYLES = new InjectionToken<void>('Rapidoc styles', {
  * Factory function that loads the Rapidoc theme when component is initialized.
  */
 function loadRapidocStyles(): void {
-  const document = inject(DOCUMENT);
-  const assetsHref = inject(APP_ASSETS_HREF);
+  const document = injectDocument();
   const el = document.createElement('link');
   el.rel = 'stylesheet';
-  el.href = Location.joinWithSlash(assetsHref(), 'rapidoc-theme.css');
+  el.href = assetUrl('rapidoc-theme.css')();
   document.head.appendChild(el);
 }
 
@@ -116,5 +117,18 @@ export class ApiComponent {
    */
   scrollTo(element: HTMLElement) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  }
+
+  /** Tracking before-try in rapidoc for analytics */
+  onBeforeTry(event: any, beforeTry: ClickEventDirective) {
+    const request = event.detail?.request;
+    const url = request?.url || '';
+    const endpoint = url ? new URL(url).pathname : 'unknown';
+
+    beforeTry.logEvent('click', undefined, {
+      endpoint,
+      method: request?.method || 'GET',
+      server: this.selectedServer().id,
+    });
   }
 }

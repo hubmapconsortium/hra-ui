@@ -5,14 +5,16 @@
     "rootDir": ".",
     "target": "ES2022",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "lib": [
       "ES2022",
       "DOM"
     ],
     "typeRoots": [
-      "node_modules/@types"
+      "./node_modules/@types",
+      "./node_modules/@testing-library"
     ],
+    "allowSyntheticDefaultImports": true,
     "declaration": false,
     "sourceMap": true,
     "importHelpers": true,
@@ -31,8 +33,8 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "paths": {
-      "@components/*": [
-        "apps/human-atlas/src/app/components/*"
+      "@hra-ui/application": [
+        "libs/application/src/index.ts"
       ],
       "@hra-ui/cde-visualization": [
         "libs/cde-visualization/src/index.ts"
@@ -79,9 +81,6 @@
       "@hra-ui/state": [
         "libs/state/src/index.ts"
       ],
-      "@hra-ui/theming": [
-        "libs/shared/theming/src/index.ts"
-      ],
       "@hra-ui/utils": [
         "libs/shared/utils/src/index.ts"
       ],
@@ -102,6 +101,9 @@
       ],
       "ccf-shared/*": [
         "libs/ccf-shared/*/src/public-api.ts"
+      ],
+      "vega-embed": [
+        "node_modules/vega-embed/build/embed.d.ts"
       ]
     }
   },

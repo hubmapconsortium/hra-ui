@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/design-system",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "exports": {
     "./styles/fonts": {
       "sass": "./styles/_fonts.scss"
@@ -25,24 +25,31 @@
     }
   },
   "peerDependencies": {
-    "@hra-ui/cdk": "1.0.0",
-    "ng-inline-svg-2": "^19.0.0",
+    "@hra-ui/cdk": "1.1.0",
+    "ng-inline-svg-2": "^20.0.0",
     "rxjs": "^7.8.2",
-    "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0",
-    "@angular/material": "^19.2.1",
+    "@angular/common": "^20.2.1",
+    "@angular/core": "^20.2.1",
+    "@angular/material": "^20.2.0",
     "ngx-scrollbar": "^18.0.0",
-    "@angular/router": "^19.2.0",
-    "@angular/cdk": "^19.2.1",
-    "@angular/animations": "^19.2.0",
-    "ngx-color-picker": "^19.0.0",
-    "zod": "^3.22.4",
-    "@angular/platform-browser": "^19.2.0",
+    "@angular/router": "^20.2.1",
+    "@angular/cdk": "^20.2.0",
+    "@angular/animations": "^20.2.1",
+    "ngx-color-picker": "^20.1.1",
+    "zod": "^4.1.3",
+    "@angular/platform-browser": "^20.2.1",
     "ngx-highlightjs": "^14.0.0",
     "highlight.js": "^11.11.1",
-    "ngxtension": "^4.1.0",
-    "@hra-ui/common": "1.0.0"
+    "ngxtension": "^5.1.0",
+    "@hra-ui/common": "1.1.0",
+    "ngx-markdown": "^20.0.0",
+    "js-yaml": "^4.1.0",
+    "file-saver": "^2.0.5",
+    "papaparse": "^5.5.3",
+    "@angular/youtube-player": "^20.2.0",
+    "@angular/forms": "^20.2.1",
+    "@google/model-viewer": "4.1.0",
+    "store2": "^2.14.4"
   },
-  "dependencies": {},
   "sideEffects": false
 }

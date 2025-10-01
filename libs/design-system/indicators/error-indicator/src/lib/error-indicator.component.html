@@ -1,0 +1,11 @@
+<mat-icon>error</mat-icon>
+<div class="errors" hraFeature="error-indicator">
+  @for (error of errors(); track error) {
+    <div class="error">
+      {{ error }}
+    </div>
+  }
+  @if (actionLink()) {
+    <a class="link" hraHyperlink [attr.href]="actionLink()">{{ actionLinkLabel() }}</a>
+  }
+</div>

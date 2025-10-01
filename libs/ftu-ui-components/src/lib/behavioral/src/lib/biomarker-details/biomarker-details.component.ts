@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -9,12 +8,18 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { ResourceRegistrySelectors as RR } from '@hra-ui/cdk/state';
+import { HraCommonModule } from '@hra-ui/common';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
+import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
+import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { IllustrationMappingItem } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
@@ -29,7 +34,6 @@ import {
   SourceRefsSelectors,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import {
   EmptyBiomarkerComponent,
   GradientLegendComponent,
@@ -43,14 +47,6 @@ import {
   DataCell,
   TissueInfo,
 } from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
-import { MessageIndicatorModule } from '@hra-ui/design-system/indicators/message-indicator';
-import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
-import { ContactBehaviorComponent } from '../contact-behavior/contact-behavior.component';
 import { FtuFullScreenService, FullscreenTab } from '../ftu-fullscreen-service/ftu-fullscreen.service';
 
 /**
@@ -66,11 +62,10 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   selector: 'ftu-biomarker-details',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    MatDialogModule,
     IconButtonModule,
     BiomarkerTableComponent,
     GradientLegendComponent,
@@ -161,7 +156,7 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   readonly selectedSources = signal<SourceListItem[]>([]);
 
   /** Active tab index */
-  private activeTabIndex = 0;
+  activeTabIndex = 0;
 
   /** Fullscreen service */
   private readonly fullscreenService = inject(FtuFullScreenService);
@@ -258,12 +253,6 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   /** A dispatcher function to set the screen mode */
   private readonly setScreenMode = dispatch(ScreenModeAction.Set);
 
-  /** A dialog box which shows contact modal after clicking on contact */
-  private readonly dialog = inject(MatDialog);
-
-  /** Google analytics tracking service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /** Table tabs */
   private tabs_: CellSummaryAggregate[] = [];
   /** Mapping items reference */
@@ -295,27 +284,11 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
     this.setScreenMode(this.isTableFullScreen);
   }
 
-  /** A function which opens the contact modal dialog box */
-  collaborate(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    this.ga.event('contact_open', 'modal');
-    this.dialog.open(ContactBehaviorComponent, dialogConfig);
-  }
-
   /**
    * Highlights cells matching the label
    * @param event
    */
   highlightCells(label?: string) {
     this.highlightCell(label);
-  }
-
-  /**
-   * Logs tab change event
-   * @param event tab change event
-   */
-  logTabChange(event: MatTabChangeEvent) {
-    this.ga.event('biomarker_tab_change', event.tab ? event.tab.textLabel : '');
   }
 }

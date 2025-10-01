@@ -1,71 +1,68 @@
-<hra-nav-header
-  tagline="Cell Distance Explorer"
-  app="product:cde"
-  link="/"
-  variant="basic"
-  [navigationCategories]="sideNavData"
-></hra-nav-header>
-<section class="create-and-explore">
-  <div class="create-explore-content">
-    <div class="header">
-      <h1 class="title">Create and explore cell distance visualizations</h1>
-      <h4 class="description">
-        This website supports visualization and quantification of cells and cell-cell distance distributions in
-        processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be
-        embedded on websites.
-      </h4>
+<ng-container hraFeature="landing-page">
+  <section class="create-and-explore" hraFeature="create-and-explore">
+    <div class="create-explore-content">
+      <div class="header">
+        <h1 class="title">Create and explore cell distance visualizations</h1>
+        <h4 class="description">
+          This website supports visualization and quantification of cells and cell-cell distance distributions in
+          processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be
+          embedded on websites.
+        </h4>
+      </div>
+      <cde-visual-card [cardData]="cards()"></cde-visual-card>
     </div>
-    <cde-visual-card [cardData]="cards()"></cde-visual-card>
-  </div>
-</section>
-<section class="vccf-container">
-  <div class="vccf">
-    <div class="content-container">
-      <h2 class="background-header">
-        Background Information: Constructing the Vasculature Common Coordinate Framework
-      </h2>
-      <div class="content">
-        <div class="paper">
-          <p class="background-text">
-            The vasculature is the human body's delivery system. It is also a cornerstone of medicine, helping surgeons
-            guide surgeries, pathologists diagnose disease, and serving as a landmark for medical practitioners of all
-            stripes. The Vasculature Common Coordinate Framework (VCCF) taps into this organic infrastructure in order
-            to map the cells in the body based on their proximity to nearby blood vessels.
-          </p>
-          <div class="links">
-            <a
-              class="vccf-paper"
-              mat-button
-              hraCtaButton
-              hraPrimaryButton
-              disableRipple
-              href="https://doi.org/10.3389/fcvm.2020.00029"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read VCCF Paper
-              <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
-            </a>
+  </section>
+  <section class="vccf-container" hraFeature="vccf">
+    <div class="vccf">
+      <div class="content-container">
+        <h2 class="background-header">
+          Background Information: Constructing the Vasculature Common Coordinate Framework
+        </h2>
+        <div class="content">
+          <div class="paper">
+            <p class="background-text">
+              The vasculature is the human body's delivery system. It is also a cornerstone of medicine, helping
+              surgeons guide surgeries, pathologists diagnose disease, and serving as a landmark for medical
+              practitioners of all stripes. The Vasculature Common Coordinate Framework (VCCF) taps into this organic
+              infrastructure in order to map the cells in the body based on their proximity to nearby blood vessels.
+            </p>
+            <div class="links">
+              <a
+                class="vccf-paper"
+                mat-button
+                hraCtaButton
+                hraPrimaryButton
+                disableRipple
+                href="https://doi.org/10.3389/fcvm.2020.00029"
+                target="_blank"
+                rel="noopener noreferrer"
+                hraClickEvent
+              >
+                Read VCCF Paper
+                <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+              </a>
 
-            <a
-              mat-button
-              hraCtaButton
-              hraSecondaryButton
-              disableRipple
-              [attr.href]="'assets/VCCF_March2024.pdf' | assetUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              VCCF Visualization Poster
-              <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
-            </a>
+              <a
+                mat-button
+                hraCtaButton
+                hraSecondaryButton
+                disableRipple
+                [attr.href]="'assets/VCCF_March2024.pdf' | assetUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                hraClickEvent
+              >
+                VCCF Visualization Poster
+                <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+      <div class="youtube-player">
+        <youtube-player videoId="zQeMgxo8n_U" hraFeature="video" hraClickEvent></youtube-player>
+      </div>
     </div>
-    <div class="youtube-player">
-      <youtube-player videoId="zQeMgxo8n_U"></youtube-player>
-    </div>
-  </div>
-</section>
-<hra-footer></hra-footer>
+  </section>
+  <hra-footer></hra-footer>
+</ng-container>

@@ -40,4 +40,31 @@ const meta: Meta<SocialMediaButtonComponent> = {
 export default meta;
 type Story = StoryObj<SocialMediaButtonComponent>;
 
-export const Default: Story = {};
+export const Dark: Story = {
+  args: {
+    id: SOCIAL_IDS[0],
+    size: 'large',
+    variant: 'dark',
+  },
+};
+
+export const Light: Story = {
+  globals: {
+    backgrounds: {
+      value: 'dark',
+    },
+  },
+  args: {
+    id: SOCIAL_IDS[0],
+    size: 'small',
+    variant: 'light',
+  },
+};
+
+export const Color: Story = {
+  args: {
+    id: SOCIAL_IDS[0],
+    size: 'large',
+    variant: 'color',
+  },
+};

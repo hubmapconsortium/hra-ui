@@ -1,4 +1,5 @@
-import { Brand, Prettify } from './util/types';
+import { HasRequiredKeys, OmitIndexSignature, RemovePrefix, Tagged } from 'type-fest';
+import { Prettify } from './util/types';
 
 /**
  * Unique symbol type used to store the payload type in event objects.
@@ -7,7 +8,7 @@ import { Brand, Prettify } from './util/types';
 declare const PAYLOAD: unique symbol;
 
 /** Event type */
-export type EventType = string & Brand<'EventType'>;
+export type EventType = Tagged<string, 'EventType'>;
 
 /** Categories used to filter events */
 export enum EventCategory {
@@ -17,17 +18,30 @@ export enum EventCategory {
   Marketing = 'marketing',
 }
 
+/** Union of all builtin dom events */
+type DOMEvent = keyof GlobalEventHandlersEventMap;
+
+/** Modifiers that can be applied to triggers */
+export type EventTriggerModifier = 'window:' | 'document:' | 'body:';
+
 /** DOM events that can trigger an analytics events */
-export type EventTrigger = keyof GlobalEventHandlersEventMap;
+export type EventTrigger<E extends DOMEvent = DOMEvent> = E | `${EventTriggerModifier}${E}`;
 
 /** DOM event data for a trigger */
-export type EventTriggerPayloadFor<T> = T extends EventTrigger ? GlobalEventHandlersEventMap[T] : never;
+export type EventTriggerPayloadFor<T> = T extends EventTrigger
+  ? GlobalEventHandlersEventMap[RemovePrefix<T, EventTriggerModifier> & DOMEvent]
+  : never;
 
 /** Event payload */
 export type EventPayload<P> = Prettify<CommonEventProps & { [K in keyof P]: P[K] } & { [key: string]: unknown }>;
 
 /** Extract the event payload */
 export type EventPayloadFor<T> = T extends AnalyticsEvent ? NonNullable<T[typeof PAYLOAD]> : never;
+
+/** Same as the event payload or the empty string if all payload properties are optional */
+export type EventPropsFor<T extends AnalyticsEvent> =
+  | EventPayloadFor<T>
+  | (HasRequiredKeys<OmitIndexSignature<EventPayloadFor<T>>> extends true ? never : '');
 
 /** An event specification */
 export interface AnalyticsEvent<P = object> {

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { HraCommonModule } from '@hra-ui/common';
 import { BrandMarkComponent } from '@hra-ui/design-system/brand/mark';
 // import { ProductLogoComponent, toProductLogoId } from '@hra-ui/design-system/brand/product-logo';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -20,6 +21,7 @@ export type NavHeaderButtonsVariant = 'basic' | 'sidenav';
 @Component({
   selector: 'hra-nav-header-buttons',
   imports: [
+    HraCommonModule,
     BrandMarkComponent,
     ButtonsModule,
     CommonModule,

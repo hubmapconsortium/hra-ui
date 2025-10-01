@@ -36,9 +36,20 @@
       display: flex;
       flex-direction: column;
 
-      .label {
+      .header {
+        display: flex;
+        flex-direction: column;
         padding: 0.5rem 0;
-        font: vars.$label-medium;
+
+        .title {
+          font: vars.$label-medium;
+          color: vars.$secondary;
+        }
+
+        .units {
+          font: vars.$label-small;
+          color: vars.$primary;
+        }
       }
 
       .box {
@@ -83,6 +94,8 @@
   }
 
   .as-tags {
+    flex-grow: 1;
+
     ccf-tag-list {
       margin-top: 1rem;
     }
@@ -116,5 +129,12 @@
       pointer-events: auto;
       box-shadow: none;
     }
+  }
+}
+
+::ng-deep .info-submenu {
+  .mat-mdc-menu-content {
+    padding: 1rem 0.75rem;
+    color: vars.$secondary;
   }
 }

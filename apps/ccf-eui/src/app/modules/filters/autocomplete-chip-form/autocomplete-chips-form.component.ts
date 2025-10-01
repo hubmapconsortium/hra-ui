@@ -20,6 +20,7 @@ import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
@@ -29,6 +30,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 @Component({
   selector: 'ccf-autocomplete-chips-form',
   imports: [
+    HraCommonModule,
     MatFormFieldModule,
     MatChipsModule,
     MatIconModule,

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -16,7 +16,6 @@ import {
 } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
-import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyData,
@@ -72,12 +71,11 @@ export interface DistanceEntry {
 @Component({
   selector: 'cde-visualization-root',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatProgressBarModule,
     CellTypesComponent,
     HistogramComponent,
     MetadataComponent,
-    NavHeaderButtonsComponent,
     NodeDistVisualizationComponent,
     ViolinComponent,
   ],

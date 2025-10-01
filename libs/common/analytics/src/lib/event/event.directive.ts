@@ -1,20 +1,35 @@
-import { booleanAttribute, Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  booleanAttribute,
+  DestroyRef,
+  Directive,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  Renderer2,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NgControl } from '@angular/forms';
 import {
   AnalyticsEvent,
   CoreEvents,
   EventPayloadFor,
+  EventPropsFor,
   EventTrigger,
   EventTriggerPayloadFor,
 } from '@hra-ui/common/analytics/events';
+import { skip } from 'rxjs';
+import { UnknownRecord } from 'type-fest';
 import { injectLogEvent } from '../analytics/analytics.service';
 
 /** Shared base implementation for event directives */
 @Directive()
-abstract class BaseEventDirective<T extends AnalyticsEvent> {
+export abstract class BaseEventDirective<T extends AnalyticsEvent> {
   /** Event type */
   abstract readonly event: () => T;
   /** Event properties */
-  abstract readonly props: () => EventPayloadFor<T>;
+  abstract readonly props: () => EventPropsFor<T>;
   /** Built-in trigger to log events on or 'none' if events are sent programatically */
   abstract readonly triggerOn: () => EventTrigger | 'none' | undefined;
   /** Whether this event is disabled */
@@ -23,7 +38,7 @@ abstract class BaseEventDirective<T extends AnalyticsEvent> {
   /** Reference to renderer for dom interactions */
   private readonly renderer = inject(Renderer2);
   /** Host element */
-  private readonly el = inject(ElementRef).nativeElement;
+  private readonly el = inject(ElementRef).nativeElement as Element;
   /** Raw logEvent function */
   private readonly logEvent_ = injectLogEvent();
 
@@ -34,8 +49,11 @@ abstract class BaseEventDirective<T extends AnalyticsEvent> {
       if (trigger !== 'none' && !this.disabled()) {
         const { el, renderer } = this;
         const handler = this.logEvent.bind(this, trigger);
-        const dispose = renderer.listen(el, trigger, handler);
-        onCleanup(dispose);
+        const parts = trigger.split(':', 2);
+        const [target, eventName] = parts.length === 2 ? parts : [el, trigger];
+        const unlisten = renderer.listen(target, eventName, handler);
+        // Delay cleanup to avoid issues with Angular destroying the element before the event is fully processed
+        onCleanup(() => setTimeout(() => unlisten()));
       }
     });
   }
@@ -45,12 +63,19 @@ abstract class BaseEventDirective<T extends AnalyticsEvent> {
    *
    * @param trigger Built-in event that triggered the call
    * @param event Event object
+   * @param extraProps Additional event properties
    */
-  logEvent<E extends EventTrigger>(trigger?: E, event?: EventTriggerPayloadFor<E>): void {
+  logEvent<E extends EventTrigger>(
+    trigger?: E,
+    event?: EventTriggerPayloadFor<E>,
+    extraProps: Partial<EventPayloadFor<T>> = {},
+  ): void {
+    const props = this.props();
     this.logEvent_(this.event(), {
       trigger: trigger,
       triggerData: event,
-      ...this.props(),
+      ...(props !== '' ? props : ({} as EventPayloadFor<T>)),
+      ...extraProps,
     });
   }
 }
@@ -83,7 +108,7 @@ export class EventDirective<T extends AnalyticsEvent> extends BaseEventDirective
   /** Event type */
   override readonly event = input.required<T>({ alias: 'hraEvent' });
   /** Event properties */
-  override readonly props = input.required<EventPayloadFor<T>>({ alias: 'hraEventProps' });
+  override readonly props = input.required<EventPropsFor<T>>({ alias: 'hraEventProps' });
   /** Built-in trigger to log events on or 'none' if events are sent programatically */
   override readonly triggerOn = input<EventTrigger | 'none' | undefined>(undefined, { alias: 'hraEventTriggerOn' });
   /** Whether this event is disabled */
@@ -103,31 +128,11 @@ export class ClickEventDirective extends BaseEventDirective<CoreEvents['Click']>
   /** Event type */
   override readonly event = () => CoreEvents.Click;
   /** Event properties */
-  override readonly props = input<EventPayloadFor<CoreEvents['Click']>>({}, { alias: 'hraClickEventProps' });
+  override readonly props = input<EventPropsFor<CoreEvents['Click']>>('', { alias: 'hraClickEvent' });
   /** 'none' if events are sent programatically */
   override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraClickEventTriggerOn' });
   /** Whether this event is disabled */
   override readonly disabled = input(false, { alias: 'hraClickEventDisabled', transform: booleanAttribute });
-}
-
-/**
- * Specialized version of `hraEvent` that only emits hover events
- *
- * @see {@link EventDirective}
- */
-@Directive({
-  selector: '[hraHoverEvent]',
-  exportAs: 'hraHoverEvent',
-})
-export class HoverEventDirective extends BaseEventDirective<CoreEvents['Hover']> {
-  /** Event type */
-  override readonly event = () => CoreEvents.Hover;
-  /** Event properties */
-  override readonly props = input<EventPayloadFor<CoreEvents['Hover']>>({}, { alias: 'hraHoverEventProps' });
-  /** 'none' if events are sent programatically */
-  override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraHoverEventTriggerOn' });
-  /** Whether this event is disabled */
-  override readonly disabled = input(false, { alias: 'hraHoverEventDisabled', transform: booleanAttribute });
 }
 
 /**
@@ -143,12 +148,127 @@ export class DoubleClickEventDirective extends BaseEventDirective<CoreEvents['Do
   /** Event type */
   override readonly event = () => CoreEvents.DoubleClick;
   /** Event properties */
-  override readonly props = input<EventPayloadFor<CoreEvents['DoubleClick']>>(
-    {},
-    { alias: 'hraDoubleClickEventProps' },
-  );
+  override readonly props = input<EventPropsFor<CoreEvents['DoubleClick']>>('', { alias: 'hraDoubleClickEvent' });
   /** 'none' if events are sent programatically */
   override readonly triggerOn = input<'none' | undefined>(undefined, { alias: 'hraDoubleClickEventTriggerOn' });
   /** Whether this event is disabled */
   override readonly disabled = input(false, { alias: 'hraDoubleClickEventDisabled', transform: booleanAttribute });
+}
+
+/**
+ * Specialized version of `hraEvent` that only emits hover events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: '[hraHoverEvent]',
+  exportAs: 'hraHoverEvent',
+})
+export class HoverEventDirective extends BaseEventDirective<CoreEvents['Hover']> {
+  /** Event type */
+  override readonly event = () => CoreEvents.Hover;
+  /** Event properties */
+  override readonly props = input<EventPropsFor<CoreEvents['Hover']>>('', { alias: 'hraHoverEvent' });
+  /** mouseenter, mouseleave, mouseover, mouseout, or 'none' if events are sent programatically */
+  override readonly triggerOn = input<
+    EventTrigger<'mouseenter' | 'mouseleave' | 'mouseover' | 'mouseout'> | 'none' | undefined
+  >(undefined, { alias: 'hraHoverEventTriggerOn' });
+  /** Whether this event is disabled */
+  override readonly disabled = input(false, { alias: 'hraHoverEventDisabled', transform: booleanAttribute });
+}
+
+/**
+ * Specialized version of `hraEvent` that only emits keyboard events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: '[hraKeyboardEvent]',
+  exportAs: 'hraKeyboardEvent',
+})
+export class KeyboardEventDirective extends BaseEventDirective<CoreEvents['Keyboard']> {
+  /** Event type */
+  override readonly event = () => CoreEvents.Keyboard;
+  /** Event properties */
+  override readonly props = input<EventPropsFor<CoreEvents['Keyboard']>>('', { alias: 'hraKeyboardEvent' });
+  /** keydown (default), keyup, or 'none' if events are sent programatically */
+  override readonly triggerOn = input<EventTrigger<'keyup' | 'keydown'> | 'none' | undefined>(undefined, {
+    alias: 'hraKeyboardEventTriggerOn',
+  });
+  /** Whether this event is disabled */
+  override readonly disabled = input(false, { alias: 'hraKeyboardEventDisabled', transform: booleanAttribute });
+}
+
+/** A list of property keys or a filter function */
+export type ModelChangeFilter = PropertyKey[] | ((value: unknown) => unknown);
+/** Either additional event props or a model value filter */
+export type ModelChangePropsOrFilter = EventPropsFor<CoreEvents['ModelChange']> | ModelChangeFilter;
+
+/**
+ * Specialized version of `hraEvent` that only emits when a NgControl's value changes
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: '[hraModelChangeEvent]',
+  exportAs: 'hraModelChangeEvent',
+})
+export class ModelChangeEventDirective extends BaseEventDirective<CoreEvents['ModelChange']> implements AfterViewInit {
+  /** Event type */
+  override readonly event = () => CoreEvents.ModelChange;
+  /** Event properties */
+  override readonly props = () => '' as const;
+  /** Event props or a model value filter */
+  readonly propsOrFilter = input<ModelChangePropsOrFilter>('', { alias: 'hraModelChangeEvent' });
+  /** Always triggered programatically */
+  override readonly triggerOn = () => 'none' as const;
+  /** Whether this event is disabled */
+  override readonly disabled = input(false, { alias: 'hraModelChangeEventDisabled', transform: booleanAttribute });
+
+  /** Model control reference */
+  private readonly ngControl = inject(NgControl);
+
+  /** Cleanup manager */
+  private readonly destroyRef = inject(DestroyRef);
+
+  /** Connect to the NgControl */
+  ngAfterViewInit(): void {
+    const { valueChanges } = this.ngControl;
+    valueChanges?.pipe(takeUntilDestroyed(this.destroyRef), skip(1)).subscribe((value) => {
+      const props = this.selectProps(value, this.propsOrFilter());
+      this.logEvent(undefined, undefined, props);
+    });
+  }
+
+  /**
+   * Selects event properties based on the current model value
+   *
+   * @param value Latest model value
+   * @param propsOrFilter Additional event properties or a value filter
+   * @returns Event properties
+   */
+  private selectProps(
+    value: unknown,
+    propsOrFilter: ModelChangePropsOrFilter,
+  ): EventPayloadFor<CoreEvents['ModelChange']> {
+    if (propsOrFilter === '') {
+      return { value };
+    } else if (typeof propsOrFilter === 'function') {
+      return { value: propsOrFilter(value) };
+    } else if (typeof propsOrFilter === 'object' && !Array.isArray(propsOrFilter)) {
+      return { value, ...propsOrFilter };
+    } else if (value === undefined || value === null) {
+      return {};
+    }
+
+    const source = value as UnknownRecord;
+    const result: UnknownRecord = {};
+    for (const key of propsOrFilter) {
+      if (key in source) {
+        result[key] = source[key];
+      }
+    }
+
+    return { value: result };
+  }
 }

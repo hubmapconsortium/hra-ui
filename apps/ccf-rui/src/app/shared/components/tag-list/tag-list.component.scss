@@ -3,8 +3,8 @@
 :host {
   display: block;
   overflow-x: hidden;
-  overflow-y: auto;
-  --mdc-chip-label-text-color: #{vars.$on-primary-fixed-variant};
+  overflow-y: hidden;
+  --mat-chip-label-text-color: #{vars.$on-primary-fixed-variant};
 
   .label {
     font: vars.$label-medium;

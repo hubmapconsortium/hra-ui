@@ -1,0 +1,249 @@
+@use 'utils' as utils;
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
+:host {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  border-bottom: 0.0625rem solid vars.$outline-variant;
+  .config-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.75rem;
+    padding: 1rem;
+
+    &:not(:last-child) {
+      border-right: 0.0625rem solid vars.$outline-variant;
+    }
+
+    &:first-child {
+      min-width: 16.25rem;
+      max-width: 35rem;
+      width: 16.875rem;
+    }
+
+    &:nth-child(2) {
+      width: 16.25rem;
+      gap: 1rem;
+    }
+  }
+
+  .column-title {
+    @include utils.use-font(label, large);
+    color: vars.$on-surface;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    hra-results-indicator {
+      height: 2.125rem;
+      background-color: vars.$surface-container-lowest;
+    }
+  }
+
+  .tools-count {
+    @include utils.use-font(body, medium);
+    margin: 0;
+    color: vars.$on-surface-variant;
+  }
+
+  h3 {
+    @include utils.use-font(label, medium);
+    color: vars.$on-surface-variant;
+    margin: 0;
+  }
+
+  .datatype-group,
+  .sort-group,
+  .organ-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .x-axis-group,
+  .y-axis-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .toggle-group {
+      border-radius: 0.25rem;
+    }
+  }
+
+  .toggle-group {
+    background-color: vars.$on-primary;
+
+    @include mat.button-toggle-overrides(
+      (
+        height: 2rem,
+      )
+    );
+
+    ::ng-deep .mat-button-toggle {
+      flex: 1 1 50%;
+      max-width: 50%;
+      text-align: center;
+      white-space: normal;
+      word-wrap: break-word;
+
+      &:only-child {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      .mat-button-toggle-label-content {
+        @include utils.use-font(label, small);
+        color: vars.$on-surface;
+        padding: 0.25rem;
+      }
+    }
+  }
+
+  .sex-toggle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+
+    .toggle-group {
+      border-radius: 0.25rem;
+    }
+  }
+
+  .annotation-checkbox-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .annotation-option {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+
+    .unavailable {
+      opacity: 0.6;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    ::ng-deep {
+      .mdc-label {
+        @include utils.use-font(label, medium);
+        color: vars.$on-surface-variant;
+      }
+    }
+  }
+
+  // 919px to 640px
+  @media (max-width: 919px) and (min-width: 640px) {
+    flex-wrap: wrap;
+
+    .config-column:nth-child(1),
+    .config-column:nth-child(2) {
+      flex: 0 0 50%;
+      width: 50%;
+      min-width: auto;
+      max-width: none;
+    }
+
+    .config-column:nth-child(3) {
+      flex: 0 0 100%;
+      width: 100%;
+      border-right: none;
+      border-top: 0.0625rem solid vars.$outline-variant;
+    }
+
+    .config-column:nth-child(2) {
+      border-right: none;
+    }
+
+    .annotation-checkbox-column {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .annotation-option {
+      margin-bottom: 0;
+      flex: 1;
+      display: flex;
+      justify-content: left;
+
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // 639px to 320px
+  @media (max-width: 639px) {
+    flex-direction: column;
+    gap: 0;
+
+    .config-column {
+      width: 100%;
+      gap: 1rem;
+      border-right: none !important;
+
+      &:not(:last-child) {
+        border-bottom: 0.0625rem solid vars.$outline-variant;
+      }
+
+      &:first-child,
+      &:nth-child(2) {
+        width: 100%;
+        min-width: auto;
+        max-width: none;
+      }
+    }
+
+    .toggle-group {
+      ::ng-deep .mat-button-toggle {
+        flex: 1 1 100%;
+        max-width: 100%;
+
+        &:only-child {
+          flex: 1 1 100%;
+          max-width: 100%;
+        }
+      }
+    }
+
+    .annotation-checkbox-column {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0;
+      align-items: center;
+    }
+
+    .annotation-option {
+      flex: 0 0 50%;
+      width: 50%;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: left;
+
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .column-title {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+  }
+}

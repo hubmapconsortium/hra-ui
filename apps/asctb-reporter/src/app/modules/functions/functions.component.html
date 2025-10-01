@@ -1,23 +1,16 @@
-<div>
-  <!-- <mat-expansion-panel class="mepNoPadding control-title" [expanded]="!error.hasError">
-    <mat-expansion-panel-header [expandedHeight]="'3.125rem'">
-      <mat-panel-title>
-        <div>
-          <strong> Cell Types </strong>
-        </div>
-      </mat-panel-title>
-    </mat-expansion-panel-header> -->
-
+<div hraFeature="visualization-controls-functions">
   <div class="title">Visualization controls</div>
 
   <div class="content">
     <!-- Cell Type Controls -->
-    <div class="vis-controls">
+    <div class="vis-controls" hraFeature="cell-type">
       <div class="control-title">Cell types</div>
       <div class="filters">
         <mat-form-field>
           <mat-label>Sort</mat-label>
           <mat-select
+            hraFeature="sort"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -26,7 +19,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
           >
-            <mat-option *ngFor="let option of sortOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of sortOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -34,6 +27,8 @@
         <mat-form-field>
           <mat-label>Size</mat-label>
           <mat-select
+            hraFeature="size"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -42,7 +37,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
           >
-            <mat-option *ngFor="let option of ctSizeOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of ctSizeOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -51,12 +46,14 @@
     </div>
 
     <!-- Biomarkers Controls -->
-    <div class="vis-controls">
+    <div class="vis-controls" hraFeature="biomarkers">
       <div class="control-title">Biomarkers</div>
       <div class="filters">
         <mat-form-field>
           <mat-label>Sort</mat-label>
           <mat-select
+            hraFeature="sort"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -65,7 +62,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
           >
-            <mat-option *ngFor="let option of sortOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of sortOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -73,6 +70,8 @@
         <mat-form-field>
           <mat-label>Size</mat-label>
           <mat-select
+            hraFeature="size"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -81,7 +80,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
           >
-            <mat-option *ngFor="let option of bmSizeOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of bmSizeOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -91,6 +90,8 @@
         <mat-form-field class="full-width">
           <mat-label>Biomarker type</mat-label>
           <mat-select
+            hraFeature="type"
+            hraClickEvent
             disableRipple
             panelClass="options-container"
             [disabled]="error.hasError"
@@ -99,7 +100,7 @@
             [hideSingleSelectionIndicator]="true"
             [panelClass]="'cell-types-panel'"
           >
-            <mat-option *ngFor="let option of bimodalBTypeOptions" [value]="option">
+            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of bimodalBTypeOptions" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -108,7 +109,7 @@
     </div>
 
     <!-- OMAP Controls -->
-    <div class="vis-controls">
+    <div class="vis-controls" hraFeature="omap">
       <div class="control-title">Organ Mapping Antibody Panels filters</div>
       <div class="filters">
         <mat-button-toggle-group
@@ -125,6 +126,8 @@
                 proteinsOnly: omaps.proteinsOnly,
               })
             "
+            hraFeature="organs-only"
+            hraClickEvent
             >Organs only</mat-button-toggle
           >
           <mat-button-toggle
@@ -135,6 +138,8 @@
                 organsOnly: omaps.organsOnly,
               })
             "
+            hraFeature="proteins-only"
+            hraClickEvent
             >Proteins only</mat-button-toggle
           >
         </mat-button-toggle-group>

@@ -6,7 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HraCommonModule } from '@hra-ui/common';
+import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
@@ -16,8 +18,9 @@ import {
 } from '@hra-ui/design-system/expansion-panel';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
-import { TrackingPopupModule } from 'ccf-shared';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { provideNgxMask } from 'ngx-mask';
+
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -27,15 +30,14 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
 
 @NgModule({
   imports: [
+    HraCommonModule,
     BrowserModule,
-    BrowserAnimationsModule,
     FormsModule,
     CoreModule,
     MatIconModule,
     ContentModule,
     LeftSidebarModule,
     RightSidebarModule,
-    TrackingPopupModule,
     MatSnackBarModule,
     NavHeaderButtonsComponent,
     ExpansionPanelComponent,
@@ -45,9 +47,16 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
     ButtonsModule,
     MatDividerModule,
     BackButtonBarComponent,
+    PlainTooltipDirective,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [
+    provideAppConfiguration({
+      name: 'ccf-rui',
+      version: '4.2.0',
+      url: 'https://apps.humanatlas.io/rui/',
+    }),
+    provideAnalytics(withErrorHandler()),
     provideNgxMask(),
     provideDesignSystem(),
     {

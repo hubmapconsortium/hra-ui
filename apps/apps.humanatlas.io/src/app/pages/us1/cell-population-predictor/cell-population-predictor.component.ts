@@ -1,10 +1,10 @@
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule, DOCUMENT, Location } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, InjectionToken, Renderer2 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { APP_ASSETS_HREF } from '@hra-ui/common';
+import { assetUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DeleteFileButtonComponent } from '@hra-ui/design-system/buttons/delete-file-button';
 import { AppLabelComponent } from '@hra-ui/design-system/content-templates/app-label';
@@ -12,6 +12,7 @@ import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tool
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { HraPopPredictionsService } from '../../../services/hra-pop-predictions/hra-pop-predictions.service';
 import { EmbeddedRuiComponent } from './rui/embedded-rui.component';
+import { HraCommonModule } from '@hra-ui/common';
 
 /** Tooltip Content */
 const TOOLTIP_CONTENT = `An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
@@ -42,9 +43,8 @@ export const SAMPLE_JSON_FILE = new InjectionToken('Sample file', {
  * @returns A HttpResourceRef that resolves to a File or undefined
  */
 function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
-  const assetsHref = inject(APP_ASSETS_HREF);
   const fileUrl = inject(SAMPLE_JSON_FILE_URL);
-  const url = Location.joinWithSlash(assetsHref(), fileUrl);
+  const url = assetUrl(fileUrl);
   return httpResource.text(url, {
     parse: (content) => new File([content], 'sample.json', { type: 'application/json' }),
   });
@@ -58,12 +58,11 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
   standalone: true,
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     OverlayModule,
     RouterModule,
     WorkflowCardModule,
-
     AppLabelComponent,
     DeleteFileButtonComponent,
     EmbeddedRuiComponent,
@@ -112,7 +111,7 @@ export class CellPopulationPredictorComponent {
   ];
 
   /** Supported organs */
-  protected readonly supportedOrgans = this.predictionsService.supportedOrgans.value.asReadonly();
+  protected readonly supportedOrgans = this.predictionsService.supportedOrgans;
 
   /** For accessing DOM  */
   private readonly document = inject(DOCUMENT);
