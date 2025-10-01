@@ -5,7 +5,6 @@ import { HraCommonModule, monitorHeight } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { CtaConfig, HeaderComponent } from '@hra-ui/design-system/navigation/header';
-import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 import { routeData } from './utils/route-data';
 
 /** Padding when scrolling to an anchor in px */
@@ -50,13 +49,10 @@ export class AppComponent {
   constructor() {
     inject(CustomScrollService);
     const scroller = inject(ViewportScroller);
-    const privacyPreferences = inject(PrivacyPreferencesService);
 
     effect(() => {
       const yOffset = this.headerHeight() + ANCHOR_SCROLL_PADDING;
       scroller.setOffset([0, yOffset]);
     });
-
-    privacyPreferences.launch();
   }
 }
