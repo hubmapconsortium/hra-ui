@@ -49,6 +49,7 @@ export class AppComponent {
   constructor() {
     inject(CustomScrollService);
     const scroller = inject(ViewportScroller);
+
     effect(() => {
       const yOffset = this.headerHeight() + ANCHOR_SCROLL_PADDING;
       scroller.setOffset([0, yOffset]);
