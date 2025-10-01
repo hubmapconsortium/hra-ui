@@ -6,7 +6,7 @@
   "prefix": "hra",
   "tags": ["type:app", "project:ftu", "webcomponent"],
   "metadata": {
-    "version": "0.5.0"
+    "version": "0.6.0"
   },
   "targets": {
     "build": {

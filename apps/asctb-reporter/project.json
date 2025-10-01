@@ -6,7 +6,7 @@
   "prefix": "app",
   "tags": ["type:app", "project:asctb"],
   "metadata": {
-    "version": "4.0.0"
+    "version": "4.1.0"
   },
   "targets": {
     "build": {
