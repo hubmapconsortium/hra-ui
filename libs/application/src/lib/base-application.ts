@@ -1,6 +1,7 @@
 import { computed, Directive, effect, inject, input, output } from '@angular/core';
 import { ConsentCategories, ConsentService } from '@hra-ui/common/analytics';
 import { injectAssetHref, injectPageHref } from '@hra-ui/common/url';
+import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 import { AnalyticsInput } from './util/analytics-input';
 
 /** Base application options */
@@ -46,12 +47,13 @@ export abstract class BaseApplicationComponent {
 
     // Setup analytics
     const consent = inject(ConsentService);
+    const privacyPreferences = inject(PrivacyPreferencesService);
     const analyticsWithDefault = computed(() => this.analytics() ?? options.analytics ?? true);
 
     effect(() => {
       const analytics = analyticsWithDefault();
       if (analytics === true) {
-        // TODO: Launch preferences
+        privacyPreferences.launch();
       } else if (analytics) {
         consent.updateCategories(analytics);
       }
