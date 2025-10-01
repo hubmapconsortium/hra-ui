@@ -29,7 +29,7 @@
         <mat-slide-toggle
           [checked]="checked"
           [disabled]="def.required"
-          [attr.aria-label]="categoryToggleLabel"
+          [aria-label]="categoryToggleLabel"
           (change)="toggleCategory(def.id, $event.checked)"
         />
       </div>
@@ -45,11 +45,10 @@
             }
             @if (def.provider && def.providerLink) {
               <p class="provider-title">{{ def.provider }}</p>
-              <div class="provider-link">
-                <hra-text-hyperlink text="Learn more about this provider" [url]="def.providerLink">
-                </hra-text-hyperlink>
+              <a hraHyperlink class="provider-link" [attr.href]="def.providerLink">
+                Learn more about this provider
                 <mat-icon>open_in_new</mat-icon>
-              </div>
+              </a>
             }
           </div>
         </div>
