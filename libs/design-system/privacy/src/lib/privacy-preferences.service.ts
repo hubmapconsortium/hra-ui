@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConsentService } from '@hra-ui/common/analytics';
 import {
   CONSENT_BANNER_ARIA_LABELLEDBY_ID,
+  CONSENT_BANNER_PANEL_CLASS,
   ConsentBannerComponent,
   ConsentBannerResult,
 } from '@hra-ui/design-system/privacy/consent-banner';
@@ -76,16 +77,18 @@ export class PrivacyPreferencesService {
 
     const ref = this.dialog.open<ConsentBannerComponent, never, ConsentBannerResult>(ConsentBannerComponent, {
       ariaLabelledBy: CONSENT_BANNER_ARIA_LABELLEDBY_ID,
+      autoFocus: false,
       closeOnNavigation: false,
       disableClose: true,
       hasBackdrop: false,
       id: CONSENT_BANNER_DIALOG_ID,
+      panelClass: CONSENT_BANNER_PANEL_CLASS,
+      minWidth: '100%',
       position: {
         bottom: '0px',
         left: '0px',
         right: '0px',
       },
-      autoFocus: false,
     });
 
     ref.afterClosed().subscribe((result) => this.handleDialogResult(result));
@@ -110,6 +113,8 @@ export class PrivacyPreferencesService {
         },
         hasBackdrop: true,
         id: PRIVACY_PREFERENCES_DIALOG_ID,
+        maxWidth: '46.75rem',
+        minWidth: '20rem',
         restoreFocus: true,
       },
     );

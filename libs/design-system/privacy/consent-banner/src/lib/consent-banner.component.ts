@@ -8,6 +8,9 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 /** Result of the consent banner */
 export type ConsentBannerResult = 'allow-all' | 'allow-necessary' | 'customize';
 
+/** Dialog panel class */
+export const CONSENT_BANNER_PANEL_CLASS = 'hra-consent-banner-panel';
+
 /** Aria labelledby id of consent banner component */
 export const CONSENT_BANNER_ARIA_LABELLEDBY_ID = 'consentBannerDialogTitle';
 
