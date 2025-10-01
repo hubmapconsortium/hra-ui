@@ -1,7 +1,6 @@
-import { computed, Directive, effect, inject, input, output, signal } from '@angular/core';
+import { computed, Directive, effect, inject, input, output } from '@angular/core';
 import { ConsentCategories, ConsentService } from '@hra-ui/common/analytics';
-import { provideChainedAssetHref, provideChainedPageHref } from '@hra-ui/common/url';
-import { createInjectionToken } from 'ngxtension/create-injection-token';
+import { injectAssetHref, injectPageHref } from '@hra-ui/common/url';
 import { AnalyticsInput } from './util/analytics-input';
 
 /** Base application options */
@@ -11,47 +10,9 @@ export interface BaseApplicationOptions {
 }
 
 /**
- * Token used to reference the app instance from {@link BaseApplicationDirective}.
- * Used to work around a bug with host directive inputs.
- * @see {@link BaseApplicationDirective}
- */
-const APP_INSTANCE = createInjectionToken(() => signal<BaseApplicationComponent | undefined>(undefined), {
-  isRoot: false,
-});
-
-/** Inject the app instance */
-const injectAppInstance = APP_INSTANCE[0];
-/** Provide the app instance */
-const provideAppInstance = APP_INSTANCE[1];
-
-/**
- * Base directive for all applications.
- *
- * NOTE: At the moment extend from {@link BaseApplicationComponent} instead of using this as a host directive.
- * This is due to a [bug](https://github.com/angular/angular/issues/53193) with host directive's inputs
- * not being reflected in the component metadata.
- */
-@Directive({
-  providers: [
-    provideAppInstance(),
-    provideChainedAssetHref(() => {
-      const instance = injectAppInstance();
-      return computed(() => instance()?.assetHref());
-    }),
-    provideChainedPageHref(() => {
-      const instance = injectAppInstance();
-      return computed(() => instance()?.pageHref());
-    }),
-  ],
-})
-export class BaseApplicationDirective {}
-
-/**
  * Base component for all application
  */
-@Directive({
-  hostDirectives: [BaseApplicationDirective],
-})
+@Directive({})
 export abstract class BaseApplicationComponent {
   /** Asset base url */
   readonly assetHref = input<string>();
@@ -66,8 +27,24 @@ export abstract class BaseApplicationComponent {
 
   /** Initialize the application component */
   constructor(options: BaseApplicationOptions = {}) {
-    injectAppInstance().set(this);
+    // Setup hrefs
+    const assetHref = injectAssetHref();
+    effect(() => {
+      const href = this.assetHref();
+      if (href !== undefined) {
+        assetHref.set(href);
+      }
+    });
 
+    const pageHref = injectPageHref();
+    effect(() => {
+      const href = this.pageHref();
+      if (href !== undefined) {
+        pageHref.set(href);
+      }
+    });
+
+    // Setup analytics
     const consent = inject(ConsentService);
     const analyticsWithDefault = computed(() => this.analytics() ?? options.analytics ?? true);
 
