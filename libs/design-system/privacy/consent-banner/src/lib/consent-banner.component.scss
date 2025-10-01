@@ -49,8 +49,13 @@
     }
 
     .hyperlink {
-      hra-text-hyperlink {
+      padding: 0.25rem 0;
+
+      .privacy-policy-button {
         @include utils.use-font(label, large);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
       }
     }
   }
@@ -103,6 +108,13 @@
 
       .hyperlink {
         padding: 0.25rem 0;
+
+        .privacy-policy-button {
+          @include utils.use-font('label', 'large');
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
       }
     }
 
