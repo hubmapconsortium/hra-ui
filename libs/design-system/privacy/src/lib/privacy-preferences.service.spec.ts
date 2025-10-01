@@ -1,8 +1,8 @@
+import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConsentService } from '@hra-ui/common/analytics';
 import { EventCategory } from '@hra-ui/common/analytics/events';
-import { signal } from '@angular/core';
 import { of } from 'rxjs';
 import { PrivacyPreferencesService } from './privacy-preferences.service';
 
@@ -36,8 +36,8 @@ describe('PrivacyPreferencesService', () => {
     [EventCategory.Marketing]: false,
   };
 
-  beforeEach(() => {
-    mockStore = require('store2') as MockStore;
+  beforeEach(async () => {
+    mockStore = (await import('store2')).default as unknown as MockStore;
 
     const mockDialogRef = {
       afterClosed: jest.fn(() => of('allow-all')),
