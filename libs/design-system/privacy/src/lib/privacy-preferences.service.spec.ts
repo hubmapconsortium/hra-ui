@@ -188,9 +188,93 @@ describe('PrivacyPreferencesService', () => {
     it('should enable sync', () => {
       service.enableSync();
 
-      // We can't directly test the signal value since it's private
-      // but we can verify the method exists and doesn't throw
       expect(() => service.enableSync()).not.toThrow();
+    });
+  });
+
+  describe('constructor effect', () => {
+    it('should sync categories to storage when sync is enabled', () => {
+      service.enableSync();
+
+      TestBed.flushEffects();
+
+      expect(mockStore.local.set).toHaveBeenCalledWith('__hra-analytics-privacy-preferences', mockCategories);
+    });
+  });
+
+  describe('handleDialogResult', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      mockDialog.getDialogById.mockReturnValue(undefined);
+    });
+
+    it('should handle "allow-all" result', () => {
+      const mockDialogRef = {
+        afterClosed: jest.fn(() => of('allow-all')),
+      } as unknown as MatDialogRef<unknown>;
+      mockDialog.open.mockReturnValue(mockDialogRef);
+      jest.spyOn(service, 'enableSync');
+
+      service.openConsentBanner();
+
+      expect(mockConsentService.enableAllCategories).toHaveBeenCalled();
+      expect(service.enableSync).toHaveBeenCalled();
+    });
+
+    it('should handle "allow-necessary" result', () => {
+      const mockDialogRef = {
+        afterClosed: jest.fn(() => of('allow-necessary')),
+      } as unknown as MatDialogRef<unknown>;
+      mockDialog.open.mockReturnValue(mockDialogRef);
+      jest.spyOn(service, 'enableSync');
+
+      service.openConsentBanner();
+
+      expect(mockConsentService.disableAllCategories).toHaveBeenCalled();
+      expect(service.enableSync).toHaveBeenCalled();
+    });
+
+    it('should handle "customize" result', () => {
+      const mockDialogRef = {
+        afterClosed: jest.fn(() => of('customize')),
+      } as unknown as MatDialogRef<unknown>;
+      mockDialog.open.mockReturnValue(mockDialogRef);
+      jest.spyOn(service, 'openPrivacyPreferences');
+
+      service.openConsentBanner();
+
+      expect(service.openPrivacyPreferences).toHaveBeenCalledWith('consent');
+    });
+
+    it('should handle "dismiss" result', () => {
+      const mockDialogRef = {
+        afterClosed: jest.fn(() => of('dismiss')),
+      } as unknown as MatDialogRef<unknown>;
+      mockDialog.open.mockReturnValue(mockDialogRef);
+
+      expect(() => {
+        service.openConsentBanner();
+      }).not.toThrow();
+    });
+
+    it('should handle custom categories result', () => {
+      const customCategories = {
+        [EventCategory.Necessary]: true,
+        [EventCategory.Statistics]: true,
+        [EventCategory.Preferences]: false,
+        [EventCategory.Marketing]: false,
+      };
+
+      const mockDialogRef = {
+        afterClosed: jest.fn(() => of(customCategories)),
+      } as unknown as MatDialogRef<unknown>;
+      mockDialog.open.mockReturnValue(mockDialogRef);
+      jest.spyOn(service, 'enableSync');
+
+      service.openPrivacyPreferences();
+
+      expect(mockConsentService.updateCategories).toHaveBeenCalledWith(customCategories);
+      expect(service.enableSync).toHaveBeenCalled();
     });
   });
 });
