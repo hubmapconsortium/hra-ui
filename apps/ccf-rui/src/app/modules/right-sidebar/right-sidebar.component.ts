@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, output } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+
 import { AnatomicalStructureTagState } from '../../core/store/anatomical-structure-tags/anatomical-structure-tags.state';
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
@@ -37,10 +38,13 @@ export class RightSidebarComponent {
     map((p) => ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) })),
   );
 
-  /** As tags */
+  /** Anatomical structure tags */
   protected readonly tags = toSignal(this.astags.tags$, { initialValue: [] });
   /** All tags */
   protected readonly allTags = toSignal(this.astags.entitiesArray$, { initialValue: [] });
+  /** Whether tissue block axis is hidden */
+  protected readonly disableBlockAxis = toSignal(this.model.disableBlockAxis$, { initialValue: false });
+
   /** Added tags */
   protected readonly addedTags = computed(() => this.tags().filter((tag) => tag.type === 'added'));
   /** Assigned tags */
