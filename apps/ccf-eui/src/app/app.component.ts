@@ -1,17 +1,17 @@
 import { Immutable } from '@angular-ru/cdk/typings';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Filter } from '@hra-api/ng-client';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { ALL_ORGANS, GlobalConfigState, OrganInfo } from 'ccf-shared';
-import { ConsentService, LocalStorageSyncService } from 'ccf-shared/analytics';
 import { JsonLd } from 'jsonld/jsonld-spec';
 import { debounce } from 'lodash';
-import { combineLatest, take } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { OntologySelection } from './core/models/ontology-selection';
 import { actionAsFn } from './core/store/action-as-fn';
 import { DataStateSelectors } from './core/store/data/data.selectors';
@@ -64,7 +64,7 @@ interface AppOptions {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends BaseApplicationComponent {
   /** Set selected searches */
   @Dispatch()
   readonly setSelectedSearches = actionAsFn(SetSelectedSearches);
@@ -95,10 +95,6 @@ export class AppComponent implements OnInit {
   readonly scene = inject(SceneState);
   /** List results state */
   readonly listResultsState = inject(ListResultsState);
-  /** Consent service */
-  readonly consentService = inject(ConsentService);
-  /** Local storage sync service */
-  readonly localStorageSyncService = inject(LocalStorageSyncService);
   /** Snackbar service */
   readonly snackbar = inject(SnackbarService);
   /** Global config */
@@ -155,6 +151,8 @@ export class AppComponent implements OnInit {
    * Creates an instance of app component.
    */
   constructor() {
+    super();
+
     this.data.tissueBlockData$.subscribe();
     this.data.aggregateData$.subscribe();
     this.data.ontologyTermOccurencesData$.subscribe();
@@ -175,36 +173,6 @@ export class AppComponent implements OnInit {
     if (!overlayEl.isConnected) {
       inject(DOCUMENT).body.appendChild(overlayEl);
     }
-  }
-
-  /** Initialize the component */
-  ngOnInit(): void {
-    this.showConsentSnackBar();
-  }
-
-  /** Shows the consent snackbar with user tracking preferences */
-  showConsentSnackBar(): void {
-    const { consent } = this.consentService;
-    const isInitialConsent = consent === 'not-set';
-    const shouldOptIn = isInitialConsent || consent === 'rescinded';
-
-    const config = {
-      message: 'We log usage to improve this service.',
-      action: shouldOptIn ? (isInitialConsent ? 'I understand' : 'Opt in') : 'Opt out',
-      persistent: isInitialConsent,
-      duration: isInitialConsent ? Infinity : 6000,
-    };
-
-    this.snackbar
-      .open(config.message, config.action, config.persistent, 'start', { duration: config.duration })
-      .afterDismissed()
-      .pipe(take(1))
-      .subscribe(({ dismissedByAction }) => {
-        const newConsent = dismissedByAction ? (shouldOptIn ? 'given' : 'rescinded') : 'rescinded';
-        if (dismissedByAction || isInitialConsent) {
-          this.consentService.setConsent(newConsent);
-        }
-      });
   }
 
   /** Format a range of values */

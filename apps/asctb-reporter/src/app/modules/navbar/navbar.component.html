@@ -1,10 +1,17 @@
-<div class="toolbar-nav">
+<div class="toolbar-nav" hraFeature="nav-bar">
   <div header>
     <div class="branding">
       <hra-icon [svgIcon]="'product:asctb-reporter'"></hra-icon>
       <div class="app-title">ASCT+B Reporter</div>
     </div>
-    <button mat-icon-button hraIconButtonSize="large" hraIconButtonVariant="dark" [matMenuTriggerFor]="headerMenu">
+    <button
+      mat-icon-button
+      hraIconButtonSize="large"
+      hraIconButtonVariant="dark"
+      [matMenuTriggerFor]="headerMenu"
+      hraFeature="header-menu"
+      hraClickEvent
+    >
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
@@ -14,68 +21,28 @@
     </div>
 
     <div class="nav-item">
-      <mat-form-field class="datasets-field" subscriptSizing="dynamic" (click)="openSelectOrgansDialog()">
+      <mat-form-field
+        class="datasets-field"
+        subscriptSizing="dynamic"
+        (click)="openSelectOrgansDialog()"
+        hraFeature="datasets"
+        hraClickEvent
+      >
         <mat-label>Datasets</mat-label>
         <input matInput readonly value="{{ (mode$ | async) === 'vis' ? selectedOrgansLabel : 'Example' }}" />
         <mat-icon matSuffix>arrow_drop_down</mat-icon>
       </mat-form-field>
     </div>
-
-    <!--
-
-    <app-nav-item
-      [label]="'Refresh'"
-      (click)="refreshData()"
-      #tooltip="matTooltip"
-      matTooltip="Refresh"
-      matTooltipPosition="below"
-    >
-      <mat-icon class="toolbar-icons">refresh</mat-icon>
-    </app-nav-item>
-
-    <app-nav-item
-      [label]="'Export'"
-      [disabled]="(ui$ | async)?.error?.hasError ?? false"
-      autofocus="false"
-      mat-icon-button
-      #tooltip="matTooltip"
-      matTooltip="Export"
-      matTooltipPosition="below"
-      [matMenuTriggerFor]="downloadMenu"
-    >
-      <mat-icon class="toolbar-icons">get_app</mat-icon>
-    </app-nav-item>
-
-    <mat-menu #downloadMenu="matMenu">
-      <button mat-menu-item *ngFor="let option of imgOptions" (click)="exportImage(option)">
-        {{ option }}
-      </button>
-    </mat-menu>
-
-    <app-nav-item
-      [label]="'Menu'"
-      #tooltip="matTooltip"
-      matTooltip="Menu"
-      matTooltipPosition="below"
-      [matMenuTriggerFor]="menu"
-    >
-      <mat-icon class="toolbar-icons">more_vert</mat-icon>
-    </app-nav-item>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item *ngFor="let option of moreOptions" (click)="onOptionClick(option.type, option.url)">
-        {{ option.name }}
-      </button>
-    </mat-menu> -->
   </div>
-</div>
 
-<mat-menu #headerMenu="matMenu" class="header-menu">
-  <button mat-menu-item (click)="togglePane()">
-    <mat-icon>visibility_{{ controlPaneOpen() ? 'off' : 'on' }}</mat-icon>
-    {{ controlPaneOpen() ? 'Hide' : 'Show' }} legend & visualization controls
-  </button>
-  <button mat-menu-item (click)="toggleDebugLogs()">
-    <mat-icon>bug_report</mat-icon>
-    Debug log
-  </button>
-</mat-menu>
+  <mat-menu #headerMenu="matMenu" class="header-menu" hraFeature="menu">
+    <button mat-menu-item (click)="togglePane()" hraFeature="toggle-legend-visualization-controls" hraClickEvent>
+      <mat-icon>visibility_{{ controlPaneOpen() ? 'off' : 'on' }}</mat-icon>
+      {{ controlPaneOpen() ? 'Hide' : 'Show' }} legend & visualization controls
+    </button>
+    <button mat-menu-item (click)="toggleDebugLogs()" hraFeature="toggle-debug-logs" hraClickEvent>
+      <mat-icon>bug_report</mat-icon>
+      Debug log
+    </button>
+  </mat-menu>
+</div>

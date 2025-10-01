@@ -10,6 +10,10 @@ jest.mock('vega-embed', () => ({
   default: jest.fn(),
 }));
 
+jest.mock('@hra-ui/common/analytics', () => ({
+  injectLogEvent: () => jest.fn(),
+}));
+
 describe('BarGraphComponent', () => {
   let component: BarGraphComponent;
   let fixture: ComponentFixture<BarGraphComponent>;
@@ -63,12 +67,15 @@ describe('BarGraphComponent', () => {
 
   it('should cleanup vega result on destroy', async () => {
     const finalizeMock = jest.fn();
+    const addEventListenerMock = jest.fn();
+
     const vegaEmbed = await import('vega-embed');
     const mockEmbed = vegaEmbed.default as jest.MockedFunction<typeof vegaEmbed.default>;
 
     mockEmbed.mockResolvedValueOnce({
       finalize: finalizeMock,
       view: {
+        addEventListener: addEventListenerMock,
         finalize: jest.fn(),
         initialize: jest.fn(),
         loader: jest.fn(),
@@ -81,5 +88,15 @@ describe('BarGraphComponent', () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
     fixture.destroy();
     expect(finalizeMock).toHaveBeenCalled();
+  });
+
+  it('should attach event listeners to vega view', () => {
+    const addEventListenerMock = jest.fn();
+    const mockView = {
+      addEventListener: addEventListenerMock,
+    };
+    (component as any).attachVegaEventTracking(mockView);
+    expect(addEventListenerMock).toHaveBeenCalledWith('pointerover', expect.any(Function));
+    expect(addEventListenerMock).toHaveBeenCalledWith('click', expect.any(Function));
   });
 });

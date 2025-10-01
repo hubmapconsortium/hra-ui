@@ -1,0 +1,64 @@
+<cdk-accordion>
+  @for (def of categoryDefs; track def.id) {
+    @let headerId = `privacy-preferences-category-${def.id}-header`;
+    @let bodyId = `privacy-preferences-category-${def.id}-body`;
+
+    <cdk-accordion-item #item="cdkAccordionItem">
+      <div [attr.id]="headerId" class="header" [attr.aria-label]="def.title + ' cookies'">
+        @let checked = categories()[def.id];
+        @let detailToggleLabel = `${item.expanded ? 'Close' : 'Open'} ${def.id.toLowerCase()} details`;
+        @let categoryToggleLabel = `${checked ? 'Disallow' : 'Allow'} ${def.id.toLowerCase()} cookies`;
+
+        <button
+          mat-icon-button
+          class="detail-toggle"
+          [attr.aria-controls]="bodyId"
+          [attr.aria-expanded]="item.expanded"
+          [attr.aria-label]="detailToggleLabel"
+          (click)="item.toggle()"
+        >
+          <mat-icon>
+            {{ item.expanded ? 'remove' : 'add' }}
+          </mat-icon>
+        </button>
+
+        <span class="title">{{ def.title }}</span>
+
+        <div class="filler"></div>
+
+        <mat-slide-toggle
+          [checked]="checked"
+          [disabled]="def.required"
+          [aria-label]="categoryToggleLabel"
+          (change)="toggleCategory(def.id, $event.checked)"
+        />
+      </div>
+      <p class="description">
+        {{ def.description }}
+      </p>
+
+      @if (item.expanded) {
+        <div [attr.id]="bodyId" class="details" role="region" [attr.aria-labelledby]="headerId">
+          <div class="privacy-details">
+            @if (def.details) {
+              <p class="privacy-text">{{ def.details }}</p>
+            }
+            @if (def.provider && def.providerLink) {
+              <p class="provider-title">{{ def.provider }}</p>
+              <div class="provider-link-container">
+                <a hraHyperlink class="provider-link" [attr.href]="def.providerLink">
+                  Learn more about this provider
+                </a>
+                <mat-icon>open_in_new</mat-icon>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (!$last) {
+        <mat-divider />
+      }
+    </cdk-accordion-item>
+  }
+</cdk-accordion>

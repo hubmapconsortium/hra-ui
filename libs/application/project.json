@@ -1,0 +1,19 @@
+{
+  "name": "application",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/application/src",
+  "prefix": "hra",
+  "projectType": "library",
+  "tags": ["type:lib", "project:application"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/common/tsconfig.lib.json"
+      }
+    }
+  }
+}

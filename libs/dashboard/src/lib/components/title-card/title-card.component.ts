@@ -1,7 +1,7 @@
 import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { z } from 'zod';
 
 /** Type definition of Title Card */
@@ -38,7 +38,7 @@ const TOOLTIP_POSITIONS: ConnectionPositionPair[] = [
 /** Title card component, renders title, tooltip and contents inside the card */
 @Component({
   selector: 'hra-title-card',
-  imports: [CommonModule, MatIconModule, OverlayModule],
+  imports: [HraCommonModule, MatIconModule, OverlayModule],
   templateUrl: './title-card.component.html',
   styleUrl: './title-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

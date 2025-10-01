@@ -1,5 +1,6 @@
 @forward './button' as button-*;
 @forward './button-toggle' as button-toggle-*;
+@forward './chips' as chips-*;
 @forward './checkbox' as checkbox-*;
 @forward './form-field' as form-field-*;
 @forward './icon-button' as icon-button-*;
@@ -14,6 +15,7 @@
   @include button-overrides();
   @include button-toggle-overrides();
   @include checkbox-overrides();
+  @include chips-overrides();
   @include form-field-overrides();
   @include icon-button-overrides();
   @include menu-overrides();

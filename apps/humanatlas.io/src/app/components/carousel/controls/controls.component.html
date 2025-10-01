@@ -1,9 +1,11 @@
-<button mat-icon-button #prevButton class="prev-button">
-  <mat-icon>chevron_left</mat-icon>
-</button>
+<ng-container hraFeature="controls">
+  <button mat-icon-button #prevButton class="prev-button" hraFeature="previous-slide" hraClickEvent>
+    <mat-icon>chevron_left</mat-icon>
+  </button>
 
-<div class="pagination-container" #paginationContainer></div>
+  <div class="pagination-container" #paginationContainer hraFeature="slide-dot" hraClickEvent></div>
 
-<button mat-icon-button #nextButton class="next-button">
-  <mat-icon>chevron_right</mat-icon>
-</button>
+  <button mat-icon-button #nextButton class="next-button" hraFeature="next-slide" hraClickEvent>
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</ng-container>

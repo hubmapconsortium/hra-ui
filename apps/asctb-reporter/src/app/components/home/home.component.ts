@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
-import { AssetUrlPipe } from '@hra-ui/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { AssetUrlPipe } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -24,6 +25,7 @@ import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
     FooterComponent,
     RouterModule,
     AssetUrlPipe,
+    HraCommonModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

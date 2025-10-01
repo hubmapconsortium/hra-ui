@@ -10,8 +10,10 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   BiomarkerDetailsWcComponent,
   TissueLibraryBehaviorComponent,
@@ -81,7 +83,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
 /** FTU ui small web component */
 @Component({
   selector: 'hra-root',
-  imports: [TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
+  imports: [HraCommonModule, TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host: {
@@ -90,7 +92,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent extends BaseApplicationComponent implements OnInit, OnChanges {
   /** Illustration to display (choosen automatically if not provided) */
   @Input() selectedIllustration?: string | RawIllustration;
 
@@ -154,6 +156,11 @@ export class AppComponent implements OnInit, OnChanges {
 
   /** Whether the component is initialized */
   private initialized = false;
+
+  /** Initialize the app */
+  constructor() {
+    super({ analytics: false });
+  }
 
   /** Initializes the component */
   ngOnInit() {

@@ -1,7 +1,7 @@
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Injector, inject } from '@angular/core';
+import { inject, Injectable, Injector } from '@angular/core';
 import { SpatialEntity, SpatialPlacement, SpatialSceneNode } from '@hra-api/ng-client';
 import { Matrix4, toRadians } from '@math.gl/core';
 import { NgxsOnInit, State } from '@ngxs/store';
@@ -10,7 +10,7 @@ import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { getOriginScene, getTissueBlockScene } from 'ccf-scene-utils';
 import { GlobalConfigState } from 'ccf-shared';
 import { isEqual } from 'lodash';
-import { Observable, combineLatest, defer, of } from 'rxjs';
+import { combineLatest, defer, Observable, of } from 'rxjs';
 import {
   catchError,
   concatMap,
@@ -24,6 +24,7 @@ import {
   take,
   throttleTime,
 } from 'rxjs/operators';
+
 import { environment } from '../../../../environments/environment';
 import { GlobalConfig } from '../../services/config/config';
 import { ModelState } from '../model/model.state';
@@ -128,10 +129,15 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
   /** Observable of spatial nodes */
   @Computed()
   get referenceOrganNodes$(): Observable<SpatialSceneNode[]> {
-    return combineLatest([this.model.anatomicalStructures$, this.model.extractionSites$, this.model.organIri$]).pipe(
-      map(([anatomicalStructures, extractionSites, organIri]) => {
+    return combineLatest([
+      this.model.anatomicalStructures$,
+      this.model.extractionSites$,
+      this.model.organIri$,
+      this.model.disableOrganAxis$,
+    ]).pipe(
+      map(([anatomicalStructures, extractionSites, organIri, disableOrganAxis]) => {
         const organ = this.getOrganSpatialEntity(organIri as string);
-        const originScene = organIri ? getOriginScene(organ, false, true) : [];
+        const originScene = !disableOrganAxis && organIri ? getOriginScene(organ, false, true) : [];
         const organScene = this.createSceneNodes(
           organIri as string,
           [...anatomicalStructures, ...extractionSites] as VisibilityItem[],
@@ -209,8 +215,12 @@ export class SceneState extends NgxsImmutableDataRepository<SceneStateModel> imp
   get spatialKeyBoardAxis$(): Observable<SpatialSceneNode[]> {
     const nonEmptyOrganIri = this.model.organIri$.pipe(filter((iri): iri is string => iri !== undefined && iri !== ''));
 
-    return combineLatest([nonEmptyOrganIri, this.model.position$]).pipe(
-      map(([organIri, position]) => {
+    return combineLatest([nonEmptyOrganIri, this.model.position$, this.model.disableBlockAxis$]).pipe(
+      map(([organIri, position, disableBlockAxis]) => {
+        if (disableBlockAxis) {
+          return [];
+        }
+
         const organEntity = this.getOrganSpatialEntity(organIri);
         const blockSize = this.model.snapshot.blockSize;
         const rotation = this.model.snapshot.rotation;

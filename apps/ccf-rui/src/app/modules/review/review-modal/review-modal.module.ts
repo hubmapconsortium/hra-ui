@@ -1,13 +1,14 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { ReviewModalComponent } from './review-modal.component';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+
+import { ReviewModalComponent } from './review-modal.component';
 
 @NgModule({
   declarations: [ReviewModalComponent],
-  imports: [CommonModule, MatDialogModule, MatIconModule, ButtonsModule],
+  imports: [HraCommonModule, MatDialogModule, MatIconModule, ButtonsModule],
   exports: [ReviewModalComponent],
 })
 export class ReviewModalModule {}

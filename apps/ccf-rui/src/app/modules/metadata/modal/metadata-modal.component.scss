@@ -4,9 +4,6 @@
 :host {
   display: block;
   position: relative;
-  width: 100vw;
-  height: 100vh;
-
   --scrollbar-offset: 2;
 
   @include mat.dialog-overrides(

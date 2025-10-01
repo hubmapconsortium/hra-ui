@@ -16,6 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonSizeDirective } from '@hra-ui/design-system/buttons/button';
 import { UploadForm } from '../../models/sheet.model';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
@@ -37,6 +38,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     MatButtonToggleModule,
     MatMenuModule,
     ButtonSizeDirective,
+    HraCommonModule,
   ],
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss'],
