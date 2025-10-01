@@ -1,5 +1,5 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -42,7 +42,7 @@ export class DefaultToPipe implements PipeTransform {
 @Component({
   selector: 'cde-metadata',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     MatExpansionModule,

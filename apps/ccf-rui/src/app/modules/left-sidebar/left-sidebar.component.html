@@ -13,9 +13,8 @@
   </button>
   <mat-menu hraFeature="menu" #menu="matMenu" class="opacity-overlay">
     <button hraFeature="reset-all" hraClickEvent mat-menu-item matRipple matRippleColor="#201E3D14">
-      <span (click)="anatomical.setAllOpacity(20); landmarks.setAllOpacity(0)">Reset All Settings</span>
+      <span (click)="anatomical.setAllOpacity(20); landmarks.setAllOpacity(0)">Reset all opacity settings</span>
     </button>
-    <mat-divider class="menu-divider"></mat-divider>
     <button hraFeature="reset-as" hraClickEvent mat-menu-item matRipple matRippleColor="#201E3D14">
       <span (click)="anatomical.setAllOpacity(20)">Reset anatomical structures</span>
     </button>
@@ -25,7 +24,7 @@
   </mat-menu>
 </div>
 
-<hra-expansion-panel tagline="Anatomical Structures" class="AS-expansion" [tooltip]="asTooltip">
+<hra-expansion-panel tagline="Anatomical Structures" class="as-expansion" [tooltip]="asTooltip">
   <ccf-visibility-menu
     hraFeature="AS-visibility"
     #anatomical
@@ -35,7 +34,7 @@
   </ccf-visibility-menu>
 </hra-expansion-panel>
 
-<hra-expansion-panel tagline="Landmarks" [tooltip]="landmarksTooltip">
+<hra-expansion-panel tagline="Landmarks" class="landmarks-expansion" [tooltip]="landmarksTooltip">
   <ccf-visibility-menu
     hraFeature="landmarks-visibility"
     #landmarks

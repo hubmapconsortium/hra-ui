@@ -132,7 +132,7 @@
   </hra-header>
   @if (!screenSizeNoticeOpen) {
     <div class="main">
-      @if (router.url !== '/') {
+      @if (isFtuPage) {
         <ftu-tissue-library-behavior
           class="sidebar"
           [(selected)]="selectedFtu"
