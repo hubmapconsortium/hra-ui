@@ -16,8 +16,6 @@
         hraFeature="reset-all"
         hraClickEvent
         mat-menu-item
-        matRipple
-        matRippleColor="#201E3D14"
         (click)="
           setDefaultPosition(); blocksize.refreshBlockSize(); slices.refreshSlices(); rotation.resetAllRotations()
         "
@@ -25,34 +23,13 @@
         Reset all settings
       </button>
       <mat-divider class="menu-divider"></mat-divider>
-      <button
-        hraFeature="reset-position"
-        hraClickEvent
-        mat-menu-item
-        matRipple
-        matRippleColor="#201E3D14"
-        (click)="setDefaultPosition()"
-      >
+      <button hraFeature="reset-position" hraClickEvent mat-menu-item (click)="setDefaultPosition()">
         Reset position
       </button>
-      <button
-        hraFeature="reset-size"
-        hraClickEvent
-        mat-menu-item
-        matRipple
-        matRippleColor="#201E3D14"
-        (click)="blocksize.refreshBlockSize()"
-      >
+      <button hraFeature="reset-size" hraClickEvent mat-menu-item (click)="blocksize.refreshBlockSize()">
         Reset size
       </button>
-      <button
-        hraFeature="reset-rotation"
-        hraClickEvent
-        mat-menu-item
-        matRipple
-        matRippleColor="#201E3D14"
-        (click)="rotation.resetAllRotations()"
-      >
+      <button hraFeature="reset-rotation" hraClickEvent mat-menu-item (click)="rotation.resetAllRotations()">
         Reset rotation
       </button>
     </mat-menu>
@@ -186,7 +163,7 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu hraFeature="menu" #asTagsActionMenu="matMenu" class="settings-overlay">
-      <button class="expanded" mat-menu-item matRipple matRippleColor="#201E3D14" [matMenuTriggerFor]="submenu">
+      <button class="expanded" mat-menu-item [matMenuTriggerFor]="submenu">
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
@@ -197,14 +174,7 @@
 
       <mat-divider class="menu-divider"></mat-divider>
 
-      <button
-        hraFeature="reset"
-        hraClickEvent
-        mat-menu-item
-        matRipple
-        matRippleColor="#201E3D14"
-        (click)="astags.reset()"
-      >
+      <button hraFeature="reset" hraClickEvent mat-menu-item (click)="astags.reset()">
         Reset all anatomical structure tags
       </button>
     </mat-menu>

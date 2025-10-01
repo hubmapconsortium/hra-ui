@@ -12,14 +12,14 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu hraFeature="menu" #menu="matMenu" class="opacity-overlay">
-    <button hraFeature="reset-all" hraClickEvent mat-menu-item matRipple matRippleColor="#201E3D14">
+    <button hraFeature="reset-all" hraClickEvent mat-menu-item>
       <span (click)="anatomical.setAllOpacity(20); landmarks.setAllOpacity(0)">Reset All Settings</span>
     </button>
     <mat-divider class="menu-divider"></mat-divider>
-    <button hraFeature="reset-as" hraClickEvent mat-menu-item matRipple matRippleColor="#201E3D14">
+    <button hraFeature="reset-as" hraClickEvent mat-menu-item>
       <span (click)="anatomical.setAllOpacity(20)">Reset anatomical structures</span>
     </button>
-    <button hraFeature="reset-landmarks" hraClickEvent mat-menu-item matRipple matRippleColor="#201E3D14">
+    <button hraFeature="reset-landmarks" hraClickEvent mat-menu-item>
       <span (click)="landmarks.setAllOpacity(0)">Reset landmarks</span>
     </button>
   </mat-menu>

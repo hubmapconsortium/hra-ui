@@ -25,46 +25,12 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu hraFeature="menu" #menu="matMenu">
-        <button
-          hraFeature="reset-all"
-          hraClickEvent
-          mat-menu-item
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="resetStage()"
-        >
-          Reset all
-        </button>
+        <button hraFeature="reset-all" hraClickEvent mat-menu-item (click)="resetStage()">Reset all</button>
         <mat-divider class="menu-divider"></mat-divider>
-        <button
-          hraFeature="reset-camera"
-          hraClickEvent
-          mat-menu-item
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="resetCamera()"
-        >
-          Reset camera view
-        </button>
-        <button
-          hraFeature="reset-block"
-          hraClickEvent
-          mat-menu-item
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="resetBlock()"
-        >
-          Reset tissue block
-        </button>
+        <button hraFeature="reset-camera" hraClickEvent mat-menu-item (click)="resetCamera()">Reset camera view</button>
+        <button hraFeature="reset-block" hraClickEvent mat-menu-item (click)="resetBlock()">Reset tissue block</button>
         <mat-divider class="menu-divider"></mat-divider>
-        <button
-          hraFeature="reset-metadata"
-          hraClickEvent
-          mat-menu-item
-          matRipple
-          matRippleColor="#201E3D14"
-          (click)="resetMetadata()"
-        >
+        <button hraFeature="reset-metadata" hraClickEvent mat-menu-item (click)="resetMetadata()">
           Reset registration metadata
         </button>
       </mat-menu>
