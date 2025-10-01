@@ -1,4 +1,5 @@
 import { computed, Signal } from '@angular/core';
+import { InjectHrefFn, UrlResolverImplFn, InjectUrlResolverFn } from './types';
 
 /**
  * Create a new injection function that returns an url resolver.
@@ -8,10 +9,7 @@ import { computed, Signal } from '@angular/core';
  * @param resolve Resolver implementation
  * @returns An injection function for getting the resolver
  */
-export function createUrlResolverInjector(
-  injectHref: () => Signal<string>,
-  resolve: (href: string, value: string) => string,
-): () => (value: string) => string {
+export function createUrlResolverInjector(injectHref: InjectHrefFn, resolve: UrlResolverImplFn): InjectUrlResolverFn {
   const cache = new WeakMap<Signal<string>, (value: string) => string>();
   return () => {
     const href = injectHref();
@@ -31,7 +29,7 @@ export function createUrlResolverInjector(
  * @returns A function to create resolved url signals
  */
 export function createUrlResolverFn(
-  injectResolver: () => (value: string) => string,
+  injectResolver: InjectUrlResolverFn,
 ): (value: string | (() => string)) => Signal<string> {
   return (value) => {
     const resolver = injectResolver();

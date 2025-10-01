@@ -1,7 +1,7 @@
 export { AnalyticsErrorHandlerConfig } from './lib/analytics-features/error-handler';
 export { AnalyticsModule } from './lib/analytics.module';
 export { AnalyticsService, injectLogEvent } from './lib/analytics/analytics.service';
-export { Categories, ConsentService, INITIAL_CATEGORY_SETTINGS } from './lib/consent/consent.service';
+export { ConsentCategories, ConsentService, INITIAL_CATEGORY_SETTINGS } from './lib/consent/consent.service';
 export {
   ClickEventDirective,
   DoubleClickEventDirective,

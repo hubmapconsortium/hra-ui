@@ -15,7 +15,7 @@
       </div>
     </mat-list-item>
   }
-  @for (item of items(); track itemId) {
+  @for (item of items(); track itemId($index, item)) {
     <mat-list-item class="item">
       <div class="item-content">
         <mat-checkbox

@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform, Signal, signal } from '@angular/core';
+import { Pipe, PipeTransform, signal, WritableSignal } from '@angular/core';
 import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { createHrefProvider } from '../util/href-provider';
@@ -7,9 +7,9 @@ import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-reso
 /**
  * Get the default application href
  */
-function appHref(): Signal<string> {
+function appHref(): WritableSignal<string> {
   const { url = '' } = injectAppConfiguration();
-  return signal(url).asReadonly();
+  return signal(url);
 }
 
 /**

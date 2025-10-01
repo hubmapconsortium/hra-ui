@@ -1,24 +1,24 @@
-import { Pipe, PipeTransform, signal, Signal } from '@angular/core';
+import { Pipe, PipeTransform, signal, WritableSignal } from '@angular/core';
 import { getImportMetaUrl } from '@hra-ui/common/import-meta';
 import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { createHrefProvider } from '../util/href-provider';
-import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';
 import { isAbsolute, joinWithSlash } from '../util/path';
+import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';
 
 /**
  * Get the default asset href
  */
-function assetHref(): Signal<string> {
+function assetHref(): WritableSignal<string> {
   try {
     const url = new URL('./', getImportMetaUrl());
     if (/https?:/.test(url.protocol)) {
-      return signal(url.href).asReadonly();
+      return signal(url.href);
     }
   } catch {
     // Ignore URL errors
   }
 
-  return signal('').asReadonly();
+  return signal('');
 }
 
 /**

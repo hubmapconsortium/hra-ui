@@ -1,17 +1,17 @@
-import { isSignal, Provider, signal, Signal } from '@angular/core';
+import { isSignal, linkedSignal, signal } from '@angular/core';
+import { ProvideHrefFn, RawProvideHrefFn } from './types';
 
 /**
  * Wraps a href provider function with more permissive input types
  *
- * @param provide Provider function returned by ngxtension's `createInjectionToken`
- * @returns A more permissive provider function
+ * @param provide Raw provider function
+ * @returns A provider function
  */
-export function createHrefProvider(
-  provide: (value: Signal<string> | (() => Signal<string>), isFunctionValue: boolean) => Provider,
-): (value: string | Signal<string> | (() => string | Signal<string>)) => Provider {
-  return (value) =>
+export function createHrefProvider(provide: RawProvideHrefFn): ProvideHrefFn {
+  return (valueOrFactory) =>
     provide(() => {
-      const result = typeof value === 'function' && !isSignal(value) ? value() : value;
-      return isSignal(result) ? result : signal(result).asReadonly();
+      const value =
+        typeof valueOrFactory === 'function' && !isSignal(valueOrFactory) ? valueOrFactory() : valueOrFactory;
+      return isSignal(value) ? linkedSignal(value) : signal(value);
     }, false);
 }

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestro
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { GlobalConfigState } from 'ccf-shared';
 import { combineLatest, Subscription } from 'rxjs';
 
@@ -50,7 +51,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior';
   },
   standalone: false,
 })
-export class AppComponent implements OnDestroy, OnInit {
+export class AppComponent extends BaseApplicationComponent implements OnDestroy, OnInit {
   /** Model state */
   readonly model = inject(ModelState);
   /** Page state */
@@ -101,6 +102,8 @@ export class AppComponent implements OnDestroy, OnInit {
    * Creates an instance of app component.
    */
   constructor() {
+    super();
+
     const cdr = inject(ChangeDetectorRef);
 
     this.subscriptions.add(
