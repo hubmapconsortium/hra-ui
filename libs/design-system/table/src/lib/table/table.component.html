@@ -24,7 +24,7 @@
 
           <!-- Selection Column (if enabled) -->
           @if (enableRowSelection()) {
-            <ng-container matColumnDef="select" hraFeature="select">
+            <ng-container hraFeature="select" matColumnDef="select">
               @if (!hideHeaders()) {
                 <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">
                   <mat-checkbox
@@ -64,6 +64,8 @@
             <ng-container [matColumnDef]="column.column">
               @if (!hideHeaders()) {
                 <th
+                  [hraFeature]="`header-cell.${(column.label | slugify)}`"
+                  hraClickEvent
                   *matHeaderCellDef
                   mat-header-cell
                   mat-sort-header
@@ -120,15 +122,20 @@
   </ng-template>
 
   <ng-template hraIconRowElement #icon let-icon let-column="column" let-element="element">
-    <hra-icon [svgIcon]="icon" [hraPlainTooltip]="element[column.type.tooltip]"></hra-icon>
+    <hra-icon
+      hraFeature="table-icon"
+      [hraHoverEvent]="{ value: element[column.type.tooltip] | slugify }"
+      [svgIcon]="icon"
+      [hraPlainTooltip]="element[column.type.tooltip]"
+    ></hra-icon>
   </ng-template>
 
-  <ng-template hraMenuButtonRowElement hraFeature="menu-cell" let-column="column" let-element="element" #menu>
+  <ng-template hraFeature="menu-cell" hraMenuButtonRowElement let-column="column" let-element="element" #menu>
     @let options = element[column.type.options];
     <button
+      hraFeature="download"
+      hraClickEvent
       mat-icon-button
-      hraFeature="menu"
-      [hraClickEvent]="{ open: trigger.menuOpen }"
       [matMenuTriggerFor]="menuOptions"
       [hraPlainTooltip]="column.type.tooltip"
       (mouseover)="downloadButtonHover(element['id'])"
@@ -138,12 +145,12 @@
       <hra-icon [fontIcon]="column.type.icon"></hra-icon>
     </button>
 
-    <mat-menu class="table-menu" hraFeature="menu" #menuOptions="matMenu">
+    <mat-menu hraFeature="download-options" class="table-menu" #menuOptions="matMenu">
       @for (option of getMenuOptions(options); track $index) {
         <a
-          mat-menu-item
-          hraFeature="download"
+          [hraFeature]="option.name | slugify"
           hraClickEvent
+          mat-menu-item
           [attr.href]="option.url"
           download
           (click)="
@@ -166,7 +173,7 @@
     </mat-menu>
   </ng-template>
 
-  <ng-template hraLinkRowElement hraFeature="link-cell" #link let-label let-column="column" let-element="element">
+  <ng-template hraFeature="link-cell" hraLinkRowElement #link let-label let-column="column" let-element="element">
     @let url = element[column.type.urlColumn];
     @let isInternal = column.type.internal;
     @if (isInternal) {
