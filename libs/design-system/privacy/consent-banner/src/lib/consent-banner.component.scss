@@ -1,28 +1,6 @@
 @use '../../../../styles/utils' as utils;
 @use '../../../../styles/vars' as vars;
 
-// Override Material Dialog container styles for full width
-::ng-deep .cdk-overlay-pane {
-  &:has(hra-consent-banner) {
-    max-width: 100vw !important;
-    width: 100vw !important;
-    box-shadow: 0rem -0.75rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
-    animation: slideUpFromBottom 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
-    overflow-x: hidden !important;
-  }
-}
-
-@keyframes slideUpFromBottom {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 :host {
   background-color: utils.with-alpha(vars.$surface-bright, 80%);
   display: flex;
@@ -165,5 +143,21 @@
         @include utils.use-font(label, large);
       }
     }
+  }
+}
+
+::ng-deep .hra-consent-banner-panel {
+  box-shadow: 0rem -0.75rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
+  animation: slideUpFromBottom 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes slideUpFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
