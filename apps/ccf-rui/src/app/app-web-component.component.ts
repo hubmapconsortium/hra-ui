@@ -42,37 +42,37 @@ function parseOrgan(value: unknown): string | Organ {
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Base url to fetch relative links */
-  readonly baseHref = input.required<string>();
+  readonly baseHref = input<string>();
   /** Whether to download the registration on review */
-  readonly useDownload = input.required<string | boolean>();
+  readonly useDownload = input<string | boolean>();
   /** Reference data api endpoint */
-  readonly referenceData = input.required<string>();
+  readonly referenceData = input<string>();
   /** Prepopulated user object */
-  readonly user = input.required<string | User>();
+  readonly user = input<string | User>();
   /** Prepopulated organ object */
-  readonly organ = input.required<string | Organ>();
+  readonly organ = input<string | Organ>();
   /** Prepopulated consortium */
-  readonly consortium = input.required<string>();
+  readonly consortium = input<string>();
   /** Prepopulated registration */
-  readonly editRegistration = input.required<string | SpatialEntityJsonLd>();
+  readonly editRegistration = input<string | SpatialEntityJsonLd>();
   /** Callback that recieves the registration on review */
-  readonly register = input.required<string | RegistrationCallback>();
+  readonly register = input<string | RegistrationCallback>();
   /** Callback when the user leaves the application */
-  readonly cancelRegistration = input.required<string | CancelRegistrationCallback>();
+  readonly cancelRegistration = input<string | CancelRegistrationCallback>();
   /** A callback to fetch previous registrations */
-  readonly fetchPreviousRegistrations = input.required<string | FetchPreviousRegistrationsCallback>();
+  readonly fetchPreviousRegistrations = input<string | FetchPreviousRegistrationsCallback>();
   /** Whether to disable the unsaved changes prompt when the user leaves the application */
-  readonly skipUnsavedChangesConfirmation = input.required<string | boolean>();
+  readonly skipUnsavedChangesConfirmation = input<string | boolean>();
   /** Url visited when the user clicks the RUI logo */
-  readonly homeUrl = input.required<string>();
+  readonly homeUrl = input<string>();
   /** A list of enabled organs */
-  readonly organOptions = input.required<string | string[]>();
+  readonly organOptions = input<string | string[]>();
   /** Collision query api endpoint */
-  readonly collisionsEndpoint = input.required<string>();
+  readonly collisionsEndpoint = input<string>();
   /** Initial view mode */
-  readonly view = input.required<ViewType>();
+  readonly view = input<ViewType>();
   /** Initial view side */
-  readonly viewSide = input.required<ViewSide>();
+  readonly viewSide = input<ViewSide>();
 
   /**
    * Initializes the component with default configurations and parsers. Merges environment options, global configuration, and customizations.
