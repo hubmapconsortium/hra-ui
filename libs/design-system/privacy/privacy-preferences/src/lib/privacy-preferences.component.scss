@@ -23,10 +23,12 @@
     }
   }
 
-  ::ng-deep .mat-mdc-tab-body:nth-child(2) {
-    min-width: 20rem;
-    max-height: 46.25rem;
-    padding: 1rem 1.5rem;
+  .details {
+    max-height: calc(100vh - 16rem);
+
+    .categories {
+      margin: 1rem 1.5rem;
+    }
   }
 
   ng-scrollbar {

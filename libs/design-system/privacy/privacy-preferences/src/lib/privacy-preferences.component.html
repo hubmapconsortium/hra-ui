@@ -8,7 +8,7 @@
 
 <mat-divider />
 
-<mat-tab-group mat-stretch-tabs class="tab-group" [(selectedIndex)]="tabIndex">
+<mat-tab-group mat-stretch-tabs class="tab-group" [(selectedIndex)]="tabIndex" dynamicHeight>
   <mat-tab label="Consent">
     <div class="consent-content">
       <p>This website uses cookies and similar technologies.</p>
@@ -19,8 +19,8 @@
     </div>
   </mat-tab>
   <mat-tab label="Details">
-    <ng-scrollbar hraScrollOverflowFade>
-      <hra-categories [(categories)]="categories" />
+    <ng-scrollbar class="details" hraScrollOverflowFade>
+      <hra-categories class="categories" [(categories)]="categories" />
     </ng-scrollbar>
   </mat-tab>
 </mat-tab-group>
