@@ -15,7 +15,11 @@ export type PrivacyPreferencesTab = 'consent' | 'manage';
 
 /** Interface of data passed to the Privacy Preferences Modal */
 export interface PrivacyPreferencesData {
+  /** Categories */
   categories: Categories;
+  /**
+   * Privacy preferences tab
+   */
   tab?: PrivacyPreferencesTab;
 }
 

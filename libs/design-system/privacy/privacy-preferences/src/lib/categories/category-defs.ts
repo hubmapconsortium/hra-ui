@@ -4,12 +4,19 @@ import { EventCategory } from '@hra-ui/common/analytics/events';
  * Category def interface
  */
 export interface CategoryDef {
+  /** Event Category ID */
   id: EventCategory;
+  /** Title of the category */
   title: string;
+  /** Description of the category */
   description: string;
+  /** Details about the category */
   details?: string;
+  /** Provider of the category */
   provider?: string;
+  /** Link to the provider's privacy policy */
   providerLink?: string;
+  /** Whether the category is required */
   required?: boolean;
 }
 
