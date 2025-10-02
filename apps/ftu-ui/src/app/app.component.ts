@@ -18,6 +18,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { LinkDirective } from '@hra-ui/cdk';
 import { dispatch, dispatch$, select$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
@@ -139,7 +140,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements AfterContentInit, OnChanges, OnInit {
+export class AppComponent extends BaseApplicationComponent implements AfterContentInit, OnChanges, OnInit {
   /** Host binding of app component */
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
@@ -248,6 +249,21 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   /** Download Action Dispatcher */
   protected readonly download = dispatch(DownloadActions.Download);
+
+  /** Initialize the app */
+  constructor() {
+    super();
+  }
+
+  /** Whether the current page is the ftu page */
+  protected get isFtuPage(): boolean {
+    return this.router.isActive('/ftu', {
+      paths: 'exact',
+      queryParams: 'ignored',
+      fragment: 'ignored',
+      matrixParams: 'ignored',
+    });
+  }
 
   /** Initializes the component */
   ngOnInit(): void {

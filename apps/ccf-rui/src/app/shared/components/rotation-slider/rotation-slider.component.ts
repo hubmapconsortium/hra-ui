@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, model, output, signal } from '@angular/core';
 
 /** Type in which the values of the sliders are stored. */
 export interface Rotation {
@@ -42,11 +42,11 @@ export class RotationSliderComponent {
   /** Output that emits the new rotation whenever it is changed from within the component */
   readonly rotationChange = output<Rotation>();
 
+  /** Step size when increasing or decreasing the value */
+  readonly step = signal(1);
+
   /** List of all axis */
   axisOptions: Axis[] = ['x', 'y', 'z'];
-
-  /** Step size when increasing or decreasing the value */
-  step = 1;
 
   /**
    * Function that handles updating the rotation and emitting the new value
@@ -75,6 +75,6 @@ export class RotationSliderComponent {
 
   /** Changes the step size based on whether the shift key is pressed */
   changeStep(target: KeyboardEvent): void {
-    this.step = target.shiftKey ? 30 : 1;
+    this.step.set(target.shiftKey ? 30 : 1);
   }
 }

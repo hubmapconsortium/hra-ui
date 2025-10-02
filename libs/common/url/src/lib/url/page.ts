@@ -1,16 +1,16 @@
 import { LocationStrategy } from '@angular/common';
-import { inject, Pipe, PipeTransform, signal, Signal } from '@angular/core';
+import { inject, Pipe, PipeTransform, signal, WritableSignal } from '@angular/core';
 import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { createHrefProvider } from '../util/href-provider';
-import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';
 import { isAbsolute, joinWithSlash } from '../util/path';
+import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';
 
 /**
  * Get the default page href
  */
-function pageHref(): Signal<string> {
+function pageHref(): WritableSignal<string> {
   const loc = inject(LocationStrategy);
-  return signal(loc.getBaseHref()).asReadonly();
+  return signal(loc.getBaseHref());
 }
 
 /**

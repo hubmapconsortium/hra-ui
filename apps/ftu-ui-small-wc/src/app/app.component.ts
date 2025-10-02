@@ -10,8 +10,10 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from '@hra-ui/cdk/state';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   BiomarkerDetailsWcComponent,
   TissueLibraryBehaviorComponent,
@@ -42,7 +44,6 @@ import {
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 import { environment } from '../environments/environment';
-import { HraCommonModule } from '@hra-ui/common';
 
 /** Input property keys */
 type InputProps =
@@ -91,7 +92,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent extends BaseApplicationComponent implements OnInit, OnChanges {
   /** Illustration to display (choosen automatically if not provided) */
   @Input() selectedIllustration?: string | RawIllustration;
 
@@ -155,6 +156,11 @@ export class AppComponent implements OnInit, OnChanges {
 
   /** Whether the component is initialized */
   private initialized = false;
+
+  /** Initialize the app */
+  constructor() {
+    super({ analytics: false });
+  }
 
   /** Initializes the component */
   ngOnInit() {

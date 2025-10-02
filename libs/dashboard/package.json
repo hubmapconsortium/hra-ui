@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/dashboard",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "peerDependencies": {
     "@angular/common": "^20.2.1",
     "@angular/core": "^20.2.1",
@@ -10,8 +10,8 @@
     "@angular/router": "^20.2.1",
     "vega-embed": "^7.0.2",
     "@angular/platform-browser": "^20.2.1",
-    "@hra-ui/design-system": "1.0.0",
-    "@hra-ui/common": "1.0.0"
+    "@hra-ui/design-system": "1.1.0",
+    "@hra-ui/common": "1.1.0"
   },
   "dependencies": {},
   "sideEffects": false

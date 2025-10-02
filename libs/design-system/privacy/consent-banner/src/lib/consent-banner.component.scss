@@ -8,6 +8,8 @@
   justify-content: space-between;
   padding: 1.5rem;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 
   hra-brand-logo {
     --hra-brand-logo-text-color: vars.$secondary;
@@ -15,6 +17,7 @@
 
   .left {
     padding: 0 1.5rem;
+    flex-shrink: 0;
   }
 
   .middle,
@@ -25,6 +28,8 @@
   }
 
   .middle {
+    flex: 1;
+    min-width: 0;
     .content {
       padding: 0 1.5rem;
 
@@ -44,8 +49,13 @@
     }
 
     .hyperlink {
-      hra-text-hyperlink {
+      padding: 0.25rem 0;
+
+      .privacy-policy-button {
         @include utils.use-font(label, large);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
       }
     }
   }
@@ -53,8 +63,9 @@
   .right {
     row-gap: 0.75rem;
     padding-left: 1rem;
+    padding-right: 1.5rem;
     min-width: 11.25rem;
-    width: max-content;
+    flex-shrink: 0;
 
     .consent-buttons {
       display: flex;
@@ -97,6 +108,13 @@
 
       .hyperlink {
         padding: 0.25rem 0;
+
+        .privacy-policy-button {
+          @include utils.use-font('label', 'large');
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
       }
     }
 
@@ -137,5 +155,22 @@
         @include utils.use-font(label, large);
       }
     }
+  }
+}
+
+::ng-deep .hra-consent-banner-panel {
+  border-radius: 1.75rem;
+  box-shadow: 0rem -0.75rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
+  animation: slideUpFromBottom 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes slideUpFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

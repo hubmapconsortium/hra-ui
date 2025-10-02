@@ -33,6 +33,9 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "paths": {
+      "@hra-ui/application": [
+        "libs/application/src/index.ts"
+      ],
       "@hra-ui/cde-visualization": [
         "libs/cde-visualization/src/index.ts"
       ],
