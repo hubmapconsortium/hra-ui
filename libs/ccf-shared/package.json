@@ -15,6 +15,7 @@
     "@hra-api/ng-client": "^0.16.0",
     "ccf-body-ui": "4.0.0",
     "@ngxs-labs/dispatch-decorator": "^5.0.0",
+    "@hra-ui/design-system": "1.1.0",
     "@angular/forms": "^20.2.1",
     "@angular-ru/cdk": "^18.11.0",
     "@hra-ui/common": "1.1.0"
