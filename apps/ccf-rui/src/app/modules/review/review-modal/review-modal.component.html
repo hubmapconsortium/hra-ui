@@ -12,7 +12,7 @@
       <div class="metadata-table">
         <div class="type-title">{{ type }}</div>
         <table>
-          @for (data of metaData[type]; track data) {
+          @for (data of metaData()[type]; track data) {
             <tr>
               <td class="data-label">{{ data.label }}</td>
               <td class="data-value">{{ data.value }}</td>

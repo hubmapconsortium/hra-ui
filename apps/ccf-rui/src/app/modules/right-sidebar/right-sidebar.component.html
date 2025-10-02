@@ -116,12 +116,15 @@
   </hra-expansion-panel-header-content>
 
   <div hraFeature="position" class="position">
-    <span class="label">Position</span>
+    <div class="header">
+      <span class="text title">Position</span>
+      <span class="units">Millimeters</span>
+    </div>
     <div
       hraFeature="x"
       hraClickEvent
       class="x-position box"
-      hraPlainTooltip="Current position of the tissue block measured in millimeters"
+      hraPlainTooltip="Use mouse/keyboard to adjust block position"
     >
       <span class="position-label">X</span>
       <span class="position-value">{{ (position$ | async)?.x }}</span>
@@ -130,7 +133,7 @@
       hraFeature="y"
       hraClickEvent
       class="y-position box"
-      hraPlainTooltip="Current position of the tissue block measured in millimeters"
+      hraPlainTooltip="Use mouse/keyboard to adjust block position"
     >
       <span class="position-label">Y</span>
       <span class="position-value">{{ (position$ | async)?.y }}</span>
@@ -139,7 +142,7 @@
       hraFeature="z"
       hraClickEvent
       class="z-position box"
-      hraPlainTooltip="Current position of the tissue block measured in millimeters"
+      hraPlainTooltip="Use mouse/keyboard to adjust block position"
     >
       <span class="position-label">Z</span>
       <span class="position-value">{{ (position$ | async)?.z }}</span>
@@ -183,6 +186,17 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu hraFeature="menu" #asTagsActionMenu="matMenu" class="settings-overlay">
+      <button class="expanded" mat-menu-item matRipple matRippleColor="#201E3D14" [matMenuTriggerFor]="submenu">
+        Info
+        <mat-icon class="expand-arrow">arrow_right</mat-icon>
+      </button>
+
+      <mat-menu #submenu="matMenu" class="info-submenu">
+        Tags identify major anatomical components of the tissue block being registered.
+      </mat-menu>
+
+      <mat-divider class="menu-divider"></mat-divider>
+
       <button
         hraFeature="reset"
         hraClickEvent
@@ -196,19 +210,38 @@
     </mat-menu>
   </hra-expansion-panel-actions>
 
-  <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)" />
-  @if (addedTags().length > 0) {
-    <ccf-tag-list class="tag-list" label="Added" [tags]="addedTags()" (tagRemoved)="astags.removeTag($event)" />
-  }
-  @if (assignedTags().length > 0) {
-    <ccf-tag-list class="tag-list" label="Detected" [tags]="assignedTags()" (tagRemoved)="astags.removeTag($event)" />
-  }
-  @if (removedTags().length > 0) {
-    <ccf-tag-list class="tag-list" label="Removed" [tags]="removedTags()" (tagRemoved)="astags.removeTag($event)" />
-  }
+  <div class="as-tags-content">
+    <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)">
+    </ccf-tag-search>
+    @if (assignedTags().length > 0) {
+      <ccf-tag-list
+        class="tag-list"
+        label="Automatically Detected"
+        [tags]="assignedTags()"
+        (tagRemoved)="astags.removeTag($event)"
+      >
+      </ccf-tag-list>
+    }
+    @if (addedTags().length > 0) {
+      <ccf-tag-list
+        class="tag-list"
+        label="Manually Added"
+        [tags]="addedTags()"
+        (tagRemoved)="astags.removeTag($event)"
+      >
+      </ccf-tag-list>
+    }
+    @if (removedTags().length > 0) {
+      <ccf-tag-list
+        class="tag-list"
+        label="Manually Removed"
+        [tags]="removedTags()"
+        (tagRemoved)="astags.removeTag($event)"
+      >
+      </ccf-tag-list>
+    }
+  </div>
 </hra-expansion-panel>
-
-<div style="flex-grow: 1"></div>
 
 <div class="buttons">
   <button

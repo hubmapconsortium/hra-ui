@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HraCommonModule } from '@hra-ui/common';
 import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
@@ -31,7 +30,6 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
   imports: [
     HraCommonModule,
     BrowserModule,
-    BrowserAnimationsModule,
     FormsModule,
     CoreModule,
     MatIconModule,

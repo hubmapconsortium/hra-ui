@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -71,7 +71,7 @@ export interface DistanceEntry {
 @Component({
   selector: 'cde-visualization-root',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatProgressBarModule,
     CellTypesComponent,
     HistogramComponent,
