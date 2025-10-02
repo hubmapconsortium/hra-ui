@@ -4,6 +4,9 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatMenuModule, MatMenuPanel } from '@angular/material/menu';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
+/**
+ * Help button component that renders either a link or menu trigger
+ */
 @Component({
   selector: 'hra-help-button',
   imports: [MatIconModule, PlainTooltipDirective, MatMenuModule, ButtonsModule],
@@ -12,5 +15,6 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HelpButtonComponent {
+  /** Action for the button - URL string for link or MatMenuPanel for menu */
   readonly action = input.required<string | MatMenuPanel>();
 }
