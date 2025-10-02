@@ -18,7 +18,9 @@ import {
 } from '@hra-ui/design-system/expansion-panel';
 import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-buttons';
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { provideNgxMask } from 'ngx-mask';
+
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -45,6 +47,7 @@ import { RightSidebarModule } from './modules/right-sidebar/right-sidebar.module
     ButtonsModule,
     MatDividerModule,
     BackButtonBarComponent,
+    PlainTooltipDirective,
   ],
   declarations: [AppComponent, AppWebComponent],
   providers: [

@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { EventCategory, EventType } from '@hra-ui/common/analytics/events';
 
 /** Set of categories and whether each is enabled/disabled */
-export type Categories = Record<EventCategory, boolean>;
+export type ConsentCategories = Record<EventCategory, boolean>;
 
 /**
  * Helper for creating categories enabled/disabled records
@@ -10,11 +10,11 @@ export type Categories = Record<EventCategory, boolean>;
  * @param enabled Whether to set categories to enabled or disabled
  * @returns A record of all categories with their values set to `enabled`
  */
-function createCategoryPreferences(enabled: boolean): Categories {
+function createCategoryPreferences(enabled: boolean): ConsentCategories {
   return Object.values(EventCategory).reduce((acc, category) => {
     acc[category] = enabled;
     return acc;
-  }, {} as Categories);
+  }, {} as ConsentCategories);
 }
 
 /** Record where every category is set to enabled */
@@ -24,7 +24,7 @@ const ALL_CATEGORIES_DISABLED = createCategoryPreferences(false);
 /** Record of categories that should always be enabled */
 const ALWAYS_ENABLED_CATEGORIES = { [EventCategory.Necessary]: true };
 /** Initial categories settings */
-const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES };
+export const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES };
 
 /**
  * User preferences manager service
@@ -80,7 +80,7 @@ export class ConsentService {
    *
    * @param updates Category updates
    */
-  updateCategories(updates: Partial<Categories>): void {
+  updateCategories(updates: Partial<ConsentCategories>): void {
     this.categories_.update((current) => ({
       ...current,
       ...updates,

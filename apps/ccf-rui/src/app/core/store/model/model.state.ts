@@ -7,6 +7,7 @@ import { filterNulls } from 'ccf-shared/rxjs-ext/operators';
 import { sortBy } from 'lodash';
 import { EMPTY, Observable } from 'rxjs';
 import { delay, distinctUntilChanged, filter, map, skipUntil, switchMap, tap, throttleTime } from 'rxjs/operators';
+
 import { ExtractionSet } from '../../models/extraction-set';
 import { VisibilityItem } from '../../models/visibility-item';
 import { GlobalConfig, OrganConfig } from '../../services/config/config';
@@ -79,6 +80,10 @@ export interface ModelStateModel {
   doi?: string;
   /** Block placement date */
   placementDate: string;
+  /** Whether tissue block axis is hidden */
+  disableBlockAxis: boolean;
+  /** Whether organ axis is hidden */
+  disableOrganAxis: boolean;
 }
 
 /**
@@ -105,6 +110,8 @@ export const MODEL_DEFAULTS: ModelStateModel = {
   anatomicalStructures: [],
   extractionSets: [],
   placementDate: '',
+  disableBlockAxis: false,
+  disableOrganAxis: false,
 };
 
 /**
@@ -210,6 +217,16 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   /** DOI observable */
   readonly doi$ = this.state$.pipe(
     map((x) => x?.doi),
+    distinctUntilChanged(),
+  );
+  /** Disable block axis observable */
+  readonly disableBlockAxis$ = this.state$.pipe(
+    map((x) => x?.disableBlockAxis),
+    distinctUntilChanged(),
+  );
+  /** Disable organ axis observable */
+  readonly disableOrganAxis$ = this.state$.pipe(
+    map((x) => x?.disableOrganAxis),
     distinctUntilChanged(),
   );
 
@@ -494,6 +511,22 @@ export class ModelState extends NgxsImmutableDataRepository<ModelStateModel> {
   @DataAction()
   setPlacementDate(placementDate?: string): void {
     this.ctx.patchState({ placementDate });
+  }
+
+  /**
+   * Updates the block axis setting
+   */
+  @DataAction()
+  toggleBlockAxis(): void {
+    this.ctx.patchState({ disableBlockAxis: !this.snapshot.disableBlockAxis });
+  }
+
+  /**
+   * Updates the organ axis setting
+   */
+  @DataAction()
+  toggleOrganAxis(): void {
+    this.ctx.patchState({ disableOrganAxis: !this.snapshot.disableOrganAxis });
   }
 
   /**

@@ -10,18 +10,19 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
 import { Router, RouterModule } from '@angular/router';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule, monitorHeight, routeData } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { MatMenuModule } from '@angular/material/menu';
 import { CtaConfig, DEFAULT_MENUS, HeaderComponent, Menu } from '@hra-ui/design-system/navigation/header';
-import { isNavigating } from './utils/navigation';
-import { MatDividerModule } from '@angular/material/divider';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { isNavigating } from './utils/navigation';
 
 /** Padding when scrolling to an anchor in px */
 const ANCHOR_SCROLL_PADDING = 24;
@@ -46,7 +47,7 @@ const ANCHOR_SCROLL_PADDING = 24;
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class AppComponent extends BaseApplicationComponent {
   /** Additional header menus */
   readonly extraMenus = input<Menu[]>([]);
 
@@ -87,6 +88,8 @@ export class AppComponent {
 
   /** Initialize the application */
   constructor() {
+    super();
+
     inject(CustomScrollService);
     this.router.initialNavigation();
 

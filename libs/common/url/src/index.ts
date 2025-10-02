@@ -4,3 +4,4 @@ export { assetUrl, AssetUrlPipe, injectAssetHref, injectAssetUrlResolver, provid
 export { cssUrl, CssUrlPipe } from './lib/url/css';
 export { injectPageHref, injectPageUrlResolver, pageUrl, PageUrlPipe, providePageHref } from './lib/url/page';
 export { isAbsolute, joinWithSlash } from './lib/util/path';
+export { InjectHrefFn, InjectUrlResolverFn, ProvideHrefFn, UrlResolverFn } from './lib/util/types';

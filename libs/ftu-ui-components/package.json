@@ -1,20 +1,20 @@
 {
   "name": "@hra-ui/ftu-ui-components",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "peerDependencies": {
     "@angular/common": "^20.2.1",
     "@angular/core": "^20.2.1",
     "@angular/material": "^20.2.0",
-    "@hra-ui/cdk": "1.0.0",
+    "@hra-ui/cdk": "1.1.0",
     "rxjs": "^7.8.2",
     "@angular/cdk": "^20.2.0",
-    "@hra-ui/design-system": "1.0.0",
+    "@hra-ui/design-system": "1.1.0",
     "ngx-markdown": "^20.0.0",
-    "@hra-ui/services": "1.0.0",
-    "@hra-ui/state": "1.0.0",
+    "@hra-ui/services": "1.1.0",
+    "@hra-ui/state": "1.1.0",
     "ng-inline-svg-2": "^20.0.0",
     "ng-table-virtual-scroll": "^1.6.1",
-    "@hra-ui/common": "1.0.0"
+    "@hra-ui/common": "1.1.0"
   },
   "sideEffects": false
 }

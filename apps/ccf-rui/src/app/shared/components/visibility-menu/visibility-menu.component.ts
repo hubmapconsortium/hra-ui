@@ -1,10 +1,10 @@
 import { CdkScrollable, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, inject, model } from '@angular/core';
-import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { OpacitySliderComponent } from 'ccf-shared';
+
 import { VisibilityItem } from '../../../core/models/visibility-item';
 
 /** Slider overlay position */
@@ -23,14 +23,7 @@ const SLIDER_OVERLAY_POSITION: ConnectedPosition[] = [
  */
 @Component({
   selector: 'ccf-visibility-menu',
-  imports: [
-    HraCommonModule,
-    MatIconModule,
-    MatRippleModule,
-    OverlayModule,
-    OpacitySliderComponent,
-    PlainTooltipDirective,
-  ],
+  imports: [HraCommonModule, MatIconModule, OverlayModule, OpacitySliderComponent, PlainTooltipDirective],
   templateUrl: './visibility-menu.component.html',
   styleUrls: ['./visibility-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
