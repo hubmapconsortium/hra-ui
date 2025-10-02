@@ -1,3 +1,11 @@
+@use 'vars';
+@use 'utils';
+
 :host {
   display: block;
+}
+
+.release-date {
+  @include utils.use-font(label, small);
+  color: vars.$primary;
 }
