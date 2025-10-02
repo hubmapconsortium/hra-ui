@@ -66,6 +66,7 @@
         display: flex;
         flex-direction: row;
         align-content: space-around;
+        align-items: stretch;
         width: 100%;
 
         .legend-percentage {
@@ -75,11 +76,9 @@
           justify-content: center;
           row-gap: 0.25rem;
           flex-grow: 1;
-          border-right: 1px solid vars.$outline-variant;
 
           background: none;
           border: none;
-          border-right: 1px solid vars.$outline-variant;
           padding: 0;
           cursor: pointer;
           transition: opacity 0.2s ease;
@@ -100,7 +99,6 @@
           justify-content: center;
           row-gap: 0.25rem;
           flex-grow: 1;
-          border-right: 1px solid vars.$outline-variant;
 
           .content {
             width: 9.75rem;
@@ -108,7 +106,6 @@
 
           background: none;
           border: none;
-          border-right: 1px solid vars.$outline-variant;
           padding: 0;
           cursor: pointer;
           transition: opacity 0.2s ease;
@@ -128,6 +125,22 @@
         width: 100%;
         border-top: 1px solid vars.$outline-variant;
         min-height: 21.25rem;
+
+        ::ng-deep {
+          th:first-child,
+          td.type {
+            width: 10.75rem;
+            min-width: 10.75rem;
+            max-width: 10.75rem;
+          }
+
+          th:nth-child(2),
+          td.count {
+            width: 10.75rem;
+            min-width: 10.75rem;
+            max-width: 10.75rem;
+          }
+        }
       }
 
       .biomarker-toggle-group.absolute-toggle {

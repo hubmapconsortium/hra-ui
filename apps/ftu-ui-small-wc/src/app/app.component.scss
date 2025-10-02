@@ -17,7 +17,8 @@
 
   .sidebar {
     grid-area: sidebar;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     width: 17rem;
     height: 100%;
 
@@ -29,10 +30,51 @@
 
   .biomarker {
     grid-area: biomarker;
-    // display: contents;
-    // width: 50rem;
-    overflow: auto;
+    overflow: hidden;
     height: 100%;
+
+    ::ng-deep {
+      ftu-wc-biomarker-details {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      mat-tab-group {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mat-mdc-tab-body-wrapper {
+        flex-grow: 1;
+        overflow: hidden;
+      }
+
+      .mat-mdc-tab-body-content {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      ftu-interactive-svg {
+        height: 100%;
+        display: flex;
+
+        .svg {
+          min-height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        svg {
+          width: auto !important;
+          height: auto !important;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
   }
 }
 
@@ -52,9 +94,6 @@
 }
 
 ::ng-deep {
-  svg {
-    max-height: 100% !important;
-  }
   .table-header {
     width: auto !important;
   }
@@ -62,11 +101,12 @@
   .table {
     height: calc(100% - 3.5rem);
   }
+
   .source-list {
     height: 100%;
   }
-}
 
-::ng-deep .biomarker {
-  height: 100% !important;
+  .biomarker {
+    height: 100% !important;
+  }
 }
