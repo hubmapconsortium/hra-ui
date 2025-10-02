@@ -5,6 +5,7 @@
   display: block;
   position: relative;
   --scrollbar-offset: 2;
+  height: 100%;
 
   @include mat.dialog-overrides(
     (
