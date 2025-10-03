@@ -21,26 +21,8 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<InfoModalComponent>;
 
-export const Tabular: Story = {
-  args: {
-    title: 'Cell Type by Biomarker Info',
-    data: [
-      { label: 'Functional Tissue Unit Name', value: 'Loop of Henle ascending limb thin segment' },
-      { label: 'Uberon ID', value: 'Uberon ID Placeholder' },
-      { label: 'Number of Datasets', value: '214' },
-      { label: 'Cell Type Name', value: 'Kidney loop of Henle thin ascending limb epithelial cell' },
-      { label: 'CL ID', value: 'CL: 1001234' },
-      { label: 'Number of Cells', value: '4,532' },
-      { label: 'Gene Name', value: 'AKAP9' },
-      { label: 'HGNC ID', value: 'HGNC:954' },
-      { label: 'Mean Expression Value', value: '0.235045' },
-    ],
-  },
-};
-
 export const Center: Story = {
   args: {
-    variant: 'center',
     title: 'Cell Info',
     data: [
       { label: 'Cell Type', value: 'Ki67+ Tumor/Epithelial' },
