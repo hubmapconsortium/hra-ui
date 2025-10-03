@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { GlobalConfigState } from 'ccf-shared';
@@ -11,7 +10,6 @@ import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
 import { MetadataService } from './modules/metadata/metadata.service';
-import { openScreenSizeNotice } from './modules/screen-size-notice/screen-size-notice.component';
 
 /** Represents a user with a first and last name. */
 export interface User {
@@ -117,8 +115,6 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy,
       this.model.setViewSide(viewSide ?? 'anterior');
       cdr.markForCheck();
     });
-
-    openScreenSizeNotice(inject(MatDialog));
   }
 
   /**
