@@ -48,6 +48,3 @@ export const GradientLegendInfo = createResourceId('GradientLegendInfo');
 
 /** Info to show on the tooltip for Size legend */
 export const SizeLegendInfo = createResourceId('SizeLegendInfo');
-
-/** Screen size notice content */
-export const ScreenSizeNoticeContent = createResourceId('ScreenSizeNoticeContent');

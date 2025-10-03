@@ -2,7 +2,9 @@ import { computed, Directive, effect, inject, input, output } from '@angular/cor
 import { ConsentCategories, ConsentService } from '@hra-ui/common/analytics';
 import { injectAssetHref, injectPageHref } from '@hra-ui/common/url';
 import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
+
 import { AnalyticsInput } from './util/analytics-input';
+import { createScreenSizeDetector } from './util/screen-size-detector';
 
 /** Base application options */
 export interface BaseApplicationOptions {
@@ -64,5 +66,7 @@ export abstract class BaseApplicationComponent {
         this.consentChange.emit(consent.categories());
       }
     });
+
+    createScreenSizeDetector();
   }
 }
