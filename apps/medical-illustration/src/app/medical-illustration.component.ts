@@ -30,6 +30,7 @@ import {
 } from '@hra-ui/services';
 import { Observable, of, OperatorFunction, ReplaySubject, switchMap } from 'rxjs';
 import { z } from 'zod';
+
 import { environment } from '../environments/environment';
 
 /**
@@ -132,7 +133,7 @@ export class MedicalIllustrationComponent extends BaseApplicationComponent imple
 
   /** Initialize the app */
   constructor() {
-    super({ analytics: false });
+    super({ analytics: false, disableScreenSizeNotice: true });
   }
 
   /**

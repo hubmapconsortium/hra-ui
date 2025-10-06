@@ -260,7 +260,7 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Initialize the app */
   constructor() {
-    super({ analytics: false });
+    super({ analytics: false, disableScreenSizeNotice: true });
   }
 
   /**

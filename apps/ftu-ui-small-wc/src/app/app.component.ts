@@ -159,7 +159,7 @@ export class AppComponent extends BaseApplicationComponent implements OnInit, On
 
   /** Initialize the app */
   constructor() {
-    super({ analytics: false });
+    super({ analytics: false, disableScreenSizeNotice: true });
   }
 
   /** Initializes the component */

@@ -10,6 +10,8 @@ import { createScreenSizeDetector } from './util/screen-size-detector';
 export interface BaseApplicationOptions {
   /** Whether to show/hide the privacy preferences popups by default */
   analytics?: boolean;
+  /** Whether to disable the screen size notice in the application */
+  disableScreenSizeNotice?: boolean;
 }
 
 /**
@@ -30,6 +32,11 @@ export abstract class BaseApplicationComponent {
 
   /** Initialize the application component */
   constructor(options: BaseApplicationOptions = {}) {
+    // Enable screen size notice
+    if (!options.disableScreenSizeNotice) {
+      createScreenSizeDetector();
+    }
+
     // Setup hrefs
     const assetHref = injectAssetHref();
     effect(() => {
@@ -66,7 +73,5 @@ export abstract class BaseApplicationComponent {
         this.consentChange.emit(consent.categories());
       }
     });
-
-    createScreenSizeDetector();
   }
 }
