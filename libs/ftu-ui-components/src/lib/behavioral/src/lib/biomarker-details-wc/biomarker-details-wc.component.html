@@ -27,7 +27,7 @@
           [message]="message"
           [sources]="source()"
           [hideTitle]="true"
-          (selectionChanged)="setSelectedSources($event)"
+          (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
           class="content"
         ></ftu-source-list>
       }
