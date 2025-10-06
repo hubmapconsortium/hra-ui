@@ -1,4 +1,3 @@
-import { HraCommonModule } from '@hra-ui/common';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -15,6 +14,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { HraCommonModule } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
@@ -27,7 +27,8 @@ import {
   createColorMapGenerator,
   createEdgeGenerator,
   DataView,
-  DataViewEntryTransform,
+  DataViewEntryComputedValueFn,
+  DataViewEntryValueTransform,
   DataViewSerializationOptions,
   EdgeKeysInput,
   EdgesInput,
@@ -402,12 +403,15 @@ export class CdeVisualizationComponent {
     const nodes = this.nodesView();
     const edges = this.edgesView();
     const filter = edges.createFilter(nodes, this.nodeFilterView());
+    const computedColumns: Record<string, DataViewEntryComputedValueFn> = {
+      distance: edges.getDistanceFor,
+    };
     const reindex = await nodes.createReindexer(this.nodeFilterView());
-    const transform: DataViewEntryTransform = (value, key) => {
+    const transform: DataViewEntryValueTransform = (value, key) => {
       return key === 'Cell ID' || key === 'Target ID' ? reindex[value as number] : value;
     };
 
-    await this.downloadView(edges, 'edges.csv', { filter, transform });
+    await this.downloadView(edges, 'edges.csv', { filter, computedColumns, transform });
   }
 
   /** Downloads color map */
