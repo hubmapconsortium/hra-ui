@@ -80,7 +80,7 @@
     .highlight {
       &:first-child,
       &:nth-child(2) {
-        background-color: utils.with-alpha(vars.$secondary, 8%);
+        background-color: color-mix(in srgb, white, vars.$secondary 8%);
       }
     }
 
