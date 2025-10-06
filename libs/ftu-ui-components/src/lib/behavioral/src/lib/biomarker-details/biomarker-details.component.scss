@@ -34,6 +34,28 @@
     grid-template-areas:
       'legend-area'
       'table';
+
+    .legend {
+      .legend-percentage {
+        width: 284px;
+        max-width: 284px;
+        min-width: 284px;
+        flex-grow: 0;
+      }
+
+      .legend-gradient {
+        align-items: flex-start;
+        padding-left: 1rem;
+
+        .legend-header-gradient {
+          margin-left: 1.55rem;
+        }
+
+        .content {
+          align-self: flex-start;
+        }
+      }
+    }
   }
 
   ::ng-deep ftu-empty-biomarker .footer {
@@ -166,31 +188,7 @@
     align-content: space-around;
     width: 100%;
 
-    .legend-percentage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      row-gap: 0.25rem;
-      flex-grow: 1;
-      border-right: 1px solid vars.$outline-variant;
-
-      background: none;
-      border: none;
-      border-right: 1px solid vars.$outline-variant;
-      padding: 0;
-      cursor: pointer;
-      transition: opacity 0.2s ease;
-
-      &:hover {
-        opacity: 0.7;
-      }
-
-      .legend-header-percentage {
-        @include utils.use-font(label, small);
-      }
-    }
-
+    .legend-percentage,
     .legend-gradient {
       display: flex;
       flex-direction: column;
@@ -198,12 +196,6 @@
       justify-content: center;
       row-gap: 0.25rem;
       flex-grow: 1;
-      border-right: 1px solid vars.$outline-variant;
-
-      .content {
-        width: 9.75rem;
-      }
-
       background: none;
       border: none;
       border-right: 1px solid vars.$outline-variant;
@@ -214,10 +206,15 @@
       &:hover {
         opacity: 0.7;
       }
+    }
 
-      .legend-header-gradient {
-        @include utils.use-font(label, small);
-      }
+    .legend-header-percentage,
+    .legend-header-gradient {
+      @include utils.use-font(label, small);
+    }
+
+    .legend-gradient .content {
+      width: 12.5rem;
     }
   }
 
