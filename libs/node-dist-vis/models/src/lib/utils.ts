@@ -17,6 +17,12 @@ export function isRecordObject(obj: unknown): obj is Record<PropertyKey, unknown
   return typeof obj === 'object' && obj !== null && !Array.isArray(obj);
 }
 
+/**
+ * Test whether an object is a deckgl compatable color value
+ *
+ * @param obj Object to test
+ * @returns True if the object is a color
+ */
 export function isColor(obj: unknown): obj is Color {
   return (
     (Array.isArray(obj) || obj instanceof Uint8Array || obj instanceof Uint8ClampedArray) &&
@@ -59,6 +65,15 @@ export function tryParseJson(value: unknown): unknown {
   return value;
 }
 
+/**
+ * Batch an operation allowing for other code to also run in between each batch.
+ * Useful to prevent the main thread from being blocked by a large operation.
+ *
+ * @param iterable Iterable to batch
+ * @param batchSize Number of items in each batch
+ * @param itemCb Callback applied on each item
+ * @param batchCb Callback applied after each batch
+ */
 export async function batch<T>(
   iterable: Iterable<T>,
   batchSize: number,
@@ -85,9 +100,16 @@ export async function batch<T>(
   }
 }
 
+/** Cached parsed color strings */
 const cachedColors = new Map<string, Color>();
+/** Cached canvas context used to parse colors */
 let cachedCtx: CanvasRenderingContext2D | null = null;
 
+/**
+ * Get or initialize a canvas rendering context
+ *
+ * @returns A rendering context if available
+ */
 function getParseColorContext(): CanvasRenderingContext2D | null {
   if (cachedCtx === null) {
     const canvas = document.createElement('canvas');
