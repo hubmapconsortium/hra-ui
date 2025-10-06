@@ -404,7 +404,7 @@ export class CdeVisualizationComponent {
     const edges = this.edgesView();
     const filter = edges.createFilter(nodes, this.nodeFilterView());
     const computedColumns: Record<string, DataViewEntryComputedValueFn> = {
-      distance: edges.getDistanceFor,
+      Distance: edges.getDistanceFor,
     };
     const reindex = await nodes.createReindexer(this.nodeFilterView());
     const transform: DataViewEntryValueTransform = (value, key) => {
