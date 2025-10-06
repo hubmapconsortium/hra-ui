@@ -22,7 +22,6 @@
 
     .content {
       @include utils.use-font(label, medium);
-      padding: 0.5938rem 0;
     }
   }
 
