@@ -1,5 +1,7 @@
 :host {
   display: block;
+  height: 100%;
+  overflow: hidden;
 
   .sheet-header {
     display: flex;
@@ -12,6 +14,11 @@
   }
 
   hra-table {
-    height: min(22.6rem, 80vh - 3rem - 2 * 0.5rem);
+    height: auto;
+    max-height: min(22.6rem, 80vh - 3rem - 2 * 0.5rem);
+  }
+
+  ng-scrollbar {
+    height: calc(100% - 3.5rem);
   }
 }
