@@ -151,7 +151,7 @@ export class AppComponent extends BaseApplicationComponent {
    * Creates an instance of app component.
    */
   constructor() {
-    super();
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
 
     this.data.tissueBlockData$.subscribe();
     this.data.aggregateData$.subscribe();
