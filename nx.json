@@ -1,9 +1,6 @@
 {
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -17,7 +14,7 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/**/test.[jt]s"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "plugins": [
     {
@@ -36,35 +33,21 @@
   "targetDefaults": {
     "@nx/angular:application": {
       "cache": true,
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "dependsOn": [
-        "^build"
-      ],
+      "inputs": ["production", "^production"],
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
       "options": {
         "index": "{projectRoot}/src/index.html",
         "browser": "{projectRoot}/src/main.ts",
         "tsConfig": "{projectRoot}/tsconfig.app.json",
         "outputPath": "dist/{projectRoot}",
         "inlineStyleLanguage": "scss",
-        "styles": [
-          "{projectRoot}/src/styles.scss"
-        ],
+        "styles": ["{projectRoot}/src/styles.scss"],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "node_modules/",
-            "libs/design-system/styles"
-          ]
+          "includePaths": ["node_modules/", "libs/design-system/styles"]
         },
         "outputHashing": "none",
-        "plugins": [
-          "tools/esbuild-plugins/disable-code-splitting.mjs"
-        ],
+        "plugins": ["tools/esbuild-plugins/disable-code-splitting.mjs"],
         "define": {
           "define": "undefined"
         }
@@ -105,13 +88,8 @@
     },
     "@nx/angular:package": {
       "cache": true,
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "dependsOn": [
-        "^build"
-      ],
+      "inputs": ["production", "^production"],
+      "dependsOn": ["^build"],
       "options": {
         "project": "{projectRoot}/ng-package.json"
       },
@@ -138,12 +116,8 @@
     },
     "@twittwer/compodoc:compodoc": {
       "cache": true,
-      "inputs": [
-        "production"
-      ],
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "inputs": ["production"],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/compodoc/{projectName}",
         "name": "Code Documentation for {projectName}"
@@ -182,13 +156,7 @@
         "browserTarget": "{projectName}:build-storybook",
         "port": 4400,
         "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "{projectRoot}/.storybook/compodoc",
-          "--silent"
-        ]
+        "compodocArgs": ["-e", "json", "-d", "{projectRoot}/.storybook/compodoc", "--silent"]
       }
     },
     "build-storybook": {
@@ -197,13 +165,7 @@
         "browserTarget": "{projectName}:build-storybook",
         "outputDir": "dist/storybook/{projectName}",
         "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "{projectRoot}/.storybook/compodoc",
-          "--silent"
-        ]
+        "compodocArgs": ["-e", "json", "-d", "{projectRoot}/.storybook/compodoc", "--silent"]
       },
       "configurations": {
         "ci": {
@@ -219,10 +181,7 @@
     },
     "test-storybook": {
       "options": {
-        "args": [
-          "--url",
-          "http://localhost:4400"
-        ]
+        "args": ["--url", "http://localhost:4400"]
       }
     },
     "build-webcomponent": {
@@ -232,9 +191,7 @@
           "dependentTasksOutputFiles": "**/*.js"
         }
       ],
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}/browser/wc.js"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}/browser/wc.js"],
       "dependsOn": [
         {
           "target": "build",
@@ -244,13 +201,8 @@
     },
     "bundle-cli": {
       "cache": true,
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}/cli.js"
-      ]
+      "inputs": ["production", "^production"],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}/cli.js"]
     }
   },
   "generators": {
