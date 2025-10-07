@@ -83,7 +83,7 @@ content:
 
       - component: TextHyperlink
         text: Use the Cell Population Graphs
-        url: https://hubmapconsortium.github.io/tissue-bar-graphs/
+        url: https://apps.humanatlas.io/cell-population-graphs
         icon: arrow_right_alt
 
   - component: PageSection
