@@ -1,11 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { applicationConfig, componentWrapperDecorator, Preview } from '@storybook/angular';
+import { provideMarkdown } from 'ngx-markdown';
 import { provideDesignSystem } from '../src/index';
 import compodocJson from './compodoc/documentation.json';
-import { provideMarkdown } from 'ngx-markdown';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'hra-dummy-component',
@@ -27,11 +27,6 @@ const preview: Preview = {
           value: '#4b4b5e',
         },
       },
-    },
-  },
-  initialGlobals: {
-    backgrounds: {
-      value: 'light',
     },
   },
   decorators: [
