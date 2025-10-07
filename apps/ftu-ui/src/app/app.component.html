@@ -130,21 +130,19 @@
       }
     </mat-menu>
   </hra-header>
-  @if (!screenSizeNoticeOpen) {
-    <div class="main">
-      @if (isFtuPage) {
-        <ftu-tissue-library-behavior
-          class="sidebar"
-          [(selected)]="selectedFtu"
-          [class.hidden]="isFullscreen()"
-        ></ftu-tissue-library-behavior>
-      }
+  <div class="main">
+    @if (isFtuPage) {
+      <ftu-tissue-library-behavior
+        class="sidebar"
+        [(selected)]="selectedFtu"
+        [class.hidden]="isFullscreen()"
+      ></ftu-tissue-library-behavior>
+    }
 
-      <div class="content">
-        <router-outlet />
-      </div>
+    <div class="content">
+      <router-outlet />
     </div>
-  }
+  </div>
   @if (isLanding()) {
     <hra-footer />
   }
