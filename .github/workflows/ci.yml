@@ -45,7 +45,7 @@ jobs:
       # - run: npx nx-cloud record -- echo Hello World
 
       - run: npx nx format:check
-      - run: npx nx affected -t lint test compodoc:test-coverage build
+      - run: npx nx affected --skip-nx-cache -t lint test:ci compodoc:test-coverage build
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       # - run: npx nx fix-ci
