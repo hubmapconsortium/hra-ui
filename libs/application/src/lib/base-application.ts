@@ -2,16 +2,15 @@ import { computed, Directive, effect, inject, input, output } from '@angular/cor
 import { ConsentCategories, ConsentService } from '@hra-ui/common/analytics';
 import { injectAssetHref, injectPageHref } from '@hra-ui/common/url';
 import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
-
 import { AnalyticsInput } from './util/analytics-input';
-import { createScreenSizeDetector } from './util/screen-size-detector';
+import { initializeScreenSizeNoticeMonitor, ScreenSizeNoticeOptions } from './util/screen-size-notice';
 
 /** Base application options */
 export interface BaseApplicationOptions {
   /** Whether to show/hide the privacy preferences popups by default */
   analytics?: boolean;
-  /** Whether to disable the screen size notice in the application */
-  disableScreenSizeNotice?: boolean;
+  /** Screen size notice width and height */
+  screenSizeNotice?: ScreenSizeNoticeOptions;
 }
 
 /**
@@ -32,11 +31,6 @@ export abstract class BaseApplicationComponent {
 
   /** Initialize the application component */
   constructor(options: BaseApplicationOptions = {}) {
-    // Enable screen size notice
-    if (!options.disableScreenSizeNotice) {
-      createScreenSizeDetector();
-    }
-
     // Setup hrefs
     const assetHref = injectAssetHref();
     effect(() => {
@@ -73,5 +67,10 @@ export abstract class BaseApplicationComponent {
         this.consentChange.emit(consent.categories());
       }
     });
+
+    // Enable screen size notice
+    if (options.screenSizeNotice) {
+      initializeScreenSizeNoticeMonitor(options.screenSizeNotice);
+    }
   }
 }

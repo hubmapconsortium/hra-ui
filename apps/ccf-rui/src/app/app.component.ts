@@ -100,7 +100,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy,
    * Creates an instance of app component.
    */
   constructor() {
-    super();
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
 
     const cdr = inject(ChangeDetectorRef);
 

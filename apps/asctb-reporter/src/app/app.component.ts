@@ -197,7 +197,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
 
   /** Initialize the component */
   constructor() {
-    super();
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
 
     switch (environment.tag) {
       case 'Staging':

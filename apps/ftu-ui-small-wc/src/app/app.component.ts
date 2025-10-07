@@ -43,6 +43,7 @@ import {
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
+
 import { environment } from '../environments/environment';
 
 /** Input property keys */
@@ -159,7 +160,7 @@ export class AppComponent extends BaseApplicationComponent implements OnInit, On
 
   /** Initialize the app */
   constructor() {
-    super({ analytics: false, disableScreenSizeNotice: true });
+    super({ analytics: false, screenSizeNotice: { width: 800, height: 480 } });
   }
 
   /** Initializes the component */

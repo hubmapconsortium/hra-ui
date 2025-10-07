@@ -52,7 +52,7 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Initialize app */
   constructor() {
-    super();
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
     inject(Router).initialNavigation();
   }
 }

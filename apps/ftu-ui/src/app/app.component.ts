@@ -241,7 +241,7 @@ export class AppComponent extends BaseApplicationComponent implements OnChanges,
 
   /** Initialize the app */
   constructor() {
-    super();
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
   }
 
   /** Whether the current page is the ftu page */

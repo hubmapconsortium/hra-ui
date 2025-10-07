@@ -133,7 +133,7 @@ export class MedicalIllustrationComponent extends BaseApplicationComponent imple
 
   /** Initialize the app */
   constructor() {
-    super({ analytics: false, disableScreenSizeNotice: true });
+    super({ analytics: false });
   }
 
   /**

@@ -19,7 +19,6 @@ export class DialogService {
         action,
       } satisfies DialogData,
       panelClass: 'hra-dialog-panel',
-      autoFocus: false,
     });
   }
 }
