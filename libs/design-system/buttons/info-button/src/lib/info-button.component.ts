@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { RichTooltipDirective, RichTooltipContainerComponent } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
+/** Info Button Component */
 @Component({
   selector: 'hra-info-button',
   imports: [MatIconModule, MatButtonModule, PlainTooltipDirective, RichTooltipDirective],
