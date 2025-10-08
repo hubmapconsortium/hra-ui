@@ -117,6 +117,7 @@ describe('BiomarkerTableComponent', () => {
       .dontMock(MatTableModule, TableVirtualScrollModule, PlainTooltipDirective)
       .provide(CdkVirtualScrollViewport)
       .mock(CdkVirtualScrollViewport, {
+        checkViewportSize: () => undefined,
         scrollable: {
           elementScrolled: () => of(),
           measureViewportSize: () => 0,

@@ -5,8 +5,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faDna } from '@fortawesome/free-solid-svg-icons';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { Select, Store } from '@ngxs/store';
@@ -33,7 +31,6 @@ import { TreeState } from '../../store/tree.state';
     MatSelectModule,
     MatIconModule,
     MatTooltipModule,
-    FontAwesomeModule,
     MatButtonModule,
     MatButtonToggleModule,
     ButtonToggleSizeDirective,
@@ -50,7 +47,6 @@ export class FunctionsComponent {
   ctSizeOptions = bimodalCTSizeOptions;
   bimodalBTypeOptions = bimodalBTypeOptions;
   bimodalConfig!: BimodalConfig;
-  faDna = faDna;
 
   @Input() error!: Error;
 

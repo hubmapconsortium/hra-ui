@@ -38,8 +38,10 @@ export type DataViewInput<V extends DataView<any>> = DataInput<V | AnyData>;
 
 /** Filter function */
 export type DataViewEntryFilter = (obj: AnyDataEntry, index: number) => boolean;
+/** Computed value function */
+export type DataViewEntryComputedValueFn = (obj: AnyDataEntry, key: string, index: number) => unknown;
 /** Transform function */
-export type DataViewEntryTransform = (value: unknown, key: string, obj: AnyDataEntry, index: number) => unknown;
+export type DataViewEntryValueTransform = (value: unknown, key: string, obj: AnyDataEntry, index: number) => unknown;
 
 /** Mapping for each entry key to the actual data's properties */
 export type KeyMapping<Entry> = { [P in keyof Entry]: PropertyKey };
@@ -53,8 +55,11 @@ export type KeyMappingMixins<Entry> = { [P in keyof Entry]?: Signal<PropertyKey 
 /** Key mapping input */
 export type KeyMappingInput<Entry> = DataInput<Partial<KeyMapping<Entry>>>;
 
+/** Extra key mapping data */
 interface KeyMappingExtra {
+  /** Original header */
   [DATA_VIEW_HEADER]?: string[];
+  /** Data array offset */
   [DATA_VIEW_DATA_OFFSET]?: number;
 }
 
@@ -63,6 +68,7 @@ const DATA_VIEW_HEADER = Symbol('DataView header');
 /** Private storage for data offset */
 const DATA_VIEW_DATA_OFFSET = Symbol('DataView data offset');
 
+/** Cast a mapping to include extra data */
 function getKeyMappingExtra<T>(mapping: Partial<KeyMapping<T>>): Partial<KeyMapping<T>> & KeyMappingExtra {
   return mapping;
 }
@@ -80,8 +86,10 @@ export interface DataViewSerializationOptions {
   keyMapping?: AnyKeyMapping;
   /** Data filter */
   filter?: DataViewEntryFilter;
+  /** Computed properties */
+  computedColumns?: Record<string, DataViewEntryComputedValueFn>;
   /** Value transformation */
-  transform?: DataViewEntryTransform;
+  transform?: DataViewEntryValueTransform;
 }
 
 /** Data view */
@@ -121,7 +129,21 @@ export interface DataView<Entry> {
    */
   readonly getPropertyFor: <P extends keyof Entry>(obj: AnyDataEntry, property: P) => Entry[P];
 
+  /**
+   * Converts a data row into an object
+   *
+   * @param index Item index
+   * @param keyMapping Key mapping to use during materialization
+   * @returns An object
+   */
   readonly materializeAt: (index: number, keyMapping?: AnyKeyMapping) => object;
+  /**
+   * Converts a data item into an object
+   *
+   * @param obj Item
+   * @param keyMapping Key mapping to use during materialization
+   * @returns An object
+   */
   readonly materializeFor: (obj: AnyDataEntry, keyMapping?: AnyKeyMapping) => object;
 
   /** Raw data iterator */
@@ -186,6 +208,13 @@ function attachAccessors<Entry>(instance: DataView<Entry>, keys: (keyof Entry)[]
   }
 }
 
+/**
+ * Selects a key mapping for a data view
+ *
+ * @param view Data view
+ * @param candidates Key mapping candidates
+ * @returns The selected key mapping
+ */
 function selectMaterializationKeyMapping<Entry>(
   view: DataView<Entry>,
   ...candidates: (AnyKeyMapping | undefined)[]
@@ -479,11 +508,46 @@ export function withDataViewDefaultGenerator<V extends AnyDataView>(
   );
 }
 
+/**
+ * Deduplicate csv column names by adding an `_{index}` suffix to duplicates
+ *
+ * @param header Column names
+ * @returns Deduped column names
+ */
+function dedupCsvHeader(header: string[]): string[] {
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const column of header) {
+    let newColumn = column;
+    let index = 1;
+    while (seen.has(newColumn)) {
+      newColumn = `${column}_${index}`;
+      index++;
+    }
+
+    seen.add(newColumn);
+    result.push(newColumn);
+  }
+
+  return result;
+}
+
+/**
+ * Convert an view data item into a csv row
+ *
+ * @param obj Object to serialize
+ * @param index Index of item
+ * @param keyMapping Key mapping
+ * @param computedMapping Computed mapping
+ * @param transform Value transformation
+ * @returns A csv row
+ */
 function toCsvRow(
   obj: AnyDataEntry,
   index: number,
   keyMapping: [string, PropertyKey][],
-  transform: DataViewEntryTransform,
+  computedMapping: [string, DataViewEntryComputedValueFn][],
+  transform: DataViewEntryValueTransform,
 ): unknown[] {
   const row: unknown[] = [];
   for (const [key, prop] of keyMapping) {
@@ -491,15 +555,29 @@ function toCsvRow(
     const serialized = typeof value === 'object' ? JSON.stringify(value) : value;
     row.push(serialized);
   }
+  for (const [key, fn] of computedMapping) {
+    const value = transform(fn(obj, key, index), key, obj, index);
+    const serialized = typeof value === 'object' ? JSON.stringify(value) : value;
+    row.push(serialized);
+  }
 
   return row;
 }
 
+/**
+ * Serialize a data view to csv
+ *
+ * @param view View to serialize
+ * @param options Serialization options
+ * @returns A csv blob
+ */
 export async function toCsv<Entry>(view: DataView<Entry>, options: DataViewSerializationOptions = {}): Promise<Blob> {
   const BATCH_SIZE = 10000;
-  const { filter = () => true, transform = (value) => value } = options;
+  const { filter = () => true, computedColumns = {}, transform = (value) => value } = options;
   const keyMapping = selectMaterializationKeyMapping(view, options.keyMapping, view.keyMapping);
-  const header = unparse([keyMapping.map(([key]) => key)]);
+  const computedMapping = Object.entries(computedColumns);
+  const headerKeys = [...keyMapping, ...computedMapping].map(([key]) => key);
+  const header = unparse([dedupCsvHeader(headerKeys)]);
   const chunks: string[] = [header, '\r\n'];
   let rows: unknown[][] = [];
 
@@ -508,7 +586,7 @@ export async function toCsv<Entry>(view: DataView<Entry>, options: DataViewSeria
     BATCH_SIZE,
     (obj, index) => {
       if (filter(obj, index)) {
-        rows.push(toCsvRow(obj, index, keyMapping, transform));
+        rows.push(toCsvRow(obj, index, keyMapping, computedMapping, transform));
       }
     },
     () => {
