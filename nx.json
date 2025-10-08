@@ -124,18 +124,15 @@
       },
       "configurations": {
         "ci": {
-          "silent": true
+          "coverageTest": 100,
+          "coverageMinimumPerFile": 100,
+          "coverageTestThresholdFail": true
         },
         "serve": {
           "watch": true,
           "disableCoverage": false,
           "disablePrivate": false,
           "disableInternal": false
-        },
-        "test-coverage": {
-          "coverageTest": 100,
-          "coverageMinimumPerFile": 100,
-          "coverageTestThresholdFail": true
         }
       }
     },
@@ -146,7 +143,8 @@
       "configurations": {
         "ci": {
           "ci": true,
-          "codeCoverage": true
+          "codeCoverage": true,
+          "runInBand": true
         }
       }
     },
