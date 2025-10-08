@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { RichTooltipDirective } from '@hra-ui/design-system/tooltips/rich-tooltip';
+import { RichTooltipDirective, RichTooltipContainerComponent } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
 @Component({
   selector: 'hra-info-button',
@@ -12,7 +12,12 @@ import { RichTooltipDirective } from '@hra-ui/design-system/tooltips/rich-toolti
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoButtonComponent {
-  readonly richTooltipTagline = input.required<string>();
+  /** Custom rich tooltip container for advanced usage with action buttons */
+  readonly richTooltipContent = input<RichTooltipContainerComponent>();
 
-  readonly richTooltipDescription = input.required<string>();
+  /** Tagline for simple rich tooltip variant */
+  readonly richTooltipTagline = input<string>('');
+
+  /** Description for simple rich tooltip variant */
+  readonly richTooltipDescription = input<string>('');
 }
