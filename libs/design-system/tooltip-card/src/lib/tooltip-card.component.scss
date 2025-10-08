@@ -2,13 +2,6 @@
 
 :host {
   display: block;
-  max-width: 28rem;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.322);
-  font: vars.$label-large;
-  letter-spacing: vars.$label-large-tracking;
-  background: vars.$on-primary;
 
   .title {
     margin: 0;

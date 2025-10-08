@@ -21,6 +21,7 @@ import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-
 import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
+import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { DeprecatedWorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
@@ -71,6 +72,7 @@ function optionalValue<T>(): T | null {
     StepIndicatorComponent,
     TooltipCardComponent,
     ErrorIndicatorComponent,
+    RichTooltipModule,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
