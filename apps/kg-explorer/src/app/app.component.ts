@@ -108,7 +108,7 @@ export class AppComponent extends BaseApplicationComponent {
    * Gets the page title for breadcrumbs
    */
   constructor() {
-    super();
+    super({ screenSizeNotice: { width: 864, height: 486 } });
 
     effect(() => {
       if (this.typeLabel() && this.documentationUrl()) {
