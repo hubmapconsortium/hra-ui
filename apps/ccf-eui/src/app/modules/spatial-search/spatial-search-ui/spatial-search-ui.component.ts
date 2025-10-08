@@ -115,8 +115,6 @@ export class SpatialSearchUiComponent {
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
 
-  readonly rotation = signal<[number, number]>([0, 0]);
-
   /**
    * Resets view to default position, rotation, and bounds
    */
