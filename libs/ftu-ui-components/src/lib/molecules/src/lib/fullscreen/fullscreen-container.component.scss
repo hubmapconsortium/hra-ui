@@ -15,7 +15,7 @@
       label-text-size: vars.$label-medium-size,
       label-text-tracking: vars.$label-medium-tracking,
       label-text-weight: vars.$label-medium-weight,
-      container-height: 4rem,
+      container-height: 4.3rem,
     )
   );
 }
@@ -26,10 +26,30 @@
   height: 100%;
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .tabs-group {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  ::ng-deep {
+    .mat-mdc-tab-body-wrapper {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .mat-mdc-tab-body {
+      overflow: hidden;
+    }
+
+    .mat-mdc-tab-body-content {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
 }
 
 .closeButton {

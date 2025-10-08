@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { dispatch, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
@@ -50,6 +51,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     ButtonsModule,
     HraCommonModule,
     MatButtonModule,
+    MatDividerModule,
     MatIconModule,
     MatTabsModule,
     SourceListComponent,
