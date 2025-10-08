@@ -123,5 +123,6 @@ export class SpatialSearchUiComponent {
    */
   resetView(): void {
     this.primaryUI().resetView();
+    this.rotation.set([0, 0]);
   }
 }
