@@ -6,6 +6,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
+import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { CopyableUrlContainerComponent } from '@hra-ui/design-system/copyable-url-container';
 import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
@@ -24,6 +25,7 @@ import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../
 @Component({
   selector: 'hra-metadata-page',
   imports: [
+    HraCommonModule,
     PageSectionComponent,
     MetadataLayoutModule,
     MarkdownComponent,
@@ -68,8 +70,8 @@ export class MetadataPageComponent {
   /** PURL for the object */
   readonly purl = signal<string>('');
 
-  /** Determines if the screen is medium-sized */
-  protected isWMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639px)');
+  /** Determines if the screen is not medium-sized */
+  protected isNotMediumScreen = watchBreakpoint('(min-width: 1100px), (max-width: 639px)');
 
   /** For these DoTypes the corresponding image types will be displayed on the page */
   readonly imageTypes: Record<string, string> = {
@@ -199,7 +201,7 @@ export class MetadataPageComponent {
     if (items.length === 1) {
       return this.createMarkdownLink(items[0].label, items[0].id);
     }
-    return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join();
+    return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join(' ');
   }
 
   /**

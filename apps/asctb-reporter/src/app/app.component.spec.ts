@@ -5,7 +5,6 @@ import { render } from '@testing-library/angular';
 import { withNgxsResetPlugin } from 'ngxs-reset-plugin';
 import { ConfigService } from './app-config.service';
 import { AppComponent } from './app.component';
-import { ConsentService } from './services/consent/consent.service';
 import { LogsState } from './store/logs.state';
 import { SheetState } from './store/sheet.state';
 import { TreeState } from './store/tree.state';
@@ -31,7 +30,6 @@ describe('AppComponent', () => {
         provideHttpClient(withInterceptorsFromDi()),
         provideIcons(),
         provideStore([SheetState, TreeState, UIState, LogsState], withNgxsResetPlugin()),
-        ConsentService,
         ConfigService,
       ],
     });

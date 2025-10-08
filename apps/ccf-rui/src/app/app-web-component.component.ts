@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { SpatialEntityJsonLd } from 'ccf-body-ui';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
 import { ObservableInput } from 'rxjs';
@@ -36,43 +36,43 @@ function parseOrgan(value: unknown): string | Organ {
  */
 @Component({
   selector: 'ccf-root-wc',
-  template: '<ccf-root *ngIf="initialized"></ccf-root>',
+  template: '@if (initialized) {<ccf-root></ccf-root>}',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Base url to fetch relative links */
-  @Input() baseHref!: string;
+  readonly baseHref = input<string>();
   /** Whether to download the registration on review */
-  @Input() useDownload!: string | boolean;
+  readonly useDownload = input<string | boolean>();
   /** Reference data api endpoint */
-  @Input() referenceData!: string;
+  readonly referenceData = input<string>();
   /** Prepopulated user object */
-  @Input() user!: string | User;
+  readonly user = input<string | User>();
   /** Prepopulated organ object */
-  @Input() organ!: string | Organ;
+  readonly organ = input<string | Organ>();
   /** Prepopulated consortium */
-  @Input() consortium!: string;
+  readonly consortium = input<string>();
   /** Prepopulated registration */
-  @Input() editRegistration!: string | SpatialEntityJsonLd;
+  readonly editRegistration = input<string | SpatialEntityJsonLd>();
   /** Callback that recieves the registration on review */
-  @Input() register!: string | RegistrationCallback;
+  readonly register = input<string | RegistrationCallback>();
   /** Callback when the user leaves the application */
-  @Input() cancelRegistration!: string | CancelRegistrationCallback;
+  readonly cancelRegistration = input<string | CancelRegistrationCallback>();
   /** A callback to fetch previous registrations */
-  @Input() fetchPreviousRegistrations!: string | FetchPreviousRegistrationsCallback;
+  readonly fetchPreviousRegistrations = input<string | FetchPreviousRegistrationsCallback>();
   /** Whether to disable the unsaved changes prompt when the user leaves the application */
-  @Input() skipUnsavedChangesConfirmation!: string | boolean;
+  readonly skipUnsavedChangesConfirmation = input<string | boolean>();
   /** Url visited when the user clicks the RUI logo */
-  @Input() homeUrl!: string;
+  readonly homeUrl = input<string>();
   /** A list of enabled organs */
-  @Input() organOptions!: string | string[];
+  readonly organOptions = input<string | string[]>();
   /** Collision query api endpoint */
-  @Input() collisionsEndpoint!: string;
+  readonly collisionsEndpoint = input<string>();
   /** Initial view mode */
-  @Input() view!: ViewType;
+  readonly view = input<ViewType>();
   /** Initial view side */
-  @Input() viewSide!: ViewSide;
+  readonly viewSide = input<ViewSide>();
 
   /**
    * Initializes the component with default configurations and parsers. Merges environment options, global configuration, and customizations.

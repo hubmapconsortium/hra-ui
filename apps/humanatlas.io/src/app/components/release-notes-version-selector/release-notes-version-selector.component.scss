@@ -1,3 +1,16 @@
+@use 'vars';
+@use 'utils';
+
 :host {
   display: block;
+  width: 15.5rem;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.release-date {
+  @include utils.use-font(label, small);
+  color: vars.$primary;
 }

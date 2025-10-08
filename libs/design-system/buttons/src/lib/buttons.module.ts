@@ -13,10 +13,11 @@ import {
 } from '@hra-ui/design-system/buttons/button';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { CheckboxErrorVariantDirective } from '@hra-ui/design-system/buttons/checkbox';
+import { HelpButtonComponent } from '@hra-ui/design-system/buttons/help-button';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
-import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { TextHyperlinkComponent, TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** All re-exported modules, components, directives, etc. */
 const REEXPORTS = [
@@ -30,13 +31,15 @@ const REEXPORTS = [
   ButtonSizeDirective,
   ButtonToggleSizeDirective,
   ButtonVariantDirective,
+  CheckboxErrorVariantDirective,
   CtaButtonDirective,
+  HelpButtonComponent,
   NavigationCategoryToggleComponent,
   PrimaryButtonVariantDirective,
   SecondaryButtonVariantDirective,
   SocialMediaButtonComponent,
+  TextHyperlinkComponent,
   TextHyperlinkDirective,
-  CheckboxErrorVariantDirective,
 ];
 
 /** Packages up subpackage angular exports for easier use */

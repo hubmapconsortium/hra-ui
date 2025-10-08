@@ -1,17 +1,45 @@
-<div mat-dialog-title>
-  <div class="title">
-    {{ data.title }}
-  </div>
-  <button mat-icon-button mat-dialog-close disableRipple hraIconButtonSize="large" data-testid="close-icon">
-    <mat-icon class="material-symbols-rounded">close</mat-icon>
-  </button>
-</div>
-<mat-dialog-content>{{ data.message }}</mat-dialog-content>
-<mat-dialog-actions>
-  @if (data.action) {
-    <button mat-button disableRipple hraButtonSize="medium" class="action" (click)="data.action.callback()">
-      {{ data.action.label }}
+<ng-container hraFeature="notice">
+  <div mat-dialog-title>
+    <div class="title">
+      {{ data.title }}
+    </div>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      hraFeature="close"
+      hraClickEvent
+      hraIconButtonSize="large"
+      disableRipple
+      data-testid="close-icon"
+    >
+      <mat-icon class="material-symbols-rounded">close</mat-icon>
     </button>
-  }
-  <button mat-button disableRipple mat-dialog-close hraButtonSize="medium" class="dismiss">Dismiss</button>
-</mat-dialog-actions>
+  </div>
+  <mat-dialog-content>{{ data.message }}</mat-dialog-content>
+  <mat-dialog-actions>
+    @if (data.action) {
+      <button
+        mat-button
+        class="action"
+        hraFeature="action"
+        hraClickEvent
+        hraButtonSize="medium"
+        disableRipple
+        (click)="data.action.callback()"
+      >
+        {{ data.action.label }}
+      </button>
+    }
+    <button
+      mat-button
+      mat-dialog-close
+      class="dismiss"
+      hraFeature="close"
+      hraClickEvent
+      hraButtonSize="medium"
+      disableRipple
+    >
+      Dismiss
+    </button>
+  </mat-dialog-actions>
+</ng-container>

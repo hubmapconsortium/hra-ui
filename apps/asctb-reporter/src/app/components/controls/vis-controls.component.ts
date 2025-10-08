@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -10,16 +9,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { GaAction, GaCategory } from '../../models/ga.model';
 import { Error } from '../../models/response.model';
 import { Sheet, SheetConfig } from '../../models/sheet.model';
 
 @Component({
   selector: 'app-vis-controls',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatExpansionModule,
     MatInputModule,
     MatSliderModule,
@@ -37,8 +35,6 @@ import { Sheet, SheetConfig } from '../../models/sheet.model';
   styleUrls: ['./vis-controls.component.scss'],
 })
 export class VisControlsComponent {
-  readonly ga = inject(GoogleAnalyticsService);
-
   @Input() config!: SheetConfig;
   @Input() error!: Error;
   @Input() currentSheet!: Sheet;
@@ -54,7 +50,6 @@ export class VisControlsComponent {
       property: 'width',
       config: this.config,
     });
-    this.ga.event(GaAction.SLIDE, GaCategory.CONTROLS, 'Width Slider', this.config.width);
   }
 
   changeHeight() {
@@ -62,7 +57,6 @@ export class VisControlsComponent {
       property: 'height',
       config: this.config,
     });
-    this.ga.event(GaAction.SLIDE, GaCategory.CONTROLS, 'Height Slider', this.config.height);
   }
 
   changeShowOntology() {
@@ -71,7 +65,6 @@ export class VisControlsComponent {
       property: 'show-ontology',
       config: this.config,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.CONTROLS, 'Toggle Ontology', +this.config.show_ontology);
   }
 
   showDiscrepencyLabel() {
@@ -82,7 +75,6 @@ export class VisControlsComponent {
       property: 'show-discrepency-label',
       config: this.config,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.CONTROLS, 'Toggle Discrepency Label', +this.config.discrepencyLabel);
   }
 
   showDiscrepencyId() {
@@ -93,7 +85,6 @@ export class VisControlsComponent {
       property: 'show-discrepency-id',
       config: this.config,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.CONTROLS, 'Toggle Discrepency ID', +this.config.discrepencyId);
   }
 
   showDuplicateId() {
@@ -104,7 +95,6 @@ export class VisControlsComponent {
       property: 'show-duplicate-id',
       config: this.config,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.CONTROLS, 'Toggle Duplicate ID', +this.config.duplicateId);
   }
 
   changeBimodalDistanceX() {
@@ -112,7 +102,6 @@ export class VisControlsComponent {
       property: 'bm-x',
       config: this.config,
     });
-    this.ga.event(GaAction.SLIDE, GaCategory.CONTROLS, 'Bimodal Distance X Slider', this.config.bimodal_distance_x);
   }
 
   changeBimodalDistanceY() {
@@ -120,7 +109,6 @@ export class VisControlsComponent {
       property: 'bm-y',
       config: this.config,
     });
-    this.ga.event(GaAction.SLIDE, GaCategory.CONTROLS, 'Bimodal Distance Y Slider', this.config.bimodal_distance_y);
   }
 
   changeShowAS() {
@@ -128,7 +116,6 @@ export class VisControlsComponent {
       property: 'show-as',
       config: this.config,
     });
-    this.ga.event(GaAction.TOGGLE, GaCategory.CONTROLS, 'Toggle AS Visibility', +(this.config.show_all_AS ?? false));
   }
 
   exportControls(event: Event) {
@@ -141,7 +128,5 @@ export class VisControlsComponent {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-
-    this.ga.event(GaAction.CLICK, GaCategory.CONTROLS, 'Export Vis Controls', undefined);
   }
 }

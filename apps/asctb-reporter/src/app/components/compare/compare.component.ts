@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, input, output } from '@angular/core';
 import {
   AbstractControl,
@@ -18,15 +17,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
-
-import { GaAction, GaCategory, GaCompareInfo } from '../../models/ga.model';
 import { CompareData } from '../../models/sheet.model';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
@@ -35,7 +30,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
 @Component({
   selector: 'app-compare',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
@@ -77,9 +72,6 @@ export class CompareComponent implements OnInit {
 
   /** FormBuilder instance */
   private readonly fb = inject(UntypedFormBuilder);
-
-  /** Google Analytics service instance -- TODO: change to new analytics */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** Getter for compare sheet controls */
   get CSControls() {
@@ -157,14 +149,6 @@ export class CompareComponent implements OnInit {
         gid: this.checkLinkFormat(sheet.link)?.gid,
         csvUrl: this.checkLinkFormat(sheet.link)?.csvUrl,
       });
-
-      const sheetInfo: GaCompareInfo = {
-        title: sheet.title,
-        desc: sheet.description,
-        link: sheet.link,
-        color: sheet.color,
-      };
-      this.ga.event(GaAction.CLICK, GaCategory.COMPARE, `Add new sheet to compare: ${JSON.stringify(sheetInfo)}`);
     }
 
     this.compareData.emit(data);
@@ -176,7 +160,6 @@ export class CompareComponent implements OnInit {
   addCompareSheetRow(): void {
     const sheet = this.createCompareForm();
     this.formSheets.push(sheet);
-    this.ga.event(GaAction.CLICK, GaCategory.COMPARE, 'Add new compare row', undefined);
   }
 
   /**
@@ -185,7 +168,6 @@ export class CompareComponent implements OnInit {
    */
   removeCompareSheetRow(i: number): void {
     this.formSheets.removeAt(i);
-    this.ga.event(GaAction.CLICK, GaCategory.COMPARE, 'Delete compare row', i);
   }
 
   /**
@@ -299,5 +281,13 @@ export class CompareComponent implements OnInit {
       color += letters[Math.floor(Math.random() * letters.length)];
     }
     return color;
+  }
+
+  doesFormHaveError() {
+    (this.formGroup.controls['sheets'].value as UntypedFormGroup[]).forEach((sheet) => {
+      // mark as touched for all controls
+      sheet.controls['link'].markAsTouched();
+    });
+    return this.formGroup.status !== 'VALID';
   }
 }

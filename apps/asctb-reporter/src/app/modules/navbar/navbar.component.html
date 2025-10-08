@@ -1,10 +1,17 @@
-<div class="toolbar-nav">
+<div class="toolbar-nav" hraFeature="nav-bar">
   <div header>
     <div class="branding">
       <hra-icon [svgIcon]="'product:asctb-reporter'"></hra-icon>
       <div class="app-title">ASCT+B Reporter</div>
     </div>
-    <button mat-icon-button hraIconButtonSize="large" hraIconButtonVariant="dark" [matMenuTriggerFor]="headerMenu">
+    <button
+      mat-icon-button
+      hraIconButtonSize="large"
+      hraIconButtonVariant="dark"
+      [matMenuTriggerFor]="headerMenu"
+      hraFeature="header-menu"
+      hraClickEvent
+    >
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
@@ -14,22 +21,28 @@
     </div>
 
     <div class="nav-item">
-      <mat-form-field class="datasets-field" subscriptSizing="dynamic" (click)="openSelectOrgansDialog()">
+      <mat-form-field
+        class="datasets-field"
+        subscriptSizing="dynamic"
+        (click)="openSelectOrgansDialog()"
+        hraFeature="datasets"
+        hraClickEvent
+      >
         <mat-label>Datasets</mat-label>
         <input matInput readonly value="{{ (mode$ | async) === 'vis' ? selectedOrgansLabel : 'Example' }}" />
         <mat-icon matSuffix>arrow_drop_down</mat-icon>
       </mat-form-field>
     </div>
   </div>
-</div>
 
-<mat-menu #headerMenu="matMenu" class="header-menu">
-  <button mat-menu-item (click)="togglePane()">
-    <mat-icon>visibility_{{ controlPaneOpen() ? 'off' : 'on' }}</mat-icon>
-    {{ controlPaneOpen() ? 'Hide' : 'Show' }} legend & visualization controls
-  </button>
-  <button mat-menu-item (click)="toggleDebugLogs()">
-    <mat-icon>bug_report</mat-icon>
-    Debug log
-  </button>
-</mat-menu>
+  <mat-menu #headerMenu="matMenu" class="header-menu" hraFeature="menu">
+    <button mat-menu-item (click)="togglePane()" hraFeature="toggle-legend-visualization-controls" hraClickEvent>
+      <mat-icon>visibility_{{ controlPaneOpen() ? 'off' : 'on' }}</mat-icon>
+      {{ controlPaneOpen() ? 'Hide' : 'Show' }} legend & visualization controls
+    </button>
+    <button mat-menu-item (click)="toggleDebugLogs()" hraFeature="toggle-debug-logs" hraClickEvent>
+      <mat-icon>bug_report</mat-icon>
+      Debug log
+    </button>
+  </mat-menu>
+</div>

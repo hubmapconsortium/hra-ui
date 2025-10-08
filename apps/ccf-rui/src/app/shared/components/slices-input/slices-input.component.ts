@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output, inject } from '@angular/core';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { ChangeDetectionStrategy, Component, HostBinding, model, output } from '@angular/core';
 
 /**
  * Interface containing slices data of the tissue block
@@ -28,21 +27,18 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
   standalone: false,
 })
 export class SlicesInputComponent {
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-slices-input';
 
   /**
    * Values of block dimensions to be emitted
    */
-  @Input() slicesConfig = DEFAULT_SLICES_CONFIG;
+  readonly slicesConfig = model(DEFAULT_SLICES_CONFIG);
 
   /**
    * Emitter for slice data values
    */
-  @Output() readonly slicesConfigChange = new EventEmitter<SlicesConfig>();
+  readonly slicesConfigChange = output<SlicesConfig>();
 
   /**
    * Get the original value if not NaN otherwise the empty string
@@ -57,22 +53,20 @@ export class SlicesInputComponent {
   /**
    * Limits the length of the input if needed and updates values when an input changes
    *
-   * @param input Event from the input element which contains the new value
+   * @param event Event from the input element which contains the new value
    * @param key Name of the dimension to be updated
    */
-  updateSlicesData(input: KeyboardEvent, key: string): void {
-    const { value: strValue } = input.target as HTMLInputElement;
-    this.slicesConfig = { ...this.slicesConfig, [key]: strValue !== '' ? +strValue : NaN };
-    this.ga.event('slice_config_update', 'slice_input', key, this.slicesConfig[key as never]);
-    this.slicesConfigChange.emit(this.slicesConfig);
+  updateSlicesData(event: KeyboardEvent, key: string): void {
+    const { value: strValue } = event.target as HTMLInputElement;
+    this.slicesConfig.set({ ...this.slicesConfig(), [key]: strValue !== '' ? +strValue : NaN });
+    this.slicesConfigChange.emit(this.slicesConfig());
   }
 
   /**
    * Refreshes all slice data values to empty values
    */
   refreshSlices(): void {
-    this.slicesConfig = DEFAULT_SLICES_CONFIG;
-    this.ga.event('slice_config_reset', 'slice_input');
-    this.slicesConfigChange.emit(this.slicesConfig);
+    this.slicesConfig.set(DEFAULT_SLICES_CONFIG);
+    this.slicesConfigChange.emit(this.slicesConfig());
   }
 }

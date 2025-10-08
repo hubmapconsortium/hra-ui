@@ -1,6 +1,6 @@
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideCodeBlock } from '@hra-ui/design-system/code-block';
 import { render, RenderComponentOptions } from '@testing-library/angular';
 import { screen } from '@testing-library/dom';
 import { Organ } from './types/organs.schema';
@@ -15,12 +15,7 @@ describe('WebComponentsComponent', () => {
   const setup = async (options: RenderComponentOptions<WebComponentsComponent> = {}) => {
     const renderComponent = await render(WebComponentsComponent, {
       ...options,
-      providers: [
-        provideDesignSystemCommon(),
-        provideHttpClient(),
-        provideHttpClientTesting(),
-        ...(options.providers ?? []),
-      ],
+      providers: [provideHttpClient(), provideHttpClientTesting(), provideCodeBlock(), ...(options.providers ?? [])],
     });
     return { ...renderComponent, component: renderComponent.fixture.componentInstance };
   };

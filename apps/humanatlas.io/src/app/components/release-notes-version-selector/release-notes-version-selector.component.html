@@ -6,9 +6,13 @@
     (selectionChange)="navigateToVersion($event.value)"
     [value]="version()"
   >
+    <mat-select-trigger>
+      {{ selectedVersionLabel() }}
+    </mat-select-trigger>
     @for (ver of versions(); track $index) {
       <mat-option [value]="ver.version">
-        {{ ver.label }}
+        <div>{{ ver.label }}</div>
+        <div class="release-date">{{ ver.date }}</div>
       </mat-option>
     }
   </mat-select>

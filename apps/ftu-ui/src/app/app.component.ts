@@ -1,12 +1,9 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
-import { CommonModule } from '@angular/common';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   computed,
   HostBinding,
-  HostListener,
   inject,
   Input,
   model,
@@ -15,10 +12,10 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { LinkDirective } from '@hra-ui/cdk';
 import { dispatch, dispatch$, select$, selectQuerySnapshot, selectSnapshot } from '@hra-ui/cdk/injectors';
 import {
@@ -30,15 +27,14 @@ import {
   LinkRegistrySelectors,
   LinkType,
   ResourceRegistryActions,
-  StorageId,
-  StorageSelectors,
 } from '@hra-ui/cdk/state';
-import { routeData } from '@hra-ui/common';
+import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { FtuFullScreenService, TissueLibraryBehaviorComponent } from '@hra-ui/ftu-ui-components/src/lib/behavioral';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
   FtuDataImplEndpoints,
@@ -63,17 +59,12 @@ import {
   IllustratorActions,
   IllustratorSelectors,
   LinkIds,
-  MouseTrackerModule,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
-import {
-  FtuFullScreenService,
-  ScreenNoticeBehaviorComponent,
-  TissueLibraryBehaviorComponent,
-} from '@hra-ui/ftu-ui-components/src/lib/behavioral';
+
 import { environment } from '../environments/environment';
 
 /** Input property keys */
@@ -91,9 +82,6 @@ type UpdateSelectors = Record<InputProps, boolean>;
 
 /** Link to main ftu page */
 export const ftuPage = createLinkId('FTU');
-
-/** Small view port size in pixels */
-const SMALL_VIEWPORT_THRESHOLD = 480; // In pixels
 
 /** Update selection where every part of the app should update  */
 const UPDATE_ALL_SELECTORS: UpdateSelectors = {
@@ -120,10 +108,9 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   selector: 'ftu-ui-root',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     IconsModule,
     TissueLibraryBehaviorComponent,
-    MouseTrackerModule,
     NavigationModule,
     RouterModule,
     CdkStateModule,
@@ -142,7 +129,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements AfterContentInit, OnChanges, OnInit {
+export class AppComponent extends BaseApplicationComponent implements OnChanges, OnInit {
   /** Host binding of app component */
   @HostBinding('class.mat-typography') readonly matTypography = true;
 
@@ -251,6 +238,21 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
 
   /** Download Action Dispatcher */
   protected readonly download = dispatch(DownloadActions.Download);
+
+  /** Initialize the app */
+  constructor() {
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
+  }
+
+  /** Whether the current page is the ftu page */
+  protected get isFtuPage(): boolean {
+    return this.router.isActive('/ftu', {
+      paths: 'exact',
+      queryParams: 'ignored',
+      fragment: 'ignored',
+      matrixParams: 'ignored',
+    });
+  }
 
   /** Initializes the component */
   ngOnInit(): void {
@@ -380,54 +382,5 @@ export class AppComponent implements AfterContentInit, OnChanges, OnInit {
           this.updateSelectedIllustration();
         }
       });
-  }
-
-  /** Screen size notice open of app component */
-  screenSizeNoticeOpen = false;
-
-  /** Determines whether shown small viewport notice has been displayed */
-  private readonly hasShownSmallViewportNotice = selectQuerySnapshot(
-    StorageSelectors.get,
-    StorageId.Local,
-    'screen-size-notice',
-  );
-
-  /** Dialog  of app component */
-  private readonly dialog = inject(MatDialog);
-
-  /** Host listener for window resize events */
-  @HostListener('window:resize', ['$event'])
-  onWindowResize(): void {
-    this.detectSmallViewport();
-  }
-
-  /** Lifecycle hook that is called after content has been projected into the component */
-  ngAfterContentInit(): void {
-    this.detectSmallViewport();
-  }
-
-  /** Detect small viewport */
-  detectSmallViewport(): void {
-    if (
-      window.innerWidth <= SMALL_VIEWPORT_THRESHOLD &&
-      !this.hasShownSmallViewportNotice() &&
-      !this.screenSizeNoticeOpen
-    ) {
-      const dialogConfig: MatDialogConfig = {
-        disableClose: false,
-        panelClass: 'custom-overlay',
-        hasBackdrop: false,
-        minWidth: '19.5rem',
-      };
-
-      const ref = this.dialog.open(ScreenNoticeBehaviorComponent, dialogConfig);
-      ref.afterClosed().subscribe(() => (this.screenSizeNoticeOpen = false));
-      this.screenSizeNoticeOpen = true;
-    }
-
-    if (window.innerWidth > SMALL_VIEWPORT_THRESHOLD) {
-      this.screenSizeNoticeOpen = false;
-      this.dialog.closeAll();
-    }
   }
 }

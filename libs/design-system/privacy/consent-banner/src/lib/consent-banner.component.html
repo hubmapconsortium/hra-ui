@@ -1,0 +1,42 @@
+<div class="left">
+  <hra-brand-logo />
+</div>
+<div class="middle">
+  <div class="content">
+    <div class="text-area">
+      <span [attr.id]="ariaLabelledbyId" class="text1">Manage your privacy preferences</span>
+      <span class="text2">Cookies and similar technologies are used to play videos and to improve this website.</span>
+    </div>
+    <div class="hyperlink">
+      <a
+        hraHyperlink
+        href="https://humanatlas.io/privacy-policy"
+        target="_blank"
+        rel="noopener"
+        class="privacy-policy-button"
+      >
+        Privacy Policy
+        <mat-icon>arrow_right_alt</mat-icon>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="right">
+  <div class="consent-buttons">
+    <button mat-flat-button mat-dialog-close="allow-all" hraButtonSize="large" hraButtonVariant="primary">
+      Allow all
+    </button>
+    <button mat-flat-button mat-dialog-close="allow-necessary" hraButtonSize="large" hraButtonVariant="primary">
+      Allow necessary only
+    </button>
+  </div>
+  <button
+    mat-button
+    mat-dialog-close="customize"
+    class="customize-button"
+    hraButtonSize="large"
+    hraButtonVariant="primary"
+  >
+    Customize
+  </button>
+</div>

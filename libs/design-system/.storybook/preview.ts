@@ -1,11 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { applicationConfig, componentWrapperDecorator, Preview } from '@storybook/angular';
+import { provideMarkdown } from 'ngx-markdown';
 import { provideDesignSystem } from '../src/index';
 import compodocJson from './compodoc/documentation.json';
-import { provideMarkdown } from 'ngx-markdown';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'hra-dummy-component',
@@ -17,16 +17,16 @@ const preview: Preview = {
   tags: ['autodocs'],
   parameters: {
     backgrounds: {
-      values: [
-        {
-          name: 'light',
+      options: {
+        light: {
+          name: 'Light',
           value: '#ffffff',
         },
-        {
-          name: 'dark',
+        dark: {
+          name: 'Dark',
           value: '#4b4b5e',
         },
-      ],
+      },
     },
   },
   decorators: [

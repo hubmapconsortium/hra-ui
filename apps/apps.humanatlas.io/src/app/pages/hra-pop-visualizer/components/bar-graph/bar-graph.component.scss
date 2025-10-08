@@ -1,7 +1,11 @@
+@use 'vars' as vars;
+
 :host {
   .bar-graph-container {
     width: 100%;
     min-height: 25rem;
+    background-color: vars.$surface-container-lowest;
+    padding: 1rem 0rem;
   }
 
   .vega-container {

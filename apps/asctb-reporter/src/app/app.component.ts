@@ -1,21 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, OnDestroy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { routeData } from '@hra-ui/common';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { BaseApplicationComponent } from '@hra-ui/application';
+import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Select, Store } from '@ngxs/store';
+import { StateReset } from 'ngxs-reset-plugin';
 import { Observable } from 'rxjs';
-import { createFileNameTimestamp } from './util/file-timestamp';
-
 import { environment } from '../environments/environment';
 import {
   DeleteCompareSheet,
@@ -28,6 +30,7 @@ import {
   UpdateMode,
   UpdateReport,
 } from './actions/sheet.actions';
+import { UpdateBimodalConfig } from './actions/tree.actions';
 import {
   CloseCompare,
   CloseLoading,
@@ -40,12 +43,6 @@ import {
   ToggleReport,
 } from './actions/ui.actions';
 import { ConfigService } from './app-config.service';
-
-import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { StateReset } from 'ngxs-reset-plugin';
-import { UpdateBimodalConfig } from './actions/tree.actions';
 import { CompareComponent } from './components/compare/compare.component';
 import { DebugLogsComponent } from './components/debug-logs/debug-logs.component';
 import { DoiComponent } from './components/doi/doi.component';
@@ -72,14 +69,12 @@ import { LinksASCTBData } from './models/tree.model';
 import { Logs, OpenBottomSheetData, Snackbar } from './models/ui.model';
 import { BimodalService } from './modules/tree/bimodal.service';
 import { TreeService } from './modules/tree/tree.service';
-import { ConsentService } from './services/consent/consent.service';
 import { SheetService } from './services/sheet/sheet.service';
 import { LogsState } from './store/logs.state';
 import { SheetState } from './store/sheet.state';
 import { TreeState } from './store/tree.state';
 import { UIState, UIStateModel } from './store/ui.state';
-
-declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
+import { createFileNameTimestamp } from './util/file-timestamp';
 
 @Component({
   selector: 'app-reporter',
@@ -101,13 +96,11 @@ declare let gtag: (arg1?: unknown, arg2?: unknown, arg3?: unknown) => void;
     IndentedListComponent,
     DebugLogsComponent,
     CompareComponent,
+    HraCommonModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnDestroy {
-  /** Consent Service */
-  readonly consentService = inject(ConsentService);
-
+export class AppComponent extends BaseApplicationComponent implements OnDestroy {
   /** Configuration Service */
   readonly configService = inject(ConfigService);
 
@@ -146,9 +139,6 @@ export class AppComponent implements OnDestroy {
 
   /** Bottom Sheet Service */
   private readonly infoSheet = inject(MatBottomSheet);
-
-  /** Google Analytics Service */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** State Store */
   protected readonly store = inject(Store);
@@ -207,6 +197,8 @@ export class AppComponent implements OnDestroy {
 
   /** Initialize the component */
   constructor() {
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
+
     switch (environment.tag) {
       case 'Staging':
         document.title = 'ASCT+B Reporter | Staging';
@@ -217,14 +209,6 @@ export class AppComponent implements OnDestroy {
       default:
         document.title = 'ASCT+B Reporter';
     }
-
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        gtag('config', environment.googleAnalyticsId, {
-          page_path: event.urlAfterRedirects,
-        });
-      }
-    });
 
     effect(() => {
       if (this.appControlsEnabled()) {
@@ -468,7 +452,6 @@ export class AppComponent implements OnDestroy {
         queryParams: { playground: true, selectedOrgans: 'example' },
         queryParamsHandling: 'merge',
       });
-      // this.ga.event(GaAction.NAV, GaCategory.NAVBAR, 'Enter Playground Mode', undefined);
     } else if (this.mode() === 'playground') {
       this.router.navigate(['/vis'], {
         queryParams: {
@@ -477,7 +460,6 @@ export class AppComponent implements OnDestroy {
         },
         queryParamsHandling: 'merge',
       });
-      // this.ga.event(GaAction.NAV, GaCategory.NAVBAR, 'Exit Playground Mode', undefined);
     }
   }
 
@@ -504,7 +486,6 @@ export class AppComponent implements OnDestroy {
   /** Exports image */
   exportImage(imageType: string) {
     this.exportVis(imageType);
-    // this.ga.event(GaAction.CLICK, GaCategory.NAVBAR, `Export Image: ${imageType}`, 0);
   }
 
   /** Deletes a sheeet from the compare

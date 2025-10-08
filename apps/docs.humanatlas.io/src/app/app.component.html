@@ -1,7 +1,9 @@
-<hra-header baseUrl="https://docs.humanatlas.io/" [cta]="cta" [(ctaDismissed)]="ctaDismissed" />
-<div class="main" [class.cta-active]="!ctaDismissed()">
-  <hra-site-navigation baseUrl="https://docs.humanatlas.io/" />
-  <div class="content">
-    <router-outlet />
+<ng-container hraFeature="docs-portal">
+  <hra-header baseUrl="https://docs.humanatlas.io/" [cta]="cta" [(ctaDismissed)]="ctaDismissed" />
+  <div class="main" [class.cta-active]="!ctaDismissed()">
+    <hra-site-navigation baseUrl="https://docs.humanatlas.io/" />
+    <div class="content">
+      <router-outlet />
+    </div>
   </div>
-</div>
+</ng-container>
