@@ -36,6 +36,10 @@ export class ContentPageComponent {
   /** input data for content page */
   readonly data = input.required<ContentPageData>();
 
+  readonly showFooter = input<boolean>(true);
+
+  readonly showToc = input<boolean>(true);
+
   /** header content data */
   protected readonly headerContent = computed(() => coerceArray(this.data().headerContent ?? []));
 

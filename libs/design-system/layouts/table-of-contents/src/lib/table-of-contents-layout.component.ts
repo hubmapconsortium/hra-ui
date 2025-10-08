@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { providePageSectionNavigation } from '@hra-ui/design-system/content-templates/page-section';
@@ -22,6 +22,8 @@ export class TableOfContentsLayoutHeaderComponent {}
   providers: [providePageSectionNavigation()],
 })
 export class TableOfContentsLayoutComponent {
+  readonly showToc = input<boolean>(true);
+
   /** Whether the screen width is currently greater than or equal to 1100px */
   protected isWideScreen = watchBreakpoint('(min-width: 1100px)');
 }

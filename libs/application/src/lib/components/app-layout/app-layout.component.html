@@ -1,0 +1,8 @@
+@if (showNavigation()) {
+  <hra-site-navigation baseUrl="https://humanatlas.io/"></hra-site-navigation>
+}
+
+<div [class.navigation-visible]="showNavigation()" class="content-container">
+  <ng-content select="hra-table-of-contents-layout-header" />
+  <hra-content-page [data]="data()" [showFooter]="showFooter()" [showToc]="showToc()"></hra-content-page>
+</div>
