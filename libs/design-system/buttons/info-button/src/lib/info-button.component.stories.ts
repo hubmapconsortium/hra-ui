@@ -1,4 +1,7 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { InfoButtonComponent } from './info-button.component';
 
 const meta: Meta<InfoButtonComponent> = {
@@ -10,6 +13,11 @@ const meta: Meta<InfoButtonComponent> = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=4763-728&t=yDozZcoDlynGt0D6-1',
     },
   },
+  decorators: [
+    moduleMetadata({
+      imports: [MatButtonModule, MatIconModule, RichTooltipModule],
+    }),
+  ],
 };
 export default meta;
 
@@ -39,20 +47,29 @@ export const WithLongDescription: Story = {
   }),
 };
 
-export const Interactive: Story = {
-  name: 'Interactive Demo',
-  args: {
-    richTooltipTagline: 'Interactive Title',
-    richTooltipDescription:
-      'Click the info button to see the rich tooltip. Hover to see the plain tooltip. Click outside to close the rich tooltip.',
-  },
-  render: (args) => ({
-    props: args,
+export const WithTwoActions: Story = {
+  name: 'Info Button with Two Action Buttons',
+  render: () => ({
+    styles: [
+      `::ng-deep .mdc-button.mat-mdc-button.mat-accent {
+        font-family: var(--mat-sys-label-medium-font);
+      }`,
+    ],
     template: `
-      <hra-info-button
-        [richTooltipTagline]="richTooltipTagline"
-        [richTooltipDescription]="richTooltipDescription">
-      </hra-info-button>
+      <hra-rich-tooltip-container #content>
+        <hra-rich-tooltip-tagline>
+          Information Title
+        </hra-rich-tooltip-tagline>
+        <hra-rich-tooltip-content>
+          This rich tooltip includes two action buttons that can be used for interactive features.
+        </hra-rich-tooltip-content>
+        <hra-rich-tooltip-actions>
+          <button mat-button color="accent">Action</button>
+          <button mat-button color="accent">Action</button>
+        </hra-rich-tooltip-actions>
+      </hra-rich-tooltip-container>
+
+      <hra-info-button [richTooltipContent]="content"></hra-info-button>
     `,
   }),
 };
