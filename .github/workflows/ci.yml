@@ -14,6 +14,7 @@ permissions:
 
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  NX_DEFAULT_CONFIGURATION: ci
 
 concurrency:
   group: ci-${{ github.head_ref || github.run_id }}
@@ -48,7 +49,8 @@ jobs:
       # - run: npx nx-cloud record -- echo Hello World
 
       - run: npx nx format:check
-      - run: npx nx affected -t lint test:ci compodoc:test-coverage build
+      - run: npx nx affected -t build,lint,test
+      - run: npx nx affected -t compodoc --configuration=test-coverage
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       # - run: npx nx fix-ci
