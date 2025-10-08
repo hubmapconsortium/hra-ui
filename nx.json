@@ -133,6 +133,11 @@
           "disableCoverage": false,
           "disablePrivate": false,
           "disableInternal": false
+        },
+        "test-coverage": {
+          "coverageTest": 100,
+          "coverageMinimumPerFile": 100,
+          "coverageTestThresholdFail": true
         }
       }
     },
