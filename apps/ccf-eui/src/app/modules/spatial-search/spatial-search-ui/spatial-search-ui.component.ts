@@ -115,6 +115,7 @@ export class SpatialSearchUiComponent {
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
 
+  /** Rotation values */
   readonly rotation = signal<[number, number]>([0, 0]);
 
   /**
