@@ -1,1 +1,10 @@
-<p>info-button works!</p>
+<button
+  mat-icon-button
+  aria-label="Info"
+  hraPlainTooltip="Info"
+  [hraRichTooltip]
+  [hraRichTooltipTagline]="richTooltipTagline()"
+  [hraRichTooltipDescription]="richTooltipDescription()"
+>
+  <mat-icon>info</mat-icon>
+</button>
