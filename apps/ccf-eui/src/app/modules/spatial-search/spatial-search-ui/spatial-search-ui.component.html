@@ -1,42 +1,44 @@
 <ng-container hraFeature="eui.body-ui.spatial-search">
   <div class="spatial-search-scene">
     <div class="primary-scene-wrapper">
-      <ccf-body-ui
+      <hra-body-ui
         hraFeature="scene"
         hraClickEvent
         hraClickEventTriggerOn="none"
         hraHoverEvent
         hraHoverEventTriggerOn="none"
-        #primary
         class="primary-scene"
         [scene]="scene()"
         [bounds]="sceneBounds()"
         [target]="sceneTarget()"
         (nodeClick)="nodeClicked.emit($event.node); sceneEvent.logEvent('click')"
         (nodeHoverStart)="sceneHoverEvent.logEvent('mouseenter')"
-        (rotationChange)="minimap.rotation = $event[0]; minimap.rotationX = $event[1]"
+        (rotationChange)="rotation.set($event)"
+        #primary
         #sceneEvent="hraClickEvent"
         #sceneHoverEvent="hraHoverEvent"
-      ></ccf-body-ui>
+      ></hra-body-ui>
     </div>
     <div class="sidebar">
-      <ccf-body-ui
+      <hra-body-ui
         hraFeature="minimap"
         hraClickEvent
         hraClickEventTriggerOn="none"
         hraHoverEvent
         hraHoverEventTriggerOn="none"
-        #minimap
         class="minimap-scene"
         [interactive]="false"
         [scene]="scene()"
         [bounds]="sceneBounds()"
         [target]="sceneTarget()"
+        [rotation]="rotation()[0]"
+        [rotationX]="rotation()[1]"
         (nodeClick)="nodeClicked.emit($event.node); minimapEvent.logEvent('click')"
         (nodeHoverStart)="minimapHoverEvent.logEvent('mouseenter')"
+        #minimap
         #minimapEvent="hraClickEvent"
         #minimapHoverEvent="hraHoverEvent"
-      ></ccf-body-ui>
+      ></hra-body-ui>
       <ccf-spatial-search-keyboard-ui-behavior
         [delta]="1"
         [shiftDelta]="2"

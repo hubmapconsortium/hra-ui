@@ -30,7 +30,7 @@ const DEFAULT_POLYFILL_URL = 'assets/polyfills/scroll-timeline-polyfill.js';
  */
 export function provideScrolling(options?: ScrollingOptions): EnvironmentProviders {
   const metaUrl = getImportMetaUrl();
-  const href = /^https?:/.test(metaUrl) ? metaUrl : '';
+  const href = /^https?:/.test(metaUrl) ? new URL('./', metaUrl).toString() : '';
   // TODO: Find a better way to resolve the polyfill url
   const polyfillUrl = joinWithSlash(href, options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
 
