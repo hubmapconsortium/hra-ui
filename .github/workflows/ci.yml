@@ -10,45 +10,53 @@ on:
 permissions:
   actions: read
   contents: read
-  pull-requests: read
 
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  BUILD_CONFIGURATION: ${{ github.ref_name == 'main' && 'production' || github.ref_name == 'develop' && 'staging' || 'preview' }}
 
 concurrency:
-  group: ci-${{ github.head_ref || github.run_id }}
+  group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           filter: tree:0
 
-      # This enables task distribution via Nx Cloud
-      # Run this command as early as possible, before dependencies are installed
-      # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
-      - run: npx nx start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build,lint,test,compodoc"
+      - name: Enable task distribution via Nx Cloud
+        run: npx nx start-ci-run --distribute-on="3 linux-medium-plus-js" --stop-agents-after="build,lint,test,compodoc"
 
-      # Cache node_modules
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
 
-      - run: npm ci
-      - uses: nrwl/nx-set-shas@v4
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set Nx SHAs
+        uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: ${{ github.base_ref || github.ref_name }}
 
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: npx nx-cloud record -- echo Hello World
 
-      - run: npx nx format:check
-      - run: npx nx affected --targets="build,lint,test,compodoc" --configuration="ci" --outputStyle="static"
+      - name: Check for un-formatted files
+        run: npx nx format:check
+
+      - name: Build affected projects
+        run: npx nx affected --target=build --configuration=$BUILD_CONFIGURATION --outputStyle=static
+
+      - name: Lint and test affected projects
+        run: npx nx affected --targets="lint,test,compodoc" --configuration=ci --outputStyle=static
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       # - run: npx nx fix-ci
