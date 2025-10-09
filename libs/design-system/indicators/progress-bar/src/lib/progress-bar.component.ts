@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-/** Alignment options */
-export type SpinnerSize = 'small' | 'large';
-
 /** Color options */
-export type SpinnerColor = 'dark' | 'light' | 'color';
+export type ProgressBarColor = 'dark' | 'light' | 'color';
 
 /**
  * HRA Progress Bar Component
@@ -23,19 +20,7 @@ export type SpinnerColor = 'dark' | 'light' | 'color';
 })
 export class ProgressBarComponent {
   /**
-   * Field for variant option
-   */
-  readonly size = input<SpinnerSize>('large');
-
-  /**
    * Field for color option
    */
-  readonly color = input.required<SpinnerColor>();
-
-  /**
-   * Computed field for the diameter of the spinner.
-   */
-  readonly diameter = computed(() => {
-    return this.size() === 'small' ? 24 : 48;
-  });
+  readonly color = input.required<ProgressBarColor>();
 }
