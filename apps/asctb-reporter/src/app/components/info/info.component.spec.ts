@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { of } from 'rxjs';
 import { SheetInfo } from '../../models/sheet.model';
 import { InfoComponent } from './info.component';
@@ -9,7 +8,6 @@ describe('InfoComponent', () => {
   let component: InfoComponent;
   let fixture: ComponentFixture<InfoComponent>;
   let mockBottomSheetRef: Partial<MatBottomSheetRef>;
-  let mockGoogleAnalytics: Partial<GoogleAnalyticsService>;
 
   const mockSheetInfo: SheetInfo = {
     hasError: false,
@@ -31,7 +29,6 @@ describe('InfoComponent', () => {
       providers: [
         { provide: MAT_BOTTOM_SHEET_DATA, useValue: of(sheetData) },
         { provide: MatBottomSheetRef, useValue: mockBottomSheetRef },
-        { provide: GoogleAnalyticsService, useValue: mockGoogleAnalytics },
       ],
     }).compileComponents();
 
@@ -41,7 +38,6 @@ describe('InfoComponent', () => {
 
   beforeEach(() => {
     mockBottomSheetRef = { dismiss: jest.fn() };
-    mockGoogleAnalytics = { event: jest.fn() };
   });
 
   describe('with successful sheet info', () => {
@@ -68,7 +64,6 @@ describe('InfoComponent', () => {
       component.close();
 
       expect(mockBottomSheetRef.dismiss).toHaveBeenCalled();
-      expect(mockGoogleAnalytics.event).toHaveBeenCalledWith('click', 'graph', 'Close Bottom Sheet Information', 0);
     });
   });
 

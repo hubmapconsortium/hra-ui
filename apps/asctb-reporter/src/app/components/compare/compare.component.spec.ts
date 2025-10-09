@@ -32,8 +32,6 @@ describe('CompareComponent', () => {
     component.CSControls.at(index).patchValue(data);
   };
 
-  const createGaSpy = (component: CompareComponent) => jest.spyOn(component['ga'], 'event');
-
   it('should render with compare sheets data', async () => {
     const component = await renderComponent([createMockSheet()]);
     expect(component.CSControls.length).toBe(1);
@@ -84,7 +82,7 @@ describe('CompareComponent', () => {
       color: '#00FF00',
     });
 
-    const [compareDataSpy, gaSpy] = [jest.spyOn(component['compareData'], 'emit'), createGaSpy(component)];
+    const compareDataSpy = jest.spyOn(component['compareData'], 'emit');
 
     component.compare();
 
@@ -93,7 +91,6 @@ describe('CompareComponent', () => {
 
     if (isValid) {
       expect(compareDataSpy).toHaveBeenCalled();
-      expect(gaSpy).toHaveBeenCalled();
     } else {
       expect(compareDataSpy).not.toHaveBeenCalled();
     }
@@ -102,13 +99,11 @@ describe('CompareComponent', () => {
   it('should remove sheet and handle data source changes', async () => {
     const component = await renderComponent();
     component.addCompareSheetRow();
-    const gaSpy = createGaSpy(component);
 
     // Test remove functionality
     expect(component.CSControls.length).toBe(2);
     component.removeCompareSheetRow(1);
     expect(component.CSControls.length).toBe(1);
-    expect(gaSpy).toHaveBeenCalledWith(expect.any(String), expect.any(String), 'Delete compare row', 1);
 
     // Test data source change in same test
     setupSheetData(component, 0, {

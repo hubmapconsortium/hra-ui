@@ -1,15 +1,10 @@
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { render } from '@testing-library/angular';
-import { mock } from 'jest-mock-extended';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { GaAction, GaCategory } from '../../models/ga.model';
 import { Error } from '../../models/response.model';
 import { Sheet, SheetConfig } from '../../models/sheet.model';
 import { VisControlsComponent } from './vis-controls.component';
 
 describe('VisControlsComponent', () => {
   let component: VisControlsComponent;
-  let gaSpy: jest.SpyInstance;
   let updatedConfigSpy: jest.SpyInstance;
 
   const mockConfig: SheetConfig = {
@@ -37,11 +32,10 @@ describe('VisControlsComponent', () => {
 
   const setup = async (config = mockConfig) => {
     const { fixture } = await render(VisControlsComponent, {
-      providers: [provideAnimations(), { provide: GoogleAnalyticsService, useValue: mock<GoogleAnalyticsService>() }],
       componentInputs: { config, error: mockError, currentSheet: mockSheet, selectedOrgans: mockOrgans },
     });
     component = fixture.componentInstance;
-    gaSpy = jest.spyOn(component['ga'], 'event');
+
     updatedConfigSpy = jest.spyOn(component.updatedConfig, 'emit');
   };
 
@@ -57,58 +51,32 @@ describe('VisControlsComponent', () => {
     await setup();
     component.changeWidth();
     expect(updatedConfigSpy).toHaveBeenCalledWith({ property: 'width', config: mockConfig });
-    expect(gaSpy).toHaveBeenCalledWith(GaAction.SLIDE, GaCategory.CONTROLS, 'Width Slider', mockConfig.width);
 
     component.changeHeight();
     expect(updatedConfigSpy).toHaveBeenCalledWith({ property: 'height', config: mockConfig });
-    expect(gaSpy).toHaveBeenCalledWith(GaAction.SLIDE, GaCategory.CONTROLS, 'Height Slider', mockConfig.height);
 
     component.changeBimodalDistanceX();
     expect(updatedConfigSpy).toHaveBeenCalledWith({ property: 'bm-x', config: mockConfig });
-    expect(gaSpy).toHaveBeenCalledWith(
-      GaAction.SLIDE,
-      GaCategory.CONTROLS,
-      'Bimodal Distance X Slider',
-      mockConfig.bimodal_distance_x,
-    );
-    component.changeBimodalDistanceY();
 
+    component.changeBimodalDistanceY();
     expect(updatedConfigSpy).toHaveBeenCalledWith({ property: 'bm-y', config: mockConfig });
-    expect(gaSpy).toHaveBeenCalledWith(
-      GaAction.SLIDE,
-      GaCategory.CONTROLS,
-      'Bimodal Distance Y Slider',
-      mockConfig.bimodal_distance_y,
-    );
   });
 
   it('should handle toggle controls and AS edge case', async () => {
     await setup();
     const initialOntology = component.config.show_ontology;
+
     component.changeShowOntology();
     expect(component.config.show_ontology).toBe(!initialOntology);
     expect(updatedConfigSpy).toHaveBeenCalledWith({ property: 'show-ontology', config: component.config });
-    expect(gaSpy).toHaveBeenCalledWith(
-      GaAction.TOGGLE,
-      GaCategory.CONTROLS,
-      'Toggle Ontology',
-      +(component.config.show_ontology ?? false),
-    );
 
     component.changeShowAS();
     expect(updatedConfigSpy).toHaveBeenCalledWith({ property: 'show-as', config: mockConfig });
-    expect(gaSpy).toHaveBeenCalledWith(
-      GaAction.TOGGLE,
-      GaCategory.CONTROLS,
-      'Toggle AS Visibility',
-      +(mockConfig.show_all_AS ?? false),
-    );
   });
 
   it('should handle AS undefined case', async () => {
     await setup({ ...mockConfig, show_all_AS: undefined });
     component.changeShowAS();
-    expect(gaSpy).toHaveBeenCalledWith(GaAction.TOGGLE, GaCategory.CONTROLS, 'Toggle AS Visibility', 0);
   });
 
   it('should handle discrepancy controls with mutual exclusivity', async () => {
@@ -155,7 +123,6 @@ describe('VisControlsComponent', () => {
     );
     expect(mockElement.setAttribute).toHaveBeenCalledWith('download', 'asct-b-graph-config.json');
     expect(mockElement.click).toHaveBeenCalled();
-    expect(gaSpy).toHaveBeenCalledWith(GaAction.CLICK, GaCategory.CONTROLS, 'Export Vis Controls', undefined);
     [createSpy, appendSpy, removeSpy].forEach((spy) => spy.mockRestore());
   });
 });
