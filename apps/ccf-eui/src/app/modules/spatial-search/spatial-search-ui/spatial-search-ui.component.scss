@@ -4,8 +4,12 @@
   display: grid;
   grid-template-areas: 'scene info-panel';
   grid-template-rows: calc(100vh - 2rem);
-  grid-template-columns: auto 27.75rem;
+  grid-template-columns: minmax(500px, 100vw) 27.75rem;
   background-color: vars.$surface-container-low;
+
+  .primary-scene-wrapper {
+    width: 100%;
+  }
 
   .spatial-search-scene {
     grid-area: scene;
@@ -36,6 +40,10 @@
         width: fit-content;
       }
     }
+  }
+
+  .minimap-scene::part(canvas) {
+    background-color: #232f3a;
   }
 
   .info-panel {
