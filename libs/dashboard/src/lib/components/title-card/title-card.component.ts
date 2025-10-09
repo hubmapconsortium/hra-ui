@@ -1,7 +1,7 @@
-import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
+import { InfoButtonComponent } from '@hra-ui/design-system/buttons/info-button';
 import { z } from 'zod';
 
 /** Type definition of Title Card */
@@ -13,32 +13,10 @@ export const TITLE_CARD_DEF = z.object({
   tooltip: z.string(),
 });
 
-/** Tooltip positions definition */
-const TOOLTIP_POSITIONS: ConnectionPositionPair[] = [
-  {
-    originX: 'start',
-    originY: 'bottom',
-    overlayX: 'start',
-    overlayY: 'top',
-  },
-  {
-    originX: 'center',
-    originY: 'bottom',
-    overlayX: 'center',
-    overlayY: 'top',
-  },
-  {
-    originX: 'end',
-    originY: 'bottom',
-    overlayX: 'end',
-    overlayY: 'top',
-  },
-];
-
 /** Title card component, renders title, tooltip and contents inside the card */
 @Component({
   selector: 'hra-title-card',
-  imports: [HraCommonModule, MatIconModule, OverlayModule],
+  imports: [HraCommonModule, MatIconModule, InfoButtonComponent],
   templateUrl: './title-card.component.html',
   styleUrl: './title-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,10 +24,4 @@ const TOOLTIP_POSITIONS: ConnectionPositionPair[] = [
 export class TitleCardComponent {
   /** Input for title card component */
   readonly spec = input.required<TitleCardSpec>();
-
-  /** Setting the tooltip positions  */
-  readonly tooltipPositions = TOOLTIP_POSITIONS;
-
-  /** Flag to check if tooltip is open */
-  tooltipOpen = false;
 }
