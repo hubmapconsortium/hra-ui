@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+
+:host {
+  display: block;
+
+  &.hra-progress-bar-color-dark {
+    @include mat.progress-bar-overrides(
+      (
+        active-indicator-color: vars.$on-secondary-fixed,
+      )
+    );
+  }
+
+  &.hra-progress-bar-color-color {
+    @include mat.progress-bar-overrides(
+      (
+        active-indicator-color: vars.$tertiary,
+      )
+    );
+  }
+}
