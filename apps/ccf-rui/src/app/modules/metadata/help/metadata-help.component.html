@@ -1,13 +1,4 @@
-<button
-  hraFeature="help"
-  hraClickEvent
-  mat-icon-button
-  [matMenuTriggerFor]="help"
-  class="help"
-  aria-label="Open the help menu"
->
-  <mat-icon>help</mat-icon>
-</button>
+<hra-help-button [action]="help"></hra-help-button>
 
 <mat-menu hraFeature="menu" class="metadata-help" backdropClass="metadata-help-backdrop" #help="matMenu">
   <a
