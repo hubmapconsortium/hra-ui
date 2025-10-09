@@ -1,29 +1,7 @@
 <h3 class="title" hraFeature="title-card">
   {{ spec().title }}
-  <mat-icon
-    hraFeature="info"
-    [hraHoverEvent]="{ title: spec().title }"
-    class="material-symbols-rounded"
-    cdkOverlayOrigin
-    #resetTrigger="cdkOverlayOrigin"
-    (mouseover)="tooltipOpen = true"
-    (mouseout)="tooltipOpen = false"
-    >info</mat-icon
-  >
+  <hra-info-button [richTooltipDescription]="spec().tooltip"></hra-info-button>
 </h3>
-
-<ng-template
-  cdkConnectedOverlay
-  [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
-  [cdkConnectedOverlayOrigin]="resetTrigger"
-  [cdkConnectedOverlayPositions]="tooltipPositions"
-  [cdkConnectedOverlayOpen]="tooltipOpen"
-  [cdkConnectedOverlayOffsetX]="5"
->
-  <div class="mat-caption">
-    {{ spec().tooltip }}
-  </div>
-</ng-template>
 
 <div class="content">
   <ng-content></ng-content>
