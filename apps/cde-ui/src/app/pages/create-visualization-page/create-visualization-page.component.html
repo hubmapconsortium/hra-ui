@@ -13,9 +13,7 @@
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
 
-      <button mat-icon-button [hraRichTooltip]="uploadDataTooltip" hraFeature="info" hraHoverEvent>
-        <mat-icon>info</mat-icon>
-      </button>
+      <hra-info-button [richTooltipContent]="uploadDataTooltip" />
 
       <hra-rich-tooltip-container #uploadDataTooltip>
         <hra-rich-tooltip-content>
@@ -81,9 +79,7 @@
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
 
-      <button mat-icon-button [hraRichTooltip]="organizeDataTooltip" hraFeature="info" hraHoverEvent>
-        <mat-icon>info</mat-icon>
-      </button>
+      <hra-info-button [richTooltipContent]="organizeDataTooltip" />
 
       <hra-rich-tooltip-container #organizeDataTooltip>
         <hra-rich-tooltip-content>
@@ -193,9 +189,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
-      <button mat-icon-button [hraRichTooltip]="parametersTooltip" hraFeature="info" hraHoverEvent>
-        <mat-icon>info</mat-icon>
-      </button>
+      <hra-info-button [richTooltipContent]="parametersTooltip" />
 
       <hra-rich-tooltip-container #parametersTooltip>
         <hra-rich-tooltip-content>
@@ -253,9 +247,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
-      <button mat-icon-button [hraRichTooltip]="metadataTooltip" hraFeature="info" hraHoverEvent>
-        <mat-icon>info</mat-icon>
-      </button>
+      <hra-info-button [richTooltipContent]="metadataTooltip" />
 
       <hra-rich-tooltip-container #metadataTooltip>
         <hra-rich-tooltip-content>
@@ -332,9 +324,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
-      <button mat-icon-button [hraRichTooltip]="colorsTooltip" hraFeature="info" hraHoverEvent>
-        <mat-icon>info</mat-icon>
-      </button>
+      <hra-info-button [richTooltipContent]="colorsTooltip" />
 
       <hra-rich-tooltip-container #colorsTooltip>
         <hra-rich-tooltip-content>
@@ -415,9 +405,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
-      <button mat-icon-button [hraRichTooltip]="cellDistanceTooltip" hraFeature="info" hraHoverEvent>
-        <mat-icon>info</mat-icon>
-      </button>
+      <hra-info-button [richTooltipContent]="cellDistanceTooltip" />
 
       <hra-rich-tooltip-container #cellDistanceTooltip>
         <hra-rich-tooltip-content>

@@ -17,11 +17,15 @@ import {
 import { HraCommonModule } from '@hra-ui/common';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { InfoButtonComponent } from '@hra-ui/design-system/buttons/info-button';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
-import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
+import {
+  RichTooltipContainerComponent,
+  RichTooltipContentComponent,
+} from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { DeprecatedWorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
@@ -69,10 +73,12 @@ function optionalValue<T>(): T | null {
     MarkEmptyFormControlDirective,
     NavigationModule,
     OverlayModule,
+    ErrorIndicatorComponent,
     StepIndicatorComponent,
     TooltipCardComponent,
-    ErrorIndicatorComponent,
-    RichTooltipModule,
+    InfoButtonComponent,
+    RichTooltipContainerComponent,
+    RichTooltipContentComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
@@ -86,6 +92,14 @@ export class CreateVisualizationPageComponent {
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
   /** Color map upload component */
   private readonly customColorMapFileUpload = viewChild<AnyFileUploadComponent>('customColorMapFileUpload');
+
+  /** Tooltip container references */
+  readonly uploadDataTooltip = viewChild<RichTooltipContainerComponent>('uploadDataTooltip');
+  readonly organizeDataTooltip = viewChild<RichTooltipContainerComponent>('organizeDataTooltip');
+  readonly parametersTooltip = viewChild<RichTooltipContainerComponent>('parametersTooltip');
+  readonly metadataTooltip = viewChild<RichTooltipContainerComponent>('metadataTooltip');
+  readonly colorsTooltip = viewChild<RichTooltipContainerComponent>('colorsTooltip');
+  readonly cellDistanceTooltip = viewChild<RichTooltipContainerComponent>('cellDistanceTooltip');
 
   /** Form builder */
   private readonly fb = inject(FormBuilder);
@@ -214,23 +228,6 @@ export class CreateVisualizationPageComponent {
       },
     ],
   ];
-
-  /** Whether to show upload info tooltip */
-  uploadInfoOpen = false;
-  /** Whether to show organize data tooltip */
-  organizeDataInfoOpen = false;
-
-  /** Whether to show parameters tooltip */
-  parametersInfoOpen = false;
-
-  /** Whether to show metadata info tooltip */
-  metadataInfoOpen = false;
-
-  /** Whether to show color map info tooltip */
-  colorInfoOpen = false;
-
-  /** Whether to show visualize info tooltip */
-  visualizeInfoOpen = false;
 
   /** Cell types included in uploaded data */
   cellTypes = [DEFAULT_NODE_TARGET_SELECTOR];

@@ -1,16 +1,9 @@
-<h3 class="title" hraFeature="title-card">
-  {{ spec().title }}
-
-  <button
-    mat-icon-button
-    [hraRichTooltip]
-    [hraRichTooltipDescription]="spec().tooltip"
-    hraFeature="info"
-    [hraHoverEvent]="{ title: spec().title }"
-  >
-    <mat-icon>info</mat-icon>
-  </button>
-</h3>
+<div class="title-container">
+  <h3 class="title" hraFeature="title-card">
+    {{ spec().title }}
+  </h3>
+  <hra-info-button [richTooltipDescription]="spec().tooltip" />
+</div>
 
 <div class="content">
   <ng-content></ng-content>

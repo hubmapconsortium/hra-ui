@@ -9,16 +9,17 @@
   border-radius: 1rem;
   min-width: 18rem;
 
+  .title-container {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
   .title {
     @include utils.use-font(title, large);
     color: vars.$on-background;
     display: inline-block;
-    margin-bottom: 0.75rem;
-  }
-
-  mat-icon {
-    vertical-align: middle;
-    cursor: pointer;
+    margin: 0;
   }
 
   @media (max-width: 1440px) {
@@ -32,28 +33,6 @@
     .title {
       font-size: 0.875rem;
       line-height: 1.5rem;
-    }
-
-    .mat-icon {
-      height: 1rem;
-      width: 1rem;
-      font-size: 1rem;
-      vertical-align: middle;
-    }
-  }
-}
-
-::ng-deep {
-  .tooltip-panel {
-    background-color: white;
-    border-radius: 1rem;
-    padding: 1rem;
-    color: #26262c;
-    box-shadow: 0px 5px 16px 0px #201e3d3d;
-    max-width: 21rem;
-
-    .mat-caption {
-      @include utils.use-font(label, medium);
     }
   }
 }
