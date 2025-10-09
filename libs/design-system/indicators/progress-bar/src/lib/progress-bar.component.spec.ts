@@ -1,7 +1,7 @@
 import { render } from '@testing-library/angular';
 import { ProgressBarComponent } from './progress-bar.component';
 
-describe('ProgressSpinnerComponent', () => {
+describe('ProgressBarComponent', () => {
   it('should render', async () => {
     const promise = render(ProgressBarComponent, {
       inputs: {
