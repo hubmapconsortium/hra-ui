@@ -42,16 +42,7 @@
     >
       <mat-icon>code</mat-icon>
     </a>
-    <a
-      hraFeature="help-documentation"
-      hraClickEvent
-      mat-icon-button
-      [matMenuTriggerFor]="helpMenu"
-      rel="noopener noreferrer"
-      hraPlainTooltip="Help & documentation"
-    >
-      <mat-icon>help</mat-icon>
-    </a>
+    <hra-help-button [action]="helpMenu"></hra-help-button>
 
     <!-- Help & documentation Menu -->
     <mat-menu #helpMenu class="more-menu">

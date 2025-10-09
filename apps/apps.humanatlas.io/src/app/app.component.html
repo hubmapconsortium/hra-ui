@@ -8,29 +8,8 @@
     [(ctaDismissed)]="ctaDismissed"
   >
     @if (!isHraPopVisualizerPage()) {
-      <a
-        hraClickEvent
-        hraFeature="help-and-documentation"
-        mat-icon-button
-        [href]="getHelpUrl()"
-        target="_blank"
-        hraPlainTooltip="Help & documentation"
-        aria-label="Help & documentation"
-        rel="noopener noreferrer"
-      >
-        <mat-icon>help</mat-icon>
-      </a>
+      <hra-help-button [action]="getHelpUrl()"></hra-help-button>
     } @else {
-      <button
-        hraClickEvent
-        hraFeature="help-and-documentation"
-        mat-icon-button
-        hraPlainTooltip="Help & documentation"
-        aria-label="Help & documentation"
-        [matMenuTriggerFor]="helpMenu"
-      >
-        <mat-icon>help</mat-icon>
-      </button>
       <!-- Help & documentation Menu -->
       <mat-menu #helpMenu class="more-menu">
         <a mat-menu-item href="https://youtu.be/Ueei7BOctzY?si=WGE7HydMaFW1ABqv" target="_blank">
@@ -41,6 +20,8 @@
           <div>Read publication</div>
         </a>
       </mat-menu>
+
+      <hra-help-button [action]="helpMenu"></hra-help-button>
     }
   </hra-header>
   <div class="content" [class.cta-active]="!ctaDismissed()">

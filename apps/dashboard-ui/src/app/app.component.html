@@ -33,16 +33,7 @@
     >
       <mat-icon>diversity_4</mat-icon>
     </a>
-    <a
-      mat-icon-button
-      href="https://humanatlas.io/user-story/7"
-      rel="noopener noreferrer"
-      hraClickEvent
-      hraFeature="help-documentation"
-      hraPlainTooltip="Help & Documentation"
-    >
-      <mat-icon>help</mat-icon>
-    </a>
+    <hra-help-button [action]="'https://humanatlas.io/user-story/7'"></hra-help-button>
   </hra-header>
 
   <router-outlet />
