@@ -12,29 +12,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
-      <mat-icon
-        class="info"
-        cdkOverlayOrigin
-        #uploadDataTooltipTrigger="cdkOverlayOrigin"
-        (mouseover)="uploadInfoOpen = true"
-        (mouseout)="uploadInfoOpen = false"
-        hraFeature="info"
-        hraHoverEvent
-      >
-        info
-      </mat-icon>
-
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
-        [cdkConnectedOverlayOrigin]="uploadDataTooltipTrigger"
-        [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="uploadInfoOpen"
-        [cdkConnectedOverlayViewportMargin]="8"
-        [cdkConnectedOverlayPush]="true"
-      >
-        <hra-tooltip-card [content]="tooltips[0]"> </hra-tooltip-card>
-      </ng-template>
+      <hra-info-button [richTooltipDescription]="tooltipDescriptions.uploadData"></hra-info-button>
       <div class="filler"></div>
       <a
         mat-button
@@ -92,29 +70,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
-      <mat-icon
-        class="info"
-        cdkOverlayOrigin
-        #organizeDataTrigger="cdkOverlayOrigin"
-        (mouseover)="organizeDataInfoOpen = true"
-        (mouseout)="organizeDataInfoOpen = false"
-        hraFeature="info"
-        hraHoverEvent
-      >
-        info
-      </mat-icon>
-
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel', 'organize-data-tooltip']"
-        [cdkConnectedOverlayOrigin]="organizeDataTrigger"
-        [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="organizeDataInfoOpen"
-        [cdkConnectedOverlayViewportMargin]="8"
-        [cdkConnectedOverlayPush]="true"
-      >
-        <hra-tooltip-card [content]="tooltips[1]"> </hra-tooltip-card>
-      </ng-template>
+      <hra-info-button [richTooltipDescription]="tooltipDescriptions.organizeData"></hra-info-button>
     </h2>
 
     @if (visualizationForm.controls.headers.disabled) {
@@ -218,28 +174,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
-      <mat-icon
-        class="info"
-        cdkOverlayOrigin
-        #parametersTrigger="cdkOverlayOrigin"
-        (mouseover)="parametersInfoOpen = true"
-        (mouseout)="parametersInfoOpen = false"
-        hraFeature="info"
-        hraHoverEvent
-      >
-        info
-      </mat-icon>
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
-        [cdkConnectedOverlayOrigin]="parametersTrigger"
-        [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="parametersInfoOpen"
-        [cdkConnectedOverlayViewportMargin]="8"
-        [cdkConnectedOverlayPush]="true"
-      >
-        <hra-tooltip-card [content]="tooltips[2]"> </hra-tooltip-card>
-      </ng-template>
+      <hra-info-button [richTooltipDescription]="tooltipDescriptions.parameters"></hra-info-button>
     </h2>
 
     @if (visualizationForm.controls.parameters.disabled) {
@@ -291,28 +226,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
-      <mat-icon
-        class="info"
-        cdkOverlayOrigin
-        #metadataInfoTrigger="cdkOverlayOrigin"
-        (mouseover)="metadataInfoOpen = true"
-        (mouseout)="metadataInfoOpen = false"
-        hraFeature="info"
-        hraHoverEvent
-      >
-        info
-      </mat-icon>
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
-        [cdkConnectedOverlayOrigin]="metadataInfoTrigger"
-        [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="metadataInfoOpen"
-        [cdkConnectedOverlayViewportMargin]="8"
-        [cdkConnectedOverlayPush]="true"
-      >
-        <hra-tooltip-card [content]="tooltips[3]"> </hra-tooltip-card>
-      </ng-template>
+      <hra-info-button [richTooltipDescription]="tooltipDescriptions.metadata"></hra-info-button>
     </h2>
 
     <div class="row">
@@ -383,29 +297,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
-      <mat-icon
-        class="info"
-        cdkOverlayOrigin
-        #colorInfoTrigger="cdkOverlayOrigin"
-        (mouseover)="colorInfoOpen = true"
-        (mouseout)="colorInfoOpen = false"
-        hraFeature="info"
-        hraHoverEvent
-      >
-        info
-      </mat-icon>
-
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
-        [cdkConnectedOverlayOrigin]="colorInfoTrigger"
-        [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="colorInfoOpen"
-        [cdkConnectedOverlayViewportMargin]="8"
-        [cdkConnectedOverlayPush]="true"
-      >
-        <hra-tooltip-card [content]="tooltips[4]"> </hra-tooltip-card>
-      </ng-template>
+      <hra-info-button [richTooltipDescription]="tooltipDescriptions.colorConfig"></hra-info-button>
       <div class="filler"></div>
       <a
         mat-button
@@ -479,29 +371,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
-      <mat-icon
-        class="material-symbols-rounded info"
-        cdkOverlayOrigin
-        #visualizeInfoTrigger="cdkOverlayOrigin"
-        (mouseover)="visualizeInfoOpen = true"
-        (mouseout)="visualizeInfoOpen = false"
-        hraFeature="info"
-        hraHoverEvent
-      >
-        info
-      </mat-icon>
-
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayPanelClass]="['info-tooltip-panel']"
-        [cdkConnectedOverlayOrigin]="visualizeInfoTrigger"
-        [cdkConnectedOverlayPositions]="tooltipPosition"
-        [cdkConnectedOverlayOpen]="visualizeInfoOpen"
-        [cdkConnectedOverlayViewportMargin]="8"
-        [cdkConnectedOverlayPush]="true"
-      >
-        <hra-tooltip-card [content]="tooltips[5]"> </hra-tooltip-card>
-      </ng-template>
+      <hra-info-button [richTooltipDescription]="tooltipDescriptions.visualize"></hra-info-button>
     </h2>
 
     @if (!hasValidNodes() || !hasValidData()) {
