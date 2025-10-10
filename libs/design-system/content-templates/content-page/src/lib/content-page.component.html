@@ -1,4 +1,4 @@
-<hra-table-of-contents-layout>
+<hra-table-of-contents-layout [showToc]="showToc()">
   <hra-table-of-contents-layout-header>
     <hra-page-section [tagline]="data().title" [icons]="data().icons">
       <hra-markdown class="subtitle" [data]="data().subtitle" />
@@ -34,4 +34,6 @@
     <ng-container *hraContentTemplateOutlet="item" />
   }
 </hra-table-of-contents-layout>
-<hra-footer />
+@if (showFooter()) {
+  <hra-footer />
+}

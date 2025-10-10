@@ -1,12 +1,11 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, computed, effect, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule, monitorHeight } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { CtaConfig, HeaderComponent } from '@hra-ui/design-system/navigation/header';
-import { routeData } from './utils/route-data';
 
 /** Padding when scrolling to an anchor in px */
 const ANCHOR_SCROLL_PADDING = 24;
@@ -26,12 +25,6 @@ const ANCHOR_SCROLL_PADDING = 24;
 export class AppComponent extends BaseApplicationComponent {
   /** Reference to the header html element */
   private readonly header = viewChild.required(HeaderComponent, { read: ElementRef });
-
-  /** Route data */
-  private readonly data = routeData({ siteNavigation: false });
-
-  /** Whether site navigation is enabled for the current route */
-  protected readonly siteNavigationEnabled = computed(() => this.data()['siteNavigation'] !== false);
 
   /** Call to action message */
   protected readonly cta: CtaConfig = {

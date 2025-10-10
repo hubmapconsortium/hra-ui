@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
+import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { createJsonSpecResolver, createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
@@ -9,6 +9,7 @@ import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schem
 import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
 import { ReleaseNotesVersionsSchema } from './schemas/release-notes-version/release-notes-version.schema';
 import { createExternalRedirectRoute } from './utils/external-redirect';
+import { AppLayoutComponent } from '@hra-ui/application';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -28,70 +29,70 @@ export const appRoutes: Route[] = [
   // Please try to keep sorted in alphabetical order
   {
     path: '2d-ftu-illustrations',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/2d-ftu-illustrations/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: '3d-reference-library',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/3d-reference-library-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'about',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/about-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'api',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/api-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'asctb-azimuth',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/asctb-azimuth-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'asctb-reporter',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/asctb-reporter-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'asctb-tables',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/asctb-tables-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'ccf-ontology',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/ccf-ontology-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'cell-population-graphs',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/cell-population-graphs/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'cell-type-annotations',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/cell-type-annotations-page/data.yaml', ContentPageDataSchema),
     },
@@ -102,7 +103,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'exploration-user-interface',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/eui-page/data.yaml', ContentPageDataSchema),
     },
@@ -114,42 +115,42 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'faq/omap',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/omap-faqs-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'hra-organ-gallery',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/organ-gallery-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'kaggle-four',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/kaggle-four-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'kaggle-one',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/kaggle-one-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'kaggle-two',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/kaggle-two-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'kaggle-three',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/kaggle-three-page/data.yaml', ContentPageDataSchema),
     },
@@ -160,21 +161,21 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'millitome',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/millitome/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'omap',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/omap-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'overview-data',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/data-page/data.yaml', ContentPageDataSchema),
     },
@@ -185,7 +186,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'overview-training-outreach',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/training-page/data.yaml', ContentPageDataSchema),
     },
@@ -196,9 +197,9 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'privacy-policy',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     data: {
-      siteNavigation: false,
+      showNavigation: false,
     },
     resolve: {
       data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
@@ -213,7 +214,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'registration-user-interface',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/rui-page/data.yaml', ContentPageDataSchema),
     },
@@ -227,7 +228,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'release-notes/:version',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
       data: createReleaseNotesContentResolver('assets/content/release-notes-page/'),
@@ -235,7 +236,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'standard-operating-procedures',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver(
         'assets/content/standard-operating-procedures-page/data.yaml',
@@ -257,21 +258,21 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'user-story/1',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/cell-population-predictor-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'user-story/2',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/tissue-origin-predictor-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'user-story/3',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver(
         'assets/content/explore-biomarker-expressions-page/data.yaml',
@@ -281,35 +282,35 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'user-story/4',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/ftu-explorer-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'user-story/5',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/cell-distance-explorer-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'user-story/6',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'user-story/7',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/dashboard-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'vccf',
-    component: ContentPageComponent,
+    component: AppLayoutComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/vccf-page/data.yaml', ContentPageDataSchema),
     },
