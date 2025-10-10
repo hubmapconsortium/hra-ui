@@ -12,6 +12,7 @@ import { HraCommonModule } from '@hra-ui/common';
 })
 export class AppLayoutComponent {
   readonly data = input.required<ContentPageData>();
+  readonly baseUrl = input.required<string>();
 
   readonly showFooter = model<boolean>(true);
   readonly showNavigation = model<boolean>(true);

@@ -1,5 +1,5 @@
 @if (showNavigation()) {
-  <hra-site-navigation baseUrl="https://humanatlas.io/"></hra-site-navigation>
+  <hra-site-navigation [baseUrl]="baseUrl() || 'https://humanatlas.io/'"></hra-site-navigation>
 }
 
 <div [class.navigation-visible]="showNavigation()" class="content-container">
