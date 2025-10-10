@@ -1,0 +1,39 @@
+{
+  "name": "cns-website",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "cns",
+  "sourceRoot": "apps/cns-website/src",
+  "tags": ["type:app", "project:cns-website"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:application",
+      "options": {
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/cns-website/public"
+          },
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "continuous": true
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "apps/cns-website/tsconfig.app.json"
+      }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cns-website/browser/"
+    }
+  }
+}
