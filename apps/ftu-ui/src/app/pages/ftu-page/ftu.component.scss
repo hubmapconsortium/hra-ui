@@ -22,6 +22,8 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+      overflow: hidden;
+      height: 100%;
 
       ftu-medical-illustration-behavior {
         height: calc(100% - 17rem);
@@ -37,7 +39,8 @@
 
       ::ng-deep ftu-interactive-svg {
         display: flex;
-        height: calc(100% - 4.5rem);
+        height: calc(100% - 4.1rem);
+        overflow: hidden;
       }
     }
 
