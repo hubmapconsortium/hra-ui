@@ -1,7 +1,7 @@
 <div class="component-tagline">
   <span class="component-title">{{ tagline() }}</span>
   @if (showHelpButton()) {
-    <hra-help-button action=""></hra-help-button>
+    <hra-help-button [action]="helpLink()"></hra-help-button>
   }
   <div class="filler"></div>
   <button
