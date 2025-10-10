@@ -21,7 +21,7 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<InfoModalComponent>;
 
-export const Center: Story = {
+export const Default: Story = {
   args: {
     title: 'Cell Info',
     data: [
