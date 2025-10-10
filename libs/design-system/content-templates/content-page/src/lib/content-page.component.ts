@@ -33,16 +33,18 @@ import { ContentPageData } from './types/content-page.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentPageComponent {
-  /** input data for content page */
+  /** Input data for content page */
   readonly data = input.required<ContentPageData>();
 
+  /** Whether to show the footer */
   readonly showFooter = input<boolean>(true);
 
+  /** Whether to show the table of contents */
   readonly showToc = input<boolean>(true);
 
-  /** header content data */
+  /** Header content data */
   protected readonly headerContent = computed(() => coerceArray(this.data().headerContent ?? []));
 
-  /** content data */
+  /** Content data */
   protected readonly content = computed(() => coerceArray(this.data().content));
 }

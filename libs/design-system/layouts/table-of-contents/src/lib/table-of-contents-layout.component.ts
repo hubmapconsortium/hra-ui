@@ -22,6 +22,7 @@ export class TableOfContentsLayoutHeaderComponent {}
   providers: [providePageSectionNavigation()],
 })
 export class TableOfContentsLayoutComponent {
+  /** Whether to show the table of contents */
   readonly showToc = input<boolean>(true);
 
   /** Whether the screen width is currently greater than or equal to 1100px */
