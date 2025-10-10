@@ -40,17 +40,7 @@
   </hra-expansion-panel-actions>
 
   <hra-expansion-panel-header-content>
-    <button
-      hraFeature="help"
-      hraClickEvent
-      mat-icon-button
-      [matMenuTriggerFor]="help"
-      hraIconButtonSize="large"
-      aria-label="Open the tissue block settings' help menu"
-      hraPlainTooltip="App guides and training resources"
-    >
-      <mat-icon>help</mat-icon>
-    </button>
+    <hra-help-button [action]="help"></hra-help-button>
     <mat-menu hraFeature="menu" #help="matMenu">
       <a
         hraFeature="watch-video"
@@ -66,11 +56,11 @@
         hraFeature="app-guide"
         hraClickEvent
         mat-menu-item
-        href="https://github.com/hubmapconsortium/hra-ui/wiki/Application-Guides#registration-user-interface"
+        href="https://humanatlas.io/registration-user-interface"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Use app guide
+        App guide & documentation
       </a>
       <a
         hraFeature="sop"
