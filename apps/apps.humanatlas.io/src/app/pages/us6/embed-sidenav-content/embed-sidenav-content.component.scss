@@ -6,13 +6,6 @@
   width: 100%;
 
   .card-actions {
-    display: flex;
-    height: 4.5rem;
-    margin-top: auto;
-    border-top: 0.0625rem solid vars.$outline-variant;
-    background-color: vars.$surface-container-low;
-    padding: 1rem;
-
     .filler {
       flex-grow: 1;
     }

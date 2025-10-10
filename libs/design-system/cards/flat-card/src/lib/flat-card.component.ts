@@ -16,7 +16,8 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
   styles: [
     `
       :host {
-        display: block;
+        display: flex;
+        width: 100%;
       }
     `,
   ],
