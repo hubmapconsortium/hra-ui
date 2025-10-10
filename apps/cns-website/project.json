@@ -4,31 +4,9 @@
   "projectType": "application",
   "prefix": "cns",
   "sourceRoot": "apps/cns-website/src",
-  "tags": ["type:app"],
+  "tags": ["type:app", "project:cns-website"],
   "targets": {
     "build": {
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
-            }
-          ],
-          "outputHashing": "all"
-        },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
-        }
-      },
       "executor": "@nx/angular:application",
       "options": {
         "assets": [

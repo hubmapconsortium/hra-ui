@@ -1,23 +1,6 @@
 {
+  "extends": "./tsconfig.json",
+  "include": ["**/*.ts"],
   "compilerOptions": {},
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.editor.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ],
-  "extends": "../../tsconfig.base.json",
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+  "exclude": ["jest.config.ts", "src/test-setup.ts", "**/*.spec.ts"]
 }
