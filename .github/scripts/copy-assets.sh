@@ -43,3 +43,5 @@ jq -c '.[]' "$CONFIG_FILE" | while read -r entry; do
   mkdir -p "$to"
   cp -R "$from"/. "$to"/
 done
+
+echo "Assets copied successfully!"

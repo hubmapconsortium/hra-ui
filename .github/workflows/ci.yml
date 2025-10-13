@@ -31,7 +31,9 @@ jobs:
           filter: tree:0
 
       - name: Enable task distribution via Nx Cloud
-        run: npx nx start-ci-run --distribute-on="3 linux-medium-plus-js" --stop-agents-after="build,lint,test,compodoc"
+        run: |
+          npx nx start-ci-run --distribute-on="3 linux-medium-plus-js" \
+            --stop-agents-after="build,build-webcomponent,build-storybook,lint,test,compodoc:ci"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -58,6 +60,17 @@ jobs:
           npx nx $BUILD_COMMAND --target="build,build-webcomponent,build-storybook,compodoc" \
             --configuration=$BUILD_CONFIGURATION --outputStyle=static
 
+      - name: Lint and test projects
+        run: |
+          npx nx $BUILD_COMMAND --targets="lint,test,compodoc" \
+            --configuration=ci --outputStyle=static
+
+      - name: Move application files from 'browser' subdirectories
+        if: always()
+        run: |
+          find dist/apps -mindepth 2 -maxdepth 2 -type d -name "browser" \
+            -exec bash -c 'mv "$0"/* "$(dirname "$0")"/ && rm -rf "$0"' {} \;
+
       - name: Copy large assets
         if: always()
         run: .github/scripts/copy-assets.sh .github/assets/large-assets.json
@@ -69,11 +82,6 @@ jobs:
           name: nx-build-artifacts
           path: ./dist
           if-no-files-found: ignore
-
-      - name: Lint and test projects
-        run: |
-          npx nx $BUILD_COMMAND --targets="lint,test,compodoc" \
-            --configuration=ci --outputStyle=static
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       # - run: npx nx fix-ci
