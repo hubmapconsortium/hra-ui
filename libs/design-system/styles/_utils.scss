@@ -13,7 +13,8 @@
 }
 
 @mixin global-styles() {
-  .hra-app {
+  .hra-app,
+  .cns-website {
     @content;
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 
@@ -10,5 +10,9 @@ import { HraCommonModule } from '@hra-ui/common';
   selector: 'cns-website',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  host: {
+    class: 'cns-website',
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}
