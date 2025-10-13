@@ -13,6 +13,7 @@ permissions:
 
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  BUILD_COMMAND: ${{ contains('main,develop', github.ref_name) && 'run-many' || 'affected' }}
   BUILD_CONFIGURATION: ${{ github.ref_name == 'main' && 'production' || github.ref_name == 'develop' && 'staging' || 'preview' }}
 
 concurrency:
@@ -52,11 +53,27 @@ jobs:
       - name: Check for un-formatted files
         run: npx nx format:check
 
-      - name: Build affected projects
-        run: npx nx affected --target=build --configuration=$BUILD_CONFIGURATION --outputStyle=static
+      - name: Build projects
+        run: |
+          npx nx $BUILD_COMMAND --target="build,build-webcomponent,build-storybook,compodoc" \
+            --configuration=$BUILD_CONFIGURATION --outputStyle=static
 
-      - name: Lint and test affected projects
-        run: npx nx affected --targets="lint,test,compodoc" --configuration=ci --outputStyle=static
+      - name: Copy large assets
+        if: always()
+        run: .github/scripts/copy-assets.sh .github/assets/large-assets.json
+
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nx-build-artifacts
+          path: ./dist
+          if-no-files-found: ignore
+
+      - name: Lint and test projects
+        run: |
+          npx nx $BUILD_COMMAND --targets="lint,test,compodoc" \
+            --configuration=ci --outputStyle=static
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       # - run: npx nx fix-ci
