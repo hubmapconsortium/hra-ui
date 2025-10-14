@@ -5,8 +5,9 @@
   display: block;
   box-shadow: 0px 5px 1rem 0px rgb(from vars.$shadow r g b / 0.24);
   border-radius: 0.5rem;
-  width: min-content;
   background-color: vars.$surface-container-low;
+  min-width: 23.625rem;
+  max-width: 33.75rem;
 
   .header {
     display: flex;
@@ -14,6 +15,7 @@
     height: 3.5rem;
     margin: 0;
     padding: 0 1rem;
+    border-bottom: 1px solid vars.$outline-variant;
 
     .info {
       margin: 0.25rem;
@@ -31,66 +33,24 @@
   }
 
   .table-container {
-    padding: 1.5rem;
-    padding-top: 0;
-  }
+    padding: 0.5rem;
 
-  table {
-    border-radius: 0.5rem;
-    overflow: hidden;
-    border: 1px solid vars.$outline-variant;
-    max-width: min-content;
+    table {
+      overflow: hidden;
+      border: none;
 
-    @include mat.table-overrides(
-      (
-        row-item-label-text-font: vars.$label-large-font,
-        row-item-label-text-line-height: vars.$label-large-line-height,
-        row-item-label-text-size: vars.$label-large-size,
-        row-item-label-text-weight: vars.$label-large-weight,
-        row-item-label-text-tracking: vars.$label-large-tracking,
-        background-color: #{vars.$surface-container-low},
-        row-item-outline-color: vars.$outline-variant,
-        row-item-container-height: 3rem,
-      )
-    );
-
-    .label,
-    .value {
-      white-space: nowrap;
-    }
-
-    .label {
-      white-space: nowrap;
-      padding-right: 0;
-      padding-left: 0.75rem;
-    }
-
-    .value {
-      color: vars.$primary;
-    }
-  }
-
-  &.center {
-    width: 33.75rem;
-
-    .header {
-      border-bottom: 1px solid vars.$outline-variant;
-    }
-
-    .table-container {
-      padding: 0.5rem;
-
-      table {
-        border: none;
-        border-radius: 0;
-
-        @include mat.table-overrides(
-          (
-            row-item-outline-color: transparent,
-            row-item-container-height: 2rem,
-          )
-        );
-      }
+      @include mat.table-overrides(
+        (
+          row-item-label-text-font: vars.$label-large-font,
+          row-item-label-text-line-height: vars.$label-large-line-height,
+          row-item-label-text-size: vars.$label-large-size,
+          row-item-label-text-weight: vars.$label-large-weight,
+          row-item-label-text-tracking: vars.$label-large-tracking,
+          background-color: #{vars.$surface-container-low},
+          row-item-outline-color: transparent,
+          row-item-container-height: 2rem,
+        )
+      );
 
       .label {
         width: 50%;
@@ -99,6 +59,7 @@
       }
 
       .value {
+        color: vars.$primary;
         width: 50%;
         padding-left: 0.5rem;
       }

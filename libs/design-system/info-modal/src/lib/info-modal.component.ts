@@ -12,9 +12,6 @@ export interface DataItem {
   value: string;
 }
 
-/** Info modal variants */
-export type InfoModalVariant = 'tabular' | 'center';
-
 /**
  * Modal to display all available information about specific areas of a dataset.
  */
@@ -24,16 +21,10 @@ export type InfoModalVariant = 'tabular' | 'center';
   templateUrl: './info-modal.component.html',
   styleUrl: './info-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.center]': 'variant() == "center"',
-  },
 })
 export class InfoModalComponent {
   /** List of data items to display */
   readonly data = input<DataItem[]>([]);
-
-  /** Variant of info modal to use */
-  readonly variant = input<InfoModalVariant>('tabular');
 
   /** Title of modal */
   readonly title = input.required<string>();
