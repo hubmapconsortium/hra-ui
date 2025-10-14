@@ -18,6 +18,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
 import { ConfigService } from '../../app-config.service';
 import { OrganTableOnClose, OrganTableSelect, SheetDetails } from '../../models/sheet.model';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 @Component({
   selector: 'app-organ-table-selector',
@@ -37,6 +38,7 @@ import { OrganTableOnClose, OrganTableSelect, SheetDetails } from '../../models/
     MatTableModule,
     MatSlideToggleModule,
     MatTabsModule,
+    ButtonsModule,
     ButtonVariantDirective,
     ButtonSizeDirective,
     MatDivider,

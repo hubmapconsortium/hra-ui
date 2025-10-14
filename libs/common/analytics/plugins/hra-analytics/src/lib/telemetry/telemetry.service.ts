@@ -39,7 +39,7 @@ export class TelemetryService {
   stringify(data: unknown): string {
     return stringify(data, {
       allowDots: true,
-      arrayFormat: 'brackets',
+      arrayFormat: 'indices',
       skipNulls: true,
       filter: (prefix, value) => {
         for (const filter of this.filters) {

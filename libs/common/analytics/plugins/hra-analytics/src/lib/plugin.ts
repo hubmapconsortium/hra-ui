@@ -1,6 +1,6 @@
 import { assertInInjectionContext, inject } from '@angular/core';
-import { CoreEvents } from '@hra-ui/common/analytics/events';
-import { AnalyticsInstance, type AnalyticsPlugin } from 'analytics';
+import { CoreEvents, EventPayload } from '@hra-ui/common/analytics/events';
+import { AnalyticsInstance, PageData, type AnalyticsPlugin } from 'analytics';
 import { TelemetryService } from './telemetry/telemetry.service';
 
 /** Plugin configuration */
@@ -23,7 +23,7 @@ interface EventData {
     /** Event type */
     event: string;
     /** User data */
-    properties: object;
+    properties: PageData | EventPayload<object>;
   };
 }
 
@@ -41,20 +41,49 @@ export function hraAnalyticsPlugin(config: HraAnalyticsPluginConfig): AnalyticsP
     name: 'hra-analytics',
     config: config,
     page({ config: config_, instance, payload }: EventData) {
-      telemetry.send({
-        sessionId: config_.sessionId,
-        app: instance.getState('context.app'),
-        version: instance.getState('context.version'),
-        event: CoreEvents.PageView.type,
-        e: payload.properties,
-      });
+      telemetry.send(buildEventData(instance, config_, CoreEvents.PageView.type, payload.properties));
     },
-    track({ config: config_, payload: { event, properties } }: EventData) {
-      telemetry.send({
-        sessionId: config_.sessionId,
-        event,
-        e: properties,
-      });
+    track({ config: config_, instance, payload: { event, properties } }: EventData) {
+      telemetry.send(buildEventData(instance, config_, event, properties));
     },
+  };
+}
+
+/**
+ * Builds the data to send to analytics.
+ * Adds common fields like app, version, etc. and normalizes event payloads.
+ *
+ * @param instance Analytics instance
+ * @param config Plugin config
+ * @param event Event name
+ * @param props Event properties
+ * @returns Data to send to analytics
+ */
+function buildEventData(
+  instance: AnalyticsInstance,
+  config: HraAnalyticsPluginConfig,
+  event: string,
+  props: PageData | EventPayload<object>,
+): object {
+  const { trigger, triggerData } = props;
+  let path: string | undefined = undefined;
+  if (event !== CoreEvents.PageView.type) {
+    path = props.path;
+    props = { ...props };
+    delete props.path;
+    delete props.trigger;
+    delete props.triggerData;
+  }
+
+  return {
+    sv: 0,
+    sessionId: config.sessionId,
+    app: instance.getState('context.app'),
+    version: instance.getState('context.version'),
+    event,
+    path,
+    trigger,
+    triggerData,
+    e: props,
   };
 }
