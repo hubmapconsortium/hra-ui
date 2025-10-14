@@ -172,9 +172,9 @@
         .tag {
           @include utils.use-font(label, medium);
           padding: 0.3438rem 0.75rem;
-          background-color: vars.$on-primary;
+          background-color: vars.$surface-container-low;
           color: vars.$on-surface;
-          border: 0.0625rem solid vars.$outline;
+          border: 0.0625rem solid vars.$outline-variant;
           border-radius: 0.5rem;
         }
       }
