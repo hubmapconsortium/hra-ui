@@ -10,6 +10,7 @@ on:
 permissions:
   actions: read
   contents: read
+  pull-requests: write
 
 env:
   ISSUE_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
@@ -40,26 +41,29 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
-          run-id: ${{ github.event.workflow_run.id }}
           name: nx-build-artifacts
           path: ./deploy
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
 
       - name: Copy static preview assets
         run: cp -r .github/assets/preview/. deploy/
 
       - name: Create metadata script
         run: |
-          echo 'preview.setIssueNumber("$ISSUE_NUMBER")' >> $METADATA_FILE
+          echo "preview.setIssueNumber(\"$ISSUE_NUMBER\")" >> $METADATA_FILE
 
           find deploy/{apps,compodoc,storybook} -mindepth 1 -maxdepth 1 -type d \
-            -printf 'preview.addDirectory("%p")\n' 2>/dev/null >> $METADATA_FILE
+            -printf 'preview.addDirectory("%p")\n' \
+            2>/dev/null >> $METADATA_FILE || true
         env:
           METADATA_FILE: deploy/metadata.js
 
       - name: Create redirects
         run: |
           find deploy/apps -mindepth 1 -maxdepth 1 -type d \
-            -printf '/apps/%f/* /apps/%f/index.html 200\n' > deploy/_redirects
+            -printf '/apps/%f/* /apps/%f/index.html 200\n' \
+            > deploy/_redirects || true
 
       - name: Deploy to Netlify
         id: netlify
