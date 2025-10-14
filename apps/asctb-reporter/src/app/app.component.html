@@ -129,16 +129,7 @@
             <mat-icon>download</mat-icon>
           </button>
         }
-        <a
-          mat-icon-button
-          [matMenuTriggerFor]="helpMenu"
-          rel="noopener noreferrer"
-          hraClickEvent
-          hraFeature="help-and-documentation"
-          hraPlainTooltip="Help & documentation"
-        >
-          <mat-icon>help</mat-icon>
-        </a>
+        <hra-help-button [action]="helpMenu"></hra-help-button>
       </hra-header>
 
       <app-table-nested-menu

@@ -194,17 +194,7 @@
         </button>
       </div>
       <div class="right">
-        <button
-          mat-button
-          hraButtonVariant="secondary"
-          hraButtonSize="medium"
-          [matMenuTriggerFor]="helpMenu"
-          hraFeature="help"
-          hraClickEvent
-        >
-          Help & documentation
-          <mat-icon>help</mat-icon>
-        </button>
+        <hra-help-button [action]="helpMenu"></hra-help-button>
         <button
           mat-flat-button
           hraButtonSize="medium"
