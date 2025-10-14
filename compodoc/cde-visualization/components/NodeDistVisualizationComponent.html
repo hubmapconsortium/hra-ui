@@ -1,0 +1,1632 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for cde-visualization</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for cde-visualization</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  NodeDistVisualizationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/components/node-dist-visualization/node-dist-visualization.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for Node Distribution Visualization</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>cde-node-dist-visualization</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>OverlayModule</code>
+                            <code>ExpansionPanelComponent</code>
+                            <code>ExpansionPanelActionsComponent</code>
+                            <code>ExpansionPanelHeaderContentComponent</code>
+                            <code>FullscreenActionsComponent</code>
+                            <code>FullscreenPortalComponent</code>
+                            <code>FullscreenPortalContentComponent</code>
+                            <code>InfoModalComponent</code>
+                                <code><a href="../components/NodeDistVisualizationControlsComponent.html" target="_self" >NodeDistVisualizationControlsComponent</a></code>
+                                <code><a href="../components/NodeDistVisualizationMenuComponent.html" target="_self" >NodeDistVisualizationMenuComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./node-dist-visualization.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./node-dist-visualization.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cellInfo" >cellInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cellInfoContent" >cellInfoContent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cellInfoOpen" >cellInfoOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cellInfoPosition" >cellInfoPosition</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#edgesDisabled" >edgesDisabled</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#hasSelection" >hasSelection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selection" >selection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#viewMode" >viewMode</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deleteSelection" >deleteSelection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#download" >download</a>
+                            </li>
+                            <li>
+                                <a href="#resetDeletedNodes" >resetDeletedNodes</a>
+                            </li>
+                            <li>
+                                <a href="#resetOrbit" >resetOrbit</a>
+                            </li>
+                            <li>
+                                <a href="#resetView" >resetView</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#colorMap" >colorMap</a>
+                            </li>
+                            <li>
+                                <a href="#edges" >edges</a>
+                            </li>
+                            <li>
+                                <a href="#maxEdgeDistance" >maxEdgeDistance</a>
+                            </li>
+                            <li>
+                                <a href="#nodeFilter" >nodeFilter</a>
+                            </li>
+                            <li>
+                                <a href="#nodes" >nodes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#nodeClick" >nodeClick</a>
+                            </li>
+                            <li>
+                                <a href="#nodeFilter" >nodeFilter</a>
+                            </li>
+                            <li>
+                                <a href="#nodeHover" >nodeHover</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:168</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Bind data and events to the visualization element</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="colorMap"></a>
+                        <b>colorMap</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ColorMapView</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:78</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input for the color map data</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="edges"></a>
+                        <b>edges</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EdgesView</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:75</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input for edge data</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="maxEdgeDistance"></a>
+                        <b>maxEdgeDistance</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:84</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input for the maximum edge distance</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nodeFilter"></a>
+                        <b>nodeFilter</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>NodeFilterView</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:81</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Node filter</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nodes"></a>
+                        <b>nodes</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>NodesView</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:72</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input for node data</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nodeClick"></a>
+                        <b>nodeClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>NodeEvent</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:87</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output emitter for node click events</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nodeFilter"></a>
+                        <b>nodeFilter</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>NodeFilterView</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:81</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Node filter</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nodeHover"></a>
+                        <b>nodeHover</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>NodeEvent | undefined</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:90</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output emitter for node hover events</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteSelection"></a>
+                    <span class="name">
+                        <span ><b>deleteSelection</b></span>
+                        <a href="#deleteSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteSelection()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Deletes the selected nodes</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="download"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>download</b></span>
+                        <a href="#download"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>download()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="206"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:206</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Downloads the visualization as an image</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetDeletedNodes"></a>
+                    <span class="name">
+                        <span ><b>resetDeletedNodes</b></span>
+                        <a href="#resetDeletedNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetDeletedNodes()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:226</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Resets the deleted nodes filter</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetOrbit"></a>
+                    <span class="name">
+                        <span ><b>resetOrbit</b></span>
+                        <a href="#resetOrbit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetOrbit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:221</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Resets the orbit controls</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetView"></a>
+                    <span class="name">
+                        <span ><b>resetView</b></span>
+                        <a href="#resetView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetView()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="215"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:215</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Resets the visualization view</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cellInfo"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cellInfo</b></span>
+                        <a href="#cellInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;NodeEvent | undefined&gt;(undefined)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal containing node event</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cellInfoContent"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cellInfoContent</b></span>
+                        <a href="#cellInfoContent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed((): DataItem[] &#x3D;&gt; {
+    const info &#x3D; this.cellInfo();
+    if (!info) {
+      return [];
+    }
+
+    const nodes &#x3D; this.nodes();
+    const edges &#x3D; this.edges();
+    const { index, object: node } &#x3D; info;
+    const edge &#x3D; this.findClosestEdge(index);
+    const type &#x3D; nodes.getCellTypeFor(node);
+    const ontologyId &#x3D; nodes.getCellOntologyIDFor(node) ?? &#x27;-&#x27;;
+    const distance &#x3D; edge ? DISTANCE_FORMAT.format(edges.getDistanceFor(edge)) + &#x27; µm&#x27; : &#x27;-&#x27;;
+    const x &#x3D; DISTANCE_FORMAT.format(nodes.getXFor(node));
+    const y &#x3D; DISTANCE_FORMAT.format(nodes.getYFor(node));
+    const z &#x3D; DISTANCE_FORMAT.format(nodes.getZFor(node) ?? 0);
+
+    return [
+      { label: &#x27;Cell Type&#x27;, value: type },
+      { label: &#x27;CL ID&#x27;, value: ontologyId },
+      { label: &#x27;Distance to Closest Anchor Cell&#x27;, value: distance },
+      { label: &#x27;X Coordinate&#x27;, value: &#x60;${x} µm&#x60; },
+      { label: &#x27;Y Coordinate&#x27;, value: &#x60;${y} µm&#x60; },
+      { label: &#x27;Z Coordinate&#x27;, value: &#x60;${z} µm&#x60; },
+    ];
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Data for cell info panel</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cellInfoOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cellInfoOpen</b></span>
+                        <a href="#cellInfoOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.viewMode() &#x3D;&#x3D;&#x3D; &#x27;inspect&#x27; &amp;&amp; !!this.cellInfo())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:109</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opens cell info panel</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cellInfoPosition"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cellInfoPosition</b></span>
+                        <a href="#cellInfoPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed((): ConnectedPosition[] &#x3D;&gt; [
+    {
+      originX: &#x27;start&#x27;,
+      originY: &#x27;top&#x27;,
+      overlayX: &#x27;start&#x27;,
+      overlayY: &#x27;top&#x27;,
+      offsetX: this.cellInfo()?.clientX,
+      offsetY: this.cellInfo()?.clientY,
+    },
+    {
+      originX: &#x27;start&#x27;,
+      originY: &#x27;top&#x27;,
+      overlayX: &#x27;end&#x27;,
+      overlayY: &#x27;top&#x27;,
+      offsetX: this.cellInfo()?.clientX,
+      offsetY: this.cellInfo()?.clientY,
+    },
+  ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Position of cell info panel</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="edgesDisabled"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>edgesDisabled</b></span>
+                        <a href="#edgesDisabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Flag to check cell links visibility</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasSelection"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>hasSelection</b></span>
+                        <a href="#hasSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    return this.viewMode() &#x3D;&#x3D;&#x3D; &#x27;select&#x27; &amp;&amp; this.selection().length &gt; 0;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If there is a current node selection</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selection"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selection</b></span>
+                        <a href="#selection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;NodeEvent[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current node selection</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewMode"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>viewMode</b></span>
+                        <a href="#viewMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;ViewMode&gt;(&#x27;explore&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current view mode</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CdkConnectedOverlay, ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  ChangeDetectionStrategy,
+  Component,
+  OutputEmitterRef,
+  Signal,
+  WritableSignal,
+  computed,
+  effect,
+  inject,
+  input,
+  isSignal,
+  model,
+  output,
+  signal,
+  viewChild,
+} from &#x27;@angular/core&#x27;;
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
+import {
+  FullscreenActionsComponent,
+  FullscreenPortalComponent,
+  FullscreenPortalContentComponent,
+} from &#x27;@hra-ui/design-system/fullscreen&#x27;;
+import { DataItem, InfoModalComponent } from &#x27;@hra-ui/design-system/info-modal&#x27;;
+import { NodeDistVisElement, NodeEvent } from &#x27;@hra-ui/node-dist-vis&#x27;;
+import {
+  AnyDataEntry,
+  ColorMapView,
+  EdgesView,
+  NodeFilterView,
+  NodesView,
+  ViewMode,
+} from &#x27;@hra-ui/node-dist-vis/models&#x27;;
+import { FileSaverService } from &#x27;../../services/file-saver/file-saver.service&#x27;;
+import { NodeDistVisualizationControlsComponent } from &#x27;./controls/node-dist-visualization-controls.component&#x27;;
+import { NodeDistVisualizationMenuComponent } from &#x27;./menu/node-dist-visualization-menu.component&#x27;;
+
+/** Number format for distances */
+const DISTANCE_FORMAT &#x3D; new Intl.NumberFormat(undefined, {
+  maximumFractionDigits: 2,
+});
+
+/**
+ * Component for Node Distribution Visualization
+ */
+@Component({
+  selector: &#x27;cde-node-dist-visualization&#x27;,
+  imports: [
+    OverlayModule,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+    FullscreenActionsComponent,
+    FullscreenPortalComponent,
+    FullscreenPortalContentComponent,
+    InfoModalComponent,
+    NodeDistVisualizationControlsComponent,
+    NodeDistVisualizationMenuComponent,
+  ],
+  templateUrl: &#x27;./node-dist-visualization.component.html&#x27;,
+  styleUrl: &#x27;./node-dist-visualization.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class NodeDistVisualizationComponent {
+  /** Input for node data */
+  readonly nodes &#x3D; input.required&lt;NodesView&gt;();
+
+  /** Input for edge data */
+  readonly edges &#x3D; input.required&lt;EdgesView&gt;();
+
+  /** Input for the color map data */
+  readonly colorMap &#x3D; input.required&lt;ColorMapView&gt;();
+
+  /** Node filter */
+  readonly nodeFilter &#x3D; model.required&lt;NodeFilterView&gt;();
+
+  /** Input for the maximum edge distance */
+  readonly maxEdgeDistance &#x3D; input.required&lt;number&gt;();
+
+  /** Output emitter for node click events */
+  readonly nodeClick &#x3D; output&lt;NodeEvent&gt;();
+
+  /** Output emitter for node hover events */
+  readonly nodeHover &#x3D; output&lt;NodeEvent | undefined&gt;();
+
+  /** Flag to check cell links visibility */
+  protected readonly edgesDisabled &#x3D; signal(false);
+
+  /** Current view mode */
+  protected readonly viewMode &#x3D; signal&lt;ViewMode&gt;(&#x27;explore&#x27;);
+
+  /** Current node selection */
+  protected readonly selection &#x3D; signal&lt;NodeEvent[]&gt;([]);
+
+  /** If there is a current node selection */
+  protected readonly hasSelection &#x3D; computed(() &#x3D;&gt; {
+    return this.viewMode() &#x3D;&#x3D;&#x3D; &#x27;select&#x27; &amp;&amp; this.selection().length &gt; 0;
+  });
+
+  /** Signal containing node event */
+  protected readonly cellInfo &#x3D; signal&lt;NodeEvent | undefined&gt;(undefined);
+  /** Opens cell info panel */
+  protected readonly cellInfoOpen &#x3D; computed(() &#x3D;&gt; this.viewMode() &#x3D;&#x3D;&#x3D; &#x27;inspect&#x27; &amp;&amp; !!this.cellInfo());
+  /** Position of cell info panel */
+  protected readonly cellInfoPosition &#x3D; computed((): ConnectedPosition[] &#x3D;&gt; [
+    {
+      originX: &#x27;start&#x27;,
+      originY: &#x27;top&#x27;,
+      overlayX: &#x27;start&#x27;,
+      overlayY: &#x27;top&#x27;,
+      offsetX: this.cellInfo()?.clientX,
+      offsetY: this.cellInfo()?.clientY,
+    },
+    {
+      originX: &#x27;start&#x27;,
+      originY: &#x27;top&#x27;,
+      overlayX: &#x27;end&#x27;,
+      overlayY: &#x27;top&#x27;,
+      offsetX: this.cellInfo()?.clientX,
+      offsetY: this.cellInfo()?.clientY,
+    },
+  ]);
+
+  /** Data for cell info panel */
+  protected readonly cellInfoContent &#x3D; computed((): DataItem[] &#x3D;&gt; {
+    const info &#x3D; this.cellInfo();
+    if (!info) {
+      return [];
+    }
+
+    const nodes &#x3D; this.nodes();
+    const edges &#x3D; this.edges();
+    const { index, object: node } &#x3D; info;
+    const edge &#x3D; this.findClosestEdge(index);
+    const type &#x3D; nodes.getCellTypeFor(node);
+    const ontologyId &#x3D; nodes.getCellOntologyIDFor(node) ?? &#x27;-&#x27;;
+    const distance &#x3D; edge ? DISTANCE_FORMAT.format(edges.getDistanceFor(edge)) + &#x27; µm&#x27; : &#x27;-&#x27;;
+    const x &#x3D; DISTANCE_FORMAT.format(nodes.getXFor(node));
+    const y &#x3D; DISTANCE_FORMAT.format(nodes.getYFor(node));
+    const z &#x3D; DISTANCE_FORMAT.format(nodes.getZFor(node) ?? 0);
+
+    return [
+      { label: &#x27;Cell Type&#x27;, value: type },
+      { label: &#x27;CL ID&#x27;, value: ontologyId },
+      { label: &#x27;Distance to Closest Anchor Cell&#x27;, value: distance },
+      { label: &#x27;X Coordinate&#x27;, value: &#x60;${x} µm&#x60; },
+      { label: &#x27;Y Coordinate&#x27;, value: &#x60;${y} µm&#x60; },
+      { label: &#x27;Z Coordinate&#x27;, value: &#x60;${z} µm&#x60; },
+    ];
+  });
+
+  /** Service to handle file saving */
+  private readonly fileSaver &#x3D; inject(FileSaverService);
+
+  /** Full screen portal element */
+  private readonly fullscreenPortal &#x3D; viewChild.required(FullscreenPortalComponent);
+
+  /** Visualization element */
+  private readonly visEl &#x3D; computed(() &#x3D;&gt; this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+
+  /** Cell info overlay element */
+  private readonly cellInfoOverlay &#x3D; viewChild.required&lt;CdkConnectedOverlay&gt;(&#x27;cellInfoOverlay&#x27;);
+
+  /** Bind data and events to the visualization element */
+  constructor() {
+    this.bindData(&#x27;mode&#x27;, this.viewMode);
+
+    this.bindData(&#x27;nodes&#x27;, this.nodes);
+    this.bindEvent(&#x27;nodeClick&#x27;, this.nodeClick);
+    this.bindEvent(&#x27;nodeClick&#x27;, this.cellInfo);
+    this.bindEvent(&#x27;nodeHover&#x27;, this.nodeHover);
+
+    this.bindData(&#x27;edges&#x27;, this.edges);
+    this.bindData(&#x27;edgesDisabled&#x27;, this.edgesDisabled);
+    this.bindData(&#x27;maxEdgeDistance&#x27;, this.maxEdgeDistance);
+
+    this.bindData(&#x27;colorMap&#x27;, this.colorMap);
+
+    this.bindData(&#x27;nodeFilter&#x27;, this.nodeFilter);
+    this.bindEvent(&#x27;nodeSelectionChange&#x27;, this.selection);
+
+    effect(() &#x3D;&gt; {
+      if (this.viewMode() &#x3D;&#x3D;&#x3D; &#x27;select&#x27;) {
+        this.resetOrbit();
+      }
+    });
+
+    effect(() &#x3D;&gt; {
+      // CdkConnectedOverlay only updates the position on changes to &#x27;origin&#x27; and &#x27;open&#x27;
+      // Manually force an update to the position instead
+      const info &#x3D; this.cellInfo();
+      const ref &#x3D; this.cellInfoOverlay().overlayRef;
+      if (info &amp;&amp; ref) {
+        setTimeout(() &#x3D;&gt; ref.updatePosition());
+      }
+    });
+  }
+
+  /** Downloads the visualization as an image */
+  async download(): Promise&lt;void&gt; {
+    const el &#x3D; this.visEl().instance;
+    const blob &#x3D; await el?.toBlob();
+    if (blob) {
+      this.fileSaver.saveData(blob, &#x27;cell-distance-vis.png&#x27;);
+    }
+  }
+
+  /** Resets the visualization view */
+  resetView(): void {
+    this.cellInfo.set(undefined);
+    this.visEl().instance?.resetView();
+  }
+
+  /** Resets the orbit controls */
+  resetOrbit(): void {
+    this.visEl().instance?.resetOrbit();
+  }
+
+  /** Resets the deleted nodes filter */
+  resetDeletedNodes(): void {
+    const newFilter &#x3D; this.nodeFilter().clear(false, true);
+    this.nodeFilter.set(newFilter);
+  }
+
+  /** Deletes the selected nodes */
+  deleteSelection(): void {
+    const selection &#x3D; this.selection();
+    if (selection.length &gt; 0) {
+      const indices &#x3D; selection.map((event) &#x3D;&gt; event.index);
+      const newFilter &#x3D; this.nodeFilter().addEntries(undefined, indices);
+
+      this.visEl().instance?.clearSelection();
+      this.selection.set([]);
+      this.nodeFilter.set(newFilter);
+    }
+  }
+
+  /** Binds a property from the visualization element to a signal */
+  private bindData&lt;K extends keyof NodeDistVisElement&gt;(prop: K, value: Signal&lt;NodeDistVisElement[K]&gt;): void {
+    effect(() &#x3D;&gt; {
+      const el &#x3D; this.visEl();
+      const data &#x3D; value();
+      el[prop] &#x3D; data;
+    });
+  }
+
+  /** Binds an event from the visualization element to an output emitter */
+  private bindEvent&lt;T&gt;(type: string, outputRef: OutputEmitterRef&lt;T&gt; | WritableSignal&lt;T&gt;): void {
+    const handler &#x3D; (event: Event) &#x3D;&gt; {
+      const { detail: data } &#x3D; event as CustomEvent;
+      if (isSignal(outputRef)) {
+        outputRef.set(data);
+      } else {
+        outputRef.emit(data);
+      }
+    };
+
+    effect((onCleanup) &#x3D;&gt; {
+      const el &#x3D; this.visEl();
+      el.addEventListener(type, handler);
+      onCleanup(() &#x3D;&gt; el.removeEventListener(type, handler));
+    });
+  }
+
+  private findClosestEdge(index: number): AnyDataEntry | undefined {
+    const edges &#x3D; this.edges();
+    for (const edge of edges) {
+      if (edges.getCellIDFor(edge) &#x3D;&#x3D;&#x3D; index) {
+        return edge;
+      }
+    }
+
+    return undefined;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;hra-expansion-panel tagline&#x3D;&quot;Visualization&quot; disabled&gt;
+  &lt;hra-expansion-panel-actions&gt;
+    &lt;cde-node-dist-visualization-menu
+      [(edgesDisabled)]&#x3D;&quot;edgesDisabled&quot;
+      (fullscreenClick)&#x3D;&quot;fullscreen.open()&quot;
+      (downloadClick)&#x3D;&quot;download()&quot;
+      (resetViewClick)&#x3D;&quot;resetView()&quot;
+      (resetDeletedClick)&#x3D;&quot;resetDeletedNodes()&quot;
+    &gt;
+    &lt;/cde-node-dist-visualization-menu&gt;
+  &lt;/hra-expansion-panel-actions&gt;
+
+  &lt;hra-expansion-panel-header-content&gt;
+    &lt;cde-node-dist-visualization-controls
+      [(viewMode)]&#x3D;&quot;viewMode&quot;
+      [deleteDisabled]&#x3D;&quot;!hasSelection()&quot;
+      (deleteClick)&#x3D;&quot;deleteSelection()&quot;
+      (viewModeChange)&#x3D;&quot;cellInfo.set(undefined)&quot;
+    &gt;
+    &lt;/cde-node-dist-visualization-controls&gt;
+  &lt;/hra-expansion-panel-header-content&gt;
+
+  &lt;hra-fullscreen-portal tagline&#x3D;&quot;Visualization&quot; panelClass&#x3D;&quot;node-dist-vis-fullscreen-panel&quot; #fullscreen&gt;
+    &lt;hra-fullscreen-actions&gt;
+      &lt;cde-node-dist-visualization-menu
+        fullscreenMode
+        [(edgesDisabled)]&#x3D;&quot;edgesDisabled&quot;
+        (downloadClick)&#x3D;&quot;download()&quot;
+        (resetViewClick)&#x3D;&quot;resetView()&quot;
+        (resetDeletedClick)&#x3D;&quot;resetDeletedNodes()&quot;
+      &gt;
+      &lt;/cde-node-dist-visualization-menu&gt;
+
+      &lt;cde-node-dist-visualization-controls
+        [(viewMode)]&#x3D;&quot;viewMode&quot;
+        [deleteDisabled]&#x3D;&quot;!hasSelection()&quot;
+        (deleteClick)&#x3D;&quot;deleteSelection()&quot;
+        (viewModeChange)&#x3D;&quot;cellInfo.set(undefined)&quot;
+      &gt;
+      &lt;/cde-node-dist-visualization-controls&gt;
+    &lt;/hra-fullscreen-actions&gt;
+
+    &lt;hra-fullscreen-portal-content&gt;
+      &lt;hra-node-dist-vis
+        cdkOverlayOrigin
+        class&#x3D;&quot;vis&quot;
+        data-testid&#x3D;&quot;node-dist-vis&quot;
+        #cellInfoOrigin&#x3D;&quot;cdkOverlayOrigin&quot;
+      &gt;&lt;/hra-node-dist-vis&gt;
+    &lt;/hra-fullscreen-portal-content&gt;
+  &lt;/hra-fullscreen-portal&gt;
+&lt;/hra-expansion-panel&gt;
+
+&lt;ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayDisposeOnNavigation]&#x3D;&quot;true&quot;
+  [cdkConnectedOverlayHasBackdrop]&#x3D;&quot;false&quot;
+  [cdkConnectedOverlayMinWidth]&#x3D;&quot;540&quot;
+  [cdkConnectedOverlayOpen]&#x3D;&quot;cellInfoOpen()&quot;
+  [cdkConnectedOverlayOrigin]&#x3D;&quot;cellInfoOrigin&quot;
+  [cdkConnectedOverlayPositions]&#x3D;&quot;cellInfoPosition()&quot;
+  [cdkConnectedOverlayPush]&#x3D;&quot;true&quot;
+  [cdkConnectedOverlayViewportMargin]&#x3D;&quot;16&quot;
+  (overlayOutsideClick)&#x3D;&quot;cellInfo.set(undefined)&quot;
+  #cellInfoOverlay&#x3D;&quot;cdkConnectedOverlay&quot;
+&gt;
+  &lt;hra-info-modal
+    [title]&#x3D;&quot;&#x27;Cell Info&#x27;&quot;
+    [data]&#x3D;&quot;cellInfoContent()&quot;
+    (close)&#x3D;&quot;cellInfo.set(undefined)&quot;
+    data-testid&#x3D;&quot;cell-info&quot;
+  &gt;
+  &lt;/hra-info-modal&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Visualization" disabled>  <hra-expansion-panel-actions>    <cde-node-dist-visualization-menu      [(edgesDisabled)]="edgesDisabled"      (fullscreenClick)="fullscreen.open()"      (downloadClick)="download()"      (resetViewClick)="resetView()"      (resetDeletedClick)="resetDeletedNodes()"    >    </cde-node-dist-visualization-menu>  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <cde-node-dist-visualization-controls      [(viewMode)]="viewMode"      [deleteDisabled]="!hasSelection()"      (deleteClick)="deleteSelection()"      (viewModeChange)="cellInfo.set(undefined)"    >    </cde-node-dist-visualization-controls>  </hra-expansion-panel-header-content>  <hra-fullscreen-portal tagline="Visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>    <hra-fullscreen-actions>      <cde-node-dist-visualization-menu        fullscreenMode        [(edgesDisabled)]="edgesDisabled"        (downloadClick)="download()"        (resetViewClick)="resetView()"        (resetDeletedClick)="resetDeletedNodes()"      >      </cde-node-dist-visualization-menu>      <cde-node-dist-visualization-controls        [(viewMode)]="viewMode"        [deleteDisabled]="!hasSelection()"        (deleteClick)="deleteSelection()"        (viewModeChange)="cellInfo.set(undefined)"      >      </cde-node-dist-visualization-controls>    </hra-fullscreen-actions>    <hra-fullscreen-portal-content>      <hra-node-dist-vis        cdkOverlayOrigin        class="vis"        data-testid="node-dist-vis"        #cellInfoOrigin="cdkOverlayOrigin"      ></hra-node-dist-vis>    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayDisposeOnNavigation]="true"  [cdkConnectedOverlayHasBackdrop]="false"  [cdkConnectedOverlayMinWidth]="540"  [cdkConnectedOverlayOpen]="cellInfoOpen()"  [cdkConnectedOverlayOrigin]="cellInfoOrigin"  [cdkConnectedOverlayPositions]="cellInfoPosition()"  [cdkConnectedOverlayPush]="true"  [cdkConnectedOverlayViewportMargin]="16"  (overlayOutsideClick)="cellInfo.set(undefined)"  #cellInfoOverlay="cdkConnectedOverlay">  <hra-info-modal    [title]="\'Cell Info\'"    [data]="cellInfoContent()"    (close)="cellInfo.set(undefined)"    data-testid="cell-info"  >  </hra-info-modal></ng-template></div>'
+    var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NodeDistVisualizationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NodeDistVisualizationComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

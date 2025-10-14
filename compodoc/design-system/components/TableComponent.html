@@ -1,0 +1,2486 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for design-system</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for design-system</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TableComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>table/src/lib/table/table.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Angular Material Table with Sort Feature</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-table</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                                <code><a href="../miscellaneous/typealiases.html#Markdown" target="_self" >MarkdownModule</a></code>
+                                <code><a href="../miscellaneous/typealiases.html#Menu" target="_self" >MatMenuModule</a></code>
+                            <code>MatSortModule</code>
+                            <code>MatTableModule</code>
+                                <code><a href="../modules/ScrollingModule.html" target="_self" >ScrollingModule</a></code>
+                            <code>MatCheckboxModule</code>
+                                <code><a href="../directives/TextHyperlinkDirective.html" target="_self" >TextHyperlinkDirective</a></code>
+                                <code><a href="../directives/LinkRowElementDirective.html" target="_self" >LinkRowElementDirective</a></code>
+                                <code><a href="../directives/TextRowElementDirective.html" target="_self" >TextRowElementDirective</a></code>
+                                <code><a href="../directives/MarkdownRowElementDirective.html" target="_self" >MarkdownRowElementDirective</a></code>
+                                <code><a href="../directives/MenuButtonRowElementDirective.html" target="_self" >MenuButtonRowElementDirective</a></code>
+                                <code><a href="../directives/NumericRowElementDirective.html" target="_self" >NumericRowElementDirective</a></code>
+                                <code><a href="../directives/PlainTooltipDirective.html" target="_self" >PlainTooltipDirective</a></code>
+                                <code><a href="../modules/IconsModule.html" target="_self" >IconsModule</a></code>
+                                <code><a href="../modules/ButtonsModule.html" target="_self" >ButtonsModule</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>table.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>table.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_columns" >_columns</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_rows" >_rows</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#columnIds" >columnIds</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#scrollbar" >scrollbar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selection" >selection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#snackbar" >snackbar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#totals" >totals</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#download" >download</a>
+                            </li>
+                            <li>
+                                <a href="#downloadButtonHover" >downloadButtonHover</a>
+                            </li>
+                            <li>
+                                <a href="#getColumnType" >getColumnType</a>
+                            </li>
+                            <li>
+                                <a href="#getMenuOptions" >getMenuOptions</a>
+                            </li>
+                            <li>
+                                <a href="#isAllSelected" >isAllSelected</a>
+                            </li>
+                            <li>
+                                <a href="#routeClick" >routeClick</a>
+                            </li>
+                            <li>
+                                <a href="#scrollToTop" >scrollToTop</a>
+                            </li>
+                            <li>
+                                <a href="#toggleAllRows" >toggleAllRows</a>
+                            </li>
+                            <li>
+                                <a href="#toggleRow" >toggleRow</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#columns" >columns</a>
+                            </li>
+                            <li>
+                                <a href="#csvUrl" >csvUrl</a>
+                            </li>
+                            <li>
+                                <a href="#enableRowSelection" >enableRowSelection</a>
+                            </li>
+                            <li>
+                                <a href="#enableSort" >enableSort</a>
+                            </li>
+                            <li>
+                                <a href="#hideHeaders" >hideHeaders</a>
+                            </li>
+                            <li>
+                                <a href="#rows" >rows</a>
+                            </li>
+                            <li>
+                                <a href="#style" >style</a>
+                            </li>
+                            <li>
+                                <a href="#verticalDividers" >verticalDividers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#downloadHovered" >downloadHovered</a>
+                            </li>
+                            <li>
+                                <a href="#routeClicked" >routeClicked</a>
+                            </li>
+                            <li>
+                                <a href="#selectionChange" >selectionChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">table/src/lib/table/table.component.ts:274</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Sort data on load and set columns</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="columns"></a>
+                        <b>columns</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#TableColumn" target="_self" >TableColumn[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">table/src/lib/table/table.component.ts:180</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Columns in table</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="csvUrl"></a>
+                        <b>csvUrl</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">table/src/lib/table/table.component.ts:177</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>CSV URL input</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="enableRowSelection"></a>
+                        <b>enableRowSelection</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">table/src/lib/table/table.component.ts:195</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Enable row selection with checkboxes</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="enableSort"></a>
+                        <b>enableSort</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">table/src/lib/table/table.component.ts:189</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Enables sorting</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hideHeaders"></a>
+                        <b>hideHeaders</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">table/src/lib/table/table.component.ts:198</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Hide table headers</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rows"></a>
+                        <b>rows</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">table/src/lib/table/table.component.ts:183</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Unsorted data</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="style"></a>
+                        <b>style</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#TableVariant" target="_self" >TableVariant</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;alternating&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">table/src/lib/table/table.component.ts:186</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Table style</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="verticalDividers"></a>
+                        <b>verticalDividers</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">table/src/lib/table/table.component.ts:192</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Enables dividers between columns</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="downloadHovered"></a>
+                        <b>downloadHovered</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">table/src/lib/table/table.component.ts:207</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits download object id on download button hover</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="routeClicked"></a>
+                        <b>routeClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">table/src/lib/table/table.component.ts:204</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits route</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectionChange"></a>
+                        <b>selectionChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">table/src/lib/table/table.component.ts:201</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when selection changes</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="download"></a>
+                    <span class="name">
+                        <span ><b>download</b></span>
+                        <a href="#download"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>download(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="368"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:368</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Downloads a file from the url</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>File url</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadButtonHover"></a>
+                    <span class="name">
+                        <span ><b>downloadButtonHover</b></span>
+                        <a href="#downloadButtonHover"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadButtonHover(id: string | number | boolean | (string | number | boolean)[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="360"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:360</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emits the id of a row when its download button is hovered</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                        <code>string | number | boolean | (string | number | boolean)[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getColumnType"></a>
+                    <span class="name">
+                        <span ><b>getColumnType</b></span>
+                        <a href="#getColumnType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getColumnType(column: <a href="../undefineds/TableColumn.html" target="_self">TableColumn</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="292"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:292</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns the column type for a given column.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>column</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#TableColumn" target="_self" >TableColumn</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Table column</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#TableColumnType" target="_self" >TableColumnType</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Column type</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMenuOptions"></a>
+                    <span class="name">
+                        <span ><b>getMenuOptions</b></span>
+                        <a href="#getMenuOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMenuOptions(options: string | number | boolean | MenuOptionsType[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="350"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:350</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns download menu options as an array of MenuOptionsType</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>string | number | boolean | MenuOptionsType[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Menu options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>MenuOptionsType[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Menu options as an array of MenuOptionsType</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAllSelected"></a>
+                    <span class="name">
+                        <span ><b>isAllSelected</b></span>
+                        <a href="#isAllSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isAllSelected()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="319"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:319</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Whether the number of selected elements matches the total number of rows.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routeClick"></a>
+                    <span class="name">
+                        <span ><b>routeClick</b></span>
+                        <a href="#routeClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>routeClick(url: string | number | boolean | (string | number | boolean)[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="355"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:355</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emits a route as string when object label is clicked</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                        <code>string | number | boolean | (string | number | boolean)[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollToTop"></a>
+                    <span class="name">
+                        <span ><b>scrollToTop</b></span>
+                        <a href="#scrollToTop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scrollToTop()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="373"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:373</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Scrolls to top of the table</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleAllRows"></a>
+                    <span class="name">
+                        <span ><b>toggleAllRows</b></span>
+                        <a href="#toggleAllRows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleAllRows()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="328"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:328</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Selects all rows if they are not all selected; otherwise clear selection.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleRow"></a>
+                    <span class="name">
+                        <span ><b>toggleRow</b></span>
+                        <a href="#toggleRow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleRow(row: <a href="../undefineds/TableRow.html" target="_self">TableRow</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="340"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:340</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Toggle row selection</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#TableRow" target="_self" >TableRow</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_columns"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_columns</b></span>
+                        <a href="#_columns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.columns() ?? this.inferColumns(this._rows()))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">table/src/lib/table/table.component.ts:249</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Table data columns</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_rows"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_rows</b></span>
+                        <a href="#_rows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.rows() ?? this.csv.value())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">table/src/lib/table/table.component.ts:246</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Table data rows</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="columnIds"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>columnIds</b></span>
+                        <a href="#columnIds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const columns &#x3D; this._columns().map((col) &#x3D;&gt; col.column);
+    return this.enableRowSelection() ? [&#x27;select&#x27;, ...columns] : columns;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">table/src/lib/table/table.component.ts:252</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Table data column IDs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;T&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">table/src/lib/table/table.component.ts:274</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Table data source</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollbar"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>scrollbar</b></span>
+                        <a href="#scrollbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>viewChild.required&lt;NgScrollbar&gt;(&#x27;scrollbar&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">table/src/lib/table/table.component.ts:210</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Scrollbar ref</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selection"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selection</b></span>
+                        <a href="#selection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new SelectionModel&lt;TableRow&gt;(true, [])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">table/src/lib/table/table.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Selection model for checkbox functionality</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snackbar"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>snackbar</b></span>
+                        <a href="#snackbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SnackbarService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">table/src/lib/table/table.component.ts:225</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Snackbar service for download notification</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totals"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>totals</b></span>
+                        <a href="#totals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const result &#x3D; new Map&lt;TableColumn, number&gt;();
+    for (const col of this._columns()) {
+      const options &#x3D; this.getColumnType(col);
+      if (options.type &#x3D;&#x3D;&#x3D; &#x27;numeric&#x27; &amp;&amp; options.computeTotal) {
+        const total &#x3D; this._rows().reduce((acc, row) &#x3D;&gt; {
+          const value &#x3D; Number(row[col.column as keyof T]);
+          return acc + (Number.isNaN(value) ? 0 : value);
+        }, 0);
+        result.set(col, total);
+      }
+    }
+    return result;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">table/src/lib/table/table.component.ts:258</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Totals by column for which <code>computeTotal</code> is enabled</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SelectionModel } from &#x27;@angular/cdk/collections&#x27;;
+import { httpResource } from &#x27;@angular/common/http&#x27;;
+import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from &#x27;@angular/core&#x27;;
+import { MatCheckboxModule } from &#x27;@angular/material/checkbox&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { MatSort, MatSortModule } from &#x27;@angular/material/sort&#x27;;
+import { MatTableDataSource, MatTableModule } from &#x27;@angular/material/table&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { injectAssetUrlResolver } from &#x27;@hra-ui/common/url&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { TextHyperlinkDirective } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
+import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
+import saveAs from &#x27;file-saver&#x27;;
+import { MarkdownModule } from &#x27;ngx-markdown&#x27;;
+import { NgScrollbar } from &#x27;ngx-scrollbar&#x27;;
+import { parse } from &#x27;papaparse&#x27;;
+import {
+  IconColumnType,
+  LinkColumnType,
+  MarkdownColumnType,
+  MenuButtonColumnType,
+  MenuOptionsType,
+  NumericColumnType,
+  TableColumn,
+  TableColumnType,
+  TableColumnWithType,
+  TableRow,
+  TableVariant,
+  TextColumnType,
+} from &#x27;../types/page-table.schema&#x27;;
+
+/** Type for the row element context */
+type RowElementContext&lt;T, CT extends TableColumnType&gt; &#x3D; {
+  $implicit: T;
+  element: TableRow;
+  column: TableColumnWithType&lt;CT&gt;;
+};
+
+/** Directive for typing the context of Text Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraTextRowElement]&#x27;,
+  standalone: true,
+})
+export class TextRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Text Row Element */
+  static ngTemplateContextGuard(
+    _dir: TextRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, TextColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Link Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraLinkRowElement]&#x27;,
+  standalone: true,
+})
+export class LinkRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Link Row Element */
+  static ngTemplateContextGuard(
+    _dir: LinkRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, LinkColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Markdown Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraMarkdownRowElement]&#x27;,
+  standalone: true,
+})
+export class MarkdownRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Markdown Row Element */
+  static ngTemplateContextGuard(
+    _dir: MarkdownRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, MarkdownColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Icon Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraIconRowElement]&#x27;,
+  standalone: true,
+})
+export class IconRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Icon Row Element */
+  static ngTemplateContextGuard(
+    _dir: IconRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, IconColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of menuButton Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraMenuButtonRowElement]&#x27;,
+  standalone: true,
+})
+export class MenuButtonRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of menuButton Row Element */
+  static ngTemplateContextGuard(
+    _dir: MenuButtonRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, MenuButtonColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Numeric Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraNumericRowElement]&#x27;,
+  standalone: true,
+})
+export class NumericRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Numeric Row Element */
+  static ngTemplateContextGuard(
+    _dir: NumericRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, NumericColumnType&gt; {
+    return true;
+  }
+}
+
+/**
+ * Angular Material Table with Sort Feature
+ */
+@Component({
+  selector: &#x27;hra-table&#x27;,
+  templateUrl: &#x27;table.component.html&#x27;,
+  styleUrls: [&#x27;table.component.scss&#x27;],
+  imports: [
+    HraCommonModule,
+    MarkdownModule,
+    MatMenuModule,
+    MatSortModule,
+    MatTableModule,
+    ScrollingModule,
+    MatCheckboxModule,
+    TextHyperlinkDirective,
+    LinkRowElementDirective,
+    TextRowElementDirective,
+    MarkdownRowElementDirective,
+    MenuButtonRowElementDirective,
+    NumericRowElementDirective,
+    PlainTooltipDirective,
+    IconsModule,
+    ButtonsModule,
+  ],
+  host: {
+    &#x27;[class]&#x27;: &#x27;&quot;hra-table-style-&quot; + style()&#x27;,
+    &#x27;[class.sortable]&#x27;: &#x27;enableSort()&#x27;,
+    &#x27;[class.vertical-dividers]&#x27;: &#x27;verticalDividers()&#x27;,
+  },
+})
+export class TableComponent&lt;T &#x3D; TableRow&gt; {
+  /** CSV URL input */
+  readonly csvUrl &#x3D; input&lt;string&gt;();
+
+  /** Columns in table */
+  readonly columns &#x3D; input&lt;TableColumn[]&gt;();
+
+  /** Unsorted data */
+  readonly rows &#x3D; input&lt;T[]&gt;();
+
+  /** Table style */
+  readonly style &#x3D; input&lt;TableVariant&gt;(&#x27;alternating&#x27;);
+
+  /** Enables sorting */
+  readonly enableSort &#x3D; input&lt;boolean&gt;(false);
+
+  /** Enables dividers between columns */
+  readonly verticalDividers &#x3D; input&lt;boolean&gt;(false);
+
+  /** Enable row selection with checkboxes */
+  readonly enableRowSelection &#x3D; input&lt;boolean&gt;(false);
+
+  /** Hide table headers */
+  readonly hideHeaders &#x3D; input&lt;boolean&gt;(false);
+
+  /** Emits when selection changes */
+  readonly selectionChange &#x3D; output&lt;T[]&gt;();
+
+  /** Emits route */
+  readonly routeClicked &#x3D; output&lt;string&gt;();
+
+  /** Emits download object id on download button hover */
+  readonly downloadHovered &#x3D; output&lt;string&gt;();
+
+  /** Scrollbar ref */
+  readonly scrollbar &#x3D; viewChild.required&lt;NgScrollbar&gt;(&#x27;scrollbar&#x27;);
+
+  /** Mat sort element */
+  private readonly sort &#x3D; viewChild.required(MatSort);
+
+  /** Selection model for checkbox functionality */
+  readonly selection &#x3D; new SelectionModel&lt;TableRow&gt;(true, []);
+
+  /** Error handler provider for logging errors */
+  private readonly errorHandler &#x3D; inject(ErrorHandler);
+
+  /** Resolver for asset urls */
+  private readonly resolveAssetUrl &#x3D; injectAssetUrlResolver();
+
+  /** Snackbar service for download notification */
+  readonly snackbar &#x3D; inject(SnackbarService);
+
+  /** CSV resource from remote URL */
+  private readonly csv &#x3D; httpResource.text&lt;T[]&gt;(
+    () &#x3D;&gt; {
+      const url &#x3D; this.csvUrl();
+      return url ? this.resolveAssetUrl(url) : url;
+    },
+    {
+      defaultValue: [],
+      parse: (data) &#x3D;&gt; {
+        const result &#x3D; parse&lt;T&gt;(data, { header: true, dynamicTyping: true, skipEmptyLines: true });
+        if (result.errors.length &gt; 0) {
+          this.errorHandler.handleError(result.errors);
+        }
+        return result.data;
+      },
+    },
+  );
+
+  /** Table data rows */
+  protected readonly _rows &#x3D; computed(() &#x3D;&gt; this.rows() ?? this.csv.value());
+
+  /** Table data columns */
+  protected readonly _columns &#x3D; computed(() &#x3D;&gt; this.columns() ?? this.inferColumns(this._rows()));
+
+  /** Table data column IDs */
+  protected readonly columnIds &#x3D; computed(() &#x3D;&gt; {
+    const columns &#x3D; this._columns().map((col) &#x3D;&gt; col.column);
+    return this.enableRowSelection() ? [&#x27;select&#x27;, ...columns] : columns;
+  });
+
+  /** Totals by column for which &#x60;computeTotal&#x60; is enabled */
+  protected readonly totals &#x3D; computed(() &#x3D;&gt; {
+    const result &#x3D; new Map&lt;TableColumn, number&gt;();
+    for (const col of this._columns()) {
+      const options &#x3D; this.getColumnType(col);
+      if (options.type &#x3D;&#x3D;&#x3D; &#x27;numeric&#x27; &amp;&amp; options.computeTotal) {
+        const total &#x3D; this._rows().reduce((acc, row) &#x3D;&gt; {
+          const value &#x3D; Number(row[col.column as keyof T]);
+          return acc + (Number.isNaN(value) ? 0 : value);
+        }, 0);
+        result.set(col, total);
+      }
+    }
+    return result;
+  });
+
+  /** Table data source */
+  protected readonly dataSource &#x3D; new MatTableDataSource&lt;T&gt;([]);
+
+  /** Sort data on load and set columns */
+  constructor() {
+    effect(() &#x3D;&gt; {
+      this.dataSource.data &#x3D; this._rows();
+    });
+
+    effect(() &#x3D;&gt; {
+      this.dataSource.sort &#x3D; this.sort();
+    });
+  }
+
+  /**
+   * Returns the column type for a given column.
+   * @param column Table column
+   * @returns Column type
+   */
+  getColumnType(column: TableColumn): TableColumnType {
+    return typeof column.type &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? ({ type: column.type } as TableColumnType) : column.type;
+  }
+
+  /**
+   * Infers the table column types from the loaded data.
+   * @param data Table data
+   * @returns Inferred table column with types as an array.
+   */
+  private inferColumns(data: T[]): TableColumn[] {
+    if (data.length &#x3D;&#x3D;&#x3D; 0) {
+      return [];
+    }
+
+    const item &#x3D; data[0];
+    const columns: TableColumn[] &#x3D; [];
+    for (const key in item) {
+      const type &#x3D; typeof item[key] &#x3D;&#x3D;&#x3D; &#x27;number&#x27; ? &#x27;numeric&#x27; : &#x27;text&#x27;;
+      columns.push({ column: key, label: key, type });
+    }
+
+    return columns;
+  }
+
+  /**
+   * Whether the number of selected elements matches the total number of rows.
+   */
+  isAllSelected(): boolean {
+    const numSelected &#x3D; this.selection.selected.length;
+    const numRows &#x3D; this.dataSource.data.length;
+    return numSelected &#x3D;&#x3D;&#x3D; numRows;
+  }
+
+  /**
+   * Selects all rows if they are not all selected; otherwise clear selection.
+   */
+  toggleAllRows(): void {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.selection.select(...(this.dataSource.data as TableRow[]));
+    }
+    this.selectionChange.emit(this.selection.selected as T[]);
+  }
+
+  /**
+   * Toggle row selection
+   */
+  toggleRow(row: TableRow): void {
+    this.selection.toggle(row as TableRow);
+    this.selectionChange.emit(this.selection.selected as T[]);
+  }
+
+  /**
+   * Returns download menu options as an array of MenuOptionsType
+   * @param options Menu options
+   * @returns Menu options as an array of MenuOptionsType
+   */
+  getMenuOptions(options: string | number | boolean | MenuOptionsType[]): MenuOptionsType[] {
+    return options as MenuOptionsType[];
+  }
+
+  /** Emits a route as string when object label is clicked */
+  routeClick(url: string | number | boolean | (string | number | boolean)[]): void {
+    this.routeClicked.emit(url as string);
+  }
+
+  /** Emits the id of a row when its download button is hovered */
+  downloadButtonHover(id: string | number | boolean | (string | number | boolean)[]): void {
+    this.downloadHovered.emit(id as string);
+  }
+
+  /**
+   * Downloads a file from the url
+   * @param url File url
+   */
+  download(url: string): void {
+    saveAs(url, url.split(&#x27;/&#x27;).pop());
+  }
+
+  /** Scrolls to top of the table */
+  scrollToTop(): void {
+    this.scrollbar().scrollTo({ top: 0, duration: 0 });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;table&quot;&gt;
+  &lt;!-- TODO fix overflow fade
+    hraScrollOverflowFade
+    [scrollOverflowFadeOffset]&#x3D;&quot;40&quot;
+  --&gt;
+  &lt;ng-scrollbar
+    externalViewport&#x3D;&quot;.scroll-viewport&quot;
+    externalContentWrapper&#x3D;&quot;.content-wrapper&quot;
+    externalSpacer&#x3D;&quot;content-wrapper&quot;
+    asyncDetection&#x3D;&quot;auto&quot;
+    #scrollbar
+  &gt;
+    &lt;div class&#x3D;&quot;scroll-viewport&quot;&gt;
+      &lt;div class&#x3D;&quot;content-wrapper&quot;&gt;
+        &lt;table
+          mat-table
+          matSort
+          [dataSource]&#x3D;&quot;dataSource&quot;
+          [matSortDisabled]&#x3D;&quot;!enableSort()&quot;
+          [class.vertical-divider]&#x3D;&quot;verticalDividers()&quot;
+          aria-label&#x3D;&quot;Table with sort function&quot;
+        &gt;
+          @let templates &#x3D; { text, numeric, markdown, link, icon, menu };
+
+          &lt;!-- Selection Column (if enabled) --&gt;
+          @if (enableRowSelection()) {
+            &lt;ng-container hraFeature&#x3D;&quot;select&quot; matColumnDef&#x3D;&quot;select&quot;&gt;
+              @if (!hideHeaders()) {
+                &lt;th mat-header-cell *matHeaderCellDef data-column-type&#x3D;&quot;checkbox&quot;&gt;
+                  &lt;mat-checkbox
+                    hraFeature&#x3D;&quot;toggle-all&quot;
+                    [hraClickEvent]&#x3D;&quot;{ checked: !(selection.hasValue() &amp;&amp; isAllSelected()) }&quot;
+                    [checked]&#x3D;&quot;selection.hasValue() &amp;&amp; isAllSelected()&quot;
+                    [indeterminate]&#x3D;&quot;selection.hasValue() &amp;&amp; !isAllSelected()&quot;
+                    (change)&#x3D;&quot;toggleAllRows()&quot;
+                    disableRipple
+                    hraPlainTooltip&#x3D;&quot;Hide all&quot;
+                    aria-label&#x3D;&quot;Hide all&quot;
+                  &gt;
+                  &lt;/mat-checkbox&gt;
+                &lt;/th&gt;
+              }
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; data-column-type&#x3D;&quot;checkbox&quot;&gt;
+                &lt;mat-checkbox
+                  hraFeature&#x3D;&quot;toggle&quot;
+                  [hraClickEvent]&#x3D;&quot;{ checked: selection.isSelected(element) }&quot;
+                  [checked]&#x3D;&quot;selection.isSelected(element)&quot;
+                  (click)&#x3D;&quot;$event.stopPropagation()&quot;
+                  (change)&#x3D;&quot;$event ? toggleRow(element) : null&quot;
+                  disableRipple
+                  hraPlainTooltip&#x3D;&quot;Hide&quot;
+                  aria-label&#x3D;&quot;Hide&quot;
+                &gt;
+                &lt;/mat-checkbox&gt;
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+          }
+
+          @for (column of _columns(); track column.column) {
+            @let type &#x3D; getColumnType(column).type;
+            @let template &#x3D; templates[type];
+            @let isTotalsLabelColumn &#x3D; enableRowSelection() ? $index &#x3D;&#x3D;&#x3D; 1 : $index &#x3D;&#x3D;&#x3D; 0;
+
+            &lt;ng-container [matColumnDef]&#x3D;&quot;column.column&quot;&gt;
+              @if (!hideHeaders()) {
+                &lt;th
+                  [hraFeature]&#x3D;&quot;&#x60;header-cell.${(column.label | slugify)}&#x60;&quot;
+                  hraClickEvent
+                  *matHeaderCellDef
+                  mat-header-cell
+                  mat-sort-header
+                  [attr.data-column-type]&#x3D;&quot;type&quot;
+                  [sortActionDescription]&#x3D;&quot;&#x60;Sort by ${column.label}&#x60;&quot;
+                &gt;
+                  {{ column.label }}
+                &lt;/th&gt;
+              }
+              &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; [attr.data-column-type]&#x3D;&quot;type&quot;&gt;
+                &lt;ng-container
+                  *ngTemplateOutlet&#x3D;&quot;template; context: { $implicit: element[column.column], element, column }&quot;
+                /&gt;
+              &lt;/td&gt;
+
+              &lt;!-- Total Footer --&gt;
+              &lt;td mat-footer-cell *matFooterCellDef [attr.data-column-type]&#x3D;&quot;type&quot;&gt;
+                @if (isTotalsLabelColumn) {
+                  &lt;span class&#x3D;&quot;total-label&quot;&gt; Total &lt;/span&gt;
+                } @else if (totals().get(column)) {
+                  &lt;span class&#x3D;&quot;numeric&quot;&gt;
+                    {{ totals().get(column) | number }}
+                  &lt;/span&gt;
+                }
+              &lt;/td&gt;
+            &lt;/ng-container&gt;
+          }
+
+          @if (!hideHeaders()) {
+            &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;columnIds(); sticky: true&quot;&gt;&lt;/tr&gt;
+          }
+          &lt;tr mat-row *matRowDef&#x3D;&quot;let row; let i &#x3D; index; columns: columnIds()&quot;&gt;&lt;/tr&gt;
+
+          @if (totals().size &gt; 0) {
+            &lt;tr mat-footer-row *matFooterRowDef&#x3D;&quot;columnIds(); sticky: true&quot;&gt;&lt;/tr&gt;
+          }
+        &lt;/table&gt;
+
+        &lt;ng-content /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/ng-scrollbar&gt;
+
+  &lt;ng-template hraTextRowElement #text let-text&gt;
+    &lt;span class&#x3D;&quot;text&quot;&gt;{{ text }}&lt;/span&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template hraNumericRowElement #numeric let-value&gt;
+    &lt;span class&#x3D;&quot;numeric&quot;&gt;{{ value | number }}&lt;/span&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template hraMarkdownRowElement #markdown let-markdown&gt;
+    &lt;markdown class&#x3D;&quot;markdown&quot; [data]&#x3D;&quot;markdown&quot; /&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template hraIconRowElement #icon let-icon let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot;&gt;
+    &lt;hra-icon
+      hraFeature&#x3D;&quot;table-icon&quot;
+      [hraHoverEvent]&#x3D;&quot;{ value: element[column.type.tooltip] | slugify }&quot;
+      [svgIcon]&#x3D;&quot;icon&quot;
+      [hraPlainTooltip]&#x3D;&quot;element[column.type.tooltip]&quot;
+    &gt;&lt;/hra-icon&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template hraFeature&#x3D;&quot;menu-cell&quot; hraMenuButtonRowElement let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot; #menu&gt;
+    @let options &#x3D; element[column.type.options];
+    &lt;button
+      hraFeature&#x3D;&quot;download&quot;
+      hraClickEvent
+      mat-icon-button
+      [matMenuTriggerFor]&#x3D;&quot;menuOptions&quot;
+      [hraPlainTooltip]&#x3D;&quot;column.type.tooltip&quot;
+      (mouseover)&#x3D;&quot;downloadButtonHover(element[&#x27;id&#x27;])&quot;
+      (focus)&#x3D;&quot;downloadButtonHover(element[&#x27;id&#x27;])&quot;
+      #trigger&#x3D;&quot;matMenuTrigger&quot;
+    &gt;
+      &lt;hra-icon [fontIcon]&#x3D;&quot;column.type.icon&quot;&gt;&lt;/hra-icon&gt;
+    &lt;/button&gt;
+
+    &lt;mat-menu hraFeature&#x3D;&quot;download-options&quot; class&#x3D;&quot;table-menu&quot; #menuOptions&#x3D;&quot;matMenu&quot;&gt;
+      @for (option of getMenuOptions(options); track $index) {
+        &lt;a
+          [hraFeature]&#x3D;&quot;option.name | slugify&quot;
+          hraClickEvent
+          mat-menu-item
+          [attr.href]&#x3D;&quot;option.url&quot;
+          download
+          (click)&#x3D;&quot;
+            $event.preventDefault();
+            download(option.url!);
+            snackbar.open(&#x27;File downloaded&#x27;, &#x27;&#x27;, false, &#x27;start&#x27;, { duration: 5000 })
+          &quot;
+        &gt;
+          &lt;mat-icon&gt;{{ option.icon }}&lt;/mat-icon&gt;
+          &lt;div class&#x3D;&quot;option-text&quot;&gt;
+            &lt;span class&#x3D;&quot;option-name&quot;&gt;
+              {{ option.name }}
+            &lt;/span&gt;
+            &lt;span class&#x3D;&quot;option-description&quot;&gt;
+              {{ option.description }}
+            &lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+      }
+    &lt;/mat-menu&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template hraFeature&#x3D;&quot;link-cell&quot; hraLinkRowElement #link let-label let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot;&gt;
+    @let url &#x3D; element[column.type.urlColumn];
+    @let isInternal &#x3D; column.type.internal;
+    @if (isInternal) {
+      &lt;a hraHyperlink class&#x3D;&quot;link internal&quot; tabindex&#x3D;&quot;0&quot; (keyup)&#x3D;&quot;routeClick(url)&quot; (click)&#x3D;&quot;routeClick(url)&quot;&gt;
+        {{ label }}
+      &lt;/a&gt;
+    } @else {
+      &lt;a hraHyperlink class&#x3D;&quot;link&quot; [attr.href]&#x3D;&quot;url&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;
+        {{ label }}
+      &lt;/a&gt;
+    }
+  &lt;/ng-template&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>table.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
+@use &#x27;../../../../styles/utils&#x27;;
+@use &#x27;../../../../styles/vars&#x27;;
+
+:host {
+  display: block;
+  overflow: hidden;
+  height: 100%;
+  border: 0.0625rem solid vars.$outline;
+  border-radius: 0.5rem;
+
+  // Position scrollbar to start after header (only when headers are visible)
+  &amp;:has(tr[mat-header-row]) ng-scrollbar {
+    ::ng-deep scrollbar-y {
+      top: 2.5rem;
+      height: calc(100% - 2.5rem);
+
+      .ng-scrollbar-sticky {
+        top: 2.5rem;
+      }
+    }
+  }
+
+  .vertical-divider th:not(:first-child),
+  .vertical-divider td:not(:first-child) {
+    border-left: 1px solid vars.$outline;
+  }
+
+  @include mat.table-overrides(
+    (
+      background-color: transparent,
+
+      header-container-height: 2.5rem,
+      header-headline-color: vars.$secondary,
+      header-headline-font: vars.$label-medium-font,
+      header-headline-line-height: vars.$label-medium-line-height,
+      header-headline-size: vars.$label-medium-size,
+      header-headline-tracking: vars.$label-medium-tracking,
+      header-headline-weight: vars.$label-medium-weight,
+
+      footer-container-height: 2.5rem,
+      footer-supporting-text-font: vars.$label-medium-font,
+      footer-supporting-text-line-height: vars.$label-medium-line-height,
+      footer-supporting-text-size: vars.$label-medium-size,
+      footer-supporting-text-tracking: vars.$label-medium-tracking,
+      footer-supporting-text-weight: vars.$label-medium-weight,
+
+      row-item-container-height: 2.5rem,
+      row-item-label-text-color: vars.$primary,
+      row-item-label-text-font: vars.$label-medium-font,
+      row-item-label-text-line-height: vars.$label-medium-line-height,
+      row-item-label-text-size: vars.$label-medium-size,
+      row-item-label-text-tracking: vars.$label-medium-tracking,
+      row-item-label-text-weight: vars.$label-medium-weight,
+      row-item-outline-width: 0px,
+    )
+  );
+
+  @include mat.sort-overrides(
+    (
+      arrow-color: vars.$secondary,
+    )
+  );
+
+  th[mat-sort-header].cdk-focused,
+  .cdk-keyboard-focused {
+    position: relative;
+    background-color: none;
+
+    // Use a pseudo element since we still want a straight border on the th
+    &amp;::before {
+      content: &#x27;&#x27;;
+      position: absolute;
+      inset: 0;
+      border-radius: 0.25rem;
+      z-index: -1;
+      background-color: utils.with-alpha(vars.$secondary, 12%);
+    }
+
+    ::ng-deep .mat-focus-indicator {
+      border-bottom: none !important;
+    }
+  }
+
+  th[mat-sort-header]:hover {
+    .mat-sort-header-arrow {
+      color: vars.$outline;
+    }
+  }
+
+  th[mat-sort-header] {
+    ::ng-deep .mat-sort-header-arrow {
+      color: vars.$secondary;
+    }
+  }
+
+  ng-scrollbar {
+    height: 100%;
+    overflow: hidden;
+
+    ::ng-deep .ng-scroll-viewport {
+      max-height: var(--hra-table-max-height);
+    }
+  }
+
+  th[data-column-type&#x3D;&#x27;numeric&#x27;],
+  td[data-column-type&#x3D;&#x27;numeric&#x27;] {
+    text-align: right;
+  }
+
+  th[data-column-type&#x3D;&#x27;numeric&#x27;] ::ng-deep .mat-sort-header-container {
+    justify-content: end;
+  }
+
+  th[data-column-type&#x3D;&#x27;checkbox&#x27;],
+  td[data-column-type&#x3D;&#x27;checkbox&#x27;] {
+    padding: 0;
+    text-align: center;
+    max-height: 2.0625rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &amp;.sortable {
+    .numeric {
+      margin-right: 1.125rem;
+    }
+  }
+
+  markdown ::ng-deep {
+    p:first-child {
+      margin-top: 0.5rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &amp;.hra-table-style-basic {
+    ::ng-deep thead {
+      background-color: vars.$on-primary;
+    }
+  }
+
+  &amp;.hra-table-style-divider,
+  &amp;.hra-table-style-alternating {
+    @include mat.table-overrides(
+      (
+        background-color: vars.$on-primary,
+      )
+    );
+
+    ng-scrollbar {
+      --scrollbar-offset: 4;
+    }
+
+    ::ng-deep thead {
+      background-color: vars.$surface-dim;
+
+      th {
+        border-bottom: 0.0625rem solid vars.$outline;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        vertical-align: bottom;
+      }
+    }
+
+    ::ng-deep tbody {
+      td {
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+      }
+    }
+
+    ::ng-deep tfoot {
+      background-color: vars.$surface-dim;
+
+      td {
+        color: vars.$secondary;
+        font-weight: 500;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-top: 0.0625rem solid vars.$outline;
+      }
+    }
+  }
+
+  &amp;.hra-table-style-divider {
+    @include mat.table-overrides(
+      (
+        row-item-outline-color: vars.$outline-variant,
+        row-item-outline-width: 0.0625rem,
+      )
+    );
+  }
+
+  &amp;.hra-table-style-alternating {
+    ::ng-deep tbody tr:nth-child(even) {
+      background-color: vars.$surface-container;
+    }
+  }
+
+  .link.internal {
+    color: vars.$on-tertiary-fixed;
+    cursor: pointer;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="table">  <!-- TODO fix overflow fade    hraScrollOverflowFade    [scrollOverflowFadeOffset]="40"  -->  <ng-scrollbar    externalViewport=".scroll-viewport"    externalContentWrapper=".content-wrapper"    externalSpacer="content-wrapper"    asyncDetection="auto"    #scrollbar  >    <div class="scroll-viewport">      <div class="content-wrapper">        <table          mat-table          matSort          [dataSource]="dataSource"          [matSortDisabled]="!enableSort()"          [class.vertical-divider]="verticalDividers()"          aria-label="Table with sort function"        >          @let templates = { text, numeric, markdown, link, icon, menu };          <!-- Selection Column (if enabled) -->          @if (enableRowSelection()) {            <ng-container hraFeature="select" matColumnDef="select">              @if (!hideHeaders()) {                <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">                  <mat-checkbox                    hraFeature="toggle-all"                    [hraClickEvent]="{ checked: !(selection.hasValue() && isAllSelected()) }"                    [checked]="selection.hasValue() && isAllSelected()"                    [indeterminate]="selection.hasValue() && !isAllSelected()"                    (change)="toggleAllRows()"                    disableRipple                    hraPlainTooltip="Hide all"                    aria-label="Hide all"                  >                  </mat-checkbox>                </th>              }              <td mat-cell *matCellDef="let element" data-column-type="checkbox">                <mat-checkbox                  hraFeature="toggle"                  [hraClickEvent]="{ checked: selection.isSelected(element) }"                  [checked]="selection.isSelected(element)"                  (click)="$event.stopPropagation()"                  (change)="$event ? toggleRow(element) : null"                  disableRipple                  hraPlainTooltip="Hide"                  aria-label="Hide"                >                </mat-checkbox>              </td>            </ng-container>          }          @for (column of _columns(); track column.column) {            @let type = getColumnType(column).type;            @let template = templates[type];            @let isTotalsLabelColumn = enableRowSelection() ? $index === 1 : $index === 0;            <ng-container [matColumnDef]="column.column">              @if (!hideHeaders()) {                <th                  [hraFeature]="`header-cell.${(column.label | slugify)}`"                  hraClickEvent                  *matHeaderCellDef                  mat-header-cell                  mat-sort-header                  [attr.data-column-type]="type"                  [sortActionDescription]="`Sort by ${column.label}`"                >                  {{ column.label }}                </th>              }              <td mat-cell *matCellDef="let element" [attr.data-column-type]="type">                <ng-container                  *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"                />              </td>              <!-- Total Footer -->              <td mat-footer-cell *matFooterCellDef [attr.data-column-type]="type">                @if (isTotalsLabelColumn) {                  <span class="total-label"> Total </span>                } @else if (totals().get(column)) {                  <span class="numeric">                    {{ totals().get(column) | number }}                  </span>                }              </td>            </ng-container>          }          @if (!hideHeaders()) {            <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>          }          <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>          @if (totals().size > 0) {            <tr mat-footer-row *matFooterRowDef="columnIds(); sticky: true"></tr>          }        </table>        <ng-content />      </div>    </div>  </ng-scrollbar>  <ng-template hraTextRowElement #text let-text>    <span class="text">{{ text }}</span>  </ng-template>  <ng-template hraNumericRowElement #numeric let-value>    <span class="numeric">{{ value | number }}</span>  </ng-template>  <ng-template hraMarkdownRowElement #markdown let-markdown>    <markdown class="markdown" [data]="markdown" />  </ng-template>  <ng-template hraIconRowElement #icon let-icon let-column="column" let-element="element">    <hra-icon      hraFeature="table-icon"      [hraHoverEvent]="{ value: element[column.type.tooltip] | slugify }"      [svgIcon]="icon"      [hraPlainTooltip]="element[column.type.tooltip]"    ></hra-icon>  </ng-template>  <ng-template hraFeature="menu-cell" hraMenuButtonRowElement let-column="column" let-element="element" #menu>    @let options = element[column.type.options];    <button      hraFeature="download"      hraClickEvent      mat-icon-button      [matMenuTriggerFor]="menuOptions"      [hraPlainTooltip]="column.type.tooltip"      (mouseover)="downloadButtonHover(element[\'id\'])"      (focus)="downloadButtonHover(element[\'id\'])"      #trigger="matMenuTrigger"    >      <hra-icon [fontIcon]="column.type.icon"></hra-icon>    </button>    <mat-menu hraFeature="download-options" class="table-menu" #menuOptions="matMenu">      @for (option of getMenuOptions(options); track $index) {        <a          [hraFeature]="option.name | slugify"          hraClickEvent          mat-menu-item          [attr.href]="option.url"          download          (click)="            $event.preventDefault();            download(option.url!);            snackbar.open(\'File downloaded\', \'\', false, \'start\', { duration: 5000 })          "        >          <mat-icon>{{ option.icon }}</mat-icon>          <div class="option-text">            <span class="option-name">              {{ option.name }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>  </ng-template>  <ng-template hraFeature="link-cell" hraLinkRowElement #link let-label let-column="column" let-element="element">    @let url = element[column.type.urlColumn];    @let isInternal = column.type.internal;    @if (isInternal) {      <a hraHyperlink class="link internal" tabindex="0" (keyup)="routeClick(url)" (click)="routeClick(url)">        {{ label }}      </a>    } @else {      <a hraHyperlink class="link" [attr.href]="url" target="_blank" rel="noopener noreferrer">        {{ label }}      </a>    }  </ng-template></ng-container></div>'
+    var COMPONENTS = [{'name': 'ActionCardActionComponent', 'selector': 'hra-action-card-action'},{'name': 'ActionCardComponent', 'selector': 'hra-action-card'},{'name': 'ApiCommandComponent', 'selector': 'hra-api-command'},{'name': 'AppLabelComponent', 'selector': 'hra-app-label'},{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BottomSheetComponent', 'selector': 'hra-bottom-sheet'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'hra-button'},{'name': 'CardMenuComponent', 'selector': 'hra-card-menu'},{'name': 'CategoriesComponent', 'selector': 'hra-categories'},{'name': 'CodeBlockComponent', 'selector': 'hra-code-block'},{'name': 'CodeBlockGlobalStylesComponent', 'selector': 'hra-code-block-global-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ConsentBannerComponent', 'selector': 'hra-consent-banner'},{'name': 'ContentPageComponent', 'selector': 'hra-content-page'},{'name': 'CopyableUrlContainerComponent', 'selector': 'hra-copyable-url-container'},{'name': 'CountCardComponent', 'selector': 'hra-count-card'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DangerMessageIndicatorComponent', 'selector': 'hra-danger-message-indicator'},{'name': 'DataViewerComponent', 'selector': 'hra-data-viewer'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FlatCardActionsComponent', 'selector': 'hra-flat-card-actions'},{'name': 'FlatCardComponent', 'selector': 'hra-flat-card'},{'name': 'FlexContainerComponent', 'selector': 'hra-flex-container'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HelpButtonComponent', 'selector': 'hra-help-button'},{'name': 'HraYoutubePlayerComponent', 'selector': 'hra-youtube-player'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconComponent', 'selector': 'hra-icon'},{'name': 'ImageComponent', 'selector': 'hra-image'},{'name': 'InfoMessageIndicatorComponent', 'selector': 'hra-info-message-indicator'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'MarkdownComponent', 'selector': 'hra-markdown'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavigationCategoryComponent', 'selector': 'hra-navigation-category'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NavigationItemComponent', 'selector': 'hra-navigation-item'},{'name': 'NotFoundPageComponent', 'selector': 'hra-not-found-page'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'PageLabelComponent', 'selector': 'hra-page-label'},{'name': 'PageSectionComponent', 'selector': 'hra-page-section'},{'name': 'PlainTooltipStylesComponent', 'selector': 'hra-plain-tooltip-styles'},{'name': 'PrivacyPreferencesComponent', 'selector': 'hra-privacy-preferences'},{'name': 'ProfileCardComponent', 'selector': 'hra-profile-card'},{'name': 'ProgressSpinnerComponent', 'selector': 'hra-progress-spinner'},{'name': 'ResultsIndicatorComponent', 'selector': 'hra-results-indicator'},{'name': 'RichTooltipActionsComponent', 'selector': 'hra-rich-tooltip-actions'},{'name': 'RichTooltipContainerComponent', 'selector': 'hra-rich-tooltip-container'},{'name': 'RichTooltipContentComponent', 'selector': 'hra-rich-tooltip-content'},{'name': 'RichTooltipTaglineComponent', 'selector': 'hra-rich-tooltip-tagline'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SectionLinkComponent', 'selector': 'h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
+    h4[hra-section-link], h5[hra-section-link], h6[hra-section-link]'},{'name': 'ServerErrorPageComponent', 'selector': 'hra-server-error-page'},{'name': 'SiteNavigationComponent', 'selector': 'hra-site-navigation'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableComponent', 'selector': 'hra-table'},{'name': 'TableOfContentsComponent', 'selector': 'hra-table-of-contents'},{'name': 'TableOfContentsDemoComponent', 'selector': 'hra-table-of-contents-demo'},{'name': 'TableOfContentsLayoutComponent', 'selector': 'hra-table-of-contents-layout'},{'name': 'TableOfContentsLayoutDemoComponent', 'selector': 'hra-table-of-contents-layout-demo'},{'name': 'TableOfContentsLayoutHeaderComponent', 'selector': 'hra-table-of-contents-layout-header'},{'name': 'TextHyperlinkComponent', 'selector': 'hra-text-hyperlink'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'UiSectionComponent', 'selector': 'hra-ui-section'},{'name': 'VersionedDataTableComponent', 'selector': 'hra-versioned-data-table'},{'name': 'ViewerCardComponent', 'selector': 'hra-viewer-card'},{'name': 'ViewerMenuComponent', 'selector': 'hra-viewer-menu'},{'name': 'VisualButtonComponent', 'selector': 'hra-visual-button'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
+    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'IconRowElementDirective', 'selector': 'ng-template[hraIconRowElement]'},{'name': 'LinkRowElementDirective', 'selector': 'ng-template[hraLinkRowElement]'},{'name': 'MarkdownRowElementDirective', 'selector': 'ng-template[hraMarkdownRowElement]'},{'name': 'MenuButtonRowElementDirective', 'selector': 'ng-template[hraMenuButtonRowElement]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'NumericRowElementDirective', 'selector': 'ng-template[hraNumericRowElement]'},{'name': 'PlainTooltipDirective', 'selector': '[hraPlainTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'RichTooltipCloseDirective', 'selector': '[hraRichTooltipClose]'},{'name': 'RichTooltipContextDirective', 'selector': 'ng-template[hraRichTooltipContext]'},{'name': 'RichTooltipDirective', 'selector': '[hraRichTooltip]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TextRowElementDirective', 'selector': 'ng-template[hraTextRowElement]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
+    var ACTUAL_COMPONENT = {'name': 'TableComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TableComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

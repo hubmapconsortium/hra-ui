@@ -1,0 +1,1116 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-organ-info</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-organ-info</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  GlobalConfig</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/app.component.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Body ui config</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#asctbUrl" 
+>
+                                            asctbUrl
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#donorLabel" 
+>
+                                            donorLabel
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#euiUrl" 
+>
+                                            euiUrl
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#highlightProviders" 
+>
+                                            highlightProviders
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#hraPortalUrl" 
+>
+                                            hraPortalUrl
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#onlineCourseUrl" 
+>
+                                            onlineCourseUrl
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#organIri" 
+>
+                                            organIri
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#paperUrl" 
+>
+                                            paperUrl
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#ruiUrl" 
+>
+                                            ruiUrl
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#sex" 
+>
+                                            sex
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#side" 
+>
+                                            side
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="asctbUrl"></a>
+                                        <span class="name "><b>asctbUrl</b>
+                                            <a href="#asctbUrl">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>asctbUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Asctb app url</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="donorLabel"></a>
+                                        <span class="name "><b>donorLabel</b>
+                                            <a href="#donorLabel">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>donorLabel:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Donor label</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="euiUrl"></a>
+                                        <span class="name "><b>euiUrl</b>
+                                            <a href="#euiUrl">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>euiUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Eui app url</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="highlightProviders"></a>
+                                        <span class="name "><b>highlightProviders</b>
+                                            <a href="#highlightProviders">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>highlightProviders:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Highlight</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="hraPortalUrl"></a>
+                                        <span class="name "><b>hraPortalUrl</b>
+                                            <a href="#hraPortalUrl">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>hraPortalUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Hra portal url</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="onlineCourseUrl"></a>
+                                        <span class="name "><b>onlineCourseUrl</b>
+                                            <a href="#onlineCourseUrl">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>onlineCourseUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Course url</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="organIri"></a>
+                                        <span class="name "><b>organIri</b>
+                                            <a href="#organIri">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>organIri:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Organ iri</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="paperUrl"></a>
+                                        <span class="name "><b>paperUrl</b>
+                                            <a href="#paperUrl">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>paperUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Paper url</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="ruiUrl"></a>
+                                        <span class="name "><b>ruiUrl</b>
+                                            <a href="#ruiUrl">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>ruiUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Rui app url</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="sex"></a>
+                                        <span class="name "><b>sex</b>
+                                            <a href="#sex">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>sex:         <code><a href="../miscellaneous/typealiases.html#Sex" target="_self" >FilterSexEnum</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Sex" target="_self" >FilterSexEnum</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Model sex</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="side"></a>
+                                        <span class="name "><b>side</b>
+                                            <a href="#side">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>side:         <code><a href="../miscellaneous/typealiases.html#Side" target="_self" >Side</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Side" target="_self" >Side</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Organ side</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  output,
+  untracked,
+  viewChild,
+} from &#x27;@angular/core&#x27;;
+import { rxResource } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { MatIconButton } from &#x27;@angular/material/button&#x27;;
+import { MatButtonToggle, MatButtonToggleGroup } from &#x27;@angular/material/button-toggle&#x27;;
+import { MatDivider } from &#x27;@angular/material/divider&#x27;;
+import { MatIcon } from &#x27;@angular/material/icon&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode } from &#x27;@hra-api/ng-client&#x27;;
+import { BaseApplicationComponent } from &#x27;@hra-ui/application&#x27;;
+import { HraCommonModule, monitorHeight } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { IconComponent } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { ProgressSpinnerComponent } from &#x27;@hra-ui/design-system/indicators/progress-spinner&#x27;;
+import { TableColumn, TableComponent } from &#x27;@hra-ui/design-system/table&#x27;;
+import { NodeClickEvent } from &#x27;ccf-body-ui&#x27;;
+import { GlobalConfigState, OrganInfo, sexFromString } from &#x27;ccf-shared&#x27;;
+import { of } from &#x27;rxjs&#x27;;
+import { Side } from &#x27;./app-web-component.component&#x27;;
+import { OrganComponent } from &#x27;./components/organ/organ.component&#x27;;
+import { OrganLookupService } from &#x27;./services/organ-lookup/organ-lookup.service&#x27;;
+
+/** Body ui config */
+interface GlobalConfig {
+  /** Organ iri */
+  organIri?: string;
+  /** Organ side */
+  side?: Side;
+  /** Model sex */
+  sex?: FilterSexEnum;
+  /** Highlight */
+  highlightProviders?: string[];
+  /** Donor label */
+  donorLabel?: string;
+  /** Rui app url */
+  ruiUrl?: string;
+  /** Eui app url */
+  euiUrl?: string;
+  /** Asctb app url */
+  asctbUrl?: string;
+  /** Hra portal url */
+  hraPortalUrl?: string;
+  /** Course url */
+  onlineCourseUrl?: string;
+  /** Paper url */
+  paperUrl?: string;
+}
+
+/** Empty scene object */
+const EMPTY_SCENE &#x3D; [{ color: [0, 0, 0, 0], opacity: 0.001 }] as SpatialSceneNode[];
+
+/**
+ * Gets the sex of the organ.
+ * @param organ Organ Spatial Entity
+ * @returns Sex of the organ
+ */
+function getOrganSex(organ: SpatialEntity | undefined): FilterSexEnum | undefined {
+  return organ?.sex !&#x3D;&#x3D; undefined ? sexFromString(organ.sex) : undefined;
+}
+
+/**
+ * Normalizes stats labels for the table.
+ * @param stats Stats Data
+ * @param label Label
+ * @returns Normalized stats labels
+ */
+function normalizeStatLabels(stats: AggregateCount[], label?: string): AggregateCount[] {
+  if (label &#x3D;&#x3D;&#x3D; undefined) {
+    return stats;
+  }
+
+  return stats.map((stat) &#x3D;&gt; ({ ...stat, label: stat.label &#x3D;&#x3D;&#x3D; &#x27;Donors&#x27; ? label : stat.label }));
+}
+
+/** Root component */
+@Component({
+  selector: &#x27;ccf-root&#x27;,
+  imports: [
+    HraCommonModule,
+    OrganComponent,
+    IconComponent,
+    MatIcon,
+    MatIconButton,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    ButtonsModule,
+    TableComponent,
+    MatMenuModule,
+    MatDivider,
+    ProgressSpinnerComponent,
+  ],
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrls: [&#x27;./app.component.scss&#x27;],
+  host: {
+    class: &#x27;hra-app&#x27;,
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AppComponent extends BaseApplicationComponent {
+  /** Emits when the user switches the model sex */
+  readonly sexChange &#x3D; output&lt;&#x27;Male&#x27; | &#x27;Female&#x27;&gt;();
+
+  /** Emits when the user switches organ side */
+  readonly sideChange &#x3D; output&lt;&#x27;Left&#x27; | &#x27;Right&#x27;&gt;();
+
+  /** Emits when the user clicks a node */
+  readonly nodeClicked &#x3D; output&lt;NodeClickEvent&gt;();
+
+  /** Global Configuration State */
+  private readonly configState &#x3D; inject&lt;GlobalConfigState&lt;GlobalConfig&gt;&gt;(GlobalConfigState);
+
+  /** Organ Lookup Service */
+  private readonly lookupService &#x3D; inject(OrganLookupService);
+
+  /** Organ IRI */
+  private readonly organIri &#x3D; this.configState.getOptionSignal(&#x27;organIri&#x27;);
+
+  /** Organ Sex */
+  protected readonly sex &#x3D; this.configState.getOptionSignal(&#x27;sex&#x27;);
+
+  /** Organ Side */
+  protected readonly side &#x3D; this.configState.getOptionSignal(&#x27;side&#x27;);
+
+  /** Donor Label */
+  private readonly donorLabel &#x3D; this.configState.getOptionSignal(&#x27;donorLabel&#x27;);
+
+  /** Providers */
+  private readonly providers &#x3D; this.configState.getOptionSignal(&#x27;highlightProviders&#x27;);
+
+  /** Organ Filters */
+  protected readonly filter &#x3D; computed(() &#x3D;&gt; ({ tmc: this.providers() ?? [] }));
+
+  /** Organ Info */
+  protected readonly organInfo &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      iri: this.organIri(),
+      sex: this.sex(),
+      side: this.side(),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { iri, sex, side } &#x3D; params.params;
+      if (iri &#x3D;&#x3D;&#x3D; undefined) {
+        return of(undefined);
+      }
+
+      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;], sex);
+      return info$;
+    },
+  });
+
+  /** Organ */
+  protected readonly organ &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      info: this.organInfo.value(),
+      sex: untracked(this.sex),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { info, sex } &#x3D; params.params;
+      if (info &#x3D;&#x3D;&#x3D; undefined) {
+        return of(undefined);
+      }
+
+      return this.lookupService.getOrgan(info, info.hasSex ? sex : undefined);
+    },
+  });
+
+  /** Organ Logo */
+  protected readonly organLogo &#x3D; computed(() &#x3D;&gt; {
+    const info &#x3D; this.organInfo.value();
+    return info &amp;&amp; &#x60;organ:${info.src.split(&#x27;:&#x27;)[1]}&#x60;;
+  });
+
+  /** Organ Scene */
+  protected readonly scene &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { organ, info } &#x3D; params.params;
+      if (organ &#x3D;&#x3D;&#x3D; undefined || info &#x3D;&#x3D;&#x3D; undefined) {
+        return of(EMPTY_SCENE);
+      }
+
+      return this.lookupService.getOrganScene(info, getOrganSex(organ));
+    },
+    defaultValue: EMPTY_SCENE,
+  });
+
+  /** Blocks */
+  protected readonly blocks &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { organ, info } &#x3D; params.params;
+      if (organ &#x3D;&#x3D;&#x3D; undefined || info &#x3D;&#x3D;&#x3D; undefined) {
+        return of([]);
+      }
+
+      return this.lookupService.getBlocks(info, getOrganSex(organ));
+    },
+    defaultValue: [],
+  });
+
+  /** Raw Statistics */
+  private readonly rawStats &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { organ, info } &#x3D; params.params;
+      if (organ &#x3D;&#x3D;&#x3D; undefined || info &#x3D;&#x3D;&#x3D; undefined) {
+        return of([]);
+      }
+
+      return this.lookupService.getOrganStats(info, getOrganSex(organ));
+    },
+    defaultValue: [],
+  });
+
+  /** Statistics */
+  protected readonly stats &#x3D; computed(() &#x3D;&gt; {
+    const rawStats &#x3D; this.rawStats.value();
+    const label &#x3D; this.donorLabel();
+    return normalizeStatLabels(rawStats, label);
+  });
+
+  /** Organ Stat Label */
+  protected readonly statsLabel &#x3D; computed(() &#x3D;&gt; {
+    return this.makeStatsLabel(this.organIri(), this.organInfo.value(), this.organ.value()?.sex);
+  });
+
+  /** Determines whether the data is still loading. */
+  protected readonly isLoading &#x3D; computed(() &#x3D;&gt; {
+    return this.organInfo.isLoading() || this.organ.isLoading() || this.scene.isLoading() || this.blocks.isLoading();
+  });
+
+  /** Table column definitions for the stats table */
+  tableColumns: TableColumn[] &#x3D; [
+    { column: &#x27;count&#x27;, label: &#x27;#total&#x27;, type: &#x27;numeric&#x27; },
+    { column: &#x27;label&#x27;, label: &#x27;Metadata type&#x27;, type: &#x27;text&#x27; },
+  ];
+
+  /** Reference to the information view container */
+  private readonly contentContainer &#x3D; viewChild.required&lt;ElementRef&lt;HTMLElement&gt;&gt;(&#x27;contentContainer&#x27;);
+
+  /** Height monitor for content container height used to update the height of Body UI container */
+  protected readonly contentHeightMonitor &#x3D; monitorHeight(this.contentContainer);
+
+  /** Initialize the app */
+  constructor() {
+    super({ analytics: false });
+  }
+
+  /**
+   * Apply latest changes to the global configuration state.
+   * @param key Key to update
+   * @param value New value
+   */
+  updateInput(key: string, value: unknown): void {
+    this.configState.patchConfig({ [key]: value });
+  }
+
+  /**
+   * Create a new label for the stats data.
+   * @param info Organ info
+   * @param sex Model sex
+   * @returns A label
+   */
+  private makeStatsLabel(iri: string | undefined, info: OrganInfo | undefined, sex?: string): string {
+    let parts: (string | undefined)[] &#x3D; [&#x60;Unknown IRI: ${iri}&#x60;];
+    if (info) {
+      // Use title cased side for a cleaner display
+      const side &#x3D; info.side ? info.side.charAt(0).toUpperCase() + info.side.slice(1) : undefined;
+      parts &#x3D; [sex, info.organ, side];
+    }
+    return parts.filter((seg) &#x3D;&gt; !!seg).join(&#x27;, &#x27;);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'GlobalConfig.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

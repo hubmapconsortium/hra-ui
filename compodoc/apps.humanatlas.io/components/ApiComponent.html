@@ -1,0 +1,1054 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ApiComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/api/api.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for HRA-API</p>
+<p>This component wraps the RapiDoc component and provides a server selector.
+The server selector allows the user to select a server from a list of available servers.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-api</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>ButtonsModule</code>
+                            <code>IconsModule</code>
+                                <code><a href="../components/ServerSelectorComponent.html" target="_self" >ServerSelectorComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./api.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./api.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedServer" >selectedServer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#servers" >servers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onBeforeTry" >onBeforeTry</a>
+                            </li>
+                            <li>
+                                <a href="#scrollTo" >scrollTo</a>
+                            </li>
+                            <li>
+                                <a href="#updateRapidoc" >updateRapidoc</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#logo" >logo</a>
+                            </li>
+                            <li>
+                                <a href="#serverId" >serverId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#serverId" >serverId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/pages/api/api.component.ts:89</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Component constructor</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logo"></a>
+                        <b>logo</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;product:api&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/api/api.component.ts:60</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Product api logo</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="serverId"></a>
+                        <b>serverId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/api/api.component.ts:65</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>model to handle serverId from resolver
+and change within the component</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="serverId"></a>
+                        <b>serverId</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/api/api.component.ts:65</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>model to handle serverId from resolver
+and change within the component</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onBeforeTry"></a>
+                    <span class="name">
+                        <span ><b>onBeforeTry</b></span>
+                        <a href="#onBeforeTry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onBeforeTry(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, beforeTry: ClickEventDirective)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/pages/api/api.component.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Tracking before-try in rapidoc for analytics</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>beforeTry</td>
+                                            <td>
+                                                        <code>ClickEventDirective</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollTo"></a>
+                    <span class="name">
+                        <span ><b>scrollTo</b></span>
+                        <a href="#scrollTo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scrollTo(element: HTMLElement)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/pages/api/api.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Scrolls the view to the API section.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>element</td>
+                                            <td>
+                                                        <code>HTMLElement</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>HTML Element to scroll to.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateRapidoc"></a>
+                    <span class="name">
+                        <span ><b>updateRapidoc</b></span>
+                        <a href="#updateRapidoc"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateRapidoc(server: <a href="../interfaces/Server.html" target="_self">Server</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/pages/api/api.component.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates the selected server in rapidoc with the selected server.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>server</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Server.html" target="_self" >Server</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Selected server</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedServer"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedServer</b></span>
+                        <a href="#selectedServer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    return this.servers.find((item) &#x3D;&gt; item.id &#x3D;&#x3D;&#x3D; this.serverId()) ?? this.servers[0];
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/api/api.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>stores the selected server</p>
+<ul>
+<li>used as a model for the selector and</li>
+<li>for the rapidoc configuration</li>
+</ul>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="servers"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>servers</b></span>
+                        <a href="#servers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>servers</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/pages/api/api.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>list of available servers</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  CUSTOM_ELEMENTS_SCHEMA,
+  effect,
+  ElementRef,
+  inject,
+  InjectionToken,
+  input,
+  model,
+  viewChild,
+} from &#x27;@angular/core&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { injectDocument } from &#x27;@hra-ui/common/injectors&#x27;;
+import { assetUrl } from &#x27;@hra-ui/common/url&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
+import &#x27;rapidoc&#x27;;
+import { ServerSelectorComponent } from &#x27;../../components/server-selector/server-selector.component&#x27;;
+import { servers } from &#x27;../../constants/server.constants&#x27;;
+import { Server } from &#x27;../../interfaces/server.interface&#x27;;
+import { ClickEventDirective } from &#x27;@hra-ui/common/analytics&#x27;;
+
+/**
+ * Custom injection token to lazy load the theme for Rapidoc.
+ */
+const RAPIDOC_STYLES &#x3D; new InjectionToken&lt;void&gt;(&#x27;Rapidoc styles&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: loadRapidocStyles,
+});
+
+/**
+ * Factory function that loads the Rapidoc theme when component is initialized.
+ */
+function loadRapidocStyles(): void {
+  const document &#x3D; injectDocument();
+  const el &#x3D; document.createElement(&#x27;link&#x27;);
+  el.rel &#x3D; &#x27;stylesheet&#x27;;
+  el.href &#x3D; assetUrl(&#x27;rapidoc-theme.css&#x27;)();
+  document.head.appendChild(el);
+}
+
+/**
+ * Component for HRA-API
+ *
+ * This component wraps the RapiDoc component and provides a server selector.
+ * The server selector allows the user to select a server from a list of available servers.
+ */
+@Component({
+  selector: &#x27;hra-api&#x27;,
+  imports: [HraCommonModule, ButtonsModule, IconsModule, ServerSelectorComponent],
+  templateUrl: &#x27;./api.component.html&#x27;,
+  styleUrl: &#x27;./api.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class ApiComponent {
+  /** Product api logo*/
+  readonly logo &#x3D; input&lt;string&gt;(&#x27;product:api&#x27;);
+
+  /** model to handle serverId from resolver
+   * and change within the component
+   */
+  readonly serverId &#x3D; model(&#x27;&#x27;);
+
+  /**
+   * list of available servers
+   */
+  protected readonly servers &#x3D; servers;
+
+  /**
+   * stores the selected server
+   * - used as a model for the selector and
+   * - for the rapidoc configuration
+   */
+  protected readonly selectedServer &#x3D; computed(() &#x3D;&gt; {
+    return this.servers.find((item) &#x3D;&gt; item.id &#x3D;&#x3D;&#x3D; this.serverId()) ?? this.servers[0];
+  });
+
+  /**
+   * Splash video element
+   */
+  private readonly videoElement &#x3D; viewChild.required&lt;ElementRef&lt;HTMLVideoElement&gt;&gt;(&#x27;video&#x27;);
+
+  /**
+   * rapidoc element captured using viewChild() query
+   */
+  private readonly rapidocElement &#x3D; viewChild.required&lt;ElementRef&gt;(&#x27;rapidoc&#x27;);
+
+  /**
+   * Component constructor
+   */
+  constructor() {
+    inject(RAPIDOC_STYLES);
+
+    effect(() &#x3D;&gt;
+      this.videoElement()
+        .nativeElement.play()
+        // Ignore exceptions
+        .catch(() &#x3D;&gt; undefined),
+    );
+  }
+
+  /**
+   * Updates the selected server in rapidoc with the selected server.
+   * @param server Selected server
+   */
+  updateRapidoc(server: Server) {
+    this.serverId.set(server.id);
+    this.rapidocElement()?.nativeElement.setApiServer(server.url);
+  }
+
+  /**
+   * Scrolls the view to the API section.
+   * @param element HTML Element to scroll to.
+   */
+  scrollTo(element: HTMLElement) {
+    element.scrollIntoView({ behavior: &#x27;smooth&#x27;, block: &#x27;start&#x27;, inline: &#x27;nearest&#x27; });
+  }
+
+  /** Tracking before-try in rapidoc for analytics */
+  onBeforeTry(event: any, beforeTry: ClickEventDirective) {
+    const request &#x3D; event.detail?.request;
+    const url &#x3D; request?.url || &#x27;&#x27;;
+    const endpoint &#x3D; url ? new URL(url).pathname : &#x27;unknown&#x27;;
+
+    beforeTry.logEvent(&#x27;click&#x27;, undefined, {
+      endpoint,
+      method: request?.method || &#x27;GET&#x27;,
+      server: this.selectedServer().id,
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;api&quot;&gt;
+  &lt;section class&#x3D;&quot;splash&quot;&gt;
+    &lt;div class&#x3D;&quot;splash-image&quot;&gt;
+      &lt;video autoplay muted loop playsinline [src]&#x3D;&quot;&#x27;videos/api-anim-v2.mp4&#x27; | assetUrl&quot; #video&gt;&lt;/video&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;splash-content&quot;&gt;
+      &lt;hra-icon class&#x3D;&quot;logo&quot; [svgIcon]&#x3D;&quot;logo()&quot; /&gt;
+      &lt;div class&#x3D;&quot;splash-title m&quot;&gt;HRA API&lt;/div&gt;
+      &lt;div class&#x3D;&quot;splash-description&quot;&gt;
+        This API provides programmatic access to data registered to the Human Reference Atlas.
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;splash-action&quot;&gt;
+        &lt;button
+          hraClickEvent
+          hraFeature&#x3D;&quot;scroll-down&quot;
+          mat-button
+          hraCtaButton
+          hraButtonVariant&#x3D;&quot;primary&quot;
+          (click)&#x3D;&quot;scrollTo(apiContainer)&quot;
+        &gt;
+          Use APIs
+          &lt;mat-icon iconPositionEnd&gt;arrow_forward&lt;/mat-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class&#x3D;&quot;rapidoc-container&quot; data-testid&#x3D;&quot;api-container&quot; #apiContainer&gt;
+    &lt;div class&#x3D;&quot;rapidoc-custom-header&quot;&gt;
+      &lt;div class&#x3D;&quot;title&quot;&gt;HRA API Directory&lt;/div&gt;
+      &lt;hra-server-selector
+        class&#x3D;&quot;server-select&quot;
+        [servers]&#x3D;&quot;servers&quot;
+        [selectedServer]&#x3D;&quot;selectedServer()&quot;
+        (selectedServerChange)&#x3D;&quot;updateRapidoc($event)&quot;
+      &gt;&lt;/hra-server-selector&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;rapidoc-embed&quot;&gt;
+      &lt;rapi-doc
+        hraClickEvent
+        hraFeature&#x3D;&quot;rapi-doc&quot;
+        #beforeTry&#x3D;&quot;hraClickEvent&quot;
+        hraClickEventTriggerOn&#x3D;&quot;none&quot;
+        (before-try)&#x3D;&quot;onBeforeTry($event, beforeTry)&quot;
+        #rapidoc
+        [attr.spec-url]&#x3D;&quot;selectedServer().spec&quot;
+        fill-request-fields-with-example&#x3D;&quot;false&quot;
+        show-header&#x3D;&quot;false&quot;
+        render-style&#x3D;&quot;view&quot;
+        layout&#x3D;&quot;column&quot;
+        allow-authentication&#x3D;&quot;false&quot;
+        theme&#x3D;&quot;light&quot;
+        text-color&#x3D;&quot;#201E3D&quot;
+        header-color&#x3D;&quot;#201E3D&quot;
+        primary-color&#x3D;&quot;#FF0043&quot;
+        css-file&#x3D;&quot;rapidoc-theme.css&quot;
+        css-classes&#x3D;&quot;rapidoc-hra-api-theme&quot;
+        show-info&#x3D;&quot;false&quot;
+        allow-server-selection&#x3D;&quot;false&quot;
+      &gt;
+      &lt;/rapi-doc&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="api">  <section class="splash">    <div class="splash-image">      <video autoplay muted loop playsinline [src]="\'videos/api-anim-v2.mp4\' | assetUrl" #video></video>    </div>    <div class="splash-content">      <hra-icon class="logo" [svgIcon]="logo()" />      <div class="splash-title m">HRA API</div>      <div class="splash-description">        This API provides programmatic access to data registered to the Human Reference Atlas.      </div>      <div class="splash-action">        <button          hraClickEvent          hraFeature="scroll-down"          mat-button          hraCtaButton          hraButtonVariant="primary"          (click)="scrollTo(apiContainer)"        >          Use APIs          <mat-icon iconPositionEnd>arrow_forward</mat-icon>        </button>      </div>    </div>  </section>  <section class="rapidoc-container" data-testid="api-container" #apiContainer>    <div class="rapidoc-custom-header">      <div class="title">HRA API Directory</div>      <hra-server-selector        class="server-select"        [servers]="servers"        [selectedServer]="selectedServer()"        (selectedServerChange)="updateRapidoc($event)"      ></hra-server-selector>    </div>    <div class="rapidoc-embed">      <rapi-doc        hraClickEvent        hraFeature="rapi-doc"        #beforeTry="hraClickEvent"        hraClickEventTriggerOn="none"        (before-try)="onBeforeTry($event, beforeTry)"        #rapidoc        [attr.spec-url]="selectedServer().spec"        fill-request-fields-with-example="false"        show-header="false"        render-style="view"        layout="column"        allow-authentication="false"        theme="light"        text-color="#201E3D"        header-color="#201E3D"        primary-color="#FF0043"        css-file="rapidoc-theme.css"        css-classes="rapidoc-hra-api-theme"        show-info="false"        allow-server-selection="false"      >      </rapi-doc>    </div>  </section></ng-container></div>'
+    var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ApiComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ApiComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

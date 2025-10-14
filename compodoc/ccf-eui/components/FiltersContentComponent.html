@@ -1,0 +1,1598 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-eui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-eui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FiltersContentComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/filters/filters-content/filters-content.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Contains components of the filters popup and handles changes in filter settings</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>MatFormFieldDefaultOptions</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ccf-filters-content</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatIconModule</code>
+                            <code>SpatialSearchListComponent</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatSelectModule</code>
+                            <code>ButtonsModule</code>
+                            <code>ScrollingModule</code>
+                                <code><a href="../components/DualSliderComponent.html" target="_self" >DualSliderComponent</a></code>
+                                <code><a href="../components/AutocompleteChipsFormComponent.html" target="_self" >AutocompleteChipsFormComponent</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./filters-content.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./filters-content.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ageMax" >ageMax</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ageMin" >ageMin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#bmiMax" >bmiMax</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#bmiMin" >bmiMin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#filterForm" >filterForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isEmpty" >isEmpty</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sexOptions" >sexOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#spatialFlowService" >spatialFlowService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#applyFilter" >applyFilter</a>
+                            </li>
+                            <li>
+                                <a href="#isSexOptionDisabled" >isSexOptionDisabled</a>
+                            </li>
+                            <li>
+                                <a href="#resetFilter" >resetFilter</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#consortiaOptions" >consortiaOptions</a>
+                            </li>
+                            <li>
+                                <a href="#filter" >filter</a>
+                            </li>
+                            <li>
+                                <a href="#providerOptions" >providerOptions</a>
+                            </li>
+                            <li>
+                                <a href="#spatialSearchItems" >spatialSearchItems</a>
+                            </li>
+                            <li>
+                                <a href="#technologyOptions" >technologyOptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#filter" >filter</a>
+                            </li>
+                            <li>
+                                <a href="#spatialSearchRemoved" >spatialSearchRemoved</a>
+                            </li>
+                            <li>
+                                <a href="#spatialSearchSelectionChange" >spatialSearchSelectionChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:120</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Initialize the filter</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="consortiaOptions"></a>
+                        <b>consortiaOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:68</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Consortia options</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filter"></a>
+                        <b>filter</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Filter</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current filter</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="providerOptions"></a>
+                        <b>providerOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:66</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provider options</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="spatialSearchItems"></a>
+                        <b>spatialSearchItems</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SpatialSearchFilterItem.html" target="_self" >SpatialSearchFilterItem[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:71</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Spatial search items</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="technologyOptions"></a>
+                        <b>technologyOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:64</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Technology options</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filter"></a>
+                        <b>filter</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Filter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current filter</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="spatialSearchRemoved"></a>
+                        <b>spatialSearchRemoved</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:75</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Spatial search removed</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="spatialSearchSelectionChange"></a>
+                        <b>spatialSearchSelectionChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SpatialSearchFilterItem.html" target="_self" >SpatialSearchFilterItem[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:73</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Spatial search selection change</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyFilter"></a>
+                    <span class="name">
+                        <span ><b>applyFilter</b></span>
+                        <a href="#applyFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>applyFilter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:138</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Applies the filter</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSexOptionDisabled"></a>
+                    <span class="name">
+                        <span ><b>isSexOptionDisabled</b></span>
+                        <a href="#isSexOptionDisabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSexOptionDisabled(option: FilterSexEnum)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Whether the specific option is disabled</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>option</td>
+                                            <td>
+                                                        <code>FilterSexEnum</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetFilter"></a>
+                    <span class="name">
+                        <span ><b>resetFilter</b></span>
+                        <a href="#resetFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetFilter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Reset the filter</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ageMax"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ageMax</b></span>
+                        <a href="#ageMax"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DEFAULT_FILTER_AGE_HIGH</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Age maximum</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ageMin"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ageMin</b></span>
+                        <a href="#ageMin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DEFAULT_FILTER_AGE_LOW</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Age minimum</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bmiMax"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>bmiMax</b></span>
+                        <a href="#bmiMax"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DEFAULT_FILTER_BMI_HIGH</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bmi maximum</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bmiMin"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>bmiMin</b></span>
+                        <a href="#bmiMin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DEFAULT_FILTER_BMI_LOW</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bmi minimum</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterForm"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>filterForm</b></span>
+                        <a href="#filterForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.nnfb.group({
+    sex: [DEFAULT_FILTER_SEX],
+    ageRange: [[DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH]],
+    bmiRange: [[DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH]],
+    technologies: [[] as string[]],
+    consortiums: [[] as string[]],
+    tmc: [[] as string[]],
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Filter form</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEmpty"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isEmpty</b></span>
+                        <a href="#isEmpty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(
+    () &#x3D;&gt; isFilterEmpty(this.formValue()) &amp;&amp; this.spatialSearchItems().length &#x3D;&#x3D;&#x3D; 0,
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the filter is empty</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sexOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sexOptions</b></span>
+                        <a href="#sexOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[FilterSexEnum.Both, FilterSexEnum.Female, FilterSexEnum.Male]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sex options</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spatialFlowService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>spatialFlowService</b></span>
+                        <a href="#spatialFlowService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SpatialSearchFlowService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/modules/filters/filters-content/filters-content.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Spatial search flow service</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, effect, inject, input, model, output } from &#x27;@angular/core&#x27;;
+import { toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { NonNullableFormBuilder, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldDefaultOptions,
+  MatFormFieldModule,
+} from &#x27;@angular/material/form-field&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { Filter, FilterSexEnum } from &#x27;@hra-api/ng-client&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { SpatialSearchListComponent } from &#x27;ccf-shared&#x27;;
+import { isEqual } from &#x27;lodash&#x27;;
+import {
+  DEFAULT_FILTER,
+  DEFAULT_FILTER_AGE_HIGH,
+  DEFAULT_FILTER_AGE_LOW,
+  DEFAULT_FILTER_BMI_HIGH,
+  DEFAULT_FILTER_BMI_LOW,
+  DEFAULT_FILTER_SEX,
+  isFilterEmpty,
+  normalizeFilter,
+} from &#x27;../../../core/store/data/data.state&#x27;;
+import { SpatialSearchFilterItem } from &#x27;../../../core/store/spatial-search-filter/spatial-search-filter.state&#x27;;
+import { SpatialSearchFlowService } from &#x27;../../../shared/services/spatial-search-flow.service&#x27;;
+import { AutocompleteChipsFormComponent } from &#x27;../autocomplete-chip-form/autocomplete-chips-form.component&#x27;;
+import { DualSliderComponent } from &#x27;../dual-slider/dual-slider.component&#x27;;
+
+/**
+ * Contains components of the filters popup and handles changes in filter settings
+ */
+@Component({
+  selector: &#x27;ccf-filters-content&#x27;,
+  templateUrl: &#x27;./filters-content.component.html&#x27;,
+  styleUrls: [&#x27;./filters-content.component.scss&#x27;],
+  imports: [
+    HraCommonModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    SpatialSearchListComponent,
+    MatFormFieldModule,
+    MatSelectModule,
+    ButtonsModule,
+    ScrollingModule,
+    DualSliderComponent,
+    AutocompleteChipsFormComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { subscriptSizing: &#x27;dynamic&#x27; } satisfies MatFormFieldDefaultOptions,
+    },
+  ],
+})
+export class FiltersContentComponent {
+  /** Current filter */
+  readonly filter &#x3D; model.required&lt;Filter&gt;();
+
+  /** Technology options */
+  readonly technologyOptions &#x3D; input.required&lt;string[]&gt;();
+  /** Provider options */
+  readonly providerOptions &#x3D; input.required&lt;string[]&gt;();
+  /** Consortia options */
+  readonly consortiaOptions &#x3D; input.required&lt;string[]&gt;();
+
+  /** Spatial search items */
+  readonly spatialSearchItems &#x3D; input.required&lt;SpatialSearchFilterItem[]&gt;();
+  /** Spatial search selection change */
+  readonly spatialSearchSelectionChange &#x3D; output&lt;SpatialSearchFilterItem[]&gt;();
+  /** Spatial search removed */
+  readonly spatialSearchRemoved &#x3D; output&lt;string&gt;();
+
+  /** Age minimum */
+  protected readonly ageMin &#x3D; DEFAULT_FILTER_AGE_LOW;
+  /** Age maximum */
+  protected readonly ageMax &#x3D; DEFAULT_FILTER_AGE_HIGH;
+  /** Bmi minimum */
+  protected readonly bmiMin &#x3D; DEFAULT_FILTER_BMI_LOW;
+  /** Bmi maximum */
+  protected readonly bmiMax &#x3D; DEFAULT_FILTER_BMI_HIGH;
+  /** Sex options */
+  protected readonly sexOptions &#x3D; [FilterSexEnum.Both, FilterSexEnum.Female, FilterSexEnum.Male];
+
+  /** Spatial search flow service */
+  protected readonly spatialFlowService &#x3D; inject(SpatialSearchFlowService);
+
+  /** Form builder */
+  private readonly nnfb &#x3D; inject(NonNullableFormBuilder);
+  /** Filter form */
+  protected filterForm &#x3D; this.nnfb.group({
+    sex: [DEFAULT_FILTER_SEX],
+    ageRange: [[DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH]],
+    bmiRange: [[DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH]],
+    technologies: [[] as string[]],
+    consortiums: [[] as string[]],
+    tmc: [[] as string[]],
+  });
+
+  /** Latest form value */
+  private readonly formValue &#x3D; toSignal(this.filterForm.valueChanges, { initialValue: DEFAULT_FILTER, equal: isEqual });
+  /** Selected spatial searches items */
+  private readonly selectedSpatialSearchItems &#x3D; computed(() &#x3D;&gt;
+    this.spatialSearchItems().filter((item) &#x3D;&gt; item.selected),
+  );
+  /** List of sexes for the selected spatial searches */
+  private readonly selectedSpatialSearchSexes &#x3D; computed(() &#x3D;&gt;
+    this.selectedSpatialSearchItems().map((item) &#x3D;&gt; item.sex),
+  );
+  /** Selected spatial searches */
+  private readonly selectedSpatialSearches &#x3D; computed(() &#x3D;&gt;
+    this.selectedSpatialSearchItems().map((item) &#x3D;&gt; item.search),
+  );
+  /** Whether the filter is empty */
+  protected readonly isEmpty &#x3D; computed(
+    () &#x3D;&gt; isFilterEmpty(this.formValue()) &amp;&amp; this.spatialSearchItems().length &#x3D;&#x3D;&#x3D; 0,
+  );
+
+  /** Initialize the filter */
+  constructor() {
+    effect(() &#x3D;&gt; {
+      const filter &#x3D; normalizeFilter(this.filter());
+      this.filterForm.patchValue(filter);
+    });
+
+    effect(() &#x3D;&gt; {
+      const currentSex &#x3D; this.filterForm.controls.sex.value;
+      if (this.isSexOptionDisabled(currentSex)) {
+        this.filterForm.patchValue({ sex: FilterSexEnum.Both });
+      }
+    });
+  }
+
+  /** Applies the filter */
+  applyFilter(): void {
+    this.filter.set({
+      ...this.filterForm.value,
+      spatialSearches: this.selectedSpatialSearches(),
+    });
+  }
+
+  /** Reset the filter */
+  resetFilter(): void {
+    this.filterForm.setValue({
+      sex: DEFAULT_FILTER_SEX,
+      ageRange: [DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH],
+      bmiRange: [DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH],
+      technologies: [],
+      consortiums: [],
+      tmc: [],
+    });
+    this.filterForm.markAsDirty();
+    this.spatialSearchItems().forEach((item) &#x3D;&gt; this.spatialSearchRemoved.emit(item.id));
+    this.spatialSearchSelectionChange.emit([]);
+  }
+
+  /** Whether the specific option is disabled */
+  isSexOptionDisabled(option: FilterSexEnum): boolean {
+    const selectedSexes &#x3D; this.selectedSpatialSearchSexes();
+    return option !&#x3D;&#x3D; FilterSexEnum.Both &amp;&amp; selectedSexes.length !&#x3D;&#x3D; 0 &amp;&amp; !selectedSexes.includes(option);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;filters&quot;&gt;
+  &lt;ng-scrollbar&gt;
+    &lt;form [formGroup]&#x3D;&quot;filterForm&quot;&gt;
+      &lt;div class&#x3D;&quot;input-container&quot;&gt;
+        &lt;div class&#x3D;&quot;section&quot;&gt;
+          &lt;div class&#x3D;&quot;section-header&quot;&gt;
+            &lt;div class&#x3D;&quot;section-title&quot;&gt;Demographics&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;patient-filters&quot; hraFeature&#x3D;&quot;donor&quot;&gt;
+            &lt;mat-form-field hraFeature&#x3D;&quot;sex&quot; class&#x3D;&quot;dropdown-form-field&quot;&gt;
+              &lt;mat-label&gt;Sex&lt;/mat-label&gt;
+              &lt;mat-select
+                hraClickEvent
+                disableOptionCentering&#x3D;&quot;true&quot;
+                panelClass&#x3D;&quot;options-container&quot;
+                disableRipple
+                formControlName&#x3D;&quot;sex&quot;
+              &gt;
+                @for (option of sexOptions; track option) {
+                  &lt;mat-option
+                    [hraFeature]&#x3D;&quot;option | slugify&quot;
+                    hraClickEvent
+                    class&#x3D;&quot;dropdown-option&quot;
+                    [value]&#x3D;&quot;option&quot;
+                    [disabled]&#x3D;&quot;isSexOptionDisabled(option)&quot;
+                  &gt;
+                    &lt;div&gt;{{ option }}&lt;/div&gt;
+                  &lt;/mat-option&gt;
+                }
+              &lt;/mat-select&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field hraFeature&#x3D;&quot;bmi&quot; class&#x3D;&quot;dropdown-form-field&quot;&gt;
+              &lt;mat-label&gt;BMI&lt;/mat-label&gt;
+              &lt;ccf-dual-slider formControlName&#x3D;&quot;bmiRange&quot; [min]&#x3D;&quot;bmiMin&quot; [max]&#x3D;&quot;bmiMax&quot; /&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field hraFeature&#x3D;&quot;age&quot; class&#x3D;&quot;dropdown-form-field&quot;&gt;
+              &lt;mat-label&gt;Age&lt;/mat-label&gt;
+              &lt;ccf-dual-slider formControlName&#x3D;&quot;ageRange&quot; [min]&#x3D;&quot;ageMin&quot; [max]&#x3D;&quot;ageMax&quot; /&gt;
+            &lt;/mat-form-field&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div hraFeature&#x3D;&quot;provenance&quot; class&#x3D;&quot;section&quot;&gt;
+          &lt;div class&#x3D;&quot;section-header&quot;&gt;
+            &lt;div class&#x3D;&quot;section-title&quot;&gt;Provenance&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;ccf-autocomplete-chips-form
+            hraFeature&#x3D;&quot;assays&quot;
+            class&#x3D;&quot;assay-form&quot;
+            label&#x3D;&quot;Assay Types&quot;
+            [filterOptions]&#x3D;&quot;technologyOptions()&quot;
+            [form]&#x3D;&quot;filterForm.controls.technologies&quot;
+          /&gt;
+
+          &lt;ccf-autocomplete-chips-form
+            hraFeature&#x3D;&quot;consortia&quot;
+            class&#x3D;&quot;consortia-form&quot;
+            label&#x3D;&quot;Consortia&quot;
+            [filterOptions]&#x3D;&quot;consortiaOptions()&quot;
+            [form]&#x3D;&quot;filterForm.controls.consortiums&quot;
+          /&gt;
+
+          &lt;ccf-autocomplete-chips-form
+            hraFeature&#x3D;&quot;tissue-providers&quot;
+            class&#x3D;&quot;providers-form&quot;
+            label&#x3D;&quot;Tissue Data Providers&quot;
+            [filterOptions]&#x3D;&quot;providerOptions()&quot;
+            [form]&#x3D;&quot;filterForm.controls.tmc&quot;
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div hraFeature&#x3D;&quot;spatial-search&quot; class&#x3D;&quot;section spatial-search&quot;&gt;
+          &lt;div class&#x3D;&quot;section-header&quot;&gt;
+            &lt;div class&#x3D;&quot;section-title&quot;&gt;Spatial Locations&lt;/div&gt;
+            &lt;button
+              hraFeature&#x3D;&quot;add&quot;
+              hraClickEvent&#x3D;&quot;&quot;
+              class&#x3D;&quot;run-spatial-search-button&quot;
+              mat-button
+              (click)&#x3D;&quot;spatialFlowService.startSpatialSearchFlow(false)&quot;
+            &gt;
+              Spatial Search
+              &lt;mat-icon&gt;add_circle&lt;/mat-icon&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;ccf-spatial-search-list
+            [items]&#x3D;&quot;spatialSearchItems()&quot;
+            (selectionChanged)&#x3D;&quot;spatialSearchSelectionChange.emit($event)&quot;
+            (itemRemoved)&#x3D;&quot;spatialSearchRemoved.emit($event.id)&quot;
+          /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/ng-scrollbar&gt;
+
+  &lt;div class&#x3D;&quot;button-container&quot;&gt;
+    &lt;button
+      hraFeature&#x3D;&quot;reset&quot;
+      hraClickEvent
+      mat-button
+      [disabled]&#x3D;&quot;filterForm.pristine &amp;&amp; isEmpty()&quot;
+      (click)&#x3D;&quot;resetFilter()&quot;
+    &gt;
+      Reset
+      &lt;mat-icon class&#x3D;&quot;reset icon&quot;&gt;reset_settings&lt;/mat-icon&gt;
+    &lt;/button&gt;
+    &lt;button
+      hraFeature&#x3D;&quot;apply&quot;
+      hraClickEvent
+      mat-flat-button
+      (click)&#x3D;&quot;applyFilter()&quot;
+      [disabled]&#x3D;&quot;filterForm.pristine || filterForm.invalid&quot;
+    &gt;
+      Apply
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./filters-content.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
+@use &#x27;vars&#x27;;
+
+:host {
+  display: grid;
+  grid-template-rows: auto 5.5rem;
+  grid-template-areas:
+    &#x27;form&#x27;
+    &#x27;buttons&#x27;;
+
+  @include mat.form-field-overrides(
+    (
+      filled-container-color: vars.$surface-container,
+    )
+  );
+
+  form {
+    grid-area: form;
+    overflow-y: auto;
+    width: 40.5rem;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    grid-area: inputs;
+  }
+
+  .section {
+    padding: 0 1.5rem;
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      height: 2.5rem;
+    }
+
+    .section-title {
+      font: vars.$label-large;
+      color: vars.$secondary;
+    }
+  }
+
+  .patient-filters {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .dropdown-form-field {
+    @include mat.form-field-overrides(
+      (
+        container-height: 3rem,
+        filled-with-label-container-padding-top: 1.25rem,
+        filled-with-label-container-padding-bottom: 0rem,
+      )
+    );
+
+    ::ng-deep .mdc-floating-label {
+      transform: translateY(-100%);
+
+      mat-label {
+        font: vars.$label-small;
+        letter-spacing: vars.$label-small-tracking;
+        color: vars.$primary-fixed;
+      }
+    }
+  }
+
+  .providers-form {
+    margin-bottom: 0;
+  }
+
+  .spatial-search {
+    .section-header {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .button-container {
+    grid-area: buttons;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid vars.$outline-variant;
+
+    button {
+      line-height: normal;
+    }
+  }
+}
+
+.dropdown-option {
+  font: vars.$label-medium !important;
+  min-height: 3rem !important;
+  outline: none !important;
+  @include mat.option-overrides(
+    (
+      label-text-color: vars.$primary,
+    )
+  );
+
+  &amp;.mdc-list-item--selected {
+    background-color: rgb(from vars.$tertiary r g b / 0.2) !important;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="filters">  <ng-scrollbar>    <form [formGroup]="filterForm">      <div class="input-container">        <div class="section">          <div class="section-header">            <div class="section-title">Demographics</div>          </div>          <div class="patient-filters" hraFeature="donor">            <mat-form-field hraFeature="sex" class="dropdown-form-field">              <mat-label>Sex</mat-label>              <mat-select                hraClickEvent                disableOptionCentering="true"                panelClass="options-container"                disableRipple                formControlName="sex"              >                @for (option of sexOptions; track option) {                  <mat-option                    [hraFeature]="option | slugify"                    hraClickEvent                    class="dropdown-option"                    [value]="option"                    [disabled]="isSexOptionDisabled(option)"                  >                    <div>{{ option }}</div>                  </mat-option>                }              </mat-select>            </mat-form-field>            <mat-form-field hraFeature="bmi" class="dropdown-form-field">              <mat-label>BMI</mat-label>              <ccf-dual-slider formControlName="bmiRange" [min]="bmiMin" [max]="bmiMax" />            </mat-form-field>            <mat-form-field hraFeature="age" class="dropdown-form-field">              <mat-label>Age</mat-label>              <ccf-dual-slider formControlName="ageRange" [min]="ageMin" [max]="ageMax" />            </mat-form-field>          </div>        </div>        <div hraFeature="provenance" class="section">          <div class="section-header">            <div class="section-title">Provenance</div>          </div>          <ccf-autocomplete-chips-form            hraFeature="assays"            class="assay-form"            label="Assay Types"            [filterOptions]="technologyOptions()"            [form]="filterForm.controls.technologies"          />          <ccf-autocomplete-chips-form            hraFeature="consortia"            class="consortia-form"            label="Consortia"            [filterOptions]="consortiaOptions()"            [form]="filterForm.controls.consortiums"          />          <ccf-autocomplete-chips-form            hraFeature="tissue-providers"            class="providers-form"            label="Tissue Data Providers"            [filterOptions]="providerOptions()"            [form]="filterForm.controls.tmc"          />        </div>        <div hraFeature="spatial-search" class="section spatial-search">          <div class="section-header">            <div class="section-title">Spatial Locations</div>            <button              hraFeature="add"              hraClickEvent=""              class="run-spatial-search-button"              mat-button              (click)="spatialFlowService.startSpatialSearchFlow(false)"            >              Spatial Search              <mat-icon>add_circle</mat-icon>            </button>          </div>          <ccf-spatial-search-list            [items]="spatialSearchItems()"            (selectionChanged)="spatialSearchSelectionChange.emit($event)"            (itemRemoved)="spatialSearchRemoved.emit($event.id)"          />        </div>      </div>    </form>  </ng-scrollbar>  <div class="button-container">    <button      hraFeature="reset"      hraClickEvent      mat-button      [disabled]="filterForm.pristine && isEmpty()"      (click)="resetFilter()"    >      Reset      <mat-icon class="reset icon">reset_settings</mat-icon>    </button>    <button      hraFeature="apply"      hraClickEvent      mat-flat-button      (click)="applyFilter()"      [disabled]="filterForm.pristine || filterForm.invalid"    >      Apply    </button>  </div></ng-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FiltersContentComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FiltersContentComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,589 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for cde-ui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for cde-ui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AppComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/app.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>App component for CDE</p>
+
+    </p>
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                <code>BaseApplicationComponent</code>
+    </p>
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>cde-root</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>RouterOutlet</code>
+                            <code>RouterModule</code>
+                            <code>MatIconModule</code>
+                            <code>NavigationModule</code>
+                            <code>ButtonsModule</code>
+                            <code>PlainTooltipDirective</code>
+                            <code>MatMenuModule</code>
+                            <code>MatDividerModule</code>
+                            <code>CommonModule</code>
+                            <code>HraCommonModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./app.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#crumbs" >crumbs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#header" >header</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/app.component.ts:51</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Initialize app</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crumbs"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>crumbs</b></span>
+                        <a href="#crumbs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    if (this.data()[&#x27;data&#x27;]) {
+      return this.data()[&#x27;crumbs&#x27;].concat([{ name: this.data()[&#x27;data&#x27;].metadata.sourceFileName }]);
+    }
+    return this.data()[&#x27;crumbs&#x27;];
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/app.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Breadcrumbs data (computed from above signal).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="header"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>header</b></span>
+                        <a href="#header"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.data()[&#x27;header&#x27;] as boolean | undefined)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/app.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Header visibility (whether to show header or not)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component, computed, inject } from &#x27;@angular/core&#x27;;
+import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { Router, RouterModule, RouterOutlet } from &#x27;@angular/router&#x27;;
+import { BaseApplicationComponent } from &#x27;@hra-ui/application&#x27;;
+import { HraCommonModule, routeData } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
+
+/**
+ * App component for CDE
+ */
+@Component({
+  selector: &#x27;cde-root&#x27;,
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    MatIconModule,
+    NavigationModule,
+    ButtonsModule,
+    PlainTooltipDirective,
+    MatMenuModule,
+    MatDividerModule,
+    CommonModule,
+    HraCommonModule,
+  ],
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrl: &#x27;./app.component.scss&#x27;,
+  host: {
+    class: &#x27;hra-app&#x27;,
+  },
+})
+export class AppComponent extends BaseApplicationComponent {
+  /**
+   * Route data of app component
+   */
+  private readonly data &#x3D; routeData();
+
+  /** Breadcrumbs data (computed from above signal). */
+  protected readonly crumbs &#x3D; computed(() &#x3D;&gt; {
+    if (this.data()[&#x27;data&#x27;]) {
+      return this.data()[&#x27;crumbs&#x27;].concat([{ name: this.data()[&#x27;data&#x27;].metadata.sourceFileName }]);
+    }
+    return this.data()[&#x27;crumbs&#x27;];
+  });
+
+  /** Header visibility (whether to show header or not) */
+  protected readonly header &#x3D; computed(() &#x3D;&gt; this.data()[&#x27;header&#x27;] as boolean | undefined);
+
+  /** Initialize app */
+  constructor() {
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
+    inject(Router).initialNavigation();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;cde-ui&quot;&gt;
+  @if (header() !&#x3D;&#x3D; false) {
+    &lt;hra-header baseUrl&#x3D;&quot;https://apps.humanatlas.io/cde/&quot; [breadcrumbs]&#x3D;&quot;crumbs()&quot; hraFeature&#x3D;&quot;header&quot;&gt;
+      &lt;a
+        mat-icon-button
+        [matMenuTriggerFor]&#x3D;&quot;exploreMenu&quot;
+        rel&#x3D;&quot;noopener noreferrer&quot;
+        hraPlainTooltip&#x3D;&quot;Explore sample data&quot;
+        hraFeature&#x3D;&quot;explore-menu&quot;
+        hraClickEvent
+      &gt;
+        &lt;mat-icon&gt;explore&lt;/mat-icon&gt;
+      &lt;/a&gt;
+      &lt;a mat-icon-button routerLink&#x3D;&quot;/create&quot; hraPlainTooltip&#x3D;&quot;Upload data&quot; hraFeature&#x3D;&quot;upload-data&quot; hraClickEvent&gt;
+        &lt;mat-icon&gt;upload&lt;/mat-icon&gt;
+      &lt;/a&gt;
+
+      &lt;hra-help-button action&#x3D;&quot;https://humanatlas.io/user-story/5&quot;&gt;&lt;/hra-help-button&gt;
+
+      &lt;!-- Explore sample data Menu --&gt;
+      &lt;mat-menu #exploreMenu class&#x3D;&quot;more-menu&quot; hraFeature&#x3D;&quot;explore-menu&quot;&gt;
+        &lt;a mat-menu-item routerLink&#x3D;&quot;/example/0&quot; target&#x3D;&quot;_blank&quot; hraFeature&#x3D;&quot;2d-intestine-data&quot; hraClickEvent&gt;
+          &lt;div class&#x3D;&quot;title&quot;&gt;2D intestine data&lt;/div&gt;
+          &lt;div class&#x3D;&quot;description&quot;&gt;CyCIF colorectal cancer data from Peter Sorger Lab&lt;/div&gt;
+        &lt;/a&gt;
+        &lt;mat-divider /&gt;
+        &lt;a mat-menu-item routerLink&#x3D;&quot;/example/1&quot; target&#x3D;&quot;_blank&quot; hraFeature&#x3D;&quot;3d-skin-data&quot; hraClickEvent&gt;
+          &lt;div class&#x3D;&quot;title&quot;&gt;3D skin data&lt;/div&gt;
+          &lt;div class&#x3D;&quot;description&quot;&gt;Cell DIVE skin data from GE Healthcare&lt;/div&gt;
+        &lt;/a&gt;
+      &lt;/mat-menu&gt;
+    &lt;/hra-header&gt;
+  }
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="cde-ui">  @if (header() !== false) {    <hra-header baseUrl="https://apps.humanatlas.io/cde/" [breadcrumbs]="crumbs()" hraFeature="header">      <a        mat-icon-button        [matMenuTriggerFor]="exploreMenu"        rel="noopener noreferrer"        hraPlainTooltip="Explore sample data"        hraFeature="explore-menu"        hraClickEvent      >        <mat-icon>explore</mat-icon>      </a>      <a mat-icon-button routerLink="/create" hraPlainTooltip="Upload data" hraFeature="upload-data" hraClickEvent>        <mat-icon>upload</mat-icon>      </a>      <hra-help-button action="https://humanatlas.io/user-story/5"></hra-help-button>      <!-- Explore sample data Menu -->      <mat-menu #exploreMenu class="more-menu" hraFeature="explore-menu">        <a mat-menu-item routerLink="/example/0" target="_blank" hraFeature="2d-intestine-data" hraClickEvent>          <div class="title">2D intestine data</div>          <div class="description">CyCIF colorectal cancer data from Peter Sorger Lab</div>        </a>        <mat-divider />        <a mat-menu-item routerLink="/example/1" target="_blank" hraFeature="3d-skin-data" hraClickEvent>          <div class="title">3D skin data</div>          <div class="description">Cell DIVE skin data from GE Healthcare</div>        </a>      </mat-menu>    </hra-header>  }  <router-outlet></router-outlet></ng-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+    var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
+    var ACTUAL_COMPONENT = {'name': 'AppComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "ccf-scene-utils",
+  "version": "4.0.0",
+  "peerDependencies": {
+    "@hra-api/ng-client": "^0.16.0",
+    "@math.gl/core": "~3.6.3"
+  },
+  "sideEffects": false,
+  "module": "fesm2022/ccf-scene-utils.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/ccf-scene-utils.mjs"
+    }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

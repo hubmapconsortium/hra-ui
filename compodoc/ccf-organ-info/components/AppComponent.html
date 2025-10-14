@@ -1,0 +1,1730 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-organ-info</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-organ-info</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AppComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/app.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Root component</p>
+
+    </p>
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                <code>BaseApplicationComponent</code>
+    </p>
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ccf-root</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                                <code><a href="../components/OrganComponent.html" target="_self" >OrganComponent</a></code>
+                            <code>IconComponent</code>
+                            <code>MatIcon</code>
+                            <code>MatIconButton</code>
+                            <code>MatButtonToggleGroup</code>
+                            <code>MatButtonToggle</code>
+                            <code>ButtonsModule</code>
+                            <code>TableComponent</code>
+                            <code>MatMenuModule</code>
+                            <code>MatDivider</code>
+                            <code>ProgressSpinnerComponent</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./app.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#blocks" >blocks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#contentHeightMonitor" >contentHeightMonitor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#filter" >filter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isLoading" >isLoading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#organ" >organ</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#organInfo" >organInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#organLogo" >organLogo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#scene" >scene</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sex" >sex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#side" >side</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#stats" >stats</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#statsLabel" >statsLabel</a>
+                            </li>
+                            <li>
+                                <a href="#tableColumns" >tableColumns</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#updateInput" >updateInput</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#nodeClicked" >nodeClicked</a>
+                            </li>
+                            <li>
+                                <a href="#sexChange" >sexChange</a>
+                            </li>
+                            <li>
+                                <a href="#sideChange" >sideChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/app/app.component.ts:259</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Initialize the app</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nodeClicked"></a>
+                        <b>nodeClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>NodeClickEvent</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/app.component.ts:115</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the user clicks a node</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sexChange"></a>
+                        <b>sexChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;Male&quot; | &quot;Female&quot;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/app.component.ts:109</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the user switches the model sex</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sideChange"></a>
+                        <b>sideChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;Left&quot; | &quot;Right&quot;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/app.component.ts:112</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the user switches organ side</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateInput"></a>
+                    <span class="name">
+                        <span ><b>updateInput</b></span>
+                        <a href="#updateInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateInput(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, value)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/app/app.component.ts:271</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Apply latest changes to the global configuration state.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Key to update</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>New value</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="blocks"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>blocks</b></span>
+                        <a href="#blocks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>rxResource({
+    params: () &#x3D;&gt; ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { organ, info } &#x3D; params.params;
+      if (organ &#x3D;&#x3D;&#x3D; undefined || info &#x3D;&#x3D;&#x3D; undefined) {
+        return of([]);
+      }
+
+      return this.lookupService.getBlocks(info, getOrganSex(organ));
+    },
+    defaultValue: [],
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/app/app.component.ts:199</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Blocks</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contentHeightMonitor"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>contentHeightMonitor</b></span>
+                        <a href="#contentHeightMonitor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>monitorHeight(this.contentContainer)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/app/app.component.ts:259</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Height monitor for content container height used to update the height of Body UI container</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filter"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>filter</b></span>
+                        <a href="#filter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; ({ tmc: this.providers() ?? [] }))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/app.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ Filters</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoading"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isLoading</b></span>
+                        <a href="#isLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    return this.organInfo.isLoading() || this.organ.isLoading() || this.scene.isLoading() || this.blocks.isLoading();
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/app/app.component.ts:245</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines whether the data is still loading.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="organ"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>organ</b></span>
+                        <a href="#organ"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>rxResource({
+    params: () &#x3D;&gt; ({
+      info: this.organInfo.value(),
+      sex: untracked(this.sex),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { info, sex } &#x3D; params.params;
+      if (info &#x3D;&#x3D;&#x3D; undefined) {
+        return of(undefined);
+      }
+
+      return this.lookupService.getOrgan(info, info.hasSex ? sex : undefined);
+    },
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/app.component.ts:160</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="organInfo"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>organInfo</b></span>
+                        <a href="#organInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>rxResource({
+    params: () &#x3D;&gt; ({
+      iri: this.organIri(),
+      sex: this.sex(),
+      side: this.side(),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { iri, sex, side } &#x3D; params.params;
+      if (iri &#x3D;&#x3D;&#x3D; undefined) {
+        return of(undefined);
+      }
+
+      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;], sex);
+      return info$;
+    },
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/app.component.ts:142</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ Info</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="organLogo"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>organLogo</b></span>
+                        <a href="#organLogo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const info &#x3D; this.organInfo.value();
+    return info &amp;&amp; &#x60;organ:${info.src.split(&#x27;:&#x27;)[1]}&#x60;;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/app/app.component.ts:176</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ Logo</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scene"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>scene</b></span>
+                        <a href="#scene"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>rxResource({
+    params: () &#x3D;&gt; ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { organ, info } &#x3D; params.params;
+      if (organ &#x3D;&#x3D;&#x3D; undefined || info &#x3D;&#x3D;&#x3D; undefined) {
+        return of(EMPTY_SCENE);
+      }
+
+      return this.lookupService.getOrganScene(info, getOrganSex(organ));
+    },
+    defaultValue: EMPTY_SCENE,
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/app/app.component.ts:182</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ Scene</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sex"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sex</b></span>
+                        <a href="#sex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.configState.getOptionSignal(&#x27;sex&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/app.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ Sex</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="side"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>side</b></span>
+                        <a href="#side"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.configState.getOptionSignal(&#x27;side&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/app.component.ts:130</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ Side</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stats"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>stats</b></span>
+                        <a href="#stats"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const rawStats &#x3D; this.rawStats.value();
+    const label &#x3D; this.donorLabel();
+    return normalizeStatLabels(rawStats, label);
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/app/app.component.ts:233</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Statistics</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="statsLabel"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>statsLabel</b></span>
+                        <a href="#statsLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    return this.makeStatsLabel(this.organIri(), this.organInfo.value(), this.organ.value()?.sex);
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/app/app.component.ts:240</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ Stat Label</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tableColumns"></a>
+                    <span class="name">
+                        <span ><b>tableColumns</b></span>
+                        <a href="#tableColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TableColumn[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { column: &#x27;count&#x27;, label: &#x27;#total&#x27;, type: &#x27;numeric&#x27; },
+    { column: &#x27;label&#x27;, label: &#x27;Metadata type&#x27;, type: &#x27;text&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/app/app.component.ts:250</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Table column definitions for the stats table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  output,
+  untracked,
+  viewChild,
+} from &#x27;@angular/core&#x27;;
+import { rxResource } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { MatIconButton } from &#x27;@angular/material/button&#x27;;
+import { MatButtonToggle, MatButtonToggleGroup } from &#x27;@angular/material/button-toggle&#x27;;
+import { MatDivider } from &#x27;@angular/material/divider&#x27;;
+import { MatIcon } from &#x27;@angular/material/icon&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { AggregateCount, FilterSexEnum, SpatialEntity, SpatialSceneNode } from &#x27;@hra-api/ng-client&#x27;;
+import { BaseApplicationComponent } from &#x27;@hra-ui/application&#x27;;
+import { HraCommonModule, monitorHeight } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { IconComponent } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { ProgressSpinnerComponent } from &#x27;@hra-ui/design-system/indicators/progress-spinner&#x27;;
+import { TableColumn, TableComponent } from &#x27;@hra-ui/design-system/table&#x27;;
+import { NodeClickEvent } from &#x27;ccf-body-ui&#x27;;
+import { GlobalConfigState, OrganInfo, sexFromString } from &#x27;ccf-shared&#x27;;
+import { of } from &#x27;rxjs&#x27;;
+import { Side } from &#x27;./app-web-component.component&#x27;;
+import { OrganComponent } from &#x27;./components/organ/organ.component&#x27;;
+import { OrganLookupService } from &#x27;./services/organ-lookup/organ-lookup.service&#x27;;
+
+/** Body ui config */
+interface GlobalConfig {
+  /** Organ iri */
+  organIri?: string;
+  /** Organ side */
+  side?: Side;
+  /** Model sex */
+  sex?: FilterSexEnum;
+  /** Highlight */
+  highlightProviders?: string[];
+  /** Donor label */
+  donorLabel?: string;
+  /** Rui app url */
+  ruiUrl?: string;
+  /** Eui app url */
+  euiUrl?: string;
+  /** Asctb app url */
+  asctbUrl?: string;
+  /** Hra portal url */
+  hraPortalUrl?: string;
+  /** Course url */
+  onlineCourseUrl?: string;
+  /** Paper url */
+  paperUrl?: string;
+}
+
+/** Empty scene object */
+const EMPTY_SCENE &#x3D; [{ color: [0, 0, 0, 0], opacity: 0.001 }] as SpatialSceneNode[];
+
+/**
+ * Gets the sex of the organ.
+ * @param organ Organ Spatial Entity
+ * @returns Sex of the organ
+ */
+function getOrganSex(organ: SpatialEntity | undefined): FilterSexEnum | undefined {
+  return organ?.sex !&#x3D;&#x3D; undefined ? sexFromString(organ.sex) : undefined;
+}
+
+/**
+ * Normalizes stats labels for the table.
+ * @param stats Stats Data
+ * @param label Label
+ * @returns Normalized stats labels
+ */
+function normalizeStatLabels(stats: AggregateCount[], label?: string): AggregateCount[] {
+  if (label &#x3D;&#x3D;&#x3D; undefined) {
+    return stats;
+  }
+
+  return stats.map((stat) &#x3D;&gt; ({ ...stat, label: stat.label &#x3D;&#x3D;&#x3D; &#x27;Donors&#x27; ? label : stat.label }));
+}
+
+/** Root component */
+@Component({
+  selector: &#x27;ccf-root&#x27;,
+  imports: [
+    HraCommonModule,
+    OrganComponent,
+    IconComponent,
+    MatIcon,
+    MatIconButton,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    ButtonsModule,
+    TableComponent,
+    MatMenuModule,
+    MatDivider,
+    ProgressSpinnerComponent,
+  ],
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrls: [&#x27;./app.component.scss&#x27;],
+  host: {
+    class: &#x27;hra-app&#x27;,
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AppComponent extends BaseApplicationComponent {
+  /** Emits when the user switches the model sex */
+  readonly sexChange &#x3D; output&lt;&#x27;Male&#x27; | &#x27;Female&#x27;&gt;();
+
+  /** Emits when the user switches organ side */
+  readonly sideChange &#x3D; output&lt;&#x27;Left&#x27; | &#x27;Right&#x27;&gt;();
+
+  /** Emits when the user clicks a node */
+  readonly nodeClicked &#x3D; output&lt;NodeClickEvent&gt;();
+
+  /** Global Configuration State */
+  private readonly configState &#x3D; inject&lt;GlobalConfigState&lt;GlobalConfig&gt;&gt;(GlobalConfigState);
+
+  /** Organ Lookup Service */
+  private readonly lookupService &#x3D; inject(OrganLookupService);
+
+  /** Organ IRI */
+  private readonly organIri &#x3D; this.configState.getOptionSignal(&#x27;organIri&#x27;);
+
+  /** Organ Sex */
+  protected readonly sex &#x3D; this.configState.getOptionSignal(&#x27;sex&#x27;);
+
+  /** Organ Side */
+  protected readonly side &#x3D; this.configState.getOptionSignal(&#x27;side&#x27;);
+
+  /** Donor Label */
+  private readonly donorLabel &#x3D; this.configState.getOptionSignal(&#x27;donorLabel&#x27;);
+
+  /** Providers */
+  private readonly providers &#x3D; this.configState.getOptionSignal(&#x27;highlightProviders&#x27;);
+
+  /** Organ Filters */
+  protected readonly filter &#x3D; computed(() &#x3D;&gt; ({ tmc: this.providers() ?? [] }));
+
+  /** Organ Info */
+  protected readonly organInfo &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      iri: this.organIri(),
+      sex: this.sex(),
+      side: this.side(),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { iri, sex, side } &#x3D; params.params;
+      if (iri &#x3D;&#x3D;&#x3D; undefined) {
+        return of(undefined);
+      }
+
+      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;], sex);
+      return info$;
+    },
+  });
+
+  /** Organ */
+  protected readonly organ &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      info: this.organInfo.value(),
+      sex: untracked(this.sex),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { info, sex } &#x3D; params.params;
+      if (info &#x3D;&#x3D;&#x3D; undefined) {
+        return of(undefined);
+      }
+
+      return this.lookupService.getOrgan(info, info.hasSex ? sex : undefined);
+    },
+  });
+
+  /** Organ Logo */
+  protected readonly organLogo &#x3D; computed(() &#x3D;&gt; {
+    const info &#x3D; this.organInfo.value();
+    return info &amp;&amp; &#x60;organ:${info.src.split(&#x27;:&#x27;)[1]}&#x60;;
+  });
+
+  /** Organ Scene */
+  protected readonly scene &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { organ, info } &#x3D; params.params;
+      if (organ &#x3D;&#x3D;&#x3D; undefined || info &#x3D;&#x3D;&#x3D; undefined) {
+        return of(EMPTY_SCENE);
+      }
+
+      return this.lookupService.getOrganScene(info, getOrganSex(organ));
+    },
+    defaultValue: EMPTY_SCENE,
+  });
+
+  /** Blocks */
+  protected readonly blocks &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { organ, info } &#x3D; params.params;
+      if (organ &#x3D;&#x3D;&#x3D; undefined || info &#x3D;&#x3D;&#x3D; undefined) {
+        return of([]);
+      }
+
+      return this.lookupService.getBlocks(info, getOrganSex(organ));
+    },
+    defaultValue: [],
+  });
+
+  /** Raw Statistics */
+  private readonly rawStats &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      organ: this.organ.value(),
+      info: untracked(this.organInfo.value),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const { organ, info } &#x3D; params.params;
+      if (organ &#x3D;&#x3D;&#x3D; undefined || info &#x3D;&#x3D;&#x3D; undefined) {
+        return of([]);
+      }
+
+      return this.lookupService.getOrganStats(info, getOrganSex(organ));
+    },
+    defaultValue: [],
+  });
+
+  /** Statistics */
+  protected readonly stats &#x3D; computed(() &#x3D;&gt; {
+    const rawStats &#x3D; this.rawStats.value();
+    const label &#x3D; this.donorLabel();
+    return normalizeStatLabels(rawStats, label);
+  });
+
+  /** Organ Stat Label */
+  protected readonly statsLabel &#x3D; computed(() &#x3D;&gt; {
+    return this.makeStatsLabel(this.organIri(), this.organInfo.value(), this.organ.value()?.sex);
+  });
+
+  /** Determines whether the data is still loading. */
+  protected readonly isLoading &#x3D; computed(() &#x3D;&gt; {
+    return this.organInfo.isLoading() || this.organ.isLoading() || this.scene.isLoading() || this.blocks.isLoading();
+  });
+
+  /** Table column definitions for the stats table */
+  tableColumns: TableColumn[] &#x3D; [
+    { column: &#x27;count&#x27;, label: &#x27;#total&#x27;, type: &#x27;numeric&#x27; },
+    { column: &#x27;label&#x27;, label: &#x27;Metadata type&#x27;, type: &#x27;text&#x27; },
+  ];
+
+  /** Reference to the information view container */
+  private readonly contentContainer &#x3D; viewChild.required&lt;ElementRef&lt;HTMLElement&gt;&gt;(&#x27;contentContainer&#x27;);
+
+  /** Height monitor for content container height used to update the height of Body UI container */
+  protected readonly contentHeightMonitor &#x3D; monitorHeight(this.contentContainer);
+
+  /** Initialize the app */
+  constructor() {
+    super({ analytics: false });
+  }
+
+  /**
+   * Apply latest changes to the global configuration state.
+   * @param key Key to update
+   * @param value New value
+   */
+  updateInput(key: string, value: unknown): void {
+    this.configState.patchConfig({ [key]: value });
+  }
+
+  /**
+   * Create a new label for the stats data.
+   * @param info Organ info
+   * @param sex Model sex
+   * @returns A label
+   */
+  private makeStatsLabel(iri: string | undefined, info: OrganInfo | undefined, sex?: string): string {
+    let parts: (string | undefined)[] &#x3D; [&#x60;Unknown IRI: ${iri}&#x60;];
+    if (info) {
+      // Use title cased side for a cleaner display
+      const side &#x3D; info.side ? info.side.charAt(0).toUpperCase() + info.side.slice(1) : undefined;
+      parts &#x3D; [sex, info.organ, side];
+    }
+    return parts.filter((seg) &#x3D;&gt; !!seg).join(&#x27;, &#x27;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;ccf-organ-info&quot;&gt;
+  &lt;div hraFeature&#x3D;&quot;header&quot; class&#x3D;&quot;header&quot;&gt;
+    &lt;div class&#x3D;&quot;left&quot;&gt;
+      &lt;div class&#x3D;&quot;icons&quot;&gt;
+        &lt;hra-icon [svgIcon]&#x3D;&quot;&#x27;product:eui&#x27;&quot;&gt;&lt;/hra-icon&gt;
+        @if (organLogo(); as logo) {
+          &lt;hra-icon hraFeature&#x3D;&quot;organ-icon&quot; [hraClickEvent]&#x3D;&quot;{ organLogo: logo }&quot; [svgIcon]&#x3D;&quot;logo&quot;&gt;&lt;/hra-icon&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;title&quot;&gt;Organ Information&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button
+      hraFeature&#x3D;&quot;more-menu&quot;
+      hraClickEvent
+      mat-icon-button
+      hraIconButtonSize&#x3D;&quot;large&quot;
+      hraIconButtonVariant&#x3D;&quot;dark&quot;
+      [matMenuTriggerFor]&#x3D;&quot;headerMenu&quot;
+    &gt;
+      &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;content&quot; #contentContainer&gt;
+    &lt;div hraFeature&#x3D;&quot;metadata&quot; class&#x3D;&quot;info-view&quot;&gt;
+      &lt;div class&#x3D;&quot;organ-title&quot;&gt;
+        {{ isLoading() ? &#x27;Loading...&#x27; : statsLabel() }}
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;params&quot;&gt;
+        @let sex &#x3D; organ.value()?.sex;
+        &lt;mat-button-toggle-group
+          hraFeature&#x3D;&quot;sex-toggle&quot;
+          hraButtonToggleSize&#x3D;&quot;medium&quot;
+          [hideSingleSelectionIndicator]&#x3D;&quot;false&quot;
+          [value]&#x3D;&quot;sex&quot;
+          [disabled]&#x3D;&quot;sex &#x3D;&#x3D;&#x3D; undefined || isLoading()&quot;
+          (change)&#x3D;&quot;updateInput(&#x27;sex&#x27;, $event.value)&quot;
+        &gt;
+          &lt;mat-button-toggle [hraClickEvent]&#x3D;&quot;{ value: &#x27;Male&#x27; }&quot; value&#x3D;&quot;Male&quot;&gt; Male &lt;/mat-button-toggle&gt;
+          &lt;mat-button-toggle [hraClickEvent]&#x3D;&quot;{ value: &#x27;Female&#x27; }&quot; value&#x3D;&quot;Female&quot;&gt; Female &lt;/mat-button-toggle&gt;
+        &lt;/mat-button-toggle-group&gt;
+        @let side &#x3D; organ.value()?.side;
+        &lt;mat-button-toggle-group
+          hraFeature&#x3D;&quot;side-toggle&quot;
+          hraButtonToggleSize&#x3D;&quot;medium&quot;
+          [disabled]&#x3D;&quot;side &#x3D;&#x3D;&#x3D; undefined || isLoading()&quot;
+          [hideSingleSelectionIndicator]&#x3D;&quot;false&quot;
+          [value]&#x3D;&quot;side&quot;
+          (change)&#x3D;&quot;updateInput(&#x27;side&#x27;, $event.value)&quot;
+        &gt;
+          &lt;mat-button-toggle [hraClickEvent]&#x3D;&quot;{ value: &#x27;Left&#x27; }&quot; value&#x3D;&quot;Left&quot;&gt; Left &lt;/mat-button-toggle&gt;
+          &lt;mat-button-toggle [hraClickEvent]&#x3D;&quot;{ value: &#x27;Right&#x27; }&quot; value&#x3D;&quot;Right&quot;&gt; Right &lt;/mat-button-toggle&gt;
+        &lt;/mat-button-toggle-group&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        @if (isLoading()) {
+          &lt;hra-progress-spinner size&#x3D;&quot;large&quot; color&#x3D;&quot;color&quot; class&#x3D;&quot;loading-spinner&quot;&gt;&lt;/hra-progress-spinner&gt;
+        } @else {
+          &lt;hra-table
+            class&#x3D;&quot;stats-table&quot;
+            [columns]&#x3D;&quot;tableColumns&quot;
+            [rows]&#x3D;&quot;stats()&quot;
+            [style]&#x3D;&quot;&#x27;alternating&#x27;&quot;
+            [verticalDividers]&#x3D;&quot;true&quot;
+          &gt;&lt;/hra-table&gt;
+        }
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;organ-view&quot; [style.height.px]&#x3D;&quot;contentHeightMonitor()&quot;&gt;
+      @if (isLoading()) {
+        &lt;hra-progress-spinner size&#x3D;&quot;large&quot; color&#x3D;&quot;color&quot; class&#x3D;&quot;loading-spinner&quot;&gt;&lt;/hra-progress-spinner&gt;
+      }
+      &lt;ccf-organ
+        hraFeature&#x3D;&quot;organ-viewer&quot;
+        hraClickEvent
+        hraHoverEvent
+        hraHoverEventTriggerOn&#x3D;&quot;mouseenter&quot;
+        [organ]&#x3D;&quot;organ.value()&quot;
+        [scene]&#x3D;&quot;scene.value()&quot;
+        [blocks]&#x3D;&quot;blocks.value()&quot;
+        [filter]&#x3D;&quot;filter()&quot;
+        (nodeClick)&#x3D;&quot;nodeClicked.emit($event)&quot;
+      &gt;
+      &lt;/ccf-organ&gt;
+    &lt;/div&gt;
+
+    &lt;mat-menu #headerMenu&#x3D;&quot;matMenu&quot; hraFeature&#x3D;&quot;more-menu&quot;&gt;
+      &lt;a hraFeature&#x3D;&quot;source-data&quot; hraClickEvent mat-menu-item [href]&#x3D;&quot;organ.value()?.[&#x27;@id&#x27;]&quot; target&#x3D;&quot;_blank&quot;&gt;
+        &lt;mat-icon&gt;database&lt;/mat-icon&gt;
+        Source data
+      &lt;/a&gt;
+      &lt;a
+        hraFeature&#x3D;&quot;help-documentation&quot;
+        hraClickEvent
+        mat-menu-item
+        href&#x3D;&quot;https://docs.humanatlas.io/dev/web-components#eui-organ-information&quot;
+        target&#x3D;&quot;_blank&quot;
+      &gt;
+        &lt;mat-icon&gt;help&lt;/mat-icon&gt;
+        Help &amp; documentation
+      &lt;/a&gt;
+      &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+      &lt;a
+        hraFeature&#x3D;&quot;publications&quot;
+        hraClickEvent
+        mat-menu-item
+        href&#x3D;&quot;https://humanatlas.io/publications&quot;
+        target&#x3D;&quot;_blank&quot;
+      &gt;
+        View publications
+      &lt;/a&gt;
+      &lt;a mat-menu-item href&#x3D;&quot;https://humanatlas.io&quot; target&#x3D;&quot;_blank&quot; hraFeature&#x3D;&quot;hra-portal&quot; hraClickEvent&gt;
+        Human Reference Atlas Portal
+      &lt;/a&gt;
+    &lt;/mat-menu&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./app.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;utils&#x27;;
+@use &#x27;vars&#x27;;
+@use &#x27;@angular/material&#x27; as mat;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid vars.$outline;
+  overflow: hidden;
+  min-height: 35.625rem;
+  height: 100%;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 0.0625rem solid vars.$outline;
+
+    .left {
+      align-items: center;
+      display: flex;
+      gap: 1rem;
+
+      .icons {
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .title {
+        @include utils.use-font(title, medium);
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+
+    height: 100%;
+    .organ-title {
+      @include utils.use-font(title, small);
+      margin-bottom: 1rem;
+    }
+
+    .info-view {
+      padding: 1.5rem;
+      min-width: 21rem;
+      max-width: 23.25rem;
+
+      .params {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+
+        mat-button-toggle-group {
+          width: 9.375rem;
+
+          mat-button-toggle {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .organ-view {
+      flex: 1 1;
+      background-color: #000;
+      position: relative;
+
+      .loading-spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+      }
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  /** Custom Styles for the Table */
+  ::ng-deep .stats-table {
+    thead th:first-child {
+      padding-right: 1.5rem;
+    }
+    tbody {
+      td {
+        &amp;:first-child {
+          padding-right: 1.5rem;
+          span {
+            margin: 0;
+          }
+        }
+
+        &amp;:last-child {
+          color: vars.$secondary;
+        }
+      }
+    }
+  }
+}
+
+.menu-divider {
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline-variant,
+    )
+  );
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="ccf-organ-info">  <div hraFeature="header" class="header">    <div class="left">      <div class="icons">        <hra-icon [svgIcon]="\'product:eui\'"></hra-icon>        @if (organLogo(); as logo) {          <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo"></hra-icon>        }      </div>      <div class="title">Organ Information</div>    </div>    <button      hraFeature="more-menu"      hraClickEvent      mat-icon-button      hraIconButtonSize="large"      hraIconButtonVariant="dark"      [matMenuTriggerFor]="headerMenu"    >      <mat-icon>more_vert</mat-icon>    </button>  </div>  <div class="content" #contentContainer>    <div hraFeature="metadata" class="info-view">      <div class="organ-title">        {{ isLoading() ? \'Loading...\' : statsLabel() }}      </div>      <div class="params">        @let sex = organ.value()?.sex;        <mat-button-toggle-group          hraFeature="sex-toggle"          hraButtonToggleSize="medium"          [hideSingleSelectionIndicator]="false"          [value]="sex"          [disabled]="sex === undefined || isLoading()"          (change)="updateInput(\'sex\', $event.value)"        >          <mat-button-toggle [hraClickEvent]="{ value: \'Male\' }" value="Male"> Male </mat-button-toggle>          <mat-button-toggle [hraClickEvent]="{ value: \'Female\' }" value="Female"> Female </mat-button-toggle>        </mat-button-toggle-group>        @let side = organ.value()?.side;        <mat-button-toggle-group          hraFeature="side-toggle"          hraButtonToggleSize="medium"          [disabled]="side === undefined || isLoading()"          [hideSingleSelectionIndicator]="false"          [value]="side"          (change)="updateInput(\'side\', $event.value)"        >          <mat-button-toggle [hraClickEvent]="{ value: \'Left\' }" value="Left"> Left </mat-button-toggle>          <mat-button-toggle [hraClickEvent]="{ value: \'Right\' }" value="Right"> Right </mat-button-toggle>        </mat-button-toggle-group>      </div>      <div>        @if (isLoading()) {          <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>        } @else {          <hra-table            class="stats-table"            [columns]="tableColumns"            [rows]="stats()"            [style]="\'alternating\'"            [verticalDividers]="true"          ></hra-table>        }      </div>    </div>    <div class="organ-view" [style.height.px]="contentHeightMonitor()">      @if (isLoading()) {        <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>      }      <ccf-organ        hraFeature="organ-viewer"        hraClickEvent        hraHoverEvent        hraHoverEventTriggerOn="mouseenter"        [organ]="organ.value()"        [scene]="scene.value()"        [blocks]="blocks.value()"        [filter]="filter()"        (nodeClick)="nodeClicked.emit($event)"      >      </ccf-organ>    </div>    <mat-menu #headerMenu="matMenu" hraFeature="more-menu">      <a hraFeature="source-data" hraClickEvent mat-menu-item [href]="organ.value()?.[\'@id\']" target="_blank">        <mat-icon>database</mat-icon>        Source data      </a>      <a        hraFeature="help-documentation"        hraClickEvent        mat-menu-item        href="https://docs.humanatlas.io/dev/web-components#eui-organ-information"        target="_blank"      >        <mat-icon>help</mat-icon>        Help & documentation      </a>      <mat-divider class="menu-divider"></mat-divider>      <a        hraFeature="publications"        hraClickEvent        mat-menu-item        href="https://humanatlas.io/publications"        target="_blank"      >        View publications      </a>      <a mat-menu-item href="https://humanatlas.io" target="_blank" hraFeature="hra-portal" hraClickEvent>        Human Reference Atlas Portal      </a>    </mat-menu>  </div></ng-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'OrganComponent', 'selector': 'ccf-organ'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AppComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

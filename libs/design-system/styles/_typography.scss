@@ -1,0 +1,152 @@
+$_brand: 'Metropolis';
+$_plain: 'Nunito Sans Variable';
+$_plain-mono: 'Roboto Mono';
+
+$typography: (
+  brand-family: $_brand,
+  plain-family: $_plain,
+  medium-weight: 500,
+  regular-weight: 400,
+  use-system-variables: true,
+);
+
+$overrides: (
+  display-large: 500 2.625rem / 3.9375rem $_brand,
+  display-large-line-height: 3.9375rem,
+  display-large-size: 2.625rem,
+  display-large-tracking: -0.0781rem,
+  display-large-weight: 500,
+
+  display-medium: 500 2.375rem / 3.5625rem $_brand,
+  display-medium-line-height: 3.5625rem,
+  display-medium-size: 2.375rem,
+  display-medium-tracking: -0.1094rem,
+  display-medium-weight: 500,
+
+  display-small: 500 2rem / 3rem $_brand,
+  display-small-line-height: 3rem,
+  display-small-size: 2rem,
+  display-small-tracking: -0.0781rem,
+  display-small-weight: 500,
+
+  headline-large: 500 2rem / 3rem $_brand,
+  headline-large-line-height: 3rem,
+  headline-large-size: 2rem,
+  headline-large-tracking: 0rem,
+  headline-large-weight: 500,
+
+  headline-medium: 500 1.75rem / 2.625rem $_brand,
+  headline-medium-line-height: 2.625rem,
+  headline-medium-size: 1.75rem,
+  headline-medium-tracking: 0rem,
+  headline-medium-weight: 500,
+
+  headline-small: 500 1.5rem / 2rem $_brand,
+  headline-small-line-height: 2rem,
+  headline-small-size: 1.5rem,
+  headline-small-tracking: 0rem,
+  headline-small-weight: 500,
+
+  title-large: 500 1.375rem / 2.0625rem $_brand,
+  title-large-font: $_brand,
+  title-large-line-height: 2.0625rem,
+  title-large-size: 1.375rem,
+  title-large-tracking: 0rem,
+  title-large-weight: 500,
+
+  title-medium: 500 1.25rem / 1.875rem $_brand,
+  title-medium-font: $_brand,
+  title-medium-line-height: 1.875rem,
+  title-medium-size: 1.25rem,
+  title-medium-tracking: 0rem,
+  title-medium-weight: 500,
+
+  title-small: 500 1rem / 1.5rem $_brand,
+  title-small-font: $_brand,
+  title-small-line-height: 1.5rem,
+  title-small-size: 1rem,
+  title-small-tracking: 0rem,
+  title-small-weight: 500,
+
+  label-large: 500 1rem / 1.5rem $_brand,
+  label-large-font: $_brand,
+  label-large-line-height: 1.5rem,
+  label-large-size: 1rem,
+  label-large-tracking: 0rem,
+  label-large-weight: 500,
+
+  label-medium: 500 0.875rem / 1.3125rem $_brand,
+  label-medium-font: $_brand,
+  label-medium-line-height: 1.3125rem,
+  label-medium-size: 0.875rem,
+  label-medium-tracking: 0rem,
+  label-medium-weight: 500,
+
+  label-small: 500 0.75rem / 1.125rem $_brand,
+  label-small-font: $_brand,
+  label-small-line-height: 1.125rem,
+  label-small-size: 0.75rem,
+  label-small-tracking: 0rem,
+  label-small-weight: 500,
+
+  body-large-tracking: 0rem,
+  body-medium-tracking: 0rem,
+  body-small-tracking: 0rem,
+);
+
+@mixin custom-variants() {
+  & {
+    // Body XL
+    --mat-sys-body-xl: 400 1.125rem / 1.6875rem #{$_plain};
+    --mat-sys-body-xl-font: #{$_plain};
+    --mat-sys-body-xl-line-height: 1.6875rem;
+    --mat-sys-body-xl-size: 1.125rem;
+    --mat-sys-body-xl-tracking: 0rem;
+    --mat-sys-body-xl-weight: 400;
+
+    // Wordmark
+    --mat-sys-wordmark-large: 400 1.5625rem / 2.25rem #{$_brand};
+    --mat-sys-wordmark-large-font: #{$_brand};
+    --mat-sys-wordmark-large-line-height: 2.25rem;
+    --mat-sys-wordmark-large-size: 1.5625rem;
+    --mat-sys-wordmark-large-tracking: 0.00625rem;
+    --mat-sys-wordmark-large-weight: 400;
+
+    --mat-sys-wordmark-small: 400 0.75rem / 1.125rem #{$_brand};
+    --mat-sys-wordmark-small-font: #{$_brand};
+    --mat-sys-wordmark-small-line-height: 1.125rem;
+    --mat-sys-wordmark-small-size: 0.75rem;
+    --mat-sys-wordmark-small-tracking: 0rem;
+    --mat-sys-wordmark-small-weight: 400;
+
+    // Micro label
+    --mat-sys-label-micro: 500 0.625rem / 1rem #{$_brand};
+    --mat-sys-label-micro-font: #{$_brand};
+    --mat-sys-label-micro-line-height: 1rem;
+    --mat-sys-label-micro-size: 0.625rem;
+    --mat-sys-label-micro-tracking: 0rem;
+    --mat-sys-label-micro-weight: 500;
+
+    // Code
+    --mat-sys-code-large-bold: 500 1rem / 1.5rem #{$_plain-mono};
+    --mat-sys-code-large-bold-font: #{$_plain-mono};
+    --mat-sys-code-large-bold-line-height: 1.5rem;
+    --mat-sys-code-large-bold-size: 1rem;
+    --mat-sys-code-large-bold-tracking: 0rem;
+    --mat-sys-code-large-bold-weight: 500;
+
+    --mat-sys-code-large: 400 1rem / 1.5rem #{$_plain-mono};
+    --mat-sys-code-large-font: #{$_plain-mono};
+    --mat-sys-code-large-line-height: 1.5rem;
+    --mat-sys-code-large-size: 1rem;
+    --mat-sys-code-large-tracking: 0rem;
+    --mat-sys-code-large-weight: 400;
+
+    --mat-sys-code-medium: 400 0.875rem / 1.3125rem #{$_plain-mono};
+    --mat-sys-code-medium-font: #{$_plain-mono};
+    --mat-sys-code-medium-line-height: 1.3125rem;
+    --mat-sys-code-medium-size: 0.875rem;
+    --mat-sys-code-medium-tracking: 0rem;
+    --mat-sys-code-medium-weight: 400;
+  }
+}

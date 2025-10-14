@@ -1,0 +1,1325 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-rui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-rui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TagSearchComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/tag-search/tag-search.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for searching, selecting, and adding tags.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ccf-tag-search</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./tag-search.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./tag-search.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkedResults" >checkedResults</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#clsName" >clsName</a>
+                            </li>
+                            <li>
+                                <a href="#resultsVisible" >resultsVisible</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#searchControl" >searchControl</a>
+                            </li>
+                            <li>
+                                <a href="#searchResults" >searchResults</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addTags" >addTags</a>
+                            </li>
+                            <li>
+                                <a href="#closeResults" >closeResults</a>
+                            </li>
+                            <li>
+                                <a href="#hasCheckedTags" >hasCheckedTags</a>
+                            </li>
+                            <li>
+                                <a href="#openResults" >openResults</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#search" >search</a>
+                            </li>
+                            <li>
+                                <a href="#searchLimit" >searchLimit</a>
+                            </li>
+                            <li>
+                                <a href="#searchThrottle" >searchThrottle</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#added" >added</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class" >class</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:71</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of tag search component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="search"></a>
+                        <b>search</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>(text: string, limit: number) &#x3D;&gt; ObservableInput&lt;TagSearchResult&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:47</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Search method</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchLimit"></a>
+                        <b>searchLimit</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DEFAULT_SEARCH_LIMIT</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:50</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Maximum number of results to show</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchThrottle"></a>
+                        <b>searchThrottle</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DEFAULT_SEARCH_THROTTLE</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:53</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Throttle time between search calls</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="added"></a>
+                        <b>added</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Tag.html" target="_self" >Tag[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:56</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when tags are added</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-properties">
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class"></a>
+                    <span class="name">
+                        <span ><b>class</b></span>
+                        <a href="#class"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;ccf-tag-search&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;ccf-tag-search&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>HTML class name</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTags"></a>
+                    <span class="name">
+                        <span ><b>addTags</b></span>
+                        <a href="#addTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addTags()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emits selected tags and resets the search and selections</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeResults"></a>
+                    <span class="name">
+                        <span ><b>closeResults</b></span>
+                        <a href="#closeResults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeResults(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Closes the results panel</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>DOM event</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasCheckedTags"></a>
+                    <span class="name">
+                        <span ><b>hasCheckedTags</b></span>
+                        <a href="#hasCheckedTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hasCheckedTags()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Determines whether any tags have been checked</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if any tag has been checked by the user</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openResults"></a>
+                    <span class="name">
+                        <span ><b>openResults</b></span>
+                        <a href="#openResults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openResults()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens the results panel</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkedResults"></a>
+                    <span class="name">
+                        <span ><b>checkedResults</b></span>
+                        <a href="#checkedResults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Tag.html" target="_self" >Record&lt;TagId | boolean&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object of currently checked search results</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clsName"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>clsName</b></span>
+                        <a href="#clsName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;ccf-tag-search&#x27;</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @HostBinding(&#x27;class&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>HTML class name</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resultsVisible"></a>
+                    <span class="name">
+                        <span ><b>resultsVisible</b></span>
+                        <a href="#resultsVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether results are shown</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchControl"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>searchControl</b></span>
+                        <a href="#searchControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new UntypedFormControl()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Search field controller</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchResults"></a>
+                    <span class="name">
+                        <span ><b>searchResults</b></span>
+                        <a href="#searchResults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>EMPTY_RESULT</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/shared/components/tag-search/tag-search.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Search results</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostBinding,
+  inject,
+  input,
+  OnDestroy,
+  output,
+} from &#x27;@angular/core&#x27;;
+import { UntypedFormControl } from &#x27;@angular/forms&#x27;;
+import { from, interval, ObservableInput, Subject } from &#x27;rxjs&#x27;;
+import { catchError, map, switchMap, takeUntil, throttle } from &#x27;rxjs/operators&#x27;;
+import { Tag, TagId, TagSearchResult } from &#x27;../../../core/models/anatomical-structure-tag&#x27;;
+
+/** Default search results limit */
+const DEFAULT_SEARCH_LIMIT &#x3D; 5;
+/** Default search throttle time in ms */
+const DEFAULT_SEARCH_THROTTLE &#x3D; 100;
+/** Empty search result object */
+const EMPTY_RESULT: TagSearchResult &#x3D; { totalCount: 0, results: [] };
+
+/**
+ * Component for searching, selecting, and adding tags.
+ */
+@Component({
+  selector: &#x27;ccf-tag-search&#x27;,
+  templateUrl: &#x27;./tag-search.component.html&#x27;,
+  styleUrls: [&#x27;./tag-search.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    &#x27;(click)&#x27;: &#x27;openResults()&#x27;,
+    &#x27;(focusin)&#x27;: &#x27;openResults()&#x27;,
+    &#x27;(window:click)&#x27;: &#x27;closeResults($event)&#x27;,
+    &#x27;(window:focusin)&#x27;: &#x27;closeResults($event)&#x27;,
+  },
+  standalone: false,
+})
+export class TagSearchComponent implements OnDestroy {
+  private readonly el &#x3D; inject&lt;ElementRef&lt;Node&gt;&gt;(ElementRef);
+
+  /** HTML class name */
+  @HostBinding(&#x27;class&#x27;) readonly clsName &#x3D; &#x27;ccf-tag-search&#x27;;
+
+  /** Search method */
+  readonly search &#x3D; input&lt;(text: string, limit: number) &#x3D;&gt; ObservableInput&lt;TagSearchResult&gt;&gt;();
+
+  /** Maximum number of results to show */
+  readonly searchLimit &#x3D; input&lt;number&gt;(DEFAULT_SEARCH_LIMIT);
+
+  /** Throttle time between search calls */
+  readonly searchThrottle &#x3D; input&lt;number&gt;(DEFAULT_SEARCH_THROTTLE);
+
+  /** Emits when tags are added */
+  readonly added &#x3D; output&lt;Tag[]&gt;();
+
+  /** Search field controller */
+  readonly searchControl &#x3D; new UntypedFormControl();
+
+  /** Search results */
+  searchResults &#x3D; EMPTY_RESULT;
+
+  /** Object of currently checked search results */
+  checkedResults: Record&lt;TagId, boolean&gt; &#x3D; {};
+
+  /** Whether results are shown */
+  resultsVisible &#x3D; false;
+
+  /** Emits and completes when component is destroyed. Used to clean up observables. */
+  private readonly destroy$ &#x3D; new Subject&lt;void&gt;();
+
+  /**
+   * Creates an instance of tag search component.
+   */
+  constructor() {
+    const cdr &#x3D; inject(ChangeDetectorRef);
+
+    this.searchControl.valueChanges
+      .pipe(
+        takeUntil(this.destroy$),
+        throttle(() &#x3D;&gt; interval(this.searchThrottle()), { leading: true, trailing: true }),
+        switchMap(this.executeSearch),
+      )
+      .subscribe((result) &#x3D;&gt; {
+        this.searchResults &#x3D; result;
+        this.checkedResults &#x3D; this.getUpdatedCheckedResults(result);
+        cdr.markForCheck();
+      });
+  }
+
+  /**
+   * Cleans up component on destruction
+   */
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  /**
+   * Determines whether any tags have been checked
+   *
+   * @returns true if any tag has been checked by the user
+   */
+  hasCheckedTags(): boolean {
+    return Object.values(this.checkedResults).some((v) &#x3D;&gt; v);
+  }
+
+  /**
+   * Emits selected tags and resets the search and selections
+   */
+  addTags(): void {
+    const { searchControl, searchResults, checkedResults } &#x3D; this;
+    const tags &#x3D; searchResults.results.filter((tag) &#x3D;&gt; checkedResults[tag.id]);
+    if (tags.length &gt; 0) {
+      searchControl.reset();
+      this.searchResults &#x3D; EMPTY_RESULT;
+      this.checkedResults &#x3D; {};
+      this.added.emit(tags);
+    }
+  }
+
+  /**
+   * Opens the results panel
+   */
+  openResults(): void {
+    if (!this.resultsVisible) {
+      this.resultsVisible &#x3D; true;
+    }
+  }
+
+  /**
+   * Closes the results panel
+   *
+   * @param event DOM event
+   */
+  closeResults(event: Event): void {
+    if (this.resultsVisible &amp;&amp; event.target instanceof Node) {
+      if (!this.el.nativeElement.contains(event.target)) {
+        this.resultsVisible &#x3D; false;
+      }
+    }
+  }
+
+  /**
+   * Executes a search on a piece of text.
+   *
+   * @param text Search text
+   * @returns An observable of the search result.
+   */
+  private readonly executeSearch &#x3D; (text: string): ObservableInput&lt;TagSearchResult&gt; &#x3D;&gt; {
+    const search &#x3D; this.search();
+    if (!text || !search) {
+      return [EMPTY_RESULT];
+    }
+
+    return from(search(text, this.searchLimit())).pipe(
+      catchError(() &#x3D;&gt; [EMPTY_RESULT]),
+      map(this.truncateResults),
+    );
+  };
+
+  /**
+   * Truncates the number of results returned by a search
+   *
+   * @param result The results
+   * @returns Results with at most &#x60;searchLimit&#x60; items
+   */
+  private readonly truncateResults &#x3D; (result: TagSearchResult): TagSearchResult &#x3D;&gt; {
+    const { searchLimit } &#x3D; this;
+    const items &#x3D; result.results;
+
+    if (items.length &gt; searchLimit()) {
+      return {
+        ...result,
+        results: items.slice(0, searchLimit()),
+      };
+    }
+
+    return result;
+  };
+
+  /**
+   * Computes a new checked object for result items. Already checked items are preserved.
+   *
+   * @param result New results
+   * @returns A new checked object
+   */
+  private getUpdatedCheckedResults(result: TagSearchResult): Record&lt;TagId, boolean&gt; {
+    const prev &#x3D; this.checkedResults;
+    return result.results.reduce&lt;Record&lt;TagId, boolean&gt;&gt;((acc, { id }) &#x3D;&gt; {
+      acc[id] &#x3D; prev[id] ?? false;
+      return acc;
+    }, {});
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-form-field hraFeature&#x3D;&quot;search&quot; hraClickEvent [class.expanded]&#x3D;&quot;resultsVisible&quot; subscriptSizing&#x3D;&quot;dynamic&quot;&gt;
+  &lt;mat-label class&#x3D;&quot;form-input-label&quot;&gt;Search&lt;/mat-label&gt;
+  &lt;input hraFeature&#x3D;&quot;search&quot; hraClickEvent matInput [formControl]&#x3D;&quot;searchControl&quot; #search /&gt;
+  &lt;mat-icon class&#x3D;&quot;search-icon&quot; matPrefix&gt;search&lt;/mat-icon&gt;
+  &lt;button
+    hraFeature&#x3D;&quot;add&quot;
+    hraClickEvent
+    matSuffix
+    mat-icon-button
+    class&#x3D;&quot;add-icon&quot;
+    hraIconButtonSize&#x3D;&quot;small&quot;
+    [class.active]&#x3D;&quot;hasCheckedTags()&quot;
+    [disabled]&#x3D;&quot;!hasCheckedTags()&quot;
+    (click)&#x3D;&quot;addTags(); search.focus()&quot;
+  &gt;
+    &lt;mat-icon&gt;add_circle&lt;/mat-icon&gt;
+  &lt;/button&gt;
+&lt;/mat-form-field&gt;
+
+@if (resultsVisible &amp;&amp; searchResults.totalCount &gt; 0) {
+  &lt;div hraFeature&#x3D;&quot;results&quot; class&#x3D;&quot;results&quot;&gt;
+    @for (result of searchResults.results; track result.id) {
+      &lt;div class&#x3D;&quot;item&quot;&gt;
+        &lt;mat-checkbox
+          [hraFeature]&#x3D;&quot;result.label | slugify&quot;
+          hraModelChangeEvent
+          labelPosition&#x3D;&quot;after&quot;
+          [(ngModel)]&#x3D;&quot;checkedResults[result.id]&quot;
+        &gt;
+          {{ result.label }}
+        &lt;/mat-checkbox&gt;
+      &lt;/div&gt;
+    }
+  &lt;/div&gt;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./tag-search.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
+@use &#x27;vars&#x27;;
+
+:host {
+  mat-form-field {
+    width: 100%;
+    @include mat.form-field-overrides(
+      (
+        filled-active-indicator-color: vars.$primary,
+        filled-focus-active-indicator-color: vars.$primary,
+        filled-input-text-color: vars.$primary,
+        leading-icon-color: vars.$primary,
+        trailing-icon-color: vars.$primary,
+      )
+    );
+  }
+
+  mat-label {
+    color: vars.$inverse-surface;
+    font: vars.$label-medium;
+  }
+
+  mat-icon {
+    color: vars.$primary-fixed;
+  }
+
+  .search-icon {
+    padding-right: 0.5rem;
+  }
+
+  .results {
+    background: vars.$surface-container-low;
+    border-top: 2px solid vars.$primary;
+    box-shadow: 0px 5px 4px 0px #201e3d29;
+    padding: 0.5rem 0;
+  }
+
+  mat-checkbox {
+    ::ng-deep label {
+      font: vars.$label-medium;
+      padding-right: 0.5rem;
+    }
+  }
+  @include mat.checkbox-overrides(
+    (
+      selected-icon-color: vars.$on-tertiary-fixed,
+      selected-focus-icon-color: vars.$on-tertiary-fixed,
+      state-layer-size: 3rem,
+    )
+  );
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-form-field hraFeature="search" hraClickEvent [class.expanded]="resultsVisible" subscriptSizing="dynamic">  <mat-label class="form-input-label">Search</mat-label>  <input hraFeature="search" hraClickEvent matInput [formControl]="searchControl" #search />  <mat-icon class="search-icon" matPrefix>search</mat-icon>  <button    hraFeature="add"    hraClickEvent    matSuffix    mat-icon-button    class="add-icon"    hraIconButtonSize="small"    [class.active]="hasCheckedTags()"    [disabled]="!hasCheckedTags()"    (click)="addTags(); search.focus()"  >    <mat-icon>add_circle</mat-icon>  </button></mat-form-field>@if (resultsVisible && searchResults.totalCount > 0) {  <div hraFeature="results" class="results">    @for (result of searchResults.results; track result.id) {      <div class="item">        <mat-checkbox          [hraFeature]="result.label | slugify"          hraModelChangeEvent          labelPosition="after"          [(ngModel)]="checkedResults[result.id]"        >          {{ result.label }}        </mat-checkbox>      </div>    }  </div>}</div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TagSearchComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TagSearchComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

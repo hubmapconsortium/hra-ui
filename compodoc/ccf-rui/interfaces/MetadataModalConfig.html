@@ -1,0 +1,618 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-rui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-rui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  MetadataModalConfig</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/modules/metadata/modal/metadata-modal.component.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Modal initial configuration</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#mode" 
+>
+                                            mode
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#modelSnapshot" 
+>
+                                            modelSnapshot
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#pageSnapshot" 
+>
+                                            pageSnapshot
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="mode"></a>
+                                        <span class="name "><b>mode</b>
+                                            <a href="#mode">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>mode:         <code><a href="../miscellaneous/typealiases.html#MetadataModalMode" target="_self" >MetadataModalMode</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MetadataModalMode" target="_self" >MetadataModalMode</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Mode</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="modelSnapshot"></a>
+                                        <span class="name "><b>modelSnapshot</b>
+                                            <a href="#modelSnapshot">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>modelSnapshot:         <code><a href="../interfaces/ModelStateModel.html" target="_self" >ModelStateModel</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/ModelStateModel.html" target="_self" >ModelStateModel</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Initial model state</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="pageSnapshot"></a>
+                                        <span class="name "><b>pageSnapshot</b>
+                                            <a href="#pageSnapshot">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>pageSnapshot:         <code><a href="../interfaces/PageStateModel.html" target="_self" >PageStateModel</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/PageStateModel.html" target="_self" >PageStateModel</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Initial page state</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CdkScrollable } from &#x27;@angular/cdk/overlay&#x27;;
+import { ChangeDetectionStrategy, Component, inject } from &#x27;@angular/core&#x27;;
+import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from &#x27;@angular/material/dialog&#x27;;
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from &#x27;@angular/material/form-field&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { JsonFileLoaderService } from &#x27;@hra-ui/common/fs&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { ErrorIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/error-indicator&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { WorkflowCardModule } from &#x27;@hra-ui/design-system/workflow-card&#x27;;
+import { SpatialEntityJsonLd } from &#x27;ccf-body-ui&#x27;;
+import { OrganInfo } from &#x27;ccf-shared&#x27;;
+
+import { ModelStateModel } from &#x27;../../../core/store/model/model.state&#x27;;
+import { PageStateModel, Person } from &#x27;../../../core/store/page/page.state&#x27;;
+import { ReferenceDataState } from &#x27;../../../core/store/reference-data/reference-data.state&#x27;;
+import { FileLoadError, FileUploadComponent } from &#x27;../../../shared/components/file-upload/file-upload.component&#x27;;
+import { MetadataAuthorFormComponent } from &#x27;../author-form/metadata-author-form.component&#x27;;
+import { MetadataConfirmationDialogComponent } from &#x27;../confirmation-dialog/metadata-confirmation-dialog.component&#x27;;
+import { MetadataDonorFormComponent } from &#x27;../donor-form/metadata-donor-form.component&#x27;;
+import { MetadataHelpComponent } from &#x27;../help/metadata-help.component&#x27;;
+
+/** Modal mode */
+export type MetadataModalMode &#x3D; &#x27;create&#x27; | &#x27;edit&#x27;;
+
+/** Modal initial configuration */
+export interface MetadataModalConfig {
+  /** Mode */
+  mode: MetadataModalMode;
+  /** Initial page state */
+  pageSnapshot: PageStateModel;
+  /** Initial model state */
+  modelSnapshot: ModelStateModel;
+}
+
+/** Result returned by the modal */
+export interface MetadataModalResult {
+  /** Author data */
+  author: Person;
+  /** Donor data */
+  donor: Pick&lt;ModelStateModel, &#x27;organ&#x27; | &#x27;sex&#x27; | &#x27;consortium&#x27; | &#x27;doi&#x27;&gt;;
+  /** Previous registration */
+  previousRegistration?: Partial&lt;SpatialEntityJsonLd&gt;;
+}
+
+/** Metadata modal form */
+@Component({
+  selector: &#x27;ccf-metadata-modal&#x27;,
+  imports: [
+    HraCommonModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatIconModule,
+    ButtonsModule,
+    ErrorIndicatorComponent,
+    ScrollingModule,
+    WorkflowCardModule,
+    FileUploadComponent,
+    MetadataAuthorFormComponent,
+    MetadataDonorFormComponent,
+    MetadataHelpComponent,
+  ],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        subscriptSizing: &#x27;dynamic&#x27;,
+      } satisfies MatFormFieldDefaultOptions,
+    },
+  ],
+  templateUrl: &#x27;./metadata-modal.component.html&#x27;,
+  styleUrls: [&#x27;./metadata-modal.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [CdkScrollable],
+})
+export class MetadataModalComponent {
+  /** Initial configuration */
+  protected readonly config &#x3D; inject&lt;MetadataModalConfig&gt;(MAT_DIALOG_DATA);
+  /** Dialog service */
+  private readonly dialog &#x3D; inject(MatDialog);
+  /** Reference to container dialog */
+  private readonly ref &#x3D; inject&lt;MatDialogRef&lt;MetadataModalComponent, MetadataModalResult&gt;&gt;(MatDialogRef);
+  /** Reference data state */
+  private readonly referenceState &#x3D; inject(ReferenceDataState);
+
+  /** Non-nullable form builder */
+  private readonly nnfb &#x3D; inject(NonNullableFormBuilder);
+  /** Main metadata form */
+  protected readonly metadataForm &#x3D; this.nnfb.group({
+    author: this.nnfb.group({
+      firstName: [&#x27;&#x27;, [Validators.required]],
+      middleName: [&#x27;&#x27;],
+      lastName: [&#x27;&#x27;, [Validators.required]],
+      email: [&#x27;&#x27;, [Validators.email]],
+      orcidId: [&#x27;&#x27;],
+    }),
+
+    donor: this.nnfb.group({
+      organ: new FormControl&lt;OrganInfo | string | null&gt;(null, [Validators.required]),
+      sex: [&#x27;&#x27;, [Validators.required]],
+      consortium: [&#x27;&#x27;],
+      doi: [&#x27;&#x27;],
+    }),
+  });
+
+  /** Service used to load previous registration files */
+  protected readonly fileLoader &#x3D; JsonFileLoaderService;
+  /** Errors during file loading */
+  protected fileErrors?: string[] &#x3D; undefined;
+  /** Previous registration data */
+  protected previousRegistration?: Partial&lt;SpatialEntityJsonLd&gt; &#x3D; undefined;
+
+  /** Initialize the form field from the configuration */
+  constructor() {
+    const { mode, pageSnapshot, modelSnapshot } &#x3D; this.config;
+    const author &#x3D; pageSnapshot.user;
+    const donor: Partial&lt;ModelStateModel&gt; &#x3D; { ...modelSnapshot };
+    if (mode &#x3D;&#x3D;&#x3D; &#x27;create&#x27; &amp;&amp; !modelSnapshot.organ.name) {
+      delete donor.organ;
+      delete donor.sex;
+    }
+
+    this.metadataForm.patchValue({ author, donor });
+  }
+
+  /**
+   * Populate the form from a registration file&#x27;s content
+   *
+   * @param obj Registration file content
+   */
+  setPreviousRegistration(obj: unknown): void {
+    if (typeof obj &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; obj) {
+      const {
+        creator_first_name: firstName,
+        creator_middle_name: middleName,
+        creator_last_name: lastName,
+        creator_email: email,
+        creator_orcid: orcidId,
+        placement,
+        consortium,
+        publication_doi: doi,
+      } &#x3D; (this.previousRegistration &#x3D; obj as Partial&lt;SpatialEntityJsonLd&gt;);
+      const iri &#x3D; Array.isArray(placement) ? placement[0].target : placement?.target;
+      const data &#x3D; iri ? this.referenceState.getOrganData(iri) : undefined;
+
+      this.metadataForm.reset({
+        author: { firstName, middleName, lastName, email, orcidId },
+        donor: { organ: data?.organ, sex: data?.sex, consortium, doi },
+      });
+      this.metadataForm.markAsDirty();
+    }
+  }
+
+  /**
+   * Set error descriptions based on the file loading error
+   *
+   * @param cause File error data
+   */
+  setFileErrors(cause: FileLoadError): void {
+    if (cause.type &#x3D;&#x3D;&#x3D; &#x27;type-error&#x27;) {
+      this.fileErrors &#x3D; [&#x27;File format not supported: Please upload a JSON file.&#x27;];
+    } else if (cause.cause instanceof Error) {
+      const msg &#x3D; cause.cause.message;
+      const line &#x3D; /line (\d+)/i.exec(msg)?.[1] ?? &#x27;?&#x27;;
+      const column &#x3D; /column (\d+)/i.exec(msg)?.[1] ?? &#x27;?&#x27;;
+      this.fileErrors &#x3D; [&#x60;Error in JSON at line ${line} column ${column}:&#x60;, &#x27;Please upload a file with valid JSON.&#x27;];
+    }
+  }
+
+  /** Clears the form when the previous registration file is removed */
+  clearPreviousRegistration(): void {
+    this.fileErrors &#x3D; undefined;
+    this.previousRegistration &#x3D; undefined;
+    this.metadataForm.reset();
+  }
+
+  /** Submit the form data to the opener and closes the metadata form */
+  submit(): void {
+    if (this.config.mode &#x3D;&#x3D;&#x3D; &#x27;edit&#x27; &amp;&amp; this.hasOrganChange()) {
+      const ref &#x3D; this.dialog.open&lt;MetadataConfirmationDialogComponent, void, boolean&gt;(
+        MetadataConfirmationDialogComponent,
+        {
+          width: &#x27;456px&#x27;,
+          panelClass: &#x27;metadata-confirmation-modal&#x27;,
+        },
+      );
+
+      ref.beforeClosed().subscribe((update) &#x3D;&gt; {
+        if (update) {
+          this.submitResult();
+        }
+      });
+    } else {
+      this.submitResult();
+    }
+  }
+
+  /**
+   * Checks whether the user has changed the organ field
+   *
+   * @returns Whether the user has selected a different organ
+   */
+  private hasOrganChange(): boolean {
+    const previousOrgan &#x3D; this.config.modelSnapshot?.organ;
+    const organControl &#x3D; this.metadataForm.get([&#x27;donor&#x27;, &#x27;organ&#x27;] as const);
+    return previousOrgan !&#x3D;&#x3D; undefined &amp;&amp; organControl?.value !&#x3D;&#x3D; previousOrgan;
+  }
+
+  /** Closes the metadata form and passes the selected form data to the opener */
+  private submitResult(): void {
+    this.ref.close({
+      ...this.metadataForm.value,
+      previousRegistration: this.previousRegistration,
+    } as MetadataModalResult);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'MetadataModalConfig.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

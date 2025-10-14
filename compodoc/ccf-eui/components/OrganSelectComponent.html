@@ -1,0 +1,1097 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-eui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-eui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  OrganSelectComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/organ-select/organ-select.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Organ select form with autocomplete and chips</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ccf-organ-select</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatAutocompleteModule</code>
+                            <code>MatChipsModule</code>
+                            <code>MatIconModule</code>
+                            <code>FormsModule</code>
+                            <code>ScrollingModule</code>
+                            <code>MatCheckboxModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./organ-select.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./organ-select.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#filteredOrgans" >filteredOrgans</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#hidePlaceholder" >hidePlaceholder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#searchInput" >searchInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#searchTextPlaceholder" >searchTextPlaceholder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedOrgans" >selectedOrgans</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkboxSelected" >checkboxSelected</a>
+                            </li>
+                            <li>
+                                <a href="#isChecked" >isChecked</a>
+                            </li>
+                            <li>
+                                <a href="#optionSelected" >optionSelected</a>
+                            </li>
+                            <li>
+                                <a href="#remove" >remove</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkboxSelected"></a>
+                    <span class="name">
+                        <span ><b>checkboxSelected</b></span>
+                        <a href="#checkboxSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkboxSelected(event: MatCheckboxChange, option: OrganInfo)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Toggles checkbox selection when clicked and updates organ selection</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MatCheckboxChange</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Checkbox change event</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>option</td>
+                                            <td>
+                                                        <code>OrganInfo</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Organ option</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isChecked"></a>
+                    <span class="name">
+                        <span ><b>isChecked</b></span>
+                        <a href="#isChecked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isChecked(organ: OrganInfo)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Determines whether organ option is checked</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>organ</td>
+                                            <td>
+                                                        <code>OrganInfo</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Organ option</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True if checked</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="optionSelected"></a>
+                    <span class="name">
+                        <span ><b>optionSelected</b></span>
+                        <a href="#optionSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>optionSelected(event: MatAutocompleteSelectedEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles option selection from autocomplete dropdown and updates scene</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MatAutocompleteSelectedEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Autocomplete selected event</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>remove(organ: OrganInfo)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Removes organ from selection and updates scene</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>organ</td>
+                                            <td>
+                                                        <code>OrganInfo</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Organ to remove</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredOrgans"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>filteredOrgans</b></span>
+                        <a href="#filteredOrgans"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const search &#x3D; this.searchInput().toLowerCase();
+    const options: OrganInfo[] &#x3D; [];
+    for (const organ of ALL_ORGANS) {
+      if (organ.name.toLowerCase().includes(search)) {
+        options.push(organ);
+      }
+    }
+
+    return options;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organs to display in autocomplete dropdown</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hidePlaceholder"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>hidePlaceholder</b></span>
+                        <a href="#hidePlaceholder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Shows placeholder text when organs are selected, hides when input is focused</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchInput"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>searchInput</b></span>
+                        <a href="#searchInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current search input</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchTextPlaceholder"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>searchTextPlaceholder</b></span>
+                        <a href="#searchTextPlaceholder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    return this.hidePlaceholder()
+      ? &#x27;&#x27;
+      : &#x60;${this.selectedOrgans().length} Organ${this.selectedOrgans().length !&#x3D;&#x3D; 1 ? &#x27;s&#x27; : &#x27;&#x27;} Visible&#x60;;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Hides placeholder text when input is focused or when there are no selected organs
+If only one organ is selected use singular form</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOrgans"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedOrgans</b></span>
+                        <a href="#selectedOrgans"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>toSignal(this.scene.selectedReferenceOrgans$, { requireSync: true })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/components/organ-select/organ-select.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected organs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, inject, signal } from &#x27;@angular/core&#x27;;
+import { toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from &#x27;@angular/material/autocomplete&#x27;;
+import { MatCheckboxChange, MatCheckboxModule } from &#x27;@angular/material/checkbox&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { ALL_ORGANS, OrganInfo } from &#x27;ccf-shared&#x27;;
+
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { SceneState } from &#x27;../../../core/store/scene/scene.state&#x27;;
+
+/**
+ * Organ select form with autocomplete and chips
+ */
+@Component({
+  selector: &#x27;ccf-organ-select&#x27;,
+  imports: [
+    HraCommonModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+    FormsModule,
+    ScrollingModule,
+    MatCheckboxModule,
+  ],
+  templateUrl: &#x27;./organ-select.component.html&#x27;,
+  styleUrl: &#x27;./organ-select.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class OrganSelectComponent {
+  /** Scene state */
+  private readonly scene &#x3D; inject(SceneState);
+  /** Currently selected organs */
+  protected readonly selectedOrgans &#x3D; toSignal(this.scene.selectedReferenceOrgans$, { requireSync: true });
+  /** Current search input */
+  protected readonly searchInput &#x3D; signal(&#x27;&#x27;);
+
+  /** Organs to display in autocomplete dropdown */
+  protected readonly filteredOrgans &#x3D; computed(() &#x3D;&gt; {
+    const search &#x3D; this.searchInput().toLowerCase();
+    const options: OrganInfo[] &#x3D; [];
+    for (const organ of ALL_ORGANS) {
+      if (organ.name.toLowerCase().includes(search)) {
+        options.push(organ);
+      }
+    }
+
+    return options;
+  });
+
+  /**
+   * Hides placeholder text when input is focused or when there are no selected organs
+   * If only one organ is selected use singular form
+   */
+  protected readonly searchTextPlaceholder &#x3D; computed(() &#x3D;&gt; {
+    return this.hidePlaceholder()
+      ? &#x27;&#x27;
+      : &#x60;${this.selectedOrgans().length} Organ${this.selectedOrgans().length !&#x3D;&#x3D; 1 ? &#x27;s&#x27; : &#x27;&#x27;} Visible&#x60;;
+  });
+
+  /** Shows placeholder text when organs are selected, hides when input is focused  */
+  protected readonly hidePlaceholder &#x3D; signal(false);
+
+  /**
+   * Removes organ from selection and updates scene
+   * @param organ Organ to remove
+   */
+  remove(organ: OrganInfo): void {
+    const index &#x3D; this.selectedOrgans().indexOf(organ);
+    const newSelection &#x3D; [...this.selectedOrgans()];
+    newSelection.splice(index, 1);
+    this.scene.setSelectedReferenceOrgans(newSelection);
+  }
+
+  /**
+   * Handles option selection from autocomplete dropdown and updates scene
+   * @param event Autocomplete selected event
+   */
+  optionSelected(event: MatAutocompleteSelectedEvent): void {
+    this.searchInput.set(&#x27;&#x27;);
+    if (
+      this.selectedOrgans()
+        .map((organ) &#x3D;&gt; organ.name)
+        .includes(event.option.value.name)
+    ) {
+      return;
+    }
+    this.scene.setSelectedReferenceOrgans([...this.selectedOrgans(), event.option.value]);
+  }
+
+  /**
+   * Toggles checkbox selection when clicked and updates organ selection
+   * @param event Checkbox change event
+   * @param option Organ option
+   */
+  checkboxSelected(event: MatCheckboxChange, option: OrganInfo): void {
+    if (!event.checked) {
+      this.remove(option);
+      return;
+    }
+    this.scene.setSelectedReferenceOrgans([...this.selectedOrgans(), option]);
+    this.searchInput.set(&#x27;&#x27;);
+  }
+
+  /**
+   * Determines whether organ option is checked
+   * @param organ Organ option
+   * @returns True if checked
+   */
+  isChecked(organ: OrganInfo): boolean {
+    return this.selectedOrgans()
+      .map((o) &#x3D;&gt; o.name)
+      .includes(organ.name);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;form hraFeature&#x3D;&quot;organ-select&quot;&gt;
+  &lt;mat-form-field class&#x3D;&quot;organ-form-field&quot; subscriptSizing&#x3D;&quot;dynamic&quot; floatLabel&#x3D;&quot;always&quot;&gt;
+    &lt;mat-icon matPrefix&gt;search&lt;/mat-icon&gt;
+    &lt;mat-label&gt;Organs&lt;/mat-label&gt;
+    &lt;input
+      hraFeature&#x3D;&quot;organ-search&quot;
+      hraClickEvent
+      name&#x3D;&quot;currentOrganInput&quot;
+      class&#x3D;&quot;organ-input&quot;
+      [(ngModel)]&#x3D;&quot;searchInput&quot;
+      [matChipInputFor]&#x3D;&quot;chipGrid&quot;
+      [matAutocomplete]&#x3D;&quot;auto&quot;
+      #organInput
+      [placeholder]&#x3D;&quot;searchTextPlaceholder()&quot;
+    /&gt;
+    &lt;mat-autocomplete
+      #auto&#x3D;&quot;matAutocomplete&quot;
+      (optionSelected)&#x3D;&quot;optionSelected($event)&quot;
+      hideSingleSelectionIndicator
+      (opened)&#x3D;&quot;hidePlaceholder.set(true)&quot;
+      (closed)&#x3D;&quot;hidePlaceholder.set(false)&quot;
+    &gt;
+      &lt;mat-chip-grid hraFeature&#x3D;&quot;chips&quot; class&#x3D;&quot;organ-select-chips&quot; #chipGrid aria-label&#x3D;&quot;Organ selection&quot;&gt;
+        @for (organ of selectedOrgans(); track organ) {
+          &lt;mat-chip-row [hraFeature]&#x3D;&quot;organ.name | slugify&quot; (removed)&#x3D;&quot;remove(organ)&quot;&gt;
+            &lt;span hraFeature&#x3D;&quot;label&quot; hraClickEvent&gt;{{ organ.name }}&lt;/span&gt;
+            &lt;button hraFeature&#x3D;&quot;remove&quot; hraClickEvent matChipRemove [attr.aria-label]&#x3D;&quot;&#x27;remove &#x27; + organ.name&quot;&gt;
+              &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+            &lt;/button&gt;
+          &lt;/mat-chip-row&gt;
+        }
+      &lt;/mat-chip-grid&gt;
+      &lt;ng-scrollbar hraFeature&#x3D;&quot;list&quot; class&#x3D;&quot;organ-list&quot;&gt;
+        @for (organ of filteredOrgans(); track organ) {
+          &lt;div [hraFeature]&#x3D;&quot;organ.name | slugify&quot; class&#x3D;&quot;autocomplete-option&quot;&gt;
+            &lt;mat-checkbox
+              hraFeature&#x3D;&quot;toggle&quot;
+              hraClickEvent
+              class&#x3D;&quot;autocomplete-checkbox&quot;
+              (change)&#x3D;&quot;checkboxSelected($event, organ)&quot;
+              [checked]&#x3D;&quot;isChecked(organ)&quot;
+            &gt;&lt;/mat-checkbox&gt;
+            &lt;mat-option hraFeature&#x3D;&quot;select&quot; hraClickEvent [value]&#x3D;&quot;organ&quot;&gt;{{ organ.name }}&lt;/mat-option&gt;
+          &lt;/div&gt;
+        }
+      &lt;/ng-scrollbar&gt;
+    &lt;/mat-autocomplete&gt;
+  &lt;/mat-form-field&gt;
+&lt;/form&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><form hraFeature="organ-select">  <mat-form-field class="organ-form-field" subscriptSizing="dynamic" floatLabel="always">    <mat-icon matPrefix>search</mat-icon>    <mat-label>Organs</mat-label>    <input      hraFeature="organ-search"      hraClickEvent      name="currentOrganInput"      class="organ-input"      [(ngModel)]="searchInput"      [matChipInputFor]="chipGrid"      [matAutocomplete]="auto"      #organInput      [placeholder]="searchTextPlaceholder()"    />    <mat-autocomplete      #auto="matAutocomplete"      (optionSelected)="optionSelected($event)"      hideSingleSelectionIndicator      (opened)="hidePlaceholder.set(true)"      (closed)="hidePlaceholder.set(false)"    >      <mat-chip-grid hraFeature="chips" class="organ-select-chips" #chipGrid aria-label="Organ selection">        @for (organ of selectedOrgans(); track organ) {          <mat-chip-row [hraFeature]="organ.name | slugify" (removed)="remove(organ)">            <span hraFeature="label" hraClickEvent>{{ organ.name }}</span>            <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="\'remove \' + organ.name">              <mat-icon>close</mat-icon>            </button>          </mat-chip-row>        }      </mat-chip-grid>      <ng-scrollbar hraFeature="list" class="organ-list">        @for (organ of filteredOrgans(); track organ) {          <div [hraFeature]="organ.name | slugify" class="autocomplete-option">            <mat-checkbox              hraFeature="toggle"              hraClickEvent              class="autocomplete-checkbox"              (change)="checkboxSelected($event, organ)"              [checked]="isChecked(organ)"            ></mat-checkbox>            <mat-option hraFeature="select" hraClickEvent [value]="organ">{{ organ.name }}</mat-option>          </div>        }      </ng-scrollbar>    </mat-autocomplete>  </mat-form-field></form></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'OrganSelectComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'OrganSelectComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1072 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for common</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for common</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content directive">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >EventDirective</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>analytics/src/lib/event/event.directive.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Directive that log events to analytics whenever a built-in trigger event is dispatched
+on the host element. It can also be configured for manual logging.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;button [hraEvent]=&quot;EventType.Click&quot; [hraEventProps]=&quot;{...}&quot; &gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;button [hraEvent]=&quot;EventType.Click&quot; [hraEventProps]=&quot;{...}&quot; hraEventTriggerOn=&quot;dblclick&quot; &gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;button [hraEvent]=&quot;EventType.Click&quot; [hraEventProps]=&quot;{...}&quot; hraEventTriggerOn=&quot;none&quot; #eventDir=&quot;hraEvent&quot;
+  (hover)=&quot;eventDir.logEvent(...)&quot; &gt;</code></pre></div>
+            </p>
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../directives/BaseEventDirective.html" target="_self" >BaseEventDirective</a></code>
+            </p>
+
+
+
+        <section data-compodoc="block-metadata">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
+
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>[hraEvent]</code></td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-3">exportAs</td>
+                        <td class="col-md-9"><code>hraEvent</code></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Abstract</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Abstract</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#event" >event</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Abstract</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#props" >props</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Abstract</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#triggerOn" >triggerOn</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#logEvent" >logEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#event" >event</a>
+                            </li>
+                            <li>
+                                <a href="#props" >props</a>
+                            </li>
+                            <li>
+                                <a href="#triggerOn" >triggerOn</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false, { alias: &#x27;hraEventDisabled&#x27;, transform: booleanAttribute }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">analytics/src/lib/event/event.directive.ts:115</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether this event is disabled</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="event"></a>
+                        <b>event</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ alias: &#x27;hraEvent&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">analytics/src/lib/event/event.directive.ts:109</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event type</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="props"></a>
+                        <b>props</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#EventPropsFor" target="_self" >EventPropsFor&lt;T&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ alias: &#x27;hraEventProps&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">analytics/src/lib/event/event.directive.ts:111</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event properties</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="triggerOn"></a>
+                        <b>triggerOn</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#EventTrigger" target="_self" >EventTrigger | &#x27;none&#x27; | undefined</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined, { alias: &#x27;hraEventTriggerOn&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">analytics/src/lib/event/event.directive.ts:113</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Built-in trigger to log events on or &#39;none&#39; if events are sent programatically</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logEvent"></a>
+                    <span class="name">
+                        <span ><b>logEvent</b></span>
+                        <a href="#logEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logEvent(trigger?: E, event?: EventTriggerPayloadFor<E>, extraProps: Partial<EventPayloadFor<T>>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/BaseEventDirective.html" target="_self" >BaseEventDirective</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/BaseEventDirective.html#source" target="_self" >BaseEventDirective:68</a></code>
+</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>E</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Logs an event to analytics</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>trigger</td>
+                                            <td>
+                                                        <code>E</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>Built-in event that triggered the call</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>EventTriggerPayloadFor&lt;E&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>Event object</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>extraProps</td>
+                                            <td>
+                                                        <code>Partial&lt;EventPayloadFor&lt;T&gt;&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>Additional event properties</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disabled"></a>
+                    <span class="name">
+                            <span class="modifier">Abstract</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>disabled</b></span>
+                        <a href="#disabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/BaseEventDirective.html" target="_self" >BaseEventDirective</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/BaseEventDirective.html#source" target="_self" >BaseEventDirective:36</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether this event is disabled</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="event"></a>
+                    <span class="name">
+                            <span class="modifier">Abstract</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>event</b></span>
+                        <a href="#event"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/BaseEventDirective.html" target="_self" >BaseEventDirective</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/BaseEventDirective.html#source" target="_self" >BaseEventDirective:30</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Event type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="props"></a>
+                    <span class="name">
+                            <span class="modifier">Abstract</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>props</b></span>
+                        <a href="#props"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/BaseEventDirective.html" target="_self" >BaseEventDirective</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/BaseEventDirective.html#source" target="_self" >BaseEventDirective:32</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Event properties</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="triggerOn"></a>
+                    <span class="name">
+                            <span class="modifier">Abstract</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>triggerOn</b></span>
+                        <a href="#triggerOn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/BaseEventDirective.html" target="_self" >BaseEventDirective</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/BaseEventDirective.html#source" target="_self" >BaseEventDirective:34</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Built-in trigger to log events on or &#39;none&#39; if events are sent programatically</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  AfterViewInit,
+  booleanAttribute,
+  DestroyRef,
+  Directive,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  Renderer2,
+} from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { NgControl } from &#x27;@angular/forms&#x27;;
+import {
+  AnalyticsEvent,
+  CoreEvents,
+  EventPayloadFor,
+  EventPropsFor,
+  EventTrigger,
+  EventTriggerPayloadFor,
+} from &#x27;@hra-ui/common/analytics/events&#x27;;
+import { skip } from &#x27;rxjs&#x27;;
+import { UnknownRecord } from &#x27;type-fest&#x27;;
+import { injectLogEvent } from &#x27;../analytics/analytics.service&#x27;;
+
+/** Shared base implementation for event directives */
+@Directive()
+export abstract class BaseEventDirective&lt;T extends AnalyticsEvent&gt; {
+  /** Event type */
+  abstract readonly event: () &#x3D;&gt; T;
+  /** Event properties */
+  abstract readonly props: () &#x3D;&gt; EventPropsFor&lt;T&gt;;
+  /** Built-in trigger to log events on or &#x27;none&#x27; if events are sent programatically */
+  abstract readonly triggerOn: () &#x3D;&gt; EventTrigger | &#x27;none&#x27; | undefined;
+  /** Whether this event is disabled */
+  abstract readonly disabled: () &#x3D;&gt; boolean;
+
+  /** Reference to renderer for dom interactions */
+  private readonly renderer &#x3D; inject(Renderer2);
+  /** Host element */
+  private readonly el &#x3D; inject(ElementRef).nativeElement as Element;
+  /** Raw logEvent function */
+  private readonly logEvent_ &#x3D; injectLogEvent();
+
+  /** Initialize the directive */
+  constructor() {
+    effect((onCleanup) &#x3D;&gt; {
+      const trigger &#x3D; this.triggerOn() ?? this.event().trigger ?? &#x27;click&#x27;;
+      if (trigger !&#x3D;&#x3D; &#x27;none&#x27; &amp;&amp; !this.disabled()) {
+        const { el, renderer } &#x3D; this;
+        const handler &#x3D; this.logEvent.bind(this, trigger);
+        const parts &#x3D; trigger.split(&#x27;:&#x27;, 2);
+        const [target, eventName] &#x3D; parts.length &#x3D;&#x3D;&#x3D; 2 ? parts : [el, trigger];
+        const unlisten &#x3D; renderer.listen(target, eventName, handler);
+        // Delay cleanup to avoid issues with Angular destroying the element before the event is fully processed
+        onCleanup(() &#x3D;&gt; setTimeout(() &#x3D;&gt; unlisten()));
+      }
+    });
+  }
+
+  /**
+   * Logs an event to analytics
+   *
+   * @param trigger Built-in event that triggered the call
+   * @param event Event object
+   * @param extraProps Additional event properties
+   */
+  logEvent&lt;E extends EventTrigger&gt;(
+    trigger?: E,
+    event?: EventTriggerPayloadFor&lt;E&gt;,
+    extraProps: Partial&lt;EventPayloadFor&lt;T&gt;&gt; &#x3D; {},
+  ): void {
+    const props &#x3D; this.props();
+    this.logEvent_(this.event(), {
+      trigger: trigger,
+      triggerData: event,
+      ...(props !&#x3D;&#x3D; &#x27;&#x27; ? props : ({} as EventPayloadFor&lt;T&gt;)),
+      ...extraProps,
+    });
+  }
+}
+
+/**
+ * Directive that log events to analytics whenever a built-in trigger event is dispatched
+ * on the host element. It can also be configured for manual logging.
+ *
+ * @example &lt;caption&gt;Basic usage&lt;/caption&gt;
+ * &#x60;&#x60;&#x60;html
+ * &lt;button [hraEvent]&#x3D;&quot;EventType.Click&quot; [hraEventProps]&#x3D;&quot;{...}&quot; &gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * @example &lt;caption&gt;Different trigger&lt;/caption&gt;
+ * &#x60;&#x60;&#x60;html
+ * &lt;button [hraEvent]&#x3D;&quot;EventType.Click&quot; [hraEventProps]&#x3D;&quot;{...}&quot; hraEventTriggerOn&#x3D;&quot;dblclick&quot; &gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * @example &lt;caption&gt;Manual logging&lt;/caption&gt;
+ * &#x60;&#x60;&#x60;html
+ * &lt;button [hraEvent]&#x3D;&quot;EventType.Click&quot; [hraEventProps]&#x3D;&quot;{...}&quot; hraEventTriggerOn&#x3D;&quot;none&quot; #eventDir&#x3D;&quot;hraEvent&quot;
+ *   (hover)&#x3D;&quot;eventDir.logEvent(...)&quot; &gt;
+ * &#x60;&#x60;&#x60;
+ */
+@Directive({
+  selector: &#x27;[hraEvent]&#x27;,
+  exportAs: &#x27;hraEvent&#x27;,
+})
+export class EventDirective&lt;T extends AnalyticsEvent&gt; extends BaseEventDirective&lt;T&gt; {
+  /** Event type */
+  override readonly event &#x3D; input.required&lt;T&gt;({ alias: &#x27;hraEvent&#x27; });
+  /** Event properties */
+  override readonly props &#x3D; input.required&lt;EventPropsFor&lt;T&gt;&gt;({ alias: &#x27;hraEventProps&#x27; });
+  /** Built-in trigger to log events on or &#x27;none&#x27; if events are sent programatically */
+  override readonly triggerOn &#x3D; input&lt;EventTrigger | &#x27;none&#x27; | undefined&gt;(undefined, { alias: &#x27;hraEventTriggerOn&#x27; });
+  /** Whether this event is disabled */
+  override readonly disabled &#x3D; input(false, { alias: &#x27;hraEventDisabled&#x27;, transform: booleanAttribute });
+}
+
+/**
+ * Specialized version of &#x60;hraEvent&#x60; that only emits click events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: &#x27;[hraClickEvent]&#x27;,
+  exportAs: &#x27;hraClickEvent&#x27;,
+})
+export class ClickEventDirective extends BaseEventDirective&lt;CoreEvents[&#x27;Click&#x27;]&gt; {
+  /** Event type */
+  override readonly event &#x3D; () &#x3D;&gt; CoreEvents.Click;
+  /** Event properties */
+  override readonly props &#x3D; input&lt;EventPropsFor&lt;CoreEvents[&#x27;Click&#x27;]&gt;&gt;(&#x27;&#x27;, { alias: &#x27;hraClickEvent&#x27; });
+  /** &#x27;none&#x27; if events are sent programatically */
+  override readonly triggerOn &#x3D; input&lt;&#x27;none&#x27; | undefined&gt;(undefined, { alias: &#x27;hraClickEventTriggerOn&#x27; });
+  /** Whether this event is disabled */
+  override readonly disabled &#x3D; input(false, { alias: &#x27;hraClickEventDisabled&#x27;, transform: booleanAttribute });
+}
+
+/**
+ * Specialized version of &#x60;hraEvent&#x60; that only emits double click events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: &#x27;[hraDoubleClickEvent]&#x27;,
+  exportAs: &#x27;hraDoubleClickEvent&#x27;,
+})
+export class DoubleClickEventDirective extends BaseEventDirective&lt;CoreEvents[&#x27;DoubleClick&#x27;]&gt; {
+  /** Event type */
+  override readonly event &#x3D; () &#x3D;&gt; CoreEvents.DoubleClick;
+  /** Event properties */
+  override readonly props &#x3D; input&lt;EventPropsFor&lt;CoreEvents[&#x27;DoubleClick&#x27;]&gt;&gt;(&#x27;&#x27;, { alias: &#x27;hraDoubleClickEvent&#x27; });
+  /** &#x27;none&#x27; if events are sent programatically */
+  override readonly triggerOn &#x3D; input&lt;&#x27;none&#x27; | undefined&gt;(undefined, { alias: &#x27;hraDoubleClickEventTriggerOn&#x27; });
+  /** Whether this event is disabled */
+  override readonly disabled &#x3D; input(false, { alias: &#x27;hraDoubleClickEventDisabled&#x27;, transform: booleanAttribute });
+}
+
+/**
+ * Specialized version of &#x60;hraEvent&#x60; that only emits hover events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: &#x27;[hraHoverEvent]&#x27;,
+  exportAs: &#x27;hraHoverEvent&#x27;,
+})
+export class HoverEventDirective extends BaseEventDirective&lt;CoreEvents[&#x27;Hover&#x27;]&gt; {
+  /** Event type */
+  override readonly event &#x3D; () &#x3D;&gt; CoreEvents.Hover;
+  /** Event properties */
+  override readonly props &#x3D; input&lt;EventPropsFor&lt;CoreEvents[&#x27;Hover&#x27;]&gt;&gt;(&#x27;&#x27;, { alias: &#x27;hraHoverEvent&#x27; });
+  /** mouseenter, mouseleave, mouseover, mouseout, or &#x27;none&#x27; if events are sent programatically */
+  override readonly triggerOn &#x3D; input&lt;
+    EventTrigger&lt;&#x27;mouseenter&#x27; | &#x27;mouseleave&#x27; | &#x27;mouseover&#x27; | &#x27;mouseout&#x27;&gt; | &#x27;none&#x27; | undefined
+  &gt;(undefined, { alias: &#x27;hraHoverEventTriggerOn&#x27; });
+  /** Whether this event is disabled */
+  override readonly disabled &#x3D; input(false, { alias: &#x27;hraHoverEventDisabled&#x27;, transform: booleanAttribute });
+}
+
+/**
+ * Specialized version of &#x60;hraEvent&#x60; that only emits keyboard events
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: &#x27;[hraKeyboardEvent]&#x27;,
+  exportAs: &#x27;hraKeyboardEvent&#x27;,
+})
+export class KeyboardEventDirective extends BaseEventDirective&lt;CoreEvents[&#x27;Keyboard&#x27;]&gt; {
+  /** Event type */
+  override readonly event &#x3D; () &#x3D;&gt; CoreEvents.Keyboard;
+  /** Event properties */
+  override readonly props &#x3D; input&lt;EventPropsFor&lt;CoreEvents[&#x27;Keyboard&#x27;]&gt;&gt;(&#x27;&#x27;, { alias: &#x27;hraKeyboardEvent&#x27; });
+  /** keydown (default), keyup, or &#x27;none&#x27; if events are sent programatically */
+  override readonly triggerOn &#x3D; input&lt;EventTrigger&lt;&#x27;keyup&#x27; | &#x27;keydown&#x27;&gt; | &#x27;none&#x27; | undefined&gt;(undefined, {
+    alias: &#x27;hraKeyboardEventTriggerOn&#x27;,
+  });
+  /** Whether this event is disabled */
+  override readonly disabled &#x3D; input(false, { alias: &#x27;hraKeyboardEventDisabled&#x27;, transform: booleanAttribute });
+}
+
+/** A list of property keys or a filter function */
+export type ModelChangeFilter &#x3D; PropertyKey[] | ((value: unknown) &#x3D;&gt; unknown);
+/** Either additional event props or a model value filter */
+export type ModelChangePropsOrFilter &#x3D; EventPropsFor&lt;CoreEvents[&#x27;ModelChange&#x27;]&gt; | ModelChangeFilter;
+
+/**
+ * Specialized version of &#x60;hraEvent&#x60; that only emits when a NgControl&#x27;s value changes
+ *
+ * @see {@link EventDirective}
+ */
+@Directive({
+  selector: &#x27;[hraModelChangeEvent]&#x27;,
+  exportAs: &#x27;hraModelChangeEvent&#x27;,
+})
+export class ModelChangeEventDirective extends BaseEventDirective&lt;CoreEvents[&#x27;ModelChange&#x27;]&gt; implements AfterViewInit {
+  /** Event type */
+  override readonly event &#x3D; () &#x3D;&gt; CoreEvents.ModelChange;
+  /** Event properties */
+  override readonly props &#x3D; () &#x3D;&gt; &#x27;&#x27; as const;
+  /** Event props or a model value filter */
+  readonly propsOrFilter &#x3D; input&lt;ModelChangePropsOrFilter&gt;(&#x27;&#x27;, { alias: &#x27;hraModelChangeEvent&#x27; });
+  /** Always triggered programatically */
+  override readonly triggerOn &#x3D; () &#x3D;&gt; &#x27;none&#x27; as const;
+  /** Whether this event is disabled */
+  override readonly disabled &#x3D; input(false, { alias: &#x27;hraModelChangeEventDisabled&#x27;, transform: booleanAttribute });
+
+  /** Model control reference */
+  private readonly ngControl &#x3D; inject(NgControl);
+
+  /** Cleanup manager */
+  private readonly destroyRef &#x3D; inject(DestroyRef);
+
+  /** Connect to the NgControl */
+  ngAfterViewInit(): void {
+    const { valueChanges } &#x3D; this.ngControl;
+    valueChanges?.pipe(takeUntilDestroyed(this.destroyRef), skip(1)).subscribe((value) &#x3D;&gt; {
+      const props &#x3D; this.selectProps(value, this.propsOrFilter());
+      this.logEvent(undefined, undefined, props);
+    });
+  }
+
+  /**
+   * Selects event properties based on the current model value
+   *
+   * @param value Latest model value
+   * @param propsOrFilter Additional event properties or a value filter
+   * @returns Event properties
+   */
+  private selectProps(
+    value: unknown,
+    propsOrFilter: ModelChangePropsOrFilter,
+  ): EventPayloadFor&lt;CoreEvents[&#x27;ModelChange&#x27;]&gt; {
+    if (propsOrFilter &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      return { value };
+    } else if (typeof propsOrFilter &#x3D;&#x3D;&#x3D; &#x27;function&#x27;) {
+      return { value: propsOrFilter(value) };
+    } else if (typeof propsOrFilter &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; !Array.isArray(propsOrFilter)) {
+      return { value, ...propsOrFilter };
+    } else if (value &#x3D;&#x3D;&#x3D; undefined || value &#x3D;&#x3D;&#x3D; null) {
+      return {};
+    }
+
+    const source &#x3D; value as UnknownRecord;
+    const result: UnknownRecord &#x3D; {};
+    for (const key of propsOrFilter) {
+      if (key in source) {
+        result[key] &#x3D; source[key];
+      }
+    }
+
+    return { value: result };
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'EventDirective.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

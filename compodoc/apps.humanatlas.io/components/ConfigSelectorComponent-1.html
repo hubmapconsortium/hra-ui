@@ -1,0 +1,1818 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ConfigSelectorComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Configuration Selector Component</p>
+<p>Provides user interface controls for filtering and configuring
+the HRApop data visualization display options.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-config-selector</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>FormsModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatCheckboxModule</code>
+                            <code>MatButtonToggleModule</code>
+                            <code>ResultsIndicatorComponent</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./config-selector.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./config-selector.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#allTools" >allTools</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#availableSexes" >availableSexes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getToolDisplayName" >getToolDisplayName</a>
+                            </li>
+                            <li>
+                                <a href="#isToolAvailable" >isToolAvailable</a>
+                            </li>
+                            <li>
+                                <a href="#onSexesChange" >onSexesChange</a>
+                            </li>
+                            <li>
+                                <a href="#onToolChange" >onToolChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#availableTools" >availableTools</a>
+                            </li>
+                            <li>
+                                <a href="#dataTypeOptions" >dataTypeOptions</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#organOptions" >organOptions</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDataType" >selectedDataType</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOrgan" >selectedOrgan</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSexes" >selectedSexes</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSort" >selectedSort</a>
+                            </li>
+                            <li>
+                                <a href="#selectedTools" >selectedTools</a>
+                            </li>
+                            <li>
+                                <a href="#selectedXAxis" >selectedXAxis</a>
+                            </li>
+                            <li>
+                                <a href="#selectedYAxis" >selectedYAxis</a>
+                            </li>
+                            <li>
+                                <a href="#sortOptions" >sortOptions</a>
+                            </li>
+                            <li>
+                                <a href="#xAxisOptions" >xAxisOptions</a>
+                            </li>
+                            <li>
+                                <a href="#yAxisOptions" >yAxisOptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#selectedDataType" >selectedDataType</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOrgan" >selectedOrgan</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSexes" >selectedSexes</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSort" >selectedSort</a>
+                            </li>
+                            <li>
+                                <a href="#selectedTools" >selectedTools</a>
+                            </li>
+                            <li>
+                                <a href="#selectedXAxis" >selectedXAxis</a>
+                            </li>
+                            <li>
+                                <a href="#selectedYAxis" >selectedYAxis</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="availableTools"></a>
+                        <b>availableTools</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:62</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Tools that have data available for the current organ</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dataTypeOptions"></a>
+                        <b>dataTypeOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DataTypeConfig.html" target="_self" >DataTypeConfig[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:44</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Available data type configuration options</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loading"></a>
+                        <b>loading</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:59</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Loading state indicator</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="organOptions"></a>
+                        <b>organOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:47</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Available organ options for selection</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedDataType"></a>
+                        <b>selectedDataType</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DataType" target="_self" >DataType</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:65</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected data type</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedOrgan"></a>
+                        <b>selectedOrgan</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:68</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected organ</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedSexes"></a>
+                        <b>selectedSexes</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:74</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected sexes</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedSort"></a>
+                        <b>selectedSort</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#SortValue" target="_self" >SortValue</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:83</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected sort method</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedTools"></a>
+                        <b>selectedTools</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:71</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected annotation tools</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedXAxis"></a>
+                        <b>selectedXAxis</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:77</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected X-axis</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedYAxis"></a>
+                        <b>selectedYAxis</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#YAxisValue" target="_self" >YAxisValue</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:80</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected Y-axis</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortOptions"></a>
+                        <b>sortOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SortOption.html" target="_self" >SortOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:56</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Available sort options for data organization</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="xAxisOptions"></a>
+                        <b>xAxisOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/XAxisOption.html" target="_self" >XAxisOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:50</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Available X-axis options based on selected data type</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="yAxisOptions"></a>
+                        <b>yAxisOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/YAxisOption.html" target="_self" >YAxisOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:53</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Available Y-axis options for chart display</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedDataType"></a>
+                        <b>selectedDataType</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DataType" target="_self" >DataType</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:65</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected data type</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedOrgan"></a>
+                        <b>selectedOrgan</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:68</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected organ</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedSexes"></a>
+                        <b>selectedSexes</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:74</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected sexes</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedSort"></a>
+                        <b>selectedSort</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#SortValue" target="_self" >SortValue</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:83</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected sort method</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedTools"></a>
+                        <b>selectedTools</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:71</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected annotation tools</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedXAxis"></a>
+                        <b>selectedXAxis</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:77</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected X-axis</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedYAxis"></a>
+                        <b>selectedYAxis</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#YAxisValue" target="_self" >YAxisValue</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:80</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Two-way binding for selected Y-axis</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getToolDisplayName"></a>
+                    <span class="name">
+                        <span ><b>getToolDisplayName</b></span>
+                        <a href="#getToolDisplayName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getToolDisplayName(tool: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Gets the proper display name for a tool</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tool</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The tool identifier</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The formatted display name</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isToolAvailable"></a>
+                    <span class="name">
+                        <span ><b>isToolAvailable</b></span>
+                        <a href="#isToolAvailable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isToolAvailable(tool: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Checks if a tool is available (has data) for the current selection</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tool</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The tool identifier to check</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True if the tool has available data</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSexesChange"></a>
+                    <span class="name">
+                        <span ><b>onSexesChange</b></span>
+                        <a href="#onSexesChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSexesChange(selectedSexes: string[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:106</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles changes to sex selection</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>selectedSexes</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Array of selected sex values</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onToolChange"></a>
+                    <span class="name">
+                        <span ><b>onToolChange</b></span>
+                        <a href="#onToolChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onToolChange(tool: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, checked: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles changes to tool selection</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tool</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The tool identifier</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>checked</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Whether the tool should be selected</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allTools"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>allTools</b></span>
+                        <a href="#allTools"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;azimuth&#x27;, &#x27;celltypist&#x27;, &#x27;popv&#x27;, &#x27;sc_proteomics&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All possible annotation tools</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="availableSexes"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>availableSexes</b></span>
+                        <a href="#availableSexes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;Male&#x27;, &#x27;Female&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/config-selector/config-selector.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Available sex options</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ChangeDetectionStrategy, input, model } from &#x27;@angular/core&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatCheckboxModule } from &#x27;@angular/material/checkbox&#x27;;
+import { MatButtonToggleModule } from &#x27;@angular/material/button-toggle&#x27;;
+import {
+  DataType,
+  DataTypeConfig,
+  XAxisOption,
+  YAxisOption,
+  SortOption,
+  YAxisValue,
+  SortValue,
+  getToolDisplayName,
+} from &#x27;../../utils/data-type-config&#x27;;
+import { ResultsIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/results-indicator&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+
+/**
+ * Configuration Selector Component
+ *
+ * Provides user interface controls for filtering and configuring
+ * the HRApop data visualization display options.
+ */
+@Component({
+  selector: &#x27;hra-config-selector&#x27;,
+  standalone: true,
+  imports: [
+    HraCommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatButtonToggleModule,
+    ResultsIndicatorComponent,
+  ],
+  templateUrl: &#x27;./config-selector.component.html&#x27;,
+  styleUrl: &#x27;./config-selector.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ConfigSelectorComponent {
+  /** Available data type configuration options */
+  readonly dataTypeOptions &#x3D; input.required&lt;DataTypeConfig[]&gt;();
+
+  /** Available organ options for selection */
+  readonly organOptions &#x3D; input.required&lt;string[]&gt;();
+
+  /** Available X-axis options based on selected data type */
+  readonly xAxisOptions &#x3D; input.required&lt;XAxisOption[]&gt;();
+
+  /** Available Y-axis options for chart display */
+  readonly yAxisOptions &#x3D; input.required&lt;YAxisOption[]&gt;();
+
+  /** Available sort options for data organization */
+  readonly sortOptions &#x3D; input.required&lt;SortOption[]&gt;();
+
+  /** Loading state indicator */
+  readonly loading &#x3D; input&lt;boolean&gt;(false);
+
+  /** Tools that have data available for the current organ */
+  readonly availableTools &#x3D; input.required&lt;string[]&gt;();
+
+  /** Two-way binding for selected data type */
+  readonly selectedDataType &#x3D; model.required&lt;DataType&gt;();
+
+  /** Two-way binding for selected organ */
+  readonly selectedOrgan &#x3D; model.required&lt;string&gt;();
+
+  /** Two-way binding for selected annotation tools */
+  readonly selectedTools &#x3D; model.required&lt;string[]&gt;();
+
+  /** Two-way binding for selected sexes */
+  readonly selectedSexes &#x3D; model.required&lt;string[]&gt;();
+
+  /** Two-way binding for selected X-axis */
+  readonly selectedXAxis &#x3D; model.required&lt;string&gt;();
+
+  /** Two-way binding for selected Y-axis */
+  readonly selectedYAxis &#x3D; model.required&lt;YAxisValue&gt;();
+
+  /** Two-way binding for selected sort method */
+  readonly selectedSort &#x3D; model.required&lt;SortValue&gt;();
+
+  /** All possible annotation tools */
+  readonly allTools &#x3D; [&#x27;azimuth&#x27;, &#x27;celltypist&#x27;, &#x27;popv&#x27;, &#x27;sc_proteomics&#x27;];
+
+  /** Available sex options */
+  readonly availableSexes &#x3D; [&#x27;Male&#x27;, &#x27;Female&#x27;];
+
+  /**
+   * Handles changes to tool selection
+   * @param tool - The tool identifier
+   * @param checked - Whether the tool should be selected
+   */
+  onToolChange(tool: string, checked: boolean): void {
+    this.selectedTools.update((previous) &#x3D;&gt; {
+      return checked ? [...previous, tool] : previous.filter((t) &#x3D;&gt; t !&#x3D;&#x3D; tool);
+    });
+  }
+
+  /**
+   * Handles changes to sex selection
+   * @param selectedSexes - Array of selected sex values
+   */
+  onSexesChange(selectedSexes: string[]): void {
+    this.selectedSexes.set(selectedSexes);
+  }
+
+  /**
+   * Checks if a tool is available (has data) for the current selection
+   * @param tool - The tool identifier to check
+   * @returns True if the tool has available data
+   */
+  isToolAvailable(tool: string): boolean {
+    return this.availableTools().includes(tool);
+  }
+
+  /**
+   * Gets the proper display name for a tool
+   * @param tool - The tool identifier
+   * @returns The formatted display name
+   */
+  getToolDisplayName(tool: string): string {
+    return getToolDisplayName(tool);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;configuration-selector&quot;&gt;
+  &lt;!-- First Column - Data configurations --&gt;
+  &lt;div class&#x3D;&quot;config-column&quot;&gt;
+    &lt;h2 class&#x3D;&quot;column-title&quot;&gt;Data configurations&lt;/h2&gt;
+
+    &lt;!-- Organ Selection --&gt;
+    &lt;div class&#x3D;&quot;organ-group&quot;&gt;
+      &lt;mat-form-field hraFeature&#x3D;&quot;organ&quot; subscriptSizing&#x3D;&quot;dynamic&quot;&gt;
+        &lt;mat-label&gt;Organ dataset&lt;/mat-label&gt;
+        &lt;mat-select [(ngModel)]&#x3D;&quot;selectedOrgan&quot; [disabled]&#x3D;&quot;loading()&quot;&gt;
+          @for (organ of organOptions(); track organ) {
+            &lt;mat-option hraClickEvent [hraFeature]&#x3D;&quot;organ | slugify&quot; [value]&#x3D;&quot;organ&quot;&gt;{{
+              organ | titlecase
+            }}&lt;/mat-option&gt;
+          }
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Data Type Selection --&gt;
+    &lt;div class&#x3D;&quot;datatype-group&quot;&gt;
+      &lt;mat-form-field hraFeature&#x3D;&quot;data-type&quot; subscriptSizing&#x3D;&quot;dynamic&quot;&gt;
+        &lt;mat-label&gt;Data type&lt;/mat-label&gt;
+        &lt;mat-select [(ngModel)]&#x3D;&quot;selectedDataType&quot;&gt;
+          @for (config of dataTypeOptions(); track config.key) {
+            &lt;mat-option hraClickEvent [hraFeature]&#x3D;&quot;config.label | slugify&quot; [value]&#x3D;&quot;config.key&quot;&gt;{{
+              config.label
+            }}&lt;/mat-option&gt;
+          }
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Sex Selection --&gt;
+    &lt;div class&#x3D;&quot;sex-toggle-group&quot;&gt;
+      &lt;h3&gt;Sex&lt;/h3&gt;
+      &lt;mat-button-toggle-group
+        hraFeature&#x3D;&quot;sex&quot;
+        multiple
+        [value]&#x3D;&quot;selectedSexes()&quot;
+        (change)&#x3D;&quot;onSexesChange($event.value)&quot;
+        [disabled]&#x3D;&quot;loading()&quot;
+        [hideMultipleSelectionIndicator]&#x3D;&quot;false&quot;
+        hraButtonToggleSize&#x3D;&quot;medium&quot;
+        class&#x3D;&quot;toggle-group&quot;
+      &gt;
+        @for (sex of availableSexes; track sex) {
+          &lt;mat-button-toggle hraClickEvent [hraFeature]&#x3D;&quot;sex | slugify&quot; [value]&#x3D;&quot;sex&quot;&gt;
+            {{ sex }}
+          &lt;/mat-button-toggle&gt;
+        }
+      &lt;/mat-button-toggle-group&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Second Column - Sort &amp; organize --&gt;
+  &lt;div class&#x3D;&quot;config-column&quot;&gt;
+    &lt;h2 class&#x3D;&quot;column-title&quot;&gt;Sort &amp; organize&lt;/h2&gt;
+
+    &lt;!-- Sort Selection --&gt;
+    &lt;div class&#x3D;&quot;sort-group&quot;&gt;
+      &lt;mat-form-field hraFeature&#x3D;&quot;sort-by&quot; subscriptSizing&#x3D;&quot;dynamic&quot;&gt;
+        &lt;mat-label&gt;Sort by&lt;/mat-label&gt;
+        &lt;mat-select [(ngModel)]&#x3D;&quot;selectedSort&quot; [disabled]&#x3D;&quot;loading()&quot;&gt;
+          @for (option of sortOptions(); track option.value) {
+            &lt;mat-option hraClickEvent [hraFeature]&#x3D;&quot;option.label | slugify&quot; [value]&#x3D;&quot;option.value&quot;&gt;{{
+              option.label
+            }}&lt;/mat-option&gt;
+          }
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+
+    &lt;!-- X Axis Group --&gt;
+    &lt;div class&#x3D;&quot;x-axis-group&quot;&gt;
+      &lt;h3&gt;X axis&lt;/h3&gt;
+      &lt;mat-button-toggle-group
+        [value]&#x3D;&quot;selectedXAxis()&quot;
+        (change)&#x3D;&quot;selectedXAxis.set($event.value)&quot;
+        [disabled]&#x3D;&quot;loading()&quot;
+        hraButtonToggleSize&#x3D;&quot;medium&quot;
+        hraFeature&#x3D;&quot;x-axis&quot;
+        class&#x3D;&quot;toggle-group&quot;
+      &gt;
+        @for (option of xAxisOptions(); track option.value) {
+          &lt;mat-button-toggle hraClickEvent [hraFeature]&#x3D;&quot;option.label | slugify&quot; [value]&#x3D;&quot;option.value&quot;&gt;
+            {{ option.label }}
+          &lt;/mat-button-toggle&gt;
+        }
+      &lt;/mat-button-toggle-group&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Y Axis Group --&gt;
+    &lt;div class&#x3D;&quot;y-axis-group&quot;&gt;
+      &lt;h3&gt;Y axis&lt;/h3&gt;
+      &lt;mat-button-toggle-group
+        [value]&#x3D;&quot;selectedYAxis()&quot;
+        (change)&#x3D;&quot;selectedYAxis.set($event.value)&quot;
+        [disabled]&#x3D;&quot;loading()&quot;
+        hraButtonToggleSize&#x3D;&quot;medium&quot;
+        hraFeature&#x3D;&quot;y-axis&quot;
+        class&#x3D;&quot;toggle-group&quot;
+      &gt;
+        @for (option of yAxisOptions(); track option.value) {
+          &lt;mat-button-toggle hraClickEvent [hraFeature]&#x3D;&quot;option.label | slugify&quot; [value]&#x3D;&quot;option.value&quot;&gt;
+            {{ option.label }}
+          &lt;/mat-button-toggle&gt;
+        }
+      &lt;/mat-button-toggle-group&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Third Column - Annotation tools --&gt;
+  &lt;div class&#x3D;&quot;config-column&quot;&gt;
+    &lt;h2 class&#x3D;&quot;column-title&quot;&gt;
+      Annotation tool&lt;hra-results-indicator
+        [value]&#x3D;&quot;availableTools().length&quot;
+        [total]&#x3D;&quot;allTools.length&quot;
+        [description]&#x3D;&quot;&#x27;Available&#x27;&quot;
+      &gt;&lt;/hra-results-indicator&gt;
+    &lt;/h2&gt;
+    &lt;div class&#x3D;&quot;annotation-group&quot;&gt;
+      &lt;div class&#x3D;&quot;annotation-checkbox-column&quot;&gt;
+        @for (tool of allTools; track tool) {
+          &lt;div hraFeature&#x3D;&quot;annotation-tool&quot; class&#x3D;&quot;annotation-option&quot;&gt;
+            &lt;mat-checkbox
+              hraClickEvent
+              [hraFeature]&#x3D;&quot;tool | slugify&quot;
+              [checked]&#x3D;&quot;selectedTools().includes(tool)&quot;
+              [disabled]&#x3D;&quot;!isToolAvailable(tool) || loading()&quot;
+              [class.unavailable]&#x3D;&quot;!isToolAvailable(tool)&quot;
+              (change)&#x3D;&quot;onToolChange(tool, $event.checked)&quot;
+            &gt;
+              {{ getToolDisplayName(tool) }}
+            &lt;/mat-checkbox&gt;
+          &lt;/div&gt;
+        }
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="configuration-selector">  <!-- First Column - Data configurations -->  <div class="config-column">    <h2 class="column-title">Data configurations</h2>    <!-- Organ Selection -->    <div class="organ-group">      <mat-form-field hraFeature="organ" subscriptSizing="dynamic">        <mat-label>Organ dataset</mat-label>        <mat-select [(ngModel)]="selectedOrgan" [disabled]="loading()">          @for (organ of organOptions(); track organ) {            <mat-option hraClickEvent [hraFeature]="organ | slugify" [value]="organ">{{              organ | titlecase            }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>    <!-- Data Type Selection -->    <div class="datatype-group">      <mat-form-field hraFeature="data-type" subscriptSizing="dynamic">        <mat-label>Data type</mat-label>        <mat-select [(ngModel)]="selectedDataType">          @for (config of dataTypeOptions(); track config.key) {            <mat-option hraClickEvent [hraFeature]="config.label | slugify" [value]="config.key">{{              config.label            }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>    <!-- Sex Selection -->    <div class="sex-toggle-group">      <h3>Sex</h3>      <mat-button-toggle-group        hraFeature="sex"        multiple        [value]="selectedSexes()"        (change)="onSexesChange($event.value)"        [disabled]="loading()"        [hideMultipleSelectionIndicator]="false"        hraButtonToggleSize="medium"        class="toggle-group"      >        @for (sex of availableSexes; track sex) {          <mat-button-toggle hraClickEvent [hraFeature]="sex | slugify" [value]="sex">            {{ sex }}          </mat-button-toggle>        }      </mat-button-toggle-group>    </div>  </div>  <!-- Second Column - Sort & organize -->  <div class="config-column">    <h2 class="column-title">Sort & organize</h2>    <!-- Sort Selection -->    <div class="sort-group">      <mat-form-field hraFeature="sort-by" subscriptSizing="dynamic">        <mat-label>Sort by</mat-label>        <mat-select [(ngModel)]="selectedSort" [disabled]="loading()">          @for (option of sortOptions(); track option.value) {            <mat-option hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{              option.label            }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>    <!-- X Axis Group -->    <div class="x-axis-group">      <h3>X axis</h3>      <mat-button-toggle-group        [value]="selectedXAxis()"        (change)="selectedXAxis.set($event.value)"        [disabled]="loading()"        hraButtonToggleSize="medium"        hraFeature="x-axis"        class="toggle-group"      >        @for (option of xAxisOptions(); track option.value) {          <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">            {{ option.label }}          </mat-button-toggle>        }      </mat-button-toggle-group>    </div>    <!-- Y Axis Group -->    <div class="y-axis-group">      <h3>Y axis</h3>      <mat-button-toggle-group        [value]="selectedYAxis()"        (change)="selectedYAxis.set($event.value)"        [disabled]="loading()"        hraButtonToggleSize="medium"        hraFeature="y-axis"        class="toggle-group"      >        @for (option of yAxisOptions(); track option.value) {          <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">            {{ option.label }}          </mat-button-toggle>        }      </mat-button-toggle-group>    </div>  </div>  <!-- Third Column - Annotation tools -->  <div class="config-column">    <h2 class="column-title">      Annotation tool<hra-results-indicator        [value]="availableTools().length"        [total]="allTools.length"        [description]="\'Available\'"      ></hra-results-indicator>    </h2>    <div class="annotation-group">      <div class="annotation-checkbox-column">        @for (tool of allTools; track tool) {          <div hraFeature="annotation-tool" class="annotation-option">            <mat-checkbox              hraClickEvent              [hraFeature]="tool | slugify"              [checked]="selectedTools().includes(tool)"              [disabled]="!isToolAvailable(tool) || loading()"              [class.unavailable]="!isToolAvailable(tool)"              (change)="onToolChange(tool, $event.checked)"            >              {{ getToolDisplayName(tool) }}            </mat-checkbox>          </div>        }      </div>    </div>  </div></ng-container></div>'
+    var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ConfigSelectorComponent-1'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConfigSelectorComponent-1.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

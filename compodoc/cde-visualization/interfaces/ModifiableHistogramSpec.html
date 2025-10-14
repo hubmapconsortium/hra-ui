@@ -1,0 +1,783 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for cde-visualization</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for cde-visualization</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  ModifiableHistogramSpec</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/components/histogram/histogram.component.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Interface for modifying the histogram specification</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#config" 
+>
+                                            config
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#data" 
+>
+                                            data
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#encoding" 
+>
+                                            encoding
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#height" 
+>
+                                            height
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#width" 
+>
+                                            width
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="config"></a>
+                                        <span class="name "><b>config</b>
+                                            <a href="#config">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>config:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Configuration for the padding</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="data"></a>
+                                        <span class="name "><b>data</b>
+                                            <a href="#data">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>data:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Data values for the histogram</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="encoding"></a>
+                                        <span class="name "><b>encoding</b>
+                                            <a href="#encoding">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>encoding:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Encoding configuration for the histogram</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="height"></a>
+                                        <span class="name "><b>height</b>
+                                            <a href="#height">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>height:     <code>string | number</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string | number</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Height of the histogram</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="width"></a>
+                                        <span class="name "><b>width</b>
+                                            <a href="#width">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>width:     <code>string | number</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string | number</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Width of the histogram</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  Renderer2,
+  signal,
+  viewChild,
+} from &#x27;@angular/core&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import {
+  MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
+  MatExpansionModule,
+  MatExpansionPanelDefaultOptions,
+} from &#x27;@angular/material/expansion&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { colorEquals, Rgb, rgbToHex } from &#x27;@hra-ui/design-system/color-picker&#x27;;
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
+import {
+  FullscreenActionsComponent,
+  FullscreenPortalComponent,
+  FullscreenPortalContentComponent,
+} from &#x27;@hra-ui/design-system/fullscreen&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { TooltipContent } from &#x27;@hra-ui/design-system/tooltip-card&#x27;;
+import { produce } from &#x27;immer&#x27;;
+import { ColorPickerDirective } from &#x27;ngx-color-picker&#x27;;
+import { View } from &#x27;vega&#x27;;
+import embed, { VisualizationSpec } from &#x27;vega-embed&#x27;;
+import { DistanceEntry } from &#x27;../../cde-visualization/cde-visualization.component&#x27;;
+import { CellTypeEntry } from &#x27;../../models/cell-type&#x27;;
+import { FileSaverService } from &#x27;../../services/file-saver/file-saver.service&#x27;;
+import { TOOLTIP_POSITION_RIGHT_SIDE } from &#x27;../../shared/tooltip-position&#x27;;
+import { ColorPickerLabelComponent } from &#x27;../color-picker-label/color-picker-label.component&#x27;;
+import { HistogramMenuComponent } from &#x27;./histogram-menu/histogram-menu.component&#x27;;
+import * as HISTOGRAM_SPEC from &#x27;./histogram.vl.json&#x27;;
+
+/** Interface for updated color data */
+interface UpdateColorData {
+  /** Cell type entry to update */
+  entry: CellTypeEntry;
+  /** New color */
+  color: Rgb;
+}
+
+/** Interface for modifying the histogram specification */
+interface ModifiableHistogramSpec {
+  /** Configuration for the padding */
+  config: {
+    padding: {
+      top: number;
+      right: number;
+      bottom: number;
+      left: number;
+    };
+  };
+  /** Width of the histogram */
+  width: string | number;
+  /** Height of the histogram */
+  height: string | number;
+  /** Data values for the histogram */
+  data: {
+    values?: unknown[];
+  };
+  /** Encoding configuration for the histogram */
+  encoding: {
+    color: {
+      legend: unknown;
+      scale: {
+        range: unknown[];
+      };
+    };
+  };
+}
+
+/** Fonts used in the histogram */
+const HISTOGRAM_FONTS &#x3D; [&#x27;12px Metropolis&#x27;, &#x27;14px Metropolis&#x27;];
+
+/** Label for all cell types */
+const ALL_CELLS_TYPE &#x3D; &#x27;All Cells&#x27;;
+
+/** Width of the exported image */
+const EXPORT_IMAGE_WIDTH &#x3D; 1000;
+
+/** Height of the exported image */
+const EXPORT_IMAGE_HEIGHT &#x3D; 500;
+
+/** Padding for the exported image */
+const EXPORT_IMAGE_PADDING &#x3D; 16;
+
+/** Configuration for the legend in the exported image */
+const EXPORT_IMAGE_LEGEND_CONFIG &#x3D; {
+  title: null,
+  symbolType: &#x27;circle&#x27;,
+  symbolStrokeWidth: 10,
+  labelFontSize: 14,
+  titleFontSize: 14,
+  titleLineHeight: 21,
+  titleColor: &#x27;#201E3D&#x27;,
+  titleFontWeight: 500,
+  labelFontWeight: 500,
+  labelColor: &#x27;#4B4B5E&#x27;,
+};
+
+/** Length of the dynamic color range */
+const DYNAMIC_COLOR_RANGE_LENGTH &#x3D; 2000;
+
+/** Dynamic color range for the histogram */
+const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
+  .fill(0)
+  .map((_value, index) &#x3D;&gt; ({ expr: &#x60;colors[${index}] || &#x27;#000&#x27;&#x60; }));
+
+/**
+ * Histogram Component
+ */
+@Component({
+  selector: &#x27;cde-histogram&#x27;,
+  imports: [
+    HraCommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule,
+    ColorPickerLabelComponent,
+    OverlayModule,
+    ScrollingModule,
+    MatMenuModule,
+    FullscreenPortalComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
+    FullscreenPortalContentComponent,
+    FullscreenActionsComponent,
+    HistogramMenuComponent,
+  ],
+  providers: [
+    {
+      provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
+      useValue: {
+        collapsedHeight: &#x27;56px&#x27;,
+        expandedHeight: &#x27;56px&#x27;,
+        hideToggle: true,
+      } satisfies MatExpansionPanelDefaultOptions,
+    },
+  ],
+  templateUrl: &#x27;./histogram.component.html&#x27;,
+  styleUrl: &#x27;./histogram.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class HistogramComponent {
+  /** Data for the visualization */
+  readonly data &#x3D; input.required&lt;DistanceEntry[]&gt;();
+
+  /** Colors for the visualization */
+  readonly colors &#x3D; input.required&lt;string[]&gt;();
+
+  /** Cell types to use for the visualization */
+  readonly filteredCellTypes &#x3D; input.required&lt;CellTypeEntry[]&gt;();
+
+  /** Tooltip position configuration */
+  readonly tooltipPosition &#x3D; TOOLTIP_POSITION_RIGHT_SIDE;
+
+  /** Tooltip content */
+  readonly tooltipContent: TooltipContent[] &#x3D; [
+    {
+      description:
+        &#x27;The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell type in the dataset.&#x27;,
+    },
+  ];
+
+  /** State indicating whether the info panel is open */
+  infoOpen &#x3D; false;
+
+  /** Toggles full screen mode */
+  protected readonly fullscreen &#x3D; signal(false);
+
+  /** Sets the color picker directive */
+  protected readonly colorPicker &#x3D; signal&lt;ColorPickerDirective | null&gt;(null);
+
+  /** State indicating whether overflow is visible */
+  protected readonly overflowVisible &#x3D; computed(() &#x3D;&gt; !!this.colorPicker());
+
+  /** Label for the total cell type */
+  protected readonly totalCellTypeLabel &#x3D; ALL_CELLS_TYPE;
+
+  /** Color for the total cell type */
+  protected readonly totalCellTypeColor &#x3D; signal&lt;Rgb&gt;([0, 0, 0], { equal: colorEquals });
+
+  /** Reference to the document object */
+  private readonly document &#x3D; inject(DOCUMENT);
+
+  /** Reference to the renderer for DOM manipulation */
+  private readonly renderer &#x3D; inject(Renderer2);
+
+  /** Service for saving files */
+  private readonly fileSaver &#x3D; inject(FileSaverService);
+
+  /** Element reference for the histogram container */
+  protected readonly histogramEl &#x3D; viewChild.required(FullscreenPortalComponent);
+
+  /** Vega view instance for the histogram */
+  protected readonly view &#x3D; signal&lt;View | undefined&gt;(undefined);
+
+  /** Emits updated color data */
+  readonly updateColor &#x3D; output&lt;UpdateColorData&gt;();
+
+  /** Array of all colors to use in the histogram */
+  protected readonly allColors &#x3D; computed(() &#x3D;&gt; {
+    const totalCellType &#x3D; { name: this.totalCellTypeLabel, color: this.totalCellTypeColor() };
+    return [totalCellType, ...this.filteredCellTypes()]
+      .sort((a, b) &#x3D;&gt; (a.name &lt; b.name ? -1 : a.name &#x3D;&#x3D;&#x3D; b.name ? 0 : 1))
+      .map(({ color }) &#x3D;&gt; rgbToHex(color));
+  });
+
+  /** Effect for updating view data */
+  protected readonly viewDataRef &#x3D; effect(() &#x3D;&gt; this.view()?.data(&#x27;data&#x27;, this.data()).run());
+
+  /** Effect for updating view colors */
+  protected readonly viewColorsRef &#x3D; effect(() &#x3D;&gt; this.view()?.signal(&#x27;colors&#x27;, this.allColors()).run());
+
+  /** Effect for creating the Vega view */
+  protected readonly viewCreateRef &#x3D; effect(async (onCleanup) &#x3D;&gt; {
+    const el &#x3D; this.histogramEl().rootNodes()[0];
+    await this.ensureFontsLoaded();
+
+    const spec &#x3D; produce(HISTOGRAM_SPEC, (draft) &#x3D;&gt; {
+      draft.encoding.color.scale.range &#x3D; DYNAMIC_COLOR_RANGE;
+    });
+    const { finalize, view } &#x3D; await embed(el, spec as VisualizationSpec, {
+      actions: false,
+    });
+
+    onCleanup(finalize);
+    this.view.set(view);
+  });
+
+  /** Resizes view when fullscreen is toggled */
+  /* istanbul ignore next */
+  resizeAndSyncView() {
+    const container &#x3D; this.view()?.container();
+    const bbox &#x3D; container?.getBoundingClientRect();
+    if (bbox) {
+      this.view()?.width(bbox.width).height(bbox.height);
+    }
+    this.view()?.resize().runAsync();
+  }
+
+  /** Download the histogram as an image in the specified format */
+  /* istanbul ignore next */
+  async download(format: string): Promise&lt;void&gt; {
+    const spec &#x3D; produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) &#x3D;&gt; {
+      draft.width &#x3D; EXPORT_IMAGE_WIDTH;
+      draft.height &#x3D; EXPORT_IMAGE_HEIGHT;
+      draft.config.padding.bottom &#x3D; EXPORT_IMAGE_PADDING;
+      draft.config.padding.top &#x3D; EXPORT_IMAGE_PADDING;
+      draft.config.padding.right &#x3D; EXPORT_IMAGE_PADDING;
+      draft.config.padding.left &#x3D; EXPORT_IMAGE_PADDING;
+      draft.encoding.color.legend &#x3D; EXPORT_IMAGE_LEGEND_CONFIG;
+      draft.data.values &#x3D; this.data();
+      draft.encoding.color.scale.range &#x3D; this.colors();
+    });
+
+    const el &#x3D; this.renderer.createElement(&#x27;div&#x27;);
+    const { view, finalize } &#x3D; await embed(el, spec as VisualizationSpec, {
+      actions: false,
+    });
+
+    const url &#x3D; await view.toImageURL(format);
+    this.fileSaver.save(url, &#x60;cde-histogram.${format}&#x60;);
+    finalize();
+  }
+
+  /** Ensure required fonts are loaded for the histogram */
+  private async ensureFontsLoaded(): Promise&lt;void&gt; {
+    const loadPromises &#x3D; HISTOGRAM_FONTS.map((font) &#x3D;&gt; this.document.fonts.load(font));
+    await Promise.all(loadPromises);
+  }
+
+  /** Reset the color of the total cell type */
+  resetAllCellsColor(): void {
+    this.totalCellTypeColor.set([0, 0, 0]);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ModifiableHistogramSpec.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

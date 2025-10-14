@@ -1,0 +1,763 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ftu-ui-components</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ftu-ui-components</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content directive">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >TextRowElementDirective</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>/home/workflows/workspace/libs/design-system/table/src/lib/table/table.component.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Directive for typing the context of Text Row Element</p>
+
+            </p>
+
+
+
+
+        <section data-compodoc="block-metadata">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
+
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>ng-template[hraTextRowElement]</code></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </section>
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#ngTemplateContextGuard" >ngTemplateContextGuard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngTemplateContextGuard"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>ngTemplateContextGuard</b></span>
+                        <a href="#ngTemplateContextGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngTemplateContextGuard(_dir: <a href="../directives/TextRowElementDirective.html" target="_self">TextRowElementDirective</a>, _ctx)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/table/src/lib/table/table.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Guard for the context of Text Row Element</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>_dir</td>
+                                            <td>
+                                                            <code><a href="../directives/TextRowElementDirective.html" target="_self" >TextRowElementDirective</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>_ctx</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>RowElementContext&lt;string | TextColumnType&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SelectionModel } from &#x27;@angular/cdk/collections&#x27;;
+import { httpResource } from &#x27;@angular/common/http&#x27;;
+import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from &#x27;@angular/core&#x27;;
+import { MatCheckboxModule } from &#x27;@angular/material/checkbox&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { MatSort, MatSortModule } from &#x27;@angular/material/sort&#x27;;
+import { MatTableDataSource, MatTableModule } from &#x27;@angular/material/table&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { injectAssetUrlResolver } from &#x27;@hra-ui/common/url&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { TextHyperlinkDirective } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
+import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
+import saveAs from &#x27;file-saver&#x27;;
+import { MarkdownModule } from &#x27;ngx-markdown&#x27;;
+import { NgScrollbar } from &#x27;ngx-scrollbar&#x27;;
+import { parse } from &#x27;papaparse&#x27;;
+import {
+  IconColumnType,
+  LinkColumnType,
+  MarkdownColumnType,
+  MenuButtonColumnType,
+  MenuOptionsType,
+  NumericColumnType,
+  TableColumn,
+  TableColumnType,
+  TableColumnWithType,
+  TableRow,
+  TableVariant,
+  TextColumnType,
+} from &#x27;../types/page-table.schema&#x27;;
+
+/** Type for the row element context */
+type RowElementContext&lt;T, CT extends TableColumnType&gt; &#x3D; {
+  $implicit: T;
+  element: TableRow;
+  column: TableColumnWithType&lt;CT&gt;;
+};
+
+/** Directive for typing the context of Text Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraTextRowElement]&#x27;,
+  standalone: true,
+})
+export class TextRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Text Row Element */
+  static ngTemplateContextGuard(
+    _dir: TextRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, TextColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Link Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraLinkRowElement]&#x27;,
+  standalone: true,
+})
+export class LinkRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Link Row Element */
+  static ngTemplateContextGuard(
+    _dir: LinkRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, LinkColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Markdown Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraMarkdownRowElement]&#x27;,
+  standalone: true,
+})
+export class MarkdownRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Markdown Row Element */
+  static ngTemplateContextGuard(
+    _dir: MarkdownRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, MarkdownColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Icon Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraIconRowElement]&#x27;,
+  standalone: true,
+})
+export class IconRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Icon Row Element */
+  static ngTemplateContextGuard(
+    _dir: IconRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, IconColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of menuButton Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraMenuButtonRowElement]&#x27;,
+  standalone: true,
+})
+export class MenuButtonRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of menuButton Row Element */
+  static ngTemplateContextGuard(
+    _dir: MenuButtonRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, MenuButtonColumnType&gt; {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Numeric Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraNumericRowElement]&#x27;,
+  standalone: true,
+})
+export class NumericRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Numeric Row Element */
+  static ngTemplateContextGuard(
+    _dir: NumericRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, NumericColumnType&gt; {
+    return true;
+  }
+}
+
+/**
+ * Angular Material Table with Sort Feature
+ */
+@Component({
+  selector: &#x27;hra-table&#x27;,
+  templateUrl: &#x27;table.component.html&#x27;,
+  styleUrls: [&#x27;table.component.scss&#x27;],
+  imports: [
+    HraCommonModule,
+    MarkdownModule,
+    MatMenuModule,
+    MatSortModule,
+    MatTableModule,
+    ScrollingModule,
+    MatCheckboxModule,
+    TextHyperlinkDirective,
+    LinkRowElementDirective,
+    TextRowElementDirective,
+    MarkdownRowElementDirective,
+    MenuButtonRowElementDirective,
+    NumericRowElementDirective,
+    PlainTooltipDirective,
+    IconsModule,
+    ButtonsModule,
+  ],
+  host: {
+    &#x27;[class]&#x27;: &#x27;&quot;hra-table-style-&quot; + style()&#x27;,
+    &#x27;[class.sortable]&#x27;: &#x27;enableSort()&#x27;,
+    &#x27;[class.vertical-dividers]&#x27;: &#x27;verticalDividers()&#x27;,
+  },
+})
+export class TableComponent&lt;T &#x3D; TableRow&gt; {
+  /** CSV URL input */
+  readonly csvUrl &#x3D; input&lt;string&gt;();
+
+  /** Columns in table */
+  readonly columns &#x3D; input&lt;TableColumn[]&gt;();
+
+  /** Unsorted data */
+  readonly rows &#x3D; input&lt;T[]&gt;();
+
+  /** Table style */
+  readonly style &#x3D; input&lt;TableVariant&gt;(&#x27;alternating&#x27;);
+
+  /** Enables sorting */
+  readonly enableSort &#x3D; input&lt;boolean&gt;(false);
+
+  /** Enables dividers between columns */
+  readonly verticalDividers &#x3D; input&lt;boolean&gt;(false);
+
+  /** Enable row selection with checkboxes */
+  readonly enableRowSelection &#x3D; input&lt;boolean&gt;(false);
+
+  /** Hide table headers */
+  readonly hideHeaders &#x3D; input&lt;boolean&gt;(false);
+
+  /** Emits when selection changes */
+  readonly selectionChange &#x3D; output&lt;T[]&gt;();
+
+  /** Emits route */
+  readonly routeClicked &#x3D; output&lt;string&gt;();
+
+  /** Emits download object id on download button hover */
+  readonly downloadHovered &#x3D; output&lt;string&gt;();
+
+  /** Scrollbar ref */
+  readonly scrollbar &#x3D; viewChild.required&lt;NgScrollbar&gt;(&#x27;scrollbar&#x27;);
+
+  /** Mat sort element */
+  private readonly sort &#x3D; viewChild.required(MatSort);
+
+  /** Selection model for checkbox functionality */
+  readonly selection &#x3D; new SelectionModel&lt;TableRow&gt;(true, []);
+
+  /** Error handler provider for logging errors */
+  private readonly errorHandler &#x3D; inject(ErrorHandler);
+
+  /** Resolver for asset urls */
+  private readonly resolveAssetUrl &#x3D; injectAssetUrlResolver();
+
+  /** Snackbar service for download notification */
+  readonly snackbar &#x3D; inject(SnackbarService);
+
+  /** CSV resource from remote URL */
+  private readonly csv &#x3D; httpResource.text&lt;T[]&gt;(
+    () &#x3D;&gt; {
+      const url &#x3D; this.csvUrl();
+      return url ? this.resolveAssetUrl(url) : url;
+    },
+    {
+      defaultValue: [],
+      parse: (data) &#x3D;&gt; {
+        const result &#x3D; parse&lt;T&gt;(data, { header: true, dynamicTyping: true, skipEmptyLines: true });
+        if (result.errors.length &gt; 0) {
+          this.errorHandler.handleError(result.errors);
+        }
+        return result.data;
+      },
+    },
+  );
+
+  /** Table data rows */
+  protected readonly _rows &#x3D; computed(() &#x3D;&gt; this.rows() ?? this.csv.value());
+
+  /** Table data columns */
+  protected readonly _columns &#x3D; computed(() &#x3D;&gt; this.columns() ?? this.inferColumns(this._rows()));
+
+  /** Table data column IDs */
+  protected readonly columnIds &#x3D; computed(() &#x3D;&gt; {
+    const columns &#x3D; this._columns().map((col) &#x3D;&gt; col.column);
+    return this.enableRowSelection() ? [&#x27;select&#x27;, ...columns] : columns;
+  });
+
+  /** Totals by column for which &#x60;computeTotal&#x60; is enabled */
+  protected readonly totals &#x3D; computed(() &#x3D;&gt; {
+    const result &#x3D; new Map&lt;TableColumn, number&gt;();
+    for (const col of this._columns()) {
+      const options &#x3D; this.getColumnType(col);
+      if (options.type &#x3D;&#x3D;&#x3D; &#x27;numeric&#x27; &amp;&amp; options.computeTotal) {
+        const total &#x3D; this._rows().reduce((acc, row) &#x3D;&gt; {
+          const value &#x3D; Number(row[col.column as keyof T]);
+          return acc + (Number.isNaN(value) ? 0 : value);
+        }, 0);
+        result.set(col, total);
+      }
+    }
+    return result;
+  });
+
+  /** Table data source */
+  protected readonly dataSource &#x3D; new MatTableDataSource&lt;T&gt;([]);
+
+  /** Sort data on load and set columns */
+  constructor() {
+    effect(() &#x3D;&gt; {
+      this.dataSource.data &#x3D; this._rows();
+    });
+
+    effect(() &#x3D;&gt; {
+      this.dataSource.sort &#x3D; this.sort();
+    });
+  }
+
+  /**
+   * Returns the column type for a given column.
+   * @param column Table column
+   * @returns Column type
+   */
+  getColumnType(column: TableColumn): TableColumnType {
+    return typeof column.type &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? ({ type: column.type } as TableColumnType) : column.type;
+  }
+
+  /**
+   * Infers the table column types from the loaded data.
+   * @param data Table data
+   * @returns Inferred table column with types as an array.
+   */
+  private inferColumns(data: T[]): TableColumn[] {
+    if (data.length &#x3D;&#x3D;&#x3D; 0) {
+      return [];
+    }
+
+    const item &#x3D; data[0];
+    const columns: TableColumn[] &#x3D; [];
+    for (const key in item) {
+      const type &#x3D; typeof item[key] &#x3D;&#x3D;&#x3D; &#x27;number&#x27; ? &#x27;numeric&#x27; : &#x27;text&#x27;;
+      columns.push({ column: key, label: key, type });
+    }
+
+    return columns;
+  }
+
+  /**
+   * Whether the number of selected elements matches the total number of rows.
+   */
+  isAllSelected(): boolean {
+    const numSelected &#x3D; this.selection.selected.length;
+    const numRows &#x3D; this.dataSource.data.length;
+    return numSelected &#x3D;&#x3D;&#x3D; numRows;
+  }
+
+  /**
+   * Selects all rows if they are not all selected; otherwise clear selection.
+   */
+  toggleAllRows(): void {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.selection.select(...(this.dataSource.data as TableRow[]));
+    }
+    this.selectionChange.emit(this.selection.selected as T[]);
+  }
+
+  /**
+   * Toggle row selection
+   */
+  toggleRow(row: TableRow): void {
+    this.selection.toggle(row as TableRow);
+    this.selectionChange.emit(this.selection.selected as T[]);
+  }
+
+  /**
+   * Returns download menu options as an array of MenuOptionsType
+   * @param options Menu options
+   * @returns Menu options as an array of MenuOptionsType
+   */
+  getMenuOptions(options: string | number | boolean | MenuOptionsType[]): MenuOptionsType[] {
+    return options as MenuOptionsType[];
+  }
+
+  /** Emits a route as string when object label is clicked */
+  routeClick(url: string | number | boolean | (string | number | boolean)[]): void {
+    this.routeClicked.emit(url as string);
+  }
+
+  /** Emits the id of a row when its download button is hovered */
+  downloadButtonHover(id: string | number | boolean | (string | number | boolean)[]): void {
+    this.downloadHovered.emit(id as string);
+  }
+
+  /**
+   * Downloads a file from the url
+   * @param url File url
+   */
+  download(url: string): void {
+    saveAs(url, url.split(&#x27;/&#x27;).pop());
+  }
+
+  /** Scrolls to top of the table */
+  scrollToTop(): void {
+    this.scrollbar().scrollTo({ top: 0, duration: 0 });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'TextRowElementDirective.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

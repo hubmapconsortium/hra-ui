@@ -1,0 +1,911 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for kg-explorer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for kg-explorer</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AppComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/app.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Main application component</p>
+
+    </p>
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                <code>BaseApplicationComponent</code>
+    </p>
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-kg-explorer</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>RouterModule</code>
+                            <code>NavigationModule</code>
+                            <code>MarkdownModule</code>
+                            <code>ButtonsModule</code>
+                            <code>IconsModule</code>
+                            <code>PlainTooltipDirective</code>
+                            <code>MatMenuModule</code>
+                            <code>MatDividerModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./app.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#crumbs" >crumbs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#documentationUrl" >documentationUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#extraMenuOption" >extraMenuOption</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#helpMenuOptions" >helpMenuOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isNavigating" >isNavigating</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#objectId" >objectId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#params" >params</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#typeLabel" >typeLabel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/app.component.ts:105</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Gets the page title for breadcrumbs</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crumbs"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>crumbs</b></span>
+                        <a href="#crumbs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    if (this.params().length &gt; 0) {
+      return [
+        { name: &#x27;Apps&#x27;, route: &#x27;https://apps.humanatlas.io/&#x27; },
+        { name: &#x27;Knowledge Graph&#x27;, route: &#x27;/&#x27; },
+        { name: this.pageTitle() },
+      ];
+    }
+    return [{ name: &#x27;Apps&#x27;, route: &#x27;https://apps.humanatlas.io/&#x27; }, { name: &#x27;Knowledge Graph&#x27; }];
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/app.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Breadcrumbs data (computed from above signal).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="documentationUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>documentationUrl</b></span>
+                        <a href="#documentationUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.data()[&#x27;documentationUrl&#x27;])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/app.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Url linking to documentation for an object type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="extraMenuOption"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>extraMenuOption</b></span>
+                        <a href="#extraMenuOption"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;HelpMenuOptions | undefined&gt;({ label: &#x27;&#x27;, url: &#x27;&#x27; })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/app.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Extra option containing the digital object type documentation on the metadata page help menu</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="helpMenuOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>helpMenuOptions</b></span>
+                        <a href="#helpMenuOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;HelpMenuOptions[] | undefined&gt;(undefined)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/app.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Menu options to display in the help menu on the header</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isNavigating"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isNavigating</b></span>
+                        <a href="#isNavigating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>isNavigating()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/app.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If the user is navigating to a different page</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="objectId"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>objectId</b></span>
+                        <a href="#objectId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; [&#x27;https://lod.humanatlas.io&#x27;].concat(this.params()).join(&#x27;/&#x27;))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/app.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Id of digital object computed from params</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="params"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>params</b></span>
+                        <a href="#params"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/app.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Route params used to calculate objectLod</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="typeLabel"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>typeLabel</b></span>
+                        <a href="#typeLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.data()[&#x27;typeLabel&#x27;])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/app.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>DO type label</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from &#x27;@angular/core&#x27;;
+import { toObservable } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { ActivatedRoute, Router, RouterModule } from &#x27;@angular/router&#x27;;
+import { HraKgService } from &#x27;@hra-api/ng-client&#x27;;
+import { BaseApplicationComponent } from &#x27;@hra-ui/application&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
+import { MarkdownModule } from &#x27;ngx-markdown&#x27;;
+import { HelpMenuOptions } from &#x27;./app.routes&#x27;;
+import { isNavigating } from &#x27;./utils/navigation&#x27;;
+import { routeData } from &#x27;./utils/route-data&#x27;;
+
+/** Default help menu options */
+export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] &#x3D; [
+  {
+    label: &#x27;Data Overview&#x27;,
+    url: &#x27;https://humanatlas.io/overview-data&#x27;,
+  },
+  {
+    label: &#x27;Knowledge Graph&#x27;,
+    url: &#x27;https://docs.humanatlas.io/dev/kg&#x27;,
+    description: &#x27;App guidance &amp; documentation&#x27;,
+  },
+  {
+    label: &#x27;Read publication&#x27;,
+    url: &#x27;https://doi.org/10.1038/s41597-025-05183-6&#x27;,
+    divider: true,
+  },
+];
+
+/**
+ * Main application component
+ */
+@Component({
+  imports: [
+    HraCommonModule,
+    RouterModule,
+    NavigationModule,
+    MarkdownModule,
+    ButtonsModule,
+    IconsModule,
+    PlainTooltipDirective,
+    MatMenuModule,
+    MatDividerModule,
+  ],
+  selector: &#x27;hra-kg-explorer&#x27;,
+  styleUrl: &#x27;./app.component.scss&#x27;,
+  templateUrl: &#x27;./app.component.html&#x27;,
+  host: {
+    class: &#x27;hra-app&#x27;,
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AppComponent extends BaseApplicationComponent {
+  /** Router instance for navigation */
+  private readonly router &#x3D; inject(Router);
+  /** Activated route service */
+  private readonly route &#x3D; inject(ActivatedRoute);
+
+  /** HRA KG API service */
+  private readonly kg &#x3D; inject(HraKgService);
+
+  /** Page title to display on the breadcrumbs */
+  private readonly pageTitle &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Data for breadcrumbs in navigation header. */
+  private readonly data &#x3D; routeData();
+
+  /** Breadcrumbs data (computed from above signal). */
+  protected readonly crumbs &#x3D; computed(() &#x3D;&gt; {
+    if (this.params().length &gt; 0) {
+      return [
+        { name: &#x27;Apps&#x27;, route: &#x27;https://apps.humanatlas.io/&#x27; },
+        { name: &#x27;Knowledge Graph&#x27;, route: &#x27;/&#x27; },
+        { name: this.pageTitle() },
+      ];
+    }
+    return [{ name: &#x27;Apps&#x27;, route: &#x27;https://apps.humanatlas.io/&#x27; }, { name: &#x27;Knowledge Graph&#x27; }];
+  });
+
+  /** Menu options to display in the help menu on the header */
+  readonly helpMenuOptions &#x3D; signal&lt;HelpMenuOptions[] | undefined&gt;(undefined);
+
+  /** Url linking to documentation for an object type */
+  protected readonly documentationUrl &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.data()[&#x27;documentationUrl&#x27;]);
+
+  /** DO type label */
+  protected readonly typeLabel &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.data()[&#x27;typeLabel&#x27;]);
+
+  /** Extra option containing the digital object type documentation on the metadata page help menu */
+  protected readonly extraMenuOption &#x3D; signal&lt;HelpMenuOptions | undefined&gt;({ label: &#x27;&#x27;, url: &#x27;&#x27; });
+
+  /** If the user is navigating to a different page */
+  protected readonly isNavigating &#x3D; isNavigating();
+
+  /** Route params used to calculate objectLod */
+  readonly params &#x3D; signal&lt;string[]&gt;([]);
+
+  /** Id of digital object computed from params */
+  readonly objectId &#x3D; computed(() &#x3D;&gt; [&#x27;https://lod.humanatlas.io&#x27;].concat(this.params()).join(&#x27;/&#x27;));
+
+  /**
+   * Gets the page title for breadcrumbs
+   */
+  constructor() {
+    super({ screenSizeNotice: { width: 864, height: 486 } });
+
+    effect(() &#x3D;&gt; {
+      if (this.typeLabel() &amp;&amp; this.documentationUrl()) {
+        this.extraMenuOption.set({
+          label: this.typeLabel(),
+          url: this.documentationUrl(),
+          description: &#x27;Data documentation for this digital object type&#x27;,
+        });
+      } else {
+        this.extraMenuOption.set(undefined);
+      }
+    });
+
+    effect(() &#x3D;&gt; {
+      const a &#x3D; DEFAULT_HELP_OPTIONS;
+      const b &#x3D; this.extraMenuOption();
+      if (b) {
+        this.helpMenuOptions.set([a[0], b].concat(a.slice(1)));
+      } else {
+        this.helpMenuOptions.set(a);
+      }
+    });
+
+    this.router.events.subscribe(() &#x3D;&gt; {
+      const type &#x3D; this.route.snapshot.root.firstChild?.params[&#x27;type&#x27;];
+      const name &#x3D; this.route.snapshot.root.firstChild?.params[&#x27;name&#x27;];
+      if (type &amp;&amp; name) {
+        this.params.set([type, name]);
+      } else {
+        this.params.set([]);
+      }
+    });
+
+    toObservable(this.objectId).subscribe((id) &#x3D;&gt; {
+      this.kg.digitalObjects().subscribe((data) &#x3D;&gt; {
+        const match &#x3D; data[&#x27;@graph&#x27;]?.find((object) &#x3D;&gt; object[&#x27;@id&#x27;] &#x3D;&#x3D;&#x3D; id);
+        this.pageTitle.set(match?.title || &#x27;&#x27;);
+      });
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;kg-explorer&quot;&gt;
+  &lt;hra-header baseUrl&#x3D;&quot;lod.humanatlas.io/&quot; [breadcrumbs]&#x3D;&quot;crumbs()&quot; [progress]&#x3D;&quot;isNavigating()&quot; hraFeature&#x3D;&quot;header&quot;&gt;
+    &lt;hra-help-button [action]&#x3D;&quot;menuOptions&quot;&gt;&lt;/hra-help-button&gt;
+
+    &lt;mat-menu hraFeature&#x3D;&quot;help-menu&quot; #menuOptions&#x3D;&quot;matMenu&quot; class&#x3D;&quot;help-menu&quot;&gt;
+      @for (option of helpMenuOptions(); track option) {
+        @if (option.divider) {
+          &lt;mat-divider /&gt;
+        }
+        &lt;a
+          [hraFeature]&#x3D;&quot;option.label | slugify&quot;
+          hraClickEvent
+          class&#x3D;&quot;option&quot;
+          mat-menu-item
+          [attr.href]&#x3D;&quot;option.url&quot;
+          target&#x3D;&quot;_blank&quot;
+          rel&#x3D;&quot;noopener noreferrer&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;option-text&quot;&gt;
+            &lt;span class&#x3D;&quot;option-name&quot;&gt;
+              {{ option.label }}
+            &lt;/span&gt;
+            &lt;span class&#x3D;&quot;option-description&quot;&gt;
+              {{ option.description }}
+            &lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+      }
+    &lt;/mat-menu&gt;
+  &lt;/hra-header&gt;
+  &lt;div class&#x3D;&quot;content&quot;&gt;
+    &lt;router-outlet /&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="kg-explorer">  <hra-header baseUrl="lod.humanatlas.io/" [breadcrumbs]="crumbs()" [progress]="isNavigating()" hraFeature="header">    <hra-help-button [action]="menuOptions"></hra-help-button>    <mat-menu hraFeature="help-menu" #menuOptions="matMenu" class="help-menu">      @for (option of helpMenuOptions(); track option) {        @if (option.divider) {          <mat-divider />        }        <a          [hraFeature]="option.label | slugify"          hraClickEvent          class="option"          mat-menu-item          [attr.href]="option.url"          target="_blank"          rel="noopener noreferrer"        >          <div class="option-text">            <span class="option-name">              {{ option.label }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>  </hra-header>  <div class="content">    <router-outlet />  </div></ng-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AppComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

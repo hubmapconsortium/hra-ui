@@ -1,0 +1,1036 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CellPopulationPredictionsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Cell Population Predictions Result Page Component</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-cell-population-predictions</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatMenuModule</code>
+                            <code>MatSortModule</code>
+                            <code>MatTableModule</code>
+                            <code>OverlayModule</code>
+                            <code>ScrollingModule</code>
+                            <code>WorkflowCardModule</code>
+                            <code>DeleteFileButtonComponent</code>
+                            <code>TextHyperlinkDirective</code>
+                            <code>TooltipCardComponent</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./cell-population-predictions.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./cell-population-predictions.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tooltip" >tooltip</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#handleBeforeUnload" >handleBeforeUnload</a>
+                            </li>
+                            <li>
+                                <a href="#onDeleteButtonClick" >onDeleteButtonClick</a>
+                            </li>
+                            <li>
+                                <a href="#onDownloadCSVButtonClicked" >onDownloadCSVButtonClicked</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <a href="#predictions" >predictions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:94</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor that initializes the component and sets up effects for predictions and sorting</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="data"></a>
+                        <b>data</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/TissuePredictionData.html" target="_self" >TissuePredictionData</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>EMPTY_DATA</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:62</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input data for predictions page</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="predictions"></a>
+                        <b>predictions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CellSummaryRow[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:59</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Predictions data</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleBeforeUnload"></a>
+                    <span class="name">
+                        <span ><b>handleBeforeUnload</b></span>
+                        <a href="#handleBeforeUnload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleBeforeUnload(event: BeforeUnloadEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when users tries to close or reload the page</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>BeforeUnloadEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDeleteButtonClick"></a>
+                    <span class="name">
+                        <span ><b>onDeleteButtonClick</b></span>
+                        <a href="#onDeleteButtonClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDeleteButtonClick()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when users clicks delete icon on file</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDownloadCSVButtonClicked"></a>
+                    <span class="name">
+                        <span ><b>onDownloadCSVButtonClicked</b></span>
+                        <a href="#onDownloadCSVButtonClicked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDownloadCSVButtonClicked()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when clicked on download CSV button</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;CellSummaryRow&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Data for predictions table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Object.keys(this.columnHeaders)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Columns for prediction table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tooltip"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tooltip</b></span>
+                        <a href="#tooltip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TooltipContent[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      description: TOOLTIP_CONTENT,
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from &#x27;@angular/core&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { MatSort, MatSortModule } from &#x27;@angular/material/sort&#x27;;
+import { MatTableDataSource, MatTableModule } from &#x27;@angular/material/table&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { CellSummaryRow } from &#x27;@hra-api/ng-client&#x27;;
+import { DeleteFileButtonComponent } from &#x27;@hra-ui/design-system/buttons/delete-file-button&#x27;;
+import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
+import { TooltipCardComponent, TooltipContent } from &#x27;@hra-ui/design-system/tooltip-card&#x27;;
+import { WorkflowCardModule } from &#x27;@hra-ui/design-system/workflow-card&#x27;;
+import { saveAs } from &#x27;file-saver&#x27;;
+import { unparse } from &#x27;papaparse&#x27;;
+import { TissuePredictionData } from &#x27;../../../services/hra-pop-predictions/hra-pop-predictions.service&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { TextHyperlinkDirective } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
+
+/** Tooltip Content */
+const TOOLTIP_CONTENT &#x3D; &#x60;Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
+summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations in
+the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations(sc-proteomics datasets)&#x60;;
+
+/** Empty Inputs for Predictions page */
+const EMPTY_DATA: TissuePredictionData &#x3D; {
+  file: new File([], &#x27;&#x27;),
+};
+
+/**
+ * Cell Population Predictions Result Page Component
+ */
+@Component({
+  selector: &#x27;hra-cell-population-predictions&#x27;,
+  standalone: true,
+  imports: [
+    HraCommonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSortModule,
+    MatTableModule,
+    OverlayModule,
+    ScrollingModule,
+    WorkflowCardModule,
+
+    DeleteFileButtonComponent,
+    TextHyperlinkDirective,
+    TooltipCardComponent,
+  ],
+  templateUrl: &#x27;./cell-population-predictions.component.html&#x27;,
+  styleUrl: &#x27;./cell-population-predictions.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    &#x27;(window:beforeunload)&#x27;: &#x27;handleBeforeUnload($event)&#x27;,
+  },
+})
+export class CellPopulationPredictionsComponent {
+  /** Predictions data */
+  readonly predictions &#x3D; input&lt;CellSummaryRow[]&gt;([]);
+
+  /** Input data for predictions page */
+  readonly data &#x3D; input&lt;TissuePredictionData&gt;(EMPTY_DATA);
+
+  /** Router service */
+  private readonly router &#x3D; inject(Router);
+
+  /** Snackbar service */
+  private readonly snackbar &#x3D; inject(SnackbarService);
+
+  /** For sorting Tools column */
+  private readonly sort &#x3D; viewChild.required(MatSort);
+
+  /** Data for predictions table */
+  protected readonly dataSource &#x3D; new MatTableDataSource&lt;CellSummaryRow&gt;([]);
+
+  /** Column headers for prediction table */
+  private readonly columnHeaders: { [key: string]: string } &#x3D; {
+    tool: &#x27;Tool&#x27;,
+    modality: &#x27;Modality&#x27;,
+    percentage: &#x27;% Of Total&#x27;,
+    count: &#x27;# Count&#x27;,
+    cell_label: &#x27;Cell Name in Cell Ontology (CL)&#x27;,
+    cell_id: &#x27;Cell Type ID in Cell Ontology (CL)&#x27;,
+  };
+
+  /** Columns for prediction table */
+  protected readonly displayedColumns: string[] &#x3D; Object.keys(this.columnHeaders);
+
+  /** Tooltip content */
+  protected readonly tooltip: TooltipContent[] &#x3D; [
+    {
+      description: TOOLTIP_CONTENT,
+    },
+  ];
+
+  /**
+   * Constructor that initializes the component and sets up effects for predictions and sorting
+   */
+  constructor() {
+    effect(() &#x3D;&gt; {
+      this.dataSource.data &#x3D; this.predictions();
+    });
+
+    effect(() &#x3D;&gt; {
+      this.dataSource.sort &#x3D; this.sort();
+    });
+  }
+
+  /** Triggered when users tries to close or reload the page */
+  handleBeforeUnload(event: BeforeUnloadEvent) {
+    event.preventDefault();
+    event.returnValue &#x3D; true; // For older verions
+  }
+
+  /** Triggered when users clicks delete icon on file */
+  onDeleteButtonClick(): void {
+    const confirmation &#x3D; window.confirm(&#x27;Changes you made might not be saved. Do you really want to leave?&#x27;);
+    if (confirmation) {
+      this.router.navigate([&#x27;/us1&#x27;]);
+    }
+  }
+
+  /** Triggered when clicked on download CSV button  */
+  onDownloadCSVButtonClicked() {
+    const csvData &#x3D; unparse(this.predictions(), { columns: this.displayedColumns });
+    const fileToSave &#x3D; new Blob([csvData], { type: &#x27;text/csv&#x27; });
+    saveAs(fileToSave, &#x27;predictions.csv&#x27;);
+    this.snackbar.open(&#x27;File downloaded&#x27;, &#x27;&#x27;, false, &#x27;start&#x27;, { duration: 6000 });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;cell-population-predictions&quot;&gt;
+  &lt;h1&gt;Cell Population Predictions&lt;/h1&gt;
+
+  &lt;p class&#x3D;&quot;info-text&quot;&gt;
+    This table lists all cell types predicted for the selected extraction site per tool. Note that different annotation
+    tools predict different cell types and different percentages for the very same cell type. Hover over column headers
+    for details.
+  &lt;/p&gt;
+
+  &lt;hra-workflow-card tagline&#x3D;&quot;Cell Population Predictions&quot; class&#x3D;&quot;table-container&quot;&gt;
+    &lt;hra-workflow-card-actions&gt;
+      &lt;button
+        hraClickEvent
+        mat-icon-button
+        class&#x3D;&quot;predictions-table-menu-trigger&quot;
+        aria-label&#x3D;&quot;Open table action menu&quot;
+        [matMenuTriggerFor]&#x3D;&quot;options&quot;
+      &gt;
+        &lt;mat-icon class&#x3D;&quot;more-icon&quot; fontIcon&#x3D;&quot;more_vert&quot;&gt;&lt;/mat-icon&gt;
+      &lt;/button&gt;
+
+      &lt;!-- MENU --&gt;
+      &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #options&#x3D;&quot;matMenu&quot; class&#x3D;&quot;custom-menu&quot;&gt;
+        &lt;button
+          hraClickEvent
+          hraFeature&#x3D;&quot;info&quot;
+          mat-menu-item
+          matRipple
+          matRippleColor&#x3D;&quot;#201E3D14&quot;
+          [matMenuTriggerFor]&#x3D;&quot;submenu&quot;
+        &gt;
+          &lt;mat-icon&gt;info&lt;/mat-icon&gt;
+          Info
+          &lt;mat-icon class&#x3D;&quot;expand-arrow&quot;&gt;arrow_right&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;button hraClickEvent hraFeature&#x3D;&quot;download-csv&quot; mat-menu-item (click)&#x3D;&quot;onDownloadCSVButtonClicked()&quot;&gt;
+          &lt;mat-icon&gt;download&lt;/mat-icon&gt;
+          CSV
+        &lt;/button&gt;
+      &lt;/mat-menu&gt;
+
+      &lt;mat-menu #submenu&#x3D;&quot;matMenu&quot;&gt;
+        &lt;hra-tooltip-card [content]&#x3D;&quot;tooltip&quot; class&#x3D;&quot;tooltip-panel&quot;&gt; &lt;/hra-tooltip-card&gt;
+      &lt;/mat-menu&gt;
+    &lt;/hra-workflow-card-actions&gt;
+    &lt;hra-workflow-card-extra&gt;
+      &lt;hra-delete-file-button
+        [fileName]&#x3D;&quot;data().file.name&quot;
+        (cancelLoad)&#x3D;&quot;onDeleteButtonClick()&quot;
+        data-testid&#x3D;&quot;delete-file-button&quot;
+      &gt;&lt;/hra-delete-file-button&gt;
+    &lt;/hra-workflow-card-extra&gt;
+
+    &lt;!-- TABLE --&gt;
+    &lt;ng-scrollbar class&#x3D;&quot;table-overflow-container&quot;&gt;
+      &lt;table
+        hraFeature&#x3D;&quot;predictions&quot;
+        mat-table
+        [dataSource]&#x3D;&quot;dataSource&quot;
+        matSortActive&#x3D;&quot;tool&quot;
+        matSortDirection&#x3D;&quot;desc&quot;
+        matSortDisableClear
+        matSort
+        class&#x3D;&quot;predictions-table&quot;
+      &gt;
+        &lt;caption&gt;
+          Table displaying cell population predictions.
+        &lt;/caption&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;tool&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Tool&quot;&gt;Tool&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.tool }}&lt;/td&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;modality&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Modality&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.modality }}&lt;/td&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;percentage&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;% Of Total&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; style&#x3D;&quot;white-space: nowrap&quot;&gt;
+            {{ element.percentage &lt; 0.0001 ? &#x27;&lt; 0.01%&#x27; : (element.percentage | percent: &#x27;1.2-2&#x27;) }}
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;count&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;# Count&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.count | number: &#x27;1.2-2&#x27; }}&lt;/td&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;cell_label&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Cell Name in Cell Ontology (CL)&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.cell_label }}&lt;/td&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;cell_id&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;Cell Type ID in Cell Ontology (CL)&lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+            &lt;a hraHyperlink [href]&#x3D;&quot;element.cell_id&quot;&gt;{{ element.cell_id }}&lt;/a&gt;
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns; sticky: true&quot;&gt;&lt;/tr&gt;
+        &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot;&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/ng-scrollbar&gt;
+  &lt;/hra-workflow-card&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="cell-population-predictions">  <h1>Cell Population Predictions</h1>  <p class="info-text">    This table lists all cell types predicted for the selected extraction site per tool. Note that different annotation    tools predict different cell types and different percentages for the very same cell type. Hover over column headers    for details.  </p>  <hra-workflow-card tagline="Cell Population Predictions" class="table-container">    <hra-workflow-card-actions>      <button        hraClickEvent        mat-icon-button        class="predictions-table-menu-trigger"        aria-label="Open table action menu"        [matMenuTriggerFor]="options"      >        <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>      </button>      <!-- MENU -->      <mat-menu hraFeature="menu" #options="matMenu" class="custom-menu">        <button          hraClickEvent          hraFeature="info"          mat-menu-item          matRipple          matRippleColor="#201E3D14"          [matMenuTriggerFor]="submenu"        >          <mat-icon>info</mat-icon>          Info          <mat-icon class="expand-arrow">arrow_right</mat-icon>        </button>        <button hraClickEvent hraFeature="download-csv" mat-menu-item (click)="onDownloadCSVButtonClicked()">          <mat-icon>download</mat-icon>          CSV        </button>      </mat-menu>      <mat-menu #submenu="matMenu">        <hra-tooltip-card [content]="tooltip" class="tooltip-panel"> </hra-tooltip-card>      </mat-menu>    </hra-workflow-card-actions>    <hra-workflow-card-extra>      <hra-delete-file-button        [fileName]="data().file.name"        (cancelLoad)="onDeleteButtonClick()"        data-testid="delete-file-button"      ></hra-delete-file-button>    </hra-workflow-card-extra>    <!-- TABLE -->    <ng-scrollbar class="table-overflow-container">      <table        hraFeature="predictions"        mat-table        [dataSource]="dataSource"        matSortActive="tool"        matSortDirection="desc"        matSortDisableClear        matSort        class="predictions-table"      >        <caption>          Table displaying cell population predictions.        </caption>        <ng-container matColumnDef="tool">          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tool">Tool</th>          <td mat-cell *matCellDef="let element">{{ element.tool }}</td>        </ng-container>        <ng-container matColumnDef="modality">          <th mat-header-cell *matHeaderCellDef>Modality</th>          <td mat-cell *matCellDef="let element">{{ element.modality }}</td>        </ng-container>        <ng-container matColumnDef="percentage">          <th mat-header-cell *matHeaderCellDef>% Of Total</th>          <td mat-cell *matCellDef="let element" style="white-space: nowrap">            {{ element.percentage < 0.0001 ? \'< 0.01%\' : (element.percentage | percent: \'1.2-2\') }}          </td>        </ng-container>        <ng-container matColumnDef="count">          <th mat-header-cell *matHeaderCellDef># Count</th>          <td mat-cell *matCellDef="let element">{{ element.count | number: \'1.2-2\' }}</td>        </ng-container>        <ng-container matColumnDef="cell_label">          <th mat-header-cell *matHeaderCellDef>Cell Name in Cell Ontology (CL)</th>          <td mat-cell *matCellDef="let element">{{ element.cell_label }}</td>        </ng-container>        <ng-container matColumnDef="cell_id">          <th mat-header-cell *matHeaderCellDef>Cell Type ID in Cell Ontology (CL)</th>          <td mat-cell *matCellDef="let element">            <a hraHyperlink [href]="element.cell_id">{{ element.cell_id }}</a>          </td>        </ng-container>        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>      </table>    </ng-scrollbar>  </hra-workflow-card></ng-container></div>'
+    var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CellPopulationPredictionsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CellPopulationPredictionsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
