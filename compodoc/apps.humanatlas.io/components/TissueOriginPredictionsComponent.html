@@ -1,0 +1,1011 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TissueOriginPredictionsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Tissue Origin Predictions result page</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-tissue-origin-predictions</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatSortModule</code>
+                            <code>MatTableModule</code>
+                            <code>MatMenuModule</code>
+                            <code>OverlayModule</code>
+                            <code>WorkflowCardModule</code>
+                            <code>MatButton</code>
+                            <code>BackButtonBarComponent</code>
+                            <code>ScrollingModule</code>
+                                <code><a href="../components/SimilarAnatomicalStructuresTableComponent.html" target="_self" >SimilarAnatomicalStructuresTableComponent</a></code>
+                                <code><a href="../components/SimilarDatasetsTableComponent.html" target="_self" >SimilarDatasetsTableComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./tissue-origin-predictions.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./tissue-origin-predictions.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#euiOpen" >euiOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#predictionDate" >predictionDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ruiLocationsJsonString" >ruiLocationsJsonString</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#scrollStrategy" >scrollStrategy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#snackbar" >snackbar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onDownloadJSONButtonClicked" >onDownloadJSONButtonClicked</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <a href="#predictions" >predictions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:134</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor that initializes the component and sets up effects for predictions and sorting</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="data"></a>
+                        <b>data</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/TissuePredictionData.html" target="_self" >TissuePredictionData</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>EMPTY_DATA</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:90</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input data for predictions page</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="predictions"></a>
+                        <b>predictions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CellSummaryReport</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>EMPTY_PREDICTIONS</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:93</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Predictions</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDownloadJSONButtonClicked"></a>
+                    <span class="name">
+                        <span ><b>onDownloadJSONButtonClicked</b></span>
+                        <a href="#onDownloadJSONButtonClicked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDownloadJSONButtonClicked()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when clicked download JSON-LD button</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="euiOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>euiOpen</b></span>
+                        <a href="#euiOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether to show EUI</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="predictionDate"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>predictionDate</b></span>
+                        <a href="#predictionDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const { date } &#x3D; this.data();
+    return date &amp;&amp; PREDICTION_DATE_FORMAT.format(date);
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Prediction date</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ruiLocationsJsonString"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ruiLocationsJsonString</b></span>
+                        <a href="#ruiLocationsJsonString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>JSON.stringify([JSON.stringify(this.predictions().rui_locations)])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>RUI locations JSON string</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollStrategy"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>scrollStrategy</b></span>
+                        <a href="#scrollStrategy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ScrollStrategyOptions).block()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Scroll strategy</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snackbar"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>snackbar</b></span>
+                        <a href="#snackbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SnackbarService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Snackbar service</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Overlay, OverlayModule, ScrollStrategyOptions } from &#x27;@angular/cdk/overlay&#x27;;
+import { TemplatePortal } from &#x27;@angular/cdk/portal&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  CUSTOM_ELEMENTS_SCHEMA,
+  effect,
+  inject,
+  input,
+  isDevMode,
+  Renderer2,
+  signal,
+  TemplateRef,
+  viewChild,
+  ViewContainerRef,
+} from &#x27;@angular/core&#x27;;
+import { MatButton } from &#x27;@angular/material/button&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { MatSortModule } from &#x27;@angular/material/sort&#x27;;
+import { MatTableModule } from &#x27;@angular/material/table&#x27;;
+import { CellSummaryReport } from &#x27;@hra-api/ng-client&#x27;;
+import { BackButtonBarComponent } from &#x27;@hra-ui/design-system/navigation/back-button-bar&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
+import { WorkflowCardModule } from &#x27;@hra-ui/design-system/workflow-card&#x27;;
+import { saveAs } from &#x27;file-saver&#x27;;
+import { TissuePredictionData } from &#x27;../../../services/hra-pop-predictions/hra-pop-predictions.service&#x27;;
+import { SimilarAnatomicalStructuresTableComponent } from &#x27;./components/similar-anatomical-structures-table/similar-anatomical-structures-table.component&#x27;;
+import { SimilarDatasetsTableComponent } from &#x27;./components/similar-datasets-table/similar-datasets-table.component&#x27;;
+
+/**
+ * Script URL for EUI
+ * */
+const SCRIPT_URL &#x3D; &#x60;https://cdn.humanatlas.io/ui${isDevMode() ? &#x27;--staging&#x27; : &#x27;&#x27;}/ccf-eui/wc.js&#x60;;
+
+/**
+ * Style URLs for EUI
+ */
+const STYLE_URLS &#x3D; [&#x60;https://cdn.humanatlas.io/ui${isDevMode() ? &#x27;--staging&#x27; : &#x27;&#x27;}/ccf-eui/styles.css&#x60;];
+
+/** Empty Inputs for Predictions page */
+const EMPTY_DATA: TissuePredictionData &#x3D; {
+  file: new File([], &#x27;&#x27;),
+};
+
+/** Empty predictions */
+export const EMPTY_PREDICTIONS: CellSummaryReport &#x3D; {
+  rui_locations: [],
+  sources: [],
+};
+
+/** Date format */
+const PREDICTION_DATE_FORMAT &#x3D; new Intl.DateTimeFormat(undefined, {
+  dateStyle: &#x27;long&#x27;,
+  timeStyle: &#x27;long&#x27;,
+});
+
+/**
+ * Tissue Origin Predictions result page
+ */
+@Component({
+  selector: &#x27;hra-tissue-origin-predictions&#x27;,
+  standalone: true,
+  imports: [
+    HraCommonModule,
+    MatIconModule,
+    MatSortModule,
+    MatTableModule,
+    MatMenuModule,
+    OverlayModule,
+    WorkflowCardModule,
+
+    MatButton,
+    BackButtonBarComponent,
+    ScrollingModule,
+    SimilarAnatomicalStructuresTableComponent,
+    SimilarDatasetsTableComponent,
+  ],
+  templateUrl: &#x27;./tissue-origin-predictions.component.html&#x27;,
+  styleUrl: &#x27;./tissue-origin-predictions.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class TissueOriginPredictionsComponent {
+  /** Input data for predictions page */
+  readonly data &#x3D; input&lt;TissuePredictionData&gt;(EMPTY_DATA);
+
+  /** Predictions */
+  readonly predictions &#x3D; input&lt;CellSummaryReport&gt;(EMPTY_PREDICTIONS);
+
+  /** Whether to show EUI */
+  protected readonly euiOpen &#x3D; signal&lt;boolean&gt;(false);
+
+  /** Prediction date */
+  protected readonly predictionDate &#x3D; computed(() &#x3D;&gt; {
+    const { date } &#x3D; this.data();
+    return date &amp;&amp; PREDICTION_DATE_FORMAT.format(date);
+  });
+
+  /** RUI locations JSON string */
+  protected readonly ruiLocationsJsonString &#x3D; JSON.stringify([JSON.stringify(this.predictions().rui_locations)]);
+
+  /** For accessing DOM  */
+  private readonly document &#x3D; inject(DOCUMENT);
+
+  /** For manuplating DOM elements */
+  private readonly renderer &#x3D; inject(Renderer2);
+
+  /** Scroll strategy */
+  protected readonly scrollStrategy &#x3D; inject(ScrollStrategyOptions).block();
+
+  /** Snackbar service */
+  protected readonly snackbar &#x3D; inject(SnackbarService);
+
+  /** Overlay */
+  private readonly overlay &#x3D; inject(Overlay);
+  /** View Container Reference */
+  private readonly viewContainerRef &#x3D; inject(ViewContainerRef);
+  /** EUI Template */
+  private readonly euiTemplate &#x3D; viewChild.required(&#x27;euiTemplate&#x27;, { read: TemplateRef });
+  /** Portal for the EUI */
+  private readonly euiPortal &#x3D; computed(() &#x3D;&gt; new TemplatePortal(this.euiTemplate(), this.viewContainerRef));
+  /** EUI Overlay */
+  private readonly euiOverlay &#x3D; this.overlay.create({
+    disposeOnNavigation: true,
+    height: &#x27;100vh&#x27;,
+    maxHeight: &#x27;100vh&#x27;,
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+    panelClass: &#x27;eui-overlay-container&#x27;,
+  });
+
+  /**
+   * Constructor that initializes the component and sets up effects for predictions and sorting
+   */
+  constructor() {
+    this.setupScriptAndStyleTags();
+
+    effect((cleanup) &#x3D;&gt; {
+      if (this.euiOpen()) {
+        const scrollTop &#x3D; this.document.scrollingElement?.scrollTop ?? 0;
+        const positionStrategy &#x3D; this.overlay.position().global().top(&#x60;${scrollTop}px&#x60;).right();
+        this.euiOverlay.updatePositionStrategy(positionStrategy);
+        this.euiOverlay.attach(this.euiPortal());
+        cleanup(() &#x3D;&gt; this.euiOverlay.detach());
+      }
+    });
+  }
+
+  /** Triggered when clicked download JSON-LD button */
+  onDownloadJSONButtonClicked() {
+    const jsonString &#x3D; JSON.stringify(this.predictions().rui_locations, null, 2);
+    const fileToSave &#x3D; new Blob([jsonString], { type: &#x27;application/json&#x27; });
+    saveAs(fileToSave, &#x27;rui_locations.jsonld&#x27;);
+    this.snackbar.open(&#x27;File downloaded&#x27;, &#x27;&#x27;, false, &#x27;start&#x27;, { duration: 6000 });
+  }
+
+  /** Method that sets script and link tags with appropriate URLs */
+  private setupScriptAndStyleTags(): void {
+    const { document, renderer } &#x3D; this;
+    const script &#x3D; document.querySelector(&#x60;script[src&#x3D;&quot;${SCRIPT_URL}&quot;]&#x60;);
+    const styles &#x3D; Array.from(document.querySelectorAll(&#x27;link&#x27;)).map((item) &#x3D;&gt; item.href);
+    const isStyleIncluded &#x3D; STYLE_URLS.every((style) &#x3D;&gt; styles.includes(style));
+
+    if (script &#x3D;&#x3D;&#x3D; null) {
+      const el &#x3D; renderer.createElement(&#x27;script&#x27;);
+      renderer.setAttribute(el, &#x27;src&#x27;, SCRIPT_URL);
+      renderer.setAttribute(el, &#x27;type&#x27;, &#x27;module&#x27;);
+      document.head.appendChild(el);
+    }
+
+    if (!isStyleIncluded) {
+      STYLE_URLS.forEach((URL) &#x3D;&gt; {
+        const el &#x3D; renderer.createElement(&#x27;link&#x27;);
+        renderer.setAttribute(el, &#x27;href&#x27;, URL);
+        renderer.setAttribute(el, &#x27;rel&#x27;, &#x27;stylesheet&#x27;);
+        document.head.appendChild(el);
+      });
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;tissue-origin-predictions&quot;&gt;
+  &lt;h1 class&#x3D;&quot;title&quot;&gt;Tissue Origin Predictions&lt;/h1&gt;
+
+  &lt;p class&#x3D;&quot;info-text&quot;&gt;
+    The Tissue Origin Predictions return three types of entities with similar cell type populations: (1) anatomical
+    structures table, (2) experimental datasets table, and (3) extraction sites explorable in 3D. Similarity is computed
+    using weighted cosine similarity between the user-provided cell type population for the experimental data and
+    reference cell type populations for these three HRA entities. Note that different annotation tools predict different
+    cell types and different percentages for the very same cell type. Hover over column headers for details.
+  &lt;/p&gt;
+
+  &lt;!-- SIMILAR ANATOMICAL STRUCTURES TABLE --&gt;
+  &lt;hra-similar-anatomical-structures-table [predictions]&#x3D;&quot;predictions()&quot;&gt;&lt;/hra-similar-anatomical-structures-table&gt;
+
+  &lt;!-- SIMILAR DATASETS TABLE --&gt;
+  &lt;hra-similar-datasets-table [predictions]&#x3D;&quot;predictions()&quot;&gt;&lt;/hra-similar-datasets-table&gt;
+
+  &lt;!-- BOTTOM CARDS --&gt;
+  &lt;div class&#x3D;&quot;bottom-cards&quot;&gt;
+    &lt;hra-workflow-card hraFeature&#x3D;&quot;similar-extraction-site&quot; tagline&#x3D;&quot;Similar Extraction Sites&quot; class&#x3D;&quot;card card-1&quot;&gt;
+      &lt;p&gt;Download or explore similar extraction sites spatially using the Exploration User Interface (EUI).&lt;/p&gt;
+      &lt;div class&#x3D;&quot;buttons&quot;&gt;
+        &lt;button
+          hraClickEvent
+          hraFeature&#x3D;&quot;download-json&quot;
+          (click)&#x3D;&quot;onDownloadJSONButtonClicked()&quot;
+          mat-button
+          hraButtonVariant&#x3D;&quot;primary&quot;
+          hraButtonSize&#x3D;&quot;medium&quot;
+          disabled&#x3D;&quot;false&quot;
+        &gt;
+          JSON-LD
+          &lt;mat-icon&gt;download&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;button hraClickEvent hraFeature&#x3D;&quot;explore&quot; mat-flat-button (click)&#x3D;&quot;euiOpen.set(true)&quot;&gt;Explore&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/hra-workflow-card&gt;
+    &lt;hra-workflow-card hraFeature&#x3D;&quot;metadata&quot; tagline&#x3D;&quot;Metadata&quot; class&#x3D;&quot;card card-2&quot;&gt;
+      &lt;div hraHoverEvent class&#x3D;&quot;metadata-container&quot;&gt;
+        &lt;div class&#x3D;&quot;titles&quot;&gt;
+          &lt;div class&#x3D;&quot;metadata-row&quot;&gt;
+            &lt;span class&#x3D;&quot;label&quot;&gt;Source Data&lt;/span&gt;
+            &lt;span class&#x3D;&quot;value&quot;&gt;{{ data().file.name }}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;metadata-row&quot;&gt;
+            &lt;span class&#x3D;&quot;label&quot;&gt;Organ&lt;/span&gt;
+            &lt;span class&#x3D;&quot;value&quot;&gt;{{ data().organ ?? &#x27;no organ selected&#x27; }}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;metadata-row&quot;&gt;
+            &lt;span class&#x3D;&quot;label&quot;&gt;Annotation Tool&lt;/span&gt;
+            &lt;span class&#x3D;&quot;value&quot;&gt;{{ data().tool ?? &#x27;no tool selected&#x27; }}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;metadata-row&quot;&gt;
+            &lt;span class&#x3D;&quot;label&quot;&gt;Creation Date/Time&lt;/span&gt;
+            &lt;span class&#x3D;&quot;value&quot;&gt;{{ predictionDate() }}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/hra-workflow-card&gt;
+  &lt;/div&gt;
+
+  &lt;!-- EUI OVERLAY --&gt;
+  &lt;ng-template #euiTemplate&gt;
+    &lt;div&gt;
+      &lt;hra-back-button-bar (backClick)&#x3D;&quot;euiOpen.set(false)&quot;&gt;&lt;/hra-back-button-bar&gt;
+      &lt;ccf-eui
+        class&#x3D;&quot;embedded&quot;
+        base-href&#x3D;&quot;https://cdn.humanatlas.io/ui/ccf-eui/&quot;
+        use-remote-api&#x3D;&quot;false&quot;
+        hubmap-data-url&#x3D;&quot;&quot;
+        login-disabled&#x3D;&quot;true&quot;
+        header&#x3D;&quot;false&quot;
+        data-sources&#x3D;&quot;{{ ruiLocationsJsonString }}&quot;
+      &gt;
+      &lt;/ccf-eui&gt;
+    &lt;/div&gt;
+  &lt;/ng-template&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="tissue-origin-predictions">  <h1 class="title">Tissue Origin Predictions</h1>  <p class="info-text">    The Tissue Origin Predictions return three types of entities with similar cell type populations: (1) anatomical    structures table, (2) experimental datasets table, and (3) extraction sites explorable in 3D. Similarity is computed    using weighted cosine similarity between the user-provided cell type population for the experimental data and    reference cell type populations for these three HRA entities. Note that different annotation tools predict different    cell types and different percentages for the very same cell type. Hover over column headers for details.  </p>  <!-- SIMILAR ANATOMICAL STRUCTURES TABLE -->  <hra-similar-anatomical-structures-table [predictions]="predictions()"></hra-similar-anatomical-structures-table>  <!-- SIMILAR DATASETS TABLE -->  <hra-similar-datasets-table [predictions]="predictions()"></hra-similar-datasets-table>  <!-- BOTTOM CARDS -->  <div class="bottom-cards">    <hra-workflow-card hraFeature="similar-extraction-site" tagline="Similar Extraction Sites" class="card card-1">      <p>Download or explore similar extraction sites spatially using the Exploration User Interface (EUI).</p>      <div class="buttons">        <button          hraClickEvent          hraFeature="download-json"          (click)="onDownloadJSONButtonClicked()"          mat-button          hraButtonVariant="primary"          hraButtonSize="medium"          disabled="false"        >          JSON-LD          <mat-icon>download</mat-icon>        </button>        <button hraClickEvent hraFeature="explore" mat-flat-button (click)="euiOpen.set(true)">Explore</button>      </div>    </hra-workflow-card>    <hra-workflow-card hraFeature="metadata" tagline="Metadata" class="card card-2">      <div hraHoverEvent class="metadata-container">        <div class="titles">          <div class="metadata-row">            <span class="label">Source Data</span>            <span class="value">{{ data().file.name }}</span>          </div>          <div class="metadata-row">            <span class="label">Organ</span>            <span class="value">{{ data().organ ?? \'no organ selected\' }}</span>          </div>          <div class="metadata-row">            <span class="label">Annotation Tool</span>            <span class="value">{{ data().tool ?? \'no tool selected\' }}</span>          </div>          <div class="metadata-row">            <span class="label">Creation Date/Time</span>            <span class="value">{{ predictionDate() }}</span>          </div>        </div>      </div>    </hra-workflow-card>  </div>  <!-- EUI OVERLAY -->  <ng-template #euiTemplate>    <div>      <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>      <ccf-eui        class="embedded"        base-href="https://cdn.humanatlas.io/ui/ccf-eui/"        use-remote-api="false"        hubmap-data-url=""        login-disabled="true"        header="false"        data-sources="{{ ruiLocationsJsonString }}"      >      </ccf-eui>    </div>  </ng-template></ng-container></div>'
+    var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TissueOriginPredictionsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TissueOriginPredictionsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

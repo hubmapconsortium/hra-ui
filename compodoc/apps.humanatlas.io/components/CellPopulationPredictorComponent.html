@@ -1,0 +1,1288 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CellPopulationPredictorComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Cell Population Predictor Page Component</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-cell-population-predictor</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>ButtonsModule</code>
+                            <code>HraCommonModule</code>
+                            <code>MatIconModule</code>
+                            <code>OverlayModule</code>
+                            <code>RouterModule</code>
+                            <code>WorkflowCardModule</code>
+                            <code>AppLabelComponent</code>
+                            <code>DeleteFileButtonComponent</code>
+                                <code><a href="../components/EmbeddedRuiComponent.html" target="_self" >EmbeddedRuiComponent</a></code>
+                            <code>TooltipCardComponent</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./cell-population-predictor.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./cell-population-predictor.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#createInfoOpen" >createInfoOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#file" >file</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#ruiOpen" >ruiOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#supportedOrgans" >supportedOrgans</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tooltip" >tooltip</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tooltipPosition" >tooltipPosition</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#uploadInfoOpen" >uploadInfoOpen</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onFileCreated" >onFileCreated</a>
+                            </li>
+                            <li>
+                                <a href="#onFileSelected" >onFileSelected</a>
+                            </li>
+                            <li>
+                                <a href="#onPredictClicked" >onPredictClicked</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onUseSampleClicked" >onUseSampleClicked</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:123</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor that initializes the component and sets up effects for supported organs and sets script and link tags</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileCreated"></a>
+                    <span class="name">
+                        <span ><b>onFileCreated</b></span>
+                        <a href="#onFileCreated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileCreated(file: File)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Output file from RUI</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                        <code>File</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileSelected"></a>
+                    <span class="name">
+                        <span ><b>onFileSelected</b></span>
+                        <a href="#onFileSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileSelected(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when user uploads a file</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPredictClicked"></a>
+                    <span class="name">
+                        <span ><b>onPredictClicked</b></span>
+                        <a href="#onPredictClicked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onPredictClicked()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="172"
+                                    class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:172</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when user click the predict button</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onUseSampleClicked"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onUseSampleClicked</b></span>
+                        <a href="#onUseSampleClicked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onUseSampleClicked()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Use sample JSON file</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createInfoOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>createInfoOpen</b></span>
+                        <a href="#createInfoOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether to show create info tooltip</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="file"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>file</b></span>
+                        <a href="#file"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>File</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ruiOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>ruiOpen</b></span>
+                        <a href="#ruiOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether to show RUI form</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="supportedOrgans"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>supportedOrgans</b></span>
+                        <a href="#supportedOrgans"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.predictionsService.supportedOrgans</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Supported organs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tooltip"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tooltip</b></span>
+                        <a href="#tooltip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TooltipContent[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      description: TOOLTIP_CONTENT,
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tooltipPosition"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tooltipPosition</b></span>
+                        <a href="#tooltipPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ConnectedPosition[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      originX: &#x27;start&#x27;,
+      originY: &#x27;bottom&#x27;,
+      overlayX: &#x27;start&#x27;,
+      overlayY: &#x27;top&#x27;,
+      offsetX: 12,
+      offsetY: 12,
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip Position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uploadInfoOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>uploadInfoOpen</b></span>
+                        <a href="#uploadInfoOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether to show upload info tooltip</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import { httpResource, HttpResourceRef } from &#x27;@angular/common/http&#x27;;
+import { ChangeDetectionStrategy, Component, inject, InjectionToken, Renderer2 } from &#x27;@angular/core&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { Router, RouterModule } from &#x27;@angular/router&#x27;;
+import { assetUrl } from &#x27;@hra-ui/common/url&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { DeleteFileButtonComponent } from &#x27;@hra-ui/design-system/buttons/delete-file-button&#x27;;
+import { AppLabelComponent } from &#x27;@hra-ui/design-system/content-templates/app-label&#x27;;
+import { TooltipCardComponent, TooltipContent } from &#x27;@hra-ui/design-system/tooltip-card&#x27;;
+import { WorkflowCardModule } from &#x27;@hra-ui/design-system/workflow-card&#x27;;
+import { HraPopPredictionsService } from &#x27;../../../services/hra-pop-predictions/hra-pop-predictions.service&#x27;;
+import { EmbeddedRuiComponent } from &#x27;./rui/embedded-rui.component&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+
+/** Tooltip Content */
+const TOOLTIP_CONTENT &#x3D; &#x60;An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
+and metadata (creator name, creation date) for a tissue block. Importantly, an extraction site also contains a
+list of anatomical structures that a tissue block collides with, either via bounding-box or mesh-based
+collision detection. Extraction sites are generated using the Registration User Interface (RUI).&#x60;;
+
+/** RUI script URL */
+const SCRIPT_URL &#x3D; &#x27;https://cdn.humanatlas.io/ui/ccf-rui/wc.js&#x27;;
+
+/** RUI style URL */
+const STYLE_URL &#x3D; &#x27;https://cdn.humanatlas.io/ui/ccf-rui/styles.css&#x27;;
+
+/** Sample JSON file URL */
+export const SAMPLE_JSON_FILE_URL &#x3D; new InjectionToken&lt;string&gt;(&#x27;&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; &#x27;assets/sample-data/cell-population-sample.json&#x27;,
+});
+
+/** Sample JSON file */
+export const SAMPLE_JSON_FILE &#x3D; new InjectionToken(&#x27;Sample file&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: loadSampleFileFactory,
+});
+
+/**
+ * Loads a sample JSON file from the configured assets URL and wraps it in a File object.
+ * @returns A HttpResourceRef that resolves to a File or undefined
+ */
+function loadSampleFileFactory(): HttpResourceRef&lt;File | undefined&gt; {
+  const fileUrl &#x3D; inject(SAMPLE_JSON_FILE_URL);
+  const url &#x3D; assetUrl(fileUrl);
+  return httpResource.text(url, {
+    parse: (content) &#x3D;&gt; new File([content], &#x27;sample.json&#x27;, { type: &#x27;application/json&#x27; }),
+  });
+}
+
+/**
+ * Cell Population Predictor Page Component
+ */
+@Component({
+  selector: &#x27;hra-cell-population-predictor&#x27;,
+  standalone: true,
+  imports: [
+    ButtonsModule,
+    HraCommonModule,
+    MatIconModule,
+    OverlayModule,
+    RouterModule,
+    WorkflowCardModule,
+    AppLabelComponent,
+    DeleteFileButtonComponent,
+    EmbeddedRuiComponent,
+    TooltipCardComponent,
+  ],
+  templateUrl: &#x27;./cell-population-predictor.component.html&#x27;,
+  styleUrl: &#x27;./cell-population-predictor.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class CellPopulationPredictorComponent {
+  /** File */
+  protected file?: File &#x3D; undefined;
+
+  /** Sample file */
+  private readonly sampleFile &#x3D; inject(SAMPLE_JSON_FILE).value.asReadonly();
+
+  /** HRA pop Predictions Service */
+  private readonly predictionsService &#x3D; inject(HraPopPredictionsService);
+
+  /** Whether to show upload info tooltip */
+  protected uploadInfoOpen &#x3D; false;
+
+  /** Whether to show create info tooltip   */
+  protected createInfoOpen &#x3D; false;
+
+  /** Whether to show RUI form */
+  protected ruiOpen &#x3D; false;
+
+  /** Tooltip Position */
+  protected readonly tooltipPosition: ConnectedPosition[] &#x3D; [
+    {
+      originX: &#x27;start&#x27;,
+      originY: &#x27;bottom&#x27;,
+      overlayX: &#x27;start&#x27;,
+      overlayY: &#x27;top&#x27;,
+      offsetX: 12,
+      offsetY: 12,
+    },
+  ];
+
+  /** Tooltip content */
+  protected readonly tooltip: TooltipContent[] &#x3D; [
+    {
+      description: TOOLTIP_CONTENT,
+    },
+  ];
+
+  /** Supported organs */
+  protected readonly supportedOrgans &#x3D; this.predictionsService.supportedOrgans;
+
+  /** For accessing DOM  */
+  private readonly document &#x3D; inject(DOCUMENT);
+
+  /** For manuplating DOM elements */
+  private readonly renderer &#x3D; inject(Renderer2);
+
+  /** Router */
+  private readonly router &#x3D; inject(Router);
+
+  /**
+   * Constructor that initializes the component and sets up effects for supported organs and sets script and link tags
+   */
+  constructor() {
+    this.setupScriptAndStyleTags();
+  }
+
+  /** Triggered when user uploads a file */
+  onFileSelected(event: Event): void {
+    const input &#x3D; event.target as HTMLInputElement;
+    if (input.files &amp;&amp; input.files.length &gt; 0) {
+      this.file &#x3D; input.files[0];
+    }
+  }
+
+  /** Output file from RUI */
+  onFileCreated(file: File): void {
+    this.file &#x3D; file;
+  }
+
+  /** Use sample JSON file */
+  async onUseSampleClicked(): Promise&lt;void&gt; {
+    this.file &#x3D; this.sampleFile();
+  }
+
+  /** Method that sets script and link tags with appropriate URLs */
+  private setupScriptAndStyleTags(): void {
+    const { document, renderer } &#x3D; this;
+    const script &#x3D; document.querySelector(&#x60;script[src&#x3D;&quot;${SCRIPT_URL}&quot;]&#x60;);
+    const styles &#x3D; document.querySelector(&#x60;link[href&#x3D;&quot;${STYLE_URL}&quot;]&#x60;);
+
+    if (script &#x3D;&#x3D;&#x3D; null) {
+      const el &#x3D; renderer.createElement(&#x27;script&#x27;);
+      renderer.setAttribute(el, &#x27;src&#x27;, SCRIPT_URL);
+      renderer.setAttribute(el, &#x27;type&#x27;, &#x27;module&#x27;);
+      document.head.appendChild(el);
+    }
+
+    if (styles &#x3D;&#x3D; null) {
+      const el &#x3D; renderer.createElement(&#x27;link&#x27;);
+      renderer.setAttribute(el, &#x27;href&#x27;, STYLE_URL);
+      renderer.setAttribute(el, &#x27;rel&#x27;, &#x27;stylesheet&#x27;);
+      document.head.appendChild(el);
+    }
+  }
+
+  /** Triggered when user click the predict button */
+  onPredictClicked() {
+    this.router.navigate([&#x27;us1/result&#x27;], {
+      info: { file: this.file },
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;cell-population-predictor&quot;&gt;
+  &lt;!-- HEADING --&gt;
+  &lt;hra-app-label tagline&#x3D;&quot;Cell Population Predictor&quot; logo&#x3D;&quot;product:cell-population-predictor&quot;&gt;&lt;/hra-app-label&gt;
+
+  &lt;!-- INFO --&gt;
+  &lt;p class&#x3D;&quot;info-text&quot;&gt;
+    Select a 3D tissue extraction site and use the Human Reference Atlas API to predict cell type populations for this
+    site.
+  &lt;/p&gt;
+
+  &lt;!-- CARDS --&gt;
+  &lt;div class&#x3D;&quot;cards&quot;&gt;
+    &lt;!-- CARD 1 --&gt;
+    &lt;hra-workflow-card hraFeature&#x3D;&quot;upload&quot; tagline&#x3D;&quot;Upload&quot; class&#x3D;&quot;card card-1&quot; [class.card-with-file]&#x3D;&quot;file&quot;&gt;
+      &lt;hra-workflow-card-actions&gt;
+        &lt;mat-icon
+          hraHoverEvent
+          hraFeature&#x3D;&quot;upload-info&quot;
+          aria-hidden&#x3D;&quot;false&quot;
+          aria-label&#x3D;&quot;Upload data informational tooltip&quot;
+          class&#x3D;&quot;info-icon&quot;
+          fontIcon&#x3D;&quot;info&quot;
+          cdkOverlayOrigin
+          #uploadDataTooltipTrigger&#x3D;&quot;cdkOverlayOrigin&quot;
+          (mouseover)&#x3D;&quot;uploadInfoOpen &#x3D; true&quot;
+          (mouseout)&#x3D;&quot;uploadInfoOpen &#x3D; false&quot;
+          (focus)&#x3D;&quot;uploadInfoOpen &#x3D; true&quot;
+          (blur)&#x3D;&quot;uploadInfoOpen &#x3D; false&quot;
+        &gt;&lt;/mat-icon&gt;
+        &lt;ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayPanelClass]&#x3D;&quot;[&#x27;tooltip-panel&#x27;]&quot;
+          [cdkConnectedOverlayPositions]&#x3D;&quot;tooltipPosition&quot;
+          [cdkConnectedOverlayOrigin]&#x3D;&quot;uploadDataTooltipTrigger&quot;
+          [cdkConnectedOverlayOpen]&#x3D;&quot;uploadInfoOpen&quot;
+          [cdkConnectedOverlayViewportMargin]&#x3D;&quot;8&quot;
+          [cdkConnectedOverlayPush]&#x3D;&quot;true&quot;
+        &gt;
+          &lt;hra-tooltip-card [content]&#x3D;&quot;tooltip&quot;&gt; &lt;/hra-tooltip-card&gt;
+        &lt;/ng-template&gt;
+      &lt;/hra-workflow-card-actions&gt;
+
+      &lt;p class&#x3D;&quot;card-text&quot;&gt;
+        Upload an existing extraction site made with the Registration User Interface (RUI) in the JSON format or use the
+        sample file.
+      &lt;/p&gt;
+
+      &lt;div class&#x3D;&quot;buttons-container&quot;&gt;
+        @if (file; as f) {
+          &lt;div class&#x3D;&quot;file-buttons&quot;&gt;
+            &lt;hra-delete-file-button [fileName]&#x3D;&quot;f.name&quot; (cancelLoad)&#x3D;&quot;file &#x3D; undefined&quot;&gt;&lt;/hra-delete-file-button&gt;
+            &lt;button
+              hraClickEvent
+              hraFeature&#x3D;&quot;predict&quot;
+              mat-flat-button
+              hraPrimaryButton
+              hraButtonSize&#x3D;&quot;large&quot;
+              (click)&#x3D;&quot;onPredictClicked()&quot;
+            &gt;
+              Predict
+            &lt;/button&gt;
+          &lt;/div&gt;
+        } @else {
+          &lt;div class&#x3D;&quot;buttons&quot;&gt;
+            &lt;button
+              hraClickEvent
+              hraFeature&#x3D;&quot;use-sample&quot;
+              mat-button
+              hraButtonSize&#x3D;&quot;medium&quot;
+              (click)&#x3D;&quot;onUseSampleClicked()&quot;
+            &gt;
+              Use sample
+            &lt;/button&gt;
+            &lt;input
+              type&#x3D;&quot;file&quot;
+              accept&#x3D;&quot;application/json&quot;
+              style&#x3D;&quot;display: none&quot;
+              (change)&#x3D;&quot;onFileSelected($event)&quot;
+              data-testid&#x3D;&quot;file-input&quot;
+              #fileInput
+            /&gt;
+            &lt;button
+              hraClickEvent
+              hraFeature&#x3D;&quot;upload-file&quot;
+              (click)&#x3D;&quot;fileInput.click()&quot;
+              mat-button
+              hraButtonSize&#x3D;&quot;medium&quot;
+            &gt;
+              Upload file
+            &lt;/button&gt;
+          &lt;/div&gt;
+        }
+      &lt;/div&gt;
+    &lt;/hra-workflow-card&gt;
+
+    &lt;!-- CARD 2 --&gt;
+    &lt;hra-workflow-card hraFeature&#x3D;&quot;create&quot; tagline&#x3D;&quot;Create&quot; class&#x3D;&quot;card card-2&quot;&gt;
+      &lt;hra-workflow-card-actions&gt;
+        &lt;mat-icon
+          hraHoverEvent
+          hraFeature&#x3D;&quot;create-info&quot;
+          aria-hidden&#x3D;&quot;false&quot;
+          aria-label&#x3D;&quot;Create custom data informational tooltip&quot;
+          class&#x3D;&quot;info-icon&quot;
+          fontIcon&#x3D;&quot;info&quot;
+          cdkOverlayOrigin
+          #createDataTooltipTrigger&#x3D;&quot;cdkOverlayOrigin&quot;
+          (mouseover)&#x3D;&quot;createInfoOpen &#x3D; true&quot;
+          (mouseout)&#x3D;&quot;createInfoOpen &#x3D; false&quot;
+        &gt;
+          &lt;ng-template
+            cdkConnectedOverlay
+            [cdkConnectedOverlayPanelClass]&#x3D;&quot;[&#x27;tooltip-panel&#x27;]&quot;
+            [cdkConnectedOverlayPositions]&#x3D;&quot;tooltipPosition&quot;
+            [cdkConnectedOverlayOrigin]&#x3D;&quot;createDataTooltipTrigger&quot;
+            [cdkConnectedOverlayOpen]&#x3D;&quot;createInfoOpen&quot;
+            [cdkConnectedOverlayViewportMargin]&#x3D;&quot;8&quot;
+            [cdkConnectedOverlayPush]&#x3D;&quot;true&quot;
+          &gt;
+            &lt;hra-tooltip-card [content]&#x3D;&quot;tooltip&quot;&gt; &lt;/hra-tooltip-card&gt;
+          &lt;/ng-template&gt;
+        &lt;/mat-icon&gt;
+      &lt;/hra-workflow-card-actions&gt;
+
+      &lt;p class&#x3D;&quot;card-text&quot;&gt;
+        Create a new tissue extraction site by placing a tissue block spatially using the Registration User Interface
+        (RUI).
+      &lt;/p&gt;
+
+      &lt;div class&#x3D;&quot;buttons buttons-container&quot;&gt;
+        &lt;button
+          hraClickEvent
+          hraFeature&#x3D;&quot;create-tissue-extraction-site&quot;
+          mat-button
+          hraButtonSize&#x3D;&quot;medium&quot;
+          (click)&#x3D;&quot;ruiOpen &#x3D; true&quot;
+        &gt;
+          Create
+        &lt;/button&gt;
+
+        &lt;ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayDisableClose]&#x3D;&quot;true&quot;
+          cdkConnectedOverlayDisposeOnNavigation&#x3D;&quot;true&quot;
+          cdkConnectedOverlayHeight&#x3D;&quot;100vh&quot;
+          [cdkConnectedOverlayOpen]&#x3D;&quot;ruiOpen&quot;
+          [cdkConnectedOverlayOrigin]&#x3D;&quot;{ x: 0, y: 0 }&quot;
+          cdkConnectedOverlayPanelClass&#x3D;&quot;rui-panel&quot;
+          cdkConnectedOverlayWidth&#x3D;&quot;100vw&quot;
+        &gt;
+          &lt;hra-embedded-rui
+            [supportedOrgans]&#x3D;&quot;supportedOrgans.value()&quot;
+            (locationCreated)&#x3D;&quot;onFileCreated($event); ruiOpen &#x3D; false&quot;
+            (closed)&#x3D;&quot;ruiOpen &#x3D; false&quot;
+          &gt;&lt;/hra-embedded-rui&gt;
+        &lt;/ng-template&gt;
+      &lt;/div&gt;
+    &lt;/hra-workflow-card&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="cell-population-predictor">  <!-- HEADING -->  <hra-app-label tagline="Cell Population Predictor" logo="product:cell-population-predictor"></hra-app-label>  <!-- INFO -->  <p class="info-text">    Select a 3D tissue extraction site and use the Human Reference Atlas API to predict cell type populations for this    site.  </p>  <!-- CARDS -->  <div class="cards">    <!-- CARD 1 -->    <hra-workflow-card hraFeature="upload" tagline="Upload" class="card card-1" [class.card-with-file]="file">      <hra-workflow-card-actions>        <mat-icon          hraHoverEvent          hraFeature="upload-info"          aria-hidden="false"          aria-label="Upload data informational tooltip"          class="info-icon"          fontIcon="info"          cdkOverlayOrigin          #uploadDataTooltipTrigger="cdkOverlayOrigin"          (mouseover)="uploadInfoOpen = true"          (mouseout)="uploadInfoOpen = false"          (focus)="uploadInfoOpen = true"          (blur)="uploadInfoOpen = false"        ></mat-icon>        <ng-template          cdkConnectedOverlay          [cdkConnectedOverlayPanelClass]="[\'tooltip-panel\']"          [cdkConnectedOverlayPositions]="tooltipPosition"          [cdkConnectedOverlayOrigin]="uploadDataTooltipTrigger"          [cdkConnectedOverlayOpen]="uploadInfoOpen"          [cdkConnectedOverlayViewportMargin]="8"          [cdkConnectedOverlayPush]="true"        >          <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>        </ng-template>      </hra-workflow-card-actions>      <p class="card-text">        Upload an existing extraction site made with the Registration User Interface (RUI) in the JSON format or use the        sample file.      </p>      <div class="buttons-container">        @if (file; as f) {          <div class="file-buttons">            <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined"></hra-delete-file-button>            <button              hraClickEvent              hraFeature="predict"              mat-flat-button              hraPrimaryButton              hraButtonSize="large"              (click)="onPredictClicked()"            >              Predict            </button>          </div>        } @else {          <div class="buttons">            <button              hraClickEvent              hraFeature="use-sample"              mat-button              hraButtonSize="medium"              (click)="onUseSampleClicked()"            >              Use sample            </button>            <input              type="file"              accept="application/json"              style="display: none"              (change)="onFileSelected($event)"              data-testid="file-input"              #fileInput            />            <button              hraClickEvent              hraFeature="upload-file"              (click)="fileInput.click()"              mat-button              hraButtonSize="medium"            >              Upload file            </button>          </div>        }      </div>    </hra-workflow-card>    <!-- CARD 2 -->    <hra-workflow-card hraFeature="create" tagline="Create" class="card card-2">      <hra-workflow-card-actions>        <mat-icon          hraHoverEvent          hraFeature="create-info"          aria-hidden="false"          aria-label="Create custom data informational tooltip"          class="info-icon"          fontIcon="info"          cdkOverlayOrigin          #createDataTooltipTrigger="cdkOverlayOrigin"          (mouseover)="createInfoOpen = true"          (mouseout)="createInfoOpen = false"        >          <ng-template            cdkConnectedOverlay            [cdkConnectedOverlayPanelClass]="[\'tooltip-panel\']"            [cdkConnectedOverlayPositions]="tooltipPosition"            [cdkConnectedOverlayOrigin]="createDataTooltipTrigger"            [cdkConnectedOverlayOpen]="createInfoOpen"            [cdkConnectedOverlayViewportMargin]="8"            [cdkConnectedOverlayPush]="true"          >            <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>          </ng-template>        </mat-icon>      </hra-workflow-card-actions>      <p class="card-text">        Create a new tissue extraction site by placing a tissue block spatially using the Registration User Interface        (RUI).      </p>      <div class="buttons buttons-container">        <button          hraClickEvent          hraFeature="create-tissue-extraction-site"          mat-button          hraButtonSize="medium"          (click)="ruiOpen = true"        >          Create        </button>        <ng-template          cdkConnectedOverlay          [cdkConnectedOverlayDisableClose]="true"          cdkConnectedOverlayDisposeOnNavigation="true"          cdkConnectedOverlayHeight="100vh"          [cdkConnectedOverlayOpen]="ruiOpen"          [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }"          cdkConnectedOverlayPanelClass="rui-panel"          cdkConnectedOverlayWidth="100vw"        >          <hra-embedded-rui            [supportedOrgans]="supportedOrgans.value()"            (locationCreated)="onFileCreated($event); ruiOpen = false"            (closed)="ruiOpen = false"          ></hra-embedded-rui>        </ng-template>      </div>    </hra-workflow-card>  </div></ng-container></div>'
+    var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CellPopulationPredictorComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CellPopulationPredictorComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

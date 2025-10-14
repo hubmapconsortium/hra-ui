@@ -1,0 +1,998 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-eui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-eui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ResultsVirtualScrollStrategy</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Injectable virtual scroll strategy for results browser</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#scrolledIndexChange" >scrolledIndexChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#attach" >attach</a>
+                            </li>
+                            <li>
+                                <a href="#detach" >detach</a>
+                            </li>
+                            <li>
+                                <a href="#onContentRendered" >onContentRendered</a>
+                            </li>
+                            <li>
+                                <a href="#onContentScrolled" >onContentScrolled</a>
+                            </li>
+                            <li>
+                                <a href="#onDataLengthChanged" >onDataLengthChanged</a>
+                            </li>
+                            <li>
+                                <a href="#onRenderedOffsetChanged" >onRenderedOffsetChanged</a>
+                            </li>
+                            <li>
+                                <a href="#scrollToIndex" >scrollToIndex</a>
+                            </li>
+                            <li>
+                                <a href="#setItems" >setItems</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attach"></a>
+                    <span class="name">
+                        <span ><b>attach</b></span>
+                        <a href="#attach"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>attach(viewport: CdkVirtualScrollViewport)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Attaches virtual scroll strategy to the viewport</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>viewport</td>
+                                            <td>
+                                                        <code>CdkVirtualScrollViewport</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Virtual scroll viewport</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="detach"></a>
+                    <span class="name">
+                        <span ><b>detach</b></span>
+                        <a href="#detach"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>detach()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Detaches virtual scroll strategy from the viewport</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onContentRendered"></a>
+                    <span class="name">
+                        <span ><b>onContentRendered</b></span>
+                        <a href="#onContentRendered"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onContentRendered()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Unused method, required by the VirtualScrollStrategy interface</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onContentScrolled"></a>
+                    <span class="name">
+                        <span ><b>onContentScrolled</b></span>
+                        <a href="#onContentScrolled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onContentScrolled()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates rendered range on scroll</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDataLengthChanged"></a>
+                    <span class="name">
+                        <span ><b>onDataLengthChanged</b></span>
+                        <a href="#onDataLengthChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDataLengthChanged()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>When length of data changes, update the total content size and update rendered range</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRenderedOffsetChanged"></a>
+                    <span class="name">
+                        <span ><b>onRenderedOffsetChanged</b></span>
+                        <a href="#onRenderedOffsetChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRenderedOffsetChanged()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Unused method, required by the VirtualScrollStrategy interface</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollToIndex"></a>
+                    <span class="name">
+                        <span ><b>scrollToIndex</b></span>
+                        <a href="#scrollToIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scrollToIndex()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Unused method, required by the VirtualScrollStrategy interface</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setItems"></a>
+                    <span class="name">
+                        <span ><b>setItems</b></span>
+                        <a href="#setItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setItems(items: <a href="../interfaces/ListResult.html" target="_self">ListResult[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sets items and updates the viewport size</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>items</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ListResult.html" target="_self" >ListResult[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Items in list</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrolledIndexChange"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>scrolledIndexChange</b></span>
+                        <a href="#scrolledIndexChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.scrolledIndexChange_.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/modules/results-browser/virtual-scroll-strategy/results-virtual-scroll-strategy.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Emits when the index of the first element visible in the viewport changes</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CdkVirtualScrollViewport, VirtualScrollStrategy } from &#x27;@angular/cdk/scrolling&#x27;;
+import { afterNextRender, inject, Injectable, Injector } from &#x27;@angular/core&#x27;;
+import { Subject } from &#x27;rxjs&#x27;;
+import { ListResult } from &#x27;../../../core/models/list-result&#x27;;
+
+/** Padding between items */
+const ITEM_PADDING_HEIGHT &#x3D; 8;
+/** Inner padding for items*/
+const ITEM_INNER_PADDING_HEIGHT &#x3D; 4;
+/** Default height for collapsed items*/
+const COLLAPSED_ITEM_HEIGHT &#x3D; 48;
+/** Default height for expanded items */
+const EXPANDED_ITEM_HEIGHT &#x3D; 62;
+/** Height for dataset items */
+const DATASET_ITEM_HEIGHT &#x3D; 58;
+/** Number of datasets per row for height calculation */
+const DATASETS_PER_ROW &#x3D; 4;
+/** Gap between dataset rows */
+const DATASET_ROW_GAP &#x3D; 16;
+/** Height for section items */
+const SECTION_ITEM_HEIGHT &#x3D; 44;
+/** Adjustment for approximate height calculations */
+const APPROXIMATE_HEIGHT_ADJUSTMENT &#x3D; 100;
+/** Extra items to render above the viewport */
+const EXTRA_ITEMS_ABOVE &#x3D; 5;
+/** Extra items to render below the viewport */
+const EXTRA_ITEMS_BELOW &#x3D; 20;
+
+/**
+ * Injectable virtual scroll strategy for results browser
+ */
+@Injectable()
+export class ResultsVirtualScrollStrategy implements VirtualScrollStrategy {
+  /** Scrolled index change Subject */
+  private readonly scrolledIndexChange_ &#x3D; new Subject&lt;number&gt;();
+  /** Emits when the index of the first element visible in the viewport changes */
+  readonly scrolledIndexChange &#x3D; this.scrolledIndexChange_.asObservable();
+
+  /** Injector */
+  private readonly injector &#x3D; inject(Injector);
+  /** Viewport variable */
+  private viewport_?: CdkVirtualScrollViewport;
+  /** List items */
+  private items: ListResult[] &#x3D; [];
+  /** Cache of item heights */
+  private readonly cachedHeights &#x3D; new Map&lt;string, number&gt;();
+  /** Set of item ids that have not had heights set */
+  private readonly pendingHeightItemIds &#x3D; new Set&lt;string&gt;();
+
+  /**
+   * Attaches virtual scroll strategy to the viewport
+   * @param viewport Virtual scroll viewport
+   */
+  attach(viewport: CdkVirtualScrollViewport): void {
+    this.viewport_ &#x3D; viewport;
+    this.onDataLengthChanged();
+  }
+
+  /**
+   * Detaches virtual scroll strategy from the viewport
+   */
+  detach(): void {
+    this.viewport_ &#x3D; undefined;
+    this.cachedHeights.clear();
+  }
+
+  /**
+   * Updates rendered range on scroll
+   */
+  onContentScrolled(): void {
+    if (this.viewport_) {
+      this.updateRenderedRange();
+    }
+  }
+
+  /**
+   * When length of data changes, update the total content size and update rendered range
+   */
+  onDataLengthChanged(): void {
+    const viewport &#x3D; this.viewport_;
+    if (viewport) {
+      viewport.setTotalContentSize(this.getTotalHeight());
+      this.updateRenderedRange();
+    }
+  }
+
+  /**
+   * Unused method, required by the VirtualScrollStrategy interface
+   */
+  onContentRendered(): void {
+    /* no-op */
+  }
+
+  /**
+   * Unused method, required by the VirtualScrollStrategy interface
+   */
+  onRenderedOffsetChanged(): void {
+    /* no-op */
+  }
+
+  /**
+   * Unused method, required by the VirtualScrollStrategy interface
+   */
+  scrollToIndex(): void {
+    /* no-op */
+  }
+
+  /**
+   * Sets items and updates the viewport size
+   * @param items Items in list
+   */
+  setItems(items: ListResult[]): void {
+    this.items &#x3D; items;
+    this.viewport_?.checkViewportSize();
+  }
+
+  /**
+   * Calculates and returns item height
+   * @param item List item
+   * @returns item height
+   */
+  private getItemHeight(item: ListResult): number {
+    if (!item.expanded) {
+      return COLLAPSED_ITEM_HEIGHT + ITEM_PADDING_HEIGHT;
+    }
+
+    const id &#x3D; item.tissueBlock[&#x27;@id&#x27;];
+    let height &#x3D; this.cachedHeights.get(id);
+    if (height &#x3D;&#x3D;&#x3D; undefined) {
+      height &#x3D; this.approximateHeight(item) + ITEM_PADDING_HEIGHT;
+      this.pendingHeightItemIds.add(id);
+    }
+
+    return height;
+  }
+
+  /**
+   * Approximates height of an item based on its datasets and sections
+   * @param item List item
+   * @returns Approximate height of the item
+   */
+  private approximateHeight(item: ListResult): number {
+    const numDatasets &#x3D; item.tissueBlock.datasets?.length ?? 0;
+    const numSections &#x3D; item.tissueBlock.sections?.length ?? 0;
+    let height &#x3D; EXPANDED_ITEM_HEIGHT + APPROXIMATE_HEIGHT_ADJUSTMENT;
+
+    if (numDatasets &gt; 0) {
+      const perDatasetHeight &#x3D; DATASET_ITEM_HEIGHT + DATASET_ROW_GAP + ITEM_INNER_PADDING_HEIGHT;
+      height +&#x3D; perDatasetHeight * Math.ceil(numDatasets / DATASETS_PER_ROW);
+    }
+    if (numSections &gt; 0) {
+      const perSectionHeight &#x3D; SECTION_ITEM_HEIGHT + DATASET_ITEM_HEIGHT + ITEM_INNER_PADDING_HEIGHT;
+      height +&#x3D; perSectionHeight * numSections;
+    }
+    return height;
+  }
+
+  /**
+   * Calculate and return height of an item by its id
+   * @param id Item id
+   * @returns Bounding client rectangle height of the item or default collapsed height if not found
+   */
+  private getCalculatedHeight(id: string): number {
+    const el &#x3D; this.viewport_?.elementRef.nativeElement.querySelector(&#x60;[data-item-id&#x3D;&quot;${id}&quot;]&#x60;);
+    return el?.getBoundingClientRect().height ?? COLLAPSED_ITEM_HEIGHT;
+  }
+
+  /**
+   * Gets total height of all items in the list
+   * @param items Optional list of items to calculate height for, defaults to the current items
+   * @returns Total height of all items in pixels
+   */
+  private getTotalHeight(items: ListResult[] &#x3D; this.items): number {
+    return items.reduce((total, item) &#x3D;&gt; total + this.getItemHeight(item), 0);
+  }
+
+  /**
+   * Calculates the offset in pixels for a given index
+   * @param index Index of the item
+   * @returns Offset in pixels for the item at the given index
+   */
+  private getOffsetForIndex(index: number): number {
+    return this.getTotalHeight(this.items.slice(0, index));
+  }
+
+  /**
+   * Calculates the index of the item that corresponds to a given scroll offset
+   * @param offset Scroll offset in pixels
+   * @returns Index of the item at the given offset
+   */
+  private getIndexForOffset(offset: number): number {
+    let currentOffset &#x3D; 0;
+    for (let index &#x3D; 0; index &lt; this.items.length; index++) {
+      const itemHeight &#x3D; this.getItemHeight(this.items[index]);
+      if (currentOffset + itemHeight &gt; offset) {
+        return index;
+      }
+      currentOffset +&#x3D; itemHeight;
+    }
+
+    return 0;
+  }
+
+  /**
+   * Calculates the number of items that fit in the viewport starting from a given index
+   * @param startIndex Index to start counting from
+   * @returns Number of items that fit in the viewport
+   */
+  private getItemsInViewport(startIndex: number): number {
+    if (!this.viewport_) {
+      return 0;
+    }
+
+    const viewportHeight &#x3D; this.viewport_.getViewportSize();
+    let currentHeight &#x3D; 0;
+
+    for (let index &#x3D; startIndex; index &lt; this.items.length; index++) {
+      const itemHeight &#x3D; this.getItemHeight(this.items[index]);
+      currentHeight +&#x3D; itemHeight;
+      if (currentHeight &gt; viewportHeight) {
+        return index - startIndex + 1;
+      }
+    }
+
+    return 0;
+  }
+
+  /**
+   * Updates the rendered range based on the current scroll position
+   */
+  private updateRenderedRange(): void {
+    const viewport &#x3D; this.viewport_;
+    if (!viewport) {
+      return;
+    }
+
+    const scrollOffset &#x3D; viewport.measureScrollOffset();
+    const scrollIndex &#x3D; this.getIndexForOffset(scrollOffset);
+    const length &#x3D; viewport.getDataLength();
+    const start &#x3D; Math.max(0, scrollIndex - EXTRA_ITEMS_ABOVE);
+    const end &#x3D; Math.min(length, scrollIndex + this.getItemsInViewport(scrollIndex) + EXTRA_ITEMS_BELOW);
+
+    viewport.setRenderedRange({ start, end });
+    viewport.setRenderedContentOffset(this.getOffsetForIndex(start));
+    this.scrolledIndexChange_.next(scrollIndex);
+    afterNextRender({ read: () &#x3D;&gt; this.updatePendingHeights() }, { injector: this.injector });
+  }
+
+  /**
+   * Updates item heights that have not been calculated yet
+   */
+  private updatePendingHeights(): void {
+    if (!this.viewport_ || this.pendingHeightItemIds.size &#x3D;&#x3D;&#x3D; 0) {
+      return;
+    }
+
+    for (const id of this.pendingHeightItemIds) {
+      const height &#x3D; this.getCalculatedHeight(id);
+      this.cachedHeights.set(id, height + ITEM_PADDING_HEIGHT);
+    }
+
+    this.pendingHeightItemIds.clear();
+    this.viewport_.setTotalContentSize(this.getTotalHeight());
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ResultsVirtualScrollStrategy.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  ExternalAppData</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/pages/us6/web-components.component.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>External App Data</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#url" 
+>
+                                            url
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="url"></a>
+                                        <span class="name "><b>url</b>
+                                            <a href="#url">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>url:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>URL to the external app</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ClipboardModule } from &#x27;@angular/cdk/clipboard&#x27;;
+import { Overlay } from &#x27;@angular/cdk/overlay&#x27;;
+import { TemplatePortal } from &#x27;@angular/cdk/portal&#x27;;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  InjectionToken,
+  signal,
+  TemplateRef,
+  viewChild,
+  ViewContainerRef,
+} from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
+import { DomSanitizer, SafeHtml } from &#x27;@angular/platform-browser&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { CardsModule } from &#x27;@hra-ui/design-system/cards&#x27;;
+import { AppLabelComponent } from &#x27;@hra-ui/design-system/content-templates/app-label&#x27;;
+import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
+import { EmbedSidenavContentComponent } from &#x27;./embed-sidenav-content/embed-sidenav-content.component&#x27;;
+import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from &#x27;./static-data/parsed&#x27;;
+import { ComponentDef } from &#x27;./types/component-defs.schema&#x27;;
+import { Organ } from &#x27;./types/organs.schema&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+
+/** Sidenav Data */
+interface SidenavData {
+  /** Tagline for the app */
+  tagline: string;
+  /** Code to be displayed in the sidenav */
+  code: string;
+  /** Whether to show tabs for Embed and Use App iframe */
+  showApp: boolean;
+  /** Tab index for the tabs inside sidenav */
+  tabIndex: number;
+  /** Link to the documentation */
+  docLink: string;
+}
+
+/** App Iframe Data */
+interface AppIframeData {
+  /** Tagline for the app */
+  tagline: string;
+  /** Code to be displayed in the iframe */
+  code: SafeHtml;
+}
+
+/** External App Data */
+interface ExternalAppData {
+  /** URL to the external app */
+  url: string;
+}
+
+/** Injection token for the window object */
+export const WINDOW &#x3D; new InjectionToken&lt;typeof window&gt;(&#x27;window&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; window,
+});
+
+/**
+ * Web Components Component
+ */
+@Component({
+  selector: &#x27;hra-web-components&#x27;,
+  standalone: true,
+  imports: [
+    ButtonsModule,
+    FormsModule,
+    HraCommonModule,
+    ClipboardModule,
+    CardsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSidenavModule,
+
+    AppLabelComponent,
+    EmbedSidenavContentComponent,
+    NavigationModule,
+  ],
+  templateUrl: &#x27;./web-components.component.html&#x27;,
+  styleUrls: [&#x27;./web-components.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class WebComponentsComponent {
+  /** List of all organs */
+  protected readonly organs &#x3D; ORGANS;
+  /** List of all component defs */
+  protected readonly components &#x3D; COMPONENT_DEFS;
+
+  /** Currently active organ */
+  protected readonly activeOrgan &#x3D; signal&lt;Organ | undefined&gt;(undefined);
+  /** Data to be displayed in the Sidenav */
+  protected readonly sidenavData &#x3D; signal&lt;SidenavData | undefined&gt;(undefined);
+  /** Data to be displayed in the AppIframe */
+  protected readonly appIframeData &#x3D; signal&lt;AppIframeData | undefined&gt;(undefined);
+
+  /** Window object */
+  private readonly window &#x3D; inject(WINDOW);
+  /** Sanitizer for bypassing HTML */
+  private readonly sanitizer &#x3D; inject(DomSanitizer);
+
+  /** Overlay */
+  private readonly overlay &#x3D; inject(Overlay);
+  /** View Container Reference */
+  private readonly viewContainerRef &#x3D; inject(ViewContainerRef);
+
+  /** Sidenav Template */
+  private readonly sidenavTemplate &#x3D; viewChild.required(&#x27;sidenavTemplate&#x27;, { read: TemplateRef });
+  /** Portal for the Sidenav */
+  private readonly sidenavPortal &#x3D; computed(() &#x3D;&gt; new TemplatePortal(this.sidenavTemplate(), this.viewContainerRef));
+  /** AppIframe Template */
+  private readonly appIframeTemplate &#x3D; viewChild.required(&#x27;appIframeTemplate&#x27;, { read: TemplateRef });
+  /** Portal for the AppIframe */
+  private readonly appIframePortal &#x3D; computed(
+    () &#x3D;&gt; new TemplatePortal(this.appIframeTemplate(), this.viewContainerRef),
+  );
+
+  /** Creates overlay for the Sidenav */
+  private readonly sidenavOverlay &#x3D; this.overlay.create({
+    disposeOnNavigation: true,
+    hasBackdrop: true,
+    height: &#x27;100vh&#x27;,
+    maxWidth: &#x27;60vw&#x27;,
+    positionStrategy: this.overlay.position().global().top().right(),
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+  });
+
+  /** Creates overlay for the AppIframe */
+  private readonly appIframeOverlay &#x3D; this.overlay.create({
+    disposeOnNavigation: true,
+    height: &#x27;100vh&#x27;,
+    width: &#x27;100vw&#x27;,
+    panelClass: &#x27;app-iframe-panel&#x27;,
+    positionStrategy: this.overlay.position().global().top().left(),
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+  });
+
+  /** Constructor that initializes sidenavdata and appiframedata and attaches portal */
+  constructor() {
+    this.sidenavOverlay
+      .backdropClick()
+      .pipe(takeUntilDestroyed())
+      .subscribe(() &#x3D;&gt; {
+        this.sidenavData.set(undefined);
+      });
+
+    effect((cleanup) &#x3D;&gt; {
+      if (this.sidenavData() !&#x3D;&#x3D; undefined) {
+        this.sidenavOverlay.attach(this.sidenavPortal());
+        cleanup(() &#x3D;&gt; this.sidenavOverlay.detach());
+      }
+    });
+
+    effect((cleanup) &#x3D;&gt; {
+      if (this.appIframeData() !&#x3D;&#x3D; undefined) {
+        this.appIframeOverlay.attach(this.appIframePortal());
+        cleanup(() &#x3D;&gt; this.appIframeOverlay.detach());
+      }
+    });
+  }
+
+  /**
+   * Triggered when useApp button is clicked with the given organ and component def.
+   */
+  onUseApp(organ: Organ, def: ComponentDef): void {
+    switch (def.embedAs) {
+      case &#x27;inline&#x27;:
+        this.openSidenav(organ, def, 1);
+        break;
+
+      case &#x27;overlay&#x27;:
+        this.openOverlay(organ, def);
+        break;
+
+      case &#x27;external&#x27;:
+        this.openExternal(organ, def);
+        break;
+    }
+  }
+
+  /** Opens sidenav with sidenavData */
+  openSidenav(organ: Organ, def: ComponentDef, tabIndex: number): void {
+    this.sidenavData.set({
+      tagline: &#x60;${def.productTitle} ${def.webComponentName}&#x60;,
+      code: this.getEmbedTemplate(organ, def),
+      showApp: def.embedAs &#x3D;&#x3D;&#x3D; &#x27;inline&#x27;,
+      tabIndex: tabIndex,
+      docLink: def.docLink,
+    });
+  }
+
+  /** Opens overlay with appIframeData */
+  openOverlay(organ: Organ, def: ComponentDef): void {
+    this.appIframeData.set({
+      tagline: &#x60;${def.productTitle} ${def.webComponentName}&#x60;,
+      code: this.sanitizer.bypassSecurityTrustHtml(this.getEmbedTemplate(organ, def)),
+    });
+  }
+
+  /** Opens external app */
+  openExternal(organ: Organ, def: ComponentDef): void {
+    const { url } &#x3D; organ.appData[def.id] as ExternalAppData;
+    this.window.open(url, &#x27;_blank&#x27;);
+  }
+
+  /** Closes the sidenav */
+  closeOverlay(): void {
+    this.appIframeData.set(undefined);
+  }
+
+  /** Returns the interpolated template */
+  private getEmbedTemplate(organ: Organ, def: ComponentDef): string {
+    const template &#x3D; EMBED_TEMPLATES[def.id];
+    const appData &#x3D; organ.appData[def.id] ?? {};
+    return this.interpolateTemplate(template, appData);
+  }
+
+  /** Interpolates the template with the given replacements */
+  private interpolateTemplate(template: string, replacements: Record&lt;string, unknown&gt;): string {
+    return template.replace(/{{(\w+?)}}/g, (_match, key) &#x3D;&gt; {
+      const value &#x3D; replacements[key];
+      if (typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        return value;
+      }
+      return JSON.stringify(value, undefined, 1).replace(/\n\s*/g, &#x27; &#x27;);
+    });
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ExternalAppData.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

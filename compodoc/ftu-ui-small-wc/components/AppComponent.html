@@ -1,0 +1,1199 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ftu-ui-small-wc</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ftu-ui-small-wc</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AppComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/app.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>FTU ui small web component</p>
+
+    </p>
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                <code>BaseApplicationComponent</code>
+    </p>
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnChanges</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.Emulated</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-root</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>TissueLibraryBehaviorComponent</code>
+                            <code>BiomarkerDetailsWcComponent</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./app.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isFullscreen" >isFullscreen</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#appLinks" >appLinks</a>
+                            </li>
+                            <li>
+                                <a href="#appResources" >appResources</a>
+                            </li>
+                            <li>
+                                <a href="#baseHref" >baseHref</a>
+                            </li>
+                            <li>
+                                <a href="#datasets" >datasets</a>
+                            </li>
+                            <li>
+                                <a href="#illustrations" >illustrations</a>
+                            </li>
+                            <li>
+                                <a href="#selectedIllustration" >selectedIllustration</a>
+                            </li>
+                            <li>
+                                <a href="#summaries" >summaries</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cell-click" >cell-click</a>
+                            </li>
+                            <li>
+                                <a href="#cell-hover" >cell-hover</a>
+                            </li>
+                            <li>
+                                <a href="#illustration-selected" >illustration-selected</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/app.component.ts:159</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Initialize the app</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="appLinks"></a>
+                        <b>appLinks</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;assets/links.yml&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/app.component.ts:113</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Application links</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="appResources"></a>
+                        <b>appResources</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;assets/resources.yml&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/app.component.ts:115</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Application resources</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="baseHref"></a>
+                        <b>baseHref</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/app.component.ts:110</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Base href if different from the page</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="datasets"></a>
+                        <b>datasets</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | RawDatasets</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/app.component.ts:107</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Datasets to display in the sources tab</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="illustrations"></a>
+                        <b>illustrations</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | RawIllustrationsJsonld</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment.illustrationsUrl</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/app.component.ts:101</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set of all illustrations</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedIllustration"></a>
+                        <b>selectedIllustration</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | RawIllustration</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/app.component.ts:98</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Illustration to display (choosen automatically if not provided)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="summaries"></a>
+                        <b>summaries</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | RawCellSummary</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/app.component.ts:104</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Cell summaries to display in tables</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cell-click"></a>
+                        <b>cell-click</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/app.component.ts:128</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the user clicks a cell</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cell-hover"></a>
+                        <b>cell-hover</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/app.component.ts:123</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the mouse hover on/off a single cell</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="illustration-selected"></a>
+                        <b>illustration-selected</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/app.component.ts:118</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits whenever a different illustration is selected by the user</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFullscreen"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isFullscreen</b></span>
+                        <a href="#isFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(ScreenModeSelectors.isFullScreen)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/app.component.ts:134</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether in full screen mode</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation,
+} from &#x27;@angular/core&#x27;;
+import { BaseApplicationComponent } from &#x27;@hra-ui/application&#x27;;
+import { dispatch, select$, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryActions } from &#x27;@hra-ui/cdk/state&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import {
+  BiomarkerDetailsWcComponent,
+  TissueLibraryBehaviorComponent,
+} from &#x27;@hra-ui/ftu-ui-components/src/lib/behavioral&#x27;;
+import {
+  FTU_DATA_IMPL_ENDPOINTS,
+  FtuDataImplEndpoints,
+  illustrationsInput,
+  rawCellSummariesInput,
+  RawCellSummary,
+  RawDatasets,
+  rawDatasetsInput,
+  RawIllustration,
+  RawIllustrationsJsonld,
+  selectedIllustrationInput,
+  setUrl,
+} from &#x27;@hra-ui/services&#x27;;
+import {
+  ActiveFtuActions,
+  ActiveFtuSelectors,
+  IllustratorActions,
+  IllustratorSelectors,
+  ScreenModeAction,
+  ScreenModeSelectors,
+  TissueLibraryActions,
+  TissueLibrarySelectors,
+} from &#x27;@hra-ui/state&#x27;;
+import { Actions, ofActionDispatched } from &#x27;@ngxs/store&#x27;;
+import { filter, from, map, OperatorFunction, ReplaySubject, switchMap, take } from &#x27;rxjs&#x27;;
+
+import { environment } from &#x27;../environments/environment&#x27;;
+
+/** Input property keys */
+type InputProps &#x3D;
+  | &#x27;selectedIllustration&#x27;
+  | &#x27;illustrations&#x27;
+  | &#x27;datasets&#x27;
+  | &#x27;summaries&#x27;
+  | &#x27;baseHref&#x27;
+  | &#x27;appLinks&#x27;
+  | &#x27;appResources&#x27;;
+
+/** Used by applyUpdates to determine which part of the app needs updates */
+type UpdateSelectors &#x3D; Record&lt;InputProps, boolean&gt;;
+
+/** Link to main ftu page */
+export const ftuPage &#x3D; createLinkId(&#x27;FTU&#x27;);
+
+/** Update selection where every part of the app should update  */
+const UPDATE_ALL_SELECTORS: UpdateSelectors &#x3D; {
+  appLinks: true,
+  appResources: true,
+  baseHref: true,
+  datasets: true,
+  illustrations: true,
+  selectedIllustration: true,
+  summaries: true,
+};
+
+/**
+ * Creates an observable operator function that remove undefined values from a stream
+ * @returns Observable operator function
+ */
+function filterUndefined&lt;T&gt;(): OperatorFunction&lt;T | undefined, T&gt; {
+  return filter((value): value is T &#x3D;&gt; value !&#x3D;&#x3D; undefined);
+}
+
+/** FTU ui small web component */
+@Component({
+  selector: &#x27;hra-root&#x27;,
+  imports: [HraCommonModule, TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrls: [&#x27;./app.component.scss&#x27;],
+  host: {
+    class: &#x27;hra-app&#x27;,
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated,
+})
+export class AppComponent extends BaseApplicationComponent implements OnInit, OnChanges {
+  /** Illustration to display (choosen automatically if not provided) */
+  @Input() selectedIllustration?: string | RawIllustration;
+
+  /** Set of all illustrations */
+  @Input() illustrations: string | RawIllustrationsJsonld &#x3D; environment.illustrationsUrl;
+
+  /** Cell summaries to display in tables */
+  @Input() summaries: string | RawCellSummary &#x3D; &#x27;&#x27;;
+
+  /** Datasets to display in the sources tab */
+  @Input() datasets: string | RawDatasets &#x3D; &#x27;&#x27;;
+
+  /** Base href if different from the page */
+  @Input() baseHref &#x3D; &#x27;&#x27;;
+
+  /** Application links */
+  @Input() appLinks &#x3D; &#x27;assets/links.yml&#x27;;
+  /** Application resources */
+  @Input() appResources &#x3D; &#x27;assets/resources.yml&#x27;;
+
+  /** Emits whenever a different illustration is selected by the user */
+  @Output(&#x27;illustration-selected&#x27;) readonly illustrationSelected &#x3D; select$(ActiveFtuSelectors.iri).pipe(
+    filterUndefined(),
+  );
+
+  /** Emits when the mouse hover on/off a single cell */
+  @Output(&#x27;cell-hover&#x27;) readonly cellHover &#x3D; select$(IllustratorSelectors.selectedOnHovered).pipe(
+    map((node) &#x3D;&gt; node?.source),
+  );
+
+  /** Emits when the user clicks a cell */
+  @Output(&#x27;cell-click&#x27;) readonly cellClick &#x3D; inject(Actions).pipe(
+    ofActionDispatched(IllustratorActions.SetClicked),
+    map(({ selectedOnClick }) &#x3D;&gt; selectedOnClick.source),
+  );
+
+  /** Whether in full screen mode */
+  readonly isFullscreen &#x3D; selectSnapshot(ScreenModeSelectors.isFullScreen);
+  /** Whether an illustration is active */
+  private readonly isActive &#x3D; selectSnapshot(ActiveFtuSelectors.isActive);
+  /** Loaded tissues */
+  private readonly tissues &#x3D; select$(TissueLibrarySelectors.tissues);
+
+  /** Updates the application base href */
+  private readonly setBaseHref &#x3D; dispatch(BaseHrefActions.Set);
+  /** Load links */
+  private readonly loadLinks &#x3D; dispatch(LinkRegistryActions.LoadFromYaml);
+  /** Load resources */
+  private readonly loadResources &#x3D; dispatch(ResourceRegistryActions.LoadFromYaml);
+  /** Load datasets */
+  private readonly loadDatasets &#x3D; dispatch(TissueLibraryActions.Load);
+  /** Set the screen size to small */
+  private readonly setScreenSmall &#x3D; dispatch(ScreenModeAction.SetSize, &#x27;small&#x27;);
+  /** Navigate */
+  private readonly navigate &#x3D; dispatch(LinkRegistryActions.Navigate);
+  /** Clear the active illustration */
+  private readonly clearActiveFtu &#x3D; dispatch(ActiveFtuActions.Clear);
+
+  /** Enpoints used to load data */
+  private readonly endpoints &#x3D; inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject&lt;FtuDataImplEndpoints&gt;;
+
+  /** Whether the component is initialized */
+  private initialized &#x3D; false;
+
+  /** Initialize the app */
+  constructor() {
+    super({ analytics: false, screenSizeNotice: { width: 800, height: 480 } });
+  }
+
+  /** Initializes the component */
+  ngOnInit() {
+    this.setScreenSmall();
+
+    // Ensure updates are run even when no inputs have been set
+    if (!this.initialized) {
+      this.ngOnChanges({});
+    }
+  }
+
+  /** Updates the state when inputs change */
+  ngOnChanges(changes: SimpleChanges) {
+    const selectors &#x3D;
+      &#x27;baseHref&#x27; in changes || !this.initialized
+        ? UPDATE_ALL_SELECTORS
+        : {
+            appLinks: &#x27;appLinks&#x27; in changes,
+            appResources: &#x27;appResources&#x27; in changes,
+            baseHref: false,
+            datasets: &#x27;datasets&#x27; in changes,
+            illustrations: &#x27;illustrations&#x27; in changes,
+            selectedIllustration: &#x27;selectedIllustration&#x27; in changes,
+            summaries: &#x27;summaries&#x27; in changes,
+          };
+
+    this.applyUpdates(selectors);
+    this.initialized &#x3D; true;
+  }
+
+  /**
+   * Applies updates
+   * @param selectors What parts to update
+   */
+  private applyUpdates(selectors: UpdateSelectors): void {
+    const { baseHref } &#x3D; this;
+    let endpointsUpdated &#x3D; false;
+    const updateEndpointsOnce &#x3D; () &#x3D;&gt; {
+      if (!endpointsUpdated) {
+        const { illustrations, datasets, summaries } &#x3D; this;
+        this.endpoints.next({
+          illustrations: illustrationsInput(illustrations) ?? &#x27;&#x27;,
+          datasets: rawDatasetsInput(datasets) ?? &#x27;&#x27;,
+          summaries: rawCellSummariesInput(summaries) ?? &#x27;&#x27;,
+          baseHref,
+        });
+        endpointsUpdated &#x3D; true;
+      }
+    };
+
+    if (selectors.baseHref) {
+      this.setBaseHref(baseHref);
+    }
+
+    if (selectors.appLinks) {
+      this.loadLinks(setUrl(this.appLinks, baseHref));
+    }
+
+    if (selectors.appResources) {
+      this.loadResources(setUrl(this.appResources, baseHref));
+    }
+
+    if (selectors.datasets) {
+      updateEndpointsOnce();
+      this.loadDatasets();
+    }
+
+    if (selectors.illustrations || selectors.summaries) {
+      updateEndpointsOnce();
+      this.clearActiveFtu();
+    }
+
+    if (selectors.selectedIllustration || selectors.illustrations || selectors.summaries) {
+      this.updateSelectedIllustration();
+    }
+  }
+
+  /**
+   * Updates the selected illustration using a default if not provided
+   */
+  private updateSelectedIllustration(): void {
+    const { selectedIllustration } &#x3D; this;
+    const selected &#x3D; selectedIllustrationInput(selectedIllustration);
+    if (selected &#x3D;&#x3D;&#x3D; undefined || selected &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      this.setDefaultSelectedIllustration();
+    } else {
+      const iri &#x3D; typeof selected &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? selected : selected[&#x27;@id&#x27;];
+      this.navigate(ftuPage, {
+        queryParams: {
+          id: iri,
+        },
+      });
+    }
+  }
+
+  /**
+   * Select a default illustration
+   */
+  private setDefaultSelectedIllustration(): void {
+    this.tissues
+      .pipe(
+        switchMap((tissues) &#x3D;&gt; from(Object.values(tissues))),
+        filter(({ children }) &#x3D;&gt; children.length &gt; 0),
+        map(({ children }) &#x3D;&gt; children[0]),
+        take(1),
+      )
+      .subscribe((iri) &#x3D;&gt; {
+        if (!this.isActive() &amp;&amp; this.selectedIllustration &#x3D;&#x3D;&#x3D; undefined) {
+          this.selectedIllustration &#x3D; iri;
+          this.updateSelectedIllustration();
+        }
+      });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;ftu-ui-small-wc&quot;&gt;
+  &lt;ftu-tissue-library-behavior [class.display]&#x3D;&quot;isFullscreen()&quot; class&#x3D;&quot;sidebar&quot;&gt;&lt;/ftu-tissue-library-behavior&gt;
+  &lt;ftu-wc-biomarker-details class&#x3D;&quot;biomarker&quot;&gt;&lt;/ftu-wc-biomarker-details&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./app.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
+
+:host {
+  height: 100vh;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 17rem calc(100% - 17rem);
+  grid-template-rows: 1fr;
+  grid-template-areas: &#x27;sidebar biomarker&#x27;;
+
+  .header {
+    grid-area: header;
+    .intro {
+      width: 100% !important;
+    }
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 17rem;
+    height: 100%;
+
+    ::ng-deep .label {
+      height: 3.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  .biomarker {
+    grid-area: biomarker;
+    overflow: hidden;
+    height: 100%;
+
+    ::ng-deep {
+      ftu-wc-biomarker-details {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      mat-tab-group {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mat-mdc-tab-body-wrapper {
+        flex-grow: 1;
+        overflow: hidden;
+      }
+
+      .mat-mdc-tab-body-content {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      ftu-interactive-svg {
+        height: 100%;
+        display: flex;
+
+        .svg {
+          min-height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        svg {
+          width: auto !important;
+          height: auto !important;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep hra-table {
+  max-width: unset !important;
+  height: 100% !important;
+}
+
+::ng-deep .content {
+  .toggle {
+    width: auto !important;
+  }
+  .table-content {
+    overflow: auto !important;
+  }
+}
+
+::ng-deep {
+  .table-header {
+    width: auto !important;
+  }
+
+  .table {
+    height: calc(100% - 3.5rem);
+  }
+
+  .source-list {
+    height: 100%;
+  }
+
+  .biomarker {
+    height: 100% !important;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="ftu-ui-small-wc">  <ftu-tissue-library-behavior [class.display]="isFullscreen()" class="sidebar"></ftu-tissue-library-behavior>  <ftu-wc-biomarker-details class="biomarker"></ftu-wc-biomarker-details></ng-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-root'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AppComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

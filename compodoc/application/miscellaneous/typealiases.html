@@ -1,0 +1,1224 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for application</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for application</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-typealiases">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Type aliases</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#AbortFn" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-event-filter/src/lib/plugin.ts" ><b>AbortFn</b>&nbsp;&nbsp;&nbsp;(/.../plugin.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AnalyticsFeature" title="/home/workflows/workspace/libs/common/analytics/src/lib/providers.ts" ><b>AnalyticsFeature</b>&nbsp;&nbsp;&nbsp;(/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AnyFunction" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/csv-file-loader.service.ts" ><b>AnyFunction</b>&nbsp;&nbsp;&nbsp;(/.../csv-file-loader.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AnyProvider" title="/home/workflows/workspace/libs/common/util/providers/src/lib/feature.ts" ><b>AnyProvider</b>&nbsp;&nbsp;&nbsp;(/.../feature.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Brand" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/util/types.ts" ><b>Brand</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ClickEventProps" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/events/click.ts" ><b>ClickEventProps</b>&nbsp;&nbsp;&nbsp;(/.../click.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ConsentCategories" title="/home/workflows/workspace/libs/common/analytics/src/lib/consent/consent.service.ts" ><b>ConsentCategories</b>&nbsp;&nbsp;&nbsp;(/.../consent.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CoreEvents" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/core-events.ts" ><b>CoreEvents</b>&nbsp;&nbsp;&nbsp;(/.../core-events.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DOMEvent" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts" ><b>DOMEvent</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DoubleClickEventProps" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/events/double-click.ts" ><b>DoubleClickEventProps</b>&nbsp;&nbsp;&nbsp;(/.../double-click.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DynamicTyping" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/csv-file-loader.service.ts" ><b>DynamicTyping</b>&nbsp;&nbsp;&nbsp;(/.../csv-file-loader.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventPayload" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts" ><b>EventPayload</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventPayloadFor" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts" ><b>EventPayloadFor</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventPropsFor" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts" ><b>EventPropsFor</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventTrigger" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts" ><b>EventTrigger</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventTriggerModifier" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts" ><b>EventTriggerModifier</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventTriggerPayloadFor" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts" ><b>EventTriggerPayloadFor</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventType" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts" ><b>EventType</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ExtendedAnalyticsOptions" title="/home/workflows/workspace/libs/common/analytics/src/lib/analytics/analytics.service.ts" ><b>ExtendedAnalyticsOptions</b>&nbsp;&nbsp;&nbsp;(/.../analytics.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FileLoaderEvent" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/file-loader.ts" ><b>FileLoaderEvent</b>&nbsp;&nbsp;&nbsp;(/.../file-loader.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FileLoaderOptions" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/file-loader.ts" ><b>FileLoaderOptions</b>&nbsp;&nbsp;&nbsp;(/.../file-loader.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#HoverEventProps" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/events/hover.ts" ><b>HoverEventProps</b>&nbsp;&nbsp;&nbsp;(/.../hover.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#InjectHrefFn" title="/home/workflows/workspace/libs/common/url/src/lib/util/types.ts" ><b>InjectHrefFn</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#InjectUrlResolverFn" title="/home/workflows/workspace/libs/common/url/src/lib/util/types.ts" ><b>InjectUrlResolverFn</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#JsonFileLoaderOptions" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/json-file-loader.service.ts" ><b>JsonFileLoaderOptions</b>&nbsp;&nbsp;&nbsp;(/.../json-file-loader.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#KeyboardEventProps" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/events/keyboard.ts" ><b>KeyboardEventProps</b>&nbsp;&nbsp;&nbsp;(/.../keyboard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ModelChangeFilter" title="/home/workflows/workspace/libs/common/analytics/src/lib/event/event.directive.ts" ><b>ModelChangeFilter</b>&nbsp;&nbsp;&nbsp;(/.../event.directive.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ModelChangePropsOrFilter" title="/home/workflows/workspace/libs/common/analytics/src/lib/event/event.directive.ts" ><b>ModelChangePropsOrFilter</b>&nbsp;&nbsp;&nbsp;(/.../event.directive.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PapaparseConfig" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/csv-file-loader.service.ts" ><b>PapaparseConfig</b>&nbsp;&nbsp;&nbsp;(/.../csv-file-loader.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Prettify" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/util/types.ts" ><b>Prettify</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ProvideHrefFn" title="/home/workflows/workspace/libs/common/url/src/lib/util/types.ts" ><b>ProvideHrefFn</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RawProvideHrefFn" title="/home/workflows/workspace/libs/common/url/src/lib/util/types.ts" ><b>RawProvideHrefFn</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RemoteRequest" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/csv-file-loader.service.ts" ><b>RemoteRequest</b>&nbsp;&nbsp;&nbsp;(/.../csv-file-loader.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RemoteRequestKeys" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/csv-file-loader.service.ts" ><b>RemoteRequestKeys</b>&nbsp;&nbsp;&nbsp;(/.../csv-file-loader.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ReservedPapaparseConfigKeys" title="/home/workflows/workspace/libs/common/fs/src/lib/loaders/csv-file-loader.service.ts" ><b>ReservedPapaparseConfigKeys</b>&nbsp;&nbsp;&nbsp;(/.../csv-file-loader.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TelemetryParameterFilter" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>TelemetryParameterFilter</b>&nbsp;&nbsp;&nbsp;(/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UrlResolverFn" title="/home/workflows/workspace/libs/common/url/src/lib/util/types.ts" ><b>UrlResolverFn</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UrlResolverImplFn" title="/home/workflows/workspace/libs/common/url/src/lib/util/types.ts" ><b>UrlResolverImplFn</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ValueOrFactory" title="/home/workflows/workspace/libs/common/url/src/lib/util/types.ts" ><b>ValueOrFactory</b>&nbsp;&nbsp;&nbsp;(/.../types.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>/home/workflows/workspace/libs/common/analytics/plugins/hra-event-filter/src/lib/plugin.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AbortFn"></a>
+                    <span class="name "><b>AbortFn</b><a href="#AbortFn"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Abort function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/src/lib/providers.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AnalyticsFeature"></a>
+                    <span class="name "><b>AnalyticsFeature</b><a href="#AnalyticsFeature"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Features that can be passed to <code>provideAnalytics</code></p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="../interfaces/ProviderFeature.html" target="_self" >ProviderFeature&lt;AnalyticsFeatureKind&gt;</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/fs/src/lib/loaders/csv-file-loader.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AnyFunction"></a>
+                    <span class="name "><b>AnyFunction</b><a href="#AnyFunction"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Any function type</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DynamicTyping"></a>
+                    <span class="name "><b>DynamicTyping</b><a href="#DynamicTyping"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamic typing option but without the ability to pass a function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PapaparseConfig"></a>
+                    <span class="name "><b>PapaparseConfig</b><a href="#PapaparseConfig"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Accepted papaparse configuration subset</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RemoteRequest"></a>
+                    <span class="name "><b>RemoteRequest</b><a href="#RemoteRequest"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Additional options for loading from URLs</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>Pick&lt;ParseRemoteConfig | RemoteRequestKeys&gt;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RemoteRequestKeys"></a>
+                    <span class="name "><b>RemoteRequestKeys</b><a href="#RemoteRequestKeys"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Properties picked from remote configuration</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;downloadRequestHeaders&quot; | &quot;downloadRequestBody&quot; | &quot;withCredentials&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ReservedPapaparseConfigKeys"></a>
+                    <span class="name "><b>ReservedPapaparseConfigKeys</b><a href="#ReservedPapaparseConfigKeys"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration keys that are either overridden or functions that can&#39;t be sent to a worker</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;transformHeader&quot; | &quot;transform&quot; | &quot;dynamicTyping&quot; | &quot;worker&quot; | &quot;download&quot; | &quot;beforeFirstChunk&quot; | &quot;step&quot; | &quot;chunk&quot; | &quot;complete&quot; | &quot;error&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/util/providers/src/lib/feature.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AnyProvider"></a>
+                    <span class="name "><b>AnyProvider</b><a href="#AnyProvider"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Either a regular provider or environment providers</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>Provider | EnvironmentProviders</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/events/src/lib/util/types.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Brand"></a>
+                    <span class="name "><b>Brand</b><a href="#Brand"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A brand type</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Prettify"></a>
+                    <span class="name "><b>Prettify</b><a href="#Prettify"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tiny helper to prettify intersection types</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/events/src/lib/events/click.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ClickEventProps"></a>
+                    <span class="name "><b>ClickEventProps</b><a href="#ClickEventProps"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Click event properties</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/src/lib/consent/consent.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ConsentCategories"></a>
+                    <span class="name "><b>ConsentCategories</b><a href="#ConsentCategories"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set of categories and whether each is enabled/disabled</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="../miscellaneous/enumerations.html#EventCategory" target="_self" >Record&lt;EventCategory | boolean&gt;</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/events/src/lib/core-events.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CoreEvents"></a>
+                    <span class="name "><b>CoreEvents</b><a href="#CoreEvents"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Core events type map</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/events/src/lib/event.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOMEvent"></a>
+                    <span class="name "><b>DOMEvent</b><a href="#DOMEvent"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Union of all builtin dom events</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventPayload"></a>
+                    <span class="name "><b>EventPayload</b><a href="#EventPayload"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Event payload</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="../miscellaneous/typealiases.html#Prettify" target="_self" >Prettify&lt;&gt;</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventPayloadFor"></a>
+                    <span class="name "><b>EventPayloadFor</b><a href="#EventPayloadFor"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Extract the event payload</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventPropsFor"></a>
+                    <span class="name "><b>EventPropsFor</b><a href="#EventPropsFor"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Same as the event payload or the empty string if all payload properties are optional</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>EventPayloadFor&lt;T&gt; | </code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventTrigger"></a>
+                    <span class="name "><b>EventTrigger</b><a href="#EventTrigger"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>DOM events that can trigger an analytics events</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>E | template literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventTriggerModifier"></a>
+                    <span class="name "><b>EventTriggerModifier</b><a href="#EventTriggerModifier"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Modifiers that can be applied to triggers</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;window:&quot; | &quot;document:&quot; | &quot;body:&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventTriggerPayloadFor"></a>
+                    <span class="name "><b>EventTriggerPayloadFor</b><a href="#EventTriggerPayloadFor"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>DOM event data for a trigger</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EventType"></a>
+                    <span class="name "><b>EventType</b><a href="#EventType"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Event type</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="../miscellaneous/typealiases.html#EventType" target="_self" >Tagged&lt;string | EventType&gt;</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/events/src/lib/events/double-click.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DoubleClickEventProps"></a>
+                    <span class="name "><b>DoubleClickEventProps</b><a href="#DoubleClickEventProps"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Double click event properties</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/src/lib/analytics/analytics.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ExtendedAnalyticsOptions"></a>
+                    <span class="name "><b>ExtendedAnalyticsOptions</b><a href="#ExtendedAnalyticsOptions"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Extended <code>Analytics</code> options</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/fs/src/lib/loaders/file-loader.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FileLoaderEvent"></a>
+                    <span class="name "><b>FileLoaderEvent</b><a href="#FileLoaderEvent"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Union type for file loader events, can be either data or progress</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>FileLoaderDataEvent&lt;DataT&gt; | FileLoaderProgressEvent</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FileLoaderOptions"></a>
+                    <span class="name "><b>FileLoaderOptions</b><a href="#FileLoaderOptions"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Extracts options type from a FileLoader based on the provided LoaderT</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/events/src/lib/events/hover.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HoverEventProps"></a>
+                    <span class="name "><b>HoverEventProps</b><a href="#HoverEventProps"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Hover event properties</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/url/src/lib/util/types.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="InjectHrefFn"></a>
+                    <span class="name "><b>InjectHrefFn</b><a href="#InjectHrefFn"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Href inject function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>CreateInjectionTokenReturn</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="InjectUrlResolverFn"></a>
+                    <span class="name "><b>InjectUrlResolverFn</b><a href="#InjectUrlResolverFn"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Url resolver inject function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ProvideHrefFn"></a>
+                    <span class="name "><b>ProvideHrefFn</b><a href="#ProvideHrefFn"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Href provide function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RawProvideHrefFn"></a>
+                    <span class="name "><b>RawProvideHrefFn</b><a href="#RawProvideHrefFn"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Raw href provide function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>CreateInjectionTokenReturn</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UrlResolverFn"></a>
+                    <span class="name "><b>UrlResolverFn</b><a href="#UrlResolverFn"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Url resolver function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UrlResolverImplFn"></a>
+                    <span class="name "><b>UrlResolverImplFn</b><a href="#UrlResolverImplFn"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Url resolver implementation</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ValueOrFactory"></a>
+                    <span class="name "><b>ValueOrFactory</b><a href="#ValueOrFactory"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A value or a factory function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>T | </code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/fs/src/lib/loaders/json-file-loader.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JsonFileLoaderOptions"></a>
+                    <span class="name "><b>JsonFileLoaderOptions</b><a href="#JsonFileLoaderOptions"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Options for loading JSON files</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>Record&lt;string | never&gt;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/events/src/lib/events/keyboard.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="KeyboardEventProps"></a>
+                    <span class="name "><b>KeyboardEventProps</b><a href="#KeyboardEventProps"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keyboard event properties</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/src/lib/event/event.directive.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ModelChangeFilter"></a>
+                    <span class="name "><b>ModelChangeFilter</b><a href="#ModelChangeFilter"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A list of property keys or a filter function</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>PropertyKey[] | </code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ModelChangePropsOrFilter"></a>
+                    <span class="name "><b>ModelChangePropsOrFilter</b><a href="#ModelChangePropsOrFilter"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Either additional event props or a model value filter</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>EventPropsFor&lt;&gt; | ModelChangeFilter</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TelemetryParameterFilter"></a>
+                    <span class="name "><b>TelemetryParameterFilter</b><a href="#TelemetryParameterFilter"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A telemetry parameter filter function.
+Can be used to both filter out items and customize serialization.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-typealiases';
+            var COMPODOC_CURRENT_PAGE_URL = 'typealiases.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

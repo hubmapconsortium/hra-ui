@@ -1,0 +1,1446 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  WebComponentsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/us6/web-components.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Web Components Component</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-web-components</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>ButtonsModule</code>
+                            <code>FormsModule</code>
+                            <code>HraCommonModule</code>
+                            <code>ClipboardModule</code>
+                            <code>CardsModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatSidenavModule</code>
+                            <code>AppLabelComponent</code>
+                                <code><a href="../components/EmbedSidenavContentComponent.html" target="_self" >EmbedSidenavContentComponent</a></code>
+                            <code>NavigationModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./web-components.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./web-components.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#activeOrgan" >activeOrgan</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#appIframeData" >appIframeData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#components" >components</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#organs" >organs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sidenavData" >sidenavData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeOverlay" >closeOverlay</a>
+                            </li>
+                            <li>
+                                <a href="#onUseApp" >onUseApp</a>
+                            </li>
+                            <li>
+                                <a href="#openExternal" >openExternal</a>
+                            </li>
+                            <li>
+                                <a href="#openOverlay" >openOverlay</a>
+                            </li>
+                            <li>
+                                <a href="#openSidenav" >openSidenav</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/pages/us6/web-components.component.ts:142</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor that initializes sidenavdata and appiframedata and attaches portal</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeOverlay"></a>
+                    <span class="name">
+                        <span ><b>closeOverlay</b></span>
+                        <a href="#closeOverlay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeOverlay()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="213"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:213</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Closes the sidenav</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onUseApp"></a>
+                    <span class="name">
+                        <span ><b>onUseApp</b></span>
+                        <a href="#onUseApp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onUseApp(organ: <a href="../undefineds/Organ.html" target="_self">Organ</a>, def: <a href="../undefineds/ComponentDef.html" target="_self">ComponentDef</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when useApp button is clicked with the given organ and component def.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>organ</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Organ" target="_self" >Organ</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>def</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ComponentDef" target="_self" >ComponentDef</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openExternal"></a>
+                    <span class="name">
+                        <span ><b>openExternal</b></span>
+                        <a href="#openExternal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openExternal(organ: <a href="../undefineds/Organ.html" target="_self">Organ</a>, def: <a href="../undefineds/ComponentDef.html" target="_self">ComponentDef</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:207</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens external app</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>organ</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Organ" target="_self" >Organ</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>def</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ComponentDef" target="_self" >ComponentDef</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openOverlay"></a>
+                    <span class="name">
+                        <span ><b>openOverlay</b></span>
+                        <a href="#openOverlay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openOverlay(organ: <a href="../undefineds/Organ.html" target="_self">Organ</a>, def: <a href="../undefineds/ComponentDef.html" target="_self">ComponentDef</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:199</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens overlay with appIframeData</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>organ</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Organ" target="_self" >Organ</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>def</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ComponentDef" target="_self" >ComponentDef</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSidenav"></a>
+                    <span class="name">
+                        <span ><b>openSidenav</b></span>
+                        <a href="#openSidenav"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openSidenav(organ: <a href="../undefineds/Organ.html" target="_self">Organ</a>, def: <a href="../undefineds/ComponentDef.html" target="_self">ComponentDef</a>, tabIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:188</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens sidenav with sidenavData</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>organ</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Organ" target="_self" >Organ</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>def</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ComponentDef" target="_self" >ComponentDef</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>tabIndex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeOrgan"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>activeOrgan</b></span>
+                        <a href="#activeOrgan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Organ | undefined&gt;(undefined)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/pages/us6/web-components.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently active organ</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appIframeData"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>appIframeData</b></span>
+                        <a href="#appIframeData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;AppIframeData | undefined&gt;(undefined)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/pages/us6/web-components.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Data to be displayed in the AppIframe</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="components"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>components</b></span>
+                        <a href="#components"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>COMPONENT_DEFS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/pages/us6/web-components.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of all component defs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="organs"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>organs</b></span>
+                        <a href="#organs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ORGANS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/pages/us6/web-components.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of all organs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidenavData"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sidenavData</b></span>
+                        <a href="#sidenavData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;SidenavData | undefined&gt;(undefined)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/us6/web-components.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Data to be displayed in the Sidenav</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ClipboardModule } from &#x27;@angular/cdk/clipboard&#x27;;
+import { Overlay } from &#x27;@angular/cdk/overlay&#x27;;
+import { TemplatePortal } from &#x27;@angular/cdk/portal&#x27;;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  InjectionToken,
+  signal,
+  TemplateRef,
+  viewChild,
+  ViewContainerRef,
+} from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
+import { DomSanitizer, SafeHtml } from &#x27;@angular/platform-browser&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { CardsModule } from &#x27;@hra-ui/design-system/cards&#x27;;
+import { AppLabelComponent } from &#x27;@hra-ui/design-system/content-templates/app-label&#x27;;
+import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
+import { EmbedSidenavContentComponent } from &#x27;./embed-sidenav-content/embed-sidenav-content.component&#x27;;
+import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from &#x27;./static-data/parsed&#x27;;
+import { ComponentDef } from &#x27;./types/component-defs.schema&#x27;;
+import { Organ } from &#x27;./types/organs.schema&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+
+/** Sidenav Data */
+interface SidenavData {
+  /** Tagline for the app */
+  tagline: string;
+  /** Code to be displayed in the sidenav */
+  code: string;
+  /** Whether to show tabs for Embed and Use App iframe */
+  showApp: boolean;
+  /** Tab index for the tabs inside sidenav */
+  tabIndex: number;
+  /** Link to the documentation */
+  docLink: string;
+}
+
+/** App Iframe Data */
+interface AppIframeData {
+  /** Tagline for the app */
+  tagline: string;
+  /** Code to be displayed in the iframe */
+  code: SafeHtml;
+}
+
+/** External App Data */
+interface ExternalAppData {
+  /** URL to the external app */
+  url: string;
+}
+
+/** Injection token for the window object */
+export const WINDOW &#x3D; new InjectionToken&lt;typeof window&gt;(&#x27;window&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; window,
+});
+
+/**
+ * Web Components Component
+ */
+@Component({
+  selector: &#x27;hra-web-components&#x27;,
+  standalone: true,
+  imports: [
+    ButtonsModule,
+    FormsModule,
+    HraCommonModule,
+    ClipboardModule,
+    CardsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSidenavModule,
+
+    AppLabelComponent,
+    EmbedSidenavContentComponent,
+    NavigationModule,
+  ],
+  templateUrl: &#x27;./web-components.component.html&#x27;,
+  styleUrls: [&#x27;./web-components.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class WebComponentsComponent {
+  /** List of all organs */
+  protected readonly organs &#x3D; ORGANS;
+  /** List of all component defs */
+  protected readonly components &#x3D; COMPONENT_DEFS;
+
+  /** Currently active organ */
+  protected readonly activeOrgan &#x3D; signal&lt;Organ | undefined&gt;(undefined);
+  /** Data to be displayed in the Sidenav */
+  protected readonly sidenavData &#x3D; signal&lt;SidenavData | undefined&gt;(undefined);
+  /** Data to be displayed in the AppIframe */
+  protected readonly appIframeData &#x3D; signal&lt;AppIframeData | undefined&gt;(undefined);
+
+  /** Window object */
+  private readonly window &#x3D; inject(WINDOW);
+  /** Sanitizer for bypassing HTML */
+  private readonly sanitizer &#x3D; inject(DomSanitizer);
+
+  /** Overlay */
+  private readonly overlay &#x3D; inject(Overlay);
+  /** View Container Reference */
+  private readonly viewContainerRef &#x3D; inject(ViewContainerRef);
+
+  /** Sidenav Template */
+  private readonly sidenavTemplate &#x3D; viewChild.required(&#x27;sidenavTemplate&#x27;, { read: TemplateRef });
+  /** Portal for the Sidenav */
+  private readonly sidenavPortal &#x3D; computed(() &#x3D;&gt; new TemplatePortal(this.sidenavTemplate(), this.viewContainerRef));
+  /** AppIframe Template */
+  private readonly appIframeTemplate &#x3D; viewChild.required(&#x27;appIframeTemplate&#x27;, { read: TemplateRef });
+  /** Portal for the AppIframe */
+  private readonly appIframePortal &#x3D; computed(
+    () &#x3D;&gt; new TemplatePortal(this.appIframeTemplate(), this.viewContainerRef),
+  );
+
+  /** Creates overlay for the Sidenav */
+  private readonly sidenavOverlay &#x3D; this.overlay.create({
+    disposeOnNavigation: true,
+    hasBackdrop: true,
+    height: &#x27;100vh&#x27;,
+    maxWidth: &#x27;60vw&#x27;,
+    positionStrategy: this.overlay.position().global().top().right(),
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+  });
+
+  /** Creates overlay for the AppIframe */
+  private readonly appIframeOverlay &#x3D; this.overlay.create({
+    disposeOnNavigation: true,
+    height: &#x27;100vh&#x27;,
+    width: &#x27;100vw&#x27;,
+    panelClass: &#x27;app-iframe-panel&#x27;,
+    positionStrategy: this.overlay.position().global().top().left(),
+    scrollStrategy: this.overlay.scrollStrategies.block(),
+  });
+
+  /** Constructor that initializes sidenavdata and appiframedata and attaches portal */
+  constructor() {
+    this.sidenavOverlay
+      .backdropClick()
+      .pipe(takeUntilDestroyed())
+      .subscribe(() &#x3D;&gt; {
+        this.sidenavData.set(undefined);
+      });
+
+    effect((cleanup) &#x3D;&gt; {
+      if (this.sidenavData() !&#x3D;&#x3D; undefined) {
+        this.sidenavOverlay.attach(this.sidenavPortal());
+        cleanup(() &#x3D;&gt; this.sidenavOverlay.detach());
+      }
+    });
+
+    effect((cleanup) &#x3D;&gt; {
+      if (this.appIframeData() !&#x3D;&#x3D; undefined) {
+        this.appIframeOverlay.attach(this.appIframePortal());
+        cleanup(() &#x3D;&gt; this.appIframeOverlay.detach());
+      }
+    });
+  }
+
+  /**
+   * Triggered when useApp button is clicked with the given organ and component def.
+   */
+  onUseApp(organ: Organ, def: ComponentDef): void {
+    switch (def.embedAs) {
+      case &#x27;inline&#x27;:
+        this.openSidenav(organ, def, 1);
+        break;
+
+      case &#x27;overlay&#x27;:
+        this.openOverlay(organ, def);
+        break;
+
+      case &#x27;external&#x27;:
+        this.openExternal(organ, def);
+        break;
+    }
+  }
+
+  /** Opens sidenav with sidenavData */
+  openSidenav(organ: Organ, def: ComponentDef, tabIndex: number): void {
+    this.sidenavData.set({
+      tagline: &#x60;${def.productTitle} ${def.webComponentName}&#x60;,
+      code: this.getEmbedTemplate(organ, def),
+      showApp: def.embedAs &#x3D;&#x3D;&#x3D; &#x27;inline&#x27;,
+      tabIndex: tabIndex,
+      docLink: def.docLink,
+    });
+  }
+
+  /** Opens overlay with appIframeData */
+  openOverlay(organ: Organ, def: ComponentDef): void {
+    this.appIframeData.set({
+      tagline: &#x60;${def.productTitle} ${def.webComponentName}&#x60;,
+      code: this.sanitizer.bypassSecurityTrustHtml(this.getEmbedTemplate(organ, def)),
+    });
+  }
+
+  /** Opens external app */
+  openExternal(organ: Organ, def: ComponentDef): void {
+    const { url } &#x3D; organ.appData[def.id] as ExternalAppData;
+    this.window.open(url, &#x27;_blank&#x27;);
+  }
+
+  /** Closes the sidenav */
+  closeOverlay(): void {
+    this.appIframeData.set(undefined);
+  }
+
+  /** Returns the interpolated template */
+  private getEmbedTemplate(organ: Organ, def: ComponentDef): string {
+    const template &#x3D; EMBED_TEMPLATES[def.id];
+    const appData &#x3D; organ.appData[def.id] ?? {};
+    return this.interpolateTemplate(template, appData);
+  }
+
+  /** Interpolates the template with the given replacements */
+  private interpolateTemplate(template: string, replacements: Record&lt;string, unknown&gt;): string {
+    return template.replace(/{{(\w+?)}}/g, (_match, key) &#x3D;&gt; {
+      const value &#x3D; replacements[key];
+      if (typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        return value;
+      }
+      return JSON.stringify(value, undefined, 1).replace(/\n\s*/g, &#x27; &#x27;);
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;web-components&quot;&gt;
+  &lt;div class&#x3D;&quot;content-container&quot;&gt;
+    &lt;div class&#x3D;&quot;heading-container&quot;&gt;
+      &lt;div class&#x3D;&quot;title-logo-div&quot;&gt;
+        &lt;hra-app-label logo&#x3D;&quot;product:web-components&quot; tagline&#x3D;&quot;Web Components&quot;&gt;&lt;/hra-app-label&gt;
+      &lt;/div&gt;
+      &lt;p class&#x3D;&quot;description&quot;&gt;
+        Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;card-container&quot;&gt;
+      &lt;p&gt;Select organ:&lt;/p&gt;
+      &lt;mat-form-field hraFeature&#x3D;&quot;organ&quot; appearance&#x3D;&quot;fill&quot; class&#x3D;&quot;organ-select&quot;&gt;
+        &lt;mat-label&gt;Organ&lt;/mat-label&gt;
+        &lt;mat-select [hraModelChangeEvent]&#x3D;&quot;[&#x27;id&#x27;]&quot; [(ngModel)]&#x3D;&quot;activeOrgan&quot;&gt;
+          @for (organ of organs; track organ.id) {
+            &lt;mat-option [value]&#x3D;&quot;organ&quot;&gt;{{ organ.label }}&lt;/mat-option&gt;
+          }
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+
+    @if (activeOrgan(); as organ) {
+      &lt;div class&#x3D;&quot;card-collection&quot;&gt;
+        &lt;div class&#x3D;&quot;cards&quot;&gt;
+          @for (component of components; track component.id) {
+            &lt;hra-action-card
+              [hraFeature]&#x3D;&quot;(organ.label | slugify) + &#x27;.&#x27; + (component.productTitle | slugify)&quot;
+              class&#x3D;&quot;component-card&quot;
+              variant&#x3D;&quot;elevated&quot;
+              [tagline]&#x3D;&quot;component.webComponentName || component.productTitle&quot;
+              [subtagline]&#x3D;&quot;component.webComponentName &amp;&amp; component.productTitle&quot;
+              [image]&#x3D;&quot;component.previewImage&quot;
+            &gt;
+              {{ component.description }}
+
+              &lt;hra-action-card-action&gt;
+                &lt;button
+                  hraClickEvent
+                  hraFeature&#x3D;&quot;use-app&quot;
+                  mat-button
+                  hraPrimaryButton
+                  hraButtonSize&#x3D;&quot;medium&quot;
+                  (click)&#x3D;&quot;onUseApp(organ, component)&quot;
+                &gt;
+                  Use app
+                &lt;/button&gt;
+              &lt;/hra-action-card-action&gt;
+
+              @if (component.embedAs !&#x3D;&#x3D; &#x27;external&#x27;) {
+                &lt;hra-action-card-action alignment&#x3D;&quot;right&quot;&gt;
+                  &lt;button
+                    hraClickEvent
+                    hraFeature&#x3D;&quot;embed&quot;
+                    mat-flat-button
+                    hraPrimaryButton
+                    hraButtonSize&#x3D;&quot;medium&quot;
+                    (click)&#x3D;&quot;openSidenav(organ, component, 0)&quot;
+                  &gt;
+                    Embed
+                  &lt;/button&gt;
+                &lt;/hra-action-card-action&gt;
+              }
+            &lt;/hra-action-card&gt;
+          }
+        &lt;/div&gt;
+      &lt;/div&gt;
+    }
+  &lt;/div&gt;
+
+  &lt;ng-template #sidenavTemplate&gt;
+    @if (sidenavData(); as data) {
+      &lt;hra-embed-sidenav-content
+        [tagline]&#x3D;&quot;data.tagline&quot;
+        [code]&#x3D;&quot;data.code&quot;
+        [showApp]&#x3D;&quot;data.showApp&quot;
+        [tabIndex]&#x3D;&quot;data.tabIndex&quot;
+        (closeSidenav)&#x3D;&quot;sidenavData.set(undefined)&quot;
+        [documentLink]&#x3D;&quot;data.docLink&quot;
+        data-testid&#x3D;&quot;sidenav-overlay&quot;
+      &gt;
+      &lt;/hra-embed-sidenav-content&gt;
+    }
+  &lt;/ng-template&gt;
+
+  &lt;ng-template #appIframeTemplate&gt;
+    @if (appIframeData(); as data) {
+      &lt;hra-back-button-bar class&#x3D;&quot;back-bar&quot; (backClick)&#x3D;&quot;appIframeData.set(undefined)&quot;&gt;&lt;/hra-back-button-bar&gt;
+      &lt;iframe title&#x3D;&quot;appIframe&quot; class&#x3D;&quot;app-iframe&quot; [srcdoc]&#x3D;&quot;data.code&quot; data-testid&#x3D;&quot;iframe-overlay&quot;&gt;&lt;/iframe&gt;
+    }
+  &lt;/ng-template&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./web-components.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
+@use &#x27;utils&#x27;;
+@use &#x27;vars&#x27;;
+
+:host {
+  display: block;
+  background: linear-gradient(180deg, vars.$surface-dim 0%, #ffffff 100%);
+
+  .content-container {
+    transition: 0.3s ease-out;
+  }
+
+  .heading-container {
+    margin: 10rem auto 0 auto;
+    max-width: 48.75rem;
+    padding: 0 1rem;
+  }
+
+  .title-logo-div {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    h1 {
+      color: vars.$on-background;
+      margin: 0;
+      @include utils.use-font(title, large);
+      letter-spacing: vars.$display-large-tracking;
+    }
+  }
+
+  .description {
+    @include utils.use-font(body, large);
+    color: vars.$on-secondary-container;
+    padding-top: 3.5rem;
+    margin: 0;
+    letter-spacing: vars.$body-large-tracking;
+  }
+
+  .card-container {
+    margin: 6rem auto 6rem auto;
+    max-width: 24.5rem;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from vars.$shadow r g b / 0.24);
+    background-color: vars.$secondary-container;
+
+    p {
+      margin: 0 0 1rem 0;
+      color: vars.$on-background;
+      @include utils.use-font(title, medium);
+      letter-spacing: vars.$title-medium-tracking;
+    }
+
+    .organ-select {
+      min-width: 20.5rem;
+    }
+  }
+
+  .card-collection {
+    display: flex;
+    justify-content: center;
+    padding: 0 2.75rem 10rem 2.75rem;
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 82rem;
+      gap: 2.5rem;
+    }
+  }
+}
+
+::ng-deep .app-iframe-panel {
+  display: flex;
+  flex-direction: column;
+
+  .app-iframe {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border: none;
+  }
+}
+
+::ng-deep .mat-mdc-tab-list {
+  max-width: 10.6875rem;
+
+  @include mat.tabs-overrides(
+    (
+      active-indicator-color: vars.$on-tertiary-fixed,
+      active-ripple-color: vars.$on-tertiary-fixed,
+      active-focus-indicator-color: vars.$on-tertiary-fixed,
+      active-hover-indicator-color: vars.$on-tertiary-fixed,
+      active-indicator-height: 0.125rem,
+    )
+  );
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="web-components">  <div class="content-container">    <div class="heading-container">      <div class="title-logo-div">        <hra-app-label logo="product:web-components" tagline="Web Components"></hra-app-label>      </div>      <p class="description">        Explore, use, and share web components to improve Human Reference Atlas data access and analysis.      </p>    </div>    <div class="card-container">      <p>Select organ:</p>      <mat-form-field hraFeature="organ" appearance="fill" class="organ-select">        <mat-label>Organ</mat-label>        <mat-select [hraModelChangeEvent]="[\'id\']" [(ngModel)]="activeOrgan">          @for (organ of organs; track organ.id) {            <mat-option [value]="organ">{{ organ.label }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>    @if (activeOrgan(); as organ) {      <div class="card-collection">        <div class="cards">          @for (component of components; track component.id) {            <hra-action-card              [hraFeature]="(organ.label | slugify) + \'.\' + (component.productTitle | slugify)"              class="component-card"              variant="elevated"              [tagline]="component.webComponentName || component.productTitle"              [subtagline]="component.webComponentName && component.productTitle"              [image]="component.previewImage"            >              {{ component.description }}              <hra-action-card-action>                <button                  hraClickEvent                  hraFeature="use-app"                  mat-button                  hraPrimaryButton                  hraButtonSize="medium"                  (click)="onUseApp(organ, component)"                >                  Use app                </button>              </hra-action-card-action>              @if (component.embedAs !== \'external\') {                <hra-action-card-action alignment="right">                  <button                    hraClickEvent                    hraFeature="embed"                    mat-flat-button                    hraPrimaryButton                    hraButtonSize="medium"                    (click)="openSidenav(organ, component, 0)"                  >                    Embed                  </button>                </hra-action-card-action>              }            </hra-action-card>          }        </div>      </div>    }  </div>  <ng-template #sidenavTemplate>    @if (sidenavData(); as data) {      <hra-embed-sidenav-content        [tagline]="data.tagline"        [code]="data.code"        [showApp]="data.showApp"        [tabIndex]="data.tabIndex"        (closeSidenav)="sidenavData.set(undefined)"        [documentLink]="data.docLink"        data-testid="sidenav-overlay"      >      </hra-embed-sidenav-content>    }  </ng-template>  <ng-template #appIframeTemplate>    @if (appIframeData(); as data) {      <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)"></hra-back-button-bar>      <iframe title="appIframe" class="app-iframe" [srcdoc]="data.code" data-testid="iframe-overlay"></iframe>    }  </ng-template></ng-container></div>'
+    var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'WebComponentsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'WebComponentsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

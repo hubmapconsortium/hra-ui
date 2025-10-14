@@ -1,0 +1,53 @@
+{
+  "name": "ccf-shared",
+  "version": "4.1.0",
+  "peerDependencies": {
+    "@angular/common": "^20.2.1",
+    "@angular/core": "^20.2.1",
+    "@angular/material": "^20.2.0",
+    "@angular/youtube-player": "^20.2.0",
+    "@math.gl/core": "^3.5.5",
+    "@ngxs/store": "^20.1.0",
+    "ngx-markdown": "^20.0.0",
+    "rxjs": "^7.8.2",
+    "ts-cacheable": "^1.0.6",
+    "@angular-ru/ngxs": "^18.11.0",
+    "@hra-api/ng-client": "^0.16.0",
+    "ccf-body-ui": "4.0.0",
+    "@ngxs-labs/dispatch-decorator": "^5.0.0",
+    "@hra-ui/design-system": "1.1.0",
+    "@angular/forms": "^20.2.1",
+    "@angular-ru/cdk": "^18.11.0",
+    "@hra-ui/common": "1.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "module": "fesm2022/ccf-shared.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/ccf-shared.mjs"
+    },
+    "./rxjs-ext": {
+      "types": "./rxjs-ext/index.d.ts",
+      "default": "./fesm2022/ccf-shared-rxjs-ext.mjs"
+    },
+    "./web-components": {
+      "types": "./web-components/index.d.ts",
+      "default": "./fesm2022/ccf-shared-web-components.mjs"
+    },
+    "./rxjs-ext/operators": {
+      "types": "./rxjs-ext/operators/index.d.ts",
+      "default": "./fesm2022/ccf-shared-rxjs-ext-operators.mjs"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with partial compilation mode, before attempting to publish.\\n')\" && exit 1"
+  }
+}

@@ -1,0 +1,2235 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-eui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-eui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DataState</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/store/data/data.state.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Data state repository and service.</p>
+
+            </p>
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code>NgxsDataRepository</code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#aggregateData$" >aggregateData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#aggregateDataQueryStatus$" >aggregateDataQueryStatus$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#biomarkerTermOccurencesData$" >biomarkerTermOccurencesData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#biomarkerTermOccurencesDataQueryStatus$" >biomarkerTermOccurencesDataQueryStatus$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#biomarkerTermsFullData$" >biomarkerTermsFullData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cellTypeTermOccurencesData$" >cellTypeTermOccurencesData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cellTypeTermOccurencesDataQueryStatus$" >cellTypeTermOccurencesDataQueryStatus$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cellTypeTermsFullData$" >cellTypeTermsFullData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#consortiaFilterData$" >consortiaFilterData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#databaseReady$" >databaseReady$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#filter$" >filter$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ontologyTermOccurencesData$" >ontologyTermOccurencesData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ontologyTermOccurencesDataQueryStatus$" >ontologyTermOccurencesDataQueryStatus$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ontologyTermsFullData$" >ontologyTermsFullData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#providerFilterData$" >providerFilterData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#providerFilterQueryStatus$" >providerFilterQueryStatus$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#queryStatus$" >queryStatus$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sceneData$" >sceneData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sceneDataQueryStatus$" >sceneDataQueryStatus$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#technologyFilterData$" >technologyFilterData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#technologyFilterQueryStatus$" >technologyFilterQueryStatus$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tissueBlockData$" >tissueBlockData$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tissueBlockDataQueryStatus$" >tissueBlockDataQueryStatus$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#ngxsOnInit" >ngxsOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#updateAnatomicalStructuresTreeModel" >updateAnatomicalStructuresTreeModel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#updateBiomarkersTreeModel" >updateBiomarkersTreeModel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#updateCellTypesTreeModel" >updateCellTypesTreeModel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#updateFilter" >updateFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#updateFilterHandler" >updateFilterHandler</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#updateStatus" >updateStatus</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="371" class="link-to-prism">src/app/core/store/data/data.state.ts:371</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of data state.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngxsOnInit"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>ngxsOnInit</b></span>
+                        <a href="#ngxsOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngxsOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="389"
+                                    class="link-to-prism">src/app/core/store/data/data.state.ts:389</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initialize the state</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAnatomicalStructuresTreeModel"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>updateAnatomicalStructuresTreeModel</b></span>
+                        <a href="#updateAnatomicalStructuresTreeModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateAnatomicalStructuresTreeModel(model: OntologyTree)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@DataAction()<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="455"
+                                    class="link-to-prism">src/app/core/store/data/data.state.ts:455</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Update AS tree</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>model</td>
+                                            <td>
+                                                        <code>OntologyTree</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateBiomarkersTreeModel"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>updateBiomarkersTreeModel</b></span>
+                        <a href="#updateBiomarkersTreeModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateBiomarkersTreeModel(model: OntologyTree)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@DataAction()<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="471"
+                                    class="link-to-prism">src/app/core/store/data/data.state.ts:471</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Update biomarkers tree</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>model</td>
+                                            <td>
+                                                        <code>OntologyTree</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateCellTypesTreeModel"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>updateCellTypesTreeModel</b></span>
+                        <a href="#updateCellTypesTreeModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateCellTypesTreeModel(model: OntologyTree)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@DataAction()<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="463"
+                                    class="link-to-prism">src/app/core/store/data/data.state.ts:463</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Update cell types tree</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>model</td>
+                                            <td>
+                                                        <code>OntologyTree</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateFilter"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>updateFilter</b></span>
+                        <a href="#updateFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateFilter(filter: Partial<Filter>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@DataAction()<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="491"
+                                    class="link-to-prism">src/app/core/store/data/data.state.ts:491</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates the current filter.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                        <code>Partial&lt;Filter&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Changes to be made to the current filter.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateFilterHandler"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>updateFilterHandler</b></span>
+                        <a href="#updateFilterHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateFilterHandler(_ctx, undefined: <a href="../classes/UpdateFilter.html" target="_self">UpdateFilter</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Action(UpdateFilter)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="500"
+                                    class="link-to-prism">src/app/core/store/data/data.state.ts:500</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Update filter</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>_ctx</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../classes/UpdateFilter.html" target="_self" >UpdateFilter</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateStatus"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>updateStatus</b></span>
+                        <a href="#updateStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateStatus(status: DatabaseStatus)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@DataAction()<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="479"
+                                    class="link-to-prism">src/app/core/store/data/data.state.ts:479</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Update database status</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>status</td>
+                                            <td>
+                                                        <code>DatabaseStatus</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aggregateData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>aggregateData$</b></span>
+                        <a href="#aggregateData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(
+    queryData(this.aggregateData, sendCompletedTo(this._aggregateDataQueryStatus$)),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="305" class="link-to-prism">src/app/core/store/data/data.state.ts:305</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest aggregate query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aggregateDataQueryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>aggregateDataQueryStatus$</b></span>
+                        <a href="#aggregateDataQueryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._aggregateDataQueryStatus$.pipe(distinctUntilChanged())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">src/app/core/store/data/data.state.ts:338</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current status of queries in the aggregateData$ observable.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="biomarkerTermOccurencesData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>biomarkerTermOccurencesData$</b></span>
+                        <a href="#biomarkerTermOccurencesData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(
+    queryData(this.biomarkerTermOccurencesData, sendCompletedTo(this._biomarkerTermOccurencesDataQueryStatus$)),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="313" class="link-to-prism">src/app/core/store/data/data.state.ts:313</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest ontology term occurences query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="biomarkerTermOccurencesDataQueryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>biomarkerTermOccurencesDataQueryStatus$</b></span>
+                        <a href="#biomarkerTermOccurencesDataQueryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._biomarkerTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="347" class="link-to-prism">src/app/core/store/data/data.state.ts:347</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Biomarker term occurences</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="biomarkerTermsFullData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>biomarkerTermsFullData$</b></span>
+                        <a href="#biomarkerTermsFullData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new ReplaySubject&lt;Record&lt;string, number&gt;&gt;(1)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/core/store/data/data.state.ts:200</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keeping track of all biomarker terms there is data for.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cellTypeTermOccurencesData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cellTypeTermOccurencesData$</b></span>
+                        <a href="#cellTypeTermOccurencesData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(
+    queryData(this.cellTypeTermOccurencesData, sendCompletedTo(this._cellTypeTermOccurencesDataQueryStatus$)),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="317" class="link-to-prism">src/app/core/store/data/data.state.ts:317</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest cell type term occurences query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cellTypeTermOccurencesDataQueryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cellTypeTermOccurencesDataQueryStatus$</b></span>
+                        <a href="#cellTypeTermOccurencesDataQueryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._cellTypeTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="343" class="link-to-prism">src/app/core/store/data/data.state.ts:343</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current status of queries in the cellTypeTermOccurrences$ observable.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cellTypeTermsFullData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cellTypeTermsFullData$</b></span>
+                        <a href="#cellTypeTermsFullData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new ReplaySubject&lt;Record&lt;string, number&gt;&gt;(1)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/app/core/store/data/data.state.ts:198</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keeping track of all cell type terms there is data for.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="consortiaFilterData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>consortiaFilterData$</b></span>
+                        <a href="#consortiaFilterData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(
+    queryData(this.consortiaFilterData, sendCompletedTo(this._providerFilterQueryStatus$)),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="331" class="link-to-prism">src/app/core/store/data/data.state.ts:331</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest consortia filter label query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="databaseReady$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>databaseReady$</b></span>
+                        <a href="#databaseReady$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.state$.pipe(
+    map((x) &#x3D;&gt; x?.status),
+    distinctUntilChanged(),
+    rxjsFilter((status) &#x3D;&gt; status &#x3D;&#x3D;&#x3D; &#x27;Ready&#x27;),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/core/store/data/data.state.ts:172</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Emits when the database is ready.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filter$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>filter$</b></span>
+                        <a href="#filter$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.state$.pipe(map((x) &#x3D;&gt; x.filter))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/app/core/store/data/data.state.ts:299</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current filter.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ontologyTermOccurencesData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ontologyTermOccurencesData$</b></span>
+                        <a href="#ontologyTermOccurencesData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(
+    queryData(this.ontologyTermOccurencesData, sendCompletedTo(this._ontologyTermOccurencesDataQueryStatus$)),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/app/core/store/data/data.state.ts:309</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest ontology term occurences query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ontologyTermOccurencesDataQueryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ontologyTermOccurencesDataQueryStatus$</b></span>
+                        <a href="#ontologyTermOccurencesDataQueryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._ontologyTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/app/core/store/data/data.state.ts:340</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current status of queries in the ontologyTermOccurrences$ observable.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ontologyTermsFullData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ontologyTermsFullData$</b></span>
+                        <a href="#ontologyTermsFullData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new ReplaySubject&lt;Record&lt;string, number&gt;&gt;(1)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/app/core/store/data/data.state.ts:196</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keeping track of all ontology terms there is data for.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="providerFilterData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>providerFilterData$</b></span>
+                        <a href="#providerFilterData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(
+    queryData(this.providerFilterData, sendCompletedTo(this._providerFilterQueryStatus$)),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="327" class="link-to-prism">src/app/core/store/data/data.state.ts:327</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest provider filter label query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="providerFilterQueryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>providerFilterQueryStatus$</b></span>
+                        <a href="#providerFilterQueryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._providerFilterQueryStatus$.pipe(distinctUntilChanged())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="354" class="link-to-prism">src/app/core/store/data/data.state.ts:354</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current status of queries in the providerFilter$ observable.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="queryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>queryStatus$</b></span>
+                        <a href="#queryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>combineLatest([
+    this.tissueBlockDataQueryStatus$,
+    this.aggregateDataQueryStatus$,
+    this.ontologyTermOccurencesDataQueryStatus$,
+    this.cellTypeTermOccurencesDataQueryStatus$,
+    this.sceneDataQueryStatus$,
+    this.technologyFilterQueryStatus$,
+    this.providerFilterQueryStatus$,
+  ]).pipe(
+    map((states) &#x3D;&gt; (allCompleted(states) ? DataQueryState.Completed : DataQueryState.Running)),
+    distinctUntilChanged(),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="357" class="link-to-prism">src/app/core/store/data/data.state.ts:357</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current status of all queries.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sceneData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sceneData$</b></span>
+                        <a href="#sceneData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(queryData(this.sceneData, sendCompletedTo(this._sceneDataQueryStatus$)))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/app/core/store/data/data.state.ts:321</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest scene query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sceneDataQueryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sceneDataQueryStatus$</b></span>
+                        <a href="#sceneDataQueryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._sceneDataQueryStatus$.pipe(distinctUntilChanged())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/app/core/store/data/data.state.ts:350</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current status of queries in the sceneData$ observable.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="technologyFilterData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>technologyFilterData$</b></span>
+                        <a href="#technologyFilterData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(
+    queryData(this.technologyFilterData, sendCompletedTo(this._technologyFilterQueryStatus$)),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="323" class="link-to-prism">src/app/core/store/data/data.state.ts:323</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest technology filter label query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="technologyFilterQueryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>technologyFilterQueryStatus$</b></span>
+                        <a href="#technologyFilterQueryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._technologyFilterQueryStatus$.pipe(distinctUntilChanged())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="352" class="link-to-prism">src/app/core/store/data/data.state.ts:352</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current status of queries in the technologyFilter$ observable.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tissueBlockData$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tissueBlockData$</b></span>
+                        <a href="#tissueBlockData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.filter$.pipe(
+    queryData(this.tissueBlockData, sendCompletedTo(this._tissueBlockDataQueryStatus$)),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/app/core/store/data/data.state.ts:301</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Latest tissue block query data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tissueBlockDataQueryStatus$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tissueBlockDataQueryStatus$</b></span>
+                        <a href="#tissueBlockDataQueryStatus$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._tissueBlockDataQueryStatus$.pipe(distinctUntilChanged())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="336" class="link-to-prism">src/app/core/store/data/data.state.ts:336</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current status of queries in the tissueBlockData$ observable.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DataAction, Payload, StateRepository } from &#x27;@angular-ru/ngxs/decorators&#x27;;
+import { NgxsDataRepository } from &#x27;@angular-ru/ngxs/repositories&#x27;;
+import { inject, Injectable } from &#x27;@angular/core&#x27;;
+import {
+  AggregateCount,
+  DatabaseStatus,
+  Filter,
+  FilterSexEnum,
+  OntologyTree,
+  SpatialSceneNode,
+  TissueBlock,
+} from &#x27;@hra-api/ng-client&#x27;;
+import { Action, NgxsOnInit, State } from &#x27;@ngxs/store&#x27;;
+import { DataSourceService } from &#x27;ccf-shared&#x27;;
+import { ObservableInput, ObservedValueOf, OperatorFunction, ReplaySubject, Subject, combineLatest, defer } from &#x27;rxjs&#x27;;
+import {
+  delay,
+  distinctUntilChanged,
+  map,
+  publishReplay,
+  refCount,
+  repeat,
+  filter as rxjsFilter,
+  switchMap,
+  take,
+  takeWhile,
+  tap,
+} from &#x27;rxjs/operators&#x27;;
+import { UpdateFilter } from &#x27;./data.actions&#x27;;
+
+/** Default sex */
+export const DEFAULT_FILTER_SEX &#x3D; FilterSexEnum.Both;
+/** Default age range minimum */
+export const DEFAULT_FILTER_AGE_LOW &#x3D; 1;
+/** Default age range maximum */
+export const DEFAULT_FILTER_AGE_HIGH &#x3D; 110;
+/** Default bmi range minimum */
+export const DEFAULT_FILTER_BMI_LOW &#x3D; 13;
+/** Default bmi range maximum */
+export const DEFAULT_FILTER_BMI_HIGH &#x3D; 83;
+
+/** Default values for filters. */
+export const DEFAULT_FILTER: Required&lt;Filter&gt; &#x3D; {
+  sex: DEFAULT_FILTER_SEX,
+  ageRange: [DEFAULT_FILTER_AGE_LOW, DEFAULT_FILTER_AGE_HIGH],
+  bmiRange: [DEFAULT_FILTER_BMI_LOW, DEFAULT_FILTER_BMI_HIGH],
+  consortiums: [],
+  tmc: [],
+  technologies: [],
+  ontologyTerms: [&#x27;http://purl.obolibrary.org/obo/UBERON_0013702&#x27;],
+  cellTypeTerms: [&#x27;http://purl.obolibrary.org/obo/CL_0000000&#x27;],
+  biomarkerTerms: [&#x27;http://purl.org/ccf/biomarkers&#x27;],
+  spatialSearches: [],
+};
+
+/**
+ * Tests if a filter is empty. Does not check any of the terms arrays or spatial searches
+ *
+ * @param filter Filter to test
+ * @returns true if it is empty
+ */
+export function isFilterEmpty(filter: Filter): boolean {
+  const {
+    sex &#x3D; DEFAULT_FILTER.sex,
+    ageRange: [ageLow, ageHigh] &#x3D; [],
+    bmiRange: [bmiLow, bmiHigh] &#x3D; [],
+    technologies &#x3D; [],
+    consortiums &#x3D; [],
+    tmc &#x3D; [],
+  } &#x3D; filter;
+
+  return (
+    sex &#x3D;&#x3D;&#x3D; DEFAULT_FILTER_SEX &amp;&amp;
+    ageLow &#x3D;&#x3D;&#x3D; DEFAULT_FILTER_AGE_LOW &amp;&amp;
+    ageHigh &#x3D;&#x3D;&#x3D; DEFAULT_FILTER_AGE_HIGH &amp;&amp;
+    bmiLow &#x3D;&#x3D;&#x3D; DEFAULT_FILTER_BMI_LOW &amp;&amp;
+    bmiHigh &#x3D;&#x3D;&#x3D; DEFAULT_FILTER_BMI_HIGH &amp;&amp;
+    technologies.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
+    consortiums.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
+    tmc.length &#x3D;&#x3D;&#x3D; 0
+  );
+}
+
+/**
+ * Normalizes a filter applying default values where applicable
+ *
+ * @param filter Partial filter
+ * @returns A full filter object
+ */
+export function normalizeFilter(filter: Filter): Required&lt;Filter&gt; {
+  const result &#x3D; { ...DEFAULT_FILTER };
+  for (const [key, value] of Object.entries(filter)) {
+    if (value !&#x3D;&#x3D; undefined) {
+      result[key as keyof Filter] &#x3D; value;
+    }
+  }
+
+  return result;
+}
+
+/** Current state of data queries. */
+export enum DataQueryState {
+  /** One or more queries are running. */
+  Running &#x3D; &#x27;running&#x27;,
+  /** All queries have completed. */
+  Completed &#x3D; &#x27;completed&#x27;,
+}
+
+/**
+ * Helper for testing that all states in an array are &#x60;DataQueryState.Completed&#x60;.
+ *
+ * @param states The array of states to test.
+ * @returns true if all values in the array is &#x60;Completed&#x60;.
+ */
+function allCompleted(states: DataQueryState[]): boolean {
+  return states.every((state) &#x3D;&gt; state &#x3D;&#x3D;&#x3D; DataQueryState.Completed);
+}
+
+/**
+ * Helper creating a function that sends a &#x60;DataQueryState.Completed&#x60; to
+ * a subject whenever it is called.
+ *
+ * @param subject The subject to send completed messagess to.
+ * @returns The function.
+ */
+function sendCompletedTo(subject: Subject&lt;DataQueryState&gt;): () &#x3D;&gt; void {
+  return () &#x3D;&gt; subject.next(DataQueryState.Completed);
+}
+
+/**
+ * Helper operator that combines querying with sharing and replay functionality.
+ *
+ * @param query The data query function.
+ * @param [next] An optional listener on the values emitted by the latest query.
+ * @returns The combined pipe operator function.
+ */
+function queryData&lt;T, O extends ObservableInput&lt;unknown&gt;&gt;(
+  query: (value: T, index: number) &#x3D;&gt; O,
+  next?: (value: ObservedValueOf&lt;O&gt;) &#x3D;&gt; void,
+): OperatorFunction&lt;T, ObservedValueOf&lt;O&gt;&gt; {
+  return (source) &#x3D;&gt; source.pipe(switchMap(query), tap(next), publishReplay(1), refCount());
+}
+
+/** Store data state. */
+export interface DataStateModel {
+  /** Current filter. */
+  filter: Filter;
+  /** Database status */
+  status: &#x27;Loading&#x27; | &#x27;Ready&#x27; | &#x27;Error&#x27;;
+  /** AS tree */
+  anatomicalStructuresTreeModel?: OntologyTree;
+  /** Cell types tree */
+  cellTypesTreeModel?: OntologyTree;
+  /** Biomarkers tree */
+  biomarkersTreeModel?: OntologyTree;
+}
+
+/**
+ * Data state repository and service.
+ */
+@StateRepository()
+@State&lt;DataStateModel&gt;({
+  name: &#x27;data&#x27;,
+  defaults: {
+    filter: DEFAULT_FILTER,
+    status: &#x27;Loading&#x27;,
+  },
+})
+@Injectable()
+export class DataState extends NgxsDataRepository&lt;DataStateModel&gt; implements NgxsOnInit {
+  /** Emits when the database is ready. */
+  readonly databaseReady$ &#x3D; this.state$.pipe(
+    map((x) &#x3D;&gt; x?.status),
+    distinctUntilChanged(),
+    rxjsFilter((status) &#x3D;&gt; status &#x3D;&#x3D;&#x3D; &#x27;Ready&#x27;),
+  );
+
+  /** Implementation subject for tissueBlockDataQueryStatus$. */
+  private readonly _tissueBlockDataQueryStatus$ &#x3D; new ReplaySubject&lt;DataQueryState&gt;(1);
+  /** Implementation subject for aggregateDataQueryStatus$. */
+  private readonly _aggregateDataQueryStatus$ &#x3D; new ReplaySubject&lt;DataQueryState&gt;(1);
+  /** Implementation subject for ontologyTermOccurencesDataQueryStatus$. */
+  private readonly _ontologyTermOccurencesDataQueryStatus$ &#x3D; new ReplaySubject&lt;DataQueryState&gt;(1);
+  /** Implementation subject for cellTypeTermOccurencesDataQueryStatus$. */
+  private readonly _cellTypeTermOccurencesDataQueryStatus$ &#x3D; new ReplaySubject&lt;DataQueryState&gt;(1);
+  /** Implementation subject for biomarkerTermOccurencesDataQueryStatus$. */
+  private readonly _biomarkerTermOccurencesDataQueryStatus$ &#x3D; new ReplaySubject&lt;DataQueryState&gt;(1);
+
+  /** Implementation subject for sceneDataQueryStatus$. */
+  private readonly _sceneDataQueryStatus$ &#x3D; new ReplaySubject&lt;DataQueryState&gt;(1);
+  /** Implementation subject for technologyFilterQueryStatus$. */
+  private readonly _technologyFilterQueryStatus$ &#x3D; new ReplaySubject&lt;DataQueryState&gt;(1);
+  /** Implementation subject for providerFilterQueryStatus$. */
+  private readonly _providerFilterQueryStatus$ &#x3D; new ReplaySubject&lt;DataQueryState&gt;(1);
+  /** Keeping track of all ontology terms there is data for. */
+  readonly ontologyTermsFullData$ &#x3D; new ReplaySubject&lt;Record&lt;string, number&gt;&gt;(1);
+  /** Keeping track of all cell type terms there is data for. */
+  readonly cellTypeTermsFullData$ &#x3D; new ReplaySubject&lt;Record&lt;string, number&gt;&gt;(1);
+  /** Keeping track of all biomarker terms there is data for. */
+  readonly biomarkerTermsFullData$ &#x3D; new ReplaySubject&lt;Record&lt;string, number&gt;&gt;(1);
+
+  /**
+   * Queries for tissue block data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly tissueBlockData &#x3D; (filter: Filter): ObservableInput&lt;TissueBlock[]&gt; &#x3D;&gt; {
+    this._tissueBlockDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getTissueBlockResults(filter)));
+  };
+
+  /**
+   * Queries for aggregate data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly aggregateData &#x3D; (filter: Filter): ObservableInput&lt;AggregateCount[]&gt; &#x3D;&gt; {
+    this._aggregateDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getAggregateResults(filter)));
+  };
+
+  /**
+   * Queries for ontology term occurences data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly ontologyTermOccurencesData &#x3D; (filter: Filter): ObservableInput&lt;Record&lt;string, number&gt;&gt; &#x3D;&gt; {
+    this._ontologyTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getOntologyTermOccurences(filter)));
+  };
+
+  /**
+   * Queries for cell type term occurences data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly cellTypeTermOccurencesData &#x3D; (filter: Filter): ObservableInput&lt;Record&lt;string, number&gt;&gt; &#x3D;&gt; {
+    this._cellTypeTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getCellTypeTermOccurences(filter)));
+  };
+
+  /**
+   * Queries for biomarker term occurences data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly biomarkerTermOccurencesData &#x3D; (filter: Filter): ObservableInput&lt;Record&lt;string, number&gt;&gt; &#x3D;&gt; {
+    this._biomarkerTermOccurencesDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getBiomarkerTermOccurences(filter)));
+  };
+
+  /**
+   * Queries for scene data.
+   *
+   * @param filter The filter used during query.
+   * @returns The result of the query.
+   */
+  private readonly sceneData &#x3D; (filter: Filter): ObservableInput&lt;SpatialSceneNode[]&gt; &#x3D;&gt; {
+    this._sceneDataQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getScene(filter)));
+  };
+
+  /**
+   * Queries for technology filter data.
+   *
+   * @returns The result of the query.
+   */
+  private readonly technologyFilterData &#x3D; (): ObservableInput&lt;string[]&gt; &#x3D;&gt; {
+    this._technologyFilterQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getDatasetTechnologyNames()));
+  };
+
+  /**
+   * Queries for provider filter data.
+   *
+   * @returns The result of the query.
+   */
+  private readonly providerFilterData &#x3D; (): ObservableInput&lt;string[]&gt; &#x3D;&gt; {
+    this._providerFilterQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getProviderNames()));
+  };
+
+  /**
+   * Queries for consortium filter data.
+   *
+   * @returns The result of the query.
+   */
+  private readonly consortiaFilterData &#x3D; (): ObservableInput&lt;string[]&gt; &#x3D;&gt; {
+    this._providerFilterQueryStatus$.next(DataQueryState.Running);
+    return this.databaseReady$.pipe(switchMap(() &#x3D;&gt; this.source.getConsortiumNames()));
+  };
+
+  /** Current filter. */
+  readonly filter$ &#x3D; this.state$.pipe(map((x) &#x3D;&gt; x.filter));
+  /** Latest tissue block query data. */
+  readonly tissueBlockData$ &#x3D; this.filter$.pipe(
+    queryData(this.tissueBlockData, sendCompletedTo(this._tissueBlockDataQueryStatus$)),
+  );
+  /** Latest aggregate query data. */
+  readonly aggregateData$ &#x3D; this.filter$.pipe(
+    queryData(this.aggregateData, sendCompletedTo(this._aggregateDataQueryStatus$)),
+  );
+  /** Latest ontology term occurences query data. */
+  readonly ontologyTermOccurencesData$ &#x3D; this.filter$.pipe(
+    queryData(this.ontologyTermOccurencesData, sendCompletedTo(this._ontologyTermOccurencesDataQueryStatus$)),
+  );
+  /** Latest ontology term occurences query data. */
+  readonly biomarkerTermOccurencesData$ &#x3D; this.filter$.pipe(
+    queryData(this.biomarkerTermOccurencesData, sendCompletedTo(this._biomarkerTermOccurencesDataQueryStatus$)),
+  );
+  /** Latest cell type term occurences query data. */
+  readonly cellTypeTermOccurencesData$ &#x3D; this.filter$.pipe(
+    queryData(this.cellTypeTermOccurencesData, sendCompletedTo(this._cellTypeTermOccurencesDataQueryStatus$)),
+  );
+  /** Latest scene query data. */
+  readonly sceneData$ &#x3D; this.filter$.pipe(queryData(this.sceneData, sendCompletedTo(this._sceneDataQueryStatus$)));
+  /** Latest technology filter label query data. */
+  readonly technologyFilterData$ &#x3D; this.filter$.pipe(
+    queryData(this.technologyFilterData, sendCompletedTo(this._technologyFilterQueryStatus$)),
+  );
+  /** Latest provider filter label query data. */
+  readonly providerFilterData$ &#x3D; this.filter$.pipe(
+    queryData(this.providerFilterData, sendCompletedTo(this._providerFilterQueryStatus$)),
+  );
+  /** Latest consortia filter label query data. */
+  readonly consortiaFilterData$ &#x3D; this.filter$.pipe(
+    queryData(this.consortiaFilterData, sendCompletedTo(this._providerFilterQueryStatus$)),
+  );
+
+  /** Current status of queries in the tissueBlockData$ observable. */
+  readonly tissueBlockDataQueryStatus$ &#x3D; this._tissueBlockDataQueryStatus$.pipe(distinctUntilChanged());
+  /** Current status of queries in the aggregateData$ observable. */
+  readonly aggregateDataQueryStatus$ &#x3D; this._aggregateDataQueryStatus$.pipe(distinctUntilChanged());
+  /** Current status of queries in the ontologyTermOccurrences$ observable. */
+  readonly ontologyTermOccurencesDataQueryStatus$ &#x3D;
+    this._ontologyTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged());
+  /** Current status of queries in the cellTypeTermOccurrences$ observable. */
+  readonly cellTypeTermOccurencesDataQueryStatus$ &#x3D;
+    this._cellTypeTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged());
+
+  /** Biomarker term occurences */
+  readonly biomarkerTermOccurencesDataQueryStatus$ &#x3D;
+    this._biomarkerTermOccurencesDataQueryStatus$.pipe(distinctUntilChanged());
+  /** Current status of queries in the sceneData$ observable. */
+  readonly sceneDataQueryStatus$ &#x3D; this._sceneDataQueryStatus$.pipe(distinctUntilChanged());
+  /** Current status of queries in the technologyFilter$ observable. */
+  readonly technologyFilterQueryStatus$ &#x3D; this._technologyFilterQueryStatus$.pipe(distinctUntilChanged());
+  /** Current status of queries in the providerFilter$ observable. */
+  readonly providerFilterQueryStatus$ &#x3D; this._providerFilterQueryStatus$.pipe(distinctUntilChanged());
+
+  /** Current status of all queries. */
+  readonly queryStatus$ &#x3D; combineLatest([
+    this.tissueBlockDataQueryStatus$,
+    this.aggregateDataQueryStatus$,
+    this.ontologyTermOccurencesDataQueryStatus$,
+    this.cellTypeTermOccurencesDataQueryStatus$,
+    this.sceneDataQueryStatus$,
+    this.technologyFilterQueryStatus$,
+    this.providerFilterQueryStatus$,
+  ]).pipe(
+    map((states) &#x3D;&gt; (allCompleted(states) ? DataQueryState.Completed : DataQueryState.Running)),
+    distinctUntilChanged(),
+  );
+
+  /** Data source service */
+  private readonly source &#x3D; inject(DataSourceService);
+
+  /**
+   * Creates an instance of data state.
+   */
+  constructor() {
+    super();
+    // Start everything in the completed state
+    this._tissueBlockDataQueryStatus$.next(DataQueryState.Completed);
+    this._aggregateDataQueryStatus$.next(DataQueryState.Completed);
+    this._ontologyTermOccurencesDataQueryStatus$.next(DataQueryState.Completed);
+    this._cellTypeTermOccurencesDataQueryStatus$.next(DataQueryState.Completed);
+    this._sceneDataQueryStatus$.next(DataQueryState.Completed);
+    this._technologyFilterQueryStatus$.next(DataQueryState.Completed);
+    this._providerFilterQueryStatus$.next(DataQueryState.Completed);
+  }
+
+  /** Initialize the state */
+  override ngxsOnInit(): void {
+    const {
+      ontologyTermsFullData$,
+      ontologyTermOccurencesData$,
+      cellTypeTermsFullData$,
+      biomarkerTermsFullData$,
+      cellTypeTermOccurencesData$,
+      biomarkerTermOccurencesData$,
+      source,
+      snapshot: { filter },
+    } &#x3D; this;
+
+    if (filter &#x3D;&#x3D;&#x3D; DEFAULT_FILTER) {
+      // Common case - Reuse the result of the regular query
+      ontologyTermOccurencesData$.pipe(take(1)).subscribe(ontologyTermsFullData$);
+      cellTypeTermOccurencesData$.pipe(take(1)).subscribe(cellTypeTermsFullData$);
+      biomarkerTermOccurencesData$.pipe(take(1)).subscribe(biomarkerTermsFullData$);
+    } else {
+      source.getOntologyTermOccurences().pipe(take(1)).subscribe(ontologyTermsFullData$);
+      source.getCellTypeTermOccurences().pipe(take(1)).subscribe(cellTypeTermsFullData$);
+      source.getBiomarkerTermOccurences().pipe(take(1)).subscribe(biomarkerTermsFullData$);
+    }
+
+    this.source
+      .getOntologyTreeModel()
+      .pipe(take(1))
+      .subscribe((model) &#x3D;&gt; this.updateAnatomicalStructuresTreeModel(model));
+    this.source
+      .getCellTypeTreeModel()
+      .pipe(take(1))
+      .subscribe((model) &#x3D;&gt; this.updateCellTypesTreeModel(model));
+    this.source
+      .getBiomarkerTreeModel()
+      .pipe(take(1))
+      .subscribe((model) &#x3D;&gt; this.updateBiomarkersTreeModel(model));
+    this.warmUpDatabase();
+  }
+
+  /** Initialize the database */
+  private warmUpDatabase(): void {
+    defer(() &#x3D;&gt; this.source.getDatabaseStatus())
+      .pipe(
+        tap((status) &#x3D;&gt; this.updateStatus(status)),
+        delay(500),
+        take(1),
+      )
+      .pipe(
+        repeat(1000),
+        takeWhile((status) &#x3D;&gt; status.status &#x3D;&#x3D;&#x3D; &#x27;Loading&#x27;),
+      )
+      .subscribe();
+
+    this.databaseReady$
+      .pipe(
+        take(1),
+        tap(() &#x3D;&gt; {
+          this.updateStatus({
+            status: &#x27;Ready&#x27;,
+          });
+        }),
+      )
+      .subscribe();
+  }
+
+  /** Update AS tree */
+  @DataAction()
+  updateAnatomicalStructuresTreeModel(@Payload(&#x27;treeModel&#x27;) model: OntologyTree): void {
+    this.ctx.patchState({
+      anatomicalStructuresTreeModel: model,
+    });
+  }
+
+  /** Update cell types tree */
+  @DataAction()
+  updateCellTypesTreeModel(@Payload(&#x27;treeModel&#x27;) model: OntologyTree): void {
+    this.ctx.patchState({
+      cellTypesTreeModel: model,
+    });
+  }
+
+  /** Update biomarkers tree */
+  @DataAction()
+  updateBiomarkersTreeModel(@Payload(&#x27;treeModel&#x27;) model: OntologyTree): void {
+    this.ctx.patchState({
+      biomarkersTreeModel: model,
+    });
+  }
+
+  /** Update database status */
+  @DataAction()
+  updateStatus(@Payload(&#x27;status&#x27;) status: DatabaseStatus): void {
+    this.ctx.patchState({
+      status: status.status,
+    });
+  }
+
+  /**
+   * Updates the current filter.
+   *
+   * @param filter Changes to be made to the current filter.
+   */
+  @DataAction()
+  updateFilter(@Payload(&#x27;filter&#x27;) filter: Partial&lt;Filter&gt;): void {
+    this.ctx.patchState({
+      // Might need to do a deep compare of current and new filter
+      filter: { ...this.getState().filter, ...filter },
+    });
+  }
+
+  /** Update filter */
+  @Action(UpdateFilter)
+  updateFilterHandler(_ctx: unknown, { filter }: UpdateFilter): void {
+    this.updateFilter(filter);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DataState.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

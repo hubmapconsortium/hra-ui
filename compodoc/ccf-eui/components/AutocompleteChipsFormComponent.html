@@ -1,0 +1,1407 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-eui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-eui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AutocompleteChipsFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Autocomplete chips form component for filters</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ccf-autocomplete-chips-form</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatChipsModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatAutocompleteModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>ButtonsModule</code>
+                            <code>ScrollingModule</code>
+                            <code>MatCheckboxModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./autocomplete-chips-form.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./autocomplete-chips-form.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#chips" >chips</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#errorState" >errorState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#filteredOptions" >filteredOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#separatorKeysCodes" >separatorKeysCodes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#add" >add</a>
+                            </li>
+                            <li>
+                                <a href="#checkboxSelected" >checkboxSelected</a>
+                            </li>
+                            <li>
+                                <a href="#closeAutocomplete" >closeAutocomplete</a>
+                            </li>
+                            <li>
+                                <a href="#optionSelected" >optionSelected</a>
+                            </li>
+                            <li>
+                                <a href="#remove" >remove</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentInputValue" >currentInputValue</a>
+                            </li>
+                            <li>
+                                <a href="#filterOptions" >filterOptions</a>
+                            </li>
+                            <li>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <a href="#label" >label</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentInputValue" >currentInputValue</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOptions" >selectedOptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentInputValue"></a>
+                        <b>currentInputValue</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:62</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current input value</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filterOptions"></a>
+                        <b>filterOptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:53</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>All available dropdown options</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="form"></a>
+                        <b>form</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormControl&lt;string[] | null&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:56</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>FormControl for the form</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="label"></a>
+                        <b>label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:50</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input form label</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentInputValue"></a>
+                        <b>currentInputValue</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:62</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current input value</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedOptions"></a>
+                        <b>selectedOptions</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:89</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits selected options</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="add"></a>
+                    <span class="name">
+                        <span ><b>add</b></span>
+                        <a href="#add"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>add(event: MatChipInputEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Adds option to chip list</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MatChipInputEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Chip input event</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkboxSelected"></a>
+                    <span class="name">
+                        <span ><b>checkboxSelected</b></span>
+                        <a href="#checkboxSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkboxSelected(event: MatCheckboxChange, option: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates form on checkbox click</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MatCheckboxChange</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Checkbox change event</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>option</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Option name</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeAutocomplete"></a>
+                    <span class="name">
+                        <span ><b>closeAutocomplete</b></span>
+                        <a href="#closeAutocomplete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeAutocomplete(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="166"
+                                    class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:166</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Closes the Autocomplete panel when user presses the escape button</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="optionSelected"></a>
+                    <span class="name">
+                        <span ><b>optionSelected</b></span>
+                        <a href="#optionSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>optionSelected(event: MatAutocompleteSelectedEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates form on option select</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MatAutocompleteSelectedEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Autocomplete selected event</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>remove(option: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Removes option from the chip list</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>option</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Option name</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chips"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>chips</b></span>
+                        <a href="#chips"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal([] as string[])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Displayed chip options</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorState"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>errorState</b></span>
+                        <a href="#errorState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    return (
+      this.currentInputValue().length &gt; 0 &amp;&amp;
+      (this.filteredOptions().length &#x3D;&#x3D;&#x3D; 0 ||
+        !this.filteredOptions().find((option) &#x3D;&gt; option.toLowerCase().includes(this.currentInputValue().toLowerCase())))
+    );
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>True if no results are found for the input</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>filteredOptions</b></span>
+                        <a href="#filteredOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const currentValue &#x3D; this.currentInputValue().toLowerCase();
+    const filteredWithoutSelected &#x3D; this.filterOptions().filter((value) &#x3D;&gt; !this.chips().includes(value));
+    return currentValue
+      ? filteredWithoutSelected.filter((value) &#x3D;&gt; value.toLowerCase().includes(currentValue))
+      : filteredWithoutSelected.slice();
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Autocomplete dropdown options filtered by input, removes all selected options from list</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="separatorKeysCodes"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>separatorKeysCodes</b></span>
+                        <a href="#separatorKeysCodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[ENTER, COMMA]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/modules/filters/autocomplete-chip-form/autocomplete-chips-form.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Keys that trigger a chip to be added</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { COMMA, ENTER } from &#x27;@angular/cdk/keycodes&#x27;;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  model,
+  OnInit,
+  output,
+  signal,
+  viewChild,
+} from &#x27;@angular/core&#x27;;
+import { FormControl, FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import {
+  MatAutocompleteModule,
+  MatAutocompleteSelectedEvent,
+  MatAutocompleteTrigger,
+} from &#x27;@angular/material/autocomplete&#x27;;
+import { MatCheckboxChange, MatCheckboxModule } from &#x27;@angular/material/checkbox&#x27;;
+import { MatChipInputEvent, MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+
+/**
+ * Autocomplete chips form component for filters
+ */
+@Component({
+  selector: &#x27;ccf-autocomplete-chips-form&#x27;,
+  imports: [
+    HraCommonModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonsModule,
+    ScrollingModule,
+    MatCheckboxModule,
+  ],
+  templateUrl: &#x27;./autocomplete-chips-form.component.html&#x27;,
+  styleUrl: &#x27;./autocomplete-chips-form.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AutocompleteChipsFormComponent implements OnInit {
+  /** Input form label */
+  readonly label &#x3D; input.required&lt;string&gt;();
+
+  /** All available dropdown options */
+  readonly filterOptions &#x3D; input.required&lt;string[]&gt;();
+
+  /** FormControl for the form */
+  readonly form &#x3D; input.required&lt;FormControl&lt;string[] | null&gt;&gt;();
+
+  /** Keys that trigger a chip to be added */
+  readonly separatorKeysCodes: number[] &#x3D; [ENTER, COMMA];
+
+  /** Current input value */
+  readonly currentInputValue &#x3D; model(&#x27;&#x27;);
+
+  /** Displayed chip options */
+  readonly chips &#x3D; signal([] as string[]);
+
+  /** View Child for the Autocomplete Trigger */
+  private readonly autoCompleteTrigger &#x3D; viewChild&lt;MatAutocompleteTrigger&gt;(&#x27;searchInput&#x27;);
+
+  /** Autocomplete dropdown options filtered by input, removes all selected options from list */
+  readonly filteredOptions &#x3D; computed(() &#x3D;&gt; {
+    const currentValue &#x3D; this.currentInputValue().toLowerCase();
+    const filteredWithoutSelected &#x3D; this.filterOptions().filter((value) &#x3D;&gt; !this.chips().includes(value));
+    return currentValue
+      ? filteredWithoutSelected.filter((value) &#x3D;&gt; value.toLowerCase().includes(currentValue))
+      : filteredWithoutSelected.slice();
+  });
+
+  /** True if no results are found for the input */
+  readonly errorState &#x3D; computed(() &#x3D;&gt; {
+    return (
+      this.currentInputValue().length &gt; 0 &amp;&amp;
+      (this.filteredOptions().length &#x3D;&#x3D;&#x3D; 0 ||
+        !this.filteredOptions().find((option) &#x3D;&gt; option.toLowerCase().includes(this.currentInputValue().toLowerCase())))
+    );
+  });
+
+  /** Emits selected options */
+  readonly selectedOptions &#x3D; output();
+
+  ngOnInit() {
+    const syncChips &#x3D; (value: string[] | null) &#x3D;&gt; {
+      if (Array.isArray(value)) {
+        this.chips.set(value);
+      }
+    };
+    this.form().valueChanges.subscribe(syncChips);
+    syncChips(this.form().value);
+  }
+
+  /**
+   * Adds option to chip list
+   * @param event Chip input event
+   */
+  add(event: MatChipInputEvent): void {
+    if (this.errorState()) {
+      return;
+    }
+    const value &#x3D; (event.value || &#x27;&#x27;).trim();
+
+    if (value &amp;&amp; this.filteredOptions().find((option) &#x3D;&gt; option.toLowerCase() &#x3D;&#x3D;&#x3D; value.toLowerCase())) {
+      this.chips.update((option) &#x3D;&gt; [...option, value]);
+      this.currentInputValue.set(&#x27;&#x27;);
+      event.chipInput.clear();
+    }
+  }
+
+  /**
+   * Removes option from the chip list
+   * @param option Option name
+   */
+  remove(option: string): void {
+    this.chips.update((options) &#x3D;&gt; {
+      const updatedValue &#x3D; options.filter((o) &#x3D;&gt; o !&#x3D;&#x3D; option);
+      this.form().setValue(updatedValue);
+      return updatedValue;
+    });
+  }
+
+  /**
+   * Updates form on option select
+   * @param event Autocomplete selected event
+   */
+  optionSelected(event: MatAutocompleteSelectedEvent): void {
+    const selectedValue &#x3D; event.option.viewValue;
+    if (!this.chips().includes(selectedValue)) {
+      const updatedValue &#x3D; [...this.chips(), selectedValue];
+      this.chips.set(updatedValue);
+      this.form().setValue(updatedValue);
+    }
+    this.currentInputValue.set(&#x27;&#x27;);
+    this.selectedOptions.emit();
+    event.option.deselect();
+  }
+
+  /**
+   * Updates form on checkbox click
+   * @param event Checkbox change event
+   * @param option Option name
+   */
+  checkboxSelected(event: MatCheckboxChange, option: string): void {
+    if (event.checked) {
+      if (!this.chips().includes(option)) {
+        const updatedValue &#x3D; [...this.chips(), option];
+        this.chips.set(updatedValue);
+        this.form().setValue(updatedValue);
+        this.selectedOptions.emit();
+      }
+    } else {
+      this.remove(option);
+    }
+    this.currentInputValue.set(&#x27;&#x27;);
+  }
+
+  /** Closes the Autocomplete panel when user presses the escape button */
+  closeAutocomplete(event: KeyboardEvent) {
+    if (event.key &#x3D;&#x3D;&#x3D; &#x27;Escape&#x27;) {
+      this.autoCompleteTrigger()?.closePanel();
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-form-field
+  hraFeature&#x3D;&quot;chips&quot;
+  [class.visible]&#x3D;&quot;chips().length &gt; 0&quot;
+  [class.error]&#x3D;&quot;errorState()&quot;
+  subscriptSizing&#x3D;&quot;dynamic&quot;
+&gt;
+  &lt;div class&#x3D;&quot;chips-area&quot;&gt;
+    &lt;mat-chip-grid #chipGrid aria-label&#x3D;&quot;Option selection&quot; [formControl]&#x3D;&quot;form()&quot;&gt;
+      @for (option of chips(); track option) {
+        &lt;mat-chip-row [hraFeature]&#x3D;&quot;option | slugify&quot; (removed)&#x3D;&quot;remove(option)&quot;&gt;
+          &lt;span hraFeature&#x3D;&quot;label&quot; hraClickEvent&gt;{{ option }}&lt;/span&gt;
+          &lt;button hraFeature&#x3D;&quot;remove&quot; hraClickEvent matChipRemove [attr.aria-label]&#x3D;&quot;&#x27;remove &#x27; + option&quot;&gt;
+            &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        &lt;/mat-chip-row&gt;
+      }
+    &lt;/mat-chip-grid&gt;
+    @if (chips().length &gt; 0) {
+      &lt;button hraFeature&#x3D;&quot;clear&quot; hraClickEvent mat-icon-button (click)&#x3D;&quot;chips.set([])&quot;&gt;
+        &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    }
+  &lt;/div&gt;
+  &lt;mat-icon matPrefix class&#x3D;&quot;search-icon&quot;&gt;search&lt;/mat-icon&gt;
+  &lt;mat-label&gt;{{ label() }}&lt;/mat-label&gt;
+  &lt;div hraFeature&#x3D;&quot;search&quot; class&#x3D;&quot;search-container&quot;&gt;
+    &lt;input
+      hraClickEvent
+      placeholder&#x3D;&quot;Search&quot;
+      class&#x3D;&quot;search-input&quot;
+      #searchInput&#x3D;&quot;matAutocompleteTrigger&quot;
+      [(ngModel)]&#x3D;&quot;currentInputValue&quot;
+      [matChipInputFor]&#x3D;&quot;chipGrid&quot;
+      [matAutocomplete]&#x3D;&quot;auto&quot;
+      [matChipInputSeparatorKeyCodes]&#x3D;&quot;separatorKeysCodes&quot;
+      (matChipInputTokenEnd)&#x3D;&quot;add($event)&quot;
+      (keydown)&#x3D;&quot;closeAutocomplete($event)&quot;
+    /&gt;
+    @if (errorState()) {
+      &lt;mat-icon class&#x3D;&quot;error-icon&quot; svgIcon&#x3D;&quot;error&quot;&gt;&lt;/mat-icon&gt;
+    }
+  &lt;/div&gt;
+  &lt;mat-autocomplete #auto&#x3D;&quot;matAutocomplete&quot; (optionSelected)&#x3D;&quot;optionSelected($event)&quot;&gt;
+    &lt;ng-scrollbar&gt;
+      @for (option of filteredOptions(); track option) {
+        &lt;div [hraFeature]&#x3D;&quot;option | slugify&quot; class&#x3D;&quot;autocomplete-option&quot;&gt;
+          &lt;mat-checkbox
+            hraFeature&#x3D;&quot;checkbox&quot;
+            hraClickEvent
+            class&#x3D;&quot;autocomplete-checkbox&quot;
+            (change)&#x3D;&quot;checkboxSelected($event, option); auto.showPanel &#x3D; false&quot;
+            [checked]&#x3D;&quot;chips().includes(option)&quot;
+          &gt;&lt;/mat-checkbox&gt;
+          &lt;mat-option hraFeature&#x3D;&quot;label&quot; hraClickEvent [value]&#x3D;&quot;option&quot;&gt;{{ option }}&lt;/mat-option&gt;
+        &lt;/div&gt;
+      }
+    &lt;/ng-scrollbar&gt;
+  &lt;/mat-autocomplete&gt;
+&lt;/mat-form-field&gt;
+
+@if (errorState()) {
+  &lt;mat-error&gt;No matches found&lt;/mat-error&gt;
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-form-field  hraFeature="chips"  [class.visible]="chips().length > 0"  [class.error]="errorState()"  subscriptSizing="dynamic">  <div class="chips-area">    <mat-chip-grid #chipGrid aria-label="Option selection" [formControl]="form()">      @for (option of chips(); track option) {        <mat-chip-row [hraFeature]="option | slugify" (removed)="remove(option)">          <span hraFeature="label" hraClickEvent>{{ option }}</span>          <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="\'remove \' + option">            <mat-icon>close</mat-icon>          </button>        </mat-chip-row>      }    </mat-chip-grid>    @if (chips().length > 0) {      <button hraFeature="clear" hraClickEvent mat-icon-button (click)="chips.set([])">        <mat-icon>delete</mat-icon>      </button>    }  </div>  <mat-icon matPrefix class="search-icon">search</mat-icon>  <mat-label>{{ label() }}</mat-label>  <div hraFeature="search" class="search-container">    <input      hraClickEvent      placeholder="Search"      class="search-input"      #searchInput="matAutocompleteTrigger"      [(ngModel)]="currentInputValue"      [matChipInputFor]="chipGrid"      [matAutocomplete]="auto"      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"      (matChipInputTokenEnd)="add($event)"      (keydown)="closeAutocomplete($event)"    />    @if (errorState()) {      <mat-icon class="error-icon" svgIcon="error"></mat-icon>    }  </div>  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">    <ng-scrollbar>      @for (option of filteredOptions(); track option) {        <div [hraFeature]="option | slugify" class="autocomplete-option">          <mat-checkbox            hraFeature="checkbox"            hraClickEvent            class="autocomplete-checkbox"            (change)="checkboxSelected($event, option); auto.showPanel = false"            [checked]="chips().includes(option)"          ></mat-checkbox>          <mat-option hraFeature="label" hraClickEvent [value]="option">{{ option }}</mat-option>        </div>      }    </ng-scrollbar>  </mat-autocomplete></mat-form-field>@if (errorState()) {  <mat-error>No matches found</mat-error>}</div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AutocompleteChipsFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AutocompleteChipsFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

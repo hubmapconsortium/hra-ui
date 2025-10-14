@@ -1,0 +1,842 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ftu-ui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ftu-ui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FtuComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/ftu-page/ftu.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Main FTU page</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ftu-ftu-page</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>BiomarkerDetailsComponent</code>
+                            <code>FullscreenContainerComponent</code>
+                            <code>MedicalIllustrationBehaviorComponent</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./ftu.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./ftu.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#fullscreentabIndex" >fullscreentabIndex</a>
+                            </li>
+                            <li>
+                                <a href="#isFullscreen" >isFullscreen</a>
+                            </li>
+                            <li>
+                                <a href="#sourceListTemplate" >sourceListTemplate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closefullscreen" >closefullscreen</a>
+                            </li>
+                            <li>
+                                <a href="#setSourceList" >setSourceList</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:60</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Set the illustration from the id query parameter</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closefullscreen"></a>
+                    <span class="name">
+                        <span ><b>closefullscreen</b></span>
+                        <a href="#closefullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closefullscreen()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Closes the fullscreen mode</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setSourceList"></a>
+                    <span class="name">
+                        <span ><b>setSourceList</b></span>
+                        <a href="#setSourceList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setSourceList(ref: TemplateRef<>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sets the source list template</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ref</td>
+                                            <td>
+                                                        <code>TemplateRef&lt;&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Template ref to source list</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fullscreentabIndex"></a>
+                    <span class="name">
+                        <span ><b>fullscreentabIndex</b></span>
+                        <a href="#fullscreentabIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fullscreenService.fullscreentabIndex</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fullscreentab index of ftu component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFullscreen"></a>
+                    <span class="name">
+                        <span ><b>isFullscreen</b></span>
+                        <a href="#isFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fullscreenService.isFullscreen</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines whether fullscreen mode is on or off</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sourceListTemplate"></a>
+                    <span class="name">
+                        <span ><b>sourceListTemplate</b></span>
+                        <a href="#sourceListTemplate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;&gt; | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Source list template of ftu component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ChangeDetectionStrategy, Component, inject, TemplateRef } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { dispatch, injectDestroy$ } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import {
+  BiomarkerDetailsComponent,
+  MedicalIllustrationBehaviorComponent,
+} from &#x27;@hra-ui/ftu-ui-components/src/lib/behavioral&#x27;;
+import { FullscreenContainerComponent } from &#x27;@hra-ui/ftu-ui-components/src/lib/molecules&#x27;;
+import { ActiveFtuActions } from &#x27;@hra-ui/state&#x27;;
+import { takeUntil } from &#x27;rxjs&#x27;;
+import { FtuFullScreenService } from &#x27;@hra-ui/ftu-ui-components&#x27;;
+
+/** Main FTU page */
+@Component({
+  selector: &#x27;ftu-ftu-page&#x27;,
+  imports: [
+    CommonModule,
+    BiomarkerDetailsComponent,
+    FullscreenContainerComponent,
+    MedicalIllustrationBehaviorComponent,
+  ],
+  templateUrl: &#x27;./ftu.component.html&#x27;,
+  styleUrls: [&#x27;./ftu.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FtuComponent {
+  /**
+   * Fullscreen service of ftu component
+   */
+  private readonly fullscreenService &#x3D; inject(FtuFullScreenService);
+
+  /**
+   * Determines whether fullscreen mode is on or off
+   */
+  isFullscreen &#x3D; this.fullscreenService.isFullscreen;
+  /**
+   * Fullscreentab index of ftu component
+   */
+  fullscreentabIndex &#x3D; this.fullscreenService.fullscreentabIndex;
+
+  /**
+   * Source list template of ftu component
+   */
+  sourceListTemplate: TemplateRef&lt;unknown&gt; | null &#x3D; null;
+
+  /**
+   * Closes the fullscreen mode
+   */
+  closefullscreen() {
+    this.fullscreenService.isFullscreen.set(false);
+  }
+
+  /**
+   * Sets the source list template
+   * @param ref Template ref to source list
+   */
+  setSourceList(ref: TemplateRef&lt;unknown&gt;) {
+    this.sourceListTemplate &#x3D; ref;
+  }
+
+  /** Set the illustration from the id query parameter */
+  constructor() {
+    const queryParams$ &#x3D; inject(ActivatedRoute).queryParams.pipe(takeUntil(injectDestroy$()));
+    const setUriFromIri &#x3D; dispatch(ActiveFtuActions.Load);
+    queryParams$.subscribe((queryParams) &#x3D;&gt; setUriFromIri(queryParams[&#x27;id&#x27;]));
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ftu-fullscreen-container
+  class&#x3D;&quot;content-container&quot;
+  [fullscreen]&#x3D;&quot;isFullscreen()&quot;
+  [(fullscreentabIndex)]&#x3D;&quot;fullscreentabIndex&quot;
+  (closeFullscreen)&#x3D;&quot;closefullscreen()&quot;
+  [illustrationTemplate]&#x3D;&quot;illustration&quot;
+  [biomarkerTemplate]&#x3D;&quot;biomarker&quot;
+  [sourceListTemplate]&#x3D;&quot;sourceListTemplate&quot;
+&gt;
+  &lt;ng-template #illustration&gt;
+    &lt;div class&#x3D;&quot;left-side&quot;&gt;
+      &lt;ftu-medical-illustration-behavior
+        [(isFullscreen)]&#x3D;&quot;isFullscreen&quot;
+        (isFullscreenChange)&#x3D;&quot;fullscreentabIndex.set(0)&quot;
+        class&#x3D;&quot;illustration&quot;
+      &gt;&lt;/ftu-medical-illustration-behavior&gt;
+    &lt;/div&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template #biomarker&gt;
+    &lt;div class&#x3D;&quot;fullscreen-content-container&quot;&gt;
+      &lt;ftu-biomarker-details
+        (isBiomarkerfullscreenChange)&#x3D;&quot;fullscreentabIndex.set(2)&quot;
+        class&#x3D;&quot;illustration-details&quot;
+        (sourceListTemplate)&#x3D;&quot;setSourceList($event)&quot;
+      &gt;
+      &lt;/ftu-biomarker-details&gt;
+    &lt;/div&gt;
+  &lt;/ng-template&gt;
+&lt;/ftu-fullscreen-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./ftu.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-width: 59rem;
+  height: 100%;
+
+  .fullscreen-content-container {
+    position: relative;
+  }
+
+  ::ng-deep .mat-mdc-tab-body-wrapper {
+    height: 100%;
+  }
+
+  .content-container {
+    display: flex;
+    height: 100%;
+
+    .left-side {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      overflow: hidden;
+      height: 100%;
+
+      ftu-medical-illustration-behavior {
+        height: calc(100% - 17rem);
+
+        @media (min-width: 1440px) {
+          height: calc(100% - 9.5rem);
+        }
+
+        @media (min-width: 1820px) {
+          height: calc(100% - 5rem);
+        }
+      }
+
+      ::ng-deep ftu-interactive-svg {
+        display: flex;
+        height: calc(100% - 4.1rem);
+        overflow: hidden;
+      }
+    }
+
+    .fullscreen-content-container {
+      &amp;,
+      .illustration-details {
+        height: 100%;
+        z-index: 1;
+      }
+    }
+
+    &amp;:has(ftu-biomarker-details.no-data),
+    &amp;:has(ftu-biomarker-details.no-data-sources) {
+      .left-side {
+        flex: 3.5;
+      }
+
+      .fullscreen-content-container {
+        flex: 1;
+      }
+    }
+  }
+
+  .fullscreen-on::ng-deep {
+    ftu-biomarker-details {
+      grid-template-columns: 0.5fr 0.5fr 1fr;
+
+      ftu-source-list {
+        width: unset !important;
+
+        ftu-label-box {
+          width: auto;
+        }
+      }
+    }
+
+    ftu-label-box.table-header {
+      width: auto;
+    }
+
+    ftu-biomarker-table {
+      max-width: none;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ftu-fullscreen-container  class="content-container"  [fullscreen]="isFullscreen()"  [(fullscreentabIndex)]="fullscreentabIndex"  (closeFullscreen)="closefullscreen()"  [illustrationTemplate]="illustration"  [biomarkerTemplate]="biomarker"  [sourceListTemplate]="sourceListTemplate">  <ng-template #illustration>    <div class="left-side">      <ftu-medical-illustration-behavior        [(isFullscreen)]="isFullscreen"        (isFullscreenChange)="fullscreentabIndex.set(0)"        class="illustration"      ></ftu-medical-illustration-behavior>    </div>  </ng-template>  <ng-template #biomarker>    <div class="fullscreen-content-container">      <ftu-biomarker-details        (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"        class="illustration-details"        (sourceListTemplate)="setSourceList($event)"      >      </ftu-biomarker-details>    </div>  </ng-template></ftu-fullscreen-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ftu-ui-root'},{'name': 'FtuComponent', 'selector': 'ftu-ftu-page'},{'name': 'LandingComponent', 'selector': 'ftu-landing'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FtuComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FtuComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

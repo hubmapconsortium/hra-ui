@@ -1,0 +1,1230 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-shared</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-shared</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  FilterParams</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/services/data-source/api-endpoint.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Filter parameter</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#age" 
+>
+                                            age
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#biomarkerTerms" 
+>
+                                            biomarkerTerms
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#bmi" 
+>
+                                            bmi
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#cellTypeTerms" 
+>
+                                            cellTypeTerms
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#consortiums" 
+>
+                                            consortiums
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#ontologyTerms" 
+>
+                                            ontologyTerms
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#providers" 
+>
+                                            providers
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#sex" 
+>
+                                            sex
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#spatial" 
+>
+                                            spatial
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#technologies" 
+>
+                                            technologies
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="age"></a>
+                                        <span class="name "><b>age</b>
+                                            <a href="#age">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>age:     <code>MinMax</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>MinMax</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Age range</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="biomarkerTerms"></a>
+                                        <span class="name "><b>biomarkerTerms</b>
+                                            <a href="#biomarkerTerms">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>biomarkerTerms:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Biomarkers</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="bmi"></a>
+                                        <span class="name "><b>bmi</b>
+                                            <a href="#bmi">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>bmi:     <code>MinMax</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>MinMax</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Bmi range</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="cellTypeTerms"></a>
+                                        <span class="name "><b>cellTypeTerms</b>
+                                            <a href="#cellTypeTerms">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>cellTypeTerms:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Cell types</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="consortiums"></a>
+                                        <span class="name "><b>consortiums</b>
+                                            <a href="#consortiums">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>consortiums:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Consortiums</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="ontologyTerms"></a>
+                                        <span class="name "><b>ontologyTerms</b>
+                                            <a href="#ontologyTerms">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>ontologyTerms:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Ontology terms</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="providers"></a>
+                                        <span class="name "><b>providers</b>
+                                            <a href="#providers">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>providers:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Providers</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="sex"></a>
+                                        <span class="name "><b>sex</b>
+                                            <a href="#sex">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>sex:     <code>&quot;both&quot; | &quot;female&quot; | &quot;male&quot;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>&quot;both&quot; | &quot;female&quot; | &quot;male&quot;</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Donor sex</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="spatial"></a>
+                                        <span class="name "><b>spatial</b>
+                                            <a href="#spatial">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>spatial:     <code>SpatialSearch[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>SpatialSearch[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Spatial positions</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="technologies"></a>
+                                        <span class="name "><b>technologies</b>
+                                            <a href="#technologies">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>technologies:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Technologies</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
+import {
+  AggregateCount,
+  DatabaseStatus,
+  Filter,
+  MinMax,
+  OntologyTree,
+  SpatialEntity,
+  SpatialSceneNode,
+  SpatialSearch,
+  TissueBlock,
+  V1Service,
+} from &#x27;@hra-api/ng-client&#x27;;
+import { Matrix4 } from &#x27;@math.gl/core&#x27;;
+import { Observable, of, Subject } from &#x27;rxjs&#x27;;
+import {
+  debounceTime,
+  delay,
+  distinctUntilChanged,
+  endWith,
+  filter as rxjsFilter,
+  ignoreElements,
+  map,
+  repeat,
+  shareReplay,
+  switchMap,
+  take,
+  tap,
+} from &#x27;rxjs/operators&#x27;;
+import { Cacheable } from &#x27;ts-cacheable&#x27;;
+import { GlobalConfigState } from &#x27;../../config/global-config.state&#x27;;
+import { DataSource } from &#x27;./data-source&#x27;;
+
+/** Api enpoint options */
+export interface ApiEndpointDataSourceOptions {
+  /** Endpoint url */
+  remoteApiEndpoint: string;
+  /** Api token */
+  token?: string;
+  /** Data sources to include */
+  dataSources?: string[];
+  /** Data filters */
+  filter?: Filter;
+}
+
+// Not exported from ts-cacheable!?
+/** Cachable config */
+type IObservableCacheConfig &#x3D; NonNullable&lt;Parameters&lt;typeof Cacheable&gt;[0]&gt;;
+
+/** Request method callback */
+type RequestMethod&lt;P, T&gt; &#x3D; (params: P) &#x3D;&gt; Observable&lt;T&gt;;
+/** Data reviver callback */
+type DataReviver&lt;T, U&gt; &#x3D; (data: T) &#x3D;&gt; U;
+
+/** Default request parameters */
+interface DefaultParams {
+  /** Api token */
+  token?: string;
+}
+
+/** Filter parameter */
+interface FilterParams {
+  /** Age range */
+  age?: MinMax;
+  /** Bmi range */
+  bmi?: MinMax;
+  /** Ontology terms */
+  ontologyTerms?: string[];
+  /** Cell types */
+  cellTypeTerms?: string[];
+  /** Biomarkers */
+  biomarkerTerms?: string[];
+  /** Consortiums */
+  consortiums?: string[];
+  /** Providers */
+  providers?: string[];
+  /** Donor sex */
+  sex?: &#x27;both&#x27; | &#x27;female&#x27; | &#x27;male&#x27;;
+  /** Technologies */
+  technologies?: string[];
+  /** Spatial positions */
+  spatial?: SpatialSearch[];
+}
+
+/** Subject used to flush caches */
+const buster$ &#x3D; new Subject&lt;unknown&gt;();
+
+/** Basic cache config */
+const CACHE_CONFIG_NO_PARAMS: IObservableCacheConfig &#x3D; {
+  cacheBusterObserver: buster$,
+};
+
+/** Cache config */
+const CACHE_CONFIG_PARAMS: IObservableCacheConfig &#x3D; {
+  cacheBusterObserver: buster$,
+  maxCacheCount: 4,
+};
+
+/**
+ * Helper to cast values to a specific type
+ *
+ * @returns The identity function
+ */
+function cast&lt;T&gt;(): (data: unknown) &#x3D;&gt; T {
+  return (data) &#x3D;&gt; data as T;
+}
+
+/**
+ * Converts a two element tuple into a MinMax object. Also clamps the range to [&#x60;low&#x60;, &#x60;high&#x60;]
+ *
+ * @param range Range to convert into a MinMax object
+ * @param low Minimum value
+ * @param high Maximum value
+ * @returns A MinMax object
+ */
+function rangeToMinMax(range: number[] | undefined, low: number, high: number): MinMax | undefined {
+  return range
+    ? { min: range[0] &gt; low ? range[0] : undefined, max: range[1] &lt; high ? range[1] : undefined }
+    : undefined;
+}
+
+/**
+ * Reviver for spatial scene nodes
+ *
+ * @param nodes Raw nodes
+ * @returns Revived nodes
+ */
+function spatialSceneNodeReviver(nodes: SpatialSceneNode[]): SpatialSceneNode[] {
+  return nodes.map((node) &#x3D;&gt; ({
+    ...node,
+    transformMatrix: new Matrix4(node.transformMatrix ?? []),
+  }));
+}
+
+/**
+ * Converts a filter into request parameters
+ *
+ * @param filter Filter object
+ * @returns Filter parameters
+ */
+function filterToParams(filter?: Filter): FilterParams {
+  return {
+    age: rangeToMinMax(filter?.ageRange, 1, 110),
+    bmi: rangeToMinMax(filter?.bmiRange, 13, 83),
+    sex: filter?.sex?.toLowerCase() as FilterParams[&#x27;sex&#x27;],
+    ontologyTerms: filter?.ontologyTerms,
+    cellTypeTerms: filter?.cellTypeTerms,
+    biomarkerTerms: filter?.biomarkerTerms,
+    consortiums: filter?.consortiums,
+    providers: filter?.tmc,
+    technologies: filter?.technologies,
+    spatial: filter?.spatialSearches,
+  };
+}
+
+/**
+ * Compare endpoint configurations
+ *
+ * @param x First set of options
+ * @param y Second set of options
+ * @returns true if the configurations are considered equal
+ */
+function compareConfig(x: ApiEndpointDataSourceOptions, y: ApiEndpointDataSourceOptions): boolean {
+  if (x.remoteApiEndpoint !&#x3D;&#x3D; y.remoteApiEndpoint || x.token !&#x3D;&#x3D; y.token) {
+    return false;
+  } else if (x.token !&#x3D;&#x3D; undefined) {
+    return true;
+  }
+  // Deep compare?
+  return x.filter &#x3D;&#x3D;&#x3D; y.filter &amp;&amp; x.dataSources &#x3D;&#x3D;&#x3D; y.dataSources;
+}
+
+/** Api endpoint data source */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class ApiEndpointDataSourceService implements DataSource {
+  /** Api service */
+  private readonly api &#x3D; inject(V1Service);
+  /** Global configuration state */
+  private readonly globalConfig: GlobalConfigState&lt;ApiEndpointDataSourceOptions&gt; &#x3D; inject(GlobalConfigState);
+  /** Api configuration */
+  private readonly config$ &#x3D; this.globalConfig.config$.pipe(
+    map(cast&lt;ApiEndpointDataSourceOptions&gt;()),
+    distinctUntilChanged(compareConfig),
+    debounceTime(10),
+    switchMap((config) &#x3D;&gt; this.getSessionToken(config)),
+    tap(() &#x3D;&gt; buster$.next(null)),
+    shareReplay(1),
+  );
+
+  /** Initializes the service */
+  constructor() {
+    this.config$.subscribe();
+  }
+
+  /**
+   * Get the database status
+   *
+   * @returns An observable of the database status
+   */
+  getDatabaseStatus(): Observable&lt;DatabaseStatus&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.dbStatus(params));
+  }
+
+  /**
+   * Get the supported provider names
+   *
+   * @returns An observable of provider names
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getProviderNames(): Observable&lt;string[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.providerNames(params));
+  }
+
+  /**
+   * Get the supported technologies
+   *
+   * @returns An observable of technologies
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getDatasetTechnologyNames(): Observable&lt;string[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.technologyNames(params));
+  }
+
+  /**
+   * Get the supported consortium names
+   *
+   * @returns An observable of consortium names
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getConsortiumNames(): Observable&lt;string[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.consortiumNames(params));
+  }
+
+  /**
+   * Get the ontology tree
+   *
+   * @returns An observable of the ontology tree
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getOntologyTreeModel(): Observable&lt;OntologyTree&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.ontologyTreeModel(params), undefined, {}, cast&lt;OntologyTree&gt;());
+  }
+
+  /**
+   * Get the cell types tree
+   *
+   * @returns An observable of the cell types tree
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getCellTypeTreeModel(): Observable&lt;OntologyTree&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.cellTypeTreeModel(params), undefined, {}, cast&lt;OntologyTree&gt;());
+  }
+
+  /**
+   * Get the biomarker type tree model.
+   *
+   * @returns An observable emitting the results.
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getBiomarkerTreeModel(): Observable&lt;OntologyTree&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.biomarkerTreeModel(params), undefined, {}, cast&lt;OntologyTree&gt;());
+  }
+
+  /**
+   * Get the supported reference organs
+   *
+   * @returns An observable of reference organs
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getReferenceOrgans(): Observable&lt;SpatialEntity[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.referenceOrgans(params), undefined, {}, cast&lt;SpatialEntity[]&gt;());
+  }
+
+  /**
+   * Get tissue blocks
+   *
+   * @param filter Data filter
+   * @returns An observable of tissue blocks
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getTissueBlockResults(filter?: Filter): Observable&lt;TissueBlock[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.tissueBlocks(params), filter, {}, cast&lt;TissueBlock[]&gt;());
+  }
+
+  /**
+   * Get aggregate counts
+   *
+   * @param filter Data filter
+   * @returns An observable of counts
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getAggregateResults(filter?: Filter): Observable&lt;AggregateCount[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.aggregateResults(params), filter);
+  }
+
+  /**
+   * Get ontology term occurences
+   *
+   * @param filter Data filter
+   * @returns An observable of ontology term occurences
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getOntologyTermOccurences(filter?: Filter): Observable&lt;Record&lt;string, number&gt;&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.ontologyTermOccurences(params), filter);
+  }
+
+  /**
+   * Get cell type occurences
+   *
+   * @param filter Data filter
+   * @returns An observable of cell type occurences
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getCellTypeTermOccurences(filter?: Filter): Observable&lt;Record&lt;string, number&gt;&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.cellTypeTermOccurences(params), filter);
+  }
+
+  /**
+   * Get biomarker occurences
+   *
+   * @param filter Data filter
+   * @returns An observable of biomarker occurences
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getBiomarkerTermOccurences(filter?: Filter): Observable&lt;Record&lt;string, number&gt;&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.biomarkerTermOccurences(params), filter);
+  }
+
+  /**
+   * Get scene nodes
+   *
+   * @param filter Data filter
+   * @returns An observable of scene nodes
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getScene(filter?: Filter): Observable&lt;SpatialSceneNode[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.scene(params), filter, {}, spatialSceneNodeReviver);
+  }
+
+  /**
+   * Get reference organ scene nodes
+   *
+   * @param organIri Organ iri
+   * @param filter Data filter
+   * @returns An observable of reference organ scene nodes
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getReferenceOrganScene(organIri: string, filter?: Filter): Observable&lt;SpatialSceneNode[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.referenceOrganScene(params), filter, { organIri });
+  }
+
+  /**
+   * Perform a api request
+   *
+   * @param method Request method
+   * @param filter Data filter
+   * @param params Request parameters
+   * @returns An observable of the request result
+   */
+  private doRequest&lt;T, P&gt;(
+    method: RequestMethod&lt;DefaultParams &amp; FilterParams &amp; P, T&gt;,
+    filter?: Filter | undefined,
+    params?: P,
+  ): Observable&lt;T&gt;;
+  /**
+   * Perform a api request
+   *
+   * @param method Request method
+   * @param filter Data filter
+   * @param params Request parameters
+   * @param reviver Data reviver
+   * @returns An observable of the request result
+   */
+  private doRequest&lt;T, P, U&gt;(
+    method: RequestMethod&lt;DefaultParams &amp; FilterParams &amp; P, T&gt;,
+    filter: Filter | undefined,
+    params: P | undefined,
+    reviver: DataReviver&lt;T, U&gt;,
+  ): Observable&lt;U&gt;;
+  /**
+   * Perform a api request
+   *
+   * @param method Request method
+   * @param filter Data filter
+   * @param params Request parameters
+   * @param reviver Data reviver
+   * @returns An observable of the request result
+   */
+  private doRequest&lt;P&gt;(
+    method: RequestMethod&lt;unknown, unknown&gt;,
+    filter: Filter | undefined,
+    params?: P,
+    reviver?: DataReviver&lt;unknown, unknown&gt;,
+  ): Observable&lt;unknown&gt; {
+    const { api, config$ } &#x3D; this;
+    const requestParams: Record&lt;string, unknown&gt; &#x3D; { ...filterToParams(filter), ...params };
+
+    return config$.pipe(
+      debounceTime(50),
+      take(1),
+      tap(({ remoteApiEndpoint, token }) &#x3D;&gt; {
+        api.configuration.basePath &#x3D; remoteApiEndpoint;
+        if (token) {
+          requestParams[&#x27;token&#x27;] &#x3D; token;
+        }
+      }),
+      switchMap(() &#x3D;&gt; method(requestParams)),
+      map((data) &#x3D;&gt; (reviver ? reviver(data) : data)),
+    );
+  }
+
+  /**
+   * Creates a session token and adds it to the config when applicable
+   *
+   * @param config Api config
+   * @returns An observable of config
+   */
+  private getSessionToken(config: ApiEndpointDataSourceOptions): Observable&lt;ApiEndpointDataSourceOptions&gt; {
+    if (config.token) {
+      return of(config);
+    }
+
+    const { remoteApiEndpoint, dataSources &#x3D; [], filter } &#x3D; config;
+    if (dataSources.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; filter &#x3D;&#x3D;&#x3D; undefined) {
+      return of(config);
+    }
+
+    const { api } &#x3D; this;
+    const sessionTokenRequest &#x3D; { dataSources, filter };
+    api.configuration.basePath &#x3D; remoteApiEndpoint;
+
+    return api.sessionToken({ sessionTokenRequest }).pipe(
+      switchMap(({ token }) &#x3D;&gt; this.ensureDatabaseReady(token)),
+      map((token) &#x3D;&gt; ({ ...config, token })),
+    );
+  }
+
+  /**
+   * Ensures the database is ready for requests
+   *
+   * @param token Api token
+   * @returns An observable that emits once the database is ready
+   */
+  private ensureDatabaseReady(token: string | undefined): Observable&lt;string | undefined&gt; {
+    const check &#x3D; () &#x3D;&gt;
+      this.api.dbStatus({ token }).pipe(
+        rxjsFilter((resp) &#x3D;&gt; resp.status !&#x3D;&#x3D; &#x27;Ready&#x27;),
+        switchMap((resp) &#x3D;&gt; of(undefined).pipe(delay(resp.checkback ?? 0))),
+      );
+
+    return of(undefined).pipe(repeat({ delay: check }), ignoreElements(), endWith(token));
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'FilterParams.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

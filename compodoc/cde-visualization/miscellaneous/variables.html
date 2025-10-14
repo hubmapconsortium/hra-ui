@@ -1,0 +1,1304 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for cde-visualization</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for cde-visualization</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#ALL_CELLS_TYPE" title="src/lib/components/histogram/histogram.component.ts" ><b>ALL_CELLS_TYPE</b>&nbsp;&nbsp;&nbsp;(src/.../histogram.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BRAND" title="src/lib/models/brand.ts" ><b>BRAND</b>&nbsp;&nbsp;&nbsp;(src/.../brand.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CdeVisualizationElement" title="src/index.ts" ><b>CdeVisualizationElement</b>&nbsp;&nbsp;&nbsp;(src/.../index.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_COLOR_MAP_KEY" title="src/lib/models/color-map.ts" ><b>DEFAULT_COLOR_MAP_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../color-map.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_COLOR_MAP_VALUE_KEY" title="src/lib/models/color-map.ts" ><b>DEFAULT_COLOR_MAP_VALUE_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../color-map.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DISTANCE_FORMAT" title="src/lib/components/node-dist-visualization/node-dist-visualization.component.ts" ><b>DISTANCE_FORMAT</b>&nbsp;&nbsp;&nbsp;(src/.../node-dist-visualization.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DYNAMIC_COLOR_RANGE" title="src/lib/components/histogram/histogram.component.ts" ><b>DYNAMIC_COLOR_RANGE</b>&nbsp;&nbsp;&nbsp;(src/.../histogram.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DYNAMIC_COLOR_RANGE" title="src/lib/components/violin/violin.component.ts" ><b>DYNAMIC_COLOR_RANGE</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DYNAMIC_COLOR_RANGE_LENGTH" title="src/lib/components/histogram/histogram.component.ts" ><b>DYNAMIC_COLOR_RANGE_LENGTH</b>&nbsp;&nbsp;&nbsp;(src/.../histogram.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DYNAMIC_COLOR_RANGE_LENGTH" title="src/lib/components/violin/violin.component.ts" ><b>DYNAMIC_COLOR_RANGE_LENGTH</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXPORT_IMAGE_HEIGHT" title="src/lib/components/histogram/histogram.component.ts" ><b>EXPORT_IMAGE_HEIGHT</b>&nbsp;&nbsp;&nbsp;(src/.../histogram.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXPORT_IMAGE_HEIGHT" title="src/lib/components/violin/violin.component.ts" ><b>EXPORT_IMAGE_HEIGHT</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXPORT_IMAGE_LEGEND_CONFIG" title="src/lib/components/histogram/histogram.component.ts" ><b>EXPORT_IMAGE_LEGEND_CONFIG</b>&nbsp;&nbsp;&nbsp;(src/.../histogram.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXPORT_IMAGE_LEGEND_CONFIG" title="src/lib/components/violin/violin.component.ts" ><b>EXPORT_IMAGE_LEGEND_CONFIG</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXPORT_IMAGE_PADDING" title="src/lib/components/histogram/histogram.component.ts" ><b>EXPORT_IMAGE_PADDING</b>&nbsp;&nbsp;&nbsp;(src/.../histogram.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXPORT_IMAGE_PADDING" title="src/lib/components/violin/violin.component.ts" ><b>EXPORT_IMAGE_PADDING</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXPORT_IMAGE_WIDTH" title="src/lib/components/histogram/histogram.component.ts" ><b>EXPORT_IMAGE_WIDTH</b>&nbsp;&nbsp;&nbsp;(src/.../histogram.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXPORT_IMAGE_WIDTH" title="src/lib/components/violin/violin.component.ts" ><b>EXPORT_IMAGE_WIDTH</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#HIDABLE_FIELDS" title="src/lib/components/metadata/metadata.component.ts" ><b>HIDABLE_FIELDS</b>&nbsp;&nbsp;&nbsp;(src/.../metadata.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#HISTOGRAM_FONTS" title="src/lib/components/histogram/histogram.component.ts" ><b>HISTOGRAM_FONTS</b>&nbsp;&nbsp;&nbsp;(src/.../histogram.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MAX_LABEL_WIDTH" title="src/lib/components/color-picker-label/color-picker-label.component.ts" ><b>MAX_LABEL_WIDTH</b>&nbsp;&nbsp;&nbsp;(src/.../color-picker-label.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MAX_VIOLIN_HEIGHT" title="src/lib/components/violin/violin.component.ts" ><b>MAX_VIOLIN_HEIGHT</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MIN_VIOLIN_HEIGHT" title="src/lib/components/violin/violin.component.ts" ><b>MIN_VIOLIN_HEIGHT</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOLTIP_POSITION_BELOW" title="src/lib/shared/tooltip-position.ts" ><b>TOOLTIP_POSITION_BELOW</b>&nbsp;&nbsp;&nbsp;(src/.../tooltip-position.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOLTIP_POSITION_COLOR_PICKER_LABEL" title="src/lib/shared/tooltip-position.ts" ><b>TOOLTIP_POSITION_COLOR_PICKER_LABEL</b>&nbsp;&nbsp;&nbsp;(src/.../tooltip-position.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOLTIP_POSITION_LEFT_SIDE" title="src/lib/shared/tooltip-position.ts" ><b>TOOLTIP_POSITION_LEFT_SIDE</b>&nbsp;&nbsp;&nbsp;(src/.../tooltip-position.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOLTIP_POSITION_RIGHT_SIDE" title="src/lib/shared/tooltip-position.ts" ><b>TOOLTIP_POSITION_RIGHT_SIDE</b>&nbsp;&nbsp;&nbsp;(src/.../tooltip-position.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VIOLIN_FONTS" title="src/lib/components/violin/violin.component.ts" ><b>VIOLIN_FONTS</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VIOLIN_HEIGHT_OFFSET" title="src/lib/components/violin/violin.component.ts" ><b>VIOLIN_HEIGHT_OFFSET</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VIOLIN_WIDTH_OFFSET" title="src/lib/components/violin/violin.component.ts" ><b>VIOLIN_WIDTH_OFFSET</b>&nbsp;&nbsp;&nbsp;(src/.../violin.component.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/lib/components/histogram/histogram.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ALL_CELLS_TYPE"></a>
+                    <span class="name">
+                        <span ><b>ALL_CELLS_TYPE</b></span>
+                        <a href="#ALL_CELLS_TYPE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;All Cells&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Label for all cell types</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DYNAMIC_COLOR_RANGE"></a>
+                    <span class="name">
+                        <span ><b>DYNAMIC_COLOR_RANGE</b></span>
+                        <a href="#DYNAMIC_COLOR_RANGE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Array(DYNAMIC_COLOR_RANGE_LENGTH)
+  .fill(0)
+  .map((_value, index) &#x3D;&gt; ({ expr: &#x60;colors[${index}] || &#x27;#000&#x27;&#x60; }))</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamic color range for the histogram</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DYNAMIC_COLOR_RANGE_LENGTH"></a>
+                    <span class="name">
+                        <span ><b>DYNAMIC_COLOR_RANGE_LENGTH</b></span>
+                        <a href="#DYNAMIC_COLOR_RANGE_LENGTH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>2000</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Length of the dynamic color range</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXPORT_IMAGE_HEIGHT"></a>
+                    <span class="name">
+                        <span ><b>EXPORT_IMAGE_HEIGHT</b></span>
+                        <a href="#EXPORT_IMAGE_HEIGHT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>500</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Height of the exported image</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXPORT_IMAGE_LEGEND_CONFIG"></a>
+                    <span class="name">
+                        <span ><b>EXPORT_IMAGE_LEGEND_CONFIG</b></span>
+                        <a href="#EXPORT_IMAGE_LEGEND_CONFIG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  title: null,
+  symbolType: &#x27;circle&#x27;,
+  symbolStrokeWidth: 10,
+  labelFontSize: 14,
+  titleFontSize: 14,
+  titleLineHeight: 21,
+  titleColor: &#x27;#201E3D&#x27;,
+  titleFontWeight: 500,
+  labelFontWeight: 500,
+  labelColor: &#x27;#4B4B5E&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration for the legend in the exported image</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXPORT_IMAGE_PADDING"></a>
+                    <span class="name">
+                        <span ><b>EXPORT_IMAGE_PADDING</b></span>
+                        <a href="#EXPORT_IMAGE_PADDING"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>16</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Padding for the exported image</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXPORT_IMAGE_WIDTH"></a>
+                    <span class="name">
+                        <span ><b>EXPORT_IMAGE_WIDTH</b></span>
+                        <a href="#EXPORT_IMAGE_WIDTH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1000</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Width of the exported image</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HISTOGRAM_FONTS"></a>
+                    <span class="name">
+                        <span ><b>HISTOGRAM_FONTS</b></span>
+                        <a href="#HISTOGRAM_FONTS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;12px Metropolis&#x27;, &#x27;14px Metropolis&#x27;]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fonts used in the histogram</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/models/brand.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BRAND"></a>
+                    <span class="name">
+                        <span ><b>BRAND</b></span>
+                        <a href="#BRAND"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>symbol</code>
+
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Brand type key. No need to initialize</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/index.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CdeVisualizationElement"></a>
+                    <span class="name">
+                        <span ><b>CdeVisualizationElement</b></span>
+                        <a href="#CdeVisualizationElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createCustomElement(&#x27;cde-visualization&#x27;, CdeVisualizationComponent, {
+  providers: [provideHttpClient(), provideAnimations(), provideDesignSystem()],
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Custom element definition for CdeVisualizationComponent</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/models/color-map.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_COLOR_MAP_KEY"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_COLOR_MAP_KEY</b></span>
+                        <a href="#DEFAULT_COLOR_MAP_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Cell Type&#x27; as ColorMapTypeKey</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Default key for the color map type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_COLOR_MAP_VALUE_KEY"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_COLOR_MAP_VALUE_KEY</b></span>
+                        <a href="#DEFAULT_COLOR_MAP_VALUE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;HEX&#x27; as ColorMapColorKey</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Default key for the color map value</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/components/node-dist-visualization/node-dist-visualization.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DISTANCE_FORMAT"></a>
+                    <span class="name">
+                        <span ><b>DISTANCE_FORMAT</b></span>
+                        <a href="#DISTANCE_FORMAT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Intl.NumberFormat(undefined, {
+  maximumFractionDigits: 2,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Number format for distances</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/components/violin/violin.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DYNAMIC_COLOR_RANGE"></a>
+                    <span class="name">
+                        <span ><b>DYNAMIC_COLOR_RANGE</b></span>
+                        <a href="#DYNAMIC_COLOR_RANGE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Array(DYNAMIC_COLOR_RANGE_LENGTH)
+  .fill(0)
+  .map((_value, index) &#x3D;&gt; ({ expr: &#x60;colors[${index}] || &#x27;#000&#x27;&#x60; }))</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamic color range for the violin</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DYNAMIC_COLOR_RANGE_LENGTH"></a>
+                    <span class="name">
+                        <span ><b>DYNAMIC_COLOR_RANGE_LENGTH</b></span>
+                        <a href="#DYNAMIC_COLOR_RANGE_LENGTH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>2000</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Length of the dynamic color range</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXPORT_IMAGE_HEIGHT"></a>
+                    <span class="name">
+                        <span ><b>EXPORT_IMAGE_HEIGHT</b></span>
+                        <a href="#EXPORT_IMAGE_HEIGHT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>40</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Height of the exported image</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXPORT_IMAGE_LEGEND_CONFIG"></a>
+                    <span class="name">
+                        <span ><b>EXPORT_IMAGE_LEGEND_CONFIG</b></span>
+                        <a href="#EXPORT_IMAGE_LEGEND_CONFIG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  title: null,
+  symbolType: &#x27;circle&#x27;,
+  symbolStrokeWidth: 10,
+  labelFontSize: 14,
+  titleFontSize: 14,
+  titleLineHeight: 21,
+  titleColor: &#x27;#201E3D&#x27;,
+  titleFontWeight: 500,
+  labelFontWeight: 500,
+  labelColor: &#x27;#4B4B5E&#x27;,
+  symbolStrokeColor: &#x27;type&#x27;,
+  symbolSize: 400,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration for the legend in the exported image</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXPORT_IMAGE_PADDING"></a>
+                    <span class="name">
+                        <span ><b>EXPORT_IMAGE_PADDING</b></span>
+                        <a href="#EXPORT_IMAGE_PADDING"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>16</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Padding for the exported image</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXPORT_IMAGE_WIDTH"></a>
+                    <span class="name">
+                        <span ><b>EXPORT_IMAGE_WIDTH</b></span>
+                        <a href="#EXPORT_IMAGE_WIDTH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1000</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Width of the exported image</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAX_VIOLIN_HEIGHT"></a>
+                    <span class="name">
+                        <span ><b>MAX_VIOLIN_HEIGHT</b></span>
+                        <a href="#MAX_VIOLIN_HEIGHT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>35</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Maximum height for individual violin plots</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MIN_VIOLIN_HEIGHT"></a>
+                    <span class="name">
+                        <span ><b>MIN_VIOLIN_HEIGHT</b></span>
+                        <a href="#MIN_VIOLIN_HEIGHT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>20</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Minimum height for individual violin plots</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VIOLIN_FONTS"></a>
+                    <span class="name">
+                        <span ><b>VIOLIN_FONTS</b></span>
+                        <a href="#VIOLIN_FONTS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;12px Metropolis&#x27;, &#x27;14px Metropolis&#x27;]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fonts used in the violin</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VIOLIN_HEIGHT_OFFSET"></a>
+                    <span class="name">
+                        <span ><b>VIOLIN_HEIGHT_OFFSET</b></span>
+                        <a href="#VIOLIN_HEIGHT_OFFSET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>76</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Height offset for individual violin plots</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VIOLIN_WIDTH_OFFSET"></a>
+                    <span class="name">
+                        <span ><b>VIOLIN_WIDTH_OFFSET</b></span>
+                        <a href="#VIOLIN_WIDTH_OFFSET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>170</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Width offset for individual violin plots</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/components/metadata/metadata.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HIDABLE_FIELDS"></a>
+                    <span class="name">
+                        <span ><b>HIDABLE_FIELDS</b></span>
+                        <a href="#HIDABLE_FIELDS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  &#x27;title&#x27;,
+  &#x27;colorMapFileName&#x27;,
+  &#x27;organ&#x27;,
+  &#x27;technology&#x27;,
+  &#x27;sex&#x27;,
+  &#x27;age&#x27;,
+  &#x27;thickness&#x27;,
+  &#x27;pixelSize&#x27;,
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of metadata fields that can be hidden</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/components/color-picker-label/color-picker-label.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAX_LABEL_WIDTH"></a>
+                    <span class="name">
+                        <span ><b>MAX_LABEL_WIDTH</b></span>
+                        <a href="#MAX_LABEL_WIDTH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>104</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Maximum cell width for the cell type label</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/shared/tooltip-position.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_POSITION_BELOW"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_POSITION_BELOW</b></span>
+                        <a href="#TOOLTIP_POSITION_BELOW"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  createPosition(&#x27;center&#x27;, &#x27;bottom&#x27;, &#x27;center&#x27;, &#x27;top&#x27;),
+  createPosition(&#x27;start&#x27;, &#x27;bottom&#x27;, &#x27;start&#x27;, &#x27;top&#x27;),
+  createPosition(&#x27;end&#x27;, &#x27;bottom&#x27;, &#x27;end&#x27;, &#x27;top&#x27;),
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip positions below.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_POSITION_COLOR_PICKER_LABEL"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_POSITION_COLOR_PICKER_LABEL</b></span>
+                        <a href="#TOOLTIP_POSITION_COLOR_PICKER_LABEL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  createPosition(&#x27;start&#x27;, &#x27;center&#x27;, &#x27;end&#x27;, &#x27;center&#x27;, -26),
+  createPosition(&#x27;end&#x27;, &#x27;center&#x27;, &#x27;start&#x27;, &#x27;center&#x27;, 4),
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip positions for color picker labels.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_POSITION_LEFT_SIDE"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_POSITION_LEFT_SIDE</b></span>
+                        <a href="#TOOLTIP_POSITION_LEFT_SIDE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  createPosition(&#x27;start&#x27;, &#x27;bottom&#x27;, &#x27;end&#x27;, &#x27;top&#x27;),
+  createPosition(&#x27;start&#x27;, &#x27;center&#x27;, &#x27;end&#x27;, &#x27;center&#x27;),
+  createPosition(&#x27;start&#x27;, &#x27;top&#x27;, &#x27;end&#x27;, &#x27;bottom&#x27;),
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip positions on the left side.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_POSITION_RIGHT_SIDE"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_POSITION_RIGHT_SIDE</b></span>
+                        <a href="#TOOLTIP_POSITION_RIGHT_SIDE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  createPosition(&#x27;end&#x27;, &#x27;top&#x27;, &#x27;start&#x27;, &#x27;top&#x27;, 0, -20),
+  createPosition(&#x27;end&#x27;, &#x27;center&#x27;, &#x27;start&#x27;, &#x27;center&#x27;),
+  createPosition(&#x27;end&#x27;, &#x27;bottom&#x27;, &#x27;start&#x27;, &#x27;bottom&#x27;),
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip positions on the right side.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

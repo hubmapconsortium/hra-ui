@@ -1,0 +1,29 @@
+{
+  "name": "@hra-ui/utils",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^20.2.1",
+    "@angular/core": "^20.2.1",
+    "@angular/platform-browser": "^20.2.1",
+    "@angular/router": "^20.2.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2022/hra-ui-utils.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/hra-ui-utils.mjs"
+    },
+    "./types": {
+      "types": "./types/index.d.ts",
+      "default": "./fesm2022/hra-ui-utils-types.mjs"
+    }
+  }
+}

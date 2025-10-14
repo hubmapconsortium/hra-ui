@@ -1,0 +1,840 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for kg-explorer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for kg-explorer</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FilterMenuComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/filter-menu/filter-menu.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Filter menu for the KG Explorer</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-filter-menu</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>ButtonsModule</code>
+                            <code>IconsModule</code>
+                            <code>MatDividerModule</code>
+                                <code><a href="../components/FilterMenuOverlayComponent.html" target="_self" >FilterMenuOverlayComponent</a></code>
+                            <code>ReactiveFormsModule</code>
+                            <code>FormsModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>ScrollingModule</code>
+                            <code>PlainTooltipDirective</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./filter-menu.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./filter-menu.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#formValues" >formValues</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#handleFilterChange" >handleFilterChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentFilters" >currentFilters</a>
+                            </li>
+                            <li>
+                                <a href="#filterCategories" >filterCategories</a>
+                            </li>
+                            <li>
+                                <a href="#formClosed" >formClosed</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formChanges" >formChanges</a>
+                            </li>
+                            <li>
+                                <a href="#toggleForm" >toggleForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentFilters"></a>
+                        <b>currentFilters</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/CurrentFilters.html" target="_self" >CurrentFilters</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/filter-menu/filter-menu.component.ts:74</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Contains current selected filter IDs</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filterCategories"></a>
+                        <b>filterCategories</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FilterOptionCategory[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/filter-menu/filter-menu.component.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>All filter categories</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formClosed"></a>
+                        <b>formClosed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/filter-menu/filter-menu.component.ts:72</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether or not the form panel is closed</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formChanges"></a>
+                        <b>formChanges</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/FilterFormValues.html" target="_self" >FilterFormValues</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/components/filter-menu/filter-menu.component.ts:89</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits form controls</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toggleForm"></a>
+                        <b>toggleForm</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/components/filter-menu/filter-menu.component.ts:87</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the form opening state is toggled</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleFilterChange"></a>
+                    <span class="name">
+                        <span ><b>handleFilterChange</b></span>
+                        <a href="#handleFilterChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleFilterChange()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/components/filter-menu/filter-menu.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emits the form controls on filter change</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup({
+    digitalObjects: new FormControl&lt;FilterOption[] | null&gt;(null),
+    releaseVersion: new FormControl&lt;FilterOption[] | null&gt;(null),
+    organs: new FormControl&lt;FilterOption[] | null&gt;(null),
+    anatomicalStructures: new FormControl&lt;FilterOption[] | null&gt;(null),
+    cellTypes: new FormControl&lt;FilterOption[] | null&gt;(null),
+    biomarkers: new FormControl&lt;FilterOption[] | null&gt;(null),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/filter-menu/filter-menu.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Filter form group</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formValues"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>formValues</b></span>
+                        <a href="#formValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;[FilterType, FormControl&lt;FilterOption[] | null&gt;][]&gt;(() &#x3D;&gt; [
+    [&#x27;digitalObjects&#x27;, this.form.controls.digitalObjects],
+    [&#x27;releaseVersion&#x27;, this.form.controls.releaseVersion],
+    [&#x27;organs&#x27;, this.form.controls.organs],
+    [&#x27;anatomicalStructures&#x27;, this.form.controls.anatomicalStructures],
+    [&#x27;cellTypes&#x27;, this.form.controls.cellTypes],
+    [&#x27;biomarkers&#x27;, this.form.controls.biomarkers],
+  ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/components/filter-menu/filter-menu.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Key value pairs for the filter form group</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input, output } from &#x27;@angular/core&#x27;;
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
+
+import { CurrentFilters } from &#x27;../../pages/main-page/main-page.component&#x27;;
+import { FilterOption, FilterOptionCategory } from &#x27;../../utils/utils&#x27;;
+import { FilterMenuOverlayComponent } from &#x27;./filter-menu-overlay/filter-menu-overlay.component&#x27;;
+
+/** Filter form values */
+export interface FilterFormValues {
+  /** Digital object form control */
+  digitalObjects: FilterOption[] | null;
+  /** Release version form control */
+  releaseVersion: FilterOption[] | null;
+  /** Organs form control */
+  organs: FilterOption[] | null;
+  /** Anatomical structures form control */
+  anatomicalStructures: FilterOption[] | null;
+  /** Cell types form control */
+  cellTypes: FilterOption[] | null;
+  /** Biomarkers form control */
+  biomarkers: FilterOption[] | null;
+}
+
+/** Filter types for the filter form */
+type FilterType &#x3D; &#x27;digitalObjects&#x27; | &#x27;releaseVersion&#x27; | &#x27;organs&#x27; | &#x27;anatomicalStructures&#x27; | &#x27;cellTypes&#x27; | &#x27;biomarkers&#x27;;
+
+/**
+ * Filter menu for the KG Explorer
+ */
+@Component({
+  selector: &#x27;hra-filter-menu&#x27;,
+  imports: [
+    HraCommonModule,
+    ButtonsModule,
+    IconsModule,
+    MatDividerModule,
+    FilterMenuOverlayComponent,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    ScrollingModule,
+    PlainTooltipDirective,
+  ],
+  templateUrl: &#x27;./filter-menu.component.html&#x27;,
+  styleUrl: &#x27;./filter-menu.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    &#x27;[class.closed]&#x27;: &#x27;formClosed()&#x27;,
+  },
+})
+export class FilterMenuComponent {
+  /** Filter form group */
+  protected readonly form &#x3D; new FormGroup({
+    digitalObjects: new FormControl&lt;FilterOption[] | null&gt;(null),
+    releaseVersion: new FormControl&lt;FilterOption[] | null&gt;(null),
+    organs: new FormControl&lt;FilterOption[] | null&gt;(null),
+    anatomicalStructures: new FormControl&lt;FilterOption[] | null&gt;(null),
+    cellTypes: new FormControl&lt;FilterOption[] | null&gt;(null),
+    biomarkers: new FormControl&lt;FilterOption[] | null&gt;(null),
+  });
+
+  /** All filter categories */
+  readonly filterCategories &#x3D; input.required&lt;FilterOptionCategory[]&gt;();
+  /** Whether or not the form panel is closed */
+  readonly formClosed &#x3D; input(false);
+  /** Contains current selected filter IDs */
+  readonly currentFilters &#x3D; input.required&lt;CurrentFilters&gt;();
+
+  /** Key value pairs for the filter form group */
+  readonly formValues &#x3D; computed&lt;[FilterType, FormControl&lt;FilterOption[] | null&gt;][]&gt;(() &#x3D;&gt; [
+    [&#x27;digitalObjects&#x27;, this.form.controls.digitalObjects],
+    [&#x27;releaseVersion&#x27;, this.form.controls.releaseVersion],
+    [&#x27;organs&#x27;, this.form.controls.organs],
+    [&#x27;anatomicalStructures&#x27;, this.form.controls.anatomicalStructures],
+    [&#x27;cellTypes&#x27;, this.form.controls.cellTypes],
+    [&#x27;biomarkers&#x27;, this.form.controls.biomarkers],
+  ]);
+
+  /** Emits when the form opening state is toggled */
+  readonly toggleForm &#x3D; output();
+  /** Emits form controls */
+  readonly formChanges &#x3D; output&lt;FilterFormValues&gt;();
+
+  /** Emits the form controls on filter change */
+  handleFilterChange() {
+    this.formChanges.emit(this.form.value as FilterFormValues);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-scrollbar&gt;
+  &lt;div hraFeature&#x3D;&quot;filters&quot; class&#x3D;&quot;drawer-header&quot;&gt;
+    &lt;hra-icon class&#x3D;&quot;filter-icon&quot; fontIcon&#x3D;&quot;filter_list&quot; /&gt;
+    &lt;span class&#x3D;&quot;drawer-title&quot;&gt;Filters&lt;/span&gt;
+    &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
+    &lt;button
+      hraFeature&#x3D;&quot;toggle&quot;
+      [hraClickEvent]&#x3D;&quot;{ opened: formClosed() }&quot;
+      hraHoverEvent
+      mat-icon-button
+      (click)&#x3D;&quot;toggleForm.emit()&quot;
+      [hraPlainTooltip]&#x3D;&quot;formClosed() ? &#x27;Expand menu&#x27; : &#x27;Collapse menu&#x27;&quot;
+      aria-label&#x3D;&quot;Open or close filters menu&quot;
+    &gt;
+      &lt;hra-icon class&#x3D;&quot;menu-icon&quot; fontIcon&#x3D;&quot;arrow_menu_close&quot; /&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;form class&#x3D;&quot;menu-content&quot; [formGroup]&#x3D;&quot;form&quot;&gt;
+    @for (value of formValues(); track $index) {
+      &lt;hra-filter-menu-overlay
+        [hraFeature]&#x3D;&quot;filterCategories()[$index].label | slugify&quot;
+        [form]&#x3D;&quot;value[1]&quot;
+        [filterOptionCategory]&#x3D;&quot;filterCategories()[$index]&quot;
+        [currentFilters]&#x3D;&quot;currentFilters()[value[0]]&quot;
+        (filterChanged)&#x3D;&quot;handleFilterChange()&quot;
+      /&gt;
+      &lt;mat-divider /&gt;
+    }
+  &lt;/form&gt;
+&lt;/ng-scrollbar&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-scrollbar>  <div hraFeature="filters" class="drawer-header">    <hra-icon class="filter-icon" fontIcon="filter_list" />    <span class="drawer-title">Filters</span>    <div class="filler"></div>    <button      hraFeature="toggle"      [hraClickEvent]="{ opened: formClosed() }"      hraHoverEvent      mat-icon-button      (click)="toggleForm.emit()"      [hraPlainTooltip]="formClosed() ? \'Expand menu\' : \'Collapse menu\'"      aria-label="Open or close filters menu"    >      <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />    </button>  </div>  <form class="menu-content" [formGroup]="form">    @for (value of formValues(); track $index) {      <hra-filter-menu-overlay        [hraFeature]="filterCategories()[$index].label | slugify"        [form]="value[1]"        [filterOptionCategory]="filterCategories()[$index]"        [currentFilters]="currentFilters()[value[0]]"        (filterChanged)="handleFilterChange()"      />      <mat-divider />    }  </form></ng-scrollbar></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FilterMenuComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FilterMenuComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

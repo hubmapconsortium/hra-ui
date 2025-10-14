@@ -1,0 +1,1372 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-rui</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-rui</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  RightSidebarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/right-sidebar/right-sidebar.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The right sidebar</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ccf-right-sidebar</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./right-sidebar.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./right-sidebar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#addedTags" >addedTags</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#allTags" >allTags</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#assignedTags" >assignedTags</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#astags" >astags</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#disableBlockAxis" >disableBlockAxis</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#metadata" >metadata</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#model" >model</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#page" >page</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#position$" >position$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#registration" >registration</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#removedTags" >removedTags</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tags" >tags</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#setDefaultPosition" >setDefaultPosition</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#registrationExpanded" >registrationExpanded</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="registrationExpanded"></a>
+                        <b>registrationExpanded</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:23</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the registration is expanded</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDefaultPosition"></a>
+                    <span class="name">
+                        <span ><b>setDefaultPosition</b></span>
+                        <a href="#setDefaultPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDefaultPosition()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Set the model default position</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addedTags"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>addedTags</b></span>
+                        <a href="#addedTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.tags().filter((tag) &#x3D;&gt; tag.type &#x3D;&#x3D;&#x3D; &#x27;added&#x27;))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Added tags</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allTags"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>allTags</b></span>
+                        <a href="#allTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>toSignal(this.astags.entitiesArray$, { initialValue: [] })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All tags</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assignedTags"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>assignedTags</b></span>
+                        <a href="#assignedTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.tags().filter((tag) &#x3D;&gt; tag.type &#x3D;&#x3D;&#x3D; &#x27;assigned&#x27;))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Assigned tags</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="astags"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>astags</b></span>
+                        <a href="#astags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AnatomicalStructureTagState)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>AS tags state</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disableBlockAxis"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>disableBlockAxis</b></span>
+                        <a href="#disableBlockAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>toSignal(this.model.disableBlockAxis$, { initialValue: false })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether tissue block axis is hidden</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="metadata"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>metadata</b></span>
+                        <a href="#metadata"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(MetadataService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Metadata modal service</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="model"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>model</b></span>
+                        <a href="#model"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ModelState)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Model state</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="page"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>page</b></span>
+                        <a href="#page"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageState)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Page state</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="position$"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>position$</b></span>
+                        <a href="#position$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.model.position$.pipe(
+    map((p) &#x3D;&gt; ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) })),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Model position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registration"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>registration</b></span>
+                        <a href="#registration"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(RegistrationState)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Registration state</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removedTags"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>removedTags</b></span>
+                        <a href="#removedTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.allTags().filter((tag) &#x3D;&gt; tag.type &#x3D;&#x3D;&#x3D; &#x27;removed&#x27;))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removed tags</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tags"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tags</b></span>
+                        <a href="#tags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>toSignal(this.astags.tags$, { initialValue: [] })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/modules/right-sidebar/right-sidebar.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Anatomical structure tags</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, inject, output } from &#x27;@angular/core&#x27;;
+import { toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { map } from &#x27;rxjs&#x27;;
+
+import { AnatomicalStructureTagState } from &#x27;../../core/store/anatomical-structure-tags/anatomical-structure-tags.state&#x27;;
+import { ModelState } from &#x27;../../core/store/model/model.state&#x27;;
+import { PageState } from &#x27;../../core/store/page/page.state&#x27;;
+import { RegistrationState } from &#x27;../../core/store/registration/registration.state&#x27;;
+import { MetadataService } from &#x27;../metadata/metadata.service&#x27;;
+
+/**
+ * The right sidebar
+ */
+@Component({
+  selector: &#x27;ccf-right-sidebar&#x27;,
+  templateUrl: &#x27;./right-sidebar.component.html&#x27;,
+  styleUrls: [&#x27;./right-sidebar.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
+})
+export class RightSidebarComponent {
+  /** Emits when the registration is expanded */
+  readonly registrationExpanded &#x3D; output&lt;boolean&gt;();
+
+  /** Model state */
+  protected readonly model &#x3D; inject(ModelState);
+  /** Registration state */
+  protected readonly registration &#x3D; inject(RegistrationState);
+  /** Page state */
+  protected readonly page &#x3D; inject(PageState);
+  /** AS tags state */
+  protected readonly astags &#x3D; inject(AnatomicalStructureTagState);
+  /** Metadata modal service */
+  protected readonly metadata &#x3D; inject(MetadataService);
+
+  /** Model position */
+  protected readonly position$ &#x3D; this.model.position$.pipe(
+    map((p) &#x3D;&gt; ({ x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) })),
+  );
+
+  /** Anatomical structure tags */
+  protected readonly tags &#x3D; toSignal(this.astags.tags$, { initialValue: [] });
+  /** All tags */
+  protected readonly allTags &#x3D; toSignal(this.astags.entitiesArray$, { initialValue: [] });
+  /** Whether tissue block axis is hidden */
+  protected readonly disableBlockAxis &#x3D; toSignal(this.model.disableBlockAxis$, { initialValue: false });
+
+  /** Added tags */
+  protected readonly addedTags &#x3D; computed(() &#x3D;&gt; this.tags().filter((tag) &#x3D;&gt; tag.type &#x3D;&#x3D;&#x3D; &#x27;added&#x27;));
+  /** Assigned tags */
+  protected readonly assignedTags &#x3D; computed(() &#x3D;&gt; this.tags().filter((tag) &#x3D;&gt; tag.type &#x3D;&#x3D;&#x3D; &#x27;assigned&#x27;));
+  /** Removed tags */
+  protected readonly removedTags &#x3D; computed(() &#x3D;&gt; this.allTags().filter((tag) &#x3D;&gt; tag.type &#x3D;&#x3D;&#x3D; &#x27;removed&#x27;));
+
+  /** Set the model default position */
+  setDefaultPosition() {
+    if (this.registration.snapshot.initialRegistration) {
+      this.registration.resetPosition();
+    } else {
+      this.model.setDefaultPosition();
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;hra-expansion-panel hraFeature&#x3D;&quot;tissue-block-settings&quot; tagline&#x3D;&quot;Tissue Block Settings&quot; class&#x3D;&quot;tissue-block-settings&quot;&gt;
+  &lt;hra-expansion-panel-actions&gt;
+    &lt;button
+      hraFeature&#x3D;&quot;toggle&quot;
+      hraClickEvent
+      mat-icon-button
+      [matMenuTriggerFor]&#x3D;&quot;menu&quot;
+      hraIconButtonSize&#x3D;&quot;large&quot;
+      aria-label&#x3D;&quot;Open the tissue block settings&#x27; action menu&quot;
+      hraPlainTooltip&#x3D;&quot;More&quot;
+    &gt;
+      &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+    &lt;/button&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #menu&#x3D;&quot;matMenu&quot; class&#x3D;&quot;settings-overlay&quot;&gt;
+      &lt;button hraFeature&#x3D;&quot;toggle-block-axes&quot; hraClickEvent mat-menu-item (click)&#x3D;&quot;model.toggleBlockAxis()&quot;&gt;
+        &lt;mat-icon&gt;{{ disableBlockAxis() ? &#x27;visibility_on&#x27; : &#x27;visibility_off&#x27; }}&lt;/mat-icon&gt;
+        {{ &#x60;${disableBlockAxis() ? &#x27;Show&#x27; : &#x27;Hide&#x27;} 3D axes&#x60; }}
+      &lt;/button&gt;
+      &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+      &lt;button
+        hraFeature&#x3D;&quot;reset-all&quot;
+        hraClickEvent
+        mat-menu-item
+        (click)&#x3D;&quot;
+          setDefaultPosition(); blocksize.refreshBlockSize(); slices.refreshSlices(); rotation.resetAllRotations()
+        &quot;
+      &gt;
+        Reset all tissue block settings
+      &lt;/button&gt;
+      &lt;button hraFeature&#x3D;&quot;reset-position&quot; hraClickEvent mat-menu-item (click)&#x3D;&quot;setDefaultPosition()&quot;&gt;
+        Reset position
+      &lt;/button&gt;
+      &lt;button hraFeature&#x3D;&quot;reset-size&quot; hraClickEvent mat-menu-item (click)&#x3D;&quot;blocksize.refreshBlockSize()&quot;&gt;
+        Reset size
+      &lt;/button&gt;
+      &lt;button hraFeature&#x3D;&quot;reset-rotation&quot; hraClickEvent mat-menu-item (click)&#x3D;&quot;rotation.resetAllRotations()&quot;&gt;
+        Reset rotation
+      &lt;/button&gt;
+    &lt;/mat-menu&gt;
+  &lt;/hra-expansion-panel-actions&gt;
+
+  &lt;hra-expansion-panel-header-content&gt;
+    &lt;hra-help-button [action]&#x3D;&quot;help&quot;&gt;&lt;/hra-help-button&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #help&#x3D;&quot;matMenu&quot;&gt;
+      &lt;a
+        hraFeature&#x3D;&quot;watch-video&quot;
+        hraClickEvent
+        mat-menu-item
+        href&#x3D;&quot;https://youtu.be/18imQj068Iw&quot;
+        target&#x3D;&quot;_blank&quot;
+        rel&#x3D;&quot;noopener noreferrer&quot;
+      &gt;
+        Watch video tutorial
+      &lt;/a&gt;
+      &lt;a
+        hraFeature&#x3D;&quot;app-guide&quot;
+        hraClickEvent
+        mat-menu-item
+        href&#x3D;&quot;https://humanatlas.io/registration-user-interface&quot;
+        target&#x3D;&quot;_blank&quot;
+        rel&#x3D;&quot;noopener noreferrer&quot;
+      &gt;
+        App guide &amp; documentation
+      &lt;/a&gt;
+      &lt;a
+        hraFeature&#x3D;&quot;sop&quot;
+        hraClickEvent
+        mat-menu-item
+        href&#x3D;&quot;https://doi.org/10.5281/zenodo.5575776&quot;
+        target&#x3D;&quot;_blank&quot;
+        rel&#x3D;&quot;noopener noreferrer&quot;
+      &gt;
+        Use standard operating procedure
+      &lt;/a&gt;
+      &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+      &lt;a
+        hraFeature&#x3D;&quot;explore-registrations&quot;
+        hraClickEvent
+        mat-menu-item
+        href&#x3D;&quot;https://apps.humanatlas.io/eui/&quot;
+        target&#x3D;&quot;_blank&quot;
+        rel&#x3D;&quot;noopener noreferrer&quot;
+      &gt;
+        Explore all registrations
+      &lt;/a&gt;
+    &lt;/mat-menu&gt;
+  &lt;/hra-expansion-panel-header-content&gt;
+
+  &lt;div hraFeature&#x3D;&quot;position&quot; class&#x3D;&quot;position&quot;&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;span class&#x3D;&quot;text title&quot;&gt;Position&lt;/span&gt;
+      &lt;span class&#x3D;&quot;units&quot;&gt;Millimeters&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div
+      hraFeature&#x3D;&quot;x&quot;
+      hraClickEvent
+      class&#x3D;&quot;x-position box&quot;
+      hraPlainTooltip&#x3D;&quot;Use mouse/keyboard to adjust block position&quot;
+    &gt;
+      &lt;span class&#x3D;&quot;position-label&quot;&gt;X&lt;/span&gt;
+      &lt;span class&#x3D;&quot;position-value&quot;&gt;{{ (position$ | async)?.x }}&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div
+      hraFeature&#x3D;&quot;y&quot;
+      hraClickEvent
+      class&#x3D;&quot;y-position box&quot;
+      hraPlainTooltip&#x3D;&quot;Use mouse/keyboard to adjust block position&quot;
+    &gt;
+      &lt;span class&#x3D;&quot;position-label&quot;&gt;Y&lt;/span&gt;
+      &lt;span class&#x3D;&quot;position-value&quot;&gt;{{ (position$ | async)?.y }}&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div
+      hraFeature&#x3D;&quot;z&quot;
+      hraClickEvent
+      class&#x3D;&quot;z-position box&quot;
+      hraPlainTooltip&#x3D;&quot;Use mouse/keyboard to adjust block position&quot;
+    &gt;
+      &lt;span class&#x3D;&quot;position-label&quot;&gt;Z&lt;/span&gt;
+      &lt;span class&#x3D;&quot;position-value&quot;&gt;{{ (position$ | async)?.z }}&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;ccf-block-size-input
+    hraFeature&#x3D;&quot;block-size&quot;
+    #blocksize
+    [blockSize]&#x3D;&quot;(model.blockSize$ | async)!&quot;
+    (blockSizeChange)&#x3D;&quot;model.setBlockSize($event)&quot;
+  &gt;
+  &lt;/ccf-block-size-input&gt;
+  &lt;ccf-rotation-slider
+    hraFeature&#x3D;&quot;rotation&quot;
+    #rotation
+    [rotation]&#x3D;&quot;$any(model.rotation$ | async)&quot;
+    (rotationChange)&#x3D;&quot;model.setRotation($event)&quot;
+  &gt;
+  &lt;/ccf-rotation-slider&gt;
+  &lt;ccf-slices-input
+    hraFeature&#x3D;&quot;slices&quot;
+    #slices
+    [slicesConfig]&#x3D;&quot;$any(model.slicesConfig$ | async)&quot;
+    (slicesConfigChange)&#x3D;&quot;model.setSlicesConfig($event)&quot;
+  &gt;
+  &lt;/ccf-slices-input&gt;
+&lt;/hra-expansion-panel&gt;
+
+&lt;hra-expansion-panel hraFeature&#x3D;&quot;AS-tags&quot; tagline&#x3D;&quot;Anatomical Structure Tags&quot; class&#x3D;&quot;as-tags&quot;&gt;
+  &lt;hra-expansion-panel-actions&gt;
+    &lt;button
+      hraFeature&#x3D;&quot;toggle&quot;
+      hraClickEvent
+      mat-icon-button
+      [matMenuTriggerFor]&#x3D;&quot;asTagsActionMenu&quot;
+      hraIconButtonSize&#x3D;&quot;large&quot;
+      aria-label&#x3D;&quot;Open the anatomical structure tags&#x27; action menu&quot;
+      hraPlainTooltip&#x3D;&quot;More&quot;
+    &gt;
+      &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+    &lt;/button&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #asTagsActionMenu&#x3D;&quot;matMenu&quot; class&#x3D;&quot;settings-overlay&quot;&gt;
+      &lt;button class&#x3D;&quot;expanded&quot; mat-menu-item [matMenuTriggerFor]&#x3D;&quot;submenu&quot;&gt;
+        Info
+        &lt;mat-icon class&#x3D;&quot;expand-arrow&quot;&gt;arrow_right&lt;/mat-icon&gt;
+      &lt;/button&gt;
+
+      &lt;mat-menu #submenu&#x3D;&quot;matMenu&quot; class&#x3D;&quot;info-submenu&quot;&gt;
+        Tags identify major anatomical components of the tissue block being registered.
+      &lt;/mat-menu&gt;
+
+      &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+
+      &lt;button hraFeature&#x3D;&quot;reset&quot; hraClickEvent mat-menu-item (click)&#x3D;&quot;astags.reset()&quot;&gt;
+        Reset all anatomical structure tags
+      &lt;/button&gt;
+    &lt;/mat-menu&gt;
+  &lt;/hra-expansion-panel-actions&gt;
+
+  &lt;div class&#x3D;&quot;as-tags-content&quot;&gt;
+    &lt;ccf-tag-search hraFeature&#x3D;&quot;tag-search&quot; [search]&#x3D;&quot;astags.searchExternal&quot; (added)&#x3D;&quot;astags.addTags($event)&quot;&gt;
+    &lt;/ccf-tag-search&gt;
+    @if (assignedTags().length &gt; 0) {
+      &lt;ccf-tag-list
+        class&#x3D;&quot;tag-list&quot;
+        label&#x3D;&quot;Automatically Detected&quot;
+        [tags]&#x3D;&quot;assignedTags()&quot;
+        (tagRemoved)&#x3D;&quot;astags.removeTag($event)&quot;
+      &gt;
+      &lt;/ccf-tag-list&gt;
+    }
+    @if (addedTags().length &gt; 0) {
+      &lt;ccf-tag-list
+        class&#x3D;&quot;tag-list&quot;
+        label&#x3D;&quot;Manually Added&quot;
+        [tags]&#x3D;&quot;addedTags()&quot;
+        (tagRemoved)&#x3D;&quot;astags.removeTag($event)&quot;
+      &gt;
+      &lt;/ccf-tag-list&gt;
+    }
+    @if (removedTags().length &gt; 0) {
+      &lt;ccf-tag-list
+        class&#x3D;&quot;tag-list&quot;
+        label&#x3D;&quot;Manually Removed&quot;
+        [tags]&#x3D;&quot;removedTags()&quot;
+        (tagRemoved)&#x3D;&quot;astags.removeTag($event)&quot;
+      &gt;
+      &lt;/ccf-tag-list&gt;
+    }
+  &lt;/div&gt;
+&lt;/hra-expansion-panel&gt;
+
+&lt;div class&#x3D;&quot;buttons&quot;&gt;
+  &lt;button
+    hraFeature&#x3D;&quot;edit-metadata&quot;
+    hraClickEvent
+    mat-button
+    hraButtonSize&#x3D;&quot;medium&quot;
+    (click)&#x3D;&quot;metadata.openModal(&#x27;edit&#x27;)&quot;
+  &gt;
+    Edit Metadata
+  &lt;/button&gt;
+
+  &lt;ccf-review-button
+    class&#x3D;&quot;review-button&quot;
+    [registrationCallbackSet]&#x3D;&quot;(page.registrationCallbackSet$ | async) ?? false&quot;
+    [displayErrors]&#x3D;&quot;(registration.displayErrors$ | async) ?? false&quot;
+    [userValid]&#x3D;&quot;(registration.valid$ | async) ?? false&quot;
+    [metaData]&#x3D;&quot;(registration.metadata$ | async) ?? []&quot;
+    (registerData)&#x3D;&quot;registration.register()&quot;
+    (enterErrorMode)&#x3D;&quot;registration.setDisplayErrors(!registration.isValid)&quot;
+  /&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./right-sidebar.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+
+  ccf-slices-input {
+    margin: 0.75rem 0 1.5rem 0;
+  }
+
+  hra-expansion-panel {
+    ::ng-deep {
+      .header &gt; .title {
+        font: vars.$label-large;
+      }
+      .content {
+        margin: 0 1rem;
+      }
+    }
+
+    &amp;.tissue-block-settings {
+      ::ng-deep {
+        .content {
+          .expansion-body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 40px 0 28px;
+          }
+        }
+      }
+    }
+
+    .position {
+      display: flex;
+      flex-direction: column;
+
+      .header {
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem 0;
+
+        .title {
+          font: vars.$label-medium;
+          color: vars.$secondary;
+        }
+
+        .units {
+          font: vars.$label-small;
+          color: vars.$primary;
+        }
+      }
+
+      .box {
+        height: 3rem;
+        width: 5rem;
+        border-radius: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 12px;
+
+        span {
+          color: vars.$on-primary-fixed;
+        }
+
+        .position-label {
+          font: vars.$label-small;
+        }
+        .position-value {
+          font: vars.$label-medium;
+        }
+      }
+
+      .x-position {
+        background-color: color-mix(in srgb, #d50000 8%, transparent);
+        margin-bottom: 0.5rem;
+      }
+
+      .y-position {
+        background-color: color-mix(in srgb, #00c853 8%, transparent);
+        margin-bottom: 0.5rem;
+      }
+
+      .z-position {
+        background-color: color-mix(in srgb, #2979ff 8%, transparent);
+      }
+    }
+  }
+
+  .tissue-block-settings {
+    border-bottom: 1px solid #acb5c3;
+  }
+
+  .as-tags {
+    flex-grow: 1;
+
+    ccf-tag-list {
+      margin-top: 1rem;
+    }
+
+    ::ng-deep .header {
+      height: 3.5rem;
+    }
+  }
+
+  .buttons {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #acb5c3;
+    margin-top: 1rem;
+    gap: 0.375rem;
+
+    ::ng-deep button {
+      font: var(--mat-sys-label-medium);
+    }
+  }
+
+  .info-button-container {
+    height: 3.75rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .review-button {
+    ::ng-deep .mat-mdc-button-disabled {
+      pointer-events: auto;
+      box-shadow: none;
+    }
+  }
+}
+
+::ng-deep .info-submenu {
+  .mat-mdc-menu-content {
+    padding: 1rem 0.75rem;
+    color: vars.$secondary;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel hraFeature="tissue-block-settings" tagline="Tissue Block Settings" class="tissue-block-settings">  <hra-expansion-panel-actions>    <button      hraFeature="toggle"      hraClickEvent      mat-icon-button      [matMenuTriggerFor]="menu"      hraIconButtonSize="large"      aria-label="Open the tissue block settings\' action menu"      hraPlainTooltip="More"    >      <mat-icon>more_vert</mat-icon>    </button>    <mat-menu hraFeature="menu" #menu="matMenu" class="settings-overlay">      <button hraFeature="toggle-block-axes" hraClickEvent mat-menu-item (click)="model.toggleBlockAxis()">        <mat-icon>{{ disableBlockAxis() ? \'visibility_on\' : \'visibility_off\' }}</mat-icon>        {{ `${disableBlockAxis() ? \'Show\' : \'Hide\'} 3D axes` }}      </button>      <mat-divider class="menu-divider"></mat-divider>      <button        hraFeature="reset-all"        hraClickEvent        mat-menu-item        (click)="          setDefaultPosition(); blocksize.refreshBlockSize(); slices.refreshSlices(); rotation.resetAllRotations()        "      >        Reset all tissue block settings      </button>      <button hraFeature="reset-position" hraClickEvent mat-menu-item (click)="setDefaultPosition()">        Reset position      </button>      <button hraFeature="reset-size" hraClickEvent mat-menu-item (click)="blocksize.refreshBlockSize()">        Reset size      </button>      <button hraFeature="reset-rotation" hraClickEvent mat-menu-item (click)="rotation.resetAllRotations()">        Reset rotation      </button>    </mat-menu>  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <hra-help-button [action]="help"></hra-help-button>    <mat-menu hraFeature="menu" #help="matMenu">      <a        hraFeature="watch-video"        hraClickEvent        mat-menu-item        href="https://youtu.be/18imQj068Iw"        target="_blank"        rel="noopener noreferrer"      >        Watch video tutorial      </a>      <a        hraFeature="app-guide"        hraClickEvent        mat-menu-item        href="https://humanatlas.io/registration-user-interface"        target="_blank"        rel="noopener noreferrer"      >        App guide & documentation      </a>      <a        hraFeature="sop"        hraClickEvent        mat-menu-item        href="https://doi.org/10.5281/zenodo.5575776"        target="_blank"        rel="noopener noreferrer"      >        Use standard operating procedure      </a>      <mat-divider class="menu-divider"></mat-divider>      <a        hraFeature="explore-registrations"        hraClickEvent        mat-menu-item        href="https://apps.humanatlas.io/eui/"        target="_blank"        rel="noopener noreferrer"      >        Explore all registrations      </a>    </mat-menu>  </hra-expansion-panel-header-content>  <div hraFeature="position" class="position">    <div class="header">      <span class="text title">Position</span>      <span class="units">Millimeters</span>    </div>    <div      hraFeature="x"      hraClickEvent      class="x-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">X</span>      <span class="position-value">{{ (position$ | async)?.x }}</span>    </div>    <div      hraFeature="y"      hraClickEvent      class="y-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">Y</span>      <span class="position-value">{{ (position$ | async)?.y }}</span>    </div>    <div      hraFeature="z"      hraClickEvent      class="z-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">Z</span>      <span class="position-value">{{ (position$ | async)?.z }}</span>    </div>  </div>  <ccf-block-size-input    hraFeature="block-size"    #blocksize    [blockSize]="(model.blockSize$ | async)!"    (blockSizeChange)="model.setBlockSize($event)"  >  </ccf-block-size-input>  <ccf-rotation-slider    hraFeature="rotation"    #rotation    [rotation]="$any(model.rotation$ | async)"    (rotationChange)="model.setRotation($event)"  >  </ccf-rotation-slider>  <ccf-slices-input    hraFeature="slices"    #slices    [slicesConfig]="$any(model.slicesConfig$ | async)"    (slicesConfigChange)="model.setSlicesConfig($event)"  >  </ccf-slices-input></hra-expansion-panel><hra-expansion-panel hraFeature="AS-tags" tagline="Anatomical Structure Tags" class="as-tags">  <hra-expansion-panel-actions>    <button      hraFeature="toggle"      hraClickEvent      mat-icon-button      [matMenuTriggerFor]="asTagsActionMenu"      hraIconButtonSize="large"      aria-label="Open the anatomical structure tags\' action menu"      hraPlainTooltip="More"    >      <mat-icon>more_vert</mat-icon>    </button>    <mat-menu hraFeature="menu" #asTagsActionMenu="matMenu" class="settings-overlay">      <button class="expanded" mat-menu-item [matMenuTriggerFor]="submenu">        Info        <mat-icon class="expand-arrow">arrow_right</mat-icon>      </button>      <mat-menu #submenu="matMenu" class="info-submenu">        Tags identify major anatomical components of the tissue block being registered.      </mat-menu>      <mat-divider class="menu-divider"></mat-divider>      <button hraFeature="reset" hraClickEvent mat-menu-item (click)="astags.reset()">        Reset all anatomical structure tags      </button>    </mat-menu>  </hra-expansion-panel-actions>  <div class="as-tags-content">    <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)">    </ccf-tag-search>    @if (assignedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Automatically Detected"        [tags]="assignedTags()"        (tagRemoved)="astags.removeTag($event)"      >      </ccf-tag-list>    }    @if (addedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Manually Added"        [tags]="addedTags()"        (tagRemoved)="astags.removeTag($event)"      >      </ccf-tag-list>    }    @if (removedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Manually Removed"        [tags]="removedTags()"        (tagRemoved)="astags.removeTag($event)"      >      </ccf-tag-list>    }  </div></hra-expansion-panel><div class="buttons">  <button    hraFeature="edit-metadata"    hraClickEvent    mat-button    hraButtonSize="medium"    (click)="metadata.openModal(\'edit\')"  >    Edit Metadata  </button>  <ccf-review-button    class="review-button"    [registrationCallbackSet]="(page.registrationCallbackSet$ | async) ?? false"    [displayErrors]="(registration.displayErrors$ | async) ?? false"    [userValid]="(registration.valid$ | async) ?? false"    [metaData]="(registration.metadata$ | async) ?? []"    (registerData)="registration.register()"    (enterErrorMode)="registration.setDisplayErrors(!registration.isValid)"  /></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'RightSidebarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RightSidebarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

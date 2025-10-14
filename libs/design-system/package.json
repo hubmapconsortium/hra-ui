@@ -1,0 +1,423 @@
+{
+  "name": "@hra-ui/design-system",
+  "version": "1.1.0",
+  "exports": {
+    "./styles/fonts": {
+      "sass": "./styles/_fonts.scss"
+    },
+    "./styles/material-icons": {
+      "sass": "./styles/_icons.scss"
+    },
+    "./styles/resets": {
+      "sass": "./styles/_resets.scss"
+    },
+    "./styles/theming": {
+      "sass": "./styles/_theming.scss"
+    },
+    "./styles/typography": {
+      "sass": "./styles/_typography.scss"
+    },
+    "./styles/themes/light": {
+      "sass": "./styles/_light-theme.scss"
+    },
+    "./styles/vars": {
+      "sass": "./styles/_vars.scss"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system.mjs"
+    },
+    "./bottom-sheet": {
+      "types": "./bottom-sheet/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-bottom-sheet.mjs"
+    },
+    "./brand": {
+      "types": "./brand/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand.mjs"
+    },
+    "./buttons": {
+      "types": "./buttons/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons.mjs"
+    },
+    "./cards": {
+      "types": "./cards/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards.mjs"
+    },
+    "./code-block": {
+      "types": "./code-block/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-code-block.mjs"
+    },
+    "./color-picker": {
+      "types": "./color-picker/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-color-picker.mjs"
+    },
+    "./content-templates": {
+      "types": "./content-templates/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates.mjs"
+    },
+    "./copyable-url-container": {
+      "types": "./copyable-url-container/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-copyable-url-container.mjs"
+    },
+    "./data-viewer": {
+      "types": "./data-viewer/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-data-viewer.mjs"
+    },
+    "./dialog": {
+      "types": "./dialog/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-dialog.mjs"
+    },
+    "./error-pages": {
+      "types": "./error-pages/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-error-pages.mjs"
+    },
+    "./expansion-panel": {
+      "types": "./expansion-panel/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-expansion-panel.mjs"
+    },
+    "./fullscreen": {
+      "types": "./fullscreen/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-fullscreen.mjs"
+    },
+    "./icons": {
+      "types": "./icons/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-icons.mjs"
+    },
+    "./indicators": {
+      "types": "./indicators/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators.mjs"
+    },
+    "./info-modal": {
+      "types": "./info-modal/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-info-modal.mjs"
+    },
+    "./input": {
+      "types": "./input/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-input.mjs"
+    },
+    "./layouts": {
+      "types": "./layouts/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-layouts.mjs"
+    },
+    "./menu": {
+      "types": "./menu/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-menu.mjs"
+    },
+    "./nav-header-buttons": {
+      "types": "./nav-header-buttons/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-nav-header-buttons.mjs"
+    },
+    "./navigation": {
+      "types": "./navigation/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation.mjs"
+    },
+    "./privacy": {
+      "types": "./privacy/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-privacy.mjs"
+    },
+    "./scrolling": {
+      "types": "./scrolling/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-scrolling.mjs"
+    },
+    "./select": {
+      "types": "./select/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-select.mjs"
+    },
+    "./slider": {
+      "types": "./slider/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-slider.mjs"
+    },
+    "./snackbar": {
+      "types": "./snackbar/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-snackbar.mjs"
+    },
+    "./table": {
+      "types": "./table/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-table.mjs"
+    },
+    "./tabs": {
+      "types": "./tabs/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-tabs.mjs"
+    },
+    "./tooltip-card": {
+      "types": "./tooltip-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-tooltip-card.mjs"
+    },
+    "./tree": {
+      "types": "./tree/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-tree.mjs"
+    },
+    "./workflow-card": {
+      "types": "./workflow-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-workflow-card.mjs"
+    },
+    "./brand/logo": {
+      "types": "./brand/logo/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-logo.mjs"
+    },
+    "./brand/mark": {
+      "types": "./brand/mark/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-mark.mjs"
+    },
+    "./brand/miscellaneous-logo": {
+      "types": "./brand/miscellaneous-logo/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-miscellaneous-logo.mjs"
+    },
+    "./brand/organ-logo": {
+      "types": "./brand/organ-logo/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-organ-logo.mjs"
+    },
+    "./brand/product-logo": {
+      "types": "./brand/product-logo/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-product-logo.mjs"
+    },
+    "./buttons/app-nav-button": {
+      "types": "./buttons/app-nav-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-app-nav-button.mjs"
+    },
+    "./buttons/breadcrumbs": {
+      "types": "./buttons/breadcrumbs/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-breadcrumbs.mjs"
+    },
+    "./buttons/button": {
+      "types": "./buttons/button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-button.mjs"
+    },
+    "./buttons/button-toggle": {
+      "types": "./buttons/button-toggle/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-button-toggle.mjs"
+    },
+    "./buttons/checkbox": {
+      "types": "./buttons/checkbox/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-checkbox.mjs"
+    },
+    "./buttons/delete-file-button": {
+      "types": "./buttons/delete-file-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-delete-file-button.mjs"
+    },
+    "./buttons/help-button": {
+      "types": "./buttons/help-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-help-button.mjs"
+    },
+    "./buttons/icon-button": {
+      "types": "./buttons/icon-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-icon-button.mjs"
+    },
+    "./buttons/navigation-category-toggle": {
+      "types": "./buttons/navigation-category-toggle/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-navigation-category-toggle.mjs"
+    },
+    "./buttons/radio-button": {
+      "types": "./buttons/radio-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-radio-button.mjs"
+    },
+    "./buttons/social-media-button": {
+      "types": "./buttons/social-media-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-social-media-button.mjs"
+    },
+    "./buttons/text-hyperlink": {
+      "types": "./buttons/text-hyperlink/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-text-hyperlink.mjs"
+    },
+    "./buttons/visual-button": {
+      "types": "./buttons/visual-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-visual-button.mjs"
+    },
+    "./cards/action-card": {
+      "types": "./cards/action-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards-action-card.mjs"
+    },
+    "./cards/count-card": {
+      "types": "./cards/count-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards-count-card.mjs"
+    },
+    "./cards/flat-card": {
+      "types": "./cards/flat-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards-flat-card.mjs"
+    },
+    "./cards/profile-card": {
+      "types": "./cards/profile-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards-profile-card.mjs"
+    },
+    "./content-templates/api-command": {
+      "types": "./content-templates/api-command/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-api-command.mjs"
+    },
+    "./content-templates/app-label": {
+      "types": "./content-templates/app-label/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
+    },
+    "./content-templates/content-page": {
+      "types": "./content-templates/content-page/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-content-page.mjs"
+    },
+    "./content-templates/flex-container": {
+      "types": "./content-templates/flex-container/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-flex-container.mjs"
+    },
+    "./content-templates/grid-container": {
+      "types": "./content-templates/grid-container/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-grid-container.mjs"
+    },
+    "./content-templates/image": {
+      "types": "./content-templates/image/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-image.mjs"
+    },
+    "./content-templates/markdown": {
+      "types": "./content-templates/markdown/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-markdown.mjs"
+    },
+    "./content-templates/page-label": {
+      "types": "./content-templates/page-label/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-page-label.mjs"
+    },
+    "./content-templates/page-section": {
+      "types": "./content-templates/page-section/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-page-section.mjs"
+    },
+    "./content-templates/resolvers": {
+      "types": "./content-templates/resolvers/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-resolvers.mjs"
+    },
+    "./content-templates/section-link": {
+      "types": "./content-templates/section-link/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-section-link.mjs"
+    },
+    "./content-templates/ui-section": {
+      "types": "./content-templates/ui-section/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-ui-section.mjs"
+    },
+    "./content-templates/versioned-data-table": {
+      "types": "./content-templates/versioned-data-table/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-versioned-data-table.mjs"
+    },
+    "./content-templates/youtube-player": {
+      "types": "./content-templates/youtube-player/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-youtube-player.mjs"
+    },
+    "./error-pages/not-found-page": {
+      "types": "./error-pages/not-found-page/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-error-pages-not-found-page.mjs"
+    },
+    "./error-pages/server-error-page": {
+      "types": "./error-pages/server-error-page/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-error-pages-server-error-page.mjs"
+    },
+    "./indicators/error-indicator": {
+      "types": "./indicators/error-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-error-indicator.mjs"
+    },
+    "./indicators/message-indicator": {
+      "types": "./indicators/message-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-message-indicator.mjs"
+    },
+    "./indicators/progress-spinner": {
+      "types": "./indicators/progress-spinner/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-progress-spinner.mjs"
+    },
+    "./indicators/results-indicator": {
+      "types": "./indicators/results-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-results-indicator.mjs"
+    },
+    "./indicators/software-status-indicator": {
+      "types": "./indicators/software-status-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-software-status-indicator.mjs"
+    },
+    "./indicators/step-indicator": {
+      "types": "./indicators/step-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-step-indicator.mjs"
+    },
+    "./layouts/table-of-contents": {
+      "types": "./layouts/table-of-contents/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-layouts-table-of-contents.mjs"
+    },
+    "./navigation/back-button-bar": {
+      "types": "./navigation/back-button-bar/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation-back-button-bar.mjs"
+    },
+    "./navigation/cta-bar": {
+      "types": "./navigation/cta-bar/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation-cta-bar.mjs"
+    },
+    "./navigation/footer": {
+      "types": "./navigation/footer/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation-footer.mjs"
+    },
+    "./navigation/header": {
+      "types": "./navigation/header/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation-header.mjs"
+    },
+    "./navigation/site-navigation": {
+      "types": "./navigation/site-navigation/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation-site-navigation.mjs"
+    },
+    "./navigation/table-of-contents": {
+      "types": "./navigation/table-of-contents/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation-table-of-contents.mjs"
+    },
+    "./privacy/consent-banner": {
+      "types": "./privacy/consent-banner/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-privacy-consent-banner.mjs"
+    },
+    "./privacy/privacy-preferences": {
+      "types": "./privacy/privacy-preferences/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-privacy-privacy-preferences.mjs"
+    },
+    "./scrolling/testing": {
+      "types": "./scrolling/testing/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-scrolling-testing.mjs"
+    },
+    "./tooltips/plain-tooltip": {
+      "types": "./tooltips/plain-tooltip/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-tooltips-plain-tooltip.mjs"
+    },
+    "./tooltips/rich-tooltip": {
+      "types": "./tooltips/rich-tooltip/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-tooltips-rich-tooltip.mjs"
+    },
+    "./indicators/message-indicator/danger-message-indicator": {
+      "types": "./indicators/message-indicator/danger-message-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-message-indicator-danger-message-indicator.mjs"
+    },
+    "./indicators/message-indicator/info-message-indicator": {
+      "types": "./indicators/message-indicator/info-message-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-message-indicator-info-message-indicator.mjs"
+    }
+  },
+  "peerDependencies": {
+    "@hra-ui/cdk": "1.1.0",
+    "ng-inline-svg-2": "^20.0.0",
+    "rxjs": "^7.8.2",
+    "@angular/common": "^20.2.1",
+    "@angular/core": "^20.2.1",
+    "@angular/material": "^20.2.0",
+    "ngx-scrollbar": "^18.0.0",
+    "@angular/router": "^20.2.1",
+    "@angular/cdk": "^20.2.0",
+    "@angular/animations": "^20.2.1",
+    "ngx-color-picker": "^20.1.1",
+    "zod": "^4.1.3",
+    "@angular/platform-browser": "^20.2.1",
+    "ngx-highlightjs": "^14.0.0",
+    "highlight.js": "^11.11.1",
+    "ngxtension": "^5.1.0",
+    "@hra-ui/common": "1.1.0",
+    "ngx-markdown": "^20.0.0",
+    "js-yaml": "^4.1.0",
+    "file-saver": "^2.0.5",
+    "papaparse": "^5.5.3",
+    "@angular/youtube-player": "^20.2.0",
+    "@angular/forms": "^20.2.1",
+    "@google/model-viewer": "4.1.0",
+    "store2": "^2.14.4"
+  },
+  "sideEffects": false,
+  "module": "fesm2022/hra-ui-design-system.mjs",
+  "typings": "index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

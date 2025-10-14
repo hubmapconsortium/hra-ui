@@ -1,0 +1,2683 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#AnatomicalDataTransformSchema" title="src/app/pages/hra-pop-visualizer/utils/models/anatomical-data.model.ts" ><b>AnatomicalDataTransformSchema</b>&nbsp;&nbsp;&nbsp;(src/.../anatomical-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AnatomicalSparqlBindingSchema" title="src/app/pages/hra-pop-visualizer/utils/models/anatomical-data.model.ts" ><b>AnatomicalSparqlBindingSchema</b>&nbsp;&nbsp;&nbsp;(src/.../anatomical-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ANCHOR_SCROLL_PADDING" title="src/app/app.component.ts" ><b>ANCHOR_SCROLL_PADDING</b>&nbsp;&nbsp;&nbsp;(src/.../app.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#API_ENDPOINTS_CONFIG" title="src/app/pages/hra-pop-visualizer/service/data.service.ts" ><b>API_ENDPOINTS_CONFIG</b>&nbsp;&nbsp;&nbsp;(src/.../data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AppCardSchema" title="src/app/pages/landing-page/types/app-cards.schema.ts" ><b>AppCardSchema</b>&nbsp;&nbsp;&nbsp;(src/.../app-cards.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AppCardsSchema" title="src/app/pages/landing-page/types/app-cards.schema.ts" ><b>AppCardsSchema</b>&nbsp;&nbsp;&nbsp;(src/.../app-cards.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AppCardsSectionSchema" title="src/app/pages/landing-page/types/app-cards.schema.ts" ><b>AppCardsSectionSchema</b>&nbsp;&nbsp;&nbsp;(src/.../app-cards.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AppCardsTabSchema" title="src/app/pages/landing-page/types/app-cards.schema.ts" ><b>AppCardsTabSchema</b>&nbsp;&nbsp;&nbsp;(src/.../app-cards.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#appRoutes" title="src/app/app.routes.ts" ><b>appRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#COMPONENT_DEFS" title="src/app/pages/us6/static-data/parsed.ts" ><b>COMPONENT_DEFS</b>&nbsp;&nbsp;&nbsp;(src/.../parsed.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ComponentDefIdSchema" title="src/app/pages/us6/types/component-defs.schema.ts" ><b>ComponentDefIdSchema</b>&nbsp;&nbsp;&nbsp;(src/.../component-defs.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ComponentDefSchema" title="src/app/pages/us6/types/component-defs.schema.ts" ><b>ComponentDefSchema</b>&nbsp;&nbsp;&nbsp;(src/.../component-defs.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ComponentDefsSchema" title="src/app/pages/us6/types/component-defs.schema.ts" ><b>ComponentDefsSchema</b>&nbsp;&nbsp;&nbsp;(src/.../component-defs.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ConfigurationSchema" title="src/app/pages/cell-population-graph/models/parameters.model.ts" ><b>ConfigurationSchema</b>&nbsp;&nbsp;&nbsp;(src/.../parameters.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DATA_TYPE_CONFIGS" title="src/app/pages/hra-pop-visualizer/utils/data-type-config.ts" ><b>DATA_TYPE_CONFIGS</b>&nbsp;&nbsp;&nbsp;(src/.../data-type-config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DatasetCellDataTransformSchema" title="src/app/pages/hra-pop-visualizer/utils/models/dataset-cell-data.model.ts" ><b>DatasetCellDataTransformSchema</b>&nbsp;&nbsp;&nbsp;(src/.../dataset-cell-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DatasetCellSparqlBindingSchema" title="src/app/pages/hra-pop-visualizer/utils/models/dataset-cell-data.model.ts" ><b>DatasetCellSparqlBindingSchema</b>&nbsp;&nbsp;&nbsp;(src/.../dataset-cell-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DatasetOptionSchema" title="src/app/pages/cell-population-graph/models/parameters.model.ts" ><b>DatasetOptionSchema</b>&nbsp;&nbsp;&nbsp;(src/.../parameters.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EMBED_TEMPLATES" title="src/app/pages/us6/static-data/parsed.ts" ><b>EMBED_TEMPLATES</b>&nbsp;&nbsp;&nbsp;(src/.../parsed.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EMPTY_DATA" title="src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts" ><b>EMPTY_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictions.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EMPTY_DATA" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>EMPTY_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EMPTY_PREDICTIONS" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>EMPTY_PREDICTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ExtractionSiteDataTransformSchema" title="src/app/pages/hra-pop-visualizer/utils/models/extraction-site-data.model.ts" ><b>ExtractionSiteDataTransformSchema</b>&nbsp;&nbsp;&nbsp;(src/.../extraction-site-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ExtractionSiteSparqlBindingSchema" title="src/app/pages/hra-pop-visualizer/utils/models/extraction-site-data.model.ts" ><b>ExtractionSiteSparqlBindingSchema</b>&nbsp;&nbsp;&nbsp;(src/.../extraction-site-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GRAPH_ATTRIBUTE_LABELS" title="src/app/pages/cell-population-graph/models/parameters.model.ts" ><b>GRAPH_ATTRIBUTE_LABELS</b>&nbsp;&nbsp;&nbsp;(src/.../parameters.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GraphAttributeSchema" title="src/app/pages/cell-population-graph/models/parameters.model.ts" ><b>GraphAttributeSchema</b>&nbsp;&nbsp;&nbsp;(src/.../parameters.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GraphSelectionStateSchema" title="src/app/pages/cell-population-graph/models/parameters.model.ts" ><b>GraphSelectionStateSchema</b>&nbsp;&nbsp;&nbsp;(src/.../parameters.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GroupOptionSchema" title="src/app/pages/cell-population-graph/models/parameters.model.ts" ><b>GroupOptionSchema</b>&nbsp;&nbsp;&nbsp;(src/.../parameters.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MAIN_CONFIG_JSON" title="src/app/pages/cell-population-graph/models/parameters.model.ts" ><b>MAIN_CONFIG_JSON</b>&nbsp;&nbsp;&nbsp;(src/.../parameters.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OrderTypeSchema" title="src/app/pages/cell-population-graph/models/parameters.model.ts" ><b>OrderTypeSchema</b>&nbsp;&nbsp;&nbsp;(src/.../parameters.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OrganAppDataSchema" title="src/app/pages/us6/types/organs.schema.ts" ><b>OrganAppDataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../organs.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ORGANS" title="src/app/pages/us6/static-data/parsed.ts" ><b>ORGANS</b>&nbsp;&nbsp;&nbsp;(src/.../parsed.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OrganSchema" title="src/app/pages/us6/types/organs.schema.ts" ><b>OrganSchema</b>&nbsp;&nbsp;&nbsp;(src/.../organs.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OrgansSchema" title="src/app/pages/us6/types/organs.schema.ts" ><b>OrgansSchema</b>&nbsp;&nbsp;&nbsp;(src/.../organs.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ParsedAnatomicalDataSchema" title="src/app/pages/hra-pop-visualizer/utils/models/anatomical-data.model.ts" ><b>ParsedAnatomicalDataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../anatomical-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ParsedDatasetCellDataSchema" title="src/app/pages/hra-pop-visualizer/utils/models/dataset-cell-data.model.ts" ><b>ParsedDatasetCellDataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../dataset-cell-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ParsedExtractionSiteDataSchema" title="src/app/pages/hra-pop-visualizer/utils/models/extraction-site-data.model.ts" ><b>ParsedExtractionSiteDataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../extraction-site-data.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PREDICTION_DATE_FORMAT" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>PREDICTION_DATE_FORMAT</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RAPIDOC_STYLES" title="src/app/pages/api/api.component.ts" ><b>RAPIDOC_STYLES</b>&nbsp;&nbsp;&nbsp;(src/.../api.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SAMPLE_FILE" title="src/app/pages/us2/tissue-origin-predictor/tissue-origin-predictor.component.ts" ><b>SAMPLE_FILE</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictor.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SAMPLE_FILE_URL" title="src/app/pages/us2/tissue-origin-predictor/tissue-origin-predictor.component.ts" ><b>SAMPLE_FILE_URL</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictor.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SAMPLE_JSON_FILE" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>SAMPLE_JSON_FILE</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SAMPLE_JSON_FILE_URL" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>SAMPLE_JSON_FILE_URL</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SAMPLE_URL_LINK" title="src/app/pages/us2/tissue-origin-predictor/tissue-origin-predictor.component.ts" ><b>SAMPLE_URL_LINK</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictor.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SCRIPT_URL" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>SCRIPT_URL</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SCRIPT_URL" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>SCRIPT_URL</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#serverIdResolver" title="src/app/resolvers/server-id/server-id-resolver.resolver.ts" ><b>serverIdResolver</b>&nbsp;&nbsp;&nbsp;(src/.../server-id-resolver.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#servers" title="src/app/constants/server.constants.ts" ><b>servers</b>&nbsp;&nbsp;&nbsp;(src/.../server.constants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SORT_OPTIONS" title="src/app/pages/hra-pop-visualizer/utils/data-type-config.ts" ><b>SORT_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../data-type-config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#STYLE_URL" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>STYLE_URL</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#STYLE_URLS" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>STYLE_URLS</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOL_DISPLAY_NAMES" title="src/app/pages/hra-pop-visualizer/utils/data-type-config.ts" ><b>TOOL_DISPLAY_NAMES</b>&nbsp;&nbsp;&nbsp;(src/.../data-type-config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOLTIP_CONTENT" title="src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictions.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOLTIP_CONTENT" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOLTIP_CONTENT" title="src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../similar-anatomical-structures-table.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TOOLTIP_CONTENT" title="src/app/pages/us2/tissue-origin-predictions/components/similar-datasets-table/similar-datasets-table.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../similar-datasets-table.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#WINDOW" title="src/app/pages/landing-page/landing-page.component.ts" ><b>WINDOW</b>&nbsp;&nbsp;&nbsp;(src/.../landing-page.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#WINDOW" title="src/app/pages/us6/web-components.component.ts" ><b>WINDOW</b>&nbsp;&nbsp;&nbsp;(src/.../web-components.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Y_AXIS_OPTIONS" title="src/app/pages/hra-pop-visualizer/utils/data-type-config.ts" ><b>Y_AXIS_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../data-type-config.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/pages/hra-pop-visualizer/utils/models/anatomical-data.model.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AnatomicalDataTransformSchema"></a>
+                    <span class="name">
+                        <span ><b>AnatomicalDataTransformSchema</b></span>
+                        <a href="#AnatomicalDataTransformSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>AnatomicalSparqlBindingSchema.transform((raw) &#x3D;&gt; ({
+  organ: raw.organ.value,
+  anatomicalStructureId: raw.as.value,
+  anatomicalStructureLabel: raw.as_label.value,
+  sex: raw.sex.value,
+  tool: raw.tool.value,
+  modality: raw.modality.value,
+  cellId: raw.cell_id.value,
+  cellLabel: raw.cell_label.value,
+  cellCount: Number(raw.cell_count.value),
+  cellPercentage: Number(raw.cell_percentage.value),
+  datasetCount: Number(raw.dataset_count.value),
+}))</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod transformation schema for converting raw SPARQL bindings to parsed format</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AnatomicalSparqlBindingSchema"></a>
+                    <span class="name">
+                        <span ><b>AnatomicalSparqlBindingSchema</b></span>
+                        <a href="#AnatomicalSparqlBindingSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  /** Organ information from SPARQL response */
+  organ: z.object({ value: z.string() }),
+  /** Anatomical structure identifier */
+  as: z.object({ value: z.string() }),
+  /** Anatomical structure label/name */
+  as_label: z.object({ value: z.string() }),
+  /** Sex information (Male/Female) */
+  sex: z.object({ value: z.string() }),
+  /** Annotation tool used */
+  tool: z.object({ value: z.string() }),
+  /** Data modality information */
+  modality: z.object({ value: z.string() }),
+  /** Cell type identifier */
+  cell_id: z.object({ value: z.string() }),
+  /** Cell type label/name */
+  cell_label: z.object({ value: z.string() }),
+  /** Cell count as string */
+  cell_count: z.object({ value: z.string() }),
+  /** Cell percentage as string */
+  cell_percentage: z.object({ value: z.string() }),
+  /** Dataset count as string */
+  dataset_count: z.object({ value: z.string() }),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod schema for validating SPARQL binding responses for anatomical data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ParsedAnatomicalDataSchema"></a>
+                    <span class="name">
+                        <span ><b>ParsedAnatomicalDataSchema</b></span>
+                        <a href="#ParsedAnatomicalDataSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  /** Organ name */
+  organ: z.string(),
+  /** Anatomical structure identifier */
+  anatomicalStructureId: z.string(),
+  /** Anatomical structure display label */
+  anatomicalStructureLabel: z.string(),
+  /** Sex designation */
+  sex: z.string(),
+  /** Annotation tool identifier */
+  tool: z.string(),
+  /** Data modality */
+  modality: z.string(),
+  /** Cell type identifier */
+  cellId: z.string(),
+  /** Cell type display label */
+  cellLabel: z.string(),
+  /** Numeric cell count */
+  cellCount: z.number(),
+  /** Numeric cell percentage */
+  cellPercentage: z.number(),
+  /** Numeric dataset count */
+  datasetCount: z.number(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod schema for parsed anatomical data structure</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ANCHOR_SCROLL_PADDING"></a>
+                    <span class="name">
+                        <span ><b>ANCHOR_SCROLL_PADDING</b></span>
+                        <a href="#ANCHOR_SCROLL_PADDING"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>24</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Padding when scrolling to an anchor in px</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/hra-pop-visualizer/service/data.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="API_ENDPOINTS_CONFIG"></a>
+                    <span class="name">
+                        <span ><b>API_ENDPOINTS_CONFIG</b></span>
+                        <a href="#API_ENDPOINTS_CONFIG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;ApiEndpointsConfig&gt;(&#x27;api.endpoints.config&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; ({
+    anatomicalUrl: &#x27;https://apps.humanatlas.io/api/grlc/hra-pop/cell_types_in_anatomical_structurescts_per_as.json&#x27;,
+    extractionSiteUrl: &#x27;https://apps.humanatlas.io/api/grlc/hra-pop/cell-types-per-extraction-site.json&#x27;,
+    datasetCellUrl: &#x27;https://apps.humanatlas.io/api/grlc/hra-pop/cell-types-per-dataset.json&#x27;,
+    extractionSiteDetailsUrl: &#x27;https://apps.humanatlas.io/api/v1/extraction-site&#x27;,
+  }),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>InjectionToken for configurable API endpoints</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/landing-page/types/app-cards.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AppCardSchema"></a>
+                    <span class="name">
+                        <span ><b>AppCardSchema</b></span>
+                        <a href="#AppCardSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  tagline: z.string(),
+  description: z.string(),
+  imagePath: z.string(),
+  logoPath: z.string(),
+  appStatus: z.optional(z.enum([&#x27;Preview&#x27;, &#x27;Alpha&#x27;, &#x27;Beta&#x27;])),
+  appUrl: z.string(),
+  documentLink: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for structure of an individual app card.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AppCardsSchema"></a>
+                    <span class="name">
+                        <span ><b>AppCardsSchema</b></span>
+                        <a href="#AppCardsSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  $schema: z.string(),
+  tabs: AppCardsTabSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for default structure of the app cards.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AppCardsSectionSchema"></a>
+                    <span class="name">
+                        <span ><b>AppCardsSectionSchema</b></span>
+                        <a href="#AppCardsSectionSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  tagline: z.string(),
+  cards: AppCardSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for structure of an app cards section.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AppCardsTabSchema"></a>
+                    <span class="name">
+                        <span ><b>AppCardsTabSchema</b></span>
+                        <a href="#AppCardsTabSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  name: z.string(),
+  sections: AppCardsSectionSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for structure of an app cards tab.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideAppConfiguration({
+      name: &#x27;apps.humanatlas.io&#x27;,
+      version: &#x27;1.0.0&#x27;,
+      url: &#x27;https://apps.humanatlas.io/&#x27;,
+    }),
+    provideAnalytics(withRouterEvents(), withErrorHandler()),
+    provideDesignSystem(),
+    provideZonelessChangeDetection(),
+    provideRouter(
+      appRoutes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ anchorScrolling: &#x27;enabled&#x27;, scrollPositionRestoration: &#x27;enabled&#x27; }),
+    ),
+  ],
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Application configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appRoutes"></a>
+                    <span class="name">
+                        <span ><b>appRoutes</b></span>
+                        <a href="#appRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Route[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;&#x27;,
+    pathMatch: &#x27;full&#x27;,
+    component: LandingPageComponent,
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://docs.humanatlas.io/apps&#x27;,
+    },
+  },
+  {
+    path: &#x27;us1&#x27;,
+    children: [
+      {
+        path: &#x27;&#x27;,
+        pathMatch: &#x27;full&#x27;,
+        component: CellPopulationPredictorComponent,
+      },
+      {
+        path: &#x27;result&#x27;,
+        component: CellPopulationPredictionsComponent,
+        resolve: {
+          data: resolveInfo&lt;CellPopulationPredictionData&gt;,
+          predictions: createPredictionsResolver(&#x27;/us1&#x27;, (data: CellPopulationPredictionData) &#x3D;&gt;
+            inject(HraPopPredictionsService).getCellPopulationPredictions(data),
+          ),
+        },
+      },
+    ],
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;User Story 1&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/user-story/1&#x27;,
+    },
+  },
+  {
+    path: &#x27;us2&#x27;,
+    children: [
+      {
+        path: &#x27;&#x27;,
+        pathMatch: &#x27;full&#x27;,
+        component: TissueOriginPredictorComponent,
+      },
+      {
+        path: &#x27;result&#x27;,
+        component: TissueOriginPredictionsComponent,
+        resolve: {
+          data: resolveInfo&lt;TissuePredictionData&gt;,
+          predictions: createPredictionsResolver(&#x27;/us2&#x27;, (data: TissuePredictionData) &#x3D;&gt;
+            inject(HraPopPredictionsService).getTissuePredictions(data),
+          ),
+        },
+      },
+    ],
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;User Story 2&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/user-story/2&#x27;,
+    },
+  },
+  {
+    path: &#x27;us6&#x27;,
+    component: WebComponentsComponent,
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;User Story 6&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/user-story/6&#x27;,
+    },
+  },
+  {
+    path: &#x27;cell-population-graphs&#x27;,
+    component: CellPopulationGraphComponent,
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;Cell Population Graphs&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/cell-population-graphs&#x27;,
+    },
+  },
+  {
+    path: &#x27;hra-pop-visualizer&#x27;,
+    component: HraPopVisualizerComponent,
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;HRApop Visualizer&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/hra-pop-visualizer&#x27;,
+    },
+  },
+  {
+    path: &#x27;api&#x27;,
+    children: [
+      {
+        path: &#x27;&#x27;,
+        pathMatch: &#x27;full&#x27;,
+        component: ApiComponent,
+        data: {
+          serverId: &#x27;prod&#x27;,
+        },
+      },
+      {
+        path: &#x27;:serverId&#x27;,
+        component: ApiComponent,
+        resolve: {
+          serverId: serverIdResolver,
+        },
+      },
+    ],
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;API&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/api&#x27;,
+    },
+  },
+  {
+    path: &#x27;500&#x27;,
+    component: ServerErrorPageComponent,
+  },
+  {
+    path: &#x27;**&#x27;,
+    component: NotFoundPageComponent,
+  },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Application routes</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us6/static-data/parsed.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="COMPONENT_DEFS"></a>
+                    <span class="name">
+                        <span ><b>COMPONENT_DEFS</b></span>
+                        <a href="#COMPONENT_DEFS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ComponentDefsSchema.parse(RAW_COMPONENT_DEFS).defs</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parsed component defs from ComponentDefs json file</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EMBED_TEMPLATES"></a>
+                    <span class="name">
+                        <span ><b>EMBED_TEMPLATES</b></span>
+                        <a href="#EMBED_TEMPLATES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;ComponentDefId, string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  [&#x27;rui&#x27; as ComponentDefId]: ruiEmbedTemplate,
+  [&#x27;eui&#x27; as ComponentDefId]: euiEmbedTemplate,
+  [&#x27;eui-organ-information&#x27; as ComponentDefId]: euiOrganInfoEmbedTemplate,
+  [&#x27;eui-3d-organ-viewer&#x27; as ComponentDefId]: eui3dOrganViewer,
+  [&#x27;ftu-ui&#x27; as ComponentDefId]: ftuUiEmbedTemplate,
+  [&#x27;ftu-ui-small&#x27; as ComponentDefId]: ftuUiSmallEmbedTemplate,
+  [&#x27;ftu-medical-illustration&#x27; as ComponentDefId]: ftuMedicalIllustrationEmbedTemplate,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Embed templates for different component defs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ORGANS"></a>
+                    <span class="name">
+                        <span ><b>ORGANS</b></span>
+                        <a href="#ORGANS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>OrgansSchema.parse(RAW_ORGANS).organs</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parsed organs from Organs json file</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us6/types/component-defs.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ComponentDefIdSchema"></a>
+                    <span class="name">
+                        <span ><b>ComponentDefIdSchema</b></span>
+                        <a href="#ComponentDefIdSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.string().brand&lt;&#x27;ComponentDefId&#x27;&gt;()</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Component definition id schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ComponentDefSchema"></a>
+                    <span class="name">
+                        <span ><b>ComponentDefSchema</b></span>
+                        <a href="#ComponentDefSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  id: ComponentDefIdSchema,
+  productTitle: z.string(),
+  webComponentName: z.string(),
+  description: z.string(),
+  previewImage: z.string(),
+  embedAs: z.enum([&#x27;inline&#x27;, &#x27;overlay&#x27;, &#x27;external&#x27;]),
+  docLink: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Component def schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ComponentDefsSchema"></a>
+                    <span class="name">
+                        <span ><b>ComponentDefsSchema</b></span>
+                        <a href="#ComponentDefsSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  $schema: z.string(),
+  defs: ComponentDefSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Component defs schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/cell-population-graph/models/parameters.model.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ConfigurationSchema"></a>
+                    <span class="name">
+                        <span ><b>ConfigurationSchema</b></span>
+                        <a href="#ConfigurationSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  label: z.string(),
+  basePath: z.string(),
+  datasets: z.array(z.string()),
+  groupTypes: z.record(z.string(), z.string()),
+  fixed: z.number().optional(),
+  colorPalette: z.array(z.string()),
+  sortAttributes: z.array(GraphAttributeSchema),
+  defaultYAxisField: GraphAttributeSchema.optional(),
+  defaultXAxisField: GraphAttributeSchema.optional(),
+  defaultGroupBy: GraphAttributeSchema.optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DatasetOptionSchema"></a>
+                    <span class="name">
+                        <span ><b>DatasetOptionSchema</b></span>
+                        <a href="#DatasetOptionSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  key: z.string(),
+  label: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dataset option schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GRAPH_ATTRIBUTE_LABELS"></a>
+                    <span class="name">
+                        <span ><b>GRAPH_ATTRIBUTE_LABELS</b></span>
+                        <a href="#GRAPH_ATTRIBUTE_LABELS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  &#x27;&#x27;: &#x27;None&#x27;,
+  cell_type: &#x27;Cell Type&#x27;,
+  dataset_id: &#x27;Dataset ID&#x27;,
+  count: &#x27;Cell Count&#x27;,
+  percentage: &#x27;Cell Proportion&#x27;,
+  order: &#x27;Order&#x27;,
+  sex: &#x27;Sex&#x27;,
+  race: &#x27;Ethnicity&#x27;,
+  age: &#x27;Age&#x27;,
+  cat: &#x27;Category&#x27;,
+  exp: &#x27;Exposure&#x27;,
+  location: &#x27;Location&#x27;,
+  laterality: &#x27;Laterality&#x27;,
+  y_pos: &#x27;Vertical Tissue Block Position&#x27;,
+  donor_id: &#x27;Donor&#x27;,
+  dataset_name: &#x27;Dataset Name&#x27;,
+  cell_type_ontology_id: &#x27;CellOntologyID&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Labels for graph attributes</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GraphAttributeSchema"></a>
+                    <span class="name">
+                        <span ><b>GraphAttributeSchema</b></span>
+                        <a href="#GraphAttributeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.enum([
+  &#x27;&#x27;,
+  &#x27;cell_type&#x27;,
+  &#x27;dataset_id&#x27;,
+  &#x27;count&#x27;,
+  &#x27;percentage&#x27;,
+  &#x27;order&#x27;,
+  &#x27;sex&#x27;,
+  &#x27;race&#x27;,
+  &#x27;age&#x27;,
+  &#x27;cat&#x27;,
+  &#x27;exp&#x27;,
+  &#x27;location&#x27;,
+  &#x27;laterality&#x27;,
+  &#x27;y_pos&#x27;,
+  &#x27;donor_id&#x27;,
+  &#x27;dataset_name&#x27;,
+  &#x27;cell_type_ontology_id&#x27;,
+])</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Graph attributes schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GraphSelectionStateSchema"></a>
+                    <span class="name">
+                        <span ><b>GraphSelectionStateSchema</b></span>
+                        <a href="#GraphSelectionStateSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  datasetSource: z.string(),
+  sortBy: z.string(),
+  orderType: OrderTypeSchema,
+  groupBy: GraphAttributeSchema,
+  yAxisField: GraphAttributeSchema,
+  xAxisField: GraphAttributeSchema,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Graph selection state schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GroupOptionSchema"></a>
+                    <span class="name">
+                        <span ><b>GroupOptionSchema</b></span>
+                        <a href="#GroupOptionSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  key: GraphAttributeSchema,
+  label: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Group option schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAIN_CONFIG_JSON"></a>
+                    <span class="name">
+                        <span ><b>MAIN_CONFIG_JSON</b></span>
+                        <a href="#MAIN_CONFIG_JSON"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;https://raw.githubusercontent.com/hubmapconsortium/tissue-bar-graphs/static/config/main.config.json&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration JSON URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OrderTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>OrderTypeSchema</b></span>
+                        <a href="#OrderTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.enum([&#x27;ascending&#x27;, &#x27;descending&#x27;])</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Order types for sorting</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/hra-pop-visualizer/utils/data-type-config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DATA_TYPE_CONFIGS"></a>
+                    <span class="name">
+                        <span ><b>DATA_TYPE_CONFIGS</b></span>
+                        <a href="#DATA_TYPE_CONFIGS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DataTypeConfig.html" target="_self" >Record&lt;DataType, DataTypeConfig&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  anatomical: {
+    key: &#x27;anatomical&#x27;,
+    label: &#x27;Anatomical Structures&#x27;,
+    xAxisOptions: [
+      {
+        value: &#x27;anatomicalStructureLabel&#x27;,
+        label: &#x27;Anatomical Structure Name&#x27;,
+        field: &#x27;anatomicalStructureLabel&#x27;,
+      },
+      {
+        value: &#x27;anatomicalStructureId&#x27;,
+        label: &#x27;Anatomical Structure ID&#x27;,
+        field: &#x27;anatomicalStructureId&#x27;,
+      },
+    ],
+    groupByField: &#x27;anatomicalStructureId&#x27;,
+  },
+  &#x27;extraction-site&#x27;: {
+    key: &#x27;extraction-site&#x27;,
+    label: &#x27;Extraction Sites&#x27;,
+    xAxisOptions: [
+      {
+        value: &#x27;extractionSiteLabel&#x27;,
+        label: &#x27;Extraction Site Name&#x27;,
+        field: &#x27;extractionSiteLabel&#x27;,
+      },
+      {
+        value: &#x27;extractionSiteId&#x27;,
+        label: &#x27;Extraction Site ID&#x27;,
+        field: &#x27;extractionSiteId&#x27;,
+      },
+    ],
+    groupByField: &#x27;extractionSiteId&#x27;,
+  },
+  dataset: {
+    key: &#x27;dataset&#x27;,
+    label: &#x27;Datasets&#x27;,
+    xAxisOptions: [
+      {
+        value: &#x27;datasetId&#x27;,
+        label: &#x27;Dataset ID&#x27;,
+        field: &#x27;datasetId&#x27;,
+      },
+      // Note: No name field available in current data model
+    ],
+    groupByField: &#x27;datasetId&#x27;,
+  },
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration objects for each supported data type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SORT_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>SORT_OPTIONS</b></span>
+                        <a href="#SORT_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SortOption.html" target="_self" >SortOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;totalCellCount&#x27;, label: &#x27;Total Cell Count&#x27; },
+  { value: &#x27;alphabetical&#x27;, label: &#x27;Alphabetical&#x27; },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sort options available for all data types</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOL_DISPLAY_NAMES"></a>
+                    <span class="name">
+                        <span ><b>TOOL_DISPLAY_NAMES</b></span>
+                        <a href="#TOOL_DISPLAY_NAMES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;string, string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  azimuth: &#x27;Azimuth&#x27;,
+  celltypist: &#x27;CellTypist&#x27;,
+  popv: &#x27;popV&#x27;,
+  sc_proteomics: &#x27;Sc-proteomics&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mapping of tool identifiers to proper display names</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Y_AXIS_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>Y_AXIS_OPTIONS</b></span>
+                        <a href="#Y_AXIS_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/YAxisOption.html" target="_self" >YAxisOption[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;cellCount&#x27;, label: &#x27;Raw Count&#x27; },
+  { value: &#x27;cellPercentage&#x27;, label: &#x27;Percentage&#x27; },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Y-axis options available for all data types</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/hra-pop-visualizer/utils/models/dataset-cell-data.model.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DatasetCellDataTransformSchema"></a>
+                    <span class="name">
+                        <span ><b>DatasetCellDataTransformSchema</b></span>
+                        <a href="#DatasetCellDataTransformSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DatasetCellSparqlBindingSchema.transform((raw) &#x3D;&gt; ({
+  organId: raw.organ_id.value,
+  organ: raw.organ.value,
+  datasetId: raw.dataset.value,
+  sex: raw.sex.value,
+  tool: raw.tool.value,
+  modality: raw.modality.value,
+  cellId: raw.cell_id.value,
+  cellLabel: raw.cell_label.value,
+  cellCount: Number(raw.cell_count.value),
+  cellPercentage: Number(raw.cell_percentage.value),
+}))</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod transformation schema for converting raw SPARQL bindings to parsed format</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DatasetCellSparqlBindingSchema"></a>
+                    <span class="name">
+                        <span ><b>DatasetCellSparqlBindingSchema</b></span>
+                        <a href="#DatasetCellSparqlBindingSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  /** Organ identifier */
+  organ_id: z.object({ value: z.string() }),
+  /** Organ name */
+  organ: z.object({ value: z.string() }),
+  /** Dataset identifier */
+  dataset: z.object({ value: z.string() }),
+  /** Sex information (Male/Female) */
+  sex: z.object({ value: z.string() }),
+  /** Annotation tool used */
+  tool: z.object({ value: z.string() }),
+  /** Data modality information */
+  modality: z.object({ value: z.string() }),
+  /** Cell type identifier */
+  cell_id: z.object({ value: z.string() }),
+  /** Cell type label/name */
+  cell_label: z.object({ value: z.string() }),
+  /** Cell count as string */
+  cell_count: z.object({ value: z.string() }),
+  /** Cell percentage as string */
+  cell_percentage: z.object({ value: z.string() }),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod schema for validating SPARQL binding responses for dataset cell data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ParsedDatasetCellDataSchema"></a>
+                    <span class="name">
+                        <span ><b>ParsedDatasetCellDataSchema</b></span>
+                        <a href="#ParsedDatasetCellDataSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  /** Organ identifier */
+  organId: z.string(),
+  /** Organ name */
+  organ: z.string(),
+  /** Dataset identifier */
+  datasetId: z.string(),
+  /** Sex designation */
+  sex: z.string(),
+  /** Annotation tool identifier */
+  tool: z.string(),
+  /** Data modality */
+  modality: z.string(),
+  /** Cell type identifier */
+  cellId: z.string(),
+  /** Cell type display label */
+  cellLabel: z.string(),
+  /** Numeric cell count */
+  cellCount: z.number(),
+  /** Numeric cell percentage */
+  cellPercentage: z.number(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod schema for parsed dataset cell data structure</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EMPTY_DATA"></a>
+                    <span class="name">
+                        <span ><b>EMPTY_DATA</b></span>
+                        <a href="#EMPTY_DATA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/TissuePredictionData.html" target="_self" >TissuePredictionData</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  file: new File([], &#x27;&#x27;),
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Empty Inputs for Predictions page</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_CONTENT"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_CONTENT</b></span>
+                        <a href="#TOOLTIP_CONTENT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
+summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations in
+the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations(sc-proteomics datasets)&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip Content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EMPTY_DATA"></a>
+                    <span class="name">
+                        <span ><b>EMPTY_DATA</b></span>
+                        <a href="#EMPTY_DATA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/TissuePredictionData.html" target="_self" >TissuePredictionData</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  file: new File([], &#x27;&#x27;),
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Empty Inputs for Predictions page</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EMPTY_PREDICTIONS"></a>
+                    <span class="name">
+                        <span ><b>EMPTY_PREDICTIONS</b></span>
+                        <a href="#EMPTY_PREDICTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CellSummaryReport</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  rui_locations: [],
+  sources: [],
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Empty predictions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PREDICTION_DATE_FORMAT"></a>
+                    <span class="name">
+                        <span ><b>PREDICTION_DATE_FORMAT</b></span>
+                        <a href="#PREDICTION_DATE_FORMAT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Intl.DateTimeFormat(undefined, {
+  dateStyle: &#x27;long&#x27;,
+  timeStyle: &#x27;long&#x27;,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Date format</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SCRIPT_URL"></a>
+                    <span class="name">
+                        <span ><b>SCRIPT_URL</b></span>
+                        <a href="#SCRIPT_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;https://cdn.humanatlas.io/ui${isDevMode() ? &#x27;--staging&#x27; : &#x27;&#x27;}/ccf-eui/wc.js&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Script URL for EUI</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STYLE_URLS"></a>
+                    <span class="name">
+                        <span ><b>STYLE_URLS</b></span>
+                        <a href="#STYLE_URLS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x60;https://cdn.humanatlas.io/ui${isDevMode() ? &#x27;--staging&#x27; : &#x27;&#x27;}/ccf-eui/styles.css&#x60;]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Style URLs for EUI</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/hra-pop-visualizer/utils/models/extraction-site-data.model.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ExtractionSiteDataTransformSchema"></a>
+                    <span class="name">
+                        <span ><b>ExtractionSiteDataTransformSchema</b></span>
+                        <a href="#ExtractionSiteDataTransformSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ExtractionSiteSparqlBindingSchema.transform((raw) &#x3D;&gt; ({
+  organId: raw.organ_id.value,
+  organ: raw.organ.value,
+  extractionSiteId: raw.extraction_site.value,
+  sex: raw.sex.value,
+  tool: raw.tool.value,
+  modality: raw.modality.value,
+  cellId: raw.cell_id.value,
+  cellLabel: raw.cell_label.value,
+  cellCount: Number(raw.cell_count.value),
+  cellPercentage: Number(raw.cell_percentage.value),
+}))</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod transformation schema for converting raw SPARQL bindings to parsed format</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ExtractionSiteSparqlBindingSchema"></a>
+                    <span class="name">
+                        <span ><b>ExtractionSiteSparqlBindingSchema</b></span>
+                        <a href="#ExtractionSiteSparqlBindingSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  /** Organ identifier */
+  organ_id: z.object({ value: z.string() }),
+  /** Organ name */
+  organ: z.object({ value: z.string() }),
+  /** Extraction site identifier */
+  extraction_site: z.object({ value: z.string() }),
+  /** Sex information (Male/Female) */
+  sex: z.object({ value: z.string() }),
+  /** Annotation tool used */
+  tool: z.object({ value: z.string() }),
+  /** Data modality information */
+  modality: z.object({ value: z.string() }),
+  /** Cell type identifier */
+  cell_id: z.object({ value: z.string() }),
+  /** Cell type label/name */
+  cell_label: z.object({ value: z.string() }),
+  /** Cell count as string */
+  cell_count: z.object({ value: z.string() }),
+  /** Cell percentage as string */
+  cell_percentage: z.object({ value: z.string() }),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod schema for validating SPARQL binding responses for extraction site data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ParsedExtractionSiteDataSchema"></a>
+                    <span class="name">
+                        <span ><b>ParsedExtractionSiteDataSchema</b></span>
+                        <a href="#ParsedExtractionSiteDataSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  /** Organ identifier */
+  organId: z.string(),
+  /** Organ name */
+  organ: z.string(),
+  /** Extraction site identifier */
+  extractionSiteId: z.string(),
+  /** Enhanced extraction site label in format: htan-{organ}-{creator_last_name}-{creation_year} */
+  extractionSiteLabel: z.string().optional(),
+  /** Sex designation */
+  sex: z.string(),
+  /** Annotation tool identifier */
+  tool: z.string(),
+  /** Data modality */
+  modality: z.string(),
+  /** Cell type identifier */
+  cellId: z.string(),
+  /** Cell type display label */
+  cellLabel: z.string(),
+  /** Numeric cell count */
+  cellCount: z.number(),
+  /** Numeric cell percentage */
+  cellPercentage: z.number(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod schema for parsed extraction site data structure</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us6/types/organs.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OrganAppDataSchema"></a>
+                    <span class="name">
+                        <span ><b>OrganAppDataSchema</b></span>
+                        <a href="#OrganAppDataSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.record(z.string(), z.any())</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ App Data Schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OrganSchema"></a>
+                    <span class="name">
+                        <span ><b>OrganSchema</b></span>
+                        <a href="#OrganSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  id: z.string().brand&lt;&#x27;OrganId&#x27;&gt;(),
+  label: z.string(),
+  appData: z.record(ComponentDefIdSchema, OrganAppDataSchema),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organ Schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OrgansSchema"></a>
+                    <span class="name">
+                        <span ><b>OrgansSchema</b></span>
+                        <a href="#OrgansSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  $schema: z.string(),
+  organs: OrganSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Organs Schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/api/api.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RAPIDOC_STYLES"></a>
+                    <span class="name">
+                        <span ><b>RAPIDOC_STYLES</b></span>
+                        <a href="#RAPIDOC_STYLES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;void&gt;(&#x27;Rapidoc styles&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: loadRapidocStyles,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Custom injection token to lazy load the theme for Rapidoc.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us2/tissue-origin-predictor/tissue-origin-predictor.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SAMPLE_FILE"></a>
+                    <span class="name">
+                        <span ><b>SAMPLE_FILE</b></span>
+                        <a href="#SAMPLE_FILE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken(&#x27;Sample file&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: loadSampleFileFactory,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sample CSV file</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SAMPLE_FILE_URL"></a>
+                    <span class="name">
+                        <span ><b>SAMPLE_FILE_URL</b></span>
+                        <a href="#SAMPLE_FILE_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;Sample file url&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; &#x27;assets/sample-data/tissue-origin-sample.csv&#x27;,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sample CSV file URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SAMPLE_URL_LINK"></a>
+                    <span class="name">
+                        <span ><b>SAMPLE_URL_LINK</b></span>
+                        <a href="#SAMPLE_URL_LINK"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;https://github.com/x-atlas-consortia/hra-apps/blob/main/applications/us2-cell-to-spatial/heart-cell-summary.csv&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>View sample link URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SAMPLE_JSON_FILE"></a>
+                    <span class="name">
+                        <span ><b>SAMPLE_JSON_FILE</b></span>
+                        <a href="#SAMPLE_JSON_FILE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken(&#x27;Sample file&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: loadSampleFileFactory,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sample JSON file</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SAMPLE_JSON_FILE_URL"></a>
+                    <span class="name">
+                        <span ><b>SAMPLE_JSON_FILE_URL</b></span>
+                        <a href="#SAMPLE_JSON_FILE_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; &#x27;assets/sample-data/cell-population-sample.json&#x27;,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sample JSON file URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SCRIPT_URL"></a>
+                    <span class="name">
+                        <span ><b>SCRIPT_URL</b></span>
+                        <a href="#SCRIPT_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;https://cdn.humanatlas.io/ui/ccf-rui/wc.js&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>RUI script URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STYLE_URL"></a>
+                    <span class="name">
+                        <span ><b>STYLE_URL</b></span>
+                        <a href="#STYLE_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;https://cdn.humanatlas.io/ui/ccf-rui/styles.css&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>RUI style URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_CONTENT"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_CONTENT</b></span>
+                        <a href="#TOOLTIP_CONTENT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;An extraction site defines the 3D spatial size, translation, rotation, reference organ (with laterality and sex)
+and metadata (creator name, creation date) for a tissue block. Importantly, an extraction site also contains a
+list of anatomical structures that a tissue block collides with, either via bounding-box or mesh-based
+collision detection. Extraction sites are generated using the Registration User Interface (RUI).&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip Content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/resolvers/server-id/server-id-resolver.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="serverIdResolver"></a>
+                    <span class="name">
+                        <span ><b>serverIdResolver</b></span>
+                        <a href="#serverIdResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ResolveFn&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(route) &#x3D;&gt; {
+  /* return the serverId route param from the param map */
+  return route.paramMap.get(&#x27;serverId&#x27;) ?? &#x27;&#x27;;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Route resolver function to resolve selected server from route params</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/constants/server.constants.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="servers"></a>
+                    <span class="name">
+                        <span ><b>servers</b></span>
+                        <a href="#servers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Server.html" target="_self" >Server[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  /* production server */
+  {
+    id: &#x27;prod&#x27;,
+    description: &#x27;HRA-API Production&#x27;,
+    url: &#x27;https://apps.humanatlas.io/api&#x27;,
+    spec: &#x27;https://apps.humanatlas.io/api/hra-api-spec.yaml&#x27;,
+  },
+  /* HRA-API SPARQL Queries */
+  {
+    id: &#x27;grlc&#x27;,
+    description: &#x27;HRA-API SPARQL Queries&#x27;,
+    url: &#x27;https://apps.humanatlas.io/api/grlc/&#x27;,
+    spec: &#x27;https://apps.humanatlas.io/api/grlc/index-spec.json&#x27;,
+  },
+  /* staging server */
+  {
+    id: &#x27;staging&#x27;,
+    description: &#x27;HRA-API Staging&#x27;,
+    url: &#x27;https://apps.humanatlas.io/api--staging&#x27;,
+    spec: &#x27;https://apps.humanatlas.io/api--staging/hra-api-spec.yaml&#x27;,
+  },
+  /* CCF-API (deprecated) */
+  {
+    id: &#x27;ccf-api&#x27;,
+    description: &#x27;CCF-API (deprecated) Production&#x27;,
+    url: &#x27;https://apps.humanatlas.io/hra-api/&#x27;,
+    spec: &#x27;https://apps.humanatlas.io/hra-api/ccf-api-spec.yaml&#x27;,
+  },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>HRA-API server options for dropdown
+This object contains the API endpoint URL and
+the corresponding OpenAPI spec URLs for use in the
+API page.</p>
+<p>id: server identifier
+description: server description
+url: API endpoint URL
+spec: OpenAPI spec URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_CONTENT"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_CONTENT</b></span>
+                        <a href="#TOOLTIP_CONTENT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;Cell Population: Number of cells per cell type in a tissue block, anatomical structure,
+or extraction site. Cell summaries are computed from cell type counts in experimental datasets, obtained either via
+cell type annotations in the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations (sc-proteomics datasets).&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us2/tissue-origin-predictions/components/similar-datasets-table/similar-datasets-table.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_CONTENT"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_CONTENT</b></span>
+                        <a href="#TOOLTIP_CONTENT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;Cell Population: Number of cells per cell type in a tissue block, anatomical structure,
+or extraction site. Cell summaries are computed from cell type counts in experimental datasets, obtained either via
+cell type annotations in the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations (sc-proteomics datasets).&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/landing-page/landing-page.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="WINDOW"></a>
+                    <span class="name">
+                        <span ><b>WINDOW</b></span>
+                        <a href="#WINDOW"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;typeof window&gt;(&#x27;window&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; window,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Injection token for the window object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/us6/web-components.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="WINDOW"></a>
+                    <span class="name">
+                        <span ><b>WINDOW</b></span>
+                        <a href="#WINDOW"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;typeof window&gt;(&#x27;window&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; window,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Injection token for the window object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

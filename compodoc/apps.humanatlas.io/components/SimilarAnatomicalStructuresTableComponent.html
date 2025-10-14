@@ -1,0 +1,989 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SimilarAnatomicalStructuresTableComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Similar Anatomical Structures Table Component</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-similar-anatomical-structures-table</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>WorkflowCardModule</code>
+                            <code>MatTableModule</code>
+                            <code>MatMenuModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatSortModule</code>
+                            <code>ScrollingModule</code>
+                            <code>TooltipCardComponent</code>
+                            <code>TextHyperlinkDirective</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./similar-anatomical-structures-table.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./similar-anatomical-structures-table.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#columnHeaders" >columnHeaders</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#snackbar" >snackbar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tooltip" >tooltip</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#convertToCSV" >convertToCSV</a>
+                            </li>
+                            <li>
+                                <a href="#onDownloadCSVButtonClicked" >onDownloadCSVButtonClicked</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#predictions" >predictions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:78</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor that initializes the component and sets up effects for predictions and sorting</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="predictions"></a>
+                        <b>predictions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CellSummaryReport</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:42</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Predictions</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertToCSV"></a>
+                    <span class="name">
+                        <span ><b>convertToCSV</b></span>
+                        <a href="#convertToCSV"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertToCSV()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utility function to convert table data to CSV string</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDownloadCSVButtonClicked"></a>
+                    <span class="name">
+                        <span ><b>onDownloadCSVButtonClicked</b></span>
+                        <a href="#onDownloadCSVButtonClicked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDownloadCSVButtonClicked()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when clicked on download CSV button</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="columnHeaders"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>columnHeaders</b></span>
+                        <a href="#columnHeaders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    tool: &#x27;Tool&#x27;,
+    modality: &#x27;Modality&#x27;,
+    similarity: &#x27;Similarity&#x27;,
+    cell_source_label: &#x27;Anatomical Structure Label&#x27;,
+    cell_source: &#x27;Anatomical Structure ID&#x27;,
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Column headers of similar anatomical structures table component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource&lt;SourceSimilarityRow&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Data for Similar Anatomical Structures table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;tool&#x27;,
+    &#x27;modality&#x27;,
+    &#x27;similarity&#x27;,
+    &#x27;cell_source_label&#x27;,
+    &#x27;cell_source&#x27;,
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Columns for table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snackbar"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>snackbar</b></span>
+                        <a href="#snackbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SnackbarService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Snackbar service</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tooltip"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tooltip</b></span>
+                        <a href="#tooltip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TooltipContent[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      description: TOOLTIP_CONTENT,
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from &#x27;@angular/core&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { WorkflowCardModule } from &#x27;@hra-ui/design-system/workflow-card&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatSort, MatSortModule } from &#x27;@angular/material/sort&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { TooltipCardComponent, TooltipContent } from &#x27;@hra-ui/design-system/tooltip-card&#x27;;
+import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
+import { CellSummaryReport, SourceSimilarityRow } from &#x27;@hra-api/ng-client&#x27;;
+import { MatTableModule, MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import saveAs from &#x27;file-saver&#x27;;
+import { TextHyperlinkDirective } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
+
+/** Tooltip content */
+const TOOLTIP_CONTENT &#x3D; &#x60;Cell Population: Number of cells per cell type in a tissue block, anatomical structure,
+or extraction site. Cell summaries are computed from cell type counts in experimental datasets, obtained either via
+cell type annotations in the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations (sc-proteomics datasets).&#x60;;
+
+/**
+ * Similar Anatomical Structures Table Component
+ */
+@Component({
+  selector: &#x27;hra-similar-anatomical-structures-table&#x27;,
+  imports: [
+    HraCommonModule,
+    WorkflowCardModule,
+    MatTableModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSortModule,
+    ScrollingModule,
+    TooltipCardComponent,
+    TextHyperlinkDirective,
+  ],
+  templateUrl: &#x27;./similar-anatomical-structures-table.component.html&#x27;,
+  styleUrl: &#x27;./similar-anatomical-structures-table.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class SimilarAnatomicalStructuresTableComponent {
+  /** Predictions */
+  readonly predictions &#x3D; input.required&lt;CellSummaryReport&gt;();
+
+  /** Data for Similar Anatomical Structures table */
+  protected readonly dataSource &#x3D; new MatTableDataSource&lt;SourceSimilarityRow&gt;([]);
+
+  /** For sorting all columns */
+  private readonly sort &#x3D; viewChild.required(MatSort);
+
+  /** Columns for table */
+  protected readonly displayedColumns: string[] &#x3D; [
+    &#x27;tool&#x27;,
+    &#x27;modality&#x27;,
+    &#x27;similarity&#x27;,
+    &#x27;cell_source_label&#x27;,
+    &#x27;cell_source&#x27;,
+  ];
+
+  /**
+   * Column headers of similar anatomical structures table component
+   */
+  protected readonly columnHeaders: { [key: string]: string } &#x3D; {
+    tool: &#x27;Tool&#x27;,
+    modality: &#x27;Modality&#x27;,
+    similarity: &#x27;Similarity&#x27;,
+    cell_source_label: &#x27;Anatomical Structure Label&#x27;,
+    cell_source: &#x27;Anatomical Structure ID&#x27;,
+  };
+
+  /** Tooltip content */
+  protected readonly tooltip: TooltipContent[] &#x3D; [
+    {
+      description: TOOLTIP_CONTENT,
+    },
+  ];
+
+  /** Snackbar service */
+  protected readonly snackbar &#x3D; inject(SnackbarService);
+
+  /**
+   * Constructor that initializes the component and sets up effects for predictions and sorting
+   */
+  constructor() {
+    effect(() &#x3D;&gt; {
+      this.dataSource.data &#x3D; this.predictions().sources.filter(
+        (source) &#x3D;&gt; source.cell_source_type &#x3D;&#x3D;&#x3D; &#x27;http://purl.org/ccf/AnatomicalStructure&#x27;,
+      );
+    });
+
+    effect(() &#x3D;&gt; {
+      this.dataSource.sort &#x3D; this.sort();
+    });
+  }
+
+  /** Triggered when clicked on download CSV button  */
+  onDownloadCSVButtonClicked() {
+    const csvString &#x3D; this.convertToCSV();
+    const fileToSave &#x3D; new Blob([csvString], { type: &#x27;text/csv&#x27; });
+    saveAs(fileToSave, &#x27;similar-anatomical-structures.csv&#x27;);
+    this.snackbar.open(&#x27;File downloaded&#x27;, &#x27;&#x27;, false, &#x27;start&#x27;, { duration: 6000 });
+  }
+
+  /** Utility function to convert table data to CSV string */
+  convertToCSV(): string {
+    const fields &#x3D; this.displayedColumns as (keyof SourceSimilarityRow)[];
+    const headers &#x3D; Object.values(this.columnHeaders).join(&#x27;,&#x27;) + &#x27;\n&#x27;;
+    const data &#x3D; this.dataSource.data;
+    const rows &#x3D; data
+      .map((row) &#x3D;&gt;
+        fields
+          .map((field) &#x3D;&gt; {
+            if (field &#x3D;&#x3D;&#x3D; &#x27;similarity&#x27;) {
+              return row.similarity.toFixed(2);
+            }
+            return row[field];
+          })
+          .join(&#x27;,&#x27;),
+      )
+      .join(&#x27;\n&#x27;);
+    return headers + rows;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;hra-workflow-card
+  hraFeature&#x3D;&quot;similar-anatomical-structures&quot;
+  tagline&#x3D;&quot;Similar Anatomical Structures&quot;
+  class&#x3D;&quot;table-container&quot;
+&gt;
+  &lt;hra-workflow-card-actions&gt;
+    &lt;button
+      hraClickEvent
+      mat-icon-button
+      class&#x3D;&quot;similar-anatomical-structures-menu-trigger&quot;
+      aria-label&#x3D;&quot;Open table action menu&quot;
+      [matMenuTriggerFor]&#x3D;&quot;optionsForAnatomicalTable&quot;
+    &gt;
+      &lt;mat-icon class&#x3D;&quot;more-icon&quot; fontIcon&#x3D;&quot;more_vert&quot;&gt;&lt;/mat-icon&gt;
+    &lt;/button&gt;
+
+    &lt;!-- MENU --&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #optionsForAnatomicalTable&#x3D;&quot;matMenu&quot; class&#x3D;&quot;custom-menu&quot;&gt;
+      &lt;button
+        hraHoverEvent
+        hraFeature&#x3D;&quot;info&quot;
+        mat-menu-item
+        matRipple
+        matRippleColor&#x3D;&quot;#201E3D14&quot;
+        [matMenuTriggerFor]&#x3D;&quot;submenu&quot;
+      &gt;
+        &lt;mat-icon fontIcon&#x3D;&quot;info&quot; class&#x3D;&quot;icon-style&quot;&gt;&lt;/mat-icon&gt;
+        Info
+        &lt;mat-icon class&#x3D;&quot;expand-arrow&quot;&gt;arrow_right&lt;/mat-icon&gt;
+      &lt;/button&gt;
+      &lt;button hraFeature&#x3D;&quot;download-csv&quot; hraClickEvent mat-menu-item (click)&#x3D;&quot;onDownloadCSVButtonClicked()&quot;&gt;
+        &lt;mat-icon&gt;download&lt;/mat-icon&gt;
+        CSV
+      &lt;/button&gt;
+    &lt;/mat-menu&gt;
+
+    &lt;mat-menu #submenu&#x3D;&quot;matMenu&quot;&gt;
+      &lt;hra-tooltip-card [content]&#x3D;&quot;tooltip&quot; class&#x3D;&quot;tooltip-panel&quot;&gt;&lt;/hra-tooltip-card&gt;
+    &lt;/mat-menu&gt;
+  &lt;/hra-workflow-card-actions&gt;
+
+  &lt;!-- ANATOMICAL STRUCTURES TABLE --&gt;
+  &lt;ng-scrollbar class&#x3D;&quot;table-overflow-container&quot;&gt;
+    &lt;table hraFeature&#x3D;&quot;predictions&quot; mat-table matSort [dataSource]&#x3D;&quot;dataSource&quot; class&#x3D;&quot;predictions-table&quot;&gt;
+      &lt;caption&gt;
+        Table displaying similar anatomical structures
+      &lt;/caption&gt;
+
+      &lt;ng-container matColumnDef&#x3D;&quot;tool&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Tool&quot;&gt;Tool&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.tool }}&lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;modality&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Modality&quot;&gt;Modality&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.modality }}&lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;similarity&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Similarity&quot;&gt;Similarity&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;similarity-column&quot;&gt;
+          {{ element.similarity | number: &#x27;1.0-2&#x27; }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;cell_source_label&quot;&gt;
+        &lt;th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription&#x3D;&quot;Sort by Anatomical Structure Label&quot;
+        &gt;
+          Anatomical Structure Label
+        &lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.cell_source_label }}&lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;cell_source&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Anatomical Structure ID&quot;&gt;
+          Anatomical Structure ID
+        &lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          &lt;a hraHyperlink [href]&#x3D;&quot;element.cell_source&quot;&gt;{{ element.cell_source }}&lt;/a&gt;
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns; sticky: true&quot;&gt;&lt;/tr&gt;
+      &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot;&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/ng-scrollbar&gt;
+&lt;/hra-workflow-card&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><hra-workflow-card  hraFeature="similar-anatomical-structures"  tagline="Similar Anatomical Structures"  class="table-container">  <hra-workflow-card-actions>    <button      hraClickEvent      mat-icon-button      class="similar-anatomical-structures-menu-trigger"      aria-label="Open table action menu"      [matMenuTriggerFor]="optionsForAnatomicalTable"    >      <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>    </button>    <!-- MENU -->    <mat-menu hraFeature="menu" #optionsForAnatomicalTable="matMenu" class="custom-menu">      <button        hraHoverEvent        hraFeature="info"        mat-menu-item        matRipple        matRippleColor="#201E3D14"        [matMenuTriggerFor]="submenu"      >        <mat-icon fontIcon="info" class="icon-style"></mat-icon>        Info        <mat-icon class="expand-arrow">arrow_right</mat-icon>      </button>      <button hraFeature="download-csv" hraClickEvent mat-menu-item (click)="onDownloadCSVButtonClicked()">        <mat-icon>download</mat-icon>        CSV      </button>    </mat-menu>    <mat-menu #submenu="matMenu">      <hra-tooltip-card [content]="tooltip" class="tooltip-panel"></hra-tooltip-card>    </mat-menu>  </hra-workflow-card-actions>  <!-- ANATOMICAL STRUCTURES TABLE -->  <ng-scrollbar class="table-overflow-container">    <table hraFeature="predictions" mat-table matSort [dataSource]="dataSource" class="predictions-table">      <caption>        Table displaying similar anatomical structures      </caption>      <ng-container matColumnDef="tool">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tool">Tool</th>        <td mat-cell *matCellDef="let element">{{ element.tool }}</td>      </ng-container>      <ng-container matColumnDef="modality">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Modality">Modality</th>        <td mat-cell *matCellDef="let element">{{ element.modality }}</td>      </ng-container>      <ng-container matColumnDef="similarity">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Similarity">Similarity</th>        <td mat-cell *matCellDef="let element" class="similarity-column">          {{ element.similarity | number: \'1.0-2\' }}        </td>      </ng-container>      <ng-container matColumnDef="cell_source_label">        <th          mat-header-cell          *matHeaderCellDef          mat-sort-header          sortActionDescription="Sort by Anatomical Structure Label"        >          Anatomical Structure Label        </th>        <td mat-cell *matCellDef="let element">{{ element.cell_source_label }}</td>      </ng-container>      <ng-container matColumnDef="cell_source">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Anatomical Structure ID">          Anatomical Structure ID        </th>        <td mat-cell *matCellDef="let element">          <a hraHyperlink [href]="element.cell_source">{{ element.cell_source }}</a>        </td>      </ng-container>      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>    </table>  </ng-scrollbar></hra-workflow-card></div>'
+    var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SimilarAnatomicalStructuresTableComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SimilarAnatomicalStructuresTableComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,2121 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for design-system</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for design-system</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-functions">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Functions</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#coerceIconList" title="icons/src/lib/utils/coercion.ts" ><b>coerceIconList</b>&nbsp;&nbsp;&nbsp;(icons/.../coercion.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#colorEquals" title="color-picker/src/lib/color-utils.ts" ><b>colorEquals</b>&nbsp;&nbsp;&nbsp;(color-picker/.../color-utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createJsonSpecResolver" title="content-templates/resolvers/src/lib/spec.resolver.ts" ><b>createJsonSpecResolver</b>&nbsp;&nbsp;&nbsp;(content-templates/.../spec.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createMiscellaneousLogoConfigResolver" title="brand/miscellaneous-logo/src/lib/providers.ts" ><b>createMiscellaneousLogoConfigResolver</b>&nbsp;&nbsp;&nbsp;(brand/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createOrganLogoConfigResolver" title="brand/organ-logo/src/lib/providers.ts" ><b>createOrganLogoConfigResolver</b>&nbsp;&nbsp;&nbsp;(brand/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createProductLogoConfigResolver" title="brand/product-logo/src/lib/providers.ts" ><b>createProductLogoConfigResolver</b>&nbsp;&nbsp;&nbsp;(brand/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createSvgIconResolver" title="icons/src/lib/resolvers/icon.resolver.ts" ><b>createSvgIconResolver</b>&nbsp;&nbsp;&nbsp;(icons/.../icon.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#createYamlSpecResolver" title="content-templates/resolvers/src/lib/spec.resolver.ts" ><b>createYamlSpecResolver</b>&nbsp;&nbsp;&nbsp;(content-templates/.../spec.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getSectionElement" title="content-templates/page-section/src/lib/services/page-section.service.ts" ><b>getSectionElement</b>&nbsp;&nbsp;&nbsp;(content-templates/.../page-section.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#hexToRgb" title="color-picker/src/lib/color-utils.ts" ><b>hexToRgb</b>&nbsp;&nbsp;&nbsp;(color-picker/.../color-utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#initializeIcons" title="icons/src/lib/utils/initialize.ts" ><b>initializeIcons</b>&nbsp;&nbsp;&nbsp;(icons/.../initialize.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#makeIconFeature" title="icons/src/lib/providers.ts" ><b>makeIconFeature</b>&nbsp;&nbsp;&nbsp;(icons/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideBrand" title="brand/src/lib/providers.ts" ><b>provideBrand</b>&nbsp;&nbsp;&nbsp;(brand/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideButtons" title="buttons/src/lib/providers.ts" ><b>provideButtons</b>&nbsp;&nbsp;&nbsp;(buttons/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideButtonToggle" title="buttons/button-toggle/src/lib/providers.ts" ><b>provideButtonToggle</b>&nbsp;&nbsp;&nbsp;(buttons/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideCodeBlock" title="code-block/src/lib/providers.ts" ><b>provideCodeBlock</b>&nbsp;&nbsp;&nbsp;(code-block/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideDesignSystem" title="src/lib/providers.ts" ><b>provideDesignSystem</b>&nbsp;&nbsp;&nbsp;(src/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideDesignSystemCommon" title="src/lib/providers.ts" ><b>provideDesignSystemCommon</b>&nbsp;&nbsp;&nbsp;(src/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideIcons" title="icons/src/lib/providers.ts" ><b>provideIcons</b>&nbsp;&nbsp;&nbsp;(icons/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideMiscellaneousLogos" title="brand/miscellaneous-logo/src/lib/providers.ts" ><b>provideMiscellaneousLogos</b>&nbsp;&nbsp;&nbsp;(brand/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideOrganLogos" title="brand/organ-logo/src/lib/providers.ts" ><b>provideOrganLogos</b>&nbsp;&nbsp;&nbsp;(brand/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#providePageSectionNavigation" title="content-templates/page-section/src/lib/providers.ts" ><b>providePageSectionNavigation</b>&nbsp;&nbsp;&nbsp;(content-templates/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideProductLogos" title="brand/product-logo/src/lib/providers.ts" ><b>provideProductLogos</b>&nbsp;&nbsp;&nbsp;(brand/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideRadioButton" title="buttons/radio-button/src/lib/providers.ts" ><b>provideRadioButton</b>&nbsp;&nbsp;&nbsp;(buttons/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideScrolling" title="scrolling/src/lib/scrolling.module.ts" ><b>provideScrolling</b>&nbsp;&nbsp;&nbsp;(scrolling/.../scrolling.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideTabs" title="tabs/src/lib/tabs/providers.ts" ><b>provideTabs</b>&nbsp;&nbsp;&nbsp;(tabs/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideTextHyperlink" title="buttons/text-hyperlink/src/lib/providers.ts" ><b>provideTextHyperlink</b>&nbsp;&nbsp;&nbsp;(buttons/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideTrees" title="tree/src/lib/providers.ts" ><b>provideTrees</b>&nbsp;&nbsp;&nbsp;(tree/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#resolveUrl" title="navigation/site-navigation/src/lib/utils/resolve-url.ts" ><b>resolveUrl</b>&nbsp;&nbsp;&nbsp;(navigation/.../resolve-url.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#rgbToHex" title="color-picker/src/lib/color-utils.ts" ><b>rgbToHex</b>&nbsp;&nbsp;&nbsp;(color-picker/.../color-utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#setupScrollTesting" title="scrolling/testing/src/index.ts" ><b>setupScrollTesting</b>&nbsp;&nbsp;&nbsp;(scrolling/.../index.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#withFontIconClasses" title="icons/src/lib/providers.ts" ><b>withFontIconClasses</b>&nbsp;&nbsp;&nbsp;(icons/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#withSvgIconDirectory" title="icons/src/lib/providers.ts" ><b>withSvgIconDirectory</b>&nbsp;&nbsp;&nbsp;(icons/.../providers.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>icons/src/lib/utils/coercion.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="coerceIconList"></a>
+                    <span class="name">
+                        <span ><b>coerceIconList</b></span>
+                        <a href="#coerceIconList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>coerceIconList(list: <a href="../undefineds/IconList.html" target="_self">IconList</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Coerces mixed format icons into a list of icon object that
+can be passed directly into hra-icon&#39;s <code>[icon]</code> input or
+into a hraContentTemplateOutlet</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>list</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#IconList" target="_self" >IconList</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>[]</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>Mixed format icon list</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Icon" target="_self" >Icon[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A list of icon objects</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>color-picker/src/lib/color-utils.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="colorEquals"></a>
+                    <span class="name">
+                        <span ><b>colorEquals</b></span>
+                        <a href="#colorEquals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>colorEquals(color1: <a href="../undefineds/Rgb.html" target="_self">Rgb</a>, color2: <a href="../undefineds/Rgb.html" target="_self">Rgb</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Compares two RGB colors for equality</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>color1</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Rgb" target="_self" >Rgb</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>color2</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Rgb" target="_self" >Rgb</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hexToRgb"></a>
+                    <span class="name">
+                        <span ><b>hexToRgb</b></span>
+                        <a href="#hexToRgb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hexToRgb(hex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Converts a hexadecimal color string to an RGB color</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>hex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Rgb" target="_self" >Rgb</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rgbToHex"></a>
+                    <span class="name">
+                        <span ><b>rgbToHex</b></span>
+                        <a href="#rgbToHex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>rgbToHex(rgb: <a href="../undefineds/Rgb.html" target="_self">Rgb</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Converts an RGB color to its hexadecimal string representation</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rgb</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Rgb" target="_self" >Rgb</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>content-templates/resolvers/src/lib/spec.resolver.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createJsonSpecResolver"></a>
+                    <span class="name">
+                        <span ><b>createJsonSpecResolver</b></span>
+                        <a href="#createJsonSpecResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createJsonSpecResolver(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, spec: T)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a resolver function that loads and validates json data</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Json url path</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>spec</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Zod schema to validate the spec</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ResolveFn&lt;z.infer&lt;T&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A resolver function</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createYamlSpecResolver"></a>
+                    <span class="name">
+                        <span ><b>createYamlSpecResolver</b></span>
+                        <a href="#createYamlSpecResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createYamlSpecResolver(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, spec: T)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a resolver function that loads and validates yaml data</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>spec</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Zod schema to validate the spec</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ResolveFn&lt;z.infer&lt;T&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A resolver function</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>brand/miscellaneous-logo/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createMiscellaneousLogoConfigResolver"></a>
+                    <span class="name">
+                        <span ><b>createMiscellaneousLogoConfigResolver</b></span>
+                        <a href="#createMiscellaneousLogoConfigResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createMiscellaneousLogoConfigResolver()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new configuration resolver</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#IconConfigResolver" target="_self" >IconConfigResolver</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A configuration resolver</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideMiscellaneousLogos"></a>
+                    <span class="name">
+                        <span ><b>provideMiscellaneousLogos</b></span>
+                        <a href="#provideMiscellaneousLogos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideMiscellaneousLogos()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes miscellaneous logo icons</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>brand/organ-logo/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createOrganLogoConfigResolver"></a>
+                    <span class="name">
+                        <span ><b>createOrganLogoConfigResolver</b></span>
+                        <a href="#createOrganLogoConfigResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createOrganLogoConfigResolver()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new configuration resolver</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#IconConfigResolver" target="_self" >IconConfigResolver</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A configuration resolver</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideOrganLogos"></a>
+                    <span class="name">
+                        <span ><b>provideOrganLogos</b></span>
+                        <a href="#provideOrganLogos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideOrganLogos()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes organ logo icons</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>brand/product-logo/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createProductLogoConfigResolver"></a>
+                    <span class="name">
+                        <span ><b>createProductLogoConfigResolver</b></span>
+                        <a href="#createProductLogoConfigResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createProductLogoConfigResolver()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new configuration resolver</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#IconConfigResolver" target="_self" >IconConfigResolver</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A configuration resolver</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideProductLogos"></a>
+                    <span class="name">
+                        <span ><b>provideProductLogos</b></span>
+                        <a href="#provideProductLogos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideProductLogos()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes product logo icons</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>icons/src/lib/resolvers/icon.resolver.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createSvgIconResolver"></a>
+                    <span class="name">
+                        <span ><b>createSvgIconResolver</b></span>
+                        <a href="#createSvgIconResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createSvgIconResolver()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new resolver that resolves svg icons by
+concatenating the svg icon directory with the icon
+namespace and name.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Icon" target="_self" >IconResolver</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An icon resolver</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>content-templates/page-section/src/lib/services/page-section.service.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSectionElement"></a>
+                    <span class="name">
+                        <span ><b>getSectionElement</b></span>
+                        <a href="#getSectionElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSectionElement(section: <a href="../interfaces/PageSectionInstance.html" target="_self">PageSectionInstance</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Helper for getting a page section&#39;s html element</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>section</td>
+                                            <td>
+                                                            <code><a href="../interfaces/PageSectionInstance.html" target="_self" >PageSectionInstance</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>A page section</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Element</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The section element</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>icons/src/lib/utils/initialize.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeIcons"></a>
+                    <span class="name">
+                        <span ><b>initializeIcons</b></span>
+                        <a href="#initializeIcons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializeIcons()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes design system icons by configuring material&#39;s icon registry</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>icons/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeIconFeature"></a>
+                    <span class="name">
+                        <span ><b>makeIconFeature</b></span>
+                        <a href="#makeIconFeature"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeIconFeature(kind: KindT, providers)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Helper for creating icon feature objects</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>kind</td>
+                                            <td>
+                                                        <code>KindT</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Feature kind</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>providers</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Array of providers for the feature</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/IconFeature.html" target="_self" >IconFeature&lt;KindT&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A new feature object</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideIcons"></a>
+                    <span class="name">
+                        <span ><b>provideIcons</b></span>
+                        <a href="#provideIcons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideIcons(...features: undefined)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Setups design system icons</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>features</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Additional icon features</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="withFontIconClasses"></a>
+                    <span class="name">
+                        <span ><b>withFontIconClasses</b></span>
+                        <a href="#withFontIconClasses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>withFontIconClasses(classes)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Set the default font icon classes</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>classes</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Default font icon classes</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#FontIconClassesFeature" target="_self" >FontIconClassesFeature</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="withSvgIconDirectory"></a>
+                    <span class="name">
+                        <span ><b>withSvgIconDirectory</b></span>
+                        <a href="#withSvgIconDirectory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>withSvgIconDirectory(directory: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Set the svg icon directory</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>directory</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Icon directory</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#SvgIconDirectoryFeature" target="_self" >SvgIconDirectoryFeature</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>brand/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideBrand"></a>
+                    <span class="name">
+                        <span ><b>provideBrand</b></span>
+                        <a href="#provideBrand"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideBrand()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provide brand components</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>buttons/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideButtons"></a>
+                    <span class="name">
+                        <span ><b>provideButtons</b></span>
+                        <a href="#provideButtons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideButtons()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Collects all subpackage providers into a single provider function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Button providers</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>buttons/button-toggle/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideButtonToggle"></a>
+                    <span class="name">
+                        <span ><b>provideButtonToggle</b></span>
+                        <a href="#provideButtonToggle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideButtonToggle()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Applies global styles to button toggles</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Button toggle providers</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>code-block/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideCodeBlock"></a>
+                    <span class="name">
+                        <span ><b>provideCodeBlock</b></span>
+                        <a href="#provideCodeBlock"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideCodeBlock()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provide the code block component and its dependencies to highlight code.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideDesignSystem"></a>
+                    <span class="name">
+                        <span ><b>provideDesignSystem</b></span>
+                        <a href="#provideDesignSystem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideDesignSystem(options?: <a href="../interfaces/DesignSystemOptions.html" target="_self">DesignSystemOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns design system providers</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../interfaces/DesignSystemOptions.html" target="_self" >DesignSystemOptions</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideDesignSystemCommon"></a>
+                    <span class="name">
+                        <span ><b>provideDesignSystemCommon</b></span>
+                        <a href="#provideDesignSystemCommon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideDesignSystemCommon(options?: <a href="../interfaces/DesignSystemOptions.html" target="_self">DesignSystemOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the providers shared between prod and testing</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../interfaces/DesignSystemOptions.html" target="_self" >DesignSystemOptions</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>content-templates/page-section/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="providePageSectionNavigation"></a>
+                    <span class="name">
+                        <span ><b>providePageSectionNavigation</b></span>
+                        <a href="#providePageSectionNavigation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>providePageSectionNavigation(options: <a href="../interfaces/PageSectionActivationOptions.html" target="_self">PageSectionActivationOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provides the services required for page section tracking.
+Should be provided inside a component - not in root!</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../interfaces/PageSectionActivationOptions.html" target="_self" >PageSectionActivationOptions</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>Page section activation options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Provider[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Component providers</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>buttons/radio-button/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideRadioButton"></a>
+                    <span class="name">
+                        <span ><b>provideRadioButton</b></span>
+                        <a href="#provideRadioButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideRadioButton()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Applies global styles to radio button</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Radio Button providers</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>scrolling/src/lib/scrolling.module.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideScrolling"></a>
+                    <span class="name">
+                        <span ><b>provideScrolling</b></span>
+                        <a href="#provideScrolling"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideScrolling(options?: <a href="../interfaces/ScrollingOptions.html" target="_self">ScrollingOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provide scrolling functionality to an application.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ScrollingOptions.html" target="_self" >ScrollingOptions</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Scrollbar options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An environment provider</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>tabs/src/lib/tabs/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideTabs"></a>
+                    <span class="name">
+                        <span ><b>provideTabs</b></span>
+                        <a href="#provideTabs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideTabs()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Applies global configuration for material UI tabs.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Providers with global configuration.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>buttons/text-hyperlink/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideTextHyperlink"></a>
+                    <span class="name">
+                        <span ><b>provideTextHyperlink</b></span>
+                        <a href="#provideTextHyperlink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideTextHyperlink()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provides the global styles for text hyperlink elements.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Text hyperlink providers</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>tree/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideTrees"></a>
+                    <span class="name">
+                        <span ><b>provideTrees</b></span>
+                        <a href="#provideTrees"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideTrees()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns providers for tree</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>navigation/site-navigation/src/lib/utils/resolve-url.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resolveUrl"></a>
+                    <span class="name">
+                        <span ><b>resolveUrl</b></span>
+                        <a href="#resolveUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resolveUrl(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, router?: Router, rawBaseUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Resolves an url against the baseUrl</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>Raw url</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>router</td>
+                                            <td>
+                                                        <code>Router</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>Router service</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>rawBaseUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;&#x27;</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>Base url</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Whether the url is absolute along with the resolved url</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>scrolling/testing/src/index.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupScrollTesting"></a>
+                    <span class="name">
+                        <span ><b>setupScrollTesting</b></span>
+                        <a href="#setupScrollTesting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setupScrollTesting()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Setup the testing environment for scrolling to work.
+Adds global mocks for functions used by scrolling if they don&#39;t exist.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-functions';
+            var COMPODOC_CURRENT_PAGE_URL = 'functions.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1492 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for apps.humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for apps.humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  HraPopVisualizerComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>HRApop Visualizer Component</p>
+<p>Main component for visualizing cell type populations from HRApop data.
+Provides interactive controls for filtering and organizing data visualization
+across different data types (anatomical structures, extraction sites, datasets).</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-pop-visualizer</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>PageSectionComponent</code>
+                            <code>IconsModule</code>
+                            <code>MatIconModule</code>
+                                <code><a href="../components/BarGraphComponent.html" target="_self" >BarGraphComponent</a></code>
+                                <code><a href="../components/ConfigSelectorComponent.html" target="_self" >ConfigSelectorComponent</a></code>
+                            <code>TextHyperlinkComponent</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./hra-pop-visualizer.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./hra-pop-visualizer.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#allData" >allData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#availableTools" >availableTools</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#dataTypeConfigs" >dataTypeConfigs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#dataTypeOptions" >dataTypeOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#organOptions" >organOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedDataType" >selectedDataType</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedOrgan" >selectedOrgan</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedSexes" >selectedSexes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedSort" >selectedSort</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedTools" >selectedTools</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedXAxis" >selectedXAxis</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedYAxis" >selectedYAxis</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sortOptions" >sortOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#vegaSpecs" >vegaSpecs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#xAxisOptions" >xAxisOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#yAxisOptions" >yAxisOptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:171</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Component constructor
+Initializes reactive effects for data management</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allData"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>allData</b></span>
+                        <a href="#allData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const dataType &#x3D; this.selectedDataType();
+    switch (dataType) {
+      case &#x27;anatomical&#x27;:
+        return this.anatomicalDataResource.value() ?? [];
+      case &#x27;extraction-site&#x27;:
+        return this.extractionSiteDataResource.value() ?? [];
+      case &#x27;dataset&#x27;:
+        return this.datasetDataResource.value() ?? [];
+      default:
+        return [];
+    }
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Computed signal that returns data based on currently selected data type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="availableTools"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>availableTools</b></span>
+                        <a href="#availableTools"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tools that have data available for the current organ</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataTypeConfigs"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>dataTypeConfigs</b></span>
+                        <a href="#dataTypeConfigs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DATA_TYPE_CONFIGS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration objects for different data types</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataTypeOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>dataTypeOptions</b></span>
+                        <a href="#dataTypeOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Object.values(DATA_TYPE_CONFIGS)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Available data type options for selection</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const dataType &#x3D; this.selectedDataType();
+    let error: unknown;
+
+    switch (dataType) {
+      case &#x27;anatomical&#x27;:
+        error &#x3D; this.anatomicalDataResource.error();
+        break;
+      case &#x27;extraction-site&#x27;:
+        error &#x3D; this.extractionSiteDataResource.error();
+        break;
+      case &#x27;dataset&#x27;:
+        error &#x3D; this.datasetDataResource.error();
+        break;
+      default:
+        return null;
+    }
+
+    if (error) {
+      return error instanceof Error ? error.message : &#x27;An error occurred while loading data&#x27;;
+    }
+
+    return null;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Computed signal that returns error state from data resources</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const dataType &#x3D; this.selectedDataType();
+    switch (dataType) {
+      case &#x27;anatomical&#x27;:
+        return this.anatomicalDataResource.isLoading();
+      case &#x27;extraction-site&#x27;:
+        return this.extractionSiteDataResource.isLoading();
+      case &#x27;dataset&#x27;:
+        return this.datasetDataResource.isLoading();
+      default:
+        return false;
+    }
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Computed signal that returns loading state based on selected data type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="organOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>organOptions</b></span>
+                        <a href="#organOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const data &#x3D; this.allData() as { organ: string }[];
+    return [...new Set(data.map((d) &#x3D;&gt; d.organ))];
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Computed signal that returns unique organ options from current data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedDataType"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedDataType</b></span>
+                        <a href="#selectedDataType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;DataType&gt;(&#x27;anatomical&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected data type (anatomical, extraction-site, or dataset)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOrgan"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedOrgan</b></span>
+                        <a href="#selectedOrgan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected organ for filtering</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSexes"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedSexes</b></span>
+                        <a href="#selectedSexes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string[]&gt;([&#x27;Male&#x27;, &#x27;Female&#x27;])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected sexes for filtering</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSort"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedSort</b></span>
+                        <a href="#selectedSort"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;SortValue&gt;(&#x27;totalCellCount&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected sort method</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedTools"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedTools</b></span>
+                        <a href="#selectedTools"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected annotation tools for filtering</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedXAxis"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedXAxis</b></span>
+                        <a href="#selectedXAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected X-axis field</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedYAxis"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedYAxis</b></span>
+                        <a href="#selectedYAxis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;YAxisValue&gt;(&#x27;cellCount&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Currently selected Y-axis value type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sortOptions</b></span>
+                        <a href="#sortOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SORT_OPTIONS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sort options for organizing data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vegaSpecs"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>vegaSpecs</b></span>
+                        <a href="#vegaSpecs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;VisualizationSpec[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Generated Vega-Lite specifications for chart rendering</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="xAxisOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>xAxisOptions</b></span>
+                        <a href="#xAxisOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;XAxisOption[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Available X-axis options based on selected data type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="yAxisOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>yAxisOptions</b></span>
+                        <a href="#yAxisOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Y_AXIS_OPTIONS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/hra-pop-visualizer/hra-pop-visualizer.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Y-axis options for chart display</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, effect, inject, signal, computed } from &#x27;@angular/core&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { rxResource } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { PageSectionComponent } from &#x27;@hra-ui/design-system/content-templates/page-section&#x27;;
+import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { BarGraphComponent } from &#x27;./components/bar-graph/bar-graph.component&#x27;;
+import { ConfigSelectorComponent } from &#x27;./components/config-selector/config-selector.component&#x27;;
+import { DataService } from &#x27;./service/data.service&#x27;;
+import { VisualizationSpec } from &#x27;vega-embed&#x27;;
+import { getBarGraphSpec } from &#x27;./utils/visualization&#x27;;
+import {
+  DataType,
+  DATA_TYPE_CONFIGS,
+  Y_AXIS_OPTIONS,
+  SORT_OPTIONS,
+  XAxisOption,
+  YAxisValue,
+  SortValue,
+  getToolDisplayName,
+} from &#x27;./utils/data-type-config&#x27;;
+import { TextHyperlinkComponent } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
+
+/**
+ * HRApop Visualizer Component
+ *
+ * Main component for visualizing cell type populations from HRApop data.
+ * Provides interactive controls for filtering and organizing data visualization
+ * across different data types (anatomical structures, extraction sites, datasets).
+ */
+@Component({
+  selector: &#x27;hra-pop-visualizer&#x27;,
+  imports: [
+    HraCommonModule,
+    PageSectionComponent,
+    IconsModule,
+    MatIconModule,
+    BarGraphComponent,
+    ConfigSelectorComponent,
+    TextHyperlinkComponent,
+  ],
+  templateUrl: &#x27;./hra-pop-visualizer.component.html&#x27;,
+  styleUrl: &#x27;./hra-pop-visualizer.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class HraPopVisualizerComponent {
+  /** Data service for fetching HRApop data */
+  private readonly dataService &#x3D; inject(DataService);
+
+  /** Configuration objects for different data types */
+  readonly dataTypeConfigs &#x3D; DATA_TYPE_CONFIGS;
+
+  /** Available data type options for selection */
+  readonly dataTypeOptions &#x3D; Object.values(DATA_TYPE_CONFIGS);
+
+  /** Y-axis options for chart display */
+  readonly yAxisOptions &#x3D; Y_AXIS_OPTIONS;
+
+  /** Sort options for organizing data */
+  readonly sortOptions &#x3D; SORT_OPTIONS;
+
+  /** Currently selected data type (anatomical, extraction-site, or dataset) */
+  readonly selectedDataType &#x3D; signal&lt;DataType&gt;(&#x27;anatomical&#x27;);
+
+  /** Currently selected organ for filtering */
+  readonly selectedOrgan &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Currently selected annotation tools for filtering */
+  readonly selectedTools &#x3D; signal&lt;string[]&gt;([]);
+
+  /** Currently selected sexes for filtering */
+  readonly selectedSexes &#x3D; signal&lt;string[]&gt;([&#x27;Male&#x27;, &#x27;Female&#x27;]);
+
+  /** Available X-axis options based on selected data type */
+  readonly xAxisOptions &#x3D; signal&lt;XAxisOption[]&gt;([]);
+
+  /** Currently selected X-axis field */
+  readonly selectedXAxis &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Currently selected Y-axis value type */
+  readonly selectedYAxis &#x3D; signal&lt;YAxisValue&gt;(&#x27;cellCount&#x27;);
+
+  /** Currently selected sort method */
+  readonly selectedSort &#x3D; signal&lt;SortValue&gt;(&#x27;totalCellCount&#x27;);
+
+  /** Tools that have data available for the current organ */
+  readonly availableTools &#x3D; signal&lt;string[]&gt;([]);
+
+  /** Generated Vega-Lite specifications for chart rendering */
+  readonly vegaSpecs &#x3D; signal&lt;VisualizationSpec[]&gt;([]);
+
+  /** Resource for loading anatomical structure data */
+  private readonly anatomicalDataResource &#x3D; rxResource({
+    params: () &#x3D;&gt; ({ dataType: &#x27;anatomical&#x27; as const }),
+    stream: () &#x3D;&gt; this.dataService.getAnatomicalData(),
+  });
+
+  /** Resource for loading extraction site data */
+  private readonly extractionSiteDataResource &#x3D; rxResource({
+    params: () &#x3D;&gt; ({ dataType: &#x27;extraction-site&#x27; as const }),
+    stream: () &#x3D;&gt; this.dataService.getExtractionSiteData(),
+  });
+
+  /** Resource for loading dataset data */
+  private readonly datasetDataResource &#x3D; rxResource({
+    params: () &#x3D;&gt; ({ dataType: &#x27;dataset&#x27; as const }),
+    stream: () &#x3D;&gt; this.dataService.getDatasetCellData(),
+  });
+
+  /** Computed signal that returns data based on currently selected data type */
+  readonly allData &#x3D; computed(() &#x3D;&gt; {
+    const dataType &#x3D; this.selectedDataType();
+    switch (dataType) {
+      case &#x27;anatomical&#x27;:
+        return this.anatomicalDataResource.value() ?? [];
+      case &#x27;extraction-site&#x27;:
+        return this.extractionSiteDataResource.value() ?? [];
+      case &#x27;dataset&#x27;:
+        return this.datasetDataResource.value() ?? [];
+      default:
+        return [];
+    }
+  });
+
+  /** Computed signal that returns unique organ options from current data */
+  readonly organOptions &#x3D; computed(() &#x3D;&gt; {
+    const data &#x3D; this.allData() as { organ: string }[];
+    return [...new Set(data.map((d) &#x3D;&gt; d.organ))];
+  });
+
+  /** Computed signal that returns loading state based on selected data type */
+  readonly loading &#x3D; computed(() &#x3D;&gt; {
+    const dataType &#x3D; this.selectedDataType();
+    switch (dataType) {
+      case &#x27;anatomical&#x27;:
+        return this.anatomicalDataResource.isLoading();
+      case &#x27;extraction-site&#x27;:
+        return this.extractionSiteDataResource.isLoading();
+      case &#x27;dataset&#x27;:
+        return this.datasetDataResource.isLoading();
+      default:
+        return false;
+    }
+  });
+
+  /** Computed signal that returns error state from data resources */
+  readonly error &#x3D; computed(() &#x3D;&gt; {
+    const dataType &#x3D; this.selectedDataType();
+    let error: unknown;
+
+    switch (dataType) {
+      case &#x27;anatomical&#x27;:
+        error &#x3D; this.anatomicalDataResource.error();
+        break;
+      case &#x27;extraction-site&#x27;:
+        error &#x3D; this.extractionSiteDataResource.error();
+        break;
+      case &#x27;dataset&#x27;:
+        error &#x3D; this.datasetDataResource.error();
+        break;
+      default:
+        return null;
+    }
+
+    if (error) {
+      return error instanceof Error ? error.message : &#x27;An error occurred while loading data&#x27;;
+    }
+
+    return null;
+  });
+
+  /**
+   * Component constructor
+   * Initializes reactive effects for data management
+   */
+  constructor() {
+    this.initializeEffects();
+  }
+
+  /**
+   * Initializes reactive effects for component state management
+   * @private
+   */
+  private initializeEffects() {
+    // Effect to update X-axis options when data type changes
+    effect(() &#x3D;&gt; {
+      const dataType &#x3D; this.selectedDataType();
+      this.updateXAxisOptions(dataType);
+    });
+
+    // Effect to auto-select first organ when organ options change
+    effect(() &#x3D;&gt; {
+      const organs &#x3D; this.organOptions();
+      if (organs.length &gt; 0 &amp;&amp; !this.selectedOrgan()) {
+        this.selectedOrgan.set(organs[0]);
+      }
+    });
+
+    // Effect to update available tools and charts when dependencies change
+    effect(() &#x3D;&gt; {
+      this.updateAvailableTools();
+      this.updateCharts();
+    });
+  }
+
+  /**
+   * Updates available tools based on current organ selection
+   * @private
+   */
+  private updateAvailableTools() {
+    const organ &#x3D; this.selectedOrgan();
+    const data &#x3D; this.allData();
+
+    if (!organ || !data.length) {
+      this.availableTools.set([]);
+      return;
+    }
+
+    // Get unique tools available for the current organ
+    const organData &#x3D; data.filter((d) &#x3D;&gt; d.organ &#x3D;&#x3D;&#x3D; organ);
+    const toolsWithData &#x3D; [...new Set(organData.map((d) &#x3D;&gt; d.tool))];
+
+    this.availableTools.set(toolsWithData);
+
+    // Auto-select all available tools on first load, or filter existing selection
+    this.selectedTools.update((currentSelectedTools) &#x3D;&gt; {
+      if (currentSelectedTools.length &#x3D;&#x3D;&#x3D; 0) {
+        // First load - select all available tools
+        return toolsWithData;
+      }
+      // Filter existing selection to only include available tools
+      const validSelectedTools &#x3D; currentSelectedTools.filter((tool) &#x3D;&gt; toolsWithData.includes(tool));
+      return validSelectedTools.length !&#x3D;&#x3D; currentSelectedTools.length ? validSelectedTools : currentSelectedTools;
+    });
+  }
+
+  /**
+   * Updates X-axis options based on selected data type
+   * @param dataType - The selected data type
+   * @private
+   */
+  private updateXAxisOptions(dataType: DataType) {
+    const config &#x3D; this.dataTypeConfigs[dataType];
+    this.xAxisOptions.set(config.xAxisOptions);
+    if (config.xAxisOptions.length &gt; 0) {
+      this.selectedXAxis.set(config.xAxisOptions[0].value);
+    }
+  }
+
+  /**
+   * Updates chart specifications based on current filter selections
+   * @private
+   */
+  private updateCharts() {
+    const dataType &#x3D; this.selectedDataType();
+    const organ &#x3D; this.selectedOrgan();
+    const tools &#x3D; this.selectedTools();
+    const sexes &#x3D; this.selectedSexes();
+    const xAxis &#x3D; this.selectedXAxis();
+    const yField &#x3D; this.selectedYAxis();
+    const sortBy &#x3D; this.selectedSort();
+    const config &#x3D; this.dataTypeConfigs[dataType];
+
+    if (!organ || !this.allData().length || this.loading() || !xAxis) {
+      this.vegaSpecs.set([]);
+      return;
+    }
+
+    // Find the X-axis field mapping
+    const xAxisOption &#x3D; config.xAxisOptions.find((opt) &#x3D;&gt; opt.value &#x3D;&#x3D;&#x3D; xAxis);
+    if (!xAxisOption) {
+      this.vegaSpecs.set([]);
+      return;
+    }
+
+    // Filter data by organ, tools, and sexes - all at once
+    let filtered &#x3D; this.allData().filter(
+      (d) &#x3D;&gt; d.organ &#x3D;&#x3D;&#x3D; organ &amp;&amp; (tools.length ? tools.includes(d.tool) : true) &amp;&amp; sexes.includes(d.sex),
+    );
+
+    if (filtered.length &#x3D;&#x3D;&#x3D; 0) {
+      this.vegaSpecs.set([]);
+      return;
+    }
+
+    // Handle extraction site label fallback
+    if (xAxisOption.field &#x3D;&#x3D;&#x3D; &#x27;extractionSiteLabel&#x27;) {
+      filtered &#x3D; filtered.map((item) &#x3D;&gt; ({
+        ...item,
+        extractionSiteLabel: (item as any).extractionSiteLabel || (item as any).extractionSiteId,
+      }));
+    }
+
+    const toolNames &#x3D; tools.length ? tools.map((t) &#x3D;&gt; getToolDisplayName(t)).join(&#x27;, &#x27;) : &#x27;All Tools&#x27;;
+    const sexNames &#x3D; sexes.join(&#x27; &amp; &#x27;);
+    const title &#x3D; &#x60;${config.label} - ${toolNames} - ${sexNames}&#x60;;
+
+    const spec &#x3D; getBarGraphSpec({
+      graphTitle: title,
+      values: filtered,
+      xField: xAxisOption.field,
+      yField: yField,
+      toolFilter: tools,
+      sexFilter: &#x27;Both&#x27;,
+      sortBy: sortBy,
+      order: &#x27;descending&#x27;,
+    });
+    this.vegaSpecs.set([spec]);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- hra-pop-visualizer.component.html --&gt;
+&lt;hra-page-section hraFeature&#x3D;&quot;hra-pop-visualizer&quot; tagline&#x3D;&quot;HRApop Visualizer&quot;&gt;
+  &lt;div class&#x3D;&quot;title-line&quot;&gt;
+    &lt;span&gt;Explore cell type populations of &lt;/span&gt;
+    &lt;hra-text-hyperlink
+      hraFeature&#x3D;&quot;hrapop-link&quot;
+      [text]&#x3D;&quot;&#x27;HRApop v1.0&#x27;&quot;
+      [url]&#x3D;&quot;&#x27;https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest&#x27;&quot;
+    &gt;&lt;/hra-text-hyperlink&gt;
+    .
+  &lt;/div&gt;
+
+  &lt;!-- Configurations Container with integrated header --&gt;
+  &lt;div class&#x3D;&quot;configurations-container&quot;&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;div class&#x3D;&quot;icon&quot;&gt;
+        &lt;hra-icon svgIcon&#x3D;&quot;product:cell-population-predictor&quot;&gt;&lt;/hra-icon&gt;
+        &lt;span class&#x3D;&quot;label&quot;&gt;HRApop Visualizer&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Config selector within the same border --&gt;
+    &lt;hra-config-selector
+      [dataTypeOptions]&#x3D;&quot;dataTypeOptions&quot;
+      [(selectedDataType)]&#x3D;&quot;selectedDataType&quot;
+      [organOptions]&#x3D;&quot;organOptions()&quot;
+      [(selectedOrgan)]&#x3D;&quot;selectedOrgan&quot;
+      [(selectedTools)]&#x3D;&quot;selectedTools&quot;
+      [(selectedSexes)]&#x3D;&quot;selectedSexes&quot;
+      [xAxisOptions]&#x3D;&quot;xAxisOptions()&quot;
+      [(selectedXAxis)]&#x3D;&quot;selectedXAxis&quot;
+      [yAxisOptions]&#x3D;&quot;yAxisOptions&quot;
+      [(selectedYAxis)]&#x3D;&quot;selectedYAxis&quot;
+      [sortOptions]&#x3D;&quot;sortOptions&quot;
+      [(selectedSort)]&#x3D;&quot;selectedSort&quot;
+      [availableTools]&#x3D;&quot;availableTools()&quot;
+      [loading]&#x3D;&quot;loading()&quot;
+    &gt;
+    &lt;/hra-config-selector&gt;
+
+    &lt;!-- Charts Content Section --&gt;
+    &lt;div class&#x3D;&quot;charts-content&quot;&gt;
+      &lt;!-- Loading State --&gt;
+      @if (loading(); as isLoading) {
+        &lt;div class&#x3D;&quot;loading-state&quot;&gt;
+          &lt;p&gt;Loading {{ dataTypeConfigs[selectedDataType()].label }}&lt;/p&gt;
+        &lt;/div&gt;
+      } @else {
+        &lt;!-- Error State --&gt;
+        @if (error(); as err) {
+          &lt;div class&#x3D;&quot;error-state&quot;&gt;
+            &lt;mat-icon&gt;error&lt;/mat-icon&gt;
+            &lt;p&gt;{{ err }}&lt;/p&gt;
+          &lt;/div&gt;
+        } @else {
+          &lt;!-- Charts - Single Row/Column Facet Chart --&gt;
+          &lt;div class&#x3D;&quot;graphs&quot;&gt;
+            @if (vegaSpecs().length &#x3D;&#x3D;&#x3D; 0) {
+              &lt;div class&#x3D;&quot;no-data&quot;&gt;
+                &lt;p&gt;No data available for the selected filters.&lt;/p&gt;
+              &lt;/div&gt;
+            } @else {
+              &lt;div class&#x3D;&quot;charts-grid&quot;&gt;
+                @for (spec of vegaSpecs(); track spec) {
+                  &lt;hra-bar-graph [spec]&#x3D;&quot;spec&quot; class&#x3D;&quot;chart-item&quot;&gt;&lt;/hra-bar-graph&gt;
+                }
+              &lt;/div&gt;
+            }
+          &lt;/div&gt;
+        }
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/hra-page-section&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- hra-pop-visualizer.component.html --><hra-page-section hraFeature="hra-pop-visualizer" tagline="HRApop Visualizer">  <div class="title-line">    <span>Explore cell type populations of </span>    <hra-text-hyperlink      hraFeature="hrapop-link"      [text]="\'HRApop v1.0\'"      [url]="\'https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest\'"    ></hra-text-hyperlink>    .  </div>  <!-- Configurations Container with integrated header -->  <div class="configurations-container">    <div class="header">      <div class="icon">        <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>        <span class="label">HRApop Visualizer</span>      </div>    </div>    <!-- Config selector within the same border -->    <hra-config-selector      [dataTypeOptions]="dataTypeOptions"      [(selectedDataType)]="selectedDataType"      [organOptions]="organOptions()"      [(selectedOrgan)]="selectedOrgan"      [(selectedTools)]="selectedTools"      [(selectedSexes)]="selectedSexes"      [xAxisOptions]="xAxisOptions()"      [(selectedXAxis)]="selectedXAxis"      [yAxisOptions]="yAxisOptions"      [(selectedYAxis)]="selectedYAxis"      [sortOptions]="sortOptions"      [(selectedSort)]="selectedSort"      [availableTools]="availableTools()"      [loading]="loading()"    >    </hra-config-selector>    <!-- Charts Content Section -->    <div class="charts-content">      <!-- Loading State -->      @if (loading(); as isLoading) {        <div class="loading-state">          <p>Loading {{ dataTypeConfigs[selectedDataType()].label }}</p>        </div>      } @else {        <!-- Error State -->        @if (error(); as err) {          <div class="error-state">            <mat-icon>error</mat-icon>            <p>{{ err }}</p>          </div>        } @else {          <!-- Charts - Single Row/Column Facet Chart -->          <div class="graphs">            @if (vegaSpecs().length === 0) {              <div class="no-data">                <p>No data available for the selected filters.</p>              </div>            } @else {              <div class="charts-grid">                @for (spec of vegaSpecs(); track spec) {                  <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>                }              </div>            }          </div>        }      }    </div>  </div></hra-page-section></div>'
+    var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HraPopVisualizerComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HraPopVisualizerComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

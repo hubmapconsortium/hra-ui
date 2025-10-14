@@ -1,0 +1,1168 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for humanatlas.io</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for humanatlas.io</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#ANCHOR_SCROLL_PADDING" title="src/app/app.component.ts" ><b>ANCHOR_SCROLL_PADDING</b>&nbsp;&nbsp;&nbsp;(src/.../app.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#appRoutes" title="src/app/app.routes.ts" ><b>appRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CarouselItemSchema" title="src/app/components/carousel/carousel.schema.ts" ><b>CarouselItemSchema</b>&nbsp;&nbsp;&nbsp;(src/.../carousel.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CountInfoItemSchema" title="src/app/components/count-info/count-info.schema.ts" ><b>CountInfoItemSchema</b>&nbsp;&nbsp;&nbsp;(src/.../count-info.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DataViewerWithQueryParamsDef" title="src/app/components/data-viewer-with-query-params/data-viewer-with-query-params.definition.ts" ><b>DataViewerWithQueryParamsDef</b>&nbsp;&nbsp;&nbsp;(src/.../data-viewer-with-query-params.definition.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DataViewerWithQueryParamsSchema" title="src/app/components/data-viewer-with-query-params/data-viewer-with-query-params.schema.ts" ><b>DataViewerWithQueryParamsSchema</b>&nbsp;&nbsp;&nbsp;(src/.../data-viewer-with-query-params.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LandingPageDataSchema" title="src/app/schemas/landing-page/landing-page.schema.ts" ><b>LandingPageDataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../landing-page.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PublicationsPageDataSchema" title="src/app/schemas/publications-page/publications-page.schema.ts" ><b>PublicationsPageDataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../publications-page.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ReleaseNotesVersionSchema" title="src/app/schemas/release-notes-version/release-notes-version.schema.ts" ><b>ReleaseNotesVersionSchema</b>&nbsp;&nbsp;&nbsp;(src/.../release-notes-version.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ReleaseNotesVersionSelectorDef" title="src/app/components/release-notes-version-selector/release-notes-version-selector.definition.ts" ><b>ReleaseNotesVersionSelectorDef</b>&nbsp;&nbsp;&nbsp;(src/.../release-notes-version-selector.definition.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ReleaseNotesVersionSelectorSchema" title="src/app/components/release-notes-version-selector/release-notes-version-selector.schema.ts" ><b>ReleaseNotesVersionSelectorSchema</b>&nbsp;&nbsp;&nbsp;(src/.../release-notes-version-selector.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ReleaseNotesVersionsSchema" title="src/app/schemas/release-notes-version/release-notes-version.schema.ts" ><b>ReleaseNotesVersionsSchema</b>&nbsp;&nbsp;&nbsp;(src/.../release-notes-version.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SectionCardItemSchema" title="src/app/components/section-cards/section-cards.schema.ts" ><b>SectionCardItemSchema</b>&nbsp;&nbsp;&nbsp;(src/.../section-cards.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SummaryStatisticsTableDef" title="src/app/components/summary-statistics-table/summary-statistics-table.definition.ts" ><b>SummaryStatisticsTableDef</b>&nbsp;&nbsp;&nbsp;(src/.../summary-statistics-table.definition.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SummaryStatisticsTableSchema" title="src/app/components/summary-statistics-table/summary-statistics-table.schema.ts" ><b>SummaryStatisticsTableSchema</b>&nbsp;&nbsp;&nbsp;(src/.../summary-statistics-table.schema.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/app.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ANCHOR_SCROLL_PADDING"></a>
+                    <span class="name">
+                        <span ><b>ANCHOR_SCROLL_PADDING</b></span>
+                        <a href="#ANCHOR_SCROLL_PADDING"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>24</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Padding when scrolling to an anchor in px</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideAppConfiguration({
+      name: &#x27;humanatlas.io&#x27;,
+      version: &#x27;3.0.0&#x27;,
+      url: &#x27;https://humanatlas.io/&#x27;,
+    }),
+    provideAnalytics(withRouterEvents(), withErrorHandler()),
+    provideContentTemplateControllers([VersionedTableParamSyncControllerService, DataViewerParamSyncControllerService]),
+    provideContentTemplateDefs([
+      ActionCardDef,
+      ApiCommandDef,
+      ButtonDef,
+      DataViewerDef,
+      DataViewerWithQueryParamsDef,
+      FlexContainerDef,
+      GridContainerDef,
+      IconDef,
+      ImageDef,
+      MarkdownDef,
+      PageSectionDef,
+      PageTableDef,
+      ProfileCardDef,
+      ReleaseNotesVersionSelectorDef,
+      SummaryStatisticsTableDef,
+      TextHyperlinkDef,
+      VersionedDataTableDef,
+      YouTubePlayerDef,
+    ]),
+    provideDesignSystem(),
+    provideZonelessChangeDetection(),
+    provideMarkdown({ loader: HttpClient }),
+    provideRouter(
+      appRoutes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ anchorScrolling: &#x27;disabled&#x27;, scrollPositionRestoration: &#x27;disabled&#x27; }),
+    ),
+  ],
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Application configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appRoutes"></a>
+                    <span class="name">
+                        <span ><b>appRoutes</b></span>
+                        <a href="#appRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Route[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;&#x27;,
+    pathMatch: &#x27;full&#x27;,
+    component: LandingPageComponent,
+    data: {
+      siteNavigation: false,
+    },
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/landing-page/data.yaml&#x27;, LandingPageDataSchema),
+    },
+  },
+
+  // Content pages
+  // Please try to keep sorted in alphabetical order
+  {
+    path: &#x27;2d-ftu-illustrations&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/2d-ftu-illustrations/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;3d-reference-library&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/3d-reference-library-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;about&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/about-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;api&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/api-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;asctb-azimuth&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/asctb-azimuth-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;asctb-reporter&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/asctb-reporter-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;asctb-tables&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/asctb-tables-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;ccf-ontology&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/ccf-ontology-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;cell-population-graphs&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/cell-population-graphs/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;cell-type-annotations&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/cell-type-annotations-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;editorial-board&#x27;,
+    redirectTo: &#x27;/about#editorial-board&#x27;,
+  },
+  {
+    path: &#x27;exploration-user-interface&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/eui-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;faq&#x27;,
+    pathMatch: &#x27;full&#x27;,
+    redirectTo: &#x27;/faq/omap&#x27;,
+  },
+  {
+    path: &#x27;faq/omap&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/omap-faqs-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;hra-organ-gallery&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/organ-gallery-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;kaggle-four&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/kaggle-four-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;kaggle-one&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/kaggle-one-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;kaggle-two&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/kaggle-two-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;kaggle-three&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/kaggle-three-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;landing-page&#x27;,
+    redirectTo: &#x27;/&#x27;,
+  },
+  {
+    path: &#x27;millitome&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/millitome/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;omap&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/omap-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;overview-data&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/data-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;overview-tools&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://docs.humanatlas.io/apps&#x27;),
+  },
+  {
+    path: &#x27;overview-training-outreach&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/training-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;overview-use-the-hra&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://docs.humanatlas.io/apps&#x27;),
+  },
+  {
+    path: &#x27;privacy-policy&#x27;,
+    component: ContentPageComponent,
+    data: {
+      siteNavigation: false,
+    },
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/privacy-policy-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;publications&#x27;,
+    component: PublicationsPageComponent,
+    resolve: {
+      publications: createJsonSpecResolver(&#x27;https://cns.iu.edu/publications.json?sort&#x3D;hra&#x27;, PublicationsPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;registration-user-interface&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/rui-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;release-notes&#x27;,
+    pathMatch: &#x27;full&#x27;,
+    // Preferably this would redirect to the latest version based on the versions data
+    // But it is not available at this point. Async redirectTo may become available in angular 20
+    redirectTo: &#x27;/release-notes/v2.3&#x27;,
+  },
+  {
+    path: &#x27;release-notes/:version&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      versions: createYamlSpecResolver(&#x27;assets/content/release-notes-page/versions.yaml&#x27;, ReleaseNotesVersionsSchema),
+      data: createReleaseNotesContentResolver(&#x27;assets/content/release-notes-page/&#x27;),
+    },
+  },
+  {
+    path: &#x27;standard-operating-procedures&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        &#x27;assets/content/standard-operating-procedures-page/data.yaml&#x27;,
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
+    path: &#x27;team&#x27;,
+    redirectTo: &#x27;/about&#x27;,
+  },
+  {
+    path: &#x27;usage-metrics&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/dashboard/usage&#x27;),
+  },
+  {
+    path: &#x27;user-story&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://docs.humanatlas.io/apps&#x27;),
+  },
+  {
+    path: &#x27;user-story/1&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/cell-population-predictor-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;user-story/2&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/tissue-origin-predictor-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;user-story/3&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(
+        &#x27;assets/content/explore-biomarker-expressions-page/data.yaml&#x27;,
+        ContentPageDataSchema,
+      ),
+    },
+  },
+  {
+    path: &#x27;user-story/4&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/ftu-explorer-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;user-story/5&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/cell-distance-explorer-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;user-story/6&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/web-components-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;user-story/7&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/dashboard-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
+    path: &#x27;vccf&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/vccf-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+
+  // Error pages and redirects
+  {
+    path: &#x27;**&#x27;,
+    component: NotFoundPageComponent,
+    data: {
+      siteNavigation: false,
+    },
+  },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Application routes</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/carousel/carousel.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CarouselItemSchema"></a>
+                    <span class="name">
+                        <span ><b>CarouselItemSchema</b></span>
+                        <a href="#CarouselItemSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  tagline: z.string(),
+  description: z.string(),
+  imageSrc: z.string(),
+  action: z.string(),
+  link: z.union([z.object({ url: z.string().url() }), z.object({ route: z.string() })]),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Carousel item Zod schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/count-info/count-info.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CountInfoItemSchema"></a>
+                    <span class="name">
+                        <span ><b>CountInfoItemSchema</b></span>
+                        <a href="#CountInfoItemSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  label: z.string(),
+  count: z.union([z.number(), z.string()]),
+  icon: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Count info item schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/data-viewer-with-query-params/data-viewer-with-query-params.definition.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DataViewerWithQueryParamsDef"></a>
+                    <span class="name">
+                        <span ><b>DataViewerWithQueryParamsDef</b></span>
+                        <a href="#DataViewerWithQueryParamsDef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/DataViewerWithQueryParamsComponent.html" target="_self" >ContentTemplateDef&lt;DataViewerWithQueryParamsComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  component: DataViewerWithQueryParamsComponent,
+  spec: DataViewerWithQueryParamsSchema,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Definition for Data Viewer with Query Params Component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/data-viewer-with-query-params/data-viewer-with-query-params.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DataViewerWithQueryParamsSchema"></a>
+                    <span class="name">
+                        <span ><b>DataViewerWithQueryParamsSchema</b></span>
+                        <a href="#DataViewerWithQueryParamsSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ContentTemplateSchema.extend({
+  component: z.literal(&#x27;DataViewerWithQueryParams&#x27;),
+  variant: DataViewerVariantSchema,
+  githubIconsUrl: z.string(),
+  releaseVersionData: ReleaseVersionDataSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for Data Viewer with Query Params Component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/schemas/landing-page/landing-page.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LandingPageDataSchema"></a>
+                    <span class="name">
+                        <span ><b>LandingPageDataSchema</b></span>
+                        <a href="#LandingPageDataSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  $schema: z.string(),
+  carouselItems: CarouselItemSchema.array(),
+  countInfo: z
+    .object({
+      count: z.number(),
+      label: z.string(),
+      suffix: z.string().optional(),
+      icon: z.string(),
+    })
+    .array(),
+  sectionCardInfo: SectionCardItemSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Landing page data schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/schemas/publications-page/publications-page.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PublicationsPageDataSchema"></a>
+                    <span class="name">
+                        <span ><b>PublicationsPageDataSchema</b></span>
+                        <a href="#PublicationsPageDataSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.record(z.string(), z.string().array())</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Publications page data schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/schemas/release-notes-version/release-notes-version.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ReleaseNotesVersionSchema"></a>
+                    <span class="name">
+                        <span ><b>ReleaseNotesVersionSchema</b></span>
+                        <a href="#ReleaseNotesVersionSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  version: z.string(),
+  label: z.string(),
+  date: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for release notes data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ReleaseNotesVersionsSchema"></a>
+                    <span class="name">
+                        <span ><b>ReleaseNotesVersionsSchema</b></span>
+                        <a href="#ReleaseNotesVersionsSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  $schema: z.string(),
+  versions: ReleaseNotesVersionSchema.array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Release notes versions schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/release-notes-version-selector/release-notes-version-selector.definition.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ReleaseNotesVersionSelectorDef"></a>
+                    <span class="name">
+                        <span ><b>ReleaseNotesVersionSelectorDef</b></span>
+                        <a href="#ReleaseNotesVersionSelectorDef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/ReleaseNotesVersionSelectorComponent.html" target="_self" >ContentTemplateDef&lt;ReleaseNotesVersionSelectorComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  component: ReleaseNotesVersionSelectorComponent,
+  spec: ReleaseNotesVersionSelectorSchema,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Definition for Release Notes Version Selector Component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/release-notes-version-selector/release-notes-version-selector.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ReleaseNotesVersionSelectorSchema"></a>
+                    <span class="name">
+                        <span ><b>ReleaseNotesVersionSelectorSchema</b></span>
+                        <a href="#ReleaseNotesVersionSelectorSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ContentTemplateSchema.extend({
+  component: z.literal(&#x27;ReleaseNotesVersionSelector&#x27;),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for Release Notes Version Selector Component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/section-cards/section-cards.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SectionCardItemSchema"></a>
+                    <span class="name">
+                        <span ><b>SectionCardItemSchema</b></span>
+                        <a href="#SectionCardItemSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  tagline: z.string(),
+  icon: z.string(),
+  route: z.string().optional(),
+  url: z.string().optional(),
+  action: z.string(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Section card item Zod schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/summary-statistics-table/summary-statistics-table.definition.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SummaryStatisticsTableDef"></a>
+                    <span class="name">
+                        <span ><b>SummaryStatisticsTableDef</b></span>
+                        <a href="#SummaryStatisticsTableDef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/SummaryStatisticsTableComponent.html" target="_self" >ContentTemplateDef&lt;SummaryStatisticsTableComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  component: SummaryStatisticsTableComponent,
+  spec: SummaryStatisticsTableSchema,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Content template definition for SummaryStatisticsTableComponent</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/summary-statistics-table/summary-statistics-table.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SummaryStatisticsTableSchema"></a>
+                    <span class="name">
+                        <span ><b>SummaryStatisticsTableSchema</b></span>
+                        <a href="#SummaryStatisticsTableSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ContentTemplateSchema.merge(
+  PageTableSchema.pick({
+    columns: true,
+  }),
+).extend({
+  component: z.literal(&#x27;SummaryStatisticsTable&#x27;),
+  csvUrl: z.string().optional(),
+  organColumn: z.string().optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for Summary Statistics Table Component
+This schema extends the ContentTemplateSchema and PageTableSchema,
+adding properties specific to the summary statistics table component.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

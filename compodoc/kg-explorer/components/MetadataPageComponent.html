@@ -1,0 +1,1309 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for kg-explorer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for kg-explorer</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  MetadataPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/metadata-page/metadata-page.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Metadata page for a digital object</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-metadata-page</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>PageSectionComponent</code>
+                                <code><a href="../modules/MetadataLayoutModule.html" target="_self" >MetadataLayoutModule</a></code>
+                            <code>MarkdownComponent</code>
+                                <code><a href="../components/ProvenanceMenuComponent.html" target="_self" >ProvenanceMenuComponent</a></code>
+                            <code>MatChipsModule</code>
+                            <code>FooterComponent</code>
+                            <code>CopyableUrlContainerComponent</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./metadata-page.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./metadata-page.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#availableVersions" >availableVersions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#currentVersion" >currentVersion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#downloadOptions" >downloadOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#icons" >icons</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#imageTypes" >imageTypes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#isNotMediumScreen" >isNotMediumScreen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#purl" >purl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#rows" >rows</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tags" >tags</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getImage" >getImage</a>
+                            </li>
+                            <li>
+                                <a href="#tagClick" >tagClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#columns" >columns</a>
+                            </li>
+                            <li>
+                                <a href="#doData" >doData</a>
+                            </li>
+                            <li>
+                                <a href="#metadata" >metadata</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:82</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Fetches digital object metadata from API, sets current data version, and sets the correct product/organ icons</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="columns"></a>
+                        <b>columns</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TableColumn[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:54</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Column data for metadata table</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="doData"></a>
+                        <b>doData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>DigitalObjectsJsonLd</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:52</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Raw digital object data from API</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="metadata"></a>
+                        <b>metadata</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DigitalObjectMetadata" target="_self" >DigitalObjectMetadata</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:56</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Metadata for the digital object</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getImage"></a>
+                    <span class="name">
+                        <span ><b>getImage</b></span>
+                        <a href="#getImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getImage()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns image url for the digital object, if applicable</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>image url</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tagClick"></a>
+                    <span class="name">
+                        <span ><b>tagClick</b></span>
+                        <a href="#tagClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>tagClick(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to the main page with the correct filters when a tag is clicked</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Filter id associated with tag</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>type</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Filter type (&#39;do&#39; or &#39;organs&#39;)</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="availableVersions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>availableVersions</b></span>
+                        <a href="#availableVersions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Versions available for this digital object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentVersion"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>currentVersion</b></span>
+                        <a href="#currentVersion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current version selected</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>downloadOptions</b></span>
+                        <a href="#downloadOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;MenuOptionsType[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>File download options for this digital object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="icons"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>icons</b></span>
+                        <a href="#icons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Icons to display on top of the page</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="imageTypes"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>imageTypes</b></span>
+                        <a href="#imageTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;string | string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    &#x27;2d-ftu&#x27;: &#x27;image/svg+xml&#x27;,
+    &#x27;ref-organ&#x27;: &#x27;model/gltf-binary&#x27;,
+    landmark: &#x27;model/gltf-binary&#x27;,
+    schema: &#x27;image/svg+xml&#x27;,
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>For these DoTypes the corresponding image types will be displayed on the page</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isNotMediumScreen"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>isNotMediumScreen</b></span>
+                        <a href="#isNotMediumScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>watchBreakpoint(&#x27;(min-width: 1100px), (max-width: 639px)&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines if the screen is not medium-sized</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="purl"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>purl</b></span>
+                        <a href="#purl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>PURL for the object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rows"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>rows</b></span>
+                        <a href="#rows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;{ provenance: string; metadata: string }[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Data to display in the metadata table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tags"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tags</b></span>
+                        <a href="#tags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;{ id: string; label: string; type: string }[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tags to display in Tags section (object type + organs)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import &#x27;@google/model-viewer&#x27;;
+
+import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from &#x27;@angular/core&#x27;;
+import { toObservable } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { DigitalObjectsJsonLd, V1Service } from &#x27;@hra-api/ng-client&#x27;;
+import { watchBreakpoint } from &#x27;@hra-ui/cdk/breakpoints&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { PageSectionComponent } from &#x27;@hra-ui/design-system/content-templates/page-section&#x27;;
+import { CopyableUrlContainerComponent } from &#x27;@hra-ui/design-system/copyable-url-container&#x27;;
+import { FooterComponent } from &#x27;@hra-ui/design-system/navigation/footer&#x27;;
+import { MenuOptionsType, TableColumn } from &#x27;@hra-ui/design-system/table&#x27;;
+import { MarkdownComponent } from &#x27;ngx-markdown&#x27;;
+
+import { MetadataLayoutModule } from &#x27;../../components/metadata-layout/metadata-layout.module&#x27;;
+import { ProvenanceMenuComponent } from &#x27;../../components/provenance-menu/provenance-menu.component&#x27;;
+import { DigitalObjectMetadata, PersonInfo } from &#x27;../../digital-objects-metadata.schema&#x27;;
+import { DownloadService } from &#x27;../../services/download.service&#x27;;
+import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from &#x27;../../utils/utils&#x27;;
+
+/**
+ * Metadata page for a digital object
+ */
+@Component({
+  selector: &#x27;hra-metadata-page&#x27;,
+  imports: [
+    HraCommonModule,
+    PageSectionComponent,
+    MetadataLayoutModule,
+    MarkdownComponent,
+    ProvenanceMenuComponent,
+    MatChipsModule,
+    FooterComponent,
+    CopyableUrlContainerComponent,
+  ],
+  templateUrl: &#x27;./metadata-page.component.html&#x27;,
+  styleUrl: &#x27;./metadata-page.component.scss&#x27;,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class MetadataPageComponent {
+  /** Router service */
+  private readonly router &#x3D; inject(Router);
+  /** Activated route service */
+  private readonly route &#x3D; inject(ActivatedRoute);
+  /** File download service */
+  private readonly download &#x3D; inject(DownloadService);
+  /** HRA V1 API service */
+  private readonly v1 &#x3D; inject(V1Service);
+
+  /** Raw digital object data from API */
+  readonly doData &#x3D; input.required&lt;DigitalObjectsJsonLd&gt;();
+  /** Column data for metadata table */
+  readonly columns &#x3D; input.required&lt;TableColumn[]&gt;();
+  /** Metadata for the digital object */
+  readonly metadata &#x3D; input.required&lt;DigitalObjectMetadata&gt;();
+
+  /** Versions available for this digital object */
+  readonly availableVersions &#x3D; signal&lt;string[]&gt;([]);
+  /** Current version selected */
+  readonly currentVersion &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+  /** Icons to display on top of the page */
+  readonly icons &#x3D; signal&lt;string[]&gt;([]);
+  /** File download options for this digital object */
+  readonly downloadOptions &#x3D; signal&lt;MenuOptionsType[]&gt;([]);
+  /** Tags to display in Tags section (object type + organs) */
+  readonly tags &#x3D; signal&lt;{ id: string; label: string; type: string }[]&gt;([]);
+  /** Data to display in the metadata table */
+  readonly rows &#x3D; signal&lt;{ provenance: string; metadata: string }[]&gt;([]);
+  /** PURL for the object */
+  readonly purl &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Determines if the screen is not medium-sized */
+  protected isNotMediumScreen &#x3D; watchBreakpoint(&#x27;(min-width: 1100px), (max-width: 639px)&#x27;);
+
+  /** For these DoTypes the corresponding image types will be displayed on the page */
+  readonly imageTypes: Record&lt;string, string&gt; &#x3D; {
+    &#x27;2d-ftu&#x27;: &#x27;image/svg+xml&#x27;,
+    &#x27;ref-organ&#x27;: &#x27;model/gltf-binary&#x27;,
+    landmark: &#x27;model/gltf-binary&#x27;,
+    schema: &#x27;image/svg+xml&#x27;,
+  };
+
+  /**
+   * Fetches digital object metadata from API, sets current data version, and sets the correct product/organ icons
+   */
+  constructor() {
+    const type &#x3D; this.route.snapshot.paramMap.get(&#x27;type&#x27;) || &#x27;&#x27;;
+    const name &#x3D; this.route.snapshot.paramMap.get(&#x27;name&#x27;) || &#x27;&#x27;;
+    const version &#x3D; this.route.snapshot.paramMap.get(&#x27;version&#x27;) || &#x27;&#x27;;
+    this.currentVersion.set(version);
+
+    effect(() &#x3D;&gt; {
+      this.router.navigate([type, name, this.currentVersion()]);
+    });
+
+    toObservable(this.metadata).subscribe((metadata) &#x3D;&gt; {
+      if (metadata) {
+        this.downloadOptions.set(this.download.getDownloadOptions(metadata));
+        this.rows.set(
+          [
+            { provenance: &#x27;Creator(s)&#x27;, metadata: this.createMarkdownList(metadata.was_derived_from.creators) },
+            {
+              provenance: &#x27;Project lead(s)&#x27;,
+              metadata: this.createMarkdownList(metadata.was_derived_from.project_leads),
+            },
+            {
+              provenance: &#x27;Reviewer(s)&#x27;,
+              metadata: this.createMarkdownList(metadata.was_derived_from.reviewers),
+            },
+            {
+              provenance: &#x27;DOI&#x27;,
+              metadata: metadata.was_derived_from.doi
+                ? &#x60;[${metadata.was_derived_from.doi}](${metadata.was_derived_from.doi})&#x60;
+                : &#x27;&#x27;,
+            },
+            { provenance: &#x27;HuBMAP ID&#x27;, metadata: metadata.was_derived_from.hubmapId ?? &#x27;&#x27; },
+            { provenance: &#x27;Date published&#x27;, metadata: metadata.was_derived_from.creation_date ?? &#x27;&#x27; },
+            { provenance: &#x27;Date last processed&#x27;, metadata: metadata.creation_date ?? &#x27;&#x27; },
+          ].filter((item) &#x3D;&gt; item.metadata !&#x3D;&#x3D; &#x27;&#x27;),
+        );
+      } else {
+        this.router.navigate([&#x60;404&#x60;]);
+      }
+    });
+
+    toObservable(this.doData).subscribe((data: DigitalObjectsJsonLd) &#x3D;&gt; {
+      if (data[&#x27;@graph&#x27;]) {
+        const pageItem &#x3D; data[&#x27;@graph&#x27;].find((item) &#x3D;&gt; {
+          return item[&#x27;@id&#x27;] &#x3D;&#x3D;&#x3D; &#x60;https://lod.humanatlas.io/${type}/${name}&#x60;;
+        });
+        this.purl.set(pageItem?.purl || &#x27;&#x27;);
+        const icons &#x3D; [getProductIcon(type)];
+        if (pageItem?.organIds) {
+          icons.push(getOrganIcon(pageItem));
+        }
+        this.icons.set(icons);
+
+        this.v1.ontologyTreeModel({}).subscribe((ontologyData) &#x3D;&gt; {
+          if (pageItem) {
+            this.availableVersions.set(pageItem.versions);
+            const tags &#x3D; [{ id: type, label: getProductLabel(type), type: &#x27;do&#x27; }];
+            for (const organId of pageItem.organIds || []) {
+              tags.push({
+                id: organId,
+                label: sentenceCase(ontologyData.nodes[organId].label || &#x27;&#x27;),
+                type: &#x27;organs&#x27;,
+              });
+            }
+            this.tags.set(tags);
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * Returns image url for the digital object, if applicable
+   * @returns image url
+   */
+  getImage(): string | undefined {
+    const mediaType &#x3D; this.imageTypes[this.metadata().type];
+    if (this.imageTypes[this.metadata().type]) {
+      const distributions &#x3D; this.metadata().was_derived_from.distributions;
+      const mediaMatch &#x3D; distributions.find((dist) &#x3D;&gt; dist.mediaType &#x3D;&#x3D;&#x3D; mediaType);
+      if (mediaMatch) {
+        return mediaMatch.downloadUrl;
+      }
+    }
+    return undefined;
+  }
+
+  // /**
+  //  * Returns CSV  downloadUrl for the digital object, if available
+  //  * @returns csv url
+  //  */
+  // private getCsv(): string | undefined {
+  //   const csvMatch &#x3D; this.metadata().was_derived_from.distributions.find((dist) &#x3D;&gt; dist.mediaType &#x3D;&#x3D;&#x3D; &#x27;text/csv&#x27;);
+  //   return csvMatch?.downloadUrl ?? undefined;
+  // }
+
+  /**
+   * Returns a string formated as a markdown link from text and url
+   * @param text Link text
+   * @param url Link url
+   * @returns Markdown link
+   */
+  private createMarkdownLink(text: string, url: string): string {
+    return &#x60;[${text}](${url})&#x60;;
+  }
+
+  /**
+   * Creates a list of markdown links (or a single markdown link) from person info data, if available
+   * @param items info data
+   * @returns list of markdown links
+   */
+  private createMarkdownList(items?: PersonInfo[]): string {
+    if (!items) {
+      return &#x27;&#x27;;
+    }
+    if (items.length &#x3D;&#x3D;&#x3D; 1) {
+      return this.createMarkdownLink(items[0].label, items[0].id);
+    }
+    return items.map((item) &#x3D;&gt; &#x60;\n* ${this.createMarkdownLink(item.label, item.id)}&#x60;).join(&#x27; &#x27;);
+  }
+
+  /**
+   * Navigates to the main page with the correct filters when a tag is clicked
+   * @param id Filter id associated with tag
+   * @param type Filter type (&#x27;do&#x27; or &#x27;organs&#x27;)
+   */
+  tagClick(id: string, type: string) {
+    this.router.navigate([&#x27;&#x27;], { queryParams: { [type]: id } });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;metadata-page&quot;&gt;
+  @if (metadata()) {
+    &lt;hra-metadata-layout
+      [hraFeature]&#x3D;&quot;metadata().was_derived_from.title | slugify&quot;
+      [rows]&#x3D;&quot;rows()&quot;
+      [columns]&#x3D;&quot;columns()&quot;
+      [version]&#x3D;&quot;currentVersion()&quot;
+      [availableVersions]&#x3D;&quot;availableVersions()&quot;
+      [downloadOptions]&#x3D;&quot;downloadOptions()&quot;
+      (versionChange)&#x3D;&quot;currentVersion.set($event)&quot;
+    &gt;
+      &lt;hra-metadata-layout-header&gt;
+        &lt;hra-page-section [tagline]&#x3D;&quot;metadata().was_derived_from.title&quot; [icons]&#x3D;&quot;icons()&quot; /&gt;
+        &lt;div class&#x3D;&quot;header-content&quot;&gt;
+          &lt;hra-copyable-url-container [url]&#x3D;&quot;purl()&quot; /&gt;
+          @if (getImage()) {
+            @if (imageTypes[metadata().type] &#x3D;&#x3D;&#x3D; &#x27;image/svg+xml&#x27;) {
+              &lt;img [src]&#x3D;&quot;getImage()&quot; alt&#x3D;&quot;Metadata Image&quot; class&#x3D;&quot;metadata-image&quot; /&gt;
+            }
+            @if (imageTypes[metadata().type] &#x3D;&#x3D;&#x3D; &#x27;model/gltf-binary&#x27;) {
+              &lt;div hraFeature&#x3D;&quot;3d-model-viewer&quot; hraClickEvent class&#x3D;&quot;viewer-container&quot;&gt;
+                &lt;model-viewer
+                  class&#x3D;&quot;model-viewer&quot;
+                  [src]&#x3D;&quot;getImage()&quot;
+                  shadow-intensity&#x3D;&quot;1&quot;
+                  camera-controls
+                  auto-rotate
+                /&gt;
+              &lt;/div&gt;
+            }
+          }
+        &lt;/div&gt;
+      &lt;/hra-metadata-layout-header&gt;
+
+      &lt;hra-metadata-layout-content [class.medium-screen]&#x3D;&quot;!isNotMediumScreen()&quot;&gt;
+        &lt;div class&#x3D;&quot;sections&quot;&gt;
+          &lt;hra-page-section class&#x3D;&quot;description&quot; tagline&#x3D;&quot;Description&quot; [level]&#x3D;&quot;2&quot;&gt;
+            &lt;markdown [data]&#x3D;&quot;metadata().was_derived_from.description&quot; /&gt;
+          &lt;/hra-page-section&gt;
+          @if (metadata().was_derived_from.publisher) {
+            &lt;hra-page-section tagline&#x3D;&quot;Publisher&quot; [level]&#x3D;&quot;2&quot;&gt;
+              &lt;markdown [data]&#x3D;&quot;metadata().was_derived_from.publisher&quot; /&gt;
+            &lt;/hra-page-section&gt;
+          }
+          @if (metadata().was_derived_from.funders) {
+            &lt;hra-page-section tagline&#x3D;&quot;Funder&quot; [level]&#x3D;&quot;2&quot;&gt;
+              &lt;ul&gt;
+                @for (funder of metadata().was_derived_from.funders; track $index) {
+                  &lt;li&gt;{{ &#x60;${funder.funder} (Award number ${funder.awardNumber})&#x60; }}&lt;/li&gt;
+                }
+              &lt;/ul&gt;
+            &lt;/hra-page-section&gt;
+          }
+          &lt;hra-page-section tagline&#x3D;&quot;License&quot; [level]&#x3D;&quot;2&quot;&gt;
+            &lt;markdown [data]&#x3D;&quot;metadata().was_derived_from.license&quot; /&gt;
+          &lt;/hra-page-section&gt;
+          &lt;hra-page-section tagline&#x3D;&quot;Tags&quot; [level]&#x3D;&quot;2&quot;&gt;
+            &lt;mat-chip-set hraFeature&#x3D;&quot;tags&quot;&gt;
+              @for (tag of tags(); track $index) {
+                &lt;mat-chip [hraFeature]&#x3D;&quot;tag.label | slugify&quot; hraClickEvent (click)&#x3D;&quot;tagClick(tag.id, tag.type)&quot;&gt;
+                  {{ tag.label }}
+                &lt;/mat-chip&gt;
+              }
+            &lt;/mat-chip-set&gt;
+          &lt;/hra-page-section&gt;
+        &lt;/div&gt;
+
+        @if (!isNotMediumScreen()) {
+          &lt;hra-provenance-menu
+            hraFeature&#x3D;&quot;provenance-menu&quot;
+            [rows]&#x3D;&quot;rows()&quot;
+            [columns]&#x3D;&quot;columns()&quot;
+            [version]&#x3D;&quot;currentVersion()&quot;
+            [availableVersions]&#x3D;&quot;availableVersions()&quot;
+            [downloadOptions]&#x3D;&quot;downloadOptions()&quot;
+            (versionChange)&#x3D;&quot;currentVersion.set($event)&quot;
+          &gt;&lt;/hra-provenance-menu&gt;
+        }
+      &lt;/hra-metadata-layout-content&gt;
+    &lt;/hra-metadata-layout&gt;
+    &lt;hra-footer&gt;&lt;/hra-footer&gt;
+  }
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="metadata-page">  @if (metadata()) {    <hra-metadata-layout      [hraFeature]="metadata().was_derived_from.title | slugify"      [rows]="rows()"      [columns]="columns()"      [version]="currentVersion()"      [availableVersions]="availableVersions()"      [downloadOptions]="downloadOptions()"      (versionChange)="currentVersion.set($event)"    >      <hra-metadata-layout-header>        <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()" />        <div class="header-content">          <hra-copyable-url-container [url]="purl()" />          @if (getImage()) {            @if (imageTypes[metadata().type] === \'image/svg+xml\') {              <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />            }            @if (imageTypes[metadata().type] === \'model/gltf-binary\') {              <div hraFeature="3d-model-viewer" hraClickEvent class="viewer-container">                <model-viewer                  class="model-viewer"                  [src]="getImage()"                  shadow-intensity="1"                  camera-controls                  auto-rotate                />              </div>            }          }        </div>      </hra-metadata-layout-header>      <hra-metadata-layout-content [class.medium-screen]="!isNotMediumScreen()">        <div class="sections">          <hra-page-section class="description" tagline="Description" [level]="2">            <markdown [data]="metadata().was_derived_from.description" />          </hra-page-section>          @if (metadata().was_derived_from.publisher) {            <hra-page-section tagline="Publisher" [level]="2">              <markdown [data]="metadata().was_derived_from.publisher" />            </hra-page-section>          }          @if (metadata().was_derived_from.funders) {            <hra-page-section tagline="Funder" [level]="2">              <ul>                @for (funder of metadata().was_derived_from.funders; track $index) {                  <li>{{ `${funder.funder} (Award number ${funder.awardNumber})` }}</li>                }              </ul>            </hra-page-section>          }          <hra-page-section tagline="License" [level]="2">            <markdown [data]="metadata().was_derived_from.license" />          </hra-page-section>          <hra-page-section tagline="Tags" [level]="2">            <mat-chip-set hraFeature="tags">              @for (tag of tags(); track $index) {                <mat-chip [hraFeature]="tag.label | slugify" hraClickEvent (click)="tagClick(tag.id, tag.type)">                  {{ tag.label }}                </mat-chip>              }            </mat-chip-set>          </hra-page-section>        </div>        @if (!isNotMediumScreen()) {          <hra-provenance-menu            hraFeature="provenance-menu"            [rows]="rows()"            [columns]="columns()"            [version]="currentVersion()"            [availableVersions]="availableVersions()"            [downloadOptions]="downloadOptions()"            (versionChange)="currentVersion.set($event)"          ></hra-provenance-menu>        }      </hra-metadata-layout-content>    </hra-metadata-layout>    <hra-footer></hra-footer>  }</ng-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'MetadataPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'MetadataPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

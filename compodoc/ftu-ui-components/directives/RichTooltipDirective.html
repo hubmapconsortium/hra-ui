@@ -1,0 +1,925 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ftu-ui-components</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ftu-ui-components</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content directive">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >RichTooltipDirective</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>HRA Rich Tooltip Directive</p>
+
+            </p>
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/RichTooltipController.html" target="_self" >RichTooltipController</a></code>
+            </p>
+
+
+        <section data-compodoc="block-metadata">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
+
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>[hraRichTooltip]</code></td>
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+        </section>
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#close" >close</a>
+                            </li>
+                            <li>
+                                <a href="#open" >open</a>
+                            </li>
+                            <li>
+                                <a href="#toggle" >toggle</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actionText" >actionText</a>
+                            </li>
+                            <li>
+                                <a href="#customContainer" >customContainer</a>
+                            </li>
+                            <li>
+                                <a href="#description" >description</a>
+                            </li>
+                            <li>
+                                <a href="#positions" >positions</a>
+                            </li>
+                            <li>
+                                <a href="#tagline" >tagline</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actionClick" >actionClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:148</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor for the directive</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="actionText"></a>
+                        <b>actionText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;, { alias: &#x27;hraRichTooltipActionText&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:88</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Action Text for the rich tooltip</p>
+<ul>
+<li>Not required if using the custom content variant</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="customContainer"></a>
+                        <b>customContainer</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/RichTooltipContainerComponent.html" target="_self" >RichTooltipContainerComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined, { alias: &#x27;hraRichTooltip&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Custom content for the rich tooltip</p>
+<ul>
+<li>Not required if need to use simple content variant</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="description"></a>
+                        <b>description</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;, { alias: &#x27;hraRichTooltipDescription&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:82</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Description for the rich tooltip</p>
+<ul>
+<li>Not required if using the custom content variant</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="positions"></a>
+                        <b>positions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ConnectedPosition[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>POSITIONS, { alias: &#x27;hraRichTooltipPositions&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:93</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Positions array for the rich tooltip</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tagline"></a>
+                        <b>tagline</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;, { alias: &#x27;hraRichTooltipTagline&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:76</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Title for the rich tooltip</p>
+<ul>
+<li>Not required if using custom content variant</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+            <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="actionClick"></a>
+                        <b>actionClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:99</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Action Click Output Emitter for the rich tooltip</p>
+<ul>
+<li>Not required to be subscribed to if using the custom content variant</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="close"></a>
+                    <span class="name">
+                        <span ><b>close</b></span>
+                        <a href="#close"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>close()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function to close the rich tooltip.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open"></a>
+                    <span class="name">
+                        <span ><b>open</b></span>
+                        <a href="#open"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>open()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function to open the rich tooltip.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggle"></a>
+                    <span class="name">
+                        <span ><b>toggle</b></span>
+                        <a href="#toggle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggle()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/tooltips/rich-tooltip/src/lib/rich-tooltip.directive.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function to toggles the rich tooltip.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConnectedPosition, Overlay } from &#x27;@angular/cdk/overlay&#x27;;
+import { TemplatePortal } from &#x27;@angular/cdk/portal&#x27;;
+import { computed, Directive, effect, ElementRef, inject, input, output, ViewContainerRef } from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+
+import { RichTooltipContainerComponent } from &#x27;./content/rich-tooltip-content.component&#x27;;
+import { RichTooltipController } from &#x27;./rich-tooltip.types&#x27;;
+
+/**
+ * Viewport margin for the rich tooltip
+ */
+const VIEWPORT_MARGIN &#x3D; 8;
+
+/**
+ * Default positions array
+ */
+const POSITIONS: ConnectedPosition[] &#x3D; [
+  {
+    originX: &#x27;center&#x27;,
+    originY: &#x27;bottom&#x27;,
+    overlayX: &#x27;center&#x27;,
+    overlayY: &#x27;top&#x27;,
+  },
+  {
+    originX: &#x27;end&#x27;,
+    originY: &#x27;bottom&#x27;,
+    overlayX: &#x27;start&#x27;,
+    overlayY: &#x27;top&#x27;,
+  },
+  {
+    originX: &#x27;start&#x27;,
+    originY: &#x27;bottom&#x27;,
+    overlayX: &#x27;end&#x27;,
+    overlayY: &#x27;top&#x27;,
+  },
+  {
+    originX: &#x27;center&#x27;,
+    originY: &#x27;top&#x27;,
+    overlayX: &#x27;center&#x27;,
+    overlayY: &#x27;bottom&#x27;,
+  },
+  {
+    originX: &#x27;end&#x27;,
+    originY: &#x27;top&#x27;,
+    overlayX: &#x27;start&#x27;,
+    overlayY: &#x27;bottom&#x27;,
+  },
+  {
+    originX: &#x27;start&#x27;,
+    originY: &#x27;top&#x27;,
+    overlayX: &#x27;end&#x27;,
+    overlayY: &#x27;bottom&#x27;,
+  },
+];
+
+/**
+ * HRA Rich Tooltip Directive
+ */
+@Directive({
+  selector: &#x27;[hraRichTooltip]&#x27;,
+  host: {
+    &#x27;(click)&#x27;: &#x27;toggle()&#x27;,
+  },
+})
+export class RichTooltipDirective implements RichTooltipController {
+  /**
+   * Custom content for the rich tooltip
+   * - Not required if need to use simple content variant
+   */
+  readonly customContainer &#x3D; input&lt;RichTooltipContainerComponent&gt;(undefined, { alias: &#x27;hraRichTooltip&#x27; });
+
+  /**
+   * Title for the rich tooltip
+   * - Not required if using custom content variant
+   */
+  readonly tagline &#x3D; input&lt;string&gt;(&#x27;&#x27;, { alias: &#x27;hraRichTooltipTagline&#x27; });
+
+  /**
+   * Description for the rich tooltip
+   * - Not required if using the custom content variant
+   */
+  readonly description &#x3D; input&lt;string&gt;(&#x27;&#x27;, { alias: &#x27;hraRichTooltipDescription&#x27; });
+
+  /**
+   * Action Text for the rich tooltip
+   * - Not required if using the custom content variant
+   */
+  readonly actionText &#x3D; input&lt;string&gt;(&#x27;&#x27;, { alias: &#x27;hraRichTooltipActionText&#x27; });
+
+  /**
+   * Positions array for the rich tooltip
+   */
+  readonly positions &#x3D; input&lt;ConnectedPosition[]&gt;(POSITIONS, { alias: &#x27;hraRichTooltipPositions&#x27; });
+
+  /**
+   * Action Click Output Emitter for the rich tooltip
+   * - Not required to be subscribed to if using the custom content variant
+   */
+  readonly actionClick &#x3D; output&lt;void&gt;({ alias: &#x27;hraRichTooltipActionClick&#x27; });
+
+  /**
+   * Element Ref for the rich tooltip
+   */
+  private readonly elementRef &#x3D; inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef);
+
+  /**
+   * Container view reference variable DI
+   */
+  private readonly viewContainerRef &#x3D; inject(ViewContainerRef);
+
+  /**
+   * Overlay DI variable
+   */
+  private readonly overlay &#x3D; inject(Overlay);
+
+  /**
+   * Position strategy for the rich tooltip
+   */
+  private readonly positionStrategy &#x3D; computed(() &#x3D;&gt; {
+    return this.overlay
+      .position()
+      .flexibleConnectedTo(this.elementRef)
+      .withFlexibleDimensions(true)
+      .withGrowAfterOpen(true)
+      .withPositions(this.positions())
+      .withViewportMargin(VIEWPORT_MARGIN);
+  });
+
+  /**
+   * Reference variable for the overlay
+   */
+  private readonly overlayRef &#x3D; this.overlay.create({
+    disposeOnNavigation: true,
+    hasBackdrop: false,
+    positionStrategy: this.positionStrategy(),
+    scrollStrategy: this.overlay.scrollStrategies.reposition(),
+  });
+
+  /**
+   * Boolean flag indicating whether the
+   * rich tooltip is currently visible
+   */
+  private isOpen &#x3D; false;
+
+  /**
+   * Container element variable for the rich tooltip
+   */
+  private container!: RichTooltipContainerComponent;
+
+  /**
+   * Constructor for the directive
+   */
+  constructor() {
+    effect((onCleanup) &#x3D;&gt; {
+      const customContainer &#x3D; this.customContainer();
+      if (customContainer) {
+        this.container &#x3D; customContainer;
+      } else {
+        const ref &#x3D; this.viewContainerRef.createComponent(RichTooltipContainerComponent);
+        this.container &#x3D; ref.instance;
+        onCleanup(() &#x3D;&gt; ref.destroy());
+      }
+    });
+
+    effect(() &#x3D;&gt; {
+      this.overlayRef.updatePositionStrategy(this.positionStrategy());
+    });
+
+    this.overlayRef
+      .outsidePointerEvents()
+      .pipe(takeUntilDestroyed())
+      .subscribe((event) &#x3D;&gt; {
+        if (!this.elementRef.nativeElement.contains(event.target as Node | null)) {
+          this.close();
+        }
+      });
+  }
+
+  /**
+   * Function to open the rich tooltip.
+   */
+  open(): void {
+    if (!this.isOpen) {
+      this.attach();
+      this.isOpen &#x3D; true;
+    }
+  }
+
+  /**
+   * Function to close the rich tooltip.
+   */
+  close(): void {
+    if (this.isOpen) {
+      this.detach();
+      this.isOpen &#x3D; false;
+    }
+  }
+
+  /**
+   * Function to toggles the rich tooltip.
+   */
+  toggle(): void {
+    if (this.isOpen) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  /**
+   * Attaches the rich tooltip component to the overlay.
+   */
+  private attach(): void {
+    const template &#x3D; this.container.template();
+    const portal &#x3D; new TemplatePortal(template, this.viewContainerRef, { $implicit: this });
+    this.container.closeDirectives().forEach((dir) &#x3D;&gt; (dir.controller &#x3D; this));
+    this.overlayRef.attach(portal);
+  }
+
+  /**
+   * Detaches the rich tooltip component from the overlay.
+   */
+  private detach(): void {
+    this.overlayRef.detach();
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'RichTooltipDirective.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

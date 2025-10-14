@@ -1,0 +1,1823 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ccf-shared</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ccf-shared</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ApiEndpointDataSourceService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/services/data-source/api-endpoint.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Api endpoint data source</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getAggregateResults" >getAggregateResults</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getBiomarkerTermOccurences" >getBiomarkerTermOccurences</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getBiomarkerTreeModel" >getBiomarkerTreeModel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getCellTypeTermOccurences" >getCellTypeTermOccurences</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getCellTypeTreeModel" >getCellTypeTreeModel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getConsortiumNames" >getConsortiumNames</a>
+                            </li>
+                            <li>
+                                <a href="#getDatabaseStatus" >getDatabaseStatus</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getDatasetTechnologyNames" >getDatasetTechnologyNames</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getOntologyTermOccurences" >getOntologyTermOccurences</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getOntologyTreeModel" >getOntologyTreeModel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getProviderNames" >getProviderNames</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getReferenceOrgans" >getReferenceOrgans</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getReferenceOrganScene" >getReferenceOrganScene</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getScene" >getScene</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getTissueBlockResults" >getTissueBlockResults</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:190</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Initializes the service</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAggregateResults"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getAggregateResults</b></span>
+                        <a href="#getAggregateResults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAggregateResults(filter?: Filter)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="294"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:294</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get aggregate counts</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                        <code>Filter</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Data filter</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;AggregateCount[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of counts</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBiomarkerTermOccurences"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getBiomarkerTermOccurences</b></span>
+                        <a href="#getBiomarkerTermOccurences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getBiomarkerTermOccurences(filter?: Filter)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="327"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:327</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get biomarker occurences</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                        <code>Filter</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Data filter</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;Record&lt;string, number&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of biomarker occurences</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBiomarkerTreeModel"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getBiomarkerTreeModel</b></span>
+                        <a href="#getBiomarkerTreeModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getBiomarkerTreeModel()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_NO_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:262</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the biomarker type tree model.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;OntologyTree&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable emitting the results.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCellTypeTermOccurences"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getCellTypeTermOccurences</b></span>
+                        <a href="#getCellTypeTermOccurences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCellTypeTermOccurences(filter?: Filter)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="316"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:316</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get cell type occurences</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                        <code>Filter</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Data filter</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;Record&lt;string, number&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of cell type occurences</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCellTypeTreeModel"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getCellTypeTreeModel</b></span>
+                        <a href="#getCellTypeTreeModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCellTypeTreeModel()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_NO_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="252"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:252</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the cell types tree</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;OntologyTree&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of the cell types tree</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getConsortiumNames"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getConsortiumNames</b></span>
+                        <a href="#getConsortiumNames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getConsortiumNames()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_NO_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the supported consortium names</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;string[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of consortium names</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDatabaseStatus"></a>
+                    <span class="name">
+                        <span ><b>getDatabaseStatus</b></span>
+                        <a href="#getDatabaseStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDatabaseStatus()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the database status</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;DatabaseStatus&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of the database status</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDatasetTechnologyNames"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getDatasetTechnologyNames</b></span>
+                        <a href="#getDatasetTechnologyNames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDatasetTechnologyNames()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_NO_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the supported technologies</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;string[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of technologies</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getOntologyTermOccurences"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getOntologyTermOccurences</b></span>
+                        <a href="#getOntologyTermOccurences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getOntologyTermOccurences(filter?: Filter)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="305"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:305</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get ontology term occurences</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                        <code>Filter</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Data filter</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;Record&lt;string, number&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of ontology term occurences</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getOntologyTreeModel"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getOntologyTreeModel</b></span>
+                        <a href="#getOntologyTreeModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getOntologyTreeModel()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_NO_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:242</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the ontology tree</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;OntologyTree&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of the ontology tree</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getProviderNames"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getProviderNames</b></span>
+                        <a href="#getProviderNames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getProviderNames()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_NO_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the supported provider names</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;string[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of provider names</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReferenceOrgans"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getReferenceOrgans</b></span>
+                        <a href="#getReferenceOrgans"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getReferenceOrgans()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_NO_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="272"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:272</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the supported reference organs</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;SpatialEntity[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of reference organs</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReferenceOrganScene"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getReferenceOrganScene</b></span>
+                        <a href="#getReferenceOrganScene"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getReferenceOrganScene(organIri: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, filter?: Filter)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="350"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:350</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get reference organ scene nodes</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>organIri</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Organ iri</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                        <code>Filter</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Data filter</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;SpatialSceneNode[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of reference organ scene nodes</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getScene"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getScene</b></span>
+                        <a href="#getScene"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getScene(filter?: Filter)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="338"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:338</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get scene nodes</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                        <code>Filter</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Data filter</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;SpatialSceneNode[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of scene nodes</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTissueBlockResults"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getTissueBlockResults</b></span>
+                        <a href="#getTissueBlockResults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getTissueBlockResults(filter?: Filter)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cacheable(CACHE_CONFIG_PARAMS)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="283"
+                                    class="link-to-prism">src/lib/services/data-source/api-endpoint.service.ts:283</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get tissue blocks</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+                                            <td>
+                                                        <code>Filter</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Data filter</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;TissueBlock[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of tissue blocks</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
+import {
+  AggregateCount,
+  DatabaseStatus,
+  Filter,
+  MinMax,
+  OntologyTree,
+  SpatialEntity,
+  SpatialSceneNode,
+  SpatialSearch,
+  TissueBlock,
+  V1Service,
+} from &#x27;@hra-api/ng-client&#x27;;
+import { Matrix4 } from &#x27;@math.gl/core&#x27;;
+import { Observable, of, Subject } from &#x27;rxjs&#x27;;
+import {
+  debounceTime,
+  delay,
+  distinctUntilChanged,
+  endWith,
+  filter as rxjsFilter,
+  ignoreElements,
+  map,
+  repeat,
+  shareReplay,
+  switchMap,
+  take,
+  tap,
+} from &#x27;rxjs/operators&#x27;;
+import { Cacheable } from &#x27;ts-cacheable&#x27;;
+import { GlobalConfigState } from &#x27;../../config/global-config.state&#x27;;
+import { DataSource } from &#x27;./data-source&#x27;;
+
+/** Api enpoint options */
+export interface ApiEndpointDataSourceOptions {
+  /** Endpoint url */
+  remoteApiEndpoint: string;
+  /** Api token */
+  token?: string;
+  /** Data sources to include */
+  dataSources?: string[];
+  /** Data filters */
+  filter?: Filter;
+}
+
+// Not exported from ts-cacheable!?
+/** Cachable config */
+type IObservableCacheConfig &#x3D; NonNullable&lt;Parameters&lt;typeof Cacheable&gt;[0]&gt;;
+
+/** Request method callback */
+type RequestMethod&lt;P, T&gt; &#x3D; (params: P) &#x3D;&gt; Observable&lt;T&gt;;
+/** Data reviver callback */
+type DataReviver&lt;T, U&gt; &#x3D; (data: T) &#x3D;&gt; U;
+
+/** Default request parameters */
+interface DefaultParams {
+  /** Api token */
+  token?: string;
+}
+
+/** Filter parameter */
+interface FilterParams {
+  /** Age range */
+  age?: MinMax;
+  /** Bmi range */
+  bmi?: MinMax;
+  /** Ontology terms */
+  ontologyTerms?: string[];
+  /** Cell types */
+  cellTypeTerms?: string[];
+  /** Biomarkers */
+  biomarkerTerms?: string[];
+  /** Consortiums */
+  consortiums?: string[];
+  /** Providers */
+  providers?: string[];
+  /** Donor sex */
+  sex?: &#x27;both&#x27; | &#x27;female&#x27; | &#x27;male&#x27;;
+  /** Technologies */
+  technologies?: string[];
+  /** Spatial positions */
+  spatial?: SpatialSearch[];
+}
+
+/** Subject used to flush caches */
+const buster$ &#x3D; new Subject&lt;unknown&gt;();
+
+/** Basic cache config */
+const CACHE_CONFIG_NO_PARAMS: IObservableCacheConfig &#x3D; {
+  cacheBusterObserver: buster$,
+};
+
+/** Cache config */
+const CACHE_CONFIG_PARAMS: IObservableCacheConfig &#x3D; {
+  cacheBusterObserver: buster$,
+  maxCacheCount: 4,
+};
+
+/**
+ * Helper to cast values to a specific type
+ *
+ * @returns The identity function
+ */
+function cast&lt;T&gt;(): (data: unknown) &#x3D;&gt; T {
+  return (data) &#x3D;&gt; data as T;
+}
+
+/**
+ * Converts a two element tuple into a MinMax object. Also clamps the range to [&#x60;low&#x60;, &#x60;high&#x60;]
+ *
+ * @param range Range to convert into a MinMax object
+ * @param low Minimum value
+ * @param high Maximum value
+ * @returns A MinMax object
+ */
+function rangeToMinMax(range: number[] | undefined, low: number, high: number): MinMax | undefined {
+  return range
+    ? { min: range[0] &gt; low ? range[0] : undefined, max: range[1] &lt; high ? range[1] : undefined }
+    : undefined;
+}
+
+/**
+ * Reviver for spatial scene nodes
+ *
+ * @param nodes Raw nodes
+ * @returns Revived nodes
+ */
+function spatialSceneNodeReviver(nodes: SpatialSceneNode[]): SpatialSceneNode[] {
+  return nodes.map((node) &#x3D;&gt; ({
+    ...node,
+    transformMatrix: new Matrix4(node.transformMatrix ?? []),
+  }));
+}
+
+/**
+ * Converts a filter into request parameters
+ *
+ * @param filter Filter object
+ * @returns Filter parameters
+ */
+function filterToParams(filter?: Filter): FilterParams {
+  return {
+    age: rangeToMinMax(filter?.ageRange, 1, 110),
+    bmi: rangeToMinMax(filter?.bmiRange, 13, 83),
+    sex: filter?.sex?.toLowerCase() as FilterParams[&#x27;sex&#x27;],
+    ontologyTerms: filter?.ontologyTerms,
+    cellTypeTerms: filter?.cellTypeTerms,
+    biomarkerTerms: filter?.biomarkerTerms,
+    consortiums: filter?.consortiums,
+    providers: filter?.tmc,
+    technologies: filter?.technologies,
+    spatial: filter?.spatialSearches,
+  };
+}
+
+/**
+ * Compare endpoint configurations
+ *
+ * @param x First set of options
+ * @param y Second set of options
+ * @returns true if the configurations are considered equal
+ */
+function compareConfig(x: ApiEndpointDataSourceOptions, y: ApiEndpointDataSourceOptions): boolean {
+  if (x.remoteApiEndpoint !&#x3D;&#x3D; y.remoteApiEndpoint || x.token !&#x3D;&#x3D; y.token) {
+    return false;
+  } else if (x.token !&#x3D;&#x3D; undefined) {
+    return true;
+  }
+  // Deep compare?
+  return x.filter &#x3D;&#x3D;&#x3D; y.filter &amp;&amp; x.dataSources &#x3D;&#x3D;&#x3D; y.dataSources;
+}
+
+/** Api endpoint data source */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class ApiEndpointDataSourceService implements DataSource {
+  /** Api service */
+  private readonly api &#x3D; inject(V1Service);
+  /** Global configuration state */
+  private readonly globalConfig: GlobalConfigState&lt;ApiEndpointDataSourceOptions&gt; &#x3D; inject(GlobalConfigState);
+  /** Api configuration */
+  private readonly config$ &#x3D; this.globalConfig.config$.pipe(
+    map(cast&lt;ApiEndpointDataSourceOptions&gt;()),
+    distinctUntilChanged(compareConfig),
+    debounceTime(10),
+    switchMap((config) &#x3D;&gt; this.getSessionToken(config)),
+    tap(() &#x3D;&gt; buster$.next(null)),
+    shareReplay(1),
+  );
+
+  /** Initializes the service */
+  constructor() {
+    this.config$.subscribe();
+  }
+
+  /**
+   * Get the database status
+   *
+   * @returns An observable of the database status
+   */
+  getDatabaseStatus(): Observable&lt;DatabaseStatus&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.dbStatus(params));
+  }
+
+  /**
+   * Get the supported provider names
+   *
+   * @returns An observable of provider names
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getProviderNames(): Observable&lt;string[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.providerNames(params));
+  }
+
+  /**
+   * Get the supported technologies
+   *
+   * @returns An observable of technologies
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getDatasetTechnologyNames(): Observable&lt;string[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.technologyNames(params));
+  }
+
+  /**
+   * Get the supported consortium names
+   *
+   * @returns An observable of consortium names
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getConsortiumNames(): Observable&lt;string[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.consortiumNames(params));
+  }
+
+  /**
+   * Get the ontology tree
+   *
+   * @returns An observable of the ontology tree
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getOntologyTreeModel(): Observable&lt;OntologyTree&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.ontologyTreeModel(params), undefined, {}, cast&lt;OntologyTree&gt;());
+  }
+
+  /**
+   * Get the cell types tree
+   *
+   * @returns An observable of the cell types tree
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getCellTypeTreeModel(): Observable&lt;OntologyTree&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.cellTypeTreeModel(params), undefined, {}, cast&lt;OntologyTree&gt;());
+  }
+
+  /**
+   * Get the biomarker type tree model.
+   *
+   * @returns An observable emitting the results.
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getBiomarkerTreeModel(): Observable&lt;OntologyTree&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.biomarkerTreeModel(params), undefined, {}, cast&lt;OntologyTree&gt;());
+  }
+
+  /**
+   * Get the supported reference organs
+   *
+   * @returns An observable of reference organs
+   */
+  @Cacheable(CACHE_CONFIG_NO_PARAMS)
+  getReferenceOrgans(): Observable&lt;SpatialEntity[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.referenceOrgans(params), undefined, {}, cast&lt;SpatialEntity[]&gt;());
+  }
+
+  /**
+   * Get tissue blocks
+   *
+   * @param filter Data filter
+   * @returns An observable of tissue blocks
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getTissueBlockResults(filter?: Filter): Observable&lt;TissueBlock[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.tissueBlocks(params), filter, {}, cast&lt;TissueBlock[]&gt;());
+  }
+
+  /**
+   * Get aggregate counts
+   *
+   * @param filter Data filter
+   * @returns An observable of counts
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getAggregateResults(filter?: Filter): Observable&lt;AggregateCount[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.aggregateResults(params), filter);
+  }
+
+  /**
+   * Get ontology term occurences
+   *
+   * @param filter Data filter
+   * @returns An observable of ontology term occurences
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getOntologyTermOccurences(filter?: Filter): Observable&lt;Record&lt;string, number&gt;&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.ontologyTermOccurences(params), filter);
+  }
+
+  /**
+   * Get cell type occurences
+   *
+   * @param filter Data filter
+   * @returns An observable of cell type occurences
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getCellTypeTermOccurences(filter?: Filter): Observable&lt;Record&lt;string, number&gt;&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.cellTypeTermOccurences(params), filter);
+  }
+
+  /**
+   * Get biomarker occurences
+   *
+   * @param filter Data filter
+   * @returns An observable of biomarker occurences
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getBiomarkerTermOccurences(filter?: Filter): Observable&lt;Record&lt;string, number&gt;&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.biomarkerTermOccurences(params), filter);
+  }
+
+  /**
+   * Get scene nodes
+   *
+   * @param filter Data filter
+   * @returns An observable of scene nodes
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getScene(filter?: Filter): Observable&lt;SpatialSceneNode[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.scene(params), filter, {}, spatialSceneNodeReviver);
+  }
+
+  /**
+   * Get reference organ scene nodes
+   *
+   * @param organIri Organ iri
+   * @param filter Data filter
+   * @returns An observable of reference organ scene nodes
+   */
+  @Cacheable(CACHE_CONFIG_PARAMS)
+  getReferenceOrganScene(organIri: string, filter?: Filter): Observable&lt;SpatialSceneNode[]&gt; {
+    return this.doRequest((params) &#x3D;&gt; this.api.referenceOrganScene(params), filter, { organIri });
+  }
+
+  /**
+   * Perform a api request
+   *
+   * @param method Request method
+   * @param filter Data filter
+   * @param params Request parameters
+   * @returns An observable of the request result
+   */
+  private doRequest&lt;T, P&gt;(
+    method: RequestMethod&lt;DefaultParams &amp; FilterParams &amp; P, T&gt;,
+    filter?: Filter | undefined,
+    params?: P,
+  ): Observable&lt;T&gt;;
+  /**
+   * Perform a api request
+   *
+   * @param method Request method
+   * @param filter Data filter
+   * @param params Request parameters
+   * @param reviver Data reviver
+   * @returns An observable of the request result
+   */
+  private doRequest&lt;T, P, U&gt;(
+    method: RequestMethod&lt;DefaultParams &amp; FilterParams &amp; P, T&gt;,
+    filter: Filter | undefined,
+    params: P | undefined,
+    reviver: DataReviver&lt;T, U&gt;,
+  ): Observable&lt;U&gt;;
+  /**
+   * Perform a api request
+   *
+   * @param method Request method
+   * @param filter Data filter
+   * @param params Request parameters
+   * @param reviver Data reviver
+   * @returns An observable of the request result
+   */
+  private doRequest&lt;P&gt;(
+    method: RequestMethod&lt;unknown, unknown&gt;,
+    filter: Filter | undefined,
+    params?: P,
+    reviver?: DataReviver&lt;unknown, unknown&gt;,
+  ): Observable&lt;unknown&gt; {
+    const { api, config$ } &#x3D; this;
+    const requestParams: Record&lt;string, unknown&gt; &#x3D; { ...filterToParams(filter), ...params };
+
+    return config$.pipe(
+      debounceTime(50),
+      take(1),
+      tap(({ remoteApiEndpoint, token }) &#x3D;&gt; {
+        api.configuration.basePath &#x3D; remoteApiEndpoint;
+        if (token) {
+          requestParams[&#x27;token&#x27;] &#x3D; token;
+        }
+      }),
+      switchMap(() &#x3D;&gt; method(requestParams)),
+      map((data) &#x3D;&gt; (reviver ? reviver(data) : data)),
+    );
+  }
+
+  /**
+   * Creates a session token and adds it to the config when applicable
+   *
+   * @param config Api config
+   * @returns An observable of config
+   */
+  private getSessionToken(config: ApiEndpointDataSourceOptions): Observable&lt;ApiEndpointDataSourceOptions&gt; {
+    if (config.token) {
+      return of(config);
+    }
+
+    const { remoteApiEndpoint, dataSources &#x3D; [], filter } &#x3D; config;
+    if (dataSources.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; filter &#x3D;&#x3D;&#x3D; undefined) {
+      return of(config);
+    }
+
+    const { api } &#x3D; this;
+    const sessionTokenRequest &#x3D; { dataSources, filter };
+    api.configuration.basePath &#x3D; remoteApiEndpoint;
+
+    return api.sessionToken({ sessionTokenRequest }).pipe(
+      switchMap(({ token }) &#x3D;&gt; this.ensureDatabaseReady(token)),
+      map((token) &#x3D;&gt; ({ ...config, token })),
+    );
+  }
+
+  /**
+   * Ensures the database is ready for requests
+   *
+   * @param token Api token
+   * @returns An observable that emits once the database is ready
+   */
+  private ensureDatabaseReady(token: string | undefined): Observable&lt;string | undefined&gt; {
+    const check &#x3D; () &#x3D;&gt;
+      this.api.dbStatus({ token }).pipe(
+        rxjsFilter((resp) &#x3D;&gt; resp.status !&#x3D;&#x3D; &#x27;Ready&#x27;),
+        switchMap((resp) &#x3D;&gt; of(undefined).pipe(delay(resp.checkback ?? 0))),
+      );
+
+    return of(undefined).pipe(repeat({ delay: check }), ignoreElements(), endWith(token));
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ApiEndpointDataSourceService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

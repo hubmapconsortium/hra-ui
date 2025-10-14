@@ -1,0 +1,1551 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for common</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for common</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#ALL_CATEGORIES_DISABLED" title="analytics/src/lib/consent/consent.service.ts" ><b>ALL_CATEGORIES_DISABLED</b>&nbsp;&nbsp;&nbsp;(analytics/.../consent.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ALL_CATEGORIES_ENABLED" title="analytics/src/lib/consent/consent.service.ts" ><b>ALL_CATEGORIES_ENABLED</b>&nbsp;&nbsp;&nbsp;(analytics/.../consent.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ALWAYS_ENABLED_CATEGORIES" title="analytics/src/lib/consent/consent.service.ts" ><b>ALWAYS_ENABLED_CATEGORIES</b>&nbsp;&nbsp;&nbsp;(analytics/.../consent.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#APP_CONFIGURATION" title="injectors/src/lib/app-configuration.ts" ><b>APP_CONFIGURATION</b>&nbsp;&nbsp;&nbsp;(injectors/.../app-configuration.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#APP_HREF" title="url/src/lib/url/app.ts" ><b>APP_HREF</b>&nbsp;&nbsp;&nbsp;(url/.../app.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#appUrl" title="url/src/lib/url/app.ts" ><b>appUrl</b>&nbsp;&nbsp;&nbsp;(url/.../app.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ASSET_HREF" title="url/src/lib/url/asset.ts" ><b>ASSET_HREF</b>&nbsp;&nbsp;&nbsp;(url/.../asset.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#assetUrl" title="url/src/lib/url/asset.ts" ><b>assetUrl</b>&nbsp;&nbsp;&nbsp;(url/.../asset.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BRAND" title="analytics/events/src/lib/util/types.ts" ><b>BRAND</b>&nbsp;&nbsp;&nbsp;(analytics/.../types.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CONFIG" title="analytics/src/lib/analytics-features/error-handler.ts" ><b>CONFIG</b>&nbsp;&nbsp;&nbsp;(analytics/.../error-handler.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CoreEvents" title="analytics/events/src/lib/core-events.ts" ><b>CoreEvents</b>&nbsp;&nbsp;&nbsp;(analytics/.../core-events.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FEATURE_KIND" title="util/providers/src/lib/feature.ts" ><b>FEATURE_KIND</b>&nbsp;&nbsp;&nbsp;(util/.../feature.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FEATURE_PROVIDERS" title="util/providers/src/lib/feature.ts" ><b>FEATURE_PROVIDERS</b>&nbsp;&nbsp;&nbsp;(util/.../feature.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#INITIAL_CATEGORY_SETTINGS" title="analytics/src/lib/consent/consent.service.ts" ><b>INITIAL_CATEGORY_SETTINGS</b>&nbsp;&nbsp;&nbsp;(analytics/.../consent.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectAnalyticsErrorHandlerConfig" title="analytics/src/lib/analytics-features/error-handler.ts" ><b>injectAnalyticsErrorHandlerConfig</b>&nbsp;&nbsp;&nbsp;(analytics/.../error-handler.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectAppConfiguration" title="injectors/src/lib/app-configuration.ts" ><b>injectAppConfiguration</b>&nbsp;&nbsp;&nbsp;(injectors/.../app-configuration.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectAppHref" title="url/src/lib/url/app.ts" ><b>injectAppHref</b>&nbsp;&nbsp;&nbsp;(url/.../app.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectAppUrlResolver" title="url/src/lib/url/app.ts" ><b>injectAppUrlResolver</b>&nbsp;&nbsp;&nbsp;(url/.../app.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectAssetHref" title="url/src/lib/url/asset.ts" ><b>injectAssetHref</b>&nbsp;&nbsp;&nbsp;(url/.../asset.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectAssetUrlResolver" title="url/src/lib/url/asset.ts" ><b>injectAssetUrlResolver</b>&nbsp;&nbsp;&nbsp;(url/.../asset.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectPageHref" title="url/src/lib/url/page.ts" ><b>injectPageHref</b>&nbsp;&nbsp;&nbsp;(url/.../page.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectPageUrlResolver" title="url/src/lib/url/page.ts" ><b>injectPageUrlResolver</b>&nbsp;&nbsp;&nbsp;(url/.../page.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectPlugins" title="analytics/src/lib/analytics/analytics.service.ts" ><b>injectPlugins</b>&nbsp;&nbsp;&nbsp;(analytics/.../analytics.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectTelemetryEndpoint" title="analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>injectTelemetryEndpoint</b>&nbsp;&nbsp;&nbsp;(analytics/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectTelemetryParameterFilters" title="analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>injectTelemetryParameterFilters</b>&nbsp;&nbsp;&nbsp;(analytics/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#INTERSECTION_OBSERVER" title="src/lib/injection-tokens.ts" ><b>INTERSECTION_OBSERVER</b>&nbsp;&nbsp;&nbsp;(src/.../injection-tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#NO_MATCH_ERROR_MESSAGE" title="array-util/src/lib/find-or-throw.ts" ><b>NO_MATCH_ERROR_MESSAGE</b>&nbsp;&nbsp;&nbsp;(array-util/.../find-or-throw.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PAGE_HREF" title="url/src/lib/url/page.ts" ><b>PAGE_HREF</b>&nbsp;&nbsp;&nbsp;(url/.../page.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#pageUrl" title="url/src/lib/url/page.ts" ><b>pageUrl</b>&nbsp;&nbsp;&nbsp;(url/.../page.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PAYLOAD" title="analytics/events/src/lib/event.ts" ><b>PAYLOAD</b>&nbsp;&nbsp;&nbsp;(analytics/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PLUGINS" title="analytics/src/lib/analytics/analytics.service.ts" ><b>PLUGINS</b>&nbsp;&nbsp;&nbsp;(analytics/.../analytics.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideAnalyticsErrorHandlerConfig" title="analytics/src/lib/analytics-features/error-handler.ts" ><b>provideAnalyticsErrorHandlerConfig</b>&nbsp;&nbsp;&nbsp;(analytics/.../error-handler.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideAppConfiguration" title="injectors/src/lib/app-configuration.ts" ><b>provideAppConfiguration</b>&nbsp;&nbsp;&nbsp;(injectors/.../app-configuration.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideAppHref" title="url/src/lib/url/app.ts" ><b>provideAppHref</b>&nbsp;&nbsp;&nbsp;(url/.../app.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideAssetHref" title="url/src/lib/url/asset.ts" ><b>provideAssetHref</b>&nbsp;&nbsp;&nbsp;(url/.../asset.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#providePageHref" title="url/src/lib/url/page.ts" ><b>providePageHref</b>&nbsp;&nbsp;&nbsp;(url/.../page.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#providePlugin" title="analytics/src/lib/analytics/analytics.service.ts" ><b>providePlugin</b>&nbsp;&nbsp;&nbsp;(analytics/.../analytics.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideTelemetryEndpoint" title="analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>provideTelemetryEndpoint</b>&nbsp;&nbsp;&nbsp;(analytics/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideTelemetryParameterFilter" title="analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>provideTelemetryParameterFilter</b>&nbsp;&nbsp;&nbsp;(analytics/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SESSION_ID_STORAGE_KEY" title="analytics/src/lib/analytics/analytics.service.ts" ><b>SESSION_ID_STORAGE_KEY</b>&nbsp;&nbsp;&nbsp;(analytics/.../analytics.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TELEMETRY_ENDPOINT" title="analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>TELEMETRY_ENDPOINT</b>&nbsp;&nbsp;&nbsp;(analytics/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TELEMETRY_PARAMETER_FILTERS" title="analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>TELEMETRY_PARAMETER_FILTERS</b>&nbsp;&nbsp;&nbsp;(analytics/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#WINDOW" title="src/lib/injection-tokens.ts" ><b>WINDOW</b>&nbsp;&nbsp;&nbsp;(src/.../injection-tokens.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>analytics/src/lib/consent/consent.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ALL_CATEGORIES_DISABLED"></a>
+                    <span class="name">
+                        <span ><b>ALL_CATEGORIES_DISABLED</b></span>
+                        <a href="#ALL_CATEGORIES_DISABLED"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createCategoryPreferences(false)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Record where every category is set to disabled</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ALL_CATEGORIES_ENABLED"></a>
+                    <span class="name">
+                        <span ><b>ALL_CATEGORIES_ENABLED</b></span>
+                        <a href="#ALL_CATEGORIES_ENABLED"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createCategoryPreferences(true)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Record where every category is set to enabled</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ALWAYS_ENABLED_CATEGORIES"></a>
+                    <span class="name">
+                        <span ><b>ALWAYS_ENABLED_CATEGORIES</b></span>
+                        <a href="#ALWAYS_ENABLED_CATEGORIES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ [EventCategory.Necessary]: true }</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Record of categories that should always be enabled</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="INITIAL_CATEGORY_SETTINGS"></a>
+                    <span class="name">
+                        <span ><b>INITIAL_CATEGORY_SETTINGS</b></span>
+                        <a href="#INITIAL_CATEGORY_SETTINGS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ ...ALL_CATEGORIES_DISABLED, ...ALWAYS_ENABLED_CATEGORIES }</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initial categories settings</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>injectors/src/lib/app-configuration.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="APP_CONFIGURATION"></a>
+                    <span class="name">
+                        <span ><b>APP_CONFIGURATION</b></span>
+                        <a href="#APP_CONFIGURATION"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createInjectionToken((): AppConfiguration &#x3D;&gt; ({}))</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Application configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectAppConfiguration"></a>
+                    <span class="name">
+                        <span ><b>injectAppConfiguration</b></span>
+                        <a href="#injectAppConfiguration"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>APP_CONFIGURATION[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject the global application configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideAppConfiguration"></a>
+                    <span class="name">
+                        <span ><b>provideAppConfiguration</b></span>
+                        <a href="#provideAppConfiguration"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>APP_CONFIGURATION[1]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set the application configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>url/src/lib/url/app.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="APP_HREF"></a>
+                    <span class="name">
+                        <span ><b>APP_HREF</b></span>
+                        <a href="#APP_HREF"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createInjectionToken(appHref)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Application href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appUrl"></a>
+                    <span class="name">
+                        <span ><b>appUrl</b></span>
+                        <a href="#appUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createUrlResolverFn(injectAppUrlResolver)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Create a derived signal that resolves an url against the application href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectAppHref"></a>
+                    <span class="name">
+                        <span ><b>injectAppHref</b></span>
+                        <a href="#injectAppHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>APP_HREF[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject the application href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectAppUrlResolver"></a>
+                    <span class="name">
+                        <span ><b>injectAppUrlResolver</b></span>
+                        <a href="#injectAppUrlResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createUrlResolverInjector(injectAppHref, resolveAppUrl)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject an url resolver that resolve urls against the application href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideAppHref"></a>
+                    <span class="name">
+                        <span ><b>provideAppHref</b></span>
+                        <a href="#provideAppHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createHrefProvider(APP_HREF[1])</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide a new application href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>url/src/lib/url/asset.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ASSET_HREF"></a>
+                    <span class="name">
+                        <span ><b>ASSET_HREF</b></span>
+                        <a href="#ASSET_HREF"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createInjectionToken(assetHref)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Asset href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assetUrl"></a>
+                    <span class="name">
+                        <span ><b>assetUrl</b></span>
+                        <a href="#assetUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createUrlResolverFn(injectAssetUrlResolver)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Create a derived signal that resolves an url against the asset href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectAssetHref"></a>
+                    <span class="name">
+                        <span ><b>injectAssetHref</b></span>
+                        <a href="#injectAssetHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ASSET_HREF[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject the asset href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectAssetUrlResolver"></a>
+                    <span class="name">
+                        <span ><b>injectAssetUrlResolver</b></span>
+                        <a href="#injectAssetUrlResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createUrlResolverInjector(injectAssetHref, resolveAssetUrl)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject an url resolver that resolve urls against the asset href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideAssetHref"></a>
+                    <span class="name">
+                        <span ><b>provideAssetHref</b></span>
+                        <a href="#provideAssetHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createHrefProvider(ASSET_HREF[1])</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide a new asset href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>analytics/events/src/lib/util/types.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BRAND"></a>
+                    <span class="name">
+                        <span ><b>BRAND</b></span>
+                        <a href="#BRAND"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>symbol</code>
+
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unique symbol type used to store the brand on a type.
+Doesn&#39;t need to be initialized as it should only ever be used as a type.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>analytics/src/lib/analytics-features/error-handler.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CONFIG"></a>
+                    <span class="name">
+                        <span ><b>CONFIG</b></span>
+                        <a href="#CONFIG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createNoopInjectionToken&lt;AnalyticsErrorHandlerConfig&gt;(&#x27;AnalyticsErrorHandlerConfig&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectAnalyticsErrorHandlerConfig"></a>
+                    <span class="name">
+                        <span ><b>injectAnalyticsErrorHandlerConfig</b></span>
+                        <a href="#injectAnalyticsErrorHandlerConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>CONFIG[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Injects the configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideAnalyticsErrorHandlerConfig"></a>
+                    <span class="name">
+                        <span ><b>provideAnalyticsErrorHandlerConfig</b></span>
+                        <a href="#provideAnalyticsErrorHandlerConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>CONFIG[1]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide analytics error handler configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>analytics/events/src/lib/core-events.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CoreEvents"></a>
+                    <span class="name">
+                        <span ><b>CoreEvents</b></span>
+                        <a href="#CoreEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  Click,
+  DoubleClick,
+  Error,
+  Hover,
+  Keyboard,
+  ModelChange,
+  PageView,
+} as const</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Core events for use in all applications</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>util/providers/src/lib/feature.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FEATURE_KIND"></a>
+                    <span class="name">
+                        <span ><b>FEATURE_KIND</b></span>
+                        <a href="#FEATURE_KIND"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Symbol()</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Key used to store the feature kind</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FEATURE_PROVIDERS"></a>
+                    <span class="name">
+                        <span ><b>FEATURE_PROVIDERS</b></span>
+                        <a href="#FEATURE_PROVIDERS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Symbol()</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Key used to store the feature providers</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>url/src/lib/url/page.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectPageHref"></a>
+                    <span class="name">
+                        <span ><b>injectPageHref</b></span>
+                        <a href="#injectPageHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>PAGE_HREF[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject the page href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectPageUrlResolver"></a>
+                    <span class="name">
+                        <span ><b>injectPageUrlResolver</b></span>
+                        <a href="#injectPageUrlResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createUrlResolverInjector(injectPageHref, resolvePageUrl)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject an url resolver that resolve urls against the page href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PAGE_HREF"></a>
+                    <span class="name">
+                        <span ><b>PAGE_HREF</b></span>
+                        <a href="#PAGE_HREF"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createInjectionToken(pageHref)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Page href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageUrl"></a>
+                    <span class="name">
+                        <span ><b>pageUrl</b></span>
+                        <a href="#pageUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createUrlResolverFn(injectPageUrlResolver)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Create a derived signal that resolves an url against the page href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="providePageHref"></a>
+                    <span class="name">
+                        <span ><b>providePageHref</b></span>
+                        <a href="#providePageHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createHrefProvider(PAGE_HREF[1])</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide a new page href</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>analytics/src/lib/analytics/analytics.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectPlugins"></a>
+                    <span class="name">
+                        <span ><b>injectPlugins</b></span>
+                        <a href="#injectPlugins"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>PLUGINS[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject all user defined <code>analytics</code> plugins</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PLUGINS"></a>
+                    <span class="name">
+                        <span ><b>PLUGINS</b></span>
+                        <a href="#PLUGINS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createNoopInjectionToken&lt;AnalyticsPlugin, true&gt;(&#x27;Analytics plugins&#x27;, {
+  multi: true,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>User defined <code>analytics</code> plugins</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="providePlugin"></a>
+                    <span class="name">
+                        <span ><b>providePlugin</b></span>
+                        <a href="#providePlugin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>PLUGINS[1]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide an user defined <code>analytics</code> plugin</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SESSION_ID_STORAGE_KEY"></a>
+                    <span class="name">
+                        <span ><b>SESSION_ID_STORAGE_KEY</b></span>
+                        <a href="#SESSION_ID_STORAGE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;__hra-analytics-session-id&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Storage key for session id</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectTelemetryEndpoint"></a>
+                    <span class="name">
+                        <span ><b>injectTelemetryEndpoint</b></span>
+                        <a href="#injectTelemetryEndpoint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>TELEMETRY_ENDPOINT[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject the telemetry endpoint</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectTelemetryParameterFilters"></a>
+                    <span class="name">
+                        <span ><b>injectTelemetryParameterFilters</b></span>
+                        <a href="#injectTelemetryParameterFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>TELEMETRY_PARAMETER_FILTERS[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject the telemetry parameter filter functions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideTelemetryEndpoint"></a>
+                    <span class="name">
+                        <span ><b>provideTelemetryEndpoint</b></span>
+                        <a href="#provideTelemetryEndpoint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>TELEMETRY_ENDPOINT[1]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide a different telemetry endpoint</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideTelemetryParameterFilter"></a>
+                    <span class="name">
+                        <span ><b>provideTelemetryParameterFilter</b></span>
+                        <a href="#provideTelemetryParameterFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>TELEMETRY_PARAMETER_FILTERS[1]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide a telemetry parameter filter function</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TELEMETRY_ENDPOINT"></a>
+                    <span class="name">
+                        <span ><b>TELEMETRY_ENDPOINT</b></span>
+                        <a href="#TELEMETRY_ENDPOINT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createInjectionToken((): Signal&lt;string&gt; &#x3D;&gt; {
+  const url &#x3D; &#x60;https://cdn.humanatlas.io/tr${isDevMode() ? &#x27;-dev&#x27; : &#x27;&#x27;}&#x60;;
+  return signal(url);
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Telemetry endpoint</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TELEMETRY_PARAMETER_FILTERS"></a>
+                    <span class="name">
+                        <span ><b>TELEMETRY_PARAMETER_FILTERS</b></span>
+                        <a href="#TELEMETRY_PARAMETER_FILTERS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createNoopInjectionToken&lt;TelemetryParameterFilter, true&gt;(&#x27;Parameter filter&#x27;, {
+  multi: true,
+  isFunctionValue: true,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Telemetry parameter filters</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/lib/injection-tokens.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="INTERSECTION_OBSERVER"></a>
+                    <span class="name">
+                        <span ><b>INTERSECTION_OBSERVER</b></span>
+                        <a href="#INTERSECTION_OBSERVER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken(&#x27;IntersectionObserver&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; inject(WINDOW)?.IntersectionObserver,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Injection token for IntersectionObserver (if available)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="WINDOW"></a>
+                    <span class="name">
+                        <span ><b>WINDOW</b></span>
+                        <a href="#WINDOW"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken(&#x27;window&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; inject(DOCUMENT).defaultView ?? undefined,
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Injection token for the window object (if available)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>array-util/src/lib/find-or-throw.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NO_MATCH_ERROR_MESSAGE"></a>
+                    <span class="name">
+                        <span ><b>NO_MATCH_ERROR_MESSAGE</b></span>
+                        <a href="#NO_MATCH_ERROR_MESSAGE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Could not find a matching item&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Default error message for no matches</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>analytics/events/src/lib/event.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PAYLOAD"></a>
+                    <span class="name">
+                        <span ><b>PAYLOAD</b></span>
+                        <a href="#PAYLOAD"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>symbol</code>
+
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unique symbol type used to store the payload type in event objects.
+Doesn&#39;t need to be initialized as it should only ever be used as a type.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
