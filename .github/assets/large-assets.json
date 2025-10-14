@@ -1,6 +1,6 @@
 [
   {
     "from": "apps/humanatlas.io/src/static/events",
-    "to": "dist/apps/humanatlas.io/events"
+    "to": "deploy/apps/humanatlas.io/events"
   }
 ]

@@ -30,18 +30,9 @@ jq -c '.[]' "$CONFIG_FILE" | while read -r entry; do
     continue
   fi
 
-  # Match paths like dist/<dir1>/<dir2>/...
-  if [[ "$to" =~ ^dist/([^/]+)/([^/]+)(/|$) ]]; then
-    base_check_path="dist/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}"
-    if [[ ! -d "$base_check_path" ]]; then
-      echo "Skipping: required directory '$base_check_path' does not exist for destination '$to'."
-      continue
-    fi
-  fi
-
   echo "Copying '$from' to '$to' ..."
   mkdir -p "$to"
-  cp -R "$from"/. "$to"/
+  cp -r "$from"/. "$to"/
 done
 
 echo "Assets copied successfully!"

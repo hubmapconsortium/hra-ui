@@ -20,11 +20,20 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: tree:0
+
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
           name: nx-build-artifacts
           path: ./deploy
+
+      - name: Copy large assets
+        run: .github/scripts/copy-assets.sh .github/assets/large-assets.json
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
