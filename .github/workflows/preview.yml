@@ -1,0 +1,92 @@
+name: Netlify Preview Deployment
+
+on:
+  workflow_run:
+    workflows: ['CI']
+    branches-ignore: ['main', 'develop']
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  ISSUE_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: tree:0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v5
+        with:
+          name: nx-build-artifacts
+          path: ./deploy
+
+      - name: Copy static preview assets
+        run: cp -r .github/assets/preview/. deploy/
+
+      - name: Create metadata script
+        run: |
+          echo 'preview.setIssueNumber("$ISSUE_NUMBER")' >> $METADATA_FILE
+
+          find deploy/{apps,compodoc,storybook} -mindepth 1 -maxdepth 1 -type d \
+            -printf 'preview.addDirectory("%p")\n' 2>/dev/null >> $METADATA_FILE
+        env:
+          METADATA_FILE: deploy/metadata.js
+
+      - name: Create redirects
+        run: |
+          find deploy/apps -mindepth 1 -maxdepth 1 -type d \
+            -printf '/apps/%f/* /apps/%f/index.html 200\n' > deploy/_redirects
+
+      - name: Deploy to Netlify
+        id: netlify
+        run: |
+          RESPONSE=$(npx netlify deploy --dir=deploy --filter=ftu-ui --no-build --json --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID)
+          URL=$(echo "$RESPONSE" | jq -r '.deploy_url')
+
+          echo $RESPONSE
+          echo "url=$URL" >> $GITHUB_OUTPUT
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Find existing deployment comment
+        id: deployment-comment
+        uses: peter-evans/find-comment@v4
+        with:
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Preview Deploy Report'
+
+      - name: Create or update deployment comment
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.deployment-comment.outputs.comment-id }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          edit-mode: replace
+          body: |
+            # :rocket: Preview Deploy Report
+
+            ✅ Successfully deployed preview [here](${{ steps.netlify.outputs.url }})
