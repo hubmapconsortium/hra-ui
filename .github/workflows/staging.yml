@@ -29,9 +29,10 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
-          run-id: ${{ github.event.workflow_run.id }}
           name: nx-build-artifacts
           path: ./deploy
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
 
       - name: Copy large assets
         run: .github/scripts/copy-assets.sh .github/assets/large-assets.json
