@@ -1,8 +1,8 @@
-import { type Meta, type StoryObj } from '@storybook/angular';
-import { ProgressBarComponent } from './progress-bar.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { ProgressBarColorDirective } from './progress-bar-color.directive';
 
-const meta: Meta<ProgressBarComponent> = {
-  component: ProgressBarComponent,
+const meta: Meta = {
   title: 'Design System/Indicators/Progress Bar',
   parameters: {
     design: {
@@ -20,8 +20,13 @@ const meta: Meta<ProgressBarComponent> = {
       options: ['dark', 'color'],
     },
   },
+  decorators: [moduleMetadata({ imports: [MatProgressBarModule, ProgressBarColorDirective] })],
+  render: (args) => ({
+    props: args,
+    template: `<mat-progress-bar mode="indeterminate" [hraProgressBarColor]="color" />`,
+  }),
 };
 export default meta;
-type Story = StoryObj<ProgressBarComponent>;
+type Story = StoryObj;
 
 export const Default: Story = {};

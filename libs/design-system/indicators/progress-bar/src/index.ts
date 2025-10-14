@@ -1,1 +1,1 @@
-export * from './lib/progress-bar.component';
+export * from './lib/progress-bar-color.directive';
