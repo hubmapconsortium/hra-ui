@@ -3,18 +3,17 @@
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
-      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js",
-      "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/**/test-setup.[jt]s",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.storybook.json",
-      "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/**/test.[jt]s"
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "plugins": [
     {
@@ -60,7 +59,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "3mb"
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
@@ -124,7 +123,9 @@
       },
       "configurations": {
         "ci": {
-          "silent": true
+          "coverageTest": 100,
+          "coverageMinimumPerFile": 100,
+          "coverageTestThresholdFail": true
         },
         "serve": {
           "watch": true,
@@ -146,7 +147,8 @@
       "configurations": {
         "ci": {
           "ci": true,
-          "codeCoverage": true
+          "codeCoverage": true,
+          "runInBand": true
         }
       }
     },
@@ -160,6 +162,7 @@
       }
     },
     "build-storybook": {
+      "cache": true,
       "options": {
         "configDir": "{projectRoot}/.storybook",
         "browserTarget": "{projectName}:build-storybook",
@@ -276,5 +279,5 @@
       "typeSeparator": "."
     }
   },
-  "nxCloudAccessToken": "YTQ5NDJjZDItYTYzZC00YTY0LWIzZjMtY2NjNjNiNzcyZjg1fHJlYWQtd3JpdGU="
+  "nxCloudId": "63daada4a8f88e7fc2ffedbd"
 }
