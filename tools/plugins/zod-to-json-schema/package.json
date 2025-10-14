@@ -7,7 +7,10 @@
   "types": "./src/index.d.ts",
   "dependencies": {
     "@nx/devkit": "21.4.1",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@alcyone-labs/zod-to-json-schema": "^4.0.10",
+    "fast-glob": "^3.3.3",
+    "esbuild": "^0.25.9"
   },
   "executors": "./executors.json"
 }
