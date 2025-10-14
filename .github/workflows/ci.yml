@@ -69,7 +69,8 @@ jobs:
         if: always()
         run: |
           find dist/apps -mindepth 2 -maxdepth 2 -type d -name "browser" \
-            -exec bash -c 'mv "$0"/* "$(dirname "$0")"/ && rm -rf "$0"' {} \;
+            -exec bash -c 'mv "$0"/* "$(dirname "$0")"/ && rm -rf "$0"' {} \; \
+            2>/dev/null || true
 
       - name: Upload build artifacts
         if: always()

@@ -15,7 +15,7 @@ window.preview = (() => {
      * @param {string} dir
      */
     addDirectory(dir) {
-      const [base, name] = dir.replace(/^dist\//, '').split('/');
+      const [, base, name] = dir.split('/');
       const sectionList = document.querySelector(`#${base} .list`);
       if (!sectionList) {
         return;
