@@ -121,4 +121,63 @@
       }
     }
   }
+
+  &.hra-action-card-variant-gallery {
+    width: 100%;
+    min-width: 17rem;
+    max-width: 28rem;
+
+    .header {
+      .image {
+        max-height: 12.5rem;
+        object-fit: cover;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 1rem;
+      min-height: 6.875rem;
+
+      .date {
+        @include utils.use-font(label, medium);
+        color: vars.$on-secondary-fixed;
+      }
+
+      .tagline,
+      .tagline-link {
+        @include utils.use-font(title, medium);
+        color: vars.$tertiary;
+        text-decoration: underline;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .tagline-link {
+        cursor: pointer;
+      }
+
+      .tags {
+        display: flex;
+        gap: 0.5rem;
+        padding-top: 1.25rem;
+        flex-wrap: wrap;
+
+        .tag {
+          @include utils.use-font(label, medium);
+          padding: 0.3438rem 0.75rem;
+          background-color: vars.$on-primary;
+          color: vars.$on-surface;
+          border: 0.0625rem solid vars.$outline;
+          border-radius: 0.5rem;
+        }
+      }
+    }
+  }
 }
