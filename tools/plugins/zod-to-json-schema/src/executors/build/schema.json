@@ -2,8 +2,24 @@
   "$schema": "https://json-schema.org/schema",
   "version": 2,
   "title": "Build executor",
-  "description": "",
+  "description": "Convert Zod schemas to JSON Schema",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "pattern": {
+      "type": "string",
+      "description": "Glob pattern to match schema files",
+      "default": "**/*.schema.ts"
+    },
+    "outputExtension": {
+      "type": "string",
+      "description": "Output file extension",
+      "default": ".schema.json"
+    },
+    "schemaRefPath": {
+      "type": "string",
+      "description": "Path to JSON Schema specification",
+      "default": "https://json-schema.org/draft-07/schema#"
+    }
+  },
   "required": []
 }
