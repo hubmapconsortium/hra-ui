@@ -12,7 +12,9 @@
   .title {
     @include utils.use-font(title, large);
     color: vars.$on-background;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
     margin-bottom: 0.75rem;
   }
 
