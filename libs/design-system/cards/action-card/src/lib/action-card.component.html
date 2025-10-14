@@ -11,7 +11,7 @@
 }
 
 <div class="content">
-  @if (variant() === 'elevated') {
+  @if (variant() === 'elevated' || variant() === 'content') {
     <div class="subtagline">{{ subtagline() }}</div>
   }
   <div class="tagline">
@@ -21,13 +21,12 @@
     <span>{{ tagline() }}</span>
   </div>
 
-  <div class="description">
-    <ng-content />
-  </div>
-
+  @if (variant() !== 'content') {
+    <div class="description">
+      <ng-content />
+    </div>
+  }
   <div class="actions">
-    <ng-content select="hra-action-card-action:not([alignment='right'])" />
-    <div class="spacer"></div>
-    <ng-content select="hra-action-card-action[alignment='right']" />
+    <ng-content select="hra-action-card-action" />
   </div>
 </div>

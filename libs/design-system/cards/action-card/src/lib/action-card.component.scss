@@ -121,4 +121,37 @@
       }
     }
   }
+
+  &.hra-action-card-variant-content {
+    min-width: 260px;
+    max-width: 380px;
+    border: 0.0625rem solid vars.$outline;
+    border-radius: 0.75rem;
+    background-color: vars.$on-primary;
+    padding: 1rem;
+
+    .header {
+      height: 132px;
+
+      .image {
+        max-width: 188px;
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    .content {
+      gap: 6px;
+
+      .subtagline {
+        @include utils.use-font(label, medium);
+        color: vars.$secondary;
+      }
+
+      .tagline {
+        @include utils.use-font(label, large);
+        color: vars.$primary;
+        margin-bottom: 1rem;
+      }
+    }
+  }
 }

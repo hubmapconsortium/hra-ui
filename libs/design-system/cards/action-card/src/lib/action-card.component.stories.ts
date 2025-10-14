@@ -4,6 +4,7 @@ import { ActionCardActionComponent, ActionCardComponent } from './action-card.co
 import { ActionCardVariant } from './action-card.schema';
 import { MatIconModule } from '@angular/material/icon';
 import { GridContainerComponent } from '../../../../content-templates/grid-container/src/lib/grid-container.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 interface WithContent {
   content?: string;
@@ -26,7 +27,7 @@ const meta: Meta<ActionCardComponent & WithContent> = {
   },
   decorators: [
     moduleMetadata({
-      imports: [ButtonsModule, MatIconModule, ActionCardActionComponent, GridContainerComponent],
+      imports: [ButtonsModule, MatIconModule, ActionCardActionComponent, GridContainerComponent, MatChipsModule],
     }),
   ],
 };
@@ -48,6 +49,9 @@ function render(variant: ActionCardVariant, actions: string): Story['render'] {
           font-size: 16px;
           line-height: 24px;
           letter-spacing: 0px;
+        }
+        mat-chip {
+          pointer-events: none;
         }
       `,
     ],
@@ -114,6 +118,22 @@ export const OutlinedWithIcons: Story = {
       <a hraHyperlink href="https://google.com">
         Action 2
       </a>
+    </hra-action-card-action>`,
+  ),
+};
+
+export const Content: Story = {
+  args: {
+    subtagline: 'September 20, 2025',
+    tagline: 'Card tagline that is less than 100 characters or truncated',
+  },
+  render: render(
+    'content',
+    `<hra-action-card-action>
+      <mat-chip-set>
+        <mat-chip>Label</mat-chip>
+        <mat-chip>Label</mat-chip>
+      </mat-chip-set>
     </hra-action-card-action>`,
   ),
 };
