@@ -1,5 +1,6 @@
-@use '../../../../styles/utils';
-@use '../../../../styles/vars';
+@use "@angular/material" as mat;
+@use "../../../../styles/utils";
+@use "../../../../styles/vars";
 
 :host {
   display: flex;
@@ -123,28 +124,41 @@
   }
 
   &.hra-action-card-variant-content {
-    min-width: 260px;
-    max-width: 380px;
     border: 0.0625rem solid vars.$outline;
     border-radius: 0.75rem;
     background-color: vars.$on-primary;
+    min-width: 260px;
+    max-width: 380px;
+  }
+
+  &.hra-action-card-variant-content > button {
+    text-align: start;
+    height: fit-content;
+    width: fit-content;
     padding: 1rem;
 
     .header {
       height: 132px;
+      width: 288px;
 
       .image {
-        max-width: 188px;
+        width: 188px;
+        max-width: 100%;
+        max-height: 100%;
         aspect-ratio: 16 / 9;
+
+        &:hover {
+          width: unset;
+          object-fit: contain;
+        }
       }
     }
 
     .content {
-      gap: 6px;
-
       .subtagline {
         @include utils.use-font(label, medium);
         color: vars.$secondary;
+        margin-bottom: 6px;
       }
 
       .tagline {
@@ -152,6 +166,23 @@
         color: vars.$primary;
         margin-bottom: 1rem;
       }
+    }
+
+    @include mat.chips-overrides(
+      (
+        label-text-font: vars.$label-small-font,
+        label-text-line-height: vars.$label-small-line-height,
+        label-text-size: vars.$label-small-size,
+        label-text-tracking: vars.$label-small-tracking,
+        label-text-weight: vars.$label-small-weight,
+        container-height: 28px
+      )
+    );
+
+    ::ng-deep mat-chip {
+      margin-top: 0;
+      margin-bottom: 0;
+      pointer-events: none;
     }
   }
 }

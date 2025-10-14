@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { AssetUrlPipe } from '@hra-ui/common/url';
 import { MatDividerModule } from '@angular/material/divider';
 import { HraCommonModule } from '@hra-ui/common';
 import { coerceIconList, IconsModule } from '@hra-ui/design-system/icons';
 import { ActionCardVariant } from './action-card.schema';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /** Helper component for projecting card actions into the right location */
 @Component({
@@ -23,7 +23,7 @@ export class ActionCardActionComponent {
  */
 @Component({
   selector: 'hra-action-card',
-  imports: [AssetUrlPipe, HraCommonModule, MatDividerModule, IconsModule],
+  imports: [HraCommonModule, MatDividerModule, IconsModule, ButtonsModule],
   templateUrl: './action-card.component.html',
   styleUrl: './action-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

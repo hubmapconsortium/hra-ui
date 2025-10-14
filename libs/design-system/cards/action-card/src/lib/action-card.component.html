@@ -1,32 +1,60 @@
-@if (variant() !== 'outlined-with-icons') {
-  <div class="header">
-    @if (image(); as src) {
-      <img class="image" [attr.src]="src | assetUrl" alt="" />
-    }
-  </div>
+@if (variant() === 'content') {
+  <button mat-button>
+    <ng-container *ngTemplateOutlet="content" />
+    <!-- <div class="header">
+      @if (image(); as src) {
+        <img class="image" [attr.src]="src | assetUrl" alt="" />
+      }
+    </div>
+
+    <div class="content">
+      <div class="subtagline">{{ subtagline() }}</div>
+      <div class="tagline">
+        @for (icon of icons(); track icon) {
+          <hra-icon class="icon" [icon]="icon" />
+        }
+        <span>{{ tagline() }}</span>
+      </div>
+      <div class="actions">
+        <ng-content select="hra-action-card-tags" />
+      </div>
+    </div> -->
+  </button>
+} @else {
+  <ng-container *ngTemplateOutlet="content" />
 }
 
-@if (variant() === 'outlined' && image()) {
-  <mat-divider />
-}
-
-<div class="content">
-  @if (variant() === 'elevated' || variant() === 'content') {
-    <div class="subtagline">{{ subtagline() }}</div>
-  }
-  <div class="tagline">
-    @for (icon of icons(); track icon) {
-      <hra-icon class="icon" [icon]="icon" />
-    }
-    <span>{{ tagline() }}</span>
-  </div>
-
-  @if (variant() !== 'content') {
-    <div class="description">
-      <ng-content />
+<ng-template #content>
+  @if (variant() !== 'outlined-with-icons') {
+    <div class="header">
+      @if (image(); as src) {
+        <img class="image" [attr.src]="src | assetUrl" alt="" />
+      }
     </div>
   }
-  <div class="actions">
-    <ng-content select="hra-action-card-action" />
+
+  @if (variant() === 'outlined' && image()) {
+    <mat-divider />
+  }
+
+  <div class="content">
+    @if (variant() === 'elevated' || variant() === 'content') {
+      <div class="subtagline">{{ subtagline() }}</div>
+    }
+    <div class="tagline">
+      @for (icon of icons(); track icon) {
+        <hra-icon class="icon" [icon]="icon" />
+      }
+      <span>{{ tagline() }}</span>
+    </div>
+
+    @if (variant() !== 'content') {
+      <div class="description">
+        <ng-content />
+      </div>
+    }
+    <div class="actions">
+      <ng-content select="hra-action-card-action" />
+    </div>
   </div>
-</div>
+</ng-template>
