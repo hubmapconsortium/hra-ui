@@ -1,6 +1,6 @@
-@use '@angular/material' as mat;
-@use '../../../../styles/utils';
-@use '../../../../styles/vars';
+@use "@angular/material" as mat;
+@use "../../../../styles/utils";
+@use "../../../../styles/vars";
 
 :host {
   display: flex;
@@ -132,7 +132,7 @@
     @include mat.button-overrides(
       (
         text-state-layer-color: vars.$secondary,
-        text-hover-state-layer-opacity: 0.12,
+        text-hover-state-layer-opacity: 0.12
       )
     );
 
@@ -144,6 +144,12 @@
       padding: 1rem;
       border: 0.0625rem solid vars.$outline;
       border-radius: 0.75rem;
+
+      &:hover {
+        .image {
+          max-width: 13.5rem;
+        }
+      }
 
       &:focus-visible {
         outline-color: vars.$secondary;
@@ -160,10 +166,6 @@
         object-fit: contain;
         transition: 0.3s ease-in-out;
         background: vars.$on-primary;
-
-        &:hover {
-          max-width: 13.5rem;
-        }
       }
     }
 
@@ -188,7 +190,7 @@
         label-text-size: vars.$label-small-size,
         label-text-tracking: vars.$label-small-tracking,
         label-text-weight: vars.$label-small-weight,
-        container-height: 1.75rem,
+        container-height: 1.75rem
       )
     );
 
