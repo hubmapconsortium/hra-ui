@@ -4,6 +4,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { coerceIconList, IconsModule } from '@hra-ui/design-system/icons';
 import { ActionCardVariant } from './action-card.schema';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { MatChipsModule } from '@angular/material/chips';
 
 /** Helper component for projecting card actions into the right location */
 @Component({
@@ -23,7 +24,7 @@ export class ActionCardActionComponent {
  */
 @Component({
   selector: 'hra-action-card',
-  imports: [HraCommonModule, MatDividerModule, IconsModule, ButtonsModule],
+  imports: [HraCommonModule, MatDividerModule, IconsModule, ButtonsModule, MatChipsModule],
   templateUrl: './action-card.component.html',
   styleUrl: './action-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,4 +43,18 @@ export class ActionCardComponent {
   readonly image = input<string>();
   /** Icons shown for `outlined-with-icons` cards */
   readonly icons = input([], { transform: coerceIconList });
+  /** Tags to display on bottom of card (only on content variant) */
+  readonly tags = input<string[]>([]);
+  /** Link when clicked (only on content variant) */
+  readonly link = input<string>();
+
+  /**
+   * Navigate to the given link in a new tab
+   * @param url Link to navigate to
+   */
+  navigateToLink(url: string | undefined) {
+    if (url) {
+      window.open(url, '_blank', 'noopener');
+    }
+  }
 }

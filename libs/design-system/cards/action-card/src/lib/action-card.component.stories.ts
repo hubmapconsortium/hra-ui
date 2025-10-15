@@ -34,27 +34,13 @@ const meta: Meta<ActionCardComponent & WithContent> = {
 export default meta;
 type Story = StoryObj<ActionCardComponent & WithContent>;
 
-function render(variant: ActionCardVariant, actions: string): Story['render'] {
+function render(variant: ActionCardVariant, actions?: string): Story['render'] {
   return (args) => ({
     props: args,
-    template: `<hra-action-card variant="${variant}" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+    template: `<hra-action-card variant="${variant}" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons" [tags]="tags" [link]="link">
       ${args.content}
       ${actions}
     </hra-action-card>`,
-    styles: [
-      `
-        a {
-          font-family: Metropolis;
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 24px;
-          letter-spacing: 0px;
-        }
-        mat-chip {
-          pointer-events: none;
-        }
-      `,
-    ],
   });
 }
 
@@ -126,16 +112,10 @@ export const Content: Story = {
   args: {
     subtagline: 'September 20, 2025',
     tagline: 'Card tagline that is less than 100 characters or truncated',
+    tags: ['Label', 'Longer label'],
+    link: 'https://google.com',
   },
-  render: render(
-    'content',
-    `<hra-action-card-action>
-      <mat-chip-set>
-        <mat-chip>Label</mat-chip>
-        <mat-chip>Label</mat-chip>
-      </mat-chip-set>
-    </hra-action-card-action>`,
-  ),
+  render: render('content'),
 };
 
 export const ResponsiveCardGroup: Story = {

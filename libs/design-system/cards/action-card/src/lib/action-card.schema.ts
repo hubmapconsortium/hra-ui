@@ -22,4 +22,6 @@ export const ActionCardSchema = ContentTemplateSchema.extend({
   content: ProjectedContentTemplateSchema.optional(),
   actionsLeft: ProjectedContentTemplateSchema.optional(),
   actionsRight: ProjectedContentTemplateSchema.optional(),
+  tags: z.array(z.string()).optional(),
+  link: z.string().optional(),
 });

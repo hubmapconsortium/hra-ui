@@ -1,6 +1,6 @@
-@use "@angular/material" as mat;
-@use "../../../../styles/utils";
-@use "../../../../styles/vars";
+@use '@angular/material' as mat;
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
 
 :host {
   display: flex;
@@ -124,32 +124,45 @@
   }
 
   &.hra-action-card-variant-content {
-    border: 0.0625rem solid vars.$outline;
-    border-radius: 0.75rem;
+    width: 100%;
+    min-width: 16.25rem;
+    max-width: 23.75rem;
     background-color: vars.$on-primary;
-    min-width: 260px;
-    max-width: 380px;
-  }
 
-  &.hra-action-card-variant-content > button {
-    text-align: start;
-    height: fit-content;
-    width: fit-content;
-    padding: 1rem;
+    @include mat.button-overrides(
+      (
+        text-state-layer-color: vars.$secondary,
+        text-hover-state-layer-opacity: 0.12,
+      )
+    );
+
+    button {
+      text-align: start;
+      justify-content: start;
+      height: fit-content;
+      width: 100%;
+      padding: 1rem;
+      border: 0.0625rem solid vars.$outline;
+      border-radius: 0.75rem;
+
+      &:focus-visible {
+        outline-color: vars.$secondary;
+      }
+    }
 
     .header {
-      height: 132px;
-      width: 288px;
+      height: 8.25rem;
 
       .image {
-        width: 188px;
-        max-width: 100%;
-        max-height: 100%;
-        aspect-ratio: 16 / 9;
+        max-width: 11.75rem;
+        border: 0.0625rem solid vars.$outline;
+        border-radius: 0.75rem;
+        object-fit: contain;
+        transition: 0.3s ease-in-out;
+        background: vars.$on-primary;
 
         &:hover {
-          width: unset;
-          object-fit: contain;
+          max-width: 13.5rem;
         }
       }
     }
@@ -158,7 +171,7 @@
       .subtagline {
         @include utils.use-font(label, medium);
         color: vars.$secondary;
-        margin-bottom: 6px;
+        margin-bottom: 0.375rem;
       }
 
       .tagline {
@@ -175,11 +188,11 @@
         label-text-size: vars.$label-small-size,
         label-text-tracking: vars.$label-small-tracking,
         label-text-weight: vars.$label-small-weight,
-        container-height: 28px
+        container-height: 1.75rem,
       )
     );
 
-    ::ng-deep mat-chip {
+    mat-chip {
       margin-top: 0;
       margin-bottom: 0;
       pointer-events: none;
