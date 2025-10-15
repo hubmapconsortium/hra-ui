@@ -15,7 +15,7 @@ export interface ZodToJsonSchemaPluginOptions {
 type ZodToJsonSchemaPluginOptionsWithDefaults = Required<ZodToJsonSchemaPluginOptions>;
 
 const defaultOptions: ZodToJsonSchemaPluginOptionsWithDefaults = {
-  buildTargetName: 'build-schema',
+  buildTargetName: 'build-schema', // TODO rename to build-json-schemas
 };
 
 export const createNodesV2: CreateNodesV2<ZodToJsonSchemaPluginOptions> = [
@@ -44,7 +44,7 @@ async function createNodesInternal(
     executor: '@hra-ui/zod-to-json-schema-plugin:build',
     // TODO options?
     cache: true,
-    inputs: [`{projectRoot}/**/*.schema.ts`],
+    inputs: [`{projectRoot}/**/*.schema.ts`, { externalDependencies: ['zod'] }],
     outputs: [`{projectRoot}/**/*.schema.json`],
   };
 

@@ -1,8 +1,10 @@
-export interface BuildExecutorSchema {
-  /** Glob pattern to match schema files */
-  pattern?: string;
-  /** Output file extension */
-  outputExtension?: string;
-  /** Path to JSON Schema specification */
-  schemaRefPath?: string;
-}
+import { toJSONSchema } from 'zod';
+
+// Not exported by zod...
+type ToJSONSchemaParams = Pick<
+  NonNullable<Parameters<typeof toJSONSchema>[1]>,
+  'target' | 'unrepresentable' | 'cycles' | 'reused'
+>;
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type
+export interface BuildExecutorSchema extends ToJSONSchemaParams {}
