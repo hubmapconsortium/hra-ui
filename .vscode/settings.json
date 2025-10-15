@@ -35,5 +35,6 @@
     "app:kg-explorer",
     "lib:application"
   ],
-  "eslint.validate": ["yaml", "json", "javascript", "typescript"]
+  "eslint.validate": ["yaml", "json", "javascript", "typescript"],
+  "prettier.jsxSingleQuote": true
 }
