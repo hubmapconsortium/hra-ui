@@ -1,0 +1,7 @@
+.section.empty {
+  display: none;
+}
+
+.section:not(.empty) ~ .empty-indicator {
+  display: none;
+}
