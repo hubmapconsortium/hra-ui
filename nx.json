@@ -3,16 +3,15 @@
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
-      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js",
-      "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/**/test-setup.[jt]s",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.storybook.json",
-      "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/**/test.[jt]s"
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
@@ -163,6 +162,9 @@
       }
     },
     "build-storybook": {
+      "cache": true,
+      "inputs": ["production", "^production", { "externalDependencies": ["storybook", "@storybook/test-runner"] }],
+      "outputs": ["{options.outputDir}"],
       "options": {
         "configDir": "{projectRoot}/.storybook",
         "browserTarget": "{projectName}:build-storybook",
