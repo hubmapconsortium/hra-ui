@@ -38,11 +38,8 @@
 
     .actions {
       display: flex;
+      justify-content: space-between;
       @include utils.use-font(label, large);
-
-      .spacer {
-        flex-grow: 1;
-      }
     }
   }
 
@@ -132,7 +129,7 @@
     @include mat.button-overrides(
       (
         text-state-layer-color: vars.$secondary,
-        text-hover-state-layer-opacity: 0.12,
+        text-hover-state-layer-opacity: 0.12
       )
     );
 
@@ -190,7 +187,7 @@
         label-text-size: vars.$label-small-size,
         label-text-tracking: vars.$label-small-tracking,
         label-text-weight: vars.$label-small-weight,
-        container-height: 1.75rem,
+        container-height: 1.75rem
       )
     );
 
