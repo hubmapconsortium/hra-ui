@@ -1,4 +1,4 @@
-<app-sidenav>
+<app-sidenav hraFeature="debug-logs">
   <div header>
     <app-sidenav-header
       [title]="'Debug Log'"
@@ -11,6 +11,7 @@
 
   <div body>
     <mat-tab-group
+      hraFeature="tabs"
       mat-stretch-tabs
       hraClickEvent
       hraClickEventTriggerOn="none"

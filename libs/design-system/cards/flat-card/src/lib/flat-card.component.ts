@@ -44,6 +44,9 @@ export class FlatCardComponent {
   /** Optional help icon */
   readonly showHelpButton = input<boolean>(false);
 
+  /** Help icon button link */
+  readonly helpLink = input<string>('');
+
   /** Optional divider */
   readonly showDivider = input<boolean>(false);
 

@@ -12,7 +12,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonSizeDirective } from '@hra-ui/design-system/buttons/button';
 
@@ -27,7 +26,6 @@ import { ButtonSizeDirective } from '@hra-ui/design-system/buttons/button';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    FontAwesomeModule,
     ButtonSizeDirective,
     HraCommonModule,
   ],

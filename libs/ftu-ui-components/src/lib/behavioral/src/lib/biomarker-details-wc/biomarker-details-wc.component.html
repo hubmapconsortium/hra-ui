@@ -27,7 +27,7 @@
           [message]="message"
           [sources]="source()"
           [hideTitle]="true"
-          (selectionChanged)="setSelectedSources($event)"
+          (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
           class="content"
         ></ftu-source-list>
       }
@@ -44,32 +44,29 @@
   <mat-tab hraFeature="biomarkers-tab" label="Cell types by Biomarkers" [disabled]="tab.rows.length === 0">
     <div class="biomarker-details">
       <div class="legend" hraFeature="legends">
-        <div class="legend-percentage">
-          <button
-            hraClickEvent
-            hraFeature="percentage"
-            class="legend-percentage"
-            [hraRichTooltip]
-            hraRichTooltipTagline="Percentage of cells"
-            [hraRichTooltipDescription]="percentageTooltipText"
-          >
-            <span class="legend-header-percentage">Percentage of cells</span>
-            <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
-          </button>
-        </div>
-        <div class="legend-gradient">
-          <button
-            hraClickEvent
-            hraFeature="expression"
-            class="legend-gradient"
-            [hraRichTooltip]
-            hraRichTooltipTagline="Biomarker expression mean"
-            [hraRichTooltipDescription]="expressionTooltipText"
-          >
-            <span class="legend-header-gradient">Biomarker expression mean</span>
-            <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
-          </button>
-        </div>
+        <button
+          hraClickEvent
+          hraFeature="percentage"
+          class="legend-percentage"
+          [hraRichTooltip]
+          hraRichTooltipTagline="Percentage of cells"
+          [hraRichTooltipDescription]="percentageTooltipText"
+        >
+          <span class="legend-header-percentage">Percentage of cells</span>
+          <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
+        </button>
+        <mat-divider [vertical]="true"></mat-divider>
+        <button
+          hraClickEvent
+          hraFeature="expression"
+          class="legend-gradient"
+          [hraRichTooltip]
+          hraRichTooltipTagline="Biomarker expression mean"
+          [hraRichTooltipDescription]="expressionTooltipText"
+        >
+          <span class="legend-header-gradient">Biomarker expression mean</span>
+          <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
+        </button>
       </div>
       <mat-button-toggle-group
         hraButtonToggleSize="medium"

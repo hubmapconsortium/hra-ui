@@ -88,7 +88,7 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Initialize the application */
   constructor() {
-    super();
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
 
     inject(CustomScrollService);
     this.router.initialNavigation();

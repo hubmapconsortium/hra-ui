@@ -3,11 +3,14 @@ import { ConsentCategories, ConsentService } from '@hra-ui/common/analytics';
 import { injectAssetHref, injectPageHref } from '@hra-ui/common/url';
 import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 import { AnalyticsInput } from './util/analytics-input';
+import { initializeScreenSizeNoticeMonitor, ScreenSizeNoticeOptions } from './util/screen-size-notice';
 
 /** Base application options */
 export interface BaseApplicationOptions {
   /** Whether to show/hide the privacy preferences popups by default */
   analytics?: boolean;
+  /** Screen size notice width and height */
+  screenSizeNotice?: ScreenSizeNoticeOptions;
 }
 
 /**
@@ -64,5 +67,10 @@ export abstract class BaseApplicationComponent {
         this.consentChange.emit(consent.categories());
       }
     });
+
+    // Enable screen size notice
+    if (options.screenSizeNotice) {
+      initializeScreenSizeNoticeMonitor(options.screenSizeNotice);
+    }
   }
 }

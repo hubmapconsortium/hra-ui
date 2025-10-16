@@ -7,13 +7,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarConfig, MatSnackBarRef } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
+import { SnackbarComponent, SnackbarService } from '@hra-ui/design-system/snackbar';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Select, Store } from '@ngxs/store';
 import { StateReset } from 'ngxs-reset-plugin';
@@ -105,7 +106,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
   readonly configService = inject(ConfigService);
 
   /** Snackbar Service */
-  readonly snackbar = inject(MatSnackBar);
+  readonly snackbar = inject(SnackbarService);
 
   /** Angular Router */
   readonly router = inject(Router);
@@ -187,7 +188,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
   omapSheetConfig: SheetDetails[] = [];
 
   /** Reference to the snackbar */
-  snackbarRef!: MatSnackBarRef<TextOnlySnackBar>;
+  snackbarRef!: MatSnackBarRef<SnackbarComponent>;
 
   /** Botton input sheet ref */
   infoSheetRef!: MatBottomSheetRef;
@@ -197,7 +198,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
 
   /** Initialize the component */
   constructor() {
-    super();
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
 
     switch (environment.tag) {
       case 'Staging':
@@ -399,7 +400,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
               horizontalPosition: 'end',
               panelClass: [`${sb.type}-snackbar`],
             };
-            this.snackbarRef = this.snackbar.open(sb.text, 'Dismiss', config);
+            this.snackbarRef = this.snackbar.open(sb.text, 'Dismiss', undefined, undefined, config);
             this.snackbarRef.afterDismissed();
             store.dispatch(new CloseSnackbar());
           }
@@ -678,13 +679,15 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
       const config: MatSnackBarConfig = {
         duration: 10000,
         verticalPosition: 'bottom',
-        horizontalPosition: 'center',
+        horizontalPosition: 'right',
       };
 
       setTimeout(() => {
         this.snackbarRef = this.snackbar.open(
-          'OMAP Detected, Do you want to filter out only Proteins ' + 'from the available BioMarkers?',
+          'OMAP Detected, Do you want to filter out only Proteins from the available biomarkers?',
           'Filter',
+          undefined,
+          undefined,
           config,
         );
         this.snackbarRef.onAction().subscribe(() => {

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import {
   booleanAttribute,
   Component,
-  computed,
   effect,
   ElementRef,
   ErrorHandler,
@@ -66,7 +65,7 @@ function setInput<T>(
 /** Utility function to use input data to set to relevant body ui setter */
 function connectInput<T>(
   bodyUi: Signal<BodyUI | undefined>,
-  source: Signal<T | undefined>,
+  source: () => T | undefined,
   setter: SetterMethods<T>,
 ): void {
   effect(() => setInput(bodyUi(), source(), setter));
@@ -137,10 +136,8 @@ export class BodyUiComponent {
   /** Camera for the deck gl */
   readonly camera = input<string>();
   /** Flag for the interactive for deck gl */
-  readonly interactive = input(true, { transform: booleanAttribute });
+  readonly interactive = input(undefined, { transform: booleanAttribute });
 
-  /** Output for rotation change */
-  readonly rotationChange = output<[number, number]>();
   /** Output for node click */
   readonly nodeClick = output<NodeClickEvent>();
   /** Output for node drag */
@@ -149,6 +146,10 @@ export class BodyUiComponent {
   readonly nodeHoverStart = output<SpatialSceneNode>();
   /** Output for node hover end */
   readonly nodeHoverStop = output<SpatialSceneNode>();
+  /** Output for rotation change */
+  readonly rotationChange = output<[number, number]>();
+  /** Output that emits when deck gl has been initialized */
+  readonly initialized = output<void>();
 
   /** Instance of HttpClient */
   private readonly http = inject(HttpClient);
@@ -194,10 +195,10 @@ export class BodyUiComponent {
   );
 
   /** Returns the bounds zoom according to bounds input */
-  private readonly boundsZoom = computed(() => {
+  private readonly boundsZoom = () => {
     const bounds = this.bounds();
     return bounds ? this.getBoundsZoom(bounds) : undefined;
-  });
+  };
 
   /** Constructor for the component */
   constructor() {
@@ -207,6 +208,8 @@ export class BodyUiComponent {
     connectInput(this.bodyUi, this.target, 'setTarget');
     connectInput(this.bodyUi, this.zoom, 'setZoom');
     connectInput(this.bodyUi, this.boundsZoom, 'setZoom');
+    connectInput(this.bodyUi, this.camera, 'setCamera');
+    connectInput(this.bodyUi, this.interactive, 'setInteractive');
 
     effect((onCleanup) => {
       const bodyUi = this.bodyUi();
@@ -216,8 +219,16 @@ export class BodyUiComponent {
         subscriptions.add(connectOutput(this.nodeDrag, bodyUi.nodeDrag$));
         subscriptions.add(connectOutput(this.nodeHoverStart, bodyUi.nodeHoverStart$));
         subscriptions.add(connectOutput(this.nodeHoverStop, bodyUi.nodeHoverStop$));
+        subscriptions.add(connectOutput(this.rotationChange, bodyUi.sceneRotation$));
         subscriptions.add(() => bodyUi.finalize());
         onCleanup(() => subscriptions.unsubscribe());
+      }
+    });
+
+    const initializeEffect = effect(() => {
+      if (this.bodyUi()) {
+        this.initialized.emit();
+        initializeEffect.destroy();
       }
     });
   }

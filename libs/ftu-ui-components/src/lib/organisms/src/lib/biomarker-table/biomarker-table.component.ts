@@ -182,6 +182,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   ngOnInit(): void {
     const scroll$ = this.vscroll.scrollable.elementScrolled();
     scroll$.subscribe(() => this.checkDisplayedColumns());
+    this.vscroll.checkViewportSize();
   }
 
   /**
@@ -215,6 +216,9 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * Checks to see if columns should be updated
    */
   checkDisplayedColumns(forceUpdate = false): void {
+    // Ensure viewport size is up to date
+    this.vscroll.checkViewportSize();
+
     const scrollable = this.vscroll.scrollable;
     const size = scrollable.measureViewportSize('horizontal');
     const offset = scrollable.measureScrollOffset('start');

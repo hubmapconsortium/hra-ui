@@ -150,11 +150,7 @@ export class BodyUI {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const props: any = {
       ...deckProps,
-      views: [
-        deckProps.camera === 'orthographic'
-          ? new OrthographicView({ flipY: false, near: -1000 })
-          : new OrbitView({ orbitAxis: 'Y' }),
-      ],
+      views: [this.createView(deckProps.camera)],
       controller: deckProps.interactive ?? true,
       layers: [this.bodyUILayer],
       onHover: this._onHover,
@@ -336,8 +332,24 @@ export class BodyUI {
    * @param value A boolean indicating if the view should be interactive.
    */
   setInteractive(value: boolean): void {
+    const { camera } = this.deck.props.viewState as BodyUIViewStateProps;
     this.deck.setProps({
       controller: value,
+      views: [this.createView(camera)],
+    });
+  }
+
+  /**
+   * Updates camera type
+   * @param value Camera type
+   */
+  setCamera(value: string): void {
+    this.deck.setProps({
+      views: [this.createView(value)],
+      viewState: {
+        ...this.deck.props.viewState,
+        camera: value,
+      } satisfies BodyUIViewStateProps,
     });
   }
 
@@ -425,5 +437,16 @@ export class BodyUI {
     if (info?.object?.['@id']) {
       subject.next({ node: info.object, info, e });
     }
+  }
+
+  /**
+   * Creates a new view
+   * @param camera Camera type
+   * @returns view
+   */
+  private createView(camera?: string): OrbitView | OrthographicView {
+    return camera === 'orthographic'
+      ? new OrthographicView({ flipY: false, near: -1000 })
+      : new OrbitView({ orbitAxis: 'Y' });
   }
 }

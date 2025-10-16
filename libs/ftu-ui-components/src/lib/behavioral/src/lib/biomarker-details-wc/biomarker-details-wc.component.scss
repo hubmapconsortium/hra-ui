@@ -5,6 +5,30 @@
 :host {
   display: flex;
   flex-direction: column;
+  height: 100%;
+
+  mat-tab-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    ::ng-deep {
+      .mat-mdc-tab-body-wrapper {
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .mat-mdc-tab-body {
+        overflow: hidden;
+      }
+
+      .mat-mdc-tab-body-content {
+        height: 100%;
+        overflow: hidden;
+      }
+    }
+  }
 
   @include mat.tabs-overrides(
     (
@@ -20,10 +44,6 @@
       label-text-weight: vars.$label-medium-weight,
     )
   );
-
-  ::ng-deep .mat-mdc-tab-body-content {
-    overflow: hidden;
-  }
 
   @include mat.button-toggle-overrides(
     (
@@ -59,6 +79,8 @@
         'legend-area legend-area'
         'table table';
       position: relative;
+      height: 100%;
+      overflow: hidden;
 
       .legend {
         grid-area: legend-area;
@@ -66,6 +88,7 @@
         display: flex;
         flex-direction: row;
         align-content: space-around;
+        align-items: stretch;
         width: 100%;
 
         .legend-percentage {
@@ -75,11 +98,9 @@
           justify-content: center;
           row-gap: 0.25rem;
           flex-grow: 1;
-          border-right: 1px solid vars.$outline-variant;
 
           background: none;
           border: none;
-          border-right: 1px solid vars.$outline-variant;
           padding: 0;
           cursor: pointer;
           transition: opacity 0.2s ease;
@@ -100,7 +121,6 @@
           justify-content: center;
           row-gap: 0.25rem;
           flex-grow: 1;
-          border-right: 1px solid vars.$outline-variant;
 
           .content {
             width: 9.75rem;
@@ -108,7 +128,6 @@
 
           background: none;
           border: none;
-          border-right: 1px solid vars.$outline-variant;
           padding: 0;
           cursor: pointer;
           transition: opacity 0.2s ease;
@@ -126,8 +145,26 @@
       ftu-biomarker-table {
         grid-area: table;
         width: 100%;
+        height: 100%;
         border-top: 1px solid vars.$outline-variant;
         min-height: 21.25rem;
+        overflow: auto;
+
+        ::ng-deep {
+          th:first-child,
+          td.type {
+            width: 10.75rem;
+            min-width: 10.75rem;
+            max-width: 10.75rem;
+          }
+
+          th:nth-child(2),
+          td.count {
+            width: 10.75rem;
+            min-width: 10.75rem;
+            max-width: 10.75rem;
+          }
+        }
       }
 
       .biomarker-toggle-group.absolute-toggle {

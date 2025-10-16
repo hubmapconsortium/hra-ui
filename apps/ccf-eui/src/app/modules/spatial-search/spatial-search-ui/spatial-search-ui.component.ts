@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, input, output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, output, signal, viewChild } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -6,19 +6,14 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FilterSexEnum, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import {
-  BodyUiComponent,
-  BodyUiModule,
-  OrganInfo,
-  SpatialSearchKeyboardUIBehaviorModule,
-  XYZPositionModule,
-} from 'ccf-shared';
+import { OrganInfo, SpatialSearchKeyboardUIBehaviorModule, XYZPositionModule } from 'ccf-shared';
 
 import { HraCommonModule } from '@hra-ui/common';
 import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
 import { TermOccurrenceListComponent } from '../term-occurence-list/term-occurrence.component';
 import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list.component';
+import { BodyUiComponent } from 'ccf-body-ui';
 
 /**
  * Main Spatial Search UI component
@@ -29,7 +24,6 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
   styleUrls: ['./spatial-search-ui.component.scss'],
   imports: [
     HraCommonModule,
-    BodyUiModule,
     XYZPositionModule,
     SpatialSearchKeyboardUIBehaviorModule,
     MatIconModule,
@@ -41,6 +35,7 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
     PlainTooltipDirective,
     MatMenuModule,
     MatDividerModule,
+    BodyUiComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -49,10 +44,7 @@ export class SpatialSearchUiComponent {
   @HostBinding('class') readonly className = 'ccf-spatial-search-ui';
 
   /** Primary body UI component */
-  @ViewChild('primary', { static: false }) primaryUI!: BodyUiComponent;
-
-  /** Minimap component */
-  @ViewChild('minimap', { static: false }) minimapUI!: BodyUiComponent;
+  readonly primaryUI = viewChild.required<BodyUiComponent>('primary');
 
   /** Nodes in the scene */
   readonly scene = input.required<SpatialSceneNode[]>();
@@ -123,15 +115,14 @@ export class SpatialSearchUiComponent {
   /** Emits when organ is updated */
   readonly updateOrgan = output<OrganInfo>();
 
+  /** Rotation values */
+  readonly rotation = signal<[number, number]>([0, 0]);
+
   /**
    * Resets view to default position, rotation, and bounds
    */
   resetView(): void {
-    for (const ui of [this.primaryUI, this.minimapUI]) {
-      ui.target = this.sceneTarget();
-      ui.rotation = 0;
-      ui.rotationX = 0;
-      ui.bounds = this.sceneBounds();
-    }
+    this.primaryUI().resetView();
+    this.rotation.set([0, 0]);
   }
 }

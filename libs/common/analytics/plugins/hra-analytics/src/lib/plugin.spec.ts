@@ -25,7 +25,8 @@ describe('Analytics Plugin', () => {
   it('sends page and track events to the telemetry service', async () => {
     const plugin = TestBed.runInInjectionContext(() => hraAnalyticsPlugin(options));
     const telemetry = TestBed.inject(TelemetryService);
-    const config = { app: 'myapp', version: '1.2' };
+    const config = { sv: 0, app: 'myapp', version: '1.2', path: undefined, trigger: undefined, triggerData: undefined };
+    const path = 'foo.bar';
     const payload = { custom: 'data' };
     const analytics = Analytics({
       ...config,
@@ -34,16 +35,18 @@ describe('Analytics Plugin', () => {
 
     await analytics.page(payload);
     expect(telemetry.send).toHaveBeenCalledWith({
-      sessionId: options.sessionId,
       ...config,
+      sessionId: options.sessionId,
       event: CoreEvents.PageView.type,
       e: expect.objectContaining(payload),
     });
 
-    await analytics.track(CoreEvents.Click.type, payload);
+    await analytics.track(CoreEvents.Click.type, { path, ...payload });
     expect(telemetry.send).toHaveBeenCalledWith({
+      ...config,
       sessionId: options.sessionId,
       event: CoreEvents.Click.type,
+      path: path,
       e: expect.objectContaining(payload),
     });
   });

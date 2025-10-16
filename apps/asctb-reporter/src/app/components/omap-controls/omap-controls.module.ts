@@ -6,7 +6,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HraCommonModule } from '@hra-ui/common';
 import { OmapControlsComponent } from './omap-controls.component';
 
@@ -18,7 +17,6 @@ import { OmapControlsComponent } from './omap-controls.component';
     MatSelectModule,
     MatIconModule,
     MatTooltipModule,
-    FontAwesomeModule,
     MatButtonModule,
     MatCheckboxModule,
     HraCommonModule,

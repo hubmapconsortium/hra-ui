@@ -206,13 +206,13 @@
         hraClickEventTriggerOn="none"
         hraHoverEvent
         hraHoverEventTriggerOn="none"
-        #bodyUI
         class="stage-content"
         [scene]="$any(scene.scene$ | async)"
         (nodeClick)="scene.sceneNodeClicked($event); sceneEvent.logEvent('click')"
         (nodeHoverStart)="scene.sceneNodeHovered($event); sceneHoverEvent.logEvent('mouseenter')"
         (nodeHoverStop)="scene.sceneNodeUnhover()"
-        [bounds]="{ x: 1, y: 0.5, z: 0.4 }"
+        [bounds]="{ x: 2, y: 2, z: 0.4 }"
+        #bodyUI
         #sceneEvent="hraClickEvent"
         #sceneHoverEvent="hraHoverEvent"
       >
