@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { NavigationButtonComponent } from './navigation-button.component';
 
 const meta: Meta<NavigationButtonComponent> = {
@@ -10,13 +10,22 @@ const meta: Meta<NavigationButtonComponent> = {
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=4878-235&p=f',
     },
   },
-  render: (args) => ({
-    props: args,
-    template: `<hra-navigation-button>Label</hra-navigation-button>`,
-  }),
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['cta', 'menu-item'],
+    },
+  },
+  args: {
+    label: 'Label text',
+    link: '#',
+    variant: 'menu-item',
+    supportingText: 'Supporting text',
+    showLeadingIcon: true,
+    showTrailingicon: true,
+  },
 };
-
 export default meta;
 type Story = StoryObj<NavigationButtonComponent>;
 
-export const Primary: Story = {};
+export const Default: Story = {};

@@ -1,3 +1,113 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
 :host {
   display: block;
+
+  a {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+
+      .leading-icon,
+      .trailing-icon {
+        color: vars.$on-surface;
+      }
+
+      .indent {
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .text-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .label {
+          color: vars.$on-surface;
+          @include utils.use-font('label', 'large');
+        }
+
+        .supporting-text {
+          color: vars.$on-surface-variant;
+          @include utils.use-font('body', 'medium');
+        }
+      }
+    }
+  }
+
+  &.hra-navigation-button-menu-item {
+    a {
+      min-height: 2.75rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+
+      &:hover {
+        background-color: utils.with-alpha(vars.$on-surface, 8%);
+      }
+
+      &:active {
+        background-color: utils.with-alpha(vars.$on-surface, 12%);
+      }
+
+      &:focus-visible {
+        @include utils.inset-outline(vars.$primary);
+      }
+    }
+  }
+
+  &.hra-navigation-button-cta {
+    a {
+      min-height: 2.75rem;
+      padding: 0.75rem 1rem;
+      border: 0.063rem solid vars.$outline-variant;
+      border-radius: 0.75rem;
+      background-color: vars.$surface-container-low;
+
+      &:hover {
+        background-color: vars.$surface-container;
+      }
+
+      &:active {
+        background-color: vars.$surface-container-high;
+      }
+
+      &:focus-visible {
+        @include utils.inset-outline(vars.$primary);
+      }
+
+      .content {
+        .label {
+          @include utils.use-font('label', 'large');
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  &.hra-navigation-button-align-center {
+    a .content {
+      justify-content: center;
+    }
+  }
+
+  &.hra-navigation-button-align-top-left {
+    a .content {
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .text-container {
+        padding-top: 0.25rem;
+      }
+    }
+  }
 }

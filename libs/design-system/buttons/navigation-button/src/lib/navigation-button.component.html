@@ -1,1 +1,20 @@
-<p>navigation-button works!</p>
+<a matRipple hraFeature="navigation-button" hraClickEvent [attr.href]="link()">
+  <div class="content">
+    @if (showLeadingIcon()) {
+      <mat-icon class="leading-icon">info</mat-icon>
+    } @else {
+      <div class="indent"></div>
+    }
+
+    <div class="text-container">
+      <span class="label">{{ label() }}</span>
+      @if (supportingText()) {
+        <span class="supporting-text">{{ supportingText() }}</span>
+      }
+    </div>
+
+    @if (showTrailingicon()) {
+      <mat-icon class="trailing-icon">arrow_forward</mat-icon>
+    }
+  </div>
+</a>
