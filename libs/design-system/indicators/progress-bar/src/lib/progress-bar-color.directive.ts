@@ -1,7 +1,7 @@
 import { Directive, input } from '@angular/core';
 
 /** Color options */
-export type ProgressBarColor = 'dark' | 'light' | 'color';
+export type ProgressBarColor = 'dark' | 'color';
 
 /** Style a mat-progress-bar to a specific named color */
 @Directive({
