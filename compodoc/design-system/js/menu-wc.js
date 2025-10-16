@@ -958,6 +958,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/PrimaryButtonVariantDirective.html" data-type="entity-link" >PrimaryButtonVariantDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="directives/ProgressBarColorDirective.html" data-type="entity-link" >ProgressBarColorDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/RichTooltipCloseDirective.html" data-type="entity-link" >RichTooltipCloseDirective</a>
                                 </li>
                                 <li class="link">
