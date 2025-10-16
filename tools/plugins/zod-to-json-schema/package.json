@@ -1,5 +1,5 @@
 {
-  "name": "@hra-ui/zod-to-json-schema-plugin",
+  "name": "@hra-ui/zod-to-json-schema",
   "version": "0.0.1",
   "private": true,
   "type": "commonjs",

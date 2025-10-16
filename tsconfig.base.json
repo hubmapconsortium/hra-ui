@@ -90,7 +90,7 @@
       "@hra-ui/webcomponents": [
         "libs/shared/webcomponents/src/index.ts"
       ],
-      "@hra-ui/zod-to-json-schema-plugin": [
+      "@hra-ui/zod-to-json-schema": [
         "tools/plugins/zod-to-json-schema/src/index.ts"
       ],
       "ccf-body-ui": [

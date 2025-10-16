@@ -89,6 +89,27 @@ export const configs = {
       },
     },
   ],
+  plugin: [
+    ...json.configs['flat/base'],
+    ...json.configs['flat/recommended-with-json'],
+    {
+      files: ['**/*.json'],
+      rules: {
+        '@nx/dependency-checks': [
+          'error',
+          {
+            ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}'],
+          },
+        ],
+      },
+    },
+    {
+      files: ['**/package.json', '**/package.json', '**/executors.json'],
+      rules: {
+        '@nx/nx-plugin-checks': 'error',
+      },
+    },
+  ],
   angular: [
     ...nx.configs['flat/angular'],
     ...nx.configs['flat/angular-template'],

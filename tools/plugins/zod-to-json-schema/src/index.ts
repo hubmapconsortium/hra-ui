@@ -34,7 +34,6 @@ function applyOptionsDefaults(options: ZodToJsonSchemaPluginOptions): ZodToJsonS
 async function createNodesInternal(
   projectRoot: string,
   options: ZodToJsonSchemaPluginOptionsWithDefaults | undefined,
-  context: CreateNodesContextV2,
 ): Promise<CreateNodesResult> {
   if (!options) {
     throw new Error('Unreachable!');

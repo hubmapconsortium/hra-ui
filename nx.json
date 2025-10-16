@@ -29,7 +29,7 @@
       "options": {}
     },
     {
-      "plugin": "@hra-ui/zod-to-json-schema-plugin",
+      "plugin": "@hra-ui/zod-to-json-schema",
       "options": {}
     }
   ],
