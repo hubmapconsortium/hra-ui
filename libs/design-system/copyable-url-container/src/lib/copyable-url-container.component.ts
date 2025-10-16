@@ -1,4 +1,5 @@
 import { Component, inject, input } from '@angular/core';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
@@ -9,7 +10,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
  */
 @Component({
   selector: 'hra-copyable-url-container',
-  imports: [ButtonsModule, IconsModule, PlainTooltipDirective],
+  imports: [HraCommonModule, ButtonsModule, IconsModule, PlainTooltipDirective],
   templateUrl: './copyable-url-container.component.html',
   styleUrl: './copyable-url-container.component.scss',
 })

@@ -3,27 +3,27 @@
 </div>
 
 <div class="slices-inputs">
-  <mat-form-field>
+  <mat-form-field hraFeature="thickness" hraClickEvent>
     <mat-label class="text form-input-label">Thickness (μm)</mat-label>
     <input
       matInput
       ccfNumbersOnly
       class="input"
       type="number"
-      [value]="emptyStringIfNaN(slicesConfig.thickness)"
+      [value]="emptyStringIfNaN(slicesConfig().thickness)"
       (keyup)="updateSlicesData($event, 'thickness')"
       hraPlainTooltip="Tissue thickness is measured in micrometers"
     />
   </mat-form-field>
 
-  <mat-form-field class="field">
+  <mat-form-field hraFeature="num-slices" hraClickEvent>
     <mat-label class="text form-input-label">#Sections</mat-label>
     <input
       matInput
       ccfNumbersOnly
       class="input"
       type="number"
-      [value]="emptyStringIfNaN(slicesConfig.numSlices)"
+      [value]="emptyStringIfNaN(slicesConfig().numSlices)"
       (keyup)="updateSlicesData($event, 'numSlices')"
       hraPlainTooltip="Total number of tissue sections"
     />

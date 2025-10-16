@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
@@ -30,6 +30,8 @@ export class ReviewModalComponent {
   readonly dialogRef = inject<MatDialogRef<ReviewModalComponent>>(MatDialogRef);
   /** Data */
   readonly data = inject<ReviewModalData>(MAT_DIALOG_DATA);
+  /** Snackbar service */
+  private readonly snackbar = inject(SnackbarService);
 
   /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-review-modal';
@@ -37,19 +39,18 @@ export class ReviewModalComponent {
   /**
    * The object containing all of the review information for displaying inside the modal
    */
-  metaData: Record<string, MetaData> = {};
-
-  /** Snackbar service */
-  private readonly snackbar = inject(SnackbarService);
+  readonly metaData = signal<Record<string, MetaData>>({});
 
   /**
    * Creates an instance of the review modal component.
    */
   constructor() {
     const allData = this.data.metaData;
-    this.metaData['Author Metadata'] = allData.slice(0, 5);
-    this.metaData['Donor Metadata'] = allData.slice(5, 9);
-    this.metaData['Tissue Block Registration'] = allData.slice(9, 16);
+    this.metaData.set({
+      'Author Metadata': allData.slice(0, 5),
+      'Donor Metadata': allData.slice(5, 9),
+      'Tissue Block Registration': allData.slice(9, 16),
+    });
   }
 
   /**

@@ -1,11 +1,13 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
-import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
 import { CellTypesComponent } from './cell-types.component';
+import { provideAssetHref } from '@hra-ui/common/url';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { AnimationDriver } from '@angular/animations/browser';
+import { MockAnimationDriver } from '@angular/animations/browser/testing';
 
 describe('CellTypesComponent', () => {
   const cellTypes: CellTypeEntry[] = [
@@ -18,7 +20,15 @@ describe('CellTypesComponent', () => {
   async function setup(options?: RenderComponentOptions<CellTypesComponent>) {
     return render(CellTypesComponent, {
       ...options,
-      providers: [provideDesignSystemCommon(), provideNoopAnimations(), ...(options?.providers ?? [])],
+      providers: [
+        provideAssetHref('http://localhost/'),
+        provideAnimations(),
+        {
+          provide: AnimationDriver,
+          useClass: MockAnimationDriver,
+        },
+        ...(options?.providers ?? []),
+      ],
     });
   }
 

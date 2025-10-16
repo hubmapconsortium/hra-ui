@@ -6,7 +6,7 @@
   "sourceRoot": "apps/docs.humanatlas.io/src",
   "tags": ["type:app", "project:humanatlas"],
   "metadata": {
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "targets": {
     "build": {

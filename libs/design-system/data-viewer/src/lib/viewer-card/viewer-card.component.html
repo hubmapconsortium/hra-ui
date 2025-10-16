@@ -1,17 +1,20 @@
 @if (variant() === 'ftu') {
-  <img
-    class="viewer-image"
-    aria-hidden="true"
-    [alt]="viewerCardData().alt"
-    [src]="viewerCardData().fileUrl"
+  <button
+    mat-button
+    class="image-button"
+    hraFeature="image"
+    hraClickEvent
+    disableRipple
     (click)="openImageViewer(fullscreen)"
-    (keyup.enter)="openImageViewer(fullscreen)"
-  />
+  >
+    <img class="viewer-image" [attr.src]="viewerCardData().fileUrl" [attr.alt]="alt()" />
+  </button>
 } @else {
   <model-viewer
     class="model-viewer"
-    [alt]="viewerCardData().alt"
-    [src]="viewerCardData().fileUrl"
+    hraFeature="model"
+    [attr.src]="viewerCardData().fileUrl"
+    [attr.alt]="alt()"
     shadow-intensity="1"
     camera-controls
     auto-rotate
@@ -19,28 +22,36 @@
   </model-viewer>
 }
 
-<ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
+<ng-container [ngTemplateOutlet]="objectMenu" />
 
 <ng-template #fullscreen>
-  <div class="dialog-container">
+  <div class="dialog-container" hraFeature="fullscreen">
     <div class="dialog-header">
-      <ng-container [ngTemplateOutlet]="objectMenu"> </ng-container>
+      <ng-container [ngTemplateOutlet]="objectMenu" />
       <div class="filler"></div>
-      <button mat-icon-button>
-        <mat-icon (click)="close()">clear</mat-icon>
+      <button
+        mat-icon-button
+        matDialogClose
+        hraFeature="close"
+        hraClickEvent
+        class="close"
+        alt="Close fullscreen image viewer"
+      >
+        <mat-icon>clear</mat-icon>
       </button>
     </div>
     <div class="img-container">
-      <img class="dialog-image" [src]="viewerCardData().fullscreenUrl" [alt]="viewerCardData().alt" />
+      <img class="dialog-image" [attr.src]="viewerCardData().fullscreenUrl" [attr.alt]="alt()" />
     </div>
   </div>
 </ng-template>
 
 <ng-template #objectMenu>
-  <div class="object-menu">
+  <div class="object-menu" hraFeature="menu">
     <span class="tagline">{{ viewerCardData().label }}</span>
     <button
       mat-icon-button
+      hraClickEvent
       [matMenuTriggerFor]="cardMenu.menu()"
       hraIconButtonSize="large"
       aria-label="Open the card's menu"

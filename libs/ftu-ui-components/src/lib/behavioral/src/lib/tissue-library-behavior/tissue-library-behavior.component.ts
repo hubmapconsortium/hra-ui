@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject, model, signal, ViewChild } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,15 +5,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LinkDirective } from '@hra-ui/cdk';
 import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Tissue } from '@hra-ui/services';
 import { ActiveFtuSelectors, DownloadActions, DownloadSelectors, LinkIds, TissueLibrarySelectors } from '@hra-ui/state';
+import { LabelBoxComponent } from '../../../../atoms/src';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
-import { LabelBoxComponent } from '../../../../atoms/src';
 import { TissueTreeListComponent } from '../../../../molecules/src';
 /**
  * Component for Tissue Library Behavior
@@ -22,7 +22,7 @@ import { TissueTreeListComponent } from '../../../../molecules/src';
 @Component({
   selector: 'ftu-tissue-library-behavior',
   imports: [
-    CommonModule,
+    HraCommonModule,
     LabelBoxComponent,
     TissueTreeListComponent,
     MatDivider,

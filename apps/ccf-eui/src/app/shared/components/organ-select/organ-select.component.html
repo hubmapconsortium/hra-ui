@@ -1,8 +1,10 @@
-<form>
+<form hraFeature="organ-select">
   <mat-form-field class="organ-form-field" subscriptSizing="dynamic" floatLabel="always">
     <mat-icon matPrefix>search</mat-icon>
     <mat-label>Organs</mat-label>
     <input
+      hraFeature="organ-search"
+      hraClickEvent
       name="currentOrganInput"
       class="organ-input"
       [(ngModel)]="searchInput"
@@ -18,25 +20,27 @@
       (opened)="hidePlaceholder.set(true)"
       (closed)="hidePlaceholder.set(false)"
     >
-      <mat-chip-grid class="organ-select-chips" #chipGrid aria-label="Organ selection">
+      <mat-chip-grid hraFeature="chips" class="organ-select-chips" #chipGrid aria-label="Organ selection">
         @for (organ of selectedOrgans(); track organ) {
-          <mat-chip-row (removed)="remove(organ)">
-            {{ organ.name }}
-            <button matChipRemove [attr.aria-label]="'remove ' + organ.name">
+          <mat-chip-row [hraFeature]="organ.name | slugify" (removed)="remove(organ)">
+            <span hraFeature="label" hraClickEvent>{{ organ.name }}</span>
+            <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + organ.name">
               <mat-icon>close</mat-icon>
             </button>
           </mat-chip-row>
         }
       </mat-chip-grid>
-      <ng-scrollbar class="organ-list">
+      <ng-scrollbar hraFeature="list" class="organ-list">
         @for (organ of filteredOrgans(); track organ) {
-          <div class="autocomplete-option">
+          <div [hraFeature]="organ.name | slugify" class="autocomplete-option">
             <mat-checkbox
+              hraFeature="toggle"
+              hraClickEvent
               class="autocomplete-checkbox"
               (change)="checkboxSelected($event, organ)"
               [checked]="isChecked(organ)"
             ></mat-checkbox>
-            <mat-option [value]="organ">{{ organ.name }}</mat-option>
+            <mat-option hraFeature="select" hraClickEvent [value]="organ">{{ organ.name }}</mat-option>
           </div>
         }
       </ng-scrollbar>

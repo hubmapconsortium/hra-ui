@@ -102,5 +102,11 @@ describe('IllustratorState', () => {
       state.highlightCellType(ctx, new HighlightCellType(testItem.ontologyId));
       expect(ctx.patchState).toHaveBeenCalledWith({ hoveredCellTypeId: testItem.ontologyId });
     });
+
+    it('should clear hoveredCellTypeId if there is no match', () => {
+      ctx.getState.mockReturnValue({ mapping: [testItem] });
+      state.highlightCellType(ctx, new HighlightCellType('no-match'));
+      expect(ctx.patchState).toHaveBeenCalledWith({ hoveredCellTypeId: undefined });
+    });
   });
 });

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FilterSexEnum } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { OrganInfo } from 'ccf-shared';
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
@@ -12,7 +13,7 @@ import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-s
   selector: 'ccf-spatial-search-config',
   templateUrl: './spatial-search-config.component.html',
   styleUrls: ['./spatial-search-config.component.scss'],
-  imports: [MatIconModule, ButtonsModule, SpatialSearchInputsComponent],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule, SpatialSearchInputsComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigComponent {

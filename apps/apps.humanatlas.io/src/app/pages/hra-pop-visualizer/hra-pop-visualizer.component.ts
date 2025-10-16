@@ -1,6 +1,6 @@
 // 1. hra-pop-visualizer.component.ts
 import { ChangeDetectionStrategy, Component, effect, inject, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -32,7 +32,7 @@ import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyper
 @Component({
   selector: 'hra-pop-visualizer',
   imports: [
-    CommonModule,
+    HraCommonModule,
     PageSectionComponent,
     IconsModule,
     MatIconModule,

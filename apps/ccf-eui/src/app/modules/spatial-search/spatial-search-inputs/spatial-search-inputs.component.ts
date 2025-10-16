@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FilterSexEnum } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { OrganInfo } from 'ccf-shared';
@@ -16,7 +17,7 @@ import { map, Observable, startWith } from 'rxjs';
 @Component({
   selector: 'ccf-spatial-search-inputs',
   imports: [
-    CommonModule,
+    HraCommonModule,
     AsyncPipe,
     FormsModule,
     ReactiveFormsModule,

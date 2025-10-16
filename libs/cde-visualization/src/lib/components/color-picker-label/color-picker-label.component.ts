@@ -1,5 +1,5 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, effect, input, model, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ColorPickerDirective } from 'ngx-color-picker';
@@ -14,7 +14,7 @@ const MAX_LABEL_WIDTH = 104;
  */
 @Component({
   selector: 'cde-color-picker-label',
-  imports: [CommonModule, ColorPickerDirective, MatIconModule, OverlayModule],
+  imports: [HraCommonModule, ColorPickerDirective, MatIconModule, OverlayModule],
   templateUrl: './color-picker-label.component.html',
   styleUrl: './color-picker-label.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

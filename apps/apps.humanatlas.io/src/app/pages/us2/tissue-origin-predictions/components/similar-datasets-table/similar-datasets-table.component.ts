@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { WorkflowCardModule } from '@hra-ui/design-system/workflow-card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,7 +23,7 @@ cell type annotations in the HRA Workflows Runner (for sc-transcriptomics datase
 @Component({
   selector: 'hra-similar-datasets-table',
   imports: [
-    CommonModule,
+    HraCommonModule,
     WorkflowCardModule,
     MatTableModule,
     MatMenuModule,

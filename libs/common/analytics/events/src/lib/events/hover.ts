@@ -4,4 +4,4 @@ import { createEvent, EventCategory } from '../event';
 export type HoverEventProps = object;
 
 /** Hover event */
-export default createEvent<HoverEventProps>('hover', EventCategory.Statistics, 'mouseover');
+export default createEvent<HoverEventProps>('hover', EventCategory.Statistics, 'mouseenter');

@@ -11,6 +11,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { InteractiveSvgComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
 import {
   FTU_DATA_IMPL_ENDPOINTS,
@@ -29,6 +30,7 @@ import {
 } from '@hra-ui/services';
 import { Observable, of, OperatorFunction, ReplaySubject, switchMap } from 'rxjs';
 import { z } from 'zod';
+
 import { environment } from '../environments/environment';
 
 /**
@@ -69,7 +71,7 @@ function selectData<T, Z extends z.ZodTypeAny>(
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MedicalIllustrationComponent implements OnInit, OnChanges {
+export class MedicalIllustrationComponent extends BaseApplicationComponent implements OnInit, OnChanges {
   /** Displayed illustration or an iri to lookup in either the illustrations or fetch from the remote api */
   @Input() selectedIllustration?: string | RawIllustration;
 
@@ -128,6 +130,11 @@ export class MedicalIllustrationComponent implements OnInit, OnChanges {
 
   /** Whether the component has run the first initialization pass */
   private initialized = false;
+
+  /** Initialize the app */
+  constructor() {
+    super({ analytics: false });
+  }
 
   /**
    * Marks the component as initialized

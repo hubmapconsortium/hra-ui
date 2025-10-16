@@ -27,6 +27,7 @@ import { EmbedSidenavContentComponent } from './embed-sidenav-content/embed-side
 import { COMPONENT_DEFS, EMBED_TEMPLATES, ORGANS } from './static-data/parsed';
 import { ComponentDef } from './types/component-defs.schema';
 import { Organ } from './types/organs.schema';
+import { FormsModule } from '@angular/forms';
 
 /** Sidenav Data */
 interface SidenavData {
@@ -70,6 +71,7 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
   standalone: true,
   imports: [
     ButtonsModule,
+    FormsModule,
     HraCommonModule,
     ClipboardModule,
     CardsModule,

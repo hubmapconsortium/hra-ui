@@ -1,6 +1,5 @@
-import { Injectable, inject } from '@angular/core';
+import { ErrorHandler, Injectable, inject } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { StateReset } from 'ngxs-reset-plugin';
 import { parse } from 'papaparse';
 import { Observable, forkJoin, of } from 'rxjs';
@@ -29,7 +28,6 @@ import {
 import { CloseBottomSheet, HasError, OpenLoading, UpdateLoadingText } from '../actions/ui.actions';
 import { ConfigService } from '../app-config.service';
 import { ReportService } from '../components/report/report.service';
-import { GaAction, GaCategory } from '../models/ga.model';
 import { LOG_ICONS, LOG_TYPES } from '../models/logs.model';
 import { OmapConfig } from '../models/omap.model';
 import { Report } from '../models/report.model';
@@ -206,10 +204,10 @@ const FETCHING_TEXT = 'Fetching data...';
 @Injectable()
 export class SheetState {
   readonly configService = inject(ConfigService);
-  readonly ga = inject(GoogleAnalyticsService);
   readonly reportService = inject(ReportService);
   readonly store = inject(Store);
   private readonly sheetService = inject(SheetService);
+  private readonly errorHandler = inject(ErrorHandler);
 
   sheetConfig: SheetDetails[] = [];
   omapSheetConfig: SheetDetails[] = [];
@@ -473,17 +471,6 @@ export class SheetState {
             const currentFullDataByOrgan = getState().fullDataByOrgan;
             const currentCompare = getState().compareSheets;
             const currentCompareData = getState().compareData;
-            const gaData = {
-              sheetName: compareSheet.title,
-              counts: {},
-            };
-            gaData.counts = this.reportService.countsGA(res.data);
-            this.ga.event(
-              GaAction.INPUT,
-              GaCategory.COMPARISON,
-              `Adding sheet or file to Compare: ${JSON.stringify(gaData)}`,
-              0,
-            );
             compareSheet.isOmap = res.isOmap ?? false;
             patchState({
               data: [...currentData, ...res.data],
@@ -495,7 +482,7 @@ export class SheetState {
             dispatch(new FetchValidOmapProtiens());
           },
           (error) => {
-            console.log(error);
+            this.errorHandler.handleError(error);
             const err: Error = {
               msg: `${error.name} (Status: ${error.status})`,
               status: error.status,
@@ -897,25 +884,11 @@ export class SheetState {
           mode,
           sheetConfig: { ...sheet.config, show_ontology: true },
         });
-        if (sheet.name === 'example') {
-          const gaData = {
-            sheetName: sheet.name,
-            counts: {},
-          };
-          gaData.sheetName = sheet.name;
-          gaData.counts = this.reportService.countsGA(res.data);
-          this.ga.event(
-            GaAction.INPUT,
-            GaCategory.PLAYGROUND,
-            `Adding sheet link or file to Playground : ${JSON.stringify(gaData)}`,
-            0,
-          );
-        }
         dispatch(new ReportLog(LOG_TYPES.MSG, `${sheet.display} data successfully fetched.`, LOG_ICONS.success));
         dispatch(new UpdateLoadingText('Fetch data successful. Building Visualization..'));
       }),
       catchError((error) => {
-        console.log(error);
+        this.errorHandler.handleError(error);
         const err: Error = {
           msg: `${error.name} (Status: ${error.status})`,
           status: error.status,
@@ -1090,7 +1063,7 @@ export class SheetState {
         });
       }),
       catchError((error) => {
-        console.log(error);
+        this.errorHandler.handleError(error);
         const err: Error = {
           msg: `${error.name} (Status: ${error.status})`,
           status: error.status,
@@ -1142,7 +1115,7 @@ export class SheetState {
         });
       }),
       catchError((error) => {
-        console.log(error);
+        this.errorHandler.handleError(error);
         const err: Error = {
           msg: `${error.name} (Status: ${error.status})`,
           status: error.status,
@@ -1190,6 +1163,7 @@ export class SheetState {
         });
       }),
       catchError((error) => {
+        this.errorHandler.handleError(error);
         setState({
           ...state,
           bottomSheetInfo: {
@@ -1207,12 +1181,6 @@ export class SheetState {
             ...(data.group === 2 ? { references: data?.references } : {}),
           },
         });
-        const err: Error = {
-          msg: `${error.name} (Status: ${error.status})`,
-          status: error.status,
-          hasError: true,
-        };
-        console.log(err);
         dispatch(new ReportLog(LOG_TYPES.MSG, this.faliureMsg, LOG_ICONS.error));
         return of('');
       }),

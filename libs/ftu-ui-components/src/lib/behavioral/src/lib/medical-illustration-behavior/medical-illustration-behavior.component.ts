@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, model } from '@angular/core';
 import { dispatch, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { InteractiveSvgComponent } from '../../../../molecules/src';
 import { ActiveFtuSelectors, IllustratorActions, IllustratorSelectors, TissueLibrarySelectors } from '@hra-ui/state';
@@ -7,6 +6,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * Behavior component for medical illustration component
@@ -15,7 +15,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
   selector: 'ftu-medical-illustration-behavior',
   imports: [
     ButtonsModule,
-    CommonModule,
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     InteractiveSvgComponent,

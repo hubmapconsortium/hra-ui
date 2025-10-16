@@ -8,5 +8,4 @@ export const environment = {
     referenceData: 'https://apps.humanatlas.io/api/v1/rui-reference-data',
   },
   skipUnsavedChangesConfirmation: false,
-  googleAnalyticsToken: window.location.hostname === 'portal.hubmapconsortium.org' ? 'G-1WRJHN9FM6' : 'G-J9HWV9QPJ4',
 };

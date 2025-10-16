@@ -1,4 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ChangeDetectionStrategy,
@@ -16,7 +17,7 @@ import { CdeVisualizationElement, CdeVisualizationElementProps } from '@hra-ui/c
  */
 @Component({
   selector: 'cde-visualization-page',
-  imports: [CommonModule],
+  imports: [CommonModule, HraCommonModule],
   templateUrl: './visualization.component.html',
   styleUrl: './visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

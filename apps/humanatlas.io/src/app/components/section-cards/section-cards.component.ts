@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';

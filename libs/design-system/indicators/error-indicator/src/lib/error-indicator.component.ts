@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** Error Indicator component */
 @Component({
   selector: 'hra-error-indicator',
-  imports: [CommonModule, MatIconModule, TextHyperlinkDirective],
+  imports: [HraCommonModule, MatIconModule, TextHyperlinkDirective],
   templateUrl: './error-indicator.component.html',
   styleUrl: './error-indicator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

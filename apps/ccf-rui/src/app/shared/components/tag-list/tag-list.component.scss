@@ -3,7 +3,7 @@
 :host {
   display: block;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   --mat-chip-label-text-color: #{vars.$on-primary-fixed-variant};
 
   .label {

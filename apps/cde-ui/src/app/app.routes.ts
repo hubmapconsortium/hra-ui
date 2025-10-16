@@ -1,5 +1,7 @@
+import { InjectionToken } from '@angular/core';
 import { Routes } from '@angular/router';
-import { getDefaultAssetsHref } from '@hra-ui/common';
+import { assetUrl } from '@hra-ui/common/url';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { VisualCard } from './components/visual-card/visual-card.component';
 import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
@@ -11,12 +13,18 @@ import {
 import { exampleDataResolver } from './shared/resolvers/example-data/example-data.resolver';
 import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolver';
 import { organsResolver } from './shared/resolvers/organs/organs.resolver';
-import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 
-/** Landing page cards json file url */
-const LANDING_PAGE_CARDS_URL = getDefaultAssetsHref() + 'assets/data/landing-page/cards.json';
-/** Example data index json file url */
-const EXAMPLE_DATA_INDEX_URL = getDefaultAssetsHref() + 'assets/data/examples/index.json';
+/** Landing page cards json file url token */
+const LANDING_PAGE_CARDS_URL = new InjectionToken('LANDING_PAGE_CARDS_URL', {
+  providedIn: 'root',
+  factory: () => assetUrl('assets/data/landing-page/cards.json')(),
+});
+
+/** Example data index json file url token */
+const EXAMPLE_DATA_INDEX_URL = new InjectionToken('EXAMPLE_DATA_INDEX_URL', {
+  providedIn: 'root',
+  factory: () => assetUrl('assets/data/examples/index.json')(),
+});
 
 /**
  * App routes

@@ -5,13 +5,13 @@
 </ng-template>
 
 <ng-template #dialogTemplate>
-  <hra-expansion-panel [tagline]="tagline()" disabled>
+  <hra-expansion-panel hraFeature="fullscreen" [tagline]="tagline()" disabled>
     <hra-expansion-panel-actions>
       <ng-content select="hra-fullscreen-actions"></ng-content>
     </hra-expansion-panel-actions>
 
     <hra-expansion-panel-header-content>
-      <button mat-icon-button mat-dialog-close>
+      <button mat-icon-button mat-dialog-close hraFeature="close" hraClickEvent>
         <mat-icon class="material-symbols-rounded"> close </mat-icon>
       </button>
     </hra-expansion-panel-header-content>

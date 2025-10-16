@@ -14,8 +14,9 @@ import {
 } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { BODY_EXPANSION } from './expansion-panel-animations';
+import { HraCommonModule } from '@hra-ui/common';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { BODY_EXPANSION } from './expansion-panel-animations';
 
 /** Counter to keep track of distinct panels */
 let idCounter = 0;
@@ -41,7 +42,7 @@ export class ExpansionPanelHeaderContentComponent {}
 /** Expansion panel component */
 @Component({
   selector: 'hra-expansion-panel',
-  imports: [CdkAccordionModule, MatIconButton, MatIconModule, PlainTooltipDirective],
+  imports: [HraCommonModule, CdkAccordionModule, MatIconButton, MatIconModule, PlainTooltipDirective],
   animations: [BODY_EXPANSION],
   templateUrl: './expansion-panel.component.html',
   styleUrl: './expansion-panel.component.scss',

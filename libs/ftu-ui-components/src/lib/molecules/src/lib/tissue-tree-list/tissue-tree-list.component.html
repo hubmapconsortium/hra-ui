@@ -1,6 +1,7 @@
 <ng-scrollbar hraScrollOverflowFade>
   <mat-tree [dataSource]="dataSource" [treeControl]="control" class="tree">
     <mat-tree-node
+      [hraFeature]="node.label | slugify"
       *matTreeNodeDef="let node; let level = level"
       [class.selected]="node.data === selected"
       class="row"
@@ -10,18 +11,27 @@
       <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>
     </mat-tree-node>
     <mat-tree-node
+      [hraFeature]="node.label | slugify"
       *matTreeNodeDef="let node; let level = level; when: hasChild"
       class="row"
       [class.selected]="node.data === selected"
       (mouseup)="selectNode(node.data)"
     >
-      <button mat-icon-button matTreeNodeToggle class="toggle" [attr.aria-label]="'Toggle ' + node.label">
+      <button
+        hraClickEvent
+        hraFeature="toggle"
+        mat-icon-button
+        matTreeNodeToggle
+        class="toggle"
+        [attr.aria-label]="'Toggle ' + node.label"
+      >
         <mat-icon class="material-symbols-outlined">
           {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}
         </mat-icon>
       </button>
 
-      <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>
+      <ng-container [hraFeature]="node.label | slugify" [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node">
+      </ng-container>
     </mat-tree-node>
   </mat-tree>
 </ng-scrollbar>
@@ -29,6 +39,8 @@
 <ng-template let-label="label" let-data="data" #label>
   <div class="label-container">
     <a
+      hraClickEvent
+      [hraFeature]="label | slugify"
       *ngIf="data.link; else noLink"
       [hraLink]="data.link"
       [queryParams]="{ id: data.id }"

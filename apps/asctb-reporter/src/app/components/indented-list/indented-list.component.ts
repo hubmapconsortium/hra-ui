@@ -14,6 +14,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTree, MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
+import { HraCommonModule } from '@hra-ui/common';
 import { ILNode } from '../../models/indent.model';
 import { Row, Sheet } from '../../models/sheet.model';
 import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
@@ -35,7 +36,15 @@ interface FlatNode {
 
 @Component({
   selector: 'app-indent',
-  imports: [CommonModule, SidenavModule, SidenavHeaderComponent, MatTreeModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+    SidenavModule,
+    SidenavHeaderComponent,
+    MatTreeModule,
+    MatButtonModule,
+    MatIconModule,
+    HraCommonModule,
+  ],
   templateUrl: './indented-list.component.html',
   styleUrls: ['./indented-list.component.scss'],
 })

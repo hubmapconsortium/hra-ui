@@ -1,23 +1,31 @@
-<mat-form-field [class.visible]="chips().length > 0" [class.error]="errorState()" subscriptSizing="dynamic">
+<mat-form-field
+  hraFeature="chips"
+  [class.visible]="chips().length > 0"
+  [class.error]="errorState()"
+  subscriptSizing="dynamic"
+>
   <div class="chips-area">
     <mat-chip-grid #chipGrid aria-label="Option selection" [formControl]="form()">
       @for (option of chips(); track option) {
-        <mat-chip-row (removed)="remove(option)">
-          {{ option }}
-          <button matChipRemove [attr.aria-label]="'remove ' + option">
+        <mat-chip-row [hraFeature]="option | slugify" (removed)="remove(option)">
+          <span hraFeature="label" hraClickEvent>{{ option }}</span>
+          <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + option">
             <mat-icon>close</mat-icon>
           </button>
         </mat-chip-row>
       }
     </mat-chip-grid>
     @if (chips().length > 0) {
-      <button mat-icon-button (click)="chips.set([])"><mat-icon>delete</mat-icon></button>
+      <button hraFeature="clear" hraClickEvent mat-icon-button (click)="chips.set([])">
+        <mat-icon>delete</mat-icon>
+      </button>
     }
   </div>
   <mat-icon matPrefix class="search-icon">search</mat-icon>
   <mat-label>{{ label() }}</mat-label>
-  <div class="search-container">
+  <div hraFeature="search" class="search-container">
     <input
+      hraClickEvent
       placeholder="Search"
       class="search-input"
       #searchInput="matAutocompleteTrigger"
@@ -35,13 +43,15 @@
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
     <ng-scrollbar>
       @for (option of filteredOptions(); track option) {
-        <div class="autocomplete-option">
+        <div [hraFeature]="option | slugify" class="autocomplete-option">
           <mat-checkbox
+            hraFeature="checkbox"
+            hraClickEvent
             class="autocomplete-checkbox"
             (change)="checkboxSelected($event, option); auto.showPanel = false"
             [checked]="chips().includes(option)"
           ></mat-checkbox>
-          <mat-option [value]="option">{{ option }}</mat-option>
+          <mat-option hraFeature="label" hraClickEvent [value]="option">{{ option }}</mat-option>
         </div>
       }
     </ng-scrollbar>

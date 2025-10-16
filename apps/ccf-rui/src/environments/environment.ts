@@ -11,5 +11,4 @@ export const environment = {
     referenceData: 'https://apps.humanatlas.io/api/v1/rui-reference-data',
   },
   skipUnsavedChangesConfirmation: true,
-  googleAnalyticsToken: 'G-B3DT7XPMRT',
 };

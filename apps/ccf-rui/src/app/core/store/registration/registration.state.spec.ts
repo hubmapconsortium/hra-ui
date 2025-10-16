@@ -4,8 +4,9 @@ import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { GlobalConfigState, OrganInfo } from 'ccf-shared';
 import { saveAs } from 'file-saver';
-import { Observable, ReplaySubject, lastValueFrom, of } from 'rxjs';
+import { lastValueFrom, Observable, of, ReplaySubject } from 'rxjs';
 import { skip, take } from 'rxjs/operators';
+
 import { ExtractionSet } from '../../models/extraction-set';
 import { VisibilityItem } from '../../models/visibility-item';
 import { GLOBAL_CONFIG } from '../../services/config/config';
@@ -37,6 +38,8 @@ const testModel: Immutable<ModelStateModel> = {
   anatomicalStructures: testVisibilityItems,
   extractionSets: testExtractionSets,
   placementDate: '01-01-01',
+  disableBlockAxis: false,
+  disableOrganAxis: false,
 };
 
 const testPage: Immutable<PageStateModel> = {

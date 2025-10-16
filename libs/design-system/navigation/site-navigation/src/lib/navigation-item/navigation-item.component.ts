@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { MatIconModule } from '@angular/material/icon';
 import { MatListItem, MatListItemTitle } from '@angular/material/list';
 import { Router, RouterModule } from '@angular/router';
+import { HraCommonModule } from '@hra-ui/common';
 import { DocsNavigationItem } from '../types/docs-navigation.schema';
 import { resolveUrl } from '../utils/resolve-url';
 import { ACTIVE_MATCH_OPTIONS } from '../utils/match-options';
@@ -10,7 +11,7 @@ import { ACTIVE_MATCH_OPTIONS } from '../utils/match-options';
 /** Navigation Item Component */
 @Component({
   selector: 'hra-navigation-item',
-  imports: [CommonModule, MatListItem, RouterModule, MatIconModule, MatListItemTitle],
+  imports: [CommonModule, MatListItem, RouterModule, MatIconModule, MatListItemTitle, HraCommonModule],
   templateUrl: './navigation-item.component.html',
   styleUrl: './navigation-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

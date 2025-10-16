@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
+import { HraCommonModule } from '@hra-ui/common';
 import { VisualButtonComponent } from '@hra-ui/design-system/buttons/visual-button';
 import { z } from 'zod';
 
@@ -20,7 +20,7 @@ export const LONG_CARD_DEF = z.object({
  */
 @Component({
   selector: 'hra-long-card',
-  imports: [CommonModule, MatIconModule, RouterModule, VisualButtonComponent],
+  imports: [HraCommonModule, MatIconModule, RouterModule, VisualButtonComponent],
   templateUrl: './long-card.component.html',
   styleUrl: './long-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

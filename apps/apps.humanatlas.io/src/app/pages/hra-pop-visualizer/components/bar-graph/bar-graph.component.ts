@@ -12,6 +12,8 @@ import {
 import { CommonModule } from '@angular/common';
 import embed, { VisualizationSpec } from 'vega-embed';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { CoreEvents } from '@hra-ui/common/analytics/events';
+import { injectLogEvent } from '@hra-ui/common/analytics';
 
 /**
  * Component for rendering a bar graph using Vega-Lite.
@@ -28,6 +30,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 export class BarGraphComponent {
   /** Vega-Lite specification input */
   readonly spec = input<VisualizationSpec | null>(null);
+
+  /** Logger for tracking user interactions */
+  private readonly logEvent = injectLogEvent();
 
   /** ViewChild reference to the vega container element */
   private readonly container = viewChild.required<ElementRef<HTMLDivElement>>('vegaContainer');
@@ -69,6 +74,7 @@ export class BarGraphComponent {
           result.finalize();
           return null;
         }
+        this.attachVegaEventTracking(result.view);
 
         return result;
       } catch (error) {
@@ -90,6 +96,23 @@ export class BarGraphComponent {
         onCleanup(() => result.finalize());
       }
     });
+  }
+
+  /** Attaches event listeners to the Vega view for analytics tracking */
+  private attachVegaEventTracking(view: any) {
+    view.addEventListener('pointerover', () =>
+      this.logEvent(CoreEvents.Hover, {
+        path: 'hra-pop-visualizer.bar-graph',
+        message: 'Hovered chart element',
+      }),
+    );
+
+    view.addEventListener('click', () =>
+      this.logEvent(CoreEvents.Click, {
+        path: 'hra-pop-visualizer.bar-graph',
+        message: 'Clicked chart element',
+      }),
+    );
   }
 
   /** Clears the container element safely */

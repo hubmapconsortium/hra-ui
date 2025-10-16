@@ -17,7 +17,7 @@ content:
           (e.g., age, ethnicity, sex, or UV exposure).
       - component: Button
         label: Use app
-        href: https://hubmapconsortium.github.io/tissue-bar-graphs/
+        href: https://apps.humanatlas.io/cell-population-graphs
         type: cta
   - component: PageSection
     tagline: Example visualization

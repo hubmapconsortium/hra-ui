@@ -1,19 +1,28 @@
+import { AnimationDriver } from '@angular/animations/browser';
+import { MockAnimationDriver } from '@angular/animations/browser/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { FilterSexEnum } from '@hra-api/ng-client';
-import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { provideDesignSystemCommon } from '@hra-ui/design-system';
 import { render, RenderComponentOptions } from '@testing-library/angular';
-import { BodyUI } from 'ccf-body-ui';
-import { mockDeep } from 'jest-mock-extended';
-import { of } from 'rxjs';
 import { SpatialSearchUiComponent } from './spatial-search-ui.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
-jest.mock('ccf-body-ui', () => ({ BodyUI: jest.fn() }));
+jest.mock('@deck.gl/core');
 
 describe('SpatialSearchUiComponent', () => {
   async function setup(options?: RenderComponentOptions<SpatialSearchUiComponent>) {
     return render(SpatialSearchUiComponent, {
       ...options,
-      providers: [provideDesignSystemCommon(), provideNoopAnimations(), ...(options?.providers ?? [])],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideAnimations(),
+        {
+          provide: AnimationDriver,
+          useClass: MockAnimationDriver,
+        },
+        ...(options?.providers ?? []),
+      ],
     });
   }
 
@@ -32,18 +41,6 @@ describe('SpatialSearchUiComponent', () => {
     anatomicalStructures: [],
     cellTypes: [],
   };
-
-  beforeEach(() => {
-    jest.mocked(BodyUI).mockReturnValue(
-      mockDeep<BodyUI>({
-        sceneRotation$: of(),
-        nodeDrag$: of(),
-        nodeClick$: of(),
-        nodeHoverStart$: of(),
-        nodeHoverStop$: of(),
-      }),
-    );
-  });
 
   it('should reset view correctly', async () => {
     const { fixture } = await setup({

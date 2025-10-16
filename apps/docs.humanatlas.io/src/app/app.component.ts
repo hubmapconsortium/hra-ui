@@ -1,7 +1,8 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { monitorHeight } from '@hra-ui/common';
+import { BaseApplicationComponent } from '@hra-ui/application';
+import { HraCommonModule, monitorHeight } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { CtaConfig, HeaderComponent } from '@hra-ui/design-system/navigation/header';
@@ -14,7 +15,7 @@ const ANCHOR_SCROLL_PADDING = 24;
  */
 @Component({
   selector: 'hra-docs',
-  imports: [RouterModule, NavigationModule],
+  imports: [HraCommonModule, RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   host: {
@@ -22,7 +23,7 @@ const ANCHOR_SCROLL_PADDING = 24;
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class AppComponent extends BaseApplicationComponent {
   /** Reference to the header html element */
   private readonly header = viewChild.required(HeaderComponent, { read: ElementRef });
 
@@ -41,6 +42,8 @@ export class AppComponent {
 
   /** Initialize the application */
   constructor() {
+    super();
+
     inject(CustomScrollService);
     const scroller = inject(ViewportScroller);
     effect(() => {

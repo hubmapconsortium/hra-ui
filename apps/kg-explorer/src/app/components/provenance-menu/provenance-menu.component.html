@@ -1,12 +1,16 @@
 <div class="selector-and-buttons">
   <hra-version-selector
+    hraFeature="version-select"
+    hraClickEvent
     [version]="version()"
     [availableVersions]="availableVersions()"
-    (versionChange)="versionChange.emit($event)"
+    (versionChange)="versionChange.emit($event || 'latest')"
   ></hra-version-selector>
 
   <div class="provenance-buttons">
     <button
+      hraFeature="download"
+      hraClickEvent
       mat-flat-button
       class="downloads button"
       [matMenuTriggerFor]="options"
@@ -15,9 +19,11 @@
       Download options
     </button>
 
-    <mat-menu #options="matMenu">
+    <mat-menu hraFeature="download-options" #options="matMenu">
       @for (option of downloadOptions(); track $index) {
         <a
+          [hraFeature]="option.name | slugify"
+          hraClickEvent
           mat-menu-item
           [attr.href]="option.url"
           download

@@ -7,13 +7,21 @@ import { CellPopulationDataService } from './services/cell-population-data.servi
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatDividerModule } from '@angular/material/divider';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * Component for displaying the Cell Population Graph with configuration options.
  */
 @Component({
   selector: 'hra-cell-population-graph',
-  imports: [BarGraphComponent, ConfigSelectorComponent, PageSectionComponent, IconsModule, MatDividerModule],
+  imports: [
+    HraCommonModule,
+    BarGraphComponent,
+    ConfigSelectorComponent,
+    PageSectionComponent,
+    IconsModule,
+    MatDividerModule,
+  ],
   templateUrl: './cell-population-graph.component.html',
   styleUrl: './cell-population-graph.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

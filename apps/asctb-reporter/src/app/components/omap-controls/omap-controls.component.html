@@ -1,4 +1,4 @@
-<div>
+<div hraFeature="omap-controls">
   <mat-expansion-panel class="mepNoPadding" [expanded]="!error.hasError">
     <mat-expansion-panel-header [expandedHeight]="'4.5rem'" [collapsedHeight]="'4.5rem'">
       <mat-panel-title>
@@ -14,9 +14,11 @@
         (change)="
           checkBoxClicked({
             organsOnly: !omaps.organsOnly,
-            proteinsOnly: omaps.proteinsOnly
+            proteinsOnly: omaps.proteinsOnly,
           })
         "
+        hraFeature="organs-only"
+        [hraModelChangeEvent]="{ organsOnly: omaps.organsOnly }"
       >
         <mat-label class="checkbox-label">OMAP Organs Only</mat-label>
       </mat-checkbox>
@@ -27,9 +29,11 @@
         (change)="
           checkBoxClicked({
             proteinsOnly: !omaps.proteinsOnly,
-            organsOnly: omaps.organsOnly
+            organsOnly: omaps.organsOnly,
           })
         "
+        hraFeature="proteins-only"
+        [hraModelChangeEvent]="{ proteinsOnly: omaps.proteinsOnly }"
       >
         <mat-label class="checkbox-label">OMAP Proteins Only</mat-label>
       </mat-checkbox>

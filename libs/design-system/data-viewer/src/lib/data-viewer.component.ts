@@ -9,7 +9,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { DataViewerVariant, ReleaseVersionData } from './types/data-viewer.schema';
+import { DataViewerVariant, ReleaseVersionData, ViewerCard } from './types/data-viewer.schema';
 import { ViewerCardComponent } from './viewer-card/viewer-card.component';
 import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
 
@@ -19,10 +19,10 @@ import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
 @Component({
   selector: 'hra-data-viewer',
   imports: [
+    HraCommonModule,
     ButtonsModule,
     ExpansionPanelModule,
     FormsModule,
-    HraCommonModule,
     IconsModule,
     MatDividerModule,
     MatIconModule,
@@ -78,5 +78,18 @@ export class DataViewerComponent {
       const organ = this.organ_();
       this.organ.set(organ?.label ?? '');
     });
+  }
+
+  /**
+   * Get a feature name for a card
+   *
+   * @param card Card data
+   * @returns A feature name
+   */
+  getCardFeatureId(card: ViewerCard): string {
+    const url = card.sourceDataUrl;
+    const endIndex = url.lastIndexOf('/');
+    const startIndex = url.lastIndexOf('/', endIndex - 1) + 1;
+    return url.slice(startIndex, endIndex);
   }
 }

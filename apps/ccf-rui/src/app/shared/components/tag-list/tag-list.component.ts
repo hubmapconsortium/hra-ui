@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
-
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { Tag } from '../../../core/models/anatomical-structure-tag';
 
 /**
@@ -27,16 +25,12 @@ export class TagListComponent {
    */
   readonly tagRemoved = output<Tag>();
 
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   /**
    * Removes a tag from the list
    *
    * @param tag Tag to remove
    */
   removeTag(tag: Tag): void {
-    this.ga.event('tag_removed', 'tag_list', tag.label);
     this.tagRemoved.emit(tag);
   }
 }

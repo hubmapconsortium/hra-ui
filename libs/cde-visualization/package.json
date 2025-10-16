@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/cde-visualization",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "peerDependencies": {
     "papaparse": "^5.4.1",
     "rxjs": "^7.8.2",
@@ -9,14 +9,14 @@
     "immer": "^10.1.1",
     "vega": "^6.1.2",
     "vega-embed": "^7.0.2",
-    "@hra-ui/design-system": "1.0.0",
+    "@hra-ui/design-system": "1.1.0",
     "@angular/common": "^20.2.1",
     "@angular/core": "^20.2.1",
     "@angular/platform-browser": "^20.2.1",
     "@angular/cdk": "^20.2.0",
     "@angular/material": "^20.2.0",
-    "@hra-ui/common": "1.0.0",
-    "@hra-ui/node-dist-vis": "1.0.0"
+    "@hra-ui/common": "1.1.0",
+    "@hra-ui/node-dist-vis": "1.1.0"
   },
   "dependencies": {},
   "sideEffects": [

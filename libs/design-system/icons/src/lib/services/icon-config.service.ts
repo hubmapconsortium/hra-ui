@@ -9,7 +9,7 @@ export interface IconConfig {
 }
 
 /**
- * An icon configuration resolver callback function
+ * An icon configuration resolver callback function.
  * Returning undefined from a resolver instructs the registry to
  * continue calling other resolvers to determine the configuration
  */

@@ -1,17 +1,15 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GlobalConfigState, TrackingPopupComponent } from 'ccf-shared';
-import { ConsentService } from 'ccf-shared/analytics';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { BaseApplicationComponent } from '@hra-ui/application';
+import { GlobalConfigState } from 'ccf-shared';
 import { combineLatest, Subscription } from 'rxjs';
+
 import { GlobalConfig } from './core/services/config/config';
 import { ModelState, ViewSide, ViewType } from './core/store/model/model.state';
 import { PageState } from './core/store/page/page.state';
 import { RegistrationState } from './core/store/registration/registration.state';
 import { MetadataService } from './modules/metadata/metadata.service';
-import { openScreenSizeNotice } from './modules/screen-size-notice/screen-size-notice.component';
 
 /** Represents a user with a first and last name. */
 export interface User {
@@ -51,21 +49,19 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior';
   },
   standalone: false,
 })
-export class AppComponent implements OnDestroy, OnInit {
+export class AppComponent extends BaseApplicationComponent implements OnDestroy, OnInit {
   /** Model state */
   readonly model = inject(ModelState);
   /** Page state */
   readonly page = inject(PageState);
   /** Registration state */
   readonly registration = inject(RegistrationState);
-  /** Consent service */
-  readonly consentService = inject(ConsentService);
   /** Snackbar service */
   readonly snackbar = inject(MatSnackBar);
+  /** Metadata service */
+  readonly metadata = inject(MetadataService);
   /** Global config */
   private readonly globalConfig = inject<GlobalConfigState<AppOptions>>(GlobalConfigState);
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** False until the initial registration modal is closed */
   registrationStarted = false;
@@ -85,14 +81,17 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Preset view side */
   readonly viewSide$ = this.globalConfig.getOption('viewSide');
 
-  /** Metadata service */
-  private readonly metadata = inject(MetadataService);
-
   /** Whether to use the embedded app */
   protected readonly embedded = toSignal(this.page.useCancelRegistrationCallback$);
 
-  /** The current view side, either 'register' or 'preview', default is register */
+  /** The current view side */
+  protected readonly viewSide = toSignal(this.model.viewSide$);
+
+  /** The current view type, either 'register' or 'preview', default is register */
   protected readonly viewType = toSignal(this.model.viewType$, { initialValue: 'register' });
+
+  /** Whether the organ axis is hidden */
+  protected readonly disableOrganAxis = toSignal(this.model.disableOrganAxis$, { initialValue: false });
 
   /** All subscriptions managed by the container. */
   private readonly subscriptions = new Subscription();
@@ -101,6 +100,8 @@ export class AppComponent implements OnDestroy, OnInit {
    * Creates an instance of app component.
    */
   constructor() {
+    super({ screenSizeNotice: { width: 1280, height: 832 } });
+
     const cdr = inject(ChangeDetectorRef);
 
     this.subscriptions.add(
@@ -114,25 +115,12 @@ export class AppComponent implements OnDestroy, OnInit {
       this.model.setViewSide(viewSide ?? 'anterior');
       cdr.markForCheck();
     });
-
-    openScreenSizeNotice(inject(MatDialog));
   }
 
   /**
    * Initializes app: opens snackbar and sets premade options
    */
   ngOnInit(): void {
-    const snackBar = this.snackbar.openFromComponent(TrackingPopupComponent, {
-      data: {
-        preClose: () => {
-          snackBar.dismiss();
-        },
-      },
-
-      duration: this.consentService.consent === 'not-set' ? Infinity : 3000,
-      panelClass: 'usage-snackbar',
-    });
-
     const { editRegistration, user, organ } = this.globalConfig.snapshot;
     if (!editRegistration && (!user || !organ)) {
       setTimeout(() => this.metadata.openModal('create'), 20);
@@ -177,7 +165,6 @@ export class AppComponent implements OnDestroy, OnInit {
    * @param selection The selected side.
    */
   updateSide(selection: Side): void {
-    this.ga.event('side_update', 'stage_nav', selection);
     this.updateView('register');
     this.model.setViewSide(selection);
   }
@@ -189,7 +176,6 @@ export class AppComponent implements OnDestroy, OnInit {
    * @param selection 3D (true) or Register (false)
    */
   updateView(type: ViewType): void {
-    this.ga.event('view_update', 'stage_nav', type);
     this.model.setViewType(type);
   }
 

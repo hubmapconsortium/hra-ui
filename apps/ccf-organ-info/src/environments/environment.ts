@@ -10,7 +10,6 @@ export const environment = {
   dbOptions: {
     remoteApiEndpoint: 'https://apps.humanatlas.io/api',
   },
-  googleAnalyticsToken: 'G-B3DT7XPMRT',
 };
 
 /*

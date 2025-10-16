@@ -1,5 +1,4 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,6 +14,7 @@ import {
   DEFAULT_COLOR_MAP_VALUE_KEY,
   TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
+import { HraCommonModule } from '@hra-ui/common';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
@@ -54,7 +54,6 @@ function optionalValue<T>(): T | null {
 @Component({
   selector: 'cde-create-visualization-page',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     RouterModule,
     MatFormFieldModule,
@@ -62,6 +61,7 @@ function optionalValue<T>(): T | null {
     MatInputModule,
     MatSelectModule,
     MatTableModule,
+    HraCommonModule,
     ButtonsModule,
     DeprecatedWorkflowCardComponent,
     FileUploadComponent,

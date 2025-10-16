@@ -1,17 +1,44 @@
-<div class="sheet-header">
-  <button mat-icon-button class="close" aria-label="Close bottom sheet" (click)="close()">
+<div class="sheet-header" hraFeature="bottom-sheet">
+  <button
+    hraFeature="close"
+    hraClickEvent
+    mat-icon-button
+    class="close"
+    aria-label="Close bottom sheet"
+    (click)="close()"
+  >
     <mat-icon>close</mat-icon>
   </button>
 </div>
 
-<div class="sheet-content">
-  @switch (data.variant) {
-    @case ('table') {
-      <hra-table [rows]="data.rows" [columns]="data.columns" [hideHeaders]="data.hideHeaders ?? false" />
-    }
+<ng-scrollbar hraScrollOverflowFade>
+  <div class="sheet-content" tabindex="-1" cdkFocusInitial>
+    @switch (data.variant) {
+      @case ('table') {
+        <hra-table [rows]="data.rows" [columns]="data.columns" [hideHeaders]="data.hideHeaders ?? false" />
+      }
 
-    @case ('page-section') {
-      <hra-page-section [tagline]="data.tagline" />
+      @case ('page-section') {
+        <hra-page-section [tagline]="data.tagline">
+          @if (data.content) {
+            {{ data.content }}
+          }
+        </hra-page-section>
+      }
+
+      @case ('page-sections') {
+        <div class="multiple-sections">
+          @for (section of data.sections; track section.tagline) {
+            <div class="section-item">
+              <hra-page-section [tagline]="section.tagline">
+                @if (section.content) {
+                  {{ section.content }}
+                }
+              </hra-page-section>
+            </div>
+          }
+        </div>
+      }
     }
-  }
-</div>
+  </div>
+</ng-scrollbar>

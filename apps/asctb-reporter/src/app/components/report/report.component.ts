@@ -1,9 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
-import { BiomarkersCounts, BiomarkersNamesInReport, CByOrgan, Report } from '../../models/report.model';
-import { CompareData, CompareReport, Row, Sheet, SheetConfig } from '../../models/sheet.model';
-import { ReportService } from './report.service';
-
-import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -12,22 +7,24 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HraCommonModule } from '@hra-ui/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { Observable } from 'rxjs';
 import * as XLSX from 'xlsx';
-import { GaAction, GaCategory } from '../../models/ga.model';
+import { BiomarkersCounts, BiomarkersNamesInReport, CByOrgan, Report } from '../../models/report.model';
+import { CompareData, CompareReport, Row, Sheet, SheetConfig } from '../../models/sheet.model';
 import { BmCtPairings, LinksASCTBData } from '../../models/tree.model';
 import { TreeService } from '../../modules/tree/tree.service';
 import { OrderByPipe } from '../../pipes/order-by/order-by.pipe';
 import { createFileNameTimestamp } from '../../util/file-timestamp';
 import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
 import { SidenavModule } from '../sidenav/sidenav.module';
+import { ReportService } from './report.service';
 
 @Component({
   selector: 'app-report',
   imports: [
-    CommonModule,
+    HraCommonModule,
     SidenavModule,
     SidenavHeaderComponent,
     MatTabsModule,
@@ -47,7 +44,6 @@ import { SidenavModule } from '../sidenav/sidenav.module';
 export class ReportComponent implements OnInit {
   readonly reportService = inject(ReportService);
   readonly ts = inject(TreeService);
-  readonly ga = inject(GoogleAnalyticsService);
 
   reportData: Report = {
     anatomicalStructures: [],
@@ -261,8 +257,6 @@ export class ReportComponent implements OnInit {
     this.clickButton = true;
     this.compareReport.splice(i, 1);
     this.deleteSheet.emit(i);
-
-    this.ga.event(GaAction.CLICK, GaCategory.REPORT, 'Delete a sheet comparison', i);
   }
 
   getTotals(data: CByOrgan[], key: string) {
@@ -332,7 +326,6 @@ export class ReportComponent implements OnInit {
      */
     if (i === -1) {
       allReport.push(this.downloadData());
-      this.ga.event(GaAction.CLICK, GaCategory.REPORT, 'Download Full Report');
 
       if (this.compareReport) {
         for (const sheet of this.compareReport.keys()) {
@@ -340,10 +333,6 @@ export class ReportComponent implements OnInit {
         }
       }
     } else {
-      /**
-       * When a single compare sheet report needs to be downloaded
-       * Not firing a Google Analytics event in this case since the downloadCompareSheetReport() method already does so.
-       */
       allReport.push(this.downloadCompareSheetReport(i));
     }
 
@@ -424,8 +413,6 @@ export class ReportComponent implements OnInit {
     }
     const dt = createFileNameTimestamp();
     const sn = sheet.title.toLowerCase().replace(' ', '_');
-
-    this.ga.event(GaAction.CLICK, GaCategory.REPORT, 'Compare sheet download', sn as never);
 
     return {
       sheet: sheetWS,

@@ -1,10 +1,12 @@
+import { AnimationDriver } from '@angular/animations/browser';
+import { MockAnimationDriver } from '@angular/animations/browser/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
-import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAssetHref } from '@hra-ui/common/url';
 import { Rgb } from '@hra-ui/design-system/color-picker';
-import { provideScrolling } from '@hra-ui/design-system/scrolling';
 import { render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import embed, { Result } from 'vega-embed';
@@ -48,7 +50,15 @@ describe('HistogramComponent', () => {
   async function setup(options?: RenderComponentOptions<HistogramComponent>) {
     return render(HistogramComponent, {
       ...options,
-      providers: [provideScrolling({ disableSensor: true }), provideNoopAnimations(), ...(options?.providers ?? [])],
+      providers: [
+        provideAssetHref('http://localhost/'),
+        provideAnimations(),
+        {
+          provide: AnimationDriver,
+          useClass: MockAnimationDriver,
+        },
+        ...(options?.providers ?? []),
+      ],
     });
   }
 

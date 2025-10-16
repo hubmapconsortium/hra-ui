@@ -49,6 +49,11 @@ export const Dark: Story = {
 };
 
 export const Light: Story = {
+  globals: {
+    backgrounds: {
+      value: 'dark',
+    },
+  },
   args: {
     id: SOCIAL_IDS[0],
     size: 'small',

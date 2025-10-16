@@ -32,10 +32,6 @@
     margin-top: 1.5rem;
   }
 
-  hra-provenance-menu {
-    display: none;
-  }
-
   .medium-screen {
     display: flex;
     gap: 2.5rem;
@@ -43,10 +39,6 @@
     .sections {
       width: 0;
       flex-grow: 1;
-    }
-
-    hra-provenance-menu {
-      display: flex;
     }
   }
 

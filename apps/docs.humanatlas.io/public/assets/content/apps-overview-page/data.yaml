@@ -71,7 +71,7 @@ content:
             actionsRight:
               component: TextHyperlink
               text: Use app
-              url: https://hubmapconsortium.github.io/tissue-bar-graphs/
+              url: https://apps.humanatlas.io/cell-population-graphs
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Cell Population Predictor

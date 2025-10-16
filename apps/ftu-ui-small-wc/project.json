@@ -6,7 +6,7 @@
   "sourceRoot": "apps/ftu-ui-small-wc/src",
   "tags": ["type:app", "project:ftu"],
   "metadata": {
-    "version": "0.5.0"
+    "version": "0.6.0"
   },
   "targets": {
     "build": {

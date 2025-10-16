@@ -1,5 +1,5 @@
 import { coerceElement } from '@angular/cdk/coercion';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +21,7 @@ import { ControlsComponent } from './controls/controls.component';
  */
 @Component({
   selector: 'hra-carousel',
-  imports: [CommonModule, ControlsComponent, ContentComponent],
+  imports: [HraCommonModule, ControlsComponent, ContentComponent],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -80,7 +80,7 @@
     .highlight {
       &:first-child,
       &:nth-child(2) {
-        background-color: utils.with-alpha(vars.$secondary, 8%);
+        background-color: color-mix(in srgb, white, vars.$secondary 8%);
       }
     }
 
@@ -93,11 +93,17 @@
       border-bottom: 1px solid vars.$outline-variant;
       background-color: vars.$surface-container-low;
 
+      &:first-child {
+        max-width: 164px;
+        min-width: 164px;
+        width: 164px;
+      }
+
       &:nth-child(2) {
-        max-width: 96px;
-        min-width: 96px;
-        width: 96px;
-        text-align: center;
+        max-width: 120px;
+        min-width: 120px;
+        width: 120px;
+        text-align: right;
       }
     }
 
@@ -113,7 +119,7 @@
     td:nth-child(2) {
       padding-left: 0 !important;
       padding-right: 30px;
-      max-width: 96px;
+      max-width: 120px;
     }
 
     td:not(:first-child):not(:nth-child(2)) {
@@ -121,13 +127,18 @@
     }
 
     tr:first-child td {
-      max-width: 13.5rem;
+      &:first-child {
+        max-width: 164px;
+      }
+      &:nth-child(2) {
+        max-width: 120px;
+      }
     }
   }
 
   .type {
     height: 1.75rem;
-    max-width: 13.5rem;
+    max-width: 164px;
     white-space: nowrap;
     padding: 0 0.5rem 0 1rem;
   }
@@ -135,7 +146,7 @@
   .count {
     height: 1.75rem;
     min-width: 4.25rem;
-    max-width: 6rem;
+    max-width: 120px;
     border-right: 1px solid vars.$outline-variant;
     text-align: right;
   }
@@ -150,8 +161,8 @@
   }
 
   th:nth-child(2) {
-    padding: 4px 0 !important;
-    max-width: 96px;
+    padding: 4px 30px 4px 0 !important;
+    max-width: 120px;
   }
 
   .icon-header {

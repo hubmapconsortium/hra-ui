@@ -1,7 +1,7 @@
 {
   "testFtuVersionData": [
     {
-      "version": "8",
+      "version": "2.2",
       "label": "8th Release (v2.2)",
       "date": "December 2024",
       "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.4/assets/asct-b-2d-models-crosswalk.csv",
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "version": "7",
+      "version": "2.1",
       "label": "7th Release (v2.1)",
       "date": "June 2024",
       "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.3/assets/asct-b-2d-models-crosswalk.csv",
@@ -517,7 +517,7 @@
   ],
   "testOrganVersionData": [
     {
-      "version": "8",
+      "version": "2.2",
       "label": "8th Release (v2.2)",
       "date": "December 2024",
       "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.7/assets/asct-b-3d-models-crosswalk.csv",
@@ -661,7 +661,7 @@
       ]
     },
     {
-      "version": "7",
+      "version": "2.1",
       "label": "7th Release (v2.1)",
       "date": "June 2024",
       "crosswalkUrl": "https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.6/assets/asct-b-3d-models-crosswalk.csv",

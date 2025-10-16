@@ -16,12 +16,14 @@
       [attr.href]="url.value"
       [attr.target]="group.target ?? ''"
       rel="noopener noreferrer"
+      hraClickEvent
+      [hraFeature]="group.label | slugify"
     >
       {{ group.label }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   } @else {
-    <a mat-button class="group-label" [routerLink]="url.value">
+    <a mat-button class="group-label" [routerLink]="url.value" hraClickEvent [hraFeature]="group.label | slugify">
       {{ group.label }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
@@ -67,11 +69,20 @@
       [attr.href]="url.value"
       [attr.target]="item.target ?? ''"
       rel="noopener noreferrer"
+      hraClickEvent
+      [hraFeature]="item.label | slugify"
     >
       {{ item.label }}
     </a>
   } @else {
-    <a mat-button hraSecondaryButton class="item-label" [routerLink]="url.value">
+    <a
+      mat-button
+      hraSecondaryButton
+      class="item-label"
+      [routerLink]="url.value"
+      hraClickEvent
+      [hraFeature]="item.label | slugify"
+    >
       {{ item.label }}
     </a>
   }

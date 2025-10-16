@@ -6,7 +6,7 @@
   "sourceRoot": "apps/cde-ui/src",
   "tags": ["type:app", "project:cde"],
   "metadata": {
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "targets": {
     "build": {

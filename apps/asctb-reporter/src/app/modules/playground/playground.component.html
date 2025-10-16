@@ -1,8 +1,11 @@
 <mat-tab-group
-  (selectedTabChange)="tabChange($event)"
-  [mat-stretch-tabs]="false"
   class="remove-border-bottom"
+  hraClickEvent
+  hraClickEventTriggerOn="none"
+  [mat-stretch-tabs]="false"
   [(selectedIndex)]="tabIndex"
+  (selectedTabChange)="tabChange($event); event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
+  #event="hraClickEvent"
 >
   <mat-tab label="Visualization">
     @if (error().error.hasError) {

@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -36,7 +36,7 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
 @Component({
   selector: 'cde-cell-types',
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     MatMenuModule,
     MatTableModule,

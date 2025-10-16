@@ -1,1 +1,3 @@
-<hra-visual-button [label]="spec().title" [imageUrl]="spec().background" (cardClick)="onClick()"> </hra-visual-button>
+<ng-container hraFeature="spec-card" [hraClickEvent]="{ title: spec().title | slugify }">
+  <hra-visual-button [label]="spec().title" [imageUrl]="spec().background" (cardClick)="onClick()"> </hra-visual-button>
+</ng-container>

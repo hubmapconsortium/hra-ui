@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatDividerModule } from '@angular/material/divider';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
@@ -16,7 +16,8 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
   styles: [
     `
       :host {
-        display: block;
+        display: flex;
+        width: 100%;
       }
     `,
   ],
@@ -31,7 +32,7 @@ export class FlatCardActionsComponent {}
 @Component({
   selector: 'hra-flat-card',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatMenuModule, MatDividerModule, ButtonsModule, ScrollingModule],
+  imports: [HraCommonModule, MatIconModule, MatMenuModule, MatDividerModule, ButtonsModule, ScrollingModule],
   templateUrl: './flat-card.component.html',
   styleUrl: './flat-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,6 +43,9 @@ export class FlatCardComponent {
 
   /** Optional help icon */
   readonly showHelpButton = input<boolean>(false);
+
+  /** Help icon button link */
+  readonly helpLink = input<string>('');
 
   /** Optional divider */
   readonly showDivider = input<boolean>(false);

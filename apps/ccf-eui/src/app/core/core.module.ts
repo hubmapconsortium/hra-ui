@@ -1,24 +1,11 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { ApiEndpointDataSourceService, DataSourceService, MousePositionTrackerModule } from 'ccf-shared';
-import { AnalyticsModule } from 'ccf-shared/analytics';
-
-import { environment } from '../../environments/environment';
+import { ApiEndpointDataSourceService, DataSourceService } from 'ccf-shared';
 import { StoreModule } from './store/store.module';
 
 @NgModule({
-  imports: [
-    AnalyticsModule.forRoot({
-      gaToken: environment.googleAnalyticsToken,
-      appName: 'eui',
-    }),
-    MousePositionTrackerModule,
-    StoreModule,
-  ],
-  providers: [
-    { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
-    provideHttpClient(withInterceptorsFromDi()),
-  ],
+  imports: [StoreModule],
+  providers: [{ provide: DataSourceService, useExisting: ApiEndpointDataSourceService }, provideHttpClient()],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {

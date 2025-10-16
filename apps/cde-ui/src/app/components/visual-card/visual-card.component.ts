@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
@@ -23,7 +23,7 @@ export interface VisualCard {
  */
 @Component({
   selector: 'cde-visual-card',
-  imports: [CommonModule, ButtonsModule, MatIconModule, RouterModule],
+  imports: [HraCommonModule, ButtonsModule, MatIconModule, RouterModule],
   templateUrl: './visual-card.component.html',
   styleUrl: './visual-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
 import { OntologyTreeNode } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TreeSizeDirective } from '@hra-ui/design-system/tree';
 import { produce } from 'immer';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** Map of node labels to converted label */
 export const labelMap = new Map([
@@ -28,6 +28,7 @@ type GetChildrenFunc = (o: OntologyTreeNode) => OntologyTreeNode[];
   templateUrl: './ontology-tree.component.html',
   styleUrls: ['./ontology-tree.component.scss'],
   imports: [
+    HraCommonModule,
     MatButtonModule,
     MatIconModule,
     MatTreeModule,
@@ -76,9 +77,6 @@ export class OntologyTreeComponent {
 
   /** Currently selected nodes, defaulted to the body node for when the page initially loads. */
   protected selection = signal<Set<OntologyTreeNode>>(new Set());
-
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
 
   /** Currently selected biomarker options */
   protected selectedBiomarkerOptions: string[] = [];
@@ -152,13 +150,6 @@ export class OntologyTreeComponent {
     );
 
     const selection = [...this.selection().values()];
-    if (selection.length === 0) {
-      this.ga.event('nodes_unselected', 'ontology_tree');
-    } else {
-      const data = selection.map(({ label }) => label).join(',');
-      this.ga.event('nodes_selected', 'ontology_tree', data);
-    }
-
     if (emit) {
       this.nodeSelected.emit(selection);
     }

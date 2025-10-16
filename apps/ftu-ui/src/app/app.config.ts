@@ -13,7 +13,7 @@ import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/co
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
-import { HraStateModule, MouseTrackerModule } from '@hra-ui/state';
+import { HraStateModule } from '@hra-ui/state';
 import { provideStore } from '@ngxs/store';
 import { provideMarkdown } from 'ngx-markdown';
 import { ReplaySubject } from 'rxjs';
@@ -46,7 +46,7 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' }),
     ),
     provideStore([]),
-    importProvidersFrom(CdkStateModule, HraStateModule, HraServiceModule, MouseTrackerModule),
+    importProvidersFrom(CdkStateModule, HraStateModule, HraServiceModule),
     {
       provide: MatDialogRef,
       useValue: {},

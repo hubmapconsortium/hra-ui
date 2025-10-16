@@ -1,6 +1,7 @@
 import { Overlay, OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
+import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,6 +10,7 @@ import {
   effect,
   inject,
   input,
+  isDevMode,
   Renderer2,
   signal,
   TemplateRef,
@@ -32,15 +34,13 @@ import { SimilarDatasetsTableComponent } from './components/similar-datasets-tab
 
 /**
  * Script URL for EUI
- * TODO: Currently using Staging URL, need to change to production URL.
  * */
-const SCRIPT_URL = 'https://cdn.humanatlas.io/ui--staging/ccf-eui/wc.js';
+const SCRIPT_URL = `https://cdn.humanatlas.io/ui${isDevMode() ? '--staging' : ''}/ccf-eui/wc.js`;
 
 /**
  * Style URLs for EUI
- * TODO: Currently using Staging URL, need to change to production URL.
  */
-const STYLE_URLS = ['https://cdn.humanatlas.io/ui--staging/ccf-eui/styles.css'];
+const STYLE_URLS = [`https://cdn.humanatlas.io/ui${isDevMode() ? '--staging' : ''}/ccf-eui/styles.css`];
 
 /** Empty Inputs for Predictions page */
 const EMPTY_DATA: TissuePredictionData = {
@@ -66,7 +66,7 @@ const PREDICTION_DATE_FORMAT = new Intl.DateTimeFormat(undefined, {
   selector: 'hra-tissue-origin-predictions',
   standalone: true,
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     MatSortModule,
     MatTableModule,

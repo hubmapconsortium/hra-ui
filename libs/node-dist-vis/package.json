@@ -1,6 +1,6 @@
 {
   "name": "@hra-ui/node-dist-vis",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "bin": "./cli.js",
   "peerDependencies": {
     "@angular/core": "^20.2.1",
@@ -13,7 +13,7 @@
     "@deck.gl/layers": "~8.8.20",
     "@vivjs/layers": "0.16.1",
     "ngxtension": "^5.1.0",
-    "@hra-ui/common": "1.0.0",
+    "@hra-ui/common": "1.1.0",
     "@nebula.gl/edit-modes": "^1.1.0-alpha.5",
     "@nebula.gl/layers": "^1.1.0-alpha.5",
     "@turf/bbox": "^7.2.0",

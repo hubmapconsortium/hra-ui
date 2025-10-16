@@ -1,4 +1,4 @@
-<app-sidenav>
+<app-sidenav hraFeature="debug-logs">
   <div header>
     <app-sidenav-header
       [title]="'Debug Log'"
@@ -10,7 +10,14 @@
   </div>
 
   <div body>
-    <mat-tab-group mat-stretch-tabs>
+    <mat-tab-group
+      hraFeature="tabs"
+      mat-stretch-tabs
+      hraClickEvent
+      hraClickEventTriggerOn="none"
+      #event="hraClickEvent"
+      (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
+    >
       <mat-tab [label]="currentSheet().display" bodyClass="tab-body">
         <div class="content">
           <div class="logs-list">

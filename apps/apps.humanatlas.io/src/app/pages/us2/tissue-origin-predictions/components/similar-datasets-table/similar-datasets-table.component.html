@@ -1,6 +1,7 @@
-<hra-workflow-card tagline="Similar Datasets" class="table-container">
+<hra-workflow-card hraFeature="similar-datasets" tagline="Similar Datasets" class="table-container">
   <hra-workflow-card-actions>
     <button
+      hraClickEvent
       mat-icon-button
       aria-label="Open table action menu"
       class="similar-datasets-menu-trigger"
@@ -10,13 +11,20 @@
     </button>
 
     <!-- MENU -->
-    <mat-menu #optionsForDatasetTable="matMenu" class="custom-menu">
-      <button mat-menu-item matRipple matRippleColor="#201E3D14" [matMenuTriggerFor]="submenu">
+    <mat-menu hraFeature="menu" #optionsForDatasetTable="matMenu" class="custom-menu">
+      <button
+        hraHoverEvent
+        hraFeature="info"
+        mat-menu-item
+        matRipple
+        matRippleColor="#201E3D14"
+        [matMenuTriggerFor]="submenu"
+      >
         <mat-icon fontIcon="info" class="icon-style"></mat-icon>
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
-      <button mat-menu-item (click)="onDownloadCSVButtonClicked()">
+      <button hraClickEvent hraFeature="download-csv" mat-menu-item (click)="onDownloadCSVButtonClicked()">
         <mat-icon>download</mat-icon>
         CSV
       </button>
@@ -29,7 +37,7 @@
 
   <!-- SIMILAR DATASETS TABLE -->
   <ng-scrollbar class="table-overflow-container">
-    <table mat-table matSort #sort2="matSort" [dataSource]="dataSource" class="dataset-table">
+    <table hraFeature="dataset" mat-table matSort #sort2="matSort" [dataSource]="dataSource" class="dataset-table">
       <caption>
         Table displaying similar anatomical structures
       </caption>

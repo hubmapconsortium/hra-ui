@@ -1,5 +1,5 @@
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
@@ -13,7 +13,6 @@ import { withNgxsResetPlugin } from 'ngxs-reset-plugin';
 import { environment } from '../environments/environment';
 import { ConfigService } from './app-config.service';
 import { appRoutes } from './app.routes';
-import { AnalyticsModule } from './services/analytics.module';
 import { LogsState } from './store/logs.state';
 import { SheetState } from './store/sheet.state';
 import { TreeState } from './store/tree.state';
@@ -35,7 +34,6 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAnalytics(withRouterEvents(), withErrorHandler()),
     ConfigService,
-    importProvidersFrom(AnalyticsModule.forRoot({ gaToken: environment.googleAnalyticsId, appName: 'reporter' })),
     provideAppInitializer(() => {
       const initializerFn = initializeApp(inject(ConfigService));
       return initializerFn();

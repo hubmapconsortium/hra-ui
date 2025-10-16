@@ -1,4 +1,13 @@
-<button mat-icon-button class="download" hraPlainTooltip="Download data" (click)="download()">
-  <mat-icon>download</mat-icon>
-</button>
-<hra-table [csvUrl]="csvUrl()" [columns]="columns()" [rows]="rows()" />
+<ng-container hraFeature="summary-statistics">
+  <button
+    mat-icon-button
+    class="download"
+    hraPlainTooltip="Download data"
+    (click)="download()"
+    hraFeature="download"
+    hraClickEvent
+  >
+    <mat-icon>download</mat-icon>
+  </button>
+  <hra-table [csvUrl]="csvUrl()" [columns]="columns()" [rows]="rows()" />
+</ng-container>

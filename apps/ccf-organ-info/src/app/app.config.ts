@@ -7,7 +7,6 @@ import { provideDesignSystem } from '@hra-ui/design-system';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { ApiEndpointDataSourceService, DataSourceService, GlobalConfigState } from 'ccf-shared';
-import { AnalyticsModule } from 'ccf-shared/analytics';
 import { environment } from '../environments/environment';
 
 /**
@@ -42,12 +41,6 @@ export const appConfig: ApplicationConfig = {
             basePath: environment.dbOptions.remoteApiEndpoint,
           }),
       ),
-      AnalyticsModule.forRoot({
-        gaToken: environment.googleAnalyticsToken,
-        appName: 'organ-info',
-        projectName: 'ccf',
-        developmentMode: !environment.production,
-      }),
     ),
   ],
 };

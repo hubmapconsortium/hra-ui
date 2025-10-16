@@ -1,27 +1,16 @@
 import { Immutable } from '@angular-ru/cdk/typings';
-import { CdkVirtualScrollViewport, ScrollingModule, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  input,
-  output,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { ScrollingModule, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AggregateCount } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule as HraScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 import { ListResult } from '../../../core/models/list-result';
 import { DonorCardComponent } from '../donor-card/donor-card.component';
 import { ResultsVirtualScrollStrategy } from '../virtual-scroll-strategy/results-virtual-scroll-strategy';
@@ -36,7 +25,7 @@ import { ResultsVirtualScrollStrategy } from '../virtual-scroll-strategy/results
   templateUrl: './results-browser.component.html',
   styleUrls: ['./results-browser.component.scss'],
   imports: [
-    CommonModule,
+    HraCommonModule,
     DonorCardComponent,
     ExpansionPanelModule,
     MatMenuModule,
@@ -102,9 +91,6 @@ export class ResultsBrowserComponent {
     return items;
   });
 
-  /** Analytics service */
-  private readonly ga = inject(GoogleAnalyticsService);
-
   private readonly scrollStrategy = inject(ResultsVirtualScrollStrategy);
 
   /** Resize viewport on changes to the items */
@@ -119,7 +105,6 @@ export class ResultsBrowserComponent {
    * @param selected whether to select or deselect the result
    */
   handleSelection(result: Immutable<ListResult>, selected: boolean): void {
-    this.ga.event('list_result_selected', 'results_browser', result.tissueBlock.label, +selected);
     if (!this.hasSelectedItems()) {
       this.showSelected.set(false);
     }

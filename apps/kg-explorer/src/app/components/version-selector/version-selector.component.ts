@@ -1,12 +1,14 @@
 import { Component, input, output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * Selector for version
  */
 @Component({
   selector: 'hra-version-selector',
-  imports: [MatSelectModule],
+  imports: [HraCommonModule, FormsModule, MatSelectModule],
   templateUrl: './version-selector.component.html',
   styleUrl: './version-selector.component.scss',
 })

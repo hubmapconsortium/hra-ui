@@ -1,5 +1,5 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -34,7 +34,7 @@ const EMPTY_DATA: TissuePredictionData = {
   selector: 'hra-cell-population-predictions',
   standalone: true,
   imports: [
-    CommonModule,
+    HraCommonModule,
     MatIconModule,
     MatMenuModule,
     MatSortModule,

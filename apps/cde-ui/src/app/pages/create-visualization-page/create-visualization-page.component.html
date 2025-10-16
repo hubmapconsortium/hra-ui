@@ -1,9 +1,14 @@
-<form class="content" [formGroup]="visualizationForm">
+<form class="content" [formGroup]="visualizationForm" hraFeature="create-visualization-page">
   <div class="page-nav">
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
-  <hra-workflow-card class="card data-upload" [allowUpload]="true" [loadProgress]="nodeProgress">
+  <hra-workflow-card
+    class="card data-upload"
+    [allowUpload]="true"
+    [loadProgress]="nodeProgress"
+    hraFeature="upload-data"
+  >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
@@ -13,6 +18,8 @@
         #uploadDataTooltipTrigger="cdkOverlayOrigin"
         (mouseover)="uploadInfoOpen = true"
         (mouseout)="uploadInfoOpen = false"
+        hraFeature="info"
+        hraHoverEvent
       >
         info
       </mat-icon>
@@ -37,6 +44,8 @@
         target="_blank"
         rel="noopener noreferrer"
         hraButtonSize="medium"
+        hraFeature="data-template"
+        hraClickEvent
       >
         Template
       </a>
@@ -79,7 +88,7 @@
     </cde-file-upload>
   </hra-workflow-card>
 
-  <hra-workflow-card class="card organize-data" formGroupName="headers">
+  <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
@@ -89,6 +98,8 @@
         #organizeDataTrigger="cdkOverlayOrigin"
         (mouseover)="organizeDataInfoOpen = true"
         (mouseout)="organizeDataInfoOpen = false"
+        hraFeature="info"
+        hraHoverEvent
       >
         info
       </mat-icon>
@@ -113,27 +124,48 @@
     <div class="required-headers">
       <span class="subheader">Required: Verify column headers</span>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="x-axis-selector">
         <mat-label>X Axis</mat-label>
-        <mat-select disableRipple formControlName="xAxis" panelClass="options-container" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          formControlName="xAxis"
+          panelClass="options-container"
+          hraClickEvent
+          hraModelChangeEvent
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="y-axis-selector">
         <mat-label>Y Axis</mat-label>
-        <mat-select disableRipple formControlName="yAxis" panelClass="options-container" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          formControlName="yAxis"
+          panelClass="options-container"
+          hraClickEvent
+          hraModelChangeEvent
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="cell-type-select" subscriptSizing="dynamic">
+      <mat-form-field class="cell-type-select" subscriptSizing="dynamic" hraFeature="cell-type-selector">
         <mat-label>Cell Type</mat-label>
-        <mat-select disableRipple formControlName="cellType" panelClass="options-container" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          formControlName="cellType"
+          panelClass="options-container"
+          hraClickEvent
+          hraModelChangeEvent
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -148,18 +180,32 @@
     <div class="optional-headers">
       <span class="subheader">Optional: Add column headers</span>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="z-axis-selector">
         <mat-label>Z Axis</mat-label>
-        <mat-select disableRipple formControlName="zAxis" panelClass="options-container" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          formControlName="zAxis"
+          panelClass="options-container"
+          hraClickEvent
+          hraModelChangeEvent
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="cell-ontology-selector">
         <mat-label>Cell Ontology ID</mat-label>
-        <mat-select disableRipple formControlName="ontologyId" panelClass="options-container" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          formControlName="ontologyId"
+          panelClass="options-container"
+          hraClickEvent
+          hraModelChangeEvent
+          cdeMarkEmptyFormControl
+        >
           @for (option of dataHeaders; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
           }
@@ -168,7 +214,7 @@
     </div>
   </hra-workflow-card>
 
-  <hra-workflow-card class="card parameters" formGroupName="parameters">
+  <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
@@ -178,6 +224,8 @@
         #parametersTrigger="cdkOverlayOrigin"
         (mouseover)="parametersInfoOpen = true"
         (mouseout)="parametersInfoOpen = false"
+        hraFeature="info"
+        hraHoverEvent
       >
         info
       </mat-icon>
@@ -199,12 +247,14 @@
     }
 
     <div class="parameters-1">
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="anchor-cell-type-selector">
         <mat-label>Anchor Cell Type</mat-label>
         <mat-select
           disableRipple
           formControlName="nodeTargetValue"
           panelClass="options-container"
+          hraClickEvent
+          hraModelChangeEvent
           cdeMarkEmptyFormControl
         >
           @for (type of cellTypes; track type) {
@@ -213,31 +263,31 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="distance-threshold">
         <mat-label>Distance Threshold</mat-label>
-        <input matInput formControlName="distanceThreshold" cdeMarkEmptyFormControl />
+        <input matInput formControlName="distanceThreshold" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
 
     <div class="parameters-2">
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-x">
         <mat-label>Pixel size (X) (µm/pixel)</mat-label>
-        <input matInput type="number" formControlName="pixelSizeX" min="0" cdeMarkEmptyFormControl />
+        <input matInput type="number" formControlName="pixelSizeX" min="0" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-y">
         <mat-label>Pixel size (Y) (µm/pixel)</mat-label>
-        <input matInput type="number" formControlName="pixelSizeY" min="0" cdeMarkEmptyFormControl />
+        <input matInput type="number" formControlName="pixelSizeY" min="0" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-z">
         <mat-label>Pixel size (Z) (µm/pixel)</mat-label>
-        <input matInput type="number" formControlName="pixelSizeZ" min="0" cdeMarkEmptyFormControl />
+        <input matInput type="number" formControlName="pixelSizeZ" min="0" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
   </hra-workflow-card>
 
-  <hra-workflow-card class="card metadata" formGroupName="metadata">
+  <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
@@ -247,6 +297,8 @@
         #metadataInfoTrigger="cdkOverlayOrigin"
         (mouseover)="metadataInfoOpen = true"
         (mouseout)="metadataInfoOpen = false"
+        hraFeature="info"
+        hraHoverEvent
       >
         info
       </mat-icon>
@@ -264,30 +316,44 @@
     </h2>
 
     <div class="row">
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="visualization-title">
         <mat-label>Visualization Title</mat-label>
-        <input matInput formControlName="title" cdeMarkEmptyFormControl />
+        <input matInput formControlName="title" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="imaging-technology">
         <mat-label>Imaging Technology</mat-label>
-        <input matInput formControlName="technology" cdeMarkEmptyFormControl />
+        <input matInput formControlName="technology" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
 
     <div class="row">
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="organ-selector">
         <mat-label>Organ</mat-label>
-        <mat-select disableRipple formControlName="organ" panelClass="options-container" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          formControlName="organ"
+          panelClass="options-container"
+          hraClickEvent
+          hraModelChangeEvent
+          cdeMarkEmptyFormControl
+        >
           @for (organ of organs(); track organ.id) {
             <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="sex-selector">
         <mat-label>Sex</mat-label>
-        <mat-select disableRipple formControlName="sex" panelClass="options-container" cdeMarkEmptyFormControl>
+        <mat-select
+          disableRipple
+          formControlName="sex"
+          panelClass="options-container"
+          hraClickEvent
+          hraModelChangeEvent
+          cdeMarkEmptyFormControl
+        >
           <mat-option value="Male">Male</mat-option>
           <mat-option value="Female">Female</mat-option>
         </mat-select>
@@ -295,14 +361,14 @@
     </div>
 
     <div class="row">
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="age">
         <mat-label>Age</mat-label>
-        <input matInput type="number" formControlName="age" min="0" max="120" cdeMarkEmptyFormControl />
+        <input matInput type="number" formControlName="age" min="0" max="120" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field subscriptSizing="dynamic" hraFeature="thickness">
         <mat-label>Thickness (µm)</mat-label>
-        <input matInput type="number" formControlName="thickness" min="0" cdeMarkEmptyFormControl />
+        <input matInput type="number" formControlName="thickness" min="0" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
   </hra-workflow-card>
@@ -312,6 +378,7 @@
     [class.custom]="useCustomColorMap"
     [allowUpload]="true"
     [loadProgress]="colorProgress"
+    hraFeature="configure-colors"
   >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
@@ -322,6 +389,8 @@
         #colorInfoTrigger="cdkOverlayOrigin"
         (mouseover)="colorInfoOpen = true"
         (mouseout)="colorInfoOpen = false"
+        hraFeature="info"
+        hraHoverEvent
       >
         info
       </mat-icon>
@@ -345,6 +414,8 @@
         href="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
         target="_blank"
         rel="noopener noreferrer"
+        hraFeature="color-template"
+        hraClickEvent
       >
         Template
       </a>
@@ -357,8 +428,17 @@
       hideSingleSelectionIndicator
       hraButtonToggleSize="large"
     >
-      <mat-button-toggle disableRipple value="default">Use Default Colors</mat-button-toggle>
-      <mat-button-toggle disableRipple value="custom" data-testid="upload-custom">Upload Color Map</mat-button-toggle>
+      <mat-button-toggle disableRipple value="default" hraFeature="toggle.default" hraClickEvent
+        >Use Default Colors</mat-button-toggle
+      >
+      <mat-button-toggle
+        disableRipple
+        value="custom"
+        data-testid="upload-custom"
+        hraFeature="toggle.custom"
+        hraClickEvent
+        >Upload Color Map</mat-button-toggle
+      >
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
@@ -395,7 +475,7 @@
     }
   </hra-workflow-card>
 
-  <hra-workflow-card class="card visualize">
+  <hra-workflow-card class="card visualize" hraFeature="visualize-data">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
@@ -405,6 +485,8 @@
         #visualizeInfoTrigger="cdkOverlayOrigin"
         (mouseover)="visualizeInfoOpen = true"
         (mouseout)="visualizeInfoOpen = false"
+        hraFeature="info"
+        hraHoverEvent
       >
         info
       </mat-icon>
@@ -434,6 +516,8 @@
       [disabled]="!hasValidNodes() || !hasValidData()"
       data-testid="visualize"
       (click)="submit()"
+      hraFeature="submit"
+      hraClickEvent
     >
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>

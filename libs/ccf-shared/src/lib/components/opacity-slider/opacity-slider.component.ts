@@ -1,84 +1,81 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, HostBinding, input, model, OnInit, output, signal } from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from '@angular/material/slider';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
  * Slider for setting opacity on an anatomical structure
  */
 @Component({
   selector: 'ccf-opacity-slider',
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatSliderModule,
+    MatRippleModule,
+    MatInputModule,
+    ButtonsModule,
+    PlainTooltipDirective,
+  ],
   templateUrl: './opacity-slider.component.html',
   styleUrls: ['./opacity-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class OpacitySliderComponent implements OnInit {
-  /**
-   * HTML class name
-   */
+  /** HTML class name */
   @HostBinding('class') readonly clsName = 'ccf-opacity-slider';
 
-  /**
-   * The value displayed in the slider
-   */
-  @Input() opacity = 20;
+  /** The value displayed in the slider */
+  readonly opacity = model(20);
+  /** Whether the item is set to visible */
+  readonly visible = input(true);
 
-  /**
-   * Whether the item is set to visible
-   */
-  @Input() visible = true;
-
-  /**
-   * Emits the updated opacity when the opacity changes
-   */
-  @Output() readonly opacityChange = new EventEmitter<number>();
-
-  /**
-   * Output  of opacity slider component
-   */
-  @Output() readonly visibilityToggle = new EventEmitter();
-
-  /**
-   * Emitter for resetting all opacity values to default
-   */
-  @Output() readonly opacityReset = new EventEmitter();
-
-  /**
-   * Emitted when slider thumb is moved
-   */
-  @Output() readonly sliderChanged = new EventEmitter<string>();
+  /** Emits the updated opacity when the opacity changes */
+  readonly opacityChange = output<number>();
+  /** Emitted when slider visibility is toggled */
+  readonly visibilityToggle = output();
+  /** Emitter for resetting all opacity values to default */
+  readonly opacityReset = output();
+  /** Emitted when slider thumb is moved */
+  readonly sliderChanged = output<string>();
 
   /** Previous opacity */
-  prevOpacity!: number;
+  readonly prevOpacity = signal<number>(0);
 
   /** Initialize the component */
   ngOnInit(): void {
-    if (this.visible) {
-      this.prevOpacity = 0;
+    if (this.visible()) {
+      this.prevOpacity.set(0);
     } else {
-      this.prevOpacity = 20;
+      this.prevOpacity.set(20);
     }
   }
 
   /** Reset previous opacity */
   reset(): void {
-    this.prevOpacity = 20;
+    this.prevOpacity.set(20);
   }
 
   /**
    * Emits signal to toggle the visibility of the item
    */
   toggleVisibility(): void {
-    const temp = this.opacity;
-    this.opacity = this.prevOpacity;
-    this.prevOpacity = temp;
+    const temp = this.opacity();
+    this.opacity.set(this.prevOpacity());
+    this.prevOpacity.set(temp);
     this.visibilityToggle.emit();
-    this.opacityChange.emit(this.opacity);
+    this.opacityChange.emit(this.opacity());
   }
 
   /**
    * Emits signal to reset the opacity of the item
    */
   resetOpacity(): void {
-    this.prevOpacity = 0;
+    this.prevOpacity.set(0);
     this.opacityReset.emit();
   }
 }

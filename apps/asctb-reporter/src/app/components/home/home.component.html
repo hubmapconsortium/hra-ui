@@ -1,10 +1,17 @@
-<div class="splash-header">
+<div class="splash-header" hraFeature="header">
   <img class="splash-img" [src]="'assets/images/splash.png' | assetUrl" alt="Splash Image" />
   <div class="splash-content">
     <hra-icon class="icon" [svgIcon]="'product:asctb-reporter'"></hra-icon>
     <div class="title">Create and visualize Human Reference Atlas Data</div>
     <div class="actions">
-      <a mat-button hraCtaButton hraButtonVariant="primary" routerLink="/vis">
+      <a
+        mat-button
+        hraCtaButton
+        hraButtonVariant="primary"
+        hraFeature="explore-visualization"
+        hraClickEvent
+        routerLink="/vis"
+      >
         Explore visualization
         <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
       </a>
@@ -12,6 +19,8 @@
         mat-button
         hraCtaButton
         hraButtonVariant="secondary"
+        hraFeature="launch-playground"
+        hraClickEvent
         routerLink="/vis"
         [queryParams]="{ playground: true, selectedOrgans: 'example' }"
       >
@@ -21,7 +30,7 @@
     </div>
   </div>
 </div>
-<div class="demonstration-video-section">
+<div class="demonstration-video-section" hraFeature="demo-video">
   <div class="section-title">Demonstration video</div>
   <div class="section-description">Learn about the features and functionality of this application.</div>
   <div class="split-sections">
@@ -38,6 +47,8 @@
               class="section-selector"
               [class.section-selected]="$index === selectedVideoSection()"
               hraButtonVariant="primary"
+              [hraFeature]="section.header | slugify"
+              hraClickEvent
               [disableRipple]="true"
               (click)="seekVideo(section.sec, $index)"
             >
@@ -52,7 +63,7 @@
     </div>
   </div>
 </div>
-<div class="contributors-section">
+<div class="contributors-section" hraFeature="contributors">
   <div class="section-title">Contributors</div>
   <div class="section-description">The core team who built the ASCT+B Reporter</div>
   <div class="contributors-grid">
@@ -62,6 +73,7 @@
         [name]="contributor.name"
         [description]="contributor.desc"
         [centerContent]="true"
+        [hraFeature]="contributor.name | slugify"
       >
         <div class="social-media-actions">
           <a
@@ -69,6 +81,8 @@
             mat-icon-button
             [hraIconButtonVariant]="'color'"
             [hraIconButtonSize]="'large'"
+            hraFeature="email"
+            hraClickEvent
             [href]="'mailto:' + contributor.mail"
             target="_blank"
           >
@@ -79,6 +93,8 @@
             mat-icon-button
             [hraIconButtonVariant]="'color'"
             [hraIconButtonSize]="'large'"
+            hraFeature="personal-website"
+            hraClickEvent
             [href]="contributor.link"
             target="_blank"
           >
@@ -89,6 +105,8 @@
             mat-icon-button
             [hraIconButtonVariant]="'color'"
             [hraIconButtonSize]="'large'"
+            hraFeature="linkedin"
+            hraClickEvent
             [href]="contributor.linkedin"
             target="_blank"
           >
@@ -99,6 +117,8 @@
             mat-icon-button
             [hraIconButtonVariant]="'color'"
             [hraIconButtonSize]="'large'"
+            hraFeature="github"
+            hraClickEvent
             [href]="contributor.github"
             target="_blank"
           >

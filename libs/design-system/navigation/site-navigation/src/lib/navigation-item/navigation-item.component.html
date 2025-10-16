@@ -1,9 +1,16 @@
 @if (url().isAbsolute) {
-  <a mat-list-item [href]="url().value">
+  <a
+    hraFeature="navigation-item-external"
+    [hraClickEvent]="{ label: navigationItem().label }"
+    mat-list-item
+    [href]="url().value"
+  >
     <ng-container *ngTemplateOutlet="content" />
   </a>
 } @else {
   <a
+    hraFeature="navigation-item-internal"
+    [hraClickEvent]="{ label: navigationItem().label }"
     mat-list-item
     [routerLink]="url().value"
     [activated]="rla.isActive"

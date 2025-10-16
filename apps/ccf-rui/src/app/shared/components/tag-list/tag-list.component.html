@@ -1,9 +1,9 @@
 <span class="label">{{ label() }}</span>
-<mat-chip-listbox selectable="false">
+<mat-chip-listbox [hraFeature]="label() | slugify" selectable="false">
   @for (tag of tags(); track tag.id) {
-    <mat-chip removable disableRipple (removed)="removeTag(tag)">
+    <mat-chip [hraFeature]="tag.label | slugify" hraClickEvent removable disableRipple (removed)="removeTag(tag)">
       {{ tag.label }}
-      <mat-icon matChipRemove class="icon remove">close</mat-icon>
+      <mat-icon hraFeature="remove" hraClickEvent matChipRemove class="icon remove">close</mat-icon>
     </mat-chip>
   }
 </mat-chip-listbox>

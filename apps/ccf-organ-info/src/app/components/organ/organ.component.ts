@@ -1,18 +1,8 @@
 import { CommonModule } from '@angular/common';
-import {
-  AfterViewChecked,
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  input,
-  output,
-  viewChild,
-} from '@angular/core';
+import { AfterViewChecked, ChangeDetectionStrategy, Component, effect, input, output, viewChild } from '@angular/core';
 import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { BodyUiComponent, BodyUiModule } from 'ccf-shared';
-import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 /** Component for displaying organ in 3D using Body UI */
 @Component({
@@ -23,9 +13,6 @@ import { GoogleAnalyticsService } from 'ngx-google-analytics';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrganComponent implements AfterViewChecked {
-  /** Analytics service */
-  readonly ga = inject(GoogleAnalyticsService);
-
   /** Organ */
   readonly organ = input<SpatialEntity>();
   /** Scene */
@@ -94,7 +81,6 @@ export class OrganComponent implements AfterViewChecked {
 
   /** Handles node click events */
   nodeClicked(event: NodeClickEvent): void {
-    this.ga.event('node_click', 'organ', event.node['@id']);
     this.highlightedNodeId =
       this.highlightedNodeId && this.highlightedNodeId === event.node['@id'] ? '' : event.node['@id'];
     this.nodeClick.emit(event);

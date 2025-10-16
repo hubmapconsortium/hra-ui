@@ -1,4 +1,4 @@
-<app-sidenav>
+<app-sidenav hraFeature="compare-sidenav">
   <div header>
     <app-sidenav-header
       [title]="'Compare Data'"
@@ -18,6 +18,8 @@
                   <div class="title">Dataset {{ i + 1 }}</div>
                   <button
                     mat-icon-button
+                    hraFeature="remove-dataset"
+                    hraClickEvent
                     [style.visibility]="formGroup.value.sheets.length === 1 ? 'hidden' : 'visible'"
                     (click)="removeCompareSheetRow(i)"
                   >
@@ -32,12 +34,16 @@
                     #dataSource="matButtonToggleGroup"
                     (change)="onDataSourceChange(i)"
                   >
-                    <mat-button-toggle value="file" checked>Upload file</mat-button-toggle>
-                    <mat-button-toggle value="link">Link URL</mat-button-toggle>
+                    <mat-button-toggle value="file" checked hraFeature="upload-file" hraClickEvent
+                      >Upload file
+                    </mat-button-toggle>
+                    <mat-button-toggle value="link" hraFeature="link-url" hraClickEvent>Link URL</mat-button-toggle>
                   </mat-button-toggle-group>
 
                   <button
                     mat-button
+                    hraFeature="templates-menu"
+                    hraClickEvent
                     hraButtonVariant="primary"
                     hraButtonSize="medium"
                     [matMenuTriggerFor]="templatesMenu"
@@ -72,6 +78,8 @@
                           type="color"
                           formControlName="color"
                           [style.backgroundColor]="sheet.get('color')?.value"
+                          hraFeature="dataset-color"
+                          hraClickEvent
                         />
                       </div>
                     </div>
@@ -90,15 +98,19 @@
       </div>
     </ng-scrollbar>
 
-    <mat-menu #templatesMenu="matMenu">
+    <mat-menu #templatesMenu="matMenu" hraFeature="templates-menu">
       <a
         mat-menu-item
+        hraFeature="asctb-table-template"
+        hraClickEvent
         href="https://docs.google.com/spreadsheets/d/1smQ8_3F-KSRlY7bmozsoM1EonQL4ahNaXP7zeQFf3Ko/edit#gid=0"
         target="_blank"
         >ASCT+B Table template</a
       >
       <a
         mat-menu-item
+        hraFeature="omap-compare-template"
+        hraClickEvent
         href="https://docs.google.com/spreadsheets/d/1DE4Bh2PI7mgaMciMOky2OTduNwYNRU-DyYQPT8szJ-Y/edit#gid=0"
         target="_blank"
         >OMAP Compare template</a
@@ -108,12 +120,14 @@
 
   <div footer>
     <div class="mt-2" class="button-container">
-      <button mat-button hraButtonSize="medium" (click)="addCompareSheetRow()">
+      <button mat-button hraButtonSize="medium" (click)="addCompareSheetRow()" hraFeature="add-dataset" hraClickEvent>
         <mat-icon>add_circle</mat-icon>
         Add Dataset
       </button>
       <button
         mat-flat-button
+        hraFeature="compare"
+        hraClickEvent
         hraButtonSize="medium"
         (click)="compare()"
         [ngClass]="{ 'compare-button-color': !formValid }"

@@ -1,13 +1,15 @@
 <div class="header">
   <span class="text title">Rotation</span>
+  <span class="units">Degrees</span>
 </div>
 
 @for (axis of axisOptions; track axis) {
   <ccf-slider-box
+    [hraFeature]="axis"
     class="slider-box"
     [sliderAxis]="axis"
-    [rotation]="rotation"
-    [step]="step"
+    [rotation]="rotation()"
+    [step]="step()"
     (resetRotation)="resetRotation(axis)"
     (changeRotation)="changeRotation($event, axis)"
   ></ccf-slider-box>

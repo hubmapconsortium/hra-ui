@@ -6,7 +6,7 @@
   "prefix": "hra",
   "tags": ["type:app", "project:humanatlas.io"],
   "metadata": {
-    "version": "3.0.0"
+    "version": "3.1.0"
   },
   "targets": {
     "build": {

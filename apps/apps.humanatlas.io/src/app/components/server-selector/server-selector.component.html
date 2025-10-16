@@ -1,10 +1,11 @@
-<mat-form-field class="server-select-field" [hintLabel]="selectedServer().description">
+<mat-form-field hraFeature="server-selector" class="server-select-field" [hintLabel]="selectedServer().description">
   <mat-label>Server</mat-label>
   <mat-select
     disableRipple
     panelWidth="auto"
     panelClass="options-container server-selector-panel"
     [(ngModel)]="selectedServer"
+    [hraModelChangeEvent]="['label']"
     #serverSelect
   >
     <mat-select-trigger>

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgxMaskDirective } from 'ngx-mask';
 
@@ -28,7 +29,7 @@ export interface AuthorFormControls {
  */
 @Component({
   selector: 'ccf-metadata-author-form',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgxMaskDirective, ButtonsModule],
+  imports: [HraCommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgxMaskDirective, ButtonsModule],
   templateUrl: './metadata-author-form.component.html',
   styleUrls: ['./metadata-author-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

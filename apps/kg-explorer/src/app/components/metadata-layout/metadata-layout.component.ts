@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
+import { HraCommonModule } from '@hra-ui/common';
 import { providePageSectionNavigation } from '@hra-ui/design-system/content-templates/page-section';
 import { MenuOptionsType, TableColumn, TableRow } from '@hra-ui/design-system/table';
 
@@ -25,7 +26,7 @@ export class MetadataLayoutContentComponent {}
 /** Metadata layout */
 @Component({
   selector: 'hra-metadata-layout',
-  imports: [ProvenanceMenuComponent],
+  imports: [HraCommonModule, ProvenanceMenuComponent],
   templateUrl: './metadata-layout.component.html',
   styleUrl: './metadata-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { injectFeaturePath, injectLogEvent } from '@hra-ui/common/analytics';
+import { CoreEvents } from '@hra-ui/common/analytics/events';
 
 /** Position */
 export interface Position {
@@ -64,6 +66,10 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
   /** True while shift key is pressed */
   shiftPressed = false;
 
+  private readonly featurePath = injectFeaturePath();
+
+  private readonly logEvent = injectLogEvent();
+
   /**
    * Shifts position based on key
    * @param key Key value
@@ -101,6 +107,11 @@ export class SpatialSearchKeyboardUIBehaviorComponent {
       this.shiftPressed = true;
     }
     target.preventDefault();
+    this.logEvent(CoreEvents.Keyboard, {
+      path: `${this.featurePath()}.keyboard.${target.key}`,
+      trigger: 'keydown',
+      triggerData: target,
+    });
     this.updatePosition(target.key);
   }
 

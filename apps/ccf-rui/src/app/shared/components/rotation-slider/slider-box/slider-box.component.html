@@ -1,15 +1,16 @@
 <mat-form-field
-  class="rotation-value"
+  class="input"
+  hraClickEvent
   subscriptSizing="dynamic"
   (click)="showSlider()"
   hraPlainTooltip="Rotation is measured in degrees"
   cdkOverlayOrigin
   #trigger="cdkOverlayOrigin"
 >
-  <mat-label class="text form-input-label">{{ sliderAxis.toUpperCase() }}</mat-label>
+  <mat-label class="text form-input-label">{{ sliderAxis().toUpperCase() }}</mat-label>
   <input
     matInput
-    [value]="rotation[sliderAxis]"
+    [value]="rotation()[sliderAxis()]"
     class="input"
     type="number"
     [min]="-180"
@@ -28,22 +29,30 @@
   [cdkConnectedOverlayPositions]="positions"
   (backdropClick)="closeSlider()"
 >
-  <div class="slider-container">
-    <button mat-icon-button class="icon reset" (click)="resetRotation.emit()" hraPlainTooltip="Reset">
+  <div hraFeature="rotation-slider" class="slider-container">
+    <button
+      hraFeature="reset"
+      hraClickEvent
+      mat-icon-button
+      class="icon reset"
+      (click)="resetRotation.emit()"
+      hraPlainTooltip="Reset"
+    >
       <mat-icon>reset_settings</mat-icon>
     </button>
     <mat-slider
+      hraFeature="slider"
+      hraClickEvent
       class="slider"
       [max]="180"
       [min]="-180"
-      [step]="step"
-      disableRipple
-      hraPlainTooltip="Hold shift while using the slider to rotate in smaller increments by 30 degrees"
+      [step]="step()"
+      hraPlainTooltip="Hold shift while using the slider to rotate in larger increments by 30 degrees"
     >
       <input
         class="slider-input"
         matSliderThumb
-        [value]="rotation[sliderAxis]"
+        [value]="rotation()[sliderAxis()]"
         (input)="changeRotation.emit(slider.value)"
         #slider
       />

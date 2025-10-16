@@ -4,12 +4,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HraKgService } from '@hra-api/ng-client';
+import { BaseApplicationComponent } from '@hra-ui/application';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { MarkdownModule } from 'ngx-markdown';
-
 import { HelpMenuOptions } from './app.routes';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
@@ -37,6 +38,7 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
  */
 @Component({
   imports: [
+    HraCommonModule,
     RouterModule,
     NavigationModule,
     MarkdownModule,
@@ -54,7 +56,7 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class AppComponent extends BaseApplicationComponent {
   /** Router instance for navigation */
   private readonly router = inject(Router);
   /** Activated route service */
@@ -106,6 +108,8 @@ export class AppComponent {
    * Gets the page title for breadcrumbs
    */
   constructor() {
+    super({ screenSizeNotice: { width: 864, height: 486 } });
+
     effect(() => {
       if (this.typeLabel() && this.documentationUrl()) {
         this.extraMenuOption.set({

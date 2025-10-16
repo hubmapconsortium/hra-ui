@@ -8,6 +8,7 @@
 @if (root.id === 'biomarkers') {
   <div class="biomarkers-toggle">
     <mat-button-toggle-group
+      hraFeature="biomarkers-toggle"
       multiple
       hideMultipleSelectionIndicator
       name="multiSelect"
@@ -17,6 +18,8 @@
     >
       @for (option of biomarkerMenuOptions(); track option) {
         <mat-button-toggle
+          [hraFeature]="option | slugify"
+          hraClickEvent
           [value]="option"
           [checked]="isBiomarkerOptionSelected(option)"
           [hraPlainTooltip]="(isBiomarkerOptionSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
@@ -31,19 +34,26 @@
   <mat-tree [dataSource]="nodes()" [childrenAccessor]="getChildren()" hraTreeSize="small" #tree>
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node
+      hraFeature="leaf"
       *matTreeNodeDef="let node"
       matTreeNodePadding
       (click)="select($event.ctrlKey, node, true, !isSelected(node))"
       matTreeNodePaddingIndent="12"
     >
-      <div class="node-content leaf" [class.selected]="isSelected(node)">
-        <div class="node-label">{{ node.label }}</div>
-        <div class="num-results">{{ getCount(node) }}</div>
+      <div
+        [hraFeature]="node.label | slugify"
+        hraClickEvent
+        class="node-content leaf"
+        [class.selected]="isSelected(node)"
+      >
+        <div hraFeature="label" hraClickEvent class="node-label">{{ node.label }}</div>
+        <div hraFeature="count" hraClickEvent class="num-results">{{ getCount(node) }}</div>
       </div>
     </mat-tree-node>
 
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node
+      hraFeature="branch"
       *matTreeNodeDef="let node; when: hasChildren"
       matTreeNodePadding
       matTreeNodeToggle
@@ -51,14 +61,21 @@
       (click)="select($event.ctrlKey, node, true, !isSelected(node))"
       matTreeNodePaddingIndent="12"
     >
-      <div class="node-content" [class.selected]="isSelected(node)">
-        <button class="tree-expand-icon" mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.label">
+      <div [hraFeature]="node.label | slugify" hraClickEvent class="node-content" [class.selected]="isSelected(node)">
+        <button
+          hraFeature="toggle"
+          hraClickEvent
+          class="tree-expand-icon"
+          mat-icon-button
+          matTreeNodeToggle
+          [attr.aria-label]="'Toggle ' + node.label"
+        >
           <mat-icon class="mat-icon-rtl-mirror">
             {{ tree.isExpanded(node) ? 'expand_less' : 'expand_more' }}
           </mat-icon>
         </button>
-        <div class="node-label">{{ node.label }}</div>
-        <div class="num-results">{{ getCount(node) }}</div>
+        <div hraFeature="label" hraClickEvent class="node-label">{{ node.label }}</div>
+        <div hraFeature="count" hraClickEvent class="num-results">{{ getCount(node) }}</div>
       </div>
     </mat-tree-node>
   </mat-tree>

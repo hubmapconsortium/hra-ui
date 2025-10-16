@@ -1,5 +1,10 @@
 <!-- eslint-disable @angular-eslint/template/mouse-events-have-key-events -->
-<cdk-virtual-scroll-viewport [tvsItemSize]="rowHeight" [headerHeight]="headerHeight" [style.height.px]="viewportHeight">
+<cdk-virtual-scroll-viewport
+  hraFeature="biomarker-table"
+  [tvsItemSize]="rowHeight"
+  [headerHeight]="headerHeight"
+  [style.height.px]="viewportHeight"
+>
   <table class="table" mat-table [dataSource]="dataSource" #table>
     <ng-container matColumnDef="type" sticky>
       <th mat-header-cell *matHeaderCellDef>Cell types</th>
@@ -37,6 +42,8 @@
         </th>
 
         <td
+          hraFeature="open-biomarker-bottom-sheet"
+          hraClickEvent
           class="icon-cell"
           mat-cell
           *matCellDef="let element"
