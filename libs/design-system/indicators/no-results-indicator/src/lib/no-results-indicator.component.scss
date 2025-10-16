@@ -2,6 +2,8 @@
 @use '../../../../../../libs/design-system/styles/utils';
 
 :host {
+  display: block;
+
   .indicator-text {
     @include utils.use-font(label, large);
     color: vars.$secondary;
