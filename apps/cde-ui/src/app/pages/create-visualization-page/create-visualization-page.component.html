@@ -12,7 +12,11 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
-      <hra-info-button [richTooltipDescription]="tooltipDescriptions.uploadData"></hra-info-button>
+      <hra-info-button>
+        <hra-info-button-tooltip-content>
+          {{ tooltipDescriptions.uploadData }}
+        </hra-info-button-tooltip-content>
+      </hra-info-button>
       <div class="filler"></div>
       <a
         mat-button
@@ -70,7 +74,11 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
-      <hra-info-button [richTooltipDescription]="tooltipDescriptions.organizeData"></hra-info-button>
+      <hra-info-button>
+        <hra-info-button-tooltip-content>
+          {{ tooltipDescriptions.organizeData }}
+        </hra-info-button-tooltip-content>
+      </hra-info-button>
     </h2>
 
     @if (visualizationForm.controls.headers.disabled) {
@@ -174,7 +182,11 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
-      <hra-info-button [richTooltipDescription]="tooltipDescriptions.parameters"></hra-info-button>
+      <hra-info-button>
+        <hra-info-button-tooltip-content>
+          {{ tooltipDescriptions.parameters }}
+        </hra-info-button-tooltip-content>
+      </hra-info-button>
     </h2>
 
     @if (visualizationForm.controls.parameters.disabled) {
@@ -226,7 +238,11 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
-      <hra-info-button [richTooltipDescription]="tooltipDescriptions.metadata"></hra-info-button>
+      <hra-info-button>
+        <hra-info-button-tooltip-content>
+          {{ tooltipDescriptions.metadata }}
+        </hra-info-button-tooltip-content>
+      </hra-info-button>
     </h2>
 
     <div class="row">
@@ -297,7 +313,11 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
-      <hra-info-button [richTooltipDescription]="tooltipDescriptions.colorConfig"></hra-info-button>
+      <hra-info-button>
+        <hra-info-button-tooltip-content>
+          {{ tooltipDescriptions.colorConfig }}
+        </hra-info-button-tooltip-content>
+      </hra-info-button>
       <div class="filler"></div>
       <a
         mat-button
@@ -371,7 +391,11 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
-      <hra-info-button [richTooltipDescription]="tooltipDescriptions.visualize"></hra-info-button>
+      <hra-info-button>
+        <hra-info-button-tooltip-content>
+          {{ tooltipDescriptions.visualize }}
+        </hra-info-button-tooltip-content>
+      </hra-info-button>
     </h2>
 
     @if (!hasValidNodes() || !hasValidData()) {
