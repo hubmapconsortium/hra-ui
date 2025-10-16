@@ -1,0 +1,9 @@
+<mat-list-option togglePosition="before">
+  <span matListItemTitle>{{ title() }}</span>
+  @if (line2()) {
+    <span matListItemLine>{{ line2() }}</span>
+  }
+  @if (line3()) {
+    <span matListItemLine>{{ line3() }}</span>
+  }
+</mat-list-option>

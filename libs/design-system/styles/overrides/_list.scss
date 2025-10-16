@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+@mixin overrides() {
+  @include mat.list-overrides(
+    (
+      list-item-container-color: vars.$surface-container-low,
+      list-item-one-line-container-height: 5.0625rem,
+      list-item-two-line-container-height: 5.0625rem,
+      list-item-three-line-container-height: 5.0625rem,
+    )
+  );
+
+  .mdc-list-item__start {
+    margin-top: 0 !important;
+    align-self: center !important;
+  }
+}
