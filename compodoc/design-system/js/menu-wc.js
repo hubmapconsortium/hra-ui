@@ -762,6 +762,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/NavigationItemComponent.html" data-type="entity-link" >NavigationItemComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/NoResultsIndicatorComponent.html" data-type="entity-link" >NoResultsIndicatorComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/NotFoundPageComponent.html" data-type="entity-link" >NotFoundPageComponent</a>
                             </li>
                             <li class="link">

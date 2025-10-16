@@ -33,13 +33,13 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/ccf-shared.mjs"
     },
-    "./web-components": {
-      "types": "./web-components/index.d.ts",
-      "default": "./fesm2022/ccf-shared-web-components.mjs"
-    },
     "./rxjs-ext": {
       "types": "./rxjs-ext/index.d.ts",
       "default": "./fesm2022/ccf-shared-rxjs-ext.mjs"
+    },
+    "./web-components": {
+      "types": "./web-components/index.d.ts",
+      "default": "./fesm2022/ccf-shared-web-components.mjs"
     },
     "./rxjs-ext/operators": {
       "types": "./rxjs-ext/operators/index.d.ts",
