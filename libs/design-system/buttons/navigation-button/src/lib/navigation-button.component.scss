@@ -4,20 +4,32 @@
 :host {
   display: block;
 
+    &.icon_alignment {
+    a .content {
+      align-items: flex-start;
+    }
+  }
+
   a {
     display: block;
+    min-height: 2.75rem;
+    border-radius: 0.5rem;
     text-decoration: none;
     cursor: pointer;
+
+    &:focus-visible {
+      @include utils.inset-outline(vars.$primary);
+    }
 
     .content {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      width: 100%;
+      gap: 0.75rem;
 
       .leading-icon,
       .trailing-icon {
-        color: vars.$on-surface;
+        color: vars.$secondary;
+        flex-shrink: 0;
       }
 
       .indent {
@@ -28,18 +40,18 @@
 
       .text-container {
         flex: 1;
+        min-width: 0;
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
 
         .label {
-          color: vars.$on-surface;
-          @include utils.use-font('label', 'large');
+          color: vars.$secondary;
+          @include utils.use-font(label, medium);
         }
 
         .supporting-text {
-          color: vars.$on-surface-variant;
-          @include utils.use-font('body', 'medium');
+          color: vars.$primary;
+          @include utils.use-font(label, small);
         }
       }
     }
@@ -47,67 +59,31 @@
 
   &.hra-navigation-button-menu-item {
     a {
-      min-height: 2.75rem;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
 
       &:hover {
-        background-color: utils.with-alpha(vars.$on-surface, 8%);
+        background-color: utils.with-alpha(vars.$secondary, 8%);
       }
+    }
 
-      &:active {
-        background-color: utils.with-alpha(vars.$on-surface, 12%);
-      }
-
-      &:focus-visible {
-        @include utils.inset-outline(vars.$primary);
-      }
+    .text-container {
+      gap: 0.125rem;
     }
   }
 
   &.hra-navigation-button-cta {
     a {
-      min-height: 2.75rem;
-      padding: 0.75rem 1rem;
-      border: 0.063rem solid vars.$outline-variant;
-      border-radius: 0.75rem;
+      padding: 1rem;
       background-color: vars.$surface-container-low;
+      border: 0.0625rem solid vars.$outline-variant;
 
       &:hover {
-        background-color: vars.$surface-container;
-      }
-
-      &:active {
-        background-color: vars.$surface-container-high;
-      }
-
-      &:focus-visible {
-        @include utils.inset-outline(vars.$primary);
-      }
-
-      .content {
-        .label {
-          @include utils.use-font('label', 'large');
-          font-weight: 500;
-        }
+        background-color: utils.with-alpha(vars.$secondary, 8%);
       }
     }
-  }
 
-  &.hra-navigation-button-align-center {
-    a .content {
-      justify-content: center;
-    }
-  }
-
-  &.hra-navigation-button-align-top-left {
-    a .content {
-      justify-content: flex-start;
-      align-items: flex-start;
-
-      .text-container {
-        padding-top: 0.25rem;
-      }
+    .text-container {
+      gap: 0.25rem;
     }
   }
 }

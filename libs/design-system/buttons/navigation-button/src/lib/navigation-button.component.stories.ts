@@ -23,6 +23,7 @@ const meta: Meta<NavigationButtonComponent> = {
     supportingText: 'Supporting text',
     showLeadingIcon: true,
     showTrailingicon: true,
+    showIndent: false,
   },
 };
 export default meta;

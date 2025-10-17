@@ -1,9 +1,9 @@
-<a matRipple hraFeature="navigation-button" hraClickEvent [attr.href]="link()">
+<a matRipple matRippleColor="#201E3D1F" hraFeature="navigation-button" hraClickEvent [attr.href]="link()">
   <div class="content">
-    @if (showLeadingIcon()) {
-      <mat-icon class="leading-icon">info</mat-icon>
-    } @else {
+    @if (showIndent()) {
       <div class="indent"></div>
+    } @else if (showLeadingIcon()) {
+      <mat-icon class="leading-icon">info</mat-icon>
     }
 
     <div class="text-container">
@@ -14,7 +14,7 @@
     </div>
 
     @if (showTrailingicon()) {
-      <mat-icon class="trailing-icon">arrow_forward</mat-icon>
+      <mat-icon class="trailing-icon">arrow_right_alt</mat-icon>
     }
   </div>
 </a>

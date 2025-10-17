@@ -18,6 +18,7 @@ export type NavigationButtonVariant = 'cta' | 'menu-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': '"hra-navigation-button-" + variant()',
+    '[class.icon_alignment]': 'supportingText()',
   },
 })
 export class NavigationButtonComponent {
@@ -38,4 +39,7 @@ export class NavigationButtonComponent {
 
   /** Whether to show trailing icon */
   readonly showTrailingicon = input<boolean>();
+
+  /** Whether to show indent */
+  readonly showIndent = input<boolean>(false);
 }
