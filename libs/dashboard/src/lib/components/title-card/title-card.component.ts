@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
-import { InfoButtonComponent, InfoButtonTooltipContentComponent } from '@hra-ui/design-system/buttons/info-button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { z } from 'zod';
 
 /** Type definition of Title Card */
@@ -16,7 +16,7 @@ export const TITLE_CARD_DEF = z.object({
 /** Title card component, renders title, tooltip and contents inside the card */
 @Component({
   selector: 'hra-title-card',
-  imports: [HraCommonModule, MatIconModule, InfoButtonComponent, InfoButtonTooltipContentComponent],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule],
   templateUrl: './title-card.component.html',
   styleUrl: './title-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
