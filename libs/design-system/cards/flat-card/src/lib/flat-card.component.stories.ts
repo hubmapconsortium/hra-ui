@@ -64,13 +64,10 @@ export const Default: Story = {
           color: vars.$tertiary;
       }
 
-      hra-flat-card-actions {
-        width: 100%;
-      }
-
       .buttons {
         display: flex;
         justify-content: space-between;
+        width: 100%;
       }`,
     ],
   }),

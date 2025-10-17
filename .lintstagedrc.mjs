@@ -1,8 +1,7 @@
-const lint = 'npx nx affected:lint --uncommitted --fix';
-const format = 'npx nx format:write --uncommitted';
+const lint = 'npx nx affected:lint --fix --files';
+const format = 'npx nx format:write --files';
 
 export default {
-  // TODO add linting for css/scss
-  '*.{js,mjs,cjs,ts,html}': [lint, format],
-  '*.{md,json,yml,yaml}': format,
+  '*.{js,mjs,cjs,ts,mts,cts,html}': [lint, format],
+  '*.{css,scss,md,json,yml,yaml}': format,
 };
