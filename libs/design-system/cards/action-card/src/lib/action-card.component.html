@@ -1,70 +1,33 @@
-@if (variant() === 'gallery') {
-  <!-- Gallery Variant -->
-  @if (image(); as src) {
-    <div class="header">
-      <img class="image" [attr.src]="src | assetUrl" [alt]="imageAlt()" />
-    </div>
-  }
-  <div class="content">
-    @if (date()) {
-      <div class="date">{{ date() }}</div>
+@if (variant() !== 'outlined-with-icons') {
+  <div class="header">
+    @if (image(); as src) {
+      <img class="image" [attr.src]="src | assetUrl" alt="" />
     }
-    @if (taglineUrl()) {
-      <a
-        class="tagline-link"
-        [href]="taglineUrl()"
-        [target]="taglineExternal() ? '_blank' : '_self'"
-        [rel]="taglineExternal() ? 'noopener noreferrer' : null"
-      >
-        {{ tagline() }}
-      </a>
-    } @else {
-      <div class="tagline">{{ tagline() }}</div>
-    }
-    @if (categoryTag() || projectTag()) {
-      <div class="tags">
-        @if (categoryTag()) {
-          <span class="tag">{{ categoryTag() }}</span>
-        }
-        @if (projectTag()) {
-          <span class="tag">{{ projectTag() }}</span>
-        }
-      </div>
-    }
-  </div>
-} @else {
-  <!-- Other Variants -->
-  @if (variant() !== 'outlined-with-icons') {
-    <div class="header">
-      @if (image(); as src) {
-        <img class="image" [attr.src]="src | assetUrl" alt="" />
-      }
-    </div>
-  }
-
-  @if (variant() === 'outlined' && image()) {
-    <mat-divider />
-  }
-
-  <div class="content">
-    @if (variant() === 'elevated') {
-      <div class="subtagline">{{ subtagline() }}</div>
-    }
-    <div class="tagline">
-      @for (icon of icons(); track icon) {
-        <hra-icon class="icon" [icon]="icon" />
-      }
-      <span>{{ tagline() }}</span>
-    </div>
-
-    <div class="description">
-      <ng-content />
-    </div>
-
-    <div class="actions">
-      <ng-content select="hra-action-card-action:not([alignment='right'])" />
-      <div class="spacer"></div>
-      <ng-content select="hra-action-card-action[alignment='right']" />
-    </div>
   </div>
 }
+
+@if (variant() === 'outlined' && image()) {
+  <mat-divider />
+}
+
+<div class="content">
+  @if (variant() === 'elevated') {
+    <div class="subtagline">{{ subtagline() }}</div>
+  }
+  <div class="tagline">
+    @for (icon of icons(); track icon) {
+      <hra-icon class="icon" [icon]="icon" />
+    }
+    <span>{{ tagline() }}</span>
+  </div>
+
+  <div class="description">
+    <ng-content />
+  </div>
+
+  <div class="actions">
+    <ng-content select="hra-action-card-action:not([alignment='right'])" />
+    <div class="spacer"></div>
+    <ng-content select="hra-action-card-action[alignment='right']" />
+  </div>
+</div>

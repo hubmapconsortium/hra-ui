@@ -42,16 +42,4 @@ export class ActionCardComponent {
   readonly image = input<string>();
   /** Icons shown for `outlined-with-icons` cards */
   readonly icons = input([], { transform: coerceIconList });
-  /** Gallery variant: date to display */
-  readonly date = input<string>();
-  /** Gallery variant: URL for the tagline link */
-  readonly taglineUrl = input<string>();
-  /** Gallery variant: whether the link opens in new tab */
-  readonly taglineExternal = input<boolean>(false);
-  /** Gallery variant: category tag */
-  readonly categoryTag = input<string>();
-  /** Gallery variant: project tag */
-  readonly projectTag = input<string>();
-  /** Gallery variant: alt text for image */
-  readonly imageAlt = input<string>('');
 }

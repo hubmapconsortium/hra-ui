@@ -39,44 +39,4 @@ describe('ActionCardComponent', () => {
     const button2 = screen.getByRole('button', { name: 'Action 2' });
     expect(button2.parentElement?.previousElementSibling).toHaveClass('spacer');
   });
-
-  describe('Gallery variant', () => {
-    it('should render gallery variant with all inputs', async () => {
-      await render(ActionCardComponent, {
-        inputs: {
-          variant: 'gallery',
-          tagline: 'Gallery Card Title',
-          date: 'January 15, 2025',
-          taglineUrl: 'https://example.com',
-          taglineExternal: true,
-          categoryTag: 'Research',
-          projectTag: 'HRA',
-          image: 'path/to/image.jpg',
-          imageAlt: 'Gallery image description',
-        },
-      });
-
-      expect(screen.getByText('January 15, 2025')).toBeInTheDocument();
-      expect(screen.getByText('Gallery Card Title')).toBeInTheDocument();
-      expect(screen.getByText('Research')).toBeInTheDocument();
-      expect(screen.getByText('HRA')).toBeInTheDocument();
-      expect(screen.getByRole('img')).toHaveAttribute('alt', 'Gallery image description');
-    });
-
-    it('should render tagline as link with correct target when taglineUrl is provided', async () => {
-      await render(ActionCardComponent, {
-        inputs: {
-          variant: 'gallery',
-          tagline: 'External Link',
-          taglineUrl: 'https://example.com',
-          taglineExternal: true,
-        },
-      });
-
-      const link = screen.getByRole('link', { name: 'External Link' });
-      expect(link).toHaveAttribute('href', 'https://example.com');
-      expect(link).toHaveAttribute('target', '_blank');
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-    });
-  });
 });
