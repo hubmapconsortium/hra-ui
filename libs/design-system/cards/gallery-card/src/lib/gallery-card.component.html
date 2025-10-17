@@ -1,0 +1,32 @@
+@if (image(); as src) {
+  <div class="header">
+    <img class="image" [attr.src]="src | assetUrl" [alt]="imageAlt()" />
+  </div>
+}
+<div class="content">
+  @if (date()) {
+    <div class="date">{{ date() }}</div>
+  }
+  @if (taglineUrl()) {
+    <a
+      class="tagline-link"
+      [href]="taglineUrl()"
+      [target]="taglineExternal() ? '_blank' : '_self'"
+      [rel]="taglineExternal() ? 'noopener noreferrer' : null"
+    >
+      {{ tagline() }}
+    </a>
+  } @else {
+    <div class="tagline">{{ tagline() }}</div>
+  }
+  @if (categoryTag() || projectTag()) {
+    <div class="tags">
+      @if (categoryTag()) {
+        <span class="tag">{{ categoryTag() }}</span>
+      }
+      @if (projectTag()) {
+        <span class="tag">{{ projectTag() }}</span>
+      }
+    </div>
+  }
+</div>
