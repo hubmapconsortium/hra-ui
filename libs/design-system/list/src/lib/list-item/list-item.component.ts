@@ -3,8 +3,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListItem, MatListItemLine, MatListItemTitle, MatListOption } from '@angular/material/list';
 
-type ListItemSelectionType = 'none' | 'single' | 'multiple' | 'switch';
-
 /**
  * List Item Component
  */

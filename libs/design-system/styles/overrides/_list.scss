@@ -6,7 +6,10 @@
   @include mat.list-overrides(
     (
       list-item-container-color: vars.$surface-container-low,
-      list-item-one-line-container-height: 5.0625rem,
+      list-item-hover-state-layer-color: vars.$secondary,
+      list-item-focus-state-layer-color: vars.$secondary,
+
+      list-item-one-line-container-height: 3.5rem,
       list-item-two-line-container-height: 5.0625rem,
       list-item-three-line-container-height: 5.0625rem,
     )
@@ -14,6 +17,7 @@
 
   .mdc-list-item__start {
     margin-top: 0 !important;
+    margin-right: 0.75rem !important;
     align-self: center !important;
   }
 }

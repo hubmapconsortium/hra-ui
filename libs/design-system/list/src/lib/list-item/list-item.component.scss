@@ -2,7 +2,7 @@
 @use '../../../../styles/vars';
 
 :host {
-  padding: 0;
+  padding: 0 !important;
 
   [matListItemTitle] {
     @include utils.use-font(label, medium);
