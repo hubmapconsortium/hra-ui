@@ -177,20 +177,6 @@ export class CreateVisualizationPageComponent {
   /** Whether to show visualize info tooltip */
   visualizeInfoOpen = false;
 
-  /** Tooltip descriptions for each section */
-  readonly tooltipDescriptions = {
-    uploadData:
-      'Use the template to format single-cell spatial feature tables for exploration. The cell type column can include damage and proliferation markers.',
-    organizeData: 'Verify column headers and edit as needed. Select optional column headers.',
-    parameters:
-      'The anchor cell type represents the cell type to which the nearest cell distance distributions should be computed and visualized. Euclidian distance is used to compute the distance between two cells. "Endothelial" is used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell type label is used as the anchor cell type.\n\nConfigure the distance threshold to modify visualizations for analysis.\n\nPixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already in micrometers.',
-    metadata:
-      'Information in these fields will not change the visualization output. Metadata may be helpful for taking screenshots of the uploaded data and resulting visualizations in the Visualization App.',
-    colorConfig:
-      'Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors may be changed individually while exploring the visualization in the Visualization App.',
-    visualize: 'Data on the Create Visualization page cannot be modified after a visualization is generated.',
-  };
-
   /** Cell types included in uploaded data */
   cellTypes = [DEFAULT_NODE_TARGET_SELECTOR];
 
