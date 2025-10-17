@@ -16,7 +16,7 @@
   @include mat.button-overrides(
     (
       text-state-layer-color: vars.$secondary,
-      text-hover-state-layer-opacity: 0.12,
+      text-hover-state-layer-opacity: 0,
     )
   );
 
@@ -47,7 +47,6 @@
       width: 100%;
       aspect-ratio: 16 / 9;
       max-width: 11.75rem;
-      border: 0.0625rem solid vars.$outline;
       border-radius: 0.75rem;
       object-fit: cover;
       transition: 0.3s ease-in-out;
