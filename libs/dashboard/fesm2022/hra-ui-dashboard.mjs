@@ -12,8 +12,7 @@ import * as i1 from '@hra-ui/common/analytics';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import * as i3 from '@angular/material/button';
 import * as i4 from '@hra-ui/design-system/buttons/button';
-import * as i3$1 from '@angular/cdk/overlay';
-import { OverlayModule } from '@angular/cdk/overlay';
+import * as i2$2 from '@hra-ui/design-system/buttons/info-button';
 import embed from 'vega-embed';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -276,43 +275,18 @@ const TITLE_CARD_DEF = z.object({
     title: z.string(),
     tooltip: z.string(),
 });
-/** Tooltip positions definition */
-const TOOLTIP_POSITIONS = [
-    {
-        originX: 'start',
-        originY: 'bottom',
-        overlayX: 'start',
-        overlayY: 'top',
-    },
-    {
-        originX: 'center',
-        originY: 'bottom',
-        overlayX: 'center',
-        overlayY: 'top',
-    },
-    {
-        originX: 'end',
-        originY: 'bottom',
-        overlayX: 'end',
-        overlayY: 'top',
-    },
-];
 /** Title card component, renders title, tooltip and contents inside the card */
 class TitleCardComponent {
     constructor() {
         /** Input for title card component */
         this.spec = input.required(...(ngDevMode ? [{ debugName: "spec" }] : []));
-        /** Setting the tooltip positions  */
-        this.tooltipPositions = TOOLTIP_POSITIONS;
-        /** Flag to check if tooltip is open */
-        this.tooltipOpen = false;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: TitleCardComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "20.3.3", type: TitleCardComponent, isStandalone: true, selector: "hra-title-card", inputs: { spec: { classPropertyName: "spec", publicName: "spec", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0, template: "<h3 class=\"title\" hraFeature=\"title-card\">\n  {{ spec().title }}\n  <mat-icon\n    hraFeature=\"info\"\n    [hraHoverEvent]=\"{ title: spec().title }\"\n    class=\"material-symbols-rounded\"\n    cdkOverlayOrigin\n    #resetTrigger=\"cdkOverlayOrigin\"\n    (mouseover)=\"tooltipOpen = true\"\n    (mouseout)=\"tooltipOpen = false\"\n    >info</mat-icon\n  >\n</h3>\n\n<ng-template\n  cdkConnectedOverlay\n  [cdkConnectedOverlayPanelClass]=\"['tooltip-panel']\"\n  [cdkConnectedOverlayOrigin]=\"resetTrigger\"\n  [cdkConnectedOverlayPositions]=\"tooltipPositions\"\n  [cdkConnectedOverlayOpen]=\"tooltipOpen\"\n  [cdkConnectedOverlayOffsetX]=\"5\"\n>\n  <div class=\"mat-caption\">\n    {{ spec().tooltip }}\n  </div>\n</ng-template>\n\n<div class=\"content\">\n  <ng-content></ng-content>\n</div>\n", styles: [":host{display:inline-block;background-color:#fff;padding:.75rem;box-shadow:0 5px 16px #201e3d3d;border-radius:1rem;min-width:18rem}:host .title{font:var(--mat-sys-title-large);letter-spacing:var(--mat-sys-title-large-tracking);color:var(--mat-sys-on-background);display:inline-block;margin-bottom:.75rem}:host mat-icon{vertical-align:middle;cursor:pointer}@media (max-width: 1440px){:host .title{font-size:1.25rem;line-height:1.875rem}}@media (max-width: 1280px){:host .title{font-size:.875rem;line-height:1.5rem}:host .mat-icon{height:1rem;width:1rem;font-size:1rem;vertical-align:middle}}::ng-deep .tooltip-panel{background-color:#fff;border-radius:1rem;padding:1rem;color:#26262c;box-shadow:0 5px 16px #201e3d3d;max-width:21rem}::ng-deep .tooltip-panel .mat-caption{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"], dependencies: [{ kind: "ngmodule", type: HraCommonModule }, { kind: "directive", type: i1.FeatureDirective, selector: "[hraFeature]", inputs: ["hraFeature"] }, { kind: "directive", type: i1.HoverEventDirective, selector: "[hraHoverEvent]", inputs: ["hraHoverEvent", "hraHoverEventTriggerOn", "hraHoverEventDisabled"], exportAs: ["hraHoverEvent"] }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i2$1.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "ngmodule", type: OverlayModule }, { kind: "directive", type: i3$1.CdkConnectedOverlay, selector: "[cdk-connected-overlay], [connected-overlay], [cdkConnectedOverlay]", inputs: ["cdkConnectedOverlayOrigin", "cdkConnectedOverlayPositions", "cdkConnectedOverlayPositionStrategy", "cdkConnectedOverlayOffsetX", "cdkConnectedOverlayOffsetY", "cdkConnectedOverlayWidth", "cdkConnectedOverlayHeight", "cdkConnectedOverlayMinWidth", "cdkConnectedOverlayMinHeight", "cdkConnectedOverlayBackdropClass", "cdkConnectedOverlayPanelClass", "cdkConnectedOverlayViewportMargin", "cdkConnectedOverlayScrollStrategy", "cdkConnectedOverlayOpen", "cdkConnectedOverlayDisableClose", "cdkConnectedOverlayTransformOriginOn", "cdkConnectedOverlayHasBackdrop", "cdkConnectedOverlayLockPosition", "cdkConnectedOverlayFlexibleDimensions", "cdkConnectedOverlayGrowAfterOpen", "cdkConnectedOverlayPush", "cdkConnectedOverlayDisposeOnNavigation"], outputs: ["backdropClick", "positionChange", "attach", "detach", "overlayKeydown", "overlayOutsideClick"], exportAs: ["cdkConnectedOverlay"] }, { kind: "directive", type: i3$1.CdkOverlayOrigin, selector: "[cdk-overlay-origin], [overlay-origin], [cdkOverlayOrigin]", exportAs: ["cdkOverlayOrigin"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "20.3.3", type: TitleCardComponent, isStandalone: true, selector: "hra-title-card", inputs: { spec: { classPropertyName: "spec", publicName: "spec", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0, template: "<h3 class=\"title\" hraFeature=\"title-card\">\n  {{ spec().title }}\n  <hra-info-button>\n    <hra-info-button-tooltip-content>\n      {{ spec().tooltip }}\n    </hra-info-button-tooltip-content>\n  </hra-info-button>\n</h3>\n\n<div class=\"content\">\n  <ng-content></ng-content>\n</div>\n", styles: [":host{display:inline-block;background-color:#fff;padding:.75rem;box-shadow:0 5px 16px #201e3d3d;border-radius:1rem;min-width:18rem}:host .title{font:var(--mat-sys-title-large);letter-spacing:var(--mat-sys-title-large-tracking);color:var(--mat-sys-on-background);display:flex;align-items:center;gap:.25rem;margin-bottom:.75rem}:host mat-icon{vertical-align:middle;cursor:pointer}@media (max-width: 1440px){:host .title{font-size:1.25rem;line-height:1.875rem}}@media (max-width: 1280px){:host .title{font-size:.875rem;line-height:1.5rem}:host .mat-icon{height:1rem;width:1rem;font-size:1rem;vertical-align:middle}}::ng-deep .tooltip-panel{background-color:#fff;border-radius:1rem;padding:1rem;color:#26262c;box-shadow:0 5px 16px #201e3d3d;max-width:21rem}::ng-deep .tooltip-panel .mat-caption{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"], dependencies: [{ kind: "ngmodule", type: HraCommonModule }, { kind: "directive", type: i1.FeatureDirective, selector: "[hraFeature]", inputs: ["hraFeature"] }, { kind: "ngmodule", type: MatIconModule }, { kind: "ngmodule", type: ButtonsModule }, { kind: "component", type: i2$2.InfoButtonComponent, selector: "hra-info-button" }, { kind: "component", type: i2$2.InfoButtonTooltipContentComponent, selector: "hra-info-button-tooltip-content" }], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: TitleCardComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-title-card', imports: [HraCommonModule, MatIconModule, OverlayModule], changeDetection: ChangeDetectionStrategy.OnPush, template: "<h3 class=\"title\" hraFeature=\"title-card\">\n  {{ spec().title }}\n  <mat-icon\n    hraFeature=\"info\"\n    [hraHoverEvent]=\"{ title: spec().title }\"\n    class=\"material-symbols-rounded\"\n    cdkOverlayOrigin\n    #resetTrigger=\"cdkOverlayOrigin\"\n    (mouseover)=\"tooltipOpen = true\"\n    (mouseout)=\"tooltipOpen = false\"\n    >info</mat-icon\n  >\n</h3>\n\n<ng-template\n  cdkConnectedOverlay\n  [cdkConnectedOverlayPanelClass]=\"['tooltip-panel']\"\n  [cdkConnectedOverlayOrigin]=\"resetTrigger\"\n  [cdkConnectedOverlayPositions]=\"tooltipPositions\"\n  [cdkConnectedOverlayOpen]=\"tooltipOpen\"\n  [cdkConnectedOverlayOffsetX]=\"5\"\n>\n  <div class=\"mat-caption\">\n    {{ spec().tooltip }}\n  </div>\n</ng-template>\n\n<div class=\"content\">\n  <ng-content></ng-content>\n</div>\n", styles: [":host{display:inline-block;background-color:#fff;padding:.75rem;box-shadow:0 5px 16px #201e3d3d;border-radius:1rem;min-width:18rem}:host .title{font:var(--mat-sys-title-large);letter-spacing:var(--mat-sys-title-large-tracking);color:var(--mat-sys-on-background);display:inline-block;margin-bottom:.75rem}:host mat-icon{vertical-align:middle;cursor:pointer}@media (max-width: 1440px){:host .title{font-size:1.25rem;line-height:1.875rem}}@media (max-width: 1280px){:host .title{font-size:.875rem;line-height:1.5rem}:host .mat-icon{height:1rem;width:1rem;font-size:1rem;vertical-align:middle}}::ng-deep .tooltip-panel{background-color:#fff;border-radius:1rem;padding:1rem;color:#26262c;box-shadow:0 5px 16px #201e3d3d;max-width:21rem}::ng-deep .tooltip-panel .mat-caption{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"] }]
+            args: [{ selector: 'hra-title-card', imports: [HraCommonModule, MatIconModule, ButtonsModule], changeDetection: ChangeDetectionStrategy.OnPush, template: "<h3 class=\"title\" hraFeature=\"title-card\">\n  {{ spec().title }}\n  <hra-info-button>\n    <hra-info-button-tooltip-content>\n      {{ spec().tooltip }}\n    </hra-info-button-tooltip-content>\n  </hra-info-button>\n</h3>\n\n<div class=\"content\">\n  <ng-content></ng-content>\n</div>\n", styles: [":host{display:inline-block;background-color:#fff;padding:.75rem;box-shadow:0 5px 16px #201e3d3d;border-radius:1rem;min-width:18rem}:host .title{font:var(--mat-sys-title-large);letter-spacing:var(--mat-sys-title-large-tracking);color:var(--mat-sys-on-background);display:flex;align-items:center;gap:.25rem;margin-bottom:.75rem}:host mat-icon{vertical-align:middle;cursor:pointer}@media (max-width: 1440px){:host .title{font-size:1.25rem;line-height:1.875rem}}@media (max-width: 1280px){:host .title{font-size:.875rem;line-height:1.5rem}:host .mat-icon{height:1rem;width:1rem;font-size:1rem;vertical-align:middle}}::ng-deep .tooltip-panel{background-color:#fff;border-radius:1rem;padding:1rem;color:#26262c;box-shadow:0 5px 16px #201e3d3d;max-width:21rem}::ng-deep .tooltip-panel .mat-caption{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"] }]
         }] });
 
 /** Image container component, renders image inside a card */

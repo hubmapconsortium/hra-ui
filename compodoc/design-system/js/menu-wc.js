@@ -82,13 +82,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ButtonsModule.html" data-type="entity-link" >ButtonsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-ButtonsModule-d5f0c526b536d37c3631e6929af71e8403a09f4f99e8e0809b84a4f44da20757c00a9b20105ae92c6af8169c05065b5f29437c4282d2ca5f5125854d29537d74"' : 'data-bs-target="#xs-components-links-module-ButtonsModule-d5f0c526b536d37c3631e6929af71e8403a09f4f99e8e0809b84a4f44da20757c00a9b20105ae92c6af8169c05065b5f29437c4282d2ca5f5125854d29537d74"' }>
+                                            'data-bs-target="#components-links-module-ButtonsModule-62066c9b53d551ff3a24b4d9cc66ef94dfea1ce2a2d0e50fed92f4957db260758626fd05d85357cafd6714224f8f5ae4fd1a888bf9bd2539bf1a79c1f863e4dd"' : 'data-bs-target="#xs-components-links-module-ButtonsModule-62066c9b53d551ff3a24b4d9cc66ef94dfea1ce2a2d0e50fed92f4957db260758626fd05d85357cafd6714224f8f5ae4fd1a888bf9bd2539bf1a79c1f863e4dd"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ButtonsModule-d5f0c526b536d37c3631e6929af71e8403a09f4f99e8e0809b84a4f44da20757c00a9b20105ae92c6af8169c05065b5f29437c4282d2ca5f5125854d29537d74"' :
-                                            'id="xs-components-links-module-ButtonsModule-d5f0c526b536d37c3631e6929af71e8403a09f4f99e8e0809b84a4f44da20757c00a9b20105ae92c6af8169c05065b5f29437c4282d2ca5f5125854d29537d74"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ButtonsModule-62066c9b53d551ff3a24b4d9cc66ef94dfea1ce2a2d0e50fed92f4957db260758626fd05d85357cafd6714224f8f5ae4fd1a888bf9bd2539bf1a79c1f863e4dd"' :
+                                            'id="xs-components-links-module-ButtonsModule-62066c9b53d551ff3a24b4d9cc66ef94dfea1ce2a2d0e50fed92f4957db260758626fd05d85357cafd6714224f8f5ae4fd1a888bf9bd2539bf1a79c1f863e4dd"' }>
                                             <li class="link">
                                                 <a href="components/AppNavButtonComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppNavButtonComponent</a>
                                             </li>
@@ -111,13 +111,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-ButtonsModule-d5f0c526b536d37c3631e6929af71e8403a09f4f99e8e0809b84a4f44da20757c00a9b20105ae92c6af8169c05065b5f29437c4282d2ca5f5125854d29537d74"' : 'data-bs-target="#xs-directives-links-module-ButtonsModule-d5f0c526b536d37c3631e6929af71e8403a09f4f99e8e0809b84a4f44da20757c00a9b20105ae92c6af8169c05065b5f29437c4282d2ca5f5125854d29537d74"' }>
+                                        'data-bs-target="#directives-links-module-ButtonsModule-62066c9b53d551ff3a24b4d9cc66ef94dfea1ce2a2d0e50fed92f4957db260758626fd05d85357cafd6714224f8f5ae4fd1a888bf9bd2539bf1a79c1f863e4dd"' : 'data-bs-target="#xs-directives-links-module-ButtonsModule-62066c9b53d551ff3a24b4d9cc66ef94dfea1ce2a2d0e50fed92f4957db260758626fd05d85357cafd6714224f8f5ae4fd1a888bf9bd2539bf1a79c1f863e4dd"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ButtonsModule-d5f0c526b536d37c3631e6929af71e8403a09f4f99e8e0809b84a4f44da20757c00a9b20105ae92c6af8169c05065b5f29437c4282d2ca5f5125854d29537d74"' :
-                                        'id="xs-directives-links-module-ButtonsModule-d5f0c526b536d37c3631e6929af71e8403a09f4f99e8e0809b84a4f44da20757c00a9b20105ae92c6af8169c05065b5f29437c4282d2ca5f5125854d29537d74"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ButtonsModule-62066c9b53d551ff3a24b4d9cc66ef94dfea1ce2a2d0e50fed92f4957db260758626fd05d85357cafd6714224f8f5ae4fd1a888bf9bd2539bf1a79c1f863e4dd"' :
+                                        'id="xs-directives-links-module-ButtonsModule-62066c9b53d551ff3a24b4d9cc66ef94dfea1ce2a2d0e50fed92f4957db260758626fd05d85357cafd6714224f8f5ae4fd1a888bf9bd2539bf1a79c1f863e4dd"' }>
                                         <li class="link">
                                             <a href="directives/ButtonSizeDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ButtonSizeDirective</a>
                                         </li>
@@ -730,6 +730,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/ImageComponent.html" data-type="entity-link" >ImageComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/InfoButtonComponent.html" data-type="entity-link" >InfoButtonComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/InfoButtonTooltipContentComponent.html" data-type="entity-link" >InfoButtonTooltipContentComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/InfoButtonTooltipTaglineComponent.html" data-type="entity-link" >InfoButtonTooltipTaglineComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/InfoMessageIndicatorComponent.html" data-type="entity-link" >InfoMessageIndicatorComponent</a>
