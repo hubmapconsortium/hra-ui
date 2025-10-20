@@ -1,0 +1,45 @@
+<div class="filter-container">
+  <div class="top-row">
+    @if (tooltip()) {
+      <hra-info-button class="info-icon">
+        <hra-info-button-tooltip-tagline>
+          {{ label() }}
+        </hra-info-button-tooltip-tagline>
+        <hra-info-button-tooltip-content>
+          <p>{{ tooltip()!.description }}</p>
+          @if (tooltip()!.actionText && tooltip()!.actionUrl) {
+            <button mat-button color="accent" (click)="onTooltipActionClick()">
+              {{ tooltip()!.actionText }}
+            </button>
+          }
+        </hra-info-button-tooltip-content>
+      </hra-info-button>
+    }
+    <button
+      mat-button
+      hraButtonVariant="secondary"
+      class="category-button"
+      color="primary"
+      (click)="onFilterButtonClick()"
+    >
+      {{ label() }}
+    </button>
+  </div>
+
+  @if (chips().length > 0) {
+    <mat-chip-set class="chips-container">
+      @for (chip of chips(); track chip.id) {
+        <mat-chip (removed)="removeChip(chip)" disableRipple>
+          {{ chip.label }}
+          <button matChipRemove [attr.aria-label]="'Remove ' + chip.label">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-chip>
+      }
+    </mat-chip-set>
+  }
+
+  @if (showDivider()) {
+    <mat-divider></mat-divider>
+  }
+</div>
