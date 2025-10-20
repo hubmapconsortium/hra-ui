@@ -73,21 +73,10 @@ export const Group: Story = {
 export const WithoutCloseButton: Story = {
   render: () => ({
     template: `
-      <mat-chip-set aria-label="Chip selection">
-        <mat-chip>Option 1</mat-chip>
-        <mat-chip>Option 2</mat-chip>
-        <mat-chip>Option 3</mat-chip>
-      </mat-chip-set>
-    `,
-  }),
-};
-
-export const WithoutCloseButtonDisabled: Story = {
-  render: () => ({
-    template: `
-      <mat-chip-set aria-label="Disabled chips">
-        <mat-chip disabled>Disabled Chip</mat-chip>
-        <mat-chip>Enabled Chip</mat-chip>
+      <mat-chip-set aria-label="Category tags">
+        <mat-chip class="stateless-chip stateless-chip-small">Small</mat-chip>
+        <mat-chip class="stateless-chip stateless-chip-medium">Medium</mat-chip>
+        <mat-chip class="stateless-chip stateless-chip-large">Large</mat-chip>
       </mat-chip-set>
     `,
   }),
