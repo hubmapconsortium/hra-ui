@@ -18,4 +18,40 @@
       selected-focus-state-layer-color: vars.$secondary,
     )
   );
+
+  // Stateless chip variant (tag)
+  .stateless-chip {
+    pointer-events: none !important;
+    cursor: default !important;
+
+    .mdc-evolution-chip__action {
+      pointer-events: none !important;
+    }
+
+    // Remove all state layer effects
+    &:hover .mdc-evolution-chip__action::before,
+    &:focus .mdc-evolution-chip__action::before,
+    .mdc-evolution-chip__action:hover::before,
+    .mdc-evolution-chip__action:focus::before {
+      opacity: 0 !important;
+    }
+
+    // Remove ripple effect
+    .mdc-evolution-chip__ripple {
+      display: none !important;
+    }
+  }
+
+  // Label size variants for stateless chips
+  .stateless-chip-small {
+    @include utils.use-font(label, small);
+  }
+
+  .stateless-chip-medium {
+    @include utils.use-font(label, medium);
+  }
+
+  .stateless-chip-large {
+    @include utils.use-font(label, large);
+  }
 }
