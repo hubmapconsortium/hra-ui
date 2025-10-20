@@ -70,7 +70,7 @@ export const Group: Story = {
   }),
 };
 
-export const WithoutCloseButton: Story = {
+export const Stateless: Story = {
   render: () => ({
     template: `
       <mat-chip-set aria-label="Category tags">
