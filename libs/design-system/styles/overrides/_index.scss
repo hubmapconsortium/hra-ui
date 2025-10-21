@@ -6,6 +6,7 @@
 @forward './icon-button' as icon-button-*;
 @forward './list' as list-*;
 @forward './menu' as menu-*;
+@forward './progress-bar' as progress-bar-*;
 @forward './radio-button' as radio-button-*;
 @forward './select' as select-*;
 @forward './slider' as slider-*;
@@ -21,6 +22,7 @@
   @include icon-button-overrides();
   @include list-overrides();
   @include menu-overrides();
+  @include progress-bar-overrides();
   @include radio-button-overrides();
   @include select-overrides();
   @include slider-overrides();
