@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
@@ -16,7 +16,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 })
 export class ContentButtonComponent {
   /** Image url */
-  readonly image = input<string>();
+  readonly imageSrc = input.required<string>();
   /** Date to display on card */
   readonly date = input.required<string>();
   /** Card tagline (less than 2 lines or truncated) */
@@ -26,5 +26,5 @@ export class ContentButtonComponent {
   /** Url for the button */
   readonly link = input.required<string>();
   /** Whether the link is external */
-  readonly external = input<boolean>(true);
+  readonly external = input(true, { transform: booleanAttribute });
 }

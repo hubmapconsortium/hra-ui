@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
-@use '../../../../../styles/utils';
-@use '../../../../../styles/vars';
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
 
 :host {
   display: flex;
@@ -66,17 +66,14 @@
     }
 
     .tagline {
-      display: -webkit-box;
-      line-clamp: 2;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      @include utils.line-clamp(2);
       @include utils.use-font(label, large);
       color: vars.$primary;
       margin-bottom: 1rem;
     }
   }
 
+  // TODO: Remove once we have globally styled chips
   @include mat.chips-overrides(
     (
       elevated-container-color: vars.$surface-container-low,

@@ -10,7 +10,7 @@
 
 <ng-template #content>
   <div class="header">
-    @if (image(); as src) {
+    @if (imageSrc(); as src) {
       <img class="image" [attr.src]="src | assetUrl" alt="" />
     }
   </div>

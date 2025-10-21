@@ -2,7 +2,7 @@ import { type Meta, type StoryObj } from '@storybook/angular';
 import { ContentButtonComponent } from './content-button.component';
 
 const meta: Meta<ContentButtonComponent> = {
-  title: 'Design System/Cards/Action Card/Content Button',
+  title: 'Design System/Cards/Content Button',
   component: ContentButtonComponent,
   parameters: {
     design: {
@@ -11,7 +11,7 @@ const meta: Meta<ContentButtonComponent> = {
     },
   },
   args: {
-    image: 'assets/ui-images/placeholder.png',
+    imageSrc: 'assets/ui-images/placeholder.png',
     date: 'September 20, 2025',
     tagline: 'Card tagline that is less than 100 characters or truncated.',
     tags: ['Label', 'Longer label'],
