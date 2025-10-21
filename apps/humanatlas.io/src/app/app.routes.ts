@@ -198,7 +198,7 @@ export const appRoutes: Route[] = [
     path: 'privacy-policy',
     component: AppLayoutComponent,
     data: {
-      showNavigation: false,
+      hideNavigation: true,
     },
     resolve: {
       data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', AppLayoutDataSchema),
