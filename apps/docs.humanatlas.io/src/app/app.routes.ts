@@ -1,11 +1,10 @@
 import { Route } from '@angular/router';
-import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
-import { AppLayoutComponent } from '@hra-ui/application';
+import { AppLayoutComponent, AppLayoutDataSchema } from '@hra-ui/application';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -27,7 +26,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/apps-overview-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/apps-overview-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -37,7 +36,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/introduction-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/introduction-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -47,7 +46,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/api-reference-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/api-reference-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -57,7 +56,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/apps-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/apps-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -67,7 +66,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/changelog-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/changelog-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -77,7 +76,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/design-system-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/design-system-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -87,7 +86,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/digital-objects-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/digital-objects-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -97,7 +96,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/faqs/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/faqs/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -107,7 +106,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/knowledge-graph-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -117,7 +116,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/support-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/support-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -127,7 +126,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/tutorials-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/tutorials-page/data.yaml', AppLayoutDataSchema),
     },
   },
   {
@@ -137,7 +136,7 @@ export const appRoutes: Route[] = [
       baseUrl: 'https://docs.humanatlas.io/',
     },
     resolve: {
-      data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', ContentPageDataSchema),
+      data: createYamlSpecResolver('assets/content/web-components-page/data.yaml', AppLayoutDataSchema),
     },
   },
 
