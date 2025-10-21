@@ -6,6 +6,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Menu, MenuGroup, MenuItem, MenuSubGroup } from '../types/menus.schema';
+import { Location } from '@angular/common';
 
 /** Display modes of the menu content component */
 export type MenuContentVariant = 'desktop' | 'mobile';
@@ -95,6 +96,6 @@ export class MenuContentComponent {
       return { isAbsolute: true, value: url };
     }
 
-    return { isAbsolute: false, value: this.router.parseUrl(resolved) };
+    return { isAbsolute: false, value: this.router.parseUrl(Location.stripTrailingSlash(resolved)) };
   }
 }
