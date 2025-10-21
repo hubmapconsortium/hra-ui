@@ -3,17 +3,39 @@
 @use '../vars';
 
 @mixin overrides() {
-  @include mat.list-overrides(
-    (
-      list-item-container-color: vars.$surface-container-low,
-      list-item-hover-state-layer-color: vars.$secondary,
-      list-item-focus-state-layer-color: vars.$secondary,
+  mat-selection-list {
+    @include mat.list-overrides(
+      (
+        list-item-container-color: vars.$surface-container-low,
+        list-item-hover-state-layer-color: vars.$secondary,
+        list-item-focus-state-layer-color: vars.$secondary,
 
-      list-item-one-line-container-height: 3.5rem,
-      list-item-two-line-container-height: 5.0625rem,
-      list-item-three-line-container-height: 5.0625rem,
-    )
-  );
+        list-item-one-line-container-height: 3.5rem,
+        list-item-two-line-container-height: 5.0625rem,
+        list-item-three-line-container-height: 5.0625rem,
+      )
+    );
+
+    &.density-minus-two {
+      @include mat.list-overrides(
+        (
+          list-item-one-line-container-height: 3rem,
+          list-item-two-line-container-height: 3.5rem,
+          list-item-three-line-container-height: 4rem,
+        )
+      );
+    }
+
+    &.density-minus-four {
+      @include mat.list-overrides(
+        (
+          list-item-one-line-container-height: 2.5rem,
+          list-item-two-line-container-height: 3rem,
+          list-item-three-line-container-height: 3.5rem,
+        )
+      );
+    }
+  }
 
   mat-list-option {
     [matListItemTitle] {
