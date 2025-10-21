@@ -16,6 +16,7 @@ import { HraCommonModule } from '@hra-ui/common';
   },
 })
 export class AppComponent extends BaseApplicationComponent {
+  /** Initialize the application */
   constructor() {
     super();
   }

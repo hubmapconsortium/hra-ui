@@ -69,6 +69,7 @@ export class PublicationsPageComponent {
   /** The height of the header given by the monitor */
   private readonly headerHeight = monitorHeight(this.header);
 
+  /** Initialize the application */
   constructor() {
     inject(CustomScrollService);
     const scroller = inject(ViewportScroller);

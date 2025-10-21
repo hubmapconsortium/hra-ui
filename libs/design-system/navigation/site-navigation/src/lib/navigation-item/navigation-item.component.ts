@@ -32,6 +32,7 @@ export class NavigationItemComponent {
   /** Angular Router */
   private readonly router = inject(Router);
 
+  /** Url resolver */
   urlResolver = injectAppUrlResolver();
 
   /**
