@@ -34,7 +34,23 @@ export const Default: StoryObj = {
   }),
 };
 
-export const WithSupportingText: StoryObj = {
+export const WithSupportingTextSecondary: StoryObj = {
+  name: 'With Supporting Text - Secondary',
+  render: (args) => ({
+    props: args,
+    template: `
+    <mat-selection-list>
+      <hra-list-item
+        title="{{ item.title }}"
+        line2="{{ item.line2 }}"
+      />
+    </mat-selection-list>
+`,
+  }),
+};
+
+export const WithSupportingTextTertiary: StoryObj = {
+  name: 'With Supporting Text - Tertiary',
   render: (args) => ({
     props: args,
     template: `
