@@ -15,7 +15,7 @@ import { MatListItem, MatListItemLine, MatListItemTitle, MatListOption } from '@
 })
 export class ListItemComponent extends MatListItem {
   /** Title of the list item */
-  readonly title = input<string>('');
+  readonly title = input.required<string>();
 
   /** Second line of the list item */
   readonly line2 = input<string>('');
