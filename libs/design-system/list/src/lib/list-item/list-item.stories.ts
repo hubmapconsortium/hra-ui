@@ -1,6 +1,5 @@
 import { MatListModule } from '@angular/material/list';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { ListItemComponent } from './list-item.component';
 
 const ListItem = { title: 'List Item', line2: 'Secondary text', line3: 'Tertiary text' };
 
@@ -14,7 +13,7 @@ const meta: Meta = {
   },
   decorators: [
     moduleMetadata({
-      imports: [MatListModule, ListItemComponent],
+      imports: [MatListModule],
     }),
   ],
   args: {
@@ -28,7 +27,9 @@ export const Default: StoryObj = {
     props: args,
     template: `
     <mat-selection-list>
-      <hra-list-item title="{{ item.title }}" />
+      <mat-list-option togglePosition="before">
+        <span matListItemTitle>{{ item.title }}</span>
+      </mat-list-option>
     </mat-selection-list>
 `,
   }),
@@ -40,10 +41,10 @@ export const WithSupportingTextSecondary: StoryObj = {
     props: args,
     template: `
     <mat-selection-list>
-      <hra-list-item
-        title="{{ item.title }}"
-        line2="{{ item.line2 }}"
-      />
+      <mat-list-option togglePosition="before">
+        <span matListItemTitle>{{ item.title }}</span>
+        <span matListItemLine>{{ item.line2 }}</span>
+      </mat-list-option>
     </mat-selection-list>
 `,
   }),
@@ -55,11 +56,11 @@ export const WithSupportingTextTertiary: StoryObj = {
     props: args,
     template: `
     <mat-selection-list>
-      <hra-list-item
-        title="{{ item.title }}"
-        line2="{{ item.line2 }}"
-        line3="{{ item.line3 }}"
-      />
+      <mat-list-option togglePosition="before">
+        <span matListItemTitle>{{ item.title }}</span>
+        <span matListItemLine>{{ item.line2 }}</span>
+        <span matListItemLine>{{ item.line3 }}</span>
+      </mat-list-option>
     </mat-selection-list>
 `,
   }),
@@ -70,9 +71,9 @@ export const SingleSelection: StoryObj = {
     props: args,
     template: `
     <mat-selection-list multiple="false">
-      <hra-list-item
-        title="{{ item.title }}"
-      />
+      <mat-list-option togglePosition="before">
+        <span matListItemTitle>{{ item.title }}</span>
+      </mat-list-option>
     </mat-selection-list>
 `,
   }),
@@ -83,9 +84,9 @@ export const MultipleSelection: StoryObj = {
     props: args,
     template: `
     <mat-selection-list>
-      <hra-list-item
-        title="{{ item.title }}"
-      />
+      <mat-list-option togglePosition="before">
+        <span matListItemTitle>{{ item.title }}</span>
+      </mat-list-option>
     </mat-selection-list>
 `,
   }),
@@ -96,9 +97,9 @@ export const NoLeadingElement: StoryObj = {
     props: args,
     template: `
     <mat-selection-list hideSingleSelectionIndicator="true" multiple="false">
-      <hra-list-item
-        title="{{ item.title }}"
-      />
+      <mat-list-option togglePosition="before">
+        <span matListItemTitle>{{ item.title }}</span>
+      </mat-list-option>
     </mat-selection-list>
 `,
   }),

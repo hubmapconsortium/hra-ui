@@ -15,6 +15,16 @@
     )
   );
 
+  [matListItemTitle] {
+    @include utils.use-font(label, medium);
+    color: vars.$secondary;
+  }
+
+  [matListItemLine] {
+    @include utils.use-font(label, small);
+    color: vars.$primary;
+  }
+
   .mdc-list-item__start {
     margin-top: 0 !important;
     margin-right: 0.75rem !important;
