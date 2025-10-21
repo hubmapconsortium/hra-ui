@@ -14,7 +14,12 @@ import { MatListItem, MatListItemLine, MatListItemTitle, MatListOption } from '@
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListItemComponent extends MatListItem {
+  /** Title of the list item */
   readonly title = input<string>('');
+
+  /** Second line of the list item */
   readonly line2 = input<string>('');
+
+  /** Third line of the list item */
   readonly line3 = input<string>('');
 }
