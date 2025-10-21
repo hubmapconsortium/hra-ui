@@ -19,11 +19,17 @@
     [matListItemTitle] {
       @include utils.use-font(label, medium);
       color: vars.$secondary;
+      &::before {
+        content: none !important;
+      }
     }
 
     [matListItemLine] {
       @include utils.use-font(label, small);
       color: vars.$primary;
+      &::before {
+        height: 1rem;
+      }
     }
 
     .mdc-list-item__start {
@@ -38,21 +44,9 @@
       justify-content: center;
     }
 
-    .mdc-list-item__primary-text {
-      &::before {
-        content: none !important;
-      }
-    }
-
-    .mdc-list-item__secondary-text {
-      &::before {
-        height: 1rem;
-      }
-    }
-
-    .mdc-list-item--with-three-lines .mdc-list-item__primary-text,
-    .mdc-list-item--with-two-lines .mdc-list-item__primary-text {
-      margin-bottom: -18px !important;
+    &.mdc-list-item--with-two-lines .mdc-list-item__primary-text,
+    &.mdc-list-item--with-three-lines .mdc-list-item__primary-text {
+      margin-bottom: -1.125rem !important;
     }
   }
 }
