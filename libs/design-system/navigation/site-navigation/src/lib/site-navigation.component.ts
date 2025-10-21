@@ -49,6 +49,7 @@ export class SiteNavigationComponent {
   /** Angular Router */
   private readonly router = inject(Router);
 
+  /** Url resolver */
   private readonly resolveUrl = injectAppUrlResolver();
 
   /** Constructor */
