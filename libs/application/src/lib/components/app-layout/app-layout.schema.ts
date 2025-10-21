@@ -2,11 +2,11 @@ import { ProjectedContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { IconListSchema } from '@hra-ui/design-system/icons';
 import { z } from 'zod';
 
-/** Content page type */
-export type ContentPageData = z.infer<typeof ContentPageDataSchema>;
+/** App layout data type */
+export type AppLayoutData = z.infer<typeof AppLayoutDataSchema>;
 
-/** Schema for content page data */
-export const ContentPageDataSchema = z.object({
+/** Schema for app layout data */
+export const AppLayoutDataSchema = z.object({
   $schema: z.string(),
   title: z.string(),
   subtitle: z.string(),

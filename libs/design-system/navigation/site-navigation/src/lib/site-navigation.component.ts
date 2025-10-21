@@ -16,7 +16,7 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
 import { DOCS_NAVIGATION_MENU } from './static-data/parsed';
 import { DocsMenuItems, DocsNavigationCategory } from './types/docs-navigation.schema';
 import { ACTIVE_MATCH_OPTIONS } from './utils/match-options';
-import { resolveUrl } from './utils/resolve-url';
+import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
 
 /** Site Navigation Component for HRA Docs */
 @Component({
@@ -43,14 +43,13 @@ export class SiteNavigationComponent {
   /** Navigation Menu Items */
   readonly navigationMenu = input(DOCS_NAVIGATION_MENU);
 
-  /** Base URL for the appliation */
-  readonly baseUrl = input.required<string>();
-
   /** State for expanded navigation category */
   readonly expandedCategory = signal('');
 
   /** Angular Router */
   private readonly router = inject(Router);
+
+  private readonly resolveUrl = injectAppUrlResolver();
 
   /** Constructor */
   constructor() {
@@ -82,8 +81,8 @@ export class SiteNavigationComponent {
 
     for (const category of categories) {
       for (const item of category.children) {
-        const url = resolveUrl(item.url, this.router, this.baseUrl());
-        if (!url.isAbsolute && this.router.isActive(url.value, ACTIVE_MATCH_OPTIONS)) {
+        const url = this.resolveUrl(item.url);
+        if (!isAbsolute(url) && this.router.isActive(url, ACTIVE_MATCH_OPTIONS)) {
           return category.label;
         }
       }

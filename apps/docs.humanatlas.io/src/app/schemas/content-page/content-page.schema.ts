@@ -4,13 +4,13 @@ import {
   setContentTemplateSpecs,
   StylesSchema,
 } from '@hra-ui/cdk/content-template';
+import { AppLayoutDataSchema } from '@hra-ui/application';
 import { ButtonSchema } from '@hra-ui/design-system/buttons/button';
 import { TextHyperlinkSchema } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { ActionCardSchema } from '@hra-ui/design-system/cards/action-card';
 import { ProfileCardSchema } from '@hra-ui/design-system/cards/profile-card';
 import { CodeBlockSchema } from '@hra-ui/design-system/code-block';
 import { ApiCommandSchema } from '@hra-ui/design-system/content-templates/api-command';
-import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { FlexContainerSchema } from '@hra-ui/design-system/content-templates/flex-container';
 import { GridContainerSchema } from '@hra-ui/design-system/content-templates/grid-container';
 import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
@@ -65,5 +65,5 @@ export default z.lazy(() => {
     YouTubePlayerSchema,
   ]);
 
-  return ContentPageDataSchema;
+  return AppLayoutDataSchema;
 });

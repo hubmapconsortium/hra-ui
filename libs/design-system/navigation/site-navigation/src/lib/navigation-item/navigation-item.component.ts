@@ -21,7 +21,7 @@ export class NavigationItemComponent {
   readonly navigationItem = input.required<DocsNavigationItem>();
 
   /** Base URL for the appliation */
-  readonly baseUrl = input.required<string>();
+  readonly baseUrl = input<string>('');
 
   /** Resolved URL for the navigation item */
   protected readonly url = computed(() => resolveUrl(this.navigationItem().url, this.router, this.baseUrl()));

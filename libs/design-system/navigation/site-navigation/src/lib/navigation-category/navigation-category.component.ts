@@ -22,7 +22,7 @@ export class NavigationCategoryComponent {
   readonly expanded = input<boolean>(false);
 
   /** Base URL for the appliation */
-  readonly baseUrl = input.required<string>();
+  readonly baseUrl = input<string>('');
 
   /** Navigation category expanded state change event */
   readonly expandedChange = output<boolean>();

@@ -1,5 +1,14 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { HraCommonModule } from '@hra-ui/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  viewChild,
+} from '@angular/core';
+import { HraCommonModule, monitorHeight } from '@hra-ui/common';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates/';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
@@ -7,6 +16,10 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { PublicationsPageData } from '../../schemas/publications-page/publications-page.schema';
 import { AssetUrlPipe } from '@hra-ui/common/url';
+import { providePageSectionNavigation } from '@hra-ui/design-system/content-templates/page-section';
+import { ViewportScroller } from '@angular/common';
+import { CustomScrollService } from '@hra-ui/common/custom-scroll';
+import { HeaderComponent } from '@hra-ui/design-system/navigation/header';
 
 /** A single publication item */
 interface PublicationItem {
@@ -19,6 +32,9 @@ interface PublicationItem {
   /** Markdown contents */
   contents: string[];
 }
+
+/** Padding when scrolling to an anchor in px */
+const ANCHOR_SCROLL_PADDING = 24;
 
 /**
  * Page for displaying hra publication data
@@ -33,6 +49,7 @@ interface PublicationItem {
     AssetUrlPipe,
     NavigationModule,
   ],
+  providers: [providePageSectionNavigation()],
   templateUrl: './publications-page.component.html',
   styleUrl: './publications-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,6 +60,24 @@ export class PublicationsPageComponent {
 
   /** Publication items sorted by year in descending order */
   protected readonly items = computed(() => this.normalizePublications(this.publications()));
+
+  /** Reference to the header html element */
+  private readonly header = viewChild.required(HeaderComponent, {
+    read: ElementRef,
+  });
+
+  /** The height of the header given by the monitor */
+  private readonly headerHeight = monitorHeight(this.header);
+
+  constructor() {
+    inject(CustomScrollService);
+    const scroller = inject(ViewportScroller);
+
+    effect(() => {
+      const yOffset = this.headerHeight() + ANCHOR_SCROLL_PADDING;
+      scroller.setOffset([0, yOffset]);
+    });
+  }
 
   /**
    * Normalizes publications from a mapping object into an array

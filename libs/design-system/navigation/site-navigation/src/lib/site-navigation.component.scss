@@ -5,7 +5,6 @@
 :host {
   display: block;
   background-color: vars.$surface-container-low;
-  border-right: 0.0625rem solid vars.$outline;
   height: calc(100vh - 4.5rem);
   position: sticky;
   top: var(--hra-site-navigation-top-offset, 4.5rem);
