@@ -8,8 +8,14 @@ export type AppLayoutData = z.infer<typeof AppLayoutDataSchema>;
 /** Schema for app layout data */
 export const AppLayoutDataSchema = z.object({
   $schema: z.string(),
-  title: z.string(),
-  subtitle: z.string(),
+  banner: z
+    .object({
+      title: z.string(),
+      imgSrc: z.string().optional(),
+    })
+    .optional(),
+  title: z.string().optional(),
+  subtitle: z.string().optional(),
   icons: IconListSchema.optional(),
   action: z
     .object({

@@ -1,3 +1,6 @@
+@use 'utils';
+@use 'vars';
+
 :host {
   display: block;
 
@@ -11,7 +14,7 @@
 
     .main-content {
       width: 100%;
-      border-left: 0.0625rem solid #acb5c3;
+      border-left: 0.0625rem solid vars.$outline;
 
       @media (min-width: 1100px) {
         max-width: calc(100% - 20rem);
@@ -65,6 +68,27 @@
 
     @media (min-width: 1100px) {
       display: block;
+    }
+  }
+
+  .banner {
+    @include utils.use-font(display, large);
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: vars.$secondary;
+    align-items: center;
+    flex-wrap: wrap;
+    color: vars.$on-primary;
+  }
+
+  .banner-text {
+    min-width: 18.25rem;
+    text-align: center;
+
+    @media (min-width: 792px) {
+      min-width: 18rem;
+      margin-left: 0.75rem;
     }
   }
 }
