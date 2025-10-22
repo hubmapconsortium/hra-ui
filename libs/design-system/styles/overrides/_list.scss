@@ -3,19 +3,33 @@
 @use '../vars';
 
 @mixin overrides() {
+  @include mat.list-overrides(
+    (
+      list-item-container-color: vars.$surface-container-low,
+      list-item-hover-state-layer-color: vars.$secondary,
+      list-item-focus-state-layer-color: vars.$secondary,
+
+      list-item-label-text-color: vars.$on-surface,
+      list-item-label-text-font: vars.$label-medium-font,
+      list-item-label-text-line-height: vars.$label-medium-line-height,
+      list-item-label-text-size: vars.$label-medium-size,
+      list-item-label-text-tracking: vars.$label-medium-tracking,
+      list-item-label-text-weight: vars.$label-medium-weight,
+
+      list-item-supporting-text-color: vars.$primary,
+      list-item-supporting-text-font: vars.$label-small-font,
+      list-item-supporting-text-line-height: vars.$label-small-line-height,
+      list-item-supporting-text-size: vars.$label-small-size,
+      list-item-supporting-text-tracking: vars.$label-small-tracking,
+      list-item-supporting-text-weight: vars.$label-small-weight,
+
+      list-item-one-line-container-height: 3.5rem,
+      list-item-two-line-container-height: 5.0625rem,
+      list-item-three-line-container-height: 5.0625rem,
+    )
+  );
+
   mat-selection-list {
-    @include mat.list-overrides(
-      (
-        list-item-container-color: vars.$surface-container-low,
-        list-item-hover-state-layer-color: vars.$secondary,
-        list-item-focus-state-layer-color: vars.$secondary,
-
-        list-item-one-line-container-height: 3.5rem,
-        list-item-two-line-container-height: 5.0625rem,
-        list-item-three-line-container-height: 5.0625rem,
-      )
-    );
-
     &.density-minus-two {
       @include mat.list-overrides(
         (
@@ -38,37 +52,36 @@
   }
 
   mat-list-option {
-    [matListItemTitle] {
-      @include utils.use-font(label, medium);
-      color: vars.$secondary;
-      &::before {
-        content: none !important;
+    @include mat.checkbox-overrides(
+      (
+        state-layer-size: 3rem,
+      )
+    );
+
+    [matListItemTitle],
+    [matListItemLine] {
+      &::before,
+      &::after {
+        display: none !important;
       }
+    }
+
+    [matListItemTitle] {
+      line-height: vars.$label-medium-line-height !important;
+      margin: 0 !important;
     }
 
     [matListItemLine] {
-      @include utils.use-font(label, small);
-      color: vars.$primary;
-      &::before {
-        height: 1rem;
-      }
+      line-height: vars.$label-small-line-height !important;
     }
 
     .mdc-list-item__start {
-      margin-top: 0 !important;
-      margin-right: 0.75rem !important;
       align-self: center !important;
+      margin: 0 0.5rem 0 1rem !important;
     }
 
     .mdc-list-item__content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    &.mdc-list-item--with-two-lines .mdc-list-item__primary-text,
-    &.mdc-list-item--with-three-lines .mdc-list-item__primary-text {
-      margin-bottom: -1.125rem !important;
+      align-self: center !important;
     }
   }
 }
