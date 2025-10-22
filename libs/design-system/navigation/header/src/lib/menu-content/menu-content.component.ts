@@ -82,6 +82,7 @@ export class MenuContentComponent {
   /** Reference to the router if available */
   private readonly router = inject(Router, { optional: true });
 
+  /** Url resolver */
   private readonly urlResolver = injectAppUrlResolver();
 
   /**

@@ -54,10 +54,14 @@ const ANCHOR_SCROLL_PADDING = 24;
   },
 })
 export class AppLayoutComponent {
+  /** Layout data */
   readonly data = input.required<AppLayoutData>();
 
+  /** Whether the navigation panel is hidden */
   readonly hideNavigation = input(false, { transform: booleanAttribute });
+  /** Whether the table of contents is hidden */
   readonly hideToc = input(false, { transform: booleanAttribute });
+  /** Whether the footer is hidden */
   readonly hideFooter = input(false, { transform: booleanAttribute });
 
   /** Header content data */
@@ -86,6 +90,7 @@ export class AppLayoutComponent {
   /** The height of the header given by the monitor */
   private readonly headerHeight = monitorHeight(this.header);
 
+  /** Sets up scrolling behavior */
   constructor() {
     inject(CustomScrollService);
     const scroller = inject(ViewportScroller);
