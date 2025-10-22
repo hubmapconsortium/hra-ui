@@ -54,13 +54,13 @@
       "types": "./color-picker/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-color-picker.mjs"
     },
-    "./copyable-url-container": {
-      "types": "./copyable-url-container/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-copyable-url-container.mjs"
-    },
     "./content-templates": {
       "types": "./content-templates/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates.mjs"
+    },
+    "./copyable-url-container": {
+      "types": "./copyable-url-container/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-copyable-url-container.mjs"
     },
     "./data-viewer": {
       "types": "./data-viewer/index.d.ts",

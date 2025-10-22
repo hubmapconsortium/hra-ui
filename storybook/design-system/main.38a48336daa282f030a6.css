@@ -706,13 +706,6 @@ html {
   --mat-chip-label-text-weight: var(--mat-sys-label-medium-weight);
   --mat-chip-outline-color: var(--mat-sys-outline-variant);
   --mat-chip-selected-focus-state-layer-color: var(--mat-sys-secondary);
-  --mat-icon-button-state-layer-size: 2.5rem;
-  --mat-icon-button-icon-size: 1.5rem;
-  --mat-icon-button-hover-state-layer-opacity: 0.08;
-  --mat-icon-button-pressed-state-layer-opacity: 0.12;
-  --mat-icon-button-focus-state-layer-opacity: 0.12;
-  --mat-icon-button-icon-color: var(--mat-sys-secondary);
-  --mat-icon-button-state-layer-color: var(--mat-sys-secondary);
   --mat-form-field-container-height: 3rem;
   --mat-form-field-container-text-font: var(--mat-sys-label-medium-font);
   --mat-form-field-container-text-size: var(--mat-sys-label-medium-size);
@@ -751,6 +744,31 @@ html {
   --mat-form-field-subscript-text-size: var(--mat-sys-label-medium-size);
   --mat-form-field-subscript-text-tracking: var(--mat-sys-label-medium-tracking);
   --mat-form-field-subscript-text-weight: var(--mat-sys-label-medium-weight);
+  --mat-icon-button-state-layer-size: 2.5rem;
+  --mat-icon-button-icon-size: 1.5rem;
+  --mat-icon-button-hover-state-layer-opacity: 0.08;
+  --mat-icon-button-pressed-state-layer-opacity: 0.12;
+  --mat-icon-button-focus-state-layer-opacity: 0.12;
+  --mat-icon-button-icon-color: var(--mat-sys-secondary);
+  --mat-icon-button-state-layer-color: var(--mat-sys-secondary);
+  --mat-list-list-item-container-color: var(--mat-sys-surface-container-low);
+  --mat-list-list-item-hover-state-layer-color: var(--mat-sys-secondary);
+  --mat-list-list-item-focus-state-layer-color: var(--mat-sys-secondary);
+  --mat-list-list-item-label-text-color: var(--mat-sys-on-surface);
+  --mat-list-list-item-label-text-font: var(--mat-sys-label-medium-font);
+  --mat-list-list-item-label-text-line-height: var(--mat-sys-label-medium-line-height);
+  --mat-list-list-item-label-text-size: var(--mat-sys-label-medium-size);
+  --mat-list-list-item-label-text-tracking: var(--mat-sys-label-medium-tracking);
+  --mat-list-list-item-label-text-weight: var(--mat-sys-label-medium-weight);
+  --mat-list-list-item-supporting-text-color: var(--mat-sys-primary);
+  --mat-list-list-item-supporting-text-font: var(--mat-sys-label-small-font);
+  --mat-list-list-item-supporting-text-line-height: var(--mat-sys-label-small-line-height);
+  --mat-list-list-item-supporting-text-size: var(--mat-sys-label-small-size);
+  --mat-list-list-item-supporting-text-tracking: var(--mat-sys-label-small-tracking);
+  --mat-list-list-item-supporting-text-weight: var(--mat-sys-label-small-weight);
+  --mat-list-list-item-one-line-container-height: 3.5rem;
+  --mat-list-list-item-two-line-container-height: 5.0625rem;
+  --mat-list-list-item-three-line-container-height: 5.0625rem;
   --mat-menu-container-shape: 0.5rem;
   --mat-menu-container-elevation-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-shadow) r g b/0.16);
   --mat-menu-item-with-icon-leading-spacing: 1rem;
@@ -1061,6 +1079,38 @@ html a[mat-icon-button] mat-icon {
   width: var(--mat-icon-button-icon-size);
   height: var(--mat-icon-button-icon-size);
   font-size: var(--mat-icon-button-icon-size);
+}
+html mat-selection-list.density-minus-two {
+  --mat-list-list-item-one-line-container-height: 3rem;
+  --mat-list-list-item-two-line-container-height: 3.5rem;
+  --mat-list-list-item-three-line-container-height: 4rem;
+}
+html mat-selection-list.density-minus-four {
+  --mat-list-list-item-one-line-container-height: 2.5rem;
+  --mat-list-list-item-two-line-container-height: 3rem;
+  --mat-list-list-item-three-line-container-height: 3.5rem;
+}
+html mat-list-option {
+  --mat-checkbox-state-layer-size: 3rem;
+}
+html mat-list-option [matListItemTitle]::before, html mat-list-option [matListItemTitle]::after,
+html mat-list-option [matListItemLine]::before,
+html mat-list-option [matListItemLine]::after {
+  display: none !important;
+}
+html mat-list-option [matListItemTitle] {
+  line-height: var(--mat-sys-label-medium-line-height) !important;
+  margin: 0 !important;
+}
+html mat-list-option [matListItemLine] {
+  line-height: var(--mat-sys-label-small-line-height) !important;
+}
+html mat-list-option .mdc-list-item__start {
+  align-self: center !important;
+  margin: 0 0.5rem 0 1rem !important;
+}
+html mat-list-option .mdc-list-item__content {
+  align-self: center !important;
 }
 html .mat-mdc-menu-panel {
   max-width: 19.5rem;
