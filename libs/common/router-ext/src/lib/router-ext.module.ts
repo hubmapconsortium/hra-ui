@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { AppLinkDirective } from './app-link/app-link.directive';
+import { FragmentLinkDirective } from './fragment-link/fragment-link.directive';
+import { LinkDirective } from './link/link.directive';
 
 @NgModule({
-  imports: [AppLinkDirective],
-  exports: [AppLinkDirective],
+  imports: [LinkDirective, FragmentLinkDirective],
+  exports: [LinkDirective, FragmentLinkDirective],
 })
 export class RouterExtModule {}
