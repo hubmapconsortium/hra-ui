@@ -8,11 +8,11 @@ import { provideProductLogos } from '@hra-ui/design-system/brand/product-logo';
 
 /** Exports all brand components, modules, etc. */
 class BrandModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: BrandModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.3", ngImport: i0, type: BrandModule, imports: [BrandLogoComponent, BrandMarkComponent], exports: [BrandLogoComponent, BrandMarkComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: BrandModule, imports: [BrandLogoComponent, BrandMarkComponent] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: BrandModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.7", ngImport: i0, type: BrandModule, imports: [BrandLogoComponent, BrandMarkComponent], exports: [BrandLogoComponent, BrandMarkComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: BrandModule, imports: [BrandLogoComponent, BrandMarkComponent] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: BrandModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: BrandModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [BrandLogoComponent, BrandMarkComponent],

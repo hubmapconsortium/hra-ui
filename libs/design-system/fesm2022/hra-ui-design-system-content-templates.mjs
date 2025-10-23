@@ -5,11 +5,11 @@ import { PageSectionComponent } from '@hra-ui/design-system/content-templates/pa
 import { UiSectionComponent } from '@hra-ui/design-system/content-templates/ui-section';
 
 class ContentTemplatesModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: ContentTemplatesModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.3", ngImport: i0, type: ContentTemplatesModule, imports: [UiSectionComponent, AppLabelComponent, PageSectionComponent], exports: [UiSectionComponent, AppLabelComponent, PageSectionComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: ContentTemplatesModule, imports: [UiSectionComponent, AppLabelComponent, PageSectionComponent] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: ContentTemplatesModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.7", ngImport: i0, type: ContentTemplatesModule, imports: [UiSectionComponent, AppLabelComponent, PageSectionComponent], exports: [UiSectionComponent, AppLabelComponent, PageSectionComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: ContentTemplatesModule, imports: [UiSectionComponent, AppLabelComponent, PageSectionComponent] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: ContentTemplatesModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: ContentTemplatesModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],

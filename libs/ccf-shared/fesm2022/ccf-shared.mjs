@@ -934,7 +934,7 @@ class OpacitySliderComponent {
     }], null, { clsName: [{
             type: HostBinding,
             args: ['class']
-        }] }); })();
+        }], opacity: [{ type: i0.Input, args: [{ isSignal: true, alias: "opacity", required: false }] }, { type: i0.Output, args: ["opacityChange"] }], visible: [{ type: i0.Input, args: [{ isSignal: true, alias: "visible", required: false }] }], opacityChange: [{ type: i0.Output, args: ["opacityChange"] }], visibilityToggle: [{ type: i0.Output, args: ["visibilityToggle"] }], opacityReset: [{ type: i0.Output, args: ["opacityReset"] }], sliderChanged: [{ type: i0.Output, args: ["sliderChanged"] }] }); })();
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(OpacitySliderComponent, { className: "OpacitySliderComponent", filePath: "lib/components/opacity-slider/opacity-slider.component.ts", lineNumber: 28 }); })();
 
 function InfoDialogComponent_div_10_mat_expansion_panel_1_div_6_Template(rf, ctx) { if (rf & 1) {
@@ -1563,9 +1563,18 @@ function cast() {
  * @returns A MinMax object
  */
 function rangeToMinMax(range, low, high) {
-    return range
-        ? { min: range[0] > low ? range[0] : undefined, max: range[1] < high ? range[1] : undefined }
-        : undefined;
+    if (!range) {
+        return undefined;
+    }
+    const [min, max] = range;
+    const result = {};
+    if (min > low) {
+        result.min = min;
+    }
+    if (max < high) {
+        result.max = max;
+    }
+    return result;
 }
 /**
  * Reviver for spatial scene nodes
@@ -2895,7 +2904,7 @@ class SpatialSearchListComponent {
     }], null, { clsName: [{
             type: HostBinding,
             args: ['class']
-        }] }); })();
+        }], label: [{ type: i0.Input, args: [{ isSignal: true, alias: "label", required: false }] }], items: [{ type: i0.Input, args: [{ isSignal: true, alias: "items", required: false }] }], selectionChanged: [{ type: i0.Output, args: ["selectionChanged"] }], itemRemoved: [{ type: i0.Output, args: ["itemRemoved"] }] }); })();
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(SpatialSearchListComponent, { className: "SpatialSearchListComponent", filePath: "lib/components/spatial-search-list/spatial-search-list.component.ts", lineNumber: 29 }); })();
 
 /**

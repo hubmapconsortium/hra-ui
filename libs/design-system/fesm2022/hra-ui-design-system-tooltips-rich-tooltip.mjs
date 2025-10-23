@@ -16,10 +16,10 @@ class RichTooltipContextDirective {
     static ngTemplateContextGuard(_dir, _ctx) {
         return true;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipContextDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.3", type: RichTooltipContextDirective, isStandalone: true, selector: "ng-template[hraRichTooltipContext]", ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipContextDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.7", type: RichTooltipContextDirective, isStandalone: true, selector: "ng-template[hraRichTooltipContext]", ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipContextDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipContextDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'ng-template[hraRichTooltipContext]',
@@ -29,10 +29,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImpor
  * Component for the Rich Tooltip Tagline
  */
 class RichTooltipTaglineComponent {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipTaglineComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.3", type: RichTooltipTaglineComponent, isStandalone: true, selector: "hra-rich-tooltip-tagline", ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipTaglineComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.7", type: RichTooltipTaglineComponent, isStandalone: true, selector: "hra-rich-tooltip-tagline", ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipTaglineComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipTaglineComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'hra-rich-tooltip-tagline',
@@ -44,10 +44,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImpor
  * Component for the Rich Tooltip Content
  */
 class RichTooltipContentComponent {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipContentComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.3", type: RichTooltipContentComponent, isStandalone: true, selector: "hra-rich-tooltip-content", ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipContentComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.7", type: RichTooltipContentComponent, isStandalone: true, selector: "hra-rich-tooltip-content", ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipContentComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipContentComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'hra-rich-tooltip-content',
@@ -59,10 +59,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImpor
  * Component for the Rich Tooltip actions row
  */
 class RichTooltipActionsComponent {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipActionsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.3", type: RichTooltipActionsComponent, isStandalone: true, selector: "hra-rich-tooltip-actions", ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipActionsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.7", type: RichTooltipActionsComponent, isStandalone: true, selector: "hra-rich-tooltip-actions", ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipActionsComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipActionsComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'hra-rich-tooltip-actions',
@@ -80,10 +80,10 @@ class RichTooltipCloseDirective {
      * (context is set by component once initialized)
      */
     controller = undefined;
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipCloseDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.3", type: RichTooltipCloseDirective, isStandalone: true, selector: "[hraRichTooltipClose]", host: { listeners: { "click": "controller?.close()" } }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipCloseDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.7", type: RichTooltipCloseDirective, isStandalone: true, selector: "[hraRichTooltipClose]", host: { listeners: { "click": "controller?.close()" } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipCloseDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipCloseDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraRichTooltipClose]',
@@ -105,13 +105,13 @@ class RichTooltipContainerComponent {
      * List of close directives used in the custom template.
      */
     closeDirectives = contentChildren(RichTooltipCloseDirective, ...(ngDevMode ? [{ debugName: "closeDirectives", descendants: true }] : [{ descendants: true }]));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.3", type: RichTooltipContainerComponent, isStandalone: true, selector: "hra-rich-tooltip-container", queries: [{ propertyName: "closeDirectives", predicate: RichTooltipCloseDirective, descendants: true, isSignal: true }], viewQueries: [{ propertyName: "template", first: true, predicate: ["container"], descendants: true, read: TemplateRef, isSignal: true }], exportAs: ["hraRichTooltipContainer"], ngImport: i0, template: "<ng-template hraRichTooltipContext let-owner #container>\n  <div class=\"container\">\n    <div class=\"tagline\">\n      <ng-content select=\"hra-rich-tooltip-tagline\">\n        {{ owner.tagline() }}\n      </ng-content>\n    </div>\n    <div class=\"content\">\n      <ng-content select=\"hra-rich-tooltip-content\">\n        {{ owner.description() }}\n      </ng-content>\n    </div>\n    <div class=\"actions\">\n      <ng-content select=\"hra-rich-tooltip-actions\">\n        @if (owner.actionText()) {\n          <button mat-button color=\"accent\" (click)=\"owner.actionClick.emit()\">{{ owner.actionText() }}</button>\n        }\n      </ng-content>\n    </div>\n  </div>\n</ng-template>\n", styles: [":host{display:block}.container{max-width:19.5rem;width:fit-content;background-color:var(--mat-sys-secondary-container);border-radius:.5rem;box-shadow:0 .125rem .25rem .125rem rgb(from var(--mat-sys-shadow) r g b/24%)}.container .tagline{padding:.75rem 1rem .25rem;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);color:var(--mat-sys-on-surface)}.container .content{padding:0 1rem .25rem;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);color:var(--mat-sys-primary)}.container .actions{padding:0 .5rem .25rem}.container .actions button{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"], dependencies: [{ kind: "directive", type: RichTooltipContextDirective, selector: "ng-template[hraRichTooltipContext]" }, { kind: "ngmodule", type: MatButtonModule }, { kind: "component", type: i1.MatButton, selector: "    button[matButton], a[matButton], button[mat-button], button[mat-raised-button],    button[mat-flat-button], button[mat-stroked-button], a[mat-button], a[mat-raised-button],    a[mat-flat-button], a[mat-stroked-button]  ", inputs: ["matButton"], exportAs: ["matButton", "matAnchor"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.7", type: RichTooltipContainerComponent, isStandalone: true, selector: "hra-rich-tooltip-container", queries: [{ propertyName: "closeDirectives", predicate: RichTooltipCloseDirective, descendants: true, isSignal: true }], viewQueries: [{ propertyName: "template", first: true, predicate: ["container"], descendants: true, read: TemplateRef, isSignal: true }], exportAs: ["hraRichTooltipContainer"], ngImport: i0, template: "<ng-template hraRichTooltipContext let-owner #container>\n  <div class=\"container\">\n    <div class=\"tagline\">\n      <ng-content select=\"hra-rich-tooltip-tagline\">\n        {{ owner.tagline() }}\n      </ng-content>\n    </div>\n    <div class=\"content\">\n      <ng-content select=\"hra-rich-tooltip-content\">\n        {{ owner.description() }}\n      </ng-content>\n    </div>\n    <div class=\"actions\">\n      <ng-content select=\"hra-rich-tooltip-actions\">\n        @if (owner.actionText()) {\n          <button mat-button color=\"accent\" (click)=\"owner.actionClick.emit()\">{{ owner.actionText() }}</button>\n        }\n      </ng-content>\n    </div>\n  </div>\n</ng-template>\n", styles: [":host{display:block}.container{max-width:19.5rem;width:fit-content;background-color:var(--mat-sys-secondary-container);border-radius:.5rem;box-shadow:0 .125rem .25rem .125rem rgb(from var(--mat-sys-shadow) r g b/24%)}.container .tagline{padding:.75rem 1rem .25rem;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);color:var(--mat-sys-on-surface)}.container .content{padding:0 1rem .25rem;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);color:var(--mat-sys-primary)}.container .actions{padding:0 .5rem .25rem}.container .actions button{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"], dependencies: [{ kind: "directive", type: RichTooltipContextDirective, selector: "ng-template[hraRichTooltipContext]" }, { kind: "ngmodule", type: MatButtonModule }, { kind: "component", type: i1.MatButton, selector: "    button[matButton], a[matButton], button[mat-button], button[mat-raised-button],    button[mat-flat-button], button[mat-stroked-button], a[mat-button], a[mat-raised-button],    a[mat-flat-button], a[mat-stroked-button]  ", inputs: ["matButton"], exportAs: ["matButton", "matAnchor"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipContainerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipContainerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-rich-tooltip-container', imports: [RichTooltipContextDirective, MatButtonModule], changeDetection: ChangeDetectionStrategy.OnPush, exportAs: 'hraRichTooltipContainer', template: "<ng-template hraRichTooltipContext let-owner #container>\n  <div class=\"container\">\n    <div class=\"tagline\">\n      <ng-content select=\"hra-rich-tooltip-tagline\">\n        {{ owner.tagline() }}\n      </ng-content>\n    </div>\n    <div class=\"content\">\n      <ng-content select=\"hra-rich-tooltip-content\">\n        {{ owner.description() }}\n      </ng-content>\n    </div>\n    <div class=\"actions\">\n      <ng-content select=\"hra-rich-tooltip-actions\">\n        @if (owner.actionText()) {\n          <button mat-button color=\"accent\" (click)=\"owner.actionClick.emit()\">{{ owner.actionText() }}</button>\n        }\n      </ng-content>\n    </div>\n  </div>\n</ng-template>\n", styles: [":host{display:block}.container{max-width:19.5rem;width:fit-content;background-color:var(--mat-sys-secondary-container);border-radius:.5rem;box-shadow:0 .125rem .25rem .125rem rgb(from var(--mat-sys-shadow) r g b/24%)}.container .tagline{padding:.75rem 1rem .25rem;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);color:var(--mat-sys-on-surface)}.container .content{padding:0 1rem .25rem;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);color:var(--mat-sys-primary)}.container .actions{padding:0 .5rem .25rem}.container .actions button{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"] }]
-        }] });
+        }], propDecorators: { template: [{ type: i0.ViewChild, args: ['container', { ...{ read: (TemplateRef) }, isSignal: true }] }], closeDirectives: [{ type: i0.ContentChildren, args: [i0.forwardRef(() => RichTooltipCloseDirective), { ...{ descendants: true }, isSignal: true }] }] } });
 
 /**
  * Viewport margin for the rich tooltip
@@ -304,10 +304,10 @@ class RichTooltipDirective {
     detach() {
         this.overlayRef.detach();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.3", type: RichTooltipDirective, isStandalone: true, selector: "[hraRichTooltip]", inputs: { customContainer: { classPropertyName: "customContainer", publicName: "hraRichTooltip", isSignal: true, isRequired: false, transformFunction: null }, tagline: { classPropertyName: "tagline", publicName: "hraRichTooltipTagline", isSignal: true, isRequired: false, transformFunction: null }, description: { classPropertyName: "description", publicName: "hraRichTooltipDescription", isSignal: true, isRequired: false, transformFunction: null }, actionText: { classPropertyName: "actionText", publicName: "hraRichTooltipActionText", isSignal: true, isRequired: false, transformFunction: null }, positions: { classPropertyName: "positions", publicName: "hraRichTooltipPositions", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { actionClick: "hraRichTooltipActionClick" }, host: { listeners: { "click": "toggle()" } }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.7", type: RichTooltipDirective, isStandalone: true, selector: "[hraRichTooltip]", inputs: { customContainer: { classPropertyName: "customContainer", publicName: "hraRichTooltip", isSignal: true, isRequired: false, transformFunction: null }, tagline: { classPropertyName: "tagline", publicName: "hraRichTooltipTagline", isSignal: true, isRequired: false, transformFunction: null }, description: { classPropertyName: "description", publicName: "hraRichTooltipDescription", isSignal: true, isRequired: false, transformFunction: null }, actionText: { classPropertyName: "actionText", publicName: "hraRichTooltipActionText", isSignal: true, isRequired: false, transformFunction: null }, positions: { classPropertyName: "positions", publicName: "hraRichTooltipPositions", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { actionClick: "hraRichTooltipActionClick" }, host: { listeners: { "click": "toggle()" } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraRichTooltip]',
@@ -315,11 +315,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImpor
                         '(click)': 'toggle()',
                     },
                 }]
-        }], ctorParameters: () => [] });
+        }], ctorParameters: () => [], propDecorators: { customContainer: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraRichTooltip", required: false }] }], tagline: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraRichTooltipTagline", required: false }] }], description: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraRichTooltipDescription", required: false }] }], actionText: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraRichTooltipActionText", required: false }] }], positions: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraRichTooltipPositions", required: false }] }], actionClick: [{ type: i0.Output, args: ["hraRichTooltipActionClick"] }] } });
 
 class RichTooltipModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipModule, imports: [RichTooltipDirective,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipModule, imports: [RichTooltipDirective,
             RichTooltipTaglineComponent,
             RichTooltipContentComponent,
             RichTooltipActionsComponent,
@@ -330,9 +330,9 @@ class RichTooltipModule {
             RichTooltipActionsComponent,
             RichTooltipCloseDirective,
             RichTooltipContainerComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipModule, imports: [RichTooltipContainerComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipModule, imports: [RichTooltipContainerComponent] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: RichTooltipModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: RichTooltipModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
