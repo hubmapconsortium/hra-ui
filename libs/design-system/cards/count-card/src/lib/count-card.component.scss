@@ -12,7 +12,7 @@
   .logo {
     width: 3.375rem;
     height: 3.375rem;
-    background-color: var(--mat-sys-inverse-surface) !important;
+    background-color: vars.$on-secondary-fixed;
   }
 
   .count-card-content {
