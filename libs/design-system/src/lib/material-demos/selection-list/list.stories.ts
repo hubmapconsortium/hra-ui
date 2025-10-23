@@ -1,4 +1,5 @@
 import { MatListModule } from '@angular/material/list';
+import { Densities, DensityDirective } from '@hra-ui/design-system/density';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 const Items = [
@@ -10,7 +11,7 @@ const Items = [
 ];
 
 const meta: Meta = {
-  title: 'Design System/List/List',
+  title: 'Design System/Selection List/List',
   parameters: {
     design: {
       type: 'figma',
@@ -19,17 +20,18 @@ const meta: Meta = {
   },
   decorators: [
     moduleMetadata({
-      imports: [MatListModule],
+      imports: [MatListModule, DensityDirective],
     }),
   ],
   args: {
     items: Items,
-    density: 'zero',
+    density: Densities.Compact0,
   },
   argTypes: {
     density: {
       control: { type: 'select' },
-      options: ['zero', 'minus-two', 'minus-four'],
+      options: Object.keys(Densities),
+      mapping: Densities,
     },
   },
 };
@@ -39,7 +41,7 @@ export const SingleSelection: StoryObj = {
   render: (args) => ({
     props: args,
     template: `
-    <mat-selection-list multiple="false" class="density-{{density}}">
+    <mat-selection-list multiple="false" hraDensity="{{ density }}">
       @for (item of items; track item.title) {
         <mat-list-option togglePosition="before">
           <span matListItemTitle>{{ item.title }}</span>
@@ -54,7 +56,7 @@ export const MultipleSelection: StoryObj = {
   render: (args) => ({
     props: args,
     template: `
-    <mat-selection-list class="density-{{density}}">
+    <mat-selection-list hraDensity="{{ density }}">
       @for (item of items; track item.title) {
         <mat-list-option togglePosition="before">
           <span matListItemTitle>{{ item.title }}</span>
@@ -69,7 +71,7 @@ export const NoLeadingElement: StoryObj = {
   render: (args) => ({
     props: args,
     template: `
-    <mat-selection-list hideSingleSelectionIndicator="true" multiple="false" class="density-{{density}}">
+    <mat-selection-list hideSingleSelectionIndicator="true" multiple="false" hraDensity="{{ density }}">
      @for (item of items; track item.title) {
         <mat-list-option togglePosition="before">
           <span matListItemTitle>{{ item.title }}</span>
@@ -84,7 +86,7 @@ export const WithTwoLines: StoryObj = {
   render: (args) => ({
     props: args,
     template: `
-    <mat-selection-list class="density-{{density}}">
+    <mat-selection-list hraDensity="{{ density }}">
      @for (item of items; track item.title) {
         <mat-list-option togglePosition="before">
           <span matListItemTitle>{{ item.title }}</span>
@@ -100,7 +102,7 @@ export const WithThreeLines: StoryObj = {
   render: (args) => ({
     props: args,
     template: `
-    <mat-selection-list class="density-{{density}}">
+    <mat-selection-list hraDensity="{{ density }}">
      @for (item of items; track item.title) {
         <mat-list-option togglePosition="before">
           <span matListItemTitle>{{ item.title }}</span>
