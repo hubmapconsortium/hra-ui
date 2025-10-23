@@ -47,7 +47,7 @@ content:
 
       - component: Button
         label: HuBMAP AVR Search
-        href: https://avr.hubmapconsortium.org/
+        href: https://avr.xconsortia.org/
         type: cta
 
   - component: PageSection
