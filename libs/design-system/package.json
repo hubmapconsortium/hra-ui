@@ -34,13 +34,13 @@
       "types": "./bottom-sheet/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-bottom-sheet.mjs"
     },
-    "./brand": {
-      "types": "./brand/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-brand.mjs"
-    },
     "./buttons": {
       "types": "./buttons/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons.mjs"
+    },
+    "./brand": {
+      "types": "./brand/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand.mjs"
     },
     "./cards": {
       "types": "./cards/index.d.ts",
@@ -154,26 +154,6 @@
       "types": "./workflow-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-workflow-card.mjs"
     },
-    "./brand/logo": {
-      "types": "./brand/logo/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-brand-logo.mjs"
-    },
-    "./brand/mark": {
-      "types": "./brand/mark/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-brand-mark.mjs"
-    },
-    "./brand/miscellaneous-logo": {
-      "types": "./brand/miscellaneous-logo/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-brand-miscellaneous-logo.mjs"
-    },
-    "./brand/organ-logo": {
-      "types": "./brand/organ-logo/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-brand-organ-logo.mjs"
-    },
-    "./brand/product-logo": {
-      "types": "./brand/product-logo/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-brand-product-logo.mjs"
-    },
     "./buttons/app-nav-button": {
       "types": "./buttons/app-nav-button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-app-nav-button.mjs"
@@ -229,6 +209,26 @@
     "./buttons/visual-button": {
       "types": "./buttons/visual-button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-visual-button.mjs"
+    },
+    "./brand/logo": {
+      "types": "./brand/logo/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-logo.mjs"
+    },
+    "./brand/mark": {
+      "types": "./brand/mark/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-mark.mjs"
+    },
+    "./brand/miscellaneous-logo": {
+      "types": "./brand/miscellaneous-logo/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-miscellaneous-logo.mjs"
+    },
+    "./brand/organ-logo": {
+      "types": "./brand/organ-logo/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-organ-logo.mjs"
+    },
+    "./brand/product-logo": {
+      "types": "./brand/product-logo/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand-product-logo.mjs"
     },
     "./cards/action-card": {
       "types": "./cards/action-card/index.d.ts",
@@ -326,13 +326,13 @@
       "types": "./indicators/progress-bar/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-progress-bar.mjs"
     },
-    "./indicators/progress-spinner": {
-      "types": "./indicators/progress-spinner/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-indicators-progress-spinner.mjs"
-    },
     "./indicators/results-indicator": {
       "types": "./indicators/results-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-results-indicator.mjs"
+    },
+    "./indicators/progress-spinner": {
+      "types": "./indicators/progress-spinner/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-progress-spinner.mjs"
     },
     "./indicators/software-status-indicator": {
       "types": "./indicators/software-status-indicator/index.d.ts",

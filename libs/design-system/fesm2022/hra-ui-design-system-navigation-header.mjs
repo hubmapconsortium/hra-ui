@@ -294,7 +294,7 @@ var groups = [
 				label: "Antibody Validation Reports",
 				description: "Provide antibody details for multiplex imaging assays and capture data requested by journals for manuscript submission.",
 				icon: "assets/logo/antibody-validation-reports.svg",
-				url: "https://avr.hubmapconsortium.org/"
+				url: "https://avr.xconsortia.org/"
 			}
 		]
 	}
