@@ -10,7 +10,7 @@ import { isAuxClick } from '../util/event';
 @Directive({
   selector: 'a[hraFragmentLink], area[hraFragmentLink]',
   host: {
-    '[attr.href]': '"#" + fragment',
+    '[attr.href]': '"#" + fragment()',
     '(click)': 'onClick($event)',
   },
 })
