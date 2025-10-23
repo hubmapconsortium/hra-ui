@@ -27,6 +27,10 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/hra-ui-common.mjs"
     },
+    "./array-util": {
+      "types": "./array-util/index.d.ts",
+      "default": "./fesm2022/hra-ui-common-array-util.mjs"
+    },
     "./analytics": {
       "types": "./analytics/index.d.ts",
       "default": "./fesm2022/hra-ui-common-analytics.mjs"
@@ -42,10 +46,6 @@
     "./import-meta": {
       "types": "./import-meta/index.d.ts",
       "default": "./fesm2022/hra-ui-common-import-meta.mjs"
-    },
-    "./array-util": {
-      "types": "./array-util/index.d.ts",
-      "default": "./fesm2022/hra-ui-common-array-util.mjs"
     },
     "./injectors": {
       "types": "./injectors/index.d.ts",

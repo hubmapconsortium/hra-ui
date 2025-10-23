@@ -69,10 +69,10 @@ class PageSectionService {
         });
         return sections;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: PageSectionService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: PageSectionService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: PageSectionService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: PageSectionService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: PageSectionService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: PageSectionService, decorators: [{
             type: Injectable
         }] });
 
@@ -99,13 +99,13 @@ class PageSectionComponent {
             destroyRef.onDestroy(() => pageSectionService.removeSection(this));
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: PageSectionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "20.3.3", type: PageSectionComponent, isStandalone: true, selector: "hra-page-section", inputs: { tagline: { classPropertyName: "tagline", publicName: "tagline", isSignal: true, isRequired: true, transformFunction: null }, level: { classPropertyName: "level", publicName: "level", isSignal: true, isRequired: false, transformFunction: null }, icons: { classPropertyName: "icons", publicName: "icons", isSignal: true, isRequired: false, transformFunction: null }, anchor: { classPropertyName: "anchor", publicName: "anchor", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "elementRef", first: true, predicate: ["section"], descendants: true, read: ElementRef, isSignal: true }], ngImport: i0, template: "<section [attr.id]=\"anchor() || null\" #section>\n  <hra-page-label class=\"header\" [tagline]=\"tagline()\" [level]=\"level()\" [icons]=\"icons()\" [anchor]=\"anchor()\" />\n\n  <div class=\"content\">\n    <ng-content />\n  </div>\n</section>\n", styles: [":host{display:block}:host .content{font:var(--mat-sys-body-xl);letter-spacing:var(--mat-sys-body-xl-tracking);color:var(--mat-sys-primary);margin-top:1rem;display:flex;flex-direction:column;gap:1.5rem}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "ngmodule", type: MatDividerModule }, { kind: "component", type: PageLabelComponent, selector: "hra-page-label", inputs: ["tagline", "level", "icons", "anchor"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: PageSectionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "20.3.7", type: PageSectionComponent, isStandalone: true, selector: "hra-page-section", inputs: { tagline: { classPropertyName: "tagline", publicName: "tagline", isSignal: true, isRequired: true, transformFunction: null }, level: { classPropertyName: "level", publicName: "level", isSignal: true, isRequired: false, transformFunction: null }, icons: { classPropertyName: "icons", publicName: "icons", isSignal: true, isRequired: false, transformFunction: null }, anchor: { classPropertyName: "anchor", publicName: "anchor", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "elementRef", first: true, predicate: ["section"], descendants: true, read: ElementRef, isSignal: true }], ngImport: i0, template: "<section [attr.id]=\"anchor() || null\" #section>\n  <hra-page-label class=\"header\" [tagline]=\"tagline()\" [level]=\"level()\" [icons]=\"icons()\" [anchor]=\"anchor()\" />\n\n  <div class=\"content\">\n    <ng-content />\n  </div>\n</section>\n", styles: [":host{display:block}:host .content{font:var(--mat-sys-body-xl);letter-spacing:var(--mat-sys-body-xl-tracking);color:var(--mat-sys-primary);margin-top:1rem;display:flex;flex-direction:column;gap:1.5rem}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "ngmodule", type: MatDividerModule }, { kind: "component", type: PageLabelComponent, selector: "hra-page-label", inputs: ["tagline", "level", "icons", "anchor"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: PageSectionComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: PageSectionComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-page-section', imports: [CommonModule, MatDividerModule, PageLabelComponent], changeDetection: ChangeDetectionStrategy.OnPush, template: "<section [attr.id]=\"anchor() || null\" #section>\n  <hra-page-label class=\"header\" [tagline]=\"tagline()\" [level]=\"level()\" [icons]=\"icons()\" [anchor]=\"anchor()\" />\n\n  <div class=\"content\">\n    <ng-content />\n  </div>\n</section>\n", styles: [":host{display:block}:host .content{font:var(--mat-sys-body-xl);letter-spacing:var(--mat-sys-body-xl-tracking);color:var(--mat-sys-primary);margin-top:1rem;display:flex;flex-direction:column;gap:1.5rem}\n"] }]
-        }], ctorParameters: () => [] });
+        }], ctorParameters: () => [], propDecorators: { tagline: [{ type: i0.Input, args: [{ isSignal: true, alias: "tagline", required: true }] }], level: [{ type: i0.Input, args: [{ isSignal: true, alias: "level", required: false }] }], icons: [{ type: i0.Input, args: [{ isSignal: true, alias: "icons", required: false }] }], anchor: [{ type: i0.Input, args: [{ isSignal: true, alias: "anchor", required: false }] }], elementRef: [{ type: i0.ViewChild, args: ['section', { ...{ read: ElementRef }, isSignal: true }] }] } });
 
 /** Schema structure of a Page Section */
 const PageSectionSchema = ContentTemplateSchema.extend({
@@ -257,10 +257,10 @@ class PageSectionActivationService {
             observedElements.add(el);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: PageSectionActivationService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: PageSectionActivationService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: PageSectionActivationService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: PageSectionActivationService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: PageSectionActivationService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: PageSectionActivationService, decorators: [{
             type: Injectable
         }], ctorParameters: () => [] });
 

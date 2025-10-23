@@ -495,9 +495,20 @@ function cast&lt;T&gt;(): (data: unknown) &#x3D;&gt; T {
  * @returns A MinMax object
  */
 function rangeToMinMax(range: number[] | undefined, low: number, high: number): MinMax | undefined {
-  return range
-    ? { min: range[0] &gt; low ? range[0] : undefined, max: range[1] &lt; high ? range[1] : undefined }
-    : undefined;
+  if (!range) {
+    return undefined;
+  }
+
+  const [min, max] &#x3D; range;
+  const result: MinMax &#x3D; {};
+  if (min &gt; low) {
+    result.min &#x3D; min;
+  }
+  if (max &lt; high) {
+    result.max &#x3D; max;
+  }
+
+  return result;
 }
 
 /**

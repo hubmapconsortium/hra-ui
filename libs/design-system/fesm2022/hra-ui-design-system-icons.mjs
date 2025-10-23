@@ -92,10 +92,10 @@ class IconConfigRegistryService {
         }
         throw new Error(`Invalid icon name: "${name}"`);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: IconConfigRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: IconConfigRegistryService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: IconConfigRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: IconConfigRegistryService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: IconConfigRegistryService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: IconConfigRegistryService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -142,28 +142,28 @@ class IconComponent {
     selectValue(key, defaultValue) {
         return computed(() => (this[key]() || this.icon()?.[key] || defaultValue));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: IconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "20.3.3", type: IconComponent, isStandalone: true, selector: "hra-icon", inputs: { icon: { classPropertyName: "icon", publicName: "icon", isSignal: true, isRequired: false, transformFunction: null }, svgIcon: { classPropertyName: "svgIcon", publicName: "svgIcon", isSignal: true, isRequired: false, transformFunction: null }, fontIcon: { classPropertyName: "fontIcon", publicName: "fontIcon", isSignal: true, isRequired: false, transformFunction: null }, fontSet: { classPropertyName: "fontSet", publicName: "fontSet", isSignal: true, isRequired: false, transformFunction: null }, inline: { classPropertyName: "inline", publicName: "inline", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.hra-icon-filled": "!!svgConfig()?.backgroundColor", "style.color": "svgConfig()?.color || null", "style.background-color": "svgConfig()?.backgroundColor || null" } }, ngImport: i0, template: "<mat-icon [svgIcon]=\"svgIcon_()\" [fontIcon]=\"fontIcon_()\" [fontSet]=\"fontSet_()\" [inline]=\"inline_()\">\n  <ng-content />\n</mat-icon>\n", styles: [":host{display:inline-flex;justify-content:center;align-items:center}:host mat-icon{width:inherit;height:inherit}:host.hra-icon-filled{width:2.5rem;height:2.5rem;border-radius:var(--mat-sys-corner-full)}:host.hra-icon-filled mat-icon{width:60%;height:60%}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i1.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: IconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "20.3.7", type: IconComponent, isStandalone: true, selector: "hra-icon", inputs: { icon: { classPropertyName: "icon", publicName: "icon", isSignal: true, isRequired: false, transformFunction: null }, svgIcon: { classPropertyName: "svgIcon", publicName: "svgIcon", isSignal: true, isRequired: false, transformFunction: null }, fontIcon: { classPropertyName: "fontIcon", publicName: "fontIcon", isSignal: true, isRequired: false, transformFunction: null }, fontSet: { classPropertyName: "fontSet", publicName: "fontSet", isSignal: true, isRequired: false, transformFunction: null }, inline: { classPropertyName: "inline", publicName: "inline", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.hra-icon-filled": "!!svgConfig()?.backgroundColor", "style.color": "svgConfig()?.color || null", "style.background-color": "svgConfig()?.backgroundColor || null" } }, ngImport: i0, template: "<mat-icon [svgIcon]=\"svgIcon_()\" [fontIcon]=\"fontIcon_()\" [fontSet]=\"fontSet_()\" [inline]=\"inline_()\">\n  <ng-content />\n</mat-icon>\n", styles: [":host{display:inline-flex;justify-content:center;align-items:center}:host mat-icon{width:inherit;height:inherit}:host.hra-icon-filled{width:2.5rem;height:2.5rem;border-radius:var(--mat-sys-corner-full)}:host.hra-icon-filled mat-icon{width:60%;height:60%}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i1.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: IconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: IconComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-icon', imports: [CommonModule, MatIconModule], changeDetection: ChangeDetectionStrategy.OnPush, host: {
                         '[class.hra-icon-filled]': '!!svgConfig()?.backgroundColor',
                         '[style.color]': 'svgConfig()?.color || null',
                         '[style.background-color]': 'svgConfig()?.backgroundColor || null',
                     }, template: "<mat-icon [svgIcon]=\"svgIcon_()\" [fontIcon]=\"fontIcon_()\" [fontSet]=\"fontSet_()\" [inline]=\"inline_()\">\n  <ng-content />\n</mat-icon>\n", styles: [":host{display:inline-flex;justify-content:center;align-items:center}:host mat-icon{width:inherit;height:inherit}:host.hra-icon-filled{width:2.5rem;height:2.5rem;border-radius:var(--mat-sys-corner-full)}:host.hra-icon-filled mat-icon{width:60%;height:60%}\n"] }]
-        }] });
+        }], propDecorators: { icon: [{ type: i0.Input, args: [{ isSignal: true, alias: "icon", required: false }] }], svgIcon: [{ type: i0.Input, args: [{ isSignal: true, alias: "svgIcon", required: false }] }], fontIcon: [{ type: i0.Input, args: [{ isSignal: true, alias: "fontIcon", required: false }] }], fontSet: [{ type: i0.Input, args: [{ isSignal: true, alias: "fontSet", required: false }] }], inline: [{ type: i0.Input, args: [{ isSignal: true, alias: "inline", required: false }] }] } });
 
 /**
  * Exports all icon related components, etc.
  * Also reexports the material icon module
  */
 class IconsModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: IconsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.3", ngImport: i0, type: IconsModule, imports: [IconComponent], exports: [MatIconModule, IconComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: IconsModule, imports: [IconComponent, MatIconModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: IconsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.7", ngImport: i0, type: IconsModule, imports: [IconComponent], exports: [MatIconModule, IconComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: IconsModule, imports: [IconComponent, MatIconModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.3", ngImport: i0, type: IconsModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: IconsModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [IconComponent],
