@@ -1,32 +1,21 @@
-@if (image(); as src) {
-  <div class="header">
-    <img class="image" [attr.src]="src | assetUrl" [alt]="imageAlt()" />
-  </div>
-}
+<img class="image" [attr.src]="imageSrc() | assetUrl" alt="" />
 <div class="content">
-  @if (date()) {
-    <div class="date">{{ date() }}</div>
-  }
-  @if (taglineUrl()) {
-    <a
-      class="tagline-link"
-      [href]="taglineUrl()"
-      [target]="taglineExternal() ? '_blank' : '_self'"
-      [rel]="taglineExternal() ? 'noopener noreferrer' : null"
-    >
-      {{ tagline() }}
-    </a>
-  } @else {
-    <div class="tagline">{{ tagline() }}</div>
-  }
-  @if (categoryTag() || projectTag()) {
-    <div class="tags">
-      @if (categoryTag()) {
-        <span class="tag">{{ categoryTag() }}</span>
+  <div class="date">{{ date() }}</div>
+  <a
+    class="tagline-link"
+    hraHyperlink
+    [href]="link()"
+    [target]="external() ? '_blank' : '_self'"
+    [rel]="external() ? 'noopener noreferrer' : null"
+    [matTooltip]="tagline()"
+  >
+    {{ tagline() }}
+  </a>
+  @if (tags().length > 0) {
+    <mat-chip-set class="tags">
+      @for (tag of tags(); track tag) {
+        <mat-chip>{{ tag }}</mat-chip>
       }
-      @if (projectTag()) {
-        <span class="tag">{{ projectTag() }}</span>
-      }
-    </div>
+    </mat-chip-set>
   }
 </div>
