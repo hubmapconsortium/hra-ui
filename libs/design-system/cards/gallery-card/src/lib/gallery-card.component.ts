@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { AssetUrlPipe } from '@hra-ui/common/url';
+import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /**
  * Gallery card component for displaying content with images, dates, and tags
  */
 @Component({
   selector: 'hra-gallery-card',
-  imports: [AssetUrlPipe],
+  imports: [AssetUrlPipe, MatChipsModule, MatTooltipModule, TextHyperlinkDirective],
   templateUrl: './gallery-card.component.html',
   styleUrl: './gallery-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,18 +17,14 @@ import { AssetUrlPipe } from '@hra-ui/common/url';
 export class GalleryCardComponent {
   /** Title/tagline text */
   readonly tagline = input.required<string>();
-  /** Image url to display at the top */
-  readonly image = input<string>();
-  /** Alt text for image */
-  readonly imageAlt = input<string>('');
+  /** Image source URL to display at the top */
+  readonly imageSrc = input.required<string>();
   /** Date to display */
-  readonly date = input<string>();
+  readonly date = input.required<string>();
   /** URL for the tagline link */
-  readonly taglineUrl = input<string>();
+  readonly link = input.required<string>();
   /** Whether the link opens in new tab */
-  readonly taglineExternal = input<boolean>(false);
-  /** Category tag */
-  readonly categoryTag = input<string>();
-  /** Project tag */
-  readonly projectTag = input<string>();
+  readonly external = input<boolean>(false);
+  /** Tags to display */
+  readonly tags = input<string[]>([]);
 }
