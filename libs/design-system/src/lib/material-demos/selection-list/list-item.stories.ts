@@ -4,7 +4,7 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 const ListItem = { title: 'List Item', line2: 'Secondary text', line3: 'Tertiary text' };
 
 const meta: Meta = {
-  title: 'Design System/Selection List/List Item',
+  title: 'Design System/List/Selection List Item',
   parameters: {
     design: {
       type: 'figma',

@@ -11,7 +11,7 @@ const Items = [
 ];
 
 const meta: Meta = {
-  title: 'Design System/Selection List/List',
+  title: 'Design System/List/Selection List',
   parameters: {
     design: {
       type: 'figma',
