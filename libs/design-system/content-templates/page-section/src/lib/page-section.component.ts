@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,16 +9,18 @@ import {
   viewChild,
 } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
 import { IconList } from '@hra-ui/design-system/icons';
 import { PageSectionInstance, PageSectionService } from './services/page-section.service';
+import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * A labeled section of the page
  */
 @Component({
   selector: 'hra-page-section',
-  imports: [CommonModule, MatDividerModule, PageLabelComponent],
+  imports: [HraCommonModule, MatDividerModule, PageLabelComponent],
   templateUrl: './page-section.component.html',
   styleUrl: './page-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,6 +37,15 @@ export class PageSectionComponent implements PageSectionInstance {
 
   /** Anchor id for the section */
   readonly anchor = input<string>();
+
+  /** Breadcrumbs to display above the label */
+  readonly breadcrumbs = input<BreadcrumbItem[]>();
+
+  /** Date to display below the label */
+  readonly date = input<string>();
+
+  /** Tags/labels to display below the date */
+  readonly tags = input<string[]>();
 
   /** Reference to the section element */
   readonly elementRef = viewChild.required('section', { read: ElementRef });
