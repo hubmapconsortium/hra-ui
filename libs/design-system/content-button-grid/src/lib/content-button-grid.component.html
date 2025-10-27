@@ -1,0 +1,22 @@
+<mat-button-toggle-group
+  hraFeature="category-toggle"
+  [hideSingleSelectionIndicator]="false"
+  class="toggle-group"
+  (change)="currentCategory.set($event.value)"
+>
+  <mat-button-toggle hraClickEvent hraFeature="featured" value="featured"> Featured </mat-button-toggle>
+  <mat-button-toggle hraClickEvent hraFeature="publications" value="publications"> Publications </mat-button-toggle>
+  <mat-button-toggle hraClickEvent hraFeature="news" value="news"> News </mat-button-toggle>
+</mat-button-toggle-group>
+
+@for (card of cardData(); track card) {
+  <hra-content-button
+    [link]="card.link"
+    [external]="card.external"
+    [imageSrc]="card.imageSrc"
+    [date]="card.date"
+    [tagline]="card.tagline"
+    [tags]="[card.category, card.tag]"
+  >
+  </hra-content-button>
+}
