@@ -1,4 +1,4 @@
-import { isAbsolute, joinWithSlash } from './path';
+import { isAbsolute, joinWithSlash, stripLeadingHash, stripTrailingSlash } from './path';
 
 describe('isAbsolute(path)', () => {
   it('returns true for abolute urls', () => {
@@ -22,5 +22,23 @@ describe('joinWithSlash(start, end)', () => {
     expect(joinWithSlash('e/', 'f')).toEqual('e/f');
     expect(joinWithSlash('g', '/h')).toEqual('g/h');
     expect(joinWithSlash('i/', '/j')).toEqual('i/j');
+  });
+});
+
+describe('stripTrailingSlash(path)', () => {
+  it('should remove the trailing slash while preserving the fragment and query parameters', () => {
+    expect(stripTrailingSlash('a')).toEqual('a');
+    expect(stripTrailingSlash('b/')).toEqual('b');
+    expect(stripTrailingSlash('c/#frag')).toEqual('c#frag');
+    expect(stripTrailingSlash('d/?param=value')).toEqual('d?param=value');
+    expect(stripTrailingSlash('e/#frag/?param=val')).toEqual('e#frag/?param=val');
+  });
+});
+
+describe('stripLeadingHash(fragment)', () => {
+  it('should remove the leading hash if present', () => {
+    expect(stripLeadingHash('')).toEqual('');
+    expect(stripLeadingHash('a')).toEqual('a');
+    expect(stripLeadingHash('#b')).toEqual('b');
   });
 });

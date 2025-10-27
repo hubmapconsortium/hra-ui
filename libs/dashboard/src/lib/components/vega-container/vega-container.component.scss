@@ -6,11 +6,16 @@
 
     .visualization {
       width: 100%;
-      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      ::ng-deep canvas {
+      ::ng-deep canvas,
+      ::ng-deep svg {
+        max-width: 100% !important;
         width: 100% !important;
-        height: 100% !important;
+        height: auto !important;
+        display: block !important;
       }
     }
   }

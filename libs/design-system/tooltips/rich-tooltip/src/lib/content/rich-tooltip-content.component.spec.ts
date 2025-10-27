@@ -1,7 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { render } from '@testing-library/angular';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
@@ -9,7 +9,7 @@ import { RichTooltipModule } from '../rich-tooltip.module';
 import { RichTooltipContainerComponent } from './rich-tooltip-content.component';
 
 @Component({
-  imports: [RichTooltipModule, MatIconModule, ButtonsModule],
+  imports: [RichTooltipModule, MatIconModule, MatButtonModule],
   selector: 'hra-test-custom-content-host',
   template: `
     <button
@@ -25,7 +25,7 @@ import { RichTooltipContainerComponent } from './rich-tooltip-content.component'
 class SimpleContentHostComponent {}
 
 @Component({
-  imports: [RichTooltipModule, MatIconModule, ButtonsModule],
+  imports: [RichTooltipModule, MatIconModule, MatButtonModule],
   selector: 'hra-test-custom-content-host',
   template: `
     <hra-rich-tooltip-container #content data-testid="tooltip-container">
