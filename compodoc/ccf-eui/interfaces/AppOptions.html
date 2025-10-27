@@ -749,6 +749,8 @@ export class AppComponent extends BaseApplicationComponent {
   protected readonly spatialSearchItems &#x3D; this.store.selectSignal(SpatialSearchFilterSelectors.items);
   /** Database state */
   protected readonly databaseReady &#x3D; this.store.selectSignal(DataStateSelectors.isDatabaseReady);
+  /** Query status */
+  protected readonly queryStatus &#x3D; toSignal(this.data.queryStatus$, { requireSync: true });
   /** Cell type tree */
   protected readonly cellTypeTree &#x3D; this.store.selectSignal(DataStateSelectors.cellTypesTreeModel);
   /** Ontology tree */
