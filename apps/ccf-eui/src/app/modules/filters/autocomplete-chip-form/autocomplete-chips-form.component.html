@@ -16,7 +16,7 @@
       }
     </mat-chip-grid>
     @if (chips().length > 0) {
-      <button hraFeature="clear" hraClickEvent mat-icon-button (click)="chips.set([])">
+      <button hraFeature="clear" hraClickEvent mat-icon-button (click)="clearAll()">
         <mat-icon>delete</mat-icon>
       </button>
     }
