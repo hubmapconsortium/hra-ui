@@ -9,7 +9,8 @@
     "vega-embed": "^7.0.2",
     "@angular/platform-browser": "^20.2.1",
     "@hra-ui/design-system": "1.1.0",
-    "@hra-ui/common": "1.1.0"
+    "@hra-ui/common": "1.1.0",
+    "zod": "^4.1.3"
   },
   "dependencies": {},
   "sideEffects": false
