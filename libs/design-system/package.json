@@ -49,7 +49,8 @@
     "@angular/youtube-player": "^20.2.0",
     "@angular/forms": "^20.2.1",
     "@google/model-viewer": "4.1.0",
-    "store2": "^2.14.4"
+    "store2": "^2.14.4",
+    "lodash": "^4.17.21"
   },
   "sideEffects": false
 }

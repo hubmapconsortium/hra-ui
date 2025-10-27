@@ -70,6 +70,7 @@
       @include utils.use-font(label, large);
       color: vars.$primary;
       margin-bottom: 1rem;
+      height: 3rem;
     }
   }
 

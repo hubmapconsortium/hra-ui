@@ -4,19 +4,24 @@
   class="toggle-group"
   (change)="currentCategory.set($event.value)"
 >
-  <mat-button-toggle hraClickEvent hraFeature="featured" value="featured"> Featured </mat-button-toggle>
-  <mat-button-toggle hraClickEvent hraFeature="publications" value="publications"> Publications </mat-button-toggle>
-  <mat-button-toggle hraClickEvent hraFeature="news" value="news"> News </mat-button-toggle>
+  <mat-button-toggle hraClickEvent hraFeature="featured" value="featured" checked> Featured </mat-button-toggle>
+  @for (category of categories(); track category) {
+    <mat-button-toggle hraClickEvent [hraFeature]="category" [value]="category">
+      {{ category | titlecase }}
+    </mat-button-toggle>
+  }
 </mat-button-toggle-group>
 
-@for (card of cardData(); track card) {
-  <hra-content-button
-    [link]="card.link"
-    [external]="card.external"
-    [imageSrc]="card.imageSrc"
-    [date]="card.date"
-    [tagline]="card.tagline"
-    [tags]="[card.category, card.tag]"
-  >
-  </hra-content-button>
-}
+<hra-grid-container>
+  @for (card of filteredCards(); track card) {
+    <hra-content-button
+      [link]="card.link"
+      [external]="card.external"
+      [imageSrc]="card.imageSrc"
+      [date]="card.date"
+      [tagline]="card.tagline"
+      [tags]="card.tags"
+    >
+    </hra-content-button>
+  }
+</hra-grid-container>
