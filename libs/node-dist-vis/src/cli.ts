@@ -16,7 +16,7 @@ import { Command } from 'commander';
 import { createReadStream } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import { createGunzip } from 'node:zlib';
-import { NODE_STREAM_INPUT, parse } from 'papaparse';
+import { parse } from 'papaparse';
 
 const VERSION = '0.0.1';
 
@@ -28,7 +28,7 @@ interface GenerateEdgesOptions {
 }
 
 async function* readLines(inputFile: string) {
-  let inputStream: any =
+  let inputStream: NodeJS.ReadableStream =
     !inputFile || inputFile === '-' ? process.stdin : createReadStream(inputFile, { autoClose: true });
   if (inputFile?.endsWith('.gz')) {
     inputStream = inputStream.pipe(createGunzip());
@@ -36,7 +36,7 @@ async function* readLines(inputFile: string) {
   const decoder = new TextDecoder('utf-8');
   let buffer = '';
   for await (const chunk of inputStream) {
-    buffer += decoder.decode(chunk, { stream: true });
+    buffer += decoder.decode(chunk as Buffer, { stream: true });
     const lines = buffer.split('\n');
     buffer = lines.pop() || '';
     for (const line of lines) {
@@ -48,35 +48,36 @@ async function* readLines(inputFile: string) {
   }
 }
 
-async function* readCsv(input: string, options = { skipEmptyLines: true, header: true }) {
-  if (options.header) {
-    let header: string[] | undefined;
-    const newOpts = { ...options, header: false };
-    for await (const line of readLines(input)) {
-      const row: string[][] | undefined = (parse(line, newOpts)?.data ?? undefined) as string[][];
-      if (row) {
-        if (!header) {
-          header = row[0] as string[];
-        } else {
-          const result: Record<string, string> = {};
-          for (let i = 0; i < header.length; i++) {
-            result[header[i]] = row[0][i];
-          }
-          yield result;
-        }
-      }
+async function* readCsv(input: string): AsyncGenerator<Record<string, string>> {
+  let header: string[] | undefined;
+  const options = { skipEmptyLines: true, header: false };
+
+  for await (const line of readLines(input)) {
+    const parsed = parse<string[]>(line, options);
+    const row = parsed.data?.[0];
+
+    if (!row) {
+      continue;
     }
-  } else {
-    return createReadStream(input).pipe(parse(NODE_STREAM_INPUT, options));
+
+    if (!header) {
+      header = row;
+    } else {
+      const result: Record<string, string> = {};
+      for (let i = 0; i < header.length; i++) {
+        result[header[i]] = row[i];
+      }
+      yield result;
+    }
   }
 }
 
 function createBaseKeyMapping(mappings: string[]): Partial<KeyMapping<NodeEntry>> {
-  const normalize = (value: string) => value.replace(/\\:/g, ':');
   const result: Record<string, string> = {};
+
   for (const mapping of mappings) {
     const [from, to] = mapping.split(/(?<!\\):/, 2);
-    result[normalize(from)] = normalize(to);
+    result[from.replaceAll('\\:', ':')] = to.replaceAll('\\:', ':');
   }
 
   return result;
@@ -95,7 +96,7 @@ function createKeyMapping(entry: AnyDataEntry, mappings: string[]): KeyMapping<N
 }
 
 async function loadNodes(file: string, mappings: string[]): Promise<NodesView> {
-  const data = [];
+  const data: Record<string, string>[] = [];
   for await (const row of readCsv(file)) {
     data.push(row);
   }
@@ -114,6 +115,7 @@ function reportProgress(processed: number, total: number): void {
   const timestamp = Date.now();
   const percentage = Math.round((100 * processed) / total);
   const time = progressTimeFormat.format(timestamp);
+  // eslint-disable-next-line no-console
   console.log(`Computing edges: ${percentage}% (${processed}/${total}) complete at ${time}`);
 }
 
@@ -134,7 +136,7 @@ function generateEdgesWithProgress(nodes: NodesView, target: string, maxDistance
   return edges;
 }
 
-const edgeKeyMapping = {
+const edgeKeyMapping: KeyMapping<EdgeEntry> = {
   'Cell ID': 'Cell ID',
   'Target ID': 'Target ID',
   X1: 'X1',
