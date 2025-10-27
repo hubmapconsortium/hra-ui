@@ -9,5 +9,7 @@ declare const FloatingOutlined: Story;
 declare const NonFloatingFill: Story;
 declare const NonFloatingOutlined: Story;
 declare const RequiredInputWithValidation: Story;
+declare const InputWithClearButton: Story;
+declare const RequiredInputWithClearButton: Story;
 
-export { FloatingFill, FloatingOutlined, NonFloatingFill, NonFloatingOutlined, RequiredInputWithValidation };
+export { FloatingFill, FloatingOutlined, InputWithClearButton, NonFloatingFill, NonFloatingOutlined, RequiredInputWithClearButton, RequiredInputWithValidation };

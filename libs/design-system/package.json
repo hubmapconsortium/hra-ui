@@ -234,6 +234,10 @@
       "types": "./cards/action-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-action-card.mjs"
     },
+    "./cards/content-button": {
+      "types": "./cards/content-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards-content-button.mjs"
+    },
     "./cards/count-card": {
       "types": "./cards/count-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-count-card.mjs"
@@ -322,13 +326,13 @@
       "types": "./indicators/no-results-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-no-results-indicator.mjs"
     },
-    "./indicators/progress-bar": {
-      "types": "./indicators/progress-bar/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-indicators-progress-bar.mjs"
-    },
     "./indicators/progress-spinner": {
       "types": "./indicators/progress-spinner/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-progress-spinner.mjs"
+    },
+    "./indicators/progress-bar": {
+      "types": "./indicators/progress-bar/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-progress-bar.mjs"
     },
     "./indicators/results-indicator": {
       "types": "./indicators/results-indicator/index.d.ts",
@@ -346,13 +350,13 @@
       "types": "./layouts/table-of-contents/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-layouts-table-of-contents.mjs"
     },
-    "./navigation/back-button-bar": {
-      "types": "./navigation/back-button-bar/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-navigation-back-button-bar.mjs"
-    },
     "./navigation/cta-bar": {
       "types": "./navigation/cta-bar/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-navigation-cta-bar.mjs"
+    },
+    "./navigation/back-button-bar": {
+      "types": "./navigation/back-button-bar/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation-back-button-bar.mjs"
     },
     "./navigation/footer": {
       "types": "./navigation/footer/index.d.ts",

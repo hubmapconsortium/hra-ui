@@ -199,6 +199,9 @@
                             <a href="#CONSENT_BANNER_PANEL_CLASS" title="privacy/consent-banner/src/lib/consent-banner.component.ts" ><b>CONSENT_BANNER_PANEL_CLASS</b>&nbsp;&nbsp;&nbsp;(privacy/.../consent-banner.component.ts)</a>
                         </li>
                         <li>
+                            <a href="#ContentButtonSchema" title="cards/content-button/src/lib/content-button.schema.ts" ><b>ContentButtonSchema</b>&nbsp;&nbsp;&nbsp;(cards/.../content-button.schema.ts)</a>
+                        </li>
+                        <li>
                             <a href="#ContentPageDataSchema" title="content-templates/content-page/src/lib/types/content-page.schema.ts" ><b>ContentPageDataSchema</b>&nbsp;&nbsp;&nbsp;(content-templates/.../content-page.schema.ts)</a>
                         </li>
                         <li>
@@ -1417,6 +1420,43 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Key used to store privacy preferences in local storage</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>cards/content-button/src/lib/content-button.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ContentButtonSchema"></a>
+                    <span class="name">
+                        <span ><b>ContentButtonSchema</b></span>
+                        <a href="#ContentButtonSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ContentTemplateSchema.extend({
+  component: z.literal(&#x27;ContentButton&#x27;),
+  image: z.string(),
+  date: z.string(),
+  tagline: z.string(),
+  tags: z.array(z.string()).optional(),
+  link: z.string(),
+  external: z.boolean().optional(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for content button action card data</p>
 </div>
                 </td>
             </tr>

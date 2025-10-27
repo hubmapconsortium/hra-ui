@@ -199,6 +199,9 @@
                             <a href="#injectPlugins" title="/home/workflows/workspace/libs/common/analytics/src/lib/analytics/analytics.service.ts" ><b>injectPlugins</b>&nbsp;&nbsp;&nbsp;(/.../analytics.service.ts)</a>
                         </li>
                         <li>
+                            <a href="#injectRouter" title="/home/workflows/workspace/libs/common/router-ext/src/lib/injectors.ts" ><b>injectRouter</b>&nbsp;&nbsp;&nbsp;(/.../injectors.ts)</a>
+                        </li>
+                        <li>
                             <a href="#injectTelemetryEndpoint" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>injectTelemetryEndpoint</b>&nbsp;&nbsp;&nbsp;(/.../telemetry.tokens.ts)</a>
                         </li>
                         <li>
@@ -241,10 +244,16 @@
                             <a href="#providePlugin" title="/home/workflows/workspace/libs/common/analytics/src/lib/analytics/analytics.service.ts" ><b>providePlugin</b>&nbsp;&nbsp;&nbsp;(/.../analytics.service.ts)</a>
                         </li>
                         <li>
+                            <a href="#provideRouter" title="/home/workflows/workspace/libs/common/router-ext/src/lib/injectors.ts" ><b>provideRouter</b>&nbsp;&nbsp;&nbsp;(/.../injectors.ts)</a>
+                        </li>
+                        <li>
                             <a href="#provideTelemetryEndpoint" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>provideTelemetryEndpoint</b>&nbsp;&nbsp;&nbsp;(/.../telemetry.tokens.ts)</a>
                         </li>
                         <li>
                             <a href="#provideTelemetryParameterFilter" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>provideTelemetryParameterFilter</b>&nbsp;&nbsp;&nbsp;(/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ROUTER" title="/home/workflows/workspace/libs/common/router-ext/src/lib/injectors.ts" ><b>ROUTER</b>&nbsp;&nbsp;&nbsp;(/.../injectors.ts)</a>
                         </li>
                         <li>
                             <a href="#SESSION_ID_STORAGE_KEY" title="/home/workflows/workspace/libs/common/analytics/src/lib/analytics/analytics.service.ts" ><b>SESSION_ID_STORAGE_KEY</b>&nbsp;&nbsp;&nbsp;(/.../analytics.service.ts)</a>
@@ -1176,6 +1185,88 @@ Doesn&#39;t need to be initialized as it should only ever be used as a type.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Storage key for session id</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>/home/workflows/workspace/libs/common/router-ext/src/lib/injectors.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectRouter"></a>
+                    <span class="name">
+                        <span ><b>injectRouter</b></span>
+                        <a href="#injectRouter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ROUTER[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject the router.
+Use instead of <code>inject(Router, { optional: true })</code> for better tree shaking.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideRouter"></a>
+                    <span class="name">
+                        <span ><b>provideRouter</b></span>
+                        <a href="#provideRouter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ROUTER[1]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide the router</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ROUTER"></a>
+                    <span class="name">
+                        <span ><b>ROUTER</b></span>
+                        <a href="#ROUTER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createNoopInjectionToken&lt;Router&gt;(&#x27;ROUTER&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Router token - tree shakable</p>
 </div>
                 </td>
             </tr>

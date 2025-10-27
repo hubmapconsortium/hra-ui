@@ -919,8 +919,8 @@ export class ModelChangeEventDirective extends BaseEventDirective&lt;CoreEvents[
       return { value: propsOrFilter(value) };
     } else if (typeof propsOrFilter &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; !Array.isArray(propsOrFilter)) {
       return { value, ...propsOrFilter };
-    } else if (value &#x3D;&#x3D;&#x3D; undefined || value &#x3D;&#x3D;&#x3D; null) {
-      return {};
+    } else if (value &#x3D;&#x3D;&#x3D; undefined || value &#x3D;&#x3D;&#x3D; null || propsOrFilter.length &#x3D;&#x3D;&#x3D; 0) {
+      return { value: {} };
     }
 
     const source &#x3D; value as UnknownRecord;

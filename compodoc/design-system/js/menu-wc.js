@@ -648,6 +648,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ConsentBannerComponent.html" data-type="entity-link" >ConsentBannerComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ContentButtonComponent.html" data-type="entity-link" >ContentButtonComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ContentPageComponent.html" data-type="entity-link" >ContentPageComponent</a>
                             </li>
                             <li class="link">

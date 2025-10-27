@@ -52,10 +52,29 @@ const RequiredSelect = {
     `,
     }),
 };
+const SelectWithNoneOption = {
+    render: () => ({
+        props: {
+            selectFormControl: new FormControl(null),
+            options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+        },
+        template: `
+      <mat-form-field>
+        <mat-label>Choose an option</mat-label>
+        <mat-select disableRipple panelClass="options-container" [formControl]="selectFormControl">
+          <mat-option>None</mat-option>
+          @for (option of options; track option) {
+            <mat-option [value]="option">{{option}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    `,
+    }),
+};
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { Default, RequiredSelect };
+export { Default, RequiredSelect, SelectWithNoneOption };
 //# sourceMappingURL=hra-ui-design-system-select.mjs.map
