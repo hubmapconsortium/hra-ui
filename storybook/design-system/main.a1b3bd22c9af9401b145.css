@@ -496,9 +496,9 @@ html {
   --mat-sys-background: #f8fafc;
   --mat-sys-error: #883700;
   --mat-sys-error-container: #ffe8d8;
-  --mat-sys-inverse-on-surface: #ecf2f3;
-  --mat-sys-inverse-primary: #c7c5d3;
-  --mat-sys-inverse-surface: #4b4b5e;
+  --mat-sys-inverse-on-surface: #ffffff;
+  --mat-sys-inverse-primary: #ff789c;
+  --mat-sys-inverse-surface: #0c0c14;
   --mat-sys-on-background: #201e3d;
   --mat-sys-on-error: #ffffff;
   --mat-sys-on-error-container: #2f1400;
@@ -508,7 +508,7 @@ html {
   --mat-sys-on-primary-fixed-variant: #464652;
   --mat-sys-on-secondary: #ffffff;
   --mat-sys-on-secondary-container: #454364;
-  --mat-sys-on-secondary-fixed: #26262c;
+  --mat-sys-on-secondary-fixed: #4b4b5e;
   --mat-sys-on-secondary-fixed-variant: #454364;
   --mat-sys-on-surface: #201e3d;
   --mat-sys-on-surface-variant: #26262c;
@@ -521,7 +521,7 @@ html {
   --mat-sys-primary: #26262c;
   --mat-sys-primary-container: #464954;
   --mat-sys-primary-fixed: #464954;
-  --mat-sys-primary-fixed-dim: #c7c5d3;
+  --mat-sys-primary-fixed-dim: #ff789c;
   --mat-sys-scrim: #201e3d;
   --mat-sys-secondary: #201e3d;
   --mat-sys-secondary-container: #fcfcfc;

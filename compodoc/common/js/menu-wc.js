@@ -111,6 +111,26 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                             </li>
                             <li class="link">
+                                <a href="modules/RouterExtModule.html" data-type="entity-link" >RouterExtModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                        'data-bs-target="#directives-links-module-RouterExtModule-46bb882689a00110a517b631c243b5ac22f8a293beff4ad8d30b8ebbb35c40e7219f15abba51dda2784f263d2f727ab398408e0503ad550950be7deec0b8d016"' : 'data-bs-target="#xs-directives-links-module-RouterExtModule-46bb882689a00110a517b631c243b5ac22f8a293beff4ad8d30b8ebbb35c40e7219f15abba51dda2784f263d2f727ab398408e0503ad550950be7deec0b8d016"' }>
+                                        <span class="icon ion-md-code-working"></span>
+                                        <span>Directives</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-RouterExtModule-46bb882689a00110a517b631c243b5ac22f8a293beff4ad8d30b8ebbb35c40e7219f15abba51dda2784f263d2f727ab398408e0503ad550950be7deec0b8d016"' :
+                                        'id="xs-directives-links-module-RouterExtModule-46bb882689a00110a517b631c243b5ac22f8a293beff4ad8d30b8ebbb35c40e7219f15abba51dda2784f263d2f727ab398408e0503ad550950be7deec0b8d016"' }>
+                                        <li class="link">
+                                            <a href="directives/FragmentLinkDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FragmentLinkDirective</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="directives/LinkDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LinkDirective</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/UrlModule.html" data-type="entity-link" >UrlModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -162,10 +182,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/FeatureDirective.html" data-type="entity-link" >FeatureDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="directives/FragmentLinkDirective.html" data-type="entity-link" >FragmentLinkDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/HoverEventDirective.html" data-type="entity-link" >HoverEventDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/KeyboardEventDirective.html" data-type="entity-link" >KeyboardEventDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/LinkDirective.html" data-type="entity-link" >LinkDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/ModelChangeEventDirective.html" data-type="entity-link" >ModelChangeEventDirective</a>

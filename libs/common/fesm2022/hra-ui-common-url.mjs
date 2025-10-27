@@ -145,6 +145,31 @@ function joinWithSlash(start, end) {
     end = end.replace(/^\/+/, '');
     return `${start}/${end}`;
 }
+/**
+ * Remove the trailing slash from a path while preserving the fragment and query parameters (if present)
+ *
+ * @param path Url to strip
+ * @returns New url
+ */
+function stripTrailingSlash(path) {
+    const index = path.search(/#|\?|$/);
+    if (path[index - 1] === '/') {
+        return path.slice(0, index - 1) + path.slice(index);
+    }
+    return path;
+}
+/**
+ * Remove the leading hash symbol from a fragment (if present)
+ *
+ * @param fragment Fragment to strip
+ * @returns New fragment
+ */
+function stripLeadingHash(fragment) {
+    if (fragment && fragment[0] === '#') {
+        return fragment.slice(1);
+    }
+    return fragment;
+}
 
 /**
  * Get the default asset href
@@ -304,5 +329,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { AppUrlPipe, AssetUrlPipe, CssUrlPipe, PageUrlPipe, UrlModule, appUrl, assetUrl, cssUrl, injectAppHref, injectAppUrlResolver, injectAssetHref, injectAssetUrlResolver, injectPageHref, injectPageUrlResolver, isAbsolute, joinWithSlash, pageUrl, provideAppHref, provideAssetHref, providePageHref };
+export { AppUrlPipe, AssetUrlPipe, CssUrlPipe, PageUrlPipe, UrlModule, appUrl, assetUrl, cssUrl, injectAppHref, injectAppUrlResolver, injectAssetHref, injectAssetUrlResolver, injectPageHref, injectPageUrlResolver, isAbsolute, joinWithSlash, pageUrl, provideAppHref, provideAssetHref, providePageHref, stripLeadingHash, stripTrailingSlash };
 //# sourceMappingURL=hra-ui-common-url.mjs.map
