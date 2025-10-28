@@ -40,7 +40,7 @@ async function createNodesInternal(
   }
 
   const buildTarget: TargetConfiguration = {
-    executor: '@hra-ui/zod-to-json-schema-plugin:build',
+    executor: '@hra-ui/zod-to-json-schema:build',
     // TODO options?
     cache: true,
     inputs: [`{projectRoot}/**/*.schema.ts`, { externalDependencies: ['zod'] }],
