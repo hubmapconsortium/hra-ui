@@ -29,7 +29,6 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
   const workspaceRoot = context.root;
   const absoluteProjectRoot = join(workspaceRoot, projectRoot);
 
-  // Register TypeScript loader once for the entire executor run
   register({
     target: ScriptTarget.ES2020,
     module: ModuleKind.ES2015,
