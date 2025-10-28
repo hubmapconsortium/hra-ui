@@ -2,10 +2,13 @@ import { render, screen } from '@testing-library/angular';
 import { GalleryCardComponent } from './gallery-card.component';
 
 describe('GalleryCardComponent', () => {
-  it('should create', async () => {
+  it('should create with required inputs', async () => {
     const promise = render(GalleryCardComponent, {
       inputs: {
         tagline: 'Gallery Card Title',
+        imageSrc: 'path/to/image.jpg',
+        date: 'January 15, 2025',
+        link: 'https://example.com',
       },
     });
 
@@ -16,29 +19,28 @@ describe('GalleryCardComponent', () => {
     await render(GalleryCardComponent, {
       inputs: {
         tagline: 'Gallery Card Title',
+        imageSrc: 'path/to/image.jpg',
         date: 'January 15, 2025',
-        taglineUrl: 'https://example.com',
-        taglineExternal: true,
-        categoryTag: 'Research',
-        projectTag: 'HRA',
-        image: 'path/to/image.jpg',
-        imageAlt: 'Gallery image description',
+        link: 'https://example.com',
+        external: true,
+        tags: ['Research', 'HRA'],
       },
     });
 
     expect(screen.getByText('January 15, 2025')).toBeInTheDocument();
-    expect(screen.getByText('Gallery Card Title')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Gallery Card Title' })).toBeInTheDocument();
     expect(screen.getByText('Research')).toBeInTheDocument();
     expect(screen.getByText('HRA')).toBeInTheDocument();
-    expect(screen.getByRole('img')).toHaveAttribute('alt', 'Gallery image description');
   });
 
-  it('should render tagline as link with correct target when taglineUrl is provided', async () => {
+  it('should render external link with correct attributes', async () => {
     await render(GalleryCardComponent, {
       inputs: {
         tagline: 'External Link',
-        taglineUrl: 'https://example.com',
-        taglineExternal: true,
+        imageSrc: 'path/to/image.jpg',
+        date: 'January 15, 2025',
+        link: 'https://example.com',
+        external: true,
       },
     });
 
