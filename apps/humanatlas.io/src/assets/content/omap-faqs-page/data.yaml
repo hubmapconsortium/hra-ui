@@ -47,7 +47,7 @@ content:
           OMAPs provide experimental details relevant for their successful application (e.g., tissue preservation method, imaging method,
           antigen retrieval conditions, and antibody cycling order). The end result is an assembly of expertly curated antibodies that work together
           in a single tissue section. By analogy, OMAPs are recipes and validated antibodies are ingredients. See for validated antibody resources:
-          the [HuBMAP Antibody Validation Report](https://avr.hubmapconsortium.org/) and [Human Protein Atlas](https://www.proteinatlas.org/humanproteome/tissue).
+          the [HuBMAP Antibody Validation Report](https://avr.xconsortia.org/) and [Human Protein Atlas](https://www.proteinatlas.org/humanproteome/tissue).
 
   - component: PageSection
     tagline: Which multiplexed antibody-based imaging techniques are supported?
@@ -120,7 +120,7 @@ content:
 
           (2) OMAP Description Document that includes a brief description of the OMAP, links to relevant protocols and publications, and details related to antigen retrieval conditions and image analysis workflows, if applicable;
 
-          (3) an Antibody Validation Report (AVR) for each antibody included in your OMAP as outlined on the [HuBMAP AVR website](https://avr.hubmapconsortium.org/)
+          (3) an Antibody Validation Report (AVR) for each antibody included in your OMAP as outlined on the [HuBMAP AVR website](https://avr.xconsortia.org/)
           (HuBMAP membership for Globus login is required); and
 
           (4) a link to dataset(s) employing your OMAP via a public data repository (Zenodo) or the [HuBMAP data portal](https://portal.hubmapconsortium.org/).
