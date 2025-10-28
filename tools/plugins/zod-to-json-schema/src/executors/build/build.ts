@@ -1,10 +1,12 @@
-import { ExecutorContext, PromiseExecutor, logger } from '@nx/devkit';
-import { build } from 'esbuild';
+import { PromiseExecutor, logger } from '@nx/devkit';
+import { pathToFileURL } from 'node:url';
+import { register } from '@swc-node/register/register';
 import { glob, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { format, resolveConfig } from 'prettier';
 import z, { toJSONSchema } from 'zod';
 import { BuildExecutorSchema } from './schema';
+import { ModuleKind, ModuleResolutionKind, ScriptTarget } from 'typescript';
 
 interface SchemaBuildResult {
   file: string;
@@ -27,10 +29,19 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
   const workspaceRoot = context.root;
   const absoluteProjectRoot = join(workspaceRoot, projectRoot);
 
+  // Register TypeScript loader once for the entire executor run
+  register({
+    target: ScriptTarget.ES2020,
+    module: ModuleKind.ES2015,
+    esModuleInterop: true,
+    moduleResolution: ModuleResolutionKind.Node16,
+    sourcemap: true,
+  });
+
   const files = glob('**/*.schema.ts', { cwd: absoluteProjectRoot });
   const builds: Promise<SchemaBuildResult>[] = [];
   for await (const file of files) {
-    builds.push(buildSchema(file, options, context));
+    builds.push(buildSchema(file, options));
   }
 
   const results = await Promise.allSettled(builds);
@@ -57,35 +68,22 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
 
 export default runExecutor;
 
-async function buildSchema(
-  file: string,
-  options: BuildExecutorSchema,
-  context: ExecutorContext,
-): Promise<SchemaBuildResult> {
+async function buildSchema(file: string, options: BuildExecutorSchema): Promise<SchemaBuildResult> {
   const outFile = file.slice(0, -3) + '.json';
-  const code = await compileSchemaModule(file, context);
-  const module = loadSchemaModule(code);
+  const fileUrl = compileSchemaModule(file);
+  const module = await loadSchemaModule(fileUrl);
   const text = schemaModuleToJson(file, module, options);
   const content = await formatSchemaOutput(text, outFile);
   return { file: outFile, content };
 }
 
-async function compileSchemaModule(file: string, context: ExecutorContext): Promise<string> {
-  const result = await build({
-    bundle: true,
-    entryPoints: [resolve(file)],
-    external: ['zod'],
-    format: 'esm',
-    logLevel: context.isVerbose ? 'debug' : 'silent',
-    minify: true,
-    write: false,
-  });
-
-  return result.outputFiles[0].text;
+function compileSchemaModule(file: string): string {
+  const absolutePath = resolve(file);
+  return pathToFileURL(absolutePath).href;
 }
 
-function loadSchemaModule(code: string): Promise<object> {
-  return import(`data:text/javascript,${encodeURIComponent(code)}`);
+function loadSchemaModule(fileUrl: string): Promise<object> {
+  return import(fileUrl);
 }
 
 function schemaModuleToJson(file: string, module: object, options: BuildExecutorSchema): string {
