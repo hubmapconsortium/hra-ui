@@ -1,0 +1,12 @@
+<button mat-icon-button hraPlainTooltip="Info" [hraRichTooltip]="tooltip" aria-label="Click for more information">
+  <mat-icon>info</mat-icon>
+</button>
+
+<hra-rich-tooltip-container #tooltip>
+  <hra-rich-tooltip-tagline>
+    <ng-content select="hra-info-button-tooltip-tagline" />
+  </hra-rich-tooltip-tagline>
+  <hra-rich-tooltip-content>
+    <ng-content />
+  </hra-rich-tooltip-content>
+</hra-rich-tooltip-container>

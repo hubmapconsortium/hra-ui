@@ -56,3 +56,23 @@ export const RequiredSelect: Story = {
     `,
   }),
 };
+
+export const SelectWithNoneOption: Story = {
+  render: () => ({
+    props: {
+      selectFormControl: new FormControl<string | null>(null),
+      options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+    },
+    template: `
+      <mat-form-field>
+        <mat-label>Choose an option</mat-label>
+        <mat-select disableRipple panelClass="options-container" [formControl]="selectFormControl">
+          <mat-option>None</mat-option>
+          @for (option of options; track option) {
+            <mat-option [value]="option">{{option}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    `,
+  }),
+};

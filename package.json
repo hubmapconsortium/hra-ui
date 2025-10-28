@@ -35,7 +35,7 @@
     "@fontsource/metropolis": "^5.2.5",
     "@fontsource/roboto-mono": "^5.2.6",
     "@google/model-viewer": "4.1.0",
-    "@hra-api/ng-client": "^0.16.0",
+    "@hra-api/ng-client": "^0.16.1",
     "@loaders.gl/3d-tiles": "~3.2.10",
     "@loaders.gl/core": "~3.2.10",
     "@loaders.gl/draco": "~3.2.10",
