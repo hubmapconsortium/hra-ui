@@ -56,10 +56,13 @@ export class ContentButtonGridComponent {
     const category = this.currentCategory();
     if (category === 'featured') {
       const filteredFeatured = this.cardData().filter((card) => card.featured);
-      return orderBy(filteredFeatured, 'date', 'desc');
+      const sortedCards = orderBy(filteredFeatured, 'date', 'desc');
+      return this.convertDates(sortedCards);
     }
 
-    return this.sortCards(this.cardData().filter((card) => card.category === category));
+    const filteredByCategory = this.cardData().filter((card) => card.category === category);
+    const sortedCards = this.sortCards(filteredByCategory);
+    return this.convertDates(sortedCards);
   });
 
   /**
@@ -68,15 +71,23 @@ export class ContentButtonGridComponent {
    * @returns Sorted list of cards
    */
   private sortCards(cards: ContentButton[]): ContentButton[] {
-    let sortedCards = cards;
     if (this.sortBehavior() === 'date') {
-      sortedCards = orderBy(cards, 'date', 'desc');
+      return orderBy(cards, 'date', 'desc');
     }
     if (this.sortBehavior() === 'alphabetical') {
-      sortedCards = orderBy(cards, 'tagline');
+      return orderBy(cards, 'tagline');
     }
 
-    return sortedCards.map((card) => {
+    return cards;
+  }
+
+  /**
+   * Converts all dates in a card set to readable format
+   * @param cards Card set
+   * @returns Converted card set
+   */
+  private convertDates(cards: ContentButton[]): ContentButton[] {
+    return cards.map((card) => {
       return {
         ...card,
         date: this.convertDateFormat(card.date),
