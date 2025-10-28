@@ -1,7 +1,6 @@
 import {
   AnyDataEntry,
   EdgeEntry,
-  EdgesView,
   generateEdges,
   inferViewKeyMappingImpl,
   KeyMapping,
@@ -9,12 +8,10 @@ import {
   NodesView,
   OPTIONAL_NODE_KEYS,
   REQUIRED_NODE_KEYS,
-  toCsv,
   validateViewKeyMapping,
 } from '@hra-ui/node-dist-vis/models';
 import { Command } from 'commander';
-import { createReadStream } from 'node:fs';
-import { writeFile } from 'node:fs/promises';
+import { createReadStream, createWriteStream } from 'node:fs';
 import { createGunzip } from 'node:zlib';
 import { parse } from 'papaparse';
 
@@ -136,23 +133,45 @@ function generateEdgesWithProgress(nodes: NodesView, target: string, maxDistance
   return edges;
 }
 
-const edgeKeyMapping: KeyMapping<EdgeEntry> = {
-  'Cell ID': 'Cell ID',
-  'Target ID': 'Target ID',
-  X1: 'X1',
-  Y1: 'Y1',
-  Z1: 'Z1',
-  X2: 'X2',
-  Y2: 'Y2',
-  Z2: 'Z2',
-};
+function edgeToRow(edge: EdgeEntry): string {
+  return `${edge['Cell ID']},${edge['Target ID']},${edge.X1},${edge.Y1},${edge.Z1},${edge.X2},${edge.Y2},${edge.Z2}\n`;
+}
+
+async function streamEdgesToCsv(
+  nodes: NodesView,
+  target: string,
+  maxDistance: number,
+  outputFile: string,
+): Promise<void> {
+  const { length } = nodes;
+  const reportStep = Math.max(1, Math.floor(length / 20));
+  const writeStream = createWriteStream(outputFile, { encoding: 'utf-8' });
+
+  writeStream.write('Cell ID,Target ID,X1,Y1,Z1,X2,Y2,Z2\n');
+
+  let edgeCount = 0;
+  reportProgress(0, length);
+
+  for (const edge of generateEdges(nodes, target, maxDistance)) {
+    writeStream.write(edgeToRow(edge));
+    edgeCount++;
+
+    if (edgeCount % reportStep === 0) {
+      reportProgress(edgeCount, length);
+    }
+  }
+
+  reportProgress(length, length);
+
+  return new Promise((resolve, reject) => {
+    writeStream.end(() => resolve());
+    writeStream.on('error', reject);
+  });
+}
 
 async function generateEdgesAction(file: string, options: GenerateEdgesOptions): Promise<void> {
   const nodes = await loadNodes(file, options.keys);
-  const entries = generateEdgesWithProgress(nodes, options.target, Number(options.maxDistance));
-  const edges = new EdgesView(entries, edgeKeyMapping);
-  const result = await (await toCsv(edges)).text();
-  await writeFile(options.output, result, { encoding: 'utf-8' });
+  await streamEdgesToCsv(nodes, options.target, Number(options.maxDistance), options.output);
 }
 
 const program = new Command()
