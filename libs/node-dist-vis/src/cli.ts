@@ -24,7 +24,7 @@ interface GenerateEdgesOptions {
   output: string;
 }
 
-async function* readLines(inputFile: string) {
+async function* readLines(inputFile: string): AsyncGenerator<string> {
   let inputStream: NodeJS.ReadableStream =
     !inputFile || inputFile === '-' ? process.stdin : createReadStream(inputFile, { autoClose: true });
   if (inputFile?.endsWith('.gz')) {
