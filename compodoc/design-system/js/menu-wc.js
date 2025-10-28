@@ -149,18 +149,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/CardsModule.html" data-type="entity-link" >CardsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-CardsModule-21f2f44b5a02cae85a4a1146bd8cd94365bb53434e9e06663d36ae5aa64d0fe6cadabd71b45452673ffed6134a8d0136b1cec26af11afb47984f8fed9c47fcce"' : 'data-bs-target="#xs-components-links-module-CardsModule-21f2f44b5a02cae85a4a1146bd8cd94365bb53434e9e06663d36ae5aa64d0fe6cadabd71b45452673ffed6134a8d0136b1cec26af11afb47984f8fed9c47fcce"' }>
+                                            'data-bs-target="#components-links-module-CardsModule-4d80efd92e196fbf630b69257667d8c4d08ba28a9d668525a7618597c7631206c85e06c4888e19c4c6179f0bf3842d883072d96840d760c3e64319fd4fe60bb5"' : 'data-bs-target="#xs-components-links-module-CardsModule-4d80efd92e196fbf630b69257667d8c4d08ba28a9d668525a7618597c7631206c85e06c4888e19c4c6179f0bf3842d883072d96840d760c3e64319fd4fe60bb5"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CardsModule-21f2f44b5a02cae85a4a1146bd8cd94365bb53434e9e06663d36ae5aa64d0fe6cadabd71b45452673ffed6134a8d0136b1cec26af11afb47984f8fed9c47fcce"' :
-                                            'id="xs-components-links-module-CardsModule-21f2f44b5a02cae85a4a1146bd8cd94365bb53434e9e06663d36ae5aa64d0fe6cadabd71b45452673ffed6134a8d0136b1cec26af11afb47984f8fed9c47fcce"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CardsModule-4d80efd92e196fbf630b69257667d8c4d08ba28a9d668525a7618597c7631206c85e06c4888e19c4c6179f0bf3842d883072d96840d760c3e64319fd4fe60bb5"' :
+                                            'id="xs-components-links-module-CardsModule-4d80efd92e196fbf630b69257667d8c4d08ba28a9d668525a7618597c7631206c85e06c4888e19c4c6179f0bf3842d883072d96840d760c3e64319fd4fe60bb5"' }>
                                             <li class="link">
                                                 <a href="components/ActionCardActionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ActionCardActionComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/ActionCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ActionCardComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/GalleryCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GalleryCardComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/ProfileCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ProfileCardComponent</a>
@@ -712,6 +715,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/FundingComponent.html" data-type="entity-link" >FundingComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GalleryCardComponent.html" data-type="entity-link" >GalleryCardComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/GridContainerComponent.html" data-type="entity-link" >GridContainerComponent</a>
