@@ -1,0 +1,95 @@
+@use '@angular/material' as mat;
+@use '../../../styles/utils';
+@use '../../../styles/vars';
+
+:host {
+  display: block;
+
+  .search-autocomplete-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    &.sticky {
+      position: sticky;
+      top: 0;
+    }
+
+    .search-field {
+      flex: 1;
+      min-width: 160px;
+      max-width: 580px;
+
+      @include mat.form-field-overrides(
+        (
+          container-height: 48px,
+          container-text-font: vars.$label-medium-font,
+          container-text-size: vars.$label-medium-size,
+          container-text-weight: vars.$label-medium-weight,
+          filled-active-indicator-color: vars.$primary,
+          filled-focus-active-indicator-color: vars.$primary,
+          filled-container-color: vars.$surface,
+          filled-container-shape: 4px,
+          filled-input-text-placeholder-color: vars.$primary,
+          filled-input-text-color: vars.$primary,
+          container-vertical-padding: 0.8438rem,
+        )
+      );
+    }
+
+    @include mat.icon-button-overrides(
+      (
+        state-layer-size: 32px,
+        icon-size: 20px,
+      )
+    );
+
+    .results-counter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 5.25rem;
+      max-width: 7.5rem;
+      min-height: 3rem;
+      max-height: 3rem;
+      padding: 0.5rem 1rem;
+      gap: 0.5rem;
+      background: vars.$on-primary;
+      border: 1px solid vars.$outline-variant;
+      border-radius: 0.25rem;
+      white-space: nowrap;
+
+      .counter-text {
+        @include utils.use-font(label, small);
+        color: vars.$primary;
+      }
+    }
+
+    @media (max-width: 48rem) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+
+      .results-counter {
+        align-self: flex-end;
+      }
+    }
+
+    @media (max-width: 30rem) {
+      padding: 4px 0;
+
+      .results-counter {
+        padding: 6px 12px;
+
+        .counter-text {
+          @include utils.use-font(label, small);
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .mat-mdc-autocomplete-panel {
+  max-height: 256px;
+}
