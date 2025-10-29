@@ -1,0 +1,49 @@
+<div class="search-autocomplete-container" [class.sticky]="sticky()">
+  <mat-form-field class="search-field" subscriptSizing="dynamic">
+    @if (label()) {
+      <mat-label>{{ label() }}</mat-label>
+    }
+
+    <mat-icon matPrefix>search</mat-icon>
+
+    <input
+      matInput
+      type="text"
+      [placeholder]="placeholder()"
+      [formControl]="searchControl"
+      [matAutocomplete]="auto"
+      [disabled]="disabled()"
+      [attr.aria-label]="ariaLabel()"
+      (input)="onSearchInput($any($event.target).value)"
+    />
+
+    @if (searchControl.value) {
+      <button matSuffix mat-icon-button aria-label="Clear search" (click)="clearSearch()" type="button">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [displayWith]="displayWith"
+      (optionSelected)="onOptionSelected($event.option.value)"
+      [autoActiveFirstOption]="false"
+    >
+      @for (option of filteredOptions(); track trackByValue($index, option)) {
+        <mat-option [value]="option">
+          {{ option.label }}
+        </mat-option>
+      }
+
+      @if (filteredOptions().length === 0 && searchQuery()) {
+        <mat-option [disabled]="true"> No results found </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+
+  @if (showCounter()) {
+    <div class="results-counter" aria-live="polite">
+      <span class="counter-text"> {{ viewingCount() | number: '1.0-0' }} / {{ totalCount() | number: '1.0-0' }} </span>
+    </div>
+  }
+</div>
