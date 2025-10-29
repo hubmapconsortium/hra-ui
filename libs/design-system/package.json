@@ -258,13 +258,13 @@
       "types": "./content-templates/api-command/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-api-command.mjs"
     },
-    "./content-templates/app-label": {
-      "types": "./content-templates/app-label/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
-    },
     "./content-templates/content-page": {
       "types": "./content-templates/content-page/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-content-page.mjs"
+    },
+    "./content-templates/app-label": {
+      "types": "./content-templates/app-label/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
     },
     "./content-templates/flex-container": {
       "types": "./content-templates/flex-container/index.d.ts",

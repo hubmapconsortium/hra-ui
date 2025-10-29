@@ -101,10 +101,10 @@ class LinkDirective {
         mergeKey('relativeTo');
         return result;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: LinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.7", type: LinkDirective, isStandalone: true, selector: "[hraLink]", inputs: { linkId: ["hraLink", "linkId"], queryParams: "queryParams", queryParamsHandling: "queryParamsHandling", fragment: "fragment", preserveFragment: "preserveFragment", relativeTo: "relativeTo" }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "this.href", "attr.rel": "this.rel", "attr.target": "this.target" } }, ngImport: i0 }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: LinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.9", type: LinkDirective, isStandalone: true, selector: "[hraLink]", inputs: { linkId: ["hraLink", "linkId"], queryParams: "queryParams", queryParamsHandling: "queryParamsHandling", fragment: "fragment", preserveFragment: "preserveFragment", relativeTo: "relativeTo" }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "this.href", "attr.rel": "this.rel", "attr.target": "this.target" } }, ngImport: i0 }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: LinkDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: LinkDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraLink]',
