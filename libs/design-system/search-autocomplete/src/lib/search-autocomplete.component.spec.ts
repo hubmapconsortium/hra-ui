@@ -1,0 +1,127 @@
+import { render, screen } from '@testing-library/angular';
+import { userEvent } from '@testing-library/user-event';
+import { SearchAutocompleteComponent, SearchAutocompleteOption } from './search-autocomplete.component';
+
+describe('SearchAutocompleteComponent', () => {
+  const mockOptions: SearchAutocompleteOption[] = [
+    { label: 'Heart', value: 'heart' },
+    { label: 'Kidney', value: 'kidney' },
+    { label: 'Liver', value: 'liver' },
+    { label: 'Lung', value: 'lung' },
+  ];
+
+  it('displays search input with placeholder', async () => {
+    await render(SearchAutocompleteComponent, {
+      inputs: {
+        placeholder: 'Search organs',
+        options: mockOptions,
+      },
+    });
+
+    const input = screen.getByRole('combobox');
+    expect(input).toHaveAttribute('placeholder', 'Search organs');
+  });
+
+  it('shows results counter when enabled', async () => {
+    await render(SearchAutocompleteComponent, {
+      inputs: {
+        options: mockOptions,
+        showCounter: true,
+      },
+    });
+
+    expect(screen.getByText('4 / 4')).toBeInTheDocument();
+  });
+
+  it('filters options when user types', async () => {
+    await render(SearchAutocompleteComponent, {
+      inputs: {
+        options: mockOptions,
+        showCounter: true,
+      },
+    });
+
+    const input = screen.getByRole('combobox');
+    await userEvent.type(input, 'kid');
+
+    expect(screen.getByText('1 / 4')).toBeInTheDocument();
+  });
+
+  it('shows autocomplete panel with filtered options', async () => {
+    await render(SearchAutocompleteComponent, {
+      inputs: {
+        options: mockOptions,
+      },
+    });
+
+    const input = screen.getByRole('combobox');
+    await userEvent.click(input);
+    await userEvent.type(input, 'l');
+
+    expect(await screen.findByText('Liver')).toBeInTheDocument();
+    expect(await screen.findByText('Lung')).toBeInTheDocument();
+  });
+
+  it('clears search when clear button is clicked', async () => {
+    await render(SearchAutocompleteComponent, {
+      inputs: {
+        options: mockOptions,
+        showCounter: true,
+      },
+    });
+
+    const input = screen.getByRole('combobox');
+    await userEvent.type(input, 'heart');
+
+    expect(screen.getByText('1 / 4')).toBeInTheDocument();
+
+    const clearButton = screen.getByRole('button', { name: /clear/i });
+    await userEvent.click(clearButton);
+
+    expect(input).toHaveValue('');
+    expect(screen.getByText('4 / 4')).toBeInTheDocument();
+  });
+
+  it('emits selection when option is clicked', async () => {
+    const onSelectionChange = jest.fn();
+    await render(SearchAutocompleteComponent, {
+      inputs: {
+        options: mockOptions,
+      },
+      on: {
+        selectionChange: onSelectionChange,
+      },
+    });
+
+    const input = screen.getByRole('combobox');
+    await userEvent.click(input);
+
+    const option = await screen.findByText('Heart');
+    await userEvent.click(option);
+
+    expect(onSelectionChange).toHaveBeenCalledWith(mockOptions[0]);
+  });
+
+  it('disables input when disabled is true', async () => {
+    await render(SearchAutocompleteComponent, {
+      inputs: {
+        options: mockOptions,
+        disabled: true,
+      },
+    });
+
+    const input = screen.getByRole('combobox');
+    expect(input).toBeDisabled();
+  });
+
+  it('hides counter when showCounter is false', async () => {
+    await render(SearchAutocompleteComponent, {
+      inputs: {
+        options: mockOptions,
+        showCounter: false,
+      },
+    });
+
+    expect(screen.queryByText(/\/ 4/)).not.toBeInTheDocument();
+  });
+});
