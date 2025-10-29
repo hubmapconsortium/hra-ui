@@ -4,12 +4,6 @@
 :host {
   display: block;
 
-  &.icon_alignment {
-    a .content {
-      align-items: flex-start;
-    }
-  }
-
   a {
     display: block;
     min-height: 2.75rem;
@@ -26,10 +20,8 @@
       align-items: center;
       gap: 0.75rem;
 
-      .leading-icon,
-      .trailing-icon {
-        color: vars.$secondary;
-        flex-shrink: 0;
+      &:has(.supporting-text) {
+        align-items: flex-start;
       }
 
       .indent {
@@ -40,24 +32,31 @@
 
       .text-container {
         flex: 1;
-        min-width: 0;
         display: flex;
         flex-direction: column;
+        justify-content: center;
 
-        .label {
+        &:has(.label) {
           color: vars.$secondary;
           @include utils.use-font(label, medium);
         }
 
-        .supporting-text {
+        &:has(.supporting-text) {
           color: vars.$primary;
           @include utils.use-font(label, small);
+          margin-top: 0.125rem;
         }
+      }
+
+      &:has(.leading-icon),
+      &:has(.trailing-icon) {
+        color: vars.$secondary;
+        flex-shrink: 0;
       }
     }
   }
 
-  &.hra-navigation-button-menu-item {
+  &.hra-navigation-button-basic {
     a {
       padding: 0.5rem 0.75rem;
 

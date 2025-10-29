@@ -1,127 +1,142 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
+import { MatIconModule } from '@angular/material/icon';
 import { NavigationButtonComponent } from './navigation-button.component';
+import { NavigationIconDirective } from './navigation-icon.directive';
+import { NavigationButtonTaglineDirective } from './navigation-button-tagline.directive';
+import { NavigationButtonDescriptionDirective } from './navigation-button-description.directive';
 
 describe('NavigationButtonComponent', () => {
-  let component: NavigationButtonComponent;
-  let fixture: ComponentFixture<NavigationButtonComponent>;
+  const setup = async (template: string) => {
+    return render(template, {
+      imports: [
+        NavigationButtonComponent,
+        NavigationIconDirective,
+        NavigationButtonTaglineDirective,
+        NavigationButtonDescriptionDirective,
+        MatIconModule,
+      ],
+    });
+  };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [NavigationButtonComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(NavigationButtonComponent);
-    component = fixture.componentInstance;
+  it('should create', async () => {
+    const { fixture } = await setup(`
+      <hra-navigation-button link="/test">
+        <span hraNavigationButtonTagline>Test</span>
+      </hra-navigation-button>
+    `);
+    expect(fixture.nativeElement).toBeTruthy();
   });
 
-  it('should create', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.detectChanges();
-    expect(component).toBeTruthy();
+  it('should render tagline text', async () => {
+    const { getByText } = await setup(`
+      <hra-navigation-button link="/test">
+        <span hraNavigationButtonTagline>Test Label</span>
+      </hra-navigation-button>
+    `);
+    expect(getByText('Test Label')).toBeTruthy();
   });
 
-  it('should render label text', () => {
-    fixture.componentRef.setInput('label', 'Test Label');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.detectChanges();
-
-    const label = fixture.nativeElement.querySelector('.label');
-    expect(label.textContent).toBe('Test Label');
+  it('should apply label class to tagline element', async () => {
+    const { container } = await setup(`
+      <hra-navigation-button link="/test">
+        <span hraNavigationButtonTagline>Test Label</span>
+      </hra-navigation-button>
+    `);
+    const tagline = container.querySelector('[hraNavigationButtonTagline]');
+    expect(tagline?.classList.contains('label')).toBe(true);
   });
 
-  it('should set href attribute', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test-link');
-    fixture.detectChanges();
-
-    const anchor = fixture.nativeElement.querySelector('a');
-    expect(anchor.getAttribute('href')).toBe('/test-link');
+  it('should set href attribute', async () => {
+    await setup(`
+      <hra-navigation-button link="/test-link">
+        <span hraNavigationButtonTagline>Test</span>
+      </hra-navigation-button>
+    `);
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/test-link');
   });
 
-  it('should render supporting text when provided', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.componentRef.setInput('supportingText', 'Supporting');
-    fixture.detectChanges();
-
-    const supportingText = fixture.nativeElement.querySelector('.supporting-text');
-    expect(supportingText.textContent).toBe('Supporting');
+  it('should render description when provided', async () => {
+    const { getByText } = await setup(`
+      <hra-navigation-button link="/test">
+        <span hraNavigationButtonTagline>Label</span>
+        <span hraNavigationButtonDescription>Supporting text</span>
+      </hra-navigation-button>
+    `);
+    expect(getByText('Supporting text')).toBeTruthy();
   });
 
-  it('should not render supporting text when not provided', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.detectChanges();
-
-    const supportingText = fixture.nativeElement.querySelector('.supporting-text');
-    expect(supportingText).toBeNull();
+  it('should apply supporting-text class to description element', async () => {
+    const { container } = await setup(`
+      <hra-navigation-button link="/test">
+        <span hraNavigationButtonTagline>Label</span>
+        <span hraNavigationButtonDescription>Supporting text</span>
+      </hra-navigation-button>
+    `);
+    const description = container.querySelector('[hraNavigationButtonDescription]');
+    expect(description?.classList.contains('supporting-text')).toBe(true);
   });
 
-  it('should render leading icon when showLeadingIcon is true', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.componentRef.setInput('showLeadingIcon', true);
-    fixture.detectChanges();
-
-    const leadingIcon = fixture.nativeElement.querySelector('.leading-icon');
+  it('should render leading icon', async () => {
+    const { container } = await setup(`
+      <hra-navigation-button link="/test">
+        <mat-icon [hraNavigationIcon]="'leading'">info</mat-icon>
+        <span hraNavigationButtonTagline>Label</span>
+      </hra-navigation-button>
+    `);
+    const leadingIcon = container.querySelector('.leading-icon');
     expect(leadingIcon).toBeTruthy();
   });
 
-  it('should render trailing icon when showTrailingicon is true', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.componentRef.setInput('showTrailingicon', true);
-    fixture.detectChanges();
-
-    const trailingIcon = fixture.nativeElement.querySelector('.trailing-icon');
+  it('should render trailing icon', async () => {
+    const { container } = await setup(`
+      <hra-navigation-button link="/test">
+        <span hraNavigationButtonTagline>Label</span>
+        <mat-icon [hraNavigationIcon]="'trailing'">arrow_right_alt</mat-icon>
+      </hra-navigation-button>
+    `);
+    const trailingIcon = container.querySelector('.trailing-icon');
     expect(trailingIcon).toBeTruthy();
   });
 
-  it('should render indent when showIndent is true', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.componentRef.setInput('showIndent', true);
-    fixture.detectChanges();
-
-    const indent = fixture.nativeElement.querySelector('.indent');
-    expect(indent).toBeTruthy();
+  it('should default to trailing icon when position is not specified', async () => {
+    const { container } = await setup(`
+      <hra-navigation-button link="/test">
+        <span hraNavigationButtonTagline>Label</span>
+        <mat-icon hraNavigationIcon>arrow_right_alt</mat-icon>
+      </hra-navigation-button>
+    `);
+    const trailingIcon = container.querySelector('.trailing-icon');
+    expect(trailingIcon).toBeTruthy();
+    const leadingIcon = container.querySelector('.leading-icon');
+    expect(leadingIcon).toBeFalsy();
   });
 
-  it('should not render leading icon when showIndent is true', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.componentRef.setInput('showIndent', true);
-    fixture.componentRef.setInput('showLeadingIcon', true);
-    fixture.detectChanges();
-
-    const leadingIcon = fixture.nativeElement.querySelector('.leading-icon');
-    expect(leadingIcon).toBeNull();
+  it('should render indent when indented is true', async () => {
+    const { container } = await setup(`
+      <hra-navigation-button link="/test" [indented]="true">
+        <span hraNavigationButtonTagline>Label</span>
+      </hra-navigation-button>
+    `);
+    expect(container.querySelector('.indent')).toBeTruthy();
   });
 
-  it('should apply menu-item variant class by default', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.detectChanges();
-
-    expect(fixture.nativeElement.classList.contains('hra-navigation-button-menu-item')).toBe(true);
+  it('should apply basic variant class by default', async () => {
+    const { container } = await setup(`
+      <hra-navigation-button link="/test">
+        <span hraNavigationButtonTagline>Test</span>
+      </hra-navigation-button>
+    `);
+    const component = container.querySelector('hra-navigation-button');
+    expect(component?.classList.contains('hra-navigation-button-basic')).toBe(true);
   });
 
-  it('should apply cta variant class', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.componentRef.setInput('variant', 'cta');
-    fixture.detectChanges();
-
-    expect(fixture.nativeElement.classList.contains('hra-navigation-button-cta')).toBe(true);
-  });
-
-  it('should apply icon_alignment class when supportingText is provided', () => {
-    fixture.componentRef.setInput('label', 'Test');
-    fixture.componentRef.setInput('link', '/test');
-    fixture.componentRef.setInput('supportingText', 'Supporting');
-    fixture.detectChanges();
-
-    expect(fixture.nativeElement.classList.contains('icon_alignment')).toBe(true);
+  it('should apply cta variant class', async () => {
+    const { container } = await setup(`
+      <hra-navigation-button link="/test" variant="cta">
+        <span hraNavigationButtonTagline>Test</span>
+      </hra-navigation-button>
+    `);
+    const component = container.querySelector('hra-navigation-button');
+    expect(component?.classList.contains('hra-navigation-button-cta')).toBe(true);
   });
 });
