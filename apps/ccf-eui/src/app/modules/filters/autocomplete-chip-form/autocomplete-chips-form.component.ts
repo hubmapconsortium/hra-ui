@@ -123,6 +123,7 @@ export class AutocompleteChipsFormComponent implements OnInit {
     this.chips.update((options) => {
       const updatedValue = options.filter((o) => o !== option);
       this.form().setValue(updatedValue);
+      this.form().markAsDirty();
       return updatedValue;
     });
   }
@@ -137,6 +138,7 @@ export class AutocompleteChipsFormComponent implements OnInit {
       const updatedValue = [...this.chips(), selectedValue];
       this.chips.set(updatedValue);
       this.form().setValue(updatedValue);
+      this.form().markAsDirty();
     }
     this.currentInputValue.set('');
     this.selectedOptions.emit();
@@ -154,6 +156,7 @@ export class AutocompleteChipsFormComponent implements OnInit {
         const updatedValue = [...this.chips(), option];
         this.chips.set(updatedValue);
         this.form().setValue(updatedValue);
+        this.form().markAsDirty();
         this.selectedOptions.emit();
       }
     } else {
@@ -167,5 +170,12 @@ export class AutocompleteChipsFormComponent implements OnInit {
     if (event.key === 'Escape') {
       this.autoCompleteTrigger()?.closePanel();
     }
+  }
+
+  /** Clears all chips */
+  clearAll(): void {
+    this.chips.set([]);
+    this.form().setValue([]);
+    this.form().markAsDirty();
   }
 }
