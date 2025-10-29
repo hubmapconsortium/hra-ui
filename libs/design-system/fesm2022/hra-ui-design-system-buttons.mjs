@@ -12,6 +12,7 @@ import { HelpButtonComponent } from '@hra-ui/design-system/buttons/help-button';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { InfoButtonComponent, InfoButtonTooltipContentComponent } from '@hra-ui/design-system/buttons/info-button';
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
+import { NavigationButtonComponent, NavigationButtonTaglineDirective, NavigationButtonDescriptionDirective, NavigationIconDirective } from '@hra-ui/design-system/buttons/navigation-button';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
 import { TextHyperlinkComponent, TextHyperlinkDirective, provideTextHyperlink } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { provideRadioButton } from '@hra-ui/design-system/buttons/radio-button';
@@ -32,6 +33,10 @@ const REEXPORTS = [
     CheckboxErrorVariantDirective,
     CtaButtonDirective,
     HelpButtonComponent,
+    NavigationButtonComponent,
+    NavigationButtonTaglineDirective,
+    NavigationButtonDescriptionDirective,
+    NavigationIconDirective,
     NavigationCategoryToggleComponent,
     PrimaryButtonVariantDirective,
     SecondaryButtonVariantDirective,
@@ -56,6 +61,10 @@ class ButtonsModule {
             CheckboxErrorVariantDirective,
             CtaButtonDirective,
             HelpButtonComponent,
+            NavigationButtonComponent,
+            NavigationButtonTaglineDirective,
+            NavigationButtonDescriptionDirective,
+            NavigationIconDirective,
             NavigationCategoryToggleComponent,
             PrimaryButtonVariantDirective,
             SecondaryButtonVariantDirective,
@@ -75,6 +84,10 @@ class ButtonsModule {
             CheckboxErrorVariantDirective,
             CtaButtonDirective,
             HelpButtonComponent,
+            NavigationButtonComponent,
+            NavigationButtonTaglineDirective,
+            NavigationButtonDescriptionDirective,
+            NavigationIconDirective,
             NavigationCategoryToggleComponent,
             PrimaryButtonVariantDirective,
             SecondaryButtonVariantDirective,
@@ -90,6 +103,7 @@ class ButtonsModule {
             AppNavButtonComponent,
             BreadcrumbsComponent,
             HelpButtonComponent,
+            NavigationButtonComponent,
             NavigationCategoryToggleComponent,
             SocialMediaButtonComponent,
             TextHyperlinkComponent,

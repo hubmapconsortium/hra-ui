@@ -30,13 +30,13 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/hra-ui-design-system.mjs"
     },
-    "./brand": {
-      "types": "./brand/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-brand.mjs"
-    },
     "./bottom-sheet": {
       "types": "./bottom-sheet/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-bottom-sheet.mjs"
+    },
+    "./brand": {
+      "types": "./brand/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand.mjs"
     },
     "./buttons": {
       "types": "./buttons/index.d.ts",
@@ -118,13 +118,13 @@
       "types": "./navigation/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-navigation.mjs"
     },
-    "./scrolling": {
-      "types": "./scrolling/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-scrolling.mjs"
-    },
     "./privacy": {
       "types": "./privacy/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-privacy.mjs"
+    },
+    "./scrolling": {
+      "types": "./scrolling/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-scrolling.mjs"
     },
     "./select": {
       "types": "./select/index.d.ts",
@@ -214,6 +214,10 @@
       "types": "./buttons/info-button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-info-button.mjs"
     },
+    "./buttons/navigation-button": {
+      "types": "./buttons/navigation-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-navigation-button.mjs"
+    },
     "./buttons/navigation-category-toggle": {
       "types": "./buttons/navigation-category-toggle/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-navigation-category-toggle.mjs"
@@ -258,13 +262,13 @@
       "types": "./cards/profile-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-profile-card.mjs"
     },
-    "./content-templates/app-label": {
-      "types": "./content-templates/app-label/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
-    },
     "./content-templates/api-command": {
       "types": "./content-templates/api-command/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-api-command.mjs"
+    },
+    "./content-templates/app-label": {
+      "types": "./content-templates/app-label/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
     },
     "./content-templates/content-page": {
       "types": "./content-templates/content-page/index.d.ts",
@@ -382,10 +386,6 @@
       "types": "./navigation/table-of-contents/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-navigation-table-of-contents.mjs"
     },
-    "./scrolling/testing": {
-      "types": "./scrolling/testing/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-scrolling-testing.mjs"
-    },
     "./privacy/consent-banner": {
       "types": "./privacy/consent-banner/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-privacy-consent-banner.mjs"
@@ -393,6 +393,10 @@
     "./privacy/privacy-preferences": {
       "types": "./privacy/privacy-preferences/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-privacy-privacy-preferences.mjs"
+    },
+    "./scrolling/testing": {
+      "types": "./scrolling/testing/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-scrolling-testing.mjs"
     },
     "./tooltips/plain-tooltip": {
       "types": "./tooltips/plain-tooltip/index.d.ts",
