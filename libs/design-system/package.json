@@ -30,13 +30,13 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/hra-ui-design-system.mjs"
     },
-    "./brand": {
-      "types": "./brand/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-brand.mjs"
-    },
     "./bottom-sheet": {
       "types": "./bottom-sheet/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-bottom-sheet.mjs"
+    },
+    "./brand": {
+      "types": "./brand/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-brand.mjs"
     },
     "./buttons": {
       "types": "./buttons/index.d.ts",
@@ -90,13 +90,13 @@
       "types": "./indicators/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators.mjs"
     },
-    "./input": {
-      "types": "./input/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-input.mjs"
-    },
     "./info-modal": {
       "types": "./info-modal/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-info-modal.mjs"
+    },
+    "./input": {
+      "types": "./input/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-input.mjs"
     },
     "./layouts": {
       "types": "./layouts/index.d.ts",
@@ -182,13 +182,13 @@
       "types": "./buttons/breadcrumbs/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-breadcrumbs.mjs"
     },
-    "./buttons/button-toggle": {
-      "types": "./buttons/button-toggle/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-buttons-button-toggle.mjs"
-    },
     "./buttons/button": {
       "types": "./buttons/button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-button.mjs"
+    },
+    "./buttons/button-toggle": {
+      "types": "./buttons/button-toggle/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-button-toggle.mjs"
     },
     "./buttons/checkbox": {
       "types": "./buttons/checkbox/index.d.ts",
@@ -258,13 +258,13 @@
       "types": "./content-templates/api-command/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-api-command.mjs"
     },
-    "./content-templates/content-page": {
-      "types": "./content-templates/content-page/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-content-page.mjs"
-    },
     "./content-templates/app-label": {
       "types": "./content-templates/app-label/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
+    },
+    "./content-templates/content-page": {
+      "types": "./content-templates/content-page/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-content-page.mjs"
     },
     "./content-templates/flex-container": {
       "types": "./content-templates/flex-container/index.d.ts",
