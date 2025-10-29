@@ -17,6 +17,12 @@ import { HelpButtonComponent } from '@hra-ui/design-system/buttons/help-button';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { InfoButtonComponent, InfoButtonTooltipContentComponent } from '@hra-ui/design-system/buttons/info-button';
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
+import {
+  NavigationButtonComponent,
+  NavigationButtonDescriptionDirective,
+  NavigationButtonTaglineDirective,
+  NavigationIconDirective,
+} from '@hra-ui/design-system/buttons/navigation-button';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
 import { TextHyperlinkComponent, TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
@@ -36,6 +42,10 @@ const REEXPORTS = [
   CheckboxErrorVariantDirective,
   CtaButtonDirective,
   HelpButtonComponent,
+  NavigationButtonComponent,
+  NavigationButtonTaglineDirective,
+  NavigationButtonDescriptionDirective,
+  NavigationIconDirective,
   NavigationCategoryToggleComponent,
   PrimaryButtonVariantDirective,
   SecondaryButtonVariantDirective,
