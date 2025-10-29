@@ -139,7 +139,3 @@ $theme: (
   ),
   typography: typo.$typography,
 );
-
-@include utils.global-styles() {
-  @include theming.theme($theme);
-}
