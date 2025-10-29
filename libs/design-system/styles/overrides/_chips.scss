@@ -3,55 +3,76 @@
 @use '../vars';
 
 @mixin overrides() {
-  @include mat.chips-overrides(
-    (
-      elevated-selected-container-color: vars.$secondary,
-      focus-outline-color: vars.$tertiary,
-      focus-state-layer-color: vars.$on-primary,
-      hover-state-layer-color: vars.$secondary,
-      label-text-font: vars.$label-medium-font,
-      label-text-line-height: vars.$label-medium-line-height,
-      label-text-size: vars.$label-medium-size,
-      label-text-tracking: vars.$label-medium-tracking,
-      label-text-weight: vars.$label-medium-weight,
-      outline-color: vars.$outline-variant,
-      selected-focus-state-layer-color: vars.$secondary,
-    )
-  );
-
-  // Stateless chip variant (tag)
-  .stateless-chip {
-    pointer-events: none !important;
-    cursor: default !important;
-
-    .mdc-evolution-chip__action {
-      pointer-events: none !important;
-    }
-
-    // Remove all state layer effects
-    &:hover .mdc-evolution-chip__action::before,
-    &:focus .mdc-evolution-chip__action::before,
-    .mdc-evolution-chip__action:hover::before,
-    .mdc-evolution-chip__action:focus::before {
-      opacity: 0 !important;
-    }
-
-    // Remove ripple effect
-    .mdc-evolution-chip__ripple {
-      display: none !important;
-    }
+  // Default stateless chip (mat-chip) - no interactions
+  mat-chip {
+    @include mat.chips-overrides(
+      (
+        elevated-selected-container-color: vars.$secondary,
+        label-text-font: vars.$label-medium-font,
+        label-text-line-height: vars.$label-medium-line-height,
+        label-text-size: vars.$label-medium-size,
+        label-text-tracking: vars.$label-medium-tracking,
+        label-text-weight: vars.$label-medium-weight,
+        hover-state-layer-opacity: 0,
+        focus-state-layer-opacity: 0,
+      )
+    );
   }
 
-  // Label size variants for stateless chips
-  .stateless-chip-small {
-    @include utils.use-font(label, small);
+  // mat-chip-option and mat-chip-row - interactive chips with hover/focus states
+  mat-chip-option,
+  mat-chip-row {
+    @include mat.chips-overrides(
+      (
+        elevated-selected-container-color: vars.$secondary,
+        label-text-font: vars.$label-medium-font,
+        label-text-line-height: vars.$label-medium-line-height,
+        label-text-size: vars.$label-medium-size,
+        label-text-tracking: vars.$label-medium-tracking,
+        label-text-weight: vars.$label-medium-weight,
+        // Material Design default opacity values
+        hover-state-layer-opacity: 0.08,
+        focus-state-layer-opacity: 0.12,
+        selected-hover-state-layer-opacity: 0.08,
+        selected-focus-state-layer-opacity: 0.12,
+      )
+    );
   }
 
-  .stateless-chip-medium {
-    @include utils.use-font(label, medium);
+  // Size variants for chips (applied via hraChipSize directive)
+  .hra-chip-small {
+    @include mat.chips-overrides(
+      (
+        label-text-font: vars.$label-small-font,
+        label-text-line-height: vars.$label-small-line-height,
+        label-text-size: vars.$label-small-size,
+        label-text-tracking: vars.$label-small-tracking,
+        label-text-weight: vars.$label-small-weight,
+      )
+    );
   }
 
-  .stateless-chip-large {
-    @include utils.use-font(label, large);
+  .hra-chip-medium {
+    @include mat.chips-overrides(
+      (
+        label-text-font: vars.$label-medium-font,
+        label-text-line-height: vars.$label-medium-line-height,
+        label-text-size: vars.$label-medium-size,
+        label-text-tracking: vars.$label-medium-tracking,
+        label-text-weight: vars.$label-medium-weight,
+      )
+    );
+  }
+
+  .hra-chip-large {
+    @include mat.chips-overrides(
+      (
+        label-text-font: vars.$label-large-font,
+        label-text-line-height: vars.$label-large-line-height,
+        label-text-size: vars.$label-large-size,
+        label-text-tracking: vars.$label-large-tracking,
+        label-text-weight: vars.$label-large-weight,
+      )
+    );
   }
 }
