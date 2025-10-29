@@ -2,15 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
-import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /** Result of the consent banner */
 export type ConsentBannerResult = 'allow-all' | 'allow-necessary' | 'customize';
-
-/** Type for variant of the consent banner */
-export type ConsentBannerVariant = 'HRA' | 'CNS';
 
 /** Dialog panel class */
 export const CONSENT_BANNER_PANEL_CLASS = 'hra-consent-banner-panel';
@@ -31,7 +27,4 @@ export class ConsentBannerComponent {
    * Aria labelledby id
    */
   readonly ariaLabelledbyId = CONSENT_BANNER_ARIA_LABELLEDBY_ID;
-
-  /** App configuration */
-  readonly appName = injectAppConfiguration().name;
 }
