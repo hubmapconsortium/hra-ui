@@ -30,13 +30,13 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/hra-ui-design-system.mjs"
     },
-    "./bottom-sheet": {
-      "types": "./bottom-sheet/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-bottom-sheet.mjs"
-    },
     "./brand": {
       "types": "./brand/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-brand.mjs"
+    },
+    "./bottom-sheet": {
+      "types": "./bottom-sheet/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-bottom-sheet.mjs"
     },
     "./buttons": {
       "types": "./buttons/index.d.ts",
@@ -65,6 +65,10 @@
     "./data-viewer": {
       "types": "./data-viewer/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-data-viewer.mjs"
+    },
+    "./density": {
+      "types": "./density/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-density.mjs"
     },
     "./dialog": {
       "types": "./dialog/index.d.ts",
@@ -114,13 +118,13 @@
       "types": "./navigation/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-navigation.mjs"
     },
-    "./privacy": {
-      "types": "./privacy/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-privacy.mjs"
-    },
     "./scrolling": {
       "types": "./scrolling/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-scrolling.mjs"
+    },
+    "./privacy": {
+      "types": "./privacy/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-privacy.mjs"
     },
     "./select": {
       "types": "./select/index.d.ts",
@@ -254,6 +258,10 @@
       "types": "./cards/profile-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-profile-card.mjs"
     },
+    "./content-templates/app-label": {
+      "types": "./content-templates/app-label/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
+    },
     "./content-templates/api-command": {
       "types": "./content-templates/api-command/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-api-command.mjs"
@@ -261,10 +269,6 @@
     "./content-templates/content-page": {
       "types": "./content-templates/content-page/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-content-page.mjs"
-    },
-    "./content-templates/app-label": {
-      "types": "./content-templates/app-label/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
     },
     "./content-templates/flex-container": {
       "types": "./content-templates/flex-container/index.d.ts",
@@ -378,6 +382,10 @@
       "types": "./navigation/table-of-contents/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-navigation-table-of-contents.mjs"
     },
+    "./scrolling/testing": {
+      "types": "./scrolling/testing/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-scrolling-testing.mjs"
+    },
     "./privacy/consent-banner": {
       "types": "./privacy/consent-banner/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-privacy-consent-banner.mjs"
@@ -385,10 +393,6 @@
     "./privacy/privacy-preferences": {
       "types": "./privacy/privacy-preferences/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-privacy-privacy-preferences.mjs"
-    },
-    "./scrolling/testing": {
-      "types": "./scrolling/testing/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-scrolling-testing.mjs"
     },
     "./tooltips/plain-tooltip": {
       "types": "./tooltips/plain-tooltip/index.d.ts",
@@ -432,7 +436,8 @@
     "@angular/youtube-player": "^20.2.0",
     "@angular/forms": "^20.2.1",
     "@google/model-viewer": "4.1.0",
-    "store2": "^2.14.4"
+    "store2": "^2.14.4",
+    "type-fest": "^5.0.1"
   },
   "sideEffects": false,
   "module": "fesm2022/hra-ui-design-system.mjs",
