@@ -1563,18 +1563,14 @@ function cast() {
  * @returns A MinMax object
  */
 function rangeToMinMax(range, low, high) {
-    if (!range) {
-        return undefined;
+    if (range) {
+        const min = range[0] > low ? range[0] : undefined;
+        const max = range[1] < high ? range[0] : undefined;
+        if (min !== undefined || max !== undefined) {
+            return { min, max };
+        }
     }
-    const [min, max] = range;
-    const result = {};
-    if (min > low) {
-        result.min = min;
-    }
-    if (max < high) {
-        result.max = max;
-    }
-    return result;
+    return undefined;
 }
 /**
  * Reviver for spatial scene nodes
@@ -1594,18 +1590,19 @@ function spatialSceneNodeReviver(nodes) {
  * @param filter Filter object
  * @returns Filter parameters
  */
-function filterToParams(filter) {
+function filterToParams(filter = {}) {
+    const { ageRange, bmiRange, sex, ontologyTerms, cellTypeTerms, biomarkerTerms, consortiums, tmc: providers, technologies, spatialSearches: spatial, } = filter;
     return {
-        age: rangeToMinMax(filter?.ageRange, 1, 110),
-        bmi: rangeToMinMax(filter?.bmiRange, 13, 83),
-        sex: filter?.sex?.toLowerCase(),
-        ontologyTerms: filter?.ontologyTerms,
-        cellTypeTerms: filter?.cellTypeTerms,
-        biomarkerTerms: filter?.biomarkerTerms,
-        consortiums: filter?.consortiums,
-        providers: filter?.tmc,
-        technologies: filter?.technologies,
-        spatial: filter?.spatialSearches,
+        age: JSON.stringify(rangeToMinMax(ageRange, 1, 110)),
+        bmi: JSON.stringify(rangeToMinMax(bmiRange, 13, 83)),
+        sex: sex?.toLowerCase(),
+        ontologyTerms,
+        cellTypeTerms,
+        biomarkerTerms,
+        consortiums,
+        providers,
+        technologies,
+        spatial: spatial?.length ? JSON.stringify(spatial) : undefined,
     };
 }
 /**
