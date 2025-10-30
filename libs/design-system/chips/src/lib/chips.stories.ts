@@ -2,7 +2,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { ChipSizeDirective } from '../directives/chip-size.directive';
+import { ChipSizeDirective } from './chip-size.directive';
 
 const meta: Meta = {
   title: 'Design System/Buttons/Chips',
