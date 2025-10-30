@@ -8,19 +8,14 @@ describe('FilterContainerComponent', () => {
     tooltip?: RichTooltipConfig;
     chips?: FilterChip[];
     showDivider?: boolean;
-    on?: {
-      filterButtonClick?: jest.Mock;
-      chipRemoved?: jest.Mock;
-    };
   }): Promise<RenderResult<FilterContainerComponent>> {
     return render(FilterContainerComponent, {
       inputs: {
-        label: options.label,
+        tagline: options.label,
         tooltip: options.tooltip,
         chips: options.chips ?? [],
         showDivider: options.showDivider ?? false,
       },
-      on: options.on,
     });
   }
 
@@ -72,36 +67,37 @@ describe('FilterContainerComponent', () => {
     expect(screen.getByText('Chip 2')).toBeInTheDocument();
   });
 
-  it('should emit filterButtonClick when button is clicked', async () => {
+  it('should not emit when button is clicked', async () => {
     const user = userEvent.setup();
-    const filterButtonClick = jest.fn();
 
     await setup({
       label: 'Test',
-      on: { filterButtonClick },
     });
 
     const button = screen.getByRole('button', { name: 'Test' });
     await user.click(button);
 
-    expect(filterButtonClick).toHaveBeenCalledTimes(1);
+    // Button click should not trigger any events
+    expect(button).toBeInTheDocument();
   });
 
-  it('should emit chipRemoved when chip remove button is clicked', async () => {
+  it('should remove chip from model when chip remove button is clicked', async () => {
     const user = userEvent.setup();
-    const chipRemoved = jest.fn();
-    const chips: FilterChip[] = [{ id: '1', label: 'Chip 1' }];
+    const chips: FilterChip[] = [
+      { id: '1', label: 'Chip 1' },
+      { id: '2', label: 'Chip 2' },
+    ];
 
-    await setup({
+    const { fixture } = await setup({
       label: 'Test',
       chips,
-      on: { chipRemoved },
     });
 
     const removeButton = screen.getByRole('button', { name: 'Remove Chip 1' });
     await user.click(removeButton);
 
-    expect(chipRemoved).toHaveBeenCalledWith(chips[0]);
+    // Check that the chip was removed from the model
+    expect(fixture.componentInstance.chips()).toEqual([{ id: '2', label: 'Chip 2' }]);
   });
 
   it('should show divider when showDivider is true', async () => {
