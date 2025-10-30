@@ -8,8 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HraCommonModule } from '@hra-ui/common';
 
+/**
+ * Interface representing a search autocomplete option
+ */
 export interface SearchAutocompleteOption {
+  /** Label to display for the option */
   label: string;
+  /** Value associated with the option */
   value: string;
 }
 
@@ -80,6 +85,7 @@ export class SearchAutocompleteComponent {
   /** Number of currently visible/filtered options */
   protected readonly viewingCount = computed(() => this.filteredOptions().length);
 
+  /** Constructor */
   constructor() {
     effect(() => {
       this.searchChange.emit(this.searchQuery() || '');
