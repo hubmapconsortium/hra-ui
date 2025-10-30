@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
@@ -37,37 +37,24 @@ export interface RichTooltipConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterContainerComponent {
-  /** Label for the filter category */
-  readonly label = input.required<string>();
+  /** tagline for the filter category */
+  readonly tagline = input.required<string>();
 
   /** Optional rich tooltip configuration for info button */
   readonly tooltip = input<RichTooltipConfig | undefined>();
 
-  /** Array of selected filter chips */
-  readonly chips = input<FilterChip[]>([]);
+  /** Array of selected filter chips - two-way bindable */
+  readonly chips = model<FilterChip[]>([]);
 
   /** Whether to show a divider below the container */
-  readonly showDivider = input<boolean>(false);
-
-  /** Emitted when the filter button is clicked to open the filter menu/flyout */
-  readonly filterButtonClick = output<void>();
-
-  /** Emitted when a chip is removed */
-  readonly chipRemoved = output<FilterChip>();
+  readonly showDivider = input<boolean, unknown>(false, { transform: booleanAttribute });
 
   /**
    * Handles the removal of a chip
    * @param chip The chip to remove
    */
   removeChip(chip: FilterChip): void {
-    this.chipRemoved.emit(chip);
-  }
-
-  /**
-   * Handles click on the filter button
-   */
-  onFilterButtonClick(): void {
-    this.filterButtonClick.emit();
+    this.chips.update((current) => current.filter((c) => c.id !== chip.id));
   }
 
   /**
