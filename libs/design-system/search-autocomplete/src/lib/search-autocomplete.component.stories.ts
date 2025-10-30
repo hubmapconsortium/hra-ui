@@ -35,9 +35,7 @@ const meta: Meta<SearchAutocompleteComponent> = {
   args: {
     placeholder: 'Search',
     options: SAMPLE_OPTIONS,
-    showCounter: true,
     sticky: false,
-    disabled: false,
     ariaLabel: 'Search with autocomplete',
   },
 };
