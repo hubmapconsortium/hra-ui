@@ -13,6 +13,9 @@ export interface SearchAutocompleteOption {
   value: string;
 }
 
+/**
+ * Search Autocomplete Component
+ */
 @Component({
   selector: 'hra-search-autocomplete',
   standalone: true,
@@ -29,20 +32,37 @@ export interface SearchAutocompleteOption {
   styleUrls: ['./search-autocomplete.component.scss'],
 })
 export class SearchAutocompleteComponent {
+  /** Placeholder text for the search input */
   readonly placeholder = input('Search');
+
+  /** Label for the form field */
   readonly label = input('');
+
+  /** Array of searchable items */
   readonly options = input<SearchAutocompleteOption[]>([]);
+
+  /** Whether the component should be sticky at the top */
   readonly sticky = input(true);
+
+  /** ARIA label for accessibility */
   readonly ariaLabel = input('Search with autocomplete');
 
+  /** Emits when a selection is made */
   readonly selectionChange = output<SearchAutocompleteOption | null>();
+
+  /** Emits the current search value on change */
   readonly searchChange = output<string>();
+
+  /** Emits filtered results */
   readonly filteredResultsChange = output<SearchAutocompleteOption[]>();
 
+  /** Form control for the search input */
   readonly searchControl = new FormControl('');
 
+  /** Signal holding the search query - derived from form control */
   protected readonly searchQuery = toSignal(this.searchControl.valueChanges, { initialValue: '' });
 
+  /** Computed filtered options based on search query */
   protected readonly filteredOptions = computed(() => {
     const query = (this.searchQuery() || '').toLowerCase().trim();
     const allOpts = this.options();
@@ -54,7 +74,10 @@ export class SearchAutocompleteComponent {
     return allOpts.filter((option) => option.label.toLowerCase().includes(query));
   });
 
+  /** Total number of options */
   protected readonly totalCount = computed(() => this.options().length);
+
+  /** Number of currently visible/filtered options */
   protected readonly viewingCount = computed(() => this.filteredOptions().length);
 
   constructor() {
@@ -67,20 +90,32 @@ export class SearchAutocompleteComponent {
     });
   }
 
+  /**
+   * Handles autocomplete option selection
+   */
   onOptionSelected(option: SearchAutocompleteOption): void {
     this.searchControl.setValue(option.label);
     this.selectionChange.emit(option);
   }
 
+  /**
+   * Clears the search input
+   */
   clearSearch(): void {
     this.searchControl.setValue('');
     this.selectionChange.emit(null);
   }
 
+  /**
+   * Display function for autocomplete
+   */
   displayWith(option: SearchAutocompleteOption | null): string {
     return option?.label || '';
   }
 
+  /**
+   * Track by function for ngFor optimization
+   */
   trackByValue(_index: number, option: SearchAutocompleteOption): string {
     return option.value;
   }
