@@ -29,7 +29,7 @@
   </mat-sidenav>
 
   <div class="page-content">
-    @if (!databaseReady()) {
+    @if (!databaseReady() || queryStatus() === 'running') {
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
 

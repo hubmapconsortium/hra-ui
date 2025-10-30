@@ -10,7 +10,7 @@
     "@deck.gl/mesh-layers": "~8.8.20",
     "@math.gl/core": "~3.6.3",
     "@luma.gl/core": "~8.5.16",
-    "@hra-api/ng-client": "^0.16.0",
+    "@hra-api/ng-client": "^0.17.0",
     "rxjs": "^7.8.2",
     "ngxtension": "^5.1.0",
     "zod": "^4.1.3",

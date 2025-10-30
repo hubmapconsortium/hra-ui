@@ -257,8 +257,8 @@ export class ModelChangeEventDirective extends BaseEventDirective<CoreEvents['Mo
       return { value: propsOrFilter(value) };
     } else if (typeof propsOrFilter === 'object' && !Array.isArray(propsOrFilter)) {
       return { value, ...propsOrFilter };
-    } else if (value === undefined || value === null) {
-      return {};
+    } else if (value === undefined || value === null || propsOrFilter.length === 0) {
+      return { value: {} };
     }
 
     const source = value as UnknownRecord;
