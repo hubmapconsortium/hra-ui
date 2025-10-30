@@ -1,5 +1,6 @@
 import { createInjectionToken } from 'ngxtension/create-injection-token';
 
+/** Brand logo */
 export interface BrandLogo {
   size: 'regular' | 'small';
   src: string;
