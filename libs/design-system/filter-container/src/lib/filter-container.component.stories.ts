@@ -1,6 +1,5 @@
 import { Component, OnInit, input, signal } from '@angular/core';
 import { Meta, StoryObj, applicationConfig } from '@storybook/angular';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { FilterContainerComponent, FilterChip, RichTooltipConfig } from './filter-container.component';
 
 @Component({
@@ -8,14 +7,7 @@ import { FilterContainerComponent, FilterChip, RichTooltipConfig } from './filte
   standalone: true,
   imports: [FilterContainerComponent],
   template: `
-    <hra-filter-container
-      [label]="label()"
-      [chips]="chips()"
-      [tooltip]="tooltip()"
-      [showDivider]="showDivider()"
-      (filterButtonClick)="onFilterButtonClick()"
-      (chipRemoved)="onChipRemoved($event)"
-    />
+    <hra-filter-container [label]="label()" [(chips)]="chips" [tooltip]="tooltip()" [showDivider]="showDivider()" />
   `,
 })
 class FilterContainerDemoComponent implements OnInit {
@@ -29,23 +21,14 @@ class FilterContainerDemoComponent implements OnInit {
   ngOnInit() {
     this.chips.set([...this.initialChips()]);
   }
-
-  onFilterButtonClick() {
-    // Filter button clicked
-  }
-
-  onChipRemoved(chip: FilterChip) {
-    this.chips.update((current) => current.filter((c) => c.id !== chip.id));
-  }
 }
 
 const meta: Meta<FilterContainerDemoComponent> = {
   component: FilterContainerDemoComponent,
   title: 'Design System/Filter Container',
-  tags: ['autodocs'],
   decorators: [
     applicationConfig({
-      providers: [provideAnimations()],
+      providers: [],
     }),
   ],
   parameters: {
