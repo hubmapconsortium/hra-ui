@@ -3,7 +3,7 @@
     @if (tooltip(); as tooltipData) {
       <hra-info-button class="info-icon">
         <hra-info-button-tooltip-tagline>
-          {{ label() }}
+          {{ tagline() }}
         </hra-info-button-tooltip-tagline>
         <hra-info-button-tooltip-content>
           <p>{{ tooltipData.description }}</p>
@@ -15,14 +15,8 @@
         </hra-info-button-tooltip-content>
       </hra-info-button>
     }
-    <button
-      mat-button
-      hraButtonVariant="secondary"
-      class="category-button"
-      color="primary"
-      (click)="onFilterButtonClick()"
-    >
-      {{ label() }}
+    <button mat-button hraButtonVariant="secondary" class="category-button" color="primary">
+      {{ tagline() }}
     </button>
   </div>
 
