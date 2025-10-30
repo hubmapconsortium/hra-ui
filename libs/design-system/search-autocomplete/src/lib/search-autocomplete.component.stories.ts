@@ -20,8 +20,6 @@ const SAMPLE_OPTIONS: SearchAutocompleteOption[] = [
   { label: 'Adrenal Gland', value: 'adrenal-gland' },
   { label: 'Prostate', value: 'prostate' },
   { label: 'Uterus', value: 'uterus' },
-  { label: 'Ovary', value: 'ovary' },
-  { label: 'Testis', value: 'testis' },
   { label: 'Bone Marrow', value: 'bone-marrow' },
   { label: 'Lymph Node', value: 'lymph-node' },
 ];
