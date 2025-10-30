@@ -70,10 +70,10 @@ jobs:
 
       - name: Create metadata script
         run: |
-          echo "preview.setIssueNumber(\"$ISSUE_NUMBER\")" >> $METADATA_FILE
+          echo "preview.setIssueNumber(\"$ISSUE_NUMBER\");" >> $METADATA_FILE
 
           find deploy/{apps,compodoc,storybook} -mindepth 1 -maxdepth 1 -type d \
-            -printf 'preview.addDirectory("%p")\n' \
+            -printf 'preview.addDirectory("%p");\n' \
             2>/dev/null >> $METADATA_FILE || true
         env:
           METADATA_FILE: deploy/metadata.js
