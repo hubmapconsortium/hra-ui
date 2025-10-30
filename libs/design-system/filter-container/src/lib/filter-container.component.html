@@ -1,16 +1,16 @@
 <div class="filter-container">
   <div class="top-row">
-    @if (tooltip()) {
+    @if (tooltip(); as tooltipData) {
       <hra-info-button class="info-icon">
         <hra-info-button-tooltip-tagline>
           {{ label() }}
         </hra-info-button-tooltip-tagline>
         <hra-info-button-tooltip-content>
-          <p>{{ tooltip()!.description }}</p>
-          @if (tooltip()!.actionText && tooltip()!.actionUrl) {
-            <button mat-button color="accent" (click)="onTooltipActionClick()">
-              {{ tooltip()!.actionText }}
-            </button>
+          <p>{{ tooltipData.description }}</p>
+          @if (tooltipData.actionText && tooltipData.actionUrl) {
+            <a mat-button color="accent" [href]="tooltipData.actionUrl" target="_blank" rel="noopener noreferrer">
+              {{ tooltipData.actionText }}
+            </a>
           }
         </hra-info-button-tooltip-content>
       </hra-info-button>
