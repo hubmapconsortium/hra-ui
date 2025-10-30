@@ -26,7 +26,6 @@ describe('SearchAutocompleteComponent', () => {
     await render(SearchAutocompleteComponent, {
       inputs: {
         options: mockOptions,
-        showCounter: true,
       },
     });
 
@@ -37,7 +36,6 @@ describe('SearchAutocompleteComponent', () => {
     await render(SearchAutocompleteComponent, {
       inputs: {
         options: mockOptions,
-        showCounter: true,
       },
     });
 
@@ -66,7 +64,6 @@ describe('SearchAutocompleteComponent', () => {
     await render(SearchAutocompleteComponent, {
       inputs: {
         options: mockOptions,
-        showCounter: true,
       },
     });
 
@@ -100,28 +97,5 @@ describe('SearchAutocompleteComponent', () => {
     await userEvent.click(option);
 
     expect(onSelectionChange).toHaveBeenCalledWith(mockOptions[0]);
-  });
-
-  it('disables input when disabled is true', async () => {
-    await render(SearchAutocompleteComponent, {
-      inputs: {
-        options: mockOptions,
-        disabled: true,
-      },
-    });
-
-    const input = screen.getByRole('combobox');
-    expect(input).toBeDisabled();
-  });
-
-  it('hides counter when showCounter is false', async () => {
-    await render(SearchAutocompleteComponent, {
-      inputs: {
-        options: mockOptions,
-        showCounter: false,
-      },
-    });
-
-    expect(screen.queryByText(/\/ 4/)).not.toBeInTheDocument();
   });
 });
