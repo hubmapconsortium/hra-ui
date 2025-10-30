@@ -12,9 +12,7 @@
       [placeholder]="placeholder()"
       [formControl]="searchControl"
       [matAutocomplete]="auto"
-      [disabled]="disabled()"
       [attr.aria-label]="ariaLabel()"
-      (input)="onSearchInput($any($event.target).value)"
     />
 
     @if (searchControl.value) {
@@ -41,9 +39,7 @@
     </mat-autocomplete>
   </mat-form-field>
 
-  @if (showCounter()) {
-    <div class="results-counter" aria-live="polite">
-      <span class="counter-text"> {{ viewingCount() | number: '1.0-0' }} / {{ totalCount() | number: '1.0-0' }} </span>
-    </div>
-  }
+  <div class="results-counter" aria-live="polite">
+    <span class="counter-text"> {{ viewingCount() | number: '1.0-0' }} / {{ totalCount() | number: '1.0-0' }} </span>
+  </div>
 </div>
