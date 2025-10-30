@@ -46,6 +46,10 @@
       "types": "./cards/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards.mjs"
     },
+    "./chips": {
+      "types": "./chips/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-chips.mjs"
+    },
     "./code-block": {
       "types": "./code-block/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-code-block.mjs"
@@ -310,13 +314,13 @@
       "types": "./content-templates/ui-section/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-ui-section.mjs"
     },
-    "./content-templates/versioned-data-table": {
-      "types": "./content-templates/versioned-data-table/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-versioned-data-table.mjs"
-    },
     "./content-templates/youtube-player": {
       "types": "./content-templates/youtube-player/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-youtube-player.mjs"
+    },
+    "./content-templates/versioned-data-table": {
+      "types": "./content-templates/versioned-data-table/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-versioned-data-table.mjs"
     },
     "./error-pages/not-found-page": {
       "types": "./error-pages/not-found-page/index.d.ts",
@@ -334,13 +338,13 @@
       "types": "./indicators/message-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-message-indicator.mjs"
     },
-    "./indicators/no-results-indicator": {
-      "types": "./indicators/no-results-indicator/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-indicators-no-results-indicator.mjs"
-    },
     "./indicators/progress-bar": {
       "types": "./indicators/progress-bar/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-progress-bar.mjs"
+    },
+    "./indicators/no-results-indicator": {
+      "types": "./indicators/no-results-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-no-results-indicator.mjs"
     },
     "./indicators/progress-spinner": {
       "types": "./indicators/progress-spinner/index.d.ts",

@@ -695,17 +695,6 @@ html {
   --mat-checkbox-selected-focus-state-layer-color: var(--mat-sys-on-tertiary-fixed);
   --mat-checkbox-selected-hover-state-layer-color: var(--mat-sys-on-tertiary-fixed);
   --mat-checkbox-selected-pressed-state-layer-color: var(--mat-sys-on-tertiary-fixed);
-  --mat-chip-elevated-selected-container-color: var(--mat-sys-secondary);
-  --mat-chip-focus-outline-color: var(--mat-sys-tertiary);
-  --mat-chip-focus-state-layer-color: var(--mat-sys-on-primary);
-  --mat-chip-hover-state-layer-color: var(--mat-sys-secondary);
-  --mat-chip-label-text-font: var(--mat-sys-label-medium-font);
-  --mat-chip-label-text-line-height: var(--mat-sys-label-medium-line-height);
-  --mat-chip-label-text-size: var(--mat-sys-label-medium-size);
-  --mat-chip-label-text-tracking: var(--mat-sys-label-medium-tracking);
-  --mat-chip-label-text-weight: var(--mat-sys-label-medium-weight);
-  --mat-chip-outline-color: var(--mat-sys-outline-variant);
-  --mat-chip-selected-focus-state-layer-color: var(--mat-sys-secondary);
   --mat-form-field-container-height: 3rem;
   --mat-form-field-container-text-font: var(--mat-sys-label-medium-font);
   --mat-form-field-container-text-size: var(--mat-sys-label-medium-size);
@@ -1053,6 +1042,50 @@ html mat-checkbox.hra-checkbox-error-variant {
   --mat-checkbox-selected-focus-state-layer-color: var(--mat-sys-error);
   --mat-checkbox-selected-hover-state-layer-color: var(--mat-sys-error);
   --mat-checkbox-selected-pressed-state-layer-color: var(--mat-sys-error);
+}
+html mat-chip {
+  --mat-chip-elevated-selected-container-color: var(--mat-sys-secondary);
+  --mat-chip-label-text-font: var(--mat-sys-label-medium-font);
+  --mat-chip-label-text-line-height: var(--mat-sys-label-medium-line-height);
+  --mat-chip-label-text-size: var(--mat-sys-label-medium-size);
+  --mat-chip-label-text-tracking: var(--mat-sys-label-medium-tracking);
+  --mat-chip-label-text-weight: var(--mat-sys-label-medium-weight);
+  --mat-chip-hover-state-layer-opacity: 0;
+  --mat-chip-focus-state-layer-opacity: 0;
+}
+html mat-chip-option,
+html mat-chip-row {
+  --mat-chip-elevated-selected-container-color: var(--mat-sys-secondary);
+  --mat-chip-label-text-font: var(--mat-sys-label-medium-font);
+  --mat-chip-label-text-line-height: var(--mat-sys-label-medium-line-height);
+  --mat-chip-label-text-size: var(--mat-sys-label-medium-size);
+  --mat-chip-label-text-tracking: var(--mat-sys-label-medium-tracking);
+  --mat-chip-label-text-weight: var(--mat-sys-label-medium-weight);
+  --mat-chip-hover-state-layer-opacity: 0.08;
+  --mat-chip-focus-state-layer-opacity: 0.12;
+  --mat-chip-selected-hover-state-layer-opacity: 0.08;
+  --mat-chip-selected-focus-state-layer-opacity: 0.12;
+}
+html .hra-chip-small {
+  --mat-chip-label-text-font: var(--mat-sys-label-small-font);
+  --mat-chip-label-text-line-height: var(--mat-sys-label-small-line-height);
+  --mat-chip-label-text-size: var(--mat-sys-label-small-size);
+  --mat-chip-label-text-tracking: var(--mat-sys-label-small-tracking);
+  --mat-chip-label-text-weight: var(--mat-sys-label-small-weight);
+}
+html .hra-chip-medium {
+  --mat-chip-label-text-font: var(--mat-sys-label-medium-font);
+  --mat-chip-label-text-line-height: var(--mat-sys-label-medium-line-height);
+  --mat-chip-label-text-size: var(--mat-sys-label-medium-size);
+  --mat-chip-label-text-tracking: var(--mat-sys-label-medium-tracking);
+  --mat-chip-label-text-weight: var(--mat-sys-label-medium-weight);
+}
+html .hra-chip-large {
+  --mat-chip-label-text-font: var(--mat-sys-label-large-font);
+  --mat-chip-label-text-line-height: var(--mat-sys-label-large-line-height);
+  --mat-chip-label-text-size: var(--mat-sys-label-large-size);
+  --mat-chip-label-text-tracking: var(--mat-sys-label-large-tracking);
+  --mat-chip-label-text-weight: var(--mat-sys-label-large-weight);
 }
 html button[mat-icon-button].hra-icon-button-size-small,
 html a[mat-icon-button].hra-icon-button-size-small {

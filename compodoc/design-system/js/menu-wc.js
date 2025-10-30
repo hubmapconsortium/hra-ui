@@ -184,6 +184,23 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                             </li>
                             <li class="link">
+                                <a href="modules/ChipsModule.html" data-type="entity-link" >ChipsModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                        'data-bs-target="#directives-links-module-ChipsModule-5383f7849b4534659529268f8ae779f40568da93c7176990b8b00fdac39c0fdd608c39d5d8a79877e78ca96723e30b3278a652ded5e6646e1f3d23d64c2a7515"' : 'data-bs-target="#xs-directives-links-module-ChipsModule-5383f7849b4534659529268f8ae779f40568da93c7176990b8b00fdac39c0fdd608c39d5d8a79877e78ca96723e30b3278a652ded5e6646e1f3d23d64c2a7515"' }>
+                                        <span class="icon ion-md-code-working"></span>
+                                        <span>Directives</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ChipsModule-5383f7849b4534659529268f8ae779f40568da93c7176990b8b00fdac39c0fdd608c39d5d8a79877e78ca96723e30b3278a652ded5e6646e1f3d23d64c2a7515"' :
+                                        'id="xs-directives-links-module-ChipsModule-5383f7849b4534659529268f8ae779f40568da93c7176990b8b00fdac39c0fdd608c39d5d8a79877e78ca96723e30b3278a652ded5e6646e1f3d23d64c2a7515"' }>
+                                        <li class="link">
+                                            <a href="directives/ChipSizeDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ChipSizeDirective</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/ContentTemplatesModule.html" data-type="entity-link" >ContentTemplatesModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -980,6 +997,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="directives/CheckboxErrorVariantDirective.html" data-type="entity-link" >CheckboxErrorVariantDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/ChipSizeDirective.html" data-type="entity-link" >ChipSizeDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/CtaButtonDirective.html" data-type="entity-link" >CtaButtonDirective</a>
