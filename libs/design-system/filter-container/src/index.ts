@@ -1,2 +1,1 @@
-export { FilterContainerComponent } from './lib/filter-container.component';
-export type { FilterChip, RichTooltipConfig } from './lib/filter-container.component';
+export { FilterContainerComponent, type FilterChip, type RichTooltipConfig } from './lib/filter-container.component';
