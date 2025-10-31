@@ -2,6 +2,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { ChipSizeDirective } from './chip-size.directive';
 
 const meta: Meta = {
   title: 'Design System/Buttons/Chips',
@@ -27,7 +28,7 @@ const meta: Meta = {
   },
   decorators: [
     moduleMetadata({
-      imports: [MatButtonModule, MatIconModule, MatChipsModule],
+      imports: [MatButtonModule, MatIconModule, MatChipsModule, ChipSizeDirective],
     }),
   ],
 };
@@ -66,6 +67,18 @@ export const Group: Story = {
       </mat-chip-row>
     }
     </mat-chip-set>
+    `,
+  }),
+};
+
+export const Stateless: Story = {
+  render: () => ({
+    template: `
+      <mat-chip-set aria-label="Category tags">
+        <mat-chip hraChipSize="small">Small</mat-chip>
+        <mat-chip hraChipSize="medium">Medium</mat-chip>
+        <mat-chip hraChipSize="large">Large</mat-chip>
+      </mat-chip-set>
     `,
   }),
 };
