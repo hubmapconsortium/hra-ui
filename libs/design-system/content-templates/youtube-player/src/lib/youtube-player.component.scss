@@ -1,3 +1,6 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
 :host {
   display: block;
   position: relative;
@@ -10,5 +13,30 @@
     width: 100% !important;
     aspect-ratio: 16 / 9 !important;
     height: unset !important;
+  }
+
+  .youtube-thumbnail-container {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+  }
+
+  .thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+  }
+
+  .enable-cookies-message {
+    @include utils.use-font(label, small);
+    color: vars.$primary;
+    margin-top: 0.5rem;
+  }
+
+  .enable-cookies-link {
+    color: vars.$tertiary;
+    text-decoration: none;
   }
 }
