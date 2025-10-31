@@ -4,9 +4,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
+/** Info Button Tagline Directive */
 @Directive({ selector: '[hraInfoButtonTagline]' })
 export class InfoButtonTaglineDirective {}
 
+/** Info Button Actions Directive */
 @Directive({ selector: '[hraInfoButtonActions]' })
 export class InfoButtonActionsDirective {}
 
