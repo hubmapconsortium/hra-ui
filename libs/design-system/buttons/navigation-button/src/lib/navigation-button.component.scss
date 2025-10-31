@@ -1,0 +1,88 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
+:host {
+  display: block;
+
+  a {
+    display: block;
+    min-height: 2.75rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:focus-visible {
+      @include utils.inset-outline(vars.$primary);
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      &:has(.supporting-text) {
+        align-items: flex-start;
+      }
+
+      .indent {
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .text-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &:has(.label) {
+          color: vars.$secondary;
+          @include utils.use-font(label, medium);
+        }
+
+        &:has(.supporting-text) {
+          color: vars.$primary;
+          @include utils.use-font(label, small);
+          margin-top: 0.125rem;
+        }
+      }
+
+      &:has(.leading-icon),
+      &:has(.trailing-icon) {
+        color: vars.$secondary;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &.hra-navigation-button-basic {
+    a {
+      padding: 0.5rem 0.75rem;
+
+      &:hover {
+        background-color: utils.with-alpha(vars.$secondary, 8%);
+      }
+    }
+
+    .text-container {
+      gap: 0.125rem;
+    }
+  }
+
+  &.hra-navigation-button-cta {
+    a {
+      padding: 1rem;
+      background-color: vars.$surface-container-low;
+      border: 0.0625rem solid vars.$outline-variant;
+
+      &:hover {
+        background-color: utils.with-alpha(vars.$secondary, 8%);
+      }
+    }
+
+    .text-container {
+      gap: 0.25rem;
+    }
+  }
+}
