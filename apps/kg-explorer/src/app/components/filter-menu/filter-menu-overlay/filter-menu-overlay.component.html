@@ -4,11 +4,13 @@
       <span hraInfoButtonTagline>{{ filterOptionCategory().label }}</span>
       {{ filterOptionCategory().tooltip?.description ?? '' }}
 
-      <div hraInfoButtonActions>
-        <button mat-button color="accent" (click)="navigateToLink(filterOptionCategory().tooltip?.actionUrl ?? '')">
-          {{ filterOptionCategory().tooltip?.actionText ?? '' }}
-        </button>
-      </div>
+      @if (filterOptionCategory().tooltip?.actionText && filterOptionCategory().tooltip?.actionUrl) {
+        <div hraInfoButtonActions>
+          <button mat-button color="accent" (click)="navigateToLink(filterOptionCategory().tooltip?.actionUrl)">
+            {{ filterOptionCategory().tooltip?.actionText }}
+          </button>
+        </div>
+      }
     </hra-info-button>
     <button
       hraFeature="toggle"
