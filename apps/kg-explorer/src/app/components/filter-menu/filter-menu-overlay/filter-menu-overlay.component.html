@@ -1,19 +1,19 @@
+@let tooltip = filterOptionCategory().tooltip;
+
 <ng-container hraFeature="filter-overlay">
   <div class="top-row">
-    <button
-      hraFeature="info"
-      hraClickEvent
-      mat-icon-button
-      class="info-icon"
-      hraPlainTooltip="Info"
-      [hraRichTooltip]
-      [hraRichTooltipTagline]="filterOptionCategory().label"
-      [hraRichTooltipDescription]="filterOptionCategory().tooltip?.description ?? ''"
-      [hraRichTooltipActionText]="filterOptionCategory().tooltip?.actionText ?? ''"
-      (hraRichTooltipActionClick)="navigateToLink(filterOptionCategory().tooltip?.actionUrl ?? '')"
-    >
-      <mat-icon>info</mat-icon>
-    </button>
+    <hra-info-button hraFeature="info" hraClickEvent>
+      <span hraInfoButtonTagline>{{ filterOptionCategory().label }}</span>
+      {{ tooltip?.description ?? '' }}
+
+      @if (tooltip?.actionText && tooltip?.actionUrl) {
+        <div hraInfoButtonActions>
+          <a mat-button color="accent" [href]="tooltip?.actionUrl" target="_blank">
+            {{ tooltip?.actionText }}
+          </a>
+        </div>
+      }
+    </hra-info-button>
     <button
       hraFeature="toggle"
       hraClickEvent
@@ -55,19 +55,19 @@
               [class.selected]="selectedOptions().includes(option)"
               [class.large]="option.secondaryLabel"
             >
-              @if (option.tooltip) {
-                <button
-                  hraFeature="info"
-                  hraClickEvent
-                  mat-icon-button
-                  class="info-icon"
-                  [hraRichTooltip]
-                  [hraRichTooltipDescription]="option.tooltip.description"
-                  [hraRichTooltipActionText]="option.tooltip.actionText || ''"
-                  (hraRichTooltipActionClick)="navigateToLink(option.tooltip.actionUrl)"
-                >
-                  <mat-icon>info</mat-icon>
-                </button>
+              @let tooltip = option.tooltip;
+              @if (tooltip) {
+                <hra-info-button hraFeature="info" hraClickEvent>
+                  {{ tooltip.description }}
+
+                  @if (tooltip.actionUrl) {
+                    <div hraInfoButtonActions>
+                      <a mat-button color="accent" [href]="tooltip.actionUrl" target="_blank">
+                        {{ tooltip.actionText }}
+                      </a>
+                    </div>
+                  }
+                </hra-info-button>
               }
               <button
                 [hraFeature]="selectedOptions().includes(option) ? 'deselect' : 'select'"
