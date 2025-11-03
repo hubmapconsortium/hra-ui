@@ -45,7 +45,7 @@ export class PageSectionComponent implements PageSectionInstance {
   readonly date = input<string>();
 
   /** Tags/labels to display below the date */
-  readonly tags = input<string[]>();
+  readonly tags = input<string[]>([]);
 
   /** Reference to the section element */
   readonly elementRef = viewChild.required('section', { read: ElementRef });
