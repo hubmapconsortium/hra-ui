@@ -22,12 +22,26 @@ window.preview = (() => {
       }
 
       const template = /** @type {HTMLTemplateElement} */ (document.querySelector('template#section-link'));
-      const el = template.content.cloneNode(true);
-      const linkEl = /** @type {HTMLAnchorElement} */ (el.querySelector('a.link'));
+      const fragment = /** @type {DocumentFragment} */ (template.content.cloneNode(true));
+
+      const listEl = /** @type {HTMLElement} */ (fragment.querySelector('.item'));
+      listEl.dataset.sortKey = name;
+
+      const linkEl = /** @type {HTMLAnchorElement} */ (fragment.querySelector('a.link'));
       linkEl.href = `${base}/${name}/index.html`;
       linkEl.textContent = name;
 
-      sectionList.appendChild(el);
+      /** @type {Element | null} */
+      let nextEl = null;
+      for (const child of sectionList.children) {
+        const sortKey = /** @type {HTMLElement} */ (child).dataset.sortKey;
+        if (sortKey && sortKey > name) {
+          nextEl = child;
+          break;
+        }
+      }
+
+      sectionList.insertBefore(listEl, nextEl);
       sectionList.parentElement.classList.remove('empty');
     },
   };

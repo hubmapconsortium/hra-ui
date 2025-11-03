@@ -1,23 +1,14 @@
+import { MatButtonModule } from '@angular/material/button';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { render, screen, waitFor } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
-import {
-  InfoButtonComponent,
-  InfoButtonTooltipContentComponent,
-  InfoButtonTooltipTaglineComponent,
-} from './info-button.component';
-import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
-import { MatButtonModule } from '@angular/material/button';
+import { InfoButtonComponent } from './info-button.component';
 
 describe('InfoButtonComponent', () => {
   async function setup(template: string) {
     return render(template, {
-      imports: [
-        InfoButtonComponent,
-        InfoButtonTooltipContentComponent,
-        InfoButtonTooltipTaglineComponent,
-        RichTooltipModule,
-        MatButtonModule,
-      ],
+      imports: [InfoButtonComponent, RichTooltipModule, MatButtonModule, ButtonsModule],
     });
   }
   it('renders an info button with aria-label', async () => {
@@ -37,7 +28,7 @@ describe('InfoButtonComponent', () => {
     const user = userEvent.setup();
     await setup(`
       <hra-info-button>
-        <hra-info-button-tooltip-tagline>Information Title</hra-info-button-tooltip-tagline>
+        <div hraInfoButtonTagline>Information Title</div>
         This is a detailed description.
       </hra-info-button>
     `);
@@ -55,7 +46,7 @@ describe('InfoButtonComponent', () => {
     const user = userEvent.setup();
     await setup(`
       <hra-info-button>
-        <hra-info-button-tooltip-tagline>Information Title</hra-info-button-tooltip-tagline>
+        <div hraInfoButtonTagline>Information Title</div>
         Test description
       </hra-info-button>
     `);
@@ -78,7 +69,7 @@ describe('InfoButtonComponent', () => {
     const user = userEvent.setup();
     await setup(`
       <hra-info-button>
-        <hra-info-button-tooltip-tagline>Custom Information</hra-info-button-tooltip-tagline>
+        <div hraInfoButtonTagline>Custom Information</div>
         This rich tooltip includes custom content with action buttons.
         <hra-rich-tooltip-actions>
           <button mat-button color="accent">Action 1</button>
