@@ -29,23 +29,24 @@
     )
   );
 
-  mat-selection-list {
-    &.density-minus-two {
+  mat-selection-list,
+  mat-list {
+    &.hra-density-compact-2 {
       @include mat.list-overrides(
         (
           list-item-one-line-container-height: 3rem,
-          list-item-two-line-container-height: 3.5rem,
-          list-item-three-line-container-height: 4rem,
+          list-item-two-line-container-height: 3rem,
+          list-item-three-line-container-height: 3rem,
         )
       );
     }
 
-    &.density-minus-four {
+    &.hra-density-compact-4 {
       @include mat.list-overrides(
         (
           list-item-one-line-container-height: 2.5rem,
-          list-item-two-line-container-height: 3rem,
-          list-item-three-line-container-height: 3.5rem,
+          list-item-two-line-container-height: 2.5rem,
+          list-item-three-line-container-height: 2.5rem,
         )
       );
     }
@@ -57,7 +58,10 @@
         state-layer-size: 3rem,
       )
     );
+  }
 
+  mat-list-option,
+  mat-list-item {
     [matListItemTitle],
     [matListItemLine] {
       &::before,

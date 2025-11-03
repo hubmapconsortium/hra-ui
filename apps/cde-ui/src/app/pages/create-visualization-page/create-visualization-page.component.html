@@ -13,10 +13,8 @@
       <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
       <hra-info-button>
-        <hra-info-button-tooltip-content>
-          Use the template to format single-cell spatial feature tables for exploration. The cell type column can
-          include damage and proliferation markers.
-        </hra-info-button-tooltip-content>
+        Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
+        damage and proliferation markers.
       </hra-info-button>
       <div class="filler"></div>
       <a
@@ -75,11 +73,7 @@
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
-      <hra-info-button>
-        <hra-info-button-tooltip-content>
-          Verify column headers and edit as needed. Select optional column headers.
-        </hra-info-button-tooltip-content>
-      </hra-info-button>
+      <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>
     </h2>
 
     @if (visualizationForm.controls.headers.disabled) {
@@ -184,17 +178,15 @@
       <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
       <hra-info-button>
-        <hra-info-button-tooltip-content>
-          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
-          computed and visualized. Euclidian distance is used to compute the distance between two cells. "Endothelial"
-          is used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell
-          type label is used as the anchor cell type.
-          <br /><br />
-          Configure the distance threshold to modify visualizations for analysis.
-          <br /><br />
-          Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
-          in micrometers.
-        </hra-info-button-tooltip-content>
+        The anchor cell type represents the cell type to which the nearest cell distance distributions should be
+        computed and visualized. Euclidian distance is used to compute the distance between two cells. "Endothelial" is
+        used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell type
+        label is used as the anchor cell type.
+        <br /><br />
+        Configure the distance threshold to modify visualizations for analysis.
+        <br /><br />
+        Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
+        in micrometers.
       </hra-info-button>
     </h2>
 
@@ -248,10 +240,8 @@
       <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
       <hra-info-button>
-        <hra-info-button-tooltip-content>
-          Information in these fields will not change the visualization output. Metadata may be helpful for taking
-          screenshots of the uploaded data and resulting visualizations in the Visualization App.
-        </hra-info-button-tooltip-content>
+        Information in these fields will not change the visualization output. Metadata may be helpful for taking
+        screenshots of the uploaded data and resulting visualizations in the Visualization App.
       </hra-info-button>
     </h2>
 
@@ -324,10 +314,8 @@
       <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
       <hra-info-button>
-        <hra-info-button-tooltip-content>
-          Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type
-          colors may be changed individually while exploring the visualization in the Visualization App.
-        </hra-info-button-tooltip-content>
+        Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
+        may be changed individually while exploring the visualization in the Visualization App.
       </hra-info-button>
       <div class="filler"></div>
       <a
@@ -403,9 +391,9 @@
       <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
       <hra-info-button>
-        <hra-info-button-tooltip-content>
+        <div hraInfoButtonTooltipContent>
           Data on the Create Visualization page cannot be modified after a visualization is generated.
-        </hra-info-button-tooltip-content>
+        </div>
       </hra-info-button>
     </h2>
 
