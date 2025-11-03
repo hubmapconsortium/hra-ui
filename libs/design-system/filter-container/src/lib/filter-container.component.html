@@ -3,7 +3,7 @@
     @if (tooltip(); as tooltipData) {
       <hra-info-button class="info-icon">
         <hra-info-button-tooltip-tagline>
-          {{ tagline() }}
+          {{ action() }}
         </hra-info-button-tooltip-tagline>
         <hra-info-button-tooltip-content>
           <p>{{ tooltipData.description }}</p>
@@ -16,7 +16,7 @@
       </hra-info-button>
     }
     <button mat-button hraButtonVariant="secondary" class="category-button" color="primary">
-      {{ tagline() }}
+      {{ action() }}
     </button>
   </div>
 
@@ -24,8 +24,8 @@
     <mat-chip-set class="chips-container">
       @for (chip of chips(); track chip.id) {
         <mat-chip (removed)="removeChip(chip)" disableRipple>
-          {{ chip.label }}
-          <button matChipRemove [attr.aria-label]="'Remove ' + chip.label">
+          {{ chip.id }}
+          <button matChipRemove [attr.aria-label]="'Remove ' + chip.id">
             <mat-icon>close</mat-icon>
           </button>
         </mat-chip>
@@ -33,7 +33,7 @@
     </mat-chip-set>
   }
 
-  @if (showDivider()) {
+  @if (enableDivider()) {
     <mat-divider />
   }
 </div>
