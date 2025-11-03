@@ -196,14 +196,4 @@ export class FilterMenuOverlayComponent implements OnInit {
       return updatedValue;
     });
   }
-
-  /**
-   * Navigates to url in a separate window
-   * @param Url
-   */
-  navigateToLink(url?: string) {
-    if (url) {
-      window.open(url, '_blank');
-    }
-  }
 }

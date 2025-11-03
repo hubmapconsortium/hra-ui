@@ -1,14 +1,16 @@
+@let tooltip = filterOptionCategory().tooltip;
+
 <ng-container hraFeature="filter-overlay">
   <div class="top-row">
     <hra-info-button hraFeature="info" hraClickEvent>
       <span hraInfoButtonTagline>{{ filterOptionCategory().label }}</span>
-      {{ filterOptionCategory().tooltip?.description ?? '' }}
+      {{ tooltip?.description ?? '' }}
 
-      @if (filterOptionCategory().tooltip?.actionText && filterOptionCategory().tooltip?.actionUrl) {
+      @if (tooltip?.actionText && tooltip?.actionUrl) {
         <div hraInfoButtonActions>
-          <button mat-button color="accent" (click)="navigateToLink(filterOptionCategory().tooltip?.actionUrl)">
-            {{ filterOptionCategory().tooltip?.actionText }}
-          </button>
+          <a mat-button color="accent" [href]="tooltip?.actionUrl" target="_blank">
+            {{ tooltip?.actionText }}
+          </a>
         </div>
       }
     </hra-info-button>
@@ -53,15 +55,18 @@
               [class.selected]="selectedOptions().includes(option)"
               [class.large]="option.secondaryLabel"
             >
-              @if (option.tooltip) {
+              @let tooltip = option.tooltip;
+              @if (tooltip) {
                 <hra-info-button hraFeature="info" hraClickEvent>
-                  {{ option.tooltip.description }}
+                  {{ tooltip.description }}
 
-                  <div hraInfoButtonActions>
-                    <button mat-button color="accent" (click)="navigateToLink(option.tooltip.actionUrl)">
-                      {{ option.tooltip.actionText }}
-                    </button>
-                  </div>
+                  @if (tooltip.actionUrl) {
+                    <div hraInfoButtonActions>
+                      <a mat-button color="accent" [href]="tooltip.actionUrl" target="_blank">
+                        {{ tooltip.actionText }}
+                      </a>
+                    </div>
+                  }
                 </hra-info-button>
               }
               <button
