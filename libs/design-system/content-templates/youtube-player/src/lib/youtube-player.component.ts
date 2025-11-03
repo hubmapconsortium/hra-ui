@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, viewChild } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ConsentService } from '@hra-ui/common/analytics';
@@ -8,7 +9,7 @@ import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 /** YouTube Player wrapper component for Content Pages */
 @Component({
   selector: 'hra-youtube-player',
-  imports: [CommonModule, YouTubePlayer],
+  imports: [CommonModule, HraCommonModule, YouTubePlayer],
   templateUrl: './youtube-player.component.html',
   styleUrl: './youtube-player.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
