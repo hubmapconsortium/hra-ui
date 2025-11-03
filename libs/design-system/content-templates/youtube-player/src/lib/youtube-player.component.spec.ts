@@ -1,18 +1,30 @@
 import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { ConsentService } from '@hra-ui/common/analytics';
 import { EventCategory } from '@hra-ui/common/analytics/events';
 import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 import { HraYoutubePlayerComponent } from './youtube-player.component';
 
 describe('HraYoutubePlayerComponent', () => {
-  const mockConsentService = {
-    isCategoryEnabled: jest.fn(),
-    categories: jest.fn(),
+  let mockConsentService: {
+    isCategoryEnabled: jest.Mock;
+    categories: jest.Mock;
   };
 
-  const mockPrivacyService = {
-    openPrivacyPreferences: jest.fn(),
+  let mockPrivacyService: {
+    openPrivacyPreferences: jest.Mock;
   };
+
+  beforeEach(() => {
+    mockConsentService = {
+      isCategoryEnabled: jest.fn(),
+      categories: jest.fn(),
+    };
+
+    mockPrivacyService = {
+      openPrivacyPreferences: jest.fn(),
+    };
+  });
 
   it('should render', async () => {
     mockConsentService.isCategoryEnabled.mockReturnValue(false);
@@ -86,49 +98,22 @@ describe('HraYoutubePlayerComponent', () => {
     expect(thumbnailImage?.src).toContain(`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`);
   });
 
-  // it('should open video in new tab when thumbnail is clicked', async () => {
-  //   mockConsentService.isCategoryEnabled.mockReturnValue(false);
-  //   const videoId = 'lYRNWAPxyqM';
-  //   const windowOpenSpy = jest.spyOn(window, 'open').mockImplementation();
+  it('should open privacy preferences when "Enable cookies" link is clicked', async () => {
+    mockConsentService.isCategoryEnabled.mockReturnValue(false);
 
-  //   const { click } = await render(HraYoutubePlayerComponent, {
-  //     inputs: {
-  //       videoId,
-  //     },
-  //     providers: [
-  //       { provide: ConsentService, useValue: mockConsentService },
-  //       { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
-  //     ],
-  //   });
+    await render(HraYoutubePlayerComponent, {
+      inputs: {
+        videoId: 'lYRNWAPxyqM',
+      },
+      providers: [
+        { provide: ConsentService, useValue: mockConsentService },
+        { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
+      ],
+    });
 
-  //   const thumbnail = document.querySelector('.youtube-thumbnail-container') as HTMLElement;
-  //   await click(thumbnail);
+    const enableCookiesLink = screen.getByText(/Enable cookies/i);
+    await userEvent.click(enableCookiesLink);
 
-  //   expect(windowOpenSpy).toHaveBeenCalledWith(
-  //     `https://www.youtube.com/watch?v=${videoId}`,
-  //     '_blank',
-  //     'noopener,noreferrer'
-  //   );
-
-  //   windowOpenSpy.mockRestore();
-  // });
-
-  // it('should open privacy preferences when "Enable cookies" link is clicked', async () => {
-  //   mockConsentService.isCategoryEnabled.mockReturnValue(false);
-
-  //   const { click } = await render(HraYoutubePlayerComponent, {
-  //     inputs: {
-  //       videoId: 'lYRNWAPxyqM',
-  //     },
-  //     providers: [
-  //       { provide: ConsentService, useValue: mockConsentService },
-  //       { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
-  //     ],
-  //   });
-
-  //   const enableCookiesLink = screen.getByText(/Enable cookies/i);
-  //   await click(enableCookiesLink);
-
-  //   expect(mockPrivacyService.openPrivacyPreferences).toHaveBeenCalledWith('consent');
-  // });
+    expect(mockPrivacyService.openPrivacyPreferences).toHaveBeenCalledWith('consent');
+  });
 });
