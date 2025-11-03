@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { AssetUrlPipe } from '@hra-ui/common/url';
@@ -38,4 +38,19 @@ export class HomeComponent {
 
   /** Signal for selected video section state */
   protected readonly selectedVideoSection = signal<number>(0);
+
+  /** ViewChild reference to the HraYouTubePlayer component */
+  private readonly player = viewChild.required<HraYoutubePlayerComponent>('youtubePlayer');
+
+  /**
+   * Seeks the YouTube player to the selected video section.
+   * @param seconds The target time in seconds to seek to.
+   * @param index Index of the video section in the chapters list.
+   */
+  protected seekVideo(seconds: number, index: number): void {
+    this.selectedVideoSection.set(index);
+    this.player().pauseVideo();
+    this.player().seekTo(seconds, true);
+    this.player().playVideo();
+  }
 }

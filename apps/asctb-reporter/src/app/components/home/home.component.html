@@ -35,7 +35,11 @@
   <div class="section-description">Learn about the features and functionality of this application.</div>
   <div class="split-sections">
     <div class="youtube-video-container">
-      <hra-youtube-player videoId="pzUFmDhQEO8" [playerVars]="{ rel: 0, showinfo: 0 }"></hra-youtube-player>
+      <hra-youtube-player
+        #youtubePlayer
+        videoId="pzUFmDhQEO8"
+        [playerVars]="{ rel: 0, showinfo: 0 }"
+      ></hra-youtube-player>
     </div>
     <div class="section-selector-container">
       <div class="chapters">Chapters</div>
@@ -50,6 +54,7 @@
               [hraFeature]="section.header | slugify"
               hraClickEvent
               [disableRipple]="true"
+              (click)="seekVideo(section.sec, $index)"
             >
               <div class="ss-header">{{ section.header }}</div>
               <div class="ss-desc">
