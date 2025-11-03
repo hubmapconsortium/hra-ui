@@ -4,30 +4,30 @@ import { FilterContainerComponent, FilterChip, RichTooltipConfig } from './filte
 
 describe('FilterContainerComponent', () => {
   async function setup(options: {
-    label: string;
+    action: string;
     tooltip?: RichTooltipConfig;
     chips?: FilterChip[];
-    showDivider?: boolean;
+    enableDivider?: boolean;
   }): Promise<RenderResult<FilterContainerComponent>> {
     return render(FilterContainerComponent, {
       inputs: {
-        tagline: options.label,
+        action: options.action,
         tooltip: options.tooltip,
         chips: options.chips ?? [],
-        showDivider: options.showDivider ?? false,
+        enableDivider: options.enableDivider ?? false,
       },
     });
   }
 
   it('should create', async () => {
-    const result = await setup({ label: 'Test Label' });
+    const result = await setup({ action: 'Test Action' });
     expect(result).toBeTruthy();
   });
 
-  it('should display the label', async () => {
-    await setup({ label: 'Test Label' });
+  it('should display the action', async () => {
+    await setup({ action: 'Test Action' });
 
-    const button = screen.getByRole('button', { name: 'Test Label' });
+    const button = screen.getByRole('button', { name: 'Test Action' });
     expect(button).toBeInTheDocument();
   });
 
@@ -37,7 +37,7 @@ describe('FilterContainerComponent', () => {
     };
 
     await setup({
-      label: 'Test',
+      action: 'Test',
       tooltip,
     });
 
@@ -46,20 +46,17 @@ describe('FilterContainerComponent', () => {
   });
 
   it('should not show info button when tooltip is not provided', async () => {
-    await setup({ label: 'Test' });
+    await setup({ action: 'Test' });
 
     const infoButton = screen.queryByLabelText('Click for more information');
     expect(infoButton).not.toBeInTheDocument();
   });
 
   it('should display chips', async () => {
-    const chips: FilterChip[] = [
-      { id: '1', label: 'Chip 1' },
-      { id: '2', label: 'Chip 2' },
-    ];
+    const chips: FilterChip[] = [{ id: 'Chip 1' }, { id: 'Chip 2' }];
 
     await setup({
-      label: 'Test',
+      action: 'Test',
       chips,
     });
 
@@ -71,7 +68,7 @@ describe('FilterContainerComponent', () => {
     const user = userEvent.setup();
 
     await setup({
-      label: 'Test',
+      action: 'Test',
     });
 
     const button = screen.getByRole('button', { name: 'Test' });
@@ -83,13 +80,10 @@ describe('FilterContainerComponent', () => {
 
   it('should remove chip from model when chip remove button is clicked', async () => {
     const user = userEvent.setup();
-    const chips: FilterChip[] = [
-      { id: '1', label: 'Chip 1' },
-      { id: '2', label: 'Chip 2' },
-    ];
+    const chips: FilterChip[] = [{ id: 'Chip 1' }, { id: 'Chip 2' }];
 
     const { fixture } = await setup({
-      label: 'Test',
+      action: 'Test',
       chips,
     });
 
@@ -97,23 +91,23 @@ describe('FilterContainerComponent', () => {
     await user.click(removeButton);
 
     // Check that the chip was removed from the model
-    expect(fixture.componentInstance.chips()).toEqual([{ id: '2', label: 'Chip 2' }]);
+    expect(fixture.componentInstance.chips()).toEqual([{ id: 'Chip 2' }]);
   });
 
-  it('should show divider when showDivider is true', async () => {
+  it('should show divider when enableDivider is true', async () => {
     const { container } = await setup({
-      label: 'Test',
-      showDivider: true,
+      action: 'Test',
+      enableDivider: true,
     });
 
     const divider = container.querySelector('mat-divider');
     expect(divider).toBeInTheDocument();
   });
 
-  it('should not show divider when showDivider is false', async () => {
+  it('should not show divider when enableDivider is false', async () => {
     const { container } = await setup({
-      label: 'Test',
-      showDivider: false,
+      action: 'Test',
+      enableDivider: false,
     });
 
     const divider = container.querySelector('mat-divider');
