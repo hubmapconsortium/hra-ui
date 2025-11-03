@@ -10,9 +10,9 @@ import { ButtonToggleSizeDirective, provideButtonToggle } from '@hra-ui/design-s
 import { CheckboxErrorVariantDirective } from '@hra-ui/design-system/buttons/checkbox';
 import { HelpButtonComponent } from '@hra-ui/design-system/buttons/help-button';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
-import { InfoButtonComponent, InfoButtonTooltipContentComponent } from '@hra-ui/design-system/buttons/info-button';
-import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
+import { InfoButtonComponent, InfoButtonTaglineDirective, InfoButtonActionsDirective } from '@hra-ui/design-system/buttons/info-button';
 import { NavigationButtonComponent, NavigationButtonTaglineDirective, NavigationButtonDescriptionDirective, NavigationIconDirective } from '@hra-ui/design-system/buttons/navigation-button';
+import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
 import { TextHyperlinkComponent, TextHyperlinkDirective, provideTextHyperlink } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { provideRadioButton } from '@hra-ui/design-system/buttons/radio-button';
@@ -24,7 +24,8 @@ const REEXPORTS = [
     MatChipsModule,
     IconButtonModule,
     InfoButtonComponent,
-    InfoButtonTooltipContentComponent,
+    InfoButtonTaglineDirective,
+    InfoButtonActionsDirective,
     AppNavButtonComponent,
     BreadcrumbsComponent,
     ButtonSizeDirective,
@@ -52,7 +53,8 @@ class ButtonsModule {
             MatChipsModule,
             IconButtonModule,
             InfoButtonComponent,
-            InfoButtonTooltipContentComponent,
+            InfoButtonTaglineDirective,
+            InfoButtonActionsDirective,
             AppNavButtonComponent,
             BreadcrumbsComponent,
             ButtonSizeDirective,
@@ -75,7 +77,8 @@ class ButtonsModule {
             MatChipsModule,
             IconButtonModule,
             InfoButtonComponent,
-            InfoButtonTooltipContentComponent,
+            InfoButtonTaglineDirective,
+            InfoButtonActionsDirective,
             AppNavButtonComponent,
             BreadcrumbsComponent,
             ButtonSizeDirective,
@@ -99,7 +102,6 @@ class ButtonsModule {
             MatChipsModule,
             IconButtonModule,
             InfoButtonComponent,
-            InfoButtonTooltipContentComponent,
             AppNavButtonComponent,
             BreadcrumbsComponent,
             HelpButtonComponent,

@@ -167,6 +167,13 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
+                                        <a href="#logos" 
+>
+                                            logos
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#name" 
 >
                                             name
@@ -197,6 +204,50 @@
 
             <section data-compodoc="block-properties">
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="logos"></a>
+                                        <span class="name "><b>logos</b>
+                                            <a href="#logos">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>logos:         <code><a href="../interfaces/BrandLogo.html" target="_self" >BrandLogo[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/BrandLogo.html" target="_self" >BrandLogo[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Brand logos</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -336,6 +387,18 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { createInjectionToken } from &#x27;ngxtension/create-injection-token&#x27;;
 
+/** Brand logo */
+export interface BrandLogo {
+  /** Logo size */
+  size: &#x27;regular&#x27; | &#x27;small&#x27;;
+  /** Logo source url */
+  src: string;
+  /** Logo width */
+  width: number;
+  /** Logo height */
+  height: number;
+}
+
 /** Application configuration */
 export interface AppConfiguration {
   /** Application name */
@@ -344,6 +407,8 @@ export interface AppConfiguration {
   version?: string;
   /** Application url */
   url?: string;
+  /** Brand logos */
+  logos?: BrandLogo[];
 }
 
 /** Application configuration */
@@ -351,6 +416,7 @@ const APP_CONFIGURATION &#x3D; createInjectionToken((): AppConfiguration &#x3D;&
 
 /** Inject the global application configuration */
 export const injectAppConfiguration &#x3D; APP_CONFIGURATION[0];
+
 /** Set the application configuration */
 export const provideAppConfiguration &#x3D; APP_CONFIGURATION[1];
 </code></pre>

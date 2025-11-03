@@ -1,19 +1,19 @@
 import * as i0 from '@angular/core';
 
-/** Tagline component for info button rich tooltip */
-declare class InfoButtonTooltipTaglineComponent {
-    static ɵfac: i0.ɵɵFactoryDeclaration<InfoButtonTooltipTaglineComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InfoButtonTooltipTaglineComponent, "hra-info-button-tooltip-tagline", never, {}, {}, never, ["*"], true, never>;
+/** Info Button Tagline Directive */
+declare class InfoButtonTaglineDirective {
+    static ɵfac: i0.ɵɵFactoryDeclaration<InfoButtonTaglineDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<InfoButtonTaglineDirective, "[hraInfoButtonTagline]", never, {}, {}, never, never, true, never>;
 }
-/** Content component for info button rich tooltip */
-declare class InfoButtonTooltipContentComponent {
-    static ɵfac: i0.ɵɵFactoryDeclaration<InfoButtonTooltipContentComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InfoButtonTooltipContentComponent, "hra-info-button-tooltip-content", never, {}, {}, never, ["*"], true, never>;
+/** Info Button Actions Directive */
+declare class InfoButtonActionsDirective {
+    static ɵfac: i0.ɵɵFactoryDeclaration<InfoButtonActionsDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<InfoButtonActionsDirective, "[hraInfoButtonActions]", never, {}, {}, never, never, true, never>;
 }
 /** Info Button Component */
 declare class InfoButtonComponent {
     static ɵfac: i0.ɵɵFactoryDeclaration<InfoButtonComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InfoButtonComponent, "hra-info-button", never, {}, {}, never, ["hra-info-button-tooltip-tagline", "*"], true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InfoButtonComponent, "hra-info-button", never, {}, {}, never, ["[hraInfoButtonTagline]", "*", "[hraInfoButtonActions]"], true, never>;
 }
 
-export { InfoButtonComponent, InfoButtonTooltipContentComponent, InfoButtonTooltipTaglineComponent };
+export { InfoButtonActionsDirective, InfoButtonComponent, InfoButtonTaglineDirective };

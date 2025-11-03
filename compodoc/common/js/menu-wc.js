@@ -250,6 +250,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/AppConfiguration.html" data-type="entity-link" >AppConfiguration</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/BrandLogo.html" data-type="entity-link" >BrandLogo</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/CommonEventProps.html" data-type="entity-link" >CommonEventProps</a>
                             </li>
                             <li class="link">
