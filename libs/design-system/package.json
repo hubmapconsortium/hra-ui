@@ -274,13 +274,13 @@
       "types": "./content-templates/app-label/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-app-label.mjs"
     },
-    "./content-templates/content-page": {
-      "types": "./content-templates/content-page/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-content-page.mjs"
-    },
     "./content-templates/flex-container": {
       "types": "./content-templates/flex-container/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-flex-container.mjs"
+    },
+    "./content-templates/content-page": {
+      "types": "./content-templates/content-page/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-content-page.mjs"
     },
     "./content-templates/grid-container": {
       "types": "./content-templates/grid-container/index.d.ts",
@@ -314,13 +314,13 @@
       "types": "./content-templates/ui-section/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-ui-section.mjs"
     },
-    "./content-templates/youtube-player": {
-      "types": "./content-templates/youtube-player/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-youtube-player.mjs"
-    },
     "./content-templates/versioned-data-table": {
       "types": "./content-templates/versioned-data-table/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-versioned-data-table.mjs"
+    },
+    "./content-templates/youtube-player": {
+      "types": "./content-templates/youtube-player/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-youtube-player.mjs"
     },
     "./error-pages/not-found-page": {
       "types": "./error-pages/not-found-page/index.d.ts",
@@ -338,13 +338,13 @@
       "types": "./indicators/message-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-message-indicator.mjs"
     },
-    "./indicators/progress-bar": {
-      "types": "./indicators/progress-bar/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-indicators-progress-bar.mjs"
-    },
     "./indicators/no-results-indicator": {
       "types": "./indicators/no-results-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-no-results-indicator.mjs"
+    },
+    "./indicators/progress-bar": {
+      "types": "./indicators/progress-bar/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-progress-bar.mjs"
     },
     "./indicators/progress-spinner": {
       "types": "./indicators/progress-spinner/index.d.ts",

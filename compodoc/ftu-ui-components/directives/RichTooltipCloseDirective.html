@@ -252,8 +252,8 @@ for closing the rich tooltip.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, contentChildren, Directive, TemplateRef, viewChild } from &#x27;@angular/core&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { RichTooltipController } from &#x27;../rich-tooltip.types&#x27;;
-import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 
 /**
  * Directive to provide tooltip context
@@ -327,7 +327,7 @@ export class RichTooltipCloseDirective {
  */
 @Component({
   selector: &#x27;hra-rich-tooltip-container&#x27;,
-  imports: [RichTooltipContextDirective, ButtonsModule],
+  imports: [RichTooltipContextDirective, MatButtonModule],
   templateUrl: &#x27;./rich-tooltip-content.component.html&#x27;,
   styleUrl: &#x27;./rich-tooltip-content.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
