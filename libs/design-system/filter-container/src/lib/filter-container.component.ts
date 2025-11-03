@@ -10,10 +10,6 @@ import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 export interface FilterChip {
   /** Unique identifier for the chip */
   id: string;
-  /** Display label for the chip */
-  label: string;
-  /** Optional secondary label */
-  secondaryLabel?: string;
 }
 
 /** Configuration for the rich tooltip info button */
@@ -38,7 +34,7 @@ export interface RichTooltipConfig {
 })
 export class FilterContainerComponent {
   /** tagline for the filter category */
-  readonly tagline = input.required<string>();
+  readonly action = input.required<string>();
 
   /** Optional rich tooltip configuration for info button */
   readonly tooltip = input<RichTooltipConfig | undefined>();
@@ -47,7 +43,7 @@ export class FilterContainerComponent {
   readonly chips = model<FilterChip[]>([]);
 
   /** Whether to show a divider below the container */
-  readonly showDivider = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly enableDivider = input<boolean, unknown>(false, { transform: booleanAttribute });
 
   /**
    * Handles the removal of a chip
@@ -55,15 +51,5 @@ export class FilterContainerComponent {
    */
   removeChip(chip: FilterChip): void {
     this.chips.update((current) => current.filter((c) => c.id !== chip.id));
-  }
-
-  /**
-   * Handles action click from the info button tooltip
-   */
-  onTooltipActionClick(): void {
-    const url = this.tooltip()?.actionUrl;
-    if (url) {
-      window.open(url, '_blank');
-    }
   }
 }
