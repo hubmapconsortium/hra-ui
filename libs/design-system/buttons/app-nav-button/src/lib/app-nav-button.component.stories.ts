@@ -61,7 +61,7 @@ const apps: Record<string, Story['args']> = {
     tagline: 'Antibody Validation Reports',
     description:
       'Provide antibody details for multiplex imaging assays and capture data requested by journals for manuscript submission.',
-    link: 'https://avr.hubmapconsortium.org/',
+    link: 'https://avr.xconsortia.org/',
   },
 };
 

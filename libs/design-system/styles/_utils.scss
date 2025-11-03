@@ -12,6 +12,22 @@
   outline-offset: calc(-1 * $width);
 }
 
+@mixin line-clamp($lines: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  // Legacy WebKit fallback
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: #{$lines};
+
+  // Modern spec syntax (Chrome 114+, Firefox 120+, Safari 17+)
+  @supports (line-clamp: #{$lines}) {
+    display: block;
+    line-clamp: #{$lines};
+  }
+}
+
 @mixin global-styles() {
   .hra-app,
   .cns-website {
