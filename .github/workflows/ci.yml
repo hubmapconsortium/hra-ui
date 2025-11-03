@@ -66,14 +66,14 @@ jobs:
             --configuration=ci --outputStyle=static
 
       - name: Move application files from 'browser' subdirectories
-        if: always()
+        if: ${{ !cancelled() }}
         run: |
           find dist/apps -mindepth 2 -maxdepth 2 -type d -name "browser" \
             -exec bash -c 'mv "$0"/* "$(dirname "$0")"/ && rm -rf "$0"' {} \; \
             2>/dev/null || true
 
       - name: Upload build artifacts
-        if: always()
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: nx-build-artifacts

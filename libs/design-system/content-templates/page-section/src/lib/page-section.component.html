@@ -1,5 +1,14 @@
 <section [attr.id]="anchor() || null" #section>
-  <hra-page-label class="header" [tagline]="tagline()" [level]="level()" [icons]="icons()" [anchor]="anchor()" />
+  <hra-page-label
+    class="header"
+    [tagline]="tagline()"
+    [level]="level()"
+    [icons]="icons()"
+    [anchor]="anchor()"
+    [breadcrumbs]="breadcrumbs()"
+    [date]="date()"
+    [tags]="tags()"
+  />
 
   <div class="content">
     <ng-content />

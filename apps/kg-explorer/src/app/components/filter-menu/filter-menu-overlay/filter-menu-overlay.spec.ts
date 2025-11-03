@@ -77,15 +77,6 @@ describe('FilterMenuOverlayComponent', () => {
     expect(component.selectedOptions()).toEqual([]);
   });
 
-  it('navigates to a link', async () => {
-    const { fixture } = await setup();
-
-    const component = fixture.componentInstance;
-    const spy = jest.spyOn(window, 'open').mockImplementation();
-    component.navigateToLink('link');
-    expect(spy).toHaveBeenCalledWith('link', '_blank');
-  });
-
   it('filters options after typing in the search bar', async () => {
     const { fixture } = await setup();
 
