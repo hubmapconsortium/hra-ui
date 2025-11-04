@@ -8,6 +8,7 @@ import { HraYoutubePlayerComponent } from './youtube-player.component';
 describe('HraYoutubePlayerComponent', () => {
   let mockConsentService: {
     isCategoryEnabled: jest.Mock;
+    isEventEnabled: jest.Mock;
     categories: jest.Mock;
   };
 
@@ -18,6 +19,7 @@ describe('HraYoutubePlayerComponent', () => {
   beforeEach(() => {
     mockConsentService = {
       isCategoryEnabled: jest.fn(),
+      isEventEnabled: jest.fn(),
       categories: jest.fn(),
     };
 
