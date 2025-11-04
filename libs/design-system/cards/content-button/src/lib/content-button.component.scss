@@ -60,16 +60,16 @@
     flex-grow: 1;
 
     .date {
-      @include utils.use-font(label, medium);
       color: vars.$secondary;
       margin-bottom: 0.375rem;
+      @include utils.use-font(label, medium);
     }
 
     .tagline {
-      @include utils.line-clamp(2);
-      @include utils.use-font(label, large);
       color: vars.$primary;
       margin-bottom: 1rem;
+      @include utils.use-font(label, large);
+      @include utils.line-clamp(2);
     }
   }
 
