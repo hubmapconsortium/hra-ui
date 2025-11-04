@@ -1801,10 +1801,22 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy,
 
   @include mat.snack-bar-overrides(
     (
-      container-color: vars.$surface-dim,
-      supporting-text-color: vars.$secondary,
+      container-color: vars.$inverse-surface,
+      supporting-text-color: vars.$surface,
     )
   );
+
+  button[mat-button][matSnackBarAction] {
+    color: vars.$inverse-primary;
+  }
+
+  button[mat-icon-button] {
+    @include mat.icon-button-overrides(
+      (
+        icon-color: vars.$surface,
+      )
+    );
+  }
 }
 
 ::ng-deep .cdk-global-overlay-wrapper:has(.metadata-modal) {

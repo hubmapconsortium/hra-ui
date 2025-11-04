@@ -86,13 +86,13 @@
       "types": "./expansion-panel/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-expansion-panel.mjs"
     },
-    "./fullscreen": {
-      "types": "./fullscreen/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-fullscreen.mjs"
-    },
     "./icons": {
       "types": "./icons/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-icons.mjs"
+    },
+    "./fullscreen": {
+      "types": "./fullscreen/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-fullscreen.mjs"
     },
     "./indicators": {
       "types": "./indicators/index.d.ts",
@@ -282,13 +282,13 @@
       "types": "./content-templates/flex-container/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-flex-container.mjs"
     },
-    "./content-templates/grid-container": {
-      "types": "./content-templates/grid-container/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-grid-container.mjs"
-    },
     "./content-templates/image": {
       "types": "./content-templates/image/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-image.mjs"
+    },
+    "./content-templates/grid-container": {
+      "types": "./content-templates/grid-container/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-grid-container.mjs"
     },
     "./content-templates/markdown": {
       "types": "./content-templates/markdown/index.d.ts",
@@ -326,6 +326,10 @@
       "types": "./error-pages/not-found-page/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-error-pages-not-found-page.mjs"
     },
+    "./error-pages/redirect-page": {
+      "types": "./error-pages/redirect-page/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-error-pages-redirect-page.mjs"
+    },
     "./error-pages/server-error-page": {
       "types": "./error-pages/server-error-page/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-error-pages-server-error-page.mjs"
@@ -350,13 +354,13 @@
       "types": "./indicators/progress-spinner/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-progress-spinner.mjs"
     },
-    "./indicators/results-indicator": {
-      "types": "./indicators/results-indicator/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-indicators-results-indicator.mjs"
-    },
     "./indicators/software-status-indicator": {
       "types": "./indicators/software-status-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-software-status-indicator.mjs"
+    },
+    "./indicators/results-indicator": {
+      "types": "./indicators/results-indicator/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-results-indicator.mjs"
     },
     "./indicators/step-indicator": {
       "types": "./indicators/step-indicator/index.d.ts",

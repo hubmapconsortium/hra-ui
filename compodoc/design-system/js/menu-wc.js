@@ -236,15 +236,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ErrorPagesModule.html" data-type="entity-link" >ErrorPagesModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-ErrorPagesModule-0de1f59f9e043198c601776f4a85b16c1104bc1825894c4296f7fe7e1e384946faaff9f158737c505b99df86f0386bafe3c7017041e09b6b7fef82faf3e6e9a0"' : 'data-bs-target="#xs-components-links-module-ErrorPagesModule-0de1f59f9e043198c601776f4a85b16c1104bc1825894c4296f7fe7e1e384946faaff9f158737c505b99df86f0386bafe3c7017041e09b6b7fef82faf3e6e9a0"' }>
+                                            'data-bs-target="#components-links-module-ErrorPagesModule-11eddd767cdb6b4aca0776695a2ab3a6befd8563917199677d426eb3279802976e4bf64b163fe1a1eadee29fd10e64b82589ffe68cdb15f101c76650f1b513b3"' : 'data-bs-target="#xs-components-links-module-ErrorPagesModule-11eddd767cdb6b4aca0776695a2ab3a6befd8563917199677d426eb3279802976e4bf64b163fe1a1eadee29fd10e64b82589ffe68cdb15f101c76650f1b513b3"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ErrorPagesModule-0de1f59f9e043198c601776f4a85b16c1104bc1825894c4296f7fe7e1e384946faaff9f158737c505b99df86f0386bafe3c7017041e09b6b7fef82faf3e6e9a0"' :
-                                            'id="xs-components-links-module-ErrorPagesModule-0de1f59f9e043198c601776f4a85b16c1104bc1825894c4296f7fe7e1e384946faaff9f158737c505b99df86f0386bafe3c7017041e09b6b7fef82faf3e6e9a0"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ErrorPagesModule-11eddd767cdb6b4aca0776695a2ab3a6befd8563917199677d426eb3279802976e4bf64b163fe1a1eadee29fd10e64b82589ffe68cdb15f101c76650f1b513b3"' :
+                                            'id="xs-components-links-module-ErrorPagesModule-11eddd767cdb6b4aca0776695a2ab3a6befd8563917199677d426eb3279802976e4bf64b163fe1a1eadee29fd10e64b82589ffe68cdb15f101c76650f1b513b3"' }>
                                             <li class="link">
                                                 <a href="components/NotFoundPageComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NotFoundPageComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/RedirectPageComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RedirectPageComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -903,6 +906,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/ProgressSpinnerComponent.html" data-type="entity-link" >ProgressSpinnerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/RedirectPageComponent.html" data-type="entity-link" >RedirectPageComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ResultsIndicatorComponent.html" data-type="entity-link" >ResultsIndicatorComponent</a>
