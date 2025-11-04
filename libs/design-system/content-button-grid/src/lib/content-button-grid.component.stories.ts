@@ -12,13 +12,13 @@ const meta: Meta<ContentButtonGridComponent> = {
     },
   },
   argTypes: {
-    sortBehavior: {
+    sortBy: {
       control: 'select',
-      options: ['alphabetical', 'date', undefined],
+      options: ['nameAsc', 'nameDes', 'newest', 'oldest'],
     },
   },
   args: {
-    sortBehavior: 'date',
+    sortBy: 'newest',
     categories: ['publications', 'news'],
     cardData: [
       {

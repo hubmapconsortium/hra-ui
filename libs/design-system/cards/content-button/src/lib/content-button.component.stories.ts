@@ -12,7 +12,7 @@ const meta: Meta<ContentButtonComponent> = {
   },
   args: {
     imageSrc: 'assets/ui-images/placeholder.png',
-    date: 'September 20, 2025',
+    date: 1758336000000, //September 20, 2025
     tagline: 'Card tagline that is less than 100 characters or truncated.',
     tags: ['Label', 'Longer label'],
     link: 'https://google.com',

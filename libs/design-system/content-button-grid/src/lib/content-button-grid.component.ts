@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { HraCommonModule } from '@hra-ui/common';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GridContainerComponent } from '@hra-ui/design-system/content-templates/grid-container';
-import { orderBy } from 'lodash';
 
 /** Content button interface */
 export interface ContentButton {
@@ -13,7 +12,7 @@ export interface ContentButton {
   external: boolean;
   /** Image url */
   imageSrc: string;
-  /** Date string (YYYY-MM-DD) */
+  /** Date string (yyyy-mm-dd) */
   date: string;
   /** Tagline to display on card */
   tagline: string;
@@ -25,8 +24,8 @@ export interface ContentButton {
   category?: string;
 }
 
-/** Sorting type */
-export type SortType = 'date' | 'alphabetical';
+/** Sorting behavior type */
+export type SortBy = 'newest' | 'oldest' | 'nameAsc' | 'nameDes';
 
 /**
  * A responsive grid container grouped by a single-select button toggle
@@ -45,63 +44,53 @@ export class ContentButtonGridComponent {
   /** Categories for button toggle */
   readonly categories = input<string[]>();
 
-  /** Sorting behavior to use */
-  readonly sortBehavior = input<SortType>();
+  /** Sorting behavior for cards */
+  readonly sortBy = input<SortBy>();
 
   /** Current category selected */
-  readonly currentCategory = signal<string>('featured');
+  readonly category = model<string>('featured');
 
   /** Returns sorted list of filtered cards by category; if "featured" always order by date */
   readonly filteredCards = computed(() => {
-    const category = this.currentCategory();
+    const category = this.category();
     if (category === 'featured') {
       const filteredFeatured = this.cardData().filter((card) => card.featured);
-      const sortedCards = orderBy(filteredFeatured, 'date', 'desc');
-      return this.convertDates(sortedCards);
+      const sortedCards = this.sortCards(filteredFeatured, 'newest');
+      return sortedCards;
     }
 
     const filteredByCategory = this.cardData().filter((card) => card.category === category);
-    const sortedCards = this.sortCards(filteredByCategory);
-    return this.convertDates(sortedCards);
+    const sortedCards = this.sortCards(filteredByCategory, this.sortBy());
+    return sortedCards;
   });
 
   /**
    * Sorts array of cards by current sort behavior (default no sorting)
    * @param cards Cards to sort
+   * @param sortBy Sorting behavior to use
    * @returns Sorted list of cards
    */
-  private sortCards(cards: ContentButton[]): ContentButton[] {
-    if (this.sortBehavior() === 'date') {
-      return orderBy(cards, 'date', 'desc');
+  private sortCards(cards: ContentButton[], sortBy: SortBy = 'newest'): ContentButton[] {
+    switch (sortBy) {
+      case 'newest':
+        return cards.sort((a, b) => new Intl.Collator().compare(b.date, a.date));
+      case 'oldest':
+        return cards.sort((a, b) => new Intl.Collator().compare(a.date, b.date));
+      case 'nameAsc':
+        return cards.sort((a, b) => new Intl.Collator().compare(a.tagline, b.tagline));
+      case 'nameDes':
+        return cards.sort((a, b) => new Intl.Collator().compare(b.tagline, a.tagline));
+      default:
+        return cards;
     }
-    if (this.sortBehavior() === 'alphabetical') {
-      return orderBy(cards, 'tagline');
-    }
-
-    return cards;
   }
 
   /**
-   * Converts all dates in a card set to readable format
-   * @param cards Card set
-   * @returns Converted card set
+   * Converts date string into timestamp
+   * @param date Date string
+   * @returns Timestamp
    */
-  private convertDates(cards: ContentButton[]): ContentButton[] {
-    return cards.map((card) => {
-      return {
-        ...card,
-        date: this.convertDateFormat(card.date),
-      };
-    });
-  }
-
-  /**
-   * Converts date string to readable format (ex: September 29, 2025)
-   * @param dateStr Date string
-   * @returns Date in readable format
-   */
-  private convertDateFormat(dateStr: string) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  convertToTimestamp(date: string): number {
+    return new Date(date).getTime();
   }
 }

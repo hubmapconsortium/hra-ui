@@ -2,7 +2,7 @@
   hraFeature="category-toggle"
   [hideSingleSelectionIndicator]="false"
   class="toggle-group"
-  (change)="currentCategory.set($event.value)"
+  (change)="category.set($event.value)"
 >
   <mat-button-toggle hraClickEvent hraFeature="featured" value="featured" checked> Featured </mat-button-toggle>
   @for (category of categories(); track category) {
@@ -18,7 +18,7 @@
       [link]="card.link"
       [external]="card.external"
       [imageSrc]="card.imageSrc"
-      [date]="card.date"
+      [date]="convertToTimestamp(card.date)"
       [tagline]="card.tagline"
       [tags]="card.tags"
     >

@@ -17,8 +17,8 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 export class ContentButtonComponent {
   /** Image url */
   readonly imageSrc = input.required<string>();
-  /** Date to display on card */
-  readonly date = input.required<string>();
+  /** Date timestamp */
+  readonly date = input.required<number>();
   /** Card tagline (less than 2 lines or truncated) */
   readonly tagline = input.required<string>();
   /** Tags to display on bottom of card */
@@ -27,4 +27,14 @@ export class ContentButtonComponent {
   readonly link = input.required<string>();
   /** Whether the link is external */
   readonly external = input(true, { transform: booleanAttribute });
+
+  /**
+   * Converts date timestamp to readable format (ex: September 29, 2025)
+   * @param time Date timestamp
+   * @returns Date in readable format
+   */
+  toDateString(time: number): string {
+    const date = new Date(time);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
 }
