@@ -1,13 +1,14 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { Router, RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
+import { injectRouter } from '@hra-ui/common/router-ext';
+import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { injectNavigationEnd } from 'ngxtension/navigation-end';
@@ -16,7 +17,6 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
 import { DOCS_NAVIGATION_MENU } from './static-data/parsed';
 import { DocsMenuItems, DocsNavigationCategory } from './types/docs-navigation.schema';
 import { ACTIVE_MATCH_OPTIONS } from './utils/match-options';
-import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
 
 /** Site Navigation Component for HRA Docs */
 @Component({
@@ -29,7 +29,6 @@ import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
     MatListModule,
     MatExpansionModule,
     MatButtonModule,
-    RouterModule,
     NavigationCategoryComponent,
     NavigationItemComponent,
     NgScrollbar,
@@ -47,7 +46,7 @@ export class SiteNavigationComponent {
   readonly expandedCategory = signal('');
 
   /** Angular Router */
-  private readonly router = inject(Router);
+  private readonly router = injectRouter({ optional: true });
 
   /** Url resolver */
   private readonly resolveUrl = injectAppUrlResolver();
@@ -78,8 +77,11 @@ export class SiteNavigationComponent {
    * @param menu Docs Menu Items
    */
   private findExpandedCategory(menu: DocsMenuItems): string {
-    const categories = menu.filter((val): val is DocsNavigationCategory => val.type === 'category');
+    if (!this.router) {
+      return '';
+    }
 
+    const categories = menu.filter((val): val is DocsNavigationCategory => val.type === 'category');
     for (const category of categories) {
       for (const item of category.children) {
         const url = this.resolveUrl(item.url);

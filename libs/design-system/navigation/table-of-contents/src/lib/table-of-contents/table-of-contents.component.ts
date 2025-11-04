@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
-import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { PageSectionActivationService, PageSectionService } from '@hra-ui/design-system/content-templates/page-section';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 
@@ -12,7 +12,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
   selector: 'hra-table-of-contents',
   templateUrl: './table-of-contents.component.html',
   styleUrl: './table-of-contents.component.scss',
-  imports: [HraCommonModule, MatRippleModule, RouterModule, ScrollingModule],
+  imports: [HraCommonModule, RouterExtModule, MatRippleModule, ScrollingModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableOfContentsComponent {

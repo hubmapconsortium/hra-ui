@@ -11,7 +11,6 @@ describe('NavigationItemComponent', () => {
           icon: 'icon',
           url: '',
         },
-        baseUrl: '',
       },
     });
     await expect(promise).resolves.toBeTruthy();

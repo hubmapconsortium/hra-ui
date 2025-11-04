@@ -8,8 +8,7 @@
           matRipple
           [class.active]="activeSection() === section"
           [style.--indentation-level]="section.level()"
-          [routerLink]="[]"
-          [fragment]="section.anchor()"
+          [hraFragmentLink]="section.anchor() ?? ''"
         >
           {{ section.tagline() }}
         </a>
