@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component, Directive, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { Router, RouterModule, UrlTree } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
-import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Menu, MenuGroup, MenuItem, MenuSubGroup } from '../types/menus.schema';
-import { Location } from '@angular/common';
 
 /** Display modes of the menu content component */
 export type MenuContentVariant = 'desktop' | 'mobile';
@@ -58,13 +56,13 @@ export class MenuSubGroupDirective {
   selector: 'hra-menu-content',
   imports: [
     HraCommonModule,
-    RouterModule,
     MatDivider,
     MatIconModule,
     ButtonsModule,
     MenuGroupDirective,
     MenuItemDirective,
     MenuSubGroupDirective,
+    RouterExtModule,
   ],
   templateUrl: './menu-content.component.html',
   styleUrl: './menu-content.component.scss',
@@ -78,25 +76,4 @@ export class MenuContentComponent {
   readonly variant = input.required<MenuContentVariant>();
   /** Menu data to display */
   readonly menu = input.required<Menu>();
-
-  /** Reference to the router if available */
-  private readonly router = inject(Router, { optional: true });
-
-  /** Url resolver */
-  private readonly urlResolver = injectAppUrlResolver();
-
-  /**
-   * Resolves an url against the baseUrl
-   *
-   * @param url Raw url
-   * @returns Whether the url is absolute along with the resolved url
-   */
-  resolveUrl(url: string, forceExternal = false): { isAbsolute: boolean; value: string | UrlTree } {
-    const resolved = this.urlResolver(url);
-    if (forceExternal || isAbsolute(resolved) || !this.router) {
-      return { isAbsolute: true, value: url };
-    }
-
-    return { isAbsolute: false, value: this.router.parseUrl(Location.stripTrailingSlash(resolved)) };
-  }
 }
