@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal, viewChild } from '@angular/core';
 import { Filter, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
-import { BodyUiComponent, NodeClickEvent, XYZTriplet } from 'ccf-body-ui';
+import { BodyUiComponent, NodeClickEvent } from 'ccf-body-ui';
 
 /** Component for displaying organ in 3D using Body UI */
 @Component({
@@ -86,6 +86,7 @@ export class OrganComponent {
     return [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2];
   });
 
+  /** Initialize the component */
   constructor() {
     effect(() => {
       const bodyUI = this.bodyUI();
