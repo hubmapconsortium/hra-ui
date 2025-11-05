@@ -36,6 +36,7 @@ export class FooterComponent {
   /** inject Privacy Preference Service */
   private readonly privacyPreferences = inject(PrivacyPreferencesService);
 
+  /** Copyright text (always uses current year) */
   readonly copyrightText = computed(
     () => `© ${new Date().getFullYear()} Cyberinfrastructure for Network Science Center at Indiana University`,
   );
