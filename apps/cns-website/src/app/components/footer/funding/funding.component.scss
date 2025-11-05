@@ -1,0 +1,35 @@
+@use 'vars' as vars;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  color: vars.$primary;
+
+  .title {
+    margin-bottom: 0.5rem;
+    font: vars.$label-medium;
+    letter-spacing: vars.$label-medium-tracking;
+  }
+
+  .funders {
+    display: flex;
+    max-width: 244px;
+    flex-wrap: wrap;
+    gap: 11px;
+  }
+
+  .funder {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      min-width: 2.5rem;
+      height: 2.5rem;
+      object-fit: none;
+    }
+
+    span {
+      margin: 0 1rem;
+    }
+  }
+}
