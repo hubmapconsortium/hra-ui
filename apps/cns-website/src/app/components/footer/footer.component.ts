@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { MatIconModule } from '@angular/material/icon';
 import { BrandModule } from '@hra-ui/design-system/brand';
@@ -35,6 +35,10 @@ export class FooterComponent {
   readonly socials = input(SOCIAL_IDS);
   /** inject Privacy Preference Service */
   private readonly privacyPreferences = inject(PrivacyPreferencesService);
+
+  readonly copyrightText = computed(
+    () => `© ${new Date().getFullYear()} Cyberinfrastructure for Network Science Center at Indiana University`,
+  );
 
   /** Open Privacy Preferences Modal */
   openPrivacyPreferences(event: Event): void {
