@@ -248,12 +248,13 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
-import { BodyUiModule, SpatialSearchKeyboardUIBehaviorModule, StoreDebugModule } from &#x27;ccf-shared&#x27;;
+import { BodyUiComponent } from &#x27;ccf-body-ui&#x27;;
+import { SpatialSearchKeyboardUIBehaviorModule, StoreDebugModule } from &#x27;ccf-shared&#x27;;
 
 import { ContentComponent } from &#x27;../content/content.component&#x27;;
 
 @NgModule({
-  imports: [HraCommonModule, MatIconModule, StoreDebugModule, SpatialSearchKeyboardUIBehaviorModule, BodyUiModule],
+  imports: [HraCommonModule, MatIconModule, StoreDebugModule, SpatialSearchKeyboardUIBehaviorModule, BodyUiComponent],
   declarations: [ContentComponent],
   exports: [ContentComponent],
 })
