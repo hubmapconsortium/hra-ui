@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
@@ -17,8 +17,8 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 export class ContentButtonComponent {
   /** Image url */
   readonly imageSrc = input.required<string>();
-  /** Date timestamp */
-  readonly date = input.required<number>();
+  /** Timestamp or date string */
+  readonly date = input.required<string | number>();
   /** Card tagline (less than 2 lines or truncated) */
   readonly tagline = input.required<string>();
   /** Tags to display on bottom of card */
@@ -28,13 +28,19 @@ export class ContentButtonComponent {
   /** Whether the link is external */
   readonly external = input(true, { transform: booleanAttribute });
 
-  /**
-   * Converts date timestamp to readable format (ex: September 29, 2025)
-   * @param time Date timestamp
-   * @returns Date in readable format
-   */
-  toDateString(time: number): string {
-    const date = new Date(time);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  }
+  protected readonly dateString = computed(() => {
+    const dateFormat = new Intl.DateTimeFormat(undefined, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    if (typeof this.date() === 'number') {
+      return dateFormat.format(this.date() as number);
+    }
+    if (!isNaN(Date.parse(this.date() as string))) {
+      const timestamp = new Date(this.date()).getTime();
+      return dateFormat.format(timestamp);
+    }
+    return this.date();
+  });
 }

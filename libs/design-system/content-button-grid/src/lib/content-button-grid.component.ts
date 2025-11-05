@@ -12,16 +12,14 @@ export interface ContentButton {
   external: boolean;
   /** Image url */
   imageSrc: string;
-  /** Date string (yyyy-mm-dd) */
-  date: string;
+  /** Date as timestamp or string */
+  date: number | string;
   /** Tagline to display on card */
   tagline: string;
   /** Tags to display on bottom of the card (2 total) */
-  tags: [string, string];
-  /** Whether the card is featured */
-  featured?: boolean;
-  /** Category the card belongs to */
-  category?: string;
+  tags: string[];
+  /** Categories the card belongs to */
+  categories: string[];
 }
 
 /** Sorting behavior type */
@@ -42,7 +40,7 @@ export class ContentButtonGridComponent {
   readonly cardData = input.required<ContentButton[]>();
 
   /** Categories for button toggle */
-  readonly categories = input<string[]>();
+  readonly buttonCategories = input<string[]>();
 
   /** Sorting behavior for cards */
   readonly sortBy = input<SortBy>();
@@ -54,12 +52,12 @@ export class ContentButtonGridComponent {
   readonly filteredCards = computed(() => {
     const category = this.category();
     if (category === 'featured') {
-      const filteredFeatured = this.cardData().filter((card) => card.featured);
+      const filteredFeatured = this.cardData().filter((card) => card.categories.includes('featured'));
       const sortedCards = this.sortCards(filteredFeatured, 'newest');
       return sortedCards;
     }
 
-    const filteredByCategory = this.cardData().filter((card) => card.category === category);
+    const filteredByCategory = this.cardData().filter((card) => card.categories.includes(category));
     const sortedCards = this.sortCards(filteredByCategory, this.sortBy());
     return sortedCards;
   });
@@ -73,24 +71,26 @@ export class ContentButtonGridComponent {
   private sortCards(cards: ContentButton[], sortBy: SortBy = 'newest'): ContentButton[] {
     switch (sortBy) {
       case 'newest':
-        return cards.sort((a, b) => new Intl.Collator().compare(b.date, a.date));
+        return cards.sort((a, b) => this.compare(b, a, 'date'));
       case 'oldest':
-        return cards.sort((a, b) => new Intl.Collator().compare(a.date, b.date));
+        return cards.sort((a, b) => this.compare(a, b, 'date'));
       case 'nameAsc':
-        return cards.sort((a, b) => new Intl.Collator().compare(a.tagline, b.tagline));
+        return cards.sort((a, b) => this.compare(a, b));
       case 'nameDes':
-        return cards.sort((a, b) => new Intl.Collator().compare(b.tagline, a.tagline));
+        return cards.sort((a, b) => this.compare(b, a));
       default:
         return cards;
     }
   }
 
-  /**
-   * Converts date string into timestamp
-   * @param date Date string
-   * @returns Timestamp
-   */
-  convertToTimestamp(date: string): number {
-    return new Date(date).getTime();
+  private compare(a: ContentButton, b: ContentButton, property?: string) {
+    const compareFn = new Intl.Collator().compare;
+    function toTimestamp(date: string | number) {
+      return typeof date === 'string' ? new Date(date).getTime() : date;
+    }
+    if (property === 'date') {
+      return toTimestamp(a.date) - toTimestamp(b.date);
+    }
+    return compareFn(a.tagline, b.tagline);
   }
 }

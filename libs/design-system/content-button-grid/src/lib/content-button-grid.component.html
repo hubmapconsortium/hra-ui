@@ -5,7 +5,7 @@
   (change)="category.set($event.value)"
 >
   <mat-button-toggle hraClickEvent hraFeature="featured" value="featured" checked> Featured </mat-button-toggle>
-  @for (category of categories(); track category) {
+  @for (category of buttonCategories(); track category) {
     <mat-button-toggle hraClickEvent [hraFeature]="category" [value]="category">
       {{ category | titlecase }}
     </mat-button-toggle>
@@ -18,7 +18,7 @@
       [link]="card.link"
       [external]="card.external"
       [imageSrc]="card.imageSrc"
-      [date]="convertToTimestamp(card.date)"
+      [date]="card.date"
       [tagline]="card.tagline"
       [tags]="card.tags"
     >
