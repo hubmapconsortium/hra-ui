@@ -8,11 +8,11 @@
   padding: 2.5rem;
   background-color: vars.$surface-bright;
   align-items: center;
+  max-width: 1700px;
+  min-width: 320px;
 
   > * {
     width: 100%;
-    max-width: 1440px;
-    min-width: 640px;
   }
 
   .content-container {
@@ -21,40 +21,41 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 2.5rem;
-    font: vars.$label-medium;
-    letter-spacing: vars.$label-medium-tracking;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
-  .socials-container {
+  .logo-and-socials {
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .privacy-container {
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    // align-items: center;
-    font: vars.$label-medium;
-    margin-top: 2.5rem;
-    gap: 2.5rem;
+    margin-top: 2rem;
+    gap: 1.5rem;
+    color: vars.$tertiary;
+
+    span {
+      display: flex;
+      @include utils.use-font(label, medium);
+      align-items: center;
+      height: 2.5rem;
+    }
+
+    .separator {
+      width: 21px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
   }
 
   @include mat.divider-overrides(
     (
-      color: vars.$outline-variant,
+      color: vars.$outline,
     )
   );
-
-  @media (min-width: 1024px) {
-    // .content-container {
-    //   flex-wrap: nowrap;
-    //   justify-content: flex-start;
-    // }
-  }
-
-  @media (min-width: 320px) and (max-width: 639px) {
-    padding: 2.5rem 1.25rem;
-
-    > * {
-      min-width: 320px;
-    }
-  }
 }

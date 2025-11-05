@@ -1,6 +1,6 @@
 <ng-container hraFeature="footer">
   <div class="content-container">
-    <div>
+    <div class="logo-and-socials">
       <a
         class="logo"
         hraFeature="logo"
@@ -23,10 +23,10 @@
 
   <mat-divider></mat-divider>
 
-  <div class="socials-container">
+  <div class="privacy-container">
     <span class="privacy">
       <a hraHyperlink href="#privacy-preferences" (click)="openPrivacyPreferences($event)">Privacy Preferences</a>
-      &#183;
+      <div class="separator">&#183;</div>
       <a hraHyperlink hraFeature="hra-privacy-policy" href="https://humanatlas.io/privacy-policy">Privacy Policy</a>
     </span>
 
