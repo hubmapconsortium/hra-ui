@@ -1,10 +1,11 @@
-<ccf-body-ui
+<hra-body-ui
   #bodyUI
   class="body-ui"
-  [scene]="scene()"
+  [scene]="highlightedScene()"
+  [target]="organTarget()"
+  [rotation]="0"
+  [rotationX]="0"
   [interactive]="true"
   camera="perspective"
   (nodeClick)="nodeClicked($event)"
-  (initialized)="zoomToFitOrgan()"
->
-</ccf-body-ui>
+/>
