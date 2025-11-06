@@ -12,16 +12,6 @@ export interface FilterChip {
   id: string;
 }
 
-/** Configuration for the rich tooltip info button */
-export interface RichTooltipConfig {
-  /** Tooltip description */
-  description: string;
-  /** Optional action text for the tooltip */
-  actionText?: string;
-  /** Optional action URL for the tooltip */
-  actionUrl?: string;
-}
-
 /**
  * Design system filter container component
  */
@@ -36,8 +26,8 @@ export class FilterContainerComponent {
   /** tagline for the filter category */
   readonly action = input.required<string>();
 
-  /** Optional rich tooltip configuration for info button */
-  readonly tooltip = input<RichTooltipConfig | undefined>();
+  /** Whether to show the info button with tooltip */
+  readonly showTooltip = input<boolean>(false);
 
   /** Array of selected filter chips - two-way bindable */
   readonly chips = model<FilterChip[]>([]);
