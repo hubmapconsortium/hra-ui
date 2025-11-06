@@ -1,3 +1,9 @@
+@if (breadcrumbs(); as crumbs) {
+  <div class="breadcrumbs-container">
+    <hra-breadcrumbs [crumbs]="crumbs" />
+  </div>
+}
+
 @if (icons().length > 0) {
   <div class="header-icons">
     @for (icon of icons(); track $index) {
@@ -28,4 +34,20 @@
   @default {
     <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
   }
+}
+
+@if (date(); as dateStr) {
+  <div class="date-container">
+    {{ dateStr }}
+  </div>
+}
+
+@if (tags().length > 0) {
+  <div class="tags-container">
+    <mat-chip-set>
+      @for (tag of tags(); track $index) {
+        <mat-chip>{{ tag }}</mat-chip>
+      }
+    </mat-chip-set>
+  </div>
 }
