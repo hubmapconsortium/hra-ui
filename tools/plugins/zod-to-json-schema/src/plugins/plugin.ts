@@ -16,8 +16,7 @@ const ZOD_SCHEMA_FILES_GLOB = '**/*.schema.ts';
 /** Plugin entrypoint */
 export const createNodesV2: CreateNodesV2<ZodToJsonSchemaPluginOptions> = [
   PROJECT_CONFIG_FILES_GLOB,
-  (configFiles, options, context) =>
-    createNodesFromFiles(internalCreateNodesV2, [] /* configFiles */, options ?? {}, context),
+  (configFiles, options, context) => createNodesFromFiles(internalCreateNodesV2, configFiles, options ?? {}, context),
 ];
 
 /**
@@ -35,9 +34,9 @@ async function internalCreateNodesV2(
 ): Promise<CreateNodesResult> {
   const options = normalizeOptions(opts);
   const projectRoot = path.dirname(configFile);
-  const cwd = path.join(context.workspaceRoot, projectRoot);
+  const dir = path.resolve(context.workspaceRoot, projectRoot);
 
-  if (!(await hasSchemaFiles(cwd))) {
+  if (!(await hasSchemaFiles(dir))) {
     return {};
   }
 
@@ -60,11 +59,11 @@ async function internalCreateNodesV2(
 /**
  * Tests whether a directory contains any zod schema files
  *
- * @param cwd Base directory when globbing
+ * @param dir Base directory when globbing
  * @returns True if the exists at least on file matching `ZOD_SCHEMA_FILES_GLOB`, false otherwise
  */
-async function hasSchemaFiles(cwd: string): Promise<boolean> {
-  const files = fs.glob(ZOD_SCHEMA_FILES_GLOB, { cwd });
+async function hasSchemaFiles(dir: string): Promise<boolean> {
+  const files = fs.glob(ZOD_SCHEMA_FILES_GLOB, { cwd: dir });
   for await (const _file of files) {
     return true;
   }
