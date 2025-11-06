@@ -1,5 +1,5 @@
 import { CreateNodesContextV2, createNodesFromFiles, CreateNodesResult, CreateNodesV2 } from '@nx/devkit';
-import * as fs from 'node:fs/promises';
+import { globIterate } from 'glob';
 import * as path from 'node:path';
 
 /** Plugin options */
@@ -34,7 +34,7 @@ async function internalCreateNodesV2(
 ): Promise<CreateNodesResult> {
   const options = normalizeOptions(opts);
   const projectRoot = path.dirname(configFile);
-  const dir = path.resolve(context.workspaceRoot, projectRoot);
+  const dir = path.join(context.workspaceRoot, projectRoot);
 
   if (!(await hasSchemaFiles(dir))) {
     return {};
@@ -63,7 +63,7 @@ async function internalCreateNodesV2(
  * @returns True if the exists at least on file matching `ZOD_SCHEMA_FILES_GLOB`, false otherwise
  */
 async function hasSchemaFiles(dir: string): Promise<boolean> {
-  const files = fs.glob(ZOD_SCHEMA_FILES_GLOB, { cwd: dir });
+  const files = globIterate(ZOD_SCHEMA_FILES_GLOB, { cwd: dir });
   for await (const _file of files) {
     return true;
   }
