@@ -16,7 +16,8 @@ const ZOD_SCHEMA_FILES_GLOB = '**/*.schema.ts';
 /** Plugin entrypoint */
 export const createNodesV2: CreateNodesV2<ZodToJsonSchemaPluginOptions> = [
   PROJECT_CONFIG_FILES_GLOB,
-  (configFiles, options, context) => createNodesFromFiles(internalCreateNodesV2, configFiles, options ?? {}, context),
+  (configFiles, options, context) =>
+    createNodesFromFiles(internalCreateNodesV2, [] /* configFiles */, options ?? {}, context),
 ];
 
 /**
