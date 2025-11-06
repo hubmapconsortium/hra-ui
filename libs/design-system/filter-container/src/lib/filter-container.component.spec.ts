@@ -1,18 +1,34 @@
 import { render, screen, RenderResult } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
-import { FilterContainerComponent, FilterChip, RichTooltipConfig } from './filter-container.component';
+import { FilterContainerComponent, FilterChip } from './filter-container.component';
 
 describe('FilterContainerComponent', () => {
   async function setup(options: {
     action: string;
-    tooltip?: RichTooltipConfig;
+    showTooltip?: boolean;
     chips?: FilterChip[];
     enableDivider?: boolean;
+    tooltipContent?: string;
   }): Promise<RenderResult<FilterContainerComponent>> {
-    return render(FilterContainerComponent, {
-      inputs: {
+    const template = options.showTooltip
+      ? `<hra-filter-container
+          [action]="action"
+          [showTooltip]="showTooltip"
+          [chips]="chips"
+          [enableDivider]="enableDivider">
+          ${options.tooltipContent ? `<p tooltipContent>${options.tooltipContent}</p>` : ''}
+        </hra-filter-container>`
+      : `<hra-filter-container
+          [action]="action"
+          [chips]="chips"
+          [enableDivider]="enableDivider">
+        </hra-filter-container>`;
+
+    return render(template, {
+      imports: [FilterContainerComponent],
+      componentInputs: {
         action: options.action,
-        tooltip: options.tooltip,
+        showTooltip: options.showTooltip ?? false,
         chips: options.chips ?? [],
         enableDivider: options.enableDivider ?? false,
       },
@@ -32,23 +48,20 @@ describe('FilterContainerComponent', () => {
   });
 
   it('should show info button when tooltip is provided', async () => {
-    const tooltip: RichTooltipConfig = {
-      description: 'Test description',
-    };
-
     await setup({
       action: 'Test',
-      tooltip,
+      showTooltip: true,
+      tooltipContent: 'Test description',
     });
 
-    const infoButton = screen.getByLabelText('Click for more information');
+    const infoButton = screen.getByRole('button', { name: 'info' });
     expect(infoButton).toBeInTheDocument();
   });
 
   it('should not show info button when tooltip is not provided', async () => {
     await setup({ action: 'Test' });
 
-    const infoButton = screen.queryByLabelText('Click for more information');
+    const infoButton = screen.queryByRole('button', { name: 'info' });
     expect(infoButton).not.toBeInTheDocument();
   });
 
