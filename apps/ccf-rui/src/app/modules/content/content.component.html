@@ -9,7 +9,7 @@
       (changePosition)="model.setPosition($event)"
     ></ccf-spatial-search-keyboard-ui-behavior>
   }
-  <ccf-body-ui
+  <hra-body-ui
     class="gizmo"
     [rotation]="gizmoRotation()[0]"
     [rotationX]="gizmoRotation()[1]"
@@ -17,12 +17,12 @@
     [interactive]="false"
     [zoom]="9.5"
     #gizmo
-  ></ccf-body-ui>
+  />
 </div>
 
 <div class="main-content">
   @if ((model.viewType$ | async) === '3d') {
-    <ccf-body-ui
+    <hra-body-ui
       hraFeature="3d"
       hraClickEvent
       class="body-ui"
@@ -32,11 +32,11 @@
       [zoom]="11.5"
       [interactive]="true"
       camera="perspective"
-    ></ccf-body-ui>
+    />
   }
 
   @if ((model.viewType$ | async) === 'register') {
-    <ccf-body-ui
+    <hra-body-ui
       hraFeature="register"
       hraClickEvent
       class="body-ui"
@@ -46,6 +46,6 @@
       [zoom]="11.5"
       (nodeDrag)="handleNodeDrag($event)"
       camera="orthographic"
-    ></ccf-body-ui>
+    />
   }
 </div>
