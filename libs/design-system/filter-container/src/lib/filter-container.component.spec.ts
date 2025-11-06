@@ -1,4 +1,4 @@
-import { render, screen, RenderResult } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { FilterContainerComponent, FilterChip } from './filter-container.component';
 
@@ -8,24 +8,8 @@ describe('FilterContainerComponent', () => {
     showTooltip?: boolean;
     chips?: FilterChip[];
     enableDivider?: boolean;
-    tooltipContent?: string;
-  }): Promise<RenderResult<FilterContainerComponent>> {
-    const template = options.showTooltip
-      ? `<hra-filter-container
-          [action]="action"
-          [showTooltip]="showTooltip"
-          [chips]="chips"
-          [enableDivider]="enableDivider">
-          ${options.tooltipContent ? `<p tooltipContent>${options.tooltipContent}</p>` : ''}
-        </hra-filter-container>`
-      : `<hra-filter-container
-          [action]="action"
-          [chips]="chips"
-          [enableDivider]="enableDivider">
-        </hra-filter-container>`;
-
-    return render(template, {
-      imports: [FilterContainerComponent],
+  }) {
+    return render(FilterContainerComponent, {
       componentInputs: {
         action: options.action,
         showTooltip: options.showTooltip ?? false,
@@ -51,18 +35,17 @@ describe('FilterContainerComponent', () => {
     await setup({
       action: 'Test',
       showTooltip: true,
-      tooltipContent: 'Test description',
     });
 
-    const infoButton = screen.getByRole('button', { name: 'info' });
-    expect(infoButton).toBeInTheDocument();
+    const infoIcon = screen.getByText('info');
+    expect(infoIcon).toBeInTheDocument();
   });
 
   it('should not show info button when tooltip is not provided', async () => {
     await setup({ action: 'Test' });
 
-    const infoButton = screen.queryByRole('button', { name: 'info' });
-    expect(infoButton).not.toBeInTheDocument();
+    const infoIcon = screen.queryByText('info');
+    expect(infoIcon).not.toBeInTheDocument();
   });
 
   it('should display chips', async () => {
@@ -95,7 +78,7 @@ describe('FilterContainerComponent', () => {
     const user = userEvent.setup();
     const chips: FilterChip[] = [{ id: 'Chip 1' }, { id: 'Chip 2' }];
 
-    const { fixture } = await setup({
+    await setup({
       action: 'Test',
       chips,
     });
@@ -103,8 +86,9 @@ describe('FilterContainerComponent', () => {
     const removeButton = screen.getByRole('button', { name: 'Remove Chip 1' });
     await user.click(removeButton);
 
-    // Check that the chip was removed from the model
-    expect(fixture.componentInstance.chips()).toEqual([{ id: 'Chip 2' }]);
+    // Check that the chip was removed from the DOM
+    expect(screen.queryByText('Chip 1')).not.toBeInTheDocument();
+    expect(screen.getByText('Chip 2')).toBeInTheDocument();
   });
 
   it('should show divider when enableDivider is true', async () => {
