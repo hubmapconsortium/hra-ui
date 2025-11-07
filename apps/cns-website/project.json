@@ -14,6 +14,7 @@
             "glob": "**/*",
             "input": "apps/cns-website/public"
           },
+          "apps/cns-website/src/assets",
           {
             "input": "libs/design-system/assets",
             "glob": "**/*",
@@ -34,6 +35,15 @@
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cns-website/browser/"
+    },
+    "build-json-schemas": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/build-json-schema.mjs apps/cns-website/src/app/schemas/content-page/content-page.schema.ts --name ContentPage"
+        ],
+        "parallel": true
+      }
     }
   }
 }
