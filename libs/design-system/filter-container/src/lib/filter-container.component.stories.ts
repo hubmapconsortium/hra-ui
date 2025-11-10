@@ -1,18 +1,9 @@
-import { Meta, StoryObj, applicationConfig, moduleMetadata } from '@storybook/angular';
-import { MatButtonModule } from '@angular/material/button';
+import { Meta, StoryObj } from '@storybook/angular';
 import { FilterContainerComponent, FilterChip } from './filter-container.component';
 
 const meta: Meta<FilterContainerComponent> = {
   component: FilterContainerComponent,
   title: 'Design System/Filter Container',
-  decorators: [
-    moduleMetadata({
-      imports: [MatButtonModule],
-    }),
-    applicationConfig({
-      providers: [],
-    }),
-  ],
   parameters: {
     design: {
       type: 'figma',
