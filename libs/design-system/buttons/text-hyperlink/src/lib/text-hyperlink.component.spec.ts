@@ -11,7 +11,8 @@ describe('TextHyperlinkComponent', () => {
     });
 
     const link = screen.getByRole('link');
-    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('href', 'https://example.com');
+    expect(link).not.toHaveAttribute('target', '_blank');
   });
 
   it('should use router links for relative urls', async () => {
