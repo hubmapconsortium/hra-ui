@@ -46,9 +46,6 @@ export class SearchAutocompleteComponent {
   /** Array of searchable items */
   readonly options = input<SearchAutocompleteOption[]>([]);
 
-  /** Whether the component should be sticky at the top */
-  readonly sticky = input(true);
-
   /** ARIA label for accessibility */
   readonly ariaLabel = input('Search with autocomplete');
 
