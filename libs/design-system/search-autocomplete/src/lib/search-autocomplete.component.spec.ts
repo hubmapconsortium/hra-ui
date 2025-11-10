@@ -14,6 +14,7 @@ describe('SearchAutocompleteComponent', () => {
     await render(SearchAutocompleteComponent, {
       inputs: {
         placeholder: 'Search organs',
+        label: 'Search',
         options: mockOptions,
       },
     });
@@ -25,6 +26,8 @@ describe('SearchAutocompleteComponent', () => {
   it('shows results counter when enabled', async () => {
     await render(SearchAutocompleteComponent, {
       inputs: {
+        placeholder: 'Search',
+        label: 'Search',
         options: mockOptions,
       },
     });
@@ -35,6 +38,8 @@ describe('SearchAutocompleteComponent', () => {
   it('filters options when user types', async () => {
     await render(SearchAutocompleteComponent, {
       inputs: {
+        placeholder: 'Search',
+        label: 'Search',
         options: mockOptions,
       },
     });
@@ -48,6 +53,8 @@ describe('SearchAutocompleteComponent', () => {
   it('shows autocomplete panel with filtered options', async () => {
     await render(SearchAutocompleteComponent, {
       inputs: {
+        placeholder: 'Search',
+        label: 'Search',
         options: mockOptions,
       },
     });
@@ -63,6 +70,8 @@ describe('SearchAutocompleteComponent', () => {
   it('clears search when clear button is clicked', async () => {
     await render(SearchAutocompleteComponent, {
       inputs: {
+        placeholder: 'Search',
+        label: 'Search',
         options: mockOptions,
       },
     });
@@ -83,6 +92,8 @@ describe('SearchAutocompleteComponent', () => {
     const onSelectionChange = jest.fn();
     await render(SearchAutocompleteComponent, {
       inputs: {
+        placeholder: 'Search',
+        label: 'Search',
         options: mockOptions,
       },
       on: {
