@@ -1,0 +1,80 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: About the Cyberinfrastructure for Network Science Center
+subtitle: Celebrating 20+ years of data visualization research at Indiana University.
+content:
+  - component: PageSection
+    tagline: Our mission
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Our mission is to advance datasets, tools, and services for the study of biomedical, social and behavioral science, physics, and other networks.
+          A specific focus is research on the structure and evolution of science and technology (S&T) and the communication of results via static and interactive maps of
+          science (learn more at scimaps.org).
+
+          We co-organize international workshops and conferences, promote network science and visualization at national and international initiatives, organize and finance a
+          weekly Network Science talk series, hold an annual open house, host about 10 national and international visitors/faculty each year, and organize regular workshops on
+          the infrastructures and tools we develop and support. In addition, we develop custom interactive data visualization applications for both public and private sector clients in
+          need of innovative ways to interpret and utilize their data. Our clients have included National Science Foundation (NSF), the National Institutes of Health (NIH), the U.S. Department of
+          Agriculture (USDA), the National Academy of Sciences, the Biotechnology and Biological Sciences Research Council in the UK (BBSRC), TD Ameritrade, Net eSolutions, and Cummins Inc.
+
+          Our administrative home is in Luddy Hall at the Luddy School of Informatics, Computing, and Engineering, Indiana University, Bloomington, Indiana, USA.
+      - component: Image
+        src: /assets/content/about-page/images/luddy-hall.png
+
+  - component: PageSection
+    tagline: Our history
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Before CNS came into existence, Katy Börner created and directed the Information Visualization Lab to provide an active and advanced research environment to conduct research in information visualization.
+
+
+          She later broadened the scope of her enterprise and grew it into an organization that performs big data mining and filtering, creates open source tools for analysis and visualization, shares knowledge and
+          techniques through teaching, exhibitions, and workshops on an international level, and connects people with different expertise for research collaboration across the world—what you know today as the CNS Center.
+
+
+          Today, many students and staff members decide to join CNS because its strong focus on information visualization excellence. Almost all projects at CNS aim to advance data visualization design, standards, tools,
+          or data visualization literacy in general.
+      - component: Image
+        src: /assets/content/about-page/images/history-2005.png
+
+  - component: PageSection
+    tagline: Donate
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          CNS receives funding from organizations throughout the world plus smaller donations from individuals. These generous gifts allow us to stay on the cutting edge of information science and continue the work of
+          helping advance big data management and utilization. Thank you for your support!
+      - component: Button
+        label: Donate
+        href: https://give.myiu.org/iu-bloomington/I320004200.html
+        type: cta
+
+  - component: PageSection
+    tagline: Contact us
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Primary contact: Lisel Record, Associate Director
+
+          Phone: 812.856.7034
+
+          E-mail: cnscntr@iu.edu
+
+
+          Mailing address:
+          Cyberinfrastructure for Network Science (CNS) Center
+
+          Department of Intelligent Systems Engineering
+
+          Luddy School of Informatics, Computing, and Engineering
+
+          Indiana University at Bloomington
+
+          700 N. Woodlawn Ave. Luddy Hall, Suite 4018
+
+          Bloomington, IN 47408
