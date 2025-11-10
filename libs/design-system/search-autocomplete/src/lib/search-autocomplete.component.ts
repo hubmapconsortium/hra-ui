@@ -37,9 +37,6 @@ export interface SearchAutocompleteOption {
   styleUrls: ['./search-autocomplete.component.scss'],
 })
 export class SearchAutocompleteComponent {
-  /** Placeholder text for the search input */
-  readonly placeholder = input.required<string>();
-
   /** Label for the form field */
   readonly label = input.required<string>();
 

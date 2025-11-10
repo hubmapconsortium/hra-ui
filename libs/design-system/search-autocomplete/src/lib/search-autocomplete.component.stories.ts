@@ -33,7 +33,6 @@ const meta: Meta<SearchAutocompleteComponent> = {
     }),
   ],
   args: {
-    placeholder: 'Search',
     label: 'Search',
     options: SAMPLE_OPTIONS,
   },
