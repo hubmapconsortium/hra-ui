@@ -6,7 +6,6 @@ import { Directive } from '@angular/core';
  */
 @Directive({
   selector: '[hraNavigationButtonDescription]',
-  standalone: true,
   host: {
     class: 'supporting-text',
   },
