@@ -1,14 +1,7 @@
 <img class="image" [attr.src]="imageSrc() | assetUrl" alt="" />
 <div class="content">
   <div class="date">{{ date() }}</div>
-  <a
-    class="tagline-link"
-    hraHyperlink
-    [href]="link()"
-    [target]="external() ? '_blank' : '_self'"
-    [rel]="external() ? 'noopener noreferrer' : null"
-    [matTooltip]="tagline()"
-  >
+  <a class="tagline-link" hraHyperlink [hraLink]="link()" [hraLinkExternal]="external()" [matTooltip]="tagline()">
     {{ tagline() }}
   </a>
   @if (tags().length > 0) {
