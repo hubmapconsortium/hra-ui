@@ -46,24 +46,9 @@
     );
 
     .results-counter {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       min-width: 5.25rem;
       max-width: 7.5rem;
-      min-height: 3rem;
-      max-height: 3rem;
-      padding: 0.5rem 1rem;
-      gap: 0.5rem;
-      background: vars.$on-primary;
-      border: 1px solid vars.$outline-variant;
-      border-radius: 0.25rem;
       white-space: nowrap;
-
-      .counter-text {
-        @include utils.use-font(label, small);
-        color: vars.$primary;
-      }
     }
 
     @media (max-width: 48rem) {
@@ -73,18 +58,6 @@
 
       .results-counter {
         align-self: flex-end;
-      }
-    }
-
-    @media (max-width: 30rem) {
-      padding: 4px 0;
-
-      .results-counter {
-        padding: 6px 12px;
-
-        .counter-text {
-          @include utils.use-font(label, small);
-        }
       }
     }
   }
