@@ -7,6 +7,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HraCommonModule } from '@hra-ui/common';
+import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 
 /**
  * Interface representing a search autocomplete option
@@ -32,6 +33,7 @@ export interface SearchAutocompleteOption {
     MatAutocompleteModule,
     MatIconModule,
     MatButtonModule,
+    ResultsIndicatorComponent,
   ],
   templateUrl: './search-autocomplete.component.html',
   styleUrls: ['./search-autocomplete.component.scss'],
