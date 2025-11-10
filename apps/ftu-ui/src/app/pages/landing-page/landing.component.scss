@@ -10,18 +10,22 @@
     flex-direction: column;
     row-gap: 40px;
     margin: 0;
-    height: 720px;
+    min-height: 720px;
+    height: auto;
 
     .splash-header-img {
       width: 100%;
+      min-height: 720px;
       height: 100%;
       object-fit: cover;
-    }
-
-    .splash-section {
       position: absolute;
       top: 0;
       left: 0;
+      z-index: -1;
+    }
+
+    .splash-section {
+      position: relative;
       display: flex;
       flex-direction: column;
       row-gap: 56px;
@@ -63,24 +67,26 @@
     flex-direction: column;
     row-gap: 8px;
     margin: 0;
-    height: 720px;
+    min-height: 720px;
+    height: auto;
 
     .splash-header-img-2 {
       width: 100%;
+      min-height: 720px;
       height: 100%;
       object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     .collaborators-section {
-      position: absolute;
-      top: 7.875rem;
-      left: 820px;
-      right: 40px;
+      position: relative;
       display: flex;
       flex-direction: column;
-      // width: 100%;
-      // margin-right: 40px;
-      padding: 96px 0;
+      padding: 96px 40px;
+      margin-left: min(780px, 50%);
       row-gap: 56px;
 
       .thankyou-container {
@@ -121,10 +127,25 @@
   }
 }
 
+@media (min-width: 40rem) and (max-width: 75rem) {
+  :host {
+    .collaborators-wrapper {
+      .collaborators-section {
+        margin-left: min(40%, 400px);
+        padding: 96px 24px;
+      }
+    }
+  }
+}
+
 @media (min-width: 20rem) and (max-width: 39.9375rem) {
   :host {
     .splash-wrapper {
-      height: 900px;
+      min-height: 900px;
+
+      .splash-header-img {
+        min-height: 900px;
+      }
 
       .splash-section {
         padding: 96px 16px;
@@ -143,11 +164,15 @@
 
     .collaborators-wrapper {
       row-gap: 0.5rem;
+      min-height: auto;
+
+      .splash-header-img-2 {
+        min-height: 900px;
+      }
 
       .collaborators-section {
-        left: 16px;
-        right: 16px;
-        padding: 0;
+        padding: 96px 16px;
+        margin-left: 0;
         min-width: 272px;
       }
     }
