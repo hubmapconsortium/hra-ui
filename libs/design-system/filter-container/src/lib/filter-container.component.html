@@ -1,20 +1,13 @@
 <div class="filter-container">
   <div class="top-row">
     @if (showTooltip()) {
-      <hra-rich-tooltip-container #tooltipContent class="info-icon">
-        <hra-rich-tooltip-tagline>
-          {{ action() }}
-        </hra-rich-tooltip-tagline>
-        <hra-rich-tooltip-content>
-          <ng-content select="[tooltipContent]" />
-        </hra-rich-tooltip-content>
-        <hra-rich-tooltip-actions>
+      <hra-info-button>
+        <span hraInfoButtonTagline>{{ action() }}</span>
+        <ng-content select="[tooltipContent]" />
+        <div hraInfoButtonActions>
           <ng-content select="[tooltipActions]" />
-        </hra-rich-tooltip-actions>
-      </hra-rich-tooltip-container>
-      <button mat-icon-button [hraRichTooltip]="tooltipContent">
-        <mat-icon>info</mat-icon>
-      </button>
+        </div>
+      </hra-info-button>
     }
     <button mat-button hraButtonVariant="secondary" class="category-button" color="primary">
       {{ action() }}

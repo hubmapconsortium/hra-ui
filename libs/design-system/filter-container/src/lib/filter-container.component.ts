@@ -4,7 +4,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
+import {
+  InfoButtonComponent,
+  InfoButtonTaglineDirective,
+  InfoButtonActionsDirective,
+} from '@hra-ui/design-system/buttons/info-button';
 
 /** A filter chip representing a selected filter option */
 export interface FilterChip {
@@ -17,7 +21,16 @@ export interface FilterChip {
  */
 @Component({
   selector: 'hra-filter-container',
-  imports: [HraCommonModule, ButtonsModule, RichTooltipModule, MatIconModule, MatChipsModule, MatDividerModule],
+  imports: [
+    HraCommonModule,
+    ButtonsModule,
+    MatIconModule,
+    MatChipsModule,
+    MatDividerModule,
+    InfoButtonComponent,
+    InfoButtonTaglineDirective,
+    InfoButtonActionsDirective,
+  ],
   templateUrl: './filter-container.component.html',
   styleUrl: './filter-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
