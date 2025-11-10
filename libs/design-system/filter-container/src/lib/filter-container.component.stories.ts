@@ -28,6 +28,10 @@ const meta: Meta<FilterContainerComponent> = {
       control: 'boolean',
       description: 'Whether to show the info button with tooltip',
     },
+    actionClick: {
+      action: 'actionClick',
+      description: 'Event emitted when the category button is clicked',
+    },
   },
 };
 
@@ -39,7 +43,7 @@ const sampleChips: FilterChip[] = [{ id: 'Option 1' }, { id: 'Option 2' }, { id:
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<hra-filter-container [action]="action" [enableDivider]="enableDivider" />`,
+    template: `<hra-filter-container [action]="action" [enableDivider]="enableDivider" (actionClick)="actionClick($event)" />`,
   }),
 };
 
@@ -47,7 +51,7 @@ export const WithInfoButton: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <hra-filter-container [action]="action" [showTooltip]="true" [enableDivider]="enableDivider">
+      <hra-filter-container [action]="action" [showTooltip]="true" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
         <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
         <button mat-button color="accent" tooltipActions>
           <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
@@ -63,7 +67,7 @@ export const WithChipsAndInfo: Story = {
   render: (args) => ({
     props: { ...args, chips: sampleChips },
     template: `
-      <hra-filter-container [action]="action" [showTooltip]="true" [chips]="chips" [enableDivider]="enableDivider">
+      <hra-filter-container [action]="action" [showTooltip]="true" [chips]="chips" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
         <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
         <button mat-button color="accent" tooltipActions>
           <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
@@ -82,7 +86,7 @@ export const WithDivider: Story = {
   render: (args) => ({
     props: { ...args, chips: sampleChips },
     template: `
-      <hra-filter-container [action]="action" [showTooltip]="true" [chips]="chips" [enableDivider]="enableDivider">
+      <hra-filter-container [action]="action" [showTooltip]="true" [chips]="chips" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
         <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
         <button mat-button color="accent" tooltipActions>
           <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">

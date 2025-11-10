@@ -60,18 +60,20 @@ describe('FilterContainerComponent', () => {
     expect(screen.getByText('Chip 2')).toBeInTheDocument();
   });
 
-  it('should not emit when button is clicked', async () => {
+  it('should emit actionClick when category button is clicked', async () => {
     const user = userEvent.setup();
 
-    await setup({
+    const { fixture } = await setup({
       action: 'Test',
     });
+
+    const actionClick = jest.fn();
+    fixture.componentInstance.actionClick.subscribe(actionClick);
 
     const button = screen.getByRole('button', { name: 'Test' });
     await user.click(button);
 
-    // Button click should not trigger any events
-    expect(button).toBeInTheDocument();
+    expect(actionClick).toHaveBeenCalledTimes(1);
   });
 
   it('should remove chip from model when chip remove button is clicked', async () => {

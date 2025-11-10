@@ -9,7 +9,13 @@
         </div>
       </hra-info-button>
     }
-    <button mat-button hraButtonVariant="secondary" class="category-button" color="primary">
+    <button
+      mat-button
+      hraButtonVariant="secondary"
+      class="category-button"
+      color="primary"
+      (click)="actionClick.emit()"
+    >
       {{ action() }}
     </button>
   </div>

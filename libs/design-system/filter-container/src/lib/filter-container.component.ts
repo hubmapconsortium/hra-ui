@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
@@ -47,6 +47,9 @@ export class FilterContainerComponent {
 
   /** Whether to show a divider below the container */
   readonly enableDivider = input<boolean, unknown>(false, { transform: booleanAttribute });
+
+  /** Emits when the category button is clicked */
+  readonly actionClick = output<void>();
 
   /**
    * Handles the removal of a chip
