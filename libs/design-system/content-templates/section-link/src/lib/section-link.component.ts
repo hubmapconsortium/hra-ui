@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { FragmentLinkDirective } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
@@ -13,7 +13,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
     // eslint-disable-next-line @angular-eslint/component-selector
     `h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
     h4[hra-section-link], h5[hra-section-link], h6[hra-section-link]`,
-  imports: [CommonModule, RouterModule, MatDividerModule, MatIconModule, ButtonsModule],
+  imports: [CommonModule, FragmentLinkDirective, MatDividerModule, MatIconModule, ButtonsModule],
   templateUrl: './section-link.component.html',
   styleUrl: './section-link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
