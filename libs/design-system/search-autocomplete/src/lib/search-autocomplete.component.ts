@@ -38,10 +38,10 @@ export interface SearchAutocompleteOption {
 })
 export class SearchAutocompleteComponent {
   /** Placeholder text for the search input */
-  readonly placeholder = input('Search');
+  readonly placeholder = input.required<string>();
 
   /** Label for the form field */
-  readonly label = input('');
+  readonly label = input.required<string>();
 
   /** Array of searchable items */
   readonly options = input<SearchAutocompleteOption[]>([]);
