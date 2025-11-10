@@ -719,6 +719,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/AppNavButtonComponent.html" data-type="entity-link" >AppNavButtonComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ArchivedPageComponent.html" data-type="entity-link" >ArchivedPageComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/BackButtonBarComponent.html" data-type="entity-link" >BackButtonBarComponent</a>
                             </li>
                             <li class="link">
