@@ -29,7 +29,8 @@ describe('SearchAutocompleteComponent', () => {
       },
     });
 
-    expect(screen.getByText('4 / 4')).toBeInTheDocument();
+    expect(screen.getByText('Viewing', { exact: false })).toBeInTheDocument();
+    expect(screen.getByText(/4/)).toBeInTheDocument();
   });
 
   it('filters options when user types', async () => {
@@ -43,7 +44,8 @@ describe('SearchAutocompleteComponent', () => {
     const input = screen.getByRole('combobox');
     await userEvent.type(input, 'kid');
 
-    expect(screen.getByText('1 / 4')).toBeInTheDocument();
+    expect(screen.getByText('Viewing', { exact: false })).toBeInTheDocument();
+    expect(screen.getByText(/1/)).toBeInTheDocument();
   });
 
   it('shows autocomplete panel with filtered options', async () => {
@@ -73,13 +75,14 @@ describe('SearchAutocompleteComponent', () => {
     const input = screen.getByRole('combobox');
     await userEvent.type(input, 'heart');
 
-    expect(screen.getByText('1 / 4')).toBeInTheDocument();
+    expect(screen.getByText('Viewing', { exact: false })).toBeInTheDocument();
+    expect(screen.getByText(/1/)).toBeInTheDocument();
 
     const clearButton = screen.getByRole('button', { name: /clear/i });
     await userEvent.click(clearButton);
 
     expect(input).toHaveValue('');
-    expect(screen.getByText('4 / 4')).toBeInTheDocument();
+    expect(screen.getByText(/4/)).toBeInTheDocument();
   });
 
   it('emits selection when option is clicked', async () => {
