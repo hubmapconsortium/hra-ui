@@ -1,7 +1,7 @@
 import { coerceArray } from '@angular/cdk/coercion';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -24,7 +24,7 @@ import { ContentPageData } from './types/content-page.schema';
     MarkdownComponent,
     MatIconModule,
     PageSectionComponent,
-    RouterModule,
+    LinkDirective,
     TableOfContentsLayoutModule,
     NavigationModule,
   ],
