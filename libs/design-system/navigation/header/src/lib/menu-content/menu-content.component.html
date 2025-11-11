@@ -9,25 +9,19 @@
 
 <ng-template hraMenuGroup let-group #groupTemplate>
   @let url = resolveUrl(group.url, group.external);
-  @if (url.isAbsolute) {
-    <a
-      mat-button
-      class="group-label"
-      [attr.href]="url.value"
-      [attr.target]="group.target ?? ''"
-      rel="noopener noreferrer"
-      hraClickEvent
-      [hraFeature]="group.label | slugify"
-    >
-      {{ group.label }}
-      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-    </a>
-  } @else {
-    <a mat-button class="group-label" [routerLink]="url.value" hraClickEvent [hraFeature]="group.label | slugify">
-      {{ group.label }}
-      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-    </a>
-  }
+  <a
+    mat-button
+    class="group-label"
+    [hraLink]="url.value"
+    [hraLinkExternal]="url.isExternal"
+    [attr.target]="group.target ?? ''"
+    rel="noopener noreferrer"
+    hraClickEvent
+    [hraFeature]="group.label | slugify"
+  >
+    {{ group.label }}
+    <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+  </a>
 
   @if (group.description) {
     <div class="group-description">
@@ -61,29 +55,17 @@
 
 <ng-template hraMenuItem let-item #itemTemplate>
   @let url = resolveUrl(item.url, item.external);
-  @if (url.isAbsolute) {
-    <a
-      mat-button
-      hraSecondaryButton
-      class="item-label"
-      [attr.href]="url.value"
-      [attr.target]="item.target ?? ''"
-      rel="noopener noreferrer"
-      hraClickEvent
-      [hraFeature]="item.label | slugify"
-    >
-      {{ item.label }}
-    </a>
-  } @else {
-    <a
-      mat-button
-      hraSecondaryButton
-      class="item-label"
-      [routerLink]="url.value"
-      hraClickEvent
-      [hraFeature]="item.label | slugify"
-    >
-      {{ item.label }}
-    </a>
-  }
+  <a
+    mat-button
+    hraSecondaryButton
+    class="item-label"
+    [hraLink]="url.value"
+    [hraLinkExternal]="url.isExternal"
+    [attr.target]="item.target ?? ''"
+    rel="noopener noreferrer"
+    hraClickEvent
+    [hraFeature]="item.label | slugify"
+  >
+    {{ item.label }}
+  </a>
 </ng-template>
