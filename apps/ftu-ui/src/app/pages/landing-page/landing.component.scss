@@ -34,7 +34,6 @@
       min-width: 17rem;
       min-height: 34.625rem;
       padding: 7.5rem 2.5rem;
-      margin-left: 6.875rem;
 
       .splash-content {
         display: flex;
@@ -94,11 +93,13 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      min-width: 17rem;
-      max-width: 46.25rem;
-      padding: 7.5rem 2.5rem;
-      margin-left: min(48.75rem, 50%);
-      row-gap: 3.5rem;
+      min-width: 272px;
+      max-width: 740px;
+      min-height: 516px;
+      padding: 120px 40px;
+      margin-left: auto;
+      row-gap: 56px;
+      border-radius: 32px;
 
       .thankyou-container {
         display: flex;
@@ -143,8 +144,8 @@
   :host {
     .collaborators-wrapper {
       .collaborators-section {
-        margin-left: min(40%, 400px);
-        padding: 96px 24px;
+        margin-left: auto;
+        margin-right: 2rem;
       }
     }
   }
@@ -153,27 +154,27 @@
 @media (min-width: 20rem) and (max-width: 39.9375rem) {
   :host {
     .splash-wrapper {
-      min-height: 900px;
-      max-width: 1700px;
-      row-gap: 8px;
+      min-height: 56.25rem;
+      max-width: 106.25rem;
+      row-gap: 0.5rem;
 
       .splash-header-img {
-        min-height: 900px;
+        min-height: 56.25rem;
       }
 
       .splash-section {
-        row-gap: 56px;
-        padding: 120px 20px;
-        min-height: 554px;
-        min-width: 272px;
-        max-width: 740px;
+        row-gap: 3.5rem;
+        padding: 7.5rem 1.25rem;
+        min-height: 34.625rem;
+        min-width: 17rem;
+        max-width: 46.25rem;
 
         .splash-content {
-          row-gap: 32px;
+          row-gap: 2rem;
         }
 
         .actions {
-          row-gap: 32px;
+          row-gap: 2rem;
           column-gap: 1rem;
 
           .action {
@@ -192,9 +193,9 @@
       }
 
       .collaborators-section {
-        padding: 96px 16px;
+        padding: 6rem 1rem;
         margin-left: 0;
-        min-width: 272px;
+        min-width: 17rem;
       }
     }
   }
