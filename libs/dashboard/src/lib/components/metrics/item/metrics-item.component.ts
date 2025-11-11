@@ -16,7 +16,6 @@ export const METRICS_ITEM_DEF = z.object({
   selector: 'hra-metrics-item',
   templateUrl: './metrics-item.component.html',
   styleUrl: './metrics-item.component.scss',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetricsItemComponent {

@@ -5,7 +5,6 @@ import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-in
 /** Actions placed next to the card title */
 @Component({
   selector: 'hra-workflow-card-actions',
-  standalone: true,
   template: '<ng-content></ng-content>',
   styles: ':host { display: flex; gap: 0.75rem; }',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,7 +14,6 @@ export class WorkflowCardActionsComponent {}
 /** Additional content placed on very right side of the header */
 @Component({
   selector: 'hra-workflow-card-extra',
-  standalone: true,
   template: '<ng-content></ng-content>',
   styles: ':host { display: flex; gap: 0.75rem; }',
   changeDetection: ChangeDetectionStrategy.OnPush,
