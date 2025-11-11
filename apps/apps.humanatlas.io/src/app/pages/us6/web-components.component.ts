@@ -68,7 +68,6 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
  */
 @Component({
   selector: 'hra-web-components',
-  standalone: true,
   imports: [
     ButtonsModule,
     FormsModule,

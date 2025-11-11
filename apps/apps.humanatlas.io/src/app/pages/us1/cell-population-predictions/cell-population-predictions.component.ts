@@ -32,7 +32,6 @@ const EMPTY_DATA: TissuePredictionData = {
  */
 @Component({
   selector: 'hra-cell-population-predictions',
-  standalone: true,
   imports: [
     HraCommonModule,
     MatIconModule,
