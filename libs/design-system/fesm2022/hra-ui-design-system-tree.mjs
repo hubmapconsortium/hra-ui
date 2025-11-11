@@ -39,7 +39,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraTreeSize]',
-                    standalone: true,
                     host: {
                         '[style.--mat-tree-node-text-size.rem]': 'fontSize()',
                         '[style.--mat-tree-node-min-height.rem]': 'nodeHeight()',
@@ -58,7 +57,7 @@ class TreeStylesComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: TreeStylesComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-tree-styles', standalone: true, template: '', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, styles: [".hra-app{--mat-tree-container-background-color: var(--mat-sys-on-primary);--mat-tree-node-text-font: var(--mat-sys-label-medium-font);--mat-tree-node-text-weight: var(--mat-sys-label-medium-weight);--mat-tree-node-text-color: var(--mat-sys-secondary)}.hra-app mat-tree{letter-spacing:var(--mat-sys-label-medium-tracking);cursor:pointer;-webkit-user-select:none;user-select:none;outline:none}.hra-app mat-tree:focus-visible .node-content{border-color:var(--mat-sys-tertiary)}.hra-app .node-content{display:flex;height:var(--mat-tree-node-min-height);line-height:var(--mat-tree-node-min-height);border-radius:.25rem;width:100%;border-width:2px;border-style:solid;border-color:transparent;align-items:center;--mat-button-text-hover-state-layer-opacity: 0;--mat-button-text-pressed-state-layer-opacity: 0}.hra-app .node-content.leaf{padding-left:.5rem}.hra-app .node-content:hover{background:rgb(from var(--mat-sys-secondary) r g b/.08)}.hra-app .node-content:active{background:rgb(from var(--mat-sys-secondary) r g b/.16);border-color:transparent}.hra-app .node-content.selected{background:rgb(from var(--mat-sys-tertiary) r g b/.2)}\n"] }]
+            args: [{ selector: 'hra-tree-styles', template: '', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, styles: [".hra-app{--mat-tree-container-background-color: var(--mat-sys-on-primary);--mat-tree-node-text-font: var(--mat-sys-label-medium-font);--mat-tree-node-text-weight: var(--mat-sys-label-medium-weight);--mat-tree-node-text-color: var(--mat-sys-secondary)}.hra-app mat-tree{letter-spacing:var(--mat-sys-label-medium-tracking);cursor:pointer;-webkit-user-select:none;user-select:none;outline:none}.hra-app mat-tree:focus-visible .node-content{border-color:var(--mat-sys-tertiary)}.hra-app .node-content{display:flex;height:var(--mat-tree-node-min-height);line-height:var(--mat-tree-node-min-height);border-radius:.25rem;width:100%;border-width:2px;border-style:solid;border-color:transparent;align-items:center;--mat-button-text-hover-state-layer-opacity: 0;--mat-button-text-pressed-state-layer-opacity: 0}.hra-app .node-content.leaf{padding-left:.5rem}.hra-app .node-content:hover{background:rgb(from var(--mat-sys-secondary) r g b/.08)}.hra-app .node-content:active{background:rgb(from var(--mat-sys-secondary) r g b/.16);border-color:transparent}.hra-app .node-content.selected{background:rgb(from var(--mat-sys-tertiary) r g b/.2)}\n"] }]
         }] });
 
 /**

@@ -73,7 +73,7 @@ class ScrollOverflowFadeStylesComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ScrollOverflowFadeStylesComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-scroll-overflow-fade-styles', standalone: true, template: '', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);display:block;position:absolute;pointer-events:none;z-index:99;left:0;right:0;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{--_hra-scroll-overflow-fade-gradient-top-start: var(--hra-scroll-overflow-fade-offset);--_hra-scroll-overflow-fade-gradient-top-end: calc( (var(--content-height) - var(--viewport-height)) * 1px + 2 * var(--hra-scroll-overflow-fade-offset) - 1px );top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-gradient-bottom-start: calc( var(--viewport-height) * 1px - var(--_hra-scroll-overflow-fade-height) );--_hra-scroll-overflow-fade-gradient-bottom-end: calc( var(--content-height) * 1px - var(--_hra-scroll-overflow-fade-height) + var(--hra-scroll-overflow-fade-offset) );top:100%;background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-top,ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bottom{display:none}\n"] }]
+            args: [{ selector: 'hra-scroll-overflow-fade-styles', template: '', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);display:block;position:absolute;pointer-events:none;z-index:99;left:0;right:0;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{--_hra-scroll-overflow-fade-gradient-top-start: var(--hra-scroll-overflow-fade-offset);--_hra-scroll-overflow-fade-gradient-top-end: calc( (var(--content-height) - var(--viewport-height)) * 1px + 2 * var(--hra-scroll-overflow-fade-offset) - 1px );top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-gradient-bottom-start: calc( var(--viewport-height) * 1px - var(--_hra-scroll-overflow-fade-height) );--_hra-scroll-overflow-fade-gradient-bottom-end: calc( var(--content-height) * 1px - var(--_hra-scroll-overflow-fade-height) + var(--hra-scroll-overflow-fade-offset) );top:100%;background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-top,ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bottom{display:none}\n"] }]
         }] });
 /**
  * Directive that can be used along ng-scrollbar to apply a gradient
@@ -162,7 +162,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraScrollOverflowFade]',
-                    standalone: true,
                     host: {
                         '[style.--hra-scroll-overflow-fade-offset.px]': 'scrollOverflowFadeOffset()',
                     },
@@ -176,7 +175,7 @@ class ScrollbarStylesComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ScrollbarStylesComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-scrollbar-styles', standalone: true, template: '', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, styles: [".hra-app{--scrollbar-thumb-color: rgb(from var(--mat-sys-primary) r g b / .72);--scrollbar-border-radius: 1rem;--scrollbar-thickness: 8}\n"] }]
+            args: [{ selector: 'hra-scrollbar-styles', template: '', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, styles: [".hra-app{--scrollbar-thumb-color: rgb(from var(--mat-sys-primary) r g b / .72);--scrollbar-border-radius: 1rem;--scrollbar-thickness: 8}\n"] }]
         }] });
 
 /** Default scroll timeline polyfill url */

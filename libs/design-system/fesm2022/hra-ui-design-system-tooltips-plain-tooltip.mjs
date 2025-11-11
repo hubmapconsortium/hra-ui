@@ -13,7 +13,7 @@ class PlainTooltipStylesComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: PlainTooltipStylesComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-plain-tooltip-styles', standalone: true, template: '', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, styles: [".hra-app .hra-plain-tooltip{--mat-tooltip-supporting-text-color: var(--mat-sys-on-primary);--mat-tooltip-container-color: color-mix(in srgb, var(--mat-sys-secondary) 96%, transparent)}.hra-app .hra-plain-tooltip .mat-mdc-tooltip-surface{padding:.25rem .5rem;letter-spacing:unset;max-width:18.5rem;text-align:left}.hra-app .hra-plain-tooltip-medium .mat-mdc-tooltip-surface{font:var(--mat-sys-label-medium)}.hra-app .hra-plain-tooltip-small .mat-mdc-tooltip-surface{font:var(--mat-sys-label-small)}\n"] }]
+            args: [{ selector: 'hra-plain-tooltip-styles', template: '', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, styles: [".hra-app .hra-plain-tooltip{--mat-tooltip-supporting-text-color: var(--mat-sys-on-primary);--mat-tooltip-container-color: color-mix(in srgb, var(--mat-sys-secondary) 96%, transparent)}.hra-app .hra-plain-tooltip .mat-mdc-tooltip-surface{padding:.25rem .5rem;letter-spacing:unset;max-width:18.5rem;text-align:left}.hra-app .hra-plain-tooltip-medium .mat-mdc-tooltip-surface{font:var(--mat-sys-label-medium)}.hra-app .hra-plain-tooltip-small .mat-mdc-tooltip-surface{font:var(--mat-sys-label-small)}\n"] }]
         }] });
 
 /** Directive for Tooltip */
@@ -36,7 +36,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraPlainTooltip]',
-                    standalone: true,
                     hostDirectives: [
                         {
                             directive: MatTooltip,

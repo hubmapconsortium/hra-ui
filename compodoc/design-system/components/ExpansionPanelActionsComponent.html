@@ -170,10 +170,6 @@
                 <td class="col-md-9"><code>hra-expansion-panel-actions</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
 
 
 
@@ -233,7 +229,6 @@ let idCounter &#x3D; 0;
 /** Expansion panel actions component */
 @Component({
   selector: &#x27;hra-expansion-panel-actions&#x27;,
-  standalone: true,
   template: &#x27;&lt;ng-content&gt;&lt;/ng-content&gt;&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -242,7 +237,6 @@ export class ExpansionPanelActionsComponent {}
 /** Expansion panel header content component */
 @Component({
   selector: &#x27;hra-expansion-panel-header-content&#x27;,
-  standalone: true,
   template: &#x27;&lt;ng-content&gt;&lt;/ng-content&gt;&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

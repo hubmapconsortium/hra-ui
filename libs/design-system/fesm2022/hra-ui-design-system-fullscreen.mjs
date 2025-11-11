@@ -45,7 +45,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraViewOutlet]',
-                    standalone: true,
                 }]
         }], ctorParameters: () => [], propDecorators: { viewRef: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraViewOutlet", required: false }] }] } });
 /** Fullscreen actions component */
@@ -55,7 +54,7 @@ class FullscreenActionsComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: FullscreenActionsComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-fullscreen-actions', standalone: true, template: `<ng-content></ng-content>`, changeDetection: ChangeDetectionStrategy.OnPush, styles: [":host{display:flex;width:100%;height:100%;flex-direction:row;align-items:center}\n"] }]
+            args: [{ selector: 'hra-fullscreen-actions', template: `<ng-content></ng-content>`, changeDetection: ChangeDetectionStrategy.OnPush, styles: [":host{display:flex;width:100%;height:100%;flex-direction:row;align-items:center}\n"] }]
         }] });
 /** Fullscreen portal content component */
 class FullscreenPortalContentComponent {
@@ -64,7 +63,7 @@ class FullscreenPortalContentComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: FullscreenPortalContentComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-fullscreen-portal-content', standalone: true, template: `<ng-content></ng-content>`, changeDetection: ChangeDetectionStrategy.OnPush, styles: [":host{width:100%;height:100%}\n"] }]
+            args: [{ selector: 'hra-fullscreen-portal-content', template: `<ng-content></ng-content>`, changeDetection: ChangeDetectionStrategy.OnPush, styles: [":host{width:100%;height:100%}\n"] }]
         }] });
 /** Fullscreen Component */
 class FullscreenPortalComponent {

@@ -18,7 +18,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraDensity]',
-                    standalone: true,
                     host: {
                         '[class]': '"hra-density-" + density()',
                     },

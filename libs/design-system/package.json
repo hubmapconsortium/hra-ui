@@ -58,13 +58,13 @@
       "types": "./color-picker/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-color-picker.mjs"
     },
-    "./copyable-url-container": {
-      "types": "./copyable-url-container/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-copyable-url-container.mjs"
-    },
     "./content-templates": {
       "types": "./content-templates/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates.mjs"
+    },
+    "./copyable-url-container": {
+      "types": "./copyable-url-container/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-copyable-url-container.mjs"
     },
     "./data-viewer": {
       "types": "./data-viewer/index.d.ts",
@@ -122,13 +122,13 @@
       "types": "./privacy/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-privacy.mjs"
     },
-    "./select": {
-      "types": "./select/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-select.mjs"
-    },
     "./scrolling": {
       "types": "./scrolling/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-scrolling.mjs"
+    },
+    "./select": {
+      "types": "./select/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-select.mjs"
     },
     "./slider": {
       "types": "./slider/index.d.ts",
@@ -250,13 +250,13 @@
       "types": "./cards/count-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-count-card.mjs"
     },
-    "./cards/gallery-card": {
-      "types": "./cards/gallery-card/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-cards-gallery-card.mjs"
-    },
     "./cards/flat-card": {
       "types": "./cards/flat-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-flat-card.mjs"
+    },
+    "./cards/gallery-card": {
+      "types": "./cards/gallery-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards-gallery-card.mjs"
     },
     "./cards/profile-card": {
       "types": "./cards/profile-card/index.d.ts",
@@ -290,13 +290,13 @@
       "types": "./content-templates/markdown/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-markdown.mjs"
     },
-    "./content-templates/page-label": {
-      "types": "./content-templates/page-label/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-page-label.mjs"
-    },
     "./content-templates/page-section": {
       "types": "./content-templates/page-section/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-page-section.mjs"
+    },
+    "./content-templates/page-label": {
+      "types": "./content-templates/page-label/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-page-label.mjs"
     },
     "./content-templates/resolvers": {
       "types": "./content-templates/resolvers/index.d.ts",

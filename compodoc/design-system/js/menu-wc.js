@@ -264,7 +264,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ExpansionPanelModule-17d413bf76847d240a5f155d04a8a0984a5c9998bdfcaeef128b4242972a37b15fccc7931dbab683f5fd03f7310330a81c75ec7b81d5a8b46ce66eb3445dc685"' :
                                             'id="xs-components-links-module-ExpansionPanelModule-17d413bf76847d240a5f155d04a8a0984a5c9998bdfcaeef128b4242972a37b15fccc7931dbab683f5fd03f7310330a81c75ec7b81d5a8b46ce66eb3445dc685"' }>
                                             <li class="link">
+                                                <a href="components/ExpansionPanelActionsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ExpansionPanelActionsComponent</a>
+                                            </li>
+                                            <li class="link">
                                                 <a href="components/ExpansionPanelComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ExpansionPanelComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/ExpansionPanelHeaderContentComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ExpansionPanelHeaderContentComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -688,7 +694,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-WorkflowCardModule-d538998a7e86168fd6122c6dcf572323089bd5f6cec04f45e8b7802e8f7593435755961eed72538b47172fbfbb503e8855584b766b860a65fe406d0bcec4e6a9"' :
                                             'id="xs-components-links-module-WorkflowCardModule-d538998a7e86168fd6122c6dcf572323089bd5f6cec04f45e8b7802e8f7593435755961eed72538b47172fbfbb503e8855584b766b860a65fe406d0bcec4e6a9"' }>
                                             <li class="link">
+                                                <a href="components/WorkflowCardActionsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkflowCardActionsComponent</a>
+                                            </li>
+                                            <li class="link">
                                                 <a href="components/WorkflowCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkflowCardComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/WorkflowCardExtraComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkflowCardExtraComponent</a>
                                             </li>
                                         </ul>
                                     </li>

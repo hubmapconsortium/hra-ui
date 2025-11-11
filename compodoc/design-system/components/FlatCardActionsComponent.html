@@ -174,10 +174,6 @@
                 <td class="col-md-9"><code>hra-flat-card-actions</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
 
 
 
@@ -233,7 +229,6 @@ import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
  */
 @Component({
   selector: &#x27;hra-flat-card-actions&#x27;,
-  standalone: true,
   template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
   styles: [
     &#x60;
@@ -253,7 +248,6 @@ export class FlatCardActionsComponent {}
  */
 @Component({
   selector: &#x27;hra-flat-card&#x27;,
-  standalone: true,
   imports: [HraCommonModule, MatIconModule, MatMenuModule, MatDividerModule, ButtonsModule, ScrollingModule],
   templateUrl: &#x27;./flat-card.component.html&#x27;,
   styleUrl: &#x27;./flat-card.component.scss&#x27;,

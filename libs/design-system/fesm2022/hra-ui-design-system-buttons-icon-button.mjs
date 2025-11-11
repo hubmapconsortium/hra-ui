@@ -16,7 +16,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraIconButtonSize]',
-                    standalone: true,
                     host: {
                         '[class]': '"hra-icon-button-size-" + size()',
                     },
@@ -36,7 +35,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraIconButtonVariant]',
-                    standalone: true,
                     host: {
                         '[class]': '"hra-icon-button-variant-" + variant()',
                     },

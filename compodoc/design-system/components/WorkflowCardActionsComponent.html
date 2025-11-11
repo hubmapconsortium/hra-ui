@@ -174,10 +174,6 @@
                 <td class="col-md-9"><code>hra-workflow-card-actions</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
 
 
 
@@ -222,7 +218,6 @@ import { StepIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/st
 /** Actions placed next to the card title */
 @Component({
   selector: &#x27;hra-workflow-card-actions&#x27;,
-  standalone: true,
   template: &#x27;&lt;ng-content&gt;&lt;/ng-content&gt;&#x27;,
   styles: &#x27;:host { display: flex; gap: 0.75rem; }&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -232,7 +227,6 @@ export class WorkflowCardActionsComponent {}
 /** Additional content placed on very right side of the header */
 @Component({
   selector: &#x27;hra-workflow-card-extra&#x27;,
-  standalone: true,
   template: &#x27;&lt;ng-content&gt;&lt;/ng-content&gt;&#x27;,
   styles: &#x27;:host { display: flex; gap: 0.75rem; }&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,

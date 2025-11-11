@@ -52,7 +52,7 @@ class MarkdownComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: MarkdownComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-markdown', imports: [CommonModule, MarkdownComponent$1, AssetUrlPipe], changeDetection: ChangeDetectionStrategy.OnPush, standalone: true, template: "<markdown\n  [data]=\"data()\"\n  [src]=\"src() ? (src()! | assetUrl) : undefined\"\n  (ready)=\"clearEventListeners(); attachEventListeners()\"\n/>\n", styles: [":host{display:block}:host markdown ::ng-deep p{margin:.75rem 0;line-height:1.6875rem}:host markdown ::ng-deep *:first-child{margin-top:0}\n"] }]
+            args: [{ selector: 'hra-markdown', imports: [CommonModule, MarkdownComponent$1, AssetUrlPipe], changeDetection: ChangeDetectionStrategy.OnPush, template: "<markdown\n  [data]=\"data()\"\n  [src]=\"src() ? (src()! | assetUrl) : undefined\"\n  (ready)=\"clearEventListeners(); attachEventListeners()\"\n/>\n", styles: [":host{display:block}:host markdown ::ng-deep p{margin:.75rem 0;line-height:1.6875rem}:host markdown ::ng-deep *:first-child{margin-top:0}\n"] }]
         }], ctorParameters: () => [], propDecorators: { data: [{ type: i0.Input, args: [{ isSignal: true, alias: "data", required: false }] }], src: [{ type: i0.Input, args: [{ isSignal: true, alias: "src", required: false }] }] } });
 
 /** Schema for markdown component */

@@ -49,7 +49,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraHubmapMenuGroup]',
-                    standalone: true,
                 }]
         }] });
 /** Directive used to type the context for menu item templates */
@@ -66,7 +65,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraHubmapMenuItem]',
-                    standalone: true,
                 }]
         }] });
 /**
@@ -98,7 +96,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraMenuGroup]',
-                    standalone: true,
                 }]
         }] });
 /** Directive used to type the context for menu item templates */
@@ -115,7 +112,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraMenuItem]',
-                    standalone: true,
                 }]
         }] });
 /** Directive used to type the context for menu subgroup templates */
@@ -132,7 +128,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraMenuSubGroup]',
-                    standalone: true,
                 }]
         }] });
 /**

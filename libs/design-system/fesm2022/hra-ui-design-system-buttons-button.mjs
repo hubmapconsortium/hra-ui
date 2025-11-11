@@ -29,7 +29,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]',
-                    standalone: true,
                     host: {
                         class: 'hra-cta-button',
                     },
@@ -48,7 +47,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]',
-                    standalone: true,
                     host: {
                         '[class]': '"hra-button-size-" + size()',
                     },
@@ -69,7 +67,6 @@ class BaseButtonVariantDirective {
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: BaseButtonVariantDirective, decorators: [{
             type: Directive,
             args: [{
-                    standalone: true,
                     host: {
                         '[class]': 'variantClass()',
                     },
@@ -87,7 +84,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]',
-                    standalone: true,
                 }]
         }], propDecorators: { variant: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraButtonVariant", required: true }] }] } });
 /** Style a mat-button as a primary variant button */
@@ -101,7 +97,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]',
-                    standalone: true,
                 }]
         }] });
 /** Style a mat-button as a secondary variant button */
@@ -115,7 +110,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]',
-                    standalone: true,
                 }]
         }] });
 

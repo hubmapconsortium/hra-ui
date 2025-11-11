@@ -12,7 +12,7 @@ class WorkflowCardActionsComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: WorkflowCardActionsComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-workflow-card-actions', standalone: true, template: '<ng-content></ng-content>', changeDetection: ChangeDetectionStrategy.OnPush, styles: [":host{display:flex;gap:.75rem}\n"] }]
+            args: [{ selector: 'hra-workflow-card-actions', template: '<ng-content></ng-content>', changeDetection: ChangeDetectionStrategy.OnPush, styles: [":host{display:flex;gap:.75rem}\n"] }]
         }] });
 /** Additional content placed on very right side of the header */
 class WorkflowCardExtraComponent {
@@ -21,7 +21,7 @@ class WorkflowCardExtraComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: WorkflowCardExtraComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-workflow-card-extra', standalone: true, template: '<ng-content></ng-content>', changeDetection: ChangeDetectionStrategy.OnPush, styles: [":host{display:flex;gap:.75rem}\n"] }]
+            args: [{ selector: 'hra-workflow-card-extra', template: '<ng-content></ng-content>', changeDetection: ChangeDetectionStrategy.OnPush, styles: [":host{display:flex;gap:.75rem}\n"] }]
         }] });
 /**
  * Component that appears when users are completing a workflow process

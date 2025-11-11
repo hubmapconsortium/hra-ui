@@ -178,10 +178,6 @@
                 <td class="col-md-9"><code>hra-scroll-overflow-fade-styles</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
 
 
             <tr>
@@ -263,7 +259,6 @@ const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] &#x3D; [
 /** Scroll overflow fade global styles component */
 @Component({
   selector: &#x27;hra-scroll-overflow-fade-styles&#x27;,
-  standalone: true,
   template: &#x27;&#x27;,
   styleUrls: [&#x27;./scroll-overflow-fade.directive.scss&#x27;],
   encapsulation: ViewEncapsulation.None,
@@ -278,7 +273,6 @@ export class ScrollOverflowFadeStylesComponent {}
  */
 @Directive({
   selector: &#x27;[hraScrollOverflowFade]&#x27;,
-  standalone: true,
   host: {
     &#x27;[style.--hra-scroll-overflow-fade-offset.px]&#x27;: &#x27;scrollOverflowFadeOffset()&#x27;,
   },

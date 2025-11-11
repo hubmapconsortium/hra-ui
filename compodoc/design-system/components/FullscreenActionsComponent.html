@@ -174,10 +174,6 @@
                 <td class="col-md-9"><code>hra-fullscreen-actions</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
 
 
 
@@ -249,7 +245,6 @@ import { filter, MonoTypeOperatorFunction, pipe } from &#x27;rxjs&#x27;;
 /** View outlet directive */
 @Directive({
   selector: &#x27;[hraViewOutlet]&#x27;,
-  standalone: true,
 })
 export class ViewOutletDirective {
   /** view reference input */
@@ -283,7 +278,6 @@ export class ViewOutletDirective {
 /** Fullscreen actions component */
 @Component({
   selector: &#x27;hra-fullscreen-actions&#x27;,
-  standalone: true,
   template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
   styles: &#x60;
     :host {
@@ -301,7 +295,6 @@ export class FullscreenActionsComponent {}
 /** Fullscreen portal content component */
 @Component({
   selector: &#x27;hra-fullscreen-portal-content&#x27;,
-  standalone: true,
   template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
   styles: &#x60;
     :host {

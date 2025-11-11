@@ -215,7 +215,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">buttons/button/src/lib/directives/variant.directive.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">buttons/button/src/lib/directives/variant.directive.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -258,7 +258,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">buttons/button/src/lib/directives/variant.directive.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">buttons/button/src/lib/directives/variant.directive.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -285,7 +285,6 @@ export type ButtonVariant &#x3D; &#x27;primary&#x27; | &#x27;secondary&#x27;;
 
 /** Base class for variant directives */
 @Directive({
-  standalone: true,
   host: {
     &#x27;[class]&#x27;: &#x27;variantClass()&#x27;,
   },
@@ -305,7 +304,6 @@ export abstract class BaseButtonVariantDirective {
 /** Style a mat-button to a specific named variant */
 @Directive({
   selector: &#x27;button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]&#x27;,
-  standalone: true,
 })
 export class ButtonVariantDirective extends BaseButtonVariantDirective {
   /** Button variant */
@@ -316,7 +314,6 @@ export class ButtonVariantDirective extends BaseButtonVariantDirective {
 /** Style a mat-button as a primary variant button */
 @Directive({
   selector: &#x27;button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]&#x27;,
-  standalone: true,
 })
 export class PrimaryButtonVariantDirective extends BaseButtonVariantDirective {
   /** Button variant */
@@ -326,7 +323,6 @@ export class PrimaryButtonVariantDirective extends BaseButtonVariantDirective {
 /** Style a mat-button as a secondary variant button */
 @Directive({
   selector: &#x27;button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]&#x27;,
-  standalone: true,
 })
 export class SecondaryButtonVariantDirective extends BaseButtonVariantDirective {
   /** Button variant */

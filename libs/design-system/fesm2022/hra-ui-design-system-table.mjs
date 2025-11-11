@@ -46,7 +46,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraTextRowElement]',
-                    standalone: true,
                 }]
         }] });
 /** Directive for typing the context of Link Row Element */
@@ -63,7 +62,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraLinkRowElement]',
-                    standalone: true,
                 }]
         }] });
 /** Directive for typing the context of Markdown Row Element */
@@ -80,7 +78,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraMarkdownRowElement]',
-                    standalone: true,
                 }]
         }] });
 /** Directive for typing the context of Icon Row Element */
@@ -97,7 +94,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraIconRowElement]',
-                    standalone: true,
                 }]
         }] });
 /** Directive for typing the context of menuButton Row Element */
@@ -114,7 +110,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraMenuButtonRowElement]',
-                    standalone: true,
                 }]
         }] });
 /** Directive for typing the context of Numeric Row Element */
@@ -131,7 +126,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: 'ng-template[hraNumericRowElement]',
-                    standalone: true,
                 }]
         }] });
 /**

@@ -38,7 +38,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraNavigationButtonDescription]',
-                    standalone: true,
                     host: {
                         class: 'supporting-text',
                     },
@@ -57,7 +56,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraNavigationButtonTagline]',
-                    standalone: true,
                     host: {
                         class: 'label',
                     },
