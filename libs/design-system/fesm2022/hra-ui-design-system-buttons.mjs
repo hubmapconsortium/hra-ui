@@ -15,7 +15,6 @@ import { NavigationButtonComponent, NavigationButtonTaglineDirective, Navigation
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
 import { TextHyperlinkComponent, TextHyperlinkDirective, provideTextHyperlink } from '@hra-ui/design-system/buttons/text-hyperlink';
-import { provideRadioButton } from '@hra-ui/design-system/buttons/radio-button';
 
 /** All re-exported modules, components, directives, etc. */
 const REEXPORTS = [
@@ -128,7 +127,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
  * @returns Button providers
  */
 function provideButtons() {
-    return makeEnvironmentProviders([provideButtonToggle(), provideRadioButton(), provideTextHyperlink()]);
+    return makeEnvironmentProviders([provideButtonToggle(), provideTextHyperlink()]);
 }
 
 /**
