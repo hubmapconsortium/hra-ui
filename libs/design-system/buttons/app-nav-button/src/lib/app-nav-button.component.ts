@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { HraCommonModule } from '@hra-ui/common';
+import { AssetUrlPipe } from '@hra-ui/common/url';
 
 /** Apps Card Component */
 @Component({
   selector: 'hra-app-nav-button',
-  imports: [HraCommonModule, MatRippleModule],
+  imports: [HraCommonModule, MatRippleModule, AssetUrlPipe],
   templateUrl: './app-nav-button.component.html',
   styleUrl: './app-nav-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
