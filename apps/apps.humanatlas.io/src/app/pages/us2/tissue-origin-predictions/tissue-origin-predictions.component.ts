@@ -64,7 +64,6 @@ const PREDICTION_DATE_FORMAT = new Intl.DateTimeFormat(undefined, {
  */
 @Component({
   selector: 'hra-tissue-origin-predictions',
-  standalone: true,
   imports: [
     HraCommonModule,
     MatIconModule,

@@ -23,7 +23,6 @@ import { GridContainerComponent } from '@hra-ui/design-system/content-templates/
   templateUrl: './section-cards.component.html',
   styleUrl: './section-cards.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class SectionCardsComponent {
   /** List of card info */

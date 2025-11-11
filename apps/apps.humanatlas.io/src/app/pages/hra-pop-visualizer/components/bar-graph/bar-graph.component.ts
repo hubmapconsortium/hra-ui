@@ -21,7 +21,6 @@ import { injectLogEvent } from '@hra-ui/common/analytics';
  */
 @Component({
   selector: 'hra-bar-graph',
-  standalone: true,
   imports: [CommonModule, NgScrollbarModule],
   templateUrl: './bar-graph.component.html',
   styleUrl: './bar-graph.component.scss',
