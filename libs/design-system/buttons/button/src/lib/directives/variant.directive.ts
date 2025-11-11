@@ -5,7 +5,6 @@ export type ButtonVariant = 'primary' | 'secondary';
 
 /** Base class for variant directives */
 @Directive({
-  standalone: true,
   host: {
     '[class]': 'variantClass()',
   },
@@ -25,7 +24,6 @@ export abstract class BaseButtonVariantDirective {
 /** Style a mat-button to a specific named variant */
 @Directive({
   selector: 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]',
-  standalone: true,
 })
 export class ButtonVariantDirective extends BaseButtonVariantDirective {
   /** Button variant */
@@ -36,7 +34,6 @@ export class ButtonVariantDirective extends BaseButtonVariantDirective {
 /** Style a mat-button as a primary variant button */
 @Directive({
   selector: 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]',
-  standalone: true,
 })
 export class PrimaryButtonVariantDirective extends BaseButtonVariantDirective {
   /** Button variant */
@@ -46,7 +43,6 @@ export class PrimaryButtonVariantDirective extends BaseButtonVariantDirective {
 /** Style a mat-button as a secondary variant button */
 @Directive({
   selector: 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]',
-  standalone: true,
 })
 export class SecondaryButtonVariantDirective extends BaseButtonVariantDirective {
   /** Button variant */

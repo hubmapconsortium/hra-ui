@@ -1,10 +1,9 @@
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
-import { provideDesignSystem } from '@hra-ui/design-system';
-import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 const meta: Meta = {
-  title: 'Design System/Buttons/Radio Button',
+  title: 'Design System/Radio Button',
   parameters: {
     design: {
       type: 'figma',
@@ -12,9 +11,6 @@ const meta: Meta = {
     },
   },
   decorators: [
-    applicationConfig({
-      providers: [provideDesignSystem()],
-    }),
     moduleMetadata({
       imports: [MatRadioModule, FormsModule],
     }),

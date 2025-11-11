@@ -7,7 +7,6 @@ import { ClickEventDirective } from '@hra-ui/common/analytics';
  */
 @Directive({
   selector: 'a[hraHyperlink]',
-  standalone: true,
   hostDirectives: [
     {
       directive: ClickEventDirective,
