@@ -1,0 +1,61 @@
+@use '@angular/material' as mat;
+@use 'utils' as utils;
+@use 'vars' as vars;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  background-color: vars.$surface-bright;
+  align-items: center;
+  width: 100%;
+
+  > * {
+    width: 100%;
+    max-width: 106.25rem;
+    min-width: 20rem;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .logo-and-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .privacy-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    gap: 1.5rem;
+    color: vars.$tertiary;
+
+    span {
+      display: flex;
+      @include utils.use-font(label, medium);
+      align-items: center;
+      height: 2.5rem;
+    }
+
+    .separator {
+      width: 21px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+  }
+
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline,
+    )
+  );
+}
