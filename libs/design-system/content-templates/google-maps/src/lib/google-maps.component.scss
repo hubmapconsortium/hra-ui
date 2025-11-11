@@ -1,3 +1,7 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+@use '@angular/material' as mat;
+
 :host {
   display: block;
 
@@ -6,5 +10,45 @@
     display: block;
     height: auto;
     width: 100%;
+  }
+
+  .btn-container {
+    aspect-ratio: 16 / 9;
+    background-image: url(../../../../assets/ui-images/maps-cookies-disabled.png);
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    [mat-fab][extended] {
+      @include mat.fab-overrides(
+        (
+          container-color: vars.$inverse-surface,
+          foreground-color: vars.$inverse-on-surface,
+          small-container-color: vars.$inverse-surface,
+        )
+      );
+    }
+  }
+
+  .enable-cookies {
+    @include utils.use-font(label, large);
+    color: vars.$primary;
+    margin-top: 0.5rem;
+
+    .link {
+      color: vars.$primary;
+      text-decoration: underline;
+
+      @include mat.button-overrides(
+        (
+          text-container-height: auto,
+          text-horizontal-padding: 0.125rem,
+          text-hover-state-layer-opacity: 0,
+          text-pressed-state-layer-opacity: 0,
+        )
+      );
+    }
   }
 }

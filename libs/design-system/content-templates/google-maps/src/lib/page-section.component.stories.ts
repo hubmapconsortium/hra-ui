@@ -13,7 +13,7 @@ const meta: Meta<GoogleMapsComponent> = {
   args: {
     lat: 39.172,
     lng: -86.523,
-    zoom: 10,
+    zoom: 17,
   },
 };
 

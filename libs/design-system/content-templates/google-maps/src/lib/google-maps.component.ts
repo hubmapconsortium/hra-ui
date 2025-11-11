@@ -8,8 +8,13 @@ import {
   input,
   PLATFORM_ID,
 } from '@angular/core';
-import { GoogleMap, MapAdvancedMarker, MapInfoWindow } from '@angular/google-maps';
+import { GoogleMap, MapAdvancedMarker } from '@angular/google-maps';
+import { HraCommonModule } from '@hra-ui/common';
+import { ConsentService } from '@hra-ui/common/analytics';
+import { EventCategory } from '@hra-ui/common/analytics/events';
 import { injectWindow } from '@hra-ui/common/injectors';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 
 /**
  * Injection token for Google Maps library loader
@@ -45,19 +50,43 @@ const GOOGLE_MAPS_LOADER = new InjectionToken<void>('Google Maps Loader', {
  */
 @Component({
   selector: 'hra-google-maps',
-  imports: [GoogleMap, MapInfoWindow, MapAdvancedMarker],
+  imports: [GoogleMap, MapAdvancedMarker, HraCommonModule, ButtonsModule],
   templateUrl: './google-maps.component.html',
   styleUrl: './google-maps.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class GoogleMapsComponent {
+  /** Latitude */
   readonly lat = input.required<number>();
-  readonly lng = input.required<number>();
-  readonly zoom = input<number>(10);
-  protected readonly center = computed((): google.maps.LatLngLiteral => ({ lat: this.lat(), lng: this.lng() }));
 
+  /** Longitude */
+  readonly lng = input.required<number>();
+
+  /** Zoom level */
+  readonly zoom = input<number>(10);
+
+  /** Marker position */
+  protected readonly markerPosition = computed((): google.maps.LatLngLiteral => ({ lat: this.lat(), lng: this.lng() }));
+
+  /** Consent service */
+  private readonly consentService = inject(ConsentService);
+
+  /** Privacy preferences service */
+  private readonly privacyPreferencesService = inject(PrivacyPreferencesService);
+
+  /** Flag indicating whether marketing cookies are enabled */
+  protected readonly isMarketingCookiesEnabled = computed(() =>
+    this.consentService.isCategoryEnabled(EventCategory.Marketing),
+  );
+
+  /** Initializes the component */
   constructor() {
     inject(GOOGLE_MAPS_LOADER);
+  }
+
+  /** Function to display cookies consent dialog */
+  protected enableCookies(): void {
+    this.privacyPreferencesService.openPrivacyPreferences('consent');
   }
 }
