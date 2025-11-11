@@ -7,7 +7,6 @@ export type GoogleMaps = z.infer<typeof GoogleMapsSchema>;
 /** Schema for Google Maps component */
 export const GoogleMapsSchema = ContentTemplateSchema.extend({
   component: z.literal('GoogleMaps'),
-  lat: z.number(),
-  lng: z.number(),
-  zoom: z.number().optional(),
+  mapsUrl: z.string(),
+  alternateUrl: z.string(),
 });

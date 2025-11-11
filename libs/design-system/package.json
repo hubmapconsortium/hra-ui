@@ -50,8 +50,7 @@
     "@angular/forms": "^20.2.1",
     "@google/model-viewer": "4.1.0",
     "store2": "^2.14.4",
-    "type-fest": "^5.0.1",
-    "@angular/google-maps": "^20.2.11"
+    "type-fest": "^5.0.1"
   },
   "sideEffects": false
 }

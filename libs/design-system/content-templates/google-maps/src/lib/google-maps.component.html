@@ -1,29 +1,9 @@
 @if (isMarketingCookiesEnabled()) {
-  <google-map
-    hraFeature="maps"
-    hraClickEvent
-    [zoom]="zoom()"
-    width="100%"
-    height="100%"
-    [center]="markerPosition()"
-    mapId="DEMO_MAP_ID"
-  >
-    <map-advanced-marker hraFeature="marker" hraClickEvent [position]="markerPosition()"></map-advanced-marker>
-  </google-map>
+  <iframe [src]="mapsUrl()" frameBorder="0" class="google-maps"></iframe>
 } @else {
-  <div class="btn-container" hraFeature="maps-placeholder">
-    <a
-      hraFeature="open-google-maps"
-      hraClickEvent
-      mat-fab
-      extended
-      href="https://maps.app.goo.gl/PqeHqwZbFdU7KBWp8"
-      target="_blank"
-    >
-      <mat-icon>open_in_new</mat-icon>
-      Open Google Maps
-    </a>
-  </div>
+  <a hraFeature="maps-placeholder" hraClickEvent [href]="alternateUrl()" target="_blank">
+    <img class="maps-placeholder" [src]="'assets/ui-images/maps-cookies-disabled.png' | assetUrl" alt="Google Maps" />
+  </a>
   <div class="enable-cookies">
     <button hraFeature="enable-cookies" hraClickEvent mat-button class="link" (click)="enableCookies()" disableRipple>
       Enable cookies

@@ -11,9 +11,9 @@ const meta: Meta<GoogleMapsComponent> = {
     },
   },
   args: {
-    lat: 39.172,
-    lng: -86.523,
-    zoom: 17,
+    mapsUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3093.095776349573!2d-86.52570008467531!3d39.17254333828355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886c66c6f37e689d%3A0xbf0b1d7c24bd0299!2sLuddy+Hall!5e0!3m2!1sen!2sus!4v1514920610609',
+    alternateUrl: 'https://maps.app.goo.gl/PqeHqwZbFdU7KBWp8',
   },
 };
 
