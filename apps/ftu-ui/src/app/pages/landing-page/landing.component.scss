@@ -153,18 +153,27 @@
   :host {
     .splash-wrapper {
       min-height: 900px;
+      max-width: 1700px;
+      row-gap: 8px;
 
       .splash-header-img {
         min-height: 900px;
       }
 
       .splash-section {
-        padding: 96px 16px;
+        row-gap: 56px;
+        padding: 120px 20px;
         min-height: 554px;
         min-width: 272px;
+        max-width: 740px;
+
+        .splash-content {
+          row-gap: 32px;
+        }
 
         .actions {
           row-gap: 32px;
+          column-gap: 1rem;
 
           .action {
             flex: none;
