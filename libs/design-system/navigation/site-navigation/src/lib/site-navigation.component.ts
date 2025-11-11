@@ -1,13 +1,14 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
+import { injectRouter } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { injectNavigationEnd } from 'ngxtension/navigation-end';
@@ -49,8 +50,8 @@ export class SiteNavigationComponent {
   /** State for expanded navigation category */
   readonly expandedCategory = signal('');
 
-  /** Angular Router */
-  private readonly router = inject(Router);
+  /** Angular Router (optional for navigation event monitoring) */
+  private readonly router = injectRouter({ optional: true });
 
   /** Constructor */
   constructor() {
@@ -82,8 +83,8 @@ export class SiteNavigationComponent {
 
     for (const category of categories) {
       for (const item of category.children) {
-        const url = resolveUrl(item.url, this.router, this.baseUrl());
-        if (!url.isAbsolute && this.router.isActive(url.value, ACTIVE_MATCH_OPTIONS)) {
+        const url = resolveUrl(item.url, this.baseUrl());
+        if (!url.isExternal && this.router?.isActive(url.value, ACTIVE_MATCH_OPTIONS)) {
           return category.label;
         }
       }
