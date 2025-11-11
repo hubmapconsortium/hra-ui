@@ -35,7 +35,6 @@ import { ViewerMenuComponent } from './viewer-menu/viewer-menu.component';
   templateUrl: './data-viewer.component.html',
   styleUrl: './data-viewer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class DataViewerComponent {
   /** Release versions to include in the data viewer*/

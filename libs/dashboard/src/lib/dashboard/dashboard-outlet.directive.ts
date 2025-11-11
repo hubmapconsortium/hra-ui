@@ -7,7 +7,6 @@ import { DashboardComponentAnySpec, safeValidateSpec } from './dashboard.model';
  */
 @Directive({
   selector: '[hraDashboardComponentOutlet]',
-  standalone: true,
 })
 export class DashboardComponentOutletDirective {
   /** Input for dashboard outlet directive */

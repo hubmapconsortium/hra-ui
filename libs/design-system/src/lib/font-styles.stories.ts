@@ -66,7 +66,6 @@ const fontContent: Record<string, FontStyles> = {
 
 @Component({
   selector: 'hra-font-styles-demo',
-  standalone: true,
   template: `
     <div class="card">
       <div class="header">

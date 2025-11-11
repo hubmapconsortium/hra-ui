@@ -5,7 +5,6 @@ import { AfterViewInit, Component, ComponentRef, ElementRef, inject, ViewContain
  */
 @Component({
   selector: 'hra-destroy-host',
-  standalone: true,
   template: '',
   styles: [':host { display: none }'],
 })
