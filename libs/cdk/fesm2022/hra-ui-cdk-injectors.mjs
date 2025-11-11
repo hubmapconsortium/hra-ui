@@ -101,7 +101,7 @@ class DestroyHostComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: DestroyHostComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-destroy-host', standalone: true, template: '', styles: [":host{display:none}\n"] }]
+            args: [{ selector: 'hra-destroy-host', template: '', styles: [":host{display:none}\n"] }]
         }] });
 
 /**

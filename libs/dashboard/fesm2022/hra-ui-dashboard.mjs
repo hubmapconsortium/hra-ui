@@ -144,7 +144,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
             type: Directive,
             args: [{
                     selector: '[hraDashboardComponentOutlet]',
-                    standalone: true,
                 }]
         }], propDecorators: { hraDashboardComponentOutlet: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraDashboardComponentOutlet", required: true }] }] } });
 
@@ -326,7 +325,7 @@ class MetricsItemComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: MetricsItemComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-metrics-item', standalone: true, changeDetection: ChangeDetectionStrategy.OnPush, template: "<h4 class=\"count mat-subtitle-2\">{{ spec().count.toLocaleString() }} {{ spec().unit }}</h4>\n<div class=\"label mat-caption\">{{ spec().label }}</div>\n", styles: [":host{display:block}:host .count{font:var(--mat-sys-title-medium);letter-spacing:var(--mat-sys-title-medium-tracking);color:var(--mat-sys-on-tertiary-fixed);display:inline-block;margin:0;line-height:1.875rem}:host .label{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);color:var(--mat-sys-on-secondary-fixed);line-height:1.3125rem}\n"] }]
+            args: [{ selector: 'hra-metrics-item', changeDetection: ChangeDetectionStrategy.OnPush, template: "<h4 class=\"count mat-subtitle-2\">{{ spec().count.toLocaleString() }} {{ spec().unit }}</h4>\n<div class=\"label mat-caption\">{{ spec().label }}</div>\n", styles: [":host{display:block}:host .count{font:var(--mat-sys-title-medium);letter-spacing:var(--mat-sys-title-medium-tracking);color:var(--mat-sys-on-tertiary-fixed);display:inline-block;margin:0;line-height:1.875rem}:host .label{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);color:var(--mat-sys-on-secondary-fixed);line-height:1.3125rem}\n"] }]
         }], propDecorators: { spec: [{ type: i0.Input, args: [{ isSignal: true, alias: "spec", required: true }] }] } });
 
 /** Metrics card definition */
