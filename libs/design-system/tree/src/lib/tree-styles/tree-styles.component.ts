@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
  */
 @Component({
   selector: 'hra-tree-styles',
-  standalone: true,
   template: '',
   styleUrls: ['./tree-styles.component.scss'],
   encapsulation: ViewEncapsulation.None,

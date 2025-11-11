@@ -9,7 +9,6 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
  */
 @Component({
   selector: 'hra-code-block',
-  standalone: true,
   imports: [CommonModule, HighlightModule, ScrollingModule],
   templateUrl: './code-block.component.html',
   styleUrl: './code-block.component.scss',

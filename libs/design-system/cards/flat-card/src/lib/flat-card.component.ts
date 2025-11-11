@@ -11,7 +11,6 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
  */
 @Component({
   selector: 'hra-flat-card-actions',
-  standalone: true,
   template: `<ng-content></ng-content>`,
   styles: [
     `
@@ -31,7 +30,6 @@ export class FlatCardActionsComponent {}
  */
 @Component({
   selector: 'hra-flat-card',
-  standalone: true,
   imports: [HraCommonModule, MatIconModule, MatMenuModule, MatDividerModule, ButtonsModule, ScrollingModule],
   templateUrl: './flat-card.component.html',
   styleUrl: './flat-card.component.scss',
