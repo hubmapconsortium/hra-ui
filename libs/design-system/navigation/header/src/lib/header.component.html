@@ -87,7 +87,7 @@
         [cdkConnectedOverlayPositions]="mobileMenuPositions"
         [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"
         [cdkConnectedOverlayHeight]="mobileMenuHeight()"
-        [cdkConnectedOverlayWidth]="'100%'"
+        cdkConnectedOverlayWidth="100%"
         #mobileMenuOverlay
       >
         <hra-mobile-menu hraFeature="mobile-menu" [hubmapMenu]="hubmapMenu()" [menus]="menus()" [baseUrl]="baseUrl()" />

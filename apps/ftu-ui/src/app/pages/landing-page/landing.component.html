@@ -2,7 +2,7 @@
   <div class="splash-wrapper">
     <img [attr.src]="'assets/ui-images/ftu-splash.png' | assetUrl" alt="" class="splash-header-img" />
     <div class="splash-section">
-      <hra-icon class="misc-logo" [svgIcon]="'product:ftu'" />
+      <hra-icon class="misc-logo" svgIcon="product:ftu" />
       <div class="header">Explore functional tissue units</div>
       <div class="description">
         A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function
@@ -59,10 +59,10 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <hra-icon class="kpmp" [svgIcon]="'KPMP'" />
+          <hra-icon class="kpmp" svgIcon="KPMP" />
         </a>
         <a hraClickEvent hraFeature="ebi" [href]="ebiLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
-          <hra-icon class="partner" [svgIcon]="'partner-logos'" />
+          <hra-icon class="partner" svgIcon="partner-logos" />
         </a>
       </div>
     </div>

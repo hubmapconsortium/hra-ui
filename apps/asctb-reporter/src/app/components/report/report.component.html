@@ -4,7 +4,7 @@
       [title]="'Report for ' + currentSheet.display"
       [download]="true"
       (downloadFn)="downloadReport()"
-      [tooltipString]="'Various statistics calculated from the data'"
+      tooltipString="Various statistics calculated from the data"
       (closeSideNav)="closeReport.emit()"
     />
   </div>
@@ -18,7 +18,7 @@
       #event="hraClickEvent"
       (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
     >
-      <mat-tab [label]="'Main Sheet'">
+      <mat-tab label="Main Sheet">
         <div class="content">
           <div class="section">
             <div class="section-title">Overview</div>

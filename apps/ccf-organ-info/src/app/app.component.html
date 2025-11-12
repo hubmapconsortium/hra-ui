@@ -2,7 +2,7 @@
   <div hraFeature="header" class="header">
     <div class="left">
       <div class="icons">
-        <hra-icon [svgIcon]="'product:eui'" />
+        <hra-icon svgIcon="product:eui" />
         @if (organLogo(); as logo) {
           <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo" />
         }
@@ -59,7 +59,7 @@
             class="stats-table"
             [columns]="tableColumns"
             [rows]="stats()"
-            [style]="'alternating'"
+            style="alternating"
             [verticalDividers]="true"
           />
         }
