@@ -14,7 +14,6 @@ import { MarkdownComponent as NgxMarkdownComponent } from 'ngx-markdown';
   templateUrl: './markdown.component.html',
   styleUrl: './markdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class MarkdownComponent {
   /** Markdown data input */

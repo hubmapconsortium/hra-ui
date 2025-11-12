@@ -7,7 +7,6 @@ import { createExternalUrl, createInternalUrl } from '@hra-ui/utils';
 /** Link Directive for routing */
 @Directive({
   selector: '[hraLink]',
-  standalone: true,
 })
 export class LinkDirective implements DoCheck {
   /** linkId with empty string as default value */
