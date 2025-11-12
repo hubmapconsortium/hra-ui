@@ -155,6 +155,7 @@ export const configs = {
             ],
           },
         ],
+        '@angular-eslint/template/no-interpolation-in-attributes': 'error',
         '@angular-eslint/template/prefer-self-closing-tags': 'error',
         '@angular-eslint/template/prefer-static-string-properties': 'error',
       },
