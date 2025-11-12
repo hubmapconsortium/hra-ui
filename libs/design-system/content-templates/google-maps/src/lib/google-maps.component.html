@@ -1,11 +1,19 @@
-@if (isMarketingCookiesEnabled()) {
-  <iframe [src]="mapsUrl()" frameBorder="0" class="google-maps"></iframe>
+@if (enabled()) {
+  <iframe [attr.src]="mapsUrl()" frameBorder="0" class="google-maps"></iframe>
 } @else {
-  <a hraFeature="maps-placeholder" hraClickEvent [href]="alternateUrl()" target="_blank">
-    <img class="maps-placeholder" [src]="'assets/ui-images/maps-cookies-disabled.png' | assetUrl" alt="Google Maps" />
+  <a hraFeature="maps-placeholder" hraClickEvent [attr.href]="externalUrl()" target="_blank">
+    <img class="maps-placeholder" [attr.src]="fallbackImageUrl()" alt="Google Maps" />
   </a>
   <div class="enable-cookies">
-    <button hraFeature="enable-cookies" hraClickEvent mat-button class="link" (click)="enableCookies()" disableRipple>
+    <!-- TODO: Change to hraTextButton once implemented -->
+    <button
+      hraFeature="enable-cookies"
+      hraClickEvent
+      mat-button
+      class="link"
+      (click)="privacyPreferencesService.openPrivacyPreferences('consent')"
+      disableRipple
+    >
       Enable cookies
     </button>
     to view Google Maps
