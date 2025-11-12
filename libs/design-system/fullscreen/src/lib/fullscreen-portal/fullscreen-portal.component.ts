@@ -24,7 +24,6 @@ import { filter, MonoTypeOperatorFunction, pipe } from 'rxjs';
 /** View outlet directive */
 @Directive({
   selector: '[hraViewOutlet]',
-  standalone: true,
 })
 export class ViewOutletDirective {
   /** view reference input */
@@ -58,7 +57,6 @@ export class ViewOutletDirective {
 /** Fullscreen actions component */
 @Component({
   selector: 'hra-fullscreen-actions',
-  standalone: true,
   template: `<ng-content></ng-content>`,
   styles: `
     :host {
@@ -76,7 +74,6 @@ export class FullscreenActionsComponent {}
 /** Fullscreen portal content component */
 @Component({
   selector: 'hra-fullscreen-portal-content',
-  standalone: true,
   template: `<ng-content></ng-content>`,
   styles: `
     :host {

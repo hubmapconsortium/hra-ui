@@ -21,9 +21,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, NgControl, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD, MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSliderRangeThumb } from '@angular/material/slider';
+import { MatSliderModule, MatSliderRangeThumb } from '@angular/material/slider';
 import { HraCommonModule } from '@hra-ui/common';
-import { SliderModule } from '@hra-ui/design-system/slider';
 import { explicitEffect } from 'ngxtension/explicit-effect';
 import { skip, Subject } from 'rxjs';
 
@@ -45,9 +44,9 @@ let nextId = 0;
     HraCommonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSliderModule,
     OverlayModule,
     ReactiveFormsModule,
-    SliderModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: MatFormFieldControl, useExisting: DualSliderComponent }],
