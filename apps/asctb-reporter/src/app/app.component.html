@@ -205,9 +205,9 @@
       <mat-menu #downloadMenu="matMenu">
         <button
           *ngFor="let option of imgOptions"
-          hraFeature="download.{{ option }}"
           mat-menu-item
           hraClickEvent
+          [hraFeature]="`download.${option}`"
           (click)="exportImage(option)"
         >
           {{ option }}

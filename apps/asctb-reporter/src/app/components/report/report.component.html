@@ -275,8 +275,8 @@
                       {{ getTotals(countsByOrgan.data, 'biomarkers') }}
                     </td>
                   </ng-container>
-                  <ng-container *ngFor="let biomarker of biomarkersSeperateNames" matColumnDef="{{ biomarker.name }}">
-                    <th *matHeaderCellDef id="{{ biomarker.name }}" mat-header-cell class="center_align">
+                  <ng-container *ngFor="let biomarker of biomarkersSeperateNames" [matColumnDef]="biomarker.name">
+                    <th *matHeaderCellDef mat-header-cell class="center_align" [id]="biomarker.name">
                       {{ biomarker.type }}
                     </th>
                     <td *matCellDef="let element" mat-cell class="center_align">

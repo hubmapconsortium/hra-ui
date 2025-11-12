@@ -66,7 +66,7 @@
                   <div class="dataset-title-color">
                     <mat-form-field appearance="fill" subscriptSizing="dynamic">
                       <mat-label>Title</mat-label>
-                      <input placeholder="Sheet {{ i + 1 }}" matInput formControlName="title" />
+                      <input matInput formControlName="title" [placeholder]="`Sheet ${i + 1}`" />
                     </mat-form-field>
                     <div class="color-selector">
                       <div>Dataset color:</div>

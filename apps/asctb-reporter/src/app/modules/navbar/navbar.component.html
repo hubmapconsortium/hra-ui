@@ -29,7 +29,7 @@
         (click)="openSelectOrgansDialog()"
       >
         <mat-label>Datasets</mat-label>
-        <input value="{{ (mode$ | async) === 'vis' ? selectedOrgansLabel : 'Example' }}" matInput readonly />
+        <input matInput readonly [value]="(mode$ | async) === 'vis' ? selectedOrgansLabel : 'Example'" />
         <mat-icon matSuffix>arrow_drop_down</mat-icon>
       </mat-form-field>
     </div>
