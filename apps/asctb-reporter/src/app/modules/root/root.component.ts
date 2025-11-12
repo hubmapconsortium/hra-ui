@@ -65,7 +65,7 @@ export class RootComponent implements OnDestroy {
 
   // Tree Observables
   readonly treeData$: Observable<TNode[]> = this.store.select(TreeState.getTreeData);
-  readonly bsd$: Observable<any> = this.store.select(TreeState.getBottomSheetData);
+  readonly bsd$: Observable<Record<string, unknown>> = this.store.select(TreeState.getBottomSheetData);
   readonly bm$: Observable<BimodalData> = this.store.select(TreeState.getBimodal);
   readonly searchOption$: Observable<SearchStructure> = this.store.select(TreeState.getLatestSearchStructure);
 
