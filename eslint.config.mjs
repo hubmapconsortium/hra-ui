@@ -6,7 +6,39 @@ import yaml from 'eslint-plugin-yml';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+/**
+ * Create rules that enforces that a prefix is used for all component and directive selectors.
+ * Should always be included **after** the angular configuration.
+ *
+ * @param {string} prefix
+ * @returns Rules that enforces the prefix
+ */
+export function withAngularSelectorPrefix(prefix) {
+  return {
+    files: ['**/*.ts'],
+    rules: {
+      '@angular-eslint/component-selector': [
+        'error',
+        {
+          type: 'element',
+          style: 'kebab-case',
+          prefix,
+        },
+      ],
+      '@angular-eslint/directive-selector': [
+        'error',
+        {
+          type: 'attribute',
+          style: 'camelCase',
+          prefix,
+        },
+      ],
+    },
+  };
+}
+
 export const configs = {
+  // Base rules for all js/ts projects
   base: [
     ...nx.configs['flat/base'],
     ...nx.configs['flat/javascript'],
@@ -81,6 +113,8 @@ export const configs = {
       },
     },
   ],
+
+  // Library only rules
   lib: [
     ...json.configs['flat/base'],
     {
@@ -89,9 +123,12 @@ export const configs = {
       },
     },
   ],
+
+  // Angular rules
   angular: [
     ...nx.configs['flat/angular'],
     ...nx.configs['flat/angular-template'],
+    withAngularSelectorPrefix('hra'),
     {
       files: ['**/*.ts'],
       rules: {
@@ -100,23 +137,6 @@ export const configs = {
         '@angular-eslint/no-duplicates-in-metadata-arrays': 'error',
         '@angular-eslint/prefer-output-readonly': 'error',
         '@angular-eslint/prefer-signals': 'error',
-
-        '@angular-eslint/directive-selector': [
-          'error',
-          {
-            type: 'attribute',
-            prefix: 'hra',
-            style: 'camelCase',
-          },
-        ],
-        '@angular-eslint/component-selector': [
-          'error',
-          {
-            type: 'element',
-            prefix: 'hra',
-            style: 'kebab-case',
-          },
-        ],
       },
     },
     {
@@ -124,6 +144,8 @@ export const configs = {
       rules: {},
     },
   ],
+
+  // Json and Yaml rules
   json: [...json.configs['flat/recommended-with-json']],
   yaml: [...yaml.configs['flat/recommended'], ...yaml.configs['flat/prettier']],
   schema: [
@@ -134,6 +156,8 @@ export const configs = {
       },
     },
   ],
+
+  // Storybook rules
   storybook: [
     ...storybook.configs['flat/recommended'],
     {
