@@ -1,0 +1,73 @@
+<div class="menu-container">
+  <header class="menu-header">
+    <a
+      class="logo"
+      hraFeature="logo"
+      hraClickEvent
+      [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
+      aria-label="Visit CNS"
+      href="https://cns.iu.edu"
+      target="_self"
+    >
+    </a>
+
+    <button mat-icon-button (click)="closeMenu.emit()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+  <mat-divider />
+  <ng-scrollbar>
+    <mat-accordion displayMode="flat" multi="false">
+      @for (option of menuOptions().options; track $index) {
+        @if (option.type === 'item') {
+          @let url = resolveUrl(option.url, option.external);
+          @if (url.isAbsolute) {
+            <a
+              mat-button
+              hraSecondaryButton
+              class="item-label"
+              [attr.href]="url.value"
+              [attr.target]="option.target ?? ''"
+              target="_blank"
+              rel="noopener noreferrer"
+              hraClickEvent
+              [hraFeature]="option.label | slugify"
+            >
+              {{ option.label }}
+            </a>
+          } @else {
+            <a
+              mat-button
+              hraSecondaryButton
+              class="item-label"
+              [routerLink]="url.value"
+              hraClickEvent
+              [hraFeature]="option.label | slugify"
+            >
+              {{ option.label }}
+            </a>
+          }
+        } @else {
+          <mat-expansion-panel class="panel" hideToggle>
+            <mat-expansion-panel-header class="header">
+              <mat-panel-title>
+                {{ option.label }}
+                <mat-icon class="toggle-icon" />
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <cns-menu-content class="content" [menu]="option" [baseUrl]="baseUrl()" />
+          </mat-expansion-panel>
+        }
+
+        <mat-divider />
+      }
+    </mat-accordion>
+  </ng-scrollbar>
+</div>
+
+<div class="socials">
+  @for (id of socials(); track id) {
+    <hra-social-media-button [id]="$any(id)" size="large" variant="color"></hra-social-media-button>
+  }
+</div>

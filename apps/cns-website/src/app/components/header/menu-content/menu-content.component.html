@@ -1,0 +1,82 @@
+@let featured = menu().featured;
+@if (featured) {
+  @let url = resolveUrl(featured.url, featured.external);
+  @if (url.isAbsolute) {
+    <a
+      mat-button
+      [attr.href]="featured.url"
+      [attr.target]="featured.target ?? ''"
+      rel="noopener noreferrer"
+      class="featured-link"
+    >
+      <ng-container *ngTemplateOutlet="content" />
+    </a>
+  } @else {
+    <a mat-button [routerLink]="featured.url" class="featured-link">
+      <ng-container *ngTemplateOutlet="content" />
+    </a>
+  }
+
+  <ng-template #content>
+    <div class="featured-content-container">
+      <div class="featured-content">
+        <span class="label">{{ featured.label }}</span>
+        <span class="tagline">{{ featured.tagline }}</span>
+      </div>
+      <mat-icon>arrow_right_alt</mat-icon>
+    </div>
+  </ng-template>
+}
+
+@for (item of menu().items; track $index) {
+  <div class="group">
+    <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: item }" />
+  </div>
+}
+
+<ng-template cnsMenuGroup let-group #groupTemplate>
+  <div class="group-label">
+    {{ group.label }}
+  </div>
+
+  @if (group.description) {
+    <div class="group-description">
+      {{ group.description }}
+    </div>
+  }
+  <mat-divider class="divider"></mat-divider>
+  <div class="items">
+    @for (item of group.items; track $index) {
+      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }" />
+    }
+  </div>
+</ng-template>
+
+<ng-template cnsMenuItem let-item #itemTemplate>
+  @let url = resolveUrl(item.url, item.external);
+  @if (url.isAbsolute) {
+    <a
+      mat-button
+      hraSecondaryButton
+      class="item-label"
+      [attr.href]="url.value"
+      [attr.target]="item.target ?? ''"
+      rel="noopener noreferrer"
+      hraClickEvent
+      [hraFeature]="item.label | slugify"
+    >
+      {{ item.label }}
+    </a>
+  } @else {
+    <a
+      mat-button
+      hraSecondaryButton
+      class="item-label"
+      [routerLink]="url.value"
+      hraClickEvent
+      [hraFeature]="item.label | slugify"
+    >
+      {{ item.label }}
+    </a>
+  }
+</ng-template>

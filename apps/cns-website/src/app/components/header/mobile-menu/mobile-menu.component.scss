@@ -1,0 +1,109 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: vars.$surface-bright;
+  justify-content: space-between;
+
+  $header-height: 4rem;
+
+  .menu-container {
+    display: block;
+    padding: 0 1.25rem;
+    overflow: hidden;
+  }
+
+  @include mat.expansion-overrides(
+    (
+      container-shape: vars.$corner-none,
+      container-background-color: vars.$surface-bright,
+      header-collapsed-state-height: $header-height,
+      header-expanded-state-height: $header-height,
+      header-text-font: vars.$title-medium-font,
+      header-text-size: vars.$title-medium-size,
+      header-text-weight: vars.$title-medium-weight,
+      header-text-line-height: vars.$title-medium-line-height,
+      header-text-tracking: vars.$title-medium-tracking,
+    )
+  );
+
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline,
+    )
+  );
+
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.5rem;
+  }
+
+  .panel {
+    box-shadow: none;
+  }
+
+  .item-label,
+  .header {
+    padding: 0;
+  }
+
+  .header {
+    .toggle-icon {
+      &::after {
+        display: block;
+        content: 'add';
+      }
+    }
+  }
+
+  .mat-expanded .header {
+    .toggle-icon::after {
+      content: 'remove';
+    }
+  }
+
+  .content {
+    margin-bottom: 1.25rem;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0;
+  }
+
+  ::ng-deep .mat-content {
+    margin-right: 0 !important;
+  }
+
+  .item-label {
+    width: 100%;
+    justify-content: start;
+    height: 4rem;
+    @include utils.use-font(title, medium);
+  }
+
+  mat-panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0;
+  }
+
+  .socials {
+    height: 72px;
+    padding: 1rem 1.25rem;
+    background: vars.$surface-container;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  ng-scrollbar {
+    height: calc(100% - 72px);
+  }
+}

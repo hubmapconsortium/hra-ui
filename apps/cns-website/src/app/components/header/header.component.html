@@ -1,0 +1,114 @@
+<header hraFeature="header" class="header" cdkOverlayOrigin #mobileMenuOrigin="cdkOverlayOrigin" data-testid="header">
+  <div hraFeature="navigation" class="header-content" #desktopMenuOrigin>
+    @if (enableFilterMenu()) {
+      <button mat-icon-button>
+        <mat-icon>tune</mat-icon>
+      </button>
+    }
+    <a
+      class="logo"
+      hraFeature="logo"
+      hraClickEvent
+      [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
+      aria-label="Visit CNS"
+      href="https://cns.iu.edu"
+      target="_self"
+    >
+    </a>
+
+    <div class="filler"></div>
+
+    @if (isMobile()) {
+      <button
+        hraFeature="menu-toggle"
+        [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('mobile') }"
+        mat-icon-button
+        cdkOverlayOrigin
+        aria-label="Open the main navigation menu"
+        (click)="toggleMenu('mobile')"
+        #mainMenuOrigin="cdkOverlayOrigin"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    } @else {
+      @for (category of menuOptions().options; track $index) {
+        @if (category.type === 'menu') {
+          <hra-navigation-category-toggle
+            [hraFeature]="category.id | slugify"
+            hraClickEvent
+            hraHoverEvent
+            cdkOverlayOrigin
+            [toggled]="isMenuActive(category)"
+            (toggledChange)="toggleMenu(category)"
+            #navigationCategoryMenuOrigin="cdkOverlayOrigin"
+          >
+            {{ category.label }}
+          </hra-navigation-category-toggle>
+
+          <ng-template
+            cdkConnectedOverlay
+            cdkConnectedOverlayHasBackdrop="false"
+            cdkConnectedOverlayLockPosition="true"
+            cdkConnectedOverlayPush="true"
+            [cdkConnectedOverlayOpen]="isMenuActive(category)"
+            [cdkConnectedOverlayOrigin]="navigationCategoryMenuOrigin"
+            [cdkConnectedOverlayPositions]="desktopMenuPositions"
+            (overlayOutsideClick)="closeMenu()"
+          >
+            <div>MEGA MENU HERE</div>
+          </ng-template>
+        } @else {
+          @let url = resolveUrl(category.url, category.external);
+          @if (url.isAbsolute) {
+            <a
+              mat-button
+              hraSecondaryButton
+              class="item-label"
+              [attr.href]="url.value"
+              [attr.target]="category.target ?? ''"
+              rel="noopener noreferrer"
+              hraClickEvent
+              [hraFeature]="category.label | slugify"
+            >
+              {{ category.label }}
+            </a>
+          } @else {
+            <a
+              mat-button
+              hraSecondaryButton
+              class="item-label"
+              [routerLink]="url.value"
+              hraClickEvent
+              [hraFeature]="category.label | slugify"
+            >
+              {{ category.label }}
+            </a>
+          }
+        }
+      }
+    }
+
+    @if (isMobile()) {
+      <ng-template
+        cdkConnectedOverlay
+        cdkConnectedOverlayDisposeOnNavigation="true"
+        cdkConnectedOverlayHasBackdrop="false"
+        cdkConnectedOverlayLockPosition="true"
+        [cdkConnectedOverlayOpen]="isMenuActive('mobile')"
+        [cdkConnectedOverlayOrigin]="mobileMenuOrigin"
+        [cdkConnectedOverlayPositions]="mobileMenuPositions"
+        [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"
+        [cdkConnectedOverlayHeight]="'100%'"
+        [cdkConnectedOverlayWidth]="'100%'"
+        #mobileMenuOverlay
+      >
+        <cns-mobile-menu
+          hraFeature="mobile-menu"
+          [menuOptions]="menuOptions()"
+          [baseUrl]="baseUrl()"
+          (closeMenu)="toggleMenu('mobile')"
+        />
+      </ng-template>
+    }
+  </div>
+</header>
