@@ -142,7 +142,11 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy,
    * Disables block position change if an input element is clicked
    * @param target The element clicked
    */
-  handleClick(target: HTMLElement): void {
+  handleClick(target: EventTarget | null): void {
+    if (!target || !(target instanceof HTMLElement)) {
+      return;
+    }
+
     const disableWhenClicked = ['mat-mdc-input-element', 'mat-mdc-form-field', 'form-input-label'];
     for (const className of disableWhenClicked) {
       if (typeof target.className === 'string' && target.className.includes(className)) {
