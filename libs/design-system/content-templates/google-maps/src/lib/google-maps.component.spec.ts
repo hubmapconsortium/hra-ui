@@ -17,8 +17,9 @@ describe('GoogleMapsComponent', () => {
   };
 
   const defaultInputs = {
-    mapsUrl: 'https://maps.google.com/test',
-    alternateUrl: 'https://maps.google.com/alternate',
+    url: 'https://maps.google.com/test',
+    externalUrl: 'https://maps.google.com/alternate',
+    fallbackImageUrl: 'assets/ui-images/google-maps-luddy-hall.png',
   };
 
   async function setup() {
