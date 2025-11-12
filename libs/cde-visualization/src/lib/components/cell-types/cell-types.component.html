@@ -127,8 +127,7 @@
               [aria-label]="getCheckboxLabel(selectionState() === 'full')"
               hraFeature="select-all"
               hraClickEvent
-            >
-            </mat-checkbox>
+            />
           </th>
           <td mat-cell *matCellDef="let row; let index = index">
             <mat-checkbox
@@ -138,8 +137,7 @@
               [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
               [hraFeature]="row.name | slugify"
               hraClickEvent
-            >
-            </mat-checkbox>
+            />
           </td>
         </ng-container>
 
@@ -160,8 +158,7 @@
               [color]="element.color"
               [isAnchor]="element.name === selectedCellType()"
               (colorChange)="updateColor(element, $event)"
-            >
-            </cde-color-picker-label>
+            />
           </td>
         </ng-container>
 

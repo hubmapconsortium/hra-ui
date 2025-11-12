@@ -6,8 +6,7 @@
       (downloadClick)="download()"
       (resetViewClick)="resetView()"
       (resetDeletedClick)="resetDeletedNodes()"
-    >
-    </cde-node-dist-visualization-menu>
+    />
   </hra-expansion-panel-actions>
 
   <hra-expansion-panel-header-content>
@@ -16,8 +15,7 @@
       [deleteDisabled]="!hasSelection()"
       (deleteClick)="deleteSelection()"
       (viewModeChange)="cellInfo.set(undefined)"
-    >
-    </cde-node-dist-visualization-controls>
+    />
   </hra-expansion-panel-header-content>
 
   <hra-fullscreen-portal tagline="Visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>
@@ -28,25 +26,18 @@
         (downloadClick)="download()"
         (resetViewClick)="resetView()"
         (resetDeletedClick)="resetDeletedNodes()"
-      >
-      </cde-node-dist-visualization-menu>
+      />
 
       <cde-node-dist-visualization-controls
         [(viewMode)]="viewMode"
         [deleteDisabled]="!hasSelection()"
         (deleteClick)="deleteSelection()"
         (viewModeChange)="cellInfo.set(undefined)"
-      >
-      </cde-node-dist-visualization-controls>
+      />
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content>
-      <hra-node-dist-vis
-        cdkOverlayOrigin
-        class="vis"
-        data-testid="node-dist-vis"
-        #cellInfoOrigin="cdkOverlayOrigin"
-      ></hra-node-dist-vis>
+      <hra-node-dist-vis cdkOverlayOrigin class="vis" data-testid="node-dist-vis" #cellInfoOrigin="cdkOverlayOrigin" />
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>
@@ -69,6 +60,5 @@
     [data]="cellInfoContent()"
     (close)="cellInfo.set(undefined)"
     data-testid="cell-info"
-  >
-  </hra-info-modal>
+  />
 </ng-template>

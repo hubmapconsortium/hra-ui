@@ -18,7 +18,7 @@
         dynamicHeight="true"
       >
         <mat-tab label="Embed">
-          <hra-code-block [code]="code()" language="html"></hra-code-block>
+          <hra-code-block [code]="code()" language="html" />
         </mat-tab>
 
         <mat-tab label="Use App">
@@ -28,7 +28,7 @@
         </mat-tab>
       </mat-tab-group>
     } @else {
-      <hra-code-block [code]="code()" language="html"></hra-code-block>
+      <hra-code-block [code]="code()" language="html" />
     }
 
     <hra-flat-card-actions class="card-actions">

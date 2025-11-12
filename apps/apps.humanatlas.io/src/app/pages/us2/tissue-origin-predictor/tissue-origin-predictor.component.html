@@ -1,6 +1,6 @@
 <ng-container hraFeature="tissue-origin-predictor">
   <!-- HEADING -->
-  <hra-app-label logo="product:tissue-origin-predictor" tagline="Tissue Origin Predictor"></hra-app-label>
+  <hra-app-label logo="product:tissue-origin-predictor" tagline="Tissue Origin Predictor" />
 
   <!-- INFO -->
   <p class="info-text">
@@ -42,7 +42,7 @@
 
       <div class="buttons">
         @if (file; as f) {
-          <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
+          <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined" />
         } @else {
           <button
             hraClickEvent
@@ -100,7 +100,7 @@
     <!-- CARD 3 -->
     <hra-workflow-card hraFeature="predict-tissue-origin" tagline="Predict Tissue Origin" step="3" class="card card-3">
       @if (file === undefined) {
-        <hra-error-indicator [errors]="['Please upload a dataset.']" class="error-message"> </hra-error-indicator>
+        <hra-error-indicator [errors]="['Please upload a dataset.']" class="error-message" />
       }
       <button
         hraClickEvent

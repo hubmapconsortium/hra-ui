@@ -120,7 +120,7 @@ function parseFilter(value: unknown): string | Partial<Filter> {
  */
 @Component({
   selector: 'ccf-root-wc',
-  template: '<ccf-root *ngIf="initialized"></ccf-root>',
+  template: '<ccf-root *ngIf="initialized" />',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

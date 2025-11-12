@@ -37,7 +37,7 @@
       (keydown)="closeAutocomplete($event)"
     />
     @if (errorState()) {
-      <mat-icon class="error-icon" svgIcon="error"></mat-icon>
+      <mat-icon class="error-icon" svgIcon="error" />
     }
   </div>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
@@ -50,7 +50,7 @@
             class="autocomplete-checkbox"
             (change)="checkboxSelected($event, option); auto.showPanel = false"
             [checked]="chips().includes(option)"
-          ></mat-checkbox>
+          />
           <mat-option hraFeature="label" hraClickEvent [value]="option">{{ option }}</mat-option>
         </div>
       }

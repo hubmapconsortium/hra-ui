@@ -24,7 +24,7 @@ let idCounter = 0;
 /** Expansion panel actions component */
 @Component({
   selector: 'hra-expansion-panel-actions',
-  template: '<ng-content></ng-content>',
+  template: '<ng-content />',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExpansionPanelActionsComponent {}
@@ -32,7 +32,7 @@ export class ExpansionPanelActionsComponent {}
 /** Expansion panel header content component */
 @Component({
   selector: 'hra-expansion-panel-header-content',
-  template: '<ng-content></ng-content>',
+  template: '<ng-content />',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExpansionPanelHeaderContentComponent {}

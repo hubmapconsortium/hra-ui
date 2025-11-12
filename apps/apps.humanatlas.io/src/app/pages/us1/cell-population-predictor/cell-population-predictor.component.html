@@ -1,6 +1,6 @@
 <ng-container hraFeature="cell-population-predictor">
   <!-- HEADING -->
-  <hra-app-label tagline="Cell Population Predictor" logo="product:cell-population-predictor"></hra-app-label>
+  <hra-app-label tagline="Cell Population Predictor" logo="product:cell-population-predictor" />
 
   <!-- INFO -->
   <p class="info-text">
@@ -26,7 +26,7 @@
           (mouseout)="uploadInfoOpen = false"
           (focus)="uploadInfoOpen = true"
           (blur)="uploadInfoOpen = false"
-        ></mat-icon>
+        />
         <ng-template
           cdkConnectedOverlay
           [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
@@ -36,7 +36,7 @@
           [cdkConnectedOverlayViewportMargin]="8"
           [cdkConnectedOverlayPush]="true"
         >
-          <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>
+          <hra-tooltip-card [content]="tooltip" />
         </ng-template>
       </hra-workflow-card-actions>
 
@@ -48,7 +48,7 @@
       <div class="buttons-container">
         @if (file; as f) {
           <div class="file-buttons">
-            <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
+            <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined" />
             <button
               hraClickEvent
               hraFeature="predict"
@@ -117,7 +117,7 @@
             [cdkConnectedOverlayViewportMargin]="8"
             [cdkConnectedOverlayPush]="true"
           >
-            <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>
+            <hra-tooltip-card [content]="tooltip" />
           </ng-template>
         </mat-icon>
       </hra-workflow-card-actions>
@@ -152,7 +152,7 @@
             [supportedOrgans]="supportedOrgans.value()"
             (locationCreated)="onFileCreated($event); ruiOpen = false"
             (closed)="ruiOpen = false"
-          ></hra-embedded-rui>
+          />
         </ng-template>
       </div>
     </hra-workflow-card>

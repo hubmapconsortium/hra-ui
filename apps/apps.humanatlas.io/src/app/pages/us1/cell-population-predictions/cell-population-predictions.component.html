@@ -16,7 +16,7 @@
         aria-label="Open table action menu"
         [matMenuTriggerFor]="options"
       >
-        <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
+        <mat-icon class="more-icon" fontIcon="more_vert" />
       </button>
 
       <!-- MENU -->
@@ -40,7 +40,7 @@
       </mat-menu>
 
       <mat-menu #submenu="matMenu">
-        <hra-tooltip-card [content]="tooltip" class="tooltip-panel"> </hra-tooltip-card>
+        <hra-tooltip-card [content]="tooltip" class="tooltip-panel" />
       </mat-menu>
     </hra-workflow-card-actions>
     <hra-workflow-card-extra>
@@ -48,7 +48,7 @@
         [fileName]="data().file.name"
         (cancelLoad)="onDeleteButtonClick()"
         data-testid="delete-file-button"
-      ></hra-delete-file-button>
+      />
     </hra-workflow-card-extra>
 
     <!-- TABLE -->

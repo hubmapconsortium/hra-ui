@@ -48,16 +48,14 @@
       [dataSources]="source()"
       [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
       (rowHover)="highlightCells($event)"
-    ></ftu-biomarker-table>
+    />
   }
 
   @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
     @if (!isBiomarkerfullscreen()) {
-      <mat-divider class="empty-state-divider"></mat-divider>
+      <mat-divider class="empty-state-divider" />
     }
-    <ftu-empty-biomarker
-      emptyBehaviorText="We currently do not have cell type data for the selected biomarker."
-    ></ftu-empty-biomarker>
+    <ftu-empty-biomarker emptyBehaviorText="We currently do not have cell type data for the selected biomarker." />
   }
 
   @if (source().length > 0 && selectedSources().length === 0) {
@@ -77,7 +75,7 @@
         [hraRichTooltipDescription]="percentageTooltipText"
       >
         <span class="legend-header-percentage">Percentage of cells</span>
-        <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
+        <ftu-size-legend [sizes]="sizes()" class="content" />
       </button>
       <button
         hraClickEvent
@@ -88,7 +86,7 @@
         [hraRichTooltipDescription]="expressionTooltipText"
       >
         <span class="legend-header-gradient">Biomarker expression mean</span>
-        <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
+        <ftu-gradient-legend [gradient]="gradients()" class="content" />
       </button>
     </div>
   }
@@ -99,7 +97,7 @@
         [sources]="source()"
         (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
         class="content"
-      ></ftu-source-list>
+      />
     </div>
   }
 
@@ -115,6 +113,6 @@
       (selectionChanged)="setSelectedSources($event)"
       class="content"
       [hideTitle]="true"
-    ></ftu-source-list>
+    />
   </ng-template>
 </ng-container>

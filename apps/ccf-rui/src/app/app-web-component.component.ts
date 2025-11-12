@@ -36,7 +36,7 @@ function parseOrgan(value: unknown): string | Organ {
  */
 @Component({
   selector: 'ccf-root-wc',
-  template: '@if (initialized) {<ccf-root></ccf-root>}',
+  template: '@if (initialized) {<ccf-root />}',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

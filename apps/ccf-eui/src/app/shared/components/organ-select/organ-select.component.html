@@ -39,7 +39,7 @@
               class="autocomplete-checkbox"
               (change)="checkboxSelected($event, organ)"
               [checked]="isChecked(organ)"
-            ></mat-checkbox>
+            />
             <mat-option hraFeature="select" hraClickEvent [value]="organ">{{ organ.name }}</mat-option>
           </div>
         }

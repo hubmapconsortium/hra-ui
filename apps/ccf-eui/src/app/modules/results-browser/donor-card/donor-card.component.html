@@ -6,8 +6,7 @@
   [label]="'Provenance: ' + tissueBlock().donor?.description"
   (toggleExpansion)="toggleExpansion()"
   [menuLink]="tissueBlock().donor?.link ?? ''"
->
-</ccf-metadata-card>
+/>
 
 @if (expanded()) {
   <div class="expanded-cards">
@@ -25,12 +24,12 @@
           hraHoverEvent
           [totalTissueSections]="tissueBlock().sectionCount ?? 0"
           [tissueSections]="tissueBlock().sections ?? []"
-        ></ccf-tissue-section-vis>
+        />
       }
 
       @if (tissueBlock().datasets.length > 0) {
         <div>Datasets</div>
-        <ccf-thumbnail-list [data]="tissueBlock().datasets"> </ccf-thumbnail-list>
+        <ccf-thumbnail-list [data]="tissueBlock().datasets" />
       }
     </ccf-metadata-card>
 
@@ -43,7 +42,7 @@
         [menuLink]="sectionLinks()[i]"
       >
         @if (section.datasets.length > 0) {
-          <ccf-thumbnail-list [data]="section.datasets"> </ccf-thumbnail-list>
+          <ccf-thumbnail-list [data]="section.datasets" />
         }
       </ccf-metadata-card>
     }

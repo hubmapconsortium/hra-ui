@@ -53,7 +53,7 @@
   <div class="file-selector">
     <form [formGroup]="formGroup">
       @if (dataSource.value === 'file') {
-        <app-file-upload formControlName="fileName" (fileFormDataEvent)="upload($event)"></app-file-upload>
+        <app-file-upload formControlName="fileName" (fileFormDataEvent)="upload($event)" />
       } @else {
         <mat-form-field class="full-width" subscriptSizing="dynamic">
           <mat-label>Google Sheet or CSV URL</mat-label>

@@ -2,9 +2,9 @@
   <div hraFeature="header" class="header">
     <div class="left">
       <div class="icons">
-        <hra-icon [svgIcon]="'product:eui'"></hra-icon>
+        <hra-icon [svgIcon]="'product:eui'" />
         @if (organLogo(); as logo) {
-          <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo"></hra-icon>
+          <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo" />
         }
       </div>
       <div class="title">Organ Information</div>
@@ -53,7 +53,7 @@
       </div>
       <div>
         @if (isLoading()) {
-          <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>
+          <hra-progress-spinner size="large" color="color" class="loading-spinner" />
         } @else {
           <hra-table
             class="stats-table"
@@ -61,13 +61,13 @@
             [rows]="stats()"
             [style]="'alternating'"
             [verticalDividers]="true"
-          ></hra-table>
+          />
         }
       </div>
     </div>
     <div class="organ-view" [style.height.px]="contentHeightMonitor()">
       @if (isLoading()) {
-        <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>
+        <hra-progress-spinner size="large" color="color" class="loading-spinner" />
       }
       <ccf-organ
         hraFeature="organ-viewer"
@@ -79,8 +79,7 @@
         [blocks]="blocks.value()"
         [filter]="filter()"
         (nodeClick)="nodeClicked.emit($event)"
-      >
-      </ccf-organ>
+      />
     </div>
 
     <mat-menu #headerMenu="matMenu" hraFeature="more-menu">
@@ -98,7 +97,7 @@
         <mat-icon>help</mat-icon>
         Help & documentation
       </a>
-      <mat-divider class="menu-divider"></mat-divider>
+      <mat-divider class="menu-divider" />
       <a
         hraFeature="publications"
         hraClickEvent

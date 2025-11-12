@@ -8,7 +8,7 @@
       [class.child]="hasChild"
       tabIndex="0"
     >
-      <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node"> </ng-container>
+      <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node" />
     </mat-tree-node>
     <mat-tree-node
       [hraFeature]="node.label | slugify"
@@ -30,8 +30,7 @@
         </mat-icon>
       </button>
 
-      <ng-container [hraFeature]="node.label | slugify" [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node">
-      </ng-container>
+      <ng-container [hraFeature]="node.label | slugify" [ngTemplateOutlet]="label" [ngTemplateOutletContext]="node" />
     </mat-tree-node>
   </mat-tree>
 </ng-scrollbar>

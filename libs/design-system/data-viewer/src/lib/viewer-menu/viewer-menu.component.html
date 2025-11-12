@@ -4,7 +4,7 @@
     Downloads
     <mat-icon class="expand-arrow">arrow_right</mat-icon>
   </button>
-  <mat-divider class="menu-divider"></mat-divider>
+  <mat-divider class="menu-divider" />
   <a
     mat-menu-item
     hraFeature="github-icons"
@@ -13,7 +13,7 @@
     target="_blank"
     rel="noopener noreferrer"
   >
-    <mat-icon svgIcon="social:github"></mat-icon>
+    <mat-icon svgIcon="social:github" />
     Get organ icons on GitHub
   </a>
 </mat-menu>
@@ -44,7 +44,7 @@
     </a>
   }
   @if (currentVersion().extractionsSitesUrl || currentVersion().referenceOrgansUrl) {
-    <mat-divider class="menu-divider"></mat-divider>
+    <mat-divider class="menu-divider" />
   }
   @if (currentVersion().crosswalkUrl) {
     <a mat-menu-item hraClickEvent class="csv-button" [attr.href]="currentVersion().crosswalkUrl" download>

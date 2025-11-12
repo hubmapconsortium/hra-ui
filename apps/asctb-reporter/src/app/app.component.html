@@ -25,7 +25,7 @@
         (computedReport)="updateReport($event)"
         [bmType]="(bmType$ | async) ?? ''"
         [hideReportCompareTab]="(mode$ | async) === 'playground'"
-      ></app-report>
+      />
 
       <app-indent
         (closeIL)="rightDrawer.close()"
@@ -33,14 +33,14 @@
         [sheetData]="data"
         [currentSheet]="sheet"
         (openBottomSheet)="getStructureInfo($event)"
-      ></app-indent>
+      />
 
       <app-debug-logs
         (closeDebug)="rightDrawer.close()"
         *ngIf="dl$ | async"
         [currentSheet]="sheet"
         [logs]="(logs$ | async)!"
-      ></app-debug-logs>
+      />
 
       <app-compare
         (closeCompare)="rightDrawer.close()"
@@ -48,7 +48,7 @@
         class="compare-sidenav"
         (compareData)="compareData($event)"
         [compareSheets]="compareSheets$"
-      ></app-compare>
+      />
     </mat-drawer>
     <mat-drawer-content>
       <hra-header [breadcrumbs]="crumbs() ?? []" hraFeature="header">
@@ -80,7 +80,7 @@
             href="https://github.com/hubmapconsortium/hra-ui"
             target="_blank"
           >
-            <mat-icon svgIcon="social:github"></mat-icon>
+            <mat-icon svgIcon="social:github" />
           </a>
         } @else {
           <button
@@ -129,13 +129,10 @@
             <mat-icon>download</mat-icon>
           </button>
         }
-        <hra-help-button [action]="helpMenu"></hra-help-button>
+        <hra-help-button [action]="helpMenu" />
       </hra-header>
 
-      <app-table-nested-menu
-        #nestedMenu
-        [sheetDetails]="(configService.allSheetConfigurations$ | async) ?? []"
-      ></app-table-nested-menu>
+      <app-table-nested-menu #nestedMenu [sheetDetails]="(configService.allSheetConfigurations$ | async) ?? []" />
 
       <!-- LATER: Refactor into one shared menu component -->
       <mat-menu #helpMenu="matMenu" class="help-menu" hraFeature="help-menu">
@@ -149,7 +146,7 @@
           <div class="title">ASCT+B Reporter</div>
           <div class="description">App guide & documentation</div>
         </a>
-        <mat-divider></mat-divider>
+        <mat-divider />
         <a
           mat-menu-item
           href="https://humanatlas.io/asctb-tables"
@@ -170,7 +167,7 @@
           <div class="title">Organ Mapping Antibody Panels</div>
           <div class="description">Data documentation</div>
         </a>
-        <mat-divider></mat-divider>
+        <mat-divider />
         <a
           mat-menu-item
           href="https://humanatlas.io/publications"
@@ -179,7 +176,7 @@
           target="_blank"
           >Read publications</a
         >
-        <mat-divider></mat-divider>
+        <mat-divider />
         <a mat-menu-item [matMenuTriggerFor]="hubmapMenu" hraHoverEvent hraFeature="hubmap-menu">
           Human Biomolecular Atlas Program (HuBMAP)
           <mat-icon class="expand-arrow">arrow_right</mat-icon>
@@ -217,7 +214,7 @@
         </button>
       </mat-menu>
 
-      <router-outlet></router-outlet>
+      <router-outlet />
     </mat-drawer-content>
   </mat-drawer-container>
 </ng-container>

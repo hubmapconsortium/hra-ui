@@ -30,7 +30,7 @@ function toJsonLd(data: unknown): JsonLdObj[] {
 @Component({
   selector: 'ccf-root-wc',
   template:
-    '<ccf-root *ngIf="initialized" (onMouseEnter)="onMouseEnter.emit($event)" (onMouseLeave)="onMouseLeave.emit($event)" (onClick)="onClick.emit($event)"></ccf-root>',
+    '<ccf-root *ngIf="initialized" (onMouseEnter)="onMouseEnter.emit($event)" (onMouseLeave)="onMouseLeave.emit($event)" (onClick)="onClick.emit($event)" />',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

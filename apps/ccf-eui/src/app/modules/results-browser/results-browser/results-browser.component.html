@@ -3,7 +3,7 @@
     <div hraPlainTooltip="Donors, tissue blocks, and datasets that have been registered into a 3D organ.">
       Experimental Data
     </div>
-    <hra-help-button class="help" action="https://humanatlas.io/exploration-user-interface"></hra-help-button>
+    <hra-help-button class="help" action="https://humanatlas.io/exploration-user-interface" />
   </div>
   <div
     hraFeature="statistics"
@@ -71,7 +71,7 @@
         </button>
       </mat-menu>
     </hra-expansion-panel-actions>
-    <hra-expansion-panel-header-content> </hra-expansion-panel-header-content>
+    <hra-expansion-panel-header-content />
   </hra-expansion-panel>
 
   <ng-scrollbar hraScrollOverflowFade cdkVirtualScrollingElement>
@@ -94,7 +94,7 @@
                 '--mat-checkbox-selected-focus-icon-color': getColor(result),
               }"
               [checked]="result.selected"
-            ></mat-checkbox>
+            />
             <ccf-donor-card
               [tissueBlock]="asMutable(result.tissueBlock)"
               [selected]="result.selected"
@@ -104,8 +104,7 @@
               (selectOption)="handleSelection(result, true)"
               (expansionChange)="changeExpansion(result, $event)"
               #donorCard
-            >
-            </ccf-donor-card>
+            />
           </div>
         </ng-container>
       </div>

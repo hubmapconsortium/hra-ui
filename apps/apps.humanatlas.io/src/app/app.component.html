@@ -8,7 +8,7 @@
     [(ctaDismissed)]="ctaDismissed"
   >
     @if (!isHraPopVisualizerPage()) {
-      <hra-help-button [action]="getHelpUrl()"></hra-help-button>
+      <hra-help-button [action]="getHelpUrl()" />
     } @else {
       <!-- Help & documentation Menu -->
       <mat-menu #helpMenu class="more-menu">
@@ -21,11 +21,11 @@
         </a>
       </mat-menu>
 
-      <hra-help-button [action]="helpMenu"></hra-help-button>
+      <hra-help-button [action]="helpMenu" />
     }
   </hra-header>
   <div class="content" [class.cta-active]="!ctaDismissed()">
-    <router-outlet></router-outlet>
+    <router-outlet />
   </div>
-  <hra-footer></hra-footer>
+  <hra-footer />
 </ng-container>

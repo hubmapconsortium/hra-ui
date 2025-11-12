@@ -2,7 +2,7 @@
   <div class="content-container">
     <div class="heading-container">
       <div class="title-logo-div">
-        <hra-app-label logo="product:web-components" tagline="Web Components"></hra-app-label>
+        <hra-app-label logo="product:web-components" tagline="Web Components" />
       </div>
       <p class="description">
         Explore, use, and share web components to improve Human Reference Atlas data access and analysis.
@@ -79,14 +79,13 @@
         (closeSidenav)="sidenavData.set(undefined)"
         [documentLink]="data.docLink"
         data-testid="sidenav-overlay"
-      >
-      </hra-embed-sidenav-content>
+      />
     }
   </ng-template>
 
   <ng-template #appIframeTemplate>
     @if (appIframeData(); as data) {
-      <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)"></hra-back-button-bar>
+      <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)" />
       <iframe title="appIframe" class="app-iframe" [srcdoc]="data.code" data-testid="iframe-overlay"></iframe>
     }
   </ng-template>

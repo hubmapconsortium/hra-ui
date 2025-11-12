@@ -32,7 +32,7 @@
         [servers]="servers"
         [selectedServer]="selectedServer()"
         (selectedServerChange)="updateRapidoc($event)"
-      ></hra-server-selector>
+      />
     </div>
     <div class="rapidoc-embed">
       <rapi-doc
@@ -56,8 +56,7 @@
         css-classes="rapidoc-hra-api-theme"
         show-info="false"
         allow-server-selection="false"
-      >
-      </rapi-doc>
+      />
     </div>
   </section>
 </ng-container>

@@ -42,7 +42,7 @@
     >
       <mat-icon>code</mat-icon>
     </a>
-    <hra-help-button [action]="helpMenu"></hra-help-button>
+    <hra-help-button [action]="helpMenu" />
 
     <!-- Help & documentation Menu -->
     <mat-menu #helpMenu class="more-menu">
@@ -123,11 +123,7 @@
   </hra-header>
   <div class="main">
     @if (isFtuPage) {
-      <ftu-tissue-library-behavior
-        class="sidebar"
-        [(selected)]="selectedFtu"
-        [class.hidden]="isFullscreen()"
-      ></ftu-tissue-library-behavior>
+      <ftu-tissue-library-behavior class="sidebar" [(selected)]="selectedFtu" [class.hidden]="isFullscreen()" />
     }
 
     <div class="content">

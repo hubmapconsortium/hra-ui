@@ -30,8 +30,7 @@
     #anatomical
     [items]="$any(model.anatomicalStructures$ | async) ?? []"
     (itemsChange)="model.setAnatomicalStructures($event)"
-  >
-  </ccf-visibility-menu>
+  />
 </hra-expansion-panel>
 
 <hra-expansion-panel tagline="Landmarks" class="landmarks-expansion" [tooltip]="landmarksTooltip">
@@ -40,6 +39,5 @@
     #landmarks
     [items]="$any(model.extractionSites$ | async)"
     (itemsChange)="model.setExtractionSites($event)"
-  >
-  </ccf-visibility-menu>
+  />
 </hra-expansion-panel>

@@ -10,7 +10,7 @@
     hraFeature="upload-data"
   >
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
+      <hra-step-indicator class="step-number" [value]="1" />
       <span class="card-title">Upload Data</span>
       <hra-info-button>
         Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
@@ -65,19 +65,18 @@
       [errorActionMessage]="nodesErrorActionMessage"
       (progress)="nodeProgress = $event"
       #nodesFileUpload
-    >
-    </cde-file-upload>
+    />
   </hra-workflow-card>
 
   <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
+      <hra-step-indicator class="step-number" [value]="2" />
       <span class="card-title">Organize Data</span>
       <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>
     </h2>
 
     @if (visualizationForm.controls.headers.disabled) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
+      <hra-error-indicator [errors]="['Please upload a dataset.']" />
     }
 
     <div class="required-headers">
@@ -133,7 +132,7 @@
     </div>
 
     @if (columnErrorActionMessage) {
-      <hra-error-indicator [errors]="[columnErrorActionMessage]"></hra-error-indicator>
+      <hra-error-indicator [errors]="[columnErrorActionMessage]" />
     }
 
     <div class="optional-headers">
@@ -175,7 +174,7 @@
 
   <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
+      <hra-step-indicator class="step-number" [value]="3" />
       <div class="card-title">Configure Parameters</div>
       <hra-info-button>
         The anchor cell type represents the cell type to which the nearest cell distance distributions should be
@@ -191,7 +190,7 @@
     </h2>
 
     @if (visualizationForm.controls.parameters.disabled) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
+      <hra-error-indicator [errors]="['Please upload a dataset.']" />
     }
 
     <div class="parameters-1">
@@ -237,7 +236,7 @@
 
   <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
+      <hra-step-indicator class="step-number" [value]="4" />
       <div class="card-title">Optional: Add Metadata</div>
       <hra-info-button>
         Information in these fields will not change the visualization output. Metadata may be helpful for taking
@@ -311,7 +310,7 @@
     hraFeature="configure-colors"
   >
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
+      <hra-step-indicator class="step-number" [value]="5" />
       <div class="card-title">Optional: Configure Colors</div>
       <hra-info-button>
         Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
@@ -381,14 +380,13 @@
         (progress)="colorProgress = $event"
         #customColorMapFileUpload
         data-testid="color-map-upload"
-      >
-      </cde-file-upload>
+      />
     }
   </hra-workflow-card>
 
   <hra-workflow-card class="card visualize" hraFeature="visualize-data">
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
+      <hra-step-indicator class="step-number" [value]="6" />
       <div class="card-title">Visualize Cell Distance Data</div>
       <hra-info-button>
         <div hraInfoButtonTooltipContent>
@@ -398,7 +396,7 @@
     </h2>
 
     @if (!hasValidNodes() || !hasValidData()) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
+      <hra-error-indicator [errors]="['Please upload a dataset.']" />
     }
 
     <button
@@ -417,4 +415,4 @@
     </button>
   </hra-workflow-card>
 </form>
-<hra-footer></hra-footer>
+<hra-footer />

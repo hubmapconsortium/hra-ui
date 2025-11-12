@@ -6,7 +6,7 @@
       hraFeature="hrapop-link"
       [text]="'HRApop v1.0'"
       [url]="'https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest'"
-    ></hra-text-hyperlink>
+    />
     .
   </div>
 
@@ -14,7 +14,7 @@
   <div class="configurations-container">
     <div class="header">
       <div class="icon">
-        <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>
+        <hra-icon svgIcon="product:cell-population-predictor" />
         <span class="label">HRApop Visualizer</span>
       </div>
     </div>
@@ -35,8 +35,7 @@
       [(selectedSort)]="selectedSort"
       [availableTools]="availableTools()"
       [loading]="loading()"
-    >
-    </hra-config-selector>
+    />
 
     <!-- Charts Content Section -->
     <div class="charts-content">
@@ -62,7 +61,7 @@
             } @else {
               <div class="charts-grid">
                 @for (spec of vegaSpecs(); track spec) {
-                  <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
+                  <hra-bar-graph [spec]="spec" class="chart-item" />
                 }
               </div>
             }

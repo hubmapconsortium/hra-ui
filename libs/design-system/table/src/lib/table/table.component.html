@@ -36,8 +36,7 @@
                     disableRipple
                     hraPlainTooltip="Hide all"
                     aria-label="Hide all"
-                  >
-                  </mat-checkbox>
+                  />
                 </th>
               }
               <td mat-cell *matCellDef="let element" data-column-type="checkbox">
@@ -50,8 +49,7 @@
                   disableRipple
                   hraPlainTooltip="Hide"
                   aria-label="Hide"
-                >
-                </mat-checkbox>
+                />
               </td>
             </ng-container>
           }
@@ -127,7 +125,7 @@
       [hraHoverEvent]="{ value: element[column.type.tooltip] | slugify }"
       [svgIcon]="icon"
       [hraPlainTooltip]="element[column.type.tooltip]"
-    ></hra-icon>
+    />
   </ng-template>
 
   <ng-template hraFeature="menu-cell" hraMenuButtonRowElement let-column="column" let-element="element" #menu>
@@ -142,7 +140,7 @@
       (focus)="downloadButtonHover(element['id'])"
       #trigger="matMenuTrigger"
     >
-      <hra-icon [fontIcon]="column.type.icon"></hra-icon>
+      <hra-icon [fontIcon]="column.type.icon" />
     </button>
 
     <mat-menu hraFeature="download-options" class="table-menu" #menuOptions="matMenu">

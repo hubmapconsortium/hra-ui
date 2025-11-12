@@ -13,7 +13,7 @@
         [class.fade]="!item.visible"
         svgIcon="app:opacity"
         (click)="selection.set(item)"
-      ></mat-icon>
+      />
 
       <div hraFeature="name" hraClickEvent class="item-name" [hraPlainTooltip]="name">
         {{ name }}
@@ -36,8 +36,7 @@
         (opacityChange)="updateOpacity($event)"
         (opacityReset)="resetItem()"
         (visibilityToggle)="toggleVisibility(item)"
-      >
-      </ccf-opacity-slider>
+      />
     </ng-template>
   </ng-container>
 }

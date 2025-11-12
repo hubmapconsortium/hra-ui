@@ -24,13 +24,12 @@
       (filterChange)="data.updateFilter($event); sidenav.toggle()"
       (spatialSearchSelectionChange)="setSelectedSearches($event)"
       (spatialSearchRemoved)="removeSpatialSearch($event)"
-    >
-    </ccf-filters-content>
+    />
   </mat-sidenav>
 
   <div class="page-content">
     @if (!databaseReady() || queryStatus() === 'running') {
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate" />
     }
 
     <hra-nav-header-buttons
@@ -39,7 +38,7 @@
       appTitle="Exploration User Interface"
       [brandmark]="true"
       [hraTooltip]="(logoTooltip$ | async) ?? 'Human Reference Atlas Portal'"
-    ></hra-nav-header-buttons>
+    />
 
     <div hraFeature="left-panel" class="left-panel">
       <div class="filter-data">
@@ -95,8 +94,7 @@
             [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
             (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
             [tooltip]="ontologyTooltips['as']"
-          >
-          </ccf-ontology-selection>
+          />
         }
         @if (isItemSelected('Cell Types')) {
           <ccf-ontology-selection
@@ -107,8 +105,7 @@
             [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
             (ontologySelection)="ontologySelected($any($event), 'cell-type')"
             [tooltip]="ontologyTooltips['ct']"
-          >
-          </ccf-ontology-selection>
+          />
         }
         @if (isItemSelected('Biomarkers')) {
           <ccf-ontology-selection
@@ -119,8 +116,7 @@
             [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
             (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
             [tooltip]="ontologyTooltips['b']"
-          >
-          </ccf-ontology-selection>
+          />
         }
 
         @if (selectedToggleOptions.length === 0) {
@@ -156,7 +152,7 @@
           Organ visibility
           <mat-icon class="expand-arrow">arrow_right</mat-icon>
         </button>
-        <mat-divider class="menu-divider"></mat-divider>
+        <mat-divider class="menu-divider" />
         <button hraFeature="reset-settings" hraClickEvent mat-menu-item (click)="bodyUI.resetView()">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset visualization view
@@ -177,7 +173,7 @@
           <mat-icon>visibility_off</mat-icon>
           Hide all organs
         </button>
-        <mat-divider class="menu-divider"></mat-divider>
+        <mat-divider class="menu-divider" />
         <button hraFeature="reset-organ-view" hraClickEvent mat-menu-item (click)="scene.setDefaultOrgans()">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset to default organ view
@@ -186,7 +182,7 @@
 
       <div class="filler"></div>
 
-      <ccf-organ-select hraPlainTooltip="Select organs to show/hide"></ccf-organ-select>
+      <ccf-organ-select hraPlainTooltip="Select organs to show/hide" />
     </div>
 
     <div hraFeature="body-ui" class="content">
@@ -215,8 +211,7 @@
         #bodyUI
         #sceneEvent="hraClickEvent"
         #sceneHoverEvent="hraHoverEvent"
-      >
-      </hra-body-ui>
+      />
     </div>
 
     <div hraFeature="right-panel" class="right-panel">
@@ -230,8 +225,7 @@
         (itemHovered)="debouncedHighlight($event)"
         (itemUnhovered)="unHighlightNode()"
         [header]="(header$ | async) ?? false"
-      >
-      </ccf-results-browser>
+      />
     </div>
   </div>
 </mat-sidenav-container>

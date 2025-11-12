@@ -11,7 +11,7 @@
       aria-label="Open table action menu"
       [matMenuTriggerFor]="optionsForAnatomicalTable"
     >
-      <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
+      <mat-icon class="more-icon" fontIcon="more_vert" />
     </button>
 
     <!-- MENU -->
@@ -24,7 +24,7 @@
         matRippleColor="#201E3D14"
         [matMenuTriggerFor]="submenu"
       >
-        <mat-icon fontIcon="info" class="icon-style"></mat-icon>
+        <mat-icon fontIcon="info" class="icon-style" />
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
@@ -35,7 +35,7 @@
     </mat-menu>
 
     <mat-menu #submenu="matMenu">
-      <hra-tooltip-card [content]="tooltip" class="tooltip-panel"></hra-tooltip-card>
+      <hra-tooltip-card [content]="tooltip" class="tooltip-panel" />
     </mat-menu>
   </hra-workflow-card-actions>
 

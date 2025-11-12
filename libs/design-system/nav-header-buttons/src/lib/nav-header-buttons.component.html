@@ -10,7 +10,7 @@
       aria-label="Visit Human Reference Atlas"
       [hraPlainTooltip]="hraTooltip()"
     >
-      <hra-brand-mark variant="small"></hra-brand-mark>
+      <hra-brand-mark variant="small" />
     </a>
   }
   <a class="app-logo" hraFeature="app" hraClickEvent [attr.href]="appLink()" [attr.alt]="appTitle() + ' logo'">
@@ -28,7 +28,7 @@
       </a>
     }
     @if (appStatus()) {
-      <hra-software-status-indicator [status]="appStatus()!" size="small"></hra-software-status-indicator>
+      <hra-software-status-indicator [status]="appStatus()!" size="small" />
     }
   </span>
 </ng-container>

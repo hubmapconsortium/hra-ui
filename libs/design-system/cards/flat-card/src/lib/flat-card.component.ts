@@ -11,7 +11,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
  */
 @Component({
   selector: 'hra-flat-card-actions',
-  template: `<ng-content></ng-content>`,
+  template: `<ng-content />`,
   styles: [
     `
       :host {

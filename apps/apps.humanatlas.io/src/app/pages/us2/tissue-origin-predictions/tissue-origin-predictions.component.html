@@ -10,10 +10,10 @@
   </p>
 
   <!-- SIMILAR ANATOMICAL STRUCTURES TABLE -->
-  <hra-similar-anatomical-structures-table [predictions]="predictions()"></hra-similar-anatomical-structures-table>
+  <hra-similar-anatomical-structures-table [predictions]="predictions()" />
 
   <!-- SIMILAR DATASETS TABLE -->
-  <hra-similar-datasets-table [predictions]="predictions()"></hra-similar-datasets-table>
+  <hra-similar-datasets-table [predictions]="predictions()" />
 
   <!-- BOTTOM CARDS -->
   <div class="bottom-cards">
@@ -62,7 +62,7 @@
   <!-- EUI OVERLAY -->
   <ng-template #euiTemplate>
     <div>
-      <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>
+      <hra-back-button-bar (backClick)="euiOpen.set(false)" />
       <ccf-eui
         class="embedded"
         base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
@@ -71,8 +71,7 @@
         login-disabled="true"
         header="false"
         data-sources="{{ ruiLocationsJsonString }}"
-      >
-      </ccf-eui>
+      />
     </div>
   </ng-template>
 </ng-container>

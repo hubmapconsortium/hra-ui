@@ -1,7 +1,7 @@
 <form class="form">
   <mat-form-field class="form-field" appearance="outline">
     <ng-container matPrefix>
-      <ng-content select="[matPrefix]"></ng-content>
+      <ng-content select="[matPrefix]" />
     </ng-container>
 
     <input
@@ -20,12 +20,12 @@
       #auto="matAutocomplete"
     >
       <mat-option *ngFor="let option of options | async; trackBy: optionId">
-        <ccf-decorated-text [text]="option.label" [decorations]="option.decorations"> </ccf-decorated-text>
+        <ccf-decorated-text [text]="option.label" [decorations]="option.decorations" />
       </mat-option>
     </mat-autocomplete>
 
     <ng-container matSuffix>
-      <ng-content select="[matSuffix]"></ng-content>
+      <ng-content select="[matSuffix]" />
     </ng-container>
   </mat-form-field>
 </form>

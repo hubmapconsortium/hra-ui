@@ -9,7 +9,7 @@ import { routeData } from './route-data';
 class ChildComponent {}
 
 @Component({
-  template: '<router-outlet></router-outlet>',
+  template: '<router-outlet />',
   imports: [RouterOutlet],
 })
 class TestAppComponent {

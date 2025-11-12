@@ -1,10 +1,10 @@
 <ng-container hraFeature="cde-visualization">
   @if (loadingManager.isLoading$ | async) {
-    <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress"></mat-progress-bar>
+    <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress" />
   }
 
   <div class="metadata">
-    <cde-metadata [metadata]="metadataView()" hraFeature="metadata"></cde-metadata>
+    <cde-metadata [metadata]="metadataView()" hraFeature="metadata" />
     <cde-cell-types
       [(cellTypes)]="cellTypes"
       [(cellTypesSelection)]="cellTypesSelection"
@@ -16,7 +16,7 @@
       (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
       hraFeature="cell-types"
       #cellTypesTable
-    ></cde-cell-types>
+    />
   </div>
 
   <div class="visualizations">
@@ -31,9 +31,9 @@
         (nodeHover)="nodeHover.emit($event)"
         (resetAllCells)="resetCellTypes()"
         hraFeature="visualization"
-      ></cde-node-dist-visualization>
+      />
 
-      <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" hraFeature="violin-graph"></cde-violin>
+      <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" hraFeature="violin-graph" />
     </div>
 
     <cde-histogram
@@ -43,6 +43,6 @@
       (updateColor)="updateColor($event.entry, $event.color)"
       hraFeature="histogram"
       #histogram
-    ></cde-histogram>
+    />
   </div>
 </ng-container>

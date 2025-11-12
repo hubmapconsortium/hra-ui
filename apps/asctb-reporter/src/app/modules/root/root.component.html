@@ -1,8 +1,8 @@
 <div class="h-100 w-100">
-  <app-navbar [cache]="(getFromCache$ | async) ?? false"></app-navbar>
+  <app-navbar [cache]="(getFromCache$ | async) ?? false" />
   <mat-drawer-container class="control-pane-container h-100" autosize>
     <mat-drawer #controlPaneDrawer class="control-pane" mode="side" [opened]="pane$ | async">
-      <app-control-pane [error]="error"></app-control-pane>
+      <app-control-pane [error]="error" />
     </mat-drawer>
 
     <mat-drawer-content>
@@ -11,12 +11,12 @@
           @if (!error.hasError) {
             <app-tree />
           } @else {
-            <app-error #appError [error]="error"></app-error>
+            <app-error #appError [error]="error" />
           }
         </div>
 
         <div class="playground-dig" *ngIf="(mode$ | async) === 'playground'">
-          <app-playground></app-playground>
+          <app-playground />
         </div>
       </div>
     </mat-drawer-content>

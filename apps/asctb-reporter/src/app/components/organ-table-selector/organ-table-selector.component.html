@@ -41,8 +41,7 @@
                   [aria-label]="checkboxLabel()"
                   hraFeature="select-all"
                   [hraClickEvent]="{ allSelected: isAllSelected() }"
-                >
-                </mat-checkbox>
+                />
               </th>
               <td mat-cell *matCellDef="let row" class="check-box">
                 <mat-checkbox
@@ -52,8 +51,7 @@
                   [aria-label]="checkboxLabel(row)"
                   hraFeature="select-row"
                   [hraClickEvent]="{ selected: selection.isSelected(row) }"
-                >
-                </mat-checkbox>
+                />
               </td>
             </ng-container>
             <ng-container matColumnDef="name">
@@ -108,8 +106,7 @@
                   [aria-label]="checkboxLabel()"
                   hraFeature="select-all"
                   [hraClickEvent]="{ allSelected: isAllSelected() }"
-                >
-                </mat-checkbox>
+                />
               </th>
               <td mat-cell *matCellDef="let row">
                 <mat-checkbox
@@ -119,8 +116,7 @@
                   [aria-label]="checkboxLabel(row)"
                   hraFeature="select-row"
                   [hraClickEvent]="{ selected: omapselection.isSelected(row) }"
-                >
-                </mat-checkbox>
+                />
               </td>
             </ng-container>
             <ng-container matColumnDef="Organs">
@@ -194,7 +190,7 @@
         </button>
       </div>
       <div class="right">
-        <hra-help-button [action]="helpMenu"></hra-help-button>
+        <hra-help-button [action]="helpMenu" />
         <button
           mat-flat-button
           hraButtonSize="medium"
@@ -215,7 +211,7 @@
       <div class="title">ASCT+B Reporter</div>
       <div class="description">App guide & documentation</div>
     </a>
-    <mat-divider></mat-divider>
+    <mat-divider />
     <a mat-menu-item href="https://humanatlas.io/asctb-tables" target="_blank" hraFeature="asctb-tables" hraClickEvent>
       <div class="title">ASCT+B Tables</div>
       <div class="description">Data documentation</div>
@@ -224,11 +220,11 @@
       <div class="title">Organ Mapping Antibody Panels</div>
       <div class="description">Data documentation</div>
     </a>
-    <mat-divider></mat-divider>
+    <mat-divider />
     <a mat-menu-item href="https://humanatlas.io/publications" target="_blank" hraFeature="publications" hraClickEvent
       >Read publications</a
     >
-    <mat-divider></mat-divider>
+    <mat-divider />
     <a mat-menu-item [matMenuTriggerFor]="hubmapMenu" hraHoverEvent hraFeature="hubmap-menu">
       Human Biomolecular Atlas Program (HuBMAP)
       <mat-icon class="expand-arrow">arrow_right</mat-icon>

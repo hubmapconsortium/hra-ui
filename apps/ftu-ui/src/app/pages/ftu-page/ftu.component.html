@@ -13,7 +13,7 @@
         [(isFullscreen)]="isFullscreen"
         (isFullscreenChange)="fullscreentabIndex.set(0)"
         class="illustration"
-      ></ftu-medical-illustration-behavior>
+      />
     </div>
   </ng-template>
 
@@ -23,8 +23,7 @@
         (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"
         class="illustration-details"
         (sourceListTemplate)="setSourceList($event)"
-      >
-      </ftu-biomarker-details>
+      />
     </div>
   </ng-template>
 </ftu-fullscreen-container>
