@@ -146,12 +146,12 @@ export class AppComponent extends BaseApplicationComponent {
       side: this.side(),
     }),
     stream: (params) => {
-      const { iri, sex, side } = params.params;
+      const { iri, side } = params.params;
       if (iri === undefined) {
         return of(undefined);
       }
 
-      const info$ = this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo['side'], sex);
+      const info$ = this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo['side']);
       return info$;
     },
   });
