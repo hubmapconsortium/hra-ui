@@ -205,6 +205,7 @@ export class PlaygroundComponent implements AfterViewInit {
                 onclick() {
                   obj.setComments(
                     [parseInt(x, 10), parseInt(y, 10)],
+                    // eslint-disable-next-line no-alert
                     prompt(obj.options.text?.comments, title) ?? '',
                     '',
                   );
