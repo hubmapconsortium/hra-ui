@@ -132,6 +132,7 @@ export const configs = {
     {
       files: ['**/*.ts'],
       rules: {
+        '@angular-eslint/consistent-component-styles': 'error',
         '@angular-eslint/no-async-lifecycle-method': 'error',
         '@angular-eslint/no-attribute-decorator': 'error',
         '@angular-eslint/no-duplicates-in-metadata-arrays': 'error',
@@ -156,8 +157,12 @@ export const configs = {
           },
         ],
         '@angular-eslint/template/no-interpolation-in-attributes': 'error',
+        '@angular-eslint/template/prefer-at-else': 'error',
+        '@angular-eslint/template/prefer-at-empty': 'error',
+        '@angular-eslint/template/prefer-contextual-for-variables': 'error',
         '@angular-eslint/template/prefer-self-closing-tags': 'error',
         '@angular-eslint/template/prefer-static-string-properties': 'error',
+        '@angular-eslint/template/prefer-template-literal': 'error',
       },
     },
   ],
