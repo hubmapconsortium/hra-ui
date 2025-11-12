@@ -9,8 +9,8 @@ import { routeData } from './route-data';
 class ChildComponent {}
 
 @Component({
-  template: '<router-outlet />',
   imports: [RouterOutlet],
+  template: '<router-outlet />',
 })
 class TestAppComponent {
   data = routeData();

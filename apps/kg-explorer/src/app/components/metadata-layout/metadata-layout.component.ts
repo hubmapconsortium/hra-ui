@@ -29,8 +29,8 @@ export class MetadataLayoutContentComponent {}
   imports: [HraCommonModule, ProvenanceMenuComponent],
   templateUrl: './metadata-layout.component.html',
   styleUrl: './metadata-layout.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [providePageSectionNavigation()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataLayoutComponent {
   /** Whether the screen width is currently greater than or equal to 1100px */

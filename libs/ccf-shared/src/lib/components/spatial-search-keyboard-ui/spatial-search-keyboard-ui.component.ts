@@ -5,10 +5,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
  */
 @Component({
   selector: 'ccf-spatial-search-keyboard-ui',
+  standalone: false,
   templateUrl: './spatial-search-keyboard-ui.component.html',
   styleUrl: './spatial-search-keyboard-ui.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SpatialSearchKeyboardUIComponent {
   /** Current key pressed */

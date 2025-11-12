@@ -21,10 +21,10 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
  */
 @Component({
   selector: 'ccf-slices-input',
+  standalone: false,
   templateUrl: './slices-input.component.html',
   styleUrl: './slices-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SlicesInputComponent {
   /**

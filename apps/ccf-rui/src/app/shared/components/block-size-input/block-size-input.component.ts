@@ -24,10 +24,10 @@ const DEFAULT_BLOCK_SIZE: BlockSize = {
  */
 @Component({
   selector: 'ccf-block-size-input',
+  standalone: false,
   templateUrl: './block-size-input.component.html',
   styleUrl: './block-size-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class BlockSizeInputComponent {
   /** Values of block dimensions to be emitted */

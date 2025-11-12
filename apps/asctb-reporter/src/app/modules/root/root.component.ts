@@ -19,9 +19,9 @@ import { TreeState } from './../../store/tree.state';
 
 @Component({
   selector: 'app-root',
+  standalone: false,
   templateUrl: './root.component.html',
   styleUrl: './root.component.scss',
-  standalone: false,
 })
 export class RootComponent implements OnDestroy {
   readonly configService = inject(ConfigService);

@@ -12,8 +12,6 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
  */
 @Component({
   selector: 'ccf-tissue-block-list',
-  templateUrl: './tissue-block-list.component.html',
-  styleUrl: './tissue-block-list.component.scss',
   imports: [
     MatIconModule,
     PlainTooltipDirective,
@@ -24,6 +22,8 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
     ScrollingModule,
     ScrollOverflowFadeDirective,
   ],
+  templateUrl: './tissue-block-list.component.html',
+  styleUrl: './tissue-block-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueBlockListComponent {

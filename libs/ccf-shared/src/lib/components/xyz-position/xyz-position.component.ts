@@ -5,10 +5,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
  */
 @Component({
   selector: 'ccf-xyz-position',
+  standalone: false,
   templateUrl: './xyz-position.component.html',
   styleUrl: './xyz-position.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class XYZPositionComponent {
   /** X position */

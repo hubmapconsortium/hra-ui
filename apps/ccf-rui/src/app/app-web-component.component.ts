@@ -36,9 +36,9 @@ function parseOrgan(value: unknown): string | Organ {
  */
 @Component({
   selector: 'ccf-root-wc',
+  standalone: false,
   template: '@if (initialized) {<ccf-root />}',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Base url to fetch relative links */

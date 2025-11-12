@@ -5,10 +5,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
  */
 @Component({
   selector: 'ccf-call-to-action',
+  standalone: false,
   templateUrl: './call-to-action.component.html',
   styleUrl: './call-to-action.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class CallToActionComponent {
   /**

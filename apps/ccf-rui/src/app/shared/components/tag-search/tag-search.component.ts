@@ -25,6 +25,7 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
  */
 @Component({
   selector: 'ccf-tag-search',
+  standalone: false,
   templateUrl: './tag-search.component.html',
   styleUrl: './tag-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +35,6 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
     '(window:click)': 'closeResults($event)',
     '(window:focusin)': 'closeResults($event)',
   },
-  standalone: false,
 })
 export class TagSearchComponent implements OnDestroy {
   private readonly el = inject<ElementRef<Node>>(ElementRef);

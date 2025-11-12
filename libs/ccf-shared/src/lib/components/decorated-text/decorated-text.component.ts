@@ -30,10 +30,10 @@ interface StackOp {
  */
 @Component({
   selector: 'ccf-decorated-text',
+  standalone: false,
   templateUrl: './decorated-text.component.html',
   styleUrl: './decorated-text.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class DecoratedTextComponent implements OnChanges {
   /**

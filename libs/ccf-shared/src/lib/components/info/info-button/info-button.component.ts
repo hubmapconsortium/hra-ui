@@ -11,10 +11,10 @@ import { InfoButtonService } from './info-button.service';
  */
 @Component({
   selector: 'ccf-info-button',
+  standalone: false,
   templateUrl: './info-button.component.html',
   styleUrl: './info-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class InfoButtonComponent implements OnDestroy {
   /** Dialog service */

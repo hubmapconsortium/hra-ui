@@ -12,10 +12,10 @@ export type KVList<T = unknown> = KVPair<T>[];
  */
 @Component({
   selector: 'ccf-store-debug',
+  standalone: false,
   templateUrl: './store-debug.component.html',
   styleUrl: './store-debug.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class StoreDebugComponent implements OnDestroy {
   /**

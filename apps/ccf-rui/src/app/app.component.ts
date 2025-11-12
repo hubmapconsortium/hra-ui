@@ -39,6 +39,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior';
  */
 @Component({
   selector: 'ccf-root',
+  standalone: false,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,7 +48,6 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior';
     '[class.embedded]': 'embedded()',
     '(document:mousedown)': 'handleClick($event.target)',
   },
-  standalone: false,
 })
 export class AppComponent extends BaseApplicationComponent implements OnDestroy, OnInit {
   /** Model state */

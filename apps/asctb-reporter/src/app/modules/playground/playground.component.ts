@@ -11,9 +11,9 @@ import { UIState } from '../../store/ui.state';
 
 @Component({
   selector: 'app-playground',
+  standalone: false,
   templateUrl: './playground.component.html',
   styleUrl: './playground.component.scss',
-  standalone: false,
 })
 export class PlaygroundComponent implements AfterViewInit {
   readonly store = inject(Store);

@@ -21,9 +21,9 @@ export interface SpatialSearchListItem {
  */
 @Component({
   selector: 'ccf-spatial-search-list',
+  imports: [HraCommonModule, MatButtonModule, MatIconModule, MatCheckboxModule, MatListModule],
   templateUrl: './spatial-search-list.component.html',
   styleUrl: './spatial-search-list.component.scss',
-  imports: [HraCommonModule, MatButtonModule, MatIconModule, MatCheckboxModule, MatListModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchListComponent<T extends SpatialSearchListItem> {

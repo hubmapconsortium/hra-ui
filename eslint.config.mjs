@@ -139,6 +139,7 @@ export const configs = {
         '@angular-eslint/prefer-host-metadata-property': 'error',
         '@angular-eslint/prefer-output-readonly': 'error',
         '@angular-eslint/prefer-signals': 'error',
+        '@angular-eslint/sort-keys-in-type-decorator': 'error',
       },
     },
     {

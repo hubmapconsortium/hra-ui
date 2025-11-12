@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { BodyUiComponent } from './body-ui.component';
 
 @NgModule({
-  declarations: [BodyUiComponent],
   imports: [CommonModule],
+  declarations: [BodyUiComponent],
   exports: [BodyUiComponent],
 })
 export class BodyUiModule {}

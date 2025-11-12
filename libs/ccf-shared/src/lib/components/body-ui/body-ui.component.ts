@@ -28,10 +28,10 @@ interface XYZTriplet<T = number> {
  */
 @Component({
   selector: 'ccf-body-ui',
+  standalone: false,
   templateUrl: './body-ui.component.html',
   styleUrl: './body-ui.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class BodyUiComponent implements AfterViewInit, OnDestroy {
   /** Get scene nodes */

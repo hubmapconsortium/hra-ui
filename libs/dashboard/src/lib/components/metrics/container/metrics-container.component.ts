@@ -18,9 +18,9 @@ const WIDE_CARD_MIN_ITEM_COUNT = 4;
 /** Metrics Container Component, renders metric cards inside the container */
 @Component({
   selector: 'hra-dashboard-metrics-container',
+  imports: [TitleCardComponent, MetricsItemComponent],
   templateUrl: './metrics-container.component.html',
   styleUrl: './metrics-container.component.scss',
-  imports: [TitleCardComponent, MetricsItemComponent],
 })
 export class MetricsContainerComponent implements DashboardComponent<typeof MetricsContainerComponent> {
   /** Input type for Metrics Container Component */

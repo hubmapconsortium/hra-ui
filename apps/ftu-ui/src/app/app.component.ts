@@ -122,11 +122,11 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app mat-typography',
     '[class.app-height]': '!isLanding()',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent implements OnChanges, OnInit {
   /** Illustration to display (choosen automatically if not provided) */

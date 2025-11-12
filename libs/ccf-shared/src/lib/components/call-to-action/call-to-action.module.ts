@@ -7,8 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { CallToActionComponent } from './call-to-action.component';
 
 @NgModule({
-  declarations: [CallToActionComponent],
   imports: [CommonModule, MatIconModule, MatDialogModule, MatCardModule],
+  declarations: [CallToActionComponent],
   exports: [CallToActionComponent],
 })
 export class CallToActionModule {}

@@ -41,10 +41,10 @@ export class ExpansionPanelHeaderContentComponent {}
 @Component({
   selector: 'hra-expansion-panel',
   imports: [HraCommonModule, CdkAccordionModule, MatIconButton, MatIconModule, PlainTooltipDirective],
-  animations: [BODY_EXPANSION],
   templateUrl: './expansion-panel.component.html',
   styleUrl: './expansion-panel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [BODY_EXPANSION],
 })
 export class ExpansionPanelComponent {
   /** Title of the expansion panel */

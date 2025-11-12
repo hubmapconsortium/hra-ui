@@ -30,13 +30,13 @@ const DIRECTION_KEYS = new Set(Object.keys(DIRECTION_FACTORS));
  */
 @Component({
   selector: 'ccf-spatial-search-keyboard-ui-behavior',
+  standalone: false,
   templateUrl: './spatial-search-keyboard-ui-behavior.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:keydown)': 'handleKey($event)',
     '(document:keyup)': 'keyUp($event)',
   },
-  standalone: false,
 })
 export class SpatialSearchKeyboardUIBehaviorComponent {
   /** Amount the position shifts for each key press */

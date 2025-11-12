@@ -12,10 +12,10 @@ import { SceneState } from '../../core/store/scene/scene.state';
  */
 @Component({
   selector: 'ccf-content',
+  standalone: false,
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class ContentComponent implements OnInit {
   /** Model state */

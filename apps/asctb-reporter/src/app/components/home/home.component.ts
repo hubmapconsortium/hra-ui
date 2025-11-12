@@ -13,8 +13,6 @@ import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
   imports: [
     CommonModule,
     IconsModule,
@@ -27,6 +25,8 @@ import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
     AssetUrlPipe,
     HraCommonModule,
   ],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {

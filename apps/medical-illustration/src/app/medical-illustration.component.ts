@@ -66,10 +66,10 @@ function selectData<T, Z extends z.ZodTypeAny>(
   imports: [CommonModule, InteractiveSvgComponent],
   templateUrl: 'medical-illustration.component.html',
   styleUrl: 'medical-illustration.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MedicalIllustrationComponent extends BaseApplicationComponent implements OnInit, OnChanges {
   /** Displayed illustration or an iri to lookup in either the illustrations or fetch from the remote api */

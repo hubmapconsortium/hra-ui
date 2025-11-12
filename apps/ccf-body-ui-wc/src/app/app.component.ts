@@ -28,11 +28,11 @@ export interface GlobalConfig {
 
 /** Root component */
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ccf-root',
+  standalone: false,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   /** Reference to the body ui */

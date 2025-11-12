@@ -87,11 +87,11 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   imports: [HraCommonModule, TissueLibraryBehaviorComponent, BiomarkerDetailsWcComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated,
   host: {
     class: 'hra-app',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.Emulated,
 })
 export class AppComponent extends BaseApplicationComponent implements OnInit, OnChanges {
   /** Illustration to display (choosen automatically if not provided) */

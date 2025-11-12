@@ -26,6 +26,7 @@ export type Axis = 'x' | 'y' | 'z';
  */
 @Component({
   selector: 'ccf-rotation-slider',
+  standalone: false,
   templateUrl: './rotation-slider.component.html',
   styleUrl: './rotation-slider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +34,6 @@ export type Axis = 'x' | 'y' | 'z';
     '(document:keydown)': 'changeStep($event)',
     '(document:keyup)': 'changeStep($event)',
   },
-  standalone: false,
 })
 export class RotationSliderComponent {
   /** Input that allows the rotation to be changed from outside of the component */

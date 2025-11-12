@@ -9,8 +9,8 @@ import { RichTooltipModule } from '../rich-tooltip.module';
 import { RichTooltipContainerComponent } from './rich-tooltip-content.component';
 
 @Component({
-  imports: [RichTooltipModule, MatIconModule, MatButtonModule],
   selector: 'hra-test-custom-content-host',
+  imports: [RichTooltipModule, MatIconModule, MatButtonModule],
   template: `
     <button
       mat-icon-button
@@ -25,8 +25,8 @@ import { RichTooltipContainerComponent } from './rich-tooltip-content.component'
 class SimpleContentHostComponent {}
 
 @Component({
-  imports: [RichTooltipModule, MatIconModule, MatButtonModule],
   selector: 'hra-test-custom-content-host',
+  imports: [RichTooltipModule, MatIconModule, MatButtonModule],
   template: `
     <hra-rich-tooltip-container data-testid="tooltip-container" #content>
       <hra-rich-tooltip-tagline> Hello Developer! </hra-rich-tooltip-tagline>

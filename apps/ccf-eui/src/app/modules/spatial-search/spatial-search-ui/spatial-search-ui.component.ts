@@ -19,8 +19,6 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
  */
 @Component({
   selector: 'ccf-spatial-search-ui',
-  templateUrl: './spatial-search-ui.component.html',
-  styleUrl: './spatial-search-ui.component.scss',
   imports: [
     HraCommonModule,
     XYZPositionModule,
@@ -36,6 +34,8 @@ import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list
     MatDividerModule,
     BodyUiComponent,
   ],
+  templateUrl: './spatial-search-ui.component.html',
+  styleUrl: './spatial-search-ui.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchUiComponent {

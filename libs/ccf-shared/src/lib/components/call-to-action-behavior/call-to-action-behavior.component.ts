@@ -11,10 +11,10 @@ import { CallToActionState } from '../../states/call-to-action/call-to-action.st
  */
 @Component({
   selector: 'ccf-call-to-action-behavior',
+  standalone: false,
   templateUrl: './call-to-action-behavior.component.html',
   styleUrl: './call-to-action-behavior.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class CallToActionBehaviorComponent {
   /** Title */

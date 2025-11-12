@@ -13,10 +13,10 @@ import { MetadataService } from '../metadata/metadata.service';
  */
 @Component({
   selector: 'ccf-right-sidebar',
+  standalone: false,
   templateUrl: './right-sidebar.component.html',
   styleUrl: './right-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class RightSidebarComponent {
   /** Emits when the registration is expanded */

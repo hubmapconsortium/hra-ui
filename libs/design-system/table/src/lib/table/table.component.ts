@@ -140,8 +140,6 @@ export class NumericRowElementDirective {
  */
 @Component({
   selector: 'hra-table',
-  templateUrl: 'table.component.html',
-  styleUrl: 'table.component.scss',
   imports: [
     HraCommonModule,
     MarkdownModule,
@@ -160,6 +158,8 @@ export class NumericRowElementDirective {
     IconsModule,
     ButtonsModule,
   ],
+  templateUrl: 'table.component.html',
+  styleUrl: 'table.component.scss',
   host: {
     '[class]': '"hra-table-style-" + style()',
     '[class.sortable]': 'enableSort()',

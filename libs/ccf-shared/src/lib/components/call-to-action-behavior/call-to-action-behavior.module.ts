@@ -9,8 +9,8 @@ import { CallToActionModule } from '../call-to-action/call-to-action.module';
 import { CallToActionBehaviorComponent } from './call-to-action-behavior.component';
 
 @NgModule({
-  declarations: [CallToActionBehaviorComponent],
   imports: [CommonModule, NgxsModule, MatIconModule, MatDialogModule, MatCardModule, CallToActionModule],
+  declarations: [CallToActionBehaviorComponent],
   exports: [CallToActionBehaviorComponent],
 })
 export class CallToActionBehaviorModule {}

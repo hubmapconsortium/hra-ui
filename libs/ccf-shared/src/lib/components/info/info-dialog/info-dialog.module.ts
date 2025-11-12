@@ -8,8 +8,8 @@ import { MarkdownModule } from 'ngx-markdown';
 import { InfoDialogComponent } from './info-dialog.component';
 
 @NgModule({
-  declarations: [InfoDialogComponent],
   imports: [CommonModule, MatDialogModule, MatIconModule, MatExpansionModule, YouTubePlayerModule, MarkdownModule],
+  declarations: [InfoDialogComponent],
   exports: [InfoDialogComponent],
 })
 export class InfoDialogModule {}

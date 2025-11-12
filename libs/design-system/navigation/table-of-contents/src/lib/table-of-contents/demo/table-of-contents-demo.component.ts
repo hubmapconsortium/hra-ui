@@ -20,8 +20,8 @@ import { TableOfContentsComponent } from '../table-of-contents.component';
   selector: 'hra-table-of-contents-demo',
   imports: [CommonModule, PageSectionComponent, TableOfContentsComponent],
   templateUrl: './table-of-contents-demo.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [...providePageSectionNavigation()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableOfContentsDemoComponent {
   /** Active section index */

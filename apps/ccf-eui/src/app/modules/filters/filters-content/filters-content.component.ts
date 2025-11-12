@@ -34,8 +34,6 @@ import { DualSliderComponent } from '../dual-slider/dual-slider.component';
  */
 @Component({
   selector: 'ccf-filters-content',
-  templateUrl: './filters-content.component.html',
-  styleUrl: './filters-content.component.scss',
   imports: [
     HraCommonModule,
     ReactiveFormsModule,
@@ -48,13 +46,15 @@ import { DualSliderComponent } from '../dual-slider/dual-slider.component';
     DualSliderComponent,
     AutocompleteChipsFormComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './filters-content.component.html',
+  styleUrl: './filters-content.component.scss',
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { subscriptSizing: 'dynamic' } satisfies MatFormFieldDefaultOptions,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FiltersContentComponent {
   /** Current filter */

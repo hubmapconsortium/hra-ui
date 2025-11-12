@@ -9,9 +9,9 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
  */
 @Component({
   selector: 'ccf-review-button',
+  standalone: false,
   templateUrl: './review-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class ReviewButtonComponent {
   /** Dialog service */

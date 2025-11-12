@@ -37,8 +37,6 @@ let nextId = 0;
  */
 @Component({
   selector: 'ccf-dual-slider',
-  templateUrl: './dual-slider.component.html',
-  styleUrl: './dual-slider.component.scss',
   imports: [
     A11yModule,
     HraCommonModule,
@@ -48,8 +46,10 @@ let nextId = 0;
     OverlayModule,
     ReactiveFormsModule,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './dual-slider.component.html',
+  styleUrl: './dual-slider.component.scss',
   providers: [{ provide: MatFormFieldControl, useExisting: DualSliderComponent }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'combobox',
     'aria-haspopup': 'dialog',

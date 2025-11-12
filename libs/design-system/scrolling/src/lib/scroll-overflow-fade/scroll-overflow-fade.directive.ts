@@ -48,8 +48,8 @@ const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] = [
   selector: 'hra-scroll-overflow-fade-styles',
   template: '',
   styleUrl: './scroll-overflow-fade.directive.scss',
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ScrollOverflowFadeStylesComponent {}
 

@@ -99,10 +99,10 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Emits when the user switches the model sex */

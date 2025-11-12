@@ -19,10 +19,10 @@ export interface InfoDialogData {
  */
 @Component({
   selector: 'ccf-info-dialog',
+  standalone: false,
   templateUrl: './info-dialog.component.html',
   styleUrl: './info-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class InfoDialogComponent implements OnInit {
   /** Dialog reference */

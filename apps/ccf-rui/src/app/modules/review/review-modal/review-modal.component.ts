@@ -20,10 +20,10 @@ interface ReviewModalData {
  */
 @Component({
   selector: 'ccf-review-modal',
+  standalone: false,
   templateUrl: './review-modal.component.html',
   styleUrl: './review-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class ReviewModalComponent {
   /** Dialog reference */

@@ -10,10 +10,10 @@ import { RegistrationState } from '../../core/store/registration/registration.st
  */
 @Component({
   selector: 'ccf-left-sidebar',
+  standalone: false,
   templateUrl: './left-sidebar.component.html',
   styleUrl: './left-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class LeftSidebarComponent {
   /** Page state */

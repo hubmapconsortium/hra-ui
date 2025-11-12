@@ -6,9 +6,9 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { InfoDialogModule } from '../info-dialog/info-dialog.module';
 
 @NgModule({
-  declarations: [InfoButtonComponent],
-  exports: [InfoButtonComponent],
   imports: [CommonModule, InfoDialogModule, MatIconModule],
+  declarations: [InfoButtonComponent],
   providers: [provideHttpClient(withInterceptorsFromDi())],
+  exports: [InfoButtonComponent],
 })
 export class InfoButtonModule {}
