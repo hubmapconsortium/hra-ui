@@ -21,7 +21,7 @@ interface ReviewModalData {
 @Component({
   selector: 'ccf-review-modal',
   templateUrl: './review-modal.component.html',
-  styleUrls: ['./review-modal.component.scss'],
+  styleUrl: './review-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

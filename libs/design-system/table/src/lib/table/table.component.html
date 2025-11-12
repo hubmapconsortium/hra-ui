@@ -57,7 +57,7 @@
           @for (column of _columns(); track column.column) {
             @let type = getColumnType(column).type;
             @let template = templates[type];
-            @let isTotalsLabelColumn = enableRowSelection() ? $index === 1 : $index === 0;
+            @let isTotalsLabelColumn = enableRowSelection() ? $index === 1 : $first;
 
             <ng-container [matColumnDef]="column.column">
               @if (!hideHeaders()) {

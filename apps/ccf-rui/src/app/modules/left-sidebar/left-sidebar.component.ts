@@ -11,7 +11,7 @@ import { RegistrationState } from '../../core/store/registration/registration.st
 @Component({
   selector: 'ccf-left-sidebar',
   templateUrl: './left-sidebar.component.html',
-  styleUrls: ['./left-sidebar.component.scss'],
+  styleUrl: './left-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

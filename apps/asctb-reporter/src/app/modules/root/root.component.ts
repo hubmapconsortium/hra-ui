@@ -20,7 +20,7 @@ import { TreeState } from './../../store/tree.state';
 @Component({
   selector: 'app-root',
   templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss'],
+  styleUrl: './root.component.scss',
   standalone: false,
 })
 export class RootComponent implements OnDestroy {

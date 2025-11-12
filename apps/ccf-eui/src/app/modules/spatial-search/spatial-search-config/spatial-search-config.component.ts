@@ -12,7 +12,7 @@ import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-s
 @Component({
   selector: 'ccf-spatial-search-config',
   templateUrl: './spatial-search-config.component.html',
-  styleUrls: ['./spatial-search-config.component.scss'],
+  styleUrl: './spatial-search-config.component.scss',
   imports: [HraCommonModule, MatIconModule, ButtonsModule, SpatialSearchInputsComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

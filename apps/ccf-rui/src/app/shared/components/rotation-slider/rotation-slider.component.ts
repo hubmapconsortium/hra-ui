@@ -27,7 +27,7 @@ export type Axis = 'x' | 'y' | 'z';
 @Component({
   selector: 'ccf-rotation-slider',
   templateUrl: './rotation-slider.component.html',
-  styleUrls: ['./rotation-slider.component.scss'],
+  styleUrl: './rotation-slider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:keydown)': 'changeStep($event)',

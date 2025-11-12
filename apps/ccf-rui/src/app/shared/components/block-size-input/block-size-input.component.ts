@@ -25,7 +25,7 @@ const DEFAULT_BLOCK_SIZE: BlockSize = {
 @Component({
   selector: 'ccf-block-size-input',
   templateUrl: './block-size-input.component.html',
-  styleUrls: ['./block-size-input.component.scss'],
+  styleUrl: './block-size-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

@@ -80,7 +80,7 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
     PlainTooltipDirective,
   ],
   templateUrl: './biomarker-table.component.html',
-  styleUrls: ['./biomarker-table.component.scss'],
+  styleUrl: './biomarker-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnChanges {

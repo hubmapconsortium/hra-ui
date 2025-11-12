@@ -39,7 +39,7 @@ import { VegaService } from '../tree/vega.service';
     MatMenuModule,
   ],
   templateUrl: './control-pane.component.html',
-  styleUrls: ['./control-pane.component.scss'],
+  styleUrl: './control-pane.component.scss',
 })
 export class ControlPaneComponent implements OnInit {
   readonly store = inject(Store);

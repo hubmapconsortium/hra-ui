@@ -13,7 +13,7 @@ export type KVList<T = unknown> = KVPair<T>[];
 @Component({
   selector: 'ccf-store-debug',
   templateUrl: './store-debug.component.html',
-  styleUrls: ['./store-debug.component.scss'],
+  styleUrl: './store-debug.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

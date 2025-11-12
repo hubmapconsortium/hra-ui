@@ -22,7 +22,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
     PlainTooltipDirective,
   ],
   templateUrl: './opacity-slider.component.html',
-  styleUrls: ['./opacity-slider.component.scss'],
+  styleUrl: './opacity-slider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OpacitySliderComponent implements OnInit {

@@ -12,7 +12,7 @@ import { GlobalConfigState } from 'ccf-shared';
 @Component({
   selector: 'ccf-thumbnail-list',
   templateUrl: './thumbnail-list.component.html',
-  styleUrls: ['./thumbnail-list.component.scss'],
+  styleUrl: './thumbnail-list.component.scss',
   imports: [HraCommonModule, MatButtonModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

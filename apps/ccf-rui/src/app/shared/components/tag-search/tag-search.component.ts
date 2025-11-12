@@ -27,7 +27,7 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
 @Component({
   selector: 'ccf-tag-search',
   templateUrl: './tag-search.component.html',
-  styleUrls: ['./tag-search.component.scss'],
+  styleUrl: './tag-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(click)': 'openResults()',

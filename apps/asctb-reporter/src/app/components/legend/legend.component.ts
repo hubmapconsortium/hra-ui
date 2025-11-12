@@ -15,7 +15,7 @@ import { LegendService } from './legend.service';
 @Component({
   selector: 'app-legend',
   templateUrl: './legend.component.html',
-  styleUrls: ['./legend.component.scss'],
+  styleUrl: './legend.component.scss',
   imports: [CommonModule, ExpansionPanelModule, MatIconModule, OrderByPipe, MatExpansionModule],
   providers: [LegendService],
 })

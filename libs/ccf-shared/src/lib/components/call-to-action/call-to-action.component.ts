@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
 @Component({
   selector: 'ccf-call-to-action',
   templateUrl: './call-to-action.component.html',
-  styleUrls: ['./call-to-action.component.scss'],
+  styleUrl: './call-to-action.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

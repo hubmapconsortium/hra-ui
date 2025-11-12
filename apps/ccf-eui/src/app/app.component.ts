@@ -57,7 +57,7 @@ interface AppOptions {
 @Component({
   selector: 'ccf-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   host: {
     class: 'hra-app',
   },

@@ -98,7 +98,7 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
     ProgressSpinnerComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   host: {
     class: 'hra-app',
   },

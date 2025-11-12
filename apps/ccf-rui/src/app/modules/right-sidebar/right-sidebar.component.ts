@@ -14,7 +14,7 @@ import { MetadataService } from '../metadata/metadata.service';
 @Component({
   selector: 'ccf-right-sidebar',
   templateUrl: './right-sidebar.component.html',
-  styleUrls: ['./right-sidebar.component.scss'],
+  styleUrl: './right-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

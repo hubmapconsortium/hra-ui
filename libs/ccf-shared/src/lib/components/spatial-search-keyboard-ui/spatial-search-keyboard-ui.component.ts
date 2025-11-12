@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
 @Component({
   selector: 'ccf-spatial-search-keyboard-ui',
   templateUrl: './spatial-search-keyboard-ui.component.html',
-  styleUrls: ['./spatial-search-keyboard-ui.component.scss'],
+  styleUrl: './spatial-search-keyboard-ui.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

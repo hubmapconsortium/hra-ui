@@ -23,7 +23,7 @@ import { ResultsVirtualScrollStrategy } from '../virtual-scroll-strategy/results
 @Component({
   selector: 'ccf-results-browser',
   templateUrl: './results-browser.component.html',
-  styleUrls: ['./results-browser.component.scss'],
+  styleUrl: './results-browser.component.scss',
   imports: [
     HraCommonModule,
     DonorCardComponent,

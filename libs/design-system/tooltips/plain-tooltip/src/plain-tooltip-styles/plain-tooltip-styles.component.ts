@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 @Component({
   selector: 'hra-plain-tooltip-styles',
   template: '',
-  styleUrls: ['./plain-tooltip-styles.component.scss'],
+  styleUrl: './plain-tooltip-styles.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

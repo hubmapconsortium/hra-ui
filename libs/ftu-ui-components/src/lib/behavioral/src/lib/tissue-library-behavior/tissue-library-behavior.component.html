@@ -121,7 +121,7 @@
         <button
           mat-menu-item
           hraClickEvent
-          [hraFeature]="'download-' + (format.label | slugify)"
+          [hraFeature]="`download-${format.label}` | slugify"
           (click)="download(format.id)"
         >
           <div>{{ format.label }}</div>

@@ -11,14 +11,13 @@
     <mat-select-trigger>
       {{ selectedServer().url }}
     </mat-select-trigger>
-    @if (servers().length > 0) {
-      @for (server of servers(); track $index) {
-        <mat-option [value]="server">
-          <div class="server-url">{{ server.url }}</div>
-          <div class="server-description">{{ server.description }}</div>
-        </mat-option>
-      }
-    } @else {
+
+    @for (server of servers(); track $index) {
+      <mat-option [value]="server">
+        <div class="server-url">{{ server.url }}</div>
+        <div class="server-description">{{ server.description }}</div>
+      </mat-option>
+    } @empty {
       <mat-option disabled> No servers available. </mat-option>
     }
   </mat-select>

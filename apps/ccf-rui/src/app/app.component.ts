@@ -40,7 +40,7 @@ export type Side = 'left' | 'right' | 'anterior' | 'posterior';
 @Component({
   selector: 'ccf-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',

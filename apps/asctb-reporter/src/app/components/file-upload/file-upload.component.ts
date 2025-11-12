@@ -18,7 +18,7 @@ import { ButtonSizeDirective } from '@hra-ui/design-system/buttons/button';
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss'],
+  styleUrl: './file-upload.component.scss',
   imports: [
     CommonModule,
     ReactiveFormsModule,

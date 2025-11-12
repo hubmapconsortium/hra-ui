@@ -12,7 +12,7 @@ import { CallToActionState } from '../../states/call-to-action/call-to-action.st
 @Component({
   selector: 'ccf-call-to-action-behavior',
   templateUrl: './call-to-action-behavior.component.html',
-  styleUrls: ['./call-to-action-behavior.component.scss'],
+  styleUrl: './call-to-action-behavior.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

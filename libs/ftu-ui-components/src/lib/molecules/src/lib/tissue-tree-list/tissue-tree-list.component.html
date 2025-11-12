@@ -23,7 +23,7 @@
         mat-icon-button
         matTreeNodeToggle
         class="toggle"
-        [attr.aria-label]="'Toggle ' + node.label"
+        [attr.aria-label]="`Toggle ${node.label}`"
       >
         <mat-icon class="material-symbols-outlined">
           {{ control.isExpanded(node) ? 'keyboard_arrow_up' : 'chevron_right' }}

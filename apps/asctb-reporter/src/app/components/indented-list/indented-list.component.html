@@ -2,7 +2,7 @@
   <div header>
     <app-sidenav-header
       tooltipString="Traditional Indented List view of the data"
-      [title]="currentSheet.display + ' Indented List'"
+      [title]="`${currentSheet.display} Indented List`"
       (closeSideNav)="closeIL.emit(); visible = false"
     />
   </div>
@@ -33,7 +33,7 @@
           class="node-button"
           hraFeature="toggle"
           hraClickEvent
-          [attr.aria-label]="'toggle' + node.name"
+          [attr.aria-label]="`toggle${node.name}`"
         >
           <mat-icon class="mat-icon-rtl-mirror node-button-icon">
             {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}

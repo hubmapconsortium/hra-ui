@@ -7,7 +7,7 @@ import { Tag } from '../../../core/models/anatomical-structure-tag';
 @Component({
   selector: 'ccf-tag-list',
   templateUrl: './tag-list.component.html',
-  styleUrls: ['./tag-list.component.scss'],
+  styleUrl: './tag-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

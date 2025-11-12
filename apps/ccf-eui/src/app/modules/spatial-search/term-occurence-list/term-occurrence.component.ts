@@ -11,7 +11,7 @@ import { TermResult } from '../../../core/store/spatial-search-ui/spatial-search
 @Component({
   selector: 'ccf-term-occurrence-list',
   templateUrl: './term-occurrence.component.html',
-  styleUrls: ['./term-occurrence.component.scss'],
+  styleUrl: './term-occurrence.component.scss',
   imports: [
     MatIconModule,
     ExpansionPanelComponent,

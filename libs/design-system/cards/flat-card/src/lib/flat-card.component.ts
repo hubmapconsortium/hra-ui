@@ -12,14 +12,12 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 @Component({
   selector: 'hra-flat-card-actions',
   template: `<ng-content />`,
-  styles: [
-    `
-      :host {
-        display: flex;
-        width: 100%;
-      }
-    `,
-  ],
+  styles: `
+    :host {
+      display: flex;
+      width: 100%;
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlatCardActionsComponent {}

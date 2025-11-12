@@ -21,7 +21,7 @@ import { BodyUiComponent } from 'ccf-body-ui';
 @Component({
   selector: 'ccf-spatial-search-ui',
   templateUrl: './spatial-search-ui.component.html',
-  styleUrls: ['./spatial-search-ui.component.scss'],
+  styleUrl: './spatial-search-ui.component.scss',
   imports: [
     HraCommonModule,
     XYZPositionModule,

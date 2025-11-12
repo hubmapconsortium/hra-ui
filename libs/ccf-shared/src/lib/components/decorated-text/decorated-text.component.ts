@@ -31,7 +31,7 @@ interface StackOp {
 @Component({
   selector: 'ccf-decorated-text',
   templateUrl: './decorated-text.component.html',
-  styleUrls: ['./decorated-text.component.scss'],
+  styleUrl: './decorated-text.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

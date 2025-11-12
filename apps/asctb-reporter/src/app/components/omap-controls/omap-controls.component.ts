@@ -5,7 +5,7 @@ import { Error } from '../../models/response.model';
 @Component({
   selector: 'app-omap-controls',
   templateUrl: './omap-controls.component.html',
-  styleUrls: ['./omap-controls.component.scss'],
+  styleUrl: './omap-controls.component.scss',
   standalone: false,
 })
 export class OmapControlsComponent {

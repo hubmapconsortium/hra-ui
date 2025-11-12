@@ -81,7 +81,7 @@ import { createFileNameTimestamp } from './util/file-timestamp';
   selector: 'app-reporter',
   host: { class: 'hra-app' },
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   imports: [
     HeaderComponent,
     RouterModule,

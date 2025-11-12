@@ -10,7 +10,7 @@ import { ProvenanceMenuComponent } from '../provenance-menu/provenance-menu.comp
 @Component({
   selector: 'hra-metadata-layout-header',
   template: `<ng-content />`,
-  styles: ['::ng-deep h1 > mat-divider { display: none !important; }'],
+  styles: '::ng-deep h1 > mat-divider { display: none !important; }',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataLayoutHeaderComponent {}

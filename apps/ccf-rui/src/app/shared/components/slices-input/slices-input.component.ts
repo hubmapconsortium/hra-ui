@@ -22,7 +22,7 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
 @Component({
   selector: 'ccf-slices-input',
   templateUrl: './slices-input.component.html',
-  styleUrls: ['./slices-input.component.scss'],
+  styleUrl: './slices-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

@@ -39,7 +39,7 @@ import { TreeState } from '../../store/tree.state';
     ButtonsModule,
   ],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  styleUrl: './search.component.scss',
 })
 export class SearchComponent {
   readonly disabled = input(false);

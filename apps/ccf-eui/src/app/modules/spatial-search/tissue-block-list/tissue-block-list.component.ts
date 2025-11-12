@@ -13,7 +13,7 @@ import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-sys
 @Component({
   selector: 'ccf-tissue-block-list',
   templateUrl: './tissue-block-list.component.html',
-  styleUrls: ['./tissue-block-list.component.scss'],
+  styleUrl: './tissue-block-list.component.scss',
   imports: [
     MatIconModule,
     PlainTooltipDirective,

@@ -35,7 +35,7 @@ import { DualSliderComponent } from '../dual-slider/dual-slider.component';
 @Component({
   selector: 'ccf-filters-content',
   templateUrl: './filters-content.component.html',
-  styleUrls: ['./filters-content.component.scss'],
+  styleUrl: './filters-content.component.scss',
   imports: [
     HraCommonModule,
     ReactiveFormsModule,

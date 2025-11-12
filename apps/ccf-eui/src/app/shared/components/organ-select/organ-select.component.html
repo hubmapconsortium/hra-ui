@@ -24,7 +24,7 @@
         @for (organ of selectedOrgans(); track organ) {
           <mat-chip-row [hraFeature]="organ.name | slugify" (removed)="remove(organ)">
             <span hraFeature="label" hraClickEvent>{{ organ.name }}</span>
-            <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + organ.name">
+            <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="`remove ${organ.name}`">
               <mat-icon>close</mat-icon>
             </button>
           </mat-chip-row>

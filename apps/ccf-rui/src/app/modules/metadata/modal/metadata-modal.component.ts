@@ -71,7 +71,7 @@ export interface MetadataModalResult {
     },
   ],
   templateUrl: './metadata-modal.component.html',
-  styleUrls: ['./metadata-modal.component.scss'],
+  styleUrl: './metadata-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [CdkScrollable],
 })

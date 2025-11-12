@@ -13,7 +13,7 @@
       <hra-brand-mark variant="small" />
     </a>
   }
-  <a class="app-logo" hraFeature="app" hraClickEvent [attr.href]="appLink()" [attr.alt]="appTitle() + ' logo'">
+  <a class="app-logo" hraFeature="app" hraClickEvent [attr.href]="appLink()" [attr.alt]="`${appTitle()} logo`">
     <hra-icon [svgIcon]="app()" />
   </a>
 

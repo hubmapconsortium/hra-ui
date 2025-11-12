@@ -12,7 +12,7 @@ import { UIState } from '../../store/ui.state';
 @Component({
   selector: 'app-playground',
   templateUrl: './playground.component.html',
-  styleUrls: ['./playground.component.scss'],
+  styleUrl: './playground.component.scss',
   standalone: false,
 })
 export class PlaygroundComponent implements AfterViewInit {

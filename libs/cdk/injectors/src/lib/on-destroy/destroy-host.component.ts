@@ -6,7 +6,7 @@ import { AfterViewInit, Component, ComponentRef, ElementRef, inject, ViewContain
 @Component({
   selector: 'hra-destroy-host',
   template: '',
-  styles: [':host { display: none }'],
+  styles: ':host { display: none }',
 })
 export class DestroyHostComponent implements AfterViewInit {
   /** Reference to own dom element */

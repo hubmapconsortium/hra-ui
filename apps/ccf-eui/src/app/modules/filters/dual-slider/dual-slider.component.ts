@@ -38,7 +38,7 @@ let nextId = 0;
 @Component({
   selector: 'ccf-dual-slider',
   templateUrl: './dual-slider.component.html',
-  styleUrls: ['./dual-slider.component.scss'],
+  styleUrl: './dual-slider.component.scss',
   imports: [
     A11yModule,
     HraCommonModule,

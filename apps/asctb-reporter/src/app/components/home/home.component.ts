@@ -14,7 +14,7 @@ import { CONTRIBUTORS, VIDEO_SECTIONS } from '../../static/home';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrl: './home.component.scss',
   imports: [
     CommonModule,
     IconsModule,

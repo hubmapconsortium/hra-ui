@@ -141,7 +141,7 @@ export class NumericRowElementDirective {
 @Component({
   selector: 'hra-table',
   templateUrl: 'table.component.html',
-  styleUrls: ['table.component.scss'],
+  styleUrl: 'table.component.scss',
   imports: [
     HraCommonModule,
     MarkdownModule,

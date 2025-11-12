@@ -68,7 +68,7 @@
           class="tree-expand-icon"
           mat-icon-button
           matTreeNodeToggle
-          [attr.aria-label]="'Toggle ' + node.label"
+          [attr.aria-label]="`Toggle ${node.label}`"
         >
           <mat-icon class="mat-icon-rtl-mirror">
             {{ tree.isExpanded(node) ? 'expand_less' : 'expand_more' }}

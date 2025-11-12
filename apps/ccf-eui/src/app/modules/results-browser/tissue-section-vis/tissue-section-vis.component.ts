@@ -6,7 +6,7 @@ import { TissueSection } from '@hra-api/ng-client';
 @Component({
   selector: 'ccf-tissue-section-vis',
   templateUrl: './tissue-section-vis.component.html',
-  styleUrls: ['./tissue-section-vis.component.scss'],
+  styleUrl: './tissue-section-vis.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule],
 })

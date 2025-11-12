@@ -32,7 +32,7 @@
     @for (option of chips(); track option.id) {
       <mat-chip hraClickEvent disableRipple [hraFeature]="option.label | slugify" (removed)="remove(option)">
         {{ option.label }}
-        <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + option.label">
+        <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="`remove ${option.label}`">
           <mat-icon>close</mat-icon>
         </button>
       </mat-chip>

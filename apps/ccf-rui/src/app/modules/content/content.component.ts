@@ -14,7 +14,7 @@ import { SceneState } from '../../core/store/scene/scene.state';
 @Component({
   selector: 'ccf-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss'],
+  styleUrl: './content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

@@ -41,7 +41,7 @@ export const DEFAULT_MAX_OPTIONS = new InjectionToken('Maximum number of autocom
 @Component({
   selector: 'ccf-text-search',
   templateUrl: './text-search.component.html',
-  styleUrls: ['./text-search.component.scss'],
+  styleUrl: './text-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

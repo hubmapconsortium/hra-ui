@@ -2,8 +2,8 @@
   hraFeature="donor"
   class="donor-card"
   [class.highlighted]="highlighted()"
-  [tagline]="'Donor: ' + tissueBlock().donor?.label"
-  [label]="'Provenance: ' + tissueBlock().donor?.description"
+  [tagline]="`Donor: ${tissueBlock().donor?.label}`"
+  [label]="`Provenance: ${tissueBlock().donor?.description}`"
   [menuLink]="tissueBlock().donor?.link ?? ''"
   (toggleExpansion)="toggleExpansion()"
 />
@@ -14,8 +14,8 @@
       hraFeature="block"
       class="block-card"
       tagline="Tissue Block"
-      [label]="'3D size: ' + size()"
-      [label2]="'Thickness of tissue section: ' + thickness()"
+      [label]="`3D size: ${size()}`"
+      [label2]="`Thickness of tissue section: ${thickness()}`"
       [menuLink]="tissueBlock().link"
     >
       @if ((tissueBlock().sections?.length ?? 0) > 1) {
@@ -33,13 +33,13 @@
       }
     </ccf-metadata-card>
 
-    @for (section of tissueBlock().sections; track section; let i = $index) {
+    @for (section of tissueBlock().sections; track section) {
       <ccf-metadata-card
         hraFeature="section"
         class="section-card"
         tagline="Tissue Section"
         label="Datasets"
-        [menuLink]="sectionLinks()[i]"
+        [menuLink]="sectionLinks()[$index]"
       >
         @if (section.datasets.length > 0) {
           <ccf-thumbnail-list [data]="section.datasets" />

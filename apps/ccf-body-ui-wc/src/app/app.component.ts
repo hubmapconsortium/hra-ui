@@ -31,7 +31,7 @@ export interface GlobalConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ccf-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   standalone: false,
 })
 export class AppComponent {

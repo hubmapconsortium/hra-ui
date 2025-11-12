@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 @Component({
   selector: 'hra-text-hyperlink-global-styles',
   template: '',
-  styleUrls: ['./global-styles.component.scss'],
+  styleUrl: './global-styles.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

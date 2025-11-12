@@ -23,12 +23,12 @@
 
     @if (activeOrgan(); as organ) {
       <div class="card-collection">
-        <div class="cards">
+        <div class="cards" [hraFeature]="organ.label">
           @for (component of components; track component.id) {
             <hra-action-card
               class="component-card"
               variant="elevated"
-              [hraFeature]="(organ.label | slugify) + '.' + (component.productTitle | slugify)"
+              [hraFeature]="component.productTitle | slugify"
               [tagline]="component.webComponentName || component.productTitle"
               [subtagline]="component.webComponentName && component.productTitle"
               [image]="component.previewImage"

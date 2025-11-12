@@ -64,7 +64,7 @@ interface InternalNode<K extends string, T extends DataNode<K>> {
     ScrollingModule,
   ],
   templateUrl: './tissue-tree-list.component.html',
-  styleUrls: ['./tissue-tree-list.component.scss'],
+  styleUrl: './tissue-tree-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {

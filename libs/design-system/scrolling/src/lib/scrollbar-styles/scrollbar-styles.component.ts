@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 @Component({
   selector: 'hra-scrollbar-styles',
   template: '',
-  styleUrls: ['./scrollbar-styles.component.scss'],
+  styleUrl: './scrollbar-styles.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

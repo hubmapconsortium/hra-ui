@@ -12,7 +12,7 @@ import { InfoButtonService } from './info-button.service';
 @Component({
   selector: 'ccf-info-button',
   templateUrl: './info-button.component.html',
-  styleUrls: ['./info-button.component.scss'],
+  styleUrl: './info-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

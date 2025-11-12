@@ -122,7 +122,7 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
     LinkDirective,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   host: {
     class: 'hra-app',
     '[class.app-height]': '!isLanding()',

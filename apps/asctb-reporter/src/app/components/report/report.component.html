@@ -2,7 +2,7 @@
   <div header>
     <app-sidenav-header
       tooltipString="Various statistics calculated from the data"
-      [title]="'Report for ' + currentSheet.display"
+      [title]="`Report for ${currentSheet.display}`"
       [download]="true"
       (downloadFn)="downloadReport()"
       (closeSideNav)="closeReport.emit()"
@@ -392,7 +392,7 @@
                     class="py-1 d-flex justify-content-between align-items-center"
                   >
                     <div class="h6">
-                      <span class="fw-normal">{{ a.name + ' Biomarkers' | titlecase }}</span>
+                      <span class="fw-normal">{{ `${a.name} Biomarkers` | titlecase }}</span>
                     </div>
 
                     <div>

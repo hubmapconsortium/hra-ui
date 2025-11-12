@@ -20,7 +20,7 @@ export interface InfoDialogData {
 @Component({
   selector: 'ccf-info-dialog',
   templateUrl: './info-dialog.component.html',
-  styleUrls: ['./info-dialog.component.scss'],
+  styleUrl: './info-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

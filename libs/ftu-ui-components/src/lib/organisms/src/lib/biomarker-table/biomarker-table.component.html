@@ -33,7 +33,7 @@
       </td>
     </ng-container>
 
-    @for (column of columns; track column; let index = $index) {
+    @for (column of columns; track column) {
       <ng-container [matColumnDef]="column">
         <th *matHeaderCellDef class="icon-header" mat-header-cell [hraPlainTooltip]="column">
           <div class="header-column-text">
@@ -49,13 +49,13 @@
           mat-cell
           style="cursor: pointer"
           [class.highlight]="isHighlighted(element)"
-          (click)="openBottomSheet(element[index + 2])"
+          (click)="openBottomSheet(element[$index + 2])"
         >
-          @if (element[index + 2] !== undefined) {
+          @if (element[$index + 2] !== undefined) {
             <ftu-biomarker-table-data-icon
               class="icon"
-              [color]="getColor(element[index + 2].color)"
-              [size]="getSize(element[index + 2].size)"
+              [color]="getColor(element[$index + 2].color)"
+              [size]="getSize(element[$index + 2].size)"
             />
           } @else {
             <div class="empty"></div>

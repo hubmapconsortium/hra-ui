@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
 @Component({
   selector: 'ccf-xyz-position',
   templateUrl: './xyz-position.component.html',
-  styleUrls: ['./xyz-position.component.scss'],
+  styleUrl: './xyz-position.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })

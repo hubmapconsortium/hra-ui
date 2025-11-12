@@ -13,7 +13,7 @@ import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-
 @Component({
   selector: 'ccf-donor-card',
   templateUrl: './donor-card.component.html',
-  styleUrls: ['./donor-card.component.scss'],
+  styleUrl: './donor-card.component.scss',
   imports: [
     HraCommonModule,
     MatCheckboxModule,

@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'ftu-biomarker-table-data-icon',
   imports: [CommonModule],
   template: '',
-  styleUrls: ['./biomarker-table-data-icon.component.scss'],
+  styleUrl: './biomarker-table-data-icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiomarkerTableDataIconComponent {

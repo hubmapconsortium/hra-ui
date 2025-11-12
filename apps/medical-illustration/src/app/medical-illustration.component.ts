@@ -65,7 +65,7 @@ function selectData<T, Z extends z.ZodTypeAny>(
   selector: 'hra-medical-illustration-wc',
   imports: [CommonModule, InteractiveSvgComponent],
   templateUrl: 'medical-illustration.component.html',
-  styleUrls: ['medical-illustration.component.scss'],
+  styleUrl: 'medical-illustration.component.scss',
   host: {
     class: 'hra-app',
   },
