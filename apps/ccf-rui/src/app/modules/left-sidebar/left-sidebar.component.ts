@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { ModelState } from '../../core/store/model/model.state';
@@ -22,9 +22,6 @@ export class LeftSidebarComponent {
   readonly model = inject(ModelState);
   /** Registration state */
   readonly registration = inject(RegistrationState);
-
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-left-sidebar';
 
   /** Whether or not the initial registration modal has been closed */
   readonly modalClosed = input(false);

@@ -4,7 +4,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   OnDestroy,
   Output,
@@ -35,9 +34,6 @@ interface XYZTriplet<T = number> {
   standalone: false,
 })
 export class BodyUiComponent implements AfterViewInit, OnDestroy {
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-body-ui';
-
   /** Get scene nodes */
   @Input()
   get scene(): SpatialSceneNode[] {

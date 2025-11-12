@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 
@@ -18,9 +18,6 @@ export type KVList<T = unknown> = KVPair<T>[];
   standalone: false,
 })
 export class StoreDebugComponent implements OnDestroy {
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-store-debug';
-
   /**
    * Gets the store data as a list of state name to key-value pairs
    */

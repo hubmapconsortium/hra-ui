@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
@@ -32,9 +32,6 @@ export class ReviewModalComponent {
   readonly data = inject<ReviewModalData>(MAT_DIALOG_DATA);
   /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);
-
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-review-modal';
 
   /**
    * The object containing all of the review information for displaying inside the modal

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 /**
  * Info button component: Information icon displays project details when clicked.
@@ -11,8 +11,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
   standalone: false,
 })
 export class CallToActionComponent {
-  /**HTML class */
-  @HostBinding('class') readonly clsName = 'ccf-call-to-action';
   /**
    * Title of the info dialog
    */

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { injectFeaturePath, injectLogEvent } from '@hra-ui/common/analytics';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 
@@ -39,9 +39,6 @@ const DIRECTION_KEYS = new Set(Object.keys(DIRECTION_FACTORS));
   standalone: false,
 })
 export class SpatialSearchKeyboardUIBehaviorComponent {
-  /** HTML class */
-  @HostBinding('class') readonly className = 'ccf-spatial-search-keyboard-ui-behavior';
-
   /** Amount the position shifts for each key press */
   @Input() delta = 1;
 

@@ -1,19 +1,18 @@
-import { ChangeDetectionStrategy, Component, HostBinding, input, output, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, signal, viewChild } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import { FilterSexEnum, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { BodyUiComponent } from 'ccf-body-ui';
 import { OrganInfo, SpatialSearchKeyboardUIBehaviorModule, XYZPositionModule } from 'ccf-shared';
-
-import { HraCommonModule } from '@hra-ui/common';
 import { Position, RadiusSettings, TermResult } from '../../../core/store/spatial-search-ui/spatial-search-ui.state';
 import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-search-inputs.component';
 import { TermOccurrenceListComponent } from '../term-occurence-list/term-occurrence.component';
 import { TissueBlockListComponent } from '../tissue-block-list/tissue-block-list.component';
-import { BodyUiComponent } from 'ccf-body-ui';
 
 /**
  * Main Spatial Search UI component
@@ -40,9 +39,6 @@ import { BodyUiComponent } from 'ccf-body-ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchUiComponent {
-  /** HTML Class */
-  @HostBinding('class') readonly className = 'ccf-spatial-search-ui';
-
   /** Primary body UI component */
   readonly primaryUI = viewChild.required<BodyUiComponent>('primary');
 

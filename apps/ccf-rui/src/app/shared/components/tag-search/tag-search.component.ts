@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostBinding,
   inject,
   input,
   OnDestroy,
@@ -39,9 +38,6 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
 })
 export class TagSearchComponent implements OnDestroy {
   private readonly el = inject<ElementRef<Node>>(ElementRef);
-
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-tag-search';
 
   /** Search method */
   readonly search = input<(text: string, limit: number) => ObservableInput<TagSearchResult>>();

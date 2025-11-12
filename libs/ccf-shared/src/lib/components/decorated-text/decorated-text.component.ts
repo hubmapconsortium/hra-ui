@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DecoratedRange, normalize } from './decorated-range';
 
@@ -36,9 +36,6 @@ interface StackOp {
   standalone: false,
 })
 export class DecoratedTextComponent implements OnChanges {
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-decorated-text';
-
   /**
    * Text to display
    */

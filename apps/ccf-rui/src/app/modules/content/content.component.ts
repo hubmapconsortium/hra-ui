@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from '@angular/core';
 import { NodeDragEvent } from 'ccf-body-ui';
 import { combineLatest } from 'rxjs';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
-
 import { ModelState } from '../../core/store/model/model.state';
 import { PageState } from '../../core/store/page/page.state';
 import { RegistrationState } from '../../core/store/registration/registration.state';
@@ -27,9 +26,6 @@ export class ContentComponent implements OnInit {
   readonly registration = inject(RegistrationState);
   /** Scene state */
   readonly scene = inject(SceneState);
-
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-content';
 
   /** Disable keyboard position interactions */
   readonly disablePositionChange = input(false);

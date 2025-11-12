@@ -10,11 +10,15 @@ import { CommonModule } from '@angular/common';
   template: '',
   styleUrl: './biomarker-table-data-icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.background-color]': 'color',
+    '[style.--radius.rem]': 'size',
+  },
 })
 export class BiomarkerTableDataIconComponent {
   /** Represents the color of the icon */
-  @HostBinding('style.background-color') @Input() color = '';
+  @Input() color = '';
 
   /** Represents the size of the icon  */
-  @HostBinding('style.--radius.rem') @Input() size = 0;
+  @Input() size = 0;
 }

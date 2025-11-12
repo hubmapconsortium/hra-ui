@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, HostBinding, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
 import { MetaData } from '../../../core/models/meta-data';
 import { PageState } from '../../../core/store/page/page.state';
 import { ReviewModalComponent } from '../review-modal/review-modal.component';
@@ -19,9 +18,6 @@ export class ReviewButtonComponent {
   private readonly dialog = inject(MatDialog);
   /** Page state */
   readonly page = inject(PageState);
-
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-review-button';
 
   /** Input to set whether the component should be in register (true) or download (false) mode */
   readonly registrationCallbackSet = input(true);

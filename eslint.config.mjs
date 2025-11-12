@@ -136,6 +136,7 @@ export const configs = {
         '@angular-eslint/no-async-lifecycle-method': 'error',
         '@angular-eslint/no-attribute-decorator': 'error',
         '@angular-eslint/no-duplicates-in-metadata-arrays': 'error',
+        '@angular-eslint/prefer-host-metadata-property': 'error',
         '@angular-eslint/prefer-output-readonly': 'error',
         '@angular-eslint/prefer-signals': 'error',
       },

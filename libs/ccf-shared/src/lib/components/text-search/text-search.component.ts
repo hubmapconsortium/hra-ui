@@ -1,17 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  HostBinding,
-  InjectionToken,
-  Input,
-  Output,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, InjectionToken, Input, Output, inject } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { Observable, ObservableInput, from, lastValueFrom } from 'rxjs';
 import { distinctUntilChanged, map, startWith, switchMap, take } from 'rxjs/operators';
-
 import { DecoratedRange } from '../decorated-text/decorated-range';
 
 /** A single suggestion to show in autocomplete  */
@@ -47,9 +37,6 @@ export const DEFAULT_MAX_OPTIONS = new InjectionToken('Maximum number of autocom
 })
 export class TextSearchComponent {
   private readonly defaultMaxOptions = inject(DEFAULT_MAX_OPTIONS);
-
-  /** HTML class name */
-  @HostBinding('class') readonly clsName = 'ccf-text-search';
 
   /**
    * Placeholder text for the search bar

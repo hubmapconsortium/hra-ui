@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,9 +27,6 @@ export interface SpatialSearchListItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchListComponent<T extends SpatialSearchListItem> {
-  /** HTML class */
-  @HostBinding('class') readonly clsName = 'ccf-spatial-search-list';
-
   /** Label for the list */
   readonly label = input<string>('');
 

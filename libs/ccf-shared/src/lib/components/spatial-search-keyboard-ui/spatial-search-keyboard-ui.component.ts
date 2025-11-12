@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 /**
  * Keyboard control UI for spatial search
@@ -11,9 +11,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, O
   standalone: false,
 })
 export class SpatialSearchKeyboardUIComponent {
-  /** HTML class */
-  @HostBinding('class') readonly className = 'ccf-spatial-search-keyboard-ui';
-
   /** Current key pressed */
   @Input() currentKey?: string;
 
