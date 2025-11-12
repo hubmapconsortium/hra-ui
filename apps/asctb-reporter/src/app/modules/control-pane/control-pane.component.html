@@ -13,8 +13,8 @@
           [selectedOrgans]="(selectedOrgans$ | async) ?? []"
           [config]="(config$ | async)!"
           [error]="error"
-          (updatedConfig)="updateConfigInSheet($event)"
           [currentSheet]="(sheet$ | async)!"
+          (updatedConfig)="updateConfigInSheet($event)"
         />
       </ng-scrollbar>
     </div>

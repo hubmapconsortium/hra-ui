@@ -1,11 +1,11 @@
 <mat-form-field
   hraFeature="chips"
+  subscriptSizing="dynamic"
   [class.visible]="chips().length > 0"
   [class.error]="errorState()"
-  subscriptSizing="dynamic"
 >
   <div class="chips-area">
-    <mat-chip-grid #chipGrid aria-label="Option selection" [formControl]="form()">
+    <mat-chip-grid aria-label="Option selection" [formControl]="form()" #chipGrid>
       @for (option of chips(); track option) {
         <mat-chip-row [hraFeature]="option | slugify" (removed)="remove(option)">
           <span hraFeature="label" hraClickEvent>{{ option }}</span>
@@ -28,28 +28,28 @@
       hraClickEvent
       placeholder="Search"
       class="search-input"
-      #searchInput="matAutocompleteTrigger"
-      [(ngModel)]="currentInputValue"
       [matChipInputFor]="chipGrid"
       [matAutocomplete]="auto"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [(ngModel)]="currentInputValue"
       (matChipInputTokenEnd)="add($event)"
       (keydown)="closeAutocomplete($event)"
+      #searchInput="matAutocompleteTrigger"
     />
     @if (errorState()) {
       <mat-icon class="error-icon" svgIcon="error" />
     }
   </div>
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+  <mat-autocomplete (optionSelected)="optionSelected($event)" #auto="matAutocomplete">
     <ng-scrollbar>
       @for (option of filteredOptions(); track option) {
-        <div [hraFeature]="option | slugify" class="autocomplete-option">
+        <div class="autocomplete-option" [hraFeature]="option | slugify">
           <mat-checkbox
             hraFeature="checkbox"
             hraClickEvent
             class="autocomplete-checkbox"
-            (change)="checkboxSelected($event, option); auto.showPanel = false"
             [checked]="chips().includes(option)"
+            (change)="checkboxSelected($event, option); auto.showPanel = false"
           />
           <mat-option hraFeature="label" hraClickEvent [value]="option">{{ option }}</mat-option>
         </div>

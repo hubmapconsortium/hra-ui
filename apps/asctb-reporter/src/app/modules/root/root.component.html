@@ -1,21 +1,21 @@
 <div class="h-100 w-100">
   <app-navbar [cache]="(getFromCache$ | async) ?? false" />
   <mat-drawer-container class="control-pane-container h-100" autosize>
-    <mat-drawer #controlPaneDrawer class="control-pane" mode="side" [opened]="pane$ | async">
+    <mat-drawer class="control-pane" mode="side" [opened]="pane$ | async" #controlPaneDrawer>
       <app-control-pane [error]="error" />
     </mat-drawer>
 
     <mat-drawer-content>
       <div id="content" class="h-100 w-100">
-        <div #treeDiv class="tree-div" *ngIf="(mode$ | async) === 'vis'">
+        <div *ngIf="(mode$ | async) === 'vis'" class="tree-div" #treeDiv>
           @if (!error.hasError) {
             <app-tree />
           } @else {
-            <app-error #appError [error]="error" />
+            <app-error [error]="error" #appError />
           }
         </div>
 
-        <div class="playground-dig" *ngIf="(mode$ | async) === 'playground'">
+        <div *ngIf="(mode$ | async) === 'playground'" class="playground-dig">
           <app-playground />
         </div>
       </div>

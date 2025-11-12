@@ -22,19 +22,19 @@
     <!-- Config selector within the same border -->
     <hra-config-selector
       [dataTypeOptions]="dataTypeOptions"
-      [(selectedDataType)]="selectedDataType"
       [organOptions]="organOptions()"
+      [xAxisOptions]="xAxisOptions()"
+      [yAxisOptions]="yAxisOptions"
+      [sortOptions]="sortOptions"
+      [availableTools]="availableTools()"
+      [loading]="loading()"
+      [(selectedDataType)]="selectedDataType"
       [(selectedOrgan)]="selectedOrgan"
       [(selectedTools)]="selectedTools"
       [(selectedSexes)]="selectedSexes"
-      [xAxisOptions]="xAxisOptions()"
       [(selectedXAxis)]="selectedXAxis"
-      [yAxisOptions]="yAxisOptions"
       [(selectedYAxis)]="selectedYAxis"
-      [sortOptions]="sortOptions"
       [(selectedSort)]="selectedSort"
-      [availableTools]="availableTools()"
-      [loading]="loading()"
     />
 
     <!-- Charts Content Section -->
@@ -61,7 +61,7 @@
             } @else {
               <div class="charts-grid">
                 @for (spec of vegaSpecs(); track spec) {
-                  <hra-bar-graph [spec]="spec" class="chart-item" />
+                  <hra-bar-graph class="chart-item" [spec]="spec" />
                 }
               </div>
             }

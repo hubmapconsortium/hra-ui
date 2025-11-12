@@ -28,9 +28,9 @@
         hraFeature="menu"
         hraClickEvent
         mat-icon-button
-        [matMenuTriggerFor]="menu"
         hraIconButtonSize="large"
         aria-label="Icon to open nested menu"
+        [matMenuTriggerFor]="menu"
       >
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -44,8 +44,8 @@
           hraClickEvent
           mat-menu-item
           matRipple
-          (click)="toggleShowSelected()"
           [disabled]="!hasSelectedItems()"
+          (click)="toggleShowSelected()"
         >
           <mat-icon>visibility</mat-icon>
           {{ showSelected() ? 'Show all' : 'Show selected' }}
@@ -55,8 +55,8 @@
           hraClickEvent
           mat-menu-item
           matRipple
-          (click)="resetSelections()"
           [disabled]="!hasSelectedItems()"
+          (click)="resetSelections()"
         >
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset all selections
@@ -87,13 +87,13 @@
               hraFeature="select"
               hraClickEvent
               class="checkbox"
-              (click)="handleSelection(result, !result.selected)"
               [ngStyle]="{
                 '--mat-checkbox-selected-icon-color': getColor(result),
                 '--mat-checkbox-selected-hover-icon-color': getColor(result),
                 '--mat-checkbox-selected-focus-icon-color': getColor(result),
               }"
               [checked]="result.selected"
+              (click)="handleSelection(result, !result.selected)"
             />
             <ccf-donor-card
               [tissueBlock]="asMutable(result.tissueBlock)"

@@ -10,15 +10,15 @@
       <mat-tab-group
         hraClickEventTriggerOn="none"
         hraClickEvent
-        #tabEventDir="hraClickEvent"
-        (selectedTabChange)="onTabChange($event, tabEventDir)"
         class="tab-group"
         animationDuration="700ms"
-        [(selectedIndex)]="tabIndex"
         dynamicHeight="true"
+        [(selectedIndex)]="tabIndex"
+        (selectedTabChange)="onTabChange($event, tabEventDir)"
+        #tabEventDir="hraClickEvent"
       >
         <mat-tab label="Embed">
-          <hra-code-block [code]="code()" language="html" />
+          <hra-code-block language="html" [code]="code()" />
         </mat-tab>
 
         <mat-tab label="Use App">
@@ -28,7 +28,7 @@
         </mat-tab>
       </mat-tab-group>
     } @else {
-      <hra-code-block [code]="code()" language="html" />
+      <hra-code-block language="html" [code]="code()" />
     }
 
     <hra-flat-card-actions class="card-actions">
@@ -50,8 +50,8 @@
         mat-flat-button
         hraPrimaryButton
         hraButtonSize="medium"
-        (cdkCopyToClipboardCopied)="openCopiedSnackbar()"
         [cdkCopyToClipboard]="code()"
+        (cdkCopyToClipboardCopied)="openCopiedSnackbar()"
       >
         Copy
       </button>

@@ -1,57 +1,57 @@
 <ng-container hraFeature="asctb-reporter">
   <mat-drawer-container style="height: 100%">
     <mat-drawer
-      #rightDrawer
       class="right-sidenav"
       mode="over"
-      [opened]="(il$ | async) || (report$ | async) || (dl$ | async) || (c$ | async)"
       position="end"
-      (closedStart)="toggleSideNav()"
       autoFocus="false"
       style="z-index: 3"
+      [opened]="(il$ | async) || (report$ | async) || (dl$ | async) || (c$ | async)"
+      (closedStart)="toggleSideNav()"
+      #rightDrawer
     >
       <app-report
-        (deleteSheet)="deleteSheet($event)"
+        *ngIf="report$ | async"
         [compareData]="allCompareData$"
         [inputReportData]="rd$"
-        (closeReport)="rightDrawer.close()"
-        *ngIf="report$ | async"
         [sheetData]="data"
         [asFullData]="(fullAsData$ | async) ?? []"
         [fullDataByOrgan]="(fullDataByOrgan$ | async) ?? []"
         [currentSheet]="sheet"
         [currentSheetConfig]="sheetConfig$"
         [linksData$]="links$"
-        (computedReport)="updateReport($event)"
         [bmType]="(bmType$ | async) ?? ''"
         [hideReportCompareTab]="(mode$ | async) === 'playground'"
+        (deleteSheet)="deleteSheet($event)"
+        (closeReport)="rightDrawer.close()"
+        (computedReport)="updateReport($event)"
       />
 
       <app-indent
-        (closeIL)="rightDrawer.close()"
         *ngIf="il$ | async"
         [sheetData]="data"
         [currentSheet]="sheet"
+        (closeIL)="rightDrawer.close()"
         (openBottomSheet)="getStructureInfo($event)"
       />
 
       <app-debug-logs
-        (closeDebug)="rightDrawer.close()"
         *ngIf="dl$ | async"
         [currentSheet]="sheet"
         [logs]="(logs$ | async)!"
+        (closeDebug)="rightDrawer.close()"
       />
 
       <app-compare
-        (closeCompare)="rightDrawer.close()"
         *ngIf="c$ | async"
         class="compare-sidenav"
-        (compareData)="compareData($event)"
         [compareSheets]="compareSheets$"
+        (closeCompare)="rightDrawer.close()"
+        (compareData)="compareData($event)"
       />
     </mat-drawer>
     <mat-drawer-content>
-      <hra-header [breadcrumbs]="crumbs() ?? []" hraFeature="header">
+      <hra-header hraFeature="header" [breadcrumbs]="crumbs() ?? []">
         <a
           mat-icon-button
           hraClickEvent
@@ -132,10 +132,10 @@
         <hra-help-button [action]="helpMenu" />
       </hra-header>
 
-      <app-table-nested-menu #nestedMenu [sheetDetails]="(configService.allSheetConfigurations$ | async) ?? []" />
+      <app-table-nested-menu [sheetDetails]="(configService.allSheetConfigurations$ | async) ?? []" #nestedMenu />
 
       <!-- LATER: Refactor into one shared menu component -->
-      <mat-menu #helpMenu="matMenu" class="help-menu" hraFeature="help-menu">
+      <mat-menu class="help-menu" hraFeature="help-menu" #helpMenu="matMenu">
         <a
           mat-menu-item
           href="https://humanatlas.io/asctb-reporter"
@@ -177,7 +177,7 @@
           >Read publications</a
         >
         <mat-divider />
-        <a mat-menu-item [matMenuTriggerFor]="hubmapMenu" hraHoverEvent hraFeature="hubmap-menu">
+        <a mat-menu-item hraHoverEvent hraFeature="hubmap-menu" [matMenuTriggerFor]="hubmapMenu">
           Human Biomolecular Atlas Program (HuBMAP)
           <mat-icon class="expand-arrow">arrow_right</mat-icon>
         </a>
@@ -204,11 +204,11 @@
 
       <mat-menu #downloadMenu="matMenu">
         <button
-          mat-menu-item
           *ngFor="let option of imgOptions"
-          (click)="exportImage(option)"
-          hraClickEvent
           hraFeature="download.{{ option }}"
+          mat-menu-item
+          hraClickEvent
+          (click)="exportImage(option)"
         >
           {{ option }}
         </button>

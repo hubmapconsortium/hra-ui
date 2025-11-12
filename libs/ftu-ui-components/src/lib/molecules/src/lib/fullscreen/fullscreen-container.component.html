@@ -7,10 +7,10 @@
       hraFeature="fullscreen-tabs"
       hraClickEvent
       hraClickEventTriggerOn="none"
-      #tabEvent="hraClickEvent"
-      [(selectedIndex)]="fullscreentabIndex"
       class="tabs-group"
+      [(selectedIndex)]="fullscreentabIndex"
       (selectedTabChange)="tabEvent.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
+      #tabEvent="hraClickEvent"
     >
       <mat-tab hraFeature="illustration-tab" label="Illustration">
         <ng-container [ngTemplateOutlet]="illustrationTemplate()" />

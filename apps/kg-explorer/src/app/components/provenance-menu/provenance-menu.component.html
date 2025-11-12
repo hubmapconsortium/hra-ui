@@ -13,8 +13,8 @@
       hraClickEvent
       mat-flat-button
       class="downloads button"
-      [matMenuTriggerFor]="options"
       hraPlainTooltip="View file formats and download files"
+      [matMenuTriggerFor]="options"
     >
       Download options
     </button>
@@ -22,11 +22,11 @@
     <mat-menu hraFeature="download-options" #options="matMenu">
       @for (option of downloadOptions(); track $index) {
         <a
-          [hraFeature]="option.name | slugify"
           hraClickEvent
           mat-menu-item
-          [attr.href]="option.url"
           download
+          [hraFeature]="option.name | slugify"
+          [attr.href]="option.url"
           (click)="
             $event.preventDefault();
             download(option.url!);

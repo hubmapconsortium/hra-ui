@@ -7,7 +7,7 @@
     <div class="organ-group">
       <mat-form-field hraFeature="organ" subscriptSizing="dynamic">
         <mat-label>Organ dataset</mat-label>
-        <mat-select [(ngModel)]="selectedOrgan" [disabled]="loading()">
+        <mat-select [disabled]="loading()" [(ngModel)]="selectedOrgan">
           @for (organ of organOptions(); track organ) {
             <mat-option hraClickEvent [hraFeature]="organ | slugify" [value]="organ">{{
               organ | titlecase
@@ -37,12 +37,12 @@
       <mat-button-toggle-group
         hraFeature="sex"
         multiple
-        [value]="selectedSexes()"
-        (change)="onSexesChange($event.value)"
-        [disabled]="loading()"
-        [hideMultipleSelectionIndicator]="false"
         hraButtonToggleSize="medium"
         class="toggle-group"
+        [value]="selectedSexes()"
+        [disabled]="loading()"
+        [hideMultipleSelectionIndicator]="false"
+        (change)="onSexesChange($event.value)"
       >
         @for (sex of availableSexes; track sex) {
           <mat-button-toggle hraClickEvent [hraFeature]="sex | slugify" [value]="sex">
@@ -61,7 +61,7 @@
     <div class="sort-group">
       <mat-form-field hraFeature="sort-by" subscriptSizing="dynamic">
         <mat-label>Sort by</mat-label>
-        <mat-select [(ngModel)]="selectedSort" [disabled]="loading()">
+        <mat-select [disabled]="loading()" [(ngModel)]="selectedSort">
           @for (option of sortOptions(); track option.value) {
             <mat-option hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{
               option.label
@@ -75,12 +75,12 @@
     <div class="x-axis-group">
       <h3>X axis</h3>
       <mat-button-toggle-group
-        [value]="selectedXAxis()"
-        (change)="selectedXAxis.set($event.value)"
-        [disabled]="loading()"
         hraButtonToggleSize="medium"
         hraFeature="x-axis"
         class="toggle-group"
+        [value]="selectedXAxis()"
+        [disabled]="loading()"
+        (change)="selectedXAxis.set($event.value)"
       >
         @for (option of xAxisOptions(); track option.value) {
           <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">
@@ -94,12 +94,12 @@
     <div class="y-axis-group">
       <h3>Y axis</h3>
       <mat-button-toggle-group
-        [value]="selectedYAxis()"
-        (change)="selectedYAxis.set($event.value)"
-        [disabled]="loading()"
         hraButtonToggleSize="medium"
         hraFeature="y-axis"
         class="toggle-group"
+        [value]="selectedYAxis()"
+        [disabled]="loading()"
+        (change)="selectedYAxis.set($event.value)"
       >
         @for (option of yAxisOptions(); track option.value) {
           <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">
@@ -114,9 +114,9 @@
   <div class="config-column">
     <h2 class="column-title">
       Annotation tool<hra-results-indicator
+        description="Available"
         [value]="availableTools().length"
         [total]="allTools.length"
-        description="Available"
       />
     </h2>
     <div class="annotation-group">

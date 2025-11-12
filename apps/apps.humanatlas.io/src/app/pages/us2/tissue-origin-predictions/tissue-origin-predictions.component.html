@@ -23,11 +23,11 @@
         <button
           hraClickEvent
           hraFeature="download-json"
-          (click)="onDownloadJSONButtonClicked()"
           mat-button
           hraButtonVariant="primary"
           hraButtonSize="medium"
           disabled="false"
+          (click)="onDownloadJSONButtonClicked()"
         >
           JSON-LD
           <mat-icon>download</mat-icon>
@@ -64,13 +64,13 @@
     <div>
       <hra-back-button-bar (backClick)="euiOpen.set(false)" />
       <ccf-eui
+        data-sources="{{ ruiLocationsJsonString }}"
         class="embedded"
         base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
         use-remote-api="false"
         hubmap-data-url=""
         login-disabled="true"
         header="false"
-        data-sources="{{ ruiLocationsJsonString }}"
       />
     </div>
   </ng-template>

@@ -1,12 +1,12 @@
 <ng-container hraFeature="tissue-tree-list">
   <ftu-label-box>
     <span [class.hidden]="isCompactMode()"> Functional Tissue Unit Explorer </span>
-    <button hraClickEvent hraFeature="more-menu" mat-icon-button [matMenuTriggerFor]="moreMenu" hraPlainTooltip="More">
+    <button hraClickEvent hraFeature="more-menu" mat-icon-button hraPlainTooltip="More" [matMenuTriggerFor]="moreMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
 
     <!-- More Menu -->
-    <mat-menu hraFeature="more-menu" #moreMenu="matMenu" class="more-menu">
+    <mat-menu hraFeature="more-menu" class="more-menu" #moreMenu="matMenu">
       <a hraFeature="help-menu" hraHoverEvent hraClickEvent mat-menu-item [matMenuTriggerFor]="helpMenu">
         <mat-icon>help</mat-icon>
         <div>Help & documentation</div>
@@ -54,7 +54,7 @@
     </mat-menu>
 
     <!-- Help & documentation Menu -->
-    <mat-menu hraFeature="help-menu" #helpMenu class="more-menu">
+    <mat-menu hraFeature="help-menu" class="more-menu" #helpMenu>
       <a
         hraFeature="documentation"
         hraClickEvent
@@ -91,25 +91,25 @@
     <mat-menu hraFeature="fullscreen-menu" #fullScreenMenu>
       <button
         mat-menu-item
-        (click)="openFullScreen(FullScreenTab.Illustration)"
         hraClickEvent
         hraFeature="toggle-illustration"
+        (click)="openFullScreen(FullScreenTab.Illustration)"
       >
         <div>Illustration</div>
       </button>
       <button
         mat-menu-item
-        (click)="openFullScreen(FullScreenTab.BiomarkerDetails)"
         hraClickEvent
         hraFeature="toggle-biomarker"
+        (click)="openFullScreen(FullScreenTab.BiomarkerDetails)"
       >
         <div>Cell types by biomarkers</div>
       </button>
       <button
         mat-menu-item
-        (click)="openFullScreen(FullScreenTab.SourceList)"
         hraClickEvent
         hraFeature="toggle-source-list"
+        (click)="openFullScreen(FullScreenTab.SourceList)"
       >
         <div>Source data</div>
       </button>
@@ -120,9 +120,9 @@
       @for (format of downloadFormats(); track format.label) {
         <button
           mat-menu-item
-          (click)="download(format.id)"
           hraClickEvent
           [hraFeature]="'download-' + (format.label | slugify)"
+          (click)="download(format.id)"
         >
           <div>{{ format.label }}</div>
         </button>
@@ -165,8 +165,8 @@
     class="tissue-tree"
     [class.hidden]="isCompactMode()"
     [nodes]="tissues()"
-    (navigate)="navigate($event.link, { queryParams: { id: $event.id } })"
     [(selected)]="selected"
+    (navigate)="navigate($event.link, { queryParams: { id: $event.id } })"
     #list
   />
 </ng-container>

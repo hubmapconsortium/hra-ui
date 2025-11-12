@@ -25,7 +25,7 @@
   <div class="socials-container">
     <div class="socials">
       @for (id of socials(); track id) {
-        <hra-social-media-button [id]="$any(id)" size="large" variant="color" />
+        <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
       }
     </div>
 

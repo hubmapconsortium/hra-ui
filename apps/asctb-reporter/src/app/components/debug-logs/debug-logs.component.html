@@ -13,10 +13,10 @@
       mat-stretch-tabs
       hraClickEvent
       hraClickEventTriggerOn="none"
-      #event="hraClickEvent"
       (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
+      #event="hraClickEvent"
     >
-      <mat-tab [label]="currentSheet().display" bodyClass="tab-body">
+      <mat-tab bodyClass="tab-body" [label]="currentSheet().display">
         <div class="content">
           <div class="logs-list">
             <div *ngFor="let l of logs().sheetLogs.messages" class="logs-list-item">
@@ -39,7 +39,7 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" [innerHTML]="i"></p>
+                    <p *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" class="i2" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
@@ -60,7 +60,7 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs().sheetLogs.SELF_LINKS" [innerHTML]="i"></p>
+                    <p *ngFor="let i of logs().sheetLogs.SELF_LINKS" class="i2" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
@@ -81,7 +81,7 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" [innerHTML]="i"></p>
+                    <p *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" class="i2" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
@@ -102,7 +102,7 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" [innerHTML]="i"></p>
+                    <p *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" class="i2" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
@@ -111,7 +111,7 @@
         </div>
       </mat-tab>
       <mat-tab label="All Logs" bodyClass="tab-body">
-        <div class="logs-list mt-2" *ngFor="let AL of logs().allLogs">
+        <div *ngFor="let AL of logs().allLogs" class="logs-list mt-2">
           <div *ngFor="let l of AL.messages" class="logs-list-item py-2">
             <mat-icon class="error-icon-list">{{ l.icon }}</mat-icon>
             <div mat-line class="error-list-container">
@@ -134,7 +134,7 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" [innerHTML]="i"></p>
+                  <p *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" class="i2" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -155,7 +155,7 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs().sheetLogs.SELF_LINKS" [innerHTML]="i"></p>
+                  <p *ngFor="let i of logs().sheetLogs.SELF_LINKS" class="i2" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -176,7 +176,7 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" [innerHTML]="i"></p>
+                  <p *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" class="i2" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -197,7 +197,7 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" [innerHTML]="i"></p>
+                  <p *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" class="i2" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>

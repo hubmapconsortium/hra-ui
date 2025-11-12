@@ -13,11 +13,11 @@
   <model-viewer
     class="model-viewer"
     hraFeature="model"
-    [attr.src]="viewerCardData().fileUrl"
-    [attr.alt]="alt()"
     shadow-intensity="1"
     camera-controls
     auto-rotate
+    [attr.src]="viewerCardData().fileUrl"
+    [attr.alt]="alt()"
   />
 }
 
@@ -51,10 +51,10 @@
     <button
       mat-icon-button
       hraClickEvent
-      [matMenuTriggerFor]="cardMenu.menu()"
       hraIconButtonSize="large"
       aria-label="Open the card's menu"
       hraPlainTooltip="More"
+      [matMenuTriggerFor]="cardMenu.menu()"
     >
       <mat-icon>more_vert</mat-icon>
     </button>

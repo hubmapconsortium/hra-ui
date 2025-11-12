@@ -43,7 +43,7 @@
         <input matInput type="number" formControlName="low" />
       </mat-form-field>
 
-      <mat-slider hraFeature="slider" hraClickEvent discrete [min]="min()" [max]="max()" step="1" [disabled]="disabled">
+      <mat-slider hraFeature="slider" hraClickEvent discrete step="1" [min]="min()" [max]="max()" [disabled]="disabled">
         <input matSliderStartThumb [value]="low()" />
         <input matSliderEndThumb [value]="high()" />
       </mat-slider>

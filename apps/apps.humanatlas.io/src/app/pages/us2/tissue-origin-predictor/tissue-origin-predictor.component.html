@@ -17,7 +17,7 @@
       class="card card-1"
     >
       <hra-workflow-card-extra>
-        <a [attr.href]="sampleLinkWithDefault()" target="_blank" rel="noopener noreferrer">
+        <a target="_blank" rel="noopener noreferrer" [attr.href]="sampleLinkWithDefault()">
           <button hraClickEvent hraFeature="view-sample" mat-button hraButtonSize="medium">View sample</button>
         </a>
       </hra-workflow-card-extra>
@@ -57,11 +57,11 @@
             type="file"
             accept=".csv"
             style="display: none"
-            (change)="onFileSelected($event)"
             data-testid="file-input"
+            (change)="onFileSelected($event)"
             #fileInput
           />
-          <button hraClickEvent hraFeature="upload-file" (click)="fileInput.click()" mat-button hraButtonSize="medium">
+          <button hraClickEvent hraFeature="upload-file" mat-button hraButtonSize="medium" (click)="fileInput.click()">
             Upload file
           </button>
         }
@@ -100,7 +100,7 @@
     <!-- CARD 3 -->
     <hra-workflow-card hraFeature="predict-tissue-origin" tagline="Predict Tissue Origin" step="3" class="card card-3">
       @if (file === undefined) {
-        <hra-error-indicator [errors]="['Please upload a dataset.']" class="error-message" />
+        <hra-error-indicator class="error-message" [errors]="['Please upload a dataset.']" />
       }
       <button
         hraClickEvent

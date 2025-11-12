@@ -4,8 +4,8 @@
     disableRipple
     panelWidth="auto"
     panelClass="options-container server-selector-panel"
-    [(ngModel)]="selectedServer"
     [hraModelChangeEvent]="['label']"
+    [(ngModel)]="selectedServer"
     #serverSelect
   >
     <mat-select-trigger>

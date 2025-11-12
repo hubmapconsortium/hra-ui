@@ -8,7 +8,7 @@
 
       @if (tooltip?.actionText && tooltip?.actionUrl) {
         <div hraInfoButtonActions>
-          <a mat-button color="accent" [href]="tooltip?.actionUrl" target="_blank">
+          <a mat-button color="accent" target="_blank" [href]="tooltip?.actionUrl">
             {{ tooltip?.actionText }}
           </a>
         </div>
@@ -30,7 +30,7 @@
 
   <mat-chip-set hraFeature="active-options">
     @for (option of chips(); track option.id) {
-      <mat-chip [hraFeature]="option.label | slugify" hraClickEvent (removed)="remove(option)" disableRipple>
+      <mat-chip hraClickEvent disableRipple [hraFeature]="option.label | slugify" (removed)="remove(option)">
         {{ option.label }}
         <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + option.label">
           <mat-icon>close</mat-icon>
@@ -39,19 +39,19 @@
     }
   </mat-chip-set>
 
-  <hra-rich-tooltip-container #content class="filter-menu">
+  <hra-rich-tooltip-container class="filter-menu" #content>
     <hra-rich-tooltip-content class="filter-menu-content">
       <mat-form-field hraFeature="search" hraClickEvent class="search field" subscriptSizing="dynamic">
         <mat-icon class="search-icon" matPrefix>search</mat-icon>
-        <input matInput type="text" [formControl]="searchControl" placeholder="Search" />
+        <input matInput type="text" placeholder="Search" [formControl]="searchControl" />
       </mat-form-field>
 
       <ng-scrollbar>
         <mat-action-list>
           @for (option of filteredOptions(); track option.id) {
             <div
-              [hraFeature]="option.label | slugify"
               class="option-content"
+              [hraFeature]="option.label | slugify"
               [class.selected]="selectedOptions().includes(option)"
               [class.large]="option.secondaryLabel"
             >
@@ -62,7 +62,7 @@
 
                   @if (tooltip.actionUrl) {
                     <div hraInfoButtonActions>
-                      <a mat-button color="accent" [href]="tooltip.actionUrl" target="_blank">
+                      <a mat-button color="accent" target="_blank" [href]="tooltip.actionUrl">
                         {{ tooltip.actionText }}
                       </a>
                     </div>
@@ -70,10 +70,10 @@
                 </hra-info-button>
               }
               <button
-                [hraFeature]="selectedOptions().includes(option) ? 'deselect' : 'select'"
                 hraClickEvent
                 mat-list-item
                 class="option"
+                [hraFeature]="selectedOptions().includes(option) ? 'deselect' : 'select'"
                 (click)="selectOption(option)"
               >
                 <div class="labels-count">

@@ -7,7 +7,7 @@
   } @else {
     <div class="sheet-header">
       <div class="name">{{ info.name }}</div>
-      <button mat-icon-button (click)="close()" hraFeature="close" hraClickEvent>
+      <button mat-icon-button hraFeature="close" hraClickEvent (click)="close()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
@@ -52,7 +52,7 @@
 
         <div class="info-title">{{ info.ontologyCode === 'HGNC' ? 'Link' : 'IRI' }}</div>
         <div class="info-description">
-          <a [href]="info.iri" target="_blank" hraHyperlink>{{ info.iri ? info.iri : 'No IRI found.' }}</a>
+          <a target="_blank" hraHyperlink [href]="info.iri">{{ info.iri ? info.iri : 'No IRI found.' }}</a>
         </div>
 
         <div *ngIf="info.extraLinks">
@@ -60,7 +60,7 @@
             <div class="info-title">{{ item.key }}</div>
 
             <div class="info-description">
-              <a [href]="item.value" target="_blank" hraHyperlink>{{
+              <a target="_blank" hraHyperlink [href]="item.value">{{
                 item.value
                   ? item.value
                   : 'No ' +
@@ -84,7 +84,7 @@
             </li>
           </ul>
         </div>
-        <div class="info-description" *ngIf="!info?.references?.length">No DOI references found.</div>
+        <div *ngIf="!info?.references?.length" class="info-description">No DOI references found.</div>
       </div>
     </ng-template>
   }

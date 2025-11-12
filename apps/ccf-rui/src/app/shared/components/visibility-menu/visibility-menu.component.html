@@ -7,11 +7,11 @@
     <div cdkOverlayOrigin class="item-entry" [class.selected]="selected" #origin="cdkOverlayOrigin">
       <mat-icon
         hraFeature="opacity-toggle"
-        [hraClickEvent]="{ visible: item.visible }"
         hraPlainTooltip="Edit opacity"
         class="opacity-icon"
-        [class.fade]="!item.visible"
         svgIcon="app:opacity"
+        [hraClickEvent]="{ visible: item.visible }"
+        [class.fade]="!item.visible"
         (click)="selection.set(item)"
       />
 

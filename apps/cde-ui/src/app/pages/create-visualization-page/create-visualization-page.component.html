@@ -1,13 +1,13 @@
-<form class="content" [formGroup]="visualizationForm" hraFeature="create-visualization-page">
+<form class="content" hraFeature="create-visualization-page" [formGroup]="visualizationForm">
   <div class="page-nav">
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
   <hra-workflow-card
     class="card data-upload"
+    hraFeature="upload-data"
     [allowUpload]="true"
     [loadProgress]="nodeProgress"
-    hraFeature="upload-data"
   >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1" />
@@ -57,12 +57,12 @@
       accept="text/csv,.csv"
       [loader]="nodesLoader"
       [options]="nodesLoaderOptions"
+      [errorMessage]="nodesErrorMessage"
+      [errorActionMessage]="nodesErrorActionMessage"
       (loadStarted)="clearNodes()"
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
       (loadErrored)="nodesLoadError = $event; nodeProgress = 0"
-      [errorMessage]="nodesErrorMessage"
-      [errorActionMessage]="nodesErrorActionMessage"
       (progress)="nodeProgress = $event"
       #nodesFileUpload
     />
@@ -304,10 +304,10 @@
 
   <hra-workflow-card
     class="color-config card"
+    hraFeature="configure-colors"
     [class.custom]="useCustomColorMap"
     [allowUpload]="true"
     [loadProgress]="colorProgress"
-    hraFeature="configure-colors"
   >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5" />
@@ -370,16 +370,16 @@
       <cde-file-upload
         class="upload-colormap"
         accept="text/csv,.csv"
+        data-testid="color-map-upload"
         [loader]="colorMapLoader"
         [options]="colorMapLoaderOptions"
+        [errorMessage]="colorErrorMessage"
+        [errorActionMessage]="colorErrorActionMessage"
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
         (loadErrored)="customColorMapLoadError = $event; colorProgress = 0"
-        [errorMessage]="colorErrorMessage"
-        [errorActionMessage]="colorErrorActionMessage"
         (progress)="colorProgress = $event"
         #customColorMapFileUpload
-        data-testid="color-map-upload"
       />
     }
   </hra-workflow-card>
@@ -404,11 +404,11 @@
       mat-button
       hraCtaButton
       hraPrimaryButton
-      [disabled]="!hasValidNodes() || !hasValidData()"
       data-testid="visualize"
-      (click)="submit()"
       hraFeature="submit"
       hraClickEvent
+      [disabled]="!hasValidNodes() || !hasValidData()"
+      (click)="submit()"
     >
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>

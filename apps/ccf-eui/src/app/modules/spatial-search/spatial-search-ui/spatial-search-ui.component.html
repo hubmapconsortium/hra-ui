@@ -60,8 +60,8 @@
         mat-icon-button
         hraIconButtonSize="large"
         disableRipple
-        (click)="closeSpatialSearch.emit()"
         hraPlainTooltip="Close"
+        (click)="closeSpatialSearch.emit()"
       >
         <mat-icon>close</mat-icon>
       </button>
@@ -101,25 +101,25 @@
         hraFeature="tissue-blocks"
         hraHoverEvent
         class="tissue-block list"
-        [tissueBlocks]="tissueBlocks()"
         title="Tissue Blocks"
         toolTipText="Total quantity of registered tissue blocks detected by the probing sphere."
+        [tissueBlocks]="tissueBlocks()"
       />
       <ccf-term-occurrence-list
         hraFeature="anatomical-structures"
         hraHoverEvent
         class="anatomical-structures list"
-        [termList]="anatomicalStructures()"
         title="Anatomical Structure Predictions"
         toolTipText="Total quantity of predicted anatomical structures detected by the probing sphere."
+        [termList]="anatomicalStructures()"
       />
       <ccf-term-occurrence-list
         hraFeature="cell-types"
         hraHoverEvent
         class="cell-type list"
-        [termList]="cellTypes()"
         title="Cell Type Predictions"
         toolTipText="Total quantity of predicted cell types detected by the probing sphere."
+        [termList]="cellTypes()"
       />
     </div>
 
@@ -156,8 +156,8 @@
         hraClickEvent
         mat-flat-button
         class="run-spatial-search button"
-        (click)="addSpatialSearch.emit()"
         [disabled]="tissueBlocks().length === 0"
+        (click)="addSpatialSearch.emit()"
       >
         Apply
       </button>

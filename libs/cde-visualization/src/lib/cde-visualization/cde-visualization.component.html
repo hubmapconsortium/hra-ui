@@ -4,17 +4,17 @@
   }
 
   <div class="metadata">
-    <cde-metadata [metadata]="metadataView()" hraFeature="metadata" />
+    <cde-metadata hraFeature="metadata" [metadata]="metadataView()" />
     <cde-cell-types
-      [(cellTypes)]="cellTypes"
-      [(cellTypesSelection)]="cellTypesSelection"
+      hraFeature="cell-types"
       [selectedCellType]="nodeTargetSelector()"
       [countAdjustments]="countAdjustments()"
+      [(cellTypes)]="cellTypes"
+      [(cellTypesSelection)]="cellTypesSelection"
       (downloadNodes)="downloadNodes()"
       (downloadEdges)="downloadEdges()"
       (downloadColorMap)="downloadColorMap()"
       (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
-      hraFeature="cell-types"
       #cellTypesTable
     />
   </div>
@@ -22,6 +22,7 @@
   <div class="visualizations">
     <div class="top">
       <cde-node-dist-visualization
+        hraFeature="visualization"
         [nodes]="nodesView()"
         [edges]="edgesView()"
         [maxEdgeDistance]="maxEdgeDistance()"
@@ -30,18 +31,17 @@
         (nodeClick)="nodeClick.emit($event)"
         (nodeHover)="nodeHover.emit($event)"
         (resetAllCells)="resetCellTypes()"
-        hraFeature="visualization"
       />
 
-      <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" hraFeature="violin-graph" />
+      <cde-violin hraFeature="violin-graph" [colors]="filteredColors()" [data]="filteredDistances()" />
     </div>
 
     <cde-histogram
+      hraFeature="histogram"
       [colors]="filteredColors()"
       [data]="filteredDistances()"
       [filteredCellTypes]="filteredCellTypes()"
       (updateColor)="updateColor($event.entry, $event.color)"
-      hraFeature="histogram"
       #histogram
     />
   </div>

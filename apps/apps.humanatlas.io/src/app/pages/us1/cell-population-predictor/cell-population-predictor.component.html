@@ -21,11 +21,11 @@
           class="info-icon"
           fontIcon="info"
           cdkOverlayOrigin
-          #uploadDataTooltipTrigger="cdkOverlayOrigin"
           (mouseover)="uploadInfoOpen = true"
           (mouseout)="uploadInfoOpen = false"
           (focus)="uploadInfoOpen = true"
           (blur)="uploadInfoOpen = false"
+          #uploadDataTooltipTrigger="cdkOverlayOrigin"
         />
         <ng-template
           cdkConnectedOverlay
@@ -75,16 +75,16 @@
               type="file"
               accept="application/json"
               style="display: none"
-              (change)="onFileSelected($event)"
               data-testid="file-input"
+              (change)="onFileSelected($event)"
               #fileInput
             />
             <button
               hraClickEvent
               hraFeature="upload-file"
-              (click)="fileInput.click()"
               mat-button
               hraButtonSize="medium"
+              (click)="fileInput.click()"
             >
               Upload file
             </button>
@@ -104,9 +104,9 @@
           class="info-icon"
           fontIcon="info"
           cdkOverlayOrigin
-          #createDataTooltipTrigger="cdkOverlayOrigin"
           (mouseover)="createInfoOpen = true"
           (mouseout)="createInfoOpen = false"
+          #createDataTooltipTrigger="cdkOverlayOrigin"
         >
           <ng-template
             cdkConnectedOverlay
@@ -140,13 +140,13 @@
 
         <ng-template
           cdkConnectedOverlay
-          [cdkConnectedOverlayDisableClose]="true"
           cdkConnectedOverlayDisposeOnNavigation="true"
           cdkConnectedOverlayHeight="100vh"
-          [cdkConnectedOverlayOpen]="ruiOpen"
-          [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }"
           cdkConnectedOverlayPanelClass="rui-panel"
           cdkConnectedOverlayWidth="100vw"
+          [cdkConnectedOverlayDisableClose]="true"
+          [cdkConnectedOverlayOpen]="ruiOpen"
+          [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }"
         >
           <hra-embedded-rui
             [supportedOrgans]="supportedOrgans.value()"

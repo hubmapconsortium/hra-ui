@@ -26,9 +26,9 @@
         <div class="cards">
           @for (component of components; track component.id) {
             <hra-action-card
-              [hraFeature]="(organ.label | slugify) + '.' + (component.productTitle | slugify)"
               class="component-card"
               variant="elevated"
+              [hraFeature]="(organ.label | slugify) + '.' + (component.productTitle | slugify)"
               [tagline]="component.webComponentName || component.productTitle"
               [subtagline]="component.webComponentName && component.productTitle"
               [image]="component.previewImage"
@@ -72,13 +72,13 @@
   <ng-template #sidenavTemplate>
     @if (sidenavData(); as data) {
       <hra-embed-sidenav-content
+        data-testid="sidenav-overlay"
         [tagline]="data.tagline"
         [code]="data.code"
         [showApp]="data.showApp"
         [tabIndex]="data.tabIndex"
-        (closeSidenav)="sidenavData.set(undefined)"
         [documentLink]="data.docLink"
-        data-testid="sidenav-overlay"
+        (closeSidenav)="sidenavData.set(undefined)"
       />
     }
   </ng-template>
@@ -86,7 +86,7 @@
   <ng-template #appIframeTemplate>
     @if (appIframeData(); as data) {
       <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)" />
-      <iframe title="appIframe" class="app-iframe" [srcdoc]="data.code" data-testid="iframe-overlay"></iframe>
+      <iframe title="appIframe" class="app-iframe" data-testid="iframe-overlay" [srcdoc]="data.code"></iframe>
     }
   </ng-template>
 </ng-container>

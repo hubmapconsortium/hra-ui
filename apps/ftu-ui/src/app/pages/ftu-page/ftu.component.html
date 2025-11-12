@@ -1,18 +1,18 @@
 <ftu-fullscreen-container
   class="content-container"
   [fullscreen]="isFullscreen()"
-  [(fullscreentabIndex)]="fullscreentabIndex"
-  (closeFullscreen)="closefullscreen()"
   [illustrationTemplate]="illustration"
   [biomarkerTemplate]="biomarker"
   [sourceListTemplate]="sourceListTemplate"
+  [(fullscreentabIndex)]="fullscreentabIndex"
+  (closeFullscreen)="closefullscreen()"
 >
   <ng-template #illustration>
     <div class="left-side">
       <ftu-medical-illustration-behavior
+        class="illustration"
         [(isFullscreen)]="isFullscreen"
         (isFullscreenChange)="fullscreentabIndex.set(0)"
-        class="illustration"
       />
     </div>
   </ng-template>
@@ -20,8 +20,8 @@
   <ng-template #biomarker>
     <div class="fullscreen-content-container">
       <ftu-biomarker-details
-        (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"
         class="illustration-details"
+        (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"
         (sourceListTemplate)="setSourceList($event)"
       />
     </div>

@@ -4,8 +4,8 @@
   [class.highlighted]="highlighted()"
   [tagline]="'Donor: ' + tissueBlock().donor?.label"
   [label]="'Provenance: ' + tissueBlock().donor?.description"
-  (toggleExpansion)="toggleExpansion()"
   [menuLink]="tissueBlock().donor?.link ?? ''"
+  (toggleExpansion)="toggleExpansion()"
 />
 
 @if (expanded()) {

@@ -23,9 +23,9 @@
       mat-button
       hraButtonVariant="primary"
       hraButtonSize="medium"
-      [matMenuTriggerFor]="templatesMenu"
       hraFeature="templates-menu"
       hraClickEvent
+      [matMenuTriggerFor]="templatesMenu"
     >
       Templates
     </button>
@@ -64,7 +64,7 @@
   </div>
 
   <div class="submit-button">
-    <button mat-flat-button hraButtonSize="medium" (click)="submitData()" hraFeature="submit-button" hraClickEvent>
+    <button mat-flat-button hraButtonSize="medium" hraFeature="submit-button" hraClickEvent (click)="submitData()">
       Submit
     </button>
   </div>

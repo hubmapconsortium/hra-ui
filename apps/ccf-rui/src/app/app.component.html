@@ -3,8 +3,8 @@
   <hra-nav-header-buttons
     hraFeature="nav-header"
     app="product:rui"
-    [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/rui/'"
     appTitle="Registration User Interface"
+    [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/rui/'"
     [brandmark]="true"
   />
   <ccf-left-sidebar hraFeature="left-sidebar" [modalClosed]="registrationStarted" />
@@ -14,10 +14,10 @@
         hraFeature="registration"
         hraClickEvent
         mat-icon-button
-        [matMenuTriggerFor]="menu"
         hraIconButtonSize="large"
         aria-label="Icon to open nested menu"
         hraPlainTooltip="More"
+        [matMenuTriggerFor]="menu"
       >
         <mat-icon>more_vert</mat-icon>
       </button>

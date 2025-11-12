@@ -14,19 +14,19 @@
   >
     <mat-sidenav
       hraFeature="sidenav"
-      #sidenav
       [mode]="!isWideScreen() ? 'over' : 'side'"
       [opened]="isWideScreen()"
       [fixedInViewport]="true"
       [fixedTopGap]="isSmallScreen() ? 73 : 113"
+      #sidenav
     >
       <hra-filter-menu
         hraFeature="filter-menu"
         [filterCategories]="filterCategoriesArray()"
-        (toggleForm)="sidenav.toggle()"
         [formClosed]="!sidenav.opened"
-        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
         [currentFilters]="filters()"
+        (toggleForm)="sidenav.toggle()"
+        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
       />
     </mat-sidenav>
     <mat-sidenav-content hraFeature="digital-objects">
@@ -40,13 +40,13 @@
           <hra-results-indicator description="Viewing" [value]="filteredRows().length" [total]="allRows().length" />
         </div>
         <hra-table
-          #table
           style="divider"
           [enableSort]="true"
           [rows]="filteredRows()"
           [columns]="columns()"
           (routeClicked)="router.navigate([$event])"
           (downloadHovered)="downloadId.set($event)"
+          #table
         >
           <hra-footer />
         </hra-table>

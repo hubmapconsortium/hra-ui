@@ -15,7 +15,7 @@
     </button>
 
     <!-- MENU -->
-    <mat-menu hraFeature="menu" #optionsForAnatomicalTable="matMenu" class="custom-menu">
+    <mat-menu hraFeature="menu" class="custom-menu" #optionsForAnatomicalTable="matMenu">
       <button
         hraHoverEvent
         hraFeature="info"
@@ -35,53 +35,53 @@
     </mat-menu>
 
     <mat-menu #submenu="matMenu">
-      <hra-tooltip-card [content]="tooltip" class="tooltip-panel" />
+      <hra-tooltip-card class="tooltip-panel" [content]="tooltip" />
     </mat-menu>
   </hra-workflow-card-actions>
 
   <!-- ANATOMICAL STRUCTURES TABLE -->
   <ng-scrollbar class="table-overflow-container">
-    <table hraFeature="predictions" mat-table matSort [dataSource]="dataSource" class="predictions-table">
+    <table hraFeature="predictions" mat-table matSort class="predictions-table" [dataSource]="dataSource">
       <caption>
         Table displaying similar anatomical structures
       </caption>
 
       <ng-container matColumnDef="tool">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tool">Tool</th>
-        <td mat-cell *matCellDef="let element">{{ element.tool }}</td>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Tool">Tool</th>
+        <td *matCellDef="let element" mat-cell>{{ element.tool }}</td>
       </ng-container>
       <ng-container matColumnDef="modality">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Modality">Modality</th>
-        <td mat-cell *matCellDef="let element">{{ element.modality }}</td>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Modality">Modality</th>
+        <td *matCellDef="let element" mat-cell>{{ element.modality }}</td>
       </ng-container>
       <ng-container matColumnDef="similarity">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Similarity">Similarity</th>
-        <td mat-cell *matCellDef="let element" class="similarity-column">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Similarity">Similarity</th>
+        <td *matCellDef="let element" mat-cell class="similarity-column">
           {{ element.similarity | number: '1.0-2' }}
         </td>
       </ng-container>
       <ng-container matColumnDef="cell_source_label">
         <th
-          mat-header-cell
           *matHeaderCellDef
+          mat-header-cell
           mat-sort-header
           sortActionDescription="Sort by Anatomical Structure Label"
         >
           Anatomical Structure Label
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.cell_source_label }}</td>
+        <td *matCellDef="let element" mat-cell>{{ element.cell_source_label }}</td>
       </ng-container>
       <ng-container matColumnDef="cell_source">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Anatomical Structure ID">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Anatomical Structure ID">
           Anatomical Structure ID
         </th>
-        <td mat-cell *matCellDef="let element">
+        <td *matCellDef="let element" mat-cell>
           <a hraHyperlink [href]="element.cell_source">{{ element.cell_source }}</a>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
     </table>
   </ng-scrollbar>
 </hra-workflow-card>

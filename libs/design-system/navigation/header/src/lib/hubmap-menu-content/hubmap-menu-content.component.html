@@ -2,7 +2,7 @@
   <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: group }" />
 }
 
-<ng-template hraHubmapMenuGroup let-group #groupTemplate>
+<ng-template let-group hraHubmapMenuGroup #groupTemplate>
   <div class="group-label">
     {{ group.label }}
   </div>
@@ -14,7 +14,7 @@
   </div>
 </ng-template>
 
-<ng-template hraHubmapMenuItem let-item #itemTemplate>
+<ng-template let-item hraHubmapMenuItem #itemTemplate>
   <hra-app-nav-button
     class="item-button"
     [tagline]="item.label"

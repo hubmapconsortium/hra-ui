@@ -11,8 +11,8 @@
 
   <hra-expansion-panel-header-content>
     <cde-node-dist-visualization-controls
-      [(viewMode)]="viewMode"
       [deleteDisabled]="!hasSelection()"
+      [(viewMode)]="viewMode"
       (deleteClick)="deleteSelection()"
       (viewModeChange)="cellInfo.set(undefined)"
     />
@@ -29,8 +29,8 @@
       />
 
       <cde-node-dist-visualization-controls
-        [(viewMode)]="viewMode"
         [deleteDisabled]="!hasSelection()"
+        [(viewMode)]="viewMode"
         (deleteClick)="deleteSelection()"
         (viewModeChange)="cellInfo.set(undefined)"
       />
@@ -57,8 +57,8 @@
 >
   <hra-info-modal
     title="Cell Info"
+    data-testid="cell-info"
     [data]="cellInfoContent()"
     (close)="cellInfo.set(undefined)"
-    data-testid="cell-info"
   />
 </ng-template>

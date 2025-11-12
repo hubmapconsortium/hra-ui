@@ -2,8 +2,8 @@
   <div header>
     <app-sidenav-header
       title="Compare Data"
-      (closeSideNav)="closeCompare.emit()"
       tooltipString="Link your own data to compare it with the Master Data Tables"
+      (closeSideNav)="closeCompare.emit()"
     />
   </div>
 
@@ -31,8 +31,8 @@
                   <mat-button-toggle-group
                     hraButtonToggleSize="medium"
                     [hideSingleSelectionIndicator]="false"
-                    #dataSource="matButtonToggleGroup"
                     (change)="onDataSourceChange(i)"
+                    #dataSource="matButtonToggleGroup"
                   >
                     <mat-button-toggle value="file" checked hraFeature="upload-file" hraClickEvent
                       >Upload file
@@ -66,7 +66,7 @@
                   <div class="dataset-title-color">
                     <mat-form-field appearance="fill" subscriptSizing="dynamic">
                       <mat-label>Title</mat-label>
-                      <input matInput placeholder="Sheet {{ i + 1 }}" formControlName="title" />
+                      <input placeholder="Sheet {{ i + 1 }}" matInput formControlName="title" />
                     </mat-form-field>
                     <div class="color-selector">
                       <div>Dataset color:</div>
@@ -74,9 +74,9 @@
                         <input
                           type="color"
                           formControlName="color"
-                          [style.backgroundColor]="sheet.get('color')?.value"
                           hraFeature="dataset-color"
                           hraClickEvent
+                          [style.backgroundColor]="sheet.get('color')?.value"
                         />
                       </div>
                     </div>
@@ -95,7 +95,7 @@
       </div>
     </ng-scrollbar>
 
-    <mat-menu #templatesMenu="matMenu" hraFeature="templates-menu">
+    <mat-menu hraFeature="templates-menu" #templatesMenu="matMenu">
       <a
         mat-menu-item
         hraFeature="asctb-table-template"
@@ -117,7 +117,7 @@
 
   <div footer>
     <div class="mt-2" class="button-container">
-      <button mat-button hraButtonSize="medium" (click)="addCompareSheetRow()" hraFeature="add-dataset" hraClickEvent>
+      <button mat-button hraButtonSize="medium" hraFeature="add-dataset" hraClickEvent (click)="addCompareSheetRow()">
         <mat-icon>add_circle</mat-icon>
         Add Dataset
       </button>
@@ -126,8 +126,8 @@
         hraFeature="compare"
         hraClickEvent
         hraButtonSize="medium"
-        (click)="compare()"
         [ngClass]="{ 'compare-button-color': !formValid }"
+        (click)="compare()"
       >
         Compare
       </button>
