@@ -22,26 +22,23 @@ export class GoogleMapsComponent {
   private readonly sanitizer = inject(DomSanitizer);
 
   /** Maps URL for the iframe */
-  readonly mapsUrl = input.required({
-    transform: (value: string) => this.sanitizer.bypassSecurityTrustResourceUrl(value.trim()),
-  });
+  readonly url = input.required<string>();
 
-  /** Alternate URL to open in new tab if cookies are disabled */
-  readonly alternateUrl = input.required<string>();
+  /** Trusted URL for the iframe */
+  protected readonly mapsUrl = computed(() => this.sanitizer.bypassSecurityTrustResourceUrl(this.url()));
+
+  /** External URL to open in new tab if cookies are disabled */
+  readonly externalUrl = input.required<string>();
+
+  /** Fallback image URL to show if cookies are disabled */
+  readonly fallbackImageUrl = input.required<string>();
 
   /** Consent service */
   private readonly consentService = inject(ConsentService);
 
   /** Privacy preferences service */
-  private readonly privacyPreferencesService = inject(PrivacyPreferencesService);
+  protected readonly privacyPreferencesService = inject(PrivacyPreferencesService);
 
   /** Flag indicating whether marketing cookies are enabled */
-  protected readonly isMarketingCookiesEnabled = computed(() =>
-    this.consentService.isCategoryEnabled(EventCategory.Marketing),
-  );
-
-  /** Function to display cookies consent dialog */
-  protected enableCookies(): void {
-    this.privacyPreferencesService.openPrivacyPreferences('consent');
-  }
+  protected readonly enabled = computed(() => this.consentService.isCategoryEnabled(EventCategory.Marketing));
 }
