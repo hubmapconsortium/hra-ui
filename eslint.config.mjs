@@ -141,7 +141,9 @@ export const configs = {
     },
     {
       files: ['**/*.html'],
-      rules: {},
+      rules: {
+        '@angular-eslint/template/prefer-self-closing-tags': 'error',
+      },
     },
   ],
 
