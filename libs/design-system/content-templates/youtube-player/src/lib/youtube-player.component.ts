@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, viewChild } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
@@ -9,7 +8,7 @@ import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 /** YouTube Player wrapper component for Content Pages */
 @Component({
   selector: 'hra-youtube-player',
-  imports: [CommonModule, HraCommonModule, YouTubePlayer],
+  imports: [HraCommonModule, YouTubePlayer],
   templateUrl: './youtube-player.component.html',
   styleUrl: './youtube-player.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,11 +17,11 @@ export class HraYoutubePlayerComponent {
   /** The ID of the YouTube video to play*/
   readonly videoId = input.required<string>();
 
-  /** Optional player variables to pass to YouTube player */
-  readonly playerVars = input<YT.PlayerVars>();
+  /** Label for the video used in accessibility text */
+  readonly label = input.required<string>();
 
   /** ViewChild reference to the YouTube player for programmatic control */
-  private readonly player = viewChild<YouTubePlayer>('player');
+  readonly player = viewChild<YouTubePlayer>('player');
 
   /** Consent service to check if marketing cookies are enabled */
   private readonly consentService = inject(ConsentService);
@@ -39,33 +38,8 @@ export class HraYoutubePlayerComponent {
   /** YouTube video URL */
   protected readonly videoUrl = computed(() => `https://www.youtube.com/watch?v=${this.videoId()}`);
 
-  /** Handle enable cookies link click - opens privacy preferences modal */
-  protected onEnableCookiesClick(event: Event): void {
-    event.preventDefault();
-    event.stopPropagation();
+  /** Handle enable cookies button click - opens privacy preferences modal */
+  protected onEnableCookiesClick(): void {
     this.privacyPreferencesService.openPrivacyPreferences('consent');
-  }
-
-  /**
-   * Seeks the YouTube player to a specific time in seconds.
-   * @param seconds The target time in seconds to seek to.
-   * @param allowSeekAhead Whether to make a new request to the server if needed.
-   */
-  seekTo(seconds: number, allowSeekAhead = true): void {
-    this.player()?.seekTo(seconds, allowSeekAhead);
-  }
-
-  /**
-   * Pauses the currently playing video.
-   */
-  pauseVideo(): void {
-    this.player()?.pauseVideo();
-  }
-
-  /**
-   * Plays the currently cued/loaded video.
-   */
-  playVideo(): void {
-    this.player()?.playVideo();
   }
 }

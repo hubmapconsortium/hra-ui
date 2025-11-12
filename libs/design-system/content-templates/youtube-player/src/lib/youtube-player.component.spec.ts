@@ -6,6 +6,9 @@ import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 import { HraYoutubePlayerComponent } from './youtube-player.component';
 
 describe('HraYoutubePlayerComponent', () => {
+  const TEST_VIDEO_ID = 'lYRNWAPxyqM';
+  const TEST_LABEL = 'Test video';
+
   let mockConsentService: {
     isCategoryEnabled: jest.Mock;
     isEventEnabled: jest.Mock;
@@ -28,94 +31,70 @@ describe('HraYoutubePlayerComponent', () => {
     };
   });
 
+  const renderComponent = async (videoId = TEST_VIDEO_ID, label = TEST_LABEL) => {
+    return render(HraYoutubePlayerComponent, {
+      inputs: {
+        videoId,
+        label,
+      },
+      providers: [
+        { provide: ConsentService, useValue: mockConsentService },
+        { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
+      ],
+    });
+  };
+
   it('should render', async () => {
     mockConsentService.isCategoryEnabled.mockReturnValue(false);
 
-    const promise = render(HraYoutubePlayerComponent, {
-      inputs: {
-        videoId: 'lYRNWAPxyqM',
-      },
-      providers: [
-        { provide: ConsentService, useValue: mockConsentService },
-        { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
-      ],
-    });
+    const promise = renderComponent();
     await expect(promise).resolves.toBeTruthy();
   });
 
-  it('should show YouTube player when marketing cookies are enabled', async () => {
-    mockConsentService.isCategoryEnabled.mockImplementation(
-      (category: EventCategory) => category === EventCategory.Marketing,
-    );
-
-    await render(HraYoutubePlayerComponent, {
-      inputs: {
-        videoId: 'lYRNWAPxyqM',
-      },
-      providers: [
-        { provide: ConsentService, useValue: mockConsentService },
-        { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
-      ],
+  describe('when marketing cookies are enabled', () => {
+    beforeEach(() => {
+      mockConsentService.isCategoryEnabled.mockImplementation(
+        (category: EventCategory) => category === EventCategory.Marketing,
+      );
     });
 
-    const youtubePlayer = document.querySelector('youtube-player');
-    expect(youtubePlayer).toBeTruthy();
+    it('should show YouTube player', async () => {
+      await renderComponent();
+
+      const youtubePlayer = document.querySelector('youtube-player');
+      expect(youtubePlayer).toBeTruthy();
+    });
   });
 
-  it('should show thumbnail fallback when marketing cookies are disabled', async () => {
-    mockConsentService.isCategoryEnabled.mockReturnValue(false);
-
-    await render(HraYoutubePlayerComponent, {
-      inputs: {
-        videoId: 'lYRNWAPxyqM',
-      },
-      providers: [
-        { provide: ConsentService, useValue: mockConsentService },
-        { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
-      ],
+  describe('when marketing cookies are disabled', () => {
+    beforeEach(() => {
+      mockConsentService.isCategoryEnabled.mockReturnValue(false);
     });
 
-    const thumbnail = document.querySelector('.youtube-thumbnail-container');
-    expect(thumbnail).toBeTruthy();
+    it('should show thumbnail fallback', async () => {
+      await renderComponent();
 
-    const enableCookiesText = screen.getByText(/Enable cookies/i);
-    expect(enableCookiesText).toBeTruthy();
-  });
+      const thumbnail = document.querySelector('.youtube-thumbnail-container');
+      expect(thumbnail).toBeTruthy();
 
-  it('should use YouTube default thumbnail when no custom URL provided', async () => {
-    mockConsentService.isCategoryEnabled.mockReturnValue(false);
-    const videoId = 'lYRNWAPxyqM';
-
-    await render(HraYoutubePlayerComponent, {
-      inputs: {
-        videoId,
-      },
-      providers: [
-        { provide: ConsentService, useValue: mockConsentService },
-        { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
-      ],
+      const enableCookiesText = screen.getByText(/Enable cookies/i);
+      expect(enableCookiesText).toBeTruthy();
     });
 
-    const thumbnailImage = document.querySelector('.thumbnail-image') as HTMLImageElement;
-    expect(thumbnailImage?.src).toContain(`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`);
-  });
+    it('should use YouTube default thumbnail when no custom URL provided', async () => {
+      await renderComponent(TEST_VIDEO_ID);
 
-  it('should open privacy preferences when "Enable cookies" link is clicked', async () => {
-    mockConsentService.isCategoryEnabled.mockReturnValue(false);
-
-    await render(HraYoutubePlayerComponent, {
-      inputs: {
-        videoId: 'lYRNWAPxyqM',
-      },
-      providers: [
-        { provide: ConsentService, useValue: mockConsentService },
-        { provide: PrivacyPreferencesService, useValue: mockPrivacyService },
-      ],
+      const thumbnailImage = document.querySelector('.thumbnail-image') as HTMLImageElement;
+      expect(thumbnailImage?.src).toContain(`https://img.youtube.com/vi/${TEST_VIDEO_ID}/maxresdefault.jpg`);
     });
 
-    const enableCookiesLink = screen.getByText(/Enable cookies/i);
-    await userEvent.click(enableCookiesLink);
+    it('should open privacy preferences when "Enable cookies" link is clicked', async () => {
+      await renderComponent();
 
-    expect(mockPrivacyService.openPrivacyPreferences).toHaveBeenCalledWith('consent');
+      const enableCookiesLink = screen.getByText(/Enable cookies/i);
+      await userEvent.click(enableCookiesLink);
+
+      expect(mockPrivacyService.openPrivacyPreferences).toHaveBeenCalledWith('consent');
+    });
   });
 });
