@@ -142,6 +142,19 @@ export const configs = {
     {
       files: ['**/*.html'],
       rules: {
+        '@angular-eslint/template/attributes-order': [
+          'error',
+          {
+            order: [
+              'STRUCTURAL_DIRECTIVE',
+              'ATTRIBUTE_BINDING',
+              'INPUT_BINDING',
+              'TWO_WAY_BINDING',
+              'OUTPUT_BINDING',
+              'TEMPLATE_REFERENCE',
+            ],
+          },
+        ],
         '@angular-eslint/template/prefer-self-closing-tags': 'error',
         '@angular-eslint/template/prefer-static-string-properties': 'error',
       },
