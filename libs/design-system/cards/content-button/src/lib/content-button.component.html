@@ -1,8 +1,4 @@
 <a mat-button [hraLink]="link()" [hraLinkExternal]="external()" class="content-button">
-  <ng-container *ngTemplateOutlet="content" />
-</a>
-
-<ng-template #content>
   <div class="header">
     <img class="image" [attr.src]="imageSrc() | assetUrl" alt="" />
   </div>
@@ -16,4 +12,4 @@
       }
     </mat-chip-set>
   </div>
-</ng-template>
+</a>
