@@ -8,12 +8,11 @@
 }
 
 <ng-template hraMenuGroup let-group #groupTemplate>
-  @let url = resolveUrl(group.url, group.external);
   <a
     mat-button
     class="group-label"
-    [hraLink]="url.value"
-    [hraLinkExternal]="url.isExternal"
+    [hraLink]="resolveUrl(group.url, group.external).value"
+    [hraLinkExternal]="resolveUrl(group.url, group.external).isExternal"
     [attr.target]="group.target ?? ''"
     rel="noopener noreferrer"
     hraClickEvent
@@ -54,13 +53,12 @@
 </ng-template>
 
 <ng-template hraMenuItem let-item #itemTemplate>
-  @let url = resolveUrl(item.url, item.external);
   <a
     mat-button
     hraSecondaryButton
     class="item-label"
-    [hraLink]="url.value"
-    [hraLinkExternal]="url.isExternal"
+    [hraLink]="resolveUrl(item.url, item.external).value"
+    [hraLinkExternal]="resolveUrl(item.url, item.external).isExternal"
     [attr.target]="item.target ?? ''"
     rel="noopener noreferrer"
     hraClickEvent
