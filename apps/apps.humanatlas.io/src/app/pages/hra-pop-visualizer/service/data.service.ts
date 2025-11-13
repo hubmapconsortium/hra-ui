@@ -17,7 +17,7 @@ import {
   ParsedDatasetCellData,
   DatasetCellSparqlBindingSchema,
 } from '../utils/models/dataset-cell-data.model';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Interface for extraction site details returned by the API

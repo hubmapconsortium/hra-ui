@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Release notes version type */
 export type ReleaseNotesVersion = z.infer<typeof ReleaseNotesVersionSchema>;

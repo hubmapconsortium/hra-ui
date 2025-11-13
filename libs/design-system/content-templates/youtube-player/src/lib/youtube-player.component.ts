@@ -33,7 +33,7 @@ export class HraYoutubePlayerComponent {
   protected readonly hasCookiesEnabled = computed(() => this.consentService.isCategoryEnabled(EventCategory.Marketing));
 
   /** Computed thumbnail URL */
-  protected readonly thumbnailUrl = computed(() => `https://img.youtube.com/vi/${this.videoId()}/maxresdefault.jpg`);
+  protected readonly thumbnailUrl = computed(() => `https://img.youtube.com/vi/${this.videoId()}/sddefault.jpg`);
 
   /** YouTube video URL */
   protected readonly videoUrl = computed(() => `https://www.youtube.com/watch?v=${this.videoId()}`);

@@ -33,26 +33,21 @@ export class ReportService {
       CTWithNoB: [],
     };
 
-    try {
-      output.anatomicalStructures = makeAS(data, true, isReportNotOrganWise);
-      output.cellTypes = makeCellTypes(data, true, isReportNotOrganWise);
-      output.biomarkers = makeBioMarkers(data, biomarkerType, true, isReportNotOrganWise);
+    output.anatomicalStructures = makeAS(data, true, isReportNotOrganWise);
+    output.cellTypes = makeCellTypes(data, true, isReportNotOrganWise);
+    output.biomarkers = makeBioMarkers(data, biomarkerType, true, isReportNotOrganWise);
 
-      output.ASWithNoLink = this.getASWithNoLink(output.anatomicalStructures);
-      output.CTWithNoLink = this.getCTWithNoLink(output.cellTypes);
-      output.BWithNoLink = this.getBMWithNoLink(output.biomarkers);
-      const { asWithNoCT, ctWithNoB } = this.getASWithNoCT(data);
-      output.ASWithNoCT = asWithNoCT;
-      output.CTWithNoB = ctWithNoB;
+    output.ASWithNoLink = this.getASWithNoLink(output.anatomicalStructures);
+    output.CTWithNoLink = this.getCTWithNoLink(output.cellTypes);
+    output.BWithNoLink = this.getBMWithNoLink(output.biomarkers);
+    const { asWithNoCT, ctWithNoB } = this.getASWithNoCT(data);
+    output.ASWithNoCT = asWithNoCT;
+    output.CTWithNoB = ctWithNoB;
 
-      this.reportData.next({
-        data: output,
-        sheet: currentSheet,
-      });
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
+    this.reportData.next({
+      data: output,
+      sheet: currentSheet,
+    });
   }
 
   countsGA(data: Row[]) {
@@ -108,57 +103,52 @@ export class ReportService {
       CTWithNoB: [],
     };
 
-    try {
-      const as = makeAS(asFullData, true);
-      const ct = makeCellTypes(sheetData, true, false);
-      const b = makeBioMarkers(sheetData, 'All', true, false);
-      result.anatomicalStructures = as.reduce<AS[]>((acc, curr) => {
-        return this.countOrganWise(acc, curr, 'anatomicalStructures');
-      }, []);
-      result.ASWithNoLink = this.getASWithNoLink(as).reduce<AS[]>((acc, curr) => {
-        return this.countOrganWise(acc, curr, 'ASWithNoLink');
-      }, []);
-      const { asWithNoCT, ctWithNoB } = this.getASWithNoCT(asFullData);
-      result.ASWithNoCT = asWithNoCT.reduce<EntityWithNoOtherEntity[]>((acc, curr) => {
-        return this.countOrganWise(acc, curr, 'ASWithNoCT');
-      }, []);
+    const as = makeAS(asFullData, true);
+    const ct = makeCellTypes(sheetData, true, false);
+    const b = makeBioMarkers(sheetData, 'All', true, false);
+    result.anatomicalStructures = as.reduce<AS[]>((acc, curr) => {
+      return this.countOrganWise(acc, curr, 'anatomicalStructures');
+    }, []);
+    result.ASWithNoLink = this.getASWithNoLink(as).reduce<AS[]>((acc, curr) => {
+      return this.countOrganWise(acc, curr, 'ASWithNoLink');
+    }, []);
+    const { asWithNoCT, ctWithNoB } = this.getASWithNoCT(asFullData);
+    result.ASWithNoCT = asWithNoCT.reduce<EntityWithNoOtherEntity[]>((acc, curr) => {
+      return this.countOrganWise(acc, curr, 'ASWithNoCT');
+    }, []);
 
-      result.CTWithNoB = ctWithNoB.reduce<EntityWithNoOtherEntity[]>((acc, curr) => {
-        return this.countOrganWise(acc, curr, 'CTWithNoB');
-      }, []);
+    result.CTWithNoB = ctWithNoB.reduce<EntityWithNoOtherEntity[]>((acc, curr) => {
+      return this.countOrganWise(acc, curr, 'CTWithNoB');
+    }, []);
 
-      const biomarkersSeperate = this.countSeperateBiomarkers(b);
-      const biomarkersSeperateNames: { type: string; name: string }[] = [];
-      Object.keys(biomarkersSeperate).forEach((bType) => {
-        result[bType as keyof typeof result] = biomarkersSeperate[bType].reduce(
-          (acc, curr) => {
-            return this.countOrganWise(acc, curr, bType);
-          },
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          [] as any[],
-        ) as unknown as never[];
-        biomarkersSeperateNames.push({
-          type: this.BM_TYPE[bType as keyof typeof this.BM_TYPE],
-          name: bType,
-        });
+    const biomarkersSeperate = this.countSeperateBiomarkers(b);
+    const biomarkersSeperateNames: { type: string; name: string }[] = [];
+    Object.keys(biomarkersSeperate).forEach((bType) => {
+      result[bType as keyof typeof result] = biomarkersSeperate[bType].reduce(
+        (acc, curr) => {
+          return this.countOrganWise(acc, curr, bType);
+        },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [] as any[],
+      ) as unknown as never[];
+      biomarkersSeperateNames.push({
+        type: this.BM_TYPE[bType as keyof typeof this.BM_TYPE],
+        name: bType,
       });
-      result.biomarkers = b.reduce<B[]>((acc, curr) => {
-        return this.countOrganWise(acc, curr, 'biomarkers');
-      }, []);
-      result.cellTypes = ct.reduce<CT[]>((acc, curr) => {
-        return this.countOrganWise(acc, curr, 'cellTypes');
-      }, []);
-      result.BWithNoLink = this.getCTWithNoLink(ct).reduce<B[]>((acc, curr) => {
-        return this.countOrganWise(acc, curr, 'BWithNoLink');
-      }, []);
-      result.CTWithNoLink = this.getBMWithNoLink(b).reduce<B[]>((acc, curr) => {
-        return this.countOrganWise(acc, curr, 'CTWithNoLink');
-      }, []);
-      return { result, biomarkersSeperateNames };
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
+    });
+    result.biomarkers = b.reduce<B[]>((acc, curr) => {
+      return this.countOrganWise(acc, curr, 'biomarkers');
+    }, []);
+    result.cellTypes = ct.reduce<CT[]>((acc, curr) => {
+      return this.countOrganWise(acc, curr, 'cellTypes');
+    }, []);
+    result.BWithNoLink = this.getCTWithNoLink(ct).reduce<B[]>((acc, curr) => {
+      return this.countOrganWise(acc, curr, 'BWithNoLink');
+    }, []);
+    result.CTWithNoLink = this.getBMWithNoLink(b).reduce<B[]>((acc, curr) => {
+      return this.countOrganWise(acc, curr, 'CTWithNoLink');
+    }, []);
+    return { result, biomarkersSeperateNames };
   }
 
   makeAllOrganReportDataCountsByOrgan(data: Report, linksByOrgan: LinksASCTBData, tableVersion: Map<string, string>) {

@@ -83,7 +83,7 @@ export const WINDOW = new InjectionToken<typeof window>('window', {
     NavigationModule,
   ],
   templateUrl: './web-components.component.html',
-  styleUrls: ['./web-components.component.scss'],
+  styleUrl: './web-components.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WebComponentsComponent {

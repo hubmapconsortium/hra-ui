@@ -25,8 +25,6 @@ type GetChildrenFunc = (o: OntologyTreeNode) => OntologyTreeNode[];
  */
 @Component({
   selector: 'ccf-ontology-tree',
-  templateUrl: './ontology-tree.component.html',
-  styleUrls: ['./ontology-tree.component.scss'],
   imports: [
     HraCommonModule,
     MatButtonModule,
@@ -39,6 +37,8 @@ type GetChildrenFunc = (o: OntologyTreeNode) => OntologyTreeNode[];
     ScrollOverflowFadeDirective,
     PlainTooltipDirective,
   ],
+  templateUrl: './ontology-tree.component.html',
+  styleUrl: './ontology-tree.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologyTreeComponent {

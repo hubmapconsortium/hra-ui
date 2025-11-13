@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'ftu-ui-tooltip',
   imports: [CommonModule],
   templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.scss'],
+  styleUrl: './tooltip.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipComponent {

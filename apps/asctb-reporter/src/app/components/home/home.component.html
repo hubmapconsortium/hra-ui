@@ -1,7 +1,7 @@
 <div class="splash-header" hraFeature="header">
-  <img class="splash-img" [src]="'assets/images/splash.png' | assetUrl" alt="Splash Image" />
+  <img class="splash-img" alt="Splash Image" [src]="'assets/images/splash.png' | assetUrl" />
   <div class="splash-content">
-    <hra-icon class="icon" [svgIcon]="'product:asctb-reporter'"></hra-icon>
+    <hra-icon class="icon" svgIcon="product:asctb-reporter" />
     <div class="title">Create and visualize Human Reference Atlas Data</div>
     <div class="actions">
       <a
@@ -37,10 +37,10 @@
     <div class="youtube-video-container">
       <hra-youtube-player
         hraFeature="player"
-        #youtubePlayer
         videoId="pzUFmDhQEO8"
         label="ASCT+B Reporter demonstration"
-      ></hra-youtube-player>
+        #youtubePlayer
+      />
     </div>
     <div class="section-selector-container">
       <div class="chapters">Chapters</div>
@@ -50,10 +50,10 @@
             <button
               mat-button
               class="section-selector"
-              [class.section-selected]="$index === selectedVideoSection()"
               hraButtonVariant="primary"
-              [hraFeature]="section.header | slugify"
               hraClickEvent
+              [class.section-selected]="$index === selectedVideoSection()"
+              [hraFeature]="section.header | slugify"
               [disableRipple]="true"
               (click)="seekVideo(section.sec, $index)"
             >
@@ -84,54 +84,54 @@
           <a
             *ngIf="contributor.mail"
             mat-icon-button
-            [hraIconButtonVariant]="'color'"
-            [hraIconButtonSize]="'large'"
+            hraIconButtonVariant="color"
+            hraIconButtonSize="large"
             hraFeature="email"
             hraClickEvent
-            [href]="'mailto:' + contributor.mail"
             target="_blank"
+            [href]="`mailto:${contributor.mail}`"
           >
             <mat-icon color="accent">mail</mat-icon>
           </a>
           <a
             *ngIf="contributor.link"
             mat-icon-button
-            [hraIconButtonVariant]="'color'"
-            [hraIconButtonSize]="'large'"
+            hraIconButtonVariant="color"
+            hraIconButtonSize="large"
             hraFeature="personal-website"
             hraClickEvent
-            [href]="contributor.link"
             target="_blank"
+            [href]="contributor.link"
           >
             <mat-icon color="accent">person</mat-icon>
           </a>
           <a
             *ngIf="contributor.linkedin"
             mat-icon-button
-            [hraIconButtonVariant]="'color'"
-            [hraIconButtonSize]="'large'"
+            hraIconButtonVariant="color"
+            hraIconButtonSize="large"
             hraFeature="linkedin"
             hraClickEvent
-            [href]="contributor.linkedin"
             target="_blank"
+            [href]="contributor.linkedin"
           >
-            <mat-icon svgIcon="social:linkedin" color="accent"></mat-icon>
+            <mat-icon svgIcon="social:linkedin" color="accent" />
           </a>
           <a
             *ngIf="contributor.github"
             mat-icon-button
-            [hraIconButtonVariant]="'color'"
-            [hraIconButtonSize]="'large'"
+            hraIconButtonVariant="color"
+            hraIconButtonSize="large"
             hraFeature="github"
             hraClickEvent
-            [href]="contributor.github"
             target="_blank"
+            [href]="contributor.github"
           >
-            <mat-icon svgIcon="social:github" color="accent"></mat-icon>
+            <mat-icon svgIcon="social:github" color="accent" />
           </a>
         </div>
       </hra-profile-card>
     }
   </div>
 </div>
-<hra-footer></hra-footer>
+<hra-footer />

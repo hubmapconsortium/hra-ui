@@ -31,7 +31,7 @@ export interface AuthorFormControls {
   selector: 'ccf-metadata-author-form',
   imports: [HraCommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgxMaskDirective, ButtonsModule],
   templateUrl: './metadata-author-form.component.html',
-  styleUrls: ['./metadata-author-form.component.scss'],
+  styleUrl: './metadata-author-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataAuthorFormComponent implements OnInit {
