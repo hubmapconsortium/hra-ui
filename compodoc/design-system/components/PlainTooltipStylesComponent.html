@@ -120,10 +120,6 @@
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -180,16 +176,16 @@
 
 
 
+
+
+
+
+
+
             <tr>
-                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-3">styleUrl</td>
                 <td class="col-md-9"><code>./plain-tooltip-styles.component.scss</code></td>
             </tr>
-
-
-
-
-
-
 
 
 
@@ -219,49 +215,15 @@
 @Component({
   selector: &#x27;hra-plain-tooltip-styles&#x27;,
   template: &#x27;&#x27;,
-  styleUrls: [&#x27;./plain-tooltip-styles.component.scss&#x27;],
-  encapsulation: ViewEncapsulation.None,
+  styleUrl: &#x27;./plain-tooltip-styles.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class PlainTooltipStylesComponent {}
 </code></pre>
     </div>
 
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./plain-tooltip-styles.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;../../../../../design-system/styles/utils&#x27;;
-@use &#x27;../../../../../design-system/styles/vars&#x27;;
-
-@include utils.global-styles() {
-  .hra-plain-tooltip {
-    --mat-tooltip-supporting-text-color: #{vars.$on-primary};
-    --mat-tooltip-container-color: color-mix(in srgb, #{vars.$secondary 96%}, transparent);
-
-    .mat-mdc-tooltip-surface {
-      padding: 0.25rem 0.5rem;
-      letter-spacing: unset;
-      max-width: 18.5rem;
-      text-align: left;
-    }
-  }
-
-  .hra-plain-tooltip-medium {
-    .mat-mdc-tooltip-surface {
-      font: vars.$label-medium;
-    }
-  }
-
-  .hra-plain-tooltip-small {
-    .mat-mdc-tooltip-surface {
-      font: vars.$label-small;
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>

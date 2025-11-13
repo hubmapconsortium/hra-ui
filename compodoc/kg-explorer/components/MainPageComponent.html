@@ -1766,20 +1766,20 @@ export class MainPageComponent {
   &gt;
     &lt;mat-sidenav
       hraFeature&#x3D;&quot;sidenav&quot;
-      #sidenav
       [mode]&#x3D;&quot;!isWideScreen() ? &#x27;over&#x27; : &#x27;side&#x27;&quot;
       [opened]&#x3D;&quot;isWideScreen()&quot;
       [fixedInViewport]&#x3D;&quot;true&quot;
       [fixedTopGap]&#x3D;&quot;isSmallScreen() ? 73 : 113&quot;
+      #sidenav
     &gt;
       &lt;hra-filter-menu
         hraFeature&#x3D;&quot;filter-menu&quot;
         [filterCategories]&#x3D;&quot;filterCategoriesArray()&quot;
-        (toggleForm)&#x3D;&quot;sidenav.toggle()&quot;
         [formClosed]&#x3D;&quot;!sidenav.opened&quot;
-        (formChanges)&#x3D;&quot;handleFilterSelectionChanges($event); table.scrollToTop()&quot;
         [currentFilters]&#x3D;&quot;filters()&quot;
-      &gt;&lt;/hra-filter-menu&gt;
+        (toggleForm)&#x3D;&quot;sidenav.toggle()&quot;
+        (formChanges)&#x3D;&quot;handleFilterSelectionChanges($event); table.scrollToTop()&quot;
+      /&gt;
     &lt;/mat-sidenav&gt;
     &lt;mat-sidenav-content hraFeature&#x3D;&quot;digital-objects&quot;&gt;
       &lt;div class&#x3D;&quot;page-content&quot;&gt;
@@ -1789,20 +1789,16 @@ export class MainPageComponent {
             &lt;mat-label&gt;Search&lt;/mat-label&gt;
             &lt;input matInput [formControl]&#x3D;&quot;searchControl&quot; /&gt;
           &lt;/mat-form-field&gt;
-          &lt;hra-results-indicator
-            description&#x3D;&quot;Viewing&quot;
-            [value]&#x3D;&quot;filteredRows().length&quot;
-            [total]&#x3D;&quot;allRows().length&quot;
-          &gt;&lt;/hra-results-indicator&gt;
+          &lt;hra-results-indicator description&#x3D;&quot;Viewing&quot; [value]&#x3D;&quot;filteredRows().length&quot; [total]&#x3D;&quot;allRows().length&quot; /&gt;
         &lt;/div&gt;
         &lt;hra-table
-          #table
-          [style]&#x3D;&quot;&#x27;divider&#x27;&quot;
+          style&#x3D;&quot;divider&quot;
           [enableSort]&#x3D;&quot;true&quot;
           [rows]&#x3D;&quot;filteredRows()&quot;
           [columns]&#x3D;&quot;columns()&quot;
           (routeClicked)&#x3D;&quot;router.navigate([$event])&quot;
           (downloadHovered)&#x3D;&quot;downloadId.set($event)&quot;
+          #table
         &gt;
           &lt;hra-footer /&gt;
         &lt;/hra-table&gt;
@@ -1839,7 +1835,7 @@ export class MainPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="main-page">  @if (isSmallScreen() && !sidenav.opened) {    <button hraFeature="filter-fab" hraClickEvent mat-fab extended class="filter-button" (click)="sidenav.toggle()">      <mat-icon>filter_list</mat-icon>      Filters    </button>  }  <mat-sidenav-container    autosize    [hasBackdrop]="!isWideScreen()"    [class.small]="isSmallScreen()"    [class.filter-closed]="!sidenav.opened"  >    <mat-sidenav      hraFeature="sidenav"      #sidenav      [mode]="!isWideScreen() ? \'over\' : \'side\'"      [opened]="isWideScreen()"      [fixedInViewport]="true"      [fixedTopGap]="isSmallScreen() ? 73 : 113"    >      <hra-filter-menu        hraFeature="filter-menu"        [filterCategories]="filterCategoriesArray()"        (toggleForm)="sidenav.toggle()"        [formClosed]="!sidenav.opened"        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"        [currentFilters]="filters()"      ></hra-filter-menu>    </mat-sidenav>    <mat-sidenav-content hraFeature="digital-objects">      <div class="page-content">        <div class="search-header">          <mat-form-field hraFeature="search" hraClickEvent class="object-search">            <hra-icon matPrefix>search</hra-icon>            <mat-label>Search</mat-label>            <input matInput [formControl]="searchControl" />          </mat-form-field>          <hra-results-indicator            description="Viewing"            [value]="filteredRows().length"            [total]="allRows().length"          ></hra-results-indicator>        </div>        <hra-table          #table          [style]="\'divider\'"          [enableSort]="true"          [rows]="filteredRows()"          [columns]="columns()"          (routeClicked)="router.navigate([$event])"          (downloadHovered)="downloadId.set($event)"        >          <hra-footer />        </hra-table>      </div>    </mat-sidenav-content>  </mat-sidenav-container></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="main-page">  @if (isSmallScreen() && !sidenav.opened) {    <button hraFeature="filter-fab" hraClickEvent mat-fab extended class="filter-button" (click)="sidenav.toggle()">      <mat-icon>filter_list</mat-icon>      Filters    </button>  }  <mat-sidenav-container    autosize    [hasBackdrop]="!isWideScreen()"    [class.small]="isSmallScreen()"    [class.filter-closed]="!sidenav.opened"  >    <mat-sidenav      hraFeature="sidenav"      [mode]="!isWideScreen() ? \'over\' : \'side\'"      [opened]="isWideScreen()"      [fixedInViewport]="true"      [fixedTopGap]="isSmallScreen() ? 73 : 113"      #sidenav    >      <hra-filter-menu        hraFeature="filter-menu"        [filterCategories]="filterCategoriesArray()"        [formClosed]="!sidenav.opened"        [currentFilters]="filters()"        (toggleForm)="sidenav.toggle()"        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"      />    </mat-sidenav>    <mat-sidenav-content hraFeature="digital-objects">      <div class="page-content">        <div class="search-header">          <mat-form-field hraFeature="search" hraClickEvent class="object-search">            <hra-icon matPrefix>search</hra-icon>            <mat-label>Search</mat-label>            <input matInput [formControl]="searchControl" />          </mat-form-field>          <hra-results-indicator description="Viewing" [value]="filteredRows().length" [total]="allRows().length" />        </div>        <hra-table          style="divider"          [enableSort]="true"          [rows]="filteredRows()"          [columns]="columns()"          (routeClicked)="router.navigate([$event])"          (downloadHovered)="downloadId.set($event)"          #table        >          <hra-footer />        </hra-table>      </div>    </mat-sidenav-content>  </mat-sidenav-container></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MainPageComponent'};

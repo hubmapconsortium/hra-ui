@@ -800,11 +800,11 @@ export class SimilarDatasetsTableComponent {
       class&#x3D;&quot;similar-datasets-menu-trigger&quot;
       [matMenuTriggerFor]&#x3D;&quot;optionsForDatasetTable&quot;
     &gt;
-      &lt;mat-icon class&#x3D;&quot;more-icon&quot; fontIcon&#x3D;&quot;more_vert&quot;&gt;&lt;/mat-icon&gt;
+      &lt;mat-icon class&#x3D;&quot;more-icon&quot; fontIcon&#x3D;&quot;more_vert&quot; /&gt;
     &lt;/button&gt;
 
     &lt;!-- MENU --&gt;
-    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #optionsForDatasetTable&#x3D;&quot;matMenu&quot; class&#x3D;&quot;custom-menu&quot;&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; class&#x3D;&quot;custom-menu&quot; #optionsForDatasetTable&#x3D;&quot;matMenu&quot;&gt;
       &lt;button
         hraHoverEvent
         hraFeature&#x3D;&quot;info&quot;
@@ -813,7 +813,7 @@ export class SimilarDatasetsTableComponent {
         matRippleColor&#x3D;&quot;#201E3D14&quot;
         [matMenuTriggerFor]&#x3D;&quot;submenu&quot;
       &gt;
-        &lt;mat-icon fontIcon&#x3D;&quot;info&quot; class&#x3D;&quot;icon-style&quot;&gt;&lt;/mat-icon&gt;
+        &lt;mat-icon fontIcon&#x3D;&quot;info&quot; class&#x3D;&quot;icon-style&quot; /&gt;
         Info
         &lt;mat-icon class&#x3D;&quot;expand-arrow&quot;&gt;arrow_right&lt;/mat-icon&gt;
       &lt;/button&gt;
@@ -824,53 +824,53 @@ export class SimilarDatasetsTableComponent {
     &lt;/mat-menu&gt;
 
     &lt;mat-menu #submenu&#x3D;&quot;matMenu&quot;&gt;
-      &lt;hra-tooltip-card [content]&#x3D;&quot;tooltip&quot; class&#x3D;&quot;tooltip-panel&quot;&gt;&lt;/hra-tooltip-card&gt;
+      &lt;hra-tooltip-card class&#x3D;&quot;tooltip-panel&quot; [content]&#x3D;&quot;tooltip&quot; /&gt;
     &lt;/mat-menu&gt;
   &lt;/hra-workflow-card-actions&gt;
 
   &lt;!-- SIMILAR DATASETS TABLE --&gt;
   &lt;ng-scrollbar class&#x3D;&quot;table-overflow-container&quot;&gt;
-    &lt;table hraFeature&#x3D;&quot;dataset&quot; mat-table matSort #sort2&#x3D;&quot;matSort&quot; [dataSource]&#x3D;&quot;dataSource&quot; class&#x3D;&quot;dataset-table&quot;&gt;
+    &lt;table hraFeature&#x3D;&quot;dataset&quot; mat-table matSort class&#x3D;&quot;dataset-table&quot; [dataSource]&#x3D;&quot;dataSource&quot; #sort2&#x3D;&quot;matSort&quot;&gt;
       &lt;caption&gt;
         Table displaying similar anatomical structures
       &lt;/caption&gt;
       &lt;ng-container matColumnDef&#x3D;&quot;tool&quot;&gt;
-        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Tool&quot;&gt;Tool&lt;/th&gt;
-        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.tool }}&lt;/td&gt;
+        &lt;th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription&#x3D;&quot;Sort by Tool&quot;&gt;Tool&lt;/th&gt;
+        &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;{{ element.tool }}&lt;/td&gt;
       &lt;/ng-container&gt;
       &lt;ng-container matColumnDef&#x3D;&quot;modality&quot;&gt;
-        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Modality&quot;&gt;Modality&lt;/th&gt;
-        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.modality }}&lt;/td&gt;
+        &lt;th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription&#x3D;&quot;Sort by Modality&quot;&gt;Modality&lt;/th&gt;
+        &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;{{ element.modality }}&lt;/td&gt;
       &lt;/ng-container&gt;
       &lt;ng-container matColumnDef&#x3D;&quot;similarity&quot;&gt;
-        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Similarity&quot;&gt;Similarity&lt;/th&gt;
-        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; class&#x3D;&quot;similarity-column&quot;&gt;
+        &lt;th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription&#x3D;&quot;Sort by Similarity&quot;&gt;Similarity&lt;/th&gt;
+        &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell class&#x3D;&quot;similarity-column&quot;&gt;
           {{ element.similarity | number: &#x27;1.0-2&#x27; }}
         &lt;/td&gt;
       &lt;/ng-container&gt;
       &lt;ng-container matColumnDef&#x3D;&quot;cell_source_label&quot;&gt;
-        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Dataset Label&quot;&gt;
+        &lt;th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription&#x3D;&quot;Sort by Dataset Label&quot;&gt;
           Dataset Label
         &lt;/th&gt;
-        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.cell_source_label }}&lt;/td&gt;
+        &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;{{ element.cell_source_label }}&lt;/td&gt;
       &lt;/ng-container&gt;
       &lt;ng-container matColumnDef&#x3D;&quot;cell_source&quot;&gt;
-        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Dataset ID&quot;&gt;Dataset ID&lt;/th&gt;
-        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        &lt;th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription&#x3D;&quot;Sort by Dataset ID&quot;&gt;Dataset ID&lt;/th&gt;
+        &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;
           &lt;a hraHyperlink [href]&#x3D;&quot;element.cell_source&quot;&gt;{{ element.cell_source }}&lt;/a&gt;
         &lt;/td&gt;
       &lt;/ng-container&gt;
       &lt;ng-container matColumnDef&#x3D;&quot;cell_source_link&quot;&gt;
-        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Dataset Link&quot;&gt;
+        &lt;th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription&#x3D;&quot;Sort by Dataset Link&quot;&gt;
           Dataset Link
         &lt;/th&gt;
-        &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+        &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;
           &lt;a hraHyperlink [href]&#x3D;&quot;element.cell_source_link&quot;&gt;{{ element.cell_source_link }}&lt;/a&gt;
         &lt;/td&gt;
       &lt;/ng-container&gt;
 
-      &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns; sticky: true&quot;&gt;&lt;/tr&gt;
-      &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot;&gt;&lt;/tr&gt;
+      &lt;tr *matHeaderRowDef&#x3D;&quot;displayedColumns; sticky: true&quot; mat-header-row&gt;&lt;/tr&gt;
+      &lt;tr *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot; mat-row&gt;&lt;/tr&gt;
     &lt;/table&gt;
   &lt;/ng-scrollbar&gt;
 &lt;/hra-workflow-card&gt;
@@ -903,7 +903,7 @@ export class SimilarDatasetsTableComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-workflow-card hraFeature="similar-datasets" tagline="Similar Datasets" class="table-container">  <hra-workflow-card-actions>    <button      hraClickEvent      mat-icon-button      aria-label="Open table action menu"      class="similar-datasets-menu-trigger"      [matMenuTriggerFor]="optionsForDatasetTable"    >      <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>    </button>    <!-- MENU -->    <mat-menu hraFeature="menu" #optionsForDatasetTable="matMenu" class="custom-menu">      <button        hraHoverEvent        hraFeature="info"        mat-menu-item        matRipple        matRippleColor="#201E3D14"        [matMenuTriggerFor]="submenu"      >        <mat-icon fontIcon="info" class="icon-style"></mat-icon>        Info        <mat-icon class="expand-arrow">arrow_right</mat-icon>      </button>      <button hraClickEvent hraFeature="download-csv" mat-menu-item (click)="onDownloadCSVButtonClicked()">        <mat-icon>download</mat-icon>        CSV      </button>    </mat-menu>    <mat-menu #submenu="matMenu">      <hra-tooltip-card [content]="tooltip" class="tooltip-panel"></hra-tooltip-card>    </mat-menu>  </hra-workflow-card-actions>  <!-- SIMILAR DATASETS TABLE -->  <ng-scrollbar class="table-overflow-container">    <table hraFeature="dataset" mat-table matSort #sort2="matSort" [dataSource]="dataSource" class="dataset-table">      <caption>        Table displaying similar anatomical structures      </caption>      <ng-container matColumnDef="tool">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tool">Tool</th>        <td mat-cell *matCellDef="let element">{{ element.tool }}</td>      </ng-container>      <ng-container matColumnDef="modality">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Modality">Modality</th>        <td mat-cell *matCellDef="let element">{{ element.modality }}</td>      </ng-container>      <ng-container matColumnDef="similarity">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Similarity">Similarity</th>        <td mat-cell *matCellDef="let element" class="similarity-column">          {{ element.similarity | number: \'1.0-2\' }}        </td>      </ng-container>      <ng-container matColumnDef="cell_source_label">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Dataset Label">          Dataset Label        </th>        <td mat-cell *matCellDef="let element">{{ element.cell_source_label }}</td>      </ng-container>      <ng-container matColumnDef="cell_source">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Dataset ID">Dataset ID</th>        <td mat-cell *matCellDef="let element">          <a hraHyperlink [href]="element.cell_source">{{ element.cell_source }}</a>        </td>      </ng-container>      <ng-container matColumnDef="cell_source_link">        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Dataset Link">          Dataset Link        </th>        <td mat-cell *matCellDef="let element">          <a hraHyperlink [href]="element.cell_source_link">{{ element.cell_source_link }}</a>        </td>      </ng-container>      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>    </table>  </ng-scrollbar></hra-workflow-card></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-workflow-card hraFeature="similar-datasets" tagline="Similar Datasets" class="table-container">  <hra-workflow-card-actions>    <button      hraClickEvent      mat-icon-button      aria-label="Open table action menu"      class="similar-datasets-menu-trigger"      [matMenuTriggerFor]="optionsForDatasetTable"    >      <mat-icon class="more-icon" fontIcon="more_vert" />    </button>    <!-- MENU -->    <mat-menu hraFeature="menu" class="custom-menu" #optionsForDatasetTable="matMenu">      <button        hraHoverEvent        hraFeature="info"        mat-menu-item        matRipple        matRippleColor="#201E3D14"        [matMenuTriggerFor]="submenu"      >        <mat-icon fontIcon="info" class="icon-style" />        Info        <mat-icon class="expand-arrow">arrow_right</mat-icon>      </button>      <button hraClickEvent hraFeature="download-csv" mat-menu-item (click)="onDownloadCSVButtonClicked()">        <mat-icon>download</mat-icon>        CSV      </button>    </mat-menu>    <mat-menu #submenu="matMenu">      <hra-tooltip-card class="tooltip-panel" [content]="tooltip" />    </mat-menu>  </hra-workflow-card-actions>  <!-- SIMILAR DATASETS TABLE -->  <ng-scrollbar class="table-overflow-container">    <table hraFeature="dataset" mat-table matSort class="dataset-table" [dataSource]="dataSource" #sort2="matSort">      <caption>        Table displaying similar anatomical structures      </caption>      <ng-container matColumnDef="tool">        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Tool">Tool</th>        <td *matCellDef="let element" mat-cell>{{ element.tool }}</td>      </ng-container>      <ng-container matColumnDef="modality">        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Modality">Modality</th>        <td *matCellDef="let element" mat-cell>{{ element.modality }}</td>      </ng-container>      <ng-container matColumnDef="similarity">        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Similarity">Similarity</th>        <td *matCellDef="let element" mat-cell class="similarity-column">          {{ element.similarity | number: \'1.0-2\' }}        </td>      </ng-container>      <ng-container matColumnDef="cell_source_label">        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Dataset Label">          Dataset Label        </th>        <td *matCellDef="let element" mat-cell>{{ element.cell_source_label }}</td>      </ng-container>      <ng-container matColumnDef="cell_source">        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Dataset ID">Dataset ID</th>        <td *matCellDef="let element" mat-cell>          <a hraHyperlink [href]="element.cell_source">{{ element.cell_source }}</a>        </td>      </ng-container>      <ng-container matColumnDef="cell_source_link">        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Dataset Link">          Dataset Link        </th>        <td *matCellDef="let element" mat-cell>          <a hraHyperlink [href]="element.cell_source_link">{{ element.cell_source_link }}</a>        </td>      </ng-container>      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>      <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>    </table>  </ng-scrollbar></hra-workflow-card></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SimilarDatasetsTableComponent'};

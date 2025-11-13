@@ -708,7 +708,7 @@
 import { inject, Injectable, InjectionToken } from &#x27;@angular/core&#x27;;
 import { createLinkId } from &#x27;@hra-ui/cdk/state&#x27;;
 import { firstValueFrom, from, map, Observable, of, shareReplay, switchMap, take, withLatestFrom } from &#x27;rxjs&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 import { Iri, setUrl, Url } from &#x27;../shared/common.model&#x27;;
 import {
   CellSummary,

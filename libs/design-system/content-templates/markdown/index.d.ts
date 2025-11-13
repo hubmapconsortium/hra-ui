@@ -1,6 +1,6 @@
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
 import * as _angular_core from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Markdown wrapper component to load markdown from a source file.

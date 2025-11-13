@@ -120,10 +120,6 @@
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -180,16 +176,16 @@
 
 
 
+
+
+
+
+
+
             <tr>
-                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-3">styleUrl</td>
                 <td class="col-md-9"><code>./scrollbar-styles.component.scss</code></td>
             </tr>
-
-
-
-
-
-
 
 
 
@@ -217,29 +213,15 @@
 @Component({
   selector: &#x27;hra-scrollbar-styles&#x27;,
   template: &#x27;&#x27;,
-  styleUrls: [&#x27;./scrollbar-styles.component.scss&#x27;],
-  encapsulation: ViewEncapsulation.None,
+  styleUrl: &#x27;./scrollbar-styles.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ScrollbarStylesComponent {}
 </code></pre>
     </div>
 
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./scrollbar-styles.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;../../../../styles/utils&#x27;;
-@use &#x27;../../../../styles/vars&#x27; as vars;
-
-@include utils.global-styles() {
-  --scrollbar-thumb-color: rgb(from #{vars.$primary} r g b / 0.72);
-  --scrollbar-border-radius: 1rem;
-  --scrollbar-thickness: 8;
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>

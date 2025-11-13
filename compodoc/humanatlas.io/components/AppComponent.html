@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -194,10 +190,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./app.component.scss</code></td>
-            </tr>
 
 
 
@@ -208,6 +200,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
 
 
 
@@ -439,7 +435,7 @@ const ANCHOR_SCROLL_PADDING &#x3D; 24;
   selector: &#x27;hra-portal&#x27;,
   imports: [HraCommonModule, RouterModule, NavigationModule],
   templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;],
+  styleUrl: &#x27;./app.component.scss&#x27;,
   host: {
     class: &#x27;hra-app&#x27;,
   },
@@ -498,43 +494,6 @@ export class AppComponent extends BaseApplicationComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./app.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">:host {
-  display: block;
-
-  .main {
-    display: flex;
-
-    .content {
-      flex: 1 1;
-      width: 100%;
-    }
-
-    &amp;.cta-active {
-      --hra-table-of-contents-layout-top-offset: 10rem;
-      --hra-site-navigation-top-offset: 7.5rem;
-    }
-  }
-
-  hra-site-navigation {
-    display: none;
-  }
-
-  @media (min-width: 1100px) {
-    hra-site-navigation {
-      display: block;
-    }
-
-    .main.navigation-visible .content {
-      max-width: calc(100% - 20rem);
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>

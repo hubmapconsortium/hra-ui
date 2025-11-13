@@ -356,6 +356,7 @@ function inferViewKeyMappingImpl(entry, mapping, keys) {
         const isAllNumeric = entry.every((value) => typeof value === 'number');
         const isBackwardsIncompatibleEdges = entry.length === 7 && keys.length >= 7 && isAllNumeric;
         if (isBackwardsIncompatibleEdges) {
+            // eslint-disable-next-line no-console
             console.warn('Legacy edge format detected! Edges csv now require a header.');
         }
         else {
@@ -374,6 +375,7 @@ function inferViewKeyMappingImpl(entry, mapping, keys) {
             mapping[key] = (isArrayEntry ? index : header[index]);
         }
         else if (key in mapping) {
+            // eslint-disable-next-line no-console
             console.warn(`Could not find a matching column for '${String(mapping[key])}', key: ${String(key)}`);
             delete mapping[key];
         }
@@ -859,6 +861,7 @@ function findClosestCell(cell, candidates, maxDistance) {
 function* generateEdges(nodes, targetSelector, maxDistance) {
     const { sourceCells, targetCells } = partitionNodes(nodes, targetSelector, maxDistance);
     if (Object.keys(targetCells).length === 0) {
+        // eslint-disable-next-line no-console
         console.warn(`No target cells found using selector '${targetSelector}'`);
         return;
     }
@@ -935,6 +938,7 @@ function createEdgeGenerator(nodes, edges, nodeTargetSelector, maxEdgeDistance, 
         loading?.next(true);
         return createEdgeGeneratorWorker(view, selector, distance).pipe(tap((event) => {
             if (event.data.type === 'progress') {
+                // eslint-disable-next-line no-console
                 console.log(formatProgressMessage(event.data));
             }
         }), filter((event) => event.data.type === 'result'), take(1), map((event) => {

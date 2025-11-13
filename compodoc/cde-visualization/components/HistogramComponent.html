@@ -1379,6 +1379,8 @@ const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
     FullscreenActionsComponent,
     HistogramMenuComponent,
   ],
+  templateUrl: &#x27;./histogram.component.html&#x27;,
+  styleUrl: &#x27;./histogram.component.scss&#x27;,
   providers: [
     {
       provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
@@ -1389,8 +1391,6 @@ const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
       } satisfies MatExpansionPanelDefaultOptions,
     },
   ],
-  templateUrl: &#x27;./histogram.component.html&#x27;,
-  styleUrl: &#x27;./histogram.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistogramComponent {
@@ -1533,30 +1533,25 @@ export class HistogramComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;hra-expansion-panel tagline&#x3D;&quot;Histogram&quot; hraHoverEvent hraHoverEventTriggerOn&#x3D;&quot;mouseenter&quot;&gt;
   &lt;hra-expansion-panel-actions&gt;
-    &lt;cde-histogram-menu
-      (open)&#x3D;&quot;histogramEl().open()&quot;
-      (download)&#x3D;&quot;download($event)&quot;
-      hraFeature&#x3D;&quot;menu&quot;
-    &gt;&lt;/cde-histogram-menu&gt;
+    &lt;cde-histogram-menu hraFeature&#x3D;&quot;menu&quot; (open)&#x3D;&quot;histogramEl().open()&quot; (download)&#x3D;&quot;download($event)&quot; /&gt;
   &lt;/hra-expansion-panel-actions&gt;
   &lt;hra-expansion-panel-header-content&gt;
     &lt;cde-color-picker-label
+      hraFeature&#x3D;&quot;color-picker&quot;
+      hraClickEvent
       [label]&#x3D;&quot;totalCellTypeLabel&quot;
       [(color)]&#x3D;&quot;totalCellTypeColor&quot;
       (colorPickerOpen)&#x3D;&quot;colorPicker.set($event)&quot;
-      hraFeature&#x3D;&quot;color-picker&quot;
-      hraClickEvent
-    &gt;
-    &lt;/cde-color-picker-label&gt;
+    /&gt;
   &lt;/hra-expansion-panel-header-content&gt;
   &lt;hra-fullscreen-portal
     tagline&#x3D;&quot;Histogram&quot;
+    hraFeature&#x3D;&quot;fullscreen&quot;
     (opened)&#x3D;&quot;resizeAndSyncView()&quot;
     (closed)&#x3D;&quot;resizeAndSyncView()&quot;
-    hraFeature&#x3D;&quot;fullscreen&quot;
   &gt;
     &lt;hra-fullscreen-actions&gt;
-      &lt;cde-histogram-menu dialogOpen&#x3D;&quot;true&quot; (download)&#x3D;&quot;download($event)&quot; hraFeature&#x3D;&quot;menu&quot;&gt;&lt;/cde-histogram-menu&gt;
+      &lt;cde-histogram-menu dialogOpen&#x3D;&quot;true&quot; hraFeature&#x3D;&quot;menu&quot; (download)&#x3D;&quot;download($event)&quot; /&gt;
     &lt;/hra-fullscreen-actions&gt;
 
     &lt;hra-fullscreen-portal-content data-testid&#x3D;&quot;portal-content&quot;&gt;
@@ -1564,8 +1559,8 @@ export class HistogramComponent {
         class&#x3D;&quot;histogram&quot;
         style&#x3D;&quot;height: 100%; width: 100%&quot;
         data-testid&#x3D;&quot;histogram&quot;
-        #histogram
         hraFeature&#x3D;&quot;histogram-chart&quot;
+        #histogram
       &gt;&lt;/div&gt;
     &lt;/hra-fullscreen-portal-content&gt;
   &lt;/hra-fullscreen-portal&gt;
@@ -1599,7 +1594,7 @@ export class HistogramComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Histogram" hraHoverEvent hraHoverEventTriggerOn="mouseenter">  <hra-expansion-panel-actions>    <cde-histogram-menu      (open)="histogramEl().open()"      (download)="download($event)"      hraFeature="menu"    ></cde-histogram-menu>  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <cde-color-picker-label      [label]="totalCellTypeLabel"      [(color)]="totalCellTypeColor"      (colorPickerOpen)="colorPicker.set($event)"      hraFeature="color-picker"      hraClickEvent    >    </cde-color-picker-label>  </hra-expansion-panel-header-content>  <hra-fullscreen-portal    tagline="Histogram"    (opened)="resizeAndSyncView()"    (closed)="resizeAndSyncView()"    hraFeature="fullscreen"  >    <hra-fullscreen-actions>      <cde-histogram-menu dialogOpen="true" (download)="download($event)" hraFeature="menu"></cde-histogram-menu>    </hra-fullscreen-actions>    <hra-fullscreen-portal-content data-testid="portal-content">      <div        class="histogram"        style="height: 100%; width: 100%"        data-testid="histogram"        #histogram        hraFeature="histogram-chart"      ></div>    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Histogram" hraHoverEvent hraHoverEventTriggerOn="mouseenter">  <hra-expansion-panel-actions>    <cde-histogram-menu hraFeature="menu" (open)="histogramEl().open()" (download)="download($event)" />  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <cde-color-picker-label      hraFeature="color-picker"      hraClickEvent      [label]="totalCellTypeLabel"      [(color)]="totalCellTypeColor"      (colorPickerOpen)="colorPicker.set($event)"    />  </hra-expansion-panel-header-content>  <hra-fullscreen-portal    tagline="Histogram"    hraFeature="fullscreen"    (opened)="resizeAndSyncView()"    (closed)="resizeAndSyncView()"  >    <hra-fullscreen-actions>      <cde-histogram-menu dialogOpen="true" hraFeature="menu" (download)="download($event)" />    </hra-fullscreen-actions>    <hra-fullscreen-portal-content data-testid="portal-content">      <div        class="histogram"        style="height: 100%; width: 100%"        data-testid="histogram"        hraFeature="histogram-chart"        #histogram      ></div>    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel></div>'
     var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HistogramComponent'};

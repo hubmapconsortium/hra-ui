@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -180,10 +176,6 @@
 
 
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./app.component.scss</code></td>
-            </tr>
 
 
 
@@ -194,6 +186,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
 
 
 
@@ -221,14 +217,24 @@
                                 <a href="#bodyUI" >bodyUI</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#data$" >data$</a>
+                                <a href="#bounds" >bounds</a>
                             </li>
                             <li>
-                                <a href="#organs$" >organs$</a>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#organs" >organs</a>
                             </li>
                             <li>
-                                <a href="#scene$" >scene$</a>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#scene" >scene</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#target" >target</a>
                             </li>
                         </ul>
                     </td>
@@ -263,6 +269,30 @@
     </table>
 </section>
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/app.component.ts:75</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Setup component</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
     <section data-compodoc="block-outputs">
@@ -283,7 +313,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/app.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/app.component.ts:45</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -310,7 +340,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/app.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/app.component.ts:41</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -337,7 +367,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/app.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/app.component.ts:43</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -387,7 +417,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/app.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/app.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -404,11 +434,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="data$"></a>
+                    <a name="bounds"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>data$</b></span>
-                        <a href="#data$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>bounds</b></span>
+                        <a href="#bounds"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -420,18 +451,27 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this.configState.getOption(&#x27;data&#x27;)</code>
+                        <i>Default value : </i><code>computed(() &#x3D;&gt;
+    this.computeFromDimensions(
+      (x, y, z) &#x3D;&gt; ({
+        x: (1.25 * x) / 1000,
+        y: (1.25 * y) / 1000,
+        z: (1.25 * z) / 1000,
+      }),
+      { x: 2.2, y: 2, z: 0.4 },
+    ),
+  )</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/app.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/app.component.ts:61</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Data</p>
+                    <div class="io-description"><p>Scene bounds</p>
 </div>
                 </td>
             </tr>
@@ -442,10 +482,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="organs$"></a>
+                    <a name="organs"></a>
                     <span class="name">
-                        <span ><b>organs$</b></span>
-                        <a href="#organs$"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>organs</b></span>
+                        <a href="#organs"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -457,12 +499,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this.sceneSource.filteredOrgans$</code>
+                        <i>Default value : </i><code>toSignal(this.sceneSource.filteredOrgans$, { initialValue: [] })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/app.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/app.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -479,10 +521,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="scene$"></a>
+                    <a name="scene"></a>
                     <span class="name">
-                        <span ><b>scene$</b></span>
-                        <a href="#scene$"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>scene</b></span>
+                        <a href="#scene"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -494,18 +538,61 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this.sceneSource.filteredScene$.pipe(tap(() &#x3D;&gt; this.reset()))</code>
+                        <i>Default value : </i><code>toSignal(this.sceneSource.filteredScene$, {
+    initialValue: undefined,
+  })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/app.component.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/app.component.ts:53</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Scene</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="target"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>target</b></span>
+                        <a href="#target"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt;
+    this.computeFromDimensions((x, y, z) &#x3D;&gt; [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2], [0, 0, 0]),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/app.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Scene target</p>
 </div>
                 </td>
             </tr>
@@ -520,19 +607,18 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  computed,
+  effect,
   EventEmitter,
   inject,
   Output,
   ViewChild,
 } from &#x27;@angular/core&#x27;;
+import { toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { SpatialSceneNode } from &#x27;@hra-api/ng-client&#x27;;
-import { NodeClickEvent } from &#x27;ccf-body-ui&#x27;;
-import { BodyUiComponent, GlobalConfigState } from &#x27;ccf-shared&#x27;;
+import { BodyUiComponent, NodeClickEvent } from &#x27;ccf-body-ui&#x27;;
 import { JsonLdObj } from &#x27;jsonld/jsonld-spec&#x27;;
-import { lastValueFrom } from &#x27;rxjs&#x27;;
-import { take, tap } from &#x27;rxjs/operators&#x27;;
 import { FilteredSceneService } from &#x27;./core/services/filtered-scene/filtered-scene.service&#x27;;
 
 /** Config */
@@ -547,11 +633,11 @@ export interface GlobalConfig {
 
 /** Root component */
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: &#x27;ccf-root&#x27;,
-  templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;],
   standalone: false,
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrl: &#x27;./app.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   /** Reference to the body ui */
@@ -564,79 +650,86 @@ export class AppComponent {
   /** Emits when the user clicks a node */
   @Output() readonly onClick &#x3D; new EventEmitter&lt;NodeClickEvent&gt;();
 
-  /** Global config */
-  private readonly configState: GlobalConfigState&lt;GlobalConfig&gt; &#x3D; inject(GlobalConfigState);
   /** Scene service */
   private readonly sceneSource &#x3D; inject(FilteredSceneService);
-  /** Change detector */
-  private readonly cdr &#x3D; inject(ChangeDetectorRef);
 
-  /** Data */
-  readonly data$ &#x3D; this.configState.getOption(&#x27;data&#x27;);
   /** Organs */
-  organs$ &#x3D; this.sceneSource.filteredOrgans$;
+  protected readonly organs &#x3D; toSignal(this.sceneSource.filteredOrgans$, { initialValue: [] });
   /** Scene */
-  scene$ &#x3D; this.sceneSource.filteredScene$.pipe(tap(() &#x3D;&gt; this.reset()));
+  protected readonly scene &#x3D; toSignal(this.sceneSource.filteredScene$, {
+    initialValue: undefined,
+  });
+
+  /** Whether the scene has a zooming node */
+  private readonly hasZoomingNode &#x3D; computed(() &#x3D;&gt; !!this.scene()?.some((node) &#x3D;&gt; node.zoomToOnLoad));
+
+  /** Scene bounds */
+  protected readonly bounds &#x3D; computed(() &#x3D;&gt;
+    this.computeFromDimensions(
+      (x, y, z) &#x3D;&gt; ({
+        x: (1.25 * x) / 1000,
+        y: (1.25 * y) / 1000,
+        z: (1.25 * z) / 1000,
+      }),
+      { x: 2.2, y: 2, z: 0.4 },
+    ),
+  );
+
+  /** Scene target */
+  protected readonly target &#x3D; computed(() &#x3D;&gt;
+    this.computeFromDimensions((x, y, z) &#x3D;&gt; [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2], [0, 0, 0]),
+  );
+
+  /** Setup component */
+  constructor() {
+    effect(() &#x3D;&gt; {
+      if (this.scene()) {
+        this.reset();
+      }
+    });
+  }
 
   /** Resets the body ui */
   private async reset(): Promise&lt;void&gt; {
-    const { bodyUI } &#x3D; this;
-
     await new Promise((resolve) &#x3D;&gt; {
       setTimeout(resolve, 200);
     });
-    const organs &#x3D; await lastValueFrom(this.organs$.pipe(take(1)));
-    const hasZoomingNode &#x3D; !!bodyUI.scene?.find((node) &#x3D;&gt; node.zoomToOnLoad);
 
-    bodyUI.rotation &#x3D; 0;
-    bodyUI.rotationX &#x3D; 0;
+    this.bodyUI.resetView();
+  }
 
-    if (!hasZoomingNode) {
-      if (organs &amp;&amp; organs.length &#x3D;&#x3D;&#x3D; 1) {
-        const { x_dimension: x, y_dimension: y, z_dimension: z } &#x3D; organs[0];
-        bodyUI.bounds &#x3D; {
-          x: (1.25 * x) / 1000,
-          y: (1.25 * y) / 1000,
-          z: (1.25 * z) / 1000,
-        };
-        bodyUI.target &#x3D; [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2];
-      } else {
-        bodyUI.bounds &#x3D; { x: 2.2, y: 2, z: 0.4 };
-        bodyUI.target &#x3D; [0, 0, 0];
-      }
+  /** Perform a computation base on organ dimensions */
+  private computeFromDimensions&lt;R&gt;(computation: (x: number, y: number, z: number) &#x3D;&gt; R, defaultValue: R): R {
+    const organs &#x3D; this.organs();
+    if (!this.hasZoomingNode() || organs.length !&#x3D;&#x3D; 1) {
+      return defaultValue;
     }
 
-    this.cdr.detectChanges();
+    const { x_dimension: x, y_dimension: y, z_dimension: z } &#x3D; organs[0];
+    return computation(x, y, z);
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ccf-body-ui
-  #bodyUI
-  [scene]&#x3D;&quot;(scene$ | async) ?? []&quot;
-  [interactive]&#x3D;&quot;true&quot;
+        <pre class="line-numbers"><code class="language-html">&lt;hra-body-ui
   camera&#x3D;&quot;perspective&quot;
   class&#x3D;&quot;body-ui&quot;
+  [scene]&#x3D;&quot;scene()&quot;
+  [interactive]&#x3D;&quot;true&quot;
+  [rotation]&#x3D;&quot;0&quot;
+  [rotationX]&#x3D;&quot;0&quot;
+  [bounds]&#x3D;&quot;bounds()&quot;
+  [target]&#x3D;&quot;target()&quot;
   (nodeClick)&#x3D;&quot;onClick.emit($event)&quot;
   (nodeHoverStart)&#x3D;&quot;onMouseEnter.emit($event)&quot;
   (nodeHoverStop)&#x3D;&quot;onMouseLeave.emit($event)&quot;
-&gt;
-&lt;/ccf-body-ui&gt;
+  #bodyUI
+/&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./app.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">.body-ui {
-  height: 100%;
-  width: 100%;
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -663,7 +756,7 @@ export class AppComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ccf-body-ui  #bodyUI  [scene]="(scene$ | async) ?? []"  [interactive]="true"  camera="perspective"  class="body-ui"  (nodeClick)="onClick.emit($event)"  (nodeHoverStart)="onMouseEnter.emit($event)"  (nodeHoverStop)="onMouseLeave.emit($event)"></ccf-body-ui></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-body-ui  camera="perspective"  class="body-ui"  [scene]="scene()"  [interactive]="true"  [rotation]="0"  [rotationX]="0"  [bounds]="bounds()"  [target]="target()"  (nodeClick)="onClick.emit($event)"  (nodeHoverStart)="onMouseEnter.emit($event)"  (nodeHoverStop)="onMouseLeave.emit($event)"  #bodyUI/></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

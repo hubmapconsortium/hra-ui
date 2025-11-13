@@ -1291,16 +1291,16 @@ export class AutocompleteChipsFormComponent implements OnInit {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;mat-form-field
   hraFeature&#x3D;&quot;chips&quot;
+  subscriptSizing&#x3D;&quot;dynamic&quot;
   [class.visible]&#x3D;&quot;chips().length &gt; 0&quot;
   [class.error]&#x3D;&quot;errorState()&quot;
-  subscriptSizing&#x3D;&quot;dynamic&quot;
 &gt;
   &lt;div class&#x3D;&quot;chips-area&quot;&gt;
-    &lt;mat-chip-grid #chipGrid aria-label&#x3D;&quot;Option selection&quot; [formControl]&#x3D;&quot;form()&quot;&gt;
+    &lt;mat-chip-grid aria-label&#x3D;&quot;Option selection&quot; [formControl]&#x3D;&quot;form()&quot; #chipGrid&gt;
       @for (option of chips(); track option) {
         &lt;mat-chip-row [hraFeature]&#x3D;&quot;option | slugify&quot; (removed)&#x3D;&quot;remove(option)&quot;&gt;
           &lt;span hraFeature&#x3D;&quot;label&quot; hraClickEvent&gt;{{ option }}&lt;/span&gt;
-          &lt;button hraFeature&#x3D;&quot;remove&quot; hraClickEvent matChipRemove [attr.aria-label]&#x3D;&quot;&#x27;remove &#x27; + option&quot;&gt;
+          &lt;button hraFeature&#x3D;&quot;remove&quot; hraClickEvent matChipRemove [attr.aria-label]&#x3D;&quot;&#x60;remove ${option}&#x60;&quot;&gt;
             &lt;mat-icon&gt;close&lt;/mat-icon&gt;
           &lt;/button&gt;
         &lt;/mat-chip-row&gt;
@@ -1319,29 +1319,29 @@ export class AutocompleteChipsFormComponent implements OnInit {
       hraClickEvent
       placeholder&#x3D;&quot;Search&quot;
       class&#x3D;&quot;search-input&quot;
-      #searchInput&#x3D;&quot;matAutocompleteTrigger&quot;
-      [(ngModel)]&#x3D;&quot;currentInputValue&quot;
       [matChipInputFor]&#x3D;&quot;chipGrid&quot;
       [matAutocomplete]&#x3D;&quot;auto&quot;
       [matChipInputSeparatorKeyCodes]&#x3D;&quot;separatorKeysCodes&quot;
+      [(ngModel)]&#x3D;&quot;currentInputValue&quot;
       (matChipInputTokenEnd)&#x3D;&quot;add($event)&quot;
       (keydown)&#x3D;&quot;closeAutocomplete($event)&quot;
+      #searchInput&#x3D;&quot;matAutocompleteTrigger&quot;
     /&gt;
     @if (errorState()) {
-      &lt;mat-icon class&#x3D;&quot;error-icon&quot; svgIcon&#x3D;&quot;error&quot;&gt;&lt;/mat-icon&gt;
+      &lt;mat-icon class&#x3D;&quot;error-icon&quot; svgIcon&#x3D;&quot;error&quot; /&gt;
     }
   &lt;/div&gt;
-  &lt;mat-autocomplete #auto&#x3D;&quot;matAutocomplete&quot; (optionSelected)&#x3D;&quot;optionSelected($event)&quot;&gt;
+  &lt;mat-autocomplete (optionSelected)&#x3D;&quot;optionSelected($event)&quot; #auto&#x3D;&quot;matAutocomplete&quot;&gt;
     &lt;ng-scrollbar&gt;
       @for (option of filteredOptions(); track option) {
-        &lt;div [hraFeature]&#x3D;&quot;option | slugify&quot; class&#x3D;&quot;autocomplete-option&quot;&gt;
+        &lt;div class&#x3D;&quot;autocomplete-option&quot; [hraFeature]&#x3D;&quot;option | slugify&quot;&gt;
           &lt;mat-checkbox
             hraFeature&#x3D;&quot;checkbox&quot;
             hraClickEvent
             class&#x3D;&quot;autocomplete-checkbox&quot;
-            (change)&#x3D;&quot;checkboxSelected($event, option); auto.showPanel &#x3D; false&quot;
             [checked]&#x3D;&quot;chips().includes(option)&quot;
-          &gt;&lt;/mat-checkbox&gt;
+            (change)&#x3D;&quot;checkboxSelected($event, option); auto.showPanel &#x3D; false&quot;
+          /&gt;
           &lt;mat-option hraFeature&#x3D;&quot;label&quot; hraClickEvent [value]&#x3D;&quot;option&quot;&gt;{{ option }}&lt;/mat-option&gt;
         &lt;/div&gt;
       }
@@ -1381,7 +1381,7 @@ export class AutocompleteChipsFormComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field  hraFeature="chips"  [class.visible]="chips().length > 0"  [class.error]="errorState()"  subscriptSizing="dynamic">  <div class="chips-area">    <mat-chip-grid #chipGrid aria-label="Option selection" [formControl]="form()">      @for (option of chips(); track option) {        <mat-chip-row [hraFeature]="option | slugify" (removed)="remove(option)">          <span hraFeature="label" hraClickEvent>{{ option }}</span>          <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="\'remove \' + option">            <mat-icon>close</mat-icon>          </button>        </mat-chip-row>      }    </mat-chip-grid>    @if (chips().length > 0) {      <button hraFeature="clear" hraClickEvent mat-icon-button (click)="clearAll()">        <mat-icon>delete</mat-icon>      </button>    }  </div>  <mat-icon matPrefix class="search-icon">search</mat-icon>  <mat-label>{{ label() }}</mat-label>  <div hraFeature="search" class="search-container">    <input      hraClickEvent      placeholder="Search"      class="search-input"      #searchInput="matAutocompleteTrigger"      [(ngModel)]="currentInputValue"      [matChipInputFor]="chipGrid"      [matAutocomplete]="auto"      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"      (matChipInputTokenEnd)="add($event)"      (keydown)="closeAutocomplete($event)"    />    @if (errorState()) {      <mat-icon class="error-icon" svgIcon="error"></mat-icon>    }  </div>  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">    <ng-scrollbar>      @for (option of filteredOptions(); track option) {        <div [hraFeature]="option | slugify" class="autocomplete-option">          <mat-checkbox            hraFeature="checkbox"            hraClickEvent            class="autocomplete-checkbox"            (change)="checkboxSelected($event, option); auto.showPanel = false"            [checked]="chips().includes(option)"          ></mat-checkbox>          <mat-option hraFeature="label" hraClickEvent [value]="option">{{ option }}</mat-option>        </div>      }    </ng-scrollbar>  </mat-autocomplete></mat-form-field>@if (errorState()) {  <mat-error>No matches found</mat-error>}</div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field  hraFeature="chips"  subscriptSizing="dynamic"  [class.visible]="chips().length > 0"  [class.error]="errorState()">  <div class="chips-area">    <mat-chip-grid aria-label="Option selection" [formControl]="form()" #chipGrid>      @for (option of chips(); track option) {        <mat-chip-row [hraFeature]="option | slugify" (removed)="remove(option)">          <span hraFeature="label" hraClickEvent>{{ option }}</span>          <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="`remove ${option}`">            <mat-icon>close</mat-icon>          </button>        </mat-chip-row>      }    </mat-chip-grid>    @if (chips().length > 0) {      <button hraFeature="clear" hraClickEvent mat-icon-button (click)="clearAll()">        <mat-icon>delete</mat-icon>      </button>    }  </div>  <mat-icon matPrefix class="search-icon">search</mat-icon>  <mat-label>{{ label() }}</mat-label>  <div hraFeature="search" class="search-container">    <input      hraClickEvent      placeholder="Search"      class="search-input"      [matChipInputFor]="chipGrid"      [matAutocomplete]="auto"      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"      [(ngModel)]="currentInputValue"      (matChipInputTokenEnd)="add($event)"      (keydown)="closeAutocomplete($event)"      #searchInput="matAutocompleteTrigger"    />    @if (errorState()) {      <mat-icon class="error-icon" svgIcon="error" />    }  </div>  <mat-autocomplete (optionSelected)="optionSelected($event)" #auto="matAutocomplete">    <ng-scrollbar>      @for (option of filteredOptions(); track option) {        <div class="autocomplete-option" [hraFeature]="option | slugify">          <mat-checkbox            hraFeature="checkbox"            hraClickEvent            class="autocomplete-checkbox"            [checked]="chips().includes(option)"            (change)="checkboxSelected($event, option); auto.showPanel = false"          />          <mat-option hraFeature="label" hraClickEvent [value]="option">{{ option }}</mat-option>        </div>      }    </ng-scrollbar>  </mat-autocomplete></mat-form-field>@if (errorState()) {  <mat-error>No matches found</mat-error>}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AutocompleteChipsFormComponent'};

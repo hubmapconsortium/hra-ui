@@ -195,15 +195,15 @@ import { ClickEventDirective } from &#x27;@hra-ui/common/analytics&#x27;;
  */
 @Directive({
   selector: &#x27;a[hraHyperlink]&#x27;,
+  host: {
+    class: &#x27;hra-text-hyperlink&#x27;,
+  },
   hostDirectives: [
     {
       directive: ClickEventDirective,
       inputs: [&#x27;hraClickEvent: hraHyperlink&#x27;],
     },
   ],
-  host: {
-    class: &#x27;hra-text-hyperlink&#x27;,
-  },
 })
 export class TextHyperlinkDirective {}
 </code></pre>

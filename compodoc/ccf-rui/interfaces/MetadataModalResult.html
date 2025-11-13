@@ -386,6 +386,8 @@ export interface MetadataModalResult {
     MetadataDonorFormComponent,
     MetadataHelpComponent,
   ],
+  templateUrl: &#x27;./metadata-modal.component.html&#x27;,
+  styleUrl: &#x27;./metadata-modal.component.scss&#x27;,
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
@@ -394,8 +396,6 @@ export interface MetadataModalResult {
       } satisfies MatFormFieldDefaultOptions,
     },
   ],
-  templateUrl: &#x27;./metadata-modal.component.html&#x27;,
-  styleUrls: [&#x27;./metadata-modal.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [CdkScrollable],
 })

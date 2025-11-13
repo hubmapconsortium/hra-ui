@@ -449,7 +449,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule, DOCUMENT } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component, ElementRef, effect, inject, input, viewChild } from &#x27;@angular/core&#x27;;
 import embed from &#x27;vega-embed&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 import { DashboardComponent, DashboardComponentSpecFor } from &#x27;../../dashboard/dashboard.model&#x27;;
 import { TITLE_CARD_DEF, TitleCardComponent } from &#x27;../title-card/title-card.component&#x27;;
 
@@ -502,8 +502,8 @@ export class VegaContainerComponent implements DashboardComponent&lt;typeof Vega
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-title-card [spec]&#x3D;&quot;spec()&quot; class&#x3D;&quot;card&quot;&gt;
-  &lt;div #vis class&#x3D;&quot;visualization&quot; [style.aspect-ratio]&#x3D;&quot;spec().aspectRatio&quot; data-testid&#x3D;&quot;visualization&quot;&gt;&lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;hra-title-card class&#x3D;&quot;card&quot; [spec]&#x3D;&quot;spec()&quot;&gt;
+  &lt;div class&#x3D;&quot;visualization&quot; data-testid&#x3D;&quot;visualization&quot; [style.aspect-ratio]&#x3D;&quot;spec().aspectRatio&quot; #vis&gt;&lt;/div&gt;
 &lt;/hra-title-card&gt;
 </code></pre>
     </div>
@@ -534,7 +534,7 @@ export class VegaContainerComponent implements DashboardComponent&lt;typeof Vega
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-title-card [spec]="spec()" class="card">  <div #vis class="visualization" [style.aspect-ratio]="spec().aspectRatio" data-testid="visualization"></div></hra-title-card></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-title-card class="card" [spec]="spec()">  <div class="visualization" data-testid="visualization" [style.aspect-ratio]="spec().aspectRatio" #vis></div></hra-title-card></div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'VegaContainerComponent'};

@@ -683,6 +683,7 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] &#x3D; [
  * Main application component
  */
 @Component({
+  selector: &#x27;hra-kg-explorer&#x27;,
   imports: [
     HraCommonModule,
     RouterModule,
@@ -694,13 +695,12 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] &#x3D; [
     MatMenuModule,
     MatDividerModule,
   ],
-  selector: &#x27;hra-kg-explorer&#x27;,
-  styleUrl: &#x27;./app.component.scss&#x27;,
   templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrl: &#x27;./app.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: &#x27;hra-app&#x27;,
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Router instance for navigation */
@@ -801,22 +801,22 @@ export class AppComponent extends BaseApplicationComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;kg-explorer&quot;&gt;
-  &lt;hra-header baseUrl&#x3D;&quot;lod.humanatlas.io/&quot; [breadcrumbs]&#x3D;&quot;crumbs()&quot; [progress]&#x3D;&quot;isNavigating()&quot; hraFeature&#x3D;&quot;header&quot;&gt;
-    &lt;hra-help-button [action]&#x3D;&quot;menuOptions&quot;&gt;&lt;/hra-help-button&gt;
+  &lt;hra-header baseUrl&#x3D;&quot;lod.humanatlas.io/&quot; hraFeature&#x3D;&quot;header&quot; [breadcrumbs]&#x3D;&quot;crumbs()&quot; [progress]&#x3D;&quot;isNavigating()&quot;&gt;
+    &lt;hra-help-button [action]&#x3D;&quot;menuOptions&quot; /&gt;
 
-    &lt;mat-menu hraFeature&#x3D;&quot;help-menu&quot; #menuOptions&#x3D;&quot;matMenu&quot; class&#x3D;&quot;help-menu&quot;&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;help-menu&quot; class&#x3D;&quot;help-menu&quot; #menuOptions&#x3D;&quot;matMenu&quot;&gt;
       @for (option of helpMenuOptions(); track option) {
         @if (option.divider) {
           &lt;mat-divider /&gt;
         }
         &lt;a
-          [hraFeature]&#x3D;&quot;option.label | slugify&quot;
           hraClickEvent
           class&#x3D;&quot;option&quot;
           mat-menu-item
-          [attr.href]&#x3D;&quot;option.url&quot;
           target&#x3D;&quot;_blank&quot;
           rel&#x3D;&quot;noopener noreferrer&quot;
+          [hraFeature]&#x3D;&quot;option.label | slugify&quot;
+          [attr.href]&#x3D;&quot;option.url&quot;
         &gt;
           &lt;div class&#x3D;&quot;option-text&quot;&gt;
             &lt;span class&#x3D;&quot;option-name&quot;&gt;
@@ -863,7 +863,7 @@ export class AppComponent extends BaseApplicationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="kg-explorer">  <hra-header baseUrl="lod.humanatlas.io/" [breadcrumbs]="crumbs()" [progress]="isNavigating()" hraFeature="header">    <hra-help-button [action]="menuOptions"></hra-help-button>    <mat-menu hraFeature="help-menu" #menuOptions="matMenu" class="help-menu">      @for (option of helpMenuOptions(); track option) {        @if (option.divider) {          <mat-divider />        }        <a          [hraFeature]="option.label | slugify"          hraClickEvent          class="option"          mat-menu-item          [attr.href]="option.url"          target="_blank"          rel="noopener noreferrer"        >          <div class="option-text">            <span class="option-name">              {{ option.label }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>  </hra-header>  <div class="content">    <router-outlet />  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="kg-explorer">  <hra-header baseUrl="lod.humanatlas.io/" hraFeature="header" [breadcrumbs]="crumbs()" [progress]="isNavigating()">    <hra-help-button [action]="menuOptions" />    <mat-menu hraFeature="help-menu" class="help-menu" #menuOptions="matMenu">      @for (option of helpMenuOptions(); track option) {        @if (option.divider) {          <mat-divider />        }        <a          hraClickEvent          class="option"          mat-menu-item          target="_blank"          rel="noopener noreferrer"          [hraFeature]="option.label | slugify"          [attr.href]="option.url"        >          <div class="option-text">            <span class="option-name">              {{ option.label }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>  </hra-header>  <div class="content">    <router-outlet />  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

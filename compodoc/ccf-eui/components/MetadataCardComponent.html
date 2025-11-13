@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -190,10 +186,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./metadata-card.component.scss</code></td>
-            </tr>
 
 
 
@@ -204,6 +196,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./metadata-card.component.scss</code></td>
+            </tr>
 
 
 
@@ -430,9 +426,9 @@ import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain
  */
 @Component({
   selector: &#x27;ccf-metadata-card&#x27;,
-  templateUrl: &#x27;./metadata-card.component.html&#x27;,
-  styleUrls: [&#x27;./metadata-card.component.scss&#x27;],
   imports: [HraCommonModule, MatIconModule, MatButtonModule, ButtonsModule, PlainTooltipDirective],
+  templateUrl: &#x27;./metadata-card.component.html&#x27;,
+  styleUrl: &#x27;./metadata-card.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataCardComponent {
@@ -472,61 +468,11 @@ export class MetadataCardComponent {
 &lt;/a&gt;
 
 &lt;div class&#x3D;&quot;content&quot;&gt;
-  &lt;ng-content&gt;&lt;/ng-content&gt;
+  &lt;ng-content /&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./metadata-card.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  display: grid;
-  align-items: center;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    &#x27;header menu-icon&#x27;
-    &#x27;content content&#x27;;
-
-  background: vars.$on-primary;
-  box-shadow: 0px 5px 16px 0px rgb(from vars.$shadow r g b / 24%);
-  padding: 0.25rem 0 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font: vars.$label-small;
-  letter-spacing: vars.$label-small-tracking;
-
-  .header {
-    grid-area: header;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .title {
-    color: vars.$secondary;
-  }
-
-  .label,
-  .title,
-  .content {
-    color: vars.$primary;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .menu-icon {
-    grid-area: menu-icon;
-  }
-
-  .content {
-    grid-area: content;
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -553,7 +499,7 @@ export class MetadataCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div hraFeature="card" hraClickEvent class="header" (click)="toggleExpansion.emit()">  <span class="title" [title]="tagline()">{{ tagline() }}</span>  <span class="label" [title]="label()">{{ label() }}</span>  <span class="label" [title]="label2()">{{ label2() }}</span></div><a  hraFeature="source-link"  hraClickEvent  class="menu-icon"  mat-icon-button  hraPlainTooltip="Source data"  target="_blank"  rel="noopener noreferrer"  [href]="menuLink() ?? \'\'">  <mat-icon>database</mat-icon></a><div class="content">  <ng-content></ng-content></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div hraFeature="card" hraClickEvent class="header" (click)="toggleExpansion.emit()">  <span class="title" [title]="tagline()">{{ tagline() }}</span>  <span class="label" [title]="label()">{{ label() }}</span>  <span class="label" [title]="label2()">{{ label2() }}</span></div><a  hraFeature="source-link"  hraClickEvent  class="menu-icon"  mat-icon-button  hraPlainTooltip="Source data"  target="_blank"  rel="noopener noreferrer"  [href]="menuLink() ?? \'\'">  <mat-icon>database</mat-icon></a><div class="content">  <ng-content /></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MetadataCardComponent'};

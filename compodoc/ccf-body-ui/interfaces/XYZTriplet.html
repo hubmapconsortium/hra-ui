@@ -335,7 +335,7 @@ import {
 import { SpatialSceneNode } from &#x27;@hra-api/ng-client&#x27;;
 import { derivedAsync } from &#x27;ngxtension/derived-async&#x27;;
 import { catchError, map, Observable, of, Subscription } from &#x27;rxjs&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 
 import { BodyUI, BodyUIProps, NodeClickEvent, NodeDragEvent } from &#x27;../body-ui&#x27;;
 
@@ -404,7 +404,10 @@ export const SPATIAL_SCENE_NODE &#x3D; z
 export const SPATIAL_SCENE_NODE_ARRAY &#x3D; z.array(SPATIAL_SCENE_NODE);
 
 /** Preprocesses the scene input */
-const SCENE_INPUT &#x3D; z.preprocess(tryParseJson, z.union([z.literal(&#x27;&#x27;), z.string().url(), SPATIAL_SCENE_NODE_ARRAY]));
+const SCENE_INPUT &#x3D; z.preprocess(
+  tryParseJson,
+  z.union([z.undefined(), z.literal(&#x27;&#x27;), z.string().url(), SPATIAL_SCENE_NODE_ARRAY]),
+);
 /** Bind scene input */
 const parseSceneInput &#x3D; SCENE_INPUT.parse.bind(SCENE_INPUT);
 

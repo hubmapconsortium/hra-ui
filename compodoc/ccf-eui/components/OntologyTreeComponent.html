@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -195,10 +191,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./ontology-tree.component.scss</code></td>
-            </tr>
 
 
 
@@ -209,6 +201,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./ontology-tree.component.scss</code></td>
+            </tr>
 
 
 
@@ -1413,8 +1409,6 @@ type GetChildrenFunc &#x3D; (o: OntologyTreeNode) &#x3D;&gt; OntologyTreeNode[];
  */
 @Component({
   selector: &#x27;ccf-ontology-tree&#x27;,
-  templateUrl: &#x27;./ontology-tree.component.html&#x27;,
-  styleUrls: [&#x27;./ontology-tree.component.scss&#x27;],
   imports: [
     HraCommonModule,
     MatButtonModule,
@@ -1427,6 +1421,8 @@ type GetChildrenFunc &#x3D; (o: OntologyTreeNode) &#x3D;&gt; OntologyTreeNode[];
     ScrollOverflowFadeDirective,
     PlainTooltipDirective,
   ],
+  templateUrl: &#x27;./ontology-tree.component.html&#x27;,
+  styleUrl: &#x27;./ontology-tree.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologyTreeComponent {
@@ -1585,8 +1581,8 @@ export class OntologyTreeComponent {
     &gt;
       @for (option of biomarkerMenuOptions(); track option) {
         &lt;mat-button-toggle
-          [hraFeature]&#x3D;&quot;option | slugify&quot;
           hraClickEvent
+          [hraFeature]&#x3D;&quot;option | slugify&quot;
           [value]&#x3D;&quot;option&quot;
           [checked]&#x3D;&quot;isBiomarkerOptionSelected(option)&quot;
           [hraPlainTooltip]&#x3D;&quot;(isBiomarkerOptionSelected(option) ? &#x27;Hide &#x27; : &#x27;Show &#x27;) + option.toLowerCase()&quot;
@@ -1598,19 +1594,19 @@ export class OntologyTreeComponent {
 }
 
 &lt;ng-scrollbar hraScrollOverflowFade&gt;
-  &lt;mat-tree [dataSource]&#x3D;&quot;nodes()&quot; [childrenAccessor]&#x3D;&quot;getChildren()&quot; hraTreeSize&#x3D;&quot;small&quot; #tree&gt;
+  &lt;mat-tree hraTreeSize&#x3D;&quot;small&quot; [dataSource]&#x3D;&quot;nodes()&quot; [childrenAccessor]&#x3D;&quot;getChildren()&quot; #tree&gt;
     &lt;!-- This is the tree node template for leaf nodes --&gt;
     &lt;mat-tree-node
-      hraFeature&#x3D;&quot;leaf&quot;
       *matTreeNodeDef&#x3D;&quot;let node&quot;
+      hraFeature&#x3D;&quot;leaf&quot;
       matTreeNodePadding
-      (click)&#x3D;&quot;select($event.ctrlKey, node, true, !isSelected(node))&quot;
       matTreeNodePaddingIndent&#x3D;&quot;12&quot;
+      (click)&#x3D;&quot;select($event.ctrlKey, node, true, !isSelected(node))&quot;
     &gt;
       &lt;div
-        [hraFeature]&#x3D;&quot;node.label | slugify&quot;
         hraClickEvent
         class&#x3D;&quot;node-content leaf&quot;
+        [hraFeature]&#x3D;&quot;node.label | slugify&quot;
         [class.selected]&#x3D;&quot;isSelected(node)&quot;
       &gt;
         &lt;div hraFeature&#x3D;&quot;label&quot; hraClickEvent class&#x3D;&quot;node-label&quot;&gt;{{ node.label }}&lt;/div&gt;
@@ -1620,22 +1616,22 @@ export class OntologyTreeComponent {
 
     &lt;!-- This is the tree node template for expandable nodes --&gt;
     &lt;mat-tree-node
-      hraFeature&#x3D;&quot;branch&quot;
       *matTreeNodeDef&#x3D;&quot;let node; when: hasChildren&quot;
+      hraFeature&#x3D;&quot;branch&quot;
       matTreeNodePadding
       matTreeNodeToggle
+      matTreeNodePaddingIndent&#x3D;&quot;12&quot;
       [cdkTreeNodeTypeaheadLabel]&#x3D;&quot;node.label&quot;
       (click)&#x3D;&quot;select($event.ctrlKey, node, true, !isSelected(node))&quot;
-      matTreeNodePaddingIndent&#x3D;&quot;12&quot;
     &gt;
-      &lt;div [hraFeature]&#x3D;&quot;node.label | slugify&quot; hraClickEvent class&#x3D;&quot;node-content&quot; [class.selected]&#x3D;&quot;isSelected(node)&quot;&gt;
+      &lt;div hraClickEvent class&#x3D;&quot;node-content&quot; [hraFeature]&#x3D;&quot;node.label | slugify&quot; [class.selected]&#x3D;&quot;isSelected(node)&quot;&gt;
         &lt;button
           hraFeature&#x3D;&quot;toggle&quot;
           hraClickEvent
           class&#x3D;&quot;tree-expand-icon&quot;
           mat-icon-button
           matTreeNodeToggle
-          [attr.aria-label]&#x3D;&quot;&#x27;Toggle &#x27; + node.label&quot;
+          [attr.aria-label]&#x3D;&quot;&#x60;Toggle ${node.label}&#x60;&quot;
         &gt;
           &lt;mat-icon class&#x3D;&quot;mat-icon-rtl-mirror&quot;&gt;
             {{ tree.isExpanded(node) ? &#x27;expand_less&#x27; : &#x27;expand_more&#x27; }}
@@ -1650,98 +1646,6 @@ export class OntologyTreeComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./ontology-tree.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
-@use &#x27;vars&#x27;;
-
-:host {
-  --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
-
-  border-top: 1px solid vars.$outline-variant;
-  color: vars.$secondary;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  .header {
-    align-items: center;
-    display: flex;
-    font: vars.$label-medium;
-    min-height: 2.5rem;
-    padding: 0 1rem;
-
-    .header-num-results {
-      display: flex;
-      font: vars.$label-small;
-      gap: 0.25rem;
-    }
-  }
-
-  .num-results {
-    color: vars.$primary;
-  }
-
-  mat-tree {
-    padding-left: 0.75rem;
-    @include mat.tree-overrides(
-      (
-        container-background-color: vars.$surface-container-low,
-      )
-    );
-  }
-
-  mat-tree-node {
-    display: flex;
-    flex-direction: column;
-    padding-right: 0.75rem;
-    margin-left: -0.25rem;
-  }
-
-  .node-content {
-    padding-left: 0;
-    padding-right: 2px;
-  }
-
-  .node-label {
-    padding-left: 0.375rem;
-    line-height: normal;
-  }
-
-  .num-results,
-  .header-num-results {
-    margin-left: auto;
-  }
-
-  .biomarkers-toggle {
-    align-items: center;
-    display: flex;
-    min-height: 2.25rem;
-    padding: 0 1rem;
-    @include mat.button-toggle-overrides(
-      (
-        selected-state-text-color: vars.$secondary,
-      )
-    );
-
-    .mat-button-toggle-group {
-      width: 100%;
-
-      mat-button-toggle {
-        flex-grow: 1;
-      }
-    }
-  }
-
-  ::ng-deep .mat-mdc-button-touch-target {
-    height: 1.5rem;
-    width: 1.5rem;
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -1768,7 +1672,7 @@ export class OntologyTreeComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@let root = rootNode();<div class="header" [hraPlainTooltip]="tooltip()">  {{ getNodeLabel(root.label ?? \'\') }}  <div class="header-num-results">Tissue Blocks: {{ getCount(root) }}</div></div>@if (root.id === \'biomarkers\') {  <div class="biomarkers-toggle">    <mat-button-toggle-group      hraFeature="biomarkers-toggle"      multiple      hideMultipleSelectionIndicator      name="multiSelect"      aria-label="Multi Select"      hraButtonToggleSize="small"      (change)="biomarkerOptionSelectionChange($event.value)"    >      @for (option of biomarkerMenuOptions(); track option) {        <mat-button-toggle          [hraFeature]="option | slugify"          hraClickEvent          [value]="option"          [checked]="isBiomarkerOptionSelected(option)"          [hraPlainTooltip]="(isBiomarkerOptionSelected(option) ? \'Hide \' : \'Show \') + option.toLowerCase()"          >{{ option }}</mat-button-toggle        >      }    </mat-button-toggle-group>  </div>}<ng-scrollbar hraScrollOverflowFade>  <mat-tree [dataSource]="nodes()" [childrenAccessor]="getChildren()" hraTreeSize="small" #tree>    <!-- This is the tree node template for leaf nodes -->    <mat-tree-node      hraFeature="leaf"      *matTreeNodeDef="let node"      matTreeNodePadding      (click)="select($event.ctrlKey, node, true, !isSelected(node))"      matTreeNodePaddingIndent="12"    >      <div        [hraFeature]="node.label | slugify"        hraClickEvent        class="node-content leaf"        [class.selected]="isSelected(node)"      >        <div hraFeature="label" hraClickEvent class="node-label">{{ node.label }}</div>        <div hraFeature="count" hraClickEvent class="num-results">{{ getCount(node) }}</div>      </div>    </mat-tree-node>    <!-- This is the tree node template for expandable nodes -->    <mat-tree-node      hraFeature="branch"      *matTreeNodeDef="let node; when: hasChildren"      matTreeNodePadding      matTreeNodeToggle      [cdkTreeNodeTypeaheadLabel]="node.label"      (click)="select($event.ctrlKey, node, true, !isSelected(node))"      matTreeNodePaddingIndent="12"    >      <div [hraFeature]="node.label | slugify" hraClickEvent class="node-content" [class.selected]="isSelected(node)">        <button          hraFeature="toggle"          hraClickEvent          class="tree-expand-icon"          mat-icon-button          matTreeNodeToggle          [attr.aria-label]="\'Toggle \' + node.label"        >          <mat-icon class="mat-icon-rtl-mirror">            {{ tree.isExpanded(node) ? \'expand_less\' : \'expand_more\' }}          </mat-icon>        </button>        <div hraFeature="label" hraClickEvent class="node-label">{{ node.label }}</div>        <div hraFeature="count" hraClickEvent class="num-results">{{ getCount(node) }}</div>      </div>    </mat-tree-node>  </mat-tree></ng-scrollbar></div>'
+        var COMPONENT_TEMPLATE = '<div>@let root = rootNode();<div class="header" [hraPlainTooltip]="tooltip()">  {{ getNodeLabel(root.label ?? \'\') }}  <div class="header-num-results">Tissue Blocks: {{ getCount(root) }}</div></div>@if (root.id === \'biomarkers\') {  <div class="biomarkers-toggle">    <mat-button-toggle-group      hraFeature="biomarkers-toggle"      multiple      hideMultipleSelectionIndicator      name="multiSelect"      aria-label="Multi Select"      hraButtonToggleSize="small"      (change)="biomarkerOptionSelectionChange($event.value)"    >      @for (option of biomarkerMenuOptions(); track option) {        <mat-button-toggle          hraClickEvent          [hraFeature]="option | slugify"          [value]="option"          [checked]="isBiomarkerOptionSelected(option)"          [hraPlainTooltip]="(isBiomarkerOptionSelected(option) ? \'Hide \' : \'Show \') + option.toLowerCase()"          >{{ option }}</mat-button-toggle        >      }    </mat-button-toggle-group>  </div>}<ng-scrollbar hraScrollOverflowFade>  <mat-tree hraTreeSize="small" [dataSource]="nodes()" [childrenAccessor]="getChildren()" #tree>    <!-- This is the tree node template for leaf nodes -->    <mat-tree-node      *matTreeNodeDef="let node"      hraFeature="leaf"      matTreeNodePadding      matTreeNodePaddingIndent="12"      (click)="select($event.ctrlKey, node, true, !isSelected(node))"    >      <div        hraClickEvent        class="node-content leaf"        [hraFeature]="node.label | slugify"        [class.selected]="isSelected(node)"      >        <div hraFeature="label" hraClickEvent class="node-label">{{ node.label }}</div>        <div hraFeature="count" hraClickEvent class="num-results">{{ getCount(node) }}</div>      </div>    </mat-tree-node>    <!-- This is the tree node template for expandable nodes -->    <mat-tree-node      *matTreeNodeDef="let node; when: hasChildren"      hraFeature="branch"      matTreeNodePadding      matTreeNodeToggle      matTreeNodePaddingIndent="12"      [cdkTreeNodeTypeaheadLabel]="node.label"      (click)="select($event.ctrlKey, node, true, !isSelected(node))"    >      <div hraClickEvent class="node-content" [hraFeature]="node.label | slugify" [class.selected]="isSelected(node)">        <button          hraFeature="toggle"          hraClickEvent          class="tree-expand-icon"          mat-icon-button          matTreeNodeToggle          [attr.aria-label]="`Toggle ${node.label}`"        >          <mat-icon class="mat-icon-rtl-mirror">            {{ tree.isExpanded(node) ? \'expand_less\' : \'expand_more\' }}          </mat-icon>        </button>        <div hraFeature="label" hraClickEvent class="node-label">{{ node.label }}</div>        <div hraFeature="count" hraClickEvent class="num-results">{{ getCount(node) }}</div>      </div>    </mat-tree-node>  </mat-tree></ng-scrollbar></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OntologyTreeComponent'};

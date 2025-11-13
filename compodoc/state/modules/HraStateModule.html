@@ -149,89 +149,12 @@
             </div>
         </div>
 
-        <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="forRoot"></a>
-                    <span class="name">
-                            <span class="modifier">Static</span>
-                        <span ><b>forRoot</b></span>
-                        <a href="#forRoot"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>forRoot(_options: <a href="../undefineds/HraStateModuleOptions.html" target="_self">HraStateModuleOptions</a>)</code>
-                </td>
-            </tr>
 
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/lib/state.module.ts:33</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Static method for configuring the module
-Returns a configuration object with the module and the providers</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>_options</td>
-                                            <td>
-                                                            <code><a href="../miscellaneous/typealiases.html#HraStateModuleOptions" target="_self" >HraStateModuleOptions</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../modules/HraStateModule.html" target="_self" >ModuleWithProviders&lt;HraStateModule&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ModuleWithProviders, NgModule } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { NgxsModule } from &#x27;@ngxs/store&#x27;;
 import { EmptyObject } from &#x27;type-fest&#x27;;
 import { ActiveFtuState } from &#x27;./active-ftu&#x27;;
@@ -259,17 +182,7 @@ export type HraStateModuleOptions &#x3D; EmptyObject;
     ]),
   ],
 })
-export class HraStateModule {
-  /** Static method for configuring the module
-   * Returns a configuration object with the module and the providers
-   */
-  static forRoot(_options: HraStateModuleOptions): ModuleWithProviders&lt;HraStateModule&gt; {
-    return {
-      ngModule: HraStateModule,
-      providers: [],
-    };
-  }
-}
+export class HraStateModule {}
 </code></pre>
     </div>
 </div>

@@ -3,7 +3,7 @@ import { ConnectedPosition } from '@angular/cdk/overlay';
 import * as _angular_core from '@angular/core';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** A menu item */
 type MenuItem = z.infer<typeof MenuItemSchema>;

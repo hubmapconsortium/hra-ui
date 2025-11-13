@@ -2,7 +2,7 @@ import { coerceElement, coerceArray } from '@angular/cdk/coercion';
 import * as i0 from '@angular/core';
 import { InjectionToken, makeEnvironmentProviders, inject, Injectable, RendererStyleFlags2, input, ViewContainerRef, Renderer2, ErrorHandler, effect, Injector, reflectComponentType, Directive } from '@angular/core';
 import { findOrThrow } from '@hra-ui/common/array-util';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Injection token for providing multiple content template controllers.
@@ -58,10 +58,10 @@ class ContentTemplateControllerRegistryService {
     getController(id) {
         return this.controllers.get(id);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ContentTemplateControllerRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ContentTemplateControllerRegistryService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateControllerRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateControllerRegistryService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ContentTemplateControllerRegistryService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateControllerRegistryService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -113,10 +113,10 @@ class ContentTemplateDefRegistryService {
     getDef(tag) {
         return this.defs.get(tag);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ContentTemplateDefRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ContentTemplateDefRegistryService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateDefRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateDefRegistryService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ContentTemplateDefRegistryService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateDefRegistryService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -390,10 +390,10 @@ class ContentTemplateOutletDirective {
         // TODO
         throw new Error('TODO render error component instead', { cause: error });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ContentTemplateOutletDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: ContentTemplateOutletDirective, isStandalone: true, selector: "[hraContentTemplateOutlet]", inputs: { data: { classPropertyName: "data", publicName: "hraContentTemplateOutlet", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0 }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateOutletDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: ContentTemplateOutletDirective, isStandalone: true, selector: "[hraContentTemplateOutlet]", inputs: { data: { classPropertyName: "data", publicName: "hraContentTemplateOutlet", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0 }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ContentTemplateOutletDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateOutletDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraContentTemplateOutlet]',

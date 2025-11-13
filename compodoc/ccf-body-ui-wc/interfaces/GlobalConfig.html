@@ -336,19 +336,18 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  computed,
+  effect,
   EventEmitter,
   inject,
   Output,
   ViewChild,
 } from &#x27;@angular/core&#x27;;
+import { toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { SpatialSceneNode } from &#x27;@hra-api/ng-client&#x27;;
-import { NodeClickEvent } from &#x27;ccf-body-ui&#x27;;
-import { BodyUiComponent, GlobalConfigState } from &#x27;ccf-shared&#x27;;
+import { BodyUiComponent, NodeClickEvent } from &#x27;ccf-body-ui&#x27;;
 import { JsonLdObj } from &#x27;jsonld/jsonld-spec&#x27;;
-import { lastValueFrom } from &#x27;rxjs&#x27;;
-import { take, tap } from &#x27;rxjs/operators&#x27;;
 import { FilteredSceneService } from &#x27;./core/services/filtered-scene/filtered-scene.service&#x27;;
 
 /** Config */
@@ -363,11 +362,11 @@ export interface GlobalConfig {
 
 /** Root component */
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: &#x27;ccf-root&#x27;,
-  templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;],
   standalone: false,
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrl: &#x27;./app.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   /** Reference to the body ui */
@@ -380,49 +379,63 @@ export class AppComponent {
   /** Emits when the user clicks a node */
   @Output() readonly onClick &#x3D; new EventEmitter&lt;NodeClickEvent&gt;();
 
-  /** Global config */
-  private readonly configState: GlobalConfigState&lt;GlobalConfig&gt; &#x3D; inject(GlobalConfigState);
   /** Scene service */
   private readonly sceneSource &#x3D; inject(FilteredSceneService);
-  /** Change detector */
-  private readonly cdr &#x3D; inject(ChangeDetectorRef);
 
-  /** Data */
-  readonly data$ &#x3D; this.configState.getOption(&#x27;data&#x27;);
   /** Organs */
-  organs$ &#x3D; this.sceneSource.filteredOrgans$;
+  protected readonly organs &#x3D; toSignal(this.sceneSource.filteredOrgans$, { initialValue: [] });
   /** Scene */
-  scene$ &#x3D; this.sceneSource.filteredScene$.pipe(tap(() &#x3D;&gt; this.reset()));
+  protected readonly scene &#x3D; toSignal(this.sceneSource.filteredScene$, {
+    initialValue: undefined,
+  });
+
+  /** Whether the scene has a zooming node */
+  private readonly hasZoomingNode &#x3D; computed(() &#x3D;&gt; !!this.scene()?.some((node) &#x3D;&gt; node.zoomToOnLoad));
+
+  /** Scene bounds */
+  protected readonly bounds &#x3D; computed(() &#x3D;&gt;
+    this.computeFromDimensions(
+      (x, y, z) &#x3D;&gt; ({
+        x: (1.25 * x) / 1000,
+        y: (1.25 * y) / 1000,
+        z: (1.25 * z) / 1000,
+      }),
+      { x: 2.2, y: 2, z: 0.4 },
+    ),
+  );
+
+  /** Scene target */
+  protected readonly target &#x3D; computed(() &#x3D;&gt;
+    this.computeFromDimensions((x, y, z) &#x3D;&gt; [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2], [0, 0, 0]),
+  );
+
+  /** Setup component */
+  constructor() {
+    effect(() &#x3D;&gt; {
+      if (this.scene()) {
+        this.reset();
+      }
+    });
+  }
 
   /** Resets the body ui */
   private async reset(): Promise&lt;void&gt; {
-    const { bodyUI } &#x3D; this;
-
     await new Promise((resolve) &#x3D;&gt; {
       setTimeout(resolve, 200);
     });
-    const organs &#x3D; await lastValueFrom(this.organs$.pipe(take(1)));
-    const hasZoomingNode &#x3D; !!bodyUI.scene?.find((node) &#x3D;&gt; node.zoomToOnLoad);
 
-    bodyUI.rotation &#x3D; 0;
-    bodyUI.rotationX &#x3D; 0;
+    this.bodyUI.resetView();
+  }
 
-    if (!hasZoomingNode) {
-      if (organs &amp;&amp; organs.length &#x3D;&#x3D;&#x3D; 1) {
-        const { x_dimension: x, y_dimension: y, z_dimension: z } &#x3D; organs[0];
-        bodyUI.bounds &#x3D; {
-          x: (1.25 * x) / 1000,
-          y: (1.25 * y) / 1000,
-          z: (1.25 * z) / 1000,
-        };
-        bodyUI.target &#x3D; [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2];
-      } else {
-        bodyUI.bounds &#x3D; { x: 2.2, y: 2, z: 0.4 };
-        bodyUI.target &#x3D; [0, 0, 0];
-      }
+  /** Perform a computation base on organ dimensions */
+  private computeFromDimensions&lt;R&gt;(computation: (x: number, y: number, z: number) &#x3D;&gt; R, defaultValue: R): R {
+    const organs &#x3D; this.organs();
+    if (!this.hasZoomingNode() || organs.length !&#x3D;&#x3D; 1) {
+      return defaultValue;
     }
 
-    this.cdr.detectChanges();
+    const { x_dimension: x, y_dimension: y, z_dimension: z } &#x3D; organs[0];
+    return computation(x, y, z);
   }
 }
 </code></pre>

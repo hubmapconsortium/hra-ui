@@ -681,7 +681,7 @@ export class ProvenanceMenuComponent {
     [version]&#x3D;&quot;version()&quot;
     [availableVersions]&#x3D;&quot;availableVersions()&quot;
     (versionChange)&#x3D;&quot;versionChange.emit($event || &#x27;latest&#x27;)&quot;
-  &gt;&lt;/hra-version-selector&gt;
+  /&gt;
 
   &lt;div class&#x3D;&quot;provenance-buttons&quot;&gt;
     &lt;button
@@ -689,8 +689,8 @@ export class ProvenanceMenuComponent {
       hraClickEvent
       mat-flat-button
       class&#x3D;&quot;downloads button&quot;
-      [matMenuTriggerFor]&#x3D;&quot;options&quot;
       hraPlainTooltip&#x3D;&quot;View file formats and download files&quot;
+      [matMenuTriggerFor]&#x3D;&quot;options&quot;
     &gt;
       Download options
     &lt;/button&gt;
@@ -698,11 +698,11 @@ export class ProvenanceMenuComponent {
     &lt;mat-menu hraFeature&#x3D;&quot;download-options&quot; #options&#x3D;&quot;matMenu&quot;&gt;
       @for (option of downloadOptions(); track $index) {
         &lt;a
-          [hraFeature]&#x3D;&quot;option.name | slugify&quot;
           hraClickEvent
           mat-menu-item
-          [attr.href]&#x3D;&quot;option.url&quot;
           download
+          [hraFeature]&#x3D;&quot;option.name | slugify&quot;
+          [attr.href]&#x3D;&quot;option.url&quot;
           (click)&#x3D;&quot;
             $event.preventDefault();
             download(option.url!);
@@ -757,7 +757,7 @@ export class ProvenanceMenuComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="selector-and-buttons">  <hra-version-selector    hraFeature="version-select"    hraClickEvent    [version]="version()"    [availableVersions]="availableVersions()"    (versionChange)="versionChange.emit($event || \'latest\')"  ></hra-version-selector>  <div class="provenance-buttons">    <button      hraFeature="download"      hraClickEvent      mat-flat-button      class="downloads button"      [matMenuTriggerFor]="options"      hraPlainTooltip="View file formats and download files"    >      Download options    </button>    <mat-menu hraFeature="download-options" #options="matMenu">      @for (option of downloadOptions(); track $index) {        <a          [hraFeature]="option.name | slugify"          hraClickEvent          mat-menu-item          [attr.href]="option.url"          download          (click)="            $event.preventDefault();            download(option.url!);            snackbar.open(\'File downloaded\', \'\', false, \'start\', { duration: 5000 })          "        >          <mat-icon>{{ option.icon }}</mat-icon>          <div class="option-text">            <span class="option-name">              {{ option.name }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>    <!-- TODO: add this feature -->    <!-- <button mat-button hraButtonVariant="secondary" class="view-app button">View in app</button> -->  </div></div><hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" /></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="selector-and-buttons">  <hra-version-selector    hraFeature="version-select"    hraClickEvent    [version]="version()"    [availableVersions]="availableVersions()"    (versionChange)="versionChange.emit($event || \'latest\')"  />  <div class="provenance-buttons">    <button      hraFeature="download"      hraClickEvent      mat-flat-button      class="downloads button"      hraPlainTooltip="View file formats and download files"      [matMenuTriggerFor]="options"    >      Download options    </button>    <mat-menu hraFeature="download-options" #options="matMenu">      @for (option of downloadOptions(); track $index) {        <a          hraClickEvent          mat-menu-item          download          [hraFeature]="option.name | slugify"          [attr.href]="option.url"          (click)="            $event.preventDefault();            download(option.url!);            snackbar.open(\'File downloaded\', \'\', false, \'start\', { duration: 5000 })          "        >          <mat-icon>{{ option.icon }}</mat-icon>          <div class="option-text">            <span class="option-name">              {{ option.name }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>    <!-- TODO: add this feature -->    <!-- <button mat-button hraButtonVariant="secondary" class="view-app button">View in app</button> -->  </div></div><hra-table class="metadata-table" [rows]="rows()" [columns]="columns()" [verticalDividers]="true" /></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ProvenanceMenuComponent'};

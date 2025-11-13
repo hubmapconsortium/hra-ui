@@ -1,6 +1,6 @@
 import * as _angular_core from '@angular/core';
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Data Selector Component

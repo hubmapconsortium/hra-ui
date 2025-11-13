@@ -435,8 +435,6 @@ export class NumericRowElementDirective {
  */
 @Component({
   selector: &#x27;hra-table&#x27;,
-  templateUrl: &#x27;table.component.html&#x27;,
-  styleUrls: [&#x27;table.component.scss&#x27;],
   imports: [
     HraCommonModule,
     MarkdownModule,
@@ -455,6 +453,8 @@ export class NumericRowElementDirective {
     IconsModule,
     ButtonsModule,
   ],
+  templateUrl: &#x27;table.component.html&#x27;,
+  styleUrl: &#x27;table.component.scss&#x27;,
   host: {
     &#x27;[class]&#x27;: &#x27;&quot;hra-table-style-&quot; + style()&#x27;,
     &#x27;[class.sortable]&#x27;: &#x27;enableSort()&#x27;,

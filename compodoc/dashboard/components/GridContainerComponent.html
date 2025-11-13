@@ -394,7 +394,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 import {
   DASHBOARD_COMPONENT_ANY_DEF,
   DashboardComponent,
@@ -428,9 +428,9 @@ export class GridContainerComponent implements DashboardComponent&lt;typeof Grid
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div [style.grid-template-columns]&#x3D;&quot;columns()&quot; data-testid&#x3D;&quot;grid-container&quot; class&#x3D;&quot;container&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div data-testid&#x3D;&quot;grid-container&quot; class&#x3D;&quot;container&quot; [style.grid-template-columns]&#x3D;&quot;columns()&quot;&gt;
   @for (item of spec().items; track item) {
-    &lt;ng-container *hraDashboardComponentOutlet&#x3D;&quot;item&quot;&gt;&lt;/ng-container&gt;
+    &lt;ng-container *hraDashboardComponentOutlet&#x3D;&quot;item&quot; /&gt;
   }
 &lt;/div&gt;
 </code></pre>
@@ -462,7 +462,7 @@ export class GridContainerComponent implements DashboardComponent&lt;typeof Grid
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div [style.grid-template-columns]="columns()" data-testid="grid-container" class="container">  @for (item of spec().items; track item) {    <ng-container *hraDashboardComponentOutlet="item"></ng-container>  }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div data-testid="grid-container" class="container" [style.grid-template-columns]="columns()">  @for (item of spec().items; track item) {    <ng-container *hraDashboardComponentOutlet="item" />  }</div></div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'GridContainerComponent'};

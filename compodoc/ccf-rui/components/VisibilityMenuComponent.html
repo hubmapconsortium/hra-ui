@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -197,10 +193,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./visibility-menu.component.scss</code></td>
-            </tr>
 
 
 
@@ -211,6 +203,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./visibility-menu.component.scss</code></td>
+            </tr>
 
 
 
@@ -822,7 +818,7 @@ const SLIDER_OVERLAY_POSITION: ConnectedPosition[] &#x3D; [
   selector: &#x27;ccf-visibility-menu&#x27;,
   imports: [HraCommonModule, MatIconModule, OverlayModule, OpacitySliderComponent, PlainTooltipDirective],
   templateUrl: &#x27;./visibility-menu.component.html&#x27;,
-  styleUrls: [&#x27;./visibility-menu.component.scss&#x27;],
+  styleUrl: &#x27;./visibility-menu.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [CdkScrollable],
 })
@@ -914,13 +910,13 @@ export class VisibilityMenuComponent {
     &lt;div cdkOverlayOrigin class&#x3D;&quot;item-entry&quot; [class.selected]&#x3D;&quot;selected&quot; #origin&#x3D;&quot;cdkOverlayOrigin&quot;&gt;
       &lt;mat-icon
         hraFeature&#x3D;&quot;opacity-toggle&quot;
-        [hraClickEvent]&#x3D;&quot;{ visible: item.visible }&quot;
         hraPlainTooltip&#x3D;&quot;Edit opacity&quot;
         class&#x3D;&quot;opacity-icon&quot;
-        [class.fade]&#x3D;&quot;!item.visible&quot;
         svgIcon&#x3D;&quot;app:opacity&quot;
+        [hraClickEvent]&#x3D;&quot;{ visible: item.visible }&quot;
+        [class.fade]&#x3D;&quot;!item.visible&quot;
         (click)&#x3D;&quot;selection.set(item)&quot;
-      &gt;&lt;/mat-icon&gt;
+      /&gt;
 
       &lt;div hraFeature&#x3D;&quot;name&quot; hraClickEvent class&#x3D;&quot;item-name&quot; [hraPlainTooltip]&#x3D;&quot;name&quot;&gt;
         {{ name }}
@@ -943,72 +939,13 @@ export class VisibilityMenuComponent {
         (opacityChange)&#x3D;&quot;updateOpacity($event)&quot;
         (opacityReset)&#x3D;&quot;resetItem()&quot;
         (visibilityToggle)&#x3D;&quot;toggleVisibility(item)&quot;
-      &gt;
-      &lt;/ccf-opacity-slider&gt;
+      /&gt;
     &lt;/ng-template&gt;
   &lt;/ng-container&gt;
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./visibility-menu.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-
-  .item-entry {
-    display: flex;
-    align-items: center;
-    border-radius: 0.25rem;
-
-    &amp;.selected {
-      z-index: 1;
-      background: color-mix(in srgb, vars.$tertiary 20%, transparent);
-    }
-
-    .opacity-icon {
-      transition: 0.6s;
-      min-width: 1.5rem;
-      cursor: pointer;
-
-      &amp;.fade {
-        opacity: 0.12;
-      }
-    }
-
-    .item-name {
-      font: vars.$label-small;
-      color: vars.$primary;
-      user-select: none;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-left: 0.25rem;
-    }
-
-    .slider {
-      position: fixed;
-      left: 21rem;
-      transition-timing-function: ease-in-out;
-      transition-property: opacity;
-      transition-duration: 0.3s;
-
-      &amp;.hidden {
-        transition-duration: 0.1s;
-        opacity: 0;
-        pointer-events: none;
-      }
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -1035,7 +972,7 @@ export class VisibilityMenuComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@for (item of items(); track item.id) {  @let name = (item.name[0] | uppercase) + (item.name.slice(1) | lowercase);  @let selected = selection()?.id === item.id;  @let overlayScrollStrategy = overlay.scrollStrategies.close();  <ng-container [hraFeature]="name | slugify">    <div cdkOverlayOrigin class="item-entry" [class.selected]="selected" #origin="cdkOverlayOrigin">      <mat-icon        hraFeature="opacity-toggle"        [hraClickEvent]="{ visible: item.visible }"        hraPlainTooltip="Edit opacity"        class="opacity-icon"        [class.fade]="!item.visible"        svgIcon="app:opacity"        (click)="selection.set(item)"      ></mat-icon>      <div hraFeature="name" hraClickEvent class="item-name" [hraPlainTooltip]="name">        {{ name }}      </div>    </div>    <ng-template      cdkConnectedOverlay      [cdkConnectedOverlayHasBackdrop]="false"      [cdkConnectedOverlayOpen]="selected"      [cdkConnectedOverlayOrigin]="origin"      [cdkConnectedOverlayPositions]="overlayPosition"      [cdkConnectedOverlayScrollStrategy]="overlayScrollStrategy"      (overlayOutsideClick)="selection.set(undefined)"      (detach)="selection.set(undefined)"    >      <ccf-opacity-slider        hraFeature="opacity-slider"        [opacity]="item.opacity ?? 20"        (opacityChange)="updateOpacity($event)"        (opacityReset)="resetItem()"        (visibilityToggle)="toggleVisibility(item)"      >      </ccf-opacity-slider>    </ng-template>  </ng-container>}</div>'
+        var COMPONENT_TEMPLATE = '<div>@for (item of items(); track item.id) {  @let name = (item.name[0] | uppercase) + (item.name.slice(1) | lowercase);  @let selected = selection()?.id === item.id;  @let overlayScrollStrategy = overlay.scrollStrategies.close();  <ng-container [hraFeature]="name | slugify">    <div cdkOverlayOrigin class="item-entry" [class.selected]="selected" #origin="cdkOverlayOrigin">      <mat-icon        hraFeature="opacity-toggle"        hraPlainTooltip="Edit opacity"        class="opacity-icon"        svgIcon="app:opacity"        [hraClickEvent]="{ visible: item.visible }"        [class.fade]="!item.visible"        (click)="selection.set(item)"      />      <div hraFeature="name" hraClickEvent class="item-name" [hraPlainTooltip]="name">        {{ name }}      </div>    </div>    <ng-template      cdkConnectedOverlay      [cdkConnectedOverlayHasBackdrop]="false"      [cdkConnectedOverlayOpen]="selected"      [cdkConnectedOverlayOrigin]="origin"      [cdkConnectedOverlayPositions]="overlayPosition"      [cdkConnectedOverlayScrollStrategy]="overlayScrollStrategy"      (overlayOutsideClick)="selection.set(undefined)"      (detach)="selection.set(undefined)"    >      <ccf-opacity-slider        hraFeature="opacity-slider"        [opacity]="item.opacity ?? 20"        (opacityChange)="updateOpacity($event)"        (opacityReset)="resetItem()"        (visibilityToggle)="toggleVisibility(item)"      />    </ng-template>  </ng-container>}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'VisibilityMenuComponent'};

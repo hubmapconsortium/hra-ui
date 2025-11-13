@@ -402,21 +402,20 @@ export class ServerSelectorComponent {
     disableRipple
     panelWidth&#x3D;&quot;auto&quot;
     panelClass&#x3D;&quot;options-container server-selector-panel&quot;
-    [(ngModel)]&#x3D;&quot;selectedServer&quot;
     [hraModelChangeEvent]&#x3D;&quot;[&#x27;label&#x27;]&quot;
+    [(ngModel)]&#x3D;&quot;selectedServer&quot;
     #serverSelect
   &gt;
     &lt;mat-select-trigger&gt;
       {{ selectedServer().url }}
     &lt;/mat-select-trigger&gt;
-    @if (servers().length &gt; 0) {
-      @for (server of servers(); track $index) {
-        &lt;mat-option [value]&#x3D;&quot;server&quot;&gt;
-          &lt;div class&#x3D;&quot;server-url&quot;&gt;{{ server.url }}&lt;/div&gt;
-          &lt;div class&#x3D;&quot;server-description&quot;&gt;{{ server.description }}&lt;/div&gt;
-        &lt;/mat-option&gt;
-      }
-    } @else {
+
+    @for (server of servers(); track $index) {
+      &lt;mat-option [value]&#x3D;&quot;server&quot;&gt;
+        &lt;div class&#x3D;&quot;server-url&quot;&gt;{{ server.url }}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;server-description&quot;&gt;{{ server.description }}&lt;/div&gt;
+      &lt;/mat-option&gt;
+    } @empty {
       &lt;mat-option disabled&gt; No servers available. &lt;/mat-option&gt;
     }
   &lt;/mat-select&gt;
@@ -450,7 +449,7 @@ export class ServerSelectorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field hraFeature="server-selector" class="server-select-field" [hintLabel]="selectedServer().description">  <mat-label>Server</mat-label>  <mat-select    disableRipple    panelWidth="auto"    panelClass="options-container server-selector-panel"    [(ngModel)]="selectedServer"    [hraModelChangeEvent]="[\'label\']"    #serverSelect  >    <mat-select-trigger>      {{ selectedServer().url }}    </mat-select-trigger>    @if (servers().length > 0) {      @for (server of servers(); track $index) {        <mat-option [value]="server">          <div class="server-url">{{ server.url }}</div>          <div class="server-description">{{ server.description }}</div>        </mat-option>      }    } @else {      <mat-option disabled> No servers available. </mat-option>    }  </mat-select></mat-form-field></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field hraFeature="server-selector" class="server-select-field" [hintLabel]="selectedServer().description">  <mat-label>Server</mat-label>  <mat-select    disableRipple    panelWidth="auto"    panelClass="options-container server-selector-panel"    [hraModelChangeEvent]="[\'label\']"    [(ngModel)]="selectedServer"    #serverSelect  >    <mat-select-trigger>      {{ selectedServer().url }}    </mat-select-trigger>    @for (server of servers(); track $index) {      <mat-option [value]="server">        <div class="server-url">{{ server.url }}</div>        <div class="server-description">{{ server.description }}</div>      </mat-option>    } @empty {      <mat-option disabled> No servers available. </mat-option>    }  </mat-select></mat-form-field></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ServerSelectorComponent'};

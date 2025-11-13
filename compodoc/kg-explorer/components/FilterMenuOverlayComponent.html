@@ -1125,7 +1125,7 @@ export class FilterMenuOverlayComponent implements OnInit {
 
       @if (tooltip?.actionText &amp;&amp; tooltip?.actionUrl) {
         &lt;div hraInfoButtonActions&gt;
-          &lt;a mat-button color&#x3D;&quot;accent&quot; [href]&#x3D;&quot;tooltip?.actionUrl&quot; target&#x3D;&quot;_blank&quot;&gt;
+          &lt;a mat-button color&#x3D;&quot;accent&quot; target&#x3D;&quot;_blank&quot; [href]&#x3D;&quot;tooltip?.actionUrl&quot;&gt;
             {{ tooltip?.actionText }}
           &lt;/a&gt;
         &lt;/div&gt;
@@ -1147,28 +1147,28 @@ export class FilterMenuOverlayComponent implements OnInit {
 
   &lt;mat-chip-set hraFeature&#x3D;&quot;active-options&quot;&gt;
     @for (option of chips(); track option.id) {
-      &lt;mat-chip [hraFeature]&#x3D;&quot;option.label | slugify&quot; hraClickEvent (removed)&#x3D;&quot;remove(option)&quot; disableRipple&gt;
+      &lt;mat-chip hraClickEvent disableRipple [hraFeature]&#x3D;&quot;option.label | slugify&quot; (removed)&#x3D;&quot;remove(option)&quot;&gt;
         {{ option.label }}
-        &lt;button hraFeature&#x3D;&quot;remove&quot; hraClickEvent matChipRemove [attr.aria-label]&#x3D;&quot;&#x27;remove &#x27; + option.label&quot;&gt;
+        &lt;button hraFeature&#x3D;&quot;remove&quot; hraClickEvent matChipRemove [attr.aria-label]&#x3D;&quot;&#x60;remove ${option.label}&#x60;&quot;&gt;
           &lt;mat-icon&gt;close&lt;/mat-icon&gt;
         &lt;/button&gt;
       &lt;/mat-chip&gt;
     }
   &lt;/mat-chip-set&gt;
 
-  &lt;hra-rich-tooltip-container #content class&#x3D;&quot;filter-menu&quot;&gt;
+  &lt;hra-rich-tooltip-container class&#x3D;&quot;filter-menu&quot; #content&gt;
     &lt;hra-rich-tooltip-content class&#x3D;&quot;filter-menu-content&quot;&gt;
       &lt;mat-form-field hraFeature&#x3D;&quot;search&quot; hraClickEvent class&#x3D;&quot;search field&quot; subscriptSizing&#x3D;&quot;dynamic&quot;&gt;
         &lt;mat-icon class&#x3D;&quot;search-icon&quot; matPrefix&gt;search&lt;/mat-icon&gt;
-        &lt;input matInput type&#x3D;&quot;text&quot; [formControl]&#x3D;&quot;searchControl&quot; placeholder&#x3D;&quot;Search&quot; /&gt;
+        &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Search&quot; [formControl]&#x3D;&quot;searchControl&quot; /&gt;
       &lt;/mat-form-field&gt;
 
       &lt;ng-scrollbar&gt;
         &lt;mat-action-list&gt;
           @for (option of filteredOptions(); track option.id) {
             &lt;div
-              [hraFeature]&#x3D;&quot;option.label | slugify&quot;
               class&#x3D;&quot;option-content&quot;
+              [hraFeature]&#x3D;&quot;option.label | slugify&quot;
               [class.selected]&#x3D;&quot;selectedOptions().includes(option)&quot;
               [class.large]&#x3D;&quot;option.secondaryLabel&quot;
             &gt;
@@ -1179,7 +1179,7 @@ export class FilterMenuOverlayComponent implements OnInit {
 
                   @if (tooltip.actionUrl) {
                     &lt;div hraInfoButtonActions&gt;
-                      &lt;a mat-button color&#x3D;&quot;accent&quot; [href]&#x3D;&quot;tooltip.actionUrl&quot; target&#x3D;&quot;_blank&quot;&gt;
+                      &lt;a mat-button color&#x3D;&quot;accent&quot; target&#x3D;&quot;_blank&quot; [href]&#x3D;&quot;tooltip.actionUrl&quot;&gt;
                         {{ tooltip.actionText }}
                       &lt;/a&gt;
                     &lt;/div&gt;
@@ -1187,10 +1187,10 @@ export class FilterMenuOverlayComponent implements OnInit {
                 &lt;/hra-info-button&gt;
               }
               &lt;button
-                [hraFeature]&#x3D;&quot;selectedOptions().includes(option) ? &#x27;deselect&#x27; : &#x27;select&#x27;&quot;
                 hraClickEvent
                 mat-list-item
                 class&#x3D;&quot;option&quot;
+                [hraFeature]&#x3D;&quot;selectedOptions().includes(option) ? &#x27;deselect&#x27; : &#x27;select&#x27;&quot;
                 (click)&#x3D;&quot;selectOption(option)&quot;
               &gt;
                 &lt;div class&#x3D;&quot;labels-count&quot;&gt;
@@ -1239,7 +1239,7 @@ export class FilterMenuOverlayComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@let tooltip = filterOptionCategory().tooltip;<ng-container hraFeature="filter-overlay">  <div class="top-row">    <hra-info-button hraFeature="info" hraClickEvent>      <span hraInfoButtonTagline>{{ filterOptionCategory().label }}</span>      {{ tooltip?.description ?? \'\' }}      @if (tooltip?.actionText && tooltip?.actionUrl) {        <div hraInfoButtonActions>          <a mat-button color="accent" [href]="tooltip?.actionUrl" target="_blank">            {{ tooltip?.actionText }}          </a>        </div>      }    </hra-info-button>    <button      hraFeature="toggle"      hraClickEvent      mat-button      hraButtonVariant="secondary"      class="category-button"      color="primary"      [hraRichTooltip]="content"      [hraRichTooltipPositions]="tooltipPositions()"    >      {{ filterOptionCategory().label }}    </button>  </div>  <mat-chip-set hraFeature="active-options">    @for (option of chips(); track option.id) {      <mat-chip [hraFeature]="option.label | slugify" hraClickEvent (removed)="remove(option)" disableRipple>        {{ option.label }}        <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="\'remove \' + option.label">          <mat-icon>close</mat-icon>        </button>      </mat-chip>    }  </mat-chip-set>  <hra-rich-tooltip-container #content class="filter-menu">    <hra-rich-tooltip-content class="filter-menu-content">      <mat-form-field hraFeature="search" hraClickEvent class="search field" subscriptSizing="dynamic">        <mat-icon class="search-icon" matPrefix>search</mat-icon>        <input matInput type="text" [formControl]="searchControl" placeholder="Search" />      </mat-form-field>      <ng-scrollbar>        <mat-action-list>          @for (option of filteredOptions(); track option.id) {            <div              [hraFeature]="option.label | slugify"              class="option-content"              [class.selected]="selectedOptions().includes(option)"              [class.large]="option.secondaryLabel"            >              @let tooltip = option.tooltip;              @if (tooltip) {                <hra-info-button hraFeature="info" hraClickEvent>                  {{ tooltip.description }}                  @if (tooltip.actionUrl) {                    <div hraInfoButtonActions>                      <a mat-button color="accent" [href]="tooltip.actionUrl" target="_blank">                        {{ tooltip.actionText }}                      </a>                    </div>                  }                </hra-info-button>              }              <button                [hraFeature]="selectedOptions().includes(option) ? \'deselect\' : \'select\'"                hraClickEvent                mat-list-item                class="option"                (click)="selectOption(option)"              >                <div class="labels-count">                  <span class="option-labels">                    <div class="option-primary-label">{{ option.label }}</div>                    @if (option.secondaryLabel) {                      <div class="option-secondary-label">{{ option.secondaryLabel }}</div>                    }                  </span>                  <span class="option-count">{{ option.count }}</span>                </div>              </button>            </div>          }        </mat-action-list>      </ng-scrollbar>    </hra-rich-tooltip-content>  </hra-rich-tooltip-container></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div>@let tooltip = filterOptionCategory().tooltip;<ng-container hraFeature="filter-overlay">  <div class="top-row">    <hra-info-button hraFeature="info" hraClickEvent>      <span hraInfoButtonTagline>{{ filterOptionCategory().label }}</span>      {{ tooltip?.description ?? \'\' }}      @if (tooltip?.actionText && tooltip?.actionUrl) {        <div hraInfoButtonActions>          <a mat-button color="accent" target="_blank" [href]="tooltip?.actionUrl">            {{ tooltip?.actionText }}          </a>        </div>      }    </hra-info-button>    <button      hraFeature="toggle"      hraClickEvent      mat-button      hraButtonVariant="secondary"      class="category-button"      color="primary"      [hraRichTooltip]="content"      [hraRichTooltipPositions]="tooltipPositions()"    >      {{ filterOptionCategory().label }}    </button>  </div>  <mat-chip-set hraFeature="active-options">    @for (option of chips(); track option.id) {      <mat-chip hraClickEvent disableRipple [hraFeature]="option.label | slugify" (removed)="remove(option)">        {{ option.label }}        <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="`remove ${option.label}`">          <mat-icon>close</mat-icon>        </button>      </mat-chip>    }  </mat-chip-set>  <hra-rich-tooltip-container class="filter-menu" #content>    <hra-rich-tooltip-content class="filter-menu-content">      <mat-form-field hraFeature="search" hraClickEvent class="search field" subscriptSizing="dynamic">        <mat-icon class="search-icon" matPrefix>search</mat-icon>        <input matInput type="text" placeholder="Search" [formControl]="searchControl" />      </mat-form-field>      <ng-scrollbar>        <mat-action-list>          @for (option of filteredOptions(); track option.id) {            <div              class="option-content"              [hraFeature]="option.label | slugify"              [class.selected]="selectedOptions().includes(option)"              [class.large]="option.secondaryLabel"            >              @let tooltip = option.tooltip;              @if (tooltip) {                <hra-info-button hraFeature="info" hraClickEvent>                  {{ tooltip.description }}                  @if (tooltip.actionUrl) {                    <div hraInfoButtonActions>                      <a mat-button color="accent" target="_blank" [href]="tooltip.actionUrl">                        {{ tooltip.actionText }}                      </a>                    </div>                  }                </hra-info-button>              }              <button                hraClickEvent                mat-list-item                class="option"                [hraFeature]="selectedOptions().includes(option) ? \'deselect\' : \'select\'"                (click)="selectOption(option)"              >                <div class="labels-count">                  <span class="option-labels">                    <div class="option-primary-label">{{ option.label }}</div>                    @if (option.secondaryLabel) {                      <div class="option-secondary-label">{{ option.secondaryLabel }}</div>                    }                  </span>                  <span class="option-count">{{ option.count }}</span>                </div>              </button>            </div>          }        </mat-action-list>      </ng-scrollbar>    </hra-rich-tooltip-content>  </hra-rich-tooltip-container></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FilterMenuOverlayComponent'};

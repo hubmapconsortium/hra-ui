@@ -120,6 +120,10 @@
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
         <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -179,10 +183,18 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+    :host {
+      display: block;
+    }
+  </code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ccf-root *ngIf&#x3D;&quot;initialized&quot; (onMouseEnter)&#x3D;&quot;onMouseEnter.emit($event)&quot; (onMouseLeave)&#x3D;&quot;onMouseLeave.emit($event)&quot; (onClick)&#x3D;&quot;onClick.emit($event)&quot;&gt;&lt;/ccf-root&gt;</code></pre></td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ccf-root *ngIf&#x3D;&quot;initialized&quot; (onMouseEnter)&#x3D;&quot;onMouseEnter.emit($event)&quot; (onMouseLeave)&#x3D;&quot;onMouseLeave.emit($event)&quot; (onClick)&#x3D;&quot;onClick.emit($event)&quot; /&gt;</code></pre></td>
             </tr>
 
 
@@ -262,7 +274,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/app-web-component.component.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app-web-component.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -294,7 +306,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/app-web-component.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/app-web-component.component.ts:44</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -321,7 +333,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/app-web-component.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/app-web-component.component.ts:46</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -348,7 +360,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/app-web-component.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/app-web-component.component.ts:48</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -378,7 +390,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/app-web-component.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app-web-component.component.ts:55</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -405,7 +417,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/app-web-component.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/app-web-component.component.ts:51</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -432,7 +444,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/app-web-component.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/app-web-component.component.ts:53</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -482,10 +494,15 @@ function toJsonLd(data: unknown): JsonLdObj[] {
 /** Web component */
 @Component({
   selector: &#x27;ccf-root-wc&#x27;,
-  template:
-    &#x27;&lt;ccf-root *ngIf&#x3D;&quot;initialized&quot; (onMouseEnter)&#x3D;&quot;onMouseEnter.emit($event)&quot; (onMouseLeave)&#x3D;&quot;onMouseLeave.emit($event)&quot; (onClick)&#x3D;&quot;onClick.emit($event)&quot;&gt;&lt;/ccf-root&gt;&#x27;,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  template:
+    &#x27;&lt;ccf-root *ngIf&#x3D;&quot;initialized&quot; (onMouseEnter)&#x3D;&quot;onMouseEnter.emit($event)&quot; (onMouseLeave)&#x3D;&quot;onMouseLeave.emit($event)&quot; (onClick)&#x3D;&quot;onClick.emit($event)&quot; /&gt;&#x27;,
+  styles: &#x60;
+    :host {
+      display: block;
+    }
+  &#x60;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Data */
@@ -521,6 +538,14 @@ export class AppWebComponent extends BaseWebComponent {
     </div>
 
 
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+    :host {
+      display: block;
+    }
+  
+</code></pre>
+    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -547,7 +572,7 @@ export class AppWebComponent extends BaseWebComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ccf-root *ngIf="initialized" (onMouseEnter)="onMouseEnter.emit($event)" (onMouseLeave)="onMouseLeave.emit($event)" (onClick)="onClick.emit($event)"></ccf-root></div>'
+        var COMPONENT_TEMPLATE = '<div><ccf-root *ngIf="initialized" (onMouseEnter)="onMouseEnter.emit($event)" (onMouseLeave)="onMouseLeave.emit($event)" (onClick)="onClick.emit($event)" /></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppWebComponent'};

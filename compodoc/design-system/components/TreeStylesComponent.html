@@ -120,10 +120,6 @@
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -180,16 +176,16 @@
 
 
 
+
+
+
+
+
+
             <tr>
-                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-3">styleUrl</td>
                 <td class="col-md-9"><code>./tree-styles.component.scss</code></td>
             </tr>
-
-
-
-
-
-
 
 
 
@@ -219,82 +215,15 @@
 @Component({
   selector: &#x27;hra-tree-styles&#x27;,
   template: &#x27;&#x27;,
-  styleUrls: [&#x27;./tree-styles.component.scss&#x27;],
-  encapsulation: ViewEncapsulation.None,
+  styleUrl: &#x27;./tree-styles.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TreeStylesComponent {}
 </code></pre>
     </div>
 
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./tree-styles.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
-@use &#x27;../../../../styles/utils&#x27;;
-@use &#x27;../../../../styles/vars&#x27;;
-
-@include utils.global-styles() {
-  mat-tree {
-    letter-spacing: vars.$label-medium-tracking;
-    cursor: pointer;
-    user-select: none;
-    outline: none;
-
-    &amp;:focus-visible .node-content {
-      border-color: vars.$tertiary;
-    }
-  }
-
-  @include mat.tree-overrides(
-    (
-      container-background-color: vars.$on-primary,
-      node-text-font: vars.$label-medium-font,
-      node-text-weight: vars.$label-medium-weight,
-      node-text-color: vars.$secondary,
-    )
-  );
-
-  .node-content {
-    display: flex;
-    height: vars.$node-min-height;
-    line-height: vars.$node-min-height;
-    border-radius: 0.25rem;
-    width: 100%;
-    border-width: 2px;
-    border-style: solid;
-    border-color: transparent;
-    align-items: center;
-
-    @include mat.button-overrides(
-      (
-        text-hover-state-layer-opacity: 0,
-        text-pressed-state-layer-opacity: 0,
-      )
-    );
-
-    &amp;.leaf {
-      padding-left: 0.5rem;
-    }
-
-    &amp;:hover {
-      background: rgb(from vars.$secondary r g b / 0.08);
-    }
-
-    &amp;:active {
-      background: rgb(from vars.$secondary r g b / 0.16);
-      border-color: transparent;
-    }
-
-    &amp;.selected {
-      background: rgb(from vars.$tertiary r g b / 0.2);
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>

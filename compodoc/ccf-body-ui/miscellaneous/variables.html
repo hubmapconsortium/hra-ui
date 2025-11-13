@@ -355,7 +355,10 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.preprocess(tryParseJson, z.union([z.literal(&#x27;&#x27;), z.string().url(), SPATIAL_SCENE_NODE_ARRAY]))</code>
+                        <i>Default value : </i><code>z.preprocess(
+  tryParseJson,
+  z.union([z.undefined(), z.literal(&#x27;&#x27;), z.string().url(), SPATIAL_SCENE_NODE_ARRAY]),
+)</code>
                     </td>
                 </tr>
 

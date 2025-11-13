@@ -223,7 +223,7 @@ import { ProvenanceMenuComponent } from &#x27;../provenance-menu/provenance-menu
 @Component({
   selector: &#x27;hra-metadata-layout-header&#x27;,
   template: &#x60;&lt;ng-content /&gt;&#x60;,
-  styles: [&#x27;::ng-deep h1 &gt; mat-divider { display: none !important; }&#x27;],
+  styles: &#x27;::ng-deep h1 &gt; mat-divider { display: none !important; }&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataLayoutHeaderComponent {}
@@ -242,8 +242,8 @@ export class MetadataLayoutContentComponent {}
   imports: [HraCommonModule, ProvenanceMenuComponent],
   templateUrl: &#x27;./metadata-layout.component.html&#x27;,
   styleUrl: &#x27;./metadata-layout.component.scss&#x27;,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [providePageSectionNavigation()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataLayoutComponent {
   /** Whether the screen width is currently greater than or equal to 1100px */

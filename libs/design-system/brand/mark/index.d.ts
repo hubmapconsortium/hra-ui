@@ -1,6 +1,6 @@
 import * as _angular_core from '@angular/core';
 import { SVGScriptEvalMode } from 'ng-inline-svg-2';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * HRA brandmark component

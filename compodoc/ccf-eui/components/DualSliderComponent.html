@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -210,10 +206,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./dual-slider.component.scss</code></td>
-            </tr>
 
 
 
@@ -224,6 +216,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./dual-slider.component.scss</code></td>
+            </tr>
 
 
 
@@ -2266,8 +2262,6 @@ let nextId &#x3D; 0;
  */
 @Component({
   selector: &#x27;ccf-dual-slider&#x27;,
-  templateUrl: &#x27;./dual-slider.component.html&#x27;,
-  styleUrls: [&#x27;./dual-slider.component.scss&#x27;],
   imports: [
     A11yModule,
     HraCommonModule,
@@ -2277,8 +2271,10 @@ let nextId &#x3D; 0;
     OverlayModule,
     ReactiveFormsModule,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: &#x27;./dual-slider.component.html&#x27;,
+  styleUrl: &#x27;./dual-slider.component.scss&#x27;,
   providers: [{ provide: MatFormFieldControl, useExisting: DualSliderComponent }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: &#x27;combobox&#x27;,
     &#x27;aria-haspopup&#x27;: &#x27;dialog&#x27;,
@@ -2705,7 +2701,7 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
         &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;low&quot; /&gt;
       &lt;/mat-form-field&gt;
 
-      &lt;mat-slider hraFeature&#x3D;&quot;slider&quot; hraClickEvent discrete [min]&#x3D;&quot;min()&quot; [max]&#x3D;&quot;max()&quot; step&#x3D;&quot;1&quot; [disabled]&#x3D;&quot;disabled&quot;&gt;
+      &lt;mat-slider hraFeature&#x3D;&quot;slider&quot; hraClickEvent discrete step&#x3D;&quot;1&quot; [min]&#x3D;&quot;min()&quot; [max]&#x3D;&quot;max()&quot; [disabled]&#x3D;&quot;disabled&quot;&gt;
         &lt;input matSliderStartThumb [value]&#x3D;&quot;low()&quot; /&gt;
         &lt;input matSliderEndThumb [value]&#x3D;&quot;high()&quot; /&gt;
       &lt;/mat-slider&gt;
@@ -2720,46 +2716,6 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./dual-slider.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  display: inline-block;
-  outline: none;
-
-  .label {
-    color: vars.$secondary;
-    font: vars.$label-medium;
-    letter-spacing: vars.$label-medium-tracking;
-  }
-}
-
-::ng-deep {
-  .mat-mdc-form-field-type-dual-slider:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
-    cursor: pointer;
-  }
-
-  .dual-slider-panel {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background-color: vars.$on-primary;
-    box-shadow: 0rem 0.3125rem 0.25rem 0rem rgb(from vars.$secondary r g b / 16%);
-
-    .dual-slider-form {
-      display: flex;
-      gap: 1rem;
-
-      .number-input {
-        width: 3.75rem;
-      }
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -2786,7 +2742,7 @@ export class DualSliderComponent implements ControlValueAccessor, MatFormFieldCo
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div  hraFeature="open-slider"  hraClickEvent  hraClickEventTriggerOn="none"  cdkOverlayOrigin  class="content"  aria-hidden="true"  (click)="open(); openEvent.logEvent(\'click\')"  #fallbackOrigin="cdkOverlayOrigin"  #openEvent="hraClickEvent">  <span class="label">{{ label() }}</span>  <!-- TODO icon --></div><ng-template  hraFeature="slider"  hraClickEvent  hraClickEventTriggerOn="none"  cdkConnectedOverlay  cdkConnectedOverlayHasBackdrop  cdkConnectedOverlayLockPosition  cdkConnectedOverlayBackdropClass="dual-slider-transparent-backdrop"  [cdkConnectedOverlayOpen]="panelOpen()"  [cdkConnectedOverlayOrigin]="panelOrigin() ?? fallbackOrigin"  [cdkConnectedOverlayScrollStrategy]="scrollStrategy"  (overlayOutsideClick)="panelOpen.set(false); sliderEvent.logEvent(\'click\')"  (detach)="afterClose()"  #sliderEvent="hraClickEvent">  <div    cdkTrapFocus    cdkTrapFocusAutoCapture    class="dual-slider-panel"    [attr.id]="panelId"    [attr.aria-label]="ariaLabel() || null"    [attr.aria-labelledby]="panelLabelledBy()"  >    <form class="dual-slider-form" [formGroup]="range">      <mat-form-field hraFeature="min-field" hraClickEvent class="number-input min" floatLabel="always">        <mat-label>≥{{ min() }}</mat-label>        <input matInput type="number" formControlName="low" />      </mat-form-field>      <mat-slider hraFeature="slider" hraClickEvent discrete [min]="min()" [max]="max()" step="1" [disabled]="disabled">        <input matSliderStartThumb [value]="low()" />        <input matSliderEndThumb [value]="high()" />      </mat-slider>      <mat-form-field hraFeature="max-field" hraClickEvent class="number-input max" floatLabel="always">        <mat-label>≤{{ max() }}</mat-label>        <input matInput type="number" formControlName="high" />      </mat-form-field>    </form>  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><div  hraFeature="open-slider"  hraClickEvent  hraClickEventTriggerOn="none"  cdkOverlayOrigin  class="content"  aria-hidden="true"  (click)="open(); openEvent.logEvent(\'click\')"  #fallbackOrigin="cdkOverlayOrigin"  #openEvent="hraClickEvent">  <span class="label">{{ label() }}</span>  <!-- TODO icon --></div><ng-template  hraFeature="slider"  hraClickEvent  hraClickEventTriggerOn="none"  cdkConnectedOverlay  cdkConnectedOverlayHasBackdrop  cdkConnectedOverlayLockPosition  cdkConnectedOverlayBackdropClass="dual-slider-transparent-backdrop"  [cdkConnectedOverlayOpen]="panelOpen()"  [cdkConnectedOverlayOrigin]="panelOrigin() ?? fallbackOrigin"  [cdkConnectedOverlayScrollStrategy]="scrollStrategy"  (overlayOutsideClick)="panelOpen.set(false); sliderEvent.logEvent(\'click\')"  (detach)="afterClose()"  #sliderEvent="hraClickEvent">  <div    cdkTrapFocus    cdkTrapFocusAutoCapture    class="dual-slider-panel"    [attr.id]="panelId"    [attr.aria-label]="ariaLabel() || null"    [attr.aria-labelledby]="panelLabelledBy()"  >    <form class="dual-slider-form" [formGroup]="range">      <mat-form-field hraFeature="min-field" hraClickEvent class="number-input min" floatLabel="always">        <mat-label>≥{{ min() }}</mat-label>        <input matInput type="number" formControlName="low" />      </mat-form-field>      <mat-slider hraFeature="slider" hraClickEvent discrete step="1" [min]="min()" [max]="max()" [disabled]="disabled">        <input matSliderStartThumb [value]="low()" />        <input matSliderEndThumb [value]="high()" />      </mat-slider>      <mat-form-field hraFeature="max-field" hraClickEvent class="number-input max" floatLabel="always">        <mat-label>≤{{ max() }}</mat-label>        <input matInput type="number" formControlName="high" />      </mat-form-field>    </form>  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DualSliderComponent'};

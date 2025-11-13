@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -210,10 +206,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./metadata-modal.component.scss</code></td>
-            </tr>
 
 
 
@@ -224,6 +216,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./metadata-modal.component.scss</code></td>
+            </tr>
 
 
 
@@ -852,6 +848,8 @@ export interface MetadataModalResult {
     MetadataDonorFormComponent,
     MetadataHelpComponent,
   ],
+  templateUrl: &#x27;./metadata-modal.component.html&#x27;,
+  styleUrl: &#x27;./metadata-modal.component.scss&#x27;,
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
@@ -860,8 +858,6 @@ export interface MetadataModalResult {
       } satisfies MatFormFieldDefaultOptions,
     },
   ],
-  templateUrl: &#x27;./metadata-modal.component.html&#x27;,
-  styleUrls: [&#x27;./metadata-modal.component.scss&#x27;],
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [CdkScrollable],
 })
@@ -1021,7 +1017,7 @@ export class MetadataModalComponent {
     &lt;div mat-dialog-content class&#x3D;&quot;content&quot;&gt;
       &lt;div class&#x3D;&quot;header&quot;&gt;
         &lt;span class&#x3D;&quot;title&quot;&gt;Tissue Registration Metadata&lt;/span&gt;
-        &lt;ccf-metadata-help&gt;&lt;/ccf-metadata-help&gt;
+        &lt;ccf-metadata-help /&gt;
       &lt;/div&gt;
 
       &lt;form class&#x3D;&quot;form&quot; [formGroup]&#x3D;&quot;metadataForm&quot; (ngSubmit)&#x3D;&quot;submit()&quot;&gt;
@@ -1032,7 +1028,7 @@ export class MetadataModalComponent {
           step&#x3D;&quot;1&quot;
         &gt;
           @if (fileErrors) {
-            &lt;hra-error-indicator class&#x3D;&quot;errors&quot; [errors]&#x3D;&quot;fileErrors&quot;&gt;&lt;/hra-error-indicator&gt;
+            &lt;hra-error-indicator class&#x3D;&quot;errors&quot; [errors]&#x3D;&quot;fileErrors&quot; /&gt;
           }
 
           &lt;ccf-file-upload
@@ -1065,21 +1061,13 @@ export class MetadataModalComponent {
             &lt;/a&gt;
           &lt;/hra-workflow-card-extra&gt;
 
-          &lt;ccf-metadata-author-form
-            hraFeature&#x3D;&quot;author&quot;
-            class&#x3D;&quot;author&quot;
-            [form]&#x3D;&quot;metadataForm.controls.author&quot;
-          &gt;&lt;/ccf-metadata-author-form&gt;
-          &lt;ccf-metadata-donor-form
-            hraFeature&#x3D;&quot;donor&quot;
-            class&#x3D;&quot;donor&quot;
-            [form]&#x3D;&quot;metadataForm.controls.donor&quot;
-          &gt;&lt;/ccf-metadata-donor-form&gt;
+          &lt;ccf-metadata-author-form hraFeature&#x3D;&quot;author&quot; class&#x3D;&quot;author&quot; [form]&#x3D;&quot;metadataForm.controls.author&quot; /&gt;
+          &lt;ccf-metadata-donor-form hraFeature&#x3D;&quot;donor&quot; class&#x3D;&quot;donor&quot; [form]&#x3D;&quot;metadataForm.controls.donor&quot; /&gt;
         &lt;/hra-workflow-card&gt;
 
         &lt;hra-workflow-card hraFeature&#x3D;&quot;register-data&quot; class&#x3D;&quot;register&quot; tagline&#x3D;&quot;Register Data Spatially&quot; step&#x3D;&quot;3&quot;&gt;
           @if (metadataForm.invalid) {
-            &lt;hra-error-indicator class&#x3D;&quot;error&quot; [errors]&#x3D;&quot;[&#x27;Please add required metadata.&#x27;]&quot;&gt;&lt;/hra-error-indicator&gt;
+            &lt;hra-error-indicator class&#x3D;&quot;error&quot; [errors]&#x3D;&quot;[&#x27;Please add required metadata.&#x27;]&quot; /&gt;
           }
 
           @if (config.mode &#x3D;&#x3D;&#x3D; &#x27;create&#x27;) {
@@ -1115,106 +1103,6 @@ export class MetadataModalComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./metadata-modal.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
-@use &#x27;vars&#x27;;
-
-:host {
-  display: block;
-  position: relative;
-  --scrollbar-offset: 2;
-  height: 100%;
-
-  @include mat.dialog-overrides(
-    (
-      content-padding: 3rem 1.5rem,
-    )
-  );
-
-  .close {
-    position: absolute;
-    inset: 1rem 1rem auto auto;
-    padding: 0.5rem;
-    margin: 0;
-    z-index: 2;
-
-    &amp;::before {
-      display: none;
-    }
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-height: unset !important;
-
-    &amp; &gt; * {
-      max-width: 43.5rem;
-      min-width: 32.5rem;
-      width: 100%;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-
-      .title {
-        font: vars.$headline-large;
-        letter-spacing: vars.$headline-large-tracking;
-      }
-    }
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .upload .errors {
-      margin-bottom: 2rem;
-    }
-
-    .metadata {
-      .author {
-        margin-bottom: 1rem;
-      }
-    }
-
-    .register .error {
-      margin-bottom: 2rem;
-    }
-  }
-}
-
-::ng-deep {
-  .metadata-modal {
-    @include mat.dialog-overrides(
-      (
-        container-color: #{vars.$surface-container-low},
-        container-shape: 0,
-      )
-    );
-
-    .mat-mdc-dialog-surface {
-      overflow-y: hidden !important;
-    }
-  }
-
-  .metadata-confirmation-modal {
-    @include mat.dialog-overrides(
-      (
-        container-color: #{vars.$surface-container-low},
-      )
-    );
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -1241,7 +1129,7 @@ export class MetadataModalComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="metadata">  @if (config.mode === \'edit\') {    <button hraFeature="close" hraClickEvent mat-icon-button mat-dialog-title mat-dialog-close class="close">      <mat-icon>close</mat-icon>    </button>  }  <ng-scrollbar cdkScrollable>    <div mat-dialog-content class="content">      <div class="header">        <span class="title">Tissue Registration Metadata</span>        <ccf-metadata-help></ccf-metadata-help>      </div>      <form class="form" [formGroup]="metadataForm" (ngSubmit)="submit()">        <hra-workflow-card          hraFeature="upload-prev-registration"          class="upload"          tagline="Optional: Upload Previous Registration"          step="1"        >          @if (fileErrors) {            <hra-error-indicator class="errors" [errors]="fileErrors"></hra-error-indicator>          }          <ccf-file-upload            accept="application/json,.json,application/ld+json,.jsonld"            [loader]="fileLoader"            [options]="{}"            (loadCancelled)="clearPreviousRegistration()"            (loadCompleted)="clearPreviousRegistration(); setPreviousRegistration($event[0])"            (loadErrored)="clearPreviousRegistration(); setFileErrors($event)"          >            Upload          </ccf-file-upload>        </hra-workflow-card>        <hra-workflow-card hraFeature="add-metadata" class="metadata" tagline="Add Metadata" step="2">          <hra-workflow-card-extra>            <a              hraFeature="orcid-help"              hraClickEvent              mat-button              hraSecondaryButton              hraCtaButton              class="orcid-help"              href="https://orcid.org/register"              target="_blank"              rel="noopener noreferrer"            >              Get ORCID              <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>            </a>          </hra-workflow-card-extra>          <ccf-metadata-author-form            hraFeature="author"            class="author"            [form]="metadataForm.controls.author"          ></ccf-metadata-author-form>          <ccf-metadata-donor-form            hraFeature="donor"            class="donor"            [form]="metadataForm.controls.donor"          ></ccf-metadata-donor-form>        </hra-workflow-card>        <hra-workflow-card hraFeature="register-data" class="register" tagline="Register Data Spatially" step="3">          @if (metadataForm.invalid) {            <hra-error-indicator class="error" [errors]="[\'Please add required metadata.\']"></hra-error-indicator>          }          @if (config.mode === \'create\') {            <button              hraFeature="register"              hraClickEvent              mat-button              hraPrimaryButton              hraCtaButton              type="submit"              [disabled]="metadataForm.invalid"            >              Register              <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>            </button>          } @else {            <button              hraFeature="update"              hraClickEvent              mat-flat-button              hraPrimaryButton              type="submit"              [disabled]="metadataForm.pristine || metadataForm.invalid"            >              Update Metadata            </button>          }        </hra-workflow-card>      </form>    </div>  </ng-scrollbar></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="metadata">  @if (config.mode === \'edit\') {    <button hraFeature="close" hraClickEvent mat-icon-button mat-dialog-title mat-dialog-close class="close">      <mat-icon>close</mat-icon>    </button>  }  <ng-scrollbar cdkScrollable>    <div mat-dialog-content class="content">      <div class="header">        <span class="title">Tissue Registration Metadata</span>        <ccf-metadata-help />      </div>      <form class="form" [formGroup]="metadataForm" (ngSubmit)="submit()">        <hra-workflow-card          hraFeature="upload-prev-registration"          class="upload"          tagline="Optional: Upload Previous Registration"          step="1"        >          @if (fileErrors) {            <hra-error-indicator class="errors" [errors]="fileErrors" />          }          <ccf-file-upload            accept="application/json,.json,application/ld+json,.jsonld"            [loader]="fileLoader"            [options]="{}"            (loadCancelled)="clearPreviousRegistration()"            (loadCompleted)="clearPreviousRegistration(); setPreviousRegistration($event[0])"            (loadErrored)="clearPreviousRegistration(); setFileErrors($event)"          >            Upload          </ccf-file-upload>        </hra-workflow-card>        <hra-workflow-card hraFeature="add-metadata" class="metadata" tagline="Add Metadata" step="2">          <hra-workflow-card-extra>            <a              hraFeature="orcid-help"              hraClickEvent              mat-button              hraSecondaryButton              hraCtaButton              class="orcid-help"              href="https://orcid.org/register"              target="_blank"              rel="noopener noreferrer"            >              Get ORCID              <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>            </a>          </hra-workflow-card-extra>          <ccf-metadata-author-form hraFeature="author" class="author" [form]="metadataForm.controls.author" />          <ccf-metadata-donor-form hraFeature="donor" class="donor" [form]="metadataForm.controls.donor" />        </hra-workflow-card>        <hra-workflow-card hraFeature="register-data" class="register" tagline="Register Data Spatially" step="3">          @if (metadataForm.invalid) {            <hra-error-indicator class="error" [errors]="[\'Please add required metadata.\']" />          }          @if (config.mode === \'create\') {            <button              hraFeature="register"              hraClickEvent              mat-button              hraPrimaryButton              hraCtaButton              type="submit"              [disabled]="metadataForm.invalid"            >              Register              <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>            </button>          } @else {            <button              hraFeature="update"              hraClickEvent              mat-flat-button              hraPrimaryButton              type="submit"              [disabled]="metadataForm.pristine || metadataForm.invalid"            >              Update Metadata            </button>          }        </hra-workflow-card>      </form>    </div>  </ng-scrollbar></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MetadataModalComponent'};

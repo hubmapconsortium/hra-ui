@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -180,10 +176,6 @@
 
 
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./right-sidebar.component.scss</code></td>
-            </tr>
 
 
 
@@ -194,6 +186,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./right-sidebar.component.scss</code></td>
+            </tr>
 
 
 
@@ -891,10 +887,10 @@ import { MetadataService } from &#x27;../metadata/metadata.service&#x27;;
  */
 @Component({
   selector: &#x27;ccf-right-sidebar&#x27;,
-  templateUrl: &#x27;./right-sidebar.component.html&#x27;,
-  styleUrls: [&#x27;./right-sidebar.component.scss&#x27;],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  templateUrl: &#x27;./right-sidebar.component.html&#x27;,
+  styleUrl: &#x27;./right-sidebar.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RightSidebarComponent {
   /** Emits when the registration is expanded */
@@ -949,19 +945,19 @@ export class RightSidebarComponent {
       hraFeature&#x3D;&quot;toggle&quot;
       hraClickEvent
       mat-icon-button
-      [matMenuTriggerFor]&#x3D;&quot;menu&quot;
       hraIconButtonSize&#x3D;&quot;large&quot;
       aria-label&#x3D;&quot;Open the tissue block settings&#x27; action menu&quot;
       hraPlainTooltip&#x3D;&quot;More&quot;
+      [matMenuTriggerFor]&#x3D;&quot;menu&quot;
     &gt;
       &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
     &lt;/button&gt;
-    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #menu&#x3D;&quot;matMenu&quot; class&#x3D;&quot;settings-overlay&quot;&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; class&#x3D;&quot;settings-overlay&quot; #menu&#x3D;&quot;matMenu&quot;&gt;
       &lt;button hraFeature&#x3D;&quot;toggle-block-axes&quot; hraClickEvent mat-menu-item (click)&#x3D;&quot;model.toggleBlockAxis()&quot;&gt;
         &lt;mat-icon&gt;{{ disableBlockAxis() ? &#x27;visibility_on&#x27; : &#x27;visibility_off&#x27; }}&lt;/mat-icon&gt;
         {{ &#x60;${disableBlockAxis() ? &#x27;Show&#x27; : &#x27;Hide&#x27;} 3D axes&#x60; }}
       &lt;/button&gt;
-      &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+      &lt;mat-divider class&#x3D;&quot;menu-divider&quot; /&gt;
       &lt;button
         hraFeature&#x3D;&quot;reset-all&quot;
         hraClickEvent
@@ -985,7 +981,7 @@ export class RightSidebarComponent {
   &lt;/hra-expansion-panel-actions&gt;
 
   &lt;hra-expansion-panel-header-content&gt;
-    &lt;hra-help-button [action]&#x3D;&quot;help&quot;&gt;&lt;/hra-help-button&gt;
+    &lt;hra-help-button [action]&#x3D;&quot;help&quot; /&gt;
     &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #help&#x3D;&quot;matMenu&quot;&gt;
       &lt;a
         hraFeature&#x3D;&quot;watch-video&quot;
@@ -1017,7 +1013,7 @@ export class RightSidebarComponent {
       &gt;
         Use standard operating procedure
       &lt;/a&gt;
-      &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+      &lt;mat-divider class&#x3D;&quot;menu-divider&quot; /&gt;
       &lt;a
         hraFeature&#x3D;&quot;explore-registrations&quot;
         hraClickEvent
@@ -1067,25 +1063,22 @@ export class RightSidebarComponent {
 
   &lt;ccf-block-size-input
     hraFeature&#x3D;&quot;block-size&quot;
-    #blocksize
     [blockSize]&#x3D;&quot;(model.blockSize$ | async)!&quot;
     (blockSizeChange)&#x3D;&quot;model.setBlockSize($event)&quot;
-  &gt;
-  &lt;/ccf-block-size-input&gt;
+    #blocksize
+  /&gt;
   &lt;ccf-rotation-slider
     hraFeature&#x3D;&quot;rotation&quot;
-    #rotation
     [rotation]&#x3D;&quot;$any(model.rotation$ | async)&quot;
     (rotationChange)&#x3D;&quot;model.setRotation($event)&quot;
-  &gt;
-  &lt;/ccf-rotation-slider&gt;
+    #rotation
+  /&gt;
   &lt;ccf-slices-input
     hraFeature&#x3D;&quot;slices&quot;
-    #slices
     [slicesConfig]&#x3D;&quot;$any(model.slicesConfig$ | async)&quot;
     (slicesConfigChange)&#x3D;&quot;model.setSlicesConfig($event)&quot;
-  &gt;
-  &lt;/ccf-slices-input&gt;
+    #slices
+  /&gt;
 &lt;/hra-expansion-panel&gt;
 
 &lt;hra-expansion-panel hraFeature&#x3D;&quot;AS-tags&quot; tagline&#x3D;&quot;Anatomical Structure Tags&quot; class&#x3D;&quot;as-tags&quot;&gt;
@@ -1094,24 +1087,24 @@ export class RightSidebarComponent {
       hraFeature&#x3D;&quot;toggle&quot;
       hraClickEvent
       mat-icon-button
-      [matMenuTriggerFor]&#x3D;&quot;asTagsActionMenu&quot;
       hraIconButtonSize&#x3D;&quot;large&quot;
       aria-label&#x3D;&quot;Open the anatomical structure tags&#x27; action menu&quot;
       hraPlainTooltip&#x3D;&quot;More&quot;
+      [matMenuTriggerFor]&#x3D;&quot;asTagsActionMenu&quot;
     &gt;
       &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
     &lt;/button&gt;
-    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #asTagsActionMenu&#x3D;&quot;matMenu&quot; class&#x3D;&quot;settings-overlay&quot;&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; class&#x3D;&quot;settings-overlay&quot; #asTagsActionMenu&#x3D;&quot;matMenu&quot;&gt;
       &lt;button class&#x3D;&quot;expanded&quot; mat-menu-item [matMenuTriggerFor]&#x3D;&quot;submenu&quot;&gt;
         Info
         &lt;mat-icon class&#x3D;&quot;expand-arrow&quot;&gt;arrow_right&lt;/mat-icon&gt;
       &lt;/button&gt;
 
-      &lt;mat-menu #submenu&#x3D;&quot;matMenu&quot; class&#x3D;&quot;info-submenu&quot;&gt;
+      &lt;mat-menu class&#x3D;&quot;info-submenu&quot; #submenu&#x3D;&quot;matMenu&quot;&gt;
         Tags identify major anatomical components of the tissue block being registered.
       &lt;/mat-menu&gt;
 
-      &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+      &lt;mat-divider class&#x3D;&quot;menu-divider&quot; /&gt;
 
       &lt;button hraFeature&#x3D;&quot;reset&quot; hraClickEvent mat-menu-item (click)&#x3D;&quot;astags.reset()&quot;&gt;
         Reset all anatomical structure tags
@@ -1120,16 +1113,14 @@ export class RightSidebarComponent {
   &lt;/hra-expansion-panel-actions&gt;
 
   &lt;div class&#x3D;&quot;as-tags-content&quot;&gt;
-    &lt;ccf-tag-search hraFeature&#x3D;&quot;tag-search&quot; [search]&#x3D;&quot;astags.searchExternal&quot; (added)&#x3D;&quot;astags.addTags($event)&quot;&gt;
-    &lt;/ccf-tag-search&gt;
+    &lt;ccf-tag-search hraFeature&#x3D;&quot;tag-search&quot; [search]&#x3D;&quot;astags.searchExternal&quot; (added)&#x3D;&quot;astags.addTags($event)&quot; /&gt;
     @if (assignedTags().length &gt; 0) {
       &lt;ccf-tag-list
         class&#x3D;&quot;tag-list&quot;
         label&#x3D;&quot;Automatically Detected&quot;
         [tags]&#x3D;&quot;assignedTags()&quot;
         (tagRemoved)&#x3D;&quot;astags.removeTag($event)&quot;
-      &gt;
-      &lt;/ccf-tag-list&gt;
+      /&gt;
     }
     @if (addedTags().length &gt; 0) {
       &lt;ccf-tag-list
@@ -1137,8 +1128,7 @@ export class RightSidebarComponent {
         label&#x3D;&quot;Manually Added&quot;
         [tags]&#x3D;&quot;addedTags()&quot;
         (tagRemoved)&#x3D;&quot;astags.removeTag($event)&quot;
-      &gt;
-      &lt;/ccf-tag-list&gt;
+      /&gt;
     }
     @if (removedTags().length &gt; 0) {
       &lt;ccf-tag-list
@@ -1146,8 +1136,7 @@ export class RightSidebarComponent {
         label&#x3D;&quot;Manually Removed&quot;
         [tags]&#x3D;&quot;removedTags()&quot;
         (tagRemoved)&#x3D;&quot;astags.removeTag($event)&quot;
-      &gt;
-      &lt;/ccf-tag-list&gt;
+      /&gt;
     }
   &lt;/div&gt;
 &lt;/hra-expansion-panel&gt;
@@ -1176,152 +1165,6 @@ export class RightSidebarComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./right-sidebar.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-
-  ccf-slices-input {
-    margin: 0.75rem 0 1.5rem 0;
-  }
-
-  hra-expansion-panel {
-    ::ng-deep {
-      .header &gt; .title {
-        font: vars.$label-large;
-      }
-      .content {
-        margin: 0 1rem;
-      }
-    }
-
-    &amp;.tissue-block-settings {
-      ::ng-deep {
-        .content {
-          .expansion-body {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 0 40px 0 28px;
-          }
-        }
-      }
-    }
-
-    .position {
-      display: flex;
-      flex-direction: column;
-
-      .header {
-        display: flex;
-        flex-direction: column;
-        padding: 0.5rem 0;
-
-        .title {
-          font: vars.$label-medium;
-          color: vars.$secondary;
-        }
-
-        .units {
-          font: vars.$label-small;
-          color: vars.$primary;
-        }
-      }
-
-      .box {
-        height: 3rem;
-        width: 5rem;
-        border-radius: 0.25rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 12px;
-
-        span {
-          color: vars.$on-primary-fixed;
-        }
-
-        .position-label {
-          font: vars.$label-small;
-        }
-        .position-value {
-          font: vars.$label-medium;
-        }
-      }
-
-      .x-position {
-        background-color: color-mix(in srgb, #d50000 8%, transparent);
-        margin-bottom: 0.5rem;
-      }
-
-      .y-position {
-        background-color: color-mix(in srgb, #00c853 8%, transparent);
-        margin-bottom: 0.5rem;
-      }
-
-      .z-position {
-        background-color: color-mix(in srgb, #2979ff 8%, transparent);
-      }
-    }
-  }
-
-  .tissue-block-settings {
-    border-bottom: 1px solid #acb5c3;
-  }
-
-  .as-tags {
-    flex-grow: 1;
-
-    ccf-tag-list {
-      margin-top: 1rem;
-    }
-
-    ::ng-deep .header {
-      height: 3.5rem;
-    }
-  }
-
-  .buttons {
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #acb5c3;
-    margin-top: 1rem;
-    gap: 0.375rem;
-
-    ::ng-deep button {
-      font: var(--mat-sys-label-medium);
-    }
-  }
-
-  .info-button-container {
-    height: 3.75rem;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .review-button {
-    ::ng-deep .mat-mdc-button-disabled {
-      pointer-events: auto;
-      box-shadow: none;
-    }
-  }
-}
-
-::ng-deep .info-submenu {
-  .mat-mdc-menu-content {
-    padding: 1rem 0.75rem;
-    color: vars.$secondary;
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -1348,7 +1191,7 @@ export class RightSidebarComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel hraFeature="tissue-block-settings" tagline="Tissue Block Settings" class="tissue-block-settings">  <hra-expansion-panel-actions>    <button      hraFeature="toggle"      hraClickEvent      mat-icon-button      [matMenuTriggerFor]="menu"      hraIconButtonSize="large"      aria-label="Open the tissue block settings\' action menu"      hraPlainTooltip="More"    >      <mat-icon>more_vert</mat-icon>    </button>    <mat-menu hraFeature="menu" #menu="matMenu" class="settings-overlay">      <button hraFeature="toggle-block-axes" hraClickEvent mat-menu-item (click)="model.toggleBlockAxis()">        <mat-icon>{{ disableBlockAxis() ? \'visibility_on\' : \'visibility_off\' }}</mat-icon>        {{ `${disableBlockAxis() ? \'Show\' : \'Hide\'} 3D axes` }}      </button>      <mat-divider class="menu-divider"></mat-divider>      <button        hraFeature="reset-all"        hraClickEvent        mat-menu-item        (click)="          setDefaultPosition(); blocksize.refreshBlockSize(); slices.refreshSlices(); rotation.resetAllRotations()        "      >        Reset all tissue block settings      </button>      <button hraFeature="reset-position" hraClickEvent mat-menu-item (click)="setDefaultPosition()">        Reset position      </button>      <button hraFeature="reset-size" hraClickEvent mat-menu-item (click)="blocksize.refreshBlockSize()">        Reset size      </button>      <button hraFeature="reset-rotation" hraClickEvent mat-menu-item (click)="rotation.resetAllRotations()">        Reset rotation      </button>    </mat-menu>  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <hra-help-button [action]="help"></hra-help-button>    <mat-menu hraFeature="menu" #help="matMenu">      <a        hraFeature="watch-video"        hraClickEvent        mat-menu-item        href="https://youtu.be/18imQj068Iw"        target="_blank"        rel="noopener noreferrer"      >        Watch video tutorial      </a>      <a        hraFeature="app-guide"        hraClickEvent        mat-menu-item        href="https://humanatlas.io/registration-user-interface"        target="_blank"        rel="noopener noreferrer"      >        App guide & documentation      </a>      <a        hraFeature="sop"        hraClickEvent        mat-menu-item        href="https://doi.org/10.5281/zenodo.5575776"        target="_blank"        rel="noopener noreferrer"      >        Use standard operating procedure      </a>      <mat-divider class="menu-divider"></mat-divider>      <a        hraFeature="explore-registrations"        hraClickEvent        mat-menu-item        href="https://apps.humanatlas.io/eui/"        target="_blank"        rel="noopener noreferrer"      >        Explore all registrations      </a>    </mat-menu>  </hra-expansion-panel-header-content>  <div hraFeature="position" class="position">    <div class="header">      <span class="text title">Position</span>      <span class="units">Millimeters</span>    </div>    <div      hraFeature="x"      hraClickEvent      class="x-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">X</span>      <span class="position-value">{{ (position$ | async)?.x }}</span>    </div>    <div      hraFeature="y"      hraClickEvent      class="y-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">Y</span>      <span class="position-value">{{ (position$ | async)?.y }}</span>    </div>    <div      hraFeature="z"      hraClickEvent      class="z-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">Z</span>      <span class="position-value">{{ (position$ | async)?.z }}</span>    </div>  </div>  <ccf-block-size-input    hraFeature="block-size"    #blocksize    [blockSize]="(model.blockSize$ | async)!"    (blockSizeChange)="model.setBlockSize($event)"  >  </ccf-block-size-input>  <ccf-rotation-slider    hraFeature="rotation"    #rotation    [rotation]="$any(model.rotation$ | async)"    (rotationChange)="model.setRotation($event)"  >  </ccf-rotation-slider>  <ccf-slices-input    hraFeature="slices"    #slices    [slicesConfig]="$any(model.slicesConfig$ | async)"    (slicesConfigChange)="model.setSlicesConfig($event)"  >  </ccf-slices-input></hra-expansion-panel><hra-expansion-panel hraFeature="AS-tags" tagline="Anatomical Structure Tags" class="as-tags">  <hra-expansion-panel-actions>    <button      hraFeature="toggle"      hraClickEvent      mat-icon-button      [matMenuTriggerFor]="asTagsActionMenu"      hraIconButtonSize="large"      aria-label="Open the anatomical structure tags\' action menu"      hraPlainTooltip="More"    >      <mat-icon>more_vert</mat-icon>    </button>    <mat-menu hraFeature="menu" #asTagsActionMenu="matMenu" class="settings-overlay">      <button class="expanded" mat-menu-item [matMenuTriggerFor]="submenu">        Info        <mat-icon class="expand-arrow">arrow_right</mat-icon>      </button>      <mat-menu #submenu="matMenu" class="info-submenu">        Tags identify major anatomical components of the tissue block being registered.      </mat-menu>      <mat-divider class="menu-divider"></mat-divider>      <button hraFeature="reset" hraClickEvent mat-menu-item (click)="astags.reset()">        Reset all anatomical structure tags      </button>    </mat-menu>  </hra-expansion-panel-actions>  <div class="as-tags-content">    <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)">    </ccf-tag-search>    @if (assignedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Automatically Detected"        [tags]="assignedTags()"        (tagRemoved)="astags.removeTag($event)"      >      </ccf-tag-list>    }    @if (addedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Manually Added"        [tags]="addedTags()"        (tagRemoved)="astags.removeTag($event)"      >      </ccf-tag-list>    }    @if (removedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Manually Removed"        [tags]="removedTags()"        (tagRemoved)="astags.removeTag($event)"      >      </ccf-tag-list>    }  </div></hra-expansion-panel><div class="buttons">  <button    hraFeature="edit-metadata"    hraClickEvent    mat-button    hraButtonSize="medium"    (click)="metadata.openModal(\'edit\')"  >    Edit Metadata  </button>  <ccf-review-button    class="review-button"    [registrationCallbackSet]="(page.registrationCallbackSet$ | async) ?? false"    [displayErrors]="(registration.displayErrors$ | async) ?? false"    [userValid]="(registration.valid$ | async) ?? false"    [metaData]="(registration.metadata$ | async) ?? []"    (registerData)="registration.register()"    (enterErrorMode)="registration.setDisplayErrors(!registration.isValid)"  /></div></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel hraFeature="tissue-block-settings" tagline="Tissue Block Settings" class="tissue-block-settings">  <hra-expansion-panel-actions>    <button      hraFeature="toggle"      hraClickEvent      mat-icon-button      hraIconButtonSize="large"      aria-label="Open the tissue block settings\' action menu"      hraPlainTooltip="More"      [matMenuTriggerFor]="menu"    >      <mat-icon>more_vert</mat-icon>    </button>    <mat-menu hraFeature="menu" class="settings-overlay" #menu="matMenu">      <button hraFeature="toggle-block-axes" hraClickEvent mat-menu-item (click)="model.toggleBlockAxis()">        <mat-icon>{{ disableBlockAxis() ? \'visibility_on\' : \'visibility_off\' }}</mat-icon>        {{ `${disableBlockAxis() ? \'Show\' : \'Hide\'} 3D axes` }}      </button>      <mat-divider class="menu-divider" />      <button        hraFeature="reset-all"        hraClickEvent        mat-menu-item        (click)="          setDefaultPosition(); blocksize.refreshBlockSize(); slices.refreshSlices(); rotation.resetAllRotations()        "      >        Reset all tissue block settings      </button>      <button hraFeature="reset-position" hraClickEvent mat-menu-item (click)="setDefaultPosition()">        Reset position      </button>      <button hraFeature="reset-size" hraClickEvent mat-menu-item (click)="blocksize.refreshBlockSize()">        Reset size      </button>      <button hraFeature="reset-rotation" hraClickEvent mat-menu-item (click)="rotation.resetAllRotations()">        Reset rotation      </button>    </mat-menu>  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <hra-help-button [action]="help" />    <mat-menu hraFeature="menu" #help="matMenu">      <a        hraFeature="watch-video"        hraClickEvent        mat-menu-item        href="https://youtu.be/18imQj068Iw"        target="_blank"        rel="noopener noreferrer"      >        Watch video tutorial      </a>      <a        hraFeature="app-guide"        hraClickEvent        mat-menu-item        href="https://humanatlas.io/registration-user-interface"        target="_blank"        rel="noopener noreferrer"      >        App guide & documentation      </a>      <a        hraFeature="sop"        hraClickEvent        mat-menu-item        href="https://doi.org/10.5281/zenodo.5575776"        target="_blank"        rel="noopener noreferrer"      >        Use standard operating procedure      </a>      <mat-divider class="menu-divider" />      <a        hraFeature="explore-registrations"        hraClickEvent        mat-menu-item        href="https://apps.humanatlas.io/eui/"        target="_blank"        rel="noopener noreferrer"      >        Explore all registrations      </a>    </mat-menu>  </hra-expansion-panel-header-content>  <div hraFeature="position" class="position">    <div class="header">      <span class="text title">Position</span>      <span class="units">Millimeters</span>    </div>    <div      hraFeature="x"      hraClickEvent      class="x-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">X</span>      <span class="position-value">{{ (position$ | async)?.x }}</span>    </div>    <div      hraFeature="y"      hraClickEvent      class="y-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">Y</span>      <span class="position-value">{{ (position$ | async)?.y }}</span>    </div>    <div      hraFeature="z"      hraClickEvent      class="z-position box"      hraPlainTooltip="Use mouse/keyboard to adjust block position"    >      <span class="position-label">Z</span>      <span class="position-value">{{ (position$ | async)?.z }}</span>    </div>  </div>  <ccf-block-size-input    hraFeature="block-size"    [blockSize]="(model.blockSize$ | async)!"    (blockSizeChange)="model.setBlockSize($event)"    #blocksize  />  <ccf-rotation-slider    hraFeature="rotation"    [rotation]="$any(model.rotation$ | async)"    (rotationChange)="model.setRotation($event)"    #rotation  />  <ccf-slices-input    hraFeature="slices"    [slicesConfig]="$any(model.slicesConfig$ | async)"    (slicesConfigChange)="model.setSlicesConfig($event)"    #slices  /></hra-expansion-panel><hra-expansion-panel hraFeature="AS-tags" tagline="Anatomical Structure Tags" class="as-tags">  <hra-expansion-panel-actions>    <button      hraFeature="toggle"      hraClickEvent      mat-icon-button      hraIconButtonSize="large"      aria-label="Open the anatomical structure tags\' action menu"      hraPlainTooltip="More"      [matMenuTriggerFor]="asTagsActionMenu"    >      <mat-icon>more_vert</mat-icon>    </button>    <mat-menu hraFeature="menu" class="settings-overlay" #asTagsActionMenu="matMenu">      <button class="expanded" mat-menu-item [matMenuTriggerFor]="submenu">        Info        <mat-icon class="expand-arrow">arrow_right</mat-icon>      </button>      <mat-menu class="info-submenu" #submenu="matMenu">        Tags identify major anatomical components of the tissue block being registered.      </mat-menu>      <mat-divider class="menu-divider" />      <button hraFeature="reset" hraClickEvent mat-menu-item (click)="astags.reset()">        Reset all anatomical structure tags      </button>    </mat-menu>  </hra-expansion-panel-actions>  <div class="as-tags-content">    <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)" />    @if (assignedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Automatically Detected"        [tags]="assignedTags()"        (tagRemoved)="astags.removeTag($event)"      />    }    @if (addedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Manually Added"        [tags]="addedTags()"        (tagRemoved)="astags.removeTag($event)"      />    }    @if (removedTags().length > 0) {      <ccf-tag-list        class="tag-list"        label="Manually Removed"        [tags]="removedTags()"        (tagRemoved)="astags.removeTag($event)"      />    }  </div></hra-expansion-panel><div class="buttons">  <button    hraFeature="edit-metadata"    hraClickEvent    mat-button    hraButtonSize="medium"    (click)="metadata.openModal(\'edit\')"  >    Edit Metadata  </button>  <ccf-review-button    class="review-button"    [registrationCallbackSet]="(page.registrationCallbackSet$ | async) ?? false"    [displayErrors]="(registration.displayErrors$ | async) ?? false"    [userValid]="(registration.valid$ | async) ?? false"    [metaData]="(registration.metadata$ | async) ?? []"    (registerData)="registration.register()"    (enterErrorMode)="registration.setDisplayErrors(!registration.isValid)"  /></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'RightSidebarComponent'};

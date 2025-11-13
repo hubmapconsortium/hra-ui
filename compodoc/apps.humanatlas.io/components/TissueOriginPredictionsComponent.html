@@ -845,10 +845,10 @@ export class TissueOriginPredictionsComponent {
   &lt;/p&gt;
 
   &lt;!-- SIMILAR ANATOMICAL STRUCTURES TABLE --&gt;
-  &lt;hra-similar-anatomical-structures-table [predictions]&#x3D;&quot;predictions()&quot;&gt;&lt;/hra-similar-anatomical-structures-table&gt;
+  &lt;hra-similar-anatomical-structures-table [predictions]&#x3D;&quot;predictions()&quot; /&gt;
 
   &lt;!-- SIMILAR DATASETS TABLE --&gt;
-  &lt;hra-similar-datasets-table [predictions]&#x3D;&quot;predictions()&quot;&gt;&lt;/hra-similar-datasets-table&gt;
+  &lt;hra-similar-datasets-table [predictions]&#x3D;&quot;predictions()&quot; /&gt;
 
   &lt;!-- BOTTOM CARDS --&gt;
   &lt;div class&#x3D;&quot;bottom-cards&quot;&gt;
@@ -858,11 +858,11 @@ export class TissueOriginPredictionsComponent {
         &lt;button
           hraClickEvent
           hraFeature&#x3D;&quot;download-json&quot;
-          (click)&#x3D;&quot;onDownloadJSONButtonClicked()&quot;
           mat-button
           hraButtonVariant&#x3D;&quot;primary&quot;
           hraButtonSize&#x3D;&quot;medium&quot;
           disabled&#x3D;&quot;false&quot;
+          (click)&#x3D;&quot;onDownloadJSONButtonClicked()&quot;
         &gt;
           JSON-LD
           &lt;mat-icon&gt;download&lt;/mat-icon&gt;
@@ -897,7 +897,7 @@ export class TissueOriginPredictionsComponent {
   &lt;!-- EUI OVERLAY --&gt;
   &lt;ng-template #euiTemplate&gt;
     &lt;div&gt;
-      &lt;hra-back-button-bar (backClick)&#x3D;&quot;euiOpen.set(false)&quot;&gt;&lt;/hra-back-button-bar&gt;
+      &lt;hra-back-button-bar (backClick)&#x3D;&quot;euiOpen.set(false)&quot; /&gt;
       &lt;ccf-eui
         class&#x3D;&quot;embedded&quot;
         base-href&#x3D;&quot;https://cdn.humanatlas.io/ui/ccf-eui/&quot;
@@ -905,9 +905,8 @@ export class TissueOriginPredictionsComponent {
         hubmap-data-url&#x3D;&quot;&quot;
         login-disabled&#x3D;&quot;true&quot;
         header&#x3D;&quot;false&quot;
-        data-sources&#x3D;&quot;{{ ruiLocationsJsonString }}&quot;
-      &gt;
-      &lt;/ccf-eui&gt;
+        [attr.sources]&#x3D;&quot;ruiLocationsJsonString&quot;
+      /&gt;
     &lt;/div&gt;
   &lt;/ng-template&gt;
 &lt;/ng-container&gt;
@@ -940,7 +939,7 @@ export class TissueOriginPredictionsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="tissue-origin-predictions">  <h1 class="title">Tissue Origin Predictions</h1>  <p class="info-text">    The Tissue Origin Predictions return three types of entities with similar cell type populations: (1) anatomical    structures table, (2) experimental datasets table, and (3) extraction sites explorable in 3D. Similarity is computed    using weighted cosine similarity between the user-provided cell type population for the experimental data and    reference cell type populations for these three HRA entities. Note that different annotation tools predict different    cell types and different percentages for the very same cell type. Hover over column headers for details.  </p>  <!-- SIMILAR ANATOMICAL STRUCTURES TABLE -->  <hra-similar-anatomical-structures-table [predictions]="predictions()"></hra-similar-anatomical-structures-table>  <!-- SIMILAR DATASETS TABLE -->  <hra-similar-datasets-table [predictions]="predictions()"></hra-similar-datasets-table>  <!-- BOTTOM CARDS -->  <div class="bottom-cards">    <hra-workflow-card hraFeature="similar-extraction-site" tagline="Similar Extraction Sites" class="card card-1">      <p>Download or explore similar extraction sites spatially using the Exploration User Interface (EUI).</p>      <div class="buttons">        <button          hraClickEvent          hraFeature="download-json"          (click)="onDownloadJSONButtonClicked()"          mat-button          hraButtonVariant="primary"          hraButtonSize="medium"          disabled="false"        >          JSON-LD          <mat-icon>download</mat-icon>        </button>        <button hraClickEvent hraFeature="explore" mat-flat-button (click)="euiOpen.set(true)">Explore</button>      </div>    </hra-workflow-card>    <hra-workflow-card hraFeature="metadata" tagline="Metadata" class="card card-2">      <div hraHoverEvent class="metadata-container">        <div class="titles">          <div class="metadata-row">            <span class="label">Source Data</span>            <span class="value">{{ data().file.name }}</span>          </div>          <div class="metadata-row">            <span class="label">Organ</span>            <span class="value">{{ data().organ ?? \'no organ selected\' }}</span>          </div>          <div class="metadata-row">            <span class="label">Annotation Tool</span>            <span class="value">{{ data().tool ?? \'no tool selected\' }}</span>          </div>          <div class="metadata-row">            <span class="label">Creation Date/Time</span>            <span class="value">{{ predictionDate() }}</span>          </div>        </div>      </div>    </hra-workflow-card>  </div>  <!-- EUI OVERLAY -->  <ng-template #euiTemplate>    <div>      <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>      <ccf-eui        class="embedded"        base-href="https://cdn.humanatlas.io/ui/ccf-eui/"        use-remote-api="false"        hubmap-data-url=""        login-disabled="true"        header="false"        data-sources="{{ ruiLocationsJsonString }}"      >      </ccf-eui>    </div>  </ng-template></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="tissue-origin-predictions">  <h1 class="title">Tissue Origin Predictions</h1>  <p class="info-text">    The Tissue Origin Predictions return three types of entities with similar cell type populations: (1) anatomical    structures table, (2) experimental datasets table, and (3) extraction sites explorable in 3D. Similarity is computed    using weighted cosine similarity between the user-provided cell type population for the experimental data and    reference cell type populations for these three HRA entities. Note that different annotation tools predict different    cell types and different percentages for the very same cell type. Hover over column headers for details.  </p>  <!-- SIMILAR ANATOMICAL STRUCTURES TABLE -->  <hra-similar-anatomical-structures-table [predictions]="predictions()" />  <!-- SIMILAR DATASETS TABLE -->  <hra-similar-datasets-table [predictions]="predictions()" />  <!-- BOTTOM CARDS -->  <div class="bottom-cards">    <hra-workflow-card hraFeature="similar-extraction-site" tagline="Similar Extraction Sites" class="card card-1">      <p>Download or explore similar extraction sites spatially using the Exploration User Interface (EUI).</p>      <div class="buttons">        <button          hraClickEvent          hraFeature="download-json"          mat-button          hraButtonVariant="primary"          hraButtonSize="medium"          disabled="false"          (click)="onDownloadJSONButtonClicked()"        >          JSON-LD          <mat-icon>download</mat-icon>        </button>        <button hraClickEvent hraFeature="explore" mat-flat-button (click)="euiOpen.set(true)">Explore</button>      </div>    </hra-workflow-card>    <hra-workflow-card hraFeature="metadata" tagline="Metadata" class="card card-2">      <div hraHoverEvent class="metadata-container">        <div class="titles">          <div class="metadata-row">            <span class="label">Source Data</span>            <span class="value">{{ data().file.name }}</span>          </div>          <div class="metadata-row">            <span class="label">Organ</span>            <span class="value">{{ data().organ ?? \'no organ selected\' }}</span>          </div>          <div class="metadata-row">            <span class="label">Annotation Tool</span>            <span class="value">{{ data().tool ?? \'no tool selected\' }}</span>          </div>          <div class="metadata-row">            <span class="label">Creation Date/Time</span>            <span class="value">{{ predictionDate() }}</span>          </div>        </div>      </div>    </hra-workflow-card>  </div>  <!-- EUI OVERLAY -->  <ng-template #euiTemplate>    <div>      <hra-back-button-bar (backClick)="euiOpen.set(false)" />      <ccf-eui        class="embedded"        base-href="https://cdn.humanatlas.io/ui/ccf-eui/"        use-remote-api="false"        hubmap-data-url=""        login-disabled="true"        header="false"        [attr.sources]="ruiLocationsJsonString"      />    </div>  </ng-template></ng-container></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TissueOriginPredictionsComponent'};

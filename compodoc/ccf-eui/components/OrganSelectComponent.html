@@ -962,24 +962,24 @@ export class OrganSelectComponent {
       hraClickEvent
       name&#x3D;&quot;currentOrganInput&quot;
       class&#x3D;&quot;organ-input&quot;
-      [(ngModel)]&#x3D;&quot;searchInput&quot;
       [matChipInputFor]&#x3D;&quot;chipGrid&quot;
       [matAutocomplete]&#x3D;&quot;auto&quot;
-      #organInput
       [placeholder]&#x3D;&quot;searchTextPlaceholder()&quot;
+      [(ngModel)]&#x3D;&quot;searchInput&quot;
+      #organInput
     /&gt;
     &lt;mat-autocomplete
-      #auto&#x3D;&quot;matAutocomplete&quot;
-      (optionSelected)&#x3D;&quot;optionSelected($event)&quot;
       hideSingleSelectionIndicator
+      (optionSelected)&#x3D;&quot;optionSelected($event)&quot;
       (opened)&#x3D;&quot;hidePlaceholder.set(true)&quot;
       (closed)&#x3D;&quot;hidePlaceholder.set(false)&quot;
+      #auto&#x3D;&quot;matAutocomplete&quot;
     &gt;
-      &lt;mat-chip-grid hraFeature&#x3D;&quot;chips&quot; class&#x3D;&quot;organ-select-chips&quot; #chipGrid aria-label&#x3D;&quot;Organ selection&quot;&gt;
+      &lt;mat-chip-grid hraFeature&#x3D;&quot;chips&quot; class&#x3D;&quot;organ-select-chips&quot; aria-label&#x3D;&quot;Organ selection&quot; #chipGrid&gt;
         @for (organ of selectedOrgans(); track organ) {
           &lt;mat-chip-row [hraFeature]&#x3D;&quot;organ.name | slugify&quot; (removed)&#x3D;&quot;remove(organ)&quot;&gt;
             &lt;span hraFeature&#x3D;&quot;label&quot; hraClickEvent&gt;{{ organ.name }}&lt;/span&gt;
-            &lt;button hraFeature&#x3D;&quot;remove&quot; hraClickEvent matChipRemove [attr.aria-label]&#x3D;&quot;&#x27;remove &#x27; + organ.name&quot;&gt;
+            &lt;button hraFeature&#x3D;&quot;remove&quot; hraClickEvent matChipRemove [attr.aria-label]&#x3D;&quot;&#x60;remove ${organ.name}&#x60;&quot;&gt;
               &lt;mat-icon&gt;close&lt;/mat-icon&gt;
             &lt;/button&gt;
           &lt;/mat-chip-row&gt;
@@ -987,14 +987,14 @@ export class OrganSelectComponent {
       &lt;/mat-chip-grid&gt;
       &lt;ng-scrollbar hraFeature&#x3D;&quot;list&quot; class&#x3D;&quot;organ-list&quot;&gt;
         @for (organ of filteredOrgans(); track organ) {
-          &lt;div [hraFeature]&#x3D;&quot;organ.name | slugify&quot; class&#x3D;&quot;autocomplete-option&quot;&gt;
+          &lt;div class&#x3D;&quot;autocomplete-option&quot; [hraFeature]&#x3D;&quot;organ.name | slugify&quot;&gt;
             &lt;mat-checkbox
               hraFeature&#x3D;&quot;toggle&quot;
               hraClickEvent
               class&#x3D;&quot;autocomplete-checkbox&quot;
-              (change)&#x3D;&quot;checkboxSelected($event, organ)&quot;
               [checked]&#x3D;&quot;isChecked(organ)&quot;
-            &gt;&lt;/mat-checkbox&gt;
+              (change)&#x3D;&quot;checkboxSelected($event, organ)&quot;
+            /&gt;
             &lt;mat-option hraFeature&#x3D;&quot;select&quot; hraClickEvent [value]&#x3D;&quot;organ&quot;&gt;{{ organ.name }}&lt;/mat-option&gt;
           &lt;/div&gt;
         }
@@ -1031,7 +1031,7 @@ export class OrganSelectComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form hraFeature="organ-select">  <mat-form-field class="organ-form-field" subscriptSizing="dynamic" floatLabel="always">    <mat-icon matPrefix>search</mat-icon>    <mat-label>Organs</mat-label>    <input      hraFeature="organ-search"      hraClickEvent      name="currentOrganInput"      class="organ-input"      [(ngModel)]="searchInput"      [matChipInputFor]="chipGrid"      [matAutocomplete]="auto"      #organInput      [placeholder]="searchTextPlaceholder()"    />    <mat-autocomplete      #auto="matAutocomplete"      (optionSelected)="optionSelected($event)"      hideSingleSelectionIndicator      (opened)="hidePlaceholder.set(true)"      (closed)="hidePlaceholder.set(false)"    >      <mat-chip-grid hraFeature="chips" class="organ-select-chips" #chipGrid aria-label="Organ selection">        @for (organ of selectedOrgans(); track organ) {          <mat-chip-row [hraFeature]="organ.name | slugify" (removed)="remove(organ)">            <span hraFeature="label" hraClickEvent>{{ organ.name }}</span>            <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="\'remove \' + organ.name">              <mat-icon>close</mat-icon>            </button>          </mat-chip-row>        }      </mat-chip-grid>      <ng-scrollbar hraFeature="list" class="organ-list">        @for (organ of filteredOrgans(); track organ) {          <div [hraFeature]="organ.name | slugify" class="autocomplete-option">            <mat-checkbox              hraFeature="toggle"              hraClickEvent              class="autocomplete-checkbox"              (change)="checkboxSelected($event, organ)"              [checked]="isChecked(organ)"            ></mat-checkbox>            <mat-option hraFeature="select" hraClickEvent [value]="organ">{{ organ.name }}</mat-option>          </div>        }      </ng-scrollbar>    </mat-autocomplete>  </mat-form-field></form></div>'
+        var COMPONENT_TEMPLATE = '<div><form hraFeature="organ-select">  <mat-form-field class="organ-form-field" subscriptSizing="dynamic" floatLabel="always">    <mat-icon matPrefix>search</mat-icon>    <mat-label>Organs</mat-label>    <input      hraFeature="organ-search"      hraClickEvent      name="currentOrganInput"      class="organ-input"      [matChipInputFor]="chipGrid"      [matAutocomplete]="auto"      [placeholder]="searchTextPlaceholder()"      [(ngModel)]="searchInput"      #organInput    />    <mat-autocomplete      hideSingleSelectionIndicator      (optionSelected)="optionSelected($event)"      (opened)="hidePlaceholder.set(true)"      (closed)="hidePlaceholder.set(false)"      #auto="matAutocomplete"    >      <mat-chip-grid hraFeature="chips" class="organ-select-chips" aria-label="Organ selection" #chipGrid>        @for (organ of selectedOrgans(); track organ) {          <mat-chip-row [hraFeature]="organ.name | slugify" (removed)="remove(organ)">            <span hraFeature="label" hraClickEvent>{{ organ.name }}</span>            <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="`remove ${organ.name}`">              <mat-icon>close</mat-icon>            </button>          </mat-chip-row>        }      </mat-chip-grid>      <ng-scrollbar hraFeature="list" class="organ-list">        @for (organ of filteredOrgans(); track organ) {          <div class="autocomplete-option" [hraFeature]="organ.name | slugify">            <mat-checkbox              hraFeature="toggle"              hraClickEvent              class="autocomplete-checkbox"              [checked]="isChecked(organ)"              (change)="checkboxSelected($event, organ)"            />            <mat-option hraFeature="select" hraClickEvent [value]="organ">{{ organ.name }}</mat-option>          </div>        }      </ng-scrollbar>    </mat-autocomplete>  </mat-form-field></form></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OrganSelectComponent'};

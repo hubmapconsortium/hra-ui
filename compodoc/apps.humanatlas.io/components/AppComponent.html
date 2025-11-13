@@ -195,7 +195,6 @@
                             <code>NavigationModule</code>
                             <code>MatMenuModule</code>
                             <code>MatDividerModule</code>
-                            <code>PlainTooltipDirective</code>
                 </td>
             </tr>
 
@@ -314,7 +313,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/app.component.ts:87</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/app.component.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -351,7 +350,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/app.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/app.component.ts:50</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -391,8 +390,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="104"
-                                    class="link-to-prism">src/app/app.component.ts:104</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/app.component.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -430,8 +429,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="117"
-                                    class="link-to-prism">src/app/app.component.ts:117</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/app.component.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -485,7 +484,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/app.component.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/app.component.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -528,7 +527,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/app.component.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/app.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -567,7 +566,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/app.component.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/app.component.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -606,7 +605,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/app.component.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/app.component.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -645,7 +644,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/app.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -687,7 +686,6 @@ import { BreadcrumbItem } from &#x27;@hra-ui/design-system/buttons/breadcrumbs&#
 import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
 import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
 import { CtaConfig, DEFAULT_MENUS, HeaderComponent, Menu } from &#x27;@hra-ui/design-system/navigation/header&#x27;;
-import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 import { isNavigating } from &#x27;./utils/navigation&#x27;;
 
 /** Padding when scrolling to an anchor in px */
@@ -704,14 +702,13 @@ const ANCHOR_SCROLL_PADDING &#x3D; 24;
     NavigationModule,
     MatMenuModule,
     MatDividerModule,
-    PlainTooltipDirective,
   ],
   templateUrl: &#x27;./app.component.html&#x27;,
   styleUrl: &#x27;./app.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: &#x27;hra-app&#x27;,
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Additional header menus */
@@ -798,10 +795,10 @@ export class AppComponent extends BaseApplicationComponent {
     [(ctaDismissed)]&#x3D;&quot;ctaDismissed&quot;
   &gt;
     @if (!isHraPopVisualizerPage()) {
-      &lt;hra-help-button [action]&#x3D;&quot;getHelpUrl()&quot;&gt;&lt;/hra-help-button&gt;
+      &lt;hra-help-button [action]&#x3D;&quot;getHelpUrl()&quot; /&gt;
     } @else {
       &lt;!-- Help &amp; documentation Menu --&gt;
-      &lt;mat-menu #helpMenu class&#x3D;&quot;more-menu&quot;&gt;
+      &lt;mat-menu class&#x3D;&quot;more-menu&quot; #helpMenu&gt;
         &lt;a mat-menu-item href&#x3D;&quot;https://youtu.be/Ueei7BOctzY?si&#x3D;WGE7HydMaFW1ABqv&quot; target&#x3D;&quot;_blank&quot;&gt;
           &lt;div&gt;Watch demo video&lt;/div&gt;
         &lt;/a&gt;
@@ -811,13 +808,13 @@ export class AppComponent extends BaseApplicationComponent {
         &lt;/a&gt;
       &lt;/mat-menu&gt;
 
-      &lt;hra-help-button [action]&#x3D;&quot;helpMenu&quot;&gt;&lt;/hra-help-button&gt;
+      &lt;hra-help-button [action]&#x3D;&quot;helpMenu&quot; /&gt;
     }
   &lt;/hra-header&gt;
   &lt;div class&#x3D;&quot;content&quot; [class.cta-active]&#x3D;&quot;!ctaDismissed()&quot;&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;router-outlet /&gt;
   &lt;/div&gt;
-  &lt;hra-footer&gt;&lt;/hra-footer&gt;
+  &lt;hra-footer /&gt;
 &lt;/ng-container&gt;
 </code></pre>
     </div>
@@ -848,7 +845,7 @@ export class AppComponent extends BaseApplicationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="hra-apps">  <hra-header    baseUrl="https://apps.humanatlas.io/"    [menus]="menus()"    [cta]="cta"    [breadcrumbs]="crumbs()"    [progress]="isNavigating()"    [(ctaDismissed)]="ctaDismissed"  >    @if (!isHraPopVisualizerPage()) {      <hra-help-button [action]="getHelpUrl()"></hra-help-button>    } @else {      <!-- Help & documentation Menu -->      <mat-menu #helpMenu class="more-menu">        <a mat-menu-item href="https://youtu.be/Ueei7BOctzY?si=WGE7HydMaFW1ABqv" target="_blank">          <div>Watch demo video</div>        </a>        <mat-divider />        <a mat-menu-item href="https://doi.org/10.1101/2025.08.14.670406" target="_blank">          <div>Read publication</div>        </a>      </mat-menu>      <hra-help-button [action]="helpMenu"></hra-help-button>    }  </hra-header>  <div class="content" [class.cta-active]="!ctaDismissed()">    <router-outlet></router-outlet>  </div>  <hra-footer></hra-footer></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="hra-apps">  <hra-header    baseUrl="https://apps.humanatlas.io/"    [menus]="menus()"    [cta]="cta"    [breadcrumbs]="crumbs()"    [progress]="isNavigating()"    [(ctaDismissed)]="ctaDismissed"  >    @if (!isHraPopVisualizerPage()) {      <hra-help-button [action]="getHelpUrl()" />    } @else {      <!-- Help & documentation Menu -->      <mat-menu class="more-menu" #helpMenu>        <a mat-menu-item href="https://youtu.be/Ueei7BOctzY?si=WGE7HydMaFW1ABqv" target="_blank">          <div>Watch demo video</div>        </a>        <mat-divider />        <a mat-menu-item href="https://doi.org/10.1101/2025.08.14.670406" target="_blank">          <div>Read publication</div>        </a>      </mat-menu>      <hra-help-button [action]="helpMenu" />    }  </hra-header>  <div class="content" [class.cta-active]="!ctaDismissed()">    <router-outlet />  </div>  <hra-footer /></ng-container></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

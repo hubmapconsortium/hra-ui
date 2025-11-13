@@ -491,7 +491,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>values:     <code>Record&lt;string, any&gt;[]</code>
+                                        <code>values:     <code>Record&lt;string, unknown&gt;[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -499,7 +499,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>Record&lt;string, any&gt;[]</code>
+                                            <i>Type : </i>    <code>Record&lt;string, unknown&gt;[]</code>
 
                                         </td>
                                     </tr>
@@ -644,7 +644,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { VisualizationSpec } from &#x27;vega-embed&#x27;;
-import { YAxisValue, SortValue } from &#x27;./data-type-config&#x27;;
+import { SortValue, YAxisValue } from &#x27;./data-type-config&#x27;;
 
 /**
  * Configuration options for generating bar graph specifications
@@ -653,7 +653,7 @@ export interface AnatomicalBarGraphSpecOptions {
   /** Title displayed at the top of the graph */
   graphTitle: string;
   /** Array of data objects to visualize */
-  values: Record&lt;string, any&gt;[];
+  values: Record&lt;string, unknown&gt;[];
   /** Field name to use for X-axis values */
   xField:
     | &#x27;anatomicalStructureId&#x27;
@@ -718,13 +718,8 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
   // Format tool names for better display
   const transformedValues &#x3D; values.map((item) &#x3D;&gt; ({
     ...item,
-    toolFormatted: formatToolName(item[&#x27;tool&#x27;]),
+    toolFormatted: formatToolName(item[&#x27;tool&#x27;] as string),
   }));
-
-  const filters: any[] &#x3D; [];
-  if (toolFilter &amp;&amp; toolFilter.length &gt; 0) {
-    filters.push({ field: &#x27;tool&#x27;, oneOf: toolFilter });
-  }
 
   /**
    * Gets the appropriate axis title for a given field
@@ -748,17 +743,6 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
     }
   };
 
-  /**
-   * Gets the sort configuration based on sort options
-   * @returns Vega-Lite sort configuration object
-   */
-  const getSortConfig &#x3D; (): any &#x3D;&gt; {
-    if (sortBy &#x3D;&#x3D;&#x3D; &#x27;alphabetical&#x27;) {
-      return { field: xField, order: &#x27;ascending&#x27; };
-    }
-    return { field: yField, op: &#x27;sum&#x27;, order: order };
-  };
-
   const spec: VisualizationSpec &#x3D; {
     $schema: &#x27;https://vega.github.io/schema/vega-lite/v5.json&#x27;,
     title: {
@@ -770,7 +754,7 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
       offset: 20,
     },
     data: { values: transformedValues },
-    transform: filters.length &gt; 0 ? [{ filter: { and: filters } }] : [],
+    transform: toolFilter.length &gt; 0 ? [{ filter: { and: [{ field: &#x27;tool&#x27;, oneOf: toolFilter }] } }] : [],
     padding: { top: 100, bottom: 100, left: 50, right: 50 },
 
     align: &#x27;each&#x27;,
@@ -823,7 +807,10 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
         x: {
           field: xField,
           type: &#x27;nominal&#x27;,
-          sort: getSortConfig(),
+          sort:
+            sortBy &#x3D;&#x3D;&#x3D; &#x27;alphabetical&#x27;
+              ? { field: xField, order: &#x27;ascending&#x27; }
+              : { field: yField, op: &#x27;sum&#x27;, order: order },
           axis: {
             title: getAxisTitle(xField),
             labelAngle: -45,

@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -197,10 +193,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./metadata-author-form.component.scss</code></td>
-            </tr>
 
 
 
@@ -211,6 +203,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./metadata-author-form.component.scss</code></td>
+            </tr>
 
 
 
@@ -387,7 +383,7 @@ export interface AuthorFormControls {
   selector: &#x27;ccf-metadata-author-form&#x27;,
   imports: [HraCommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgxMaskDirective, ButtonsModule],
   templateUrl: &#x27;./metadata-author-form.component.html&#x27;,
-  styleUrls: [&#x27;./metadata-author-form.component.scss&#x27;],
+  styleUrl: &#x27;./metadata-author-form.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataAuthorFormComponent implements OnInit {
@@ -460,41 +456,6 @@ export class MetadataAuthorFormComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./metadata-author-form.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  display: block;
-
-  .subheader {
-    font: vars.$title-small;
-    color: vars.$primary;
-    margin-bottom: 1rem;
-  }
-
-  .fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-
-    .field:not(.mat-form-field-invalid) {
-      height: 3rem;
-    }
-
-    .email {
-      grid-column: 1 / span 2;
-    }
-  }
-
-  mat-error {
-    font-family: vars.$label-small-font;
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>

@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -189,10 +185,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./spatial-search-config.component.scss</code></td>
-            </tr>
 
 
 
@@ -203,6 +195,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./spatial-search-config.component.scss</code></td>
+            </tr>
 
 
 
@@ -484,9 +480,9 @@ import { SpatialSearchInputsComponent } from &#x27;../spatial-search-inputs/spat
  */
 @Component({
   selector: &#x27;ccf-spatial-search-config&#x27;,
-  templateUrl: &#x27;./spatial-search-config.component.html&#x27;,
-  styleUrls: [&#x27;./spatial-search-config.component.scss&#x27;],
   imports: [HraCommonModule, MatIconModule, ButtonsModule, SpatialSearchInputsComponent],
+  templateUrl: &#x27;./spatial-search-config.component.html&#x27;,
+  styleUrl: &#x27;./spatial-search-config.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigComponent {
@@ -519,7 +515,7 @@ export class SpatialSearchConfigComponent {
   &lt;div class&#x3D;&quot;header&quot;&gt;
     &lt;div class&#x3D;&quot;header-left&quot;&gt;
       &lt;div class&#x3D;&quot;title&quot;&gt;Configure Spatial Search&lt;/div&gt;
-      &lt;hra-help-button action&#x3D;&quot;https://humanatlas.io/exploration-user-interface#using-spatial-search&quot;&gt;&lt;/hra-help-button&gt;
+      &lt;hra-help-button action&#x3D;&quot;https://humanatlas.io/exploration-user-interface#using-spatial-search&quot; /&gt;
     &lt;/div&gt;
     &lt;button class&#x3D;&quot;close&quot; mat-icon-button (click)&#x3D;&quot;closeDialog.emit()&quot;&gt;
       &lt;mat-icon&gt;close&lt;/mat-icon&gt;
@@ -533,7 +529,7 @@ export class SpatialSearchConfigComponent {
     [selectedOrgan]&#x3D;&quot;selectedOrgan()&quot;
     (updateOrgan)&#x3D;&quot;updateOrgan.emit($event)&quot;
     (updateSex)&#x3D;&quot;updateSex.emit($event)&quot;
-  &gt;&lt;/ccf-spatial-search-inputs&gt;
+  /&gt;
 
   &lt;button
     hraFeature&#x3D;&quot;continue&quot;
@@ -549,54 +545,6 @@ export class SpatialSearchConfigComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./spatial-search-config.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  display: grid;
-  grid-template-areas: &#x27;header header&#x27; &#x27;sex-organ sex-organ&#x27; &#x27;. button&#x27;;
-  grid-template-rows: auto 3rem auto;
-  row-gap: 1rem;
-  padding: 0.5rem 1.5rem 1rem 1.5rem;
-
-  .header {
-    grid-area: header;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font: vars.$label-large;
-
-    .header-left {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  ccf-spatial-search-inputs {
-    grid-area: sex-organ;
-
-    ::ng-deep .field {
-      width: 12.625rem;
-    }
-  }
-
-  .continue-button {
-    grid-area: button;
-    width: fit-content;
-    justify-self: end;
-    margin-top: 0.25rem;
-  }
-}
-
-::ng-deep .spatial-search-config {
-  --mat-dialog-container-shape: 0.75rem;
-  --mat-dialog-container-color: #{vars.$surface-container-low};
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -623,7 +571,7 @@ export class SpatialSearchConfigComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="eui.body-ui.spatial-search-config">  <div class="header">    <div class="header-left">      <div class="title">Configure Spatial Search</div>      <hra-help-button action="https://humanatlas.io/exploration-user-interface#using-spatial-search"></hra-help-button>    </div>    <button class="close" mat-icon-button (click)="closeDialog.emit()">      <mat-icon>close</mat-icon>    </button>  </div>  <ccf-spatial-search-inputs    hraFeature="organ-sex-selection"    [organs]="organs()"    [sex]="sex()"    [selectedOrgan]="selectedOrgan()"    (updateOrgan)="updateOrgan.emit($event)"    (updateSex)="updateSex.emit($event)"  ></ccf-spatial-search-inputs>  <button    hraFeature="continue"    hraClickEvent    mat-flat-button    class="continue-button"    [disabled]="!selectedOrgan()"    (click)="buttonClicked.emit()"  >    Continue  </button></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="eui.body-ui.spatial-search-config">  <div class="header">    <div class="header-left">      <div class="title">Configure Spatial Search</div>      <hra-help-button action="https://humanatlas.io/exploration-user-interface#using-spatial-search" />    </div>    <button class="close" mat-icon-button (click)="closeDialog.emit()">      <mat-icon>close</mat-icon>    </button>  </div>  <ccf-spatial-search-inputs    hraFeature="organ-sex-selection"    [organs]="organs()"    [sex]="sex()"    [selectedOrgan]="selectedOrgan()"    (updateOrgan)="updateOrgan.emit($event)"    (updateSex)="updateSex.emit($event)"  />  <button    hraFeature="continue"    hraClickEvent    mat-flat-button    class="continue-button"    [disabled]="!selectedOrgan()"    (click)="buttonClicked.emit()"  >    Continue  </button></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SpatialSearchConfigComponent'};

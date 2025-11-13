@@ -308,7 +308,7 @@ export class LandingPageComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;img class&#x3D;&quot;banner&quot; [attr.src]&#x3D;&quot;data().bannerUrl | assetUrl&quot; alt&#x3D;&quot;&quot; /&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;img class&#x3D;&quot;banner&quot; alt&#x3D;&quot;&quot; [attr.src]&#x3D;&quot;data().bannerUrl | assetUrl&quot; /&gt;
 
 &lt;div hraFeature&#x3D;&quot;help-and-documentation&quot; class&#x3D;&quot;content&quot;&gt;
   &lt;span class&#x3D;&quot;header&quot;&gt;
@@ -351,7 +351,7 @@ export class LandingPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><img class="banner" [attr.src]="data().bannerUrl | assetUrl" alt="" /><div hraFeature="help-and-documentation" class="content">  <span class="header">    {{ data().tagline }}  </span>  <hra-grid-container hraFeature="landing-page-cards">    @for (card of data().cards; track card) {      <ng-container *hraContentTemplateOutlet="card" />    }  </hra-grid-container></div><hra-footer /></div>'
+        var COMPONENT_TEMPLATE = '<div><img class="banner" alt="" [attr.src]="data().bannerUrl | assetUrl" /><div hraFeature="help-and-documentation" class="content">  <span class="header">    {{ data().tagline }}  </span>  <hra-grid-container hraFeature="landing-page-cards">    @for (card of data().cards; track card) {      <ng-container *hraContentTemplateOutlet="card" />    }  </hra-grid-container></div><hra-footer /></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-docs'},{'name': 'LandingPageComponent', 'selector': 'hra-docs-landing-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LandingPageComponent'};

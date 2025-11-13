@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -191,10 +187,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./term-occurrence.component.scss</code></td>
-            </tr>
 
 
 
@@ -205,6 +197,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./term-occurrence.component.scss</code></td>
+            </tr>
 
 
 
@@ -369,8 +365,6 @@ import { TermResult } from &#x27;../../../core/store/spatial-search-ui/spatial-s
  */
 @Component({
   selector: &#x27;ccf-term-occurrence-list&#x27;,
-  templateUrl: &#x27;./term-occurrence.component.html&#x27;,
-  styleUrls: [&#x27;./term-occurrence.component.scss&#x27;],
   imports: [
     MatIconModule,
     ExpansionPanelComponent,
@@ -379,6 +373,8 @@ import { TermResult } from &#x27;../../../core/store/spatial-search-ui/spatial-s
     ScrollOverflowFadeDirective,
     PlainTooltipDirective,
   ],
+  templateUrl: &#x27;./term-occurrence.component.html&#x27;,
+  styleUrl: &#x27;./term-occurrence.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TermOccurrenceListComponent {
@@ -419,64 +415,6 @@ export class TermOccurrenceListComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./term-occurrence.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  padding: 0.5rem 0 0rem 1rem;
-  overflow: hidden;
-
-  ::ng-deep hra-expansion-panel {
-    cdk-accordion-item {
-      display: grid;
-      height: 100%;
-      grid-template-rows: 2.5rem calc(100% - 2.5rem);
-    }
-
-    .expansion-body {
-      height: 100%;
-    }
-
-    .header {
-      font: vars.$label-medium;
-    }
-  }
-
-  .total-count,
-  .term-bloc {
-    font: vars.$label-small;
-    letter-spacing: vars.$label-small-tracking;
-    margin-right: 1rem;
-  }
-
-  .term-list {
-    height: 100%;
-    --_hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
-  }
-
-  ng-scrollbar {
-    --_viewport-padding-top: 0.25rem;
-    --_viewport-padding-bottom: 0.25rem;
-  }
-
-  .term-bloc {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 0.5rem;
-    height: 1.5rem;
-    color: vars.$secondary;
-    align-items: center;
-
-    .count {
-      color: vars.$primary;
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>

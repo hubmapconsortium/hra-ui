@@ -1392,8 +1392,8 @@ import { SpatialSearchUiComponent } from &#x27;../spatial-search-ui/spatial-sear
  */
 @Component({
   selector: &#x27;ccf-spatial-search-ui-behavior&#x27;,
-  templateUrl: &#x27;./spatial-search-ui-behavior.component.html&#x27;,
   imports: [AsyncPipe, SpatialSearchUiComponent],
+  templateUrl: &#x27;./spatial-search-ui-behavior.component.html&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchUiBehaviorComponent {
@@ -1528,8 +1528,7 @@ export class SpatialSearchUiBehaviorComponent {
     (nodeClicked)&#x3D;&quot;moveToNode($event)&quot;
     (updateSex)&#x3D;&quot;updateSex($event)&quot;
     (updateOrgan)&#x3D;&quot;updateOrgan($event.id)&quot;
-  &gt;
-  &lt;/ccf-spatial-search-ui&gt;
+  /&gt;
 }
 </code></pre>
     </div>
@@ -1560,7 +1559,7 @@ export class SpatialSearchUiBehaviorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (organ$ | async; as organ) {  <ccf-spatial-search-ui    [sex]="(sex$ | async)!"    [organs]="(organs$ | async) ?? []"    [referenceOrgan]="organ"    [radius]="(radius$ | async) ?? 0"    [radiusSettings]="(radiusSettings$ | async)!"    [defaultPosition]="(defaultPosition$ | async)!"    [position]="(position$ | async)!"    [scene]="(scene$ | async)!"    [sceneBounds]="(sceneBounds$ | async)!"    [sceneTarget]="$any(sceneTarget$ | async)!"    [tissueBlocks]="(tissueBlocks$ | async)!"    [anatomicalStructures]="(anatomicalStructures$ | async) ?? []"    [cellTypes]="(cellTypes$ | async) ?? []"    (addSpatialSearch)="addSpatialSearch()"    (radiusChange)="updateRadius($event)"    (resetPosition)="resetPosition()"    (resetSphere)="resetRadius()"    (positionChange)="updatePosition($event)"    (closeSpatialSearch)="close()"    (editReferenceOrganClicked)="openSpatialSearchConfig()"    (nodeClicked)="moveToNode($event)"    (updateSex)="updateSex($event)"    (updateOrgan)="updateOrgan($event.id)"  >  </ccf-spatial-search-ui>}</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (organ$ | async; as organ) {  <ccf-spatial-search-ui    [sex]="(sex$ | async)!"    [organs]="(organs$ | async) ?? []"    [referenceOrgan]="organ"    [radius]="(radius$ | async) ?? 0"    [radiusSettings]="(radiusSettings$ | async)!"    [defaultPosition]="(defaultPosition$ | async)!"    [position]="(position$ | async)!"    [scene]="(scene$ | async)!"    [sceneBounds]="(sceneBounds$ | async)!"    [sceneTarget]="$any(sceneTarget$ | async)!"    [tissueBlocks]="(tissueBlocks$ | async)!"    [anatomicalStructures]="(anatomicalStructures$ | async) ?? []"    [cellTypes]="(cellTypes$ | async) ?? []"    (addSpatialSearch)="addSpatialSearch()"    (radiusChange)="updateRadius($event)"    (resetPosition)="resetPosition()"    (resetSphere)="resetRadius()"    (positionChange)="updatePosition($event)"    (closeSpatialSearch)="close()"    (editReferenceOrganClicked)="openSpatialSearchConfig()"    (nodeClicked)="moveToNode($event)"    (updateSex)="updateSex($event)"    (updateOrgan)="updateOrgan($event.id)"  />}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SpatialSearchUiBehaviorComponent'};

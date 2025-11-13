@@ -1,15 +1,14 @@
 import * as _angular_core from '@angular/core';
-import * as zod from 'zod';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Global footer component
  */
 declare class FooterComponent {
     /** List of funders to show */
-    readonly funders: _angular_core.InputSignal<(string & zod.$brand<"FunderId">)[]>;
+    readonly funders: _angular_core.InputSignal<(string & z.$brand<"FunderId">)[]>;
     /** List of social media link to show */
-    readonly socials: _angular_core.InputSignal<(string & zod.$brand<"SocialMediaId">)[]>;
+    readonly socials: _angular_core.InputSignal<(string & z.$brand<"SocialMediaId">)[]>;
     /** inject Privacy Preference Service */
     private readonly privacyPreferences;
     /** Open Privacy Preferences Modal */
@@ -19,7 +18,7 @@ declare class FooterComponent {
 }
 
 /** All available funder ids */
-declare const FUNDER_IDS: (string & zod.$brand<"FunderId">)[];
+declare const FUNDER_IDS: (string & z.$brand<"FunderId">)[];
 
 /** Data id of a funder */
 type FunderId = Funder['id'];

@@ -795,15 +795,15 @@ export class EmbedSidenavContentComponent {
       &lt;mat-tab-group
         hraClickEventTriggerOn&#x3D;&quot;none&quot;
         hraClickEvent
-        #tabEventDir&#x3D;&quot;hraClickEvent&quot;
-        (selectedTabChange)&#x3D;&quot;onTabChange($event, tabEventDir)&quot;
         class&#x3D;&quot;tab-group&quot;
         animationDuration&#x3D;&quot;700ms&quot;
-        [(selectedIndex)]&#x3D;&quot;tabIndex&quot;
         dynamicHeight&#x3D;&quot;true&quot;
+        [(selectedIndex)]&#x3D;&quot;tabIndex&quot;
+        (selectedTabChange)&#x3D;&quot;onTabChange($event, tabEventDir)&quot;
+        #tabEventDir&#x3D;&quot;hraClickEvent&quot;
       &gt;
         &lt;mat-tab label&#x3D;&quot;Embed&quot;&gt;
-          &lt;hra-code-block [code]&#x3D;&quot;code()&quot; language&#x3D;&quot;html&quot;&gt;&lt;/hra-code-block&gt;
+          &lt;hra-code-block language&#x3D;&quot;html&quot; [code]&#x3D;&quot;code()&quot; /&gt;
         &lt;/mat-tab&gt;
 
         &lt;mat-tab label&#x3D;&quot;Use App&quot;&gt;
@@ -813,13 +813,13 @@ export class EmbedSidenavContentComponent {
         &lt;/mat-tab&gt;
       &lt;/mat-tab-group&gt;
     } @else {
-      &lt;hra-code-block [code]&#x3D;&quot;code()&quot; language&#x3D;&quot;html&quot;&gt;&lt;/hra-code-block&gt;
+      &lt;hra-code-block language&#x3D;&quot;html&quot; [code]&#x3D;&quot;code()&quot; /&gt;
     }
 
     &lt;hra-flat-card-actions class&#x3D;&quot;card-actions&quot;&gt;
       &lt;button
         hraClickEvent
-        [hraFeature]&#x3D;&quot;&#x27;documentation&#x27;&quot;
+        hraFeature&#x3D;&quot;documentation&quot;
         mat-button
         hraPrimaryButton
         hraButtonSize&#x3D;&quot;medium&quot;
@@ -831,12 +831,12 @@ export class EmbedSidenavContentComponent {
       &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
       &lt;button
         hraClickEvent
-        [hraFeature]&#x3D;&quot;&#x27;copy&#x27;&quot;
+        hraFeature&#x3D;&quot;copy&quot;
         mat-flat-button
         hraPrimaryButton
         hraButtonSize&#x3D;&quot;medium&quot;
-        (cdkCopyToClipboardCopied)&#x3D;&quot;openCopiedSnackbar()&quot;
         [cdkCopyToClipboard]&#x3D;&quot;code()&quot;
+        (cdkCopyToClipboardCopied)&#x3D;&quot;openCopiedSnackbar()&quot;
       &gt;
         Copy
       &lt;/button&gt;
@@ -872,7 +872,7 @@ export class EmbedSidenavContentComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="embed-sidenav-content">  <hra-flat-card    [tagline]="tagline()"    [showHelpButton]="false"    [showDivider]="true"    [showButtonsFooter]="tabIndex() === 0"    (closeClick)="closeSidenav.emit()"  >    @if (showApp()) {      <mat-tab-group        hraClickEventTriggerOn="none"        hraClickEvent        #tabEventDir="hraClickEvent"        (selectedTabChange)="onTabChange($event, tabEventDir)"        class="tab-group"        animationDuration="700ms"        [(selectedIndex)]="tabIndex"        dynamicHeight="true"      >        <mat-tab label="Embed">          <hra-code-block [code]="code()" language="html"></hra-code-block>        </mat-tab>        <mat-tab label="Use App">          <div hraHoverEvent hraFeature="iframe" class="iframe-container">            <iframe title="useAppIframe" class="app-iframe" [srcdoc]="appSrcDoc()"></iframe>          </div>        </mat-tab>      </mat-tab-group>    } @else {      <hra-code-block [code]="code()" language="html"></hra-code-block>    }    <hra-flat-card-actions class="card-actions">      <button        hraClickEvent        [hraFeature]="\'documentation\'"        mat-button        hraPrimaryButton        hraButtonSize="medium"        [disabled]="documentLink() === \'\'"        (click)="openDocumentLink()"      >        Documentation      </button>      <div class="filler"></div>      <button        hraClickEvent        [hraFeature]="\'copy\'"        mat-flat-button        hraPrimaryButton        hraButtonSize="medium"        (cdkCopyToClipboardCopied)="openCopiedSnackbar()"        [cdkCopyToClipboard]="code()"      >        Copy      </button>    </hra-flat-card-actions>  </hra-flat-card></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="embed-sidenav-content">  <hra-flat-card    [tagline]="tagline()"    [showHelpButton]="false"    [showDivider]="true"    [showButtonsFooter]="tabIndex() === 0"    (closeClick)="closeSidenav.emit()"  >    @if (showApp()) {      <mat-tab-group        hraClickEventTriggerOn="none"        hraClickEvent        class="tab-group"        animationDuration="700ms"        dynamicHeight="true"        [(selectedIndex)]="tabIndex"        (selectedTabChange)="onTabChange($event, tabEventDir)"        #tabEventDir="hraClickEvent"      >        <mat-tab label="Embed">          <hra-code-block language="html" [code]="code()" />        </mat-tab>        <mat-tab label="Use App">          <div hraHoverEvent hraFeature="iframe" class="iframe-container">            <iframe title="useAppIframe" class="app-iframe" [srcdoc]="appSrcDoc()"></iframe>          </div>        </mat-tab>      </mat-tab-group>    } @else {      <hra-code-block language="html" [code]="code()" />    }    <hra-flat-card-actions class="card-actions">      <button        hraClickEvent        hraFeature="documentation"        mat-button        hraPrimaryButton        hraButtonSize="medium"        [disabled]="documentLink() === \'\'"        (click)="openDocumentLink()"      >        Documentation      </button>      <div class="filler"></div>      <button        hraClickEvent        hraFeature="copy"        mat-flat-button        hraPrimaryButton        hraButtonSize="medium"        [cdkCopyToClipboard]="code()"        (cdkCopyToClipboardCopied)="openCopiedSnackbar()"      >        Copy      </button>    </hra-flat-card-actions>  </hra-flat-card></ng-container></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EmbedSidenavContentComponent'};

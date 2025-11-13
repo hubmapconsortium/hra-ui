@@ -1,7 +1,7 @@
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
 import * as _angular_core from '@angular/core';
 import { YouTubePlayer as YouTubePlayer$1 } from '@angular/youtube-player';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** YouTube Player wrapper component for Content Pages */
 declare class HraYoutubePlayerComponent {
@@ -41,6 +41,7 @@ declare const YouTubePlayerSchema: z.ZodObject<{
     }, z.core.$loose>>>;
     component: z.ZodLiteral<"YouTubePlayer">;
     videoId: z.ZodString;
+    label: z.ZodString;
 }, z.core.$strip>;
 
 export { HraYoutubePlayerComponent, YouTubePlayerDef, YouTubePlayerSchema };

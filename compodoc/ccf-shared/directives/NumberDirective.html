@@ -178,7 +178,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#onInputChange" >onInputChange</a>
                             </li>
                         </ul>
@@ -188,20 +187,6 @@
 
 
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>HostListeners</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#input" >input</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
         </tbody>
     </table>
@@ -211,74 +196,7 @@
 
 
 
-            <section data-compodoc="block-host-listener">
-    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="input"></a>
-                    <span class="name">
-                        <b>
-                            input
-                        </b>
-                        <a href="#input"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <i>Arguments : </i><code>'$event' </code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/lib/directives/numbers-only/numbers-only.directive.ts:19</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Listens to input changes and updates the text to only include numbers.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>event</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The input event</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section data-compodoc="block-methods">
     
     <h3 id="methods">
@@ -290,7 +208,6 @@
                 <td class="col-md-4">
                     <a name="onInputChange"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>onInputChange</b></span>
                         <a href="#onInputChange"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -298,23 +215,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>onInputChange(event: Event)</code>
+<code>onInputChange(event: Event)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@HostListener(&#x27;input&#x27;, [&#x27;$event&#x27;])<br /></code>
-                </td>
-            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/lib/directives/numbers-only/numbers-only.directive.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/lib/directives/numbers-only/numbers-only.directive.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -374,7 +283,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, HostListener, inject } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, inject } from &#x27;@angular/core&#x27;;
 
 /**
  * Directive for restricting an input element to integer only values.
@@ -382,6 +291,9 @@
 @Directive({
   selector: &#x27;input[ccfNumbersOnly]&#x27;,
   standalone: false,
+  host: {
+    &#x27;(input)&#x27;: &#x27;onInputChange($event)&#x27;,
+  },
 })
 export class NumberDirective {
   private readonly el &#x3D; inject&lt;ElementRef&lt;HTMLInputElement&gt;&gt;(ElementRef);
@@ -391,7 +303,6 @@ export class NumberDirective {
    *
    * @param event The input event
    */
-  @HostListener(&#x27;input&#x27;, [&#x27;$event&#x27;])
   onInputChange(event: Event): void {
     const initalValue &#x3D; this.el.nativeElement.value;
     this.el.nativeElement.value &#x3D; initalValue.replace(/[^0-9]*/g, &#x27;&#x27;);

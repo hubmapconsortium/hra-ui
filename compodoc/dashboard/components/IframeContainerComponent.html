@@ -433,7 +433,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component, computed, inject, input } from &#x27;@angular/core&#x27;;
 import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 import { DashboardComponentSpecFor } from &#x27;../../dashboard/dashboard.model&#x27;;
 import { TITLE_CARD_DEF, TitleCardComponent } from &#x27;../title-card/title-card.component&#x27;;
 
@@ -466,7 +466,7 @@ export class IframeContainerComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-title-card [spec]&#x3D;&quot;spec()&quot; [style.aspect-ratio]&#x3D;&quot;spec().aspectRatio&quot; class&#x3D;&quot;iframe-container&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;hra-title-card class&#x3D;&quot;iframe-container&quot; [spec]&#x3D;&quot;spec()&quot; [style.aspect-ratio]&#x3D;&quot;spec().aspectRatio&quot;&gt;
   &lt;iframe [src]&#x3D;&quot;iframeUrl()&quot; [attr.title]&#x3D;&quot;spec().title&quot;&gt;&lt;/iframe&gt;
 &lt;/hra-title-card&gt;
 </code></pre>
@@ -498,7 +498,7 @@ export class IframeContainerComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-title-card [spec]="spec()" [style.aspect-ratio]="spec().aspectRatio" class="iframe-container">  <iframe [src]="iframeUrl()" [attr.title]="spec().title"></iframe></hra-title-card></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-title-card class="iframe-container" [spec]="spec()" [style.aspect-ratio]="spec().aspectRatio">  <iframe [src]="iframeUrl()" [attr.title]="spec().title"></iframe></hra-title-card></div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'IframeContainerComponent'};

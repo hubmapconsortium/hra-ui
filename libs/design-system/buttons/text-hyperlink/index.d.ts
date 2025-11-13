@@ -3,7 +3,7 @@ import { EnvironmentProviders } from '@angular/core';
 import * as i1 from '@hra-ui/common/analytics';
 import * as _angular_router from '@angular/router';
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Applies hyperlink styles when placed on an <a> tag.

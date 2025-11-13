@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -189,10 +185,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./ftu.component.scss</code></td>
-            </tr>
 
 
 
@@ -203,6 +195,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./ftu.component.scss</code></td>
+            </tr>
 
 
 
@@ -556,7 +552,7 @@ import { FtuFullScreenService } from &#x27;@hra-ui/ftu-ui-components&#x27;;
     MedicalIllustrationBehaviorComponent,
   ],
   templateUrl: &#x27;./ftu.component.html&#x27;,
-  styleUrls: [&#x27;./ftu.component.scss&#x27;],
+  styleUrl: &#x27;./ftu.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
@@ -608,130 +604,35 @@ export class FtuComponent {
         <pre class="line-numbers"><code class="language-html">&lt;ftu-fullscreen-container
   class&#x3D;&quot;content-container&quot;
   [fullscreen]&#x3D;&quot;isFullscreen()&quot;
-  [(fullscreentabIndex)]&#x3D;&quot;fullscreentabIndex&quot;
-  (closeFullscreen)&#x3D;&quot;closefullscreen()&quot;
   [illustrationTemplate]&#x3D;&quot;illustration&quot;
   [biomarkerTemplate]&#x3D;&quot;biomarker&quot;
   [sourceListTemplate]&#x3D;&quot;sourceListTemplate&quot;
+  [(fullscreentabIndex)]&#x3D;&quot;fullscreentabIndex&quot;
+  (closeFullscreen)&#x3D;&quot;closefullscreen()&quot;
 &gt;
   &lt;ng-template #illustration&gt;
     &lt;div class&#x3D;&quot;left-side&quot;&gt;
       &lt;ftu-medical-illustration-behavior
+        class&#x3D;&quot;illustration&quot;
         [(isFullscreen)]&#x3D;&quot;isFullscreen&quot;
         (isFullscreenChange)&#x3D;&quot;fullscreentabIndex.set(0)&quot;
-        class&#x3D;&quot;illustration&quot;
-      &gt;&lt;/ftu-medical-illustration-behavior&gt;
+      /&gt;
     &lt;/div&gt;
   &lt;/ng-template&gt;
 
   &lt;ng-template #biomarker&gt;
     &lt;div class&#x3D;&quot;fullscreen-content-container&quot;&gt;
       &lt;ftu-biomarker-details
-        (isBiomarkerfullscreenChange)&#x3D;&quot;fullscreentabIndex.set(2)&quot;
         class&#x3D;&quot;illustration-details&quot;
+        (isBiomarkerfullscreenChange)&#x3D;&quot;fullscreentabIndex.set(2)&quot;
         (sourceListTemplate)&#x3D;&quot;setSourceList($event)&quot;
-      &gt;
-      &lt;/ftu-biomarker-details&gt;
+      /&gt;
     &lt;/div&gt;
   &lt;/ng-template&gt;
 &lt;/ftu-fullscreen-container&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./ftu.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  display: flex;
-  flex-direction: column;
-  min-width: 59rem;
-  height: 100%;
-
-  .fullscreen-content-container {
-    position: relative;
-  }
-
-  ::ng-deep .mat-mdc-tab-body-wrapper {
-    height: 100%;
-  }
-
-  .content-container {
-    display: flex;
-    height: 100%;
-
-    .left-side {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      overflow: hidden;
-      height: 100%;
-
-      ftu-medical-illustration-behavior {
-        height: calc(100% - 17rem);
-
-        @media (min-width: 1440px) {
-          height: calc(100% - 9.5rem);
-        }
-
-        @media (min-width: 1820px) {
-          height: calc(100% - 5rem);
-        }
-      }
-
-      ::ng-deep ftu-interactive-svg {
-        display: flex;
-        height: calc(100% - 4.1rem);
-        overflow: hidden;
-      }
-    }
-
-    .fullscreen-content-container {
-      &amp;,
-      .illustration-details {
-        height: 100%;
-        z-index: 1;
-      }
-    }
-
-    &amp;:has(ftu-biomarker-details.no-data),
-    &amp;:has(ftu-biomarker-details.no-data-sources) {
-      .left-side {
-        flex: 3.5;
-      }
-
-      .fullscreen-content-container {
-        flex: 1;
-      }
-    }
-  }
-
-  .fullscreen-on::ng-deep {
-    ftu-biomarker-details {
-      grid-template-columns: 0.5fr 0.5fr 1fr;
-
-      ftu-source-list {
-        width: unset !important;
-
-        ftu-label-box {
-          width: auto;
-        }
-      }
-    }
-
-    ftu-label-box.table-header {
-      width: auto;
-    }
-
-    ftu-biomarker-table {
-      max-width: none;
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -758,7 +659,7 @@ export class FtuComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ftu-fullscreen-container  class="content-container"  [fullscreen]="isFullscreen()"  [(fullscreentabIndex)]="fullscreentabIndex"  (closeFullscreen)="closefullscreen()"  [illustrationTemplate]="illustration"  [biomarkerTemplate]="biomarker"  [sourceListTemplate]="sourceListTemplate">  <ng-template #illustration>    <div class="left-side">      <ftu-medical-illustration-behavior        [(isFullscreen)]="isFullscreen"        (isFullscreenChange)="fullscreentabIndex.set(0)"        class="illustration"      ></ftu-medical-illustration-behavior>    </div>  </ng-template>  <ng-template #biomarker>    <div class="fullscreen-content-container">      <ftu-biomarker-details        (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"        class="illustration-details"        (sourceListTemplate)="setSourceList($event)"      >      </ftu-biomarker-details>    </div>  </ng-template></ftu-fullscreen-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ftu-fullscreen-container  class="content-container"  [fullscreen]="isFullscreen()"  [illustrationTemplate]="illustration"  [biomarkerTemplate]="biomarker"  [sourceListTemplate]="sourceListTemplate"  [(fullscreentabIndex)]="fullscreentabIndex"  (closeFullscreen)="closefullscreen()">  <ng-template #illustration>    <div class="left-side">      <ftu-medical-illustration-behavior        class="illustration"        [(isFullscreen)]="isFullscreen"        (isFullscreenChange)="fullscreentabIndex.set(0)"      />    </div>  </ng-template>  <ng-template #biomarker>    <div class="fullscreen-content-container">      <ftu-biomarker-details        class="illustration-details"        (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"        (sourceListTemplate)="setSourceList($event)"      />    </div>  </ng-template></ftu-fullscreen-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ftu-ui-root'},{'name': 'FtuComponent', 'selector': 'ftu-ftu-page'},{'name': 'LandingComponent', 'selector': 'ftu-landing'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FtuComponent'};

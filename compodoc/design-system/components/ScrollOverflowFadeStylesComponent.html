@@ -120,10 +120,6 @@
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -180,16 +176,16 @@
 
 
 
+
+
+
+
+
+
             <tr>
-                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-3">styleUrl</td>
                 <td class="col-md-9"><code>./scroll-overflow-fade.directive.scss</code></td>
             </tr>
-
-
-
-
-
-
 
 
 
@@ -260,9 +256,9 @@ const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] &#x3D; [
 @Component({
   selector: &#x27;hra-scroll-overflow-fade-styles&#x27;,
   template: &#x27;&#x27;,
-  styleUrls: [&#x27;./scroll-overflow-fade.directive.scss&#x27;],
-  encapsulation: ViewEncapsulation.None,
+  styleUrl: &#x27;./scroll-overflow-fade.directive.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ScrollOverflowFadeStylesComponent {}
 
@@ -376,55 +372,6 @@ export class ScrollOverflowFadeDirective {
     </div>
 
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./scroll-overflow-fade.directive.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">.hra-scroll-overflow-fade-gradient-top,
-.hra-scroll-overflow-fade-gradient-bottom {
-  --_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);
-  --_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);
-
-  display: block;
-  position: absolute;
-  pointer-events: none;
-  z-index: 99;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: var(--_hra-scroll-overflow-fade-height);
-}
-
-.hra-scroll-overflow-fade-gradient-top {
-  --_hra-scroll-overflow-fade-gradient-top-start: var(--hra-scroll-overflow-fade-offset);
-  --_hra-scroll-overflow-fade-gradient-top-end: calc(
-    (var(--content-height) - var(--viewport-height)) * 1px + 2 * var(--hra-scroll-overflow-fade-offset) - 1px
-  );
-
-  top: calc(-1 * var(--_hra-scroll-overflow-fade-height));
-  background: linear-gradient(to bottom, var(--_hra-scroll-overflow-fade-color), transparent);
-}
-
-.hra-scroll-overflow-fade-gradient-bottom {
-  --_hra-scroll-overflow-fade-gradient-bottom-start: calc(
-    var(--viewport-height) * 1px - var(--_hra-scroll-overflow-fade-height)
-  );
-  --_hra-scroll-overflow-fade-gradient-bottom-end: calc(
-    var(--content-height) * 1px - var(--_hra-scroll-overflow-fade-height) + var(--hra-scroll-overflow-fade-offset)
-  );
-
-  top: 100%;
-  background: linear-gradient(to top, var(--_hra-scroll-overflow-fade-color), transparent);
-}
-
-ng-scrollbar[isVerticallyScrollable&#x3D;&#x27;false&#x27;] {
-  &amp; .hra-scroll-overflow-fade-gradient-top,
-  &amp; .hra-scroll-overflow-fade-gradient-bottom {
-    display: none;
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>

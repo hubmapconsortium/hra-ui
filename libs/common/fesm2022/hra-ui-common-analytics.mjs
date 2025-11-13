@@ -103,10 +103,10 @@ class ConsentService {
     disableCategory(category) {
         this.updateCategories({ [category]: false });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ConsentService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ConsentService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ConsentService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ConsentService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ConsentService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ConsentService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -138,10 +138,10 @@ class FeatureDirective {
     }, ...(ngDevMode ? [{ debugName: "path" }] : []));
     /** Direct parent feature in the injection tree */
     parent = inject(FeatureDirective, { skipSelf: true, optional: true });
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: FeatureDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: FeatureDirective, isStandalone: true, selector: "[hraFeature]", inputs: { name: { classPropertyName: "name", publicName: "hraFeature", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: FeatureDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: FeatureDirective, isStandalone: true, selector: "[hraFeature]", inputs: { name: { classPropertyName: "name", publicName: "hraFeature", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: FeatureDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: FeatureDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraFeature]',
@@ -228,10 +228,10 @@ class AnalyticsService {
         }
         return id;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }] });
@@ -275,10 +275,10 @@ class BaseEventDirective {
             ...extraProps,
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: BaseEventDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.9", type: BaseEventDirective, isStandalone: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: BaseEventDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.11", type: BaseEventDirective, isStandalone: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: BaseEventDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: BaseEventDirective, decorators: [{
             type: Directive
         }], ctorParameters: () => [] });
 /**
@@ -310,10 +310,10 @@ class EventDirective extends BaseEventDirective {
     triggerOn = input(undefined, ...(ngDevMode ? [{ debugName: "triggerOn", alias: 'hraEventTriggerOn' }] : [{ alias: 'hraEventTriggerOn' }]));
     /** Whether this event is disabled */
     disabled = input(false, ...(ngDevMode ? [{ debugName: "disabled", alias: 'hraEventDisabled', transform: booleanAttribute }] : [{ alias: 'hraEventDisabled', transform: booleanAttribute }]));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: EventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: EventDirective, isStandalone: true, selector: "[hraEvent]", inputs: { event: { classPropertyName: "event", publicName: "hraEvent", isSignal: true, isRequired: true, transformFunction: null }, props: { classPropertyName: "props", publicName: "hraEventProps", isSignal: true, isRequired: true, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraEvent"], usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: EventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: EventDirective, isStandalone: true, selector: "[hraEvent]", inputs: { event: { classPropertyName: "event", publicName: "hraEvent", isSignal: true, isRequired: true, transformFunction: null }, props: { classPropertyName: "props", publicName: "hraEventProps", isSignal: true, isRequired: true, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraEvent"], usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: EventDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: EventDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraEvent]',
@@ -334,10 +334,10 @@ class ClickEventDirective extends BaseEventDirective {
     triggerOn = input(undefined, ...(ngDevMode ? [{ debugName: "triggerOn", alias: 'hraClickEventTriggerOn' }] : [{ alias: 'hraClickEventTriggerOn' }]));
     /** Whether this event is disabled */
     disabled = input(false, ...(ngDevMode ? [{ debugName: "disabled", alias: 'hraClickEventDisabled', transform: booleanAttribute }] : [{ alias: 'hraClickEventDisabled', transform: booleanAttribute }]));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ClickEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: ClickEventDirective, isStandalone: true, selector: "[hraClickEvent]", inputs: { props: { classPropertyName: "props", publicName: "hraClickEvent", isSignal: true, isRequired: false, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraClickEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraClickEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraClickEvent"], usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ClickEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: ClickEventDirective, isStandalone: true, selector: "[hraClickEvent]", inputs: { props: { classPropertyName: "props", publicName: "hraClickEvent", isSignal: true, isRequired: false, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraClickEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraClickEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraClickEvent"], usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ClickEventDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ClickEventDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraClickEvent]',
@@ -358,10 +358,10 @@ class DoubleClickEventDirective extends BaseEventDirective {
     triggerOn = input(undefined, ...(ngDevMode ? [{ debugName: "triggerOn", alias: 'hraDoubleClickEventTriggerOn' }] : [{ alias: 'hraDoubleClickEventTriggerOn' }]));
     /** Whether this event is disabled */
     disabled = input(false, ...(ngDevMode ? [{ debugName: "disabled", alias: 'hraDoubleClickEventDisabled', transform: booleanAttribute }] : [{ alias: 'hraDoubleClickEventDisabled', transform: booleanAttribute }]));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: DoubleClickEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: DoubleClickEventDirective, isStandalone: true, selector: "[hraDoubleClickEvent]", inputs: { props: { classPropertyName: "props", publicName: "hraDoubleClickEvent", isSignal: true, isRequired: false, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraDoubleClickEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraDoubleClickEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraDoubleClickEvent"], usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: DoubleClickEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: DoubleClickEventDirective, isStandalone: true, selector: "[hraDoubleClickEvent]", inputs: { props: { classPropertyName: "props", publicName: "hraDoubleClickEvent", isSignal: true, isRequired: false, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraDoubleClickEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraDoubleClickEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraDoubleClickEvent"], usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: DoubleClickEventDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: DoubleClickEventDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraDoubleClickEvent]',
@@ -382,10 +382,10 @@ class HoverEventDirective extends BaseEventDirective {
     triggerOn = input(undefined, ...(ngDevMode ? [{ debugName: "triggerOn", alias: 'hraHoverEventTriggerOn' }] : [{ alias: 'hraHoverEventTriggerOn' }]));
     /** Whether this event is disabled */
     disabled = input(false, ...(ngDevMode ? [{ debugName: "disabled", alias: 'hraHoverEventDisabled', transform: booleanAttribute }] : [{ alias: 'hraHoverEventDisabled', transform: booleanAttribute }]));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: HoverEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: HoverEventDirective, isStandalone: true, selector: "[hraHoverEvent]", inputs: { props: { classPropertyName: "props", publicName: "hraHoverEvent", isSignal: true, isRequired: false, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraHoverEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraHoverEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraHoverEvent"], usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: HoverEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: HoverEventDirective, isStandalone: true, selector: "[hraHoverEvent]", inputs: { props: { classPropertyName: "props", publicName: "hraHoverEvent", isSignal: true, isRequired: false, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraHoverEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraHoverEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraHoverEvent"], usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: HoverEventDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: HoverEventDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraHoverEvent]',
@@ -408,10 +408,10 @@ class KeyboardEventDirective extends BaseEventDirective {
         }]));
     /** Whether this event is disabled */
     disabled = input(false, ...(ngDevMode ? [{ debugName: "disabled", alias: 'hraKeyboardEventDisabled', transform: booleanAttribute }] : [{ alias: 'hraKeyboardEventDisabled', transform: booleanAttribute }]));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: KeyboardEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: KeyboardEventDirective, isStandalone: true, selector: "[hraKeyboardEvent]", inputs: { props: { classPropertyName: "props", publicName: "hraKeyboardEvent", isSignal: true, isRequired: false, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraKeyboardEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraKeyboardEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraKeyboardEvent"], usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: KeyboardEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: KeyboardEventDirective, isStandalone: true, selector: "[hraKeyboardEvent]", inputs: { props: { classPropertyName: "props", publicName: "hraKeyboardEvent", isSignal: true, isRequired: false, transformFunction: null }, triggerOn: { classPropertyName: "triggerOn", publicName: "hraKeyboardEventTriggerOn", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraKeyboardEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraKeyboardEvent"], usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: KeyboardEventDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: KeyboardEventDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraKeyboardEvent]',
@@ -475,10 +475,10 @@ class ModelChangeEventDirective extends BaseEventDirective {
         }
         return { value: result };
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ModelChangeEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: ModelChangeEventDirective, isStandalone: true, selector: "[hraModelChangeEvent]", inputs: { propsOrFilter: { classPropertyName: "propsOrFilter", publicName: "hraModelChangeEvent", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraModelChangeEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraModelChangeEvent"], usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ModelChangeEventDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: ModelChangeEventDirective, isStandalone: true, selector: "[hraModelChangeEvent]", inputs: { propsOrFilter: { classPropertyName: "propsOrFilter", publicName: "hraModelChangeEvent", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "hraModelChangeEventDisabled", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["hraModelChangeEvent"], usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ModelChangeEventDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ModelChangeEventDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraModelChangeEvent]',
@@ -487,8 +487,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
         }], propDecorators: { propsOrFilter: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraModelChangeEvent", required: false }] }], disabled: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraModelChangeEventDisabled", required: false }] }] } });
 
 class AnalyticsModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsModule, imports: [ClickEventDirective,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsModule, imports: [ClickEventDirective,
             DoubleClickEventDirective,
             EventDirective,
             FeatureDirective,
@@ -501,9 +501,9 @@ class AnalyticsModule {
             HoverEventDirective,
             KeyboardEventDirective,
             ModelChangeEventDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsModule });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsModule });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -554,10 +554,10 @@ class AnalyticsErrorHandler {
             console.error('Uncaught error:', error);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsErrorHandler, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsErrorHandler, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsErrorHandler, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsErrorHandler, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: AnalyticsErrorHandler, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: AnalyticsErrorHandler, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',

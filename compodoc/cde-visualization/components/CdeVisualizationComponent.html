@@ -2790,28 +2790,29 @@ export class CdeVisualizationComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;cde-visualization&quot;&gt;
   @if (loadingManager.isLoading$ | async) {
-    &lt;mat-progress-bar class&#x3D;&quot;progress&quot; mode&#x3D;&quot;indeterminate&quot; hraFeature&#x3D;&quot;loading-progress&quot;&gt;&lt;/mat-progress-bar&gt;
+    &lt;mat-progress-bar class&#x3D;&quot;progress&quot; mode&#x3D;&quot;indeterminate&quot; hraFeature&#x3D;&quot;loading-progress&quot; /&gt;
   }
 
   &lt;div class&#x3D;&quot;metadata&quot;&gt;
-    &lt;cde-metadata [metadata]&#x3D;&quot;metadataView()&quot; hraFeature&#x3D;&quot;metadata&quot;&gt;&lt;/cde-metadata&gt;
+    &lt;cde-metadata hraFeature&#x3D;&quot;metadata&quot; [metadata]&#x3D;&quot;metadataView()&quot; /&gt;
     &lt;cde-cell-types
-      [(cellTypes)]&#x3D;&quot;cellTypes&quot;
-      [(cellTypesSelection)]&#x3D;&quot;cellTypesSelection&quot;
+      hraFeature&#x3D;&quot;cell-types&quot;
       [selectedCellType]&#x3D;&quot;nodeTargetSelector()&quot;
       [countAdjustments]&#x3D;&quot;countAdjustments()&quot;
+      [(cellTypes)]&#x3D;&quot;cellTypes&quot;
+      [(cellTypesSelection)]&#x3D;&quot;cellTypesSelection&quot;
       (downloadNodes)&#x3D;&quot;downloadNodes()&quot;
       (downloadEdges)&#x3D;&quot;downloadEdges()&quot;
       (downloadColorMap)&#x3D;&quot;downloadColorMap()&quot;
       (resetAllColors)&#x3D;&quot;histogram.resetAllCellsColor(); resetCellTypes()&quot;
-      hraFeature&#x3D;&quot;cell-types&quot;
       #cellTypesTable
-    &gt;&lt;/cde-cell-types&gt;
+    /&gt;
   &lt;/div&gt;
 
   &lt;div class&#x3D;&quot;visualizations&quot;&gt;
     &lt;div class&#x3D;&quot;top&quot;&gt;
       &lt;cde-node-dist-visualization
+        hraFeature&#x3D;&quot;visualization&quot;
         [nodes]&#x3D;&quot;nodesView()&quot;
         [edges]&#x3D;&quot;edgesView()&quot;
         [maxEdgeDistance]&#x3D;&quot;maxEdgeDistance()&quot;
@@ -2820,20 +2821,19 @@ export class CdeVisualizationComponent {
         (nodeClick)&#x3D;&quot;nodeClick.emit($event)&quot;
         (nodeHover)&#x3D;&quot;nodeHover.emit($event)&quot;
         (resetAllCells)&#x3D;&quot;resetCellTypes()&quot;
-        hraFeature&#x3D;&quot;visualization&quot;
-      &gt;&lt;/cde-node-dist-visualization&gt;
+      /&gt;
 
-      &lt;cde-violin [colors]&#x3D;&quot;filteredColors()&quot; [data]&#x3D;&quot;filteredDistances()&quot; hraFeature&#x3D;&quot;violin-graph&quot;&gt;&lt;/cde-violin&gt;
+      &lt;cde-violin hraFeature&#x3D;&quot;violin-graph&quot; [colors]&#x3D;&quot;filteredColors()&quot; [data]&#x3D;&quot;filteredDistances()&quot; /&gt;
     &lt;/div&gt;
 
     &lt;cde-histogram
+      hraFeature&#x3D;&quot;histogram&quot;
       [colors]&#x3D;&quot;filteredColors()&quot;
       [data]&#x3D;&quot;filteredDistances()&quot;
       [filteredCellTypes]&#x3D;&quot;filteredCellTypes()&quot;
       (updateColor)&#x3D;&quot;updateColor($event.entry, $event.color)&quot;
-      hraFeature&#x3D;&quot;histogram&quot;
       #histogram
-    &gt;&lt;/cde-histogram&gt;
+    /&gt;
   &lt;/div&gt;
 &lt;/ng-container&gt;
 </code></pre>
@@ -2865,7 +2865,7 @@ export class CdeVisualizationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="cde-visualization">  @if (loadingManager.isLoading$ | async) {    <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress"></mat-progress-bar>  }  <div class="metadata">    <cde-metadata [metadata]="metadataView()" hraFeature="metadata"></cde-metadata>    <cde-cell-types      [(cellTypes)]="cellTypes"      [(cellTypesSelection)]="cellTypesSelection"      [selectedCellType]="nodeTargetSelector()"      [countAdjustments]="countAdjustments()"      (downloadNodes)="downloadNodes()"      (downloadEdges)="downloadEdges()"      (downloadColorMap)="downloadColorMap()"      (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"      hraFeature="cell-types"      #cellTypesTable    ></cde-cell-types>  </div>  <div class="visualizations">    <div class="top">      <cde-node-dist-visualization        [nodes]="nodesView()"        [edges]="edgesView()"        [maxEdgeDistance]="maxEdgeDistance()"        [colorMap]="cellTypesAsColorMap()"        [(nodeFilter)]="nodeFilterView"        (nodeClick)="nodeClick.emit($event)"        (nodeHover)="nodeHover.emit($event)"        (resetAllCells)="resetCellTypes()"        hraFeature="visualization"      ></cde-node-dist-visualization>      <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" hraFeature="violin-graph"></cde-violin>    </div>    <cde-histogram      [colors]="filteredColors()"      [data]="filteredDistances()"      [filteredCellTypes]="filteredCellTypes()"      (updateColor)="updateColor($event.entry, $event.color)"      hraFeature="histogram"      #histogram    ></cde-histogram>  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="cde-visualization">  @if (loadingManager.isLoading$ | async) {    <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress" />  }  <div class="metadata">    <cde-metadata hraFeature="metadata" [metadata]="metadataView()" />    <cde-cell-types      hraFeature="cell-types"      [selectedCellType]="nodeTargetSelector()"      [countAdjustments]="countAdjustments()"      [(cellTypes)]="cellTypes"      [(cellTypesSelection)]="cellTypesSelection"      (downloadNodes)="downloadNodes()"      (downloadEdges)="downloadEdges()"      (downloadColorMap)="downloadColorMap()"      (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"      #cellTypesTable    />  </div>  <div class="visualizations">    <div class="top">      <cde-node-dist-visualization        hraFeature="visualization"        [nodes]="nodesView()"        [edges]="edgesView()"        [maxEdgeDistance]="maxEdgeDistance()"        [colorMap]="cellTypesAsColorMap()"        [(nodeFilter)]="nodeFilterView"        (nodeClick)="nodeClick.emit($event)"        (nodeHover)="nodeHover.emit($event)"        (resetAllCells)="resetCellTypes()"      />      <cde-violin hraFeature="violin-graph" [colors]="filteredColors()" [data]="filteredDistances()" />    </div>    <cde-histogram      hraFeature="histogram"      [colors]="filteredColors()"      [data]="filteredDistances()"      [filteredCellTypes]="filteredCellTypes()"      (updateColor)="updateColor($event.entry, $event.color)"      #histogram    />  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CdeVisualizationComponent'};

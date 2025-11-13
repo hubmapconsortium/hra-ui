@@ -643,7 +643,7 @@ export class CellPopulationGraphComponent {
     &lt;div class&#x3D;&quot;content&quot;&gt;
       &lt;hra-config-selector [(graphSelections)]&#x3D;&quot;graphSelections&quot; (vegaSpecEvent)&#x3D;&quot;onSpecUpdate($event)&quot; /&gt;
 
-      &lt;hra-bar-graph [spec]&#x3D;&quot;currentSpec()&quot;&gt;&lt;/hra-bar-graph&gt;
+      &lt;hra-bar-graph [spec]&#x3D;&quot;currentSpec()&quot; /&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/hra-page-section&gt;
@@ -676,7 +676,7 @@ export class CellPopulationGraphComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-page-section hraFeature="cell-population-graphs" tagline="Cell Population Graphs">  Explore organ-specific datasets from publications and data portals.  <div class="cell-population-graph-content">    <div class="header">      <div class="logos">        <hra-icon svgIcon="product:cell-population-graphs" />      </div>      <span class="header-label"> Cell Population Graphs </span>    </div>    <div class="content">      <hra-config-selector [(graphSelections)]="graphSelections" (vegaSpecEvent)="onSpecUpdate($event)" />      <hra-bar-graph [spec]="currentSpec()"></hra-bar-graph>    </div>  </div></hra-page-section></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-page-section hraFeature="cell-population-graphs" tagline="Cell Population Graphs">  Explore organ-specific datasets from publications and data portals.  <div class="cell-population-graph-content">    <div class="header">      <div class="logos">        <hra-icon svgIcon="product:cell-population-graphs" />      </div>      <span class="header-label"> Cell Population Graphs </span>    </div>    <div class="content">      <hra-config-selector [(graphSelections)]="graphSelections" (vegaSpecEvent)="onSpecUpdate($event)" />      <hra-bar-graph [spec]="currentSpec()" />    </div>  </div></hra-page-section></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CellPopulationGraphComponent'};

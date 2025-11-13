@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -185,10 +181,6 @@ or through an Input method.</p>
 
 
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./rotation-slider.component.scss</code></td>
-            </tr>
 
 
 
@@ -199,6 +191,10 @@ or through an Input method.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./rotation-slider.component.scss</code></td>
+            </tr>
 
 
 
@@ -765,14 +761,14 @@ export type Axis &#x3D; &#x27;x&#x27; | &#x27;y&#x27; | &#x27;z&#x27;;
  */
 @Component({
   selector: &#x27;ccf-rotation-slider&#x27;,
+  standalone: false,
   templateUrl: &#x27;./rotation-slider.component.html&#x27;,
-  styleUrls: [&#x27;./rotation-slider.component.scss&#x27;],
+  styleUrl: &#x27;./rotation-slider.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     &#x27;(document:keydown)&#x27;: &#x27;changeStep($event)&#x27;,
     &#x27;(document:keyup)&#x27;: &#x27;changeStep($event)&#x27;,
   },
-  standalone: false,
 })
 export class RotationSliderComponent {
   /** Input that allows the rotation to be changed from outside of the component */
@@ -828,51 +824,18 @@ export class RotationSliderComponent {
 
 @for (axis of axisOptions; track axis) {
   &lt;ccf-slider-box
-    [hraFeature]&#x3D;&quot;axis&quot;
     class&#x3D;&quot;slider-box&quot;
+    [hraFeature]&#x3D;&quot;axis&quot;
     [sliderAxis]&#x3D;&quot;axis&quot;
     [rotation]&#x3D;&quot;rotation()&quot;
     [step]&#x3D;&quot;step()&quot;
     (resetRotation)&#x3D;&quot;resetRotation(axis)&quot;
     (changeRotation)&#x3D;&quot;changeRotation($event, axis)&quot;
-  &gt;&lt;/ccf-slider-box&gt;
+  /&gt;
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./rotation-slider.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  width: 5rem;
-
-  .header {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem 0;
-
-    .title {
-      font: vars.$label-medium;
-      color: vars.$secondary;
-    }
-
-    .units {
-      font: vars.$label-small;
-      color: vars.$primary;
-    }
-  }
-
-  .slider-box {
-    &amp;:not(:last-child) {
-      margin-bottom: 0.5rem;
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -899,7 +862,7 @@ export class RotationSliderComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="header">  <span class="text title">Rotation</span>  <span class="units">Degrees</span></div>@for (axis of axisOptions; track axis) {  <ccf-slider-box    [hraFeature]="axis"    class="slider-box"    [sliderAxis]="axis"    [rotation]="rotation()"    [step]="step()"    (resetRotation)="resetRotation(axis)"    (changeRotation)="changeRotation($event, axis)"  ></ccf-slider-box>}</div>'
+        var COMPONENT_TEMPLATE = '<div><div class="header">  <span class="text title">Rotation</span>  <span class="units">Degrees</span></div>@for (axis of axisOptions; track axis) {  <ccf-slider-box    class="slider-box"    [hraFeature]="axis"    [sliderAxis]="axis"    [rotation]="rotation()"    [step]="step()"    (resetRotation)="resetRotation(axis)"    (changeRotation)="changeRotation($event, axis)"  />}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'RotationSliderComponent'};

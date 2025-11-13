@@ -1,6 +1,7 @@
 import * as i0 from '@angular/core';
 import { Signal, Type, EnvironmentProviders, ElementRef } from '@angular/core';
-import { z, ZodLiteral, ZodTypeAny, ZodSafeParseResult } from 'zod';
+import * as z from 'zod';
+import { ZodLiteral, ZodTypeAny, ZodSafeParseResult } from 'zod';
 import * as _angular_platform_browser from '@angular/platform-browser';
 import { DomSanitizer } from '@angular/platform-browser';
 

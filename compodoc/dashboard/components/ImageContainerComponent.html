@@ -352,7 +352,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 import { DashboardComponent, DashboardComponentSpecFor } from &#x27;../../dashboard/dashboard.model&#x27;;
 import { TITLE_CARD_DEF, TitleCardComponent } from &#x27;../title-card/title-card.component&#x27;;
 
@@ -379,7 +379,7 @@ export class ImageContainerComponent implements DashboardComponent&lt;typeof Ima
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-title-card [spec]&#x3D;&quot;spec()&quot; class&#x3D;&quot;card&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;hra-title-card class&#x3D;&quot;card&quot; [spec]&#x3D;&quot;spec()&quot;&gt;
   &lt;img [attr.src]&#x3D;&quot;spec().imageUrl&quot; [style.aspect-ratio]&#x3D;&quot;spec().aspectRatio&quot; [alt]&#x3D;&quot;spec().tooltip&quot; /&gt;
 &lt;/hra-title-card&gt;
 </code></pre>
@@ -411,7 +411,7 @@ export class ImageContainerComponent implements DashboardComponent&lt;typeof Ima
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-title-card [spec]="spec()" class="card">  <img [attr.src]="spec().imageUrl" [style.aspect-ratio]="spec().aspectRatio" [alt]="spec().tooltip" /></hra-title-card></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-title-card class="card" [spec]="spec()">  <img [attr.src]="spec().imageUrl" [style.aspect-ratio]="spec().aspectRatio" [alt]="spec().tooltip" /></hra-title-card></div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'ImageContainerComponent'};

@@ -568,6 +568,7 @@ export class PageState extends NgxsImmutableDataRepository&lt;PageStateModel&gt;
     } &#x3D; this;
 
     if (useCancelRegistrationCallback) {
+      // eslint-disable-next-line no-alert
       if (skipConfirmation || confirm(&#x27;Changes you made may not be saved.&#x27;)) {
         cancelRegistrationCallback?.();
       }

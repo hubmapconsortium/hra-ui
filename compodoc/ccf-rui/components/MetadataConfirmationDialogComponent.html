@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -190,10 +186,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./metadata-confirmation-dialog.component.scss</code></td>
-            </tr>
 
 
 
@@ -204,6 +196,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./metadata-confirmation-dialog.component.scss</code></td>
+            </tr>
 
 
 
@@ -239,7 +235,7 @@ import { ErrorIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/e
   selector: &#x27;ccf-metadata-confirmation-dialog&#x27;,
   imports: [HraCommonModule, MatDialogModule, MatIconModule, ButtonsModule, ErrorIndicatorComponent],
   templateUrl: &#x27;./metadata-confirmation-dialog.component.html&#x27;,
-  styleUrls: [&#x27;./metadata-confirmation-dialog.component.scss&#x27;],
+  styleUrl: &#x27;./metadata-confirmation-dialog.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataConfirmationDialogComponent {}
@@ -258,7 +254,7 @@ export class MetadataConfirmationDialogComponent {}
       [errors]&#x3D;&quot;[
         &#x27;Updates to organ metadata reset all tissue block positions and anatomical structure tags. Are you sure you want to update metadata?&#x27;,
       ]&quot;
-    &gt;&lt;/hra-error-indicator&gt;
+    /&gt;
   &lt;/mat-dialog-content&gt;
 
   &lt;mat-dialog-actions class&#x3D;&quot;actions&quot;&gt;
@@ -269,45 +265,6 @@ export class MetadataConfirmationDialogComponent {}
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./metadata-confirmation-dialog.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
-@use &#x27;vars&#x27;;
-
-:host {
-  display: block;
-  position: relative;
-  @include mat.dialog-overrides(
-    (
-      actions-alignment: space-between,
-      actions-padding: 1rem 2rem,
-      headline-padding: 1.75rem 2rem 0,
-      with-actions-content-padding: 1rem 2rem 0,
-    )
-  );
-
-  .title {
-    font: vars.$headline-small;
-    letter-spacing: vars.$headline-small-tracking;
-    margin: 0;
-  }
-
-  .close {
-    position: absolute;
-    inset: 1rem 1rem auto auto;
-    padding: 0.5rem;
-    margin: 0;
-    z-index: 2;
-
-    &amp;::before {
-      display: none;
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -334,7 +291,7 @@ export class MetadataConfirmationDialogComponent {}
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="metadata-confirmation-dialog">  <h2 mat-dialog-title class="title">Confirm: Organ Update</h2>  <button hraFeature="close" hraClickEvent mat-icon-button mat-dialog-close class="close">    <mat-icon>close</mat-icon>  </button>  <mat-dialog-content>    <hra-error-indicator      [errors]="[        \'Updates to organ metadata reset all tissue block positions and anatomical structure tags. Are you sure you want to update metadata?\',      ]"    ></hra-error-indicator>  </mat-dialog-content>  <mat-dialog-actions class="actions">    <button hraFeature="cancel" hraClickEvent mat-button mat-dialog-close>Cancel</button>    <button hraFeature="confirm" hraClickEvent mat-button [mat-dialog-close]="true">Update Metadata</button>  </mat-dialog-actions></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="metadata-confirmation-dialog">  <h2 mat-dialog-title class="title">Confirm: Organ Update</h2>  <button hraFeature="close" hraClickEvent mat-icon-button mat-dialog-close class="close">    <mat-icon>close</mat-icon>  </button>  <mat-dialog-content>    <hra-error-indicator      [errors]="[        \'Updates to organ metadata reset all tissue block positions and anatomical structure tags. Are you sure you want to update metadata?\',      ]"    />  </mat-dialog-content>  <mat-dialog-actions class="actions">    <button hraFeature="cancel" hraClickEvent mat-button mat-dialog-close>Cancel</button>    <button hraFeature="confirm" hraClickEvent mat-button [mat-dialog-close]="true">Update Metadata</button>  </mat-dialog-actions></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MetadataConfirmationDialogComponent'};

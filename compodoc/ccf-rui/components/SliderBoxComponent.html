@@ -630,10 +630,10 @@ import { Axis, Rotation } from &#x27;../rotation-slider.component&#x27;;
 /** Slider box */
 @Component({
   selector: &#x27;ccf-slider-box&#x27;,
+  standalone: false,
   templateUrl: &#x27;./slider-box.component.html&#x27;,
   styleUrl: &#x27;./slider-box.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SliderBoxComponent {
   /** Slider axis */
@@ -679,17 +679,17 @@ export class SliderBoxComponent {
   class&#x3D;&quot;input&quot;
   hraClickEvent
   subscriptSizing&#x3D;&quot;dynamic&quot;
-  (click)&#x3D;&quot;showSlider()&quot;
   hraPlainTooltip&#x3D;&quot;Rotation is measured in degrees&quot;
   cdkOverlayOrigin
+  (click)&#x3D;&quot;showSlider()&quot;
   #trigger&#x3D;&quot;cdkOverlayOrigin&quot;
 &gt;
   &lt;mat-label class&#x3D;&quot;text form-input-label&quot;&gt;{{ sliderAxis().toUpperCase() }}&lt;/mat-label&gt;
   &lt;input
     matInput
-    [value]&#x3D;&quot;rotation()[sliderAxis()]&quot;
     class&#x3D;&quot;input&quot;
     type&#x3D;&quot;number&quot;
+    [value]&#x3D;&quot;rotation()[sliderAxis()]&quot;
     [min]&#x3D;&quot;-180&quot;
     [max]&#x3D;&quot;180&quot;
     (change)&#x3D;&quot;changeRotation.emit($any($event.target).value)&quot;
@@ -698,11 +698,11 @@ export class SliderBoxComponent {
 
 &lt;ng-template
   cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]&#x3D;&quot;trigger&quot;
-  [cdkConnectedOverlayOpen]&#x3D;&quot;isSliderOpen()&quot;
   cdkConnectedOverlayHasBackdrop&#x3D;&quot;true&quot;
   cdkConnectedOverlayPanelClass&#x3D;&quot;rotation-slider-overlay&quot;
   cdkConnectedOverlayBackdropClass&#x3D;&quot;cdk-overlay-transparent-backdrop&quot;
+  [cdkConnectedOverlayOrigin]&#x3D;&quot;trigger&quot;
+  [cdkConnectedOverlayOpen]&#x3D;&quot;isSliderOpen()&quot;
   [cdkConnectedOverlayPositions]&#x3D;&quot;positions&quot;
   (backdropClick)&#x3D;&quot;closeSlider()&quot;
 &gt;
@@ -712,8 +712,8 @@ export class SliderBoxComponent {
       hraClickEvent
       mat-icon-button
       class&#x3D;&quot;icon reset&quot;
-      (click)&#x3D;&quot;resetRotation.emit()&quot;
       hraPlainTooltip&#x3D;&quot;Reset&quot;
+      (click)&#x3D;&quot;resetRotation.emit()&quot;
     &gt;
       &lt;mat-icon&gt;reset_settings&lt;/mat-icon&gt;
     &lt;/button&gt;
@@ -721,10 +721,10 @@ export class SliderBoxComponent {
       hraFeature&#x3D;&quot;slider&quot;
       hraClickEvent
       class&#x3D;&quot;slider&quot;
+      hraPlainTooltip&#x3D;&quot;Hold shift while using the slider to rotate in larger increments by 30 degrees&quot;
       [max]&#x3D;&quot;180&quot;
       [min]&#x3D;&quot;-180&quot;
       [step]&#x3D;&quot;step()&quot;
-      hraPlainTooltip&#x3D;&quot;Hold shift while using the slider to rotate in larger increments by 30 degrees&quot;
     &gt;
       &lt;input
         class&#x3D;&quot;slider-input&quot;
@@ -765,7 +765,7 @@ export class SliderBoxComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field  class="input"  hraClickEvent  subscriptSizing="dynamic"  (click)="showSlider()"  hraPlainTooltip="Rotation is measured in degrees"  cdkOverlayOrigin  #trigger="cdkOverlayOrigin">  <mat-label class="text form-input-label">{{ sliderAxis().toUpperCase() }}</mat-label>  <input    matInput    [value]="rotation()[sliderAxis()]"    class="input"    type="number"    [min]="-180"    [max]="180"    (change)="changeRotation.emit($any($event.target).value)"  /></mat-form-field><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayOrigin]="trigger"  [cdkConnectedOverlayOpen]="isSliderOpen()"  cdkConnectedOverlayHasBackdrop="true"  cdkConnectedOverlayPanelClass="rotation-slider-overlay"  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"  [cdkConnectedOverlayPositions]="positions"  (backdropClick)="closeSlider()">  <div hraFeature="rotation-slider" class="slider-container">    <button      hraFeature="reset"      hraClickEvent      mat-icon-button      class="icon reset"      (click)="resetRotation.emit()"      hraPlainTooltip="Reset"    >      <mat-icon>reset_settings</mat-icon>    </button>    <mat-slider      hraFeature="slider"      hraClickEvent      class="slider"      [max]="180"      [min]="-180"      [step]="step()"      hraPlainTooltip="Hold shift while using the slider to rotate in larger increments by 30 degrees"    >      <input        class="slider-input"        matSliderThumb        [value]="rotation()[sliderAxis()]"        (input)="changeRotation.emit(slider.value)"        #slider      />    </mat-slider>  </div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field  class="input"  hraClickEvent  subscriptSizing="dynamic"  hraPlainTooltip="Rotation is measured in degrees"  cdkOverlayOrigin  (click)="showSlider()"  #trigger="cdkOverlayOrigin">  <mat-label class="text form-input-label">{{ sliderAxis().toUpperCase() }}</mat-label>  <input    matInput    class="input"    type="number"    [value]="rotation()[sliderAxis()]"    [min]="-180"    [max]="180"    (change)="changeRotation.emit($any($event.target).value)"  /></mat-form-field><ng-template  cdkConnectedOverlay  cdkConnectedOverlayHasBackdrop="true"  cdkConnectedOverlayPanelClass="rotation-slider-overlay"  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"  [cdkConnectedOverlayOrigin]="trigger"  [cdkConnectedOverlayOpen]="isSliderOpen()"  [cdkConnectedOverlayPositions]="positions"  (backdropClick)="closeSlider()">  <div hraFeature="rotation-slider" class="slider-container">    <button      hraFeature="reset"      hraClickEvent      mat-icon-button      class="icon reset"      hraPlainTooltip="Reset"      (click)="resetRotation.emit()"    >      <mat-icon>reset_settings</mat-icon>    </button>    <mat-slider      hraFeature="slider"      hraClickEvent      class="slider"      hraPlainTooltip="Hold shift while using the slider to rotate in larger increments by 30 degrees"      [max]="180"      [min]="-180"      [step]="step()"    >      <input        class="slider-input"        matSliderThumb        [value]="rotation()[sliderAxis()]"        (input)="changeRotation.emit(slider.value)"        #slider      />    </mat-slider>  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SliderBoxComponent'};

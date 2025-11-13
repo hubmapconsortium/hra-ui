@@ -946,11 +946,7 @@ export class FileUploadComponent&lt;T, OptionsT&gt; {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">@if (file) {
-  &lt;hra-delete-file-button
-    hraFeature&#x3D;&quot;delete-file&quot;
-    [fileName]&#x3D;&quot;file.name&quot;
-    (cancelLoad)&#x3D;&quot;cancelLoad()&quot;
-  &gt;&lt;/hra-delete-file-button&gt;
+  &lt;hra-delete-file-button hraFeature&#x3D;&quot;delete-file&quot; [fileName]&#x3D;&quot;file.name&quot; (cancelLoad)&#x3D;&quot;cancelLoad()&quot; /&gt;
 } @else {
   &lt;button
     hraFeature&#x3D;&quot;upload-file&quot;
@@ -958,11 +954,11 @@ export class FileUploadComponent&lt;T, OptionsT&gt; {
     mat-flat-button
     class&#x3D;&quot;upload&quot;
     type&#x3D;&quot;button&quot;
-    (click)&#x3D;&quot;fileInput.click()&quot;
     hraPrimaryButton
     hraButtonSize&#x3D;&quot;large&quot;
+    (click)&#x3D;&quot;fileInput.click()&quot;
   &gt;
-    &lt;ng-content&gt;&lt;/ng-content&gt;
+    &lt;ng-content /&gt;
   &lt;/button&gt;
   &lt;input
     type&#x3D;&quot;file&quot;
@@ -1002,7 +998,7 @@ export class FileUploadComponent&lt;T, OptionsT&gt; {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (file) {  <hra-delete-file-button    hraFeature="delete-file"    [fileName]="file.name"    (cancelLoad)="cancelLoad()"  ></hra-delete-file-button>} @else {  <button    hraFeature="upload-file"    hraClickEvent    mat-flat-button    class="upload"    type="button"    (click)="fileInput.click()"    hraPrimaryButton    hraButtonSize="large"  >    <ng-content></ng-content>  </button>  <input    type="file"    style="display: none"    name="fileInput"    [attr.accept]="accept()"    (change)="load(fileInput)"    #fileInput  />}</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (file) {  <hra-delete-file-button hraFeature="delete-file" [fileName]="file.name" (cancelLoad)="cancelLoad()" />} @else {  <button    hraFeature="upload-file"    hraClickEvent    mat-flat-button    class="upload"    type="button"    hraPrimaryButton    hraButtonSize="large"    (click)="fileInput.click()"  >    <ng-content />  </button>  <input    type="file"    style="display: none"    name="fileInput"    [attr.accept]="accept()"    (change)="load(fileInput)"    #fileInput  />}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FileUploadComponent'};

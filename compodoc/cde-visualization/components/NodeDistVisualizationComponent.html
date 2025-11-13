@@ -1489,18 +1489,16 @@ export class NodeDistVisualizationComponent {
       (downloadClick)&#x3D;&quot;download()&quot;
       (resetViewClick)&#x3D;&quot;resetView()&quot;
       (resetDeletedClick)&#x3D;&quot;resetDeletedNodes()&quot;
-    &gt;
-    &lt;/cde-node-dist-visualization-menu&gt;
+    /&gt;
   &lt;/hra-expansion-panel-actions&gt;
 
   &lt;hra-expansion-panel-header-content&gt;
     &lt;cde-node-dist-visualization-controls
-      [(viewMode)]&#x3D;&quot;viewMode&quot;
       [deleteDisabled]&#x3D;&quot;!hasSelection()&quot;
+      [(viewMode)]&#x3D;&quot;viewMode&quot;
       (deleteClick)&#x3D;&quot;deleteSelection()&quot;
       (viewModeChange)&#x3D;&quot;cellInfo.set(undefined)&quot;
-    &gt;
-    &lt;/cde-node-dist-visualization-controls&gt;
+    /&gt;
   &lt;/hra-expansion-panel-header-content&gt;
 
   &lt;hra-fullscreen-portal tagline&#x3D;&quot;Visualization&quot; panelClass&#x3D;&quot;node-dist-vis-fullscreen-panel&quot; #fullscreen&gt;
@@ -1511,25 +1509,18 @@ export class NodeDistVisualizationComponent {
         (downloadClick)&#x3D;&quot;download()&quot;
         (resetViewClick)&#x3D;&quot;resetView()&quot;
         (resetDeletedClick)&#x3D;&quot;resetDeletedNodes()&quot;
-      &gt;
-      &lt;/cde-node-dist-visualization-menu&gt;
+      /&gt;
 
       &lt;cde-node-dist-visualization-controls
-        [(viewMode)]&#x3D;&quot;viewMode&quot;
         [deleteDisabled]&#x3D;&quot;!hasSelection()&quot;
+        [(viewMode)]&#x3D;&quot;viewMode&quot;
         (deleteClick)&#x3D;&quot;deleteSelection()&quot;
         (viewModeChange)&#x3D;&quot;cellInfo.set(undefined)&quot;
-      &gt;
-      &lt;/cde-node-dist-visualization-controls&gt;
+      /&gt;
     &lt;/hra-fullscreen-actions&gt;
 
     &lt;hra-fullscreen-portal-content&gt;
-      &lt;hra-node-dist-vis
-        cdkOverlayOrigin
-        class&#x3D;&quot;vis&quot;
-        data-testid&#x3D;&quot;node-dist-vis&quot;
-        #cellInfoOrigin&#x3D;&quot;cdkOverlayOrigin&quot;
-      &gt;&lt;/hra-node-dist-vis&gt;
+      &lt;hra-node-dist-vis cdkOverlayOrigin class&#x3D;&quot;vis&quot; data-testid&#x3D;&quot;node-dist-vis&quot; #cellInfoOrigin&#x3D;&quot;cdkOverlayOrigin&quot; /&gt;
     &lt;/hra-fullscreen-portal-content&gt;
   &lt;/hra-fullscreen-portal&gt;
 &lt;/hra-expansion-panel&gt;
@@ -1548,12 +1539,11 @@ export class NodeDistVisualizationComponent {
   #cellInfoOverlay&#x3D;&quot;cdkConnectedOverlay&quot;
 &gt;
   &lt;hra-info-modal
-    [title]&#x3D;&quot;&#x27;Cell Info&#x27;&quot;
+    title&#x3D;&quot;Cell Info&quot;
+    data-testid&#x3D;&quot;cell-info&quot;
     [data]&#x3D;&quot;cellInfoContent()&quot;
     (close)&#x3D;&quot;cellInfo.set(undefined)&quot;
-    data-testid&#x3D;&quot;cell-info&quot;
-  &gt;
-  &lt;/hra-info-modal&gt;
+  /&gt;
 &lt;/ng-template&gt;
 </code></pre>
     </div>
@@ -1584,7 +1574,7 @@ export class NodeDistVisualizationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Visualization" disabled>  <hra-expansion-panel-actions>    <cde-node-dist-visualization-menu      [(edgesDisabled)]="edgesDisabled"      (fullscreenClick)="fullscreen.open()"      (downloadClick)="download()"      (resetViewClick)="resetView()"      (resetDeletedClick)="resetDeletedNodes()"    >    </cde-node-dist-visualization-menu>  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <cde-node-dist-visualization-controls      [(viewMode)]="viewMode"      [deleteDisabled]="!hasSelection()"      (deleteClick)="deleteSelection()"      (viewModeChange)="cellInfo.set(undefined)"    >    </cde-node-dist-visualization-controls>  </hra-expansion-panel-header-content>  <hra-fullscreen-portal tagline="Visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>    <hra-fullscreen-actions>      <cde-node-dist-visualization-menu        fullscreenMode        [(edgesDisabled)]="edgesDisabled"        (downloadClick)="download()"        (resetViewClick)="resetView()"        (resetDeletedClick)="resetDeletedNodes()"      >      </cde-node-dist-visualization-menu>      <cde-node-dist-visualization-controls        [(viewMode)]="viewMode"        [deleteDisabled]="!hasSelection()"        (deleteClick)="deleteSelection()"        (viewModeChange)="cellInfo.set(undefined)"      >      </cde-node-dist-visualization-controls>    </hra-fullscreen-actions>    <hra-fullscreen-portal-content>      <hra-node-dist-vis        cdkOverlayOrigin        class="vis"        data-testid="node-dist-vis"        #cellInfoOrigin="cdkOverlayOrigin"      ></hra-node-dist-vis>    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayDisposeOnNavigation]="true"  [cdkConnectedOverlayHasBackdrop]="false"  [cdkConnectedOverlayMinWidth]="540"  [cdkConnectedOverlayOpen]="cellInfoOpen()"  [cdkConnectedOverlayOrigin]="cellInfoOrigin"  [cdkConnectedOverlayPositions]="cellInfoPosition()"  [cdkConnectedOverlayPush]="true"  [cdkConnectedOverlayViewportMargin]="16"  (overlayOutsideClick)="cellInfo.set(undefined)"  #cellInfoOverlay="cdkConnectedOverlay">  <hra-info-modal    [title]="\'Cell Info\'"    [data]="cellInfoContent()"    (close)="cellInfo.set(undefined)"    data-testid="cell-info"  >  </hra-info-modal></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Visualization" disabled>  <hra-expansion-panel-actions>    <cde-node-dist-visualization-menu      [(edgesDisabled)]="edgesDisabled"      (fullscreenClick)="fullscreen.open()"      (downloadClick)="download()"      (resetViewClick)="resetView()"      (resetDeletedClick)="resetDeletedNodes()"    />  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <cde-node-dist-visualization-controls      [deleteDisabled]="!hasSelection()"      [(viewMode)]="viewMode"      (deleteClick)="deleteSelection()"      (viewModeChange)="cellInfo.set(undefined)"    />  </hra-expansion-panel-header-content>  <hra-fullscreen-portal tagline="Visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>    <hra-fullscreen-actions>      <cde-node-dist-visualization-menu        fullscreenMode        [(edgesDisabled)]="edgesDisabled"        (downloadClick)="download()"        (resetViewClick)="resetView()"        (resetDeletedClick)="resetDeletedNodes()"      />      <cde-node-dist-visualization-controls        [deleteDisabled]="!hasSelection()"        [(viewMode)]="viewMode"        (deleteClick)="deleteSelection()"        (viewModeChange)="cellInfo.set(undefined)"      />    </hra-fullscreen-actions>    <hra-fullscreen-portal-content>      <hra-node-dist-vis cdkOverlayOrigin class="vis" data-testid="node-dist-vis" #cellInfoOrigin="cdkOverlayOrigin" />    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayDisposeOnNavigation]="true"  [cdkConnectedOverlayHasBackdrop]="false"  [cdkConnectedOverlayMinWidth]="540"  [cdkConnectedOverlayOpen]="cellInfoOpen()"  [cdkConnectedOverlayOrigin]="cellInfoOrigin"  [cdkConnectedOverlayPositions]="cellInfoPosition()"  [cdkConnectedOverlayPush]="true"  [cdkConnectedOverlayViewportMargin]="16"  (overlayOutsideClick)="cellInfo.set(undefined)"  #cellInfoOverlay="cdkConnectedOverlay">  <hra-info-modal    title="Cell Info"    data-testid="cell-info"    [data]="cellInfoContent()"    (close)="cellInfo.set(undefined)"  /></ng-template></div>'
     var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NodeDistVisualizationComponent'};

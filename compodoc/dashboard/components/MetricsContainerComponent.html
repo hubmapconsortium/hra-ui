@@ -506,7 +506,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, computed, input } from &#x27;@angular/core&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 import { DashboardComponent, DashboardComponentSpecFor } from &#x27;../../../dashboard/dashboard.model&#x27;;
 import { TITLE_CARD_DEF, TitleCardComponent } from &#x27;../../title-card/title-card.component&#x27;;
 import { METRICS_ITEM_DEF, MetricsItemComponent } from &#x27;../item/metrics-item.component&#x27;;
@@ -525,9 +525,9 @@ const WIDE_CARD_MIN_ITEM_COUNT &#x3D; 4;
 /** Metrics Container Component, renders metric cards inside the container */
 @Component({
   selector: &#x27;hra-dashboard-metrics-container&#x27;,
+  imports: [TitleCardComponent, MetricsItemComponent],
   templateUrl: &#x27;./metrics-container.component.html&#x27;,
   styleUrl: &#x27;./metrics-container.component.scss&#x27;,
-  imports: [TitleCardComponent, MetricsItemComponent],
 })
 export class MetricsContainerComponent implements DashboardComponent&lt;typeof MetricsContainerComponent&gt; {
   /** Input type for Metrics Container Component */
@@ -573,10 +573,10 @@ export class MetricsContainerComponent implements DashboardComponent&lt;typeof M
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">@for (item of spec().items; track item) {
-  &lt;hra-title-card [spec]&#x3D;&quot;item&quot; class&#x3D;&quot;card&quot; data-testid&#x3D;&quot;title-card&quot; [class.span-columns]&#x3D;&quot;isWideCardAt($index)&quot;&gt;
+  &lt;hra-title-card class&#x3D;&quot;card&quot; data-testid&#x3D;&quot;title-card&quot; [spec]&#x3D;&quot;item&quot; [class.span-columns]&#x3D;&quot;isWideCardAt($index)&quot;&gt;
     &lt;div class&#x3D;&quot;items&quot; data-testid&#x3D;&quot;metrics-group&quot;&gt;
       @for (metric of item.items; track metric) {
-        &lt;hra-metrics-item [spec]&#x3D;&quot;metric&quot; data-testid&#x3D;&quot;metrics-item&quot;&gt;&lt;/hra-metrics-item&gt;
+        &lt;hra-metrics-item data-testid&#x3D;&quot;metrics-item&quot; [spec]&#x3D;&quot;metric&quot; /&gt;
       }
     &lt;/div&gt;
   &lt;/hra-title-card&gt;
@@ -610,7 +610,7 @@ export class MetricsContainerComponent implements DashboardComponent&lt;typeof M
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@for (item of spec().items; track item) {  <hra-title-card [spec]="item" class="card" data-testid="title-card" [class.span-columns]="isWideCardAt($index)">    <div class="items" data-testid="metrics-group">      @for (metric of item.items; track metric) {        <hra-metrics-item [spec]="metric" data-testid="metrics-item"></hra-metrics-item>      }    </div>  </hra-title-card>}</div>'
+        var COMPONENT_TEMPLATE = '<div>@for (item of spec().items; track item) {  <hra-title-card class="card" data-testid="title-card" [spec]="item" [class.span-columns]="isWideCardAt($index)">    <div class="items" data-testid="metrics-group">      @for (metric of item.items; track metric) {        <hra-metrics-item data-testid="metrics-item" [spec]="metric" />      }    </div>  </hra-title-card>}</div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'MetricsContainerComponent'};

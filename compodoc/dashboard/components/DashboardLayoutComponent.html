@@ -362,7 +362,7 @@
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 import { DashboardComponentOutletDirective } from &#x27;../../dashboard/dashboard-outlet.directive&#x27;;
 import {
   DASHBOARD_COMPONENT_ANY_DEF,
@@ -404,7 +404,6 @@ export class DashboardLayoutComponent implements DashboardComponent&lt;typeof Da
         <pre class="line-numbers"><code class="language-html">&lt;h2 class&#x3D;&quot;title&quot;&gt;{{ spec().title }}&lt;/h2&gt;
 &lt;div class&#x3D;&quot;description mat-body-2&quot;&gt;{{ spec().description }}&lt;/div&gt;
 &lt;a
-  [attr.href]&#x3D;&quot;spec().link.url&quot;
   target&#x3D;&quot;_blank&quot;
   rel&#x3D;&quot;noopener&quot;
   mat-button
@@ -413,12 +412,13 @@ export class DashboardLayoutComponent implements DashboardComponent&lt;typeof Da
   color&#x3D;&quot;primary&quot;
   hraFeature&#x3D;&quot;read-btn&quot;
   hraClickEvent
+  [attr.href]&#x3D;&quot;spec().link.url&quot;
   &gt;{{ spec().link.label }}
   &lt;mat-icon class&#x3D;&quot;material-symbols-rounded&quot; iconPositionEnd&gt; arrow_right_alt &lt;/mat-icon&gt;
 &lt;/a&gt;
 
 @for (item of spec().items; track item) {
-  &lt;ng-container [hraDashboardComponentOutlet]&#x3D;&quot;item&quot;&gt;&lt;/ng-container&gt;
+  &lt;ng-container [hraDashboardComponentOutlet]&#x3D;&quot;item&quot; /&gt;
 }
 </code></pre>
     </div>
@@ -449,7 +449,7 @@ export class DashboardLayoutComponent implements DashboardComponent&lt;typeof Da
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h2 class="title">{{ spec().title }}</h2><div class="description mat-body-2">{{ spec().description }}</div><a  [attr.href]="spec().link.url"  target="_blank"  rel="noopener"  mat-button  hraCtaButton  class="read-btn"  color="primary"  hraFeature="read-btn"  hraClickEvent  >{{ spec().link.label }}  <mat-icon class="material-symbols-rounded" iconPositionEnd> arrow_right_alt </mat-icon></a>@for (item of spec().items; track item) {  <ng-container [hraDashboardComponentOutlet]="item"></ng-container>}</div>'
+        var COMPONENT_TEMPLATE = '<div><h2 class="title">{{ spec().title }}</h2><div class="description mat-body-2">{{ spec().description }}</div><a  target="_blank"  rel="noopener"  mat-button  hraCtaButton  class="read-btn"  color="primary"  hraFeature="read-btn"  hraClickEvent  [attr.href]="spec().link.url"  >{{ spec().link.label }}  <mat-icon class="material-symbols-rounded" iconPositionEnd> arrow_right_alt </mat-icon></a>@for (item of spec().items; track item) {  <ng-container [hraDashboardComponentOutlet]="item" />}</div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'DashboardLayoutComponent'};

@@ -284,7 +284,7 @@
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 
 /** Type definition of Title Card */
 export type TitleCardSpec &#x3D; z.infer&lt;typeof TITLE_CARD_DEF&gt;;
@@ -319,7 +319,7 @@ export class TitleCardComponent {
 &lt;/h3&gt;
 
 &lt;div class&#x3D;&quot;content&quot;&gt;
-  &lt;ng-content&gt;&lt;/ng-content&gt;
+  &lt;ng-content /&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -350,7 +350,7 @@ export class TitleCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h3 class="title" hraFeature="title-card">  {{ spec().title }}  <hra-info-button>    {{ spec().tooltip }}  </hra-info-button></h3><div class="content">  <ng-content></ng-content></div></div>'
+        var COMPONENT_TEMPLATE = '<div><h3 class="title" hraFeature="title-card">  {{ spec().title }}  <hra-info-button>    {{ spec().tooltip }}  </hra-info-button></h3><div class="content">  <ng-content /></div></div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'TitleCardComponent'};

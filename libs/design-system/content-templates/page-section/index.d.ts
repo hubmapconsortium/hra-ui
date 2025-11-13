@@ -2,7 +2,7 @@ import * as _angular_core from '@angular/core';
 import { Signal, ElementRef, ProviderToken, Provider } from '@angular/core';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { AnyContentTemplateDef } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Page section instance */
 interface PageSectionInstance {

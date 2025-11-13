@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -207,10 +203,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./app.component.scss</code></td>
-            </tr>
 
 
 
@@ -221,6 +213,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
 
 
 
@@ -817,12 +813,12 @@
       side: this.side(),
     }),
     stream: (params) &#x3D;&gt; {
-      const { iri, sex, side } &#x3D; params.params;
+      const { iri, side } &#x3D; params.params;
       if (iri &#x3D;&#x3D;&#x3D; undefined) {
         return of(undefined);
       }
 
-      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;], sex);
+      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;]);
       return info$;
     },
   })</code>
@@ -1246,11 +1242,11 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
     ProgressSpinnerComponent,
   ],
   templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;],
+  styleUrl: &#x27;./app.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: &#x27;hra-app&#x27;,
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Emits when the user switches the model sex */
@@ -1294,12 +1290,12 @@ export class AppComponent extends BaseApplicationComponent {
       side: this.side(),
     }),
     stream: (params) &#x3D;&gt; {
-      const { iri, sex, side } &#x3D; params.params;
+      const { iri, side } &#x3D; params.params;
       if (iri &#x3D;&#x3D;&#x3D; undefined) {
         return of(undefined);
       }
 
-      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;], sex);
+      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;]);
       return info$;
     },
   });
@@ -1444,9 +1440,9 @@ export class AppComponent extends BaseApplicationComponent {
   &lt;div hraFeature&#x3D;&quot;header&quot; class&#x3D;&quot;header&quot;&gt;
     &lt;div class&#x3D;&quot;left&quot;&gt;
       &lt;div class&#x3D;&quot;icons&quot;&gt;
-        &lt;hra-icon [svgIcon]&#x3D;&quot;&#x27;product:eui&#x27;&quot;&gt;&lt;/hra-icon&gt;
+        &lt;hra-icon svgIcon&#x3D;&quot;product:eui&quot; /&gt;
         @if (organLogo(); as logo) {
-          &lt;hra-icon hraFeature&#x3D;&quot;organ-icon&quot; [hraClickEvent]&#x3D;&quot;{ organLogo: logo }&quot; [svgIcon]&#x3D;&quot;logo&quot;&gt;&lt;/hra-icon&gt;
+          &lt;hra-icon hraFeature&#x3D;&quot;organ-icon&quot; [hraClickEvent]&#x3D;&quot;{ organLogo: logo }&quot; [svgIcon]&#x3D;&quot;logo&quot; /&gt;
         }
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;title&quot;&gt;Organ Information&lt;/div&gt;
@@ -1477,8 +1473,8 @@ export class AppComponent extends BaseApplicationComponent {
           [disabled]&#x3D;&quot;sex &#x3D;&#x3D;&#x3D; undefined || isLoading()&quot;
           (change)&#x3D;&quot;updateInput(&#x27;sex&#x27;, $event.value)&quot;
         &gt;
-          &lt;mat-button-toggle [hraClickEvent]&#x3D;&quot;{ value: &#x27;Male&#x27; }&quot; value&#x3D;&quot;Male&quot;&gt; Male &lt;/mat-button-toggle&gt;
-          &lt;mat-button-toggle [hraClickEvent]&#x3D;&quot;{ value: &#x27;Female&#x27; }&quot; value&#x3D;&quot;Female&quot;&gt; Female &lt;/mat-button-toggle&gt;
+          &lt;mat-button-toggle value&#x3D;&quot;Male&quot; [hraClickEvent]&#x3D;&quot;{ value: &#x27;Male&#x27; }&quot;&gt; Male &lt;/mat-button-toggle&gt;
+          &lt;mat-button-toggle value&#x3D;&quot;Female&quot; [hraClickEvent]&#x3D;&quot;{ value: &#x27;Female&#x27; }&quot;&gt; Female &lt;/mat-button-toggle&gt;
         &lt;/mat-button-toggle-group&gt;
         @let side &#x3D; organ.value()?.side;
         &lt;mat-button-toggle-group
@@ -1489,27 +1485,27 @@ export class AppComponent extends BaseApplicationComponent {
           [value]&#x3D;&quot;side&quot;
           (change)&#x3D;&quot;updateInput(&#x27;side&#x27;, $event.value)&quot;
         &gt;
-          &lt;mat-button-toggle [hraClickEvent]&#x3D;&quot;{ value: &#x27;Left&#x27; }&quot; value&#x3D;&quot;Left&quot;&gt; Left &lt;/mat-button-toggle&gt;
-          &lt;mat-button-toggle [hraClickEvent]&#x3D;&quot;{ value: &#x27;Right&#x27; }&quot; value&#x3D;&quot;Right&quot;&gt; Right &lt;/mat-button-toggle&gt;
+          &lt;mat-button-toggle value&#x3D;&quot;Left&quot; [hraClickEvent]&#x3D;&quot;{ value: &#x27;Left&#x27; }&quot;&gt; Left &lt;/mat-button-toggle&gt;
+          &lt;mat-button-toggle value&#x3D;&quot;Right&quot; [hraClickEvent]&#x3D;&quot;{ value: &#x27;Right&#x27; }&quot;&gt; Right &lt;/mat-button-toggle&gt;
         &lt;/mat-button-toggle-group&gt;
       &lt;/div&gt;
       &lt;div&gt;
         @if (isLoading()) {
-          &lt;hra-progress-spinner size&#x3D;&quot;large&quot; color&#x3D;&quot;color&quot; class&#x3D;&quot;loading-spinner&quot;&gt;&lt;/hra-progress-spinner&gt;
+          &lt;hra-progress-spinner size&#x3D;&quot;large&quot; color&#x3D;&quot;color&quot; class&#x3D;&quot;loading-spinner&quot; /&gt;
         } @else {
           &lt;hra-table
             class&#x3D;&quot;stats-table&quot;
+            style&#x3D;&quot;alternating&quot;
             [columns]&#x3D;&quot;tableColumns&quot;
             [rows]&#x3D;&quot;stats()&quot;
-            [style]&#x3D;&quot;&#x27;alternating&#x27;&quot;
             [verticalDividers]&#x3D;&quot;true&quot;
-          &gt;&lt;/hra-table&gt;
+          /&gt;
         }
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;organ-view&quot; [style.height.px]&#x3D;&quot;contentHeightMonitor()&quot;&gt;
       @if (isLoading()) {
-        &lt;hra-progress-spinner size&#x3D;&quot;large&quot; color&#x3D;&quot;color&quot; class&#x3D;&quot;loading-spinner&quot;&gt;&lt;/hra-progress-spinner&gt;
+        &lt;hra-progress-spinner size&#x3D;&quot;large&quot; color&#x3D;&quot;color&quot; class&#x3D;&quot;loading-spinner&quot; /&gt;
       }
       &lt;ccf-organ
         hraFeature&#x3D;&quot;organ-viewer&quot;
@@ -1521,12 +1517,11 @@ export class AppComponent extends BaseApplicationComponent {
         [blocks]&#x3D;&quot;blocks.value()&quot;
         [filter]&#x3D;&quot;filter()&quot;
         (nodeClick)&#x3D;&quot;nodeClicked.emit($event)&quot;
-      &gt;
-      &lt;/ccf-organ&gt;
+      /&gt;
     &lt;/div&gt;
 
-    &lt;mat-menu #headerMenu&#x3D;&quot;matMenu&quot; hraFeature&#x3D;&quot;more-menu&quot;&gt;
-      &lt;a hraFeature&#x3D;&quot;source-data&quot; hraClickEvent mat-menu-item [href]&#x3D;&quot;organ.value()?.[&#x27;@id&#x27;]&quot; target&#x3D;&quot;_blank&quot;&gt;
+    &lt;mat-menu hraFeature&#x3D;&quot;more-menu&quot; #headerMenu&#x3D;&quot;matMenu&quot;&gt;
+      &lt;a hraFeature&#x3D;&quot;source-data&quot; hraClickEvent mat-menu-item target&#x3D;&quot;_blank&quot; [href]&#x3D;&quot;organ.value()?.[&#x27;@id&#x27;]&quot;&gt;
         &lt;mat-icon&gt;database&lt;/mat-icon&gt;
         Source data
       &lt;/a&gt;
@@ -1540,7 +1535,7 @@ export class AppComponent extends BaseApplicationComponent {
         &lt;mat-icon&gt;help&lt;/mat-icon&gt;
         Help &amp; documentation
       &lt;/a&gt;
-      &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+      &lt;mat-divider class&#x3D;&quot;menu-divider&quot; /&gt;
       &lt;a
         hraFeature&#x3D;&quot;publications&quot;
         hraClickEvent
@@ -1559,128 +1554,6 @@ export class AppComponent extends BaseApplicationComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./app.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;utils&#x27;;
-@use &#x27;vars&#x27;;
-@use &#x27;@angular/material&#x27; as mat;
-
-:host {
-  display: flex;
-  flex-direction: column;
-  border-radius: 0.75rem;
-  border: 0.0625rem solid vars.$outline;
-  overflow: hidden;
-  min-height: 35.625rem;
-  height: 100%;
-
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border-bottom: 0.0625rem solid vars.$outline;
-
-    .left {
-      align-items: center;
-      display: flex;
-      gap: 1rem;
-
-      .icons {
-        display: flex;
-        gap: 0.25rem;
-      }
-
-      .title {
-        @include utils.use-font(title, medium);
-      }
-    }
-  }
-
-  .content {
-    display: flex;
-
-    height: 100%;
-    .organ-title {
-      @include utils.use-font(title, small);
-      margin-bottom: 1rem;
-    }
-
-    .info-view {
-      padding: 1.5rem;
-      min-width: 21rem;
-      max-width: 23.25rem;
-
-      .params {
-        display: flex;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-
-        mat-button-toggle-group {
-          width: 9.375rem;
-
-          mat-button-toggle {
-            width: 100%;
-          }
-        }
-      }
-    }
-
-    .organ-view {
-      flex: 1 1;
-      background-color: #000;
-      position: relative;
-
-      .loading-spinner {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 999;
-      }
-    }
-
-    .loading-spinner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  /** Custom Styles for the Table */
-  ::ng-deep .stats-table {
-    thead th:first-child {
-      padding-right: 1.5rem;
-    }
-    tbody {
-      td {
-        &amp;:first-child {
-          padding-right: 1.5rem;
-          span {
-            margin: 0;
-          }
-        }
-
-        &amp;:last-child {
-          color: vars.$secondary;
-        }
-      }
-    }
-  }
-}
-
-.menu-divider {
-  @include mat.divider-overrides(
-    (
-      color: vars.$outline-variant,
-    )
-  );
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -1707,7 +1580,7 @@ export class AppComponent extends BaseApplicationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="ccf-organ-info">  <div hraFeature="header" class="header">    <div class="left">      <div class="icons">        <hra-icon [svgIcon]="\'product:eui\'"></hra-icon>        @if (organLogo(); as logo) {          <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo"></hra-icon>        }      </div>      <div class="title">Organ Information</div>    </div>    <button      hraFeature="more-menu"      hraClickEvent      mat-icon-button      hraIconButtonSize="large"      hraIconButtonVariant="dark"      [matMenuTriggerFor]="headerMenu"    >      <mat-icon>more_vert</mat-icon>    </button>  </div>  <div class="content" #contentContainer>    <div hraFeature="metadata" class="info-view">      <div class="organ-title">        {{ isLoading() ? \'Loading...\' : statsLabel() }}      </div>      <div class="params">        @let sex = organ.value()?.sex;        <mat-button-toggle-group          hraFeature="sex-toggle"          hraButtonToggleSize="medium"          [hideSingleSelectionIndicator]="false"          [value]="sex"          [disabled]="sex === undefined || isLoading()"          (change)="updateInput(\'sex\', $event.value)"        >          <mat-button-toggle [hraClickEvent]="{ value: \'Male\' }" value="Male"> Male </mat-button-toggle>          <mat-button-toggle [hraClickEvent]="{ value: \'Female\' }" value="Female"> Female </mat-button-toggle>        </mat-button-toggle-group>        @let side = organ.value()?.side;        <mat-button-toggle-group          hraFeature="side-toggle"          hraButtonToggleSize="medium"          [disabled]="side === undefined || isLoading()"          [hideSingleSelectionIndicator]="false"          [value]="side"          (change)="updateInput(\'side\', $event.value)"        >          <mat-button-toggle [hraClickEvent]="{ value: \'Left\' }" value="Left"> Left </mat-button-toggle>          <mat-button-toggle [hraClickEvent]="{ value: \'Right\' }" value="Right"> Right </mat-button-toggle>        </mat-button-toggle-group>      </div>      <div>        @if (isLoading()) {          <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>        } @else {          <hra-table            class="stats-table"            [columns]="tableColumns"            [rows]="stats()"            [style]="\'alternating\'"            [verticalDividers]="true"          ></hra-table>        }      </div>    </div>    <div class="organ-view" [style.height.px]="contentHeightMonitor()">      @if (isLoading()) {        <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>      }      <ccf-organ        hraFeature="organ-viewer"        hraClickEvent        hraHoverEvent        hraHoverEventTriggerOn="mouseenter"        [organ]="organ.value()"        [scene]="scene.value()"        [blocks]="blocks.value()"        [filter]="filter()"        (nodeClick)="nodeClicked.emit($event)"      >      </ccf-organ>    </div>    <mat-menu #headerMenu="matMenu" hraFeature="more-menu">      <a hraFeature="source-data" hraClickEvent mat-menu-item [href]="organ.value()?.[\'@id\']" target="_blank">        <mat-icon>database</mat-icon>        Source data      </a>      <a        hraFeature="help-documentation"        hraClickEvent        mat-menu-item        href="https://docs.humanatlas.io/dev/web-components#eui-organ-information"        target="_blank"      >        <mat-icon>help</mat-icon>        Help & documentation      </a>      <mat-divider class="menu-divider"></mat-divider>      <a        hraFeature="publications"        hraClickEvent        mat-menu-item        href="https://humanatlas.io/publications"        target="_blank"      >        View publications      </a>      <a mat-menu-item href="https://humanatlas.io" target="_blank" hraFeature="hra-portal" hraClickEvent>        Human Reference Atlas Portal      </a>    </mat-menu>  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="ccf-organ-info">  <div hraFeature="header" class="header">    <div class="left">      <div class="icons">        <hra-icon svgIcon="product:eui" />        @if (organLogo(); as logo) {          <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo" />        }      </div>      <div class="title">Organ Information</div>    </div>    <button      hraFeature="more-menu"      hraClickEvent      mat-icon-button      hraIconButtonSize="large"      hraIconButtonVariant="dark"      [matMenuTriggerFor]="headerMenu"    >      <mat-icon>more_vert</mat-icon>    </button>  </div>  <div class="content" #contentContainer>    <div hraFeature="metadata" class="info-view">      <div class="organ-title">        {{ isLoading() ? \'Loading...\' : statsLabel() }}      </div>      <div class="params">        @let sex = organ.value()?.sex;        <mat-button-toggle-group          hraFeature="sex-toggle"          hraButtonToggleSize="medium"          [hideSingleSelectionIndicator]="false"          [value]="sex"          [disabled]="sex === undefined || isLoading()"          (change)="updateInput(\'sex\', $event.value)"        >          <mat-button-toggle value="Male" [hraClickEvent]="{ value: \'Male\' }"> Male </mat-button-toggle>          <mat-button-toggle value="Female" [hraClickEvent]="{ value: \'Female\' }"> Female </mat-button-toggle>        </mat-button-toggle-group>        @let side = organ.value()?.side;        <mat-button-toggle-group          hraFeature="side-toggle"          hraButtonToggleSize="medium"          [disabled]="side === undefined || isLoading()"          [hideSingleSelectionIndicator]="false"          [value]="side"          (change)="updateInput(\'side\', $event.value)"        >          <mat-button-toggle value="Left" [hraClickEvent]="{ value: \'Left\' }"> Left </mat-button-toggle>          <mat-button-toggle value="Right" [hraClickEvent]="{ value: \'Right\' }"> Right </mat-button-toggle>        </mat-button-toggle-group>      </div>      <div>        @if (isLoading()) {          <hra-progress-spinner size="large" color="color" class="loading-spinner" />        } @else {          <hra-table            class="stats-table"            style="alternating"            [columns]="tableColumns"            [rows]="stats()"            [verticalDividers]="true"          />        }      </div>    </div>    <div class="organ-view" [style.height.px]="contentHeightMonitor()">      @if (isLoading()) {        <hra-progress-spinner size="large" color="color" class="loading-spinner" />      }      <ccf-organ        hraFeature="organ-viewer"        hraClickEvent        hraHoverEvent        hraHoverEventTriggerOn="mouseenter"        [organ]="organ.value()"        [scene]="scene.value()"        [blocks]="blocks.value()"        [filter]="filter()"        (nodeClick)="nodeClicked.emit($event)"      />    </div>    <mat-menu hraFeature="more-menu" #headerMenu="matMenu">      <a hraFeature="source-data" hraClickEvent mat-menu-item target="_blank" [href]="organ.value()?.[\'@id\']">        <mat-icon>database</mat-icon>        Source data      </a>      <a        hraFeature="help-documentation"        hraClickEvent        mat-menu-item        href="https://docs.humanatlas.io/dev/web-components#eui-organ-information"        target="_blank"      >        <mat-icon>help</mat-icon>        Help & documentation      </a>      <mat-divider class="menu-divider" />      <a        hraFeature="publications"        hraClickEvent        mat-menu-item        href="https://humanatlas.io/publications"        target="_blank"      >        View publications      </a>      <a mat-menu-item href="https://humanatlas.io" target="_blank" hraFeature="hra-portal" hraClickEvent>        Human Reference Atlas Portal      </a>    </mat-menu>  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'OrganComponent', 'selector': 'ccf-organ'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

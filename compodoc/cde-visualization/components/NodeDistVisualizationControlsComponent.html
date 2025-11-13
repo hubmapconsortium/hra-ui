@@ -420,10 +420,10 @@ export class NodeDistVisualizationControlsComponent {
   aria-label&#x3D;&quot;Delete selected nodes&quot;
   hraIconButtonSize&#x3D;&quot;large&quot;
   hraPlainTooltip&#x3D;&quot;Select at least one cell to delete it from this dataset&quot;
-  [disabled]&#x3D;&quot;deleteDisabled()&quot;
-  (click)&#x3D;&quot;deleteClick.emit()&quot;
   hraFeature&#x3D;&quot;delete-selected-cells&quot;
   hraClickEvent
+  [disabled]&#x3D;&quot;deleteDisabled()&quot;
+  (click)&#x3D;&quot;deleteClick.emit()&quot;
 &gt;
   &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
 &lt;/button&gt;
@@ -431,9 +431,9 @@ export class NodeDistVisualizationControlsComponent {
 &lt;mat-button-toggle-group
   aria-label&#x3D;&quot;Visualization mode&quot;
   hraButtonToggleSize&#x3D;&quot;medium&quot;
+  hraFeature&#x3D;&quot;toggle&quot;
   [value]&#x3D;&quot;viewMode()&quot;
   (change)&#x3D;&quot;viewMode.set($event.value)&quot;
-  hraFeature&#x3D;&quot;toggle&quot;
 &gt;
   &lt;mat-button-toggle
     value&#x3D;&quot;select&quot;
@@ -489,7 +489,7 @@ export class NodeDistVisualizationControlsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button  mat-icon-button  class="delete"  aria-label="Delete selected nodes"  hraIconButtonSize="large"  hraPlainTooltip="Select at least one cell to delete it from this dataset"  [disabled]="deleteDisabled()"  (click)="deleteClick.emit()"  hraFeature="delete-selected-cells"  hraClickEvent>  <mat-icon>delete</mat-icon></button><mat-button-toggle-group  aria-label="Visualization mode"  hraButtonToggleSize="medium"  [value]="viewMode()"  (change)="viewMode.set($event.value)"  hraFeature="toggle">  <mat-button-toggle    value="select"    hraPlainTooltip="Select cells to delete from this dataset"    hraFeature="select"    hraClickEvent  >    Select  </mat-button-toggle>  <mat-button-toggle    value="inspect"    hraPlainTooltip="Get information about individual cell types"    hraFeature="inspect"    hraClickEvent  >    Inspect  </mat-button-toggle>  <mat-button-toggle    value="explore"    hraPlainTooltip="Zoom, pan, and rotate the view of this visualization"    hraFeature="explore"    hraClickEvent  >    Explore  </mat-button-toggle></mat-button-toggle-group></div>'
+        var COMPONENT_TEMPLATE = '<div><button  mat-icon-button  class="delete"  aria-label="Delete selected nodes"  hraIconButtonSize="large"  hraPlainTooltip="Select at least one cell to delete it from this dataset"  hraFeature="delete-selected-cells"  hraClickEvent  [disabled]="deleteDisabled()"  (click)="deleteClick.emit()">  <mat-icon>delete</mat-icon></button><mat-button-toggle-group  aria-label="Visualization mode"  hraButtonToggleSize="medium"  hraFeature="toggle"  [value]="viewMode()"  (change)="viewMode.set($event.value)">  <mat-button-toggle    value="select"    hraPlainTooltip="Select cells to delete from this dataset"    hraFeature="select"    hraClickEvent  >    Select  </mat-button-toggle>  <mat-button-toggle    value="inspect"    hraPlainTooltip="Get information about individual cell types"    hraFeature="inspect"    hraClickEvent  >    Inspect  </mat-button-toggle>  <mat-button-toggle    value="explore"    hraPlainTooltip="Zoom, pan, and rotate the view of this visualization"    hraFeature="explore"    hraClickEvent  >    Explore  </mat-button-toggle></mat-button-toggle-group></div>'
     var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NodeDistVisualizationControlsComponent'};

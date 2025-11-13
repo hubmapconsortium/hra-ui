@@ -157,10 +157,6 @@
                         <td class="col-md-9"><code>ng-template[hraTextRowElement]</code></td>
                     </tr>
 
-                    <tr>
-                        <td class="col-md-3">Standalone</td>
-                        <td class="col-md-9"><code>true</code></td>
-                    </tr>
 
 
 
@@ -229,8 +225,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/table/src/lib/table/table.component.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/table/src/lib/table/table.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -341,7 +337,6 @@ type RowElementContext&lt;T, CT extends TableColumnType&gt; &#x3D; {
 /** Directive for typing the context of Text Row Element */
 @Directive({
   selector: &#x27;ng-template[hraTextRowElement]&#x27;,
-  standalone: true,
 })
 export class TextRowElementDirective {
   /* istanbul ignore next */
@@ -358,7 +353,6 @@ export class TextRowElementDirective {
 /** Directive for typing the context of Link Row Element */
 @Directive({
   selector: &#x27;ng-template[hraLinkRowElement]&#x27;,
-  standalone: true,
 })
 export class LinkRowElementDirective {
   /* istanbul ignore next */
@@ -375,7 +369,6 @@ export class LinkRowElementDirective {
 /** Directive for typing the context of Markdown Row Element */
 @Directive({
   selector: &#x27;ng-template[hraMarkdownRowElement]&#x27;,
-  standalone: true,
 })
 export class MarkdownRowElementDirective {
   /* istanbul ignore next */
@@ -392,7 +385,6 @@ export class MarkdownRowElementDirective {
 /** Directive for typing the context of Icon Row Element */
 @Directive({
   selector: &#x27;ng-template[hraIconRowElement]&#x27;,
-  standalone: true,
 })
 export class IconRowElementDirective {
   /* istanbul ignore next */
@@ -409,7 +401,6 @@ export class IconRowElementDirective {
 /** Directive for typing the context of menuButton Row Element */
 @Directive({
   selector: &#x27;ng-template[hraMenuButtonRowElement]&#x27;,
-  standalone: true,
 })
 export class MenuButtonRowElementDirective {
   /* istanbul ignore next */
@@ -426,7 +417,6 @@ export class MenuButtonRowElementDirective {
 /** Directive for typing the context of Numeric Row Element */
 @Directive({
   selector: &#x27;ng-template[hraNumericRowElement]&#x27;,
-  standalone: true,
 })
 export class NumericRowElementDirective {
   /* istanbul ignore next */
@@ -445,8 +435,6 @@ export class NumericRowElementDirective {
  */
 @Component({
   selector: &#x27;hra-table&#x27;,
-  templateUrl: &#x27;table.component.html&#x27;,
-  styleUrls: [&#x27;table.component.scss&#x27;],
   imports: [
     HraCommonModule,
     MarkdownModule,
@@ -465,6 +453,8 @@ export class NumericRowElementDirective {
     IconsModule,
     ButtonsModule,
   ],
+  templateUrl: &#x27;table.component.html&#x27;,
+  styleUrl: &#x27;table.component.scss&#x27;,
   host: {
     &#x27;[class]&#x27;: &#x27;&quot;hra-table-style-&quot; + style()&#x27;,
     &#x27;[class.sortable]&#x27;: &#x27;enableSort()&#x27;,

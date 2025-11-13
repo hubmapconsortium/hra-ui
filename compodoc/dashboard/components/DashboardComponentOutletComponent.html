@@ -182,7 +182,7 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *hraDashboardComponentOutlet&#x3D;&quot;spec()&quot;&gt;&lt;/ng-container&gt;</code></pre></td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *hraDashboardComponentOutlet&#x3D;&quot;spec()&quot; /&gt;</code></pre></td>
             </tr>
 
 
@@ -277,8 +277,8 @@ import { DashboardComponentAnySpec } from &#x27;./dashboard.model&#x27;;
 /** Dashboard component outlet component */
 @Component({
   selector: &#x27;hra-dashboard-component-outlet&#x27;,
-  template: &#x60;&lt;ng-container *hraDashboardComponentOutlet&#x3D;&quot;spec()&quot;&gt;&lt;/ng-container&gt;&#x60;,
   imports: [DashboardComponentOutletDirective],
+  template: &#x60;&lt;ng-container *hraDashboardComponentOutlet&#x3D;&quot;spec()&quot; /&gt;&#x60;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponentOutletComponent {
@@ -315,7 +315,7 @@ export class DashboardComponentOutletComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *hraDashboardComponentOutlet="spec()"></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container *hraDashboardComponentOutlet="spec()" /></div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'DashboardComponentOutletComponent'};

@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -201,10 +197,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>table.component.scss</code></td>
-            </tr>
 
 
 
@@ -215,6 +207,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>table.component.scss</code></td>
+            </tr>
 
 
 
@@ -1766,8 +1762,6 @@ export class NumericRowElementDirective {
  */
 @Component({
   selector: &#x27;hra-table&#x27;,
-  templateUrl: &#x27;table.component.html&#x27;,
-  styleUrls: [&#x27;table.component.scss&#x27;],
   imports: [
     HraCommonModule,
     MarkdownModule,
@@ -1786,6 +1780,8 @@ export class NumericRowElementDirective {
     IconsModule,
     ButtonsModule,
   ],
+  templateUrl: &#x27;table.component.html&#x27;,
+  styleUrl: &#x27;table.component.scss&#x27;,
   host: {
     &#x27;[class]&#x27;: &#x27;&quot;hra-table-style-&quot; + style()&#x27;,
     &#x27;[class.sortable]&#x27;: &#x27;enableSort()&#x27;,
@@ -2015,10 +2011,10 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
         &lt;table
           mat-table
           matSort
+          aria-label&#x3D;&quot;Table with sort function&quot;
           [dataSource]&#x3D;&quot;dataSource&quot;
           [matSortDisabled]&#x3D;&quot;!enableSort()&quot;
           [class.vertical-divider]&#x3D;&quot;verticalDividers()&quot;
-          aria-label&#x3D;&quot;Table with sort function&quot;
         &gt;
           @let templates &#x3D; { text, numeric, markdown, link, icon, menu };
 
@@ -2026,32 +2022,30 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
           @if (enableRowSelection()) {
             &lt;ng-container hraFeature&#x3D;&quot;select&quot; matColumnDef&#x3D;&quot;select&quot;&gt;
               @if (!hideHeaders()) {
-                &lt;th mat-header-cell *matHeaderCellDef data-column-type&#x3D;&quot;checkbox&quot;&gt;
+                &lt;th *matHeaderCellDef mat-header-cell data-column-type&#x3D;&quot;checkbox&quot;&gt;
                   &lt;mat-checkbox
                     hraFeature&#x3D;&quot;toggle-all&quot;
+                    disableRipple
+                    hraPlainTooltip&#x3D;&quot;Hide all&quot;
+                    aria-label&#x3D;&quot;Hide all&quot;
                     [hraClickEvent]&#x3D;&quot;{ checked: !(selection.hasValue() &amp;&amp; isAllSelected()) }&quot;
                     [checked]&#x3D;&quot;selection.hasValue() &amp;&amp; isAllSelected()&quot;
                     [indeterminate]&#x3D;&quot;selection.hasValue() &amp;&amp; !isAllSelected()&quot;
                     (change)&#x3D;&quot;toggleAllRows()&quot;
-                    disableRipple
-                    hraPlainTooltip&#x3D;&quot;Hide all&quot;
-                    aria-label&#x3D;&quot;Hide all&quot;
-                  &gt;
-                  &lt;/mat-checkbox&gt;
+                  /&gt;
                 &lt;/th&gt;
               }
-              &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; data-column-type&#x3D;&quot;checkbox&quot;&gt;
+              &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell data-column-type&#x3D;&quot;checkbox&quot;&gt;
                 &lt;mat-checkbox
                   hraFeature&#x3D;&quot;toggle&quot;
+                  disableRipple
+                  hraPlainTooltip&#x3D;&quot;Hide&quot;
+                  aria-label&#x3D;&quot;Hide&quot;
                   [hraClickEvent]&#x3D;&quot;{ checked: selection.isSelected(element) }&quot;
                   [checked]&#x3D;&quot;selection.isSelected(element)&quot;
                   (click)&#x3D;&quot;$event.stopPropagation()&quot;
                   (change)&#x3D;&quot;$event ? toggleRow(element) : null&quot;
-                  disableRipple
-                  hraPlainTooltip&#x3D;&quot;Hide&quot;
-                  aria-label&#x3D;&quot;Hide&quot;
-                &gt;
-                &lt;/mat-checkbox&gt;
+                /&gt;
               &lt;/td&gt;
             &lt;/ng-container&gt;
           }
@@ -2059,30 +2053,30 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
           @for (column of _columns(); track column.column) {
             @let type &#x3D; getColumnType(column).type;
             @let template &#x3D; templates[type];
-            @let isTotalsLabelColumn &#x3D; enableRowSelection() ? $index &#x3D;&#x3D;&#x3D; 1 : $index &#x3D;&#x3D;&#x3D; 0;
+            @let isTotalsLabelColumn &#x3D; enableRowSelection() ? $index &#x3D;&#x3D;&#x3D; 1 : $first;
 
             &lt;ng-container [matColumnDef]&#x3D;&quot;column.column&quot;&gt;
               @if (!hideHeaders()) {
                 &lt;th
-                  [hraFeature]&#x3D;&quot;&#x60;header-cell.${(column.label | slugify)}&#x60;&quot;
-                  hraClickEvent
                   *matHeaderCellDef
+                  hraClickEvent
                   mat-header-cell
                   mat-sort-header
+                  [hraFeature]&#x3D;&quot;&#x60;header-cell.${(column.label | slugify)}&#x60;&quot;
                   [attr.data-column-type]&#x3D;&quot;type&quot;
                   [sortActionDescription]&#x3D;&quot;&#x60;Sort by ${column.label}&#x60;&quot;
                 &gt;
                   {{ column.label }}
                 &lt;/th&gt;
               }
-              &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; [attr.data-column-type]&#x3D;&quot;type&quot;&gt;
+              &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell [attr.data-column-type]&#x3D;&quot;type&quot;&gt;
                 &lt;ng-container
                   *ngTemplateOutlet&#x3D;&quot;template; context: { $implicit: element[column.column], element, column }&quot;
                 /&gt;
               &lt;/td&gt;
 
               &lt;!-- Total Footer --&gt;
-              &lt;td mat-footer-cell *matFooterCellDef [attr.data-column-type]&#x3D;&quot;type&quot;&gt;
+              &lt;td *matFooterCellDef mat-footer-cell [attr.data-column-type]&#x3D;&quot;type&quot;&gt;
                 @if (isTotalsLabelColumn) {
                   &lt;span class&#x3D;&quot;total-label&quot;&gt; Total &lt;/span&gt;
                 } @else if (totals().get(column)) {
@@ -2095,12 +2089,12 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
           }
 
           @if (!hideHeaders()) {
-            &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;columnIds(); sticky: true&quot;&gt;&lt;/tr&gt;
+            &lt;tr *matHeaderRowDef&#x3D;&quot;columnIds(); sticky: true&quot; mat-header-row&gt;&lt;/tr&gt;
           }
-          &lt;tr mat-row *matRowDef&#x3D;&quot;let row; let i &#x3D; index; columns: columnIds()&quot;&gt;&lt;/tr&gt;
+          &lt;tr *matRowDef&#x3D;&quot;let row; let i &#x3D; index; columns: columnIds()&quot; mat-row&gt;&lt;/tr&gt;
 
           @if (totals().size &gt; 0) {
-            &lt;tr mat-footer-row *matFooterRowDef&#x3D;&quot;columnIds(); sticky: true&quot;&gt;&lt;/tr&gt;
+            &lt;tr *matFooterRowDef&#x3D;&quot;columnIds(); sticky: true&quot; mat-footer-row&gt;&lt;/tr&gt;
           }
         &lt;/table&gt;
 
@@ -2109,28 +2103,28 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
     &lt;/div&gt;
   &lt;/ng-scrollbar&gt;
 
-  &lt;ng-template hraTextRowElement #text let-text&gt;
+  &lt;ng-template let-text hraTextRowElement #text&gt;
     &lt;span class&#x3D;&quot;text&quot;&gt;{{ text }}&lt;/span&gt;
   &lt;/ng-template&gt;
 
-  &lt;ng-template hraNumericRowElement #numeric let-value&gt;
+  &lt;ng-template let-value hraNumericRowElement #numeric&gt;
     &lt;span class&#x3D;&quot;numeric&quot;&gt;{{ value | number }}&lt;/span&gt;
   &lt;/ng-template&gt;
 
-  &lt;ng-template hraMarkdownRowElement #markdown let-markdown&gt;
+  &lt;ng-template let-markdown hraMarkdownRowElement #markdown&gt;
     &lt;markdown class&#x3D;&quot;markdown&quot; [data]&#x3D;&quot;markdown&quot; /&gt;
   &lt;/ng-template&gt;
 
-  &lt;ng-template hraIconRowElement #icon let-icon let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot;&gt;
+  &lt;ng-template let-icon let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot; hraIconRowElement #icon&gt;
     &lt;hra-icon
       hraFeature&#x3D;&quot;table-icon&quot;
       [hraHoverEvent]&#x3D;&quot;{ value: element[column.type.tooltip] | slugify }&quot;
       [svgIcon]&#x3D;&quot;icon&quot;
       [hraPlainTooltip]&#x3D;&quot;element[column.type.tooltip]&quot;
-    &gt;&lt;/hra-icon&gt;
+    /&gt;
   &lt;/ng-template&gt;
 
-  &lt;ng-template hraFeature&#x3D;&quot;menu-cell&quot; hraMenuButtonRowElement let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot; #menu&gt;
+  &lt;ng-template let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot; hraFeature&#x3D;&quot;menu-cell&quot; hraMenuButtonRowElement #menu&gt;
     @let options &#x3D; element[column.type.options];
     &lt;button
       hraFeature&#x3D;&quot;download&quot;
@@ -2142,17 +2136,17 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
       (focus)&#x3D;&quot;downloadButtonHover(element[&#x27;id&#x27;])&quot;
       #trigger&#x3D;&quot;matMenuTrigger&quot;
     &gt;
-      &lt;hra-icon [fontIcon]&#x3D;&quot;column.type.icon&quot;&gt;&lt;/hra-icon&gt;
+      &lt;hra-icon [fontIcon]&#x3D;&quot;column.type.icon&quot; /&gt;
     &lt;/button&gt;
 
     &lt;mat-menu hraFeature&#x3D;&quot;download-options&quot; class&#x3D;&quot;table-menu&quot; #menuOptions&#x3D;&quot;matMenu&quot;&gt;
       @for (option of getMenuOptions(options); track $index) {
         &lt;a
-          [hraFeature]&#x3D;&quot;option.name | slugify&quot;
           hraClickEvent
           mat-menu-item
-          [attr.href]&#x3D;&quot;option.url&quot;
           download
+          [hraFeature]&#x3D;&quot;option.name | slugify&quot;
+          [attr.href]&#x3D;&quot;option.url&quot;
           (click)&#x3D;&quot;
             $event.preventDefault();
             download(option.url!);
@@ -2173,7 +2167,7 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
     &lt;/mat-menu&gt;
   &lt;/ng-template&gt;
 
-  &lt;ng-template hraFeature&#x3D;&quot;link-cell&quot; hraLinkRowElement #link let-label let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot;&gt;
+  &lt;ng-template let-label let-column&#x3D;&quot;column&quot; let-element&#x3D;&quot;element&quot; hraFeature&#x3D;&quot;link-cell&quot; hraLinkRowElement #link&gt;
     @let url &#x3D; element[column.type.urlColumn];
     @let isInternal &#x3D; column.type.internal;
     @if (isInternal) {
@@ -2181,7 +2175,7 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
         {{ label }}
       &lt;/a&gt;
     } @else {
-      &lt;a hraHyperlink class&#x3D;&quot;link&quot; [attr.href]&#x3D;&quot;url&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;
+      &lt;a hraHyperlink class&#x3D;&quot;link&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot; [attr.href]&#x3D;&quot;url&quot;&gt;
         {{ label }}
       &lt;/a&gt;
     }
@@ -2190,221 +2184,6 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>table.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
-@use &#x27;../../../../styles/utils&#x27;;
-@use &#x27;../../../../styles/vars&#x27;;
-
-:host {
-  display: block;
-  overflow: hidden;
-  height: 100%;
-  border: 0.0625rem solid vars.$outline;
-  border-radius: 0.5rem;
-
-  // Position scrollbar to start after header (only when headers are visible)
-  &amp;:has(tr[mat-header-row]) ng-scrollbar {
-    ::ng-deep scrollbar-y {
-      top: 2.5rem;
-      height: calc(100% - 2.5rem);
-
-      .ng-scrollbar-sticky {
-        top: 2.5rem;
-      }
-    }
-  }
-
-  .vertical-divider th:not(:first-child),
-  .vertical-divider td:not(:first-child) {
-    border-left: 1px solid vars.$outline;
-  }
-
-  @include mat.table-overrides(
-    (
-      background-color: transparent,
-
-      header-container-height: 2.5rem,
-      header-headline-color: vars.$secondary,
-      header-headline-font: vars.$label-medium-font,
-      header-headline-line-height: vars.$label-medium-line-height,
-      header-headline-size: vars.$label-medium-size,
-      header-headline-tracking: vars.$label-medium-tracking,
-      header-headline-weight: vars.$label-medium-weight,
-
-      footer-container-height: 2.5rem,
-      footer-supporting-text-font: vars.$label-medium-font,
-      footer-supporting-text-line-height: vars.$label-medium-line-height,
-      footer-supporting-text-size: vars.$label-medium-size,
-      footer-supporting-text-tracking: vars.$label-medium-tracking,
-      footer-supporting-text-weight: vars.$label-medium-weight,
-
-      row-item-container-height: 2.5rem,
-      row-item-label-text-color: vars.$primary,
-      row-item-label-text-font: vars.$label-medium-font,
-      row-item-label-text-line-height: vars.$label-medium-line-height,
-      row-item-label-text-size: vars.$label-medium-size,
-      row-item-label-text-tracking: vars.$label-medium-tracking,
-      row-item-label-text-weight: vars.$label-medium-weight,
-      row-item-outline-width: 0px,
-    )
-  );
-
-  @include mat.sort-overrides(
-    (
-      arrow-color: vars.$secondary,
-    )
-  );
-
-  th[mat-sort-header].cdk-focused,
-  .cdk-keyboard-focused {
-    position: relative;
-    background-color: none;
-
-    // Use a pseudo element since we still want a straight border on the th
-    &amp;::before {
-      content: &#x27;&#x27;;
-      position: absolute;
-      inset: 0;
-      border-radius: 0.25rem;
-      z-index: -1;
-      background-color: utils.with-alpha(vars.$secondary, 12%);
-    }
-
-    ::ng-deep .mat-focus-indicator {
-      border-bottom: none !important;
-    }
-  }
-
-  th[mat-sort-header]:hover {
-    .mat-sort-header-arrow {
-      color: vars.$outline;
-    }
-  }
-
-  th[mat-sort-header] {
-    ::ng-deep .mat-sort-header-arrow {
-      color: vars.$secondary;
-    }
-  }
-
-  ng-scrollbar {
-    height: 100%;
-    overflow: hidden;
-
-    ::ng-deep .ng-scroll-viewport {
-      max-height: var(--hra-table-max-height);
-    }
-  }
-
-  th[data-column-type&#x3D;&#x27;numeric&#x27;],
-  td[data-column-type&#x3D;&#x27;numeric&#x27;] {
-    text-align: right;
-  }
-
-  th[data-column-type&#x3D;&#x27;numeric&#x27;] ::ng-deep .mat-sort-header-container {
-    justify-content: end;
-  }
-
-  th[data-column-type&#x3D;&#x27;checkbox&#x27;],
-  td[data-column-type&#x3D;&#x27;checkbox&#x27;] {
-    padding: 0;
-    text-align: center;
-    max-height: 2.0625rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  &amp;.sortable {
-    .numeric {
-      margin-right: 1.125rem;
-    }
-  }
-
-  markdown ::ng-deep {
-    p:first-child {
-      margin-top: 0.5rem;
-    }
-
-    p:last-child {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  &amp;.hra-table-style-basic {
-    ::ng-deep thead {
-      background-color: vars.$on-primary;
-    }
-  }
-
-  &amp;.hra-table-style-divider,
-  &amp;.hra-table-style-alternating {
-    @include mat.table-overrides(
-      (
-        background-color: vars.$on-primary,
-      )
-    );
-
-    ng-scrollbar {
-      --scrollbar-offset: 4;
-    }
-
-    ::ng-deep thead {
-      background-color: vars.$surface-dim;
-
-      th {
-        border-bottom: 0.0625rem solid vars.$outline;
-        padding-bottom: 0.5rem;
-        padding-top: 0.5rem;
-        vertical-align: bottom;
-      }
-    }
-
-    ::ng-deep tbody {
-      td {
-        padding-bottom: 0.5rem;
-        padding-top: 0.5rem;
-      }
-    }
-
-    ::ng-deep tfoot {
-      background-color: vars.$surface-dim;
-
-      td {
-        color: vars.$secondary;
-        font-weight: 500;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        border-top: 0.0625rem solid vars.$outline;
-      }
-    }
-  }
-
-  &amp;.hra-table-style-divider {
-    @include mat.table-overrides(
-      (
-        row-item-outline-color: vars.$outline-variant,
-        row-item-outline-width: 0.0625rem,
-      )
-    );
-  }
-
-  &amp;.hra-table-style-alternating {
-    ::ng-deep tbody tr:nth-child(even) {
-      background-color: vars.$surface-container;
-    }
-  }
-
-  .link.internal {
-    color: vars.$on-tertiary-fixed;
-    cursor: pointer;
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -2431,7 +2210,7 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="table">  <!-- TODO fix overflow fade    hraScrollOverflowFade    [scrollOverflowFadeOffset]="40"  -->  <ng-scrollbar    externalViewport=".scroll-viewport"    externalContentWrapper=".content-wrapper"    externalSpacer="content-wrapper"    asyncDetection="auto"    #scrollbar  >    <div class="scroll-viewport">      <div class="content-wrapper">        <table          mat-table          matSort          [dataSource]="dataSource"          [matSortDisabled]="!enableSort()"          [class.vertical-divider]="verticalDividers()"          aria-label="Table with sort function"        >          @let templates = { text, numeric, markdown, link, icon, menu };          <!-- Selection Column (if enabled) -->          @if (enableRowSelection()) {            <ng-container hraFeature="select" matColumnDef="select">              @if (!hideHeaders()) {                <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">                  <mat-checkbox                    hraFeature="toggle-all"                    [hraClickEvent]="{ checked: !(selection.hasValue() && isAllSelected()) }"                    [checked]="selection.hasValue() && isAllSelected()"                    [indeterminate]="selection.hasValue() && !isAllSelected()"                    (change)="toggleAllRows()"                    disableRipple                    hraPlainTooltip="Hide all"                    aria-label="Hide all"                  >                  </mat-checkbox>                </th>              }              <td mat-cell *matCellDef="let element" data-column-type="checkbox">                <mat-checkbox                  hraFeature="toggle"                  [hraClickEvent]="{ checked: selection.isSelected(element) }"                  [checked]="selection.isSelected(element)"                  (click)="$event.stopPropagation()"                  (change)="$event ? toggleRow(element) : null"                  disableRipple                  hraPlainTooltip="Hide"                  aria-label="Hide"                >                </mat-checkbox>              </td>            </ng-container>          }          @for (column of _columns(); track column.column) {            @let type = getColumnType(column).type;            @let template = templates[type];            @let isTotalsLabelColumn = enableRowSelection() ? $index === 1 : $index === 0;            <ng-container [matColumnDef]="column.column">              @if (!hideHeaders()) {                <th                  [hraFeature]="`header-cell.${(column.label | slugify)}`"                  hraClickEvent                  *matHeaderCellDef                  mat-header-cell                  mat-sort-header                  [attr.data-column-type]="type"                  [sortActionDescription]="`Sort by ${column.label}`"                >                  {{ column.label }}                </th>              }              <td mat-cell *matCellDef="let element" [attr.data-column-type]="type">                <ng-container                  *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"                />              </td>              <!-- Total Footer -->              <td mat-footer-cell *matFooterCellDef [attr.data-column-type]="type">                @if (isTotalsLabelColumn) {                  <span class="total-label"> Total </span>                } @else if (totals().get(column)) {                  <span class="numeric">                    {{ totals().get(column) | number }}                  </span>                }              </td>            </ng-container>          }          @if (!hideHeaders()) {            <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>          }          <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>          @if (totals().size > 0) {            <tr mat-footer-row *matFooterRowDef="columnIds(); sticky: true"></tr>          }        </table>        <ng-content />      </div>    </div>  </ng-scrollbar>  <ng-template hraTextRowElement #text let-text>    <span class="text">{{ text }}</span>  </ng-template>  <ng-template hraNumericRowElement #numeric let-value>    <span class="numeric">{{ value | number }}</span>  </ng-template>  <ng-template hraMarkdownRowElement #markdown let-markdown>    <markdown class="markdown" [data]="markdown" />  </ng-template>  <ng-template hraIconRowElement #icon let-icon let-column="column" let-element="element">    <hra-icon      hraFeature="table-icon"      [hraHoverEvent]="{ value: element[column.type.tooltip] | slugify }"      [svgIcon]="icon"      [hraPlainTooltip]="element[column.type.tooltip]"    ></hra-icon>  </ng-template>  <ng-template hraFeature="menu-cell" hraMenuButtonRowElement let-column="column" let-element="element" #menu>    @let options = element[column.type.options];    <button      hraFeature="download"      hraClickEvent      mat-icon-button      [matMenuTriggerFor]="menuOptions"      [hraPlainTooltip]="column.type.tooltip"      (mouseover)="downloadButtonHover(element[\'id\'])"      (focus)="downloadButtonHover(element[\'id\'])"      #trigger="matMenuTrigger"    >      <hra-icon [fontIcon]="column.type.icon"></hra-icon>    </button>    <mat-menu hraFeature="download-options" class="table-menu" #menuOptions="matMenu">      @for (option of getMenuOptions(options); track $index) {        <a          [hraFeature]="option.name | slugify"          hraClickEvent          mat-menu-item          [attr.href]="option.url"          download          (click)="            $event.preventDefault();            download(option.url!);            snackbar.open(\'File downloaded\', \'\', false, \'start\', { duration: 5000 })          "        >          <mat-icon>{{ option.icon }}</mat-icon>          <div class="option-text">            <span class="option-name">              {{ option.name }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>  </ng-template>  <ng-template hraFeature="link-cell" hraLinkRowElement #link let-label let-column="column" let-element="element">    @let url = element[column.type.urlColumn];    @let isInternal = column.type.internal;    @if (isInternal) {      <a hraHyperlink class="link internal" tabindex="0" (keyup)="routeClick(url)" (click)="routeClick(url)">        {{ label }}      </a>    } @else {      <a hraHyperlink class="link" [attr.href]="url" target="_blank" rel="noopener noreferrer">        {{ label }}      </a>    }  </ng-template></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="table">  <!-- TODO fix overflow fade    hraScrollOverflowFade    [scrollOverflowFadeOffset]="40"  -->  <ng-scrollbar    externalViewport=".scroll-viewport"    externalContentWrapper=".content-wrapper"    externalSpacer="content-wrapper"    asyncDetection="auto"    #scrollbar  >    <div class="scroll-viewport">      <div class="content-wrapper">        <table          mat-table          matSort          aria-label="Table with sort function"          [dataSource]="dataSource"          [matSortDisabled]="!enableSort()"          [class.vertical-divider]="verticalDividers()"        >          @let templates = { text, numeric, markdown, link, icon, menu };          <!-- Selection Column (if enabled) -->          @if (enableRowSelection()) {            <ng-container hraFeature="select" matColumnDef="select">              @if (!hideHeaders()) {                <th *matHeaderCellDef mat-header-cell data-column-type="checkbox">                  <mat-checkbox                    hraFeature="toggle-all"                    disableRipple                    hraPlainTooltip="Hide all"                    aria-label="Hide all"                    [hraClickEvent]="{ checked: !(selection.hasValue() && isAllSelected()) }"                    [checked]="selection.hasValue() && isAllSelected()"                    [indeterminate]="selection.hasValue() && !isAllSelected()"                    (change)="toggleAllRows()"                  />                </th>              }              <td *matCellDef="let element" mat-cell data-column-type="checkbox">                <mat-checkbox                  hraFeature="toggle"                  disableRipple                  hraPlainTooltip="Hide"                  aria-label="Hide"                  [hraClickEvent]="{ checked: selection.isSelected(element) }"                  [checked]="selection.isSelected(element)"                  (click)="$event.stopPropagation()"                  (change)="$event ? toggleRow(element) : null"                />              </td>            </ng-container>          }          @for (column of _columns(); track column.column) {            @let type = getColumnType(column).type;            @let template = templates[type];            @let isTotalsLabelColumn = enableRowSelection() ? $index === 1 : $first;            <ng-container [matColumnDef]="column.column">              @if (!hideHeaders()) {                <th                  *matHeaderCellDef                  hraClickEvent                  mat-header-cell                  mat-sort-header                  [hraFeature]="`header-cell.${(column.label | slugify)}`"                  [attr.data-column-type]="type"                  [sortActionDescription]="`Sort by ${column.label}`"                >                  {{ column.label }}                </th>              }              <td *matCellDef="let element" mat-cell [attr.data-column-type]="type">                <ng-container                  *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"                />              </td>              <!-- Total Footer -->              <td *matFooterCellDef mat-footer-cell [attr.data-column-type]="type">                @if (isTotalsLabelColumn) {                  <span class="total-label"> Total </span>                } @else if (totals().get(column)) {                  <span class="numeric">                    {{ totals().get(column) | number }}                  </span>                }              </td>            </ng-container>          }          @if (!hideHeaders()) {            <tr *matHeaderRowDef="columnIds(); sticky: true" mat-header-row></tr>          }          <tr *matRowDef="let row; let i = index; columns: columnIds()" mat-row></tr>          @if (totals().size > 0) {            <tr *matFooterRowDef="columnIds(); sticky: true" mat-footer-row></tr>          }        </table>        <ng-content />      </div>    </div>  </ng-scrollbar>  <ng-template let-text hraTextRowElement #text>    <span class="text">{{ text }}</span>  </ng-template>  <ng-template let-value hraNumericRowElement #numeric>    <span class="numeric">{{ value | number }}</span>  </ng-template>  <ng-template let-markdown hraMarkdownRowElement #markdown>    <markdown class="markdown" [data]="markdown" />  </ng-template>  <ng-template let-icon let-column="column" let-element="element" hraIconRowElement #icon>    <hra-icon      hraFeature="table-icon"      [hraHoverEvent]="{ value: element[column.type.tooltip] | slugify }"      [svgIcon]="icon"      [hraPlainTooltip]="element[column.type.tooltip]"    />  </ng-template>  <ng-template let-column="column" let-element="element" hraFeature="menu-cell" hraMenuButtonRowElement #menu>    @let options = element[column.type.options];    <button      hraFeature="download"      hraClickEvent      mat-icon-button      [matMenuTriggerFor]="menuOptions"      [hraPlainTooltip]="column.type.tooltip"      (mouseover)="downloadButtonHover(element[\'id\'])"      (focus)="downloadButtonHover(element[\'id\'])"      #trigger="matMenuTrigger"    >      <hra-icon [fontIcon]="column.type.icon" />    </button>    <mat-menu hraFeature="download-options" class="table-menu" #menuOptions="matMenu">      @for (option of getMenuOptions(options); track $index) {        <a          hraClickEvent          mat-menu-item          download          [hraFeature]="option.name | slugify"          [attr.href]="option.url"          (click)="            $event.preventDefault();            download(option.url!);            snackbar.open(\'File downloaded\', \'\', false, \'start\', { duration: 5000 })          "        >          <mat-icon>{{ option.icon }}</mat-icon>          <div class="option-text">            <span class="option-name">              {{ option.name }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>  </ng-template>  <ng-template let-label let-column="column" let-element="element" hraFeature="link-cell" hraLinkRowElement #link>    @let url = element[column.type.urlColumn];    @let isInternal = column.type.internal;    @if (isInternal) {      <a hraHyperlink class="link internal" tabindex="0" (keyup)="routeClick(url)" (click)="routeClick(url)">        {{ label }}      </a>    } @else {      <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="url">        {{ label }}      </a>    }  </ng-template></ng-container></div>'
     var COMPONENTS = [{'name': 'ActionCardActionComponent', 'selector': 'hra-action-card-action'},{'name': 'ActionCardComponent', 'selector': 'hra-action-card'},{'name': 'ApiCommandComponent', 'selector': 'hra-api-command'},{'name': 'AppLabelComponent', 'selector': 'hra-app-label'},{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'ArchivedPageComponent', 'selector': 'hra-archived-page'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BottomSheetComponent', 'selector': 'hra-bottom-sheet'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'hra-button'},{'name': 'CardMenuComponent', 'selector': 'hra-card-menu'},{'name': 'CategoriesComponent', 'selector': 'hra-categories'},{'name': 'CodeBlockComponent', 'selector': 'hra-code-block'},{'name': 'CodeBlockGlobalStylesComponent', 'selector': 'hra-code-block-global-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ConsentBannerComponent', 'selector': 'hra-consent-banner'},{'name': 'ContentButtonComponent', 'selector': 'hra-content-button'},{'name': 'ContentPageComponent', 'selector': 'hra-content-page'},{'name': 'CopyableUrlContainerComponent', 'selector': 'hra-copyable-url-container'},{'name': 'CountCardComponent', 'selector': 'hra-count-card'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DangerMessageIndicatorComponent', 'selector': 'hra-danger-message-indicator'},{'name': 'DataViewerComponent', 'selector': 'hra-data-viewer'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FlatCardActionsComponent', 'selector': 'hra-flat-card-actions'},{'name': 'FlatCardComponent', 'selector': 'hra-flat-card'},{'name': 'FlexContainerComponent', 'selector': 'hra-flex-container'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'GalleryCardComponent', 'selector': 'hra-gallery-card'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HelpButtonComponent', 'selector': 'hra-help-button'},{'name': 'HraYoutubePlayerComponent', 'selector': 'hra-youtube-player'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconComponent', 'selector': 'hra-icon'},{'name': 'ImageComponent', 'selector': 'hra-image'},{'name': 'InfoButtonComponent', 'selector': 'hra-info-button'},{'name': 'InfoMessageIndicatorComponent', 'selector': 'hra-info-message-indicator'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'MarkdownComponent', 'selector': 'hra-markdown'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavigationButtonComponent', 'selector': 'hra-navigation-button'},{'name': 'NavigationCategoryComponent', 'selector': 'hra-navigation-category'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NavigationItemComponent', 'selector': 'hra-navigation-item'},{'name': 'NoResultsIndicatorComponent', 'selector': 'hra-no-results-indicator'},{'name': 'NotFoundPageComponent', 'selector': 'hra-not-found-page'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'PageLabelComponent', 'selector': 'hra-page-label'},{'name': 'PageSectionComponent', 'selector': 'hra-page-section'},{'name': 'PlainTooltipStylesComponent', 'selector': 'hra-plain-tooltip-styles'},{'name': 'PrivacyPreferencesComponent', 'selector': 'hra-privacy-preferences'},{'name': 'ProfileCardComponent', 'selector': 'hra-profile-card'},{'name': 'ProgressSpinnerComponent', 'selector': 'hra-progress-spinner'},{'name': 'RedirectPageComponent', 'selector': 'hra-redirect-page'},{'name': 'ResultsIndicatorComponent', 'selector': 'hra-results-indicator'},{'name': 'RichTooltipActionsComponent', 'selector': 'hra-rich-tooltip-actions'},{'name': 'RichTooltipContainerComponent', 'selector': 'hra-rich-tooltip-container'},{'name': 'RichTooltipContentComponent', 'selector': 'hra-rich-tooltip-content'},{'name': 'RichTooltipTaglineComponent', 'selector': 'hra-rich-tooltip-tagline'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SectionLinkComponent', 'selector': 'h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
     h4[hra-section-link], h5[hra-section-link], h6[hra-section-link]'},{'name': 'ServerErrorPageComponent', 'selector': 'hra-server-error-page'},{'name': 'SiteNavigationComponent', 'selector': 'hra-site-navigation'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableComponent', 'selector': 'hra-table'},{'name': 'TableOfContentsComponent', 'selector': 'hra-table-of-contents'},{'name': 'TableOfContentsDemoComponent', 'selector': 'hra-table-of-contents-demo'},{'name': 'TableOfContentsLayoutComponent', 'selector': 'hra-table-of-contents-layout'},{'name': 'TableOfContentsLayoutDemoComponent', 'selector': 'hra-table-of-contents-layout-demo'},{'name': 'TableOfContentsLayoutHeaderComponent', 'selector': 'hra-table-of-contents-layout-header'},{'name': 'TextHyperlinkComponent', 'selector': 'hra-text-hyperlink'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'UiSectionComponent', 'selector': 'hra-ui-section'},{'name': 'VersionedDataTableComponent', 'selector': 'hra-versioned-data-table'},{'name': 'ViewerCardComponent', 'selector': 'hra-viewer-card'},{'name': 'ViewerMenuComponent', 'selector': 'hra-viewer-menu'},{'name': 'VisualButtonComponent', 'selector': 'hra-visual-button'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
     var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'ChipSizeDirective', 'selector': 'mat-chip[hraChipSize], mat-chip-option[hraChipSize], mat-chip-row[hraChipSize]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'DensityDirective', 'selector': '[hraDensity]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'IconRowElementDirective', 'selector': 'ng-template[hraIconRowElement]'},{'name': 'InfoButtonActionsDirective', 'selector': '[hraInfoButtonActions]'},{'name': 'InfoButtonTaglineDirective', 'selector': '[hraInfoButtonTagline]'},{'name': 'LinkRowElementDirective', 'selector': 'ng-template[hraLinkRowElement]'},{'name': 'MarkdownRowElementDirective', 'selector': 'ng-template[hraMarkdownRowElement]'},{'name': 'MenuButtonRowElementDirective', 'selector': 'ng-template[hraMenuButtonRowElement]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'NavigationButtonDescriptionDirective', 'selector': '[hraNavigationButtonDescription]'},{'name': 'NavigationButtonTaglineDirective', 'selector': '[hraNavigationButtonTagline]'},{'name': 'NavigationIconDirective', 'selector': '[hraNavigationIcon]'},{'name': 'NumericRowElementDirective', 'selector': 'ng-template[hraNumericRowElement]'},{'name': 'PlainTooltipDirective', 'selector': '[hraPlainTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'ProgressBarColorDirective', 'selector': 'mat-progress-bar[hraProgressBarColor]'},{'name': 'RichTooltipCloseDirective', 'selector': '[hraRichTooltipClose]'},{'name': 'RichTooltipContextDirective', 'selector': 'ng-template[hraRichTooltipContext]'},{'name': 'RichTooltipDirective', 'selector': '[hraRichTooltip]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TextRowElementDirective', 'selector': 'ng-template[hraTextRowElement]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];

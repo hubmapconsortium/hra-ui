@@ -120,10 +120,6 @@
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -180,16 +176,16 @@
 
 
 
+
+
+
+
+
+
             <tr>
-                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-3">styleUrl</td>
                 <td class="col-md-9"><code>./global-styles.component.scss</code></td>
             </tr>
-
-
-
-
-
-
 
 
 
@@ -217,69 +213,15 @@
 @Component({
   selector: &#x27;hra-text-hyperlink-global-styles&#x27;,
   template: &#x27;&#x27;,
-  styleUrls: [&#x27;./global-styles.component.scss&#x27;],
-  encapsulation: ViewEncapsulation.None,
+  styleUrl: &#x27;./global-styles.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TextHyperlinkGlobalStylesComponent {}
 </code></pre>
     </div>
 
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./global-styles.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;../../../../styles/utils&#x27;;
-@use &#x27;../../../../styles/vars&#x27; as vars;
-
-@include utils.global-styles() {
-  a.hra-text-hyperlink,
-  markdown a {
-    text-decoration: underline solid currentColor 0.0625rem;
-    text-underline-offset: 0.125rem;
-
-    &amp;:link,
-    &amp;:link mat-icon {
-      color: vars.$tertiary;
-    }
-
-    &amp;:visited,
-    &amp;:visited mat-icon {
-      color: vars.$tertiary;
-    }
-
-    &amp;:focus-visible {
-      color: vars.$secondary;
-      outline: 0.125rem solid vars.$tertiary;
-      border-radius: 0.25rem;
-
-      &amp; mat-icon {
-        color: vars.$secondary;
-      }
-    }
-
-    &amp;:hover,
-    &amp;:hover mat-icon,
-    &amp;:active,
-    &amp;:active mat-icon {
-      color: vars.$tertiary;
-    }
-  }
-
-  /* TODO: Move this code to content pages component */
-  markdown pre {
-    background-color: vars.$surface-container;
-    border-radius: 0.25rem;
-    border: 1px solid vars.$outline;
-    padding: 0.75rem;
-    overflow-x: auto;
-
-    @include utils.use-font(label, medium);
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>

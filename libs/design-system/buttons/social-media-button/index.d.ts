@@ -1,6 +1,5 @@
 import * as _angular_core from '@angular/core';
-import * as zod from 'zod';
-import { z } from 'zod';
+import * as z from 'zod';
 import { IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/buttons/icon-button';
 
 /**
@@ -8,14 +7,14 @@ import { IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/buttons
  */
 declare class SocialMediaButtonComponent {
     /** Social media to display */
-    readonly id: _angular_core.InputSignal<string & zod.$brand<"SocialMediaId">>;
+    readonly id: _angular_core.InputSignal<string & z.$brand<"SocialMediaId">>;
     /** Button size */
     readonly size: _angular_core.InputSignal<IconButtonSize>;
     /** Button variant */
     readonly variant: _angular_core.InputSignal<IconButtonVariant>;
     /** Social media button data */
     protected readonly data: _angular_core.Signal<{
-        id: string & zod.$brand<"SocialMediaId">;
+        id: string & z.$brand<"SocialMediaId">;
         label: string;
         icon: string;
         link: string;
@@ -26,7 +25,7 @@ declare class SocialMediaButtonComponent {
 }
 
 /** All available social ids */
-declare const SOCIAL_IDS: (string & zod.$brand<"SocialMediaId">)[];
+declare const SOCIAL_IDS: (string & z.$brand<"SocialMediaId">)[];
 
 /** Social media id */
 type SocialMediaId = SocialMedia['id'];

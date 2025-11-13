@@ -322,8 +322,8 @@ import { TableOfContentsComponent } from &#x27;../table-of-contents.component&#x
   selector: &#x27;hra-table-of-contents-demo&#x27;,
   imports: [CommonModule, PageSectionComponent, TableOfContentsComponent],
   templateUrl: &#x27;./table-of-contents-demo.component.html&#x27;,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [...providePageSectionNavigation()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableOfContentsDemoComponent {
   /** Active section index */

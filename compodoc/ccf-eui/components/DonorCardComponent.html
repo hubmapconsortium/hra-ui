@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -191,10 +187,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./donor-card.component.scss</code></td>
-            </tr>
 
 
 
@@ -205,6 +197,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./donor-card.component.scss</code></td>
+            </tr>
 
 
 
@@ -734,8 +730,6 @@ import { TissueSectionVisComponent } from &#x27;../tissue-section-vis/tissue-sec
  */
 @Component({
   selector: &#x27;ccf-donor-card&#x27;,
-  templateUrl: &#x27;./donor-card.component.html&#x27;,
-  styleUrls: [&#x27;./donor-card.component.scss&#x27;],
   imports: [
     HraCommonModule,
     MatCheckboxModule,
@@ -744,6 +738,8 @@ import { TissueSectionVisComponent } from &#x27;../tissue-section-vis/tissue-sec
     TissueSectionVisComponent,
     ThumbnailListComponent,
   ],
+  templateUrl: &#x27;./donor-card.component.html&#x27;,
+  styleUrl: &#x27;./donor-card.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonorCardComponent {
@@ -793,12 +789,11 @@ export class DonorCardComponent {
   hraFeature&#x3D;&quot;donor&quot;
   class&#x3D;&quot;donor-card&quot;
   [class.highlighted]&#x3D;&quot;highlighted()&quot;
-  [tagline]&#x3D;&quot;&#x27;Donor: &#x27; + tissueBlock().donor?.label&quot;
-  [label]&#x3D;&quot;&#x27;Provenance: &#x27; + tissueBlock().donor?.description&quot;
-  (toggleExpansion)&#x3D;&quot;toggleExpansion()&quot;
+  [tagline]&#x3D;&quot;&#x60;Donor: ${tissueBlock().donor?.label}&#x60;&quot;
+  [label]&#x3D;&quot;&#x60;Provenance: ${tissueBlock().donor?.description}&#x60;&quot;
   [menuLink]&#x3D;&quot;tissueBlock().donor?.link ?? &#x27;&#x27;&quot;
-&gt;
-&lt;/ccf-metadata-card&gt;
+  (toggleExpansion)&#x3D;&quot;toggleExpansion()&quot;
+/&gt;
 
 @if (expanded()) {
   &lt;div class&#x3D;&quot;expanded-cards&quot;&gt;
@@ -806,8 +801,8 @@ export class DonorCardComponent {
       hraFeature&#x3D;&quot;block&quot;
       class&#x3D;&quot;block-card&quot;
       tagline&#x3D;&quot;Tissue Block&quot;
-      [label]&#x3D;&quot;&#x27;3D size: &#x27; + size()&quot;
-      [label2]&#x3D;&quot;&#x27;Thickness of tissue section: &#x27; + thickness()&quot;
+      [label]&#x3D;&quot;&#x60;3D size: ${size()}&#x60;&quot;
+      [label2]&#x3D;&quot;&#x60;Thickness of tissue section: ${thickness()}&#x60;&quot;
       [menuLink]&#x3D;&quot;tissueBlock().link&quot;
     &gt;
       @if ((tissueBlock().sections?.length ?? 0) &gt; 1) {
@@ -816,25 +811,25 @@ export class DonorCardComponent {
           hraHoverEvent
           [totalTissueSections]&#x3D;&quot;tissueBlock().sectionCount ?? 0&quot;
           [tissueSections]&#x3D;&quot;tissueBlock().sections ?? []&quot;
-        &gt;&lt;/ccf-tissue-section-vis&gt;
+        /&gt;
       }
 
       @if (tissueBlock().datasets.length &gt; 0) {
         &lt;div&gt;Datasets&lt;/div&gt;
-        &lt;ccf-thumbnail-list [data]&#x3D;&quot;tissueBlock().datasets&quot;&gt; &lt;/ccf-thumbnail-list&gt;
+        &lt;ccf-thumbnail-list [data]&#x3D;&quot;tissueBlock().datasets&quot; /&gt;
       }
     &lt;/ccf-metadata-card&gt;
 
-    @for (section of tissueBlock().sections; track section; let i &#x3D; $index) {
+    @for (section of tissueBlock().sections; track section) {
       &lt;ccf-metadata-card
         hraFeature&#x3D;&quot;section&quot;
         class&#x3D;&quot;section-card&quot;
         tagline&#x3D;&quot;Tissue Section&quot;
         label&#x3D;&quot;Datasets&quot;
-        [menuLink]&#x3D;&quot;sectionLinks()[i]&quot;
+        [menuLink]&#x3D;&quot;sectionLinks()[$index]&quot;
       &gt;
         @if (section.datasets.length &gt; 0) {
-          &lt;ccf-thumbnail-list [data]&#x3D;&quot;section.datasets&quot;&gt; &lt;/ccf-thumbnail-list&gt;
+          &lt;ccf-thumbnail-list [data]&#x3D;&quot;section.datasets&quot; /&gt;
         }
       &lt;/ccf-metadata-card&gt;
     }
@@ -843,43 +838,6 @@ export class DonorCardComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./donor-card.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">:host {
-  .donor-card {
-    cursor: pointer;
-    grid-template-columns: 16.75rem min-content;
-
-    &amp;:hover,
-    &amp;.highlighted {
-      box-shadow:
-        0px 6px 2px -2px rgba(0, 0, 0, 0.2),
-        0px 4px 4px 0px rgba(0, 0, 0, 0.14),
-        0px 2px 10px 0px rgba(0, 0, 0, 0.12);
-    }
-  }
-
-  .expanded-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-top: 0.5rem;
-
-    .block-card {
-      margin-left: 0.5rem;
-      grid-template-columns: 16.25rem min-content;
-    }
-
-    .section-card {
-      margin-left: 0.75rem;
-      grid-template-columns: 16rem min-content;
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -906,7 +864,7 @@ export class DonorCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ccf-metadata-card  hraFeature="donor"  class="donor-card"  [class.highlighted]="highlighted()"  [tagline]="\'Donor: \' + tissueBlock().donor?.label"  [label]="\'Provenance: \' + tissueBlock().donor?.description"  (toggleExpansion)="toggleExpansion()"  [menuLink]="tissueBlock().donor?.link ?? \'\'"></ccf-metadata-card>@if (expanded()) {  <div class="expanded-cards">    <ccf-metadata-card      hraFeature="block"      class="block-card"      tagline="Tissue Block"      [label]="\'3D size: \' + size()"      [label2]="\'Thickness of tissue section: \' + thickness()"      [menuLink]="tissueBlock().link"    >      @if ((tissueBlock().sections?.length ?? 0) > 1) {        <ccf-tissue-section-vis          hraFeature="section-vis"          hraHoverEvent          [totalTissueSections]="tissueBlock().sectionCount ?? 0"          [tissueSections]="tissueBlock().sections ?? []"        ></ccf-tissue-section-vis>      }      @if (tissueBlock().datasets.length > 0) {        <div>Datasets</div>        <ccf-thumbnail-list [data]="tissueBlock().datasets"> </ccf-thumbnail-list>      }    </ccf-metadata-card>    @for (section of tissueBlock().sections; track section; let i = $index) {      <ccf-metadata-card        hraFeature="section"        class="section-card"        tagline="Tissue Section"        label="Datasets"        [menuLink]="sectionLinks()[i]"      >        @if (section.datasets.length > 0) {          <ccf-thumbnail-list [data]="section.datasets"> </ccf-thumbnail-list>        }      </ccf-metadata-card>    }  </div>}</div>'
+        var COMPONENT_TEMPLATE = '<div><ccf-metadata-card  hraFeature="donor"  class="donor-card"  [class.highlighted]="highlighted()"  [tagline]="`Donor: ${tissueBlock().donor?.label}`"  [label]="`Provenance: ${tissueBlock().donor?.description}`"  [menuLink]="tissueBlock().donor?.link ?? \'\'"  (toggleExpansion)="toggleExpansion()"/>@if (expanded()) {  <div class="expanded-cards">    <ccf-metadata-card      hraFeature="block"      class="block-card"      tagline="Tissue Block"      [label]="`3D size: ${size()}`"      [label2]="`Thickness of tissue section: ${thickness()}`"      [menuLink]="tissueBlock().link"    >      @if ((tissueBlock().sections?.length ?? 0) > 1) {        <ccf-tissue-section-vis          hraFeature="section-vis"          hraHoverEvent          [totalTissueSections]="tissueBlock().sectionCount ?? 0"          [tissueSections]="tissueBlock().sections ?? []"        />      }      @if (tissueBlock().datasets.length > 0) {        <div>Datasets</div>        <ccf-thumbnail-list [data]="tissueBlock().datasets" />      }    </ccf-metadata-card>    @for (section of tissueBlock().sections; track section) {      <ccf-metadata-card        hraFeature="section"        class="section-card"        tagline="Tissue Section"        label="Datasets"        [menuLink]="sectionLinks()[$index]"      >        @if (section.datasets.length > 0) {          <ccf-thumbnail-list [data]="section.datasets" />        }      </ccf-metadata-card>    }  </div>}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DonorCardComponent'};

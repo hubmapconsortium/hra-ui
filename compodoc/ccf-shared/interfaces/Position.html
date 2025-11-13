@@ -316,7 +316,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 import { injectFeaturePath, injectLogEvent } from &#x27;@hra-ui/common/analytics&#x27;;
 import { CoreEvents } from &#x27;@hra-ui/common/analytics/events&#x27;;
 
@@ -348,18 +348,15 @@ const DIRECTION_KEYS &#x3D; new Set(Object.keys(DIRECTION_FACTORS));
  */
 @Component({
   selector: &#x27;ccf-spatial-search-keyboard-ui-behavior&#x27;,
+  standalone: false,
   templateUrl: &#x27;./spatial-search-keyboard-ui-behavior.component.html&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     &#x27;(document:keydown)&#x27;: &#x27;handleKey($event)&#x27;,
     &#x27;(document:keyup)&#x27;: &#x27;keyUp($event)&#x27;,
   },
-  standalone: false,
 })
 export class SpatialSearchKeyboardUIBehaviorComponent {
-  /** HTML class */
-  @HostBinding(&#x27;class&#x27;) readonly className &#x3D; &#x27;ccf-spatial-search-keyboard-ui-behavior&#x27;;
-
   /** Amount the position shifts for each key press */
   @Input() delta &#x3D; 1;
 

@@ -4,7 +4,7 @@ import { NgElementConstructor } from '@angular/elements';
 /** Returns KeyT unchanged if SignalT is a input otherwise never */
 type InputPropKey<KeyT, SignalT> = [InputPropValue<SignalT>] extends [never] ? never : KeyT;
 /** Returns the value type of an input SignalT or never if it is not an input */
-type InputPropValue<SignalT> = SignalT extends InputSignalWithTransform<infer ValueT, infer _Unused> ? ValueT : never;
+type InputPropValue<SignalT> = SignalT extends InputSignalWithTransform<infer ValueT, any> ? ValueT : never;
 /** Extracts the input/model properties and their corresponding value types for a component */
 type InputProps<CompT> = {
     -readonly [KeyT in keyof CompT as InputPropKey<KeyT, CompT[KeyT]>]: InputPropValue<CompT[KeyT]>;

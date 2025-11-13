@@ -524,8 +524,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -791,6 +791,7 @@ export class CellPopulationPredictionsComponent {
 
   /** Triggered when users clicks delete icon on file */
   onDeleteButtonClick(): void {
+    // eslint-disable-next-line no-alert
     const confirmation &#x3D; window.confirm(&#x27;Changes you made might not be saved. Do you really want to leave?&#x27;);
     if (confirmation) {
       this.router.navigate([&#x27;/us1&#x27;]);
@@ -827,11 +828,11 @@ export class CellPopulationPredictionsComponent {
         aria-label&#x3D;&quot;Open table action menu&quot;
         [matMenuTriggerFor]&#x3D;&quot;options&quot;
       &gt;
-        &lt;mat-icon class&#x3D;&quot;more-icon&quot; fontIcon&#x3D;&quot;more_vert&quot;&gt;&lt;/mat-icon&gt;
+        &lt;mat-icon class&#x3D;&quot;more-icon&quot; fontIcon&#x3D;&quot;more_vert&quot; /&gt;
       &lt;/button&gt;
 
       &lt;!-- MENU --&gt;
-      &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; #options&#x3D;&quot;matMenu&quot; class&#x3D;&quot;custom-menu&quot;&gt;
+      &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; class&#x3D;&quot;custom-menu&quot; #options&#x3D;&quot;matMenu&quot;&gt;
         &lt;button
           hraClickEvent
           hraFeature&#x3D;&quot;info&quot;
@@ -851,15 +852,15 @@ export class CellPopulationPredictionsComponent {
       &lt;/mat-menu&gt;
 
       &lt;mat-menu #submenu&#x3D;&quot;matMenu&quot;&gt;
-        &lt;hra-tooltip-card [content]&#x3D;&quot;tooltip&quot; class&#x3D;&quot;tooltip-panel&quot;&gt; &lt;/hra-tooltip-card&gt;
+        &lt;hra-tooltip-card class&#x3D;&quot;tooltip-panel&quot; [content]&#x3D;&quot;tooltip&quot; /&gt;
       &lt;/mat-menu&gt;
     &lt;/hra-workflow-card-actions&gt;
     &lt;hra-workflow-card-extra&gt;
       &lt;hra-delete-file-button
+        data-testid&#x3D;&quot;delete-file-button&quot;
         [fileName]&#x3D;&quot;data().file.name&quot;
         (cancelLoad)&#x3D;&quot;onDeleteButtonClick()&quot;
-        data-testid&#x3D;&quot;delete-file-button&quot;
-      &gt;&lt;/hra-delete-file-button&gt;
+      /&gt;
     &lt;/hra-workflow-card-extra&gt;
 
     &lt;!-- TABLE --&gt;
@@ -867,47 +868,47 @@ export class CellPopulationPredictionsComponent {
       &lt;table
         hraFeature&#x3D;&quot;predictions&quot;
         mat-table
-        [dataSource]&#x3D;&quot;dataSource&quot;
         matSortActive&#x3D;&quot;tool&quot;
         matSortDirection&#x3D;&quot;desc&quot;
         matSortDisableClear
         matSort
         class&#x3D;&quot;predictions-table&quot;
+        [dataSource]&#x3D;&quot;dataSource&quot;
       &gt;
         &lt;caption&gt;
           Table displaying cell population predictions.
         &lt;/caption&gt;
         &lt;ng-container matColumnDef&#x3D;&quot;tool&quot;&gt;
-          &lt;th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription&#x3D;&quot;Sort by Tool&quot;&gt;Tool&lt;/th&gt;
-          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.tool }}&lt;/td&gt;
+          &lt;th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription&#x3D;&quot;Sort by Tool&quot;&gt;Tool&lt;/th&gt;
+          &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;{{ element.tool }}&lt;/td&gt;
         &lt;/ng-container&gt;
         &lt;ng-container matColumnDef&#x3D;&quot;modality&quot;&gt;
-          &lt;th mat-header-cell *matHeaderCellDef&gt;Modality&lt;/th&gt;
-          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.modality }}&lt;/td&gt;
+          &lt;th *matHeaderCellDef mat-header-cell&gt;Modality&lt;/th&gt;
+          &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;{{ element.modality }}&lt;/td&gt;
         &lt;/ng-container&gt;
         &lt;ng-container matColumnDef&#x3D;&quot;percentage&quot;&gt;
-          &lt;th mat-header-cell *matHeaderCellDef&gt;% Of Total&lt;/th&gt;
-          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot; style&#x3D;&quot;white-space: nowrap&quot;&gt;
+          &lt;th *matHeaderCellDef mat-header-cell&gt;% Of Total&lt;/th&gt;
+          &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell style&#x3D;&quot;white-space: nowrap&quot;&gt;
             {{ element.percentage &lt; 0.0001 ? &#x27;&lt; 0.01%&#x27; : (element.percentage | percent: &#x27;1.2-2&#x27;) }}
           &lt;/td&gt;
         &lt;/ng-container&gt;
         &lt;ng-container matColumnDef&#x3D;&quot;count&quot;&gt;
-          &lt;th mat-header-cell *matHeaderCellDef&gt;# Count&lt;/th&gt;
-          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.count | number: &#x27;1.2-2&#x27; }}&lt;/td&gt;
+          &lt;th *matHeaderCellDef mat-header-cell&gt;# Count&lt;/th&gt;
+          &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;{{ element.count | number: &#x27;1.2-2&#x27; }}&lt;/td&gt;
         &lt;/ng-container&gt;
         &lt;ng-container matColumnDef&#x3D;&quot;cell_label&quot;&gt;
-          &lt;th mat-header-cell *matHeaderCellDef&gt;Cell Name in Cell Ontology (CL)&lt;/th&gt;
-          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;{{ element.cell_label }}&lt;/td&gt;
+          &lt;th *matHeaderCellDef mat-header-cell&gt;Cell Name in Cell Ontology (CL)&lt;/th&gt;
+          &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;{{ element.cell_label }}&lt;/td&gt;
         &lt;/ng-container&gt;
         &lt;ng-container matColumnDef&#x3D;&quot;cell_id&quot;&gt;
-          &lt;th mat-header-cell *matHeaderCellDef&gt;Cell Type ID in Cell Ontology (CL)&lt;/th&gt;
-          &lt;td mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+          &lt;th *matHeaderCellDef mat-header-cell&gt;Cell Type ID in Cell Ontology (CL)&lt;/th&gt;
+          &lt;td *matCellDef&#x3D;&quot;let element&quot; mat-cell&gt;
             &lt;a hraHyperlink [href]&#x3D;&quot;element.cell_id&quot;&gt;{{ element.cell_id }}&lt;/a&gt;
           &lt;/td&gt;
         &lt;/ng-container&gt;
 
-        &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns; sticky: true&quot;&gt;&lt;/tr&gt;
-        &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot;&gt;&lt;/tr&gt;
+        &lt;tr *matHeaderRowDef&#x3D;&quot;displayedColumns; sticky: true&quot; mat-header-row&gt;&lt;/tr&gt;
+        &lt;tr *matRowDef&#x3D;&quot;let row; columns: displayedColumns&quot; mat-row&gt;&lt;/tr&gt;
       &lt;/table&gt;
     &lt;/ng-scrollbar&gt;
   &lt;/hra-workflow-card&gt;
@@ -941,7 +942,7 @@ export class CellPopulationPredictionsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="cell-population-predictions">  <h1>Cell Population Predictions</h1>  <p class="info-text">    This table lists all cell types predicted for the selected extraction site per tool. Note that different annotation    tools predict different cell types and different percentages for the very same cell type. Hover over column headers    for details.  </p>  <hra-workflow-card tagline="Cell Population Predictions" class="table-container">    <hra-workflow-card-actions>      <button        hraClickEvent        mat-icon-button        class="predictions-table-menu-trigger"        aria-label="Open table action menu"        [matMenuTriggerFor]="options"      >        <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>      </button>      <!-- MENU -->      <mat-menu hraFeature="menu" #options="matMenu" class="custom-menu">        <button          hraClickEvent          hraFeature="info"          mat-menu-item          matRipple          matRippleColor="#201E3D14"          [matMenuTriggerFor]="submenu"        >          <mat-icon>info</mat-icon>          Info          <mat-icon class="expand-arrow">arrow_right</mat-icon>        </button>        <button hraClickEvent hraFeature="download-csv" mat-menu-item (click)="onDownloadCSVButtonClicked()">          <mat-icon>download</mat-icon>          CSV        </button>      </mat-menu>      <mat-menu #submenu="matMenu">        <hra-tooltip-card [content]="tooltip" class="tooltip-panel"> </hra-tooltip-card>      </mat-menu>    </hra-workflow-card-actions>    <hra-workflow-card-extra>      <hra-delete-file-button        [fileName]="data().file.name"        (cancelLoad)="onDeleteButtonClick()"        data-testid="delete-file-button"      ></hra-delete-file-button>    </hra-workflow-card-extra>    <!-- TABLE -->    <ng-scrollbar class="table-overflow-container">      <table        hraFeature="predictions"        mat-table        [dataSource]="dataSource"        matSortActive="tool"        matSortDirection="desc"        matSortDisableClear        matSort        class="predictions-table"      >        <caption>          Table displaying cell population predictions.        </caption>        <ng-container matColumnDef="tool">          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tool">Tool</th>          <td mat-cell *matCellDef="let element">{{ element.tool }}</td>        </ng-container>        <ng-container matColumnDef="modality">          <th mat-header-cell *matHeaderCellDef>Modality</th>          <td mat-cell *matCellDef="let element">{{ element.modality }}</td>        </ng-container>        <ng-container matColumnDef="percentage">          <th mat-header-cell *matHeaderCellDef>% Of Total</th>          <td mat-cell *matCellDef="let element" style="white-space: nowrap">            {{ element.percentage < 0.0001 ? \'< 0.01%\' : (element.percentage | percent: \'1.2-2\') }}          </td>        </ng-container>        <ng-container matColumnDef="count">          <th mat-header-cell *matHeaderCellDef># Count</th>          <td mat-cell *matCellDef="let element">{{ element.count | number: \'1.2-2\' }}</td>        </ng-container>        <ng-container matColumnDef="cell_label">          <th mat-header-cell *matHeaderCellDef>Cell Name in Cell Ontology (CL)</th>          <td mat-cell *matCellDef="let element">{{ element.cell_label }}</td>        </ng-container>        <ng-container matColumnDef="cell_id">          <th mat-header-cell *matHeaderCellDef>Cell Type ID in Cell Ontology (CL)</th>          <td mat-cell *matCellDef="let element">            <a hraHyperlink [href]="element.cell_id">{{ element.cell_id }}</a>          </td>        </ng-container>        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>      </table>    </ng-scrollbar>  </hra-workflow-card></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="cell-population-predictions">  <h1>Cell Population Predictions</h1>  <p class="info-text">    This table lists all cell types predicted for the selected extraction site per tool. Note that different annotation    tools predict different cell types and different percentages for the very same cell type. Hover over column headers    for details.  </p>  <hra-workflow-card tagline="Cell Population Predictions" class="table-container">    <hra-workflow-card-actions>      <button        hraClickEvent        mat-icon-button        class="predictions-table-menu-trigger"        aria-label="Open table action menu"        [matMenuTriggerFor]="options"      >        <mat-icon class="more-icon" fontIcon="more_vert" />      </button>      <!-- MENU -->      <mat-menu hraFeature="menu" class="custom-menu" #options="matMenu">        <button          hraClickEvent          hraFeature="info"          mat-menu-item          matRipple          matRippleColor="#201E3D14"          [matMenuTriggerFor]="submenu"        >          <mat-icon>info</mat-icon>          Info          <mat-icon class="expand-arrow">arrow_right</mat-icon>        </button>        <button hraClickEvent hraFeature="download-csv" mat-menu-item (click)="onDownloadCSVButtonClicked()">          <mat-icon>download</mat-icon>          CSV        </button>      </mat-menu>      <mat-menu #submenu="matMenu">        <hra-tooltip-card class="tooltip-panel" [content]="tooltip" />      </mat-menu>    </hra-workflow-card-actions>    <hra-workflow-card-extra>      <hra-delete-file-button        data-testid="delete-file-button"        [fileName]="data().file.name"        (cancelLoad)="onDeleteButtonClick()"      />    </hra-workflow-card-extra>    <!-- TABLE -->    <ng-scrollbar class="table-overflow-container">      <table        hraFeature="predictions"        mat-table        matSortActive="tool"        matSortDirection="desc"        matSortDisableClear        matSort        class="predictions-table"        [dataSource]="dataSource"      >        <caption>          Table displaying cell population predictions.        </caption>        <ng-container matColumnDef="tool">          <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Tool">Tool</th>          <td *matCellDef="let element" mat-cell>{{ element.tool }}</td>        </ng-container>        <ng-container matColumnDef="modality">          <th *matHeaderCellDef mat-header-cell>Modality</th>          <td *matCellDef="let element" mat-cell>{{ element.modality }}</td>        </ng-container>        <ng-container matColumnDef="percentage">          <th *matHeaderCellDef mat-header-cell>% Of Total</th>          <td *matCellDef="let element" mat-cell style="white-space: nowrap">            {{ element.percentage < 0.0001 ? \'< 0.01%\' : (element.percentage | percent: \'1.2-2\') }}          </td>        </ng-container>        <ng-container matColumnDef="count">          <th *matHeaderCellDef mat-header-cell># Count</th>          <td *matCellDef="let element" mat-cell>{{ element.count | number: \'1.2-2\' }}</td>        </ng-container>        <ng-container matColumnDef="cell_label">          <th *matHeaderCellDef mat-header-cell>Cell Name in Cell Ontology (CL)</th>          <td *matCellDef="let element" mat-cell>{{ element.cell_label }}</td>        </ng-container>        <ng-container matColumnDef="cell_id">          <th *matHeaderCellDef mat-header-cell>Cell Type ID in Cell Ontology (CL)</th>          <td *matCellDef="let element" mat-cell>            <a hraHyperlink [href]="element.cell_id">{{ element.cell_id }}</a>          </td>        </ng-container>        <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>        <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>      </table>    </ng-scrollbar>  </hra-workflow-card></ng-container></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CellPopulationPredictionsComponent'};

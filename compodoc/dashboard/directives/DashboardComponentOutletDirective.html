@@ -288,7 +288,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/dashboard/dashboard-outlet.directive.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/dashboard/dashboard-outlet.directive.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -338,6 +338,7 @@ export class DashboardComponentOutletDirective {
     const component &#x3D; this.registry.componentFor(spec);
     if (!component) {
       // TODO log missing component
+      // eslint-disable-next-line no-console
       console.log(&#x27;Component Missing&#x27;, spec);
       return undefined;
     }
@@ -347,6 +348,7 @@ export class DashboardComponentOutletDirective {
     const validateResult &#x3D; safeValidateSpec(component, spec);
     if (!validateResult.success) {
       // TODO improve logging spec errors
+      // eslint-disable-next-line no-console
       console.log(validateResult.error.issues);
       return undefined;
     }

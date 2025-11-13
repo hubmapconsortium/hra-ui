@@ -1,5 +1,5 @@
 import { ResolveFn } from '@angular/router';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Creates a resolver function that loads and validates json data

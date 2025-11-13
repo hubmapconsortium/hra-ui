@@ -49,10 +49,10 @@ class FragmentLinkDirective {
         router.navigate([], { fragment: fragment() });
         return false;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: FragmentLinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: FragmentLinkDirective, isStandalone: true, selector: "a[hraFragmentLink], area[hraFragmentLink]", inputs: { fragment: { classPropertyName: "fragment", publicName: "hraFragmentLink", isSignal: true, isRequired: true, transformFunction: null } }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "\"#\" + fragment()" } }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: FragmentLinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: FragmentLinkDirective, isStandalone: true, selector: "a[hraFragmentLink], area[hraFragmentLink]", inputs: { fragment: { classPropertyName: "fragment", publicName: "hraFragmentLink", isSignal: true, isRequired: true, transformFunction: null } }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "\"#\" + fragment()" } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: FragmentLinkDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: FragmentLinkDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'a[hraFragmentLink], area[hraFragmentLink]',
@@ -102,10 +102,10 @@ class LinkDirective {
         this.router?.navigateByUrl(urlTree);
         return false;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: LinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.9", type: LinkDirective, isStandalone: true, selector: "a[hraLink], area[hraLink]", inputs: { url: { classPropertyName: "url", publicName: "hraLink", isSignal: true, isRequired: true, transformFunction: null }, external: { classPropertyName: "external", publicName: "hraLinkExternal", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "url()", "attr.target": "external() ? \"_blank\" : null", "attr.rel": "external() ? \"noopener noreferrer\" : null" } }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: LinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: LinkDirective, isStandalone: true, selector: "a[hraLink], area[hraLink]", inputs: { url: { classPropertyName: "url", publicName: "hraLink", isSignal: true, isRequired: true, transformFunction: null }, external: { classPropertyName: "external", publicName: "hraLinkExternal", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "url()", "attr.target": "external() ? \"_blank\" : null", "attr.rel": "external() ? \"noopener noreferrer\" : null" } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: LinkDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: LinkDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'a[hraLink], area[hraLink]',
@@ -130,11 +130,11 @@ function provideRouterExt(...features) {
 }
 
 class RouterExtModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: RouterExtModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.9", ngImport: i0, type: RouterExtModule, imports: [LinkDirective, FragmentLinkDirective], exports: [LinkDirective, FragmentLinkDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: RouterExtModule });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: RouterExtModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.11", ngImport: i0, type: RouterExtModule, imports: [LinkDirective, FragmentLinkDirective], exports: [LinkDirective, FragmentLinkDirective] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: RouterExtModule });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: RouterExtModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: RouterExtModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [LinkDirective, FragmentLinkDirective],

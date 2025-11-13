@@ -436,6 +436,7 @@ export class ConfigManager {
       try {
         output[target] &#x3D; parser(value);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.warn(&#x60;Failed to parse ${key} &#x3D; ${value} (${typeof value})&#x60;, (error as Error).message);
       }
     }

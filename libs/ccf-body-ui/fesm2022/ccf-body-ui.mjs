@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { effect, input, numberAttribute, booleanAttribute, output, inject, ErrorHandler, viewChild, ViewEncapsulation, Component } from '@angular/core';
 import { derivedAsync } from 'ngxtension/derived-async';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * This function traverses a scene graph, applying transformations and invoking a visitor function at each node.
@@ -866,7 +866,7 @@ const SPATIAL_SCENE_NODE = z
 /** Zod for SPATIAL SCENE NODE array */
 const SPATIAL_SCENE_NODE_ARRAY = z.array(SPATIAL_SCENE_NODE);
 /** Preprocesses the scene input */
-const SCENE_INPUT = z.preprocess(tryParseJson, z.union([z.literal(''), z.string().url(), SPATIAL_SCENE_NODE_ARRAY]));
+const SCENE_INPUT = z.preprocess(tryParseJson, z.union([z.undefined(), z.literal(''), z.string().url(), SPATIAL_SCENE_NODE_ARRAY]));
 /** Bind scene input */
 const parseSceneInput = SCENE_INPUT.parse.bind(SCENE_INPUT);
 /** Preprocess the target input */
@@ -1016,9 +1016,9 @@ class BodyUiComponent {
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(BodyUiComponent, [{
         type: Component,
-        args: [{ selector: 'hra-body-ui', encapsulation: ViewEncapsulation.ShadowDom, template: "<canvas #canvas role=\"img\" part=\"canvas\"></canvas>\n", styles: [":host{display:block;position:relative;width:100%;height:100%}:host canvas{background-color:#000}\n"] }]
+        args: [{ selector: 'hra-body-ui', encapsulation: ViewEncapsulation.ShadowDom, template: "<canvas role=\"img\" part=\"canvas\" #canvas></canvas>\n", styles: [":host{display:block;position:relative;width:100%;height:100%}:host canvas{background-color:#000}\n"] }]
     }], () => [], { scene: [{ type: i0.Input, args: [{ isSignal: true, alias: "scene", required: false }] }], rotation: [{ type: i0.Input, args: [{ isSignal: true, alias: "rotation", required: false }] }], rotationX: [{ type: i0.Input, args: [{ isSignal: true, alias: "rotationX", required: false }] }], zoom: [{ type: i0.Input, args: [{ isSignal: true, alias: "zoom", required: false }] }], target: [{ type: i0.Input, args: [{ isSignal: true, alias: "target", required: false }] }], bounds: [{ type: i0.Input, args: [{ isSignal: true, alias: "bounds", required: false }] }], camera: [{ type: i0.Input, args: [{ isSignal: true, alias: "camera", required: false }] }], interactive: [{ type: i0.Input, args: [{ isSignal: true, alias: "interactive", required: false }] }], nodeClick: [{ type: i0.Output, args: ["nodeClick"] }], nodeDrag: [{ type: i0.Output, args: ["nodeDrag"] }], nodeHoverStart: [{ type: i0.Output, args: ["nodeHoverStart"] }], nodeHoverStop: [{ type: i0.Output, args: ["nodeHoverStop"] }], rotationChange: [{ type: i0.Output, args: ["rotationChange"] }], initialized: [{ type: i0.Output, args: ["initialized"] }], canvas: [{ type: i0.ViewChild, args: ['canvas', { isSignal: true }] }] }); })();
-(() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(BodyUiComponent, { className: "BodyUiComponent", filePath: "lib/body-ui/body-ui.component.ts", lineNumber: 122 }); })();
+(() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(BodyUiComponent, { className: "BodyUiComponent", filePath: "lib/body-ui/body-ui.component.ts", lineNumber: 125 }); })();
 
 /**
  * This function simplifies a scene by processing spatial scene nodes, loading GLTF files, and generating new nodes with simplified geometry.

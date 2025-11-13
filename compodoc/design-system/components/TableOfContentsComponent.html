@@ -392,9 +392,9 @@ import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
  */
 @Component({
   selector: &#x27;hra-table-of-contents&#x27;,
+  imports: [HraCommonModule, MatRippleModule, RouterModule, ScrollingModule],
   templateUrl: &#x27;./table-of-contents.component.html&#x27;,
   styleUrl: &#x27;./table-of-contents.component.scss&#x27;,
-  imports: [HraCommonModule, MatRippleModule, RouterModule, ScrollingModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableOfContentsComponent {

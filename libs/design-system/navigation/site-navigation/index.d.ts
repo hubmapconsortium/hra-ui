@@ -1,5 +1,5 @@
 import * as _angular_core from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Site Navigation Component for HRA Docs */
 declare class SiteNavigationComponent {
