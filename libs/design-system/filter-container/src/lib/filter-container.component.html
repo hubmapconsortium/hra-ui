@@ -22,10 +22,10 @@
 
   @if (chips().length > 0) {
     <mat-chip-set class="chips-container">
-      @for (chip of chips(); track chip.id) {
+      @for (chip of chips(); track chip.label) {
         <mat-chip (removed)="removeChip(chip)" disableRipple>
-          {{ chip.id }}
-          <button matChipRemove [attr.aria-label]="'Remove ' + chip.id">
+          {{ chip.label }}
+          <button matChipRemove [attr.aria-label]="'Remove ' + chip.label">
             <mat-icon>close</mat-icon>
           </button>
         </mat-chip>

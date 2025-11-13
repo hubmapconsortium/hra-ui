@@ -12,8 +12,8 @@ import {
 
 /** A filter chip representing a selected filter option */
 export interface FilterChip {
-  /** Unique identifier for the chip */
-  id: string;
+  /** Label for the chip */
+  label: string;
 }
 
 /**
@@ -56,6 +56,6 @@ export class FilterContainerComponent {
    * @param chip The chip to remove
    */
   removeChip(chip: FilterChip): void {
-    this.chips.update((current) => current.filter((c) => c.id !== chip.id));
+    this.chips.update((current) => current.filter((c) => c.label !== chip.label));
   }
 }
