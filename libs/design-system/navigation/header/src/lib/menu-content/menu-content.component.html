@@ -13,7 +13,6 @@
     class="group-label"
     [hraLink]="group.url"
     [hraLinkExternal]="group.external"
-    [attr.target]="group.target ?? ''"
     rel="noopener noreferrer"
     hraClickEvent
     [hraFeature]="group.label | slugify"
@@ -59,7 +58,6 @@
     class="item-label"
     [hraLink]="item.url"
     [hraLinkExternal]="item.external"
-    [attr.target]="item.target ?? ''"
     rel="noopener noreferrer"
     hraClickEvent
     [hraFeature]="item.label | slugify"
