@@ -8,4 +8,5 @@ export type YouTubePlayer = z.infer<typeof YouTubePlayerSchema>;
 export const YouTubePlayerSchema = ContentTemplateSchema.extend({
   component: z.literal('YouTubePlayer'),
   videoId: z.string(),
+  label: z.string(),
 });
