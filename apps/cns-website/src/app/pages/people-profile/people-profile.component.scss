@@ -1,0 +1,54 @@
+.profile-page-container {
+  display: flex;
+  gap: 3.375rem;
+
+  @media (max-width: 924px) {
+    flex-direction: column;
+    min-height: auto;
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+.contact-sidebar {
+  flex-shrink: 0;
+  align-self: stretch;
+
+  @media (max-width: 924px) {
+    width: 100%;
+    align-self: auto;
+  }
+
+  @media (max-width: 639px) {
+    display: none;
+  }
+}
+
+.contact-sidebar-mobile {
+  display: none;
+
+  @media (max-width: 639px) {
+    display: block;
+  }
+}
+
+.profile-header-section-mobile {
+  display: none;
+
+  @media (max-width: 639px) {
+    display: block;
+  }
+}
+
+.profile-header-section-desktop {
+  display: block;
+
+  @media (max-width: 639px) {
+    display: none;
+  }
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
