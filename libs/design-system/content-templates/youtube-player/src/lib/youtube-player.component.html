@@ -1,0 +1,22 @@
+@if (hasCookiesEnabled()) {
+  <youtube-player
+    hraFeature="youtube-player"
+    hraClickEvent
+    #player
+    [videoId]="videoId()"
+    [playerVars]="{ rel: 0, showinfo: 0 }"
+    [disableCookies]="true"
+  />
+} @else {
+  <div class="youtube-thumbnail-container" hraFeature="youtube-thumbnail">
+    <a [attr.href]="videoUrl()" target="_blank" rel="noopener noreferrer" hraFeature="watch-on-youtube" hraClickEvent>
+      <img [attr.src]="thumbnailUrl()" [attr.alt]="'YouTube video thumbnail for ' + label()" class="thumbnail-image" />
+    </a>
+    <div class="enable-cookies-message">
+      <button hraFeature="enable-cookies" hraClickEvent (click)="onEnableCookiesClick()" class="enable-cookies-button">
+        Enable cookies
+      </button>
+      to watch videos
+    </div>
+  </div>
+}
