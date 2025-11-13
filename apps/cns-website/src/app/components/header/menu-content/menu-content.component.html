@@ -1,6 +1,6 @@
 @let featured = menu().featured;
 @if (featured) {
-  @let url = resolveUrl(featured.url, featured.external);
+  @let url = resolve(featured.url, featured.external);
   @if (url.isAbsolute) {
     <a
       mat-button
@@ -34,7 +34,7 @@
   </div>
 }
 
-<ng-template cnsMenuGroup let-group #groupTemplate>
+<ng-template let-group #groupTemplate>
   <div class="group-label">
     {{ group.label }}
   </div>
@@ -52,8 +52,8 @@
   </div>
 </ng-template>
 
-<ng-template cnsMenuItem let-item #itemTemplate>
-  @let url = resolveUrl(item.url, item.external);
+<ng-template let-item #itemTemplate>
+  @let url = resolve(item.url, item.external);
   @if (url.isAbsolute) {
     <a
       mat-button

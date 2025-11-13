@@ -20,7 +20,7 @@
     <mat-accordion displayMode="flat" multi="false">
       @for (option of menuOptions().options; track $index) {
         @if (option.type === 'item') {
-          @let url = resolveUrl(option.url, option.external);
+          @let url = resolve(option.url, option.external);
           @if (url.isAbsolute) {
             <a
               mat-button

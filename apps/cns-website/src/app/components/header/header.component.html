@@ -55,10 +55,10 @@
             [cdkConnectedOverlayPositions]="desktopMenuPositions"
             (overlayOutsideClick)="closeMenu()"
           >
-            <div>MEGA MENU HERE</div>
+            <cns-mega-menu [menu]="category" [baseUrl]="baseUrl()"></cns-mega-menu>
           </ng-template>
         } @else {
-          @let url = resolveUrl(category.url, category.external);
+          @let url = resolve(category.url, category.external);
           @if (url.isAbsolute) {
             <a
               mat-button

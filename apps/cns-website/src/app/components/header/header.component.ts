@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,11 +18,12 @@ import { MENUS } from './static-data/parsed';
 import { Menu } from './types/menus.schema';
 import { MatIconModule } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { EventType, Router, RouterModule, UrlTree } from '@angular/router';
+import { EventType, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 import { explicitEffect } from 'ngxtension/explicit-effect';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
-import { isAbsolute as isAbsoluteUrl } from '@hra-ui/common/url';
+import { MegaMenuComponent } from './mega-menu/mega-menu.component';
+import { resolveUrl } from '../../utils/url-resolver';
 
 /** Position of the mobile menu overlay */
 const MOBILE_MENU_POSITIONS: ConnectedPosition[] = [
@@ -44,6 +44,7 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
     InlineSVGModule,
     MobileMenuComponent,
     RouterModule,
+    MegaMenuComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -59,6 +60,8 @@ export class HeaderComponent {
   protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);
   /** Reference to this component's html element */
   private readonly elementRef = inject<ElementRef<Element>>(ElementRef);
+  /** Reference to the router if available */
+  private readonly router = inject(Router, { optional: true });
 
   /** Overlay positions for the mobile menu */
   protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;
@@ -167,28 +170,7 @@ export class HeaderComponent {
     this.mobileMenuOverlay()?.overlayRef?.updatePosition();
   }
 
-  /** Reference to the router if available */
-  private readonly router = inject(Router, { optional: true });
-  /**
-   * Resolves an url against the baseUrl
-   *
-   * @param url Raw url
-   * @returns Whether the url is absolute along with the resolved url
-   */
-  resolveUrl(url: string, forceExternal = false): { isAbsolute: boolean; value: string | UrlTree } {
-    const { router } = this;
-    const baseUrl = Location.stripTrailingSlash(this.baseUrl() ?? '') + '/';
-    let isAbsolute = forceExternal || isAbsoluteUrl(url);
-    if (!forceExternal && baseUrl && url.startsWith(baseUrl)) {
-      isAbsolute = false;
-      url = url.slice(baseUrl.length);
-    }
-
-    let value: string | UrlTree = url;
-    if (!isAbsolute && router) {
-      value = router.parseUrl(Location.stripTrailingSlash(url));
-    }
-
-    return { isAbsolute, value };
+  resolve(url: string, external?: boolean) {
+    return resolveUrl(url, external, this.router, this.baseUrl());
   }
 }

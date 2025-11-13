@@ -9,7 +9,7 @@
         "type": "item",
         "label": "Meet our team",
         "url": "https://cns.iu.edu/people",
-        "imgSrc": "assets/group.png",
+        "imgSrc": "assets/ui-images/group.png",
         "target": "_blank"
       },
       "items": [
