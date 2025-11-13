@@ -1,4 +1,5 @@
 import nx from '@nx/eslint-plugin';
+import importZod from 'eslint-plugin-import-zod';
 import schema from 'eslint-plugin-json-schema-validator';
 import json from 'eslint-plugin-jsonc';
 import storybook from 'eslint-plugin-storybook';
@@ -43,6 +44,7 @@ export const configs = {
     ...nx.configs['flat/base'],
     ...nx.configs['flat/javascript'],
     ...nx.configs['flat/typescript'],
+    ...importZod.configs['recommended'],
     {
       ignores: ['**/dist', '**/coverage'],
     },
