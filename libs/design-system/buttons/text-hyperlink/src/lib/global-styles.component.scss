@@ -3,7 +3,8 @@
 
 @include utils.global-styles() {
   a.hra-text-hyperlink,
-  markdown a {
+  markdown a,
+  button.hra-text-hyperlink-button {
     text-decoration: underline solid currentColor 0.0625rem;
     text-underline-offset: 0.125rem;
 
@@ -32,6 +33,20 @@
     &:active,
     &:active mat-icon {
       color: vars.$tertiary;
+    }
+  }
+
+  button.hra-text-hyperlink-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-align: inherit;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
   }
 
