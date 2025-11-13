@@ -35,18 +35,18 @@ export interface FilterChip {
   styleUrl: './filter-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterContainerComponent {
+export class FilterContainerComponent<T extends FilterChip> {
   /** tagline for the filter category */
   readonly action = input.required<string>();
 
   /** Whether to show the info button with tooltip */
-  readonly showTooltip = input<boolean>(false);
+  readonly showTooltip = input(false, { transform: booleanAttribute });
 
   /** Array of selected filter chips - two-way bindable */
-  readonly chips = model<FilterChip[]>([]);
+  readonly chips = model<T[]>([]);
 
   /** Whether to show a divider below the container */
-  readonly enableDivider = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly enableDivider = input(false, { transform: booleanAttribute });
 
   /** Emits when the category button is clicked */
   readonly actionClick = output<void>();
@@ -55,7 +55,7 @@ export class FilterContainerComponent {
    * Handles the removal of a chip
    * @param chip The chip to remove
    */
-  removeChip(chip: FilterChip): void {
+  removeChip(chip: T): void {
     this.chips.update((current) => current.filter((c) => c.label !== chip.label));
   }
 }
