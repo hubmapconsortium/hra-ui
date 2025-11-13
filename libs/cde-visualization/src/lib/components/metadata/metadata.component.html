@@ -2,19 +2,18 @@
   <hra-expansion-panel-actions>
     <button
       mat-icon-button
-      [matMenuTriggerFor]="menu"
-      [hraIconButtonSize]="'large'"
+      hraIconButtonSize="large"
       aria-label="Icon to open nested menu"
       hraPlainTooltip="More"
       hraFeature="menu"
       hraClickEvent
+      [matMenuTriggerFor]="menu"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" class="metadata-overlay" hraFeature="menu">
+    <mat-menu class="metadata-overlay" hraFeature="menu" #menu="matMenu">
       <button
         mat-menu-item
-        [matMenuTriggerFor]="infoSubMenu"
         class="expanded"
         matRipple
         matRippleColor="#201E3D14"
@@ -22,6 +21,7 @@
         hraClickEvent
         hraHoverEvent
         hraHoverEventTriggerOn="mouseenter"
+        [matMenuTriggerFor]="infoSubMenu"
       >
         <mat-icon>info</mat-icon>
         <span>Info</span>
@@ -30,9 +30,9 @@
       @if (hasEmptyFields()) {
         <button
           mat-menu-item
-          (click)="toggleEmptyFields()"
-          [hraFeature]="showEmptyFields() ? 'show-metadata' : 'hide-metadata'"
           hraClickEvent
+          [hraFeature]="showEmptyFields() ? 'show-metadata' : 'hide-metadata'"
+          (click)="toggleEmptyFields()"
         >
           <mat-icon>{{ showEmptyFields() ? 'visibility_off' : 'visibility' }}visibility</mat-icon>
           {{ showEmptyFields() ? 'Hide' : 'Show' }} Unknown Metadata
@@ -50,11 +50,11 @@
         Embed App
       </a>
       <mat-menu
-        #infoSubMenu="matMenu"
         class="info-sub-menu"
         hraFeature="metadata-info-submenu"
         hraHoverEvent
         hraHoverEventTriggerOn="mouseenter"
+        #infoSubMenu="matMenu"
       >
         Visualization metadata for the sample dataset.
       </mat-menu>
@@ -66,7 +66,7 @@
         <span class="metadata-row-label"> Source publication </span>
         <span class="metadata-row-value">
           @if (metadata().sampleExtra; as extra) {
-            <a hraHyperlink [attr.href]="extra.sampleUrl" target="_blank" rel="noreferrer noopener">
+            <a hraHyperlink target="_blank" rel="noreferrer noopener" [attr.href]="extra.sampleUrl">
               {{ extra.sampleUrl }}
             </a>
           } @else {
@@ -79,7 +79,7 @@
       <span class="metadata-row-label">Source data</span>
       <span>
         @if (metadata().sampleExtra; as extra) {
-          <a hraHyperlink [attr.href]="extra.sourceDataUrl" target="_blank" rel="noreferrer noopener">
+          <a hraHyperlink target="_blank" rel="noreferrer noopener" [attr.href]="extra.sourceDataUrl">
             {{ metadata().sourceFileName }}
           </a>
         } @else {

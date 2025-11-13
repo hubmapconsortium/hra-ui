@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 import {
   DASHBOARD_COMPONENT_ANY_DEF,
   DashboardComponent,

@@ -32,7 +32,7 @@ import { Sheet, SheetConfig } from '../../models/sheet.model';
     ButtonsModule,
   ],
   templateUrl: './vis-controls.component.html',
-  styleUrls: ['./vis-controls.component.scss'],
+  styleUrl: './vis-controls.component.scss',
 })
 export class VisControlsComponent {
   @Input() config!: SheetConfig;

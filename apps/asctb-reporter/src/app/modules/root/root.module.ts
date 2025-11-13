@@ -17,7 +17,6 @@ import { TreeModule } from '../tree/tree.module';
 import { RootComponent } from './root.component';
 
 @NgModule({
-  declarations: [RootComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -34,6 +33,7 @@ import { RootComponent } from './root.component';
     ControlPaneComponent,
     LegendComponent,
   ],
+  declarations: [RootComponent],
   exports: [RootComponent],
 })
 export class RootModule {}

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Publications page data type */
 export type PublicationsPageData = z.infer<typeof PublicationsPageDataSchema>;

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { z } from 'zod';
+import * as z from 'zod';
 import { DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.component';
 

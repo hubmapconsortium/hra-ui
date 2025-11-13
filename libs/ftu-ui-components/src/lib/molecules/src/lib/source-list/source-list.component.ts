@@ -63,7 +63,7 @@ export interface SourceListItem extends TableRow {
     ResultsIndicatorComponent,
   ],
   templateUrl: './source-list.component.html',
-  styleUrls: ['./source-list.component.scss'],
+  styleUrl: './source-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.full-screen]': 'hideTitle()',

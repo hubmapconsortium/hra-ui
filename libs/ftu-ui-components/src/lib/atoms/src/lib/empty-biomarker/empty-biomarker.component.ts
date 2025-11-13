@@ -15,7 +15,7 @@ import { MarkdownModule } from 'ngx-markdown';
   selector: 'ftu-empty-biomarker',
   imports: [HraCommonModule, MatButtonModule, MarkdownModule, MatIconModule, CdkCopyToClipboard],
   templateUrl: './empty-biomarker.component.html',
-  styleUrls: ['./empty-biomarker.component.scss'],
+  styleUrl: './empty-biomarker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmptyBiomarkerComponent {

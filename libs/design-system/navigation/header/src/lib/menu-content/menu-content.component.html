@@ -7,23 +7,23 @@
   }
 }
 
-<ng-template hraMenuGroup let-group #groupTemplate>
+<ng-template let-group hraMenuGroup #groupTemplate>
   @let url = resolveUrl(group.url, group.external);
   @if (url.isAbsolute) {
     <a
       mat-button
       class="group-label"
-      [attr.href]="url.value"
-      [attr.target]="group.target ?? ''"
       rel="noopener noreferrer"
       hraClickEvent
+      [attr.href]="url.value"
+      [attr.target]="group.target ?? ''"
       [hraFeature]="group.label | slugify"
     >
       {{ group.label }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   } @else {
-    <a mat-button class="group-label" [routerLink]="url.value" hraClickEvent [hraFeature]="group.label | slugify">
+    <a mat-button class="group-label" hraClickEvent [routerLink]="url.value" [hraFeature]="group.label | slugify">
       {{ group.label }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
@@ -48,7 +48,7 @@
   }
 </ng-template>
 
-<ng-template hraMenuSubGroup let-subgroup #subgroupTemplate>
+<ng-template let-subgroup hraMenuSubGroup #subgroupTemplate>
   <div class="subgroup-label">
     {{ subgroup.label }}
   </div>
@@ -59,17 +59,17 @@
   </div>
 </ng-template>
 
-<ng-template hraMenuItem let-item #itemTemplate>
+<ng-template let-item hraMenuItem #itemTemplate>
   @let url = resolveUrl(item.url, item.external);
   @if (url.isAbsolute) {
     <a
       mat-button
       hraSecondaryButton
       class="item-label"
-      [attr.href]="url.value"
-      [attr.target]="item.target ?? ''"
       rel="noopener noreferrer"
       hraClickEvent
+      [attr.href]="url.value"
+      [attr.target]="item.target ?? ''"
       [hraFeature]="item.label | slugify"
     >
       {{ item.label }}
@@ -79,8 +79,8 @@
       mat-button
       hraSecondaryButton
       class="item-label"
-      [routerLink]="url.value"
       hraClickEvent
+      [routerLink]="url.value"
       [hraFeature]="item.label | slugify"
     >
       {{ item.label }}

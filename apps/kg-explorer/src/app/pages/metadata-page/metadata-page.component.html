@@ -15,16 +15,16 @@
           <hra-copyable-url-container [url]="purl()" />
           @if (getImage()) {
             @if (imageTypes[metadata().type] === 'image/svg+xml') {
-              <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />
+              <img alt="Metadata Image" class="metadata-image" [src]="getImage()" />
             }
             @if (imageTypes[metadata().type] === 'model/gltf-binary') {
               <div hraFeature="3d-model-viewer" hraClickEvent class="viewer-container">
                 <model-viewer
                   class="model-viewer"
-                  [src]="getImage()"
                   shadow-intensity="1"
                   camera-controls
                   auto-rotate
+                  [src]="getImage()"
                 />
               </div>
             }
@@ -57,7 +57,7 @@
           <hra-page-section tagline="Tags" [level]="2">
             <mat-chip-set hraFeature="tags">
               @for (tag of tags(); track $index) {
-                <mat-chip [hraFeature]="tag.label | slugify" hraClickEvent (click)="tagClick(tag.id, tag.type)">
+                <mat-chip hraClickEvent [hraFeature]="tag.label | slugify" (click)="tagClick(tag.id, tag.type)">
                   {{ tag.label }}
                 </mat-chip>
               }
@@ -74,10 +74,10 @@
             [availableVersions]="availableVersions()"
             [downloadOptions]="downloadOptions()"
             (versionChange)="currentVersion.set($event)"
-          ></hra-provenance-menu>
+          />
         }
       </hra-metadata-layout-content>
     </hra-metadata-layout>
-    <hra-footer></hra-footer>
+    <hra-footer />
   }
 </ng-container>

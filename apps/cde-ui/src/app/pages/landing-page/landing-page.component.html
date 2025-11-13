@@ -9,7 +9,7 @@
           embedded on websites.
         </h4>
       </div>
-      <cde-visual-card [cardData]="cards()"></cde-visual-card>
+      <cde-visual-card [cardData]="cards()" />
     </div>
   </section>
   <section class="vccf-container" hraFeature="vccf">
@@ -47,10 +47,10 @@
                 hraCtaButton
                 hraSecondaryButton
                 disableRipple
-                [attr.href]="'assets/VCCF_March2024.pdf' | assetUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 hraClickEvent
+                [attr.href]="'assets/VCCF_March2024.pdf' | assetUrl"
               >
                 VCCF Visualization Poster
                 <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
@@ -64,5 +64,5 @@
       </div>
     </div>
   </section>
-  <hra-footer></hra-footer>
+  <hra-footer />
 </ng-container>

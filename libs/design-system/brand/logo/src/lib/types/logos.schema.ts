@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Logo size */
 export type BrandLogoSize = z.infer<typeof BrandLogoSizeSchema>;
