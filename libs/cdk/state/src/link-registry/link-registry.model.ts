@@ -1,5 +1,5 @@
 import { StateContext } from '@ngxs/store';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Types for Link */
 export enum LinkType {

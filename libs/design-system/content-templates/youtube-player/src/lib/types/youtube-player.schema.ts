@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** YouTube component data */
 export type YouTubePlayer = z.infer<typeof YouTubePlayerSchema>;

@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../../title-card/title-card.component';
 import { METRICS_ITEM_DEF, MetricsItemComponent } from '../item/metrics-item.component';

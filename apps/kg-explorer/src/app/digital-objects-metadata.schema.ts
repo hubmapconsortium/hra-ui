@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Person info type */
 export type PersonInfo = z.infer<typeof PersonInfoSchema>;

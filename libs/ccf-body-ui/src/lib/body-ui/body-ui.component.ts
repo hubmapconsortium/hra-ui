@@ -17,7 +17,7 @@ import {
 import { SpatialSceneNode } from '@hra-api/ng-client';
 import { derivedAsync } from 'ngxtension/derived-async';
 import { catchError, map, Observable, of, Subscription } from 'rxjs';
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { BodyUI, BodyUIProps, NodeClickEvent, NodeDragEvent } from '../body-ui';
 
