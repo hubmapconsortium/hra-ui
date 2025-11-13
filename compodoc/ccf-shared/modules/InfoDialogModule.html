@@ -135,13 +135,13 @@
 <title>cluster_InfoDialogModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="159,-70 159,-268 337,-268 337,-70 159,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_InfoDialogModule_exports</title>
-<polygon fill="none" stroke="black" points="167,-208 167,-260 329,-260 329,-208 167,-208"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_InfoDialogModule_declarations</title>
 <polygon fill="none" stroke="black" points="169,-78 169,-130 327,-130 327,-78 169,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_InfoDialogModule_exports</title>
+<polygon fill="none" stroke="black" points="167,-208 167,-260 329,-260 329,-208 167,-208"/>
 </g>
 <!-- InfoDialogComponent -->
 <g id="node1" class="node">
@@ -250,13 +250,20 @@ import { NgModule } from &#x27;@angular/core&#x27;;
 import { MatDialogModule } from &#x27;@angular/material/dialog&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { YouTubePlayerModule } from &#x27;@angular/youtube-player&#x27;;
+import { HraYoutubePlayerComponent } from &#x27;@hra-ui/design-system/content-templates/youtube-player&#x27;;
 import { MarkdownModule } from &#x27;ngx-markdown&#x27;;
 import { InfoDialogComponent } from &#x27;./info-dialog.component&#x27;;
 
 @NgModule({
   declarations: [InfoDialogComponent],
-  imports: [CommonModule, MatDialogModule, MatIconModule, MatExpansionModule, YouTubePlayerModule, MarkdownModule],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatExpansionModule,
+    HraYoutubePlayerComponent,
+    MarkdownModule,
+  ],
   exports: [InfoDialogComponent],
 })
 export class InfoDialogModule {}

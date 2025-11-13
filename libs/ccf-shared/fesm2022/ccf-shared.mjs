@@ -27,8 +27,8 @@ import * as i2$2 from '@angular/material/dialog';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatDialog } from '@angular/material/dialog';
 import * as i4$1 from '@angular/material/expansion';
 import { MatExpansionModule } from '@angular/material/expansion';
-import * as i5$2 from '@angular/youtube-player';
-import { YouTubePlayerModule } from '@angular/youtube-player';
+import * as i5$2 from '@hra-ui/design-system/content-templates/youtube-player';
+import { HraYoutubePlayerComponent } from '@hra-ui/design-system/content-templates/youtube-player';
 import * as i6 from 'ngx-markdown';
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -939,12 +939,12 @@ class OpacitySliderComponent {
 
 function InfoDialogComponent_div_10_mat_expansion_panel_1_div_6_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵelementStart(0, "div", 16);
-    i0.ɵɵelement(1, "youtube-player", 17);
+    i0.ɵɵelement(1, "hra-youtube-player", 17);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
     const ctx_r0 = i0.ɵɵnextContext(3);
     i0.ɵɵadvance();
-    i0.ɵɵproperty("videoId", i0.ɵɵinterpolate(ctx_r0.videoID));
+    i0.ɵɵproperty("videoId", ctx_r0.videoID);
 } }
 function InfoDialogComponent_div_10_mat_expansion_panel_1_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵelementStart(0, "mat-expansion-panel", 11)(1, "mat-expansion-panel-header")(2, "h2", 12);
@@ -952,7 +952,7 @@ function InfoDialogComponent_div_10_mat_expansion_panel_1_Template(rf, ctx) { if
     i0.ɵɵelementEnd()();
     i0.ɵɵelementStart(4, "div", 13);
     i0.ɵɵelement(5, "markdown", 14);
-    i0.ɵɵtemplate(6, InfoDialogComponent_div_10_mat_expansion_panel_1_div_6_Template, 2, 2, "div", 15);
+    i0.ɵɵtemplate(6, InfoDialogComponent_div_10_mat_expansion_panel_1_div_6_Template, 2, 1, "div", 15);
     i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const ctx_r1 = i0.ɵɵnextContext();
@@ -1014,7 +1014,7 @@ class InfoDialogComponent {
         }, 250);
     }
     static ɵfac = function InfoDialogComponent_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || InfoDialogComponent)(); };
-    static ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: InfoDialogComponent, selectors: [["ccf-info-dialog"]], standalone: false, decls: 11, vars: 2, consts: [[1, "about", "wrapper"], [1, "container"], [1, "content"], [1, "header"], ["mat-dialog-title", "", 1, "title"], [1, "close"], [1, "material-icons", "close-icon", 3, "click"], [1, "mat-typography", "dialog-content"], ["class", "panel", 4, "ngFor", "ngForOf"], [1, "panel"], [3, "expanded", 4, "ngIf"], [3, "expanded"], [1, "no-header-margin"], [1, "top-padding"], [1, "variable-binding", 3, "data"], ["class", "video-player", 4, "ngIf"], [1, "video-player"], [3, "videoId"]], template: function InfoDialogComponent_Template(rf, ctx) { if (rf & 1) {
+    static ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: InfoDialogComponent, selectors: [["ccf-info-dialog"]], standalone: false, decls: 11, vars: 2, consts: [[1, "about", "wrapper"], [1, "container"], [1, "content"], [1, "header"], ["mat-dialog-title", "", 1, "title"], [1, "close"], [1, "material-icons", "close-icon", 3, "click"], [1, "mat-typography", "dialog-content"], ["class", "panel", 4, "ngFor", "ngForOf"], [1, "panel"], [3, "expanded", 4, "ngIf"], [3, "expanded"], [1, "no-header-margin"], [1, "top-padding"], [1, "variable-binding", 3, "data"], ["class", "video-player", 4, "ngIf"], [1, "video-player"], ["hraFeature", "info-video", "label", "Info video", 3, "videoId"]], template: function InfoDialogComponent_Template(rf, ctx) { if (rf & 1) {
             i0.ɵɵelementStart(0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "div", 3)(4, "h2", 4);
             i0.ɵɵtext(5);
             i0.ɵɵelementEnd();
@@ -1030,28 +1030,45 @@ class InfoDialogComponent {
             i0.ɵɵtextInterpolate(ctx.infoTitle);
             i0.ɵɵadvance(5);
             i0.ɵɵproperty("ngForOf", ctx.documentationContents);
-        } }, dependencies: [i1.NgForOf, i1.NgIf, i2$2.MatDialogTitle, i2$2.MatDialogContent, i1$1.MatIcon, i4$1.MatExpansionPanel, i4$1.MatExpansionPanelHeader, i5$2.YouTubePlayer, i6.MarkdownComponent], styles: [".mat-dialog-container{padding:0}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]{padding:1.5rem;text-align:left}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]{display:flex;justify-content:space-between;height:3rem;margin-bottom:2.25rem;position:relative}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%]{font-size:.875rem;line-height:1.5rem;margin-bottom:1rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .close[_ngcontent-%COMP%]   .close-icon[_ngcontent-%COMP%]{cursor:pointer;height:3rem;width:3rem;line-height:3rem;text-align:center;transition:.6s}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%]{font-size:1.5rem;margin:0 auto;line-height:3rem;height:3rem;justify-self:center;display:flex}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .subtitle[_ngcontent-%COMP%]{font-size:1rem;margin-top:0;margin-bottom:.5rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]{margin-bottom:1.5rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]   .no-header-margin[_ngcontent-%COMP%]{font-weight:300;margin-bottom:0}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]   .top-padding[_ngcontent-%COMP%]{display:flex}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]   .top-padding[_ngcontent-%COMP%]   markdown[_ngcontent-%COMP%]     ul{margin-top:0;padding-left:1.5rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]{height:50rem;min-height:10rem;padding:0 1.5rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .variable-binding[_ngcontent-%COMP%]{font-weight:300;display:flex}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .variable-binding.first[_ngcontent-%COMP%]{padding-right:1rem;width:73%}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .variable-binding[_ngcontent-%COMP%]     ul{margin:0}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .variable-binding[_ngcontent-%COMP%]     img{margin-left:1rem;float:right}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .video-player[_ngcontent-%COMP%]{position:relative;width:50%}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .video-player[_ngcontent-%COMP%]     iframe{width:100%;height:100%}"], changeDetection: 0 });
+        } }, dependencies: [i1.NgForOf, i1.NgIf, i2$2.MatDialogTitle, i2$2.MatDialogContent, i1$1.MatIcon, i4$1.MatExpansionPanel, i4$1.MatExpansionPanelHeader, i5$2.HraYoutubePlayerComponent, i6.MarkdownComponent], styles: [".mat-dialog-container{padding:0}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]{padding:1.5rem;text-align:left}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   .header[_ngcontent-%COMP%]{display:flex;justify-content:space-between;height:3rem;margin-bottom:2.25rem;position:relative}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%]{font-size:.875rem;line-height:1.5rem;margin-bottom:1rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .close[_ngcontent-%COMP%]   .close-icon[_ngcontent-%COMP%]{cursor:pointer;height:3rem;width:3rem;line-height:3rem;text-align:center;transition:.6s}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%]{font-size:1.5rem;margin:0 auto;line-height:3rem;height:3rem;justify-self:center;display:flex}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .subtitle[_ngcontent-%COMP%]{font-size:1rem;margin-top:0;margin-bottom:.5rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]{margin-bottom:1.5rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]   .no-header-margin[_ngcontent-%COMP%]{font-weight:300;margin-bottom:0}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]   .top-padding[_ngcontent-%COMP%]{display:flex}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .panel[_ngcontent-%COMP%]   .top-padding[_ngcontent-%COMP%]   markdown[_ngcontent-%COMP%]     ul{margin-top:0;padding-left:1.5rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]{height:50rem;min-height:10rem;padding:0 1.5rem}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .variable-binding[_ngcontent-%COMP%]{font-weight:300;display:flex}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .variable-binding.first[_ngcontent-%COMP%]{padding-right:1rem;width:73%}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .variable-binding[_ngcontent-%COMP%]     ul{margin:0}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .variable-binding[_ngcontent-%COMP%]     img{margin-left:1rem;float:right}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .video-player[_ngcontent-%COMP%]{position:relative;width:50%}.about.wrapper[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .dialog-content[_ngcontent-%COMP%]   .video-player[_ngcontent-%COMP%]     iframe{width:100%;height:100%}"], changeDetection: 0 });
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(InfoDialogComponent, [{
         type: Component,
-        args: [{ selector: 'ccf-info-dialog', changeDetection: ChangeDetectionStrategy.OnPush, standalone: false, template: "<div class=\"about wrapper\">\n  <div class=\"container\">\n    <div class=\"content\">\n      <div class=\"header\">\n        <h2 class=\"title\" mat-dialog-title>{{ infoTitle }}</h2>\n        <div class=\"close\">\n          <mat-icon class=\"material-icons close-icon\" (click)=\"close()\">clear</mat-icon>\n        </div>\n      </div>\n\n      <mat-dialog-content class=\"mat-typography dialog-content\">\n        <div *ngFor=\"let content of documentationContents; let i = index\" class=\"panel\">\n          <mat-expansion-panel *ngIf=\"content\" [expanded]=\"i === 0\">\n            <mat-expansion-panel-header>\n              <h2 class=\"no-header-margin\">{{ content.title }}</h2>\n            </mat-expansion-panel-header>\n            <div class=\"top-padding\">\n              <markdown class=\"variable-binding\" [class.first]=\"i === 0\" [data]=\"content.content\"></markdown>\n              <div class=\"video-player\" *ngIf=\"i === 0\">\n                <youtube-player videoId=\"{{ videoID }}\"></youtube-player>\n              </div>\n            </div>\n          </mat-expansion-panel>\n        </div>\n      </mat-dialog-content>\n    </div>\n  </div>\n</div>\n", styles: ["::ng-deep .mat-dialog-container{padding:0}.about.wrapper .container .content{padding:1.5rem;text-align:left}.about.wrapper .container .content .header{display:flex;justify-content:space-between;height:3rem;margin-bottom:2.25rem;position:relative}.about.wrapper .container .description{font-size:.875rem;line-height:1.5rem;margin-bottom:1rem}.about.wrapper .container .close .close-icon{cursor:pointer;height:3rem;width:3rem;line-height:3rem;text-align:center;transition:.6s}.about.wrapper .container .title{font-size:1.5rem;margin:0 auto;line-height:3rem;height:3rem;justify-self:center;display:flex}.about.wrapper .container .subtitle{font-size:1rem;margin-top:0;margin-bottom:.5rem}.about.wrapper .container .panel{margin-bottom:1.5rem}.about.wrapper .container .panel .no-header-margin{font-weight:300;margin-bottom:0}.about.wrapper .container .panel .top-padding{display:flex}.about.wrapper .container .panel .top-padding markdown ::ng-deep ul{margin-top:0;padding-left:1.5rem}.about.wrapper .container .dialog-content{height:50rem;min-height:10rem;padding:0 1.5rem}.about.wrapper .container .dialog-content .variable-binding{font-weight:300;display:flex}.about.wrapper .container .dialog-content .variable-binding.first{padding-right:1rem;width:73%}.about.wrapper .container .dialog-content .variable-binding ::ng-deep ul{margin:0}.about.wrapper .container .dialog-content .variable-binding ::ng-deep img{margin-left:1rem;float:right}.about.wrapper .container .dialog-content .video-player{position:relative;width:50%}.about.wrapper .container .dialog-content .video-player ::ng-deep iframe{width:100%;height:100%}\n"] }]
+        args: [{ selector: 'ccf-info-dialog', changeDetection: ChangeDetectionStrategy.OnPush, standalone: false, template: "<div class=\"about wrapper\">\n  <div class=\"container\">\n    <div class=\"content\">\n      <div class=\"header\">\n        <h2 class=\"title\" mat-dialog-title>{{ infoTitle }}</h2>\n        <div class=\"close\">\n          <mat-icon class=\"material-icons close-icon\" (click)=\"close()\">clear</mat-icon>\n        </div>\n      </div>\n\n      <mat-dialog-content class=\"mat-typography dialog-content\">\n        <div *ngFor=\"let content of documentationContents; let i = index\" class=\"panel\">\n          <mat-expansion-panel *ngIf=\"content\" [expanded]=\"i === 0\">\n            <mat-expansion-panel-header>\n              <h2 class=\"no-header-margin\">{{ content.title }}</h2>\n            </mat-expansion-panel-header>\n            <div class=\"top-padding\">\n              <markdown class=\"variable-binding\" [class.first]=\"i === 0\" [data]=\"content.content\"></markdown>\n              <div class=\"video-player\" *ngIf=\"i === 0\">\n                <hra-youtube-player hraFeature=\"info-video\" [videoId]=\"videoID\" label=\"Info video\" />\n              </div>\n            </div>\n          </mat-expansion-panel>\n        </div>\n      </mat-dialog-content>\n    </div>\n  </div>\n</div>\n", styles: ["::ng-deep .mat-dialog-container{padding:0}.about.wrapper .container .content{padding:1.5rem;text-align:left}.about.wrapper .container .content .header{display:flex;justify-content:space-between;height:3rem;margin-bottom:2.25rem;position:relative}.about.wrapper .container .description{font-size:.875rem;line-height:1.5rem;margin-bottom:1rem}.about.wrapper .container .close .close-icon{cursor:pointer;height:3rem;width:3rem;line-height:3rem;text-align:center;transition:.6s}.about.wrapper .container .title{font-size:1.5rem;margin:0 auto;line-height:3rem;height:3rem;justify-self:center;display:flex}.about.wrapper .container .subtitle{font-size:1rem;margin-top:0;margin-bottom:.5rem}.about.wrapper .container .panel{margin-bottom:1.5rem}.about.wrapper .container .panel .no-header-margin{font-weight:300;margin-bottom:0}.about.wrapper .container .panel .top-padding{display:flex}.about.wrapper .container .panel .top-padding markdown ::ng-deep ul{margin-top:0;padding-left:1.5rem}.about.wrapper .container .dialog-content{height:50rem;min-height:10rem;padding:0 1.5rem}.about.wrapper .container .dialog-content .variable-binding{font-weight:300;display:flex}.about.wrapper .container .dialog-content .variable-binding.first{padding-right:1rem;width:73%}.about.wrapper .container .dialog-content .variable-binding ::ng-deep ul{margin:0}.about.wrapper .container .dialog-content .variable-binding ::ng-deep img{margin-left:1rem;float:right}.about.wrapper .container .dialog-content .video-player{position:relative;width:50%}.about.wrapper .container .dialog-content .video-player ::ng-deep iframe{width:100%;height:100%}\n"] }]
     }], null, null); })();
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(InfoDialogComponent, { className: "InfoDialogComponent", filePath: "lib/components/info/info-dialog/info-dialog.component.ts", lineNumber: 27 }); })();
 
 class InfoDialogModule {
     static ɵfac = function InfoDialogModule_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || InfoDialogModule)(); };
     static ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: InfoDialogModule });
-    static ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [CommonModule, MatDialogModule, MatIconModule, MatExpansionModule, YouTubePlayerModule, MarkdownModule] });
+    static ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [CommonModule,
+            MatDialogModule,
+            MatIconModule,
+            MatExpansionModule,
+            HraYoutubePlayerComponent,
+            MarkdownModule] });
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(InfoDialogModule, [{
         type: NgModule,
         args: [{
                 declarations: [InfoDialogComponent],
-                imports: [CommonModule, MatDialogModule, MatIconModule, MatExpansionModule, YouTubePlayerModule, MarkdownModule],
+                imports: [
+                    CommonModule,
+                    MatDialogModule,
+                    MatIconModule,
+                    MatExpansionModule,
+                    HraYoutubePlayerComponent,
+                    MarkdownModule,
+                ],
                 exports: [InfoDialogComponent],
             }]
     }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(InfoDialogModule, { declarations: [InfoDialogComponent], imports: [CommonModule, MatDialogModule, MatIconModule, MatExpansionModule, YouTubePlayerModule, MarkdownModule], exports: [InfoDialogComponent] }); })();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(InfoDialogModule, { declarations: [InfoDialogComponent], imports: [CommonModule,
+        MatDialogModule,
+        MatIconModule,
+        MatExpansionModule,
+        HraYoutubePlayerComponent,
+        MarkdownModule], exports: [InfoDialogComponent] }); })();
 
 /** Info button service */
 class InfoButtonService {

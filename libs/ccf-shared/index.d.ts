@@ -13,7 +13,7 @@ import * as i3$1 from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as i4$1 from '@angular/material/icon';
 import * as i5$1 from '@angular/material/expansion';
-import * as i6$1 from '@angular/youtube-player';
+import * as i6$1 from '@hra-ui/design-system/content-templates/youtube-player';
 import * as i7 from 'ngx-markdown';
 import * as i5$2 from '@angular/material/card';
 import { Immutable } from '@angular-ru/cdk/typings';
@@ -492,7 +492,7 @@ declare class InfoDialogComponent implements OnInit {
 
 declare class InfoDialogModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<InfoDialogModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<InfoDialogModule, [typeof InfoDialogComponent], [typeof i2.CommonModule, typeof i3$1.MatDialogModule, typeof i4$1.MatIconModule, typeof i5$1.MatExpansionModule, typeof i6$1.YouTubePlayerModule, typeof i7.MarkdownModule], [typeof InfoDialogComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<InfoDialogModule, [typeof InfoDialogComponent], [typeof i2.CommonModule, typeof i3$1.MatDialogModule, typeof i4$1.MatIconModule, typeof i5$1.MatExpansionModule, typeof i6$1.HraYoutubePlayerComponent, typeof i7.MarkdownModule], [typeof InfoDialogComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<InfoDialogModule>;
 }
 
