@@ -41,7 +41,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     HraCommonModule,
   ],
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss'],
+  styleUrl: './upload.component.scss',
 })
 export class UploadComponent implements OnInit {
   readonly fb = inject(FormBuilder);

@@ -1,5 +1,5 @@
 import { createLinkId } from '@hra-ui/cdk/state';
-import { z } from 'zod';
+import * as z from 'zod';
 import { IRI } from '../shared/common.model';
 
 // ---------------------------------------

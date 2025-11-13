@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Type definition of Title Card */
 export type TitleCardSpec = z.infer<typeof TITLE_CARD_DEF>;

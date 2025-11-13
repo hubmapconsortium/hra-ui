@@ -5,12 +5,12 @@
 
 @for (axis of axisOptions; track axis) {
   <ccf-slider-box
-    [hraFeature]="axis"
     class="slider-box"
+    [hraFeature]="axis"
     [sliderAxis]="axis"
     [rotation]="rotation()"
     [step]="step()"
     (resetRotation)="resetRotation(axis)"
     (changeRotation)="changeRotation($event, axis)"
-  ></ccf-slider-box>
+  />
 }

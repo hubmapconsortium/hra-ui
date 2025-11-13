@@ -33,6 +33,7 @@ content:
     content:
       - component: YouTubePlayer
         videoId: KFIVSO5F8aE
+        label: Knowledge graph application demo video
 
   - component: PageSection
     tagline: Accessing the HRA Knowledge Graph

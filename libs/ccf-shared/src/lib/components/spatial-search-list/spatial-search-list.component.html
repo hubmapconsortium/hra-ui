@@ -9,8 +9,7 @@
           labelPosition="after"
           [checked]="allSelected"
           (change)="updateAllItemsSelection($event.checked)"
-        >
-        </mat-checkbox>
+        />
         <div class="checkbox-label">All Spatial Locations</div>
       </div>
     </mat-list-item>
@@ -25,8 +24,7 @@
           labelPosition="after"
           [checked]="item.selected"
           (change)="updateItemSelection($index, $event.checked)"
-        >
-        </mat-checkbox>
+        />
         <button hraFeature="remove" hraClickEvent mat-icon-button class="delete" (click)="removeItem($index)">
           <mat-icon>delete_outlined</mat-icon>
         </button>

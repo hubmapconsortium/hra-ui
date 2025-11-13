@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Section card item type */
 export type SectionCardItem = z.infer<typeof SectionCardItemSchema>;

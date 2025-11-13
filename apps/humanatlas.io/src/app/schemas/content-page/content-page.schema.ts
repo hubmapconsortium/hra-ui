@@ -19,7 +19,7 @@ import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/you
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { IconSchema } from '@hra-ui/design-system/icons';
 import { PageTableSchema } from '@hra-ui/design-system/table';
-import { z } from 'zod';
+import * as z from 'zod';
 import { ReleaseNotesVersionSelectorSchema } from '../../components/release-notes-version-selector/release-notes-version-selector.schema';
 import { SummaryStatisticsTableSchema } from '../../components/summary-statistics-table/summary-statistics-table.schema';
 import { DataViewerWithQueryParamsSchema } from '../../components/data-viewer-with-query-params/data-viewer-with-query-params.schema';

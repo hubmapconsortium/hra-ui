@@ -1,25 +1,25 @@
 <button
   mat-icon-button
-  [matMenuTriggerFor]="menu"
   hraIconButtonSize="large"
   aria-label="Icon to open nested menu"
   hraPlainTooltip="More"
   hraFeature="menu"
   hraClickEvent
+  [matMenuTriggerFor]="menu"
 >
   <mat-icon>more_vert</mat-icon>
 </button>
 
-<mat-menu #menu="matMenu" class="vis-overlay" hraFeature="menu">
+<mat-menu class="vis-overlay" hraFeature="menu" #menu="matMenu">
   <button
     mat-menu-item
-    [matMenuTriggerFor]="infoSubMenu"
     matRipple
     matRippleColor="#201E3D14"
     hraFeature="info"
     hraClickEvent
     hraHoverEvent
     hraHoverEventTriggerOn="mouseenter"
+    [matMenuTriggerFor]="infoSubMenu"
   >
     <mat-icon>info</mat-icon>
     <span>Info</span>
@@ -27,11 +27,11 @@
   </button>
   <button
     mat-menu-item
-    [matMenuTriggerFor]="downloadSubMenu"
     matRipple
     matRippleColor="#201E3D14"
     hraFeature="download"
     hraClickEvent
+    [matMenuTriggerFor]="downloadSubMenu"
   >
     <mat-icon>download</mat-icon>
     <span>Downloads</span>
@@ -39,27 +39,27 @@
   </button>
   <button
     mat-menu-item
-    [matMenuTriggerFor]="resetSubMenu"
     matRipple
     matRippleColor="#201E3D14"
     hraFeature="reset"
     hraClickEvent
+    [matMenuTriggerFor]="resetSubMenu"
   >
     <mat-icon>reset_wrench</mat-icon>
     <span>Reset</span>
     <mat-icon class="expand-arrow">arrow_right</mat-icon>
   </button>
   @if (!fullscreenMode()) {
-    <button mat-menu-item (click)="fullscreenClick.emit()" hraFeature="fullscreen" hraClickEvent>
+    <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="fullscreenClick.emit()">
       <mat-icon>fullscreen</mat-icon>
       Full Screen
     </button>
   }
   <button
     mat-menu-item
-    (click)="this.edgesDisabled.set(!this.edgesDisabled())"
-    [hraFeature]="edgesDisabled() ? 'show-cell-links' : 'hide-cell-links'"
     hraClickEvent
+    [hraFeature]="edgesDisabled() ? 'show-cell-links' : 'hide-cell-links'"
+    (click)="this.edgesDisabled.set(!this.edgesDisabled())"
   >
     <mat-icon>{{ edgesDisabled() ? 'visibility' : 'visibility_off' }}</mat-icon>
     {{ edgesDisabled() ? 'Show' : 'Hide' }} Cell Links
@@ -77,7 +77,7 @@
   </a>
 </mat-menu>
 
-<mat-menu #infoSubMenu="matMenu" class="info-sub-menu">
+<mat-menu class="info-sub-menu" #infoSubMenu="matMenu">
   <div>
     <ul>
       Zoom Options
@@ -98,20 +98,20 @@
   </div>
 </mat-menu>
 
-<mat-menu #downloadSubMenu="matMenu" class="download-sub-menu">
-  <button mat-menu-item (click)="downloadClick.emit()" hraFeature="download-png" hraClickEvent>
+<mat-menu class="download-sub-menu" #downloadSubMenu="matMenu">
+  <button mat-menu-item hraFeature="download-png" hraClickEvent (click)="downloadClick.emit()">
     <mat-icon>download</mat-icon>
     <span>PNG</span>
   </button>
 </mat-menu>
 
-<mat-menu #resetSubMenu="matMenu" class="reset-sub-menu">
-  <button mat-menu-item (click)="resetViewClick.emit()" hraFeature="reset-visualization-view" hraClickEvent>
+<mat-menu class="reset-sub-menu" #resetSubMenu="matMenu">
+  <button mat-menu-item hraFeature="reset-visualization-view" hraClickEvent (click)="resetViewClick.emit()">
     <mat-icon>reset_wrench</mat-icon>
     <span>Reset Visualization View</span>
   </button>
 
-  <button mat-menu-item (click)="resetDeletedClick.emit()" hraFeature="reset-deleted-cells" hraClickEvent>
+  <button mat-menu-item hraFeature="reset-deleted-cells" hraClickEvent (click)="resetDeletedClick.emit()">
     <mat-icon>reset_wrench</mat-icon>
     <span>Reset Deleted Cells</span>
   </button>

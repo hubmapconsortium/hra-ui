@@ -11,7 +11,7 @@
       (selectionChange)="updateSex.emit($event.value)"
     >
       @for (option of sexOptions; track option) {
-        <mat-option [hraFeature]="option | slugify" hraClickEvent class="dropdown-option" [value]="option">
+        <mat-option hraClickEvent class="dropdown-option" [hraFeature]="option | slugify" [value]="option">
           <div>{{ option | titlecase }}</div>
         </mat-option>
       }
@@ -36,13 +36,13 @@
         [matAutocomplete]="auto"
       />
       <mat-autocomplete
-        #auto="matAutocomplete"
         [displayWith]="displayFn"
         (optionSelected)="updateOrgan.emit($event.option.value)"
+        #auto="matAutocomplete"
       >
         <ng-scrollbar>
           @for (organ of filteredOrgans | async; track organ) {
-            <mat-option [hraFeature]="organ.name | slugify" hraClickEvent [value]="organ">{{ organ.name }}</mat-option>
+            <mat-option hraClickEvent [hraFeature]="organ.name | slugify" [value]="organ">{{ organ.name }}</mat-option>
           }
         </ng-scrollbar>
       </mat-autocomplete>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { createLinkId } from '@hra-ui/cdk/state';
 import { firstValueFrom, from, map, Observable, of, shareReplay, switchMap, take, withLatestFrom } from 'rxjs';
-import { z } from 'zod';
+import * as z from 'zod';
 import { Iri, setUrl, Url } from '../shared/common.model';
 import {
   CellSummary,

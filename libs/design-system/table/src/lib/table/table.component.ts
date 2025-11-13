@@ -42,7 +42,6 @@ type RowElementContext<T, CT extends TableColumnType> = {
 /** Directive for typing the context of Text Row Element */
 @Directive({
   selector: 'ng-template[hraTextRowElement]',
-  standalone: true,
 })
 export class TextRowElementDirective {
   /* istanbul ignore next */
@@ -59,7 +58,6 @@ export class TextRowElementDirective {
 /** Directive for typing the context of Link Row Element */
 @Directive({
   selector: 'ng-template[hraLinkRowElement]',
-  standalone: true,
 })
 export class LinkRowElementDirective {
   /* istanbul ignore next */
@@ -76,7 +74,6 @@ export class LinkRowElementDirective {
 /** Directive for typing the context of Markdown Row Element */
 @Directive({
   selector: 'ng-template[hraMarkdownRowElement]',
-  standalone: true,
 })
 export class MarkdownRowElementDirective {
   /* istanbul ignore next */
@@ -93,7 +90,6 @@ export class MarkdownRowElementDirective {
 /** Directive for typing the context of Icon Row Element */
 @Directive({
   selector: 'ng-template[hraIconRowElement]',
-  standalone: true,
 })
 export class IconRowElementDirective {
   /* istanbul ignore next */
@@ -110,7 +106,6 @@ export class IconRowElementDirective {
 /** Directive for typing the context of menuButton Row Element */
 @Directive({
   selector: 'ng-template[hraMenuButtonRowElement]',
-  standalone: true,
 })
 export class MenuButtonRowElementDirective {
   /* istanbul ignore next */
@@ -127,7 +122,6 @@ export class MenuButtonRowElementDirective {
 /** Directive for typing the context of Numeric Row Element */
 @Directive({
   selector: 'ng-template[hraNumericRowElement]',
-  standalone: true,
 })
 export class NumericRowElementDirective {
   /* istanbul ignore next */
@@ -146,8 +140,6 @@ export class NumericRowElementDirective {
  */
 @Component({
   selector: 'hra-table',
-  templateUrl: 'table.component.html',
-  styleUrls: ['table.component.scss'],
   imports: [
     HraCommonModule,
     MarkdownModule,
@@ -166,6 +158,8 @@ export class NumericRowElementDirective {
     IconsModule,
     ButtonsModule,
   ],
+  templateUrl: 'table.component.html',
+  styleUrl: 'table.component.scss',
   host: {
     '[class]': '"hra-table-style-" + style()',
     '[class.sortable]': 'enableSort()',
