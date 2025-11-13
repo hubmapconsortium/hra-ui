@@ -40,7 +40,7 @@ export class HomeComponent {
   protected readonly selectedVideoSection = signal<number>(0);
 
   /** ViewChild reference to the HraYouTubePlayer component */
-  private readonly player = viewChild.required<HraYoutubePlayerComponent>('youtubePlayer');
+  private readonly youtubePlayerComponent = viewChild.required<HraYoutubePlayerComponent>('youtubePlayer');
 
   /**
    * Seeks the YouTube player to the selected video section.
@@ -49,8 +49,9 @@ export class HomeComponent {
    */
   protected seekVideo(seconds: number, index: number): void {
     this.selectedVideoSection.set(index);
-    this.player().pauseVideo();
-    this.player().seekTo(seconds, true);
-    this.player().playVideo();
+    const player = this.youtubePlayerComponent().player();
+    player?.pauseVideo();
+    player?.seekTo(seconds, true);
+    player?.playVideo();
   }
 }
