@@ -46,7 +46,7 @@ interface FlatNode {
     HraCommonModule,
   ],
   templateUrl: './indented-list.component.html',
-  styleUrls: ['./indented-list.component.scss'],
+  styleUrl: './indented-list.component.scss',
 })
 export class IndentedListComponent implements OnInit, OnDestroy, AfterViewInit {
   readonly indentService = inject(IndentedListService);

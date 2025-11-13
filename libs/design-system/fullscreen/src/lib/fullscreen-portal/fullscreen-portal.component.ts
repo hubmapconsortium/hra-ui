@@ -57,7 +57,7 @@ export class ViewOutletDirective {
 /** Fullscreen actions component */
 @Component({
   selector: 'hra-fullscreen-actions',
-  template: `<ng-content></ng-content>`,
+  template: `<ng-content />`,
   styles: `
     :host {
       display: flex;
@@ -74,7 +74,7 @@ export class FullscreenActionsComponent {}
 /** Fullscreen portal content component */
 @Component({
   selector: 'hra-fullscreen-portal-content',
-  template: `<ng-content></ng-content>`,
+  template: `<ng-content />`,
   styles: `
     :host {
       width: 100%;

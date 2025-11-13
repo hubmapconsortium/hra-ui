@@ -368,7 +368,6 @@ export class BimodalService {
         this.store.dispatch(new UpdateLinksData(AS_CT_LINKS, CT_BM_LINKS, AS_CT, CT_BM, 0, undefined, true));
       }
     } catch (error) {
-      console.log(error);
       const status = (error as { status: number }).status;
       const err: Error = {
         msg: `${error} (Status: ${status})`,

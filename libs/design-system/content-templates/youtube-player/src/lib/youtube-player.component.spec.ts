@@ -85,7 +85,7 @@ describe('HraYoutubePlayerComponent', () => {
       await renderComponent(TEST_VIDEO_ID);
 
       const thumbnailImage = document.querySelector('.thumbnail-image') as HTMLImageElement;
-      expect(thumbnailImage?.src).toContain(`https://img.youtube.com/vi/${TEST_VIDEO_ID}/maxresdefault.jpg`);
+      expect(thumbnailImage?.src).toContain(`https://img.youtube.com/vi/${TEST_VIDEO_ID}/sddefault.jpg`);
     });
 
     it('should open privacy preferences when "Enable cookies" link is clicked', async () => {

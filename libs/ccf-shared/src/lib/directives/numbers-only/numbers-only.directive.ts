@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, inject } from '@angular/core';
+import { Directive, ElementRef, inject } from '@angular/core';
 
 /**
  * Directive for restricting an input element to integer only values.
@@ -6,6 +6,9 @@ import { Directive, ElementRef, HostListener, inject } from '@angular/core';
 @Directive({
   selector: 'input[ccfNumbersOnly]',
   standalone: false,
+  host: {
+    '(input)': 'onInputChange($event)',
+  },
 })
 export class NumberDirective {
   private readonly el = inject<ElementRef<HTMLInputElement>>(ElementRef);
@@ -15,7 +18,6 @@ export class NumberDirective {
    *
    * @param event The input event
    */
-  @HostListener('input', ['$event'])
   onInputChange(event: Event): void {
     const initalValue = this.el.nativeElement.value;
     this.el.nativeElement.value = initalValue.replace(/[^0-9]*/g, '');

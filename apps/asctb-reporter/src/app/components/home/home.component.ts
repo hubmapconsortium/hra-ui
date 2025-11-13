@@ -13,8 +13,6 @@ import { HraYoutubePlayerComponent } from '@hra-ui/design-system/content-templat
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
   imports: [
     CommonModule,
     IconsModule,
@@ -27,6 +25,8 @@ import { HraYoutubePlayerComponent } from '@hra-ui/design-system/content-templat
     HraCommonModule,
     HraYoutubePlayerComponent,
   ],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {

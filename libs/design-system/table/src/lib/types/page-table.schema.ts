@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Type for table style */
 export type TableVariant = z.infer<typeof TableVariantSchema>;

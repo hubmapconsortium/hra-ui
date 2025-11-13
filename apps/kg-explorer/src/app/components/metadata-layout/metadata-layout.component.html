@@ -10,7 +10,7 @@
       [availableVersions]="availableVersions()"
       [downloadOptions]="downloadOptions()"
       (versionChange)="versionChange.emit($event)"
-    ></hra-provenance-menu>
+    />
   }
 
   <ng-content select="hra-metadata-layout-content" />
@@ -25,5 +25,5 @@
     [availableVersions]="availableVersions()"
     [downloadOptions]="downloadOptions()"
     (versionChange)="versionChange.emit($event)"
-  ></hra-provenance-menu>
+  />
 }

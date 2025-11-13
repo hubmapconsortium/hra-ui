@@ -1,11 +1,11 @@
 <hra-body-ui
-  #bodyUI
   class="body-ui"
+  camera="perspective"
   [scene]="highlightedScene()"
   [target]="organTarget()"
   [rotation]="0"
   [rotationX]="0"
   [interactive]="true"
-  camera="perspective"
   (nodeClick)="nodeClicked($event)"
+  #bodyUI
 />
