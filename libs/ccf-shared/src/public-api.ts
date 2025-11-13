@@ -2,9 +2,6 @@
  * Public API Surface of ccf-shared
  */
 
-export * from './lib/components/body-ui/body-ui.component';
-export * from './lib/components/body-ui/body-ui.module';
-
 export * from './lib/components/store-debug/store-debug.component';
 export * from './lib/components/store-debug/store-debug.module';
 
