@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { AssetUrlPipe } from '@hra-ui/common/url';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /**
@@ -10,7 +10,7 @@ import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyper
  */
 @Component({
   selector: 'hra-gallery-card',
-  imports: [AssetUrlPipe, LinkDirective, MatChipsModule, MatTooltipModule, TextHyperlinkDirective],
+  imports: [AssetUrlPipe, LinkDirective, MatChipsModule, PlainTooltipDirective, TextHyperlinkDirective],
   templateUrl: './gallery-card.component.html',
   styleUrl: './gallery-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
