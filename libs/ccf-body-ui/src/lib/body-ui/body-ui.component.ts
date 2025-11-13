@@ -86,7 +86,10 @@ export const SPATIAL_SCENE_NODE = z
 export const SPATIAL_SCENE_NODE_ARRAY = z.array(SPATIAL_SCENE_NODE);
 
 /** Preprocesses the scene input */
-const SCENE_INPUT = z.preprocess(tryParseJson, z.union([z.literal(''), z.string().url(), SPATIAL_SCENE_NODE_ARRAY]));
+const SCENE_INPUT = z.preprocess(
+  tryParseJson,
+  z.union([z.undefined(), z.literal(''), z.string().url(), SPATIAL_SCENE_NODE_ARRAY]),
+);
 /** Bind scene input */
 const parseSceneInput = SCENE_INPUT.parse.bind(SCENE_INPUT);
 
