@@ -5,7 +5,6 @@ import { MatListItem, MatListItemTitle } from '@angular/material/list';
 import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { DocsNavigationItem } from '../types/docs-navigation.schema';
-import { resolveUrl } from '../utils/resolve-url';
 
 /** Navigation Item Component */
 @Component({
@@ -19,9 +18,6 @@ export class NavigationItemComponent {
   /** Navigation Item Data */
   readonly navigationItem = input.required<DocsNavigationItem>();
 
-  /** Base URL for the appliation */
-  readonly baseUrl = input.required<string>();
-
   /** Resolved URL for the navigation item */
-  protected readonly url = computed(() => resolveUrl(this.navigationItem().url, this.baseUrl()));
+  protected readonly url = computed(() => this.navigationItem().url);
 }
