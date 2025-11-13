@@ -24,7 +24,11 @@
         ],
         "polyfills": ["apps/asctb-reporter/src/polyfills.ts"],
         "scripts": ["node_modules/marked/lib/marked.umd.js"],
-        "styles": ["apps/asctb-reporter/src/styles.scss", "./node_modules/jspreadsheet-ce/dist/jspreadsheet.css"]
+        "styles": [
+          "apps/asctb-reporter/src/styles.scss",
+          "node_modules/jsuites/dist/jsuites.css",
+          "node_modules/jspreadsheet-ce/dist/jspreadsheet.css"
+        ]
       },
       "configurations": {
         "production": {
