@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { FilterContainerComponent, FilterChip } from './filter-container.component';
 
-const meta: Meta<FilterContainerComponent> = {
+const meta: Meta<FilterContainerComponent<FilterChip>> = {
   component: FilterContainerComponent,
   title: 'Design System/Filter Container',
   parameters: {
@@ -36,9 +36,9 @@ const meta: Meta<FilterContainerComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<FilterContainerComponent>;
+type Story = StoryObj<FilterContainerComponent<FilterChip>>;
 
-const sampleChips: FilterChip[] = [{ id: 'Option 1' }, { id: 'Option 2' }, { id: 'Option 3' }];
+const sampleChips: FilterChip[] = [{ label: 'Option 1' }, { label: 'Option 2' }, { label: 'Option 3' }];
 
 export const Default: Story = {
   render: (args) => ({
