@@ -20,7 +20,7 @@
               (expandedChange)="changeExpandedCategory($event, navMenuItem.label)"
             />
           } @else if (navMenuItem.type === 'item') {
-            <hra-navigation-item [navigationItem]="navMenuItem" [baseUrl]="baseUrl()" />
+            <hra-navigation-item [navigationItem]="navMenuItem" />
           }
           <mat-divider />
         }
