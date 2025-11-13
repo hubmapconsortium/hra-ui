@@ -35,7 +35,12 @@
   <div class="section-description">Learn about the features and functionality of this application.</div>
   <div class="split-sections">
     <div class="youtube-video-container">
-      <youtube-player videoId="pzUFmDhQEO8" [playerVars]="{ rel: 0, showinfo: 0 }" #tutorialVideo />
+      <hra-youtube-player
+        hraFeature="player"
+        videoId="pzUFmDhQEO8"
+        label="ASCT+B Reporter demonstration"
+        #youtubePlayer
+      />
     </div>
     <div class="section-selector-container">
       <div class="chapters">Chapters</div>
