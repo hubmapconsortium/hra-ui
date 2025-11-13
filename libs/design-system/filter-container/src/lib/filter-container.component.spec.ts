@@ -49,7 +49,7 @@ describe('FilterContainerComponent', () => {
   });
 
   it('should display chips', async () => {
-    const chips: FilterChip[] = [{ id: 'Chip 1' }, { id: 'Chip 2' }];
+    const chips: FilterChip[] = [{ label: 'Chip 1' }, { label: 'Chip 2' }];
 
     await setup({
       action: 'Test',
@@ -78,7 +78,7 @@ describe('FilterContainerComponent', () => {
 
   it('should remove chip from model when chip remove button is clicked', async () => {
     const user = userEvent.setup();
-    const chips: FilterChip[] = [{ id: 'Chip 1' }, { id: 'Chip 2' }];
+    const chips: FilterChip[] = [{ label: 'Chip 1' }, { label: 'Chip 2' }];
 
     await setup({
       action: 'Test',
