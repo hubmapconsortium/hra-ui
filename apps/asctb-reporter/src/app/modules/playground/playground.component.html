@@ -9,15 +9,15 @@
 >
   <mat-tab label="Visualization">
     @if (error().error.hasError) {
-      <app-error [error]="error().error"></app-error>
+      <app-error [error]="error().error" />
     } @else {
-      <app-tree></app-tree>
+      <app-tree />
     }
   </mat-tab>
   <mat-tab label="Table">
     <div #spreadsheet></div>
   </mat-tab>
   <mat-tab label="Upload">
-    <app-upload (uploadForm)="upload($event)"></app-upload>
+    <app-upload (uploadForm)="upload($event)" />
   </mat-tab>
 </mat-tab-group>

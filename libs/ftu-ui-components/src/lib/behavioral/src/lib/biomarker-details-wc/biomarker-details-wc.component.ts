@@ -64,7 +64,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     RichTooltipDirective,
   ],
   templateUrl: './biomarker-details-wc.component.html',
-  styleUrls: ['./biomarker-details-wc.component.scss'],
+  styleUrl: './biomarker-details-wc.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.no-data-sources]': 'source().length === 0',

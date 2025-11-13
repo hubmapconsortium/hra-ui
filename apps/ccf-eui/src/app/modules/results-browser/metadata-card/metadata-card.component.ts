@@ -10,9 +10,9 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
  */
 @Component({
   selector: 'ccf-metadata-card',
-  templateUrl: './metadata-card.component.html',
-  styleUrls: ['./metadata-card.component.scss'],
   imports: [HraCommonModule, MatIconModule, MatButtonModule, ButtonsModule, PlainTooltipDirective],
+  templateUrl: './metadata-card.component.html',
+  styleUrl: './metadata-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataCardComponent {
