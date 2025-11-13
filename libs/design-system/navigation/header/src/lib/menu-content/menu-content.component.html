@@ -11,8 +11,8 @@
   <a
     mat-button
     class="group-label"
-    [hraLink]="resolveUrl(group.url, group.external).value"
-    [hraLinkExternal]="resolveUrl(group.url, group.external).isExternal"
+    [hraLink]="group.url"
+    [hraLinkExternal]="group.external"
     [attr.target]="group.target ?? ''"
     rel="noopener noreferrer"
     hraClickEvent
@@ -57,8 +57,8 @@
     mat-button
     hraSecondaryButton
     class="item-label"
-    [hraLink]="resolveUrl(item.url, item.external).value"
-    [hraLinkExternal]="resolveUrl(item.url, item.external).isExternal"
+    [hraLink]="item.url"
+    [hraLinkExternal]="item.external"
     [attr.target]="item.target ?? ''"
     rel="noopener noreferrer"
     hraClickEvent
