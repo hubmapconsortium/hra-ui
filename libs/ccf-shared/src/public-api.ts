@@ -17,8 +17,6 @@ export * from './lib/services/data-source/api-endpoint.service';
 export * from './lib/services/data-source/data-source';
 export * from './lib/services/data-source/data-source.service';
 
-export * from './lib/services/local-storage/local-storage.service';
-
 export * from './lib/services/organ-info/organ-info.service';
 
 export * from './lib/components/spatial-search-list/spatial-search-list.component';
