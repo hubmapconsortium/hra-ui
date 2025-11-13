@@ -224,6 +224,7 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
       this.setState(EMPTY_STATE);
       onSelect([]);
     } else if (editType === SelectionEditType.SetSelection) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const boundingBox = bbox(data as any) as BBox;
       const mask = this.createMaskPolygon(data, boundingBox);
 

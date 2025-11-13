@@ -52,7 +52,6 @@ const SAMPLE_URL_LINK =
  */
 @Component({
   selector: 'hra-tissue-origin-predictor',
-  standalone: true,
   imports: [
     HraCommonModule,
     ButtonsModule,

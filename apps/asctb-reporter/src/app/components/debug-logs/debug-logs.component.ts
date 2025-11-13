@@ -26,7 +26,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     SidenavHeaderComponent,
   ],
   templateUrl: './debug-logs.component.html',
-  styleUrls: ['./debug-logs.component.scss'],
+  styleUrl: './debug-logs.component.scss',
 })
 export class DebugLogsComponent {
   readonly currentSheet = input.required<Sheet>();

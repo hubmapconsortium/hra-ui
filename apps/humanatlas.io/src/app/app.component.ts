@@ -18,7 +18,7 @@ const ANCHOR_SCROLL_PADDING = 24;
   selector: 'hra-portal',
   imports: [HraCommonModule, RouterModule, NavigationModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   host: {
     class: 'hra-app',
   },

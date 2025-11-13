@@ -4,9 +4,8 @@ import { TreeSizeDirective } from './tree-size.directive';
 
 describe('Tree Size Directive', () => {
   @Component({
-    template: `<div hraTreeSize="small" data-testid="dir"></div>`,
     imports: [TreeSizeDirective],
-    standalone: true,
+    template: `<div hraTreeSize="small" data-testid="dir"></div>`,
   })
   class FixtureComponent {}
   it('should apply styles', async () => {

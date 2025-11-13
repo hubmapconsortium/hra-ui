@@ -1,5 +1,5 @@
 <mat-sidenav-container hraFeature="eui" class="sidenav-container" autosize>
-  <mat-sidenav hraFeature="data-filters" #sidenav class="sidenav-content" mode="over">
+  <mat-sidenav hraFeature="data-filters" class="sidenav-content" mode="over" #sidenav>
     <div class="sidenav-header">
       <span class="sidenav-title"> Data Filters </span>
       <div style="flex-grow: 1"></div>
@@ -24,22 +24,21 @@
       (filterChange)="data.updateFilter($event); sidenav.toggle()"
       (spatialSearchSelectionChange)="setSelectedSearches($event)"
       (spatialSearchRemoved)="removeSpatialSearch($event)"
-    >
-    </ccf-filters-content>
+    />
   </mat-sidenav>
 
   <div class="page-content">
     @if (!databaseReady() || queryStatus() === 'running') {
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate" />
     }
 
     <hra-nav-header-buttons
       app="product:eui"
-      [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/eui/'"
       appTitle="Exploration User Interface"
+      [appLink]="(homeUrl$ | async) ?? 'https://apps.humanatlas.io/eui/'"
       [brandmark]="true"
       [hraTooltip]="(logoTooltip$ | async) ?? 'Human Reference Atlas Portal'"
-    ></hra-nav-header-buttons>
+    />
 
     <div hraFeature="left-panel" class="left-panel">
       <div class="filter-data">
@@ -75,10 +74,10 @@
         >
           @for (option of menuOptions; track option) {
             <mat-button-toggle
-              [hraFeature]="option | slugify"
               hraClickEvent
-              [value]="option"
               checked
+              [hraFeature]="option | slugify"
+              [value]="option"
               [hraPlainTooltip]="(isItemSelected(option) ? 'Hide ' : 'Show ') + option.toLowerCase()"
               >{{ option }}</mat-button-toggle
             >
@@ -93,10 +92,9 @@
             [treeModel]="ontologyTree()"
             [termData]="(data.ontologyTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.ontologyTermOccurencesData$ | async) ?? {}"
-            (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
             [tooltip]="ontologyTooltips['as']"
-          >
-          </ccf-ontology-selection>
+            (ontologySelection)="ontologySelected($any($event), 'anatomical-structures')"
+          />
         }
         @if (isItemSelected('Cell Types')) {
           <ccf-ontology-selection
@@ -105,10 +103,9 @@
             [treeModel]="cellTypeTree()"
             [termData]="(data.cellTypeTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.cellTypeTermOccurencesData$ | async) ?? {}"
-            (ontologySelection)="ontologySelected($any($event), 'cell-type')"
             [tooltip]="ontologyTooltips['ct']"
-          >
-          </ccf-ontology-selection>
+            (ontologySelection)="ontologySelected($any($event), 'cell-type')"
+          />
         }
         @if (isItemSelected('Biomarkers')) {
           <ccf-ontology-selection
@@ -117,10 +114,9 @@
             [treeModel]="biomarkerTree()"
             [termData]="(data.biomarkerTermsFullData$ | async) ?? {}"
             [occurenceData]="(data.biomarkerTermOccurencesData$ | async) ?? {}"
-            (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
             [tooltip]="ontologyTooltips['b']"
-          >
-          </ccf-ontology-selection>
+            (ontologySelection)="ontologySelected($any($event), 'biomarkers')"
+          />
         }
 
         @if (selectedToggleOptions.length === 0) {
@@ -138,10 +134,10 @@
         hraFeature="menu-open"
         hraClickEvent
         mat-icon-button
-        [matMenuTriggerFor]="menu"
         hraIconButtonSize="large"
         aria-label="Icon to open nested menu"
         hraPlainTooltip="More"
+        [matMenuTriggerFor]="menu"
       >
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -156,7 +152,7 @@
           Organ visibility
           <mat-icon class="expand-arrow">arrow_right</mat-icon>
         </button>
-        <mat-divider class="menu-divider"></mat-divider>
+        <mat-divider class="menu-divider" />
         <button hraFeature="reset-settings" hraClickEvent mat-menu-item (click)="bodyUI.resetView()">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset visualization view
@@ -177,7 +173,7 @@
           <mat-icon>visibility_off</mat-icon>
           Hide all organs
         </button>
-        <mat-divider class="menu-divider"></mat-divider>
+        <mat-divider class="menu-divider" />
         <button hraFeature="reset-organ-view" hraClickEvent mat-menu-item (click)="scene.setDefaultOrgans()">
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset to default organ view
@@ -186,7 +182,7 @@
 
       <div class="filler"></div>
 
-      <ccf-organ-select hraPlainTooltip="Select organs to show/hide"></ccf-organ-select>
+      <ccf-organ-select hraPlainTooltip="Select organs to show/hide" />
     </div>
 
     <div hraFeature="body-ui" class="content">
@@ -195,8 +191,8 @@
         hraClickEvent
         class="spatial-search-button"
         mat-flat-button
-        (click)="spatialFlowService.startSpatialSearchFlow(true)"
         hraPlainTooltip="Filter experimental data spatially"
+        (click)="spatialFlowService.startSpatialSearchFlow(true)"
       >
         Spatial Search
       </button>
@@ -208,30 +204,28 @@
         hraHoverEventTriggerOn="none"
         class="stage-content"
         [scene]="$any(scene.scene$ | async)"
+        [bounds]="{ x: 2, y: 2, z: 0.4 }"
         (nodeClick)="scene.sceneNodeClicked($event); sceneEvent.logEvent('click')"
         (nodeHoverStart)="scene.sceneNodeHovered($event); sceneHoverEvent.logEvent('mouseenter')"
         (nodeHoverStop)="scene.sceneNodeUnhover()"
-        [bounds]="{ x: 2, y: 2, z: 0.4 }"
         #bodyUI
         #sceneEvent="hraClickEvent"
         #sceneHoverEvent="hraHoverEvent"
-      >
-      </hra-body-ui>
+      />
     </div>
 
     <div hraFeature="right-panel" class="right-panel">
       <ccf-results-browser
         [listResults]="(listResultsState.listResults$ | async) ?? []"
         [aggregateData]="(data.aggregateData$ | async) ?? []"
+        [highlighted]="(listResultsState.highlightedNodeId$ | async) ?? ''"
+        [header]="(header$ | async) ?? false"
         (listResultSelected)="listResultsState.selectListResult(asMutable($event))"
         (listResultDeselected)="listResultsState.deselectListResult(asMutable($event))"
         (listResultExpansionChange)="listResultsState.changeExpansion(asMutable($event))"
-        [highlighted]="(listResultsState.highlightedNodeId$ | async) ?? ''"
         (itemHovered)="debouncedHighlight($event)"
         (itemUnhovered)="unHighlightNode()"
-        [header]="(header$ | async) ?? false"
-      >
-      </ccf-results-browser>
+      />
     </div>
   </div>
 </mat-sidenav-container>

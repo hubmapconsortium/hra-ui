@@ -1,7 +1,6 @@
 <h2 class="title">{{ spec().title }}</h2>
 <div class="description mat-body-2">{{ spec().description }}</div>
 <a
-  [attr.href]="spec().link.url"
   target="_blank"
   rel="noopener"
   mat-button
@@ -10,10 +9,11 @@
   color="primary"
   hraFeature="read-btn"
   hraClickEvent
+  [attr.href]="spec().link.url"
   >{{ spec().link.label }}
   <mat-icon class="material-symbols-rounded" iconPositionEnd> arrow_right_alt </mat-icon>
 </a>
 
 @for (item of spec().items; track item) {
-  <ng-container [hraDashboardComponentOutlet]="item"></ng-container>
+  <ng-container [hraDashboardComponentOutlet]="item" />
 }

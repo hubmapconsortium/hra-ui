@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-left">
       <div class="title">Configure Spatial Search</div>
-      <hra-help-button action="https://humanatlas.io/exploration-user-interface#using-spatial-search"></hra-help-button>
+      <hra-help-button action="https://humanatlas.io/exploration-user-interface#using-spatial-search" />
     </div>
     <button class="close" mat-icon-button (click)="closeDialog.emit()">
       <mat-icon>close</mat-icon>
@@ -16,7 +16,7 @@
     [selectedOrgan]="selectedOrgan()"
     (updateOrgan)="updateOrgan.emit($event)"
     (updateSex)="updateSex.emit($event)"
-  ></ccf-spatial-search-inputs>
+  />
 
   <button
     hraFeature="continue"

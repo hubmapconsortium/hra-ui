@@ -2,9 +2,9 @@
   <div hraFeature="header" class="header">
     <div class="left">
       <div class="icons">
-        <hra-icon [svgIcon]="'product:eui'"></hra-icon>
+        <hra-icon svgIcon="product:eui" />
         @if (organLogo(); as logo) {
-          <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo"></hra-icon>
+          <hra-icon hraFeature="organ-icon" [hraClickEvent]="{ organLogo: logo }" [svgIcon]="logo" />
         }
       </div>
       <div class="title">Organ Information</div>
@@ -35,8 +35,8 @@
           [disabled]="sex === undefined || isLoading()"
           (change)="updateInput('sex', $event.value)"
         >
-          <mat-button-toggle [hraClickEvent]="{ value: 'Male' }" value="Male"> Male </mat-button-toggle>
-          <mat-button-toggle [hraClickEvent]="{ value: 'Female' }" value="Female"> Female </mat-button-toggle>
+          <mat-button-toggle value="Male" [hraClickEvent]="{ value: 'Male' }"> Male </mat-button-toggle>
+          <mat-button-toggle value="Female" [hraClickEvent]="{ value: 'Female' }"> Female </mat-button-toggle>
         </mat-button-toggle-group>
         @let side = organ.value()?.side;
         <mat-button-toggle-group
@@ -47,27 +47,27 @@
           [value]="side"
           (change)="updateInput('side', $event.value)"
         >
-          <mat-button-toggle [hraClickEvent]="{ value: 'Left' }" value="Left"> Left </mat-button-toggle>
-          <mat-button-toggle [hraClickEvent]="{ value: 'Right' }" value="Right"> Right </mat-button-toggle>
+          <mat-button-toggle value="Left" [hraClickEvent]="{ value: 'Left' }"> Left </mat-button-toggle>
+          <mat-button-toggle value="Right" [hraClickEvent]="{ value: 'Right' }"> Right </mat-button-toggle>
         </mat-button-toggle-group>
       </div>
       <div>
         @if (isLoading()) {
-          <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>
+          <hra-progress-spinner size="large" color="color" class="loading-spinner" />
         } @else {
           <hra-table
             class="stats-table"
+            style="alternating"
             [columns]="tableColumns"
             [rows]="stats()"
-            [style]="'alternating'"
             [verticalDividers]="true"
-          ></hra-table>
+          />
         }
       </div>
     </div>
     <div class="organ-view" [style.height.px]="contentHeightMonitor()">
       @if (isLoading()) {
-        <hra-progress-spinner size="large" color="color" class="loading-spinner"></hra-progress-spinner>
+        <hra-progress-spinner size="large" color="color" class="loading-spinner" />
       }
       <ccf-organ
         hraFeature="organ-viewer"
@@ -79,12 +79,11 @@
         [blocks]="blocks.value()"
         [filter]="filter()"
         (nodeClick)="nodeClicked.emit($event)"
-      >
-      </ccf-organ>
+      />
     </div>
 
-    <mat-menu #headerMenu="matMenu" hraFeature="more-menu">
-      <a hraFeature="source-data" hraClickEvent mat-menu-item [href]="organ.value()?.['@id']" target="_blank">
+    <mat-menu hraFeature="more-menu" #headerMenu="matMenu">
+      <a hraFeature="source-data" hraClickEvent mat-menu-item target="_blank" [href]="organ.value()?.['@id']">
         <mat-icon>database</mat-icon>
         Source data
       </a>
@@ -98,7 +97,7 @@
         <mat-icon>help</mat-icon>
         Help & documentation
       </a>
-      <mat-divider class="menu-divider"></mat-divider>
+      <mat-divider class="menu-divider" />
       <a
         hraFeature="publications"
         hraClickEvent

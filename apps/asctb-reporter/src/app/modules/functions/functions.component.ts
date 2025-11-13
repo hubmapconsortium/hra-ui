@@ -36,7 +36,7 @@ import { TreeState } from '../../store/tree.state';
     ButtonToggleSizeDirective,
   ],
   templateUrl: './functions.component.html',
-  styleUrls: ['./functions.component.scss'],
+  styleUrl: './functions.component.scss',
 })
 export class FunctionsComponent {
   readonly store = inject(Store);
