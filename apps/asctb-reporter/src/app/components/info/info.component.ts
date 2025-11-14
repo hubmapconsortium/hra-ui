@@ -24,7 +24,7 @@ import { SheetInfo } from '../../models/sheet.model';
     TextHyperlinkDirective,
   ],
   templateUrl: './info.component.html',
-  styleUrls: ['./info.component.scss'],
+  styleUrl: './info.component.scss',
 })
 export class InfoComponent implements OnInit {
   readonly data = inject<Observable<SheetInfo>>(MAT_BOTTOM_SHEET_DATA);

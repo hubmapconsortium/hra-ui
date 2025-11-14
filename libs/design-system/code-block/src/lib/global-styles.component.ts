@@ -3,10 +3,9 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 /** Global styles for code blocks */
 @Component({
   selector: 'hra-code-block-global-styles',
-  standalone: true,
   template: '',
-  styleUrls: ['./global-styles.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrl: './global-styles.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class CodeBlockGlobalStylesComponent {}

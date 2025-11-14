@@ -11,8 +11,8 @@ describe('FragmentLinkDirective', () => {
   const fragment = '#foobar';
 
   @Component({
-    template: `<a hraFragmentLink="${fragment}">link</a>`,
     imports: [FragmentLinkDirective],
+    template: `<a hraFragmentLink="${fragment}">link</a>`,
   })
   class MockHome {}
 

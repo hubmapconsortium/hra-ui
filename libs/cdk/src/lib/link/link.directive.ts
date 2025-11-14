@@ -1,4 +1,4 @@
-import { Directive, DoCheck, ElementRef, HostBinding, HostListener, inject, Injector, Input } from '@angular/core';
+import { Directive, DoCheck, ElementRef, inject, Injector, Input } from '@angular/core';
 import { ActivatedRoute, Params, QueryParamsHandling, UrlCreationOptions } from '@angular/router';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
 import { EMPTY_LINK, LinkEntry, LinkRegistryActions, LinkRegistrySelectors, LinkType } from '@hra-ui/cdk/state';
@@ -7,7 +7,12 @@ import { createExternalUrl, createInternalUrl } from '@hra-ui/utils';
 /** Link Directive for routing */
 @Directive({
   selector: '[hraLink]',
-  standalone: true,
+  host: {
+    '[attr.href]': 'href',
+    '[attr.rel]': 'rel',
+    '[attr.target]': 'target',
+    '(click)': 'onClick($event)',
+  },
 })
 export class LinkDirective implements DoCheck {
   /** linkId with empty string as default value */
@@ -29,11 +34,11 @@ export class LinkDirective implements DoCheck {
   @Input() relativeTo?: ActivatedRoute;
 
   /** href of the element */
-  @HostBinding('attr.href') href?: string;
+  protected href?: string;
   /** rel attribute of the element */
-  @HostBinding('attr.rel') rel?: string;
+  protected rel?: string;
   /** target attribute of the element */
-  @HostBinding('attr.target') target?: string;
+  protected target?: string;
 
   /** Reference to this component's injector */
   private readonly injector = inject(Injector);
@@ -76,7 +81,6 @@ export class LinkDirective implements DoCheck {
    * @param event type of event
    * @returns true/false based on entry and element
    */
-  @HostListener('click', ['$event'])
   onClick(event: MouseEvent): boolean {
     const { link, linkId, isAnchorElement } = this;
     if (!link) {

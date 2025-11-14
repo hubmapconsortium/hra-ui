@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
   standalone: false,
+  templateUrl: './sidenav.component.html',
+  styleUrl: './sidenav.component.scss',
 })
 export class SidenavComponent {}

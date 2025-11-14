@@ -1,10 +1,10 @@
 <mat-expansion-panel
   hraFeature="navigation-category-expansion"
+  class="category"
   [hraClickEvent]="{
     label: navigationCategory().label,
     action: expanded() ? 'collapse' : 'expand',
   }"
-  class="category"
   [expanded]="expanded()"
   (expandedChange)="expandedChange.emit($event)"
 >

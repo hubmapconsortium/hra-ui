@@ -1,4 +1,4 @@
-import { getImportMeta, getImportMetaUrl } from './import-meta.mock';
+import { getImportMeta } from './import-meta.mock';
 
 describe('ImportMeta Mock', () => {
   it('should provide mocked import.meta with url and resolve', () => {
