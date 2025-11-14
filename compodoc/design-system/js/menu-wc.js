@@ -724,6 +724,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ExpansionPanelHeaderContentComponent.html" data-type="entity-link" >ExpansionPanelHeaderContentComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/FilterContainerComponent.html" data-type="entity-link" >FilterContainerComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/FlatCardActionsComponent.html" data-type="entity-link" >FlatCardActionsComponent</a>
                             </li>
                             <li class="link">
@@ -1121,6 +1124,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/DialogData.html" data-type="entity-link" >DialogData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FilterChip.html" data-type="entity-link" >FilterChip</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IconConfig.html" data-type="entity-link" >IconConfig</a>
