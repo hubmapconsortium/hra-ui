@@ -1,17 +1,5 @@
 import { createInjectionToken } from 'ngxtension/create-injection-token';
 
-/** Brand logo */
-export interface BrandLogo {
-  /** Logo size */
-  size: 'regular' | 'small';
-  /** Logo source url */
-  src: string;
-  /** Logo width */
-  width: number;
-  /** Logo height */
-  height: number;
-}
-
 /** Application configuration */
 export interface AppConfiguration {
   /** Application name */
@@ -21,7 +9,7 @@ export interface AppConfiguration {
   /** Application url */
   url?: string;
   /** Brand logos */
-  logos?: BrandLogo[];
+  // logos?: BrandLogo[];
 }
 
 /** Application configuration */
