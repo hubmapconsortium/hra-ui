@@ -7,14 +7,14 @@
   }
 }
 
-<ng-template hraMenuGroup let-group #groupTemplate>
+<ng-template let-group hraMenuGroup #groupTemplate>
   <a
     mat-button
     class="group-label"
-    [hraLink]="group.url"
-    [hraLinkExternal]="group.external"
     rel="noopener noreferrer"
     hraClickEvent
+    [hraLink]="group.url"
+    [hraLinkExternal]="group.external"
     [hraFeature]="group.label | slugify"
   >
     {{ group.label }}
@@ -51,15 +51,15 @@
   </div>
 </ng-template>
 
-<ng-template hraMenuItem let-item #itemTemplate>
+<ng-template let-item hraMenuItem #itemTemplate>
   <a
     mat-button
     hraSecondaryButton
     class="item-label"
-    [hraLink]="item.url"
-    [hraLinkExternal]="item.external"
     rel="noopener noreferrer"
     hraClickEvent
+    [hraLink]="item.url"
+    [hraLinkExternal]="item.external"
     [hraFeature]="item.label | slugify"
   >
     {{ item.label }}
