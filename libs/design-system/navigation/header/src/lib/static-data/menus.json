@@ -101,8 +101,7 @@
                 {
                   "type": "item",
                   "label": "Cell Distance Explorer",
-                  "url": "https://apps.humanatlas.io/cde/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/cde/"
                 },
                 {
                   "type": "item",
@@ -117,20 +116,17 @@
                 {
                   "type": "item",
                   "label": "Dashboard",
-                  "url": "https://apps.humanatlas.io/dashboard/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/dashboard/"
                 },
                 {
                   "type": "item",
                   "label": "Exploration User Interface",
-                  "url": "https://apps.humanatlas.io/eui/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/eui/"
                 },
                 {
                   "type": "item",
                   "label": "Functional Tissue Unit Explorer",
-                  "url": "https://apps.humanatlas.io/ftu-explorer/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/ftu-explorer/"
                 },
                 {
                   "type": "item",
@@ -156,14 +152,12 @@
                 {
                   "type": "item",
                   "label": "ASCT+B Reporter",
-                  "url": "https://apps.humanatlas.io/asctb-reporter/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/asctb-reporter/"
                 },
                 {
                   "type": "item",
                   "label": "Registration User Interface",
-                  "url": "https://apps.humanatlas.io/rui/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/rui/"
                 }
               ]
             },
