@@ -8,7 +8,6 @@ export type IconButtonSize = 'small' | 'large';
  */
 @Directive({
   selector: '[hraIconButtonSize]',
-  standalone: true,
   host: {
     '[class]': '"hra-icon-button-size-" + size()',
   },

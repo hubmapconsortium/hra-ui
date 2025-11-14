@@ -22,7 +22,6 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 
 import { FilterOption, FilterOptionCategory } from '../../../utils/utils';
@@ -90,7 +89,6 @@ const TOOLTIP_POSITIONS: ConnectedPosition[] = [
     ReactiveFormsModule,
     MatListModule,
     MatChipsModule,
-    PlainTooltipDirective,
   ],
   templateUrl: './filter-menu-overlay.component.html',
   styleUrl: './filter-menu-overlay.component.scss',
@@ -197,15 +195,5 @@ export class FilterMenuOverlayComponent implements OnInit {
       this.filterChanged.emit();
       return updatedValue;
     });
-  }
-
-  /**
-   * Navigates to url in a separate window
-   * @param Url
-   */
-  navigateToLink(url?: string) {
-    if (url) {
-      window.open(url, '_blank');
-    }
   }
 }

@@ -43,3 +43,4 @@ content:
     content:
       - component: YouTubePlayer
         videoId: 18imQj068Iw
+        label: Registration user interface application demo video

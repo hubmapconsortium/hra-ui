@@ -1,12 +1,10 @@
 <app-sidenav hraFeature="debug-logs">
   <div header>
     <app-sidenav-header
-      [title]="'Debug Log'"
-      [tooltipString]="
-        'Displays important messages about problems that occurred during the creation of the visualization(s).'
-      "
+      title="Debug Log"
+      tooltipString="Displays important messages about problems that occurred during the creation of the visualization(s)."
       (closeSideNav)="closeDebug.emit()"
-    ></app-sidenav-header>
+    />
   </div>
 
   <div body>
@@ -15,10 +13,10 @@
       mat-stretch-tabs
       hraClickEvent
       hraClickEventTriggerOn="none"
-      #event="hraClickEvent"
       (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
+      #event="hraClickEvent"
     >
-      <mat-tab [label]="currentSheet().display" bodyClass="tab-body">
+      <mat-tab bodyClass="tab-body" [label]="currentSheet().display">
         <div class="content">
           <div class="logs-list">
             <div *ngFor="let l of logs().sheetLogs.messages" class="logs-list-item">
@@ -31,17 +29,17 @@
                 <mat-expansion-panel class="expansion-panel-container w-100">
                   <mat-expansion-panel-header
                     class="p-0 expansion-panel-header"
-                    [collapsedHeight]="'2.1875rem'"
-                    [expandedHeight]="'2.1875rem'"
+                    collapsedHeight="2.1875rem"
+                    expandedHeight="2.1875rem"
                   >
                     <mat-panel-title>
                       <div>
-                        <p class="i2" [innerHTML]="'Nodes with multiple in-links'"></p>
+                        <p class="i2" innerHTML="Nodes with multiple in-links"></p>
                       </div>
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" [innerHTML]="i"></p>
+                    <p *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" class="i2" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
@@ -52,17 +50,17 @@
                 <mat-expansion-panel class="expansion-panel-container w-100">
                   <mat-expansion-panel-header
                     class="p-0 expansion-panel-header"
-                    [collapsedHeight]="'2.1875rem'"
-                    [expandedHeight]="'2.1875rem'"
+                    collapsedHeight="2.1875rem"
+                    expandedHeight="2.1875rem"
                   >
                     <mat-panel-title>
                       <div>
-                        <p class="i2" [innerHTML]="'Nodes with self-links'"></p>
+                        <p class="i2" innerHTML="Nodes with self-links"></p>
                       </div>
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs().sheetLogs.SELF_LINKS" [innerHTML]="i"></p>
+                    <p *ngFor="let i of logs().sheetLogs.SELF_LINKS" class="i2" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
@@ -73,17 +71,17 @@
                 <mat-expansion-panel class="expansion-panel-container w-100">
                   <mat-expansion-panel-header
                     class="p-0 expansion-panel-header"
-                    [collapsedHeight]="'2.1875rem'"
-                    [expandedHeight]="'2.1875rem'"
+                    collapsedHeight="2.1875rem"
+                    expandedHeight="2.1875rem"
                   >
                     <mat-panel-title>
                       <div>
-                        <p class="i2" [innerHTML]="'Nodes with no in-links'"></p>
+                        <p class="i2" innerHTML="Nodes with no in-links"></p>
                       </div>
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" [innerHTML]="i"></p>
+                    <p *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" class="i2" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
@@ -94,17 +92,17 @@
                 <mat-expansion-panel class="expansion-panel-container w-100">
                   <mat-expansion-panel-header
                     class="p-0 expansion-panel-header"
-                    [collapsedHeight]="'2.1875rem'"
-                    [expandedHeight]="'2.1875rem'"
+                    collapsedHeight="2.1875rem"
+                    expandedHeight="2.1875rem"
                   >
                     <mat-panel-title>
                       <div>
-                        <p class="i2" [innerHTML]="'Nodes with no out-links'"></p>
+                        <p class="i2" innerHTML="Nodes with no out-links"></p>
                       </div>
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div class="expansion-panel-content">
-                    <p class="i2" *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" [innerHTML]="i"></p>
+                    <p *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" class="i2" [innerHTML]="i"></p>
                   </div>
                 </mat-expansion-panel>
               </div>
@@ -113,7 +111,7 @@
         </div>
       </mat-tab>
       <mat-tab label="All Logs" bodyClass="tab-body">
-        <div class="logs-list mt-2" *ngFor="let AL of logs().allLogs">
+        <div *ngFor="let AL of logs().allLogs" class="logs-list mt-2">
           <div *ngFor="let l of AL.messages" class="logs-list-item py-2">
             <mat-icon class="error-icon-list">{{ l.icon }}</mat-icon>
             <div mat-line class="error-list-container">
@@ -126,17 +124,17 @@
               <mat-expansion-panel class="expansion-panel-container w-100">
                 <mat-expansion-panel-header
                   class="p-0 expansion-panel-header"
-                  [collapsedHeight]="'2.1875rem'"
-                  [expandedHeight]="'2.1875rem'"
+                  collapsedHeight="2.1875rem"
+                  expandedHeight="2.1875rem"
                 >
                   <mat-panel-title>
                     <div>
-                      <p class="i2" [innerHTML]="'Nodes with multiple in-links'"></p>
+                      <p class="i2" innerHTML="Nodes with multiple in-links"></p>
                     </div>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" [innerHTML]="i"></p>
+                  <p *ngFor="let i of logs().sheetLogs.MULTI_IN_LINKS" class="i2" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -147,17 +145,17 @@
               <mat-expansion-panel class="expansion-panel-container w-100">
                 <mat-expansion-panel-header
                   class="p-0 expansion-panel-header"
-                  [collapsedHeight]="'2.1875rem'"
-                  [expandedHeight]="'2.1875rem'"
+                  collapsedHeight="2.1875rem"
+                  expandedHeight="2.1875rem"
                 >
                   <mat-panel-title>
                     <div>
-                      <p class="i2" [innerHTML]="'Nodes with self-links'"></p>
+                      <p class="i2" innerHTML="Nodes with self-links"></p>
                     </div>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs().sheetLogs.SELF_LINKS" [innerHTML]="i"></p>
+                  <p *ngFor="let i of logs().sheetLogs.SELF_LINKS" class="i2" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -168,17 +166,17 @@
               <mat-expansion-panel class="expansion-panel-container w-100">
                 <mat-expansion-panel-header
                   class="p-0 expansion-panel-header"
-                  [collapsedHeight]="'2.1875rem'"
-                  [expandedHeight]="'2.1875rem'"
+                  collapsedHeight="2.1875rem"
+                  expandedHeight="2.1875rem"
                 >
                   <mat-panel-title>
                     <div>
-                      <p class="i2" [innerHTML]="'Nodes with no in-links'"></p>
+                      <p class="i2" innerHTML="Nodes with no in-links"></p>
                     </div>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" [innerHTML]="i"></p>
+                  <p *ngFor="let i of logs().sheetLogs.NO_IN_LINKS" class="i2" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>
@@ -189,17 +187,17 @@
               <mat-expansion-panel class="expansion-panel-container w-100">
                 <mat-expansion-panel-header
                   class="p-0 expansion-panel-header"
-                  [collapsedHeight]="'2.1875rem'"
-                  [expandedHeight]="'2.1875rem'"
+                  collapsedHeight="2.1875rem"
+                  expandedHeight="2.1875rem"
                 >
                   <mat-panel-title>
                     <div>
-                      <p class="i2" [innerHTML]="'Nodes with no out-links'"></p>
+                      <p class="i2" innerHTML="Nodes with no out-links"></p>
                     </div>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="expansion-panel-content">
-                  <p class="i2" *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" [innerHTML]="i"></p>
+                  <p *ngFor="let i of logs().sheetLogs.NO_OUT_LINKS" class="i2" [innerHTML]="i"></p>
                 </div>
               </mat-expansion-panel>
             </div>

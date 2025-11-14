@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 import { CarouselItemSchema } from '../../components/carousel/carousel.schema';
 import { SectionCardItemSchema } from '../../components/section-cards/section-cards.schema';
 

@@ -1,7 +1,7 @@
 <div class="component-tagline">
   <span class="component-title">{{ tagline() }}</span>
   @if (showHelpButton()) {
-    <hra-help-button [action]="helpLink()"></hra-help-button>
+    <hra-help-button [action]="helpLink()" />
   }
   <div class="filler"></div>
   <button
@@ -16,15 +16,15 @@
   </button>
 </div>
 @if (showDivider()) {
-  <mat-divider class="top-divider"></mat-divider>
+  <mat-divider class="top-divider" />
 }
 
 <div class="card-content">
-  <ng-content></ng-content>
+  <ng-content />
 </div>
 
 @if (showButtonsFooter()) {
   <div class="card-footer">
-    <ng-content select="hra-flat-card-actions"></ng-content>
+    <ng-content select="hra-flat-card-actions" />
   </div>
 }

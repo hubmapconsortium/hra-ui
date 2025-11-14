@@ -1,6 +1,6 @@
 <ng-container hraFeature="cell-population-predictor">
   <!-- HEADING -->
-  <hra-app-label tagline="Cell Population Predictor" logo="product:cell-population-predictor"></hra-app-label>
+  <hra-app-label tagline="Cell Population Predictor" logo="product:cell-population-predictor" />
 
   <!-- INFO -->
   <p class="info-text">
@@ -21,12 +21,12 @@
           class="info-icon"
           fontIcon="info"
           cdkOverlayOrigin
-          #uploadDataTooltipTrigger="cdkOverlayOrigin"
           (mouseover)="uploadInfoOpen = true"
           (mouseout)="uploadInfoOpen = false"
           (focus)="uploadInfoOpen = true"
           (blur)="uploadInfoOpen = false"
-        ></mat-icon>
+          #uploadDataTooltipTrigger="cdkOverlayOrigin"
+        />
         <ng-template
           cdkConnectedOverlay
           [cdkConnectedOverlayPanelClass]="['tooltip-panel']"
@@ -36,7 +36,7 @@
           [cdkConnectedOverlayViewportMargin]="8"
           [cdkConnectedOverlayPush]="true"
         >
-          <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>
+          <hra-tooltip-card [content]="tooltip" />
         </ng-template>
       </hra-workflow-card-actions>
 
@@ -48,7 +48,7 @@
       <div class="buttons-container">
         @if (file; as f) {
           <div class="file-buttons">
-            <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
+            <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined" />
             <button
               hraClickEvent
               hraFeature="predict"
@@ -75,16 +75,16 @@
               type="file"
               accept="application/json"
               style="display: none"
-              (change)="onFileSelected($event)"
               data-testid="file-input"
+              (change)="onFileSelected($event)"
               #fileInput
             />
             <button
               hraClickEvent
               hraFeature="upload-file"
-              (click)="fileInput.click()"
               mat-button
               hraButtonSize="medium"
+              (click)="fileInput.click()"
             >
               Upload file
             </button>
@@ -104,9 +104,9 @@
           class="info-icon"
           fontIcon="info"
           cdkOverlayOrigin
-          #createDataTooltipTrigger="cdkOverlayOrigin"
           (mouseover)="createInfoOpen = true"
           (mouseout)="createInfoOpen = false"
+          #createDataTooltipTrigger="cdkOverlayOrigin"
         >
           <ng-template
             cdkConnectedOverlay
@@ -117,7 +117,7 @@
             [cdkConnectedOverlayViewportMargin]="8"
             [cdkConnectedOverlayPush]="true"
           >
-            <hra-tooltip-card [content]="tooltip"> </hra-tooltip-card>
+            <hra-tooltip-card [content]="tooltip" />
           </ng-template>
         </mat-icon>
       </hra-workflow-card-actions>
@@ -140,19 +140,19 @@
 
         <ng-template
           cdkConnectedOverlay
-          [cdkConnectedOverlayDisableClose]="true"
           cdkConnectedOverlayDisposeOnNavigation="true"
           cdkConnectedOverlayHeight="100vh"
-          [cdkConnectedOverlayOpen]="ruiOpen"
-          [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }"
           cdkConnectedOverlayPanelClass="rui-panel"
           cdkConnectedOverlayWidth="100vw"
+          [cdkConnectedOverlayDisableClose]="true"
+          [cdkConnectedOverlayOpen]="ruiOpen"
+          [cdkConnectedOverlayOrigin]="{ x: 0, y: 0 }"
         >
           <hra-embedded-rui
             [supportedOrgans]="supportedOrgans.value()"
             (locationCreated)="onFileCreated($event); ruiOpen = false"
             (closed)="ruiOpen = false"
-          ></hra-embedded-rui>
+          />
         </ng-template>
       </div>
     </hra-workflow-card>

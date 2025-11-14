@@ -26,8 +26,8 @@ const PADDING: Record<TreeSize, number> = {
  */
 @Component({
   selector: 'hra-tree-demo',
-  templateUrl: 'tree-demo.component.html',
   imports: [MatTreeModule, MatButtonModule, MatIconModule, TreeSizeDirective],
+  templateUrl: 'tree-demo.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeDemoComponent implements AfterViewInit {

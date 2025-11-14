@@ -7,7 +7,7 @@ import { GraphAttribute, OrderType, GRAPH_ATTRIBUTE_LABELS } from '../models/par
  */
 export interface StackedBarsSpecOptions {
   /** Values to be visualized in the stacked bars */
-  values: Record<string, any>[];
+  values: Record<string, unknown>[];
   /** Field used for the x-axis */
   xAxisField: GraphAttribute;
   /** Field used for the y-axis */

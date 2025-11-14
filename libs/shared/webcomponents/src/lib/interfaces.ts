@@ -4,7 +4,8 @@ import { InputSignalWithTransform } from '@angular/core';
 type InputPropKey<KeyT, SignalT> = [InputPropValue<SignalT>] extends [never] ? never : KeyT;
 
 /** Returns the value type of an input SignalT or never if it is not an input */
-type InputPropValue<SignalT> = SignalT extends InputSignalWithTransform<infer ValueT, infer _Unused> ? ValueT : never;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type InputPropValue<SignalT> = SignalT extends InputSignalWithTransform<infer ValueT, any> ? ValueT : never;
 
 /** Extracts the input/model properties and their corresponding value types for a component */
 export type InputProps<CompT> = {
