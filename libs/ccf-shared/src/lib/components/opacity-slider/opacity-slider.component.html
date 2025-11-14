@@ -5,8 +5,8 @@
       hraClickEvent
       mat-icon-button
       class="visibility icon visible"
-      (click)="toggleVisibility()"
       hraPlainTooltip="Hide"
+      (click)="toggleVisibility()"
     >
       <mat-icon>visibility_off</mat-icon>
     </button>
@@ -16,8 +16,8 @@
       hraClickEvent
       mat-icon-button
       class="visibility icon invisible"
-      (click)="toggleVisibility()"
       hraPlainTooltip="Show"
+      (click)="toggleVisibility()"
     >
       <mat-icon>visibility_on</mat-icon>
     </button>
@@ -27,8 +27,8 @@
     hraClickEvent
     mat-icon-button
     class="icon reset"
-    (click)="resetOpacity()"
     hraPlainTooltip="Reset"
+    (click)="resetOpacity()"
   >
     <mat-icon>reset_settings</mat-icon>
   </button>
@@ -54,5 +54,5 @@
 
 <mat-form-field hraFeature="input" hraClickEvent subscriptSizing="dynamic">
   <mat-label>Opacity</mat-label>
-  <input matInput [value]="opacity()" (input)="opacityChange.emit(+input.value || 0)" type="number" #input />
+  <input matInput type="number" [value]="opacity()" (input)="opacityChange.emit(+input.value || 0)" #input />
 </mat-form-field>

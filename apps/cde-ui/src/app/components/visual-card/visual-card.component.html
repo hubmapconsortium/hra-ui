@@ -1,11 +1,11 @@
 <ng-container hraFeature="visual-cards">
   @for (card of cardData(); track card.label) {
     <a
-      [routerLink]="card.route"
       class="visual-card cta-flat"
       rel="noopener noreferrer"
-      [hraFeature]="card.label | slugify"
       hraClickEvent
+      [routerLink]="card.route"
+      [hraFeature]="card.label | slugify"
     >
       <img [attr.src]="card.image" [alt]="card.alt" />
       <button class="label" mat-button hraCtaButton hraSecondaryButton>

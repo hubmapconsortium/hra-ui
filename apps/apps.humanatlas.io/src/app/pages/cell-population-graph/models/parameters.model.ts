@@ -2,7 +2,7 @@
  * Main configuration and model definitions for the Cell Population Graph application.
  */
 
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Configuration JSON URL */
 export const MAIN_CONFIG_JSON =

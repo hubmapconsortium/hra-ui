@@ -1,4 +1,5 @@
 import nx from '@nx/eslint-plugin';
+import importZod from 'eslint-plugin-import-zod';
 import schema from 'eslint-plugin-json-schema-validator';
 import json from 'eslint-plugin-jsonc';
 import storybook from 'eslint-plugin-storybook';
@@ -6,11 +7,44 @@ import yaml from 'eslint-plugin-yml';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+/**
+ * Create rules that enforces that a prefix is used for all component and directive selectors.
+ * Should always be included **after** the angular configuration.
+ *
+ * @param {string} prefix
+ * @returns Rules that enforces the prefix
+ */
+export function withAngularSelectorPrefix(prefix) {
+  return {
+    files: ['**/*.ts'],
+    rules: {
+      '@angular-eslint/component-selector': [
+        'error',
+        {
+          type: 'element',
+          style: 'kebab-case',
+          prefix,
+        },
+      ],
+      '@angular-eslint/directive-selector': [
+        'error',
+        {
+          type: 'attribute',
+          style: 'camelCase',
+          prefix,
+        },
+      ],
+    },
+  };
+}
+
 export const configs = {
+  // Base rules for all js/ts projects
   base: [
     ...nx.configs['flat/base'],
     ...nx.configs['flat/javascript'],
     ...nx.configs['flat/typescript'],
+    ...importZod.configs['recommended'],
     {
       ignores: ['**/dist', '**/coverage'],
     },
@@ -81,6 +115,8 @@ export const configs = {
       },
     },
   ],
+
+  // Library only rules
   lib: [
     ...json.configs['flat/base'],
     {
@@ -89,6 +125,83 @@ export const configs = {
       },
     },
   ],
+
+  // Angular rules
+  angular: [
+    ...nx.configs['flat/angular'],
+    ...nx.configs['flat/angular-template'],
+    withAngularSelectorPrefix('hra'),
+    {
+      files: ['**/*.ts'],
+      rules: {
+        '@angular-eslint/consistent-component-styles': 'error',
+        '@angular-eslint/no-async-lifecycle-method': 'error',
+        '@angular-eslint/no-attribute-decorator': 'error',
+        '@angular-eslint/no-duplicates-in-metadata-arrays': 'error',
+        '@angular-eslint/prefer-host-metadata-property': 'error',
+        '@angular-eslint/prefer-output-readonly': 'error',
+        '@angular-eslint/prefer-signals': 'error',
+        '@angular-eslint/sort-keys-in-type-decorator': 'error',
+      },
+    },
+    {
+      files: ['**/*.html'],
+      rules: {
+        '@angular-eslint/template/attributes-order': [
+          'error',
+          {
+            order: [
+              'STRUCTURAL_DIRECTIVE',
+              'ATTRIBUTE_BINDING',
+              'INPUT_BINDING',
+              'TWO_WAY_BINDING',
+              'OUTPUT_BINDING',
+              'TEMPLATE_REFERENCE',
+            ],
+          },
+        ],
+        '@angular-eslint/template/no-interpolation-in-attributes': 'error',
+        '@angular-eslint/template/prefer-at-else': 'error',
+        '@angular-eslint/template/prefer-at-empty': 'error',
+        '@angular-eslint/template/prefer-contextual-for-variables': 'error',
+        '@angular-eslint/template/prefer-self-closing-tags': 'error',
+        '@angular-eslint/template/prefer-static-string-properties': 'error',
+        '@angular-eslint/template/prefer-template-literal': 'error',
+      },
+    },
+  ],
+
+  // Json and Yaml rules
+  json: [...json.configs['flat/recommended-with-json']],
+  yaml: [...yaml.configs['flat/recommended'], ...yaml.configs['flat/prettier']],
+  schema: [
+    ...schema.configs['flat/recommended'],
+    {
+      rules: {
+        'json-schema-validator/no-invalid': 'error',
+      },
+    },
+  ],
+
+  // Storybook rules
+  storybook: [
+    ...storybook.configs['flat/recommended'],
+    {
+      ignores: ['!.storybook'],
+    },
+    {
+      rules: {
+        'storybook/no-uninstalled-addons': [
+          'error',
+          {
+            packageJsonLocation: join(dirname(fileURLToPath(import.meta.url)), 'package.json'),
+          },
+        ],
+      },
+    },
+  ],
+
+  // Plugin rules
   plugin: [
     ...json.configs['flat/base'],
     ...json.configs['flat/recommended-with-json'],
@@ -107,67 +220,6 @@ export const configs = {
       files: ['**/package.json', '**/package.json', '**/executors.json'],
       rules: {
         '@nx/nx-plugin-checks': 'error',
-      },
-    },
-  ],
-  angular: [
-    ...nx.configs['flat/angular'],
-    ...nx.configs['flat/angular-template'],
-    {
-      files: ['**/*.ts'],
-      rules: {
-        '@angular-eslint/no-async-lifecycle-method': 'error',
-        '@angular-eslint/no-attribute-decorator': 'error',
-        '@angular-eslint/no-duplicates-in-metadata-arrays': 'error',
-        '@angular-eslint/prefer-output-readonly': 'error',
-        '@angular-eslint/prefer-signals': 'error',
-
-        '@angular-eslint/directive-selector': [
-          'error',
-          {
-            type: 'attribute',
-            prefix: 'hra',
-            style: 'camelCase',
-          },
-        ],
-        '@angular-eslint/component-selector': [
-          'error',
-          {
-            type: 'element',
-            prefix: 'hra',
-            style: 'kebab-case',
-          },
-        ],
-      },
-    },
-    {
-      files: ['**/*.html'],
-      rules: {},
-    },
-  ],
-  json: [...json.configs['flat/recommended-with-json']],
-  yaml: [...yaml.configs['flat/recommended'], ...yaml.configs['flat/prettier']],
-  schema: [
-    ...schema.configs['flat/recommended'],
-    {
-      rules: {
-        'json-schema-validator/no-invalid': 'error',
-      },
-    },
-  ],
-  storybook: [
-    ...storybook.configs['flat/recommended'],
-    {
-      ignores: ['!.storybook'],
-    },
-    {
-      rules: {
-        'storybook/no-uninstalled-addons': [
-          'error',
-          {
-            packageJsonLocation: join(dirname(fileURLToPath(import.meta.url)), 'package.json'),
-          },
-        ],
       },
     },
   ],

@@ -4,14 +4,14 @@
     hraFeature="toggle"
     hraClickEvent
     mat-icon-button
-    [matMenuTriggerFor]="menu"
     hraIconButtonSize="large"
     aria-label="Icon to open nested menu"
     hraPlainTooltip="More"
+    [matMenuTriggerFor]="menu"
   >
     <mat-icon>more_vert</mat-icon>
   </button>
-  <mat-menu hraFeature="menu" #menu="matMenu" class="opacity-overlay">
+  <mat-menu hraFeature="menu" class="opacity-overlay" #menu="matMenu">
     <button hraFeature="reset-all" hraClickEvent mat-menu-item>
       <span (click)="anatomical.setAllOpacity(20); landmarks.setAllOpacity(0)">Reset all opacity settings</span>
     </button>
@@ -27,19 +27,17 @@
 <hra-expansion-panel tagline="Anatomical Structures" class="as-expansion" [tooltip]="asTooltip">
   <ccf-visibility-menu
     hraFeature="AS-visibility"
-    #anatomical
     [items]="$any(model.anatomicalStructures$ | async) ?? []"
     (itemsChange)="model.setAnatomicalStructures($event)"
-  >
-  </ccf-visibility-menu>
+    #anatomical
+  />
 </hra-expansion-panel>
 
 <hra-expansion-panel tagline="Landmarks" class="landmarks-expansion" [tooltip]="landmarksTooltip">
   <ccf-visibility-menu
     hraFeature="landmarks-visibility"
-    #landmarks
     [items]="$any(model.extractionSites$ | async)"
     (itemsChange)="model.setExtractionSites($event)"
-  >
-  </ccf-visibility-menu>
+    #landmarks
+  />
 </hra-expansion-panel>

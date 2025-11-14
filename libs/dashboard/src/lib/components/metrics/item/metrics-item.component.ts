@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Type definition of Metrics Item */
 export type MetricsItemSpec = z.infer<typeof METRICS_ITEM_DEF>;

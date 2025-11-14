@@ -13,6 +13,7 @@ import {
 import { injectLogEvent } from '@hra-ui/common/analytics';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 
 /**
@@ -79,7 +80,7 @@ export class BarGraphComponent {
   }
 
   /** Attaches event listeners to the Vega view for analytics tracking */
-  private attachVegaEventTracking(view: any) {
+  private attachVegaEventTracking(view: View) {
     view.addEventListener('pointerover', () =>
       this.logEvent(CoreEvents.Hover, {
         path: 'hra-pop-visualizer.bar-graph',

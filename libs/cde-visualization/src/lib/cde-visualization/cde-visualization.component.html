@@ -1,27 +1,28 @@
 <ng-container hraFeature="cde-visualization">
   @if (loadingManager.isLoading$ | async) {
-    <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress"></mat-progress-bar>
+    <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress" />
   }
 
   <div class="metadata">
-    <cde-metadata [metadata]="metadataView()" hraFeature="metadata"></cde-metadata>
+    <cde-metadata hraFeature="metadata" [metadata]="metadataView()" />
     <cde-cell-types
-      [(cellTypes)]="cellTypes"
-      [(cellTypesSelection)]="cellTypesSelection"
+      hraFeature="cell-types"
       [selectedCellType]="nodeTargetSelector()"
       [countAdjustments]="countAdjustments()"
+      [(cellTypes)]="cellTypes"
+      [(cellTypesSelection)]="cellTypesSelection"
       (downloadNodes)="downloadNodes()"
       (downloadEdges)="downloadEdges()"
       (downloadColorMap)="downloadColorMap()"
       (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
-      hraFeature="cell-types"
       #cellTypesTable
-    ></cde-cell-types>
+    />
   </div>
 
   <div class="visualizations">
     <div class="top">
       <cde-node-dist-visualization
+        hraFeature="visualization"
         [nodes]="nodesView()"
         [edges]="edgesView()"
         [maxEdgeDistance]="maxEdgeDistance()"
@@ -30,19 +31,18 @@
         (nodeClick)="nodeClick.emit($event)"
         (nodeHover)="nodeHover.emit($event)"
         (resetAllCells)="resetCellTypes()"
-        hraFeature="visualization"
-      ></cde-node-dist-visualization>
+      />
 
-      <cde-violin [colors]="filteredColors()" [data]="filteredDistances()" hraFeature="violin-graph"></cde-violin>
+      <cde-violin hraFeature="violin-graph" [colors]="filteredColors()" [data]="filteredDistances()" />
     </div>
 
     <cde-histogram
+      hraFeature="histogram"
       [colors]="filteredColors()"
       [data]="filteredDistances()"
       [filteredCellTypes]="filteredCellTypes()"
       (updateColor)="updateColor($event.entry, $event.color)"
-      hraFeature="histogram"
       #histogram
-    ></cde-histogram>
+    />
   </div>
 </ng-container>

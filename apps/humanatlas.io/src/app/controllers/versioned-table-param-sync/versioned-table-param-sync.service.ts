@@ -1,5 +1,5 @@
 import { ComponentRef, effect, Injectable, signal } from '@angular/core';
-import { ContentTemplateController, Controller } from '@hra-ui/cdk/content-template';
+import { ContentTemplateController } from '@hra-ui/cdk/content-template';
 import { VersionedDataTableComponent } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
 
@@ -33,7 +33,7 @@ export class VersionedTableParamSyncControllerService implements ContentTemplate
   }
 
   /** attach function that sets the correct version in the URL*/
-  attach(componentRef: ComponentRef<unknown>, options: Controller): void {
+  attach(componentRef: ComponentRef<unknown>): void {
     const { instance } = componentRef;
     if (instance instanceof VersionedDataTableComponent) {
       this.componentRef.set(componentRef as ComponentRef<VersionedDataTableComponent>);

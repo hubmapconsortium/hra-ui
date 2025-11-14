@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Social media id */
 export type SocialMediaId = SocialMedia['id'];
