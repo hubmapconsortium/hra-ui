@@ -754,6 +754,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/GalleryCardComponent.html" data-type="entity-link" >GalleryCardComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/GoogleMapsComponent.html" data-type="entity-link" >GoogleMapsComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/GridContainerComponent.html" data-type="entity-link" >GridContainerComponent</a>
                             </li>
                             <li class="link">

@@ -270,6 +270,10 @@
       "types": "./content-templates/flex-container/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-flex-container.mjs"
     },
+    "./content-templates/google-maps": {
+      "types": "./content-templates/google-maps/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-google-maps.mjs"
+    },
     "./content-templates/grid-container": {
       "types": "./content-templates/grid-container/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-grid-container.mjs"
@@ -302,13 +306,13 @@
       "types": "./content-templates/ui-section/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-ui-section.mjs"
     },
-    "./content-templates/youtube-player": {
-      "types": "./content-templates/youtube-player/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-content-templates-youtube-player.mjs"
-    },
     "./content-templates/versioned-data-table": {
       "types": "./content-templates/versioned-data-table/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-versioned-data-table.mjs"
+    },
+    "./content-templates/youtube-player": {
+      "types": "./content-templates/youtube-player/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-youtube-player.mjs"
     },
     "./error-pages/archived-page": {
       "types": "./error-pages/archived-page/index.d.ts",
