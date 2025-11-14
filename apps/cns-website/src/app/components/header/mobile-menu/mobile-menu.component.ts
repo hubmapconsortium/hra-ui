@@ -34,16 +34,20 @@ import { resolveUrl } from '../../../utils/url-resolver';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileMenuComponent {
+  /** Options to display on the mobile menu */
   readonly menuOptions = input.required<Menus>();
   /** Base url - Menu urls starting with this will be converted into router links */
   readonly baseUrl = input.required<string | undefined>();
+  /** Social media button data */
   readonly socials = input(SOCIAL_IDS);
 
+  /** Emits when menu is closed */
   readonly closeMenu = output();
 
   /** Reference to the router if available */
   private readonly router = inject(Router, { optional: true });
 
+  /** Resolves a url */
   resolve(url: string, external?: boolean) {
     return resolveUrl(url, external, this.router, this.baseUrl());
   }

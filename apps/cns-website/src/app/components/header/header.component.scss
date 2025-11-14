@@ -28,4 +28,29 @@
     display: flex;
     padding: 0 0.5rem;
   }
+
+  .navigation-menu {
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+
+    ::ng-deep {
+      mat-button-toggle {
+        height: 100%;
+      }
+    }
+  }
+}
+
+::ng-deep .menu-open-backdrop {
+  top: 3.5rem;
+  background-color: rgba(64, 93, 64, 0.16);
+  backdrop-filter: blur(0.5rem);
+  mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  transition: 0.3s;
+}
+
+::ng-deep .cdk-overlay-pane {
+  left: unset !important;
+  right: 0rem !important;
 }

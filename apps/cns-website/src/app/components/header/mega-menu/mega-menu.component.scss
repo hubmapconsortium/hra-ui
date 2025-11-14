@@ -4,10 +4,11 @@
 
 :host {
   display: flex;
-  background: vars.$surface;
-  border-radius: 0.5rem;
   min-width: 640px;
   max-width: 724px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: vars.$surface;
 
   .featured-section {
     display: flex;
@@ -27,6 +28,7 @@
     padding: 0;
     border: 0.0625rem solid vars.$outline-variant;
     border-radius: 0.5rem;
+    overflow: hidden;
     height: fit-content;
     background: vars.$surface-container-low;
   }

@@ -40,18 +40,19 @@
             cdkOverlayOrigin
             [toggled]="isMenuActive(category)"
             (toggledChange)="toggleMenu(category)"
-            #navigationCategoryMenuOrigin="cdkOverlayOrigin"
+            class="navigation-menu"
           >
             {{ category.label }}
           </hra-navigation-category-toggle>
 
           <ng-template
             cdkConnectedOverlay
-            cdkConnectedOverlayHasBackdrop="false"
+            cdkConnectedOverlayHasBackdrop
+            cdkConnectedOverlayBackdropClass="menu-open-backdrop"
             cdkConnectedOverlayLockPosition="true"
             cdkConnectedOverlayPush="true"
             [cdkConnectedOverlayOpen]="isMenuActive(category)"
-            [cdkConnectedOverlayOrigin]="navigationCategoryMenuOrigin"
+            [cdkConnectedOverlayOrigin]="desktopMenuOrigin"
             [cdkConnectedOverlayPositions]="desktopMenuPositions"
             (overlayOutsideClick)="closeMenu()"
           >

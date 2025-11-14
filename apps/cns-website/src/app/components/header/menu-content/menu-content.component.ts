@@ -26,6 +26,7 @@ export class MenuContentComponent {
   /** Reference to the router if available */
   private readonly router = inject(Router, { optional: true });
 
+  /** Resolves a url */
   resolve(url: string, external?: boolean) {
     return resolveUrl(url, external, this.router, this.baseUrl());
   }

@@ -31,9 +31,12 @@ const MOBILE_MENU_POSITIONS: ConnectedPosition[] = [
 ];
 /** Position of the desktop menu overlay */
 const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
-  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetX: -16, offsetY: 16 },
+  { originX: 'end', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetX: -16, offsetY: 16 },
 ];
 
+/**
+ * CNS Website header component
+ */
 @Component({
   selector: 'cns-header',
   imports: [
@@ -51,9 +54,11 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  /** Navigation options to display on the header */
   readonly menuOptions = input(MENUS);
   /** Base url - Menu urls starting with this will be converted into router links */
   readonly baseUrl = input<string>();
+  /** Whether to show the filter menu icon */
   readonly enableFilterMenu = input<boolean>(true);
 
   /** Whether the screen is currently mobile sized */
@@ -170,6 +175,7 @@ export class HeaderComponent {
     this.mobileMenuOverlay()?.overlayRef?.updatePosition();
   }
 
+  /** Resolves a url */
   resolve(url: string, external?: boolean) {
     return resolveUrl(url, external, this.router, this.baseUrl());
   }
