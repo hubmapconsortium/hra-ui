@@ -12,10 +12,10 @@ import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 @Component({
   selector: 'hra-google-maps',
   imports: [HraCommonModule, ButtonsModule],
+  standalone: true,
   templateUrl: './google-maps.component.html',
   styleUrl: './google-maps.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class GoogleMapsComponent {
   /** DOM sanitizer */
