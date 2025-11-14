@@ -12,12 +12,9 @@ export const appRoutes: Route[] = [
   {
     path: 'people/katy-borner',
     component: PeopleProfileComponent,
+    // TODO: When JSON data is available, add resolver
+    // resolve: {
+    //   data: createJsonSpecResolver('assets/content/people/katy-borner/data.json', PeopleProfileDataSchema)
+    // }
   },
-  // Dynamic route for future profile pages
-  // When you create a team page, clicking on a person will navigate to /people/:slug
-  // You'll need to create a component that loads profile data based on the slug
-  // {
-  //   path: 'people/:slug',
-  //   component: PeopleProfileComponent,
-  // },
 ];
