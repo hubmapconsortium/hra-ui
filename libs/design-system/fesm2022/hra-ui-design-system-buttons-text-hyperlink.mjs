@@ -37,14 +37,38 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImpo
                 }]
         }] });
 
+/**
+ * Applies text hyperlink styles when placed on a <button> tag.
+ * Also attaches a click event for analytics.
+ */
+class TextButtonDirective {
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: TextButtonDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.11", type: TextButtonDirective, isStandalone: true, selector: "button[hraTextButton]", host: { classAttribute: "hra-text-button" }, hostDirectives: [{ directive: i1.ClickEventDirective, inputs: ["hraClickEvent", "hraTextButton"] }], ngImport: i0 });
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: TextButtonDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: 'button[hraTextButton]',
+                    host: {
+                        class: 'hra-text-button',
+                    },
+                    hostDirectives: [
+                        {
+                            directive: ClickEventDirective,
+                            inputs: ['hraClickEvent: hraTextButton'],
+                        },
+                    ],
+                }]
+        }] });
+
 /** Global styles for text hyperlinks */
 class TextHyperlinkGlobalStylesComponent {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: TextHyperlinkGlobalStylesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.11", type: TextHyperlinkGlobalStylesComponent, isStandalone: true, selector: "hra-text-hyperlink-global-styles", ngImport: i0, template: '', isInline: true, styles: [".hra-app a.hra-text-hyperlink,.hra-app markdown a{text-decoration:underline solid currentColor .0625rem;text-underline-offset:.125rem}.hra-app a.hra-text-hyperlink:link,.hra-app a.hra-text-hyperlink:link mat-icon,.hra-app markdown a:link,.hra-app markdown a:link mat-icon{color:var(--mat-sys-tertiary)}.hra-app a.hra-text-hyperlink:visited,.hra-app a.hra-text-hyperlink:visited mat-icon,.hra-app markdown a:visited,.hra-app markdown a:visited mat-icon{color:var(--mat-sys-tertiary)}.hra-app a.hra-text-hyperlink:focus-visible,.hra-app markdown a:focus-visible{color:var(--mat-sys-secondary);outline:.125rem solid var(--mat-sys-tertiary);border-radius:.25rem}.hra-app a.hra-text-hyperlink:focus-visible mat-icon,.hra-app markdown a:focus-visible mat-icon{color:var(--mat-sys-secondary)}.hra-app a.hra-text-hyperlink:hover,.hra-app a.hra-text-hyperlink:hover mat-icon,.hra-app a.hra-text-hyperlink:active,.hra-app a.hra-text-hyperlink:active mat-icon,.hra-app markdown a:hover,.hra-app markdown a:hover mat-icon,.hra-app markdown a:active,.hra-app markdown a:active mat-icon{color:var(--mat-sys-tertiary)}.hra-app markdown pre{background-color:var(--mat-sys-surface-container);border-radius:.25rem;border:1px solid var(--mat-sys-outline);padding:.75rem;overflow-x:auto;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.11", type: TextHyperlinkGlobalStylesComponent, isStandalone: true, selector: "hra-text-hyperlink-global-styles", ngImport: i0, template: '', isInline: true, styles: [".hra-app a.hra-text-hyperlink,.hra-app markdown a{text-decoration:underline solid currentColor .0625rem;text-underline-offset:.125rem}.hra-app a.hra-text-hyperlink:link,.hra-app a.hra-text-hyperlink:link mat-icon,.hra-app markdown a:link,.hra-app markdown a:link mat-icon{color:var(--mat-sys-tertiary)}.hra-app a.hra-text-hyperlink:visited,.hra-app a.hra-text-hyperlink:visited mat-icon,.hra-app markdown a:visited,.hra-app markdown a:visited mat-icon{color:var(--mat-sys-tertiary)}.hra-app a.hra-text-hyperlink:focus-visible,.hra-app markdown a:focus-visible{color:var(--mat-sys-secondary);outline:.125rem solid var(--mat-sys-tertiary);border-radius:.25rem}.hra-app a.hra-text-hyperlink:focus-visible mat-icon,.hra-app markdown a:focus-visible mat-icon{color:var(--mat-sys-secondary)}.hra-app a.hra-text-hyperlink:hover,.hra-app a.hra-text-hyperlink:hover mat-icon,.hra-app a.hra-text-hyperlink:active,.hra-app a.hra-text-hyperlink:active mat-icon,.hra-app markdown a:hover,.hra-app markdown a:hover mat-icon,.hra-app markdown a:active,.hra-app markdown a:active mat-icon{color:var(--mat-sys-tertiary)}.hra-app button.hra-text-button{font:var(--mat-sys-label-small);letter-spacing:var(--mat-sys-label-small-tracking);text-decoration:underline solid currentColor .0625rem;text-underline-offset:.125rem;background:none;border:none;padding:0;cursor:pointer;color:var(--mat-sys-tertiary)}.hra-app markdown pre{background-color:var(--mat-sys-surface-container);border-radius:.25rem;border:1px solid var(--mat-sys-outline);padding:.75rem;overflow-x:auto;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: TextHyperlinkGlobalStylesComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-text-hyperlink-global-styles', template: '', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, styles: [".hra-app a.hra-text-hyperlink,.hra-app markdown a{text-decoration:underline solid currentColor .0625rem;text-underline-offset:.125rem}.hra-app a.hra-text-hyperlink:link,.hra-app a.hra-text-hyperlink:link mat-icon,.hra-app markdown a:link,.hra-app markdown a:link mat-icon{color:var(--mat-sys-tertiary)}.hra-app a.hra-text-hyperlink:visited,.hra-app a.hra-text-hyperlink:visited mat-icon,.hra-app markdown a:visited,.hra-app markdown a:visited mat-icon{color:var(--mat-sys-tertiary)}.hra-app a.hra-text-hyperlink:focus-visible,.hra-app markdown a:focus-visible{color:var(--mat-sys-secondary);outline:.125rem solid var(--mat-sys-tertiary);border-radius:.25rem}.hra-app a.hra-text-hyperlink:focus-visible mat-icon,.hra-app markdown a:focus-visible mat-icon{color:var(--mat-sys-secondary)}.hra-app a.hra-text-hyperlink:hover,.hra-app a.hra-text-hyperlink:hover mat-icon,.hra-app a.hra-text-hyperlink:active,.hra-app a.hra-text-hyperlink:active mat-icon,.hra-app markdown a:hover,.hra-app markdown a:hover mat-icon,.hra-app markdown a:active,.hra-app markdown a:active mat-icon{color:var(--mat-sys-tertiary)}.hra-app markdown pre{background-color:var(--mat-sys-surface-container);border-radius:.25rem;border:1px solid var(--mat-sys-outline);padding:.75rem;overflow-x:auto;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"] }]
+            args: [{ selector: 'hra-text-hyperlink-global-styles', template: '', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, styles: [".hra-app a.hra-text-hyperlink,.hra-app markdown a{text-decoration:underline solid currentColor .0625rem;text-underline-offset:.125rem}.hra-app a.hra-text-hyperlink:link,.hra-app a.hra-text-hyperlink:link mat-icon,.hra-app markdown a:link,.hra-app markdown a:link mat-icon{color:var(--mat-sys-tertiary)}.hra-app a.hra-text-hyperlink:visited,.hra-app a.hra-text-hyperlink:visited mat-icon,.hra-app markdown a:visited,.hra-app markdown a:visited mat-icon{color:var(--mat-sys-tertiary)}.hra-app a.hra-text-hyperlink:focus-visible,.hra-app markdown a:focus-visible{color:var(--mat-sys-secondary);outline:.125rem solid var(--mat-sys-tertiary);border-radius:.25rem}.hra-app a.hra-text-hyperlink:focus-visible mat-icon,.hra-app markdown a:focus-visible mat-icon{color:var(--mat-sys-secondary)}.hra-app a.hra-text-hyperlink:hover,.hra-app a.hra-text-hyperlink:hover mat-icon,.hra-app a.hra-text-hyperlink:active,.hra-app a.hra-text-hyperlink:active mat-icon,.hra-app markdown a:hover,.hra-app markdown a:hover mat-icon,.hra-app markdown a:active,.hra-app markdown a:active mat-icon{color:var(--mat-sys-tertiary)}.hra-app button.hra-text-button{font:var(--mat-sys-label-small);letter-spacing:var(--mat-sys-label-small-tracking);text-decoration:underline solid currentColor .0625rem;text-underline-offset:.125rem;background:none;border:none;padding:0;cursor:pointer;color:var(--mat-sys-tertiary)}.hra-app markdown pre{background-color:var(--mat-sys-surface-container);border-radius:.25rem;border:1px solid var(--mat-sys-outline);padding:.75rem;overflow-x:auto;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}\n"] }]
         }] });
 
 /**
@@ -116,5 +140,5 @@ const TextHyperlinkDef = {
  * Generated bundle index. Do not edit.
  */
 
-export { TextHyperlinkComponent, TextHyperlinkDef, TextHyperlinkDirective, TextHyperlinkSchema, provideTextHyperlink };
+export { TextButtonDirective, TextHyperlinkComponent, TextHyperlinkDef, TextHyperlinkDirective, TextHyperlinkSchema, provideTextHyperlink };
 //# sourceMappingURL=hra-ui-design-system-buttons-text-hyperlink.mjs.map
