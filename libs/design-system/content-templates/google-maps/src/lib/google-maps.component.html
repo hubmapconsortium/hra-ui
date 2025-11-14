@@ -1,0 +1,21 @@
+@if (enabled()) {
+  <iframe frameBorder="0" class="google-maps" [attr.src]="mapsUrl()"></iframe>
+} @else {
+  <a hraFeature="maps-placeholder" hraClickEvent target="_blank" [attr.href]="externalUrl()">
+    <img class="maps-placeholder" alt="Google Maps" [attr.src]="fallbackImageUrl()" />
+  </a>
+  <div class="enable-cookies">
+    <!-- TODO: Change to hraTextButton once implemented -->
+    <button
+      hraFeature="enable-cookies"
+      hraClickEvent
+      mat-button
+      class="link"
+      disableRipple
+      (click)="privacyPreferencesService.openPrivacyPreferences('consent')"
+    >
+      Enable cookies
+    </button>
+    to view Google Maps
+  </div>
+}
