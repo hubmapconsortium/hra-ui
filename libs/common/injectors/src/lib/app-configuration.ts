@@ -8,8 +8,6 @@ export interface AppConfiguration {
   version?: string;
   /** Application url */
   url?: string;
-  /** Brand logos */
-  // logos?: BrandLogo[];
 }
 
 /** Application configuration */
