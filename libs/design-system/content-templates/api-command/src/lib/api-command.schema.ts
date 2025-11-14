@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** API command button type */
 export type ApiCommandButton = z.infer<typeof ApiCommandButtonSchema>;

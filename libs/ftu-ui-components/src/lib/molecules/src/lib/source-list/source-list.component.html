@@ -5,7 +5,7 @@
     }
     <div class="view-fullscreen" [class.hide-title]="hideTitle()">
       `
-      <hra-results-indicator [value]="selectedCount()" [total]="sources.length" description="Viewing" />
+      <hra-results-indicator description="Viewing" [value]="selectedCount()" [total]="sources.length" />
       @if (!hideTitle()) {
         <button
           mat-icon-button
@@ -23,16 +23,15 @@
   <div class="table-content" [class.hidden]="!showTable()">
     @if (sources.length !== 0) {
       <hra-table
+        style="alternating"
         [rows]="sources"
         [columns]="tableColumns"
         [enableRowSelection]="true"
         [enableSort]="true"
-        [style]="'alternating'"
         [verticalDividers]="true"
-        #sourceTable
         (selectionChange)="onSelectionChange()"
-      >
-      </hra-table>
+        #sourceTable
+      />
     } @else {
       <!--
         TODO: Need to do in a way that FTU hides the source list completely from the grid,
@@ -42,7 +41,7 @@
     }
   </div>
 
-  <ng-template #dataHover let-columnName>
+  <ng-template let-columnName #dataHover>
     <div class="biomarker-table-hover full-column-name" [class.empty]="columnName.toString() === ''">
       {{ columnName }}
     </div>

@@ -1,7 +1,7 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, effect, inject, input, viewChild } from '@angular/core';
 import embed from 'vega-embed';
-import { z } from 'zod';
+import * as z from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.component';
 

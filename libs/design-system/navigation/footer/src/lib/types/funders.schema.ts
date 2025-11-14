@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Data id of a funder */
 export type FunderId = Funder['id'];

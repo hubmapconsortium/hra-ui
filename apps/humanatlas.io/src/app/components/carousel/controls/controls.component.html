@@ -1,11 +1,11 @@
 <ng-container hraFeature="controls">
-  <button mat-icon-button #prevButton class="prev-button" hraFeature="previous-slide" hraClickEvent>
+  <button mat-icon-button class="prev-button" hraFeature="previous-slide" hraClickEvent #prevButton>
     <mat-icon>chevron_left</mat-icon>
   </button>
 
-  <div class="pagination-container" #paginationContainer hraFeature="slide-dot" hraClickEvent></div>
+  <div class="pagination-container" hraFeature="slide-dot" hraClickEvent #paginationContainer></div>
 
-  <button mat-icon-button #nextButton class="next-button" hraFeature="next-slide" hraClickEvent>
+  <button mat-icon-button class="next-button" hraFeature="next-slide" hraClickEvent #nextButton>
     <mat-icon>chevron_right</mat-icon>
   </button>
 </ng-container>

@@ -1,7 +1,7 @@
 @if (variant() !== 'outlined-with-icons') {
   <div class="header">
     @if (image(); as src) {
-      <img class="image" [attr.src]="src | assetUrl" alt="" />
+      <img class="image" alt="" [attr.src]="src | assetUrl" />
     }
   </div>
 }
