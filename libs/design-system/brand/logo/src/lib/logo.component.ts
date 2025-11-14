@@ -22,7 +22,7 @@ export class BrandLogoComponent {
   readonly size = input<BrandLogoSize>('regular');
 
   /** Logos from injection token */
-  readonly logos = injectBrandLogos().logos;
+  readonly logos = injectBrandLogos();
 
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;

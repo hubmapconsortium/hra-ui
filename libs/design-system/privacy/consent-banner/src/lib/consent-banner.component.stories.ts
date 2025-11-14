@@ -29,12 +29,10 @@ export const CNSWebsite: Story = {
           version: '1.0.0',
           url: 'https://humanatlas.io/',
         }),
-        provideBrandLogos({
-          logos: [
-            { size: 'regular', src: 'assets/brand/logo/cns-regular.svg', width: 228, height: 39 },
-            { size: 'small', src: 'assets/brand/logo/cns-small.svg', width: 84, height: 28 },
-          ],
-        }),
+        provideBrandLogos([
+          { size: 'regular', src: 'assets/brand/logo/cns-regular.svg', width: 228, height: 39 },
+          { size: 'small', src: 'assets/brand/logo/cns-small.svg', width: 84, height: 28 },
+        ]),
       ],
     }),
   ],
