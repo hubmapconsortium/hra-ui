@@ -1,4 +1,9 @@
-<a hraFeature="navigation-item" [hraClickEvent]="{ label: navigationItem().label }" mat-list-item [hraLink]="url()">
+<a
+  hraFeature="navigation-item"
+  mat-list-item
+  [hraClickEvent]="{ label: navigationItem().label }"
+  [hraLink]="navigationItem().url"
+>
   <div class="nav-content">
     @if (navigationItem().icon; as icon) {
       <mat-icon matListItemIcon>{{ icon }}</mat-icon>

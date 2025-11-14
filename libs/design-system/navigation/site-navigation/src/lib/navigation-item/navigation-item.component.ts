@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListItem, MatListItemTitle } from '@angular/material/list';
 import { HraCommonModule } from '@hra-ui/common';
@@ -17,7 +17,4 @@ import { DocsNavigationItem } from '../types/docs-navigation.schema';
 export class NavigationItemComponent {
   /** Navigation Item Data */
   readonly navigationItem = input.required<DocsNavigationItem>();
-
-  /** Resolved URL for the navigation item */
-  protected readonly url = computed(() => this.navigationItem().url);
 }
