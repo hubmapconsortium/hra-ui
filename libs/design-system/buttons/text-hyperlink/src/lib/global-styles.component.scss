@@ -3,7 +3,8 @@
 
 @include utils.global-styles() {
   a.hra-text-hyperlink,
-  markdown a {
+  markdown a,
+  button.hra-text-button {
     text-decoration: underline solid currentColor 0.0625rem;
     text-underline-offset: 0.125rem;
 
