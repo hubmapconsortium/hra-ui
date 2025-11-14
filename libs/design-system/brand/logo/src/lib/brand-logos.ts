@@ -16,8 +16,10 @@ export const DEFAULT_LOGOS: BrandLogo[] = [
   },
 ];
 
+/** Brand logo size */
 export type BrandLogoSize = 'regular' | 'small';
 
+/** Brand logo */
 export interface BrandLogo {
   /** Logo size */
   size: BrandLogoSize;
