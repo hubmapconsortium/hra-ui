@@ -1,3 +1,6 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
 :host {
   display: block;
   position: relative;
@@ -10,5 +13,27 @@
     width: 100% !important;
     aspect-ratio: 16 / 9 !important;
     height: unset !important;
+  }
+
+  .thumbnail-image {
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+
+  .enable-cookies-message {
+    @include utils.use-font(label, small);
+    color: vars.$primary;
+    margin-top: 0.5rem;
+  }
+
+  .enable-cookies-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: vars.$tertiary;
+    text-decoration: underline;
   }
 }

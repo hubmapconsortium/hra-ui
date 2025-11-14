@@ -1,16 +1,11 @@
-import { importProvidersFrom } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { applicationConfig, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 const meta: Meta = {
-  title: 'Select',
+  title: 'Design System/Select',
   decorators: [
-    applicationConfig({
-      providers: [importProvidersFrom(BrowserAnimationsModule)],
-    }),
     moduleMetadata({
       imports: [MatSelectModule, MatFormFieldModule, ReactiveFormsModule],
     }),

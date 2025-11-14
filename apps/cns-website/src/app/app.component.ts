@@ -6,13 +6,13 @@ import { HraCommonModule } from '@hra-ui/common';
  * Main application component
  */
 @Component({
-  imports: [HraCommonModule, RouterModule],
   selector: 'cns-website',
+  imports: [HraCommonModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'cns-website',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

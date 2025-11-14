@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { map } from 'rxjs';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Organ entry type */
 export type OrganEntry = z.infer<typeof ORGANS_DEF>[number];

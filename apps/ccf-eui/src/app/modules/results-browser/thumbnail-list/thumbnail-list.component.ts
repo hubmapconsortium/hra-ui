@@ -11,9 +11,9 @@ import { GlobalConfigState } from 'ccf-shared';
  */
 @Component({
   selector: 'ccf-thumbnail-list',
-  templateUrl: './thumbnail-list.component.html',
-  styleUrls: ['./thumbnail-list.component.scss'],
   imports: [HraCommonModule, MatButtonModule, MatIconModule],
+  templateUrl: './thumbnail-list.component.html',
+  styleUrl: './thumbnail-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThumbnailListComponent {

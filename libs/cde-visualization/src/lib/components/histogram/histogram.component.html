@@ -1,29 +1,24 @@
 <hra-expansion-panel tagline="Histogram" hraHoverEvent hraHoverEventTriggerOn="mouseenter">
   <hra-expansion-panel-actions>
-    <cde-histogram-menu
-      (open)="histogramEl().open()"
-      (download)="download($event)"
-      hraFeature="menu"
-    ></cde-histogram-menu>
+    <cde-histogram-menu hraFeature="menu" (open)="histogramEl().open()" (download)="download($event)" />
   </hra-expansion-panel-actions>
   <hra-expansion-panel-header-content>
     <cde-color-picker-label
+      hraFeature="color-picker"
+      hraClickEvent
       [label]="totalCellTypeLabel"
       [(color)]="totalCellTypeColor"
       (colorPickerOpen)="colorPicker.set($event)"
-      hraFeature="color-picker"
-      hraClickEvent
-    >
-    </cde-color-picker-label>
+    />
   </hra-expansion-panel-header-content>
   <hra-fullscreen-portal
     tagline="Histogram"
+    hraFeature="fullscreen"
     (opened)="resizeAndSyncView()"
     (closed)="resizeAndSyncView()"
-    hraFeature="fullscreen"
   >
     <hra-fullscreen-actions>
-      <cde-histogram-menu dialogOpen="true" (download)="download($event)" hraFeature="menu"></cde-histogram-menu>
+      <cde-histogram-menu dialogOpen="true" hraFeature="menu" (download)="download($event)" />
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content data-testid="portal-content">
@@ -31,8 +26,8 @@
         class="histogram"
         style="height: 100%; width: 100%"
         data-testid="histogram"
-        #histogram
         hraFeature="histogram-chart"
+        #histogram
       ></div>
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>

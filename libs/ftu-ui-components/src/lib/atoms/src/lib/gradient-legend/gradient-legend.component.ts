@@ -14,7 +14,7 @@ export interface GradientPoint {
   selector: 'ftu-gradient-legend',
   imports: [CommonModule],
   templateUrl: './gradient-legend.component.html',
-  styleUrls: ['./gradient-legend.component.scss'],
+  styleUrl: './gradient-legend.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GradientLegendComponent {

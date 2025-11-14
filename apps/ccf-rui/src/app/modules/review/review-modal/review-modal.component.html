@@ -24,11 +24,11 @@
   </div>
 
   <button
-    [hraFeature]="data.registrationCallbackSet ? 'register' : 'download'"
     hraClickEvent
     mat-button
     mat-flat-button
     class="download-button"
+    [hraFeature]="data.registrationCallbackSet ? 'register' : 'download'"
     (click)="downloadClicked()"
   >
     {{ data.registrationCallbackSet ? 'Register' : 'Download' }}
