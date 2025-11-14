@@ -132,6 +132,47 @@ export const appRoutes: Route[] = [
     path: '500',
     component: ServerErrorPageComponent,
   },
+  // Redirects
+  {
+    path: 'asctb-reporter',
+    redirectTo: 'https://humanatlas.io/asctb-reporter',
+    pathMatch: 'full',
+  },
+  {
+    path: 'rui',
+    redirectTo: 'https://humanatlas.io/rui',
+    pathMatch: 'full',
+  },
+  {
+    path: 'eui',
+    redirectTo: 'https://humanatlas.io/eui',
+    pathMatch: 'full',
+  },
+  {
+    path: 'organ-info',
+    redirectTo: 'https://humanatlas.io/organ-info',
+    pathMatch: 'full',
+  },
+  {
+    path: 'body-ui',
+    redirectTo: 'https://humanatlas.io/body-ui',
+    pathMatch: 'full',
+  },
+  {
+    path: 'ftu',
+    redirectTo: 'https://humanatlas.io/ftu',
+    pathMatch: 'full',
+  },
+  {
+    path: 'cde',
+    redirectTo: 'https://humanatlas.io/cde',
+    pathMatch: 'full',
+  },
+  {
+    path: 'kg',
+    redirectTo: 'https://humanatlas.io/kg',
+    pathMatch: 'full',
+  },
   {
     path: '**',
     component: NotFoundPageComponent,
