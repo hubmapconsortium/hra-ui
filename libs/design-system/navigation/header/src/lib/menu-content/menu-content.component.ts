@@ -73,6 +73,4 @@ export class MenuContentComponent {
   readonly variant = input.required<MenuContentVariant>();
   /** Menu data to display */
   readonly menu = input.required<Menu>();
-  /** Base url - Menu urls starting with this will be converted into router links */
-  readonly baseUrl = input.required<string | undefined>();
 }
