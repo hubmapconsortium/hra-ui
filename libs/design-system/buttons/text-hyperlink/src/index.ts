@@ -1,5 +1,4 @@
 export * from './lib/directives/text-hyperlink.directive';
-export * from './lib/directives/text-button.directive';
 export * from './lib/providers';
 export * from './lib/text-hyperlink.component';
 export { TextHyperlinkDef } from './lib/types/text-hyperlink.definition';
