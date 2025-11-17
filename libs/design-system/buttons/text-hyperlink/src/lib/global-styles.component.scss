@@ -36,7 +36,7 @@
   }
 
   button.hra-text-button {
-    @include utils.use-font(label, small);
+    @include utils.use-font(label, medium);
     text-decoration: underline solid currentColor 0.0625rem;
     text-underline-offset: 0.125rem;
     background: none;
