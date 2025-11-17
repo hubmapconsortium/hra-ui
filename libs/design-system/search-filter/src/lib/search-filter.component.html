@@ -3,9 +3,9 @@
 
   <mat-icon matPrefix>search</mat-icon>
 
-  <input matInput type="text" aria-label="Search with filter" [formControl]="searchControl" [matAutocomplete]="auto" />
+  <input matInput type="text" aria-label="Search with filter" [matAutocomplete]="auto" [(ngModel)]="search" />
 
-  @if (searchControl.value) {
+  @if (search()) {
     <button matSuffix mat-icon-button aria-label="Clear search" type="button" (click)="clearSearch()">
       <mat-icon>close</mat-icon>
     </button>
@@ -23,7 +23,7 @@
       </mat-option>
     }
 
-    @if (filteredOptions().length === 0 && searchQuery()) {
+    @if (filteredOptions().length === 0 && search()) {
       <mat-option [disabled]="true"> No results found </mat-option>
     }
   </mat-autocomplete>

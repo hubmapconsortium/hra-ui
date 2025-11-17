@@ -1,5 +1,5 @@
 import { Component, input, output, computed, effect, model } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -25,7 +25,7 @@ export interface SearchFilterOption {
   selector: 'hra-search-filter',
   imports: [
     HraCommonModule,
-    ReactiveFormsModule,
+    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
@@ -53,15 +53,9 @@ export class SearchFilterComponent {
   /** Emits filtered results */
   readonly filteredResultsChange = output<SearchFilterOption[]>();
 
-  /** Form control for the search input */
-  readonly searchControl = new FormControl('');
-
-  /** Signal holding the search query - derived from search model */
-  protected readonly searchQuery = computed(() => this.search());
-
   /** Computed filtered options based on search query */
   protected readonly filteredOptions = computed(() => {
-    const query = (this.searchQuery() || '').toLowerCase().trim();
+    const query = (this.search() || '').toLowerCase().trim();
     const allOpts = this.options();
 
     if (!query) {
@@ -79,21 +73,6 @@ export class SearchFilterComponent {
 
   /** Constructor */
   constructor() {
-    // Sync form control value changes to search model (internal -> external)
-    effect(() => {
-      const controlValue = this.searchControl.value || '';
-      this.search.set(controlValue);
-    });
-
-    // Sync search model changes to form control (external -> internal)
-    effect(() => {
-      const currentSearch = this.search();
-      const controlValue = this.searchControl.value || '';
-      if (currentSearch !== controlValue) {
-        this.searchControl.setValue(currentSearch, { emitEvent: false });
-      }
-    });
-
     effect(() => {
       this.filteredResultsChange.emit(this.filteredOptions());
     });
@@ -103,7 +82,7 @@ export class SearchFilterComponent {
    * Handles filter option selection
    */
   onOptionSelected(option: SearchFilterOption): void {
-    this.searchControl.setValue(option.label);
+    this.search.set(option.label);
     this.selectionChange.emit(option);
   }
 
@@ -111,7 +90,7 @@ export class SearchFilterComponent {
    * Clears the search input
    */
   clearSearch(): void {
-    this.searchControl.setValue('');
+    this.search.set('');
     this.selectionChange.emit(null);
   }
 
