@@ -3,62 +3,58 @@
 @use '../../../styles/vars';
 
 :host {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 
-  .search-filter-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+  &.sticky {
+    position: sticky;
+    top: 0;
+  }
 
-    &.sticky {
-      position: sticky;
-      top: 0;
-    }
+  .search-field {
+    flex: 1;
+    min-width: 160px;
+    max-width: 580px;
 
-    .search-field {
-      flex: 1;
-      min-width: 160px;
-      max-width: 580px;
-
-      @include mat.form-field-overrides(
-        (
-          container-height: 48px,
-          container-text-font: vars.$label-medium-font,
-          container-text-size: vars.$label-medium-size,
-          container-text-weight: vars.$label-medium-weight,
-          filled-active-indicator-color: vars.$primary,
-          filled-focus-active-indicator-color: vars.$primary,
-          filled-container-color: vars.$surface,
-          filled-container-shape: 4px,
-          filled-input-text-placeholder-color: vars.$primary,
-          filled-input-text-color: vars.$primary,
-          container-vertical-padding: 0.8438rem,
-        )
-      );
-    }
-
-    @include mat.icon-button-overrides(
+    @include mat.form-field-overrides(
       (
-        state-layer-size: 32px,
-        icon-size: 20px,
+        container-height: 48px,
+        container-text-font: vars.$label-medium-font,
+        container-text-size: vars.$label-medium-size,
+        container-text-weight: vars.$label-medium-weight,
+        filled-active-indicator-color: vars.$primary,
+        filled-focus-active-indicator-color: vars.$primary,
+        filled-container-color: vars.$surface,
+        filled-container-shape: 4px,
+        filled-input-text-placeholder-color: vars.$primary,
+        filled-input-text-color: vars.$primary,
+        container-vertical-padding: 0.8438rem,
       )
     );
+  }
+
+  @include mat.icon-button-overrides(
+    (
+      state-layer-size: 32px,
+      icon-size: 20px,
+    )
+  );
+
+  .results-counter {
+    min-width: 5.25rem;
+    max-width: 7.5rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 48rem) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
 
     .results-counter {
-      min-width: 5.25rem;
-      max-width: 7.5rem;
-      white-space: nowrap;
-    }
-
-    @media (max-width: 48rem) {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 8px;
-
-      .results-counter {
-        align-self: flex-end;
-      }
+      align-self: flex-end;
     }
   }
 }
