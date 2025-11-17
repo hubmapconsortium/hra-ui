@@ -1,7 +1,7 @@
 <mat-button-toggle-group
   hraFeature="category-toggle"
-  [hideSingleSelectionIndicator]="false"
   class="toggle-group"
+  [hideSingleSelectionIndicator]="false"
   (change)="category.set($event.value)"
 >
   <mat-button-toggle hraClickEvent hraFeature="featured" value="featured" checked> Featured </mat-button-toggle>
@@ -21,7 +21,6 @@
       [date]="card.date"
       [tagline]="card.tagline"
       [tags]="card.tags"
-    >
-    </hra-content-button>
+    />
   }
 </hra-grid-container>
