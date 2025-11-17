@@ -4,10 +4,10 @@
       class="logo"
       hraFeature="logo"
       hraClickEvent
-      [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
       aria-label="Visit CNS"
       href="https://cns.iu.edu"
       target="_self"
+      [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
     >
     </a>
 
@@ -26,11 +26,11 @@
               mat-button
               hraSecondaryButton
               class="item-label"
-              [attr.href]="url.value"
-              [attr.target]="option.target ?? ''"
               target="_blank"
               rel="noopener noreferrer"
               hraClickEvent
+              [attr.href]="url.value"
+              [attr.target]="option.target ?? ''"
               [hraFeature]="option.label | slugify"
             >
               {{ option.label }}
@@ -40,8 +40,8 @@
               mat-button
               hraSecondaryButton
               class="item-label"
-              [routerLink]="url.value"
               hraClickEvent
+              [routerLink]="url.value"
               [hraFeature]="option.label | slugify"
             >
               {{ option.label }}
@@ -68,6 +68,6 @@
 
 <div class="socials">
   @for (id of socials(); track id) {
-    <hra-social-media-button [id]="$any(id)" size="large" variant="color"></hra-social-media-button>
+    <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
   }
 </div>

@@ -5,15 +5,15 @@
     @if (url.isAbsolute) {
       <a
         mat-button
-        [attr.href]="featured.url"
-        [attr.target]="featured.target ?? ''"
         rel="noopener noreferrer"
         class="featured-link"
+        [attr.href]="featured.url"
+        [attr.target]="featured.target ?? ''"
       >
         <ng-container *ngTemplateOutlet="content" />
       </a>
     } @else {
-      <a mat-button [routerLink]="featured.url" class="featured-link">
+      <a mat-button class="featured-link" [routerLink]="featured.url">
         <ng-container *ngTemplateOutlet="content" />
       </a>
     }
@@ -21,7 +21,7 @@
     <ng-template #content>
       <div class="featured-content-container">
         @if (featured.imgSrc) {
-          <img class="featured-image" [src]="featured.imgSrc | assetUrl" alt="" />
+          <img class="featured-image" alt="" [src]="featured.imgSrc | assetUrl" />
         }
         <div class="featured-bottom">
           <div class="featured-label">
@@ -50,7 +50,7 @@
         {{ group.label }}
       </div>
 
-      <mat-divider class="divider"></mat-divider>
+      <mat-divider class="divider" />
       <div class="items">
         @for (item of group.items; track $index) {
           <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }" />
@@ -62,24 +62,24 @@
       @let url = resolve(item.url, item.external);
       @if (url.isAbsolute) {
         <a
+          hraClickEvent
           mat-button
           hraSecondaryButton
           class="item-label"
+          rel="noopener noreferrer"
           [attr.href]="url.value"
           [attr.target]="item.target ?? ''"
-          rel="noopener noreferrer"
-          hraClickEvent
           [hraFeature]="item.label | slugify"
         >
           {{ item.label }}
         </a>
       } @else {
         <a
+          hraClickEvent
           mat-button
           hraSecondaryButton
           class="item-label"
           [routerLink]="url.value"
-          hraClickEvent
           [hraFeature]="item.label | slugify"
         >
           {{ item.label }}
@@ -89,7 +89,7 @@
   </div>
   <div class="socials">
     @for (id of socials(); track id) {
-      <hra-social-media-button [id]="$any(id)" size="large" variant="color"></hra-social-media-button>
+      <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
     }
   </div>
 </div>

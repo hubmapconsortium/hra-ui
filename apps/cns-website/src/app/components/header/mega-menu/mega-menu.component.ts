@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';
+import { CNS_SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';
 import { Menu } from '../types/menus.schema';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +24,7 @@ export class MegaMenuComponent {
   /** Base url - Menu urls starting with this will be converted into router links */
   readonly baseUrl = input.required<string | undefined>();
   /** Social media button data */
-  readonly socials = input(SOCIAL_IDS);
+  readonly socials = input(CNS_SOCIAL_IDS);
 
   /** Reference to the router if available */
   private readonly router = inject(Router, { optional: true });

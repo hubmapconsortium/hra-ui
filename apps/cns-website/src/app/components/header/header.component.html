@@ -1,4 +1,4 @@
-<header hraFeature="header" class="header" cdkOverlayOrigin #mobileMenuOrigin="cdkOverlayOrigin" data-testid="header">
+<header hraFeature="header" class="header" cdkOverlayOrigin data-testid="header" #mobileMenuOrigin="cdkOverlayOrigin">
   <div hraFeature="navigation" class="header-content" #desktopMenuOrigin>
     @if (enableFilterMenu()) {
       <button mat-icon-button>
@@ -9,10 +9,10 @@
       class="logo"
       hraFeature="logo"
       hraClickEvent
-      [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
       aria-label="Visit CNS"
       href="https://cns.iu.edu"
       target="_self"
+      [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
     >
     </a>
 
@@ -21,10 +21,10 @@
     @if (isMobile()) {
       <button
         hraFeature="menu-toggle"
-        [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('mobile') }"
         mat-icon-button
         cdkOverlayOrigin
         aria-label="Open the main navigation menu"
+        [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('mobile') }"
         (click)="toggleMenu('mobile')"
         #mainMenuOrigin="cdkOverlayOrigin"
       >
@@ -34,13 +34,13 @@
       @for (category of menuOptions().options; track $index) {
         @if (category.type === 'menu') {
           <hra-navigation-category-toggle
-            [hraFeature]="category.id | slugify"
             hraClickEvent
             hraHoverEvent
             cdkOverlayOrigin
+            class="navigation-menu"
+            [hraFeature]="category.id | slugify"
             [toggled]="isMenuActive(category)"
             (toggledChange)="toggleMenu(category)"
-            class="navigation-menu"
           >
             {{ category.label }}
           </hra-navigation-category-toggle>
@@ -56,7 +56,7 @@
             [cdkConnectedOverlayPositions]="desktopMenuPositions"
             (overlayOutsideClick)="closeMenu()"
           >
-            <cns-mega-menu [menu]="category" [baseUrl]="baseUrl()"></cns-mega-menu>
+            <cns-mega-menu [menu]="category" [baseUrl]="baseUrl()" />
           </ng-template>
         } @else {
           @let url = resolve(category.url, category.external);
@@ -65,10 +65,10 @@
               mat-button
               hraSecondaryButton
               class="item-label"
-              [attr.href]="url.value"
-              [attr.target]="category.target ?? ''"
               rel="noopener noreferrer"
               hraClickEvent
+              [attr.href]="url.value"
+              [attr.target]="category.target ?? ''"
               [hraFeature]="category.label | slugify"
             >
               {{ category.label }}
@@ -78,8 +78,8 @@
               mat-button
               hraSecondaryButton
               class="item-label"
-              [routerLink]="url.value"
               hraClickEvent
+              [routerLink]="url.value"
               [hraFeature]="category.label | slugify"
             >
               {{ category.label }}
@@ -95,12 +95,12 @@
         cdkConnectedOverlayDisposeOnNavigation="true"
         cdkConnectedOverlayHasBackdrop="false"
         cdkConnectedOverlayLockPosition="true"
+        cdkConnectedOverlayHeight="100%"
+        cdkConnectedOverlayWidth="100%"
         [cdkConnectedOverlayOpen]="isMenuActive('mobile')"
         [cdkConnectedOverlayOrigin]="mobileMenuOrigin"
         [cdkConnectedOverlayPositions]="mobileMenuPositions"
         [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"
-        [cdkConnectedOverlayHeight]="'100%'"
-        [cdkConnectedOverlayWidth]="'100%'"
         #mobileMenuOverlay
       >
         <cns-mobile-menu

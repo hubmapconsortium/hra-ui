@@ -4,15 +4,15 @@
   @if (url.isAbsolute) {
     <a
       mat-button
-      [attr.href]="featured.url"
-      [attr.target]="featured.target ?? ''"
       rel="noopener noreferrer"
       class="featured-link"
+      [attr.href]="featured.url"
+      [attr.target]="featured.target ?? ''"
     >
       <ng-container *ngTemplateOutlet="content" />
     </a>
   } @else {
-    <a mat-button [routerLink]="featured.url" class="featured-link">
+    <a mat-button class="featured-link" [routerLink]="featured.url">
       <ng-container *ngTemplateOutlet="content" />
     </a>
   }
@@ -44,7 +44,7 @@
       {{ group.description }}
     </div>
   }
-  <mat-divider class="divider"></mat-divider>
+  <mat-divider class="divider" />
   <div class="items">
     @for (item of group.items; track $index) {
       <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }" />
@@ -59,10 +59,10 @@
       mat-button
       hraSecondaryButton
       class="item-label"
-      [attr.href]="url.value"
-      [attr.target]="item.target ?? ''"
       rel="noopener noreferrer"
       hraClickEvent
+      [attr.href]="url.value"
+      [attr.target]="item.target ?? ''"
       [hraFeature]="item.label | slugify"
     >
       {{ item.label }}
@@ -72,8 +72,8 @@
       mat-button
       hraSecondaryButton
       class="item-label"
-      [routerLink]="url.value"
       hraClickEvent
+      [routerLink]="url.value"
       [hraFeature]="item.label | slugify"
     >
       {{ item.label }}

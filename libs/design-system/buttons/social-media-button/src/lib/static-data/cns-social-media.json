@@ -29,7 +29,7 @@
       "id": "github",
       "label": "CNS GitHub",
       "icon": "social:github",
-      "link": "https://github.com/hubmapconsortium/hra-ui"
+      "link": "https://github.com/cns-iu"
     },
     {
       "id": "bluesky",
@@ -47,7 +47,7 @@
       "id": "email",
       "label": "Email us",
       "icon": "email",
-      "link": "mailto:infoccf@iu.edu",
+      "link": "mailto:cnscntr@iu.edu",
       "isFontIcon": true
     }
   ]
