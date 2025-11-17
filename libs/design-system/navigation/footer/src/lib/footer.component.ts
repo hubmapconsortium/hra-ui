@@ -28,8 +28,7 @@ export class FooterComponent {
   private readonly privacyPreferences = inject(PrivacyPreferencesService);
 
   /** Open Privacy Preferences Modal */
-  openPrivacyPreferences(event: Event): void {
-    event.preventDefault();
+  openPrivacyPreferences(): void {
     this.privacyPreferences.openPrivacyPreferences('manage');
   }
 }
