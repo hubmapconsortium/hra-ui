@@ -874,6 +874,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ScrollOverflowFadeStylesComponent.html" data-type="entity-link" >ScrollOverflowFadeStylesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/SearchFilterComponent.html" data-type="entity-link" >SearchFilterComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/SectionLinkComponent.html" data-type="entity-link" >SectionLinkComponent</a>
                             </li>
                             <li class="link">

@@ -130,6 +130,10 @@
       "types": "./scrolling/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-scrolling.mjs"
     },
+    "./search-filter": {
+      "types": "./search-filter/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-search-filter.mjs"
+    },
     "./snackbar": {
       "types": "./snackbar/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-snackbar.mjs"
