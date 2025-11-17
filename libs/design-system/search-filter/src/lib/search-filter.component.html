@@ -3,7 +3,7 @@
 
   <mat-icon matPrefix>search</mat-icon>
 
-  <input matInput type="text" aria-label="Search with filter" [(ngModel)]="search" />
+  <input matInput type="text" [(ngModel)]="search" />
 </mat-form-field>
 
 <hra-results-indicator class="results-counter" description="Viewing" [value]="viewingCount()" [total]="totalCount()" />
