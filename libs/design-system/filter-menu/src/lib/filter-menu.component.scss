@@ -1,0 +1,54 @@
+@use '@angular/material' as mat;
+@use '../../../styles/utils';
+@use '../../../styles/vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  color: vars.$secondary;
+  padding: 1.5rem;
+  height: 100%;
+
+  .header-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .filler {
+    flex-grow: 1;
+  }
+
+  .header-subtext {
+    @include utils.use-font(body, medium);
+    color: vars.$primary;
+  }
+
+  .drawer-title,
+  .customize-title,
+  .filters-title {
+    @include utils.use-font(title, small);
+    padding: 0.5rem 0;
+  }
+
+  .customize-header,
+  .drawer-header,
+  .filters-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .filters-header {
+    margin-bottom: 1rem;
+  }
+
+  .filter-icon,
+  .customize-icon {
+    padding: 0.5rem;
+  }
+
+  ng-scrollbar {
+    padding-top: 1rem;
+  }
+}

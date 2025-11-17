@@ -1,0 +1,25 @@
+@if (tagline() || description() || enableClose()) {
+  <div hraFeature="header" class="header-section">
+    <div class="drawer-header">
+      <span class="drawer-title">{{ tagline() }}</span>
+      <div class="filler"></div>
+      @if (!isWideScreen() && enableClose()) {
+        <button
+          hraFeature="close"
+          hraClickEvent
+          hraHoverEvent
+          mat-icon-button
+          aria-label="Close filter menu"
+          (click)="closeClick.emit()"
+        >
+          <hra-icon class="menu-icon" fontIcon="close" />
+        </button>
+      }
+    </div>
+    <div class="header-subtext">{{ description() }}</div>
+  </div>
+}
+
+<ng-scrollbar hraScrollOverflowFade>
+  <ng-content select="hra-filter-menu-controls" />
+</ng-scrollbar>
