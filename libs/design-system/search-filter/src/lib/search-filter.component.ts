@@ -1,5 +1,4 @@
-import { Component, input, output, computed, effect } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, input, output, computed, effect, model } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -48,8 +47,8 @@ export class SearchFilterComponent {
   /** Emits when a selection is made */
   readonly selectionChange = output<SearchFilterOption | null>();
 
-  /** Emits the current search value on change */
-  readonly searchChange = output<string>();
+  /** Current search query as a model */
+  readonly search = model<string>('');
 
   /** Emits filtered results */
   readonly filteredResultsChange = output<SearchFilterOption[]>();
@@ -57,8 +56,8 @@ export class SearchFilterComponent {
   /** Form control for the search input */
   readonly searchControl = new FormControl('');
 
-  /** Signal holding the search query - derived from form control */
-  protected readonly searchQuery = toSignal(this.searchControl.valueChanges, { initialValue: '' });
+  /** Signal holding the search query - derived from search model */
+  protected readonly searchQuery = computed(() => this.search());
 
   /** Computed filtered options based on search query */
   protected readonly filteredOptions = computed(() => {
@@ -80,8 +79,19 @@ export class SearchFilterComponent {
 
   /** Constructor */
   constructor() {
+    // Sync form control value changes to search model (internal -> external)
     effect(() => {
-      this.searchChange.emit(this.searchQuery() || '');
+      const controlValue = this.searchControl.value || '';
+      this.search.set(controlValue);
+    });
+
+    // Sync search model changes to form control (external -> internal)
+    effect(() => {
+      const currentSearch = this.search();
+      const controlValue = this.searchControl.value || '';
+      if (currentSearch !== controlValue) {
+        this.searchControl.setValue(currentSearch, { emitEvent: false });
+      }
     });
 
     effect(() => {
