@@ -1,6 +1,6 @@
 import { ContentTemplateSchema, ProjectedContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { IconListSchema } from '@hra-ui/design-system/icons';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Action card variants */
 export type ActionCardVariant = z.infer<typeof ActionCardVariantSchema>;

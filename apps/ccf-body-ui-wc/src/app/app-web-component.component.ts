@@ -29,10 +29,15 @@ function toJsonLd(data: unknown): JsonLdObj[] {
 /** Web component */
 @Component({
   selector: 'ccf-root-wc',
-  template:
-    '<ccf-root *ngIf="initialized" (onMouseEnter)="onMouseEnter.emit($event)" (onMouseLeave)="onMouseLeave.emit($event)" (onClick)="onClick.emit($event)"></ccf-root>',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  template:
+    '<ccf-root *ngIf="initialized" (onMouseEnter)="onMouseEnter.emit($event)" (onMouseLeave)="onMouseLeave.emit($event)" (onClick)="onClick.emit($event)" />',
+  styles: `
+    :host {
+      display: block;
+    }
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Data */

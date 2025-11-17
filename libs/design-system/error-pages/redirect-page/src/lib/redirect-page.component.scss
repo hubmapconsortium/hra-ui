@@ -1,0 +1,41 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 4rem;
+  height: calc(100vh - 4.5rem);
+  background-color: vars.$secondary-container;
+
+  hra-progress-spinner {
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    @include utils.use-font(display, medium);
+    color: vars.$secondary;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+
+  .description {
+    @include utils.use-font(title, medium);
+    color: vars.$primary;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .url {
+    @include utils.use-font(body, xl);
+  }
+
+  /* Responsive Styling */
+
+  /* 320px to 639px */
+  @media only screen and (max-width: 639px) {
+    padding: 1rem 1rem;
+  }
+}

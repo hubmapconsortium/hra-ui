@@ -13,13 +13,13 @@
             hraClickEvent
             disableRipple
             panelClass="options-container"
+            panelClass="cell-types-panel"
             [disabled]="error.hasError"
-            (selectionChange)="changeOptions('CT', 'sort', $event)"
             [value]="(config$ | async)?.CT?.sort"
             [hideSingleSelectionIndicator]="true"
-            [panelClass]="'cell-types-panel'"
+            (selectionChange)="changeOptions('CT', 'sort', $event)"
           >
-            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of sortOptions" [value]="option">
+            <mat-option *ngFor="let option of sortOptions" hraClickEvent [hraFeature]="option" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -31,13 +31,13 @@
             hraClickEvent
             disableRipple
             panelClass="options-container"
+            panelClass="cell-types-panel"
             [disabled]="error.hasError"
-            (selectionChange)="changeOptions('CT', 'size', $event)"
             [value]="(config$ | async)?.CT?.size"
             [hideSingleSelectionIndicator]="true"
-            [panelClass]="'cell-types-panel'"
+            (selectionChange)="changeOptions('CT', 'size', $event)"
           >
-            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of ctSizeOptions" [value]="option">
+            <mat-option *ngFor="let option of ctSizeOptions" hraClickEvent [hraFeature]="option" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -56,13 +56,13 @@
             hraClickEvent
             disableRipple
             panelClass="options-container"
+            panelClass="cell-types-panel"
             [disabled]="error.hasError"
-            (selectionChange)="changeOptions('BM', 'sort', $event)"
             [value]="(config$ | async)?.BM?.sort"
             [hideSingleSelectionIndicator]="true"
-            [panelClass]="'cell-types-panel'"
+            (selectionChange)="changeOptions('BM', 'sort', $event)"
           >
-            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of sortOptions" [value]="option">
+            <mat-option *ngFor="let option of sortOptions" hraClickEvent [hraFeature]="option" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -74,13 +74,13 @@
             hraClickEvent
             disableRipple
             panelClass="options-container"
+            panelClass="cell-types-panel"
             [disabled]="error.hasError"
-            (selectionChange)="changeOptions('BM', 'size', $event)"
             [value]="(config$ | async)?.BM?.size"
             [hideSingleSelectionIndicator]="true"
-            [panelClass]="'cell-types-panel'"
+            (selectionChange)="changeOptions('BM', 'size', $event)"
           >
-            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of bmSizeOptions" [value]="option">
+            <mat-option *ngFor="let option of bmSizeOptions" hraClickEvent [hraFeature]="option" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -94,13 +94,13 @@
             hraClickEvent
             disableRipple
             panelClass="options-container"
+            panelClass="cell-types-panel"
             [disabled]="error.hasError"
-            (selectionChange)="changeOptions('BM', 'type', $event)"
             [value]="(config$ | async)?.BM?.type"
             [hideSingleSelectionIndicator]="true"
-            [panelClass]="'cell-types-panel'"
+            (selectionChange)="changeOptions('BM', 'type', $event)"
           >
-            <mat-option [hraFeature]="option" hraClickEvent *ngFor="let option of bimodalBTypeOptions" [value]="option">
+            <mat-option *ngFor="let option of bimodalBTypeOptions" hraClickEvent [hraFeature]="option" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
@@ -119,6 +119,8 @@
           hideMultipleSelectionIndicator="false"
         >
           <mat-button-toggle
+            hraFeature="organs-only"
+            hraClickEvent
             [checked]="omaps.organsOnly"
             (change)="
               handleOMAPOptionToggle({
@@ -126,11 +128,11 @@
                 proteinsOnly: omaps.proteinsOnly,
               })
             "
-            hraFeature="organs-only"
-            hraClickEvent
             >Organs only</mat-button-toggle
           >
           <mat-button-toggle
+            hraFeature="proteins-only"
+            hraClickEvent
             [checked]="omaps.proteinsOnly"
             (change)="
               handleOMAPOptionToggle({
@@ -138,8 +140,6 @@
                 organsOnly: omaps.organsOnly,
               })
             "
-            hraFeature="proteins-only"
-            hraClickEvent
             >Proteins only</mat-button-toggle
           >
         </mat-button-toggle-group>

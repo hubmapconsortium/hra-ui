@@ -12,9 +12,9 @@ import { OntologyTreeComponent } from '../ontology-tree/ontology-tree.component'
  */
 @Component({
   selector: 'ccf-ontology-selection',
+  imports: [CommonModule, OntologyTreeComponent],
   templateUrl: './ontology-selection.component.html',
   providers: [OntologySearchService],
-  imports: [CommonModule, OntologyTreeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologySelectionComponent {

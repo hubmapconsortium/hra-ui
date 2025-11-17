@@ -3,10 +3,10 @@
     <a
       mat-icon-button
       hraClickEvent
-      [attr.href]="url()"
       target="_blank"
       rel="noopener noreferrer"
       hraPlainTooltip="Open in new tab"
+      [attr.href]="url()"
     >
       <mat-icon>open_in_new</mat-icon>
     </a>
@@ -17,9 +17,9 @@
   <button
     mat-button
     hraFeature="copy"
-    [hraClickEvent]="{ url: url() }"
     class="copy"
     hraPlainTooltip="Copy link"
+    [hraClickEvent]="{ url: url() }"
     (click)="copyUrl()"
   >
     <mat-icon>content_copy</mat-icon>

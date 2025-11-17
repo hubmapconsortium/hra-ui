@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Code Block component data */
 export type CodeBlock = z.infer<typeof CodeBlockSchema>;

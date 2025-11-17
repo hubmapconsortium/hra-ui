@@ -27,8 +27,8 @@ import { SpatialSearchUiComponent } from '../spatial-search-ui/spatial-search-ui
  */
 @Component({
   selector: 'ccf-spatial-search-ui-behavior',
-  templateUrl: './spatial-search-ui-behavior.component.html',
   imports: [AsyncPipe, SpatialSearchUiComponent],
+  templateUrl: './spatial-search-ui-behavior.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchUiBehaviorComponent {

@@ -82,3 +82,16 @@ export const Stateless: Story = {
     `,
   }),
 };
+
+export const StatelessWithIcon: Story = {
+  render: () => ({
+    template: `
+      <mat-chip-set aria-label="Chip with icon">
+        <mat-chip hraChipSize="medium">
+          <mat-icon>filter_list</mat-icon>
+          Filter
+        </mat-chip>
+      </mat-chip-set>
+    `,
+  }),
+};
