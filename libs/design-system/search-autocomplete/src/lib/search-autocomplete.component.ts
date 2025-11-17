@@ -24,7 +24,6 @@ export interface SearchAutocompleteOption {
  */
 @Component({
   selector: 'hra-search-autocomplete',
-  standalone: true,
   imports: [
     HraCommonModule,
     ReactiveFormsModule,
@@ -35,8 +34,9 @@ export interface SearchAutocompleteOption {
     MatButtonModule,
     ResultsIndicatorComponent,
   ],
+  standalone: true,
   templateUrl: './search-autocomplete.component.html',
-  styleUrls: ['./search-autocomplete.component.scss'],
+  styleUrl: './search-autocomplete.component.scss',
 })
 export class SearchAutocompleteComponent {
   /** Label for the form field */

@@ -7,22 +7,22 @@
     <input
       matInput
       type="text"
+      aria-label="Search with autocomplete"
       [formControl]="searchControl"
       [matAutocomplete]="auto"
-      aria-label="Search with autocomplete"
     />
 
     @if (searchControl.value) {
-      <button matSuffix mat-icon-button aria-label="Clear search" (click)="clearSearch()" type="button">
+      <button matSuffix mat-icon-button aria-label="Clear search" type="button" (click)="clearSearch()">
         <mat-icon>close</mat-icon>
       </button>
     }
 
     <mat-autocomplete
-      #auto="matAutocomplete"
       [displayWith]="displayWith"
-      (optionSelected)="onOptionSelected($event.option.value)"
       [autoActiveFirstOption]="false"
+      (optionSelected)="onOptionSelected($event.option.value)"
+      #auto="matAutocomplete"
     >
       @for (option of filteredOptions(); track trackByValue($index, option)) {
         <mat-option [value]="option">
@@ -38,8 +38,8 @@
 
   <hra-results-indicator
     class="results-counter"
+    description="Viewing"
     [value]="viewingCount()"
     [total]="totalCount()"
-    description="Viewing"
   />
 </div>
