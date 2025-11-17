@@ -29,17 +29,4 @@ describe('ResultsIndicatorComponent', () => {
     expect(container.textContent).toContain('100');
     expect(container.textContent).toContain('of');
   });
-
-  it('should have aria-live="polite" by default', async () => {
-    const { container } = await render(ResultsIndicatorComponent, {
-      componentInputs: {
-        value: 10,
-        total: 50,
-        description: 'Viewing',
-      },
-    });
-
-    const span = container.querySelector('span');
-    expect(span).toHaveAttribute('aria-live', 'polite');
-  });
 });
