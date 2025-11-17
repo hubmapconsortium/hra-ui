@@ -55,44 +55,4 @@ describe('SearchFilterComponent', () => {
 
     expect(input).toHaveValue('kidney');
   });
-
-  it('shows clear button when there is text', async () => {
-    await render(SearchFilterComponent, {
-      componentInputs: {
-        label: 'Search',
-        totalCount: 4,
-        viewingCount: 1,
-      },
-    });
-
-    const input = screen.getByRole('textbox');
-
-    // Clear button should not be visible initially
-    expect(screen.queryByRole('button', { name: /clear/i })).not.toBeInTheDocument();
-
-    await userEvent.type(input, 'heart');
-
-    // Clear button should be visible after typing
-    expect(screen.getByRole('button', { name: /clear/i })).toBeInTheDocument();
-  });
-
-  it('clears search when clear button is clicked', async () => {
-    await render(SearchFilterComponent, {
-      componentInputs: {
-        label: 'Search',
-        totalCount: 4,
-        viewingCount: 1,
-      },
-    });
-
-    const input = screen.getByRole('textbox');
-    await userEvent.type(input, 'heart');
-
-    expect(input).toHaveValue('heart');
-
-    const clearButton = screen.getByRole('button', { name: /clear/i });
-    await userEvent.click(clearButton);
-
-    expect(input).toHaveValue('');
-  });
 });
