@@ -35,13 +35,6 @@
     );
   }
 
-  @include mat.icon-button-overrides(
-    (
-      state-layer-size: 32px,
-      icon-size: 20px,
-    )
-  );
-
   .results-counter {
     min-width: 5.25rem;
     max-width: 7.5rem;
@@ -57,8 +50,4 @@
       align-self: flex-end;
     }
   }
-}
-
-::ng-deep .mat-mdc-autocomplete-panel {
-  max-height: 256px;
 }
