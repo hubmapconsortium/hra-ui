@@ -2,8 +2,6 @@ import { Component, input, model, numberAttribute } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { HraCommonModule } from '@hra-ui/common';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 
@@ -12,15 +10,7 @@ import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/resu
  */
 @Component({
   selector: 'hra-search-filter',
-  imports: [
-    HraCommonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    ResultsIndicatorComponent,
-  ],
+  imports: [HraCommonModule, FormsModule, MatFormFieldModule, MatInputModule, ResultsIndicatorComponent],
   standalone: true,
   templateUrl: './search-filter.component.html',
   styleUrl: './search-filter.component.scss',
@@ -37,11 +27,4 @@ export class SearchFilterComponent {
 
   /** Number of currently visible/filtered options */
   protected readonly viewingCount = input.required({ transform: numberAttribute });
-
-  /**
-   * Clears the search input
-   */
-  clearSearch(): void {
-    this.search.set('');
-  }
 }
