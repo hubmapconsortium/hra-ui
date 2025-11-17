@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
@@ -7,7 +7,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { Option } from '../filter-menu.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatOptionSelectionChange } from '@angular/material/core';
+import { FilterContainerComponent } from '@hra-ui/design-system/filter-container';
 
 @Component({
   selector: 'hra-filter-menu-customize',
@@ -20,6 +20,7 @@ import { MatOptionSelectionChange } from '@angular/material/core';
     ReactiveFormsModule,
     MatSelectModule,
     MatDividerModule,
+    FilterContainerComponent,
   ],
   templateUrl: './filter-menu-customize.component.html',
   styleUrl: './filter-menu-customize.component.scss',
@@ -56,6 +57,9 @@ export class FilterMenuCustomizeComponent {
     this.filters().map((filter) => [filter.label, this.form().controls.filters.controls[filter.id]]),
   );
 
+  readonly formChange = output<FormGroup>();
+  readonly openFilterOverlay = output<Option>();
+
   constructor() {
     effect(() => {
       const toggleCategories = this.toggleOptions();
@@ -65,7 +69,8 @@ export class FilterMenuCustomizeComponent {
     });
   }
 
-  toggleSelect(event: MatOptionSelectionChange, controlName: 'viewAs' | 'sortBy' | 'groupBy') {
-    this.form().controls.customize.patchValue({ [controlName]: event.source.value });
+  toggleSelect(event: Option, controlName: 'viewAs' | 'sortBy' | 'groupBy') {
+    this.form().controls.customize.patchValue({ [controlName]: event });
+    this.formChange.emit(this.form());
   }
 }

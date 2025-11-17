@@ -19,7 +19,7 @@
         <mat-label>View as</mat-label>
         <mat-select formControlName="viewAs">
           @for (option of viewAsOptions(); track option.id) {
-            <mat-option [value]="option" (onSelectionChange)="toggleSelect($event, 'viewAs')">{{
+            <mat-option [value]="option" (onSelectionChange)="toggleSelect($event.source.value, 'viewAs')">{{
               option.label
             }}</mat-option>
           }
@@ -32,7 +32,7 @@
       <mat-label>Sort by</mat-label>
       <mat-select formControlName="sortBy">
         @for (option of sortByOptions(); track option.id) {
-          <mat-option [value]="option" (onSelectionChange)="toggleSelect($event, 'sortBy')">{{
+          <mat-option [value]="option" (onSelectionChange)="toggleSelect($event.source.value, 'sortBy')">{{
             option.label
           }}</mat-option>
         }
@@ -44,7 +44,7 @@
       <mat-label>Group by</mat-label>
       <mat-select formControlName="groupBy">
         @for (option of groupByOptions(); track option.id) {
-          <mat-option [value]="option" (onSelectionChange)="toggleSelect($event, 'groupBy')">{{
+          <mat-option [value]="option" (onSelectionChange)="toggleSelect($event.source.value, 'groupBy')">{{
             option.label
           }}</mat-option>
         }
@@ -57,10 +57,7 @@
         <span class="filters-title">Filters</span>
       </div>
       @for (filter of filters(); track $index) {
-        @if (!$first) {
-          <mat-divider />
-        }
-        <div class="placeholder">{{ filter.label }}</div>
+        <hra-filter-container enableDivider [action]="filter.label" (actionClick)="openFilterOverlay.emit(filter)" />
       }
     </div>
   </div>

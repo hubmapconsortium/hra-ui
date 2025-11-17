@@ -50,16 +50,4 @@
   mat-label {
     @include utils.use-font(label, medium);
   }
-
-  mat-divider {
-    border-top-color: vars.$outline-variant;
-  }
-
-  .placeholder {
-    height: 2.5rem;
-    @include utils.use-font(label, medium);
-    padding: 0.25rem 0.75rem;
-    align-content: center;
-    pointer-events: none;
-  }
 }
