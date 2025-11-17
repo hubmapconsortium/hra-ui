@@ -24,8 +24,7 @@ describe('SearchFilterComponent', () => {
       },
     });
 
-    expect(screen.getByText('Viewing', { exact: false })).toBeInTheDocument();
-    expect(screen.getByText(/4/)).toBeInTheDocument();
+    expect(screen.getByText(/4.*of.*4/i)).toBeInTheDocument();
   });
 
   it('displays filtered count', async () => {
@@ -37,8 +36,7 @@ describe('SearchFilterComponent', () => {
       },
     });
 
-    expect(screen.getByText('Viewing', { exact: false })).toBeInTheDocument();
-    expect(screen.getByText(/1/)).toBeInTheDocument();
+    expect(screen.getByText(/1.*of.*4/i)).toBeInTheDocument();
   });
 
   it('allows user to type in search input', async () => {
