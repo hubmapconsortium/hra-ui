@@ -10,9 +10,9 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 
 /**
- * Interface representing a search autocomplete option
+ * Interface representing a search filter option
  */
-export interface SearchAutocompleteOption {
+export interface SearchFilterOption {
   /** Label to display for the option */
   label: string;
   /** Value associated with the option */
@@ -20,10 +20,10 @@ export interface SearchAutocompleteOption {
 }
 
 /**
- * Search Autocomplete Component
+ * Search Filter Component
  */
 @Component({
-  selector: 'hra-search-autocomplete',
+  selector: 'hra-search-filter',
   imports: [
     HraCommonModule,
     ReactiveFormsModule,
@@ -35,24 +35,24 @@ export interface SearchAutocompleteOption {
     ResultsIndicatorComponent,
   ],
   standalone: true,
-  templateUrl: './search-autocomplete.component.html',
-  styleUrl: './search-autocomplete.component.scss',
+  templateUrl: './search-filter.component.html',
+  styleUrl: './search-filter.component.scss',
 })
-export class SearchAutocompleteComponent {
+export class SearchFilterComponent {
   /** Label for the form field */
   readonly label = input.required<string>();
 
   /** Array of searchable items */
-  readonly options = input<SearchAutocompleteOption[]>([]);
+  readonly options = input<SearchFilterOption[]>([]);
 
   /** Emits when a selection is made */
-  readonly selectionChange = output<SearchAutocompleteOption | null>();
+  readonly selectionChange = output<SearchFilterOption | null>();
 
   /** Emits the current search value on change */
   readonly searchChange = output<string>();
 
   /** Emits filtered results */
-  readonly filteredResultsChange = output<SearchAutocompleteOption[]>();
+  readonly filteredResultsChange = output<SearchFilterOption[]>();
 
   /** Form control for the search input */
   readonly searchControl = new FormControl('');
@@ -92,7 +92,7 @@ export class SearchAutocompleteComponent {
   /**
    * Handles autocomplete option selection
    */
-  onOptionSelected(option: SearchAutocompleteOption): void {
+  onOptionSelected(option: SearchFilterOption): void {
     this.searchControl.setValue(option.label);
     this.selectionChange.emit(option);
   }
@@ -108,14 +108,14 @@ export class SearchAutocompleteComponent {
   /**
    * Display function for autocomplete
    */
-  displayWith(option: SearchAutocompleteOption | null): string {
+  displayWith(option: SearchFilterOption | null): string {
     return option?.label || '';
   }
 
   /**
    * Track by function for ngFor optimization
    */
-  trackByValue(_index: number, option: SearchAutocompleteOption): string {
+  trackByValue(_index: number, option: SearchFilterOption): string {
     return option.value;
   }
 }

@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
-import { SearchAutocompleteComponent, SearchAutocompleteOption } from './search-autocomplete.component';
+import { SearchFilterComponent, SearchFilterOption } from './search-filter.component';
 
-describe('SearchAutocompleteComponent', () => {
-  const mockOptions: SearchAutocompleteOption[] = [
+describe('SearchFilterComponent', () => {
+  const mockOptions: SearchFilterOption[] = [
     { label: 'Heart', value: 'heart' },
     { label: 'Kidney', value: 'kidney' },
     { label: 'Liver', value: 'liver' },
@@ -11,7 +11,7 @@ describe('SearchAutocompleteComponent', () => {
   ];
 
   it('displays search input with label', async () => {
-    await render(SearchAutocompleteComponent, {
+    await render(SearchFilterComponent, {
       inputs: {
         label: 'Search organs',
         options: mockOptions,
@@ -22,7 +22,7 @@ describe('SearchAutocompleteComponent', () => {
   });
 
   it('shows results counter when enabled', async () => {
-    await render(SearchAutocompleteComponent, {
+    await render(SearchFilterComponent, {
       inputs: {
         label: 'Search',
         options: mockOptions,
@@ -34,7 +34,7 @@ describe('SearchAutocompleteComponent', () => {
   });
 
   it('filters options when user types', async () => {
-    await render(SearchAutocompleteComponent, {
+    await render(SearchFilterComponent, {
       inputs: {
         label: 'Search',
         options: mockOptions,
@@ -49,7 +49,7 @@ describe('SearchAutocompleteComponent', () => {
   });
 
   it('shows autocomplete panel with filtered options', async () => {
-    await render(SearchAutocompleteComponent, {
+    await render(SearchFilterComponent, {
       inputs: {
         label: 'Search',
         options: mockOptions,
@@ -65,7 +65,7 @@ describe('SearchAutocompleteComponent', () => {
   });
 
   it('clears search when clear button is clicked', async () => {
-    await render(SearchAutocompleteComponent, {
+    await render(SearchFilterComponent, {
       inputs: {
         label: 'Search',
         options: mockOptions,
@@ -87,7 +87,7 @@ describe('SearchAutocompleteComponent', () => {
 
   it('emits selection when option is clicked', async () => {
     const onSelectionChange = jest.fn();
-    await render(SearchAutocompleteComponent, {
+    await render(SearchFilterComponent, {
       inputs: {
         label: 'Search',
         options: mockOptions,

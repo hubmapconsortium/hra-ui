@@ -1,4 +1,4 @@
-<div class="search-autocomplete-container">
+<div class="search-filter-container">
   <mat-form-field class="search-field" subscriptSizing="dynamic">
     <mat-label>{{ label() }}</mat-label>
 
@@ -7,7 +7,7 @@
     <input
       matInput
       type="text"
-      aria-label="Search with autocomplete"
+      aria-label="Search with filter"
       [formControl]="searchControl"
       [matAutocomplete]="auto"
     />

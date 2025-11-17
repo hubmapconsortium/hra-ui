@@ -1,9 +1,9 @@
 import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
-import { SearchAutocompleteComponent, SearchAutocompleteOption } from './search-autocomplete.component';
+import { SearchFilterComponent, SearchFilterOption } from './search-filter.component';
 
-const SAMPLE_OPTIONS: SearchAutocompleteOption[] = [
+const SAMPLE_OPTIONS: SearchFilterOption[] = [
   { label: 'Liver', value: 'liver' },
   { label: 'Heart', value: 'heart' },
   { label: 'Kidney', value: 'kidney' },
@@ -24,9 +24,9 @@ const SAMPLE_OPTIONS: SearchAutocompleteOption[] = [
   { label: 'Lymph Node', value: 'lymph-node' },
 ];
 
-const meta: Meta<SearchAutocompleteComponent> = {
-  component: SearchAutocompleteComponent,
-  title: 'Design System/Search Autocomplete',
+const meta: Meta<SearchFilterComponent> = {
+  component: SearchFilterComponent,
+  title: 'Design System/Search Filter',
   decorators: [
     applicationConfig({
       providers: [importProvidersFrom(BrowserAnimationsModule)],
@@ -39,7 +39,7 @@ const meta: Meta<SearchAutocompleteComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<SearchAutocompleteComponent>;
+type Story = StoryObj<SearchFilterComponent>;
 
 export const Default: Story = {
   args: {},
