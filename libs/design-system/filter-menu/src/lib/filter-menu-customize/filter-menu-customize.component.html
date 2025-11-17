@@ -43,7 +43,7 @@
       <hra-icon class="select-icon" matPrefix>category</hra-icon>
       <mat-label>Group by</mat-label>
       <mat-select formControlName="groupBy">
-        @for (option of groupByOptions(); track option.id) {
+        @for (option of filters(); track option.id) {
           <mat-option [value]="option" (onSelectionChange)="toggleSelect($event.source.value, 'groupBy')">{{
             option.label
           }}</mat-option>

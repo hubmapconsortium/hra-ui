@@ -20,6 +20,8 @@
   </div>
 }
 
-<ng-scrollbar hraScrollOverflowFade>
-  <ng-content select="hra-filter-menu-controls" />
-</ng-scrollbar>
+@if (controls()) {
+  <ng-scrollbar hraScrollOverflowFade>
+    <ng-content select="hra-filter-menu-controls" />
+  </ng-scrollbar>
+}

@@ -1,13 +1,13 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 
-import { FilterMenuComponent, FilterMenuControlsComponent, Option } from './filter-menu.component';
+import { FilterMenuComponent, FilterMenuControlsComponent, FilterMenuOption } from './filter-menu.component';
 import { FilterMenuCustomizeComponent } from './filter-menu-customize/filter-menu-customize.component';
 
 const TOGGLE_OPTIONS = [
   { id: 'option1', label: 'Option 1' },
   { id: 'option2', label: 'Option 2' },
   { id: 'option3', label: 'Option 3' },
-] as Option[];
+] as FilterMenuOption[];
 const VIEW_AS_OPTIONS = [
   { id: 'table', label: 'Table' },
   { id: 'gallery', label: 'Gallery' },
@@ -19,7 +19,7 @@ const SORT_BY_OPTIONS = [
   { id: 'oldest', label: 'Oldest' },
   { id: 'newest', label: 'Newest' },
   { id: 'hierachical', label: 'Hierarchical' },
-] as Option[];
+] as FilterMenuOption[];
 const FILTER_CATEGORIES = [
   { id: 'category1', label: 'Category 1' },
   { id: 'category2', label: 'Category 2' },
@@ -31,7 +31,7 @@ const FILTER_CATEGORIES = [
   { id: 'category8', label: 'Category 8' },
   { id: 'category9', label: 'Category 9' },
   { id: 'category10', label: 'Category 10' },
-] as Option[];
+] as FilterMenuOption[];
 
 const meta: Meta = {
   title: 'Design System / Filter Menu',

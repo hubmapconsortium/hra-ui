@@ -5,10 +5,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
-import { Option } from '../filter-menu.component';
+import { FilterMenuOption } from '../filter-menu.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { FilterContainerComponent } from '@hra-ui/design-system/filter-container';
 
+/**
+ * Filter menu controls
+ */
 @Component({
   selector: 'hra-filter-menu-customize',
   imports: [
@@ -27,39 +30,43 @@ import { FilterContainerComponent } from '@hra-ui/design-system/filter-container
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterMenuCustomizeComponent {
-  readonly filters = input.required<Option[]>();
-  readonly toggleOptions = input<Option[]>();
-  readonly viewAsOptions = input<Option[]>();
-  readonly sortByOptions = input.required<Option[]>();
-  readonly groupByOptions = input.required<Option[]>();
+  /** Filters to display in filter section */
+  readonly filters = input.required<FilterMenuOption[]>();
+  /** Button toggle options */
+  readonly toggleOptions = input<FilterMenuOption[]>();
+  /** Sets how to view the database */
+  readonly viewAsOptions = input<FilterMenuOption[]>();
+  /** Sets sort mode */
+  readonly sortByOptions = input.required<FilterMenuOption[]>();
 
+  /** Form group for filter category options */
   readonly filterCategories = computed(() => {
-    const result: Record<string, FormControl<Option[] | null>> = {};
+    const result: Record<string, FormControl<FilterMenuOption[] | null>> = {};
     for (const category of this.filters()) {
-      result[category.id] = new FormControl<Option[]>([]);
+      result[category.id] = new FormControl<FilterMenuOption[]>([]);
     }
     return result;
   });
 
+  /** Form for the filter menu */
   readonly form = computed(() => {
     return new FormGroup({
       customize: new FormGroup({
-        toggle: new FormControl<Option | null>(null),
-        viewAs: new FormControl<Option | null>(null),
-        sortBy: new FormControl<Option | null>(null),
-        groupBy: new FormControl<Option | null>(null),
+        toggle: new FormControl<FilterMenuOption | null>(null),
+        viewAs: new FormControl<FilterMenuOption | null>(null),
+        sortBy: new FormControl<FilterMenuOption | null>(null),
+        groupBy: new FormControl<FilterMenuOption | null>(null),
       }),
       filters: new FormGroup(this.filterCategories()),
     });
   });
 
-  readonly formValues = computed<[string, FormControl<Option[] | null>][]>(() =>
-    this.filters().map((filter) => [filter.label, this.form().controls.filters.controls[filter.id]]),
-  );
-
+  /** Emits when the form changes */
   readonly formChange = output<FormGroup>();
-  readonly openFilterOverlay = output<Option>();
+  /** Emits when a filter category overlay is opened */
+  readonly openFilterOverlay = output<FilterMenuOption>();
 
+  /** Constructor; sets first button toggle category as initial value */
   constructor() {
     effect(() => {
       const toggleCategories = this.toggleOptions();
@@ -69,7 +76,12 @@ export class FilterMenuCustomizeComponent {
     });
   }
 
-  toggleSelect(event: Option, controlName: 'viewAs' | 'sortBy' | 'groupBy') {
+  /**
+   * Button toggle selection
+   * @param event Option selected
+   * @param controlName Name of button toggle control
+   */
+  toggleSelect(event: FilterMenuOption, controlName: 'viewAs' | 'sortBy' | 'groupBy'): void {
     this.form().controls.customize.patchValue({ [controlName]: event });
     this.formChange.emit(this.form());
   }
