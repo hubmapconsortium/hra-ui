@@ -25,10 +25,5 @@ export class FooterComponent {
   /** List of social media link to show */
   readonly socials = input(SOCIAL_IDS);
   /** inject Privacy Preference Service */
-  private readonly privacyPreferences = inject(PrivacyPreferencesService);
-
-  /** Open Privacy Preferences Modal */
-  openPrivacyPreferences(): void {
-    this.privacyPreferences.openPrivacyPreferences('manage');
-  }
+  readonly privacyPreferences = inject(PrivacyPreferencesService);
 }
