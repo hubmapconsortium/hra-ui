@@ -1,0 +1,39 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+
+  .google-maps {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .maps-placeholder {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+  }
+
+  .enable-cookies {
+    @include utils.use-font(label, large);
+    color: vars.$primary;
+    margin-top: 0.5rem;
+
+    .link {
+      color: vars.$primary;
+      text-decoration: underline;
+
+      @include mat.button-overrides(
+        (
+          text-container-height: auto,
+          text-horizontal-padding: 0.125rem,
+          text-hover-state-layer-opacity: 0,
+          text-pressed-state-layer-opacity: 0,
+        )
+      );
+    }
+  }
+}

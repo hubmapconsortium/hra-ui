@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Component definition id */
 export type ComponentDefId = z.infer<typeof ComponentDefIdSchema>;

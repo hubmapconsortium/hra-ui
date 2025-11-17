@@ -39,7 +39,7 @@ import { VegaService } from '../tree/vega.service';
     MatMenuModule,
   ],
   templateUrl: './control-pane.component.html',
-  styleUrls: ['./control-pane.component.scss'],
+  styleUrl: './control-pane.component.scss',
 })
 export class ControlPaneComponent implements OnInit {
   readonly store = inject(Store);
@@ -269,12 +269,7 @@ export class ControlPaneComponent implements OnInit {
       const omapConfig = this.store.selectSnapshot(TreeState.getOmapConfig);
       const filteredProtiens = this.store.selectSnapshot(SheetState.getFilteredProtiens);
       if (data.length) {
-        try {
-          console.log('BM Call here');
-          this.bm.makeBimodalData(data, treeData, bimodalConfig, false, config, omapConfig, filteredProtiens);
-        } catch (err) {
-          console.log(err);
-        }
+        this.bm.makeBimodalData(data, treeData, bimodalConfig, false, config, omapConfig, filteredProtiens);
       }
     });
   }

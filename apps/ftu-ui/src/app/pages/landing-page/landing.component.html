@@ -1,8 +1,8 @@
 <ng-container hraFeature="landing-page">
   <div class="splash-wrapper">
-    <img [attr.src]="'assets/ui-images/ftu-splash.png' | assetUrl" alt="" class="splash-header-img" />
+    <img alt="" class="splash-header-img" [attr.src]="'assets/ui-images/ftu-splash.png' | assetUrl" />
     <div class="splash-section">
-      <hra-icon class="misc-logo" [svgIcon]="'product:ftu'" />
+      <hra-icon class="misc-logo" svgIcon="product:ftu" />
       <div class="header">Explore functional tissue units</div>
       <div class="description">
         A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function
@@ -30,8 +30,8 @@
           hraSecondaryButton
           hraCtaButton
           class="action"
-          [attr.href]="publicationLinkDefault()"
           target="_blank"
+          [attr.href]="publicationLinkDefault()"
         >
           Read publication
           <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
@@ -41,7 +41,7 @@
   </div>
 
   <div class="collaborators-wrapper">
-    <img [attr.src]="'assets/ui-images/ftu-splash-2.png' | assetUrl" alt="splas-img-2" class="splash-header-img-2" />
+    <img alt="splas-img-2" class="splash-header-img-2" [attr.src]="'assets/ui-images/ftu-splash-2.png' | assetUrl" />
     <div class="collaborators-section">
       <div class="thankyou-container">
         <div class="thank-you-header">A special thanks to our partners</div>
@@ -54,15 +54,15 @@
         <a
           hraFeature="kpmp"
           hraClickEvent
-          [href]="kpmpLink()"
           class="app-logo"
           target="_blank"
           rel="noopener noreferrer"
+          [href]="kpmpLink()"
         >
-          <hra-icon class="kpmp" [svgIcon]="'KPMP'" />
+          <hra-icon class="kpmp" svgIcon="KPMP" />
         </a>
-        <a hraClickEvent hraFeature="ebi" [href]="ebiLink()" class="app-logo" target="_blank" rel="noopener noreferrer">
-          <hra-icon class="partner" [svgIcon]="'partner-logos'" />
+        <a hraClickEvent hraFeature="ebi" class="app-logo" target="_blank" rel="noopener noreferrer" [href]="ebiLink()">
+          <hra-icon class="partner" svgIcon="partner-logos" />
         </a>
       </div>
     </div>

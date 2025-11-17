@@ -15,10 +15,24 @@ import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-
 import { CheckboxErrorVariantDirective } from '@hra-ui/design-system/buttons/checkbox';
 import { HelpButtonComponent } from '@hra-ui/design-system/buttons/help-button';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
-import { InfoButtonComponent, InfoButtonTooltipContentComponent } from '@hra-ui/design-system/buttons/info-button';
+import {
+  InfoButtonActionsDirective,
+  InfoButtonComponent,
+  InfoButtonTaglineDirective,
+} from '@hra-ui/design-system/buttons/info-button';
+import {
+  NavigationButtonComponent,
+  NavigationButtonDescriptionDirective,
+  NavigationButtonTaglineDirective,
+  NavigationIconDirective,
+} from '@hra-ui/design-system/buttons/navigation-button';
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
-import { TextHyperlinkComponent, TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import {
+  TextHyperlinkComponent,
+  TextHyperlinkDirective,
+  TextButtonDirective,
+} from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** All re-exported modules, components, directives, etc. */
 const REEXPORTS = [
@@ -27,7 +41,8 @@ const REEXPORTS = [
   MatChipsModule,
   IconButtonModule,
   InfoButtonComponent,
-  InfoButtonTooltipContentComponent,
+  InfoButtonTaglineDirective,
+  InfoButtonActionsDirective,
   AppNavButtonComponent,
   BreadcrumbsComponent,
   ButtonSizeDirective,
@@ -36,10 +51,15 @@ const REEXPORTS = [
   CheckboxErrorVariantDirective,
   CtaButtonDirective,
   HelpButtonComponent,
+  NavigationButtonComponent,
+  NavigationButtonTaglineDirective,
+  NavigationButtonDescriptionDirective,
+  NavigationIconDirective,
   NavigationCategoryToggleComponent,
   PrimaryButtonVariantDirective,
   SecondaryButtonVariantDirective,
   SocialMediaButtonComponent,
+  TextButtonDirective,
   TextHyperlinkComponent,
   TextHyperlinkDirective,
 ];

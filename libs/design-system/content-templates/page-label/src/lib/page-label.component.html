@@ -1,3 +1,9 @@
+@if (breadcrumbs(); as crumbs) {
+  <div class="breadcrumbs-container">
+    <hra-breadcrumbs [crumbs]="crumbs" />
+  </div>
+}
+
 @if (icons().length > 0) {
   <div class="header-icons">
     @for (icon of icons(); track $index) {
@@ -8,10 +14,10 @@
 
 @switch (level()) {
   @case (1) {
-    <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
+    <h1 hra-section-link underlined [anchor]="anchor()">{{ tagline() }}</h1>
   }
   @case (2) {
-    <h2 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h2>
+    <h2 hra-section-link underlined [anchor]="anchor()">{{ tagline() }}</h2>
   }
   @case (3) {
     <h3 hra-section-link [anchor]="anchor()">{{ tagline() }}</h3>
@@ -26,6 +32,22 @@
     <h6 hra-section-link [anchor]="anchor()">{{ tagline() }}</h6>
   }
   @default {
-    <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
+    <h1 hra-section-link underlined [anchor]="anchor()">{{ tagline() }}</h1>
   }
+}
+
+@if (date(); as dateStr) {
+  <div class="date-container">
+    {{ dateStr }}
+  </div>
+}
+
+@if (tags().length > 0) {
+  <div class="tags-container">
+    <mat-chip-set>
+      @for (tag of tags(); track $index) {
+        <mat-chip>{{ tag }}</mat-chip>
+      }
+    </mat-chip-set>
+  </div>
 }

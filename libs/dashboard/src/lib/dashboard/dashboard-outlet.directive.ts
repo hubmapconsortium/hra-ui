@@ -7,7 +7,6 @@ import { DashboardComponentAnySpec, safeValidateSpec } from './dashboard.model';
  */
 @Directive({
   selector: '[hraDashboardComponentOutlet]',
-  standalone: true,
 })
 export class DashboardComponentOutletDirective {
   /** Input for dashboard outlet directive */
@@ -29,6 +28,7 @@ export class DashboardComponentOutletDirective {
     const component = this.registry.componentFor(spec);
     if (!component) {
       // TODO log missing component
+      // eslint-disable-next-line no-console
       console.log('Component Missing', spec);
       return undefined;
     }
@@ -38,6 +38,7 @@ export class DashboardComponentOutletDirective {
     const validateResult = safeValidateSpec(component, spec);
     if (!validateResult.success) {
       // TODO improve logging spec errors
+      // eslint-disable-next-line no-console
       console.log(validateResult.error.issues);
       return undefined;
     }

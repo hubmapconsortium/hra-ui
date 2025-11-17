@@ -1,12 +1,10 @@
 <h3 class="title" hraFeature="title-card">
   {{ spec().title }}
   <hra-info-button>
-    <hra-info-button-tooltip-content>
-      {{ spec().tooltip }}
-    </hra-info-button-tooltip-content>
+    {{ spec().tooltip }}
   </hra-info-button>
 </h3>
 
 <div class="content">
-  <ng-content></ng-content>
+  <ng-content />
 </div>

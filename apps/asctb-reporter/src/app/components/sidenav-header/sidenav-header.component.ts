@@ -19,7 +19,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
     HraCommonModule,
   ],
   templateUrl: './sidenav-header.component.html',
-  styleUrls: ['./sidenav-header.component.scss'],
+  styleUrl: './sidenav-header.component.scss',
 })
 export class SidenavHeaderComponent {
   @Input() title = '';

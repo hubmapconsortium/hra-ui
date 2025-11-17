@@ -10,7 +10,7 @@
         [hraFeature]="card.tagline | slugify"
       >
         <hra-action-card-action>
-          <a hraHyperlink [attr.href]="card.url" target="_blank">{{ card.action }}</a>
+          <a hraHyperlink target="_blank" [attr.href]="card.url">{{ card.action }}</a>
         </hra-action-card-action>
       </hra-action-card>
     } @else {

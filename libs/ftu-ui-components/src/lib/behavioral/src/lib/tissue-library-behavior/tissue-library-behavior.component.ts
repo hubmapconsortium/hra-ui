@@ -33,7 +33,7 @@ import { TissueTreeListComponent } from '../../../../molecules/src';
     PlainTooltipDirective,
   ],
   templateUrl: './tissue-library-behavior.component.html',
-  styleUrls: ['./tissue-library-behavior.component.scss'],
+  styleUrl: './tissue-library-behavior.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueLibraryBehaviorComponent {

@@ -1,4 +1,12 @@
+@use '@angular/material' as mat;
+@use '../../../../styles/vars';
+@use '../../../../styles/utils';
+
 :host {
+  .breadcrumbs-container {
+    margin-bottom: 2rem;
+  }
+
   .header-icons {
     display: flex;
     gap: 0.75rem;
@@ -8,5 +16,20 @@
   hra-icon {
     height: 4rem;
     width: 4rem;
+  }
+
+  .date-container {
+    margin-top: 1rem;
+    @include utils.use-font('title', 'medium');
+  }
+
+  .tags-container {
+    margin-top: 1rem;
+
+    mat-chip-set {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
   }
 }
