@@ -48,7 +48,7 @@ describe('SearchFilterComponent', () => {
     expect(screen.getByText(/1/)).toBeInTheDocument();
   });
 
-  it('shows autocomplete panel with filtered options', async () => {
+  it('shows filter dropdown with filtered options', async () => {
     await render(SearchFilterComponent, {
       inputs: {
         label: 'Search',

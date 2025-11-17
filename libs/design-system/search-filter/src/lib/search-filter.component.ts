@@ -90,7 +90,7 @@ export class SearchFilterComponent {
   }
 
   /**
-   * Handles autocomplete option selection
+   * Handles filter option selection
    */
   onOptionSelected(option: SearchFilterOption): void {
     this.searchControl.setValue(option.label);
@@ -106,7 +106,7 @@ export class SearchFilterComponent {
   }
 
   /**
-   * Display function for autocomplete
+   * Display function for filter dropdown
    */
   displayWith(option: SearchFilterOption | null): string {
     return option?.label || '';
