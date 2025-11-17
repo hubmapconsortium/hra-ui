@@ -83,7 +83,14 @@ export class ContentButtonGridComponent {
     }
   }
 
-  private compare(a: ContentButton, b: ContentButton, property?: string) {
+  /**
+   * Compares date or tagline of two content buttons
+   * @param a first content button
+   * @param b second content button
+   * @param [property] Property to compare by (date or tagline)
+   * @returns Comparison result
+   */
+  private compare(a: ContentButton, b: ContentButton, property?: string): number {
     const compareFn = new Intl.Collator().compare;
     function toTimestamp(date: string | number) {
       return typeof date === 'string' ? new Date(date).getTime() : date;

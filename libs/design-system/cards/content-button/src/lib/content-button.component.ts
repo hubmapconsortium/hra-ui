@@ -28,6 +28,7 @@ export class ContentButtonComponent {
   /** Whether the link is external */
   readonly external = input(true, { transform: booleanAttribute });
 
+  /** Content button date converted into date string */
   protected readonly dateString = computed(() => {
     const dateFormat = new Intl.DateTimeFormat(undefined, {
       year: 'numeric',
