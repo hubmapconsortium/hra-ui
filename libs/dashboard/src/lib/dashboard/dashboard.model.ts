@@ -1,5 +1,6 @@
 import { Signal, Type } from '@angular/core';
-import { ZodSafeParseResult, ZodLiteral, ZodTypeAny, z } from 'zod';
+import * as z from 'zod';
+import { ZodSafeParseResult, ZodLiteral, ZodTypeAny } from 'zod';
 
 /** Type representing any DashboardComponent specification */
 export type DashboardComponentAnySpec = { type: string };

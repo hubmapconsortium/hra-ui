@@ -6,7 +6,6 @@ import { FullscreenComponent } from './fullscreen/fullscreen.component';
 /** Fullscreen directive */
 @Directive({
   selector: '[hraFullscreen]',
-  standalone: true,
   exportAs: 'hraFullscreen',
 })
 export class FullscreenDirective {

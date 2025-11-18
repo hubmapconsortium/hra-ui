@@ -120,9 +120,9 @@ function parseFilter(value: unknown): string | Partial<Filter> {
  */
 @Component({
   selector: 'ccf-root-wc',
-  template: '<ccf-root *ngIf="initialized"></ccf-root>',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  template: '<ccf-root *ngIf="initialized" />',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Base url to fetch relative links */

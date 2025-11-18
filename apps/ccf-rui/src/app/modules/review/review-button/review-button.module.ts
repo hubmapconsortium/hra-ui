@@ -7,8 +7,8 @@ import { ReviewModalModule } from '../review-modal/review-modal.module';
 import { ReviewButtonComponent } from './review-button.component';
 
 @NgModule({
-  declarations: [ReviewButtonComponent],
   imports: [HraCommonModule, ReviewModalModule, ButtonsModule, PlainTooltipDirective],
+  declarations: [ReviewButtonComponent],
   exports: [ReviewButtonComponent],
 })
 export class ReviewButtonModule {}
