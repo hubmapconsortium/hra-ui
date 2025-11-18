@@ -1,10 +1,16 @@
-import { toJSONSchema } from 'zod';
+import { type toJSONSchema } from 'zod';
 
-// Not exported by zod...
-type ToJSONSchemaParams = Pick<
-  NonNullable<Parameters<typeof toJSONSchema>[1]>,
-  'target' | 'unrepresentable' | 'cycles' | 'reused'
->;
+/** Zod's `toJSONSchema` options */
+type JSONSchemaOptions = NonNullable<Parameters<typeof toJSONSchema>[1]>;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type
-export interface BuildExecutorSchema extends ToJSONSchemaParams {}
+/** Options for the zod-to-json-schema build executor */
+export interface BuildExecutorSchema {
+  /** Json schema target version */
+  target?: JSONSchemaOptions['target'];
+  /** How to handle cycles within a schema */
+  cycles?: JSONSchemaOptions['cycles'];
+  /** How to handle reused subschemas */
+  reused?: JSONSchemaOptions['reused'];
+  /** How to handle types that are not representable in json schema */
+  unrepresentable?: JSONSchemaOptions['unrepresentable'];
+}

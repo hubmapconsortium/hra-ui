@@ -1,172 +1,72 @@
-import { PromiseExecutor, logger } from '@nx/devkit';
-import { pathToFileURL } from 'node:url';
-import { register } from '@swc-node/register/register';
-import { glob, writeFile } from 'node:fs/promises';
-import { join, resolve, format, parse } from 'node:path';
-import * as z from 'zod';
+import { ExecutorContext, ProjectConfiguration, PromiseExecutor, logger } from '@nx/devkit';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
 import { BuildExecutorSchema } from './schema';
-import { ModuleKind, ModuleResolutionKind, ScriptTarget } from 'typescript';
-
-/**
- * Result of building a single schema file.
- */
-interface SchemaBuildResult {
-  /** Path to the output JSON schema file */
-  file: string;
-  /** Formatted JSON schema content */
-  content: string;
-}
+import { compileSchemaModule, convertSchemaModule, findSchemaModules, loadSchemaModule } from './util/schema-module';
 
 /**
  * Nx executor that converts Zod schema TypeScript files to JSON schema files.
- * @param options - Executor options (currently unused but reserved for future configuration)
+ * @param options - Executor options
  * @param context - Nx execution context containing project and workspace information
  * @returns Promise resolving to success status
  */
 const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, context) => {
-  if (!context.projectName) {
-    logger.error('No project name found in context');
-    return { success: false };
+  logger.verbose('Starting zod-to-json-schema build executor');
+  logger.verbose(`Options: ${JSON.stringify(options, undefined, 2)}`);
+
+  const projectConfig = resolveProjectConfiguration(context);
+  const buildDir = await fs.mkdtemp(path.join(os.tmpdir(), 'zod-to-json-schema-'));
+  logger.verbose(`Temporary build directory: ${buildDir}`);
+
+  const files = await findSchemaModules(context, projectConfig);
+  if (files.length === 0) {
+    logger.warn('No schema files found in the project. Exiting...');
+    return { success: true };
   }
 
-  const projectConfig = context.projectsConfigurations?.projects[context.projectName];
-  if (!projectConfig) {
-    logger.error(`Project configuration not found for ${context.projectName}`);
-    return { success: false };
+  logger.info(`Found ${files.length} schema files. Starting compilation...`);
+  logger.verbose('Schema files: ', files);
+  const compiledFiles = await Promise.all(files.map((file) => compileSchemaModule(file, buildDir, context.isVerbose)));
+  const modules = await Promise.all(compiledFiles.map((file) => loadSchemaModule(file)));
+
+  logger.info('Compilation complete. Starting convertions...');
+  const schemas = files.map((file, index) => convertSchemaModule(file, modules[index], options));
+
+  logger.info('Convertions complete. Writing to files...');
+  for (let index = 0; index < files.length; index++) {
+    const file = files[index];
+    const schema = schemas[index];
+    const outFile = path.format({ ...path.parse(file), base: undefined, ext: '.json' });
+
+    if (schema) {
+      await fs.writeFile(outFile, schema);
+    }
   }
 
-  const projectRoot = projectConfig.root;
-  const workspaceRoot = context.root;
-
-  // TODO load ts config from project
-
-  register({
-    target: ScriptTarget.ES2020,
-    module: ModuleKind.ES2015,
-    esModuleInterop: true,
-    moduleResolution: ModuleResolutionKind.Bundler,
-    sourcemap: true,
-  });
-
-  const files = await findSchemaFiles(projectRoot, workspaceRoot);
-  logger.info(`Building schemas for ${files.length} files...`);
-
-  const builders = files.map((file) => buildSchema(file, options));
-  const result = await Promise.all(builders);
-  const items = result.filter((item) => !!item);
-  if (items.length === 0) {
-    return { success: false };
-  }
-
-  const success = await writeSchemaFiles(items);
-  // TODO format files
-  // Invoke nx format:write --files <filePaths>?
-  return { success };
+  logger.info('Schemas written to disk. All done!');
+  return { success: true };
 };
 
 export default runExecutor;
 
-async function findSchemaFiles(projectRoot: string, workspaceRoot: string): Promise<string[]> {
-  const files = glob('**/*.schema.ts', { cwd: join(workspaceRoot, projectRoot) });
-  const result: string[] = [];
-  for await (const file of files) {
-    result.push(file);
-  }
-
-  return result;
-}
-
 /**
- * Builds a JSON schema from a TypeScript schema file.
+ * Resolve the project configuration the executor was invoked with.
+ * Throws if the executor was not run in a project context.
  *
- * @param file - Relative path to the schema TypeScript file
- * @param options - Build options to pass to the JSON schema converter
- * @returns Promise resolving to the build result with file path and content
+ * @param context Executor context
+ * @returns The project configuration
  */
-async function buildSchema(file: string, options: BuildExecutorSchema): Promise<SchemaBuildResult | undefined> {
-  const schema = await loadSchema(file);
-  const content = schema && toJSONSchema(file, schema, options);
-  return content ? { file: format({ ...parse(file), ext: 'json' }), content } : undefined;
-}
-
-function ensureDefaultExport(module: object, file: string): module is { default: unknown } {
-  if ('default' in module) {
-    return true;
+function resolveProjectConfiguration(context: ExecutorContext): ProjectConfiguration {
+  const { projectName } = context;
+  if (!projectName) {
+    throw new Error('zod-to-json-schema build must be run within a project context');
   }
 
-  logger.error(`Schema module '${file}' is missing a default export`);
-  return false;
-}
-
-function ensureSchemaExport(def: unknown, file: string): def is z.ZodType {
-  if (def instanceof z.ZodType) {
-    return true;
+  const config = context.projectsConfigurations.projects[projectName];
+  if (!config) {
+    throw new Error(`Could not find configuration for project "${projectName}"`);
   }
 
-  logger.error(`Schema module '${file}' default export is not a zod schema`);
-  return false;
-}
-
-/**
- * Dynamically imports a schema module from its file URL.
- * @param fileUrl - File URL pointing to the schema module
- * @returns Promise resolving to the imported module object
- */
-async function loadSchema(file: string): Promise<z.ZodType | undefined> {
-  const url = pathToFileURL(resolve(file)).href;
-  const module = await import(url).catch((reason) => {
-    logger.error(`Failed to import schema definitions from '${file}': ${reason}`);
-    return undefined;
-  });
-
-  if (module && ensureDefaultExport(module, file) && ensureSchemaExport(module.default, file)) {
-    return module.default;
-  }
-
-  return undefined;
-}
-
-/**
- * Converts a Zod schema module to JSON schema string.
- * @param file - Path to the schema file (used for error messages)
- * @param module - The imported schema module
- * @param options - Options to pass to the JSON schema converter
- * @returns JSON string representation of the schema
- * @throws Error if the module doesn't have a default export
- */
-function toJSONSchema(file: string, schema: z.ZodType, options: BuildExecutorSchema): string | undefined {
-  try {
-    const json = z.toJSONSchema(schema, options);
-    return JSON.stringify(json, undefined, 2);
-  } catch (error) {
-    logger.error(`Failed to convert schema from '${file}': ${error}`);
-    return undefined;
-  }
-}
-
-/**
- * Formats JSON schema output using Prettier.
- * @param text - Raw JSON string to format
- * @param file - File path (used to resolve Prettier config and determine file type)
- * @returns Promise resolving to formatted JSON string
- */
-// async function formatSchemaOutput(text: string, file: string): Promise<string> {
-//   const config = await resolveConfig(file, { editorconfig: true });
-//   return format(text, { ...config, filepath: file });
-// }
-
-/**
- * Writes all generated JSON schema files to disk.
- * @param results - Array of build results containing file paths and contents
- * @returns Promise resolving to true if all files written successfully, false otherwise
- */
-async function writeSchemaFiles(results: SchemaBuildResult[]): Promise<boolean> {
-  const writers = results.map((result) => writeFile(result.file, result.content, 'utf8'));
-  try {
-    await Promise.all(writers);
-    return true;
-  } catch (error) {
-    logger.error(`Failed to write: ${error}`);
-    return false;
-  }
+  return config;
 }
