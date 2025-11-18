@@ -20,6 +20,7 @@ import {
 } from './services/hra-pop-predictions/hra-pop-predictions.service';
 import { CellPopulationGraphComponent } from './pages/cell-population-graph/cell-population-graph.component';
 import { HraPopVisualizerComponent } from './pages/hra-pop-visualizer/hra-pop-visualizer.component';
+import { createExternalRedirectRoute } from './utils/external-redirect';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -135,43 +136,35 @@ export const appRoutes: Route[] = [
   // Redirects
   {
     path: 'asctb-reporter',
-    redirectTo: 'https://humanatlas.io/asctb-reporter',
-    pathMatch: 'full',
+    ...createExternalRedirectRoute('https://humanatlas.io/asctb-reporter'),
   },
   {
     path: 'rui',
-    redirectTo: 'https://humanatlas.io/rui',
-    pathMatch: 'full',
+    ...createExternalRedirectRoute('https://humanatlas.io/rui'),
   },
   {
     path: 'eui',
-    redirectTo: 'https://humanatlas.io/eui',
-    pathMatch: 'full',
+    ...createExternalRedirectRoute('https://humanatlas.io/eui'),
   },
   {
     path: 'organ-info',
-    redirectTo: 'https://humanatlas.io/organ-info',
-    pathMatch: 'full',
+    ...createExternalRedirectRoute('https://humanatlas.io/organ-info'),
   },
   {
     path: 'body-ui',
-    redirectTo: 'https://humanatlas.io/body-ui',
-    pathMatch: 'full',
+    ...createExternalRedirectRoute('https://humanatlas.io/body-ui'),
   },
   {
     path: 'ftu',
-    redirectTo: 'https://humanatlas.io/ftu',
-    pathMatch: 'full',
+    ...createExternalRedirectRoute('https://humanatlas.io/ftu'),
   },
   {
     path: 'cde',
-    redirectTo: 'https://humanatlas.io/cde',
-    pathMatch: 'full',
+    ...createExternalRedirectRoute('https://humanatlas.io/cde'),
   },
   {
     path: 'kg',
-    redirectTo: 'https://humanatlas.io/kg',
-    pathMatch: 'full',
+    ...createExternalRedirectRoute('https://humanatlas.io/kg'),
   },
   {
     path: '**',
