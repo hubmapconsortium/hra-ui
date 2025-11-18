@@ -1,5 +1,6 @@
 import * as _angular_core from '@angular/core';
 import * as z from 'zod';
+import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 
 /**
  * Global footer component
@@ -10,9 +11,7 @@ declare class FooterComponent {
     /** List of social media link to show */
     readonly socials: _angular_core.InputSignal<(string & z.$brand<"SocialMediaId">)[]>;
     /** inject Privacy Preference Service */
-    private readonly privacyPreferences;
-    /** Open Privacy Preferences Modal */
-    openPrivacyPreferences(event: Event): void;
+    readonly privacyPreferences: PrivacyPreferencesService;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<FooterComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<FooterComponent, "hra-footer", never, { "funders": { "alias": "funders"; "required": false; "isSignal": true; }; "socials": { "alias": "socials"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }

@@ -62,13 +62,13 @@
       "types": "./content-templates/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates.mjs"
     },
-    "./data-viewer": {
-      "types": "./data-viewer/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-data-viewer.mjs"
-    },
     "./copyable-url-container": {
       "types": "./copyable-url-container/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-copyable-url-container.mjs"
+    },
+    "./data-viewer": {
+      "types": "./data-viewer/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-data-viewer.mjs"
     },
     "./density": {
       "types": "./density/index.d.ts",
@@ -182,13 +182,13 @@
       "types": "./buttons/app-nav-button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-app-nav-button.mjs"
     },
-    "./buttons/breadcrumbs": {
-      "types": "./buttons/breadcrumbs/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-buttons-breadcrumbs.mjs"
-    },
     "./buttons/button": {
       "types": "./buttons/button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-button.mjs"
+    },
+    "./buttons/breadcrumbs": {
+      "types": "./buttons/breadcrumbs/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-breadcrumbs.mjs"
     },
     "./buttons/button-toggle": {
       "types": "./buttons/button-toggle/index.d.ts",
