@@ -19,7 +19,7 @@ import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/you
 import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { IconSchema } from '@hra-ui/design-system/icons';
 import { PageTableSchema } from '@hra-ui/design-system/table';
-import { z } from 'zod';
+import * as z from 'zod';
 import { GridContainerSchema } from '@hra-ui/design-system/content-templates/grid-container';
 
 export {
