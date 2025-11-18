@@ -32,7 +32,6 @@ export interface BrandLogo {
 }
 
 /** Injection token for brand logos configuration */
-// const BRAND_LOGOS = createInjectionToken(() => ({ logos: DEFAULT_LOGOS }));
 const BRAND_LOGOS = createInjectionToken(() => DEFAULT_LOGOS);
 
 /** Inject the brand logos configuration */
