@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Image component data */
 export type Image = z.infer<typeof ImageSchema>;

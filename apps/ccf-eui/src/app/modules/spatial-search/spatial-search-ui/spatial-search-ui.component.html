@@ -17,7 +17,7 @@
         #primary
         #sceneEvent="hraClickEvent"
         #sceneHoverEvent="hraHoverEvent"
-      />
+      ></hra-body-ui>
     </div>
     <div class="sidebar">
       <hra-body-ui
@@ -38,21 +38,21 @@
         #minimap
         #minimapEvent="hraClickEvent"
         #minimapHoverEvent="hraHoverEvent"
-      />
+      ></hra-body-ui>
       <ccf-spatial-search-keyboard-ui-behavior
         [delta]="1"
         [shiftDelta]="2"
         [position]="position()"
         (changePosition)="positionChange.emit($event)"
-      />
-      <ccf-xyz-position [x]="position().x" [y]="position().y" [z]="position().z" />
+      ></ccf-spatial-search-keyboard-ui-behavior>
+      <ccf-xyz-position [x]="position().x" [y]="position().y" [z]="position().z"></ccf-xyz-position>
     </div>
   </div>
 
   <div class="info-panel">
     <div class="header">
       <span class="title">Configure Spatial Search</span>
-      <hra-help-button action="https://humanatlas.io/exploration-user-interface#using-spatial-search" />
+      <hra-help-button action="https://humanatlas.io/exploration-user-interface#using-spatial-search"></hra-help-button>
       <div style="flex-grow: 1"></div>
       <button
         hraFeature="close"
@@ -60,8 +60,8 @@
         mat-icon-button
         hraIconButtonSize="large"
         disableRipple
-        hraPlainTooltip="Close"
         (click)="closeSpatialSearch.emit()"
+        hraPlainTooltip="Close"
       >
         <mat-icon>close</mat-icon>
       </button>
@@ -73,7 +73,7 @@
         [selectedOrgan]="referenceOrgan()"
         (updateOrgan)="updateOrgan.emit($event)"
         (updateSex)="updateSex.emit($event)"
-      />
+      ></ccf-spatial-search-inputs>
     </div>
     <div class="radius-slider">
       <div
@@ -101,26 +101,27 @@
         hraFeature="tissue-blocks"
         hraHoverEvent
         class="tissue-block list"
+        [tissueBlocks]="tissueBlocks()"
         title="Tissue Blocks"
         toolTipText="Total quantity of registered tissue blocks detected by the probing sphere."
-        [tissueBlocks]="tissueBlocks()"
-      />
+      ></ccf-tissue-block-list>
       <ccf-term-occurrence-list
         hraFeature="anatomical-structures"
         hraHoverEvent
         class="anatomical-structures list"
+        [termList]="anatomicalStructures()"
         title="Anatomical Structure Predictions"
         toolTipText="Total quantity of predicted anatomical structures detected by the probing sphere."
-        [termList]="anatomicalStructures()"
-      />
+      >
+      </ccf-term-occurrence-list>
       <ccf-term-occurrence-list
         hraFeature="cell-types"
         hraHoverEvent
         class="cell-type list"
+        [termList]="cellTypes()"
         title="Cell Type Predictions"
         toolTipText="Total quantity of predicted cell types detected by the probing sphere."
-        [termList]="cellTypes()"
-      />
+      ></ccf-term-occurrence-list>
     </div>
 
     <div hraFeature="buttons" class="button-container">
@@ -140,7 +141,7 @@
           <mat-icon class="reset icon">reset_settings</mat-icon>
           Reset position
         </button>
-        <mat-divider />
+        <mat-divider></mat-divider>
         <button
           hraFeature="reset-all"
           hraClickEvent
@@ -156,8 +157,8 @@
         hraClickEvent
         mat-flat-button
         class="run-spatial-search button"
-        [disabled]="tissueBlocks().length === 0"
         (click)="addSpatialSearch.emit()"
+        [disabled]="tissueBlocks().length === 0"
       >
         Apply
       </button>

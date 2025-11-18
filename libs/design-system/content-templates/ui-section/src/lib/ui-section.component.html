@@ -1,6 +1,6 @@
-<img class="app-image" alt="" [attr.src]="imagePath() | assetUrl" />
+<img class="app-image" [attr.src]="imagePath() | assetUrl" alt="" />
 <div class="ui-content-main">
-  <hra-app-label class="label" [tagline]="tagline()" [logo]="logo()" [appStatus]="appStatus()" />
+  <hra-app-label class="label" [tagline]="tagline()" [logo]="logo()" [appStatus]="appStatus()"></hra-app-label>
   <p class="ui-content-description">
     {{ description() }}
   </p>

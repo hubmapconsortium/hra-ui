@@ -4,20 +4,21 @@
     disableRipple
     panelWidth="auto"
     panelClass="options-container server-selector-panel"
-    [hraModelChangeEvent]="['label']"
     [(ngModel)]="selectedServer"
+    [hraModelChangeEvent]="['label']"
     #serverSelect
   >
     <mat-select-trigger>
       {{ selectedServer().url }}
     </mat-select-trigger>
-
-    @for (server of servers(); track $index) {
-      <mat-option [value]="server">
-        <div class="server-url">{{ server.url }}</div>
-        <div class="server-description">{{ server.description }}</div>
-      </mat-option>
-    } @empty {
+    @if (servers().length > 0) {
+      @for (server of servers(); track $index) {
+        <mat-option [value]="server">
+          <div class="server-url">{{ server.url }}</div>
+          <div class="server-description">{{ server.description }}</div>
+        </mat-option>
+      }
+    } @else {
       <mat-option disabled> No servers available. </mat-option>
     }
   </mat-select>

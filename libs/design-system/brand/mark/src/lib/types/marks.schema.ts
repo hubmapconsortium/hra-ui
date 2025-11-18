@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Mark variant */
 export type BrandMarkVariant = z.infer<typeof BrandMarkVariantSchema>;

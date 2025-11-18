@@ -22,6 +22,8 @@ import { ResultsVirtualScrollStrategy } from '../virtual-scroll-strategy/results
  */
 @Component({
   selector: 'ccf-results-browser',
+  templateUrl: './results-browser.component.html',
+  styleUrls: ['./results-browser.component.scss'],
   imports: [
     HraCommonModule,
     DonorCardComponent,
@@ -36,8 +38,6 @@ import { ResultsVirtualScrollStrategy } from '../virtual-scroll-strategy/results
     PlainTooltipDirective,
     ScrollingModule,
   ],
-  templateUrl: './results-browser.component.html',
-  styleUrl: './results-browser.component.scss',
   providers: [
     { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions },
     { provide: VIRTUAL_SCROLL_STRATEGY, useExisting: ResultsVirtualScrollStrategy },

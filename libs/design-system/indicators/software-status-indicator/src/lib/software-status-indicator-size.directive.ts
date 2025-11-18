@@ -15,6 +15,7 @@ const STATUS_FONTS: Record<SoftwareStatusSize, string> = {
  */
 @Directive({
   selector: '[hraSoftwareStatusSize]',
+  standalone: true,
   host: {
     '[style.font]': 'font()',
   },

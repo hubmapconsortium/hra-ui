@@ -7,14 +7,15 @@ import { ClickEventDirective } from '@hra-ui/common/analytics';
  */
 @Directive({
   selector: 'a[hraHyperlink]',
-  host: {
-    class: 'hra-text-hyperlink',
-  },
+  standalone: true,
   hostDirectives: [
     {
       directive: ClickEventDirective,
       inputs: ['hraClickEvent: hraHyperlink'],
     },
   ],
+  host: {
+    class: 'hra-text-hyperlink',
+  },
 })
 export class TextHyperlinkDirective {}

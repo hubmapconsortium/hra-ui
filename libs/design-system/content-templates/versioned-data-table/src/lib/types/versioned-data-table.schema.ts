@@ -1,6 +1,6 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { PageTableSchema } from '@hra-ui/design-system/table';
-import * as z from 'zod';
+import { z } from 'zod';
 
 /**
  * Schema for versioned data

@@ -7,11 +7,11 @@
       class="similar-datasets-menu-trigger"
       [matMenuTriggerFor]="optionsForDatasetTable"
     >
-      <mat-icon class="more-icon" fontIcon="more_vert" />
+      <mat-icon class="more-icon" fontIcon="more_vert"></mat-icon>
     </button>
 
     <!-- MENU -->
-    <mat-menu hraFeature="menu" class="custom-menu" #optionsForDatasetTable="matMenu">
+    <mat-menu hraFeature="menu" #optionsForDatasetTable="matMenu" class="custom-menu">
       <button
         hraHoverEvent
         hraFeature="info"
@@ -20,7 +20,7 @@
         matRippleColor="#201E3D14"
         [matMenuTriggerFor]="submenu"
       >
-        <mat-icon fontIcon="info" class="icon-style" />
+        <mat-icon fontIcon="info" class="icon-style"></mat-icon>
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
@@ -31,53 +31,53 @@
     </mat-menu>
 
     <mat-menu #submenu="matMenu">
-      <hra-tooltip-card class="tooltip-panel" [content]="tooltip" />
+      <hra-tooltip-card [content]="tooltip" class="tooltip-panel"></hra-tooltip-card>
     </mat-menu>
   </hra-workflow-card-actions>
 
   <!-- SIMILAR DATASETS TABLE -->
   <ng-scrollbar class="table-overflow-container">
-    <table hraFeature="dataset" mat-table matSort class="dataset-table" [dataSource]="dataSource" #sort2="matSort">
+    <table hraFeature="dataset" mat-table matSort #sort2="matSort" [dataSource]="dataSource" class="dataset-table">
       <caption>
         Table displaying similar anatomical structures
       </caption>
       <ng-container matColumnDef="tool">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Tool">Tool</th>
-        <td *matCellDef="let element" mat-cell>{{ element.tool }}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tool">Tool</th>
+        <td mat-cell *matCellDef="let element">{{ element.tool }}</td>
       </ng-container>
       <ng-container matColumnDef="modality">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Modality">Modality</th>
-        <td *matCellDef="let element" mat-cell>{{ element.modality }}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Modality">Modality</th>
+        <td mat-cell *matCellDef="let element">{{ element.modality }}</td>
       </ng-container>
       <ng-container matColumnDef="similarity">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Similarity">Similarity</th>
-        <td *matCellDef="let element" mat-cell class="similarity-column">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Similarity">Similarity</th>
+        <td mat-cell *matCellDef="let element" class="similarity-column">
           {{ element.similarity | number: '1.0-2' }}
         </td>
       </ng-container>
       <ng-container matColumnDef="cell_source_label">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Dataset Label">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Dataset Label">
           Dataset Label
         </th>
-        <td *matCellDef="let element" mat-cell>{{ element.cell_source_label }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.cell_source_label }}</td>
       </ng-container>
       <ng-container matColumnDef="cell_source">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Dataset ID">Dataset ID</th>
-        <td *matCellDef="let element" mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Dataset ID">Dataset ID</th>
+        <td mat-cell *matCellDef="let element">
           <a hraHyperlink [href]="element.cell_source">{{ element.cell_source }}</a>
         </td>
       </ng-container>
       <ng-container matColumnDef="cell_source_link">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by Dataset Link">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Dataset Link">
           Dataset Link
         </th>
-        <td *matCellDef="let element" mat-cell>
+        <td mat-cell *matCellDef="let element">
           <a hraHyperlink [href]="element.cell_source_link">{{ element.cell_source_link }}</a>
         </td>
       </ng-container>
 
-      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
-      <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </ng-scrollbar>
 </hra-workflow-card>

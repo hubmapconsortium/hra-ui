@@ -49,7 +49,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     ScrollingModule,
   ],
   templateUrl: './compare.component.html',
-  styleUrl: './compare.component.scss',
+  styleUrls: ['./compare.component.scss'],
 })
 export class CompareComponent implements OnInit {
   readonly fb = inject(UntypedFormBuilder);

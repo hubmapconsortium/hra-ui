@@ -14,10 +14,10 @@
 
 @switch (level()) {
   @case (1) {
-    <h1 hra-section-link underlined [anchor]="anchor()">{{ tagline() }}</h1>
+    <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
   }
   @case (2) {
-    <h2 hra-section-link underlined [anchor]="anchor()">{{ tagline() }}</h2>
+    <h2 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h2>
   }
   @case (3) {
     <h3 hra-section-link [anchor]="anchor()">{{ tagline() }}</h3>
@@ -32,7 +32,7 @@
     <h6 hra-section-link [anchor]="anchor()">{{ tagline() }}</h6>
   }
   @default {
-    <h1 hra-section-link underlined [anchor]="anchor()">{{ tagline() }}</h1>
+    <h1 hra-section-link [anchor]="anchor()" underlined>{{ tagline() }}</h1>
   }
 }
 

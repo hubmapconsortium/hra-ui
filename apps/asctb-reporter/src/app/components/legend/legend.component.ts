@@ -14,9 +14,9 @@ import { LegendService } from './legend.service';
 
 @Component({
   selector: 'app-legend',
-  imports: [CommonModule, ExpansionPanelModule, MatIconModule, OrderByPipe, MatExpansionModule],
   templateUrl: './legend.component.html',
-  styleUrl: './legend.component.scss',
+  styleUrls: ['./legend.component.scss'],
+  imports: [CommonModule, ExpansionPanelModule, MatIconModule, OrderByPipe, MatExpansionModule],
   providers: [LegendService],
 })
 export class LegendComponent implements OnInit, OnChanges {

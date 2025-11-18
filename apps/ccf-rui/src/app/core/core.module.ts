@@ -4,9 +4,9 @@ import { ConfigModule } from './services/config/config.module';
 import { StoreModule } from './store/store.module';
 
 @NgModule({
+  exports: [],
   imports: [ConfigModule, StoreModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],
-  exports: [],
 })
 export class CoreModule {
   constructor() {

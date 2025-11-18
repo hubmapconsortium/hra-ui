@@ -9,7 +9,7 @@
     <div mat-dialog-content class="content">
       <div class="header">
         <span class="title">Tissue Registration Metadata</span>
-        <ccf-metadata-help />
+        <ccf-metadata-help></ccf-metadata-help>
       </div>
 
       <form class="form" [formGroup]="metadataForm" (ngSubmit)="submit()">
@@ -20,7 +20,7 @@
           step="1"
         >
           @if (fileErrors) {
-            <hra-error-indicator class="errors" [errors]="fileErrors" />
+            <hra-error-indicator class="errors" [errors]="fileErrors"></hra-error-indicator>
           }
 
           <ccf-file-upload
@@ -53,13 +53,21 @@
             </a>
           </hra-workflow-card-extra>
 
-          <ccf-metadata-author-form hraFeature="author" class="author" [form]="metadataForm.controls.author" />
-          <ccf-metadata-donor-form hraFeature="donor" class="donor" [form]="metadataForm.controls.donor" />
+          <ccf-metadata-author-form
+            hraFeature="author"
+            class="author"
+            [form]="metadataForm.controls.author"
+          ></ccf-metadata-author-form>
+          <ccf-metadata-donor-form
+            hraFeature="donor"
+            class="donor"
+            [form]="metadataForm.controls.donor"
+          ></ccf-metadata-donor-form>
         </hra-workflow-card>
 
         <hra-workflow-card hraFeature="register-data" class="register" tagline="Register Data Spatially" step="3">
           @if (metadataForm.invalid) {
-            <hra-error-indicator class="error" [errors]="['Please add required metadata.']" />
+            <hra-error-indicator class="error" [errors]="['Please add required metadata.']"></hra-error-indicator>
           }
 
           @if (config.mode === 'create') {

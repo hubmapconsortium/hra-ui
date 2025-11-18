@@ -1,8 +1,8 @@
 @for (item of spec().items; track item) {
-  <hra-title-card class="card" data-testid="title-card" [spec]="item" [class.span-columns]="isWideCardAt($index)">
+  <hra-title-card [spec]="item" class="card" data-testid="title-card" [class.span-columns]="isWideCardAt($index)">
     <div class="items" data-testid="metrics-group">
       @for (metric of item.items; track metric) {
-        <hra-metrics-item data-testid="metrics-item" [spec]="metric" />
+        <hra-metrics-item [spec]="metric" data-testid="metrics-item"></hra-metrics-item>
       }
     </div>
   </hra-title-card>

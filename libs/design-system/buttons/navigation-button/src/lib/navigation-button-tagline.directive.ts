@@ -6,6 +6,7 @@ import { Directive } from '@angular/core';
  */
 @Directive({
   selector: '[hraNavigationButtonTagline]',
+  standalone: true,
   host: {
     class: 'label',
   },

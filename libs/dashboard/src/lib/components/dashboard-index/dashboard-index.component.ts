@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import * as z from 'zod';
+import { z } from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
 import { LONG_CARD_DEF, LongCardComponent } from '../long-card/long-card.component';
 

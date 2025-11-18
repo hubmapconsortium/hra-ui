@@ -6,7 +6,7 @@
       <div
         [ngStyle]="{
           'background-color': l.style === 'stroke' ? 'transparent' : l.color,
-          border: l.style === 'stroke' ? `3px solid ${l.color}` : 'none',
+          border: l.style === 'stroke' ? '3px solid ' + l.color : 'none',
           'border-style': l.style === 'stroke' ? 'dotted' : 'none',
         }"
         [ngClass]="{

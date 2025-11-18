@@ -37,7 +37,6 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
  * Main application component
  */
 @Component({
-  selector: 'hra-kg-explorer',
   imports: [
     HraCommonModule,
     RouterModule,
@@ -49,12 +48,13 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
     MatMenuModule,
     MatDividerModule,
   ],
-  templateUrl: './app.component.html',
+  selector: 'hra-kg-explorer',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './app.component.html',
   host: {
     class: 'hra-app',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Router instance for navigation */

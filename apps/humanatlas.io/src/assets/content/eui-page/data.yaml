@@ -46,7 +46,6 @@ content:
 
       - component: YouTubePlayer
         videoId: OQ0N8pZS4Rc
-        label: Exploration user interface demo video
 
   - component: PageSection
     tagline: Using spatial search filters

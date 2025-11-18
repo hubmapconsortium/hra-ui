@@ -27,6 +27,7 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
 /** Defines a pipe that provides a default value if the input is undefined or empty */
 @Pipe({
   name: 'defaultTo',
+  standalone: true,
   pure: true,
 })
 export class DefaultToPipe implements PipeTransform {

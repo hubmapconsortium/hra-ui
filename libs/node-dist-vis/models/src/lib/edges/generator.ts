@@ -131,7 +131,6 @@ export function* generateEdges(
 ): Generator<EdgeEntry, undefined, undefined> {
   const { sourceCells, targetCells } = partitionNodes(nodes, targetSelector, maxDistance);
   if (Object.keys(targetCells).length === 0) {
-    // eslint-disable-next-line no-console
     console.warn(`No target cells found using selector '${targetSelector}'`);
     return;
   }
@@ -253,7 +252,6 @@ export function createEdgeGenerator(
     return createEdgeGeneratorWorker(view, selector, distance).pipe(
       tap((event) => {
         if (event.data.type === 'progress') {
-          // eslint-disable-next-line no-console
           console.log(formatProgressMessage(event.data));
         }
       }),

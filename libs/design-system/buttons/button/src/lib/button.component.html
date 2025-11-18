@@ -2,11 +2,11 @@
   @case ('default') {
     <a
       mat-button
-      target="_blank"
       [hraButtonVariant]="variant()"
       [hraButtonSize]="size()"
       [disabled]="disabled()"
       [href]="href()"
+      target="_blank"
     >
       {{ label() }}
       @if (size() !== 'small' && icon()) {
@@ -15,19 +15,19 @@
     </a>
   }
   @case ('flat') {
-    <a mat-flat-button target="_blank" [disabled]="disabled()" [href]="href()">
+    <a mat-flat-button [disabled]="disabled()" [href]="href()" target="_blank">
       {{ label() }}
       <mat-icon>{{ icon() }}</mat-icon>
     </a>
   }
   @case ('cta') {
-    <a mat-button hraCtaButton target="_blank" [hraButtonVariant]="variant()" [disabled]="disabled()" [href]="href()">
+    <a mat-button hraCtaButton [hraButtonVariant]="variant()" [disabled]="disabled()" [href]="href()" target="_blank">
       {{ label() }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   }
   @case ('fab') {
-    <a mat-fab extended target="_blank" [disabled]="disabled()" [href]="href()">
+    <a mat-fab extended [disabled]="disabled()" [href]="href()" target="_blank">
       <mat-icon>{{ icon() }}</mat-icon>
       {{ label() }}
     </a>

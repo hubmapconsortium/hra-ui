@@ -3,8 +3,8 @@
   <mat-select
     disableRipple
     panelClass="options-container"
-    [value]="version()"
     (selectionChange)="navigateToVersion($event.value)"
+    [value]="version()"
   >
     <mat-select-trigger>
       {{ selectedVersionLabel() }}

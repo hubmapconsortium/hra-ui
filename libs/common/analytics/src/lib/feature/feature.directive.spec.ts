@@ -12,8 +12,8 @@ describe('FeatureDirective', () => {
 
   it('should compute path correctly with and without parent', () => {
     @Component({
-      imports: [FeatureDirective],
       template: '<div hraFeature="parent"><div hraFeature="child"></div></div>',
+      imports: [FeatureDirective],
     })
     class TestComponent {}
 

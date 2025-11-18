@@ -32,6 +32,7 @@ const EMPTY_DATA: TissuePredictionData = {
  */
 @Component({
   selector: 'hra-cell-population-predictions',
+  standalone: true,
   imports: [
     HraCommonModule,
     MatIconModule,
@@ -113,7 +114,6 @@ export class CellPopulationPredictionsComponent {
 
   /** Triggered when users clicks delete icon on file */
   onDeleteButtonClick(): void {
-    // eslint-disable-next-line no-alert
     const confirmation = window.confirm('Changes you made might not be saved. Do you really want to leave?');
     if (confirmation) {
       this.router.navigate(['/us1']);

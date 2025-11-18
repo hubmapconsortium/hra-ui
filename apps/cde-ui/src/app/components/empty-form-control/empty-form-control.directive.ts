@@ -7,6 +7,7 @@ import { NgControl } from '@angular/forms';
  */
 @Directive({
   selector: '[cdeMarkEmptyFormControl]',
+  standalone: true,
   host: {
     '[class.empty]': 'isEmpty()',
   },

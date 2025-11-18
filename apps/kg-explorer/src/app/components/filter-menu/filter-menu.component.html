@@ -5,12 +5,12 @@
     <div class="filler"></div>
     <button
       hraFeature="toggle"
+      [hraClickEvent]="{ opened: formClosed() }"
       hraHoverEvent
       mat-icon-button
-      aria-label="Open or close filters menu"
-      [hraClickEvent]="{ opened: formClosed() }"
-      [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"
       (click)="toggleForm.emit()"
+      [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"
+      aria-label="Open or close filters menu"
     >
       <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
     </button>

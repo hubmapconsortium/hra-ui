@@ -1,6 +1,6 @@
 import { UnionMember } from '@hra-ui/utils/types';
 import { StateContext } from '@ngxs/store';
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Resource identifier */
 export type ResourceId = z.infer<typeof RESOURCE_ID>;

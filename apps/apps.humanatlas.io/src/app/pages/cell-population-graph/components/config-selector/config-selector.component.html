@@ -1,4 +1,4 @@
-<form hraFeature="configuration" class="configForm" [formGroup]="configForm">
+<form hraFeature="configuration" [formGroup]="configForm" class="configForm">
   <!-- Organ dataset selection -->
   <div class="organ-dataset-group">
     <h1>Organ dataset</h1>
@@ -63,9 +63,9 @@
       <mat-button-toggle-group
         hraFeature="x-axis"
         formControlName="xAxisField"
+        [hideSingleSelectionIndicator]="false"
         hraButtonToggleSize="medium"
         class="toggle-group"
-        [hideSingleSelectionIndicator]="false"
       >
         @for (option of xAxisOptions; track option.value) {
           <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{
@@ -80,9 +80,9 @@
       <mat-button-toggle-group
         hraFeature="y-axis"
         formControlName="yAxisField"
+        [hideSingleSelectionIndicator]="false"
         hraButtonToggleSize="medium"
         class="toggle-group"
-        [hideSingleSelectionIndicator]="false"
       >
         @for (option of yAxisOptions; track option.value) {
           <mat-button-toggle hraClickEvent [hraFeature]="option.label | slugify" [value]="option.value">{{

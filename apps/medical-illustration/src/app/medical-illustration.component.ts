@@ -29,7 +29,7 @@ import {
   tryParseJson,
 } from '@hra-ui/services';
 import { Observable, of, OperatorFunction, ReplaySubject, switchMap } from 'rxjs';
-import * as z from 'zod';
+import { z } from 'zod';
 
 import { environment } from '../environments/environment';
 
@@ -65,11 +65,11 @@ function selectData<T, Z extends z.ZodTypeAny>(
   selector: 'hra-medical-illustration-wc',
   imports: [CommonModule, InteractiveSvgComponent],
   templateUrl: 'medical-illustration.component.html',
-  styleUrl: 'medical-illustration.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['medical-illustration.component.scss'],
   host: {
     class: 'hra-app',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MedicalIllustrationComponent extends BaseApplicationComponent implements OnInit, OnChanges {
   /** Displayed illustration or an iri to lookup in either the illustrations or fetch from the remote api */

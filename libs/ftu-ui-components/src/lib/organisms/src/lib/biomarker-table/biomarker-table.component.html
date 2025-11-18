@@ -7,11 +7,11 @@
 >
   <table class="table" mat-table [dataSource]="dataSource" #table>
     <ng-container matColumnDef="type" sticky>
-      <th *matHeaderCellDef mat-header-cell>Cell types</th>
+      <th mat-header-cell *matHeaderCellDef>Cell types</th>
       <td
-        *matCellDef="let element"
         class="type"
         mat-cell
+        *matCellDef="let element"
         [class.highlight]="isHighlighted(element)"
         [hraPlainTooltip]="element[0]"
       >
@@ -20,43 +20,44 @@
     </ng-container>
 
     <ng-container matColumnDef="count" sticky>
-      <th *matHeaderCellDef class="count" mat-header-cell>#Cells</th>
-      <td *matCellDef="let element" class="count" mat-cell [class.highlight]="isHighlighted(element)">
+      <th class="count" mat-header-cell *matHeaderCellDef>#Cells</th>
+      <td class="count" mat-cell *matCellDef="let element" [class.highlight]="isHighlighted(element)">
         {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="preFiller">
-      <th *matHeaderCellDef mat-header-cell></th>
-      <td *matCellDef="let element" mat-cell style="max-width: unset">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" style="max-width: unset">
         <div [style.width]="preFillerWidth"></div>
       </td>
     </ng-container>
 
-    @for (column of columns; track column) {
+    @for (column of columns; track column; let index = $index) {
       <ng-container [matColumnDef]="column">
-        <th *matHeaderCellDef class="icon-header" mat-header-cell [hraPlainTooltip]="column">
+        <th class="icon-header" mat-header-cell *matHeaderCellDef [hraPlainTooltip]="column">
           <div class="header-column-text">
             {{ column }}
           </div>
         </th>
 
         <td
-          *matCellDef="let element"
           hraFeature="open-biomarker-bottom-sheet"
           hraClickEvent
           class="icon-cell"
           mat-cell
-          style="cursor: pointer"
+          *matCellDef="let element"
           [class.highlight]="isHighlighted(element)"
-          (click)="openBottomSheet(element[$index + 2])"
+          (click)="openBottomSheet(element[index + 2])"
+          style="cursor: pointer"
         >
-          @if (element[$index + 2] !== undefined) {
+          @if (element[index + 2] !== undefined) {
             <ftu-biomarker-table-data-icon
               class="icon"
-              [color]="getColor(element[$index + 2].color)"
-              [size]="getSize(element[$index + 2].size)"
-            />
+              [color]="getColor(element[index + 2].color)"
+              [size]="getSize(element[index + 2].size)"
+            >
+            </ftu-biomarker-table-data-icon>
           } @else {
             <div class="empty"></div>
           }
@@ -65,16 +66,16 @@
     }
 
     <ng-container matColumnDef="postFiller">
-      <th *matHeaderCellDef mat-header-cell></th>
-      <td *matCellDef="let element" mat-cell style="max-width: unset">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" style="max-width: unset">
         <div [style.width]="postFillerWidth"></div>
       </td>
     </ng-container>
 
-    <tr *matHeaderRowDef="(columns$ | async) ?? []; sticky: true" mat-header-row class="column-header-row"></tr>
+    <tr mat-header-row *matHeaderRowDef="(columns$ | async) ?? []; sticky: true" class="column-header-row"></tr>
     <tr
-      *matRowDef="let row; columns: (columns$ | async) ?? []"
       mat-row
+      *matRowDef="let row; columns: (columns$ | async) ?? []"
       (mouseover)="setHoverId(getHoverId(row))"
       (mouseout)="setHoverId(undefined)"
     ></tr>

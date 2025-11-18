@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, model, OnInit, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, model, OnInit, output, signal } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -22,10 +22,13 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
     PlainTooltipDirective,
   ],
   templateUrl: './opacity-slider.component.html',
-  styleUrl: './opacity-slider.component.scss',
+  styleUrls: ['./opacity-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OpacitySliderComponent implements OnInit {
+  /** HTML class name */
+  @HostBinding('class') readonly clsName = 'ccf-opacity-slider';
+
   /** The value displayed in the slider */
   readonly opacity = model(20);
   /** Whether the item is set to visible */

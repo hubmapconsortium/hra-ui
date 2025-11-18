@@ -1,7 +1,7 @@
 <div>0</div>
 <div class="container">
-  @for (item of [].constructor(totalTissueSections); track item) {
-    <div class="line-tick" [class.line-tick-visible]="tissueSectionExists($index + 1)"></div>
+  @for (item of [].constructor(totalTissueSections); track item; let i = $index) {
+    <div class="line-tick" [class.line-tick-visible]="tissueSectionExists(i + 1)"></div>
   }
   <div class="x-axis"></div>
 </div>

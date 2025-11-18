@@ -27,7 +27,7 @@ const EBI_LINK = 'https://www.ebi.ac.uk/';
   selector: 'ftu-landing',
   imports: [HraCommonModule, ButtonsModule, MatIconModule, IconsModule, RouterModule],
   templateUrl: './landing.component.html',
-  styleUrl: './landing.component.scss',
+  styleUrls: ['./landing.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingComponent {

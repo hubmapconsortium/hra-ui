@@ -12,7 +12,7 @@ import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-
   selector: 'ccf-metadata-confirmation-dialog',
   imports: [HraCommonModule, MatDialogModule, MatIconModule, ButtonsModule, ErrorIndicatorComponent],
   templateUrl: './metadata-confirmation-dialog.component.html',
-  styleUrl: './metadata-confirmation-dialog.component.scss',
+  styleUrls: ['./metadata-confirmation-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataConfirmationDialogComponent {}

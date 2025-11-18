@@ -32,13 +32,17 @@
         [servers]="servers"
         [selectedServer]="selectedServer()"
         (selectedServerChange)="updateRapidoc($event)"
-      />
+      ></hra-server-selector>
     </div>
     <div class="rapidoc-embed">
       <rapi-doc
         hraClickEvent
         hraFeature="rapi-doc"
+        #beforeTry="hraClickEvent"
         hraClickEventTriggerOn="none"
+        (before-try)="onBeforeTry($event, beforeTry)"
+        #rapidoc
+        [attr.spec-url]="selectedServer().spec"
         fill-request-fields-with-example="false"
         show-header="false"
         render-style="view"
@@ -52,11 +56,8 @@
         css-classes="rapidoc-hra-api-theme"
         show-info="false"
         allow-server-selection="false"
-        [attr.spec-url]="selectedServer().spec"
-        (before-try)="onBeforeTry($event, beforeTry)"
-        #beforeTry="hraClickEvent"
-        #rapidoc
-      />
+      >
+      </rapi-doc>
     </div>
   </section>
 </ng-container>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { EmptyObject } from 'type-fest';
 import { ActiveFtuState } from './active-ftu';
@@ -26,4 +26,14 @@ export type HraStateModuleOptions = EmptyObject;
     ]),
   ],
 })
-export class HraStateModule {}
+export class HraStateModule {
+  /** Static method for configuring the module
+   * Returns a configuration object with the module and the providers
+   */
+  static forRoot(_options: HraStateModuleOptions): ModuleWithProviders<HraStateModule> {
+    return {
+      ngModule: HraStateModule,
+      providers: [],
+    };
+  }
+}

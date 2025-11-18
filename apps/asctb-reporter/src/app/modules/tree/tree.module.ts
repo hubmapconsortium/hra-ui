@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { TreeComponent } from './tree.component';
 
 @NgModule({
-  imports: [CommonModule],
   declarations: [TreeComponent],
+  imports: [CommonModule],
   exports: [TreeComponent],
 })
 export class TreeModule {}

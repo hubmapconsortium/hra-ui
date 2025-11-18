@@ -12,6 +12,7 @@ export type MenuContentVariant = 'desktop' | 'mobile';
 /** Directive used to type the context for menu group templates */
 @Directive({
   selector: 'ng-template[hraMenuGroup]',
+  standalone: true,
 })
 export class MenuGroupDirective {
   /** Types the context as `MenuGroup` */
@@ -24,6 +25,7 @@ export class MenuGroupDirective {
 /** Directive used to type the context for menu item templates */
 @Directive({
   selector: 'ng-template[hraMenuItem]',
+  standalone: true,
 })
 export class MenuItemDirective {
   /** Types the context as `MenuItem` */
@@ -36,6 +38,7 @@ export class MenuItemDirective {
 /** Directive used to type the context for menu subgroup templates */
 @Directive({
   selector: 'ng-template[hraMenuSubGroup]',
+  standalone: true,
 })
 export class MenuSubGroupDirective {
   /** Types the context as `MenuSubGroup` */

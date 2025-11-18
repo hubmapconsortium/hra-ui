@@ -53,7 +53,6 @@ content:
     content:
       - component: YouTubePlayer
         videoId: pzUFmDhQEO8
-        label: Asct+b reporter application demo video
 
   - component: PageSection
     tagline: Comparing datasets

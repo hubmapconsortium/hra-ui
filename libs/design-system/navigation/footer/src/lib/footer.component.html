@@ -1,8 +1,8 @@
 <ng-container hraFeature="footer">
   <div class="content-container">
-    <hra-brand-logo class="logo" />
+    <hra-brand-logo class="logo"></hra-brand-logo>
 
-    <hra-funding [funders]="funders()" />
+    <hra-funding [funders]="funders()"></hra-funding>
     <div class="disclaimer">
       <p style="margin-bottom: 0.75rem">
         Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies
@@ -20,12 +20,12 @@
     </div>
   </div>
 
-  <mat-divider />
+  <mat-divider></mat-divider>
 
   <div class="socials-container">
     <div class="socials">
       @for (id of socials(); track id) {
-        <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
+        <hra-social-media-button [id]="$any(id)" size="large" variant="color"></hra-social-media-button>
       }
     </div>
 

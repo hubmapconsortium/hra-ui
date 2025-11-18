@@ -12,6 +12,7 @@ import { TreeModule } from '../tree/tree.module';
 import { PlaygroundComponent } from './playground.component';
 
 @NgModule({
+  declarations: [PlaygroundComponent],
   imports: [
     HraCommonModule,
     MatTabsModule,
@@ -25,7 +26,6 @@ import { PlaygroundComponent } from './playground.component';
     UploadComponent,
     ErrorComponent,
   ],
-  declarations: [PlaygroundComponent],
   exports: [PlaygroundComponent],
 })
 export class PlaygroundModule {}

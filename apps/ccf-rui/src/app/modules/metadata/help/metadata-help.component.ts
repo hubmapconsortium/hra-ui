@@ -10,7 +10,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
   selector: 'ccf-metadata-help',
   imports: [HraCommonModule, MatDividerModule, MatIconModule, MatMenuModule, ButtonsModule],
   templateUrl: './metadata-help.component.html',
-  styleUrl: './metadata-help.component.scss',
+  styleUrls: ['./metadata-help.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataHelpComponent {}

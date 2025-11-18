@@ -10,10 +10,10 @@
       aria-label="Visit Human Reference Atlas"
       [hraPlainTooltip]="hraTooltip()"
     >
-      <hra-brand-mark variant="small" />
+      <hra-brand-mark variant="small"></hra-brand-mark>
     </a>
   }
-  <a class="app-logo" hraFeature="app" hraClickEvent [attr.href]="appLink()" [attr.alt]="`${appTitle()} logo`">
+  <a class="app-logo" hraFeature="app" hraClickEvent [attr.href]="appLink()" [attr.alt]="appTitle() + ' logo'">
     <hra-icon [svgIcon]="app()" />
   </a>
 
@@ -23,12 +23,12 @@
         <span class="label">{{ appTitle() }}</span>
       </mat-button-toggle>
     } @else {
-      <a class="app-name" hraFeature="app" hraClickEvent aria-label="Return to app home" [href]="appLink()">
+      <a class="app-name" hraFeature="app" hraClickEvent [href]="appLink()" aria-label="Return to app home">
         <span class="app-label">{{ appTitle() }}</span>
       </a>
     }
     @if (appStatus()) {
-      <hra-software-status-indicator size="small" [status]="appStatus()!" />
+      <hra-software-status-indicator [status]="appStatus()!" size="small"></hra-software-status-indicator>
     }
   </span>
 </ng-container>

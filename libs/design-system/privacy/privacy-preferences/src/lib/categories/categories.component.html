@@ -4,7 +4,7 @@
     @let bodyId = `privacy-preferences-category-${def.id}-body`;
 
     <cdk-accordion-item #item="cdkAccordionItem">
-      <div class="header" [attr.id]="headerId" [attr.aria-label]="`${def.title} cookies`">
+      <div [attr.id]="headerId" class="header" [attr.aria-label]="def.title + ' cookies'">
         @let checked = categories()[def.id];
         @let detailToggleLabel = `${item.expanded ? 'Close' : 'Open'} ${def.id.toLowerCase()} details`;
         @let categoryToggleLabel = `${checked ? 'Disallow' : 'Allow'} ${def.id.toLowerCase()} cookies`;
@@ -38,7 +38,7 @@
       </p>
 
       @if (item.expanded) {
-        <div class="details" role="region" [attr.id]="bodyId" [attr.aria-labelledby]="headerId">
+        <div [attr.id]="bodyId" class="details" role="region" [attr.aria-labelledby]="headerId">
           <div class="privacy-details">
             @if (def.details) {
               <p class="privacy-text">{{ def.details }}</p>

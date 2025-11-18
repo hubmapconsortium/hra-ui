@@ -3,9 +3,10 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 /** ng-scrollbar global styles component */
 @Component({
   selector: 'hra-scrollbar-styles',
+  standalone: true,
   template: '',
-  styleUrl: './scrollbar-styles.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./scrollbar-styles.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollbarStylesComponent {}

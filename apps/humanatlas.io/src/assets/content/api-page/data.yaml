@@ -39,7 +39,6 @@ content:
     content:
       - component: YouTubePlayer
         videoId: O-STi0Jyupw
-        label: HRA api demo video
 
   - component: PageSection
     tagline: Deprecated APIs

@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Markdown component data */
 export type Markdown = z.infer<typeof MarkdownSchema>;

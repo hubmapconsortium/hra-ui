@@ -1,5 +1,5 @@
 import { ComponentRef, effect, Injectable, signal } from '@angular/core';
-import { ContentTemplateController } from '@hra-ui/cdk/content-template';
+import { ContentTemplateController, Controller } from '@hra-ui/cdk/content-template';
 import { DataViewerComponent } from '@hra-ui/design-system/data-viewer';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
 
@@ -52,7 +52,7 @@ export class DataViewerParamSyncControllerService implements ContentTemplateCont
   }
 
   /** attach function that sets the correct version and organ in the URL*/
-  attach(componentRef: ComponentRef<unknown>): void {
+  attach(componentRef: ComponentRef<unknown>, options: Controller): void {
     const { instance } = componentRef;
     if (instance instanceof DataViewerComponent) {
       this.componentRef.set(componentRef as ComponentRef<DataViewerComponent>);

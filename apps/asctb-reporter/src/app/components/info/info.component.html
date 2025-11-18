@@ -1,13 +1,13 @@
 <ng-container hraFeature="info-bottom-sheet">
   @if (loading || info.name === '') {
     <div class="loader-container">
-      <hra-progress-spinner size="large" color="color" />
+      <hra-progress-spinner [size]="'large'" [color]="'color'"></hra-progress-spinner>
       <div>Please wait while the data loads...</div>
     </div>
   } @else {
     <div class="sheet-header">
       <div class="name">{{ info.name }}</div>
-      <button mat-icon-button hraFeature="close" hraClickEvent (click)="close()">
+      <button mat-icon-button (click)="close()" hraFeature="close" hraClickEvent>
         <mat-icon>close</mat-icon>
       </button>
     </div>
@@ -52,7 +52,7 @@
 
         <div class="info-title">{{ info.ontologyCode === 'HGNC' ? 'Link' : 'IRI' }}</div>
         <div class="info-description">
-          <a target="_blank" hraHyperlink [href]="info.iri">{{ info.iri ? info.iri : 'No IRI found.' }}</a>
+          <a [href]="info.iri" target="_blank" hraHyperlink>{{ info.iri ? info.iri : 'No IRI found.' }}</a>
         </div>
 
         <div *ngIf="info.extraLinks">
@@ -60,11 +60,13 @@
             <div class="info-title">{{ item.key }}</div>
 
             <div class="info-description">
-              <a target="_blank" hraHyperlink [href]="item.value">{{
+              <a [href]="item.value" target="_blank" hraHyperlink>{{
                 item.value
                   ? item.value
-                  : `No ${item.key}
-              found.`
+                  : 'No ' +
+                    item.key +
+                    '
+              found.'
               }}</a>
             </div>
           </div>
@@ -72,7 +74,7 @@
 
         <!-- REMOVE ME -->
         <div class="info-title">Notes</div>
-        <markdown class="info-description" [data]="info.notes ? info.notes : 'No notes found.'" />
+        <markdown class="info-description" [data]="info.notes ? info.notes : 'No notes found.'"> </markdown>
 
         <div class="info-title">DOI</div>
         <div *ngIf="info?.references?.length">
@@ -82,7 +84,7 @@
             </li>
           </ul>
         </div>
-        <div *ngIf="!info?.references?.length" class="info-description">No DOI references found.</div>
+        <div class="info-description" *ngIf="!info?.references?.length">No DOI references found.</div>
       </div>
     </ng-template>
   }

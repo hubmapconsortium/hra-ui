@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Card info data containing metric name, count, and icon info */
 export type CountInfoItem = z.infer<typeof CountInfoItemSchema>;

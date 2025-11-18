@@ -376,7 +376,6 @@ export function inferViewKeyMappingImpl<T>(
     const isAllNumeric = entry.every((value) => typeof value === 'number');
     const isBackwardsIncompatibleEdges = entry.length === 7 && keys.length >= 7 && isAllNumeric;
     if (isBackwardsIncompatibleEdges) {
-      // eslint-disable-next-line no-console
       console.warn('Legacy edge format detected! Edges csv now require a header.');
     } else {
       header = entry as string[];
@@ -393,7 +392,6 @@ export function inferViewKeyMappingImpl<T>(
     if (index >= 0) {
       mapping[key] = (isArrayEntry ? index : header[index]) as never;
     } else if (key in mapping) {
-      // eslint-disable-next-line no-console
       console.warn(`Could not find a matching column for '${String(mapping[key])}', key: ${String(key)}`);
       delete mapping[key];
     }

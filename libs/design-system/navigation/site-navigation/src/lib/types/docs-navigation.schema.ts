@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Docs Navigation Item */
 export type DocsNavigationItem = z.infer<typeof DocsNavigationItemSchema>;

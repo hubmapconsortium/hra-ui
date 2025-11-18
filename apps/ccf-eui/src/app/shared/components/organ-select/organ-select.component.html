@@ -7,24 +7,24 @@
       hraClickEvent
       name="currentOrganInput"
       class="organ-input"
+      [(ngModel)]="searchInput"
       [matChipInputFor]="chipGrid"
       [matAutocomplete]="auto"
-      [placeholder]="searchTextPlaceholder()"
-      [(ngModel)]="searchInput"
       #organInput
+      [placeholder]="searchTextPlaceholder()"
     />
     <mat-autocomplete
-      hideSingleSelectionIndicator
+      #auto="matAutocomplete"
       (optionSelected)="optionSelected($event)"
+      hideSingleSelectionIndicator
       (opened)="hidePlaceholder.set(true)"
       (closed)="hidePlaceholder.set(false)"
-      #auto="matAutocomplete"
     >
-      <mat-chip-grid hraFeature="chips" class="organ-select-chips" aria-label="Organ selection" #chipGrid>
+      <mat-chip-grid hraFeature="chips" class="organ-select-chips" #chipGrid aria-label="Organ selection">
         @for (organ of selectedOrgans(); track organ) {
           <mat-chip-row [hraFeature]="organ.name | slugify" (removed)="remove(organ)">
             <span hraFeature="label" hraClickEvent>{{ organ.name }}</span>
-            <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="`remove ${organ.name}`">
+            <button hraFeature="remove" hraClickEvent matChipRemove [attr.aria-label]="'remove ' + organ.name">
               <mat-icon>close</mat-icon>
             </button>
           </mat-chip-row>
@@ -32,14 +32,14 @@
       </mat-chip-grid>
       <ng-scrollbar hraFeature="list" class="organ-list">
         @for (organ of filteredOrgans(); track organ) {
-          <div class="autocomplete-option" [hraFeature]="organ.name | slugify">
+          <div [hraFeature]="organ.name | slugify" class="autocomplete-option">
             <mat-checkbox
               hraFeature="toggle"
               hraClickEvent
               class="autocomplete-checkbox"
-              [checked]="isChecked(organ)"
               (change)="checkboxSelected($event, organ)"
-            />
+              [checked]="isChecked(organ)"
+            ></mat-checkbox>
             <mat-option hraFeature="select" hraClickEvent [value]="organ">{{ organ.name }}</mat-option>
           </div>
         }

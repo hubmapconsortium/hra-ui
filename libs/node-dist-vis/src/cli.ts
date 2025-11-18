@@ -116,6 +116,23 @@ function reportProgress(processed: number, total: number): void {
   console.log(`Computing edges: ${percentage}% (${processed}/${total}) complete at ${time}`);
 }
 
+function generateEdgesWithProgress(nodes: NodesView, target: string, maxDistance: number): EdgeEntry[] {
+  const { length } = nodes;
+  const reportStep = Math.floor(length / 20);
+  const edges: EdgeEntry[] = [];
+
+  reportProgress(0, length);
+  for (const edge of generateEdges(nodes, target, maxDistance)) {
+    edges.push(edge);
+    if (edges.length % reportStep === 0) {
+      reportProgress(edges.length, length);
+    }
+  }
+
+  reportProgress(length, length);
+  return edges;
+}
+
 function edgeToRow(edge: EdgeEntry): string {
   return `${edge['Cell ID']},${edge['Target ID']},${edge.X1},${edge.Y1},${edge.Z1},${edge.X2},${edge.Y2},${edge.Z2}\n`;
 }

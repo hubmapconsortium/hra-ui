@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
  * Host to provide a real MatMenuPanel for the `action` input.
  */
 @Component({
+  standalone: true,
   imports: [HelpButtonComponent, MatMenuModule],
   template: `
     <mat-menu #menu="matMenu">

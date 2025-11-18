@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'hra-bottom-sheet-demo',
+  standalone: true,
   imports: [MatButtonModule],
   template: ` <button mat-flat-button (click)="openBottomSheet()">Open {{ buttonLabel() }} Bottom Sheet</button> `,
 })

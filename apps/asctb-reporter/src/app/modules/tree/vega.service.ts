@@ -129,8 +129,9 @@ export class VegaService {
    * @param currentSheet selected organ sheet
    * @param treeData partonomy/vega tree data
    * @param sheetConfig sheet configurations
+   * @param multiParentLinksData depricated
    */
-  makeVegaConfig(currentSheet: Sheet, treeData: TNode[], sheetConfig: SheetConfig) {
+  makeVegaConfig(currentSheet: Sheet, treeData: TNode[], sheetConfig: SheetConfig, _multiParentLinksData?: []) {
     const config: Spec = {
       $schema: 'https://vega.github.io/schema/vega/v5.json',
       autosize: 'pad',

@@ -15,10 +15,10 @@
         <table
           mat-table
           matSort
-          aria-label="Table with sort function"
           [dataSource]="dataSource"
           [matSortDisabled]="!enableSort()"
           [class.vertical-divider]="verticalDividers()"
+          aria-label="Table with sort function"
         >
           @let templates = { text, numeric, markdown, link, icon, menu };
 
@@ -26,30 +26,32 @@
           @if (enableRowSelection()) {
             <ng-container hraFeature="select" matColumnDef="select">
               @if (!hideHeaders()) {
-                <th *matHeaderCellDef mat-header-cell data-column-type="checkbox">
+                <th mat-header-cell *matHeaderCellDef data-column-type="checkbox">
                   <mat-checkbox
                     hraFeature="toggle-all"
-                    disableRipple
-                    hraPlainTooltip="Hide all"
-                    aria-label="Hide all"
                     [hraClickEvent]="{ checked: !(selection.hasValue() && isAllSelected()) }"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()"
                     (change)="toggleAllRows()"
-                  />
+                    disableRipple
+                    hraPlainTooltip="Hide all"
+                    aria-label="Hide all"
+                  >
+                  </mat-checkbox>
                 </th>
               }
-              <td *matCellDef="let element" mat-cell data-column-type="checkbox">
+              <td mat-cell *matCellDef="let element" data-column-type="checkbox">
                 <mat-checkbox
                   hraFeature="toggle"
-                  disableRipple
-                  hraPlainTooltip="Hide"
-                  aria-label="Hide"
                   [hraClickEvent]="{ checked: selection.isSelected(element) }"
                   [checked]="selection.isSelected(element)"
                   (click)="$event.stopPropagation()"
                   (change)="$event ? toggleRow(element) : null"
-                />
+                  disableRipple
+                  hraPlainTooltip="Hide"
+                  aria-label="Hide"
+                >
+                </mat-checkbox>
               </td>
             </ng-container>
           }
@@ -57,30 +59,30 @@
           @for (column of _columns(); track column.column) {
             @let type = getColumnType(column).type;
             @let template = templates[type];
-            @let isTotalsLabelColumn = enableRowSelection() ? $index === 1 : $first;
+            @let isTotalsLabelColumn = enableRowSelection() ? $index === 1 : $index === 0;
 
             <ng-container [matColumnDef]="column.column">
               @if (!hideHeaders()) {
                 <th
-                  *matHeaderCellDef
+                  [hraFeature]="`header-cell.${(column.label | slugify)}`"
                   hraClickEvent
+                  *matHeaderCellDef
                   mat-header-cell
                   mat-sort-header
-                  [hraFeature]="`header-cell.${(column.label | slugify)}`"
                   [attr.data-column-type]="type"
                   [sortActionDescription]="`Sort by ${column.label}`"
                 >
                   {{ column.label }}
                 </th>
               }
-              <td *matCellDef="let element" mat-cell [attr.data-column-type]="type">
+              <td mat-cell *matCellDef="let element" [attr.data-column-type]="type">
                 <ng-container
                   *ngTemplateOutlet="template; context: { $implicit: element[column.column], element, column }"
                 />
               </td>
 
               <!-- Total Footer -->
-              <td *matFooterCellDef mat-footer-cell [attr.data-column-type]="type">
+              <td mat-footer-cell *matFooterCellDef [attr.data-column-type]="type">
                 @if (isTotalsLabelColumn) {
                   <span class="total-label"> Total </span>
                 } @else if (totals().get(column)) {
@@ -93,12 +95,12 @@
           }
 
           @if (!hideHeaders()) {
-            <tr *matHeaderRowDef="columnIds(); sticky: true" mat-header-row></tr>
+            <tr mat-header-row *matHeaderRowDef="columnIds(); sticky: true"></tr>
           }
-          <tr *matRowDef="let row; let i = index; columns: columnIds()" mat-row></tr>
+          <tr mat-row *matRowDef="let row; let i = index; columns: columnIds()"></tr>
 
           @if (totals().size > 0) {
-            <tr *matFooterRowDef="columnIds(); sticky: true" mat-footer-row></tr>
+            <tr mat-footer-row *matFooterRowDef="columnIds(); sticky: true"></tr>
           }
         </table>
 
@@ -107,28 +109,28 @@
     </div>
   </ng-scrollbar>
 
-  <ng-template let-text hraTextRowElement #text>
+  <ng-template hraTextRowElement #text let-text>
     <span class="text">{{ text }}</span>
   </ng-template>
 
-  <ng-template let-value hraNumericRowElement #numeric>
+  <ng-template hraNumericRowElement #numeric let-value>
     <span class="numeric">{{ value | number }}</span>
   </ng-template>
 
-  <ng-template let-markdown hraMarkdownRowElement #markdown>
+  <ng-template hraMarkdownRowElement #markdown let-markdown>
     <markdown class="markdown" [data]="markdown" />
   </ng-template>
 
-  <ng-template let-icon let-column="column" let-element="element" hraIconRowElement #icon>
+  <ng-template hraIconRowElement #icon let-icon let-column="column" let-element="element">
     <hra-icon
       hraFeature="table-icon"
       [hraHoverEvent]="{ value: element[column.type.tooltip] | slugify }"
       [svgIcon]="icon"
       [hraPlainTooltip]="element[column.type.tooltip]"
-    />
+    ></hra-icon>
   </ng-template>
 
-  <ng-template let-column="column" let-element="element" hraFeature="menu-cell" hraMenuButtonRowElement #menu>
+  <ng-template hraFeature="menu-cell" hraMenuButtonRowElement let-column="column" let-element="element" #menu>
     @let options = element[column.type.options];
     <button
       hraFeature="download"
@@ -140,17 +142,17 @@
       (focus)="downloadButtonHover(element['id'])"
       #trigger="matMenuTrigger"
     >
-      <hra-icon [fontIcon]="column.type.icon" />
+      <hra-icon [fontIcon]="column.type.icon"></hra-icon>
     </button>
 
     <mat-menu hraFeature="download-options" class="table-menu" #menuOptions="matMenu">
       @for (option of getMenuOptions(options); track $index) {
         <a
+          [hraFeature]="option.name | slugify"
           hraClickEvent
           mat-menu-item
-          download
-          [hraFeature]="option.name | slugify"
           [attr.href]="option.url"
+          download
           (click)="
             $event.preventDefault();
             download(option.url!);
@@ -171,7 +173,7 @@
     </mat-menu>
   </ng-template>
 
-  <ng-template let-label let-column="column" let-element="element" hraFeature="link-cell" hraLinkRowElement #link>
+  <ng-template hraFeature="link-cell" hraLinkRowElement #link let-label let-column="column" let-element="element">
     @let url = element[column.type.urlColumn];
     @let isInternal = column.type.internal;
     @if (isInternal) {
@@ -179,7 +181,7 @@
         {{ label }}
       </a>
     } @else {
-      <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="url">
+      <a hraHyperlink class="link" [attr.href]="url" target="_blank" rel="noopener noreferrer">
         {{ label }}
       </a>
     }

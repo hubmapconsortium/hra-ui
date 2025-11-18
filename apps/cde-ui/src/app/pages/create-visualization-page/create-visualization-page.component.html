@@ -1,16 +1,16 @@
-<form class="content" hraFeature="create-visualization-page" [formGroup]="visualizationForm">
+<form class="content" [formGroup]="visualizationForm" hraFeature="create-visualization-page">
   <div class="page-nav">
     <h1 class="title">Create a Cell Distance Visualization</h1>
   </div>
 
   <hra-workflow-card
     class="card data-upload"
-    hraFeature="upload-data"
     [allowUpload]="true"
     [loadProgress]="nodeProgress"
+    hraFeature="upload-data"
   >
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="1" />
+      <hra-step-indicator class="step-number" [value]="1"></hra-step-indicator>
       <span class="card-title">Upload Data</span>
       <hra-info-button>
         Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
@@ -57,26 +57,27 @@
       accept="text/csv,.csv"
       [loader]="nodesLoader"
       [options]="nodesLoaderOptions"
-      [errorMessage]="nodesErrorMessage"
-      [errorActionMessage]="nodesErrorActionMessage"
       (loadStarted)="clearNodes()"
       (loadCompleted)="setNodes($event[0])"
       (loadCancelled)="clearNodes()"
       (loadErrored)="nodesLoadError = $event; nodeProgress = 0"
+      [errorMessage]="nodesErrorMessage"
+      [errorActionMessage]="nodesErrorActionMessage"
       (progress)="nodeProgress = $event"
       #nodesFileUpload
-    />
+    >
+    </cde-file-upload>
   </hra-workflow-card>
 
   <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="2" />
+      <hra-step-indicator class="step-number" [value]="2"></hra-step-indicator>
       <span class="card-title">Organize Data</span>
       <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>
     </h2>
 
     @if (visualizationForm.controls.headers.disabled) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
     }
 
     <div class="required-headers">
@@ -132,7 +133,7 @@
     </div>
 
     @if (columnErrorActionMessage) {
-      <hra-error-indicator [errors]="[columnErrorActionMessage]" />
+      <hra-error-indicator [errors]="[columnErrorActionMessage]"></hra-error-indicator>
     }
 
     <div class="optional-headers">
@@ -174,7 +175,7 @@
 
   <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="3" />
+      <hra-step-indicator class="step-number" [value]="3"></hra-step-indicator>
       <div class="card-title">Configure Parameters</div>
       <hra-info-button>
         The anchor cell type represents the cell type to which the nearest cell distance distributions should be
@@ -190,7 +191,7 @@
     </h2>
 
     @if (visualizationForm.controls.parameters.disabled) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
     }
 
     <div class="parameters-1">
@@ -236,7 +237,7 @@
 
   <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="4" />
+      <hra-step-indicator class="step-number" [value]="4"></hra-step-indicator>
       <div class="card-title">Optional: Add Metadata</div>
       <hra-info-button>
         Information in these fields will not change the visualization output. Metadata may be helpful for taking
@@ -304,13 +305,13 @@
 
   <hra-workflow-card
     class="color-config card"
-    hraFeature="configure-colors"
     [class.custom]="useCustomColorMap"
     [allowUpload]="true"
     [loadProgress]="colorProgress"
+    hraFeature="configure-colors"
   >
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="5" />
+      <hra-step-indicator class="step-number" [value]="5"></hra-step-indicator>
       <div class="card-title">Optional: Configure Colors</div>
       <hra-info-button>
         Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
@@ -370,23 +371,24 @@
       <cde-file-upload
         class="upload-colormap"
         accept="text/csv,.csv"
-        data-testid="color-map-upload"
         [loader]="colorMapLoader"
         [options]="colorMapLoaderOptions"
-        [errorMessage]="colorErrorMessage"
-        [errorActionMessage]="colorErrorActionMessage"
         (loadCompleted)="setCustomColorMap($event[0])"
         (loadCancelled)="clearCustomColorMap()"
         (loadErrored)="customColorMapLoadError = $event; colorProgress = 0"
+        [errorMessage]="colorErrorMessage"
+        [errorActionMessage]="colorErrorActionMessage"
         (progress)="colorProgress = $event"
         #customColorMapFileUpload
-      />
+        data-testid="color-map-upload"
+      >
+      </cde-file-upload>
     }
   </hra-workflow-card>
 
   <hra-workflow-card class="card visualize" hraFeature="visualize-data">
     <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="6" />
+      <hra-step-indicator class="step-number" [value]="6"></hra-step-indicator>
       <div class="card-title">Visualize Cell Distance Data</div>
       <hra-info-button>
         <div hraInfoButtonTooltipContent>
@@ -396,7 +398,7 @@
     </h2>
 
     @if (!hasValidNodes() || !hasValidData()) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator [errors]="['Please upload a dataset.']"></hra-error-indicator>
     }
 
     <button
@@ -404,15 +406,15 @@
       mat-button
       hraCtaButton
       hraPrimaryButton
+      [disabled]="!hasValidNodes() || !hasValidData()"
       data-testid="visualize"
+      (click)="submit()"
       hraFeature="submit"
       hraClickEvent
-      [disabled]="!hasValidNodes() || !hasValidData()"
-      (click)="submit()"
     >
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
     </button>
   </hra-workflow-card>
 </form>
-<hra-footer />
+<hra-footer></hra-footer>

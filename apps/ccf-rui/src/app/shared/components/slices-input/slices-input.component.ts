@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, model, output } from '@angular/core';
 
 /**
  * Interface containing slices data of the tissue block
@@ -21,12 +21,15 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig = {
  */
 @Component({
   selector: 'ccf-slices-input',
-  standalone: false,
   templateUrl: './slices-input.component.html',
-  styleUrl: './slices-input.component.scss',
+  styleUrls: ['./slices-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SlicesInputComponent {
+  /** HTML class name */
+  @HostBinding('class') readonly clsName = 'ccf-slices-input';
+
   /**
    * Values of block dimensions to be emitted
    */

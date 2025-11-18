@@ -15,8 +15,8 @@ import { SpatialSearchUiBehaviorComponent } from '../spatial-search-ui-behavior/
 /** Spatial search config */
 @Component({
   selector: 'ccf-spatial-search-config-behavior',
-  imports: [HraCommonModule, SpatialSearchConfigComponent, MatDialogModule],
   templateUrl: './spatial-search-config-behavior.component.html',
+  imports: [HraCommonModule, SpatialSearchConfigComponent, MatDialogModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigBehaviorComponent {

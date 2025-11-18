@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  HostBinding,
   inject,
   input,
   OnDestroy,
@@ -25,9 +26,8 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
  */
 @Component({
   selector: 'ccf-tag-search',
-  standalone: false,
   templateUrl: './tag-search.component.html',
-  styleUrl: './tag-search.component.scss',
+  styleUrls: ['./tag-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(click)': 'openResults()',
@@ -35,9 +35,13 @@ const EMPTY_RESULT: TagSearchResult = { totalCount: 0, results: [] };
     '(window:click)': 'closeResults($event)',
     '(window:focusin)': 'closeResults($event)',
   },
+  standalone: false,
 })
 export class TagSearchComponent implements OnDestroy {
   private readonly el = inject<ElementRef<Node>>(ElementRef);
+
+  /** HTML class name */
+  @HostBinding('class') readonly clsName = 'ccf-tag-search';
 
   /** Search method */
   readonly search = input<(text: string, limit: number) => ObservableInput<TagSearchResult>>();

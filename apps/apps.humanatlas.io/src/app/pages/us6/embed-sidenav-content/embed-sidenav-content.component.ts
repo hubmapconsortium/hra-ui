@@ -12,6 +12,7 @@ import { ClickEventDirective } from '@hra-ui/common/analytics';
 /** Embed Sidenav Content Component */
 @Component({
   selector: 'hra-embed-sidenav-content',
+  standalone: true,
   imports: [HraCommonModule, ClipboardModule, MatTabsModule, ButtonsModule, CodeBlockComponent, FlatCardModule],
   templateUrl: './embed-sidenav-content.component.html',
   styleUrl: './embed-sidenav-content.component.scss',

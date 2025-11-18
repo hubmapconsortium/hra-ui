@@ -57,11 +57,11 @@ async function getFtuDatasets(datasetsApi = FTU_DATASET_METADATA_API) {
 
 /**
  * Fetches relavent ftu data and returns an array of results
- * @param {string} _datasetsApi endpoint for getting ftu datasets
+ * @param {string} datasetsApi endpoint for getting ftu datasets
  * @param {string} cellSummariesApi endpoint for getting ftu cell summaries
  * @returns
  */
-async function getFtuCellSummaries(_datasetsApi, cellSummariesApi = FTU_CELL_SUMMARIES_API) {
+async function getFtuCellSummaries(_datasetsApi = FTU_DATASET_METADATA_API, cellSummariesApi = FTU_CELL_SUMMARIES_API) {
   const summaries = await fetchFromCsv(cellSummariesApi);
 
   const results = {};

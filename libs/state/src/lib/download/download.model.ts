@@ -1,5 +1,5 @@
 import { StateContext } from '@ngxs/store';
-import * as z from 'zod';
+import { z } from 'zod';
 
 /**
  * Define a TypeScript type called `DownloadFormatId`,

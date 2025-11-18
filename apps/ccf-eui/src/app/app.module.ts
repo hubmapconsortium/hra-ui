@@ -18,6 +18,7 @@ import { NavHeaderButtonsComponent } from '@hra-ui/design-system/nav-header-butt
 import { BackButtonBarComponent } from '@hra-ui/design-system/navigation/back-button-bar';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { BodyUiComponent } from 'ccf-body-ui';
+import { BodyUiModule, InfoButtonModule } from 'ccf-shared';
 import { AppWebComponent } from './app-web-component.component';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -35,6 +36,8 @@ import { OrganSelectComponent } from './shared/components/organ-select/organ-sel
     OntologySelectionComponent,
     MatIconModule,
     ResultsBrowserComponent,
+    BodyUiModule,
+    InfoButtonModule,
     MatSnackBarModule,
     MatButtonToggleModule,
     NavHeaderButtonsComponent,

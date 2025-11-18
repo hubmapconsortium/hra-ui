@@ -66,6 +66,11 @@ export class SheetService {
     });
   }
 
+  testCallback(data: JSON) {
+    console.log(data);
+    return data;
+  }
+
   /**
    * Service to get the data about an entity for an exteral API
    * by passing the UBERON, CL, or HNGC id. It determins which API to call and maps the

@@ -226,6 +226,7 @@ export class TreeService {
         );
       }
     } catch (error) {
+      console.log(error);
       const error2 = error as { name: string; status: number };
       const err: Error = {
         msg: `${error2.name} (Status: ${error2.status})`,

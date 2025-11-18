@@ -24,7 +24,6 @@ content:
     content:
       - component: YouTubePlayer
         videoId: MH66GvXyUu0
-        label: Tissue origin predictor application demo video
 
   - component: PageSection
     tagline: APIs

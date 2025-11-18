@@ -101,7 +101,7 @@ function parseStringArray(value: unknown): string[] {
     (sexChange)="sexChange.emit($event)"
     (nodeClicked)="nodeClicked.emit($event)"
     (sideChange)="sideChange.emit($event)"
-  />`,
+  ></ccf-root>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {

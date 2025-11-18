@@ -1,14 +1,11 @@
-<hra-body-ui
+<ccf-body-ui
+  #bodyUI
+  [scene]="(scene$ | async) ?? []"
+  [interactive]="true"
   camera="perspective"
   class="body-ui"
-  [scene]="scene()"
-  [interactive]="true"
-  [rotation]="0"
-  [rotationX]="0"
-  [bounds]="bounds()"
-  [target]="target()"
   (nodeClick)="onClick.emit($event)"
   (nodeHoverStart)="onMouseEnter.emit($event)"
   (nodeHoverStop)="onMouseLeave.emit($event)"
-  #bodyUI
-/>
+>
+</ccf-body-ui>

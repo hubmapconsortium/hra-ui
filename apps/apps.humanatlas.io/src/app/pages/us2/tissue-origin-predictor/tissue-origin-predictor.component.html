@@ -1,6 +1,6 @@
 <ng-container hraFeature="tissue-origin-predictor">
   <!-- HEADING -->
-  <hra-app-label logo="product:tissue-origin-predictor" tagline="Tissue Origin Predictor" />
+  <hra-app-label logo="product:tissue-origin-predictor" tagline="Tissue Origin Predictor"></hra-app-label>
 
   <!-- INFO -->
   <p class="info-text">
@@ -17,7 +17,7 @@
       class="card card-1"
     >
       <hra-workflow-card-extra>
-        <a target="_blank" rel="noopener noreferrer" [attr.href]="sampleLinkWithDefault()">
+        <a [attr.href]="sampleLinkWithDefault()" target="_blank" rel="noopener noreferrer">
           <button hraClickEvent hraFeature="view-sample" mat-button hraButtonSize="medium">View sample</button>
         </a>
       </hra-workflow-card-extra>
@@ -42,7 +42,7 @@
 
       <div class="buttons">
         @if (file; as f) {
-          <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined" />
+          <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined"></hra-delete-file-button>
         } @else {
           <button
             hraClickEvent
@@ -57,11 +57,11 @@
             type="file"
             accept=".csv"
             style="display: none"
-            data-testid="file-input"
             (change)="onFileSelected($event)"
+            data-testid="file-input"
             #fileInput
           />
-          <button hraClickEvent hraFeature="upload-file" mat-button hraButtonSize="medium" (click)="fileInput.click()">
+          <button hraClickEvent hraFeature="upload-file" (click)="fileInput.click()" mat-button hraButtonSize="medium">
             Upload file
           </button>
         }
@@ -100,7 +100,7 @@
     <!-- CARD 3 -->
     <hra-workflow-card hraFeature="predict-tissue-origin" tagline="Predict Tissue Origin" step="3" class="card card-3">
       @if (file === undefined) {
-        <hra-error-indicator class="error-message" [errors]="['Please upload a dataset.']" />
+        <hra-error-indicator [errors]="['Please upload a dataset.']" class="error-message"> </hra-error-indicator>
       }
       <button
         hraClickEvent

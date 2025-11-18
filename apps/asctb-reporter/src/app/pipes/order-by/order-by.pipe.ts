@@ -3,6 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'orderBy',
   pure: true,
+  standalone: true,
 })
 export class OrderByPipe implements PipeTransform {
   transform<T>(array: T[], key: keyof T): T[] {

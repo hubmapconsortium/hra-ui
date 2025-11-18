@@ -55,6 +55,7 @@ function loadSampleFileFactory(): HttpResourceRef<File | undefined> {
  */
 @Component({
   selector: 'hra-cell-population-predictor',
+  standalone: true,
   imports: [
     ButtonsModule,
     HraCommonModule,

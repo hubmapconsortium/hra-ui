@@ -1,11 +1,11 @@
 <div class="banner">
-  <img alt="" [attr.src]="'assets/content/publications-page/images/publications.png' | assetUrl" />
+  <img [attr.src]="'assets/content/publications-page/images/publications.png' | assetUrl" alt="" />
   <span class="banner-text">Publications</span>
 </div>
 
 <hra-table-of-contents-layout>
   @for (item of items(); track item.year) {
-    <hra-page-section level="2" [tagline]="item.tagline" [anchor]="item.anchor">
+    <hra-page-section [tagline]="item.tagline" level="2" [anchor]="item.anchor">
       @for (content of item.contents; track content) {
         <markdown [data]="content" />
       }

@@ -1,12 +1,13 @@
 <app-sidenav hraFeature="report-drawer">
   <div header>
     <app-sidenav-header
-      tooltipString="Various statistics calculated from the data"
-      [title]="`Report for ${currentSheet.display}`"
+      [title]="'Report for ' + currentSheet.display"
       [download]="true"
       (downloadFn)="downloadReport()"
+      [tooltipString]="'Various statistics calculated from the data'"
       (closeSideNav)="closeReport.emit()"
-    />
+    >
+    </app-sidenav-header>
   </div>
 
   <div body>
@@ -15,10 +16,10 @@
       mat-stretch-tabs
       hraClickEvent
       hraClickEventTriggerOn="none"
-      (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
       #event="hraClickEvent"
+      (selectedTabChange)="event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
     >
-      <mat-tab label="Main Sheet">
+      <mat-tab [label]="'Main Sheet'">
         <div class="content">
           <div class="section">
             <div class="section-title">Overview</div>
@@ -80,12 +81,13 @@
               <div *ngFor="let report of ontologyLinkGraphData">
                 <div class="chart-parent">
                   <ngx-charts-advanced-pie-chart
-                    class="report-chart"
                     [customColors]="customColors"
                     [view]="[500, 175]"
                     [results]="report.results"
+                    class="report-chart"
                     [label]="report.label"
-                  />
+                  >
+                  </ngx-charts-advanced-pie-chart>
                 </div>
               </div>
             </div>
@@ -100,13 +102,13 @@
                   <p class="text-muted mb-3">
                     <small class="fw-normal">Counts by Organ</small>
                   </p>
-                  <div class="display-option" matTooltip="Export as Xlsx" #tooltip="matTooltip">
+                  <div class="display-option" #tooltip="matTooltip" matTooltip="Export as Xlsx">
                     <button
                       mat-icon-button
+                      (click)="downloadReportByOrgan()"
                       class="mr-2"
                       hraFeature="download-report"
                       hraClickEvent
-                      (click)="downloadReportByOrgan()"
                     >
                       <mat-icon>get_app</mat-icon>
                     </button>
@@ -117,178 +119,178 @@
                   mat-table
                   matSort
                   id="countsByOrgans"
-                  class="mat-elevation-z8 count_by_organ_table"
                   [dataSource]="countsByOrgan"
+                  class="mat-elevation-z8 count_by_organ_table"
                 >
                   <caption class="sr-only">
                     Counts by Organ
                   </caption>
                   <!-- Organ Name  -->
                   <ng-container matColumnDef="organName">
-                    <th *matHeaderCellDef mat-sort-header mat-header-cell id="organName">Organ</th>
-                    <td *matCellDef="let element" mat-cell>
+                    <th mat-sort-header mat-header-cell *matHeaderCellDef id="organName">Organ</th>
+                    <td mat-cell *matCellDef="let element">
                       {{ element.organName | titlecase }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell>Total Counts</td>
+                    <td mat-footer-cell *matFooterCellDef>Total Counts</td>
                   </ng-container>
 
                   <!-- hraVersion Column -->
                   <ng-container matColumnDef="tableVersion">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="tableVersion" [hidden]="true">
+                    <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="tableVersion">
                       table_version
                     </th>
-                    <td *matCellDef="let element" mat-cell class="center_align" [hidden]="true">
+                    <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">
                       {{ element.tableVersion ? element.tableVersion : 'unknown' }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align" [hidden]="true">
+                    <td mat-footer-cell [hidden]="true" class="center_align" *matFooterCellDef>
                       {{ '' }}
                     </td>
                   </ng-container>
 
                   <!-- ASWithNoCT Column -->
                   <ng-container matColumnDef="ASWithNoCT">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="ASWithNoCT" [hidden]="true">
+                    <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="ASWithNoCT">
                       ASWithNoCT
                     </th>
-                    <td *matCellDef="let element" mat-cell class="center_align" [hidden]="true">
+                    <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">
                       {{ element.ASWithNoCT ? element.ASWithNoCT : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align" [hidden]="true">
+                    <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'ASWithNoCT') }}
                     </td>
                   </ng-container>
 
                   <!-- CTWithNoB Column -->
                   <ng-container matColumnDef="CTWithNoB">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="CTWithNoB" [hidden]="true">
+                    <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="CTWithNoB">
                       CTWithNoB
                     </th>
-                    <td *matCellDef="let element" mat-cell class="center_align" [hidden]="true">
+                    <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">
                       {{ element.CTWithNoB ? element.CTWithNoB : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align" [hidden]="true">
+                    <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'CTWithNoB') }}
                     </td>
                   </ng-container>
 
                   <!-- ASWithNoLink Column -->
                   <ng-container matColumnDef="ASWithNoLink">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="ASWithNoLink" [hidden]="true">
+                    <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="ASWithNoLink">
                       ASWithNoLink
                     </th>
-                    <td *matCellDef="let element" mat-cell class="center_align" [hidden]="true">
+                    <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">
                       {{ element.ASWithNoLink ? element.ASWithNoLink : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align" [hidden]="true">
+                    <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'ASWithNoLink') }}
                     </td>
                   </ng-container>
 
                   <!-- CTWithNoLink Column -->
                   <ng-container matColumnDef="CTWithNoLink">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="CTWithNoLink" [hidden]="true">
+                    <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="CTWithNoLink">
                       CTWithNoLink
                     </th>
-                    <td *matCellDef="let element" mat-cell class="center_align" [hidden]="true">
+                    <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">
                       {{ element.CTWithNoLink ? element.CTWithNoLink : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align" [hidden]="true">
+                    <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'CTWithNoLink') }}
                     </td>
                   </ng-container>
 
                   <!-- BWithNoLink Column -->
                   <ng-container matColumnDef="BWithNoLink">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="BWithNoLink" [hidden]="true">
+                    <th mat-header-cell *matHeaderCellDef [hidden]="true" class="center_align" id="BWithNoLink">
                       BWithNoLink
                     </th>
-                    <td *matCellDef="let element" mat-cell class="center_align" [hidden]="true">
+                    <td mat-cell [hidden]="true" *matCellDef="let element" class="center_align">
                       {{ element.BWithNoLink ? element.BWithNoLink : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align" [hidden]="true">
+                    <td mat-footer-cell class="center_align" [hidden]="true" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'BWithNoLink') }}
                     </td>
                   </ng-container>
 
                   <!-- AS_AS Column -->
                   <ng-container matColumnDef="AS_AS">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="AS_AS">AS_AS</th>
-                    <td *matCellDef="let element" mat-cell class="center_align">
+                    <th mat-header-cell *matHeaderCellDef class="center_align" id="AS_AS">AS_AS</th>
+                    <td mat-cell *matCellDef="let element" class="center_align">
                       {{ element.AS_AS ? element.AS_AS : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align">
+                    <td mat-footer-cell class="center_align" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'AS_AS') }}
                     </td>
                   </ng-container>
 
                   <!-- AS_CT Column -->
                   <ng-container matColumnDef="AS_CT">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="AS_CT">AS_CT</th>
-                    <td *matCellDef="let element" mat-cell class="center_align">
+                    <th mat-header-cell *matHeaderCellDef class="center_align" id="AS_CT">AS_CT</th>
+                    <td mat-cell *matCellDef="let element" class="center_align">
                       {{ element.AS_CT ? element.AS_CT : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align">
+                    <td mat-footer-cell class="center_align" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'AS_CT') }}
                     </td>
                   </ng-container>
 
                   <!-- CT_BM Column -->
                   <ng-container matColumnDef="CT_BM">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="CT_BM">CT_BM</th>
-                    <td *matCellDef="let element" mat-cell class="center_align">
+                    <th mat-header-cell *matHeaderCellDef class="center_align" id="CT_BM">CT_BM</th>
+                    <td mat-cell *matCellDef="let element" class="center_align">
                       {{ element.CT_BM ? element.CT_BM : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align">
+                    <td mat-footer-cell class="center_align" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'CT_BM') }}
                     </td>
                   </ng-container>
 
                   <!-- Anatomical Structures Column -->
                   <ng-container matColumnDef="anatomicalStructures">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="anatomicalStructures">AS</th>
-                    <td *matCellDef="let element" mat-cell class="center_align">
+                    <th mat-header-cell *matHeaderCellDef class="center_align" id="anatomicalStructures">AS</th>
+                    <td mat-cell *matCellDef="let element" class="center_align">
                       {{ element.anatomicalStructures ? element.anatomicalStructures : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align">
+                    <td mat-footer-cell class="center_align" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'anatomicalStructures') }}
                     </td>
                   </ng-container>
 
                   <!-- Cell Types Column -->
                   <ng-container matColumnDef="cellTypes">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="cellTypes">CT</th>
-                    <td *matCellDef="let element" mat-cell class="center_align">
+                    <th mat-header-cell *matHeaderCellDef class="center_align" id="cellTypes">CT</th>
+                    <td mat-cell *matCellDef="let element" class="center_align">
                       {{ element.cellTypes ? element.cellTypes : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align">
+                    <td mat-footer-cell class="center_align" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'cellTypes') }}
                     </td>
                   </ng-container>
 
                   <!-- Biomarkers Columns -->
                   <ng-container matColumnDef="b_total">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" id="b_total">B_Total</th>
-                    <td *matCellDef="let element" mat-cell class="center_align">
+                    <th mat-header-cell *matHeaderCellDef class="center_align" id="b_total">B_Total</th>
+                    <td mat-cell *matCellDef="let element" class="center_align">
                       {{ element.biomarkers ? element.biomarkers : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align">
+                    <td mat-footer-cell class="center_align" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, 'biomarkers') }}
                     </td>
                   </ng-container>
-                  <ng-container *ngFor="let biomarker of biomarkersSeperateNames" [matColumnDef]="biomarker.name">
-                    <th *matHeaderCellDef mat-header-cell class="center_align" [id]="biomarker.name">
+                  <ng-container *ngFor="let biomarker of biomarkersSeperateNames" matColumnDef="{{ biomarker.name }}">
+                    <th mat-header-cell class="center_align" id="{{ biomarker.name }}" *matHeaderCellDef>
                       {{ biomarker.type }}
                     </th>
-                    <td *matCellDef="let element" mat-cell class="center_align">
+                    <td mat-cell class="center_align" *matCellDef="let element">
                       {{ element[biomarker.name] ? element[biomarker.name] : 0 }}
                     </td>
-                    <td *matFooterCellDef mat-footer-cell class="center_align">
+                    <td mat-footer-cell class="center_align" *matFooterCellDef>
                       {{ getTotals(countsByOrgan.data, biomarker.name) }}
                     </td>
                   </ng-container>
-                  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-                  <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
-                  <tr *matFooterRowDef="displayedColumns" mat-footer-row></tr>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
                 </table>
               </div>
 
@@ -392,7 +394,7 @@
                     class="py-1 d-flex justify-content-between align-items-center"
                   >
                     <div class="h6">
-                      <span class="fw-normal">{{ `${a.name} Biomarkers` | titlecase }}</span>
+                      <span class="fw-normal">{{ a.name + ' Biomarkers' | titlecase }}</span>
                     </div>
 
                     <div>
@@ -488,7 +490,7 @@
         <div *ngIf="((compareData | async)?.data?.length ?? 0) > 0">
           <div *ngFor="let sheet of compareReport; let i = index">
             <mat-expansion-panel hideToggle="true" [disabled]="clickButton" (click)="clickButton = false">
-              <mat-expansion-panel-header class="compare" [style.backgroundColor]="sheet.color">
+              <mat-expansion-panel-header [style.backgroundColor]="sheet.color" class="compare">
                 <mat-panel-title>
                   <div class="text-white h6 m-0">
                     {{ sheet.title }}
@@ -497,19 +499,19 @@
                 <mat-panel-description>
                   <button
                     mat-icon-button
+                    (click)="downloadReport(i)"
                     class="download-report"
                     hraFeature="download-report"
                     hraClickEvent
-                    (click)="downloadReport(i)"
                   >
                     <mat-icon>get_app</mat-icon>
                   </button>
                   <button
                     mat-icon-button
+                    (click)="deleteCompareSheetReport(i)"
                     class="delete-report"
                     hraFeature="delete-report"
                     hraClickEvent
-                    (click)="deleteCompareSheetReport(i)"
                   >
                     <mat-icon>delete</mat-icon>
                   </button>
@@ -556,7 +558,7 @@
                   <mat-expansion-panel-header class="mb-2">
                     <div class="report-expansion-header">Identical Anatomical Structures</div>
                   </mat-expansion-panel-header>
-                  <div *ngFor="let ia of sheet.identicalAS" class="i2">
+                  <div class="i2" *ngFor="let ia of sheet.identicalAS">
                     {{ ia }}
                   </div>
                 </mat-expansion-panel>
@@ -565,7 +567,7 @@
                   <mat-expansion-panel-header class="mb-2">
                     <div class="report-expansion-header">Identical Cell Types</div>
                   </mat-expansion-panel-header>
-                  <div *ngFor="let ia of sheet.identicalCT" class="i2">
+                  <div class="i2" *ngFor="let ia of sheet.identicalCT">
                     {{ ia }}
                   </div>
                 </mat-expansion-panel>
@@ -574,7 +576,7 @@
                   <mat-expansion-panel-header class="mb-2">
                     <div class="report-expansion-header">Identical Biomarkers</div>
                   </mat-expansion-panel-header>
-                  <div *ngFor="let ia of sheet.identicalB" class="i2">
+                  <div class="i2" *ngFor="let ia of sheet.identicalB">
                     {{ ia }}
                   </div>
                 </mat-expansion-panel>
@@ -583,7 +585,7 @@
                   <mat-expansion-panel-header class="mb-2">
                     <div class="report-expansion-header">New Anatomical Structures</div>
                   </mat-expansion-panel-header>
-                  <div *ngFor="let ia of sheet.newAS" class="i2">
+                  <div class="i2" *ngFor="let ia of sheet.newAS">
                     {{ ia }}
                   </div>
                 </mat-expansion-panel>
@@ -592,7 +594,7 @@
                   <mat-expansion-panel-header class="mb-2">
                     <div class="report-expansion-header">New Cell Types</div>
                   </mat-expansion-panel-header>
-                  <div *ngFor="let ia of sheet.newCT" class="i2">
+                  <div class="i2" *ngFor="let ia of sheet.newCT">
                     {{ ia }}
                   </div>
                 </mat-expansion-panel>
@@ -601,7 +603,7 @@
                   <mat-expansion-panel-header class="mb-2">
                     <div class="report-expansion-header">New Biomarkers</div>
                   </mat-expansion-panel-header>
-                  <div *ngFor="let ia of sheet.newB" class="i2">
+                  <div class="i2" *ngFor="let ia of sheet.newB">
                     {{ ia }}
                   </div>
                 </mat-expansion-panel>

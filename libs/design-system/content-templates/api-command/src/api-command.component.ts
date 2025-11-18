@@ -10,9 +10,9 @@ import { ApiCommandButton } from './lib/api-command.schema';
 /** Displays a card for users to copy and access API information */
 @Component({
   selector: 'hra-api-command',
-  imports: [MatCardModule, ButtonsModule, MatIconModule, CodeBlockComponent],
   templateUrl: './api-command.component.html',
   styleUrl: './api-command.component.scss',
+  imports: [MatCardModule, ButtonsModule, MatIconModule, CodeBlockComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApiCommandComponent {

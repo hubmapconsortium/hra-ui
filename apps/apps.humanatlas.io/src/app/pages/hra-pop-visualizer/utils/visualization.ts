@@ -1,5 +1,5 @@
 import { VisualizationSpec } from 'vega-embed';
-import { SortValue, YAxisValue } from './data-type-config';
+import { YAxisValue, SortValue } from './data-type-config';
 
 /**
  * Configuration options for generating bar graph specifications
@@ -8,7 +8,7 @@ export interface AnatomicalBarGraphSpecOptions {
   /** Title displayed at the top of the graph */
   graphTitle: string;
   /** Array of data objects to visualize */
-  values: Record<string, unknown>[];
+  values: Record<string, any>[];
   /** Field name to use for X-axis values */
   xField:
     | 'anatomicalStructureId'
@@ -73,8 +73,13 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
   // Format tool names for better display
   const transformedValues = values.map((item) => ({
     ...item,
-    toolFormatted: formatToolName(item['tool'] as string),
+    toolFormatted: formatToolName(item['tool']),
   }));
+
+  const filters: any[] = [];
+  if (toolFilter && toolFilter.length > 0) {
+    filters.push({ field: 'tool', oneOf: toolFilter });
+  }
 
   /**
    * Gets the appropriate axis title for a given field
@@ -98,6 +103,17 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
     }
   };
 
+  /**
+   * Gets the sort configuration based on sort options
+   * @returns Vega-Lite sort configuration object
+   */
+  const getSortConfig = (): any => {
+    if (sortBy === 'alphabetical') {
+      return { field: xField, order: 'ascending' };
+    }
+    return { field: yField, op: 'sum', order: order };
+  };
+
   const spec: VisualizationSpec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     title: {
@@ -109,7 +125,7 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
       offset: 20,
     },
     data: { values: transformedValues },
-    transform: toolFilter.length > 0 ? [{ filter: { and: [{ field: 'tool', oneOf: toolFilter }] } }] : [],
+    transform: filters.length > 0 ? [{ filter: { and: filters } }] : [],
     padding: { top: 100, bottom: 100, left: 50, right: 50 },
 
     align: 'each',
@@ -162,10 +178,7 @@ export function getBarGraphSpec(opts: AnatomicalBarGraphSpecOptions): Visualizat
         x: {
           field: xField,
           type: 'nominal',
-          sort:
-            sortBy === 'alphabetical'
-              ? { field: xField, order: 'ascending' }
-              : { field: yField, op: 'sum', order: order },
+          sort: getSortConfig(),
           axis: {
             title: getAxisTitle(xField),
             labelAngle: -45,

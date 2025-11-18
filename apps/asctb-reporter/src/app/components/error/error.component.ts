@@ -7,7 +7,7 @@ import { Error } from '../../models/response.model';
   selector: 'app-error',
   imports: [CommonModule, MatIconModule, ErrorIndicatorComponent],
   templateUrl: './error.component.html',
-  styleUrl: './error.component.scss',
+  styleUrls: ['./error.component.scss'],
 })
 export class ErrorComponent {
   @Input() error!: Error;

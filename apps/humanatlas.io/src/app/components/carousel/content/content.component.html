@@ -1,4 +1,4 @@
-<img class="image" alt="" [src]="item().imageSrc | assetUrl" />
+<img class="image" [src]="item().imageSrc | assetUrl" alt="" />
 
 <div class="info" hraFeature="content">
   <div class="tagline">{{ item().tagline }}</div>
@@ -9,10 +9,10 @@
       mat-button
       hraCtaButton
       class="action"
+      [href]="getLink(item())"
       target="_blank"
       hraFeature="carousel-external-link"
       hraClickEvent
-      [href]="getLink(item())"
     >
       {{ item().action }}
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>

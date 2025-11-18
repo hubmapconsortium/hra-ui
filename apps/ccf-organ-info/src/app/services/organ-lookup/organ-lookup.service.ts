@@ -26,9 +26,14 @@ export class OrganLookupService {
    *
    * @param iri Organ iri
    * @param side Side
+   * @param _sex Donor sez
    * @returns Organ info if found
    */
-  getOrganInfo(iri: string, side?: OrganInfo['side']): Observable<OrganInfo | undefined> {
+  getOrganInfo(
+    iri: string,
+    side?: OrganInfo['side'],
+    _sex: Filter['sex'] = FilterSexEnum.Female,
+  ): Observable<OrganInfo | undefined> {
     let info = this.organs.find((item) => item.id === iri);
     if (!info) {
       return of(undefined);

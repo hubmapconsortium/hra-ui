@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** App card type. */
 export type AppCard = z.infer<typeof AppCardSchema>;

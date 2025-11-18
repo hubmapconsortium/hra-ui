@@ -1,20 +1,19 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   effect,
   ElementRef,
-  inject,
   input,
-  Renderer2,
-  resource,
   viewChild,
+  resource,
+  inject,
+  Renderer2,
 } from '@angular/core';
-import { injectLogEvent } from '@hra-ui/common/analytics';
-import { CoreEvents } from '@hra-ui/common/analytics/events';
-import { NgScrollbarModule } from 'ngx-scrollbar';
-import { View } from 'vega';
+import { CommonModule } from '@angular/common';
 import embed, { VisualizationSpec } from 'vega-embed';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { CoreEvents } from '@hra-ui/common/analytics/events';
+import { injectLogEvent } from '@hra-ui/common/analytics';
 
 /**
  * Component for rendering a bar graph using Vega-Lite.
@@ -22,6 +21,7 @@ import embed, { VisualizationSpec } from 'vega-embed';
  */
 @Component({
   selector: 'hra-bar-graph',
+  standalone: true,
   imports: [CommonModule, NgScrollbarModule],
   templateUrl: './bar-graph.component.html',
   styleUrl: './bar-graph.component.scss',
@@ -99,7 +99,7 @@ export class BarGraphComponent {
   }
 
   /** Attaches event listeners to the Vega view for analytics tracking */
-  private attachVegaEventTracking(view: View) {
+  private attachVegaEventTracking(view: any) {
     view.addEventListener('pointerover', () =>
       this.logEvent(CoreEvents.Hover, {
         path: 'hra-pop-visualizer.bar-graph',

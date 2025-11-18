@@ -1,14 +1,14 @@
 <app-sidenav hraFeature="indented-list">
   <div header>
     <app-sidenav-header
-      tooltipString="Traditional Indented List view of the data"
-      [title]="`${currentSheet.display} Indented List`"
+      [title]="currentSheet.display + ' Indented List'"
       (closeSideNav)="closeIL.emit(); visible = false"
-    />
+      [tooltipString]="'Traditional Indented List view of the data'"
+    ></app-sidenav-header>
   </div>
 
-  <div *ngIf="visible" body>
-    <mat-tree class="tree-container" [dataSource]="dataSource" [treeControl]="treeControl" #indentTree>
+  <div body *ngIf="visible">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" #indentTree class="tree-container">
       <mat-tree-node
         *matTreeNodeDef="let node"
         matTreeNodePadding
@@ -18,7 +18,7 @@
         <button mat-icon-button disabled></button>
         <div class="d-flex align-items-center">
           <span class="h6 fw-normal m-0">{{ node.name }}</span
-          ><span *ngIf="node.ontologyId" class="node-name-id"> {{ node.ontologyId }}</span>
+          ><span class="node-name-id" *ngIf="node.ontologyId"> {{ node.ontologyId }}</span>
         </div>
       </mat-tree-node>
       <mat-tree-node
@@ -30,10 +30,10 @@
         <button
           mat-icon-button
           matTreeNodeToggle
+          [attr.aria-label]="'toggle' + node.name"
           class="node-button"
           hraFeature="toggle"
           hraClickEvent
-          [attr.aria-label]="`toggle${node.name}`"
         >
           <mat-icon class="mat-icon-rtl-mirror node-button-icon">
             {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
@@ -42,13 +42,13 @@
 
         <div class="d-flex align-items-center">
           <span class="h6 m-0 fw-bold">{{ node.name }} </span
-          ><span *ngIf="node.ontologyId" class="node-name-id"> {{ node.ontologyId }}</span>
+          ><span class="node-name-id" *ngIf="node.ontologyId"> {{ node.ontologyId }}</span>
         </div>
       </mat-tree-node>
     </mat-tree>
   </div>
 
-  <div *ngIf="!visible" body>
+  <div body *ngIf="!visible">
     <div class="px-4">
       <h3>Indent List not created yet.</h3>
     </div>

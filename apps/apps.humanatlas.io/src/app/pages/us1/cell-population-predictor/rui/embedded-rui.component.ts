@@ -28,6 +28,7 @@ interface RuiElement {
  */
 @Component({
   selector: 'hra-embedded-rui',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './embedded-rui.component.html',
   styleUrl: './embedded-rui.component.scss',

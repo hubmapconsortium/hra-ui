@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** A hubmap menu item */
 export type HubmapMenuItem = z.infer<typeof HubmapMenuItemSchema>;

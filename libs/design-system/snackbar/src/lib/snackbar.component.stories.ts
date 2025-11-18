@@ -9,6 +9,7 @@ import { ButtonPosition, SnackbarData } from './snackbar.component';
 
 @Component({
   selector: 'hra-snackbar-demo',
+  standalone: true,
   imports: [MatButtonModule],
   template: `
     <button

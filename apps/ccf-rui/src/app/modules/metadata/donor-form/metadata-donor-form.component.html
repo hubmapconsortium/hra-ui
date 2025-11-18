@@ -37,7 +37,7 @@
       #organAutocomplete="matAutocomplete"
     >
       @for (organ of filteredOrgans(); track organ) {
-        <mat-option hraClickEvent [hraFeature]="organ.name | slugify" [value]="organ">
+        <mat-option [hraFeature]="organ.name | slugify" hraClickEvent [value]="organ">
           {{ organ.name }}
         </mat-option>
       }
@@ -51,7 +51,7 @@
 
     <mat-autocomplete #consortium="matAutocomplete">
       @for (consortium of filteredConsortiums(); track consortium) {
-        <mat-option hraClickEvent [hraFeature]="consortium | slugify" [value]="consortium">
+        <mat-option [hraFeature]="consortium | slugify" hraClickEvent [value]="consortium">
           {{ consortium }}
         </mat-option>
       }

@@ -37,6 +37,7 @@
 
   @if (tab.rows.length !== 0) {
     <ftu-biomarker-table
+      #table
       [class.small]="tab.rows.length < 10"
       [data]="$any(tab.rows)"
       [columns]="tab.columns"
@@ -47,15 +48,16 @@
       [dataSources]="source()"
       [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
       (rowHover)="highlightCells($event)"
-      #table
-    />
+    ></ftu-biomarker-table>
   }
 
   @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
     @if (!isBiomarkerfullscreen()) {
-      <mat-divider class="empty-state-divider" />
+      <mat-divider class="empty-state-divider"></mat-divider>
     }
-    <ftu-empty-biomarker emptyBehaviorText="We currently do not have cell type data for the selected biomarker." />
+    <ftu-empty-biomarker
+      emptyBehaviorText="We currently do not have cell type data for the selected biomarker."
+    ></ftu-empty-biomarker>
   }
 
   @if (source().length > 0 && selectedSources().length === 0) {
@@ -70,23 +72,23 @@
         hraClickEvent
         hraFeature="percentage"
         class="legend-percentage"
-        hraRichTooltipTagline="Percentage of cells"
         [hraRichTooltip]
+        hraRichTooltipTagline="Percentage of cells"
         [hraRichTooltipDescription]="percentageTooltipText"
       >
         <span class="legend-header-percentage">Percentage of cells</span>
-        <ftu-size-legend class="content" [sizes]="sizes()" />
+        <ftu-size-legend [sizes]="sizes()" class="content"></ftu-size-legend>
       </button>
       <button
         hraClickEvent
         hraFeature="expression"
         class="legend-gradient"
-        hraRichTooltipTagline="Biomarker expression mean"
         [hraRichTooltip]
+        hraRichTooltipTagline="Biomarker expression mean"
         [hraRichTooltipDescription]="expressionTooltipText"
       >
         <span class="legend-header-gradient">Biomarker expression mean</span>
-        <ftu-gradient-legend class="content" [gradient]="gradients()" />
+        <ftu-gradient-legend [gradient]="gradients()" class="content"></ftu-gradient-legend>
       </button>
     </div>
   }
@@ -94,14 +96,14 @@
   @if (!(source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
     <div class="source-list" [style.display]="isBiomarkerfullscreen() ? 'none' : undefined">
       <ftu-source-list
-        class="content"
         [sources]="source()"
         (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
-      />
+        class="content"
+      ></ftu-source-list>
     </div>
   }
 
-  <ng-template let-tooltip #infoTooltip>
+  <ng-template #infoTooltip let-tooltip>
     <div class="biomarker-details info-tooltip">
       {{ tooltip }}
     </div>
@@ -109,10 +111,10 @@
 
   <ng-template #sourceList>
     <ftu-source-list
-      class="content"
       [sources]="source()"
-      [hideTitle]="true"
       (selectionChanged)="setSelectedSources($event)"
-    />
+      class="content"
+      [hideTitle]="true"
+    ></ftu-source-list>
   </ng-template>
 </ng-container>

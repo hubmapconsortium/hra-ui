@@ -44,7 +44,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
     MatDivider,
   ],
   templateUrl: './organ-table-selector.component.html',
-  styleUrl: './organ-table-selector.component.scss',
+  styleUrls: ['./organ-table-selector.component.scss'],
 })
 export class OrganTableSelectorComponent {
   readonly configService = inject(ConfigService);

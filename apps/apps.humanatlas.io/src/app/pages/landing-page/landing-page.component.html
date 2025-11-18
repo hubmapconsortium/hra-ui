@@ -1,6 +1,6 @@
 <ng-container hraFeature="landing-page">
   <div class="splash-header">
-    <img alt="" class="splash-header-img" [attr.src]="'assets/ui-images/splash-image.png' | assetUrl" />
+    <img [attr.src]="'assets/ui-images/splash-image.png' | assetUrl" alt="" class="splash-header-img" />
     <div class="splash-header-content">
       <p>Construct, use, and visualize data with applications of the Human Reference Atlas</p>
       <mat-button-toggle-group
@@ -11,7 +11,7 @@
         [(ngModel)]="activeTab"
       >
         @for (tab of tabs(); track tab.name) {
-          <mat-button-toggle hraClickEvent [hraFeature]="tab.name | slugify" [value]="tab">
+          <mat-button-toggle [hraFeature]="tab.name | slugify" hraClickEvent [value]="tab">
             {{ tab.name }}
           </mat-button-toggle>
         }
@@ -33,8 +33,8 @@
               [logo]="card.logoPath"
               [appStatus]="card.appStatus"
               [appUrl]="card.appUrl"
-              [documentationUrl]="card.documentLink"
               (openAppUrl)="onOpenAppUrl(card.appUrl)"
+              [documentationUrl]="card.documentLink"
               (openDocumentationLink)="onOpenDocumentationLink(card.documentLink)"
             />
           }

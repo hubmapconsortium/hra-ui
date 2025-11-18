@@ -1,12 +1,12 @@
 <ng-container hraFeature="ftu-ui">
-  <hra-header hraFeature="secondary-navigation" [breadcrumbs]="crumbs()">
+  <hra-header [breadcrumbs]="crumbs()" hraFeature="secondary-navigation">
     @if (!isLanding()) {
       <a
         hraFeature="download"
         hraClickEvent
         mat-icon-button
-        hraPlainTooltip="Download illustration"
         [matMenuTriggerFor]="downloadMenu"
+        hraPlainTooltip="Download illustration"
       >
         <mat-icon>download</mat-icon>
       </a>
@@ -14,8 +14,8 @@
         hraFeature="metadata"
         hraClickEvent
         mat-icon-button
-        hraPlainTooltip="View illustration metadata"
         [hraLink]="illustrationMetadata"
+        hraPlainTooltip="View illustration metadata"
       >
         <mat-icon>database</mat-icon>
       </a>
@@ -36,16 +36,16 @@
       hraFeature="embed"
       hraClickEvent
       mat-icon-button
+      [matMenuTriggerFor]="embedMenu"
       rel="noopener noreferrer"
       hraPlainTooltip="Embed app"
-      [matMenuTriggerFor]="embedMenu"
     >
       <mat-icon>code</mat-icon>
     </a>
-    <hra-help-button [action]="helpMenu" />
+    <hra-help-button [action]="helpMenu"></hra-help-button>
 
     <!-- Help & documentation Menu -->
-    <mat-menu class="more-menu" #helpMenu>
+    <mat-menu #helpMenu class="more-menu">
       <a
         hraFeature="data-documentation"
         hraClickEvent
@@ -113,9 +113,9 @@
     </mat-menu>
 
     <!-- Download Menu -->
-    <mat-menu hraFeature="download-menu" #downloadMenu>
+    <mat-menu #downloadMenu hraFeature="download-menu">
       @for (format of downloadFormats(); track format.label) {
-        <button hraClickEvent mat-menu-item [hraFeature]="format.label | slugify" (click)="download(format.id)">
+        <button [hraFeature]="format.label | slugify" hraClickEvent mat-menu-item (click)="download(format.id)">
           <div>{{ format.label }}</div>
         </button>
       }
@@ -123,7 +123,11 @@
   </hra-header>
   <div class="main">
     @if (isFtuPage) {
-      <ftu-tissue-library-behavior class="sidebar" [class.hidden]="isFullscreen()" [(selected)]="selectedFtu" />
+      <ftu-tissue-library-behavior
+        class="sidebar"
+        [(selected)]="selectedFtu"
+        [class.hidden]="isFullscreen()"
+      ></ftu-tissue-library-behavior>
     }
 
     <div class="content">

@@ -18,9 +18,9 @@
               >
                 @for (option of sexOptions; track option) {
                   <mat-option
+                    [hraFeature]="option | slugify"
                     hraClickEvent
                     class="dropdown-option"
-                    [hraFeature]="option | slugify"
                     [value]="option"
                     [disabled]="isSexOptionDisabled(option)"
                   >
@@ -110,8 +110,8 @@
       hraFeature="apply"
       hraClickEvent
       mat-flat-button
-      [disabled]="filterForm.pristine || filterForm.invalid"
       (click)="applyFilter()"
+      [disabled]="filterForm.pristine || filterForm.invalid"
     >
       Apply
     </button>

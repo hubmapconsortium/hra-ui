@@ -13,9 +13,9 @@
   hraFeature="header"
   class="header"
   cdkOverlayOrigin
-  data-testid="header"
   [class.mobile-menu-open]="isMobile() && isMenuActive('main')"
   #mobileMenuOrigin="cdkOverlayOrigin"
+  data-testid="header"
 >
   <div hraFeature="navigation" class="menus" #desktopMenuOrigin>
     <hra-brand-logo hraFeature="brand-logo" size="small" />
@@ -25,10 +25,10 @@
     @if (!isMobile()) {
       @for (menu of menus(); track menu.id) {
         <hra-navigation-category-toggle
+          [hraFeature]="menu.id | slugify"
           hraClickEvent
           hraHoverEvent
           cdkOverlayOrigin
-          [hraFeature]="menu.id | slugify"
           [toggled]="isMenuActive(menu)"
           (toggledChange)="toggleMenu(menu)"
           #navigationCategoryMenuOrigin="cdkOverlayOrigin"
@@ -58,10 +58,10 @@
 
     <button
       hraFeature="menu-toggle"
+      [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('main') }"
       mat-icon-button
       cdkOverlayOrigin
       aria-label="Open the main navigation menu"
-      [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('main') }"
       (click)="toggleMenu('main')"
       #mainMenuOrigin="cdkOverlayOrigin"
     >
@@ -82,12 +82,12 @@
         cdkConnectedOverlayDisposeOnNavigation="true"
         cdkConnectedOverlayHasBackdrop="false"
         cdkConnectedOverlayLockPosition="true"
-        cdkConnectedOverlayWidth="100%"
         [cdkConnectedOverlayOpen]="isMenuActive('main')"
         [cdkConnectedOverlayOrigin]="mobileMenuOrigin"
         [cdkConnectedOverlayPositions]="mobileMenuPositions"
         [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"
         [cdkConnectedOverlayHeight]="mobileMenuHeight()"
+        [cdkConnectedOverlayWidth]="'100%'"
         #mobileMenuOverlay
       >
         <hra-mobile-menu hraFeature="mobile-menu" [hubmapMenu]="hubmapMenu()" [menus]="menus()" />

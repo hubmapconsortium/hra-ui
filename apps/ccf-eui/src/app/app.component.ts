@@ -56,13 +56,13 @@ interface AppOptions {
  */
 @Component({
   selector: 'ccf-root',
-  standalone: false,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./app.component.scss'],
   host: {
     class: 'hra-app',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Set selected searches */

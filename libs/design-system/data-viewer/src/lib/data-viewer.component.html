@@ -16,10 +16,10 @@
       mat-icon-button
       hraFeature="menu"
       hraClickEvent
+      [matMenuTriggerFor]="viewermenu.menu()"
       hraIconButtonSize="large"
       aria-label="Open the data viewer's menu"
       hraPlainTooltip="More"
-      [matMenuTriggerFor]="viewermenu.menu()"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
@@ -37,11 +37,11 @@
         <mat-icon matPrefix class="search-icon">search</mat-icon>
         <mat-label>Release version</mat-label>
         <mat-select
-          panelClass="options-container"
-          disableRipple
           [hraModelChangeEvent]="['version']"
           [ngModel]="releaseVersion_()"
           (ngModelChange)="releaseVersion.set($event.version)"
+          panelClass="options-container"
+          disableRipple
         >
           <mat-select-trigger>{{ releaseVersion_().label }}</mat-select-trigger>
           @for (dataset of releaseVersionData(); track dataset) {
@@ -60,11 +60,11 @@
         <mat-label>Organ</mat-label>
         <mat-select
           class="organ-selector"
-          panelClass="options-container"
-          disableRipple
           [hraModelChangeEvent]="['label']"
           [ngModel]="organ_()"
           (ngModelChange)="organ.set($event.label)"
+          panelClass="options-container"
+          disableRipple
         >
           @for (organ of releaseVersion_().organData; track organ) {
             <mat-option [value]="organ">{{ organ.label }}</mat-option>

@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   Output,
@@ -63,13 +64,8 @@ interface InternalNode<K extends string, T extends DataNode<K>> {
     ScrollingModule,
   ],
   templateUrl: './tissue-tree-list.component.html',
-  styleUrl: './tissue-tree-list.component.scss',
+  styleUrls: ['./tissue-tree-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(document:keydown)': 'onKeyDown($event)',
-    '(document:click)': 'handlePageClick()',
-    '(click)': 'handleListClick($event)',
-  },
 })
 export class TissueTreeListComponent<K extends string, T extends DataNode<K>> implements OnChanges {
   /**
@@ -227,6 +223,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    * Keyboard navigation for tissue tree list
    * @param event Keyboard event
    */
+  @HostListener('document:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
     if (!this.enableNav) {
       return;
@@ -270,6 +267,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
   /**
    * Disable keyboard nav on click
    */
+  @HostListener('document:click')
   handlePageClick(): void {
     this.enableNav = false;
   }
@@ -278,6 +276,7 @@ export class TissueTreeListComponent<K extends string, T extends DataNode<K>> im
    * Enables keyboard nav only if the tissue tree list is clicked
    * @param event Click event
    */
+  @HostListener('click', ['$event'])
   handleListClick(event: MouseEvent): void {
     event.stopPropagation();
     this.enableNav = true;

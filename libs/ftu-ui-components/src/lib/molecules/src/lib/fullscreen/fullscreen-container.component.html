@@ -1,26 +1,26 @@
 @if (!fullscreen()) {
-  <ng-container [ngTemplateOutlet]="illustrationTemplate()" />
-  <ng-container [ngTemplateOutlet]="biomarkerTemplate()" />
+  <ng-container [ngTemplateOutlet]="illustrationTemplate()"></ng-container>
+  <ng-container [ngTemplateOutlet]="biomarkerTemplate()"></ng-container>
 } @else {
   <div hraFeature="fullscreen-overlay" class="fullscreen-overlay">
     <mat-tab-group
       hraFeature="fullscreen-tabs"
       hraClickEvent
       hraClickEventTriggerOn="none"
-      class="tabs-group"
-      [(selectedIndex)]="fullscreentabIndex"
-      (selectedTabChange)="tabEvent.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
       #tabEvent="hraClickEvent"
+      [(selectedIndex)]="fullscreentabIndex"
+      class="tabs-group"
+      (selectedTabChange)="tabEvent.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
     >
       <mat-tab hraFeature="illustration-tab" label="Illustration">
-        <ng-container [ngTemplateOutlet]="illustrationTemplate()" />
+        <ng-container [ngTemplateOutlet]="illustrationTemplate()"></ng-container>
       </mat-tab>
       <mat-tab hraFeature="source-data-tab" label="Source data">
-        <ng-container [ngTemplateOutlet]="sourceListTemplate()" />
+        <ng-container [ngTemplateOutlet]="sourceListTemplate()"></ng-container>
       </mat-tab>
       <mat-tab hraFeature="biomarkers-tab" label="Cell types by biomarkers">
         <ng-template matTabContent>
-          <ng-container [ngTemplateOutlet]="biomarkerTemplate()" />
+          <ng-container [ngTemplateOutlet]="biomarkerTemplate()"></ng-container>
         </ng-template>
       </mat-tab>
     </mat-tab-group>

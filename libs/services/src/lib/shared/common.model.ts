@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Any url */
 export const URL = z.string().url().brand('URL');

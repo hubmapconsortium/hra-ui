@@ -14,7 +14,7 @@ export interface SizeLegend {
   selector: 'ftu-size-legend',
   imports: [CommonModule],
   templateUrl: './size-legend.component.html',
-  styleUrl: './size-legend.component.scss',
+  styleUrls: ['./size-legend.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SizeLegendComponent {

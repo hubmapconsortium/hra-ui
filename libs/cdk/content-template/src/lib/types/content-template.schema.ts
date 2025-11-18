@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Class declaration */
 export type Classes = z.infer<typeof ClassesSchema>;

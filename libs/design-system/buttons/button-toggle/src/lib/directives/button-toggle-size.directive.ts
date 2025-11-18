@@ -6,6 +6,7 @@ export type ButtonToggleSize = 'small' | 'medium' | 'large';
 /** Applies sizing to button toggle groups */
 @Directive({
   selector: 'mat-button-toggle-group[hraButtonToggleSize]',
+  standalone: true,
   host: {
     '[class]': '"hra-button-toggle-size-" + size()',
   },

@@ -1,13 +1,13 @@
 <ng-container hraFeature="cde-ui">
   @if (header() !== false) {
-    <hra-header baseUrl="https://apps.humanatlas.io/cde/" hraFeature="header" [breadcrumbs]="crumbs()">
+    <hra-header baseUrl="https://apps.humanatlas.io/cde/" [breadcrumbs]="crumbs()" hraFeature="header">
       <a
         mat-icon-button
+        [matMenuTriggerFor]="exploreMenu"
         rel="noopener noreferrer"
         hraPlainTooltip="Explore sample data"
         hraFeature="explore-menu"
         hraClickEvent
-        [matMenuTriggerFor]="exploreMenu"
       >
         <mat-icon>explore</mat-icon>
       </a>
@@ -15,10 +15,10 @@
         <mat-icon>upload</mat-icon>
       </a>
 
-      <hra-help-button action="https://humanatlas.io/user-story/5" />
+      <hra-help-button action="https://humanatlas.io/user-story/5"></hra-help-button>
 
       <!-- Explore sample data Menu -->
-      <mat-menu class="more-menu" hraFeature="explore-menu" #exploreMenu>
+      <mat-menu #exploreMenu class="more-menu" hraFeature="explore-menu">
         <a mat-menu-item routerLink="/example/0" target="_blank" hraFeature="2d-intestine-data" hraClickEvent>
           <div class="title">2D intestine data</div>
           <div class="description">CyCIF colorectal cancer data from Peter Sorger Lab</div>
@@ -31,5 +31,5 @@
       </mat-menu>
     </hra-header>
   }
-  <router-outlet />
+  <router-outlet></router-outlet>
 </ng-container>

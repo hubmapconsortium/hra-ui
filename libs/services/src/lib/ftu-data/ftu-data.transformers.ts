@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { RAW_CELL_SUMMARIES, RAW_DATASETS, RAW_ILLUSTRATION, RAW_ILLUSTRATIONS_JSONLD } from './ftu-data.model';
 
 /**

@@ -8,10 +8,10 @@
     [(ctaDismissed)]="ctaDismissed"
   >
     @if (!isHraPopVisualizerPage()) {
-      <hra-help-button [action]="getHelpUrl()" />
+      <hra-help-button [action]="getHelpUrl()"></hra-help-button>
     } @else {
       <!-- Help & documentation Menu -->
-      <mat-menu class="more-menu" #helpMenu>
+      <mat-menu #helpMenu class="more-menu">
         <a mat-menu-item href="https://youtu.be/Ueei7BOctzY?si=WGE7HydMaFW1ABqv" target="_blank">
           <div>Watch demo video</div>
         </a>
@@ -21,11 +21,11 @@
         </a>
       </mat-menu>
 
-      <hra-help-button [action]="helpMenu" />
+      <hra-help-button [action]="helpMenu"></hra-help-button>
     }
   </hra-header>
   <div class="content" [class.cta-active]="!ctaDismissed()">
-    <router-outlet />
+    <router-outlet></router-outlet>
   </div>
-  <hra-footer />
+  <hra-footer></hra-footer>
 </ng-container>

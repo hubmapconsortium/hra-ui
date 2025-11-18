@@ -1,27 +1,26 @@
 // 1. hra-pop-visualizer.component.ts
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
-import { rxResource } from '@angular/core/rxjs-interop';
-import { MatIconModule } from '@angular/material/icon';
+import { ChangeDetectionStrategy, Component, effect, inject, signal, computed } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
-import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { IconsModule } from '@hra-ui/design-system/icons';
-import { VisualizationSpec } from 'vega-embed';
+import { MatIconModule } from '@angular/material/icon';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 import { ConfigSelectorComponent } from './components/config-selector/config-selector.component';
 import { DataService } from './service/data.service';
+import { VisualizationSpec } from 'vega-embed';
+import { getBarGraphSpec } from './utils/visualization';
 import {
-  DATA_TYPE_CONFIGS,
   DataType,
+  DATA_TYPE_CONFIGS,
+  Y_AXIS_OPTIONS,
   SORT_OPTIONS,
-  SortValue,
   XAxisOption,
   YAxisValue,
-  Y_AXIS_OPTIONS,
+  SortValue,
   getToolDisplayName,
 } from './utils/data-type-config';
-import { ParsedExtractionSiteData } from './utils/models/extraction-site-data.model';
-import { getBarGraphSpec } from './utils/visualization';
+import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /**
  * HRApop Visualizer Component
@@ -289,8 +288,7 @@ export class HraPopVisualizerComponent {
     if (xAxisOption.field === 'extractionSiteLabel') {
       filtered = filtered.map((item) => ({
         ...item,
-        extractionSiteLabel:
-          (item as ParsedExtractionSiteData).extractionSiteLabel || (item as ParsedExtractionSiteData).extractionSiteId,
+        extractionSiteLabel: (item as any).extractionSiteLabel || (item as any).extractionSiteId,
       }));
     }
 

@@ -1,10 +1,10 @@
 <app-sidenav hraFeature="compare-sidenav">
   <div header>
     <app-sidenav-header
-      title="Compare Data"
-      tooltipString="Link your own data to compare it with the Master Data Tables"
+      [title]="'Compare Data'"
       (closeSideNav)="closeCompare.emit()"
-    />
+      [tooltipString]="'Link your own data to compare it with the Master Data Tables'"
+    ></app-sidenav-header>
   </div>
 
   <div body>
@@ -31,8 +31,8 @@
                   <mat-button-toggle-group
                     hraButtonToggleSize="medium"
                     [hideSingleSelectionIndicator]="false"
-                    (change)="onDataSourceChange(i)"
                     #dataSource="matButtonToggleGroup"
+                    (change)="onDataSourceChange(i)"
                   >
                     <mat-button-toggle value="file" checked hraFeature="upload-file" hraClickEvent
                       >Upload file
@@ -53,7 +53,10 @@
                 </div>
 
                 @if (dataSource.value === 'file') {
-                  <app-file-upload formControlName="fileName" (fileFormDataEvent)="upload($event, sheet)" />
+                  <app-file-upload
+                    formControlName="fileName"
+                    (fileFormDataEvent)="upload($event, sheet)"
+                  ></app-file-upload>
                 } @else {
                   <mat-form-field class="full-width" subscriptSizing="dynamic">
                     <mat-label>Google Sheet or CSV URL</mat-label>
@@ -66,7 +69,7 @@
                   <div class="dataset-title-color">
                     <mat-form-field appearance="fill" subscriptSizing="dynamic">
                       <mat-label>Title</mat-label>
-                      <input matInput formControlName="title" [placeholder]="`Sheet ${i + 1}`" />
+                      <input matInput placeholder="Sheet {{ i + 1 }}" formControlName="title" />
                     </mat-form-field>
                     <div class="color-selector">
                       <div>Dataset color:</div>
@@ -74,9 +77,9 @@
                         <input
                           type="color"
                           formControlName="color"
+                          [style.backgroundColor]="sheet.get('color')?.value"
                           hraFeature="dataset-color"
                           hraClickEvent
-                          [style.backgroundColor]="sheet.get('color')?.value"
                         />
                       </div>
                     </div>
@@ -95,7 +98,7 @@
       </div>
     </ng-scrollbar>
 
-    <mat-menu hraFeature="templates-menu" #templatesMenu="matMenu">
+    <mat-menu #templatesMenu="matMenu" hraFeature="templates-menu">
       <a
         mat-menu-item
         hraFeature="asctb-table-template"
@@ -117,7 +120,7 @@
 
   <div footer>
     <div class="mt-2" class="button-container">
-      <button mat-button hraButtonSize="medium" hraFeature="add-dataset" hraClickEvent (click)="addCompareSheetRow()">
+      <button mat-button hraButtonSize="medium" (click)="addCompareSheetRow()" hraFeature="add-dataset" hraClickEvent>
         <mat-icon>add_circle</mat-icon>
         Add Dataset
       </button>
@@ -126,8 +129,8 @@
         hraFeature="compare"
         hraClickEvent
         hraButtonSize="medium"
-        [ngClass]="{ 'compare-button-color': !formValid }"
         (click)="compare()"
+        [ngClass]="{ 'compare-button-color': !formValid }"
       >
         Compare
       </button>

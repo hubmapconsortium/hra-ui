@@ -29,6 +29,7 @@ const NODE_HEIGHTS: Record<TreeSize, number> = {
  */
 @Directive({
   selector: '[hraTreeSize]',
+  standalone: true,
   host: {
     '[style.--mat-tree-node-text-size.rem]': 'fontSize()',
     '[style.--mat-tree-node-min-height.rem]': 'nodeHeight()',

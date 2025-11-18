@@ -21,7 +21,7 @@ import { FtuFullScreenService } from '@hra-ui/ftu-ui-components';
     MedicalIllustrationBehaviorComponent,
   ],
   templateUrl: './ftu.component.html',
-  styleUrl: './ftu.component.scss',
+  styleUrls: ['./ftu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {

@@ -6,10 +6,10 @@ import { Tag } from '../../../core/models/anatomical-structure-tag';
  */
 @Component({
   selector: 'ccf-tag-list',
-  standalone: false,
   templateUrl: './tag-list.component.html',
-  styleUrl: './tag-list.component.scss',
+  styleUrls: ['./tag-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class TagListComponent {
   /** List label */

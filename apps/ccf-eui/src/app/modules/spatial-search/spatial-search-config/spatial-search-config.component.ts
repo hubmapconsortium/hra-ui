@@ -11,9 +11,9 @@ import { SpatialSearchInputsComponent } from '../spatial-search-inputs/spatial-s
  */
 @Component({
   selector: 'ccf-spatial-search-config',
-  imports: [HraCommonModule, MatIconModule, ButtonsModule, SpatialSearchInputsComponent],
   templateUrl: './spatial-search-config.component.html',
-  styleUrl: './spatial-search-config.component.scss',
+  styleUrls: ['./spatial-search-config.component.scss'],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule, SpatialSearchInputsComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchConfigComponent {

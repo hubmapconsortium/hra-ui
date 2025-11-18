@@ -5,10 +5,10 @@ import { TissueSection } from '@hra-api/ng-client';
 /** Tissue section visualization */
 @Component({
   selector: 'ccf-tissue-section-vis',
-  imports: [CommonModule],
   templateUrl: './tissue-section-vis.component.html',
-  styleUrl: './tissue-section-vis.component.scss',
+  styleUrls: ['./tissue-section-vis.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule],
 })
 export class TissueSectionVisComponent {
   /** The total numebr of tissue sections, used for end label */

@@ -3,9 +3,10 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 /** Global styles for text hyperlinks */
 @Component({
   selector: 'hra-text-hyperlink-global-styles',
+  standalone: true,
   template: '',
-  styleUrl: './global-styles.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./global-styles.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextHyperlinkGlobalStylesComponent {}

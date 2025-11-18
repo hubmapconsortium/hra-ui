@@ -4,10 +4,10 @@
   aria-label="Delete selected nodes"
   hraIconButtonSize="large"
   hraPlainTooltip="Select at least one cell to delete it from this dataset"
-  hraFeature="delete-selected-cells"
-  hraClickEvent
   [disabled]="deleteDisabled()"
   (click)="deleteClick.emit()"
+  hraFeature="delete-selected-cells"
+  hraClickEvent
 >
   <mat-icon>delete</mat-icon>
 </button>
@@ -15,9 +15,9 @@
 <mat-button-toggle-group
   aria-label="Visualization mode"
   hraButtonToggleSize="medium"
-  hraFeature="toggle"
   [value]="viewMode()"
   (change)="viewMode.set($event.value)"
+  hraFeature="toggle"
 >
   <mat-button-toggle
     value="select"

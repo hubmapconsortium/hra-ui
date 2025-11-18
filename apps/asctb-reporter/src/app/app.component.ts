@@ -79,6 +79,9 @@ import { createFileNameTimestamp } from './util/file-timestamp';
 
 @Component({
   selector: 'app-reporter',
+  host: { class: 'hra-app' },
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
   imports: [
     HeaderComponent,
     RouterModule,
@@ -96,10 +99,7 @@ import { createFileNameTimestamp } from './util/file-timestamp';
     CompareComponent,
     HraCommonModule,
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'hra-app' },
 })
 export class AppComponent extends BaseApplicationComponent implements OnDestroy {
   /** Configuration Service */

@@ -278,7 +278,6 @@ content:
 
       - component: YouTubePlayer
         videoId: _H3S5HeFFPE
-        label: 'Human Reference Atlas: Define Yourself—The Human Gut Atlas Story video'
 
   - component: PageSection
     tagline: New Human Atlas Stories

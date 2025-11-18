@@ -80,7 +80,7 @@ export interface NodeMapEntry {
   selector: 'ftu-interactive-svg',
   imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent],
   templateUrl: './interactive-svg.component.html',
-  styleUrl: './interactive-svg.component.scss',
+  styleUrls: ['./interactive-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.ShadowDom,
 })

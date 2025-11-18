@@ -6,6 +6,7 @@ export type ProgressBarColor = 'dark' | 'color';
 /** Style a mat-progress-bar to a specific named color */
 @Directive({
   selector: 'mat-progress-bar[hraProgressBarColor]',
+  standalone: true,
   host: {
     '[class]': '"hra-progress-bar-color-" + color()',
   },

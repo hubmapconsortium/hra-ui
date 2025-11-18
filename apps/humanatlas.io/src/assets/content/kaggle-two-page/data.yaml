@@ -37,7 +37,6 @@ content:
     content:
       - component: YouTubePlayer
         videoId: AF--edMjvss
-        label: Awards ceremony video
 
   - component: PageSection
     tagline: Winning teams

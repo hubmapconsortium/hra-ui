@@ -6,6 +6,7 @@ import { DialogService } from '../../dialog.service';
 
 @Component({
   selector: 'hra-dialog-demo',
+  standalone: true,
   imports: [MatButtonModule],
   template: ` <button mat-flat-button (click)="openDialog()">Open Dialog</button> `,
 })

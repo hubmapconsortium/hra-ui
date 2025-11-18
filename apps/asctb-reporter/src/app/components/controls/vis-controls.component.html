@@ -3,16 +3,16 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Width</mat-label>
-      <input type="number" matInput [(ngModel)]="config.width" (change)="changeWidth()" />
+      <input [(ngModel)]="config.width" type="number" matInput (change)="changeWidth()" />
     </mat-form-field>
     <mat-slider
       hraFeature="width"
+      [hraClickEvent]="{ width: config.width }"
       tickInterval="100"
       min="100"
       max="1000"
-      discrete
-      [hraClickEvent]="{ width: config.width }"
       (change)="changeWidth()"
+      discrete
     >
       <input matSliderThumb [(ngModel)]="config.width" />
     </mat-slider>
@@ -20,16 +20,16 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Height</mat-label>
-      <input type="number" matInput [(ngModel)]="config.height" (change)="changeHeight()" />
+      <input [(ngModel)]="config.height" type="number" matInput (change)="changeHeight()" />
     </mat-form-field>
     <mat-slider
       hraFeature="height"
+      [hraClickEvent]="{ height: config.height }"
       tickInterval="100"
       min="100"
       max="7000"
-      discrete
-      [hraClickEvent]="{ height: config.height }"
       (change)="changeHeight()"
+      discrete
     >
       <input matSliderThumb [(ngModel)]="config.height"
     /></mat-slider>
@@ -41,18 +41,18 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>X</mat-label>
-      <input type="number" matInput [(ngModel)]="config.bimodal_distance_x" (change)="changeBimodalDistanceX()" />
+      <input [(ngModel)]="config.bimodal_distance_x" type="number" matInput (change)="changeBimodalDistanceX()" />
     </mat-form-field>
     <mat-slider
       hraFeature="x"
+      [hraClickEvent]="{ x: config.bimodal_distance_x }"
       thumbLabel
       color="primary"
       tickInterval="100"
       min="50"
       max="500"
-      discrete
-      [hraClickEvent]="{ x: config.bimodal_distance_x }"
       (change)="changeBimodalDistanceX()"
+      discrete
     >
       <input matSliderThumb [(ngModel)]="config.bimodal_distance_x" />
     </mat-slider>
@@ -60,16 +60,16 @@
   <div class="control">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>Y</mat-label>
-      <input type="number" matInput [(ngModel)]="config.bimodal_distance_y" (change)="changeBimodalDistanceY()" />
+      <input [(ngModel)]="config.bimodal_distance_y" type="number" matInput (change)="changeBimodalDistanceY()" />
     </mat-form-field>
     <mat-slider
       hraFeature="y"
+      [hraClickEvent]="{ y: config.bimodal_distance_y }"
       tickInterval="100"
       min="10"
       max="200"
-      discrete
-      [hraClickEvent]="{ y: config.bimodal_distance_y }"
       (change)="changeBimodalDistanceY()"
+      discrete
     >
       <input matSliderThumb [(ngModel)]="config.bimodal_distance_y" />
     </mat-slider>
@@ -82,22 +82,22 @@
   <div class="checkboxes">
     <mat-slide-toggle
       *ngIf="currentSheet.name === 'all' || (currentSheet.name === 'some' && selectedOrgans.length > 8)"
+      [checked]="config.show_all_AS"
+      (change)="changeShowAS()"
       matTooltip="Toggle Visibility of Anatomical Structures"
       matTooltipPosition="below"
       hraFeature="show-all-as"
-      [checked]="config.show_all_AS"
       [hraClickEvent]="{ enabled: config.show_all_AS }"
-      (change)="changeShowAS()"
     >
       Show all AS
     </mat-slide-toggle>
     <mat-slide-toggle
+      [checked]="config.show_ontology"
+      (change)="changeShowOntology()"
       matTooltip="Toggle Visibility of Ontology Links"
       matTooltipPosition="below"
       hraFeature="show-ontology-ids"
-      [checked]="config.show_ontology"
       [hraClickEvent]="{ enabled: config.show_ontology }"
-      (change)="changeShowOntology()"
     >
       Show ontology IDs
     </mat-slide-toggle>
@@ -106,28 +106,28 @@
   <mat-button-toggle-group hraButtonToggleSize="medium" hideSingleSelectionIndicator="false">
     <mat-button-toggle
       value="1"
-      hraFeature="discrepency-label"
-      hraClickEvent
       [checked]="config.discrepencyLabel"
       (change)="showDiscrepencyLabel()"
+      hraFeature="discrepency-label"
+      hraClickEvent
     >
       Label mismatch
     </mat-button-toggle>
     <mat-button-toggle
       value="2"
-      hraFeature="discrepency-id"
-      hraClickEvent
       [checked]="config.discrepencyId"
       (change)="showDiscrepencyId()"
+      hraFeature="discrepency-id"
+      hraClickEvent
     >
       ID Missing
     </mat-button-toggle>
     <mat-button-toggle
       value="3"
-      hraFeature="duplicate-id"
-      hraClickEvent
       [checked]="config.duplicateId"
       (change)="showDuplicateId()"
+      hraFeature="duplicate-id"
+      hraClickEvent
     >
       ID Duplicates
     </mat-button-toggle>

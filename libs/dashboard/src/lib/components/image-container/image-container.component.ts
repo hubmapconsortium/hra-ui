@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import * as z from 'zod';
+import { z } from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../title-card/title-card.component';
 

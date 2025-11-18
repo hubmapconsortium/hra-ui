@@ -1,5 +1,5 @@
 import { ActionCardSchema } from '@hra-ui/design-system/cards/action-card';
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Landing page data type */
 export type LandingPageData = z.infer<typeof LandingPageDataSchema>;

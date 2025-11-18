@@ -6,8 +6,9 @@
     [occurenceData]="occurenceData()"
     [termData]="termData()"
     [biomarkerMenuOptions]="biomarkerMenuOptions"
-    [tooltip]="tooltip()"
     (nodeSelected)="ontologySelection.emit($event)"
     (biomarkerOptionsChange)="filterNodes($event)"
-  />
+    [tooltip]="tooltip()"
+  >
+  </ccf-ontology-tree>
 }

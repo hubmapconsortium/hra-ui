@@ -1,6 +1,6 @@
 import { ProjectedContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import { IconListSchema } from '@hra-ui/design-system/icons';
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Content page type */
 export type ContentPageData = z.infer<typeof ContentPageDataSchema>;

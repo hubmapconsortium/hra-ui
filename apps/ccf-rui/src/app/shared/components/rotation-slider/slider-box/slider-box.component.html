@@ -2,17 +2,17 @@
   class="input"
   hraClickEvent
   subscriptSizing="dynamic"
+  (click)="showSlider()"
   hraPlainTooltip="Rotation is measured in degrees"
   cdkOverlayOrigin
-  (click)="showSlider()"
   #trigger="cdkOverlayOrigin"
 >
   <mat-label class="text form-input-label">{{ sliderAxis().toUpperCase() }}</mat-label>
   <input
     matInput
+    [value]="rotation()[sliderAxis()]"
     class="input"
     type="number"
-    [value]="rotation()[sliderAxis()]"
     [min]="-180"
     [max]="180"
     (change)="changeRotation.emit($any($event.target).value)"
@@ -21,11 +21,11 @@
 
 <ng-template
   cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isSliderOpen()"
   cdkConnectedOverlayHasBackdrop="true"
   cdkConnectedOverlayPanelClass="rotation-slider-overlay"
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-  [cdkConnectedOverlayOrigin]="trigger"
-  [cdkConnectedOverlayOpen]="isSliderOpen()"
   [cdkConnectedOverlayPositions]="positions"
   (backdropClick)="closeSlider()"
 >
@@ -35,8 +35,8 @@
       hraClickEvent
       mat-icon-button
       class="icon reset"
-      hraPlainTooltip="Reset"
       (click)="resetRotation.emit()"
+      hraPlainTooltip="Reset"
     >
       <mat-icon>reset_settings</mat-icon>
     </button>
@@ -44,10 +44,10 @@
       hraFeature="slider"
       hraClickEvent
       class="slider"
-      hraPlainTooltip="Hold shift while using the slider to rotate in larger increments by 30 degrees"
       [max]="180"
       [min]="-180"
       [step]="step()"
+      hraPlainTooltip="Hold shift while using the slider to rotate in larger increments by 30 degrees"
     >
       <input
         class="slider-input"

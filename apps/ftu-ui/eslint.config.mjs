@@ -1,12 +1,27 @@
-import { configs, withAngularSelectorPrefix } from '../../eslint.config.mjs';
+import { configs } from '../../eslint.config.mjs';
 
 export default [
   ...configs.base,
   ...configs.angular,
-  withAngularSelectorPrefix('ftu'),
   {
     files: ['**/*.ts'],
     rules: {
+      '@angular-eslint/directive-selector': [
+        'error',
+        {
+          type: 'attribute',
+          prefix: 'ftu',
+          style: 'camelCase',
+        },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        {
+          type: 'element',
+          prefix: 'ftu',
+          style: 'kebab-case',
+        },
+      ],
       '@angular-eslint/prefer-signals': 'off',
       '@angular-eslint/prefer-standalone': 'off',
     },

@@ -8,7 +8,7 @@ import { BodyUiComponent, NodeClickEvent } from 'ccf-body-ui';
   selector: 'ccf-organ',
   imports: [CommonModule, BodyUiComponent],
   templateUrl: './organ.component.html',
-  styleUrl: './organ.component.scss',
+  styleUrls: ['./organ.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrganComponent {

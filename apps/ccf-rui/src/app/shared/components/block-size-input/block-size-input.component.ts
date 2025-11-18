@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, model, output } from '@angular/core';
 
 /**
  * Interface for objects containing tissue block dimensions
@@ -24,12 +24,15 @@ const DEFAULT_BLOCK_SIZE: BlockSize = {
  */
 @Component({
   selector: 'ccf-block-size-input',
-  standalone: false,
   templateUrl: './block-size-input.component.html',
-  styleUrl: './block-size-input.component.scss',
+  styleUrls: ['./block-size-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class BlockSizeInputComponent {
+  /** HTML class name */
+  @HostBinding('class') readonly clsName = 'ccf-block-size-input';
+
   /** Values of block dimensions to be emitted */
   readonly blockSize = model(DEFAULT_BLOCK_SIZE);
 

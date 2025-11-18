@@ -6,8 +6,8 @@ import { AsyncDetection } from 'ngx-scrollbar';
 import { SidenavComponent } from './sidenav.component';
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule, AsyncDetection, ScrollingModule],
   declarations: [SidenavComponent],
+  imports: [CommonModule, MatButtonModule, AsyncDetection, ScrollingModule],
   exports: [SidenavComponent],
 })
 export class SidenavModule {}

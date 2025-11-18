@@ -4,8 +4,8 @@ import { PageSectionComponent } from '@hra-ui/design-system/content-templates/pa
 import { UiSectionComponent } from '@hra-ui/design-system/content-templates/ui-section';
 
 @NgModule({
-  imports: [UiSectionComponent, AppLabelComponent, PageSectionComponent],
   declarations: [],
+  imports: [UiSectionComponent, AppLabelComponent, PageSectionComponent],
   exports: [UiSectionComponent, AppLabelComponent, PageSectionComponent],
 })
 export class ContentTemplatesModule {}

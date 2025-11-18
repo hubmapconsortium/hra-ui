@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavItemComponent } from './nav-item.component';
 
 @NgModule({
-  imports: [CommonModule],
   declarations: [NavItemComponent],
+  imports: [CommonModule],
   exports: [NavItemComponent],
 })
 export class NavItemModule {}

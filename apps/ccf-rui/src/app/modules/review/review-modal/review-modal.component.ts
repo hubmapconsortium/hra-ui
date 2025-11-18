@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
@@ -20,10 +20,10 @@ interface ReviewModalData {
  */
 @Component({
   selector: 'ccf-review-modal',
-  standalone: false,
   templateUrl: './review-modal.component.html',
-  styleUrl: './review-modal.component.scss',
+  styleUrls: ['./review-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ReviewModalComponent {
   /** Dialog reference */
@@ -32,6 +32,9 @@ export class ReviewModalComponent {
   readonly data = inject<ReviewModalData>(MAT_DIALOG_DATA);
   /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);
+
+  /** HTML class name */
+  @HostBinding('class') readonly clsName = 'ccf-review-modal';
 
   /**
    * The object containing all of the review information for displaying inside the modal

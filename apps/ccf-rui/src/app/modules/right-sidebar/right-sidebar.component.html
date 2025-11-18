@@ -4,19 +4,19 @@
       hraFeature="toggle"
       hraClickEvent
       mat-icon-button
+      [matMenuTriggerFor]="menu"
       hraIconButtonSize="large"
       aria-label="Open the tissue block settings' action menu"
       hraPlainTooltip="More"
-      [matMenuTriggerFor]="menu"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu hraFeature="menu" class="settings-overlay" #menu="matMenu">
+    <mat-menu hraFeature="menu" #menu="matMenu" class="settings-overlay">
       <button hraFeature="toggle-block-axes" hraClickEvent mat-menu-item (click)="model.toggleBlockAxis()">
         <mat-icon>{{ disableBlockAxis() ? 'visibility_on' : 'visibility_off' }}</mat-icon>
         {{ `${disableBlockAxis() ? 'Show' : 'Hide'} 3D axes` }}
       </button>
-      <mat-divider class="menu-divider" />
+      <mat-divider class="menu-divider"></mat-divider>
       <button
         hraFeature="reset-all"
         hraClickEvent
@@ -40,7 +40,7 @@
   </hra-expansion-panel-actions>
 
   <hra-expansion-panel-header-content>
-    <hra-help-button [action]="help" />
+    <hra-help-button [action]="help"></hra-help-button>
     <mat-menu hraFeature="menu" #help="matMenu">
       <a
         hraFeature="watch-video"
@@ -72,7 +72,7 @@
       >
         Use standard operating procedure
       </a>
-      <mat-divider class="menu-divider" />
+      <mat-divider class="menu-divider"></mat-divider>
       <a
         hraFeature="explore-registrations"
         hraClickEvent
@@ -122,22 +122,25 @@
 
   <ccf-block-size-input
     hraFeature="block-size"
+    #blocksize
     [blockSize]="(model.blockSize$ | async)!"
     (blockSizeChange)="model.setBlockSize($event)"
-    #blocksize
-  />
+  >
+  </ccf-block-size-input>
   <ccf-rotation-slider
     hraFeature="rotation"
+    #rotation
     [rotation]="$any(model.rotation$ | async)"
     (rotationChange)="model.setRotation($event)"
-    #rotation
-  />
+  >
+  </ccf-rotation-slider>
   <ccf-slices-input
     hraFeature="slices"
+    #slices
     [slicesConfig]="$any(model.slicesConfig$ | async)"
     (slicesConfigChange)="model.setSlicesConfig($event)"
-    #slices
-  />
+  >
+  </ccf-slices-input>
 </hra-expansion-panel>
 
 <hra-expansion-panel hraFeature="AS-tags" tagline="Anatomical Structure Tags" class="as-tags">
@@ -146,24 +149,24 @@
       hraFeature="toggle"
       hraClickEvent
       mat-icon-button
+      [matMenuTriggerFor]="asTagsActionMenu"
       hraIconButtonSize="large"
       aria-label="Open the anatomical structure tags' action menu"
       hraPlainTooltip="More"
-      [matMenuTriggerFor]="asTagsActionMenu"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu hraFeature="menu" class="settings-overlay" #asTagsActionMenu="matMenu">
+    <mat-menu hraFeature="menu" #asTagsActionMenu="matMenu" class="settings-overlay">
       <button class="expanded" mat-menu-item [matMenuTriggerFor]="submenu">
         Info
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
 
-      <mat-menu class="info-submenu" #submenu="matMenu">
+      <mat-menu #submenu="matMenu" class="info-submenu">
         Tags identify major anatomical components of the tissue block being registered.
       </mat-menu>
 
-      <mat-divider class="menu-divider" />
+      <mat-divider class="menu-divider"></mat-divider>
 
       <button hraFeature="reset" hraClickEvent mat-menu-item (click)="astags.reset()">
         Reset all anatomical structure tags
@@ -172,14 +175,16 @@
   </hra-expansion-panel-actions>
 
   <div class="as-tags-content">
-    <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)" />
+    <ccf-tag-search hraFeature="tag-search" [search]="astags.searchExternal" (added)="astags.addTags($event)">
+    </ccf-tag-search>
     @if (assignedTags().length > 0) {
       <ccf-tag-list
         class="tag-list"
         label="Automatically Detected"
         [tags]="assignedTags()"
         (tagRemoved)="astags.removeTag($event)"
-      />
+      >
+      </ccf-tag-list>
     }
     @if (addedTags().length > 0) {
       <ccf-tag-list
@@ -187,7 +192,8 @@
         label="Manually Added"
         [tags]="addedTags()"
         (tagRemoved)="astags.removeTag($event)"
-      />
+      >
+      </ccf-tag-list>
     }
     @if (removedTags().length > 0) {
       <ccf-tag-list
@@ -195,7 +201,8 @@
         label="Manually Removed"
         [tags]="removedTags()"
         (tagRemoved)="astags.removeTag($event)"
-      />
+      >
+      </ccf-tag-list>
     }
   </div>
 </hra-expansion-panel>

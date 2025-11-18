@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** Type for viewer file data, includes label and URL */
 export type ViewerFile = z.infer<typeof ViewerFileSchema>;

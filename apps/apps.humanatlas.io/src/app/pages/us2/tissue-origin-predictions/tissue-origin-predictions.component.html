@@ -10,10 +10,10 @@
   </p>
 
   <!-- SIMILAR ANATOMICAL STRUCTURES TABLE -->
-  <hra-similar-anatomical-structures-table [predictions]="predictions()" />
+  <hra-similar-anatomical-structures-table [predictions]="predictions()"></hra-similar-anatomical-structures-table>
 
   <!-- SIMILAR DATASETS TABLE -->
-  <hra-similar-datasets-table [predictions]="predictions()" />
+  <hra-similar-datasets-table [predictions]="predictions()"></hra-similar-datasets-table>
 
   <!-- BOTTOM CARDS -->
   <div class="bottom-cards">
@@ -23,11 +23,11 @@
         <button
           hraClickEvent
           hraFeature="download-json"
+          (click)="onDownloadJSONButtonClicked()"
           mat-button
           hraButtonVariant="primary"
           hraButtonSize="medium"
           disabled="false"
-          (click)="onDownloadJSONButtonClicked()"
         >
           JSON-LD
           <mat-icon>download</mat-icon>
@@ -62,7 +62,7 @@
   <!-- EUI OVERLAY -->
   <ng-template #euiTemplate>
     <div>
-      <hra-back-button-bar (backClick)="euiOpen.set(false)" />
+      <hra-back-button-bar (backClick)="euiOpen.set(false)"></hra-back-button-bar>
       <ccf-eui
         class="embedded"
         base-href="https://cdn.humanatlas.io/ui/ccf-eui/"
@@ -70,8 +70,9 @@
         hubmap-data-url=""
         login-disabled="true"
         header="false"
-        [attr.sources]="ruiLocationsJsonString"
-      />
+        data-sources="{{ ruiLocationsJsonString }}"
+      >
+      </ccf-eui>
     </div>
   </ng-template>
 </ng-container>

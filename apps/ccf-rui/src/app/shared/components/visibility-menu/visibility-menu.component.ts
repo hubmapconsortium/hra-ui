@@ -25,7 +25,7 @@ const SLIDER_OVERLAY_POSITION: ConnectedPosition[] = [
   selector: 'ccf-visibility-menu',
   imports: [HraCommonModule, MatIconModule, OverlayModule, OpacitySliderComponent, PlainTooltipDirective],
   templateUrl: './visibility-menu.component.html',
-  styleUrl: './visibility-menu.component.scss',
+  styleUrls: ['./visibility-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [CdkScrollable],
 })

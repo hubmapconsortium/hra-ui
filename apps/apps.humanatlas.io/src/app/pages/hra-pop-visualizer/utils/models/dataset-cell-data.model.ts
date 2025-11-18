@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /**
  * Zod schema for validating SPARQL binding responses for dataset cell data

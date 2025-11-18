@@ -12,6 +12,8 @@ import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-
  */
 @Component({
   selector: 'ccf-donor-card',
+  templateUrl: './donor-card.component.html',
+  styleUrls: ['./donor-card.component.scss'],
   imports: [
     HraCommonModule,
     MatCheckboxModule,
@@ -20,8 +22,6 @@ import { TissueSectionVisComponent } from '../tissue-section-vis/tissue-section-
     TissueSectionVisComponent,
     ThumbnailListComponent,
   ],
-  templateUrl: './donor-card.component.html',
-  styleUrl: './donor-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonorCardComponent {

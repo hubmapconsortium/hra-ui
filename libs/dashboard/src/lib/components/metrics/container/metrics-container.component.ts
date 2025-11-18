@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import * as z from 'zod';
+import { z } from 'zod';
 import { DashboardComponent, DashboardComponentSpecFor } from '../../../dashboard/dashboard.model';
 import { TITLE_CARD_DEF, TitleCardComponent } from '../../title-card/title-card.component';
 import { METRICS_ITEM_DEF, MetricsItemComponent } from '../item/metrics-item.component';
@@ -18,9 +18,9 @@ const WIDE_CARD_MIN_ITEM_COUNT = 4;
 /** Metrics Container Component, renders metric cards inside the container */
 @Component({
   selector: 'hra-dashboard-metrics-container',
-  imports: [TitleCardComponent, MetricsItemComponent],
   templateUrl: './metrics-container.component.html',
   styleUrl: './metrics-container.component.scss',
+  imports: [TitleCardComponent, MetricsItemComponent],
 })
 export class MetricsContainerComponent implements DashboardComponent<typeof MetricsContainerComponent> {
   /** Input type for Metrics Container Component */

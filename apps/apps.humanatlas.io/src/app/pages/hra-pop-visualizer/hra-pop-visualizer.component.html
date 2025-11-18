@@ -4,9 +4,9 @@
     <span>Explore cell type populations of </span>
     <hra-text-hyperlink
       hraFeature="hrapop-link"
-      text="HRApop v1.0"
-      url="https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest"
-    />
+      [text]="'HRApop v1.0'"
+      [url]="'https://apps.humanatlas.io/kg-explorer/graph/hra-pop/latest'"
+    ></hra-text-hyperlink>
     .
   </div>
 
@@ -14,7 +14,7 @@
   <div class="configurations-container">
     <div class="header">
       <div class="icon">
-        <hra-icon svgIcon="product:cell-population-predictor" />
+        <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>
         <span class="label">HRApop Visualizer</span>
       </div>
     </div>
@@ -22,20 +22,21 @@
     <!-- Config selector within the same border -->
     <hra-config-selector
       [dataTypeOptions]="dataTypeOptions"
-      [organOptions]="organOptions()"
-      [xAxisOptions]="xAxisOptions()"
-      [yAxisOptions]="yAxisOptions"
-      [sortOptions]="sortOptions"
-      [availableTools]="availableTools()"
-      [loading]="loading()"
       [(selectedDataType)]="selectedDataType"
+      [organOptions]="organOptions()"
       [(selectedOrgan)]="selectedOrgan"
       [(selectedTools)]="selectedTools"
       [(selectedSexes)]="selectedSexes"
+      [xAxisOptions]="xAxisOptions()"
       [(selectedXAxis)]="selectedXAxis"
+      [yAxisOptions]="yAxisOptions"
       [(selectedYAxis)]="selectedYAxis"
+      [sortOptions]="sortOptions"
       [(selectedSort)]="selectedSort"
-    />
+      [availableTools]="availableTools()"
+      [loading]="loading()"
+    >
+    </hra-config-selector>
 
     <!-- Charts Content Section -->
     <div class="charts-content">
@@ -61,7 +62,7 @@
             } @else {
               <div class="charts-grid">
                 @for (spec of vegaSpecs(); track spec) {
-                  <hra-bar-graph class="chart-item" [spec]="spec" />
+                  <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
                 }
               </div>
             }

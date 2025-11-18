@@ -11,20 +11,20 @@
   <mat-icon matSuffix>arrow_drop_down</mat-icon>
 </mat-form-field>
 
-<div *ngIf="searchOpen() && !disabled()" class="search-modal" hraFeature="search-modal">
+<div class="search-modal" *ngIf="searchOpen() && !disabled()" hraFeature="search-modal">
   <div class="search-controls">
-    <mat-form-field cdkTrapFocus subscriptSizing="dynamic" [cdkTrapFocusAutoCapture]="true">
+    <mat-form-field cdkTrapFocus [cdkTrapFocusAutoCapture]="true" subscriptSizing="dynamic">
       <mat-icon matPrefix>search</mat-icon>
       <mat-label>Search Structures</mat-label>
-      <input cdkFocusInitial matInput [(ngModel)]="searchValue" #searchField />
+      <input cdkFocusInitial matInput #searchField [(ngModel)]="searchValue" />
       <button
         matSuffix
         mat-icon-button
         aria-label="Clear search"
         matTooltip="Clear search"
+        (click)="searchValue.set('')"
         hraFeature="clear-search"
         hraClickEvent
-        (click)="searchValue.set('')"
       >
         <mat-icon>close</mat-icon>
       </button>
@@ -33,9 +33,9 @@
         mat-icon-button
         aria-label="Close"
         matTooltip="Close"
+        (click)="closeSearchList()"
         hraFeature="close-search"
         hraClickEvent
-        (click)="closeSearchList()"
       >
         <mat-icon>arrow_drop_up</mat-icon>
       </button>
@@ -48,11 +48,11 @@
         <mat-button-toggle-group
           multiple
           hraButtonToggleSize="small"
-          name="searchFilterButtons"
-          [value]="categories()"
-          [hideMultipleSelectionIndicator]="false"
-          (change)="categories.set($event.value)"
           #group="matButtonToggleGroup"
+          [value]="categories()"
+          (change)="categories.set($event.value)"
+          name="searchFilterButtons"
+          [hideMultipleSelectionIndicator]="false"
         >
           <mat-button-toggle
             value="Anatomical Structures"
@@ -77,9 +77,9 @@
           hraButtonVariant="primary"
           hraButtonSize="small"
           aria-label="Select All"
+          (click)="selectAllOptions()"
           hraFeature="select-all"
           hraClickEvent
-          (click)="selectAllOptions()"
         >
           Select All
         </button>
@@ -88,9 +88,9 @@
           hraButtonVariant="primary"
           hraButtonSize="small"
           aria-label="Deselect All"
+          (click)="deselectAllOptions()"
           hraFeature="deselect-all"
           hraClickEvent
-          (click)="deselectAllOptions()"
         >
           Deselect All
         </button>
@@ -107,13 +107,13 @@
       <div>No matches.</div>
     </mat-list-item>
     <mat-list-option
-      *ngFor="let structure of filteredStructures()"
       hraFeature="structure"
-      color="primary"
-      checkboxPosition="before"
       [hraClickEvent]="{ structure: structure.name }"
+      *ngFor="let structure of filteredStructures()"
       [value]="structure"
       [selected]="selectionSet().has(structure)"
+      color="primary"
+      checkboxPosition="before"
     >
       <div class="structure-group">
         <div class="structure-name">

@@ -15,8 +15,8 @@ describe('LinkDirective', () => {
   const externalUrl = 'https://example.com';
 
   @Component({
-    imports: [LinkDirective],
     template: `<a hraLink="${pageUrl}">link</a>`,
+    imports: [LinkDirective],
   })
   class MockHome {}
 

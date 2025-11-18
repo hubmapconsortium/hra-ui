@@ -9,24 +9,24 @@
   </h2>
 
   <div class="table-container">
-    <table mat-table aria-label="info table" [dataSource]="data()">
+    <table mat-table [dataSource]="data()" aria-label="info table">
       <!-- Label Column -->
       <ng-container matColumnDef="label">
-        <th *matHeaderCellDef class="sr-only" mat-header-cell>Item Label</th>
-        <td *matCellDef="let element" class="label" mat-cell>
+        <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Label</th>
+        <td class="label" mat-cell *matCellDef="let element">
           {{ element.label }}
         </td>
       </ng-container>
 
       <!-- Value Column -->
       <ng-container matColumnDef="value">
-        <th *matHeaderCellDef class="sr-only" mat-header-cell>Item Value</th>
-        <td *matCellDef="let element" class="value" mat-cell>
+        <th class="sr-only" mat-header-cell *matHeaderCellDef>Item Value</th>
+        <td class="value" mat-cell *matCellDef="let element">
           {{ element.value }}
         </td>
       </ng-container>
 
-      <tr *matRowDef="let row; columns: ['label', 'value']" mat-row></tr>
+      <tr mat-row *matRowDef="let row; columns: ['label', 'value']"></tr>
     </table>
   </div>
 </ng-container>

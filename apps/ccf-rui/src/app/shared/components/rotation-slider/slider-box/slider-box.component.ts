@@ -6,10 +6,10 @@ import { Axis, Rotation } from '../rotation-slider.component';
 /** Slider box */
 @Component({
   selector: 'ccf-slider-box',
-  standalone: false,
   templateUrl: './slider-box.component.html',
   styleUrl: './slider-box.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SliderBoxComponent {
   /** Slider axis */

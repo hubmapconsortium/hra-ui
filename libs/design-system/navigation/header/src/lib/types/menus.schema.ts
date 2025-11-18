@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /** A menu item */
 export type MenuItem = z.infer<typeof MenuItemSchema>;

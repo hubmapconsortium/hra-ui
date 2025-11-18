@@ -34,7 +34,6 @@ content:
     content:
       - component: YouTubePlayer
         videoId: onJB6Ee3nLw
-        label: Cell distance explorer demo video
 
   - component: PageSection
     tagline: Code

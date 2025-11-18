@@ -66,7 +66,7 @@ const fontContent: Record<string, FontStyles> = {
 
 @Component({
   selector: 'hra-font-styles-demo',
-  imports: [CommonModule],
+  standalone: true,
   template: `
     <div class="card">
       <div class="header">
@@ -108,6 +108,7 @@ const fontContent: Record<string, FontStyles> = {
       }
     }
   `,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class FontStylesDemoComponent {

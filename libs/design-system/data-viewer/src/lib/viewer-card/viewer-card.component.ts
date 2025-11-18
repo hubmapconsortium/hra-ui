@@ -36,6 +36,7 @@ import { DataViewerVariant, ViewerCard } from '../types/data-viewer.schema';
   templateUrl: './viewer-card.component.html',
   styleUrl: './viewer-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ViewerCardComponent {
