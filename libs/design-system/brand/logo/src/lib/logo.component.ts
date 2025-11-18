@@ -22,11 +22,11 @@ export class BrandLogoComponent {
   readonly size = input<BrandLogoSize>('regular');
 
   /** Logos from injection token */
-  readonly logos = injectBrandLogos();
+  readonly logos = input(injectBrandLogos());
 
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
 
   /** Logo data */
-  protected readonly data = computed(() => findOrThrow(this.logos, ({ size }) => size === this.size()));
+  protected readonly data = computed(() => findOrThrow(this.logos(), ({ size }) => size === this.size()));
 }
