@@ -16,7 +16,7 @@ import {
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
-import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
+import { TableBottomSheetService } from '@hra-ui/design-system/table-bottom-sheet';
 import { DataItem } from '@hra-ui/design-system/info-modal';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -141,8 +141,8 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /** Current displayed column offset */
   private displayedColumnOffset = 0;
 
-  /** Injects BottomSheetService */
-  private readonly bottomSheetService = inject(BottomSheetService);
+  /** Injects TableBottomSheetService */
+  private readonly tableBottomSheetService = inject(TableBottomSheetService);
 
   /** row height */
   readonly rowHeight = 28;
@@ -268,7 +268,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
       { column: 'value', label: 'Value', type: 'text' },
     ];
 
-    this.bottomSheetService.openTableBottomSheet(rows, columns, true);
+    this.tableBottomSheetService.openTableBottomSheet({ rows, columns, hideHeaders: true });
   }
   /**
    * Updates horizontal viewport size and updates displayed column count
