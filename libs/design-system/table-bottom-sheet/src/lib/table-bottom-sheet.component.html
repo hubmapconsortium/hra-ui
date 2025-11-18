@@ -1,0 +1,18 @@
+<div class="sheet-header" hraFeature="table-bottom-sheet">
+  <button
+    hraFeature="close"
+    hraClickEvent
+    mat-icon-button
+    class="close"
+    aria-label="Close bottom sheet"
+    (click)="close()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<ng-scrollbar hraScrollOverflowFade>
+  <div class="sheet-content" tabindex="-1" cdkFocusInitial>
+    <hra-table [rows]="data.rows" [columns]="data.columns" [hideHeaders]="data.hideHeaders ?? false" />
+  </div>
+</ng-scrollbar>
