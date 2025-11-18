@@ -11,7 +11,7 @@ import { ProgressSpinnerComponent } from '@hra-ui/design-system/indicators/progr
   selector: 'app-loading',
   imports: [CommonModule, ProgressSpinnerComponent],
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss'],
+  styleUrl: './loading.component.scss',
 })
 export class LoadingComponent implements OnInit {
   data = inject<string>(MAT_DIALOG_DATA);

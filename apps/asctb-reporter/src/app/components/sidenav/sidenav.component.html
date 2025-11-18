@@ -1,12 +1,12 @@
 <div class="card h-100">
   <div class="card-header py-0">
-    <ng-content select="[header]"></ng-content>
+    <ng-content select="[header]" />
   </div>
   <div class="card-body pt-0 px-0" [class.with-footer]="footerWrapper.childElementCount > 0">
-    <ng-content select="[body]"></ng-content>
+    <ng-content select="[body]" />
   </div>
 
   <div class="card-footer pt-0 px-0" #footerWrapper>
-    <ng-content select="[footer]" #footer></ng-content>
+    <ng-content select="[footer]" #footer />
   </div>
 </div>

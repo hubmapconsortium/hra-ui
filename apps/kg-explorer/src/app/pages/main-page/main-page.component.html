@@ -14,20 +14,20 @@
   >
     <mat-sidenav
       hraFeature="sidenav"
-      #sidenav
       [mode]="!isWideScreen() ? 'over' : 'side'"
       [opened]="isWideScreen()"
       [fixedInViewport]="true"
       [fixedTopGap]="isSmallScreen() ? 73 : 113"
+      #sidenav
     >
       <hra-filter-menu
         hraFeature="filter-menu"
         [filterCategories]="filterCategoriesArray()"
-        (toggleForm)="sidenav.toggle()"
         [formClosed]="!sidenav.opened"
-        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
         [currentFilters]="filters()"
-      ></hra-filter-menu>
+        (toggleForm)="sidenav.toggle()"
+        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
+      />
     </mat-sidenav>
     <mat-sidenav-content hraFeature="digital-objects">
       <div class="page-content">
@@ -37,20 +37,16 @@
             <mat-label>Search</mat-label>
             <input matInput [formControl]="searchControl" />
           </mat-form-field>
-          <hra-results-indicator
-            description="Viewing"
-            [value]="filteredRows().length"
-            [total]="allRows().length"
-          ></hra-results-indicator>
+          <hra-results-indicator description="Viewing" [value]="filteredRows().length" [total]="allRows().length" />
         </div>
         <hra-table
-          #table
-          [style]="'divider'"
+          style="divider"
           [enableSort]="true"
           [rows]="filteredRows()"
           [columns]="columns()"
           (routeClicked)="router.navigate([$event])"
           (downloadHovered)="downloadId.set($event)"
+          #table
         >
           <hra-footer />
         </hra-table>

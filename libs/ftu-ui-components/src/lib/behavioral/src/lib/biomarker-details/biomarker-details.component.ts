@@ -79,7 +79,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     MatDividerModule,
   ],
   templateUrl: './biomarker-details.component.html',
-  styleUrls: ['./biomarker-details.component.scss'],
+  styleUrl: './biomarker-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.full-screen-grid]': 'isBiomarkerfullscreen()',

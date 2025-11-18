@@ -28,7 +28,11 @@ import {
 } from '@hra-ui/design-system/buttons/navigation-button';
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
-import { TextHyperlinkComponent, TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import {
+  TextHyperlinkComponent,
+  TextHyperlinkDirective,
+  TextButtonDirective,
+} from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** All re-exported modules, components, directives, etc. */
 const REEXPORTS = [
@@ -55,6 +59,7 @@ const REEXPORTS = [
   PrimaryButtonVariantDirective,
   SecondaryButtonVariantDirective,
   SocialMediaButtonComponent,
+  TextButtonDirective,
   TextHyperlinkComponent,
   TextHyperlinkDirective,
 ];

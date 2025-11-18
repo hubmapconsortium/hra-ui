@@ -30,6 +30,7 @@ content:
     content:
       - component: YouTubePlayer
         videoId: lYRNWAPxyqM
+        label: Cell population predictor demo video
   - component: PageSection
     tagline: APIs
     anchor: apis

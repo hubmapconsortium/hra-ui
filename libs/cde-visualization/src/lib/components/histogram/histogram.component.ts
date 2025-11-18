@@ -143,6 +143,8 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     FullscreenActionsComponent,
     HistogramMenuComponent,
   ],
+  templateUrl: './histogram.component.html',
+  styleUrl: './histogram.component.scss',
   providers: [
     {
       provide: MAT_EXPANSION_PANEL_DEFAULT_OPTIONS,
@@ -153,8 +155,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
       } satisfies MatExpansionPanelDefaultOptions,
     },
   ],
-  templateUrl: './histogram.component.html',
-  styleUrl: './histogram.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistogramComponent {
