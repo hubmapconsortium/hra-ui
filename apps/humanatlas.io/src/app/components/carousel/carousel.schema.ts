@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Carousel item type */
 export type CarouselItem = z.infer<typeof CarouselItemSchema>;

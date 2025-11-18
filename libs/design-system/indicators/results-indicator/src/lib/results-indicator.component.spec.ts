@@ -13,7 +13,8 @@ describe('ResultsIndicatorComponent', () => {
 
     expect(result).toBeTruthy();
   });
-  it('should display the value and total correctly', async () => {
+
+  it('should display the value and total correctly with description', async () => {
     const { container } = await render(ResultsIndicatorComponent, {
       componentInputs: {
         value: 50000,
@@ -22,6 +23,7 @@ describe('ResultsIndicatorComponent', () => {
       },
     });
 
+    expect(container.textContent).toContain('Viewing');
     expect(container.textContent).toContain('50');
     expect(container.textContent).toContain('000');
     expect(container.textContent).toContain('100');

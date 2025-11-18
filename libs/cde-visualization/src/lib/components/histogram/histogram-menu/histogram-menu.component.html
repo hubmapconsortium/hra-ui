@@ -1,25 +1,25 @@
 <button
   mat-icon-button
-  [matMenuTriggerFor]="menu"
   hraIconButtonSize="large"
   aria-label="Icon to open nested menu"
   hraPlainTooltip="More"
   hraFeature="menu"
   hraClickEvent
+  [matMenuTriggerFor]="menu"
 >
   <mat-icon>more_vert</mat-icon>
 </button>
 
-<mat-menu #menu="matMenu" class="histogram-overlay">
+<mat-menu class="histogram-overlay" #menu="matMenu">
   <button
     mat-menu-item
-    [matMenuTriggerFor]="infoSubMenu"
     matRipple
     matRippleColor="#201E3D14"
     hraFeature="info"
     hraClickEvent
     hraHoverEvent
     hraHoverEventTriggerOn="mouseenter"
+    [matMenuTriggerFor]="infoSubMenu"
   >
     <mat-icon>info</mat-icon>
     <span>Info</span>
@@ -27,18 +27,18 @@
   </button>
   <button
     mat-menu-item
-    [matMenuTriggerFor]="downloadSubMenu"
     matRipple
     matRippleColor="#201E3D14"
     hraFeature="download"
     hraClickEvent
+    [matMenuTriggerFor]="downloadSubMenu"
   >
     <mat-icon>download</mat-icon>
     <span>Downloads</span>
     <mat-icon class="expand-arrow">arrow_right</mat-icon>
   </button>
   @if (!dialogOpen()) {
-    <button mat-menu-item (click)="open.emit()" hraFeature="fullscreen" hraClickEvent>
+    <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="open.emit()">
       <mat-icon>fullscreen</mat-icon>
       Full Screen
     </button>
@@ -56,17 +56,17 @@
   </a>
 </mat-menu>
 
-<mat-menu #infoSubMenu="matMenu" class="info-sub-menu">
+<mat-menu class="info-sub-menu" #infoSubMenu="matMenu">
   This histogram plot shows the cell-to-nearest-anchor cell distance distributions categorized by each cell type in the
   dataset.
 </mat-menu>
 
-<mat-menu #downloadSubMenu="matMenu" class="download-sub-menu">
-  <button mat-menu-item (click)="download.emit('png')" hraFeature="download-png" hraClickEvent>
+<mat-menu class="download-sub-menu" #downloadSubMenu="matMenu">
+  <button mat-menu-item hraFeature="download-png" hraClickEvent (click)="download.emit('png')">
     <mat-icon>download</mat-icon>
     PNG
   </button>
-  <button mat-menu-item (click)="download.emit('svg')" hraFeature="download-svg" hraClickEvent>
+  <button mat-menu-item hraFeature="download-svg" hraClickEvent (click)="download.emit('svg')">
     <mat-icon>download</mat-icon>
     SVG
   </button>

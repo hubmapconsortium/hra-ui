@@ -6,7 +6,6 @@ import { HubmapMenuGroup, HubmapMenuItem } from '../types/hubmap-menu.schema';
 /** Directive used to type the context for menu group templates */
 @Directive({
   selector: 'ng-template[hraHubmapMenuGroup]',
-  standalone: true,
 })
 export class HubmapMenuGroupDirective {
   /** Types the context as `HubmapMenuGroup` */
@@ -19,7 +18,6 @@ export class HubmapMenuGroupDirective {
 /** Directive used to type the context for menu item templates */
 @Directive({
   selector: 'ng-template[hraHubmapMenuItem]',
-  standalone: true,
 })
 export class HubmapMenuItemDirective {
   /** Types the context as `HubmapMenuItem` */

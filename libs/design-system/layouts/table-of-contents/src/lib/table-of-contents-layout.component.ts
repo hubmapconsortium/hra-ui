@@ -18,8 +18,8 @@ export class TableOfContentsLayoutHeaderComponent {}
   imports: [HraCommonModule, TableOfContentsComponent],
   templateUrl: './table-of-contents-layout.component.html',
   styleUrl: './table-of-contents-layout.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [providePageSectionNavigation()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableOfContentsLayoutComponent {
   /** Whether the screen width is currently greater than or equal to 1100px */

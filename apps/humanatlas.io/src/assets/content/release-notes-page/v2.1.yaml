@@ -174,6 +174,7 @@ content:
     content:
       - component: YouTubePlayer
         videoId: -F6i5KOVGx8
+        label: CIFAR video
 
   - component: PageSection
     tagline: Resources
@@ -296,3 +297,4 @@ content:
     content:
       - component: YouTubePlayer
         videoId: zQeMgxo8n_U
+        label: 'Human Reference Atlas: Vasculature Common Coordinate Framework demo video'

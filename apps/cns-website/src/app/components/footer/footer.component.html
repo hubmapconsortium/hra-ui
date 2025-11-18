@@ -1,0 +1,35 @@
+<ng-container hraFeature="footer">
+  <div class="content-container">
+    <div class="logo-and-socials">
+      <a
+        class="logo"
+        hraFeature="logo"
+        hraClickEvent
+        aria-label="Visit CNS"
+        href="https://cns.iu.edu"
+        target="_self"
+        [inlineSVG]="'assets/logo/cns_footer_logo.svg' | assetUrl"
+      >
+      </a>
+      <div class="socials">
+        @for (id of socials(); track id) {
+          <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
+        }
+      </div>
+    </div>
+
+    <cns-funding [funders]="funders()" />
+  </div>
+
+  <mat-divider />
+
+  <div class="privacy-container">
+    <span class="privacy">
+      <a hraHyperlink href="#privacy-preferences" (click)="openPrivacyPreferences($event)">Privacy Preferences</a>
+      <div class="separator">&#183;</div>
+      <a hraHyperlink hraFeature="hra-privacy-policy" href="https://humanatlas.io/privacy-policy">Privacy Policy</a>
+    </span>
+
+    <span class="copyright"> {{ copyrightText() }} </span>
+  </div>
+</ng-container>

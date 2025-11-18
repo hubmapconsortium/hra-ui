@@ -4,7 +4,7 @@ import { ResolveFn } from '@angular/router';
 import { assetUrl } from '@hra-ui/common/url';
 import { load } from 'js-yaml';
 import { map } from 'rxjs';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Creates a resolver function that loads and validates json data
