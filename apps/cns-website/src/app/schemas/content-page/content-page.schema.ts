@@ -14,7 +14,7 @@ import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { IconSchema } from '@hra-ui/design-system/icons';
-import { z } from 'zod';
+import * as z from 'zod';
 
 export {
   ActionCardSchema,
