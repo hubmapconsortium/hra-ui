@@ -15,5 +15,7 @@ export class ResultsIndicatorComponent {
   /** Input for total */
   readonly total = input.required({ transform: numberAttribute });
   /** Input for description */
-  readonly description = input.required<string>();
+  readonly description = input<string>('');
+  /** Input for separator */
+  readonly separator = input<string>('of');
 }
