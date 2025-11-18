@@ -19,11 +19,11 @@ export class BrandMarkComponent {
   readonly variant = input<BrandMarkVariant>('default');
 
   /** Marks from injection token */
-  readonly marks = injectBrandMarks();
+  readonly marks = input(injectBrandMarks());
 
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
 
   /** Mark data */
-  protected readonly data = computed(() => findOrThrow(this.marks, ({ variant }) => variant === this.variant()));
+  protected readonly data = computed(() => findOrThrow(this.marks(), ({ variant }) => variant === this.variant()));
 }
