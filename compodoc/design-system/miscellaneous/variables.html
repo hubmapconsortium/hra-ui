@@ -154,22 +154,10 @@
                             <a href="#BODY_EXPANSION" title="expansion-panel/src/lib/expansion-panel-animations.ts" ><b>BODY_EXPANSION</b>&nbsp;&nbsp;&nbsp;(expansion-panel/.../expansion-panel-animations.ts)</a>
                         </li>
                         <li>
-                            <a href="#BrandLogoSchema" title="brand/logo/src/lib/types/logos.schema.ts" ><b>BrandLogoSchema</b>&nbsp;&nbsp;&nbsp;(brand/.../logos.schema.ts)</a>
+                            <a href="#BRAND_LOGOS" title="brand/logo/src/lib/brand-logos.ts" ><b>BRAND_LOGOS</b>&nbsp;&nbsp;&nbsp;(brand/.../brand-logos.ts)</a>
                         </li>
                         <li>
-                            <a href="#BrandLogoSizeSchema" title="brand/logo/src/lib/types/logos.schema.ts" ><b>BrandLogoSizeSchema</b>&nbsp;&nbsp;&nbsp;(brand/.../logos.schema.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#BrandLogosSchema" title="brand/logo/src/lib/types/logos.schema.ts" ><b>BrandLogosSchema</b>&nbsp;&nbsp;&nbsp;(brand/.../logos.schema.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#BrandMarkSchema" title="brand/mark/src/lib/types/marks.schema.ts" ><b>BrandMarkSchema</b>&nbsp;&nbsp;&nbsp;(brand/.../marks.schema.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#BrandMarksSchema" title="brand/mark/src/lib/types/marks.schema.ts" ><b>BrandMarksSchema</b>&nbsp;&nbsp;&nbsp;(brand/.../marks.schema.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#BrandMarkVariantSchema" title="brand/mark/src/lib/types/marks.schema.ts" ><b>BrandMarkVariantSchema</b>&nbsp;&nbsp;&nbsp;(brand/.../marks.schema.ts)</a>
+                            <a href="#BRAND_MARKS" title="brand/mark/src/lib/brand-marks.ts" ><b>BRAND_MARKS</b>&nbsp;&nbsp;&nbsp;(brand/.../brand-marks.ts)</a>
                         </li>
                         <li>
                             <a href="#ButtonDef" title="buttons/button/src/lib/types/button.definition.ts" ><b>ButtonDef</b>&nbsp;&nbsp;&nbsp;(buttons/.../button.definition.ts)</a>
@@ -214,7 +202,10 @@
                             <a href="#DataViewerVariantSchema" title="data-viewer/src/lib/types/data-viewer.schema.ts" ><b>DataViewerVariantSchema</b>&nbsp;&nbsp;&nbsp;(data-viewer/.../data-viewer.schema.ts)</a>
                         </li>
                         <li>
-                            <a href="#DEFAULT_LOGOS" title="brand/logo/src/lib/default-logos.ts" ><b>DEFAULT_LOGOS</b>&nbsp;&nbsp;&nbsp;(brand/.../default-logos.ts)</a>
+                            <a href="#DEFAULT_LOGOS" title="brand/logo/src/lib/brand-logos.ts" ><b>DEFAULT_LOGOS</b>&nbsp;&nbsp;&nbsp;(brand/.../brand-logos.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_MARKS" title="brand/mark/src/lib/brand-marks.ts" ><b>DEFAULT_MARKS</b>&nbsp;&nbsp;&nbsp;(brand/.../brand-marks.ts)</a>
                         </li>
                         <li>
                             <a href="#DEFAULT_POLYFILL_URL" title="scrolling/src/lib/scrolling.module.ts" ><b>DEFAULT_POLYFILL_URL</b>&nbsp;&nbsp;&nbsp;(scrolling/.../scrolling.module.ts)</a>
@@ -328,6 +319,12 @@
                             <a href="#ImageSchema" title="content-templates/image/src/lib/types/image.schema.ts" ><b>ImageSchema</b>&nbsp;&nbsp;&nbsp;(content-templates/.../image.schema.ts)</a>
                         </li>
                         <li>
+                            <a href="#injectBrandLogos" title="brand/logo/src/lib/brand-logos.ts" ><b>injectBrandLogos</b>&nbsp;&nbsp;&nbsp;(brand/.../brand-logos.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectBrandMarks" title="brand/mark/src/lib/brand-marks.ts" ><b>injectBrandMarks</b>&nbsp;&nbsp;&nbsp;(brand/.../brand-marks.ts)</a>
+                        </li>
+                        <li>
                             <a href="#LinkColumnTypeSchema" title="table/src/lib/types/page-table.schema.ts" ><b>LinkColumnTypeSchema</b>&nbsp;&nbsp;&nbsp;(table/.../page-table.schema.ts)</a>
                         </li>
                         <li>
@@ -338,9 +335,6 @@
                         </li>
                         <li>
                             <a href="#MarkdownSchema" title="content-templates/markdown/src/lib/markdown.schema.ts" ><b>MarkdownSchema</b>&nbsp;&nbsp;&nbsp;(content-templates/.../markdown.schema.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#MARKS" title="brand/mark/src/lib/static-data/parsed.ts" ><b>MARKS</b>&nbsp;&nbsp;&nbsp;(brand/.../parsed.ts)</a>
                         </li>
                         <li>
                             <a href="#MenuButtonColumnTypeSchema" title="table/src/lib/types/page-table.schema.ts" ><b>MenuButtonColumnTypeSchema</b>&nbsp;&nbsp;&nbsp;(table/.../page-table.schema.ts)</a>
@@ -419,6 +413,12 @@
                         </li>
                         <li>
                             <a href="#ProfileCardSchema" title="cards/profile-card/src/lib/types/profile-card.schema.ts" ><b>ProfileCardSchema</b>&nbsp;&nbsp;&nbsp;(cards/.../profile-card.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideBrandLogos" title="brand/logo/src/lib/brand-logos.ts" ><b>provideBrandLogos</b>&nbsp;&nbsp;&nbsp;(brand/.../brand-logos.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideBrandMarks" title="brand/mark/src/lib/brand-marks.ts" ><b>provideBrandMarks</b>&nbsp;&nbsp;&nbsp;(brand/.../brand-marks.ts)</a>
                         </li>
                         <li>
                             <a href="#REEXPORTS" title="buttons/src/lib/buttons.module.ts" ><b>REEXPORTS</b>&nbsp;&nbsp;&nbsp;(buttons/.../buttons.module.ts)</a>
@@ -868,16 +868,16 @@
         </tbody>
     </table>
 </section>
-    <h3>brand/logo/src/lib/types/logos.schema.ts</h3>
+    <h3>brand/logo/src/lib/brand-logos.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="BrandLogoSchema"></a>
+                    <a name="BRAND_LOGOS"></a>
                     <span class="name">
-                        <span ><b>BrandLogoSchema</b></span>
-                        <a href="#BrandLogoSchema"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>BRAND_LOGOS</b></span>
+                        <a href="#BRAND_LOGOS"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -889,18 +889,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  size: BrandLogoSizeSchema,
-  src: z.string(),
-  width: z.number().positive(),
-  height: z.number().positive(),
-})</code>
+                        <i>Default value : </i><code>createInjectionToken(() &#x3D;&gt; DEFAULT_LOGOS)</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schema for logo item</p>
+                    <div class="io-description"><p>Injection token for brand logos configuration</p>
 </div>
                 </td>
             </tr>
@@ -911,28 +906,41 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="BrandLogoSizeSchema"></a>
+                    <a name="DEFAULT_LOGOS"></a>
                     <span class="name">
-                        <span ><b>BrandLogoSizeSchema</b></span>
-                        <a href="#BrandLogoSizeSchema"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>DEFAULT_LOGOS</b></span>
+                        <a href="#DEFAULT_LOGOS"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
+                        <i>Type : </i>        <code><a href="../interfaces/BrandLogo.html" target="_self" >BrandLogo[]</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.enum([&#x27;small&#x27;, &#x27;regular&#x27;])</code>
+                        <i>Default value : </i><code>[
+  {
+    size: &#x27;regular&#x27;,
+    src: &#x27;assets/brand/logo/regular.svg&#x27;,
+    width: 178,
+    height: 74,
+  },
+  {
+    size: &#x27;small&#x27;,
+    src: &#x27;assets/brand/logo/small.svg&#x27;,
+    width: 116,
+    height: 48,
+  },
+]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schema for logo size</p>
+                    <div class="io-description"><p>Default logos for applications</p>
 </div>
                 </td>
             </tr>
@@ -943,10 +951,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="BrandLogosSchema"></a>
+                    <a name="injectBrandLogos"></a>
                     <span class="name">
-                        <span ><b>BrandLogosSchema</b></span>
-                        <a href="#BrandLogosSchema"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>injectBrandLogos</b></span>
+                        <a href="#injectBrandLogos"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -958,16 +966,45 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  logos: BrandLogoSchema.array(),
-})</code>
+                        <i>Default value : </i><code>BRAND_LOGOS[0]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schema for logos</p>
+                    <div class="io-description"><p>Inject the brand logos configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideBrandLogos"></a>
+                    <span class="name">
+                        <span ><b>provideBrandLogos</b></span>
+                        <a href="#provideBrandLogos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>BRAND_LOGOS[1] as (logos: BrandLogo[]) &#x3D;&gt; ReturnType&lt;(typeof BRAND_LOGOS)[1]&gt;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set the brand logos configuration</p>
 </div>
                 </td>
             </tr>
@@ -975,16 +1012,16 @@
         </tbody>
     </table>
 </section>
-    <h3>brand/mark/src/lib/types/marks.schema.ts</h3>
+    <h3>brand/mark/src/lib/brand-marks.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="BrandMarkSchema"></a>
+                    <a name="BRAND_MARKS"></a>
                     <span class="name">
-                        <span ><b>BrandMarkSchema</b></span>
-                        <a href="#BrandMarkSchema"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>BRAND_MARKS</b></span>
+                        <a href="#BRAND_MARKS"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -996,18 +1033,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  variant: BrandMarkVariantSchema,
-  src: z.string(),
-  width: z.number().positive(),
-  height: z.number().positive(),
-})</code>
+                        <i>Default value : </i><code>createInjectionToken(() &#x3D;&gt; DEFAULT_MARKS)</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schema for mark item</p>
+                    <div class="io-description"><p>Injection token for brand marks configuration</p>
 </div>
                 </td>
             </tr>
@@ -1018,31 +1050,47 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="BrandMarksSchema"></a>
+                    <a name="DEFAULT_MARKS"></a>
                     <span class="name">
-                        <span ><b>BrandMarksSchema</b></span>
-                        <a href="#BrandMarksSchema"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>DEFAULT_MARKS</b></span>
+                        <a href="#DEFAULT_MARKS"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
+                        <i>Type : </i>        <code><a href="../interfaces/BrandMark.html" target="_self" >BrandMark[]</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  marks: BrandMarkSchema.array(),
-})</code>
+                        <i>Default value : </i><code>[
+  {
+    variant: &#x27;default&#x27;,
+    src: &#x27;assets/brand/mark/default.svg&#x27;,
+    width: 226,
+    height: 226,
+  },
+  {
+    variant: &#x27;contrast&#x27;,
+    src: &#x27;assets/brand/mark/contrast.svg&#x27;,
+    width: 226,
+    height: 226,
+  },
+  {
+    variant: &#x27;small&#x27;,
+    src: &#x27;assets/brand/mark/small.svg&#x27;,
+    width: 40,
+    height: 40,
+  },
+]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schema for marks</p>
+                    <div class="io-description"><p>Default marks for applications</p>
 </div>
                 </td>
             </tr>
@@ -1053,10 +1101,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="BrandMarkVariantSchema"></a>
+                    <a name="injectBrandMarks"></a>
                     <span class="name">
-                        <span ><b>BrandMarkVariantSchema</b></span>
-                        <a href="#BrandMarkVariantSchema"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>injectBrandMarks</b></span>
+                        <a href="#injectBrandMarks"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1068,13 +1116,45 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.enum([&#x27;default&#x27;, &#x27;contrast&#x27;, &#x27;small&#x27;])</code>
+                        <i>Default value : </i><code>BRAND_MARKS[0]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schema for mark variant</p>
+                    <div class="io-description"><p>Inject the brand marks configuration</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideBrandMarks"></a>
+                    <span class="name">
+                        <span ><b>provideBrandMarks</b></span>
+                        <a href="#provideBrandMarks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>BRAND_MARKS[1] as (marks: BrandMark[]) &#x3D;&gt; ReturnType&lt;(typeof BRAND_MARKS)[1]&gt;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set the brand marks configuration</p>
 </div>
                 </td>
             </tr>
@@ -1856,54 +1936,6 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Schema for organ data</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>brand/logo/src/lib/default-logos.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="DEFAULT_LOGOS"></a>
-                    <span class="name">
-                        <span ><b>DEFAULT_LOGOS</b></span>
-                        <a href="#DEFAULT_LOGOS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#BrandLogo" target="_self" >BrandLogo[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[
-  {
-    size: &#x27;regular&#x27;,
-    src: &#x27;assets/brand/logo/regular.svg&#x27;,
-    width: 178,
-    height: 74,
-  },
-  {
-    size: &#x27;small&#x27;,
-    src: &#x27;assets/brand/logo/small.svg&#x27;,
-    width: 116,
-    height: 48,
-  },
-]</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Default logos for applications</p>
 </div>
                 </td>
             </tr>
@@ -3938,41 +3970,6 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Schema for markdown component</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>brand/mark/src/lib/static-data/parsed.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="MARKS"></a>
-                    <span class="name">
-                        <span ><b>MARKS</b></span>
-                        <a href="#MARKS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>BrandMarksSchema.parse(RAW_MARKS).marks</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>All marks data</p>
 </div>
                 </td>
             </tr>

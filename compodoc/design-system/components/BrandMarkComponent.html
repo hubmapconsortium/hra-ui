@@ -242,6 +242,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#marks" >marks</a>
+                            </li>
+                            <li>
                                 <a href="#variant" >variant</a>
                             </li>
                         </ul>
@@ -258,6 +261,32 @@
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="marks"></a>
+                        <b>marks</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>injectBrandMarks()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">brand/mark/src/lib/mark.component.ts:22</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Marks from injection token</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -279,7 +308,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">brand/mark/src/lib/mark.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">brand/mark/src/lib/mark.component.ts:19</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -321,12 +350,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed(() &#x3D;&gt; findOrThrow(MARKS, ({ variant }) &#x3D;&gt; variant &#x3D;&#x3D;&#x3D; this.variant()))</code>
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; findOrThrow(this.marks(), ({ variant }) &#x3D;&gt; variant &#x3D;&#x3D;&#x3D; this.variant()))</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">brand/mark/src/lib/mark.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">brand/mark/src/lib/mark.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -365,7 +394,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">brand/mark/src/lib/mark.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">brand/mark/src/lib/mark.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -388,8 +417,7 @@
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { findOrThrow } from &#x27;@hra-ui/common/array-util&#x27;;
 import { InlineSVGModule, SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
-import { MARKS } from &#x27;./static-data/parsed&#x27;;
-import { BrandMarkVariant } from &#x27;./types/marks.schema&#x27;;
+import { BrandMarkVariant, injectBrandMarks } from &#x27;./brand-marks&#x27;;
 
 /**
  * HRA brandmark component
@@ -405,11 +433,14 @@ export class BrandMarkComponent {
   /** Mark variant */
   readonly variant &#x3D; input&lt;BrandMarkVariant&gt;(&#x27;default&#x27;);
 
+  /** Marks from injection token */
+  readonly marks &#x3D; input(injectBrandMarks());
+
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS &#x3D; SVGScriptEvalMode.NEVER;
 
   /** Mark data */
-  protected readonly data &#x3D; computed(() &#x3D;&gt; findOrThrow(MARKS, ({ variant }) &#x3D;&gt; variant &#x3D;&#x3D;&#x3D; this.variant()));
+  protected readonly data &#x3D; computed(() &#x3D;&gt; findOrThrow(this.marks(), ({ variant }) &#x3D;&gt; variant &#x3D;&#x3D;&#x3D; this.variant()));
 }
 </code></pre>
     </div>

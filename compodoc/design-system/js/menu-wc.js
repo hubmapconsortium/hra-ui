@@ -1126,6 +1126,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/BrandLogo.html" data-type="entity-link" >BrandLogo</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/BrandMark.html" data-type="entity-link" >BrandMark</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/BreadcrumbItem.html" data-type="entity-link" >BreadcrumbItem</a>
                             </li>
                             <li class="link">

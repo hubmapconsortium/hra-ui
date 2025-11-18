@@ -1,16 +1,5 @@
 import * as _angular_core from '@angular/core';
 
-/** Brand logo */
-interface BrandLogo {
-    /** Logo size */
-    size: 'regular' | 'small';
-    /** Logo source url */
-    src: string;
-    /** Logo width */
-    width: number;
-    /** Logo height */
-    height: number;
-}
 /** Application configuration */
 interface AppConfiguration {
     /** Application name */
@@ -19,8 +8,6 @@ interface AppConfiguration {
     version?: string;
     /** Application url */
     url?: string;
-    /** Brand logos */
-    logos?: BrandLogo[];
 }
 /** Inject the global application configuration */
 declare const injectAppConfiguration: {
@@ -52,4 +39,4 @@ declare function injectDocument(): Document;
 declare function injectWindow(): typeof window;
 
 export { injectAppConfiguration, injectDocument, injectWindow, provideAppConfiguration };
-export type { AppConfiguration, BrandLogo };
+export type { AppConfiguration };

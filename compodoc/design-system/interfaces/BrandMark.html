@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Code Documentation for common</title>
+        <title>Code Documentation for design-system</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -78,7 +78,7 @@
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
-                    <a href="../" class="navbar-brand">Code Documentation for common</a>
+                    <a href="../" class="navbar-brand">Code Documentation for design-system</a>
                     <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
                </div>
         </div>
@@ -116,7 +116,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  BrandLogo</li>
+  BrandMark</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -140,7 +140,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>injectors/src/lib/app-configuration.ts</code>
+            <code>brand/mark/src/lib/brand-marks.ts</code>
         </p>
 
 
@@ -148,7 +148,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Brand logo</p>
+                <p>Brand mark</p>
 
             </p>
 
@@ -172,15 +172,15 @@
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#size" 
->
-                                            size
-                                        </a>
-                                </li>
-                                <li>
                                         <a href="#src" 
 >
                                             src
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#variant" 
+>
+                                            variant
                                         </a>
                                 </li>
                                 <li>
@@ -233,46 +233,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Logo height</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="size"></a>
-                                        <span class="name "><b>size</b>
-                                            <a href="#size">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>size:     <code>&quot;regular&quot; | &quot;small&quot;</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>&quot;regular&quot; | &quot;small&quot;</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Logo size</p>
+                                    <div class="io-description"><p>Mark height</p>
 </div>
                                 </td>
                             </tr>
@@ -311,7 +272,46 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Logo source url</p>
+                                    <div class="io-description"><p>Mark source url</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="variant"></a>
+                                        <span class="name "><b>variant</b>
+                                            <a href="#variant">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>variant:         <code><a href="../miscellaneous/typealiases.html#BrandMarkVariant" target="_self" >BrandMarkVariant</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#BrandMarkVariant" target="_self" >BrandMarkVariant</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Mark variant</p>
 </div>
                                 </td>
                             </tr>
@@ -350,7 +350,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Logo width</p>
+                                    <div class="io-description"><p>Mark width</p>
 </div>
                                 </td>
                             </tr>
@@ -363,38 +363,51 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { createInjectionToken } from &#x27;ngxtension/create-injection-token&#x27;;
 
-/** Brand logo */
-export interface BrandLogo {
-  /** Logo size */
-  size: &#x27;regular&#x27; | &#x27;small&#x27;;
-  /** Logo source url */
+/** Default marks for applications */
+export const DEFAULT_MARKS: BrandMark[] &#x3D; [
+  {
+    variant: &#x27;default&#x27;,
+    src: &#x27;assets/brand/mark/default.svg&#x27;,
+    width: 226,
+    height: 226,
+  },
+  {
+    variant: &#x27;contrast&#x27;,
+    src: &#x27;assets/brand/mark/contrast.svg&#x27;,
+    width: 226,
+    height: 226,
+  },
+  {
+    variant: &#x27;small&#x27;,
+    src: &#x27;assets/brand/mark/small.svg&#x27;,
+    width: 40,
+    height: 40,
+  },
+];
+
+/** Brand mark variant */
+export type BrandMarkVariant &#x3D; &#x27;default&#x27; | &#x27;contrast&#x27; | &#x27;small&#x27;;
+
+/** Brand mark */
+export interface BrandMark {
+  /** Mark variant */
+  variant: BrandMarkVariant;
+  /** Mark source url */
   src: string;
-  /** Logo width */
+  /** Mark width */
   width: number;
-  /** Logo height */
+  /** Mark height */
   height: number;
 }
 
-/** Application configuration */
-export interface AppConfiguration {
-  /** Application name */
-  name?: string;
-  /** Application version */
-  version?: string;
-  /** Application url */
-  url?: string;
-  /** Brand logos */
-  logos?: BrandLogo[];
-}
+/** Injection token for brand marks configuration */
+const BRAND_MARKS &#x3D; createInjectionToken(() &#x3D;&gt; DEFAULT_MARKS);
 
-/** Application configuration */
-const APP_CONFIGURATION &#x3D; createInjectionToken((): AppConfiguration &#x3D;&gt; ({}));
+/** Inject the brand marks configuration */
+export const injectBrandMarks &#x3D; BRAND_MARKS[0];
 
-/** Inject the global application configuration */
-export const injectAppConfiguration &#x3D; APP_CONFIGURATION[0];
-
-/** Set the application configuration */
-export const provideAppConfiguration &#x3D; APP_CONFIGURATION[1];
+/** Set the brand marks configuration */
+export const provideBrandMarks &#x3D; BRAND_MARKS[1] as (marks: BrandMark[]) &#x3D;&gt; ReturnType&lt;(typeof BRAND_MARKS)[1]&gt;;
 </code></pre>
     </div>
 </div>
@@ -432,7 +445,7 @@ export const provideAppConfiguration &#x3D; APP_CONFIGURATION[1];
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'BrandLogo.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'BrandMark.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

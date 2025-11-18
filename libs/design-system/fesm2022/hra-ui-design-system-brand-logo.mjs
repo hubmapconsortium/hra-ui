@@ -1,8 +1,8 @@
+import { createInjectionToken } from 'ngxtension/create-injection-token';
 import * as i0 from '@angular/core';
 import { input, computed, ChangeDetectionStrategy, Component } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { findOrThrow } from '@hra-ui/common/array-util';
-import { injectAppConfiguration } from '@hra-ui/common/injectors';
 import * as i2 from 'ng-inline-svg-2';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import * as i1 from '@hra-ui/common/analytics';
@@ -23,13 +23,20 @@ const DEFAULT_LOGOS = [
         height: 48,
     },
 ];
+/** Injection token for brand logos configuration */
+const BRAND_LOGOS = createInjectionToken(() => DEFAULT_LOGOS);
+/** Inject the brand logos configuration */
+const injectBrandLogos = BRAND_LOGOS[0];
+/** Set the brand logos configuration */
+const provideBrandLogos = BRAND_LOGOS[1];
 
+/** Brand logo */
 /** Brand Logo Component */
 class BrandLogoComponent {
     /** Size of the logo */
     size = input('regular', ...(ngDevMode ? [{ debugName: "size" }] : []));
-    /** Logos from app configuration, or use default ones */
-    logos = input(injectAppConfiguration().logos ?? DEFAULT_LOGOS, ...(ngDevMode ? [{ debugName: "logos" }] : []));
+    /** Logos from injection token */
+    logos = input(injectBrandLogos(), ...(ngDevMode ? [{ debugName: "logos" }] : []));
     /** SVG script eval mode */
     NEVER_EVAL_SCRIPTS = "never" /* SVGScriptEvalMode.NEVER */;
     /** Logo data */
@@ -48,5 +55,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { BrandLogoComponent };
+export { BrandLogoComponent, provideBrandLogos };
 //# sourceMappingURL=hra-ui-design-system-brand-logo.mjs.map

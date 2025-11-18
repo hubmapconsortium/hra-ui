@@ -275,7 +275,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>injectAppConfiguration().logos ?? DEFAULT_LOGOS</code>
+                        <i>Default value : </i><code>injectBrandLogos()</code>
                     </td>
                 </tr>
                         <tr>
@@ -285,7 +285,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Logos from app configuration, or use default ones</p>
+                        <div class="io-description"><p>Logos from injection token</p>
 </div>
                     </td>
                 </tr>
@@ -420,10 +420,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { findOrThrow } from &#x27;@hra-ui/common/array-util&#x27;;
-import { injectAppConfiguration } from &#x27;@hra-ui/common/injectors&#x27;;
 import { InlineSVGModule, SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
-import { DEFAULT_LOGOS } from &#x27;./default-logos&#x27;;
-import { BrandLogoSize } from &#x27;./types/logos.schema&#x27;;
+import { BrandLogoSize, injectBrandLogos } from &#x27;./brand-logos&#x27;;
+
+/** Brand logo */
 
 /** Brand Logo Component */
 @Component({
@@ -440,8 +440,8 @@ export class BrandLogoComponent {
   /** Size of the logo */
   readonly size &#x3D; input&lt;BrandLogoSize&gt;(&#x27;regular&#x27;);
 
-  /** Logos from app configuration, or use default ones */
-  readonly logos &#x3D; input(injectAppConfiguration().logos ?? DEFAULT_LOGOS);
+  /** Logos from injection token */
+  readonly logos &#x3D; input(injectBrandLogos());
 
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS &#x3D; SVGScriptEvalMode.NEVER;

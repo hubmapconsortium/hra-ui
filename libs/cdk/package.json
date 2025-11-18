@@ -25,13 +25,13 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/hra-ui-cdk.mjs"
     },
-    "./breakpoints": {
-      "types": "./breakpoints/index.d.ts",
-      "default": "./fesm2022/hra-ui-cdk-breakpoints.mjs"
-    },
     "./content-template": {
       "types": "./content-template/index.d.ts",
       "default": "./fesm2022/hra-ui-cdk-content-template.mjs"
+    },
+    "./breakpoints": {
+      "types": "./breakpoints/index.d.ts",
+      "default": "./fesm2022/hra-ui-cdk-breakpoints.mjs"
     },
     "./injectors": {
       "types": "./injectors/index.d.ts",
