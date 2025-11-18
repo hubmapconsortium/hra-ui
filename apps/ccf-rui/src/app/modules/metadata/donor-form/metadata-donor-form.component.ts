@@ -92,7 +92,7 @@ function filterAutocompleteOptions<T>(
     ButtonsModule,
   ],
   templateUrl: './metadata-donor-form.component.html',
-  styleUrls: ['./metadata-donor-form.component.scss'],
+  styleUrl: './metadata-donor-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataDonorFormComponent {

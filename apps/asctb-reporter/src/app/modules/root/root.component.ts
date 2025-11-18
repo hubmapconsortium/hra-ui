@@ -19,9 +19,9 @@ import { TreeState } from './../../store/tree.state';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss'],
   standalone: false,
+  templateUrl: './root.component.html',
+  styleUrl: './root.component.scss',
 })
 export class RootComponent implements OnDestroy {
   readonly configService = inject(ConfigService);
@@ -65,7 +65,7 @@ export class RootComponent implements OnDestroy {
 
   // Tree Observables
   readonly treeData$: Observable<TNode[]> = this.store.select(TreeState.getTreeData);
-  readonly bsd$: Observable<any> = this.store.select(TreeState.getBottomSheetData);
+  readonly bsd$: Observable<Record<string, unknown>> = this.store.select(TreeState.getBottomSheetData);
   readonly bm$: Observable<BimodalData> = this.store.select(TreeState.getBimodal);
   readonly searchOption$: Observable<SearchStructure> = this.store.select(TreeState.getLatestSearchStructure);
 

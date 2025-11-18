@@ -1,4 +1,4 @@
-<mat-menu #childMenu="matMenu" hraFeature="asctb-table-menu">
+<mat-menu hraFeature="asctb-table-menu" #childMenu="matMenu">
   <div class="nested-menu">
     <ng-scrollbar>
       @for (sheet of sheetDetails; track sheet) {
@@ -6,10 +6,10 @@
           <button
             class="expanded"
             hraFeature="sheet-submenu"
-            [hraHoverEvent]="{ sheetDisplay: sheet.display }"
             mat-menu-item
             matRipple
             matRippleColor="#201E3D14"
+            [hraHoverEvent]="{ sheetDisplay: sheet.display }"
             [matMenuTriggerFor]="submenu"
             (focus)="(undefined)"
           >
@@ -22,9 +22,9 @@
             @for (version of sheet?.version; track version) {
               <a
                 mat-menu-item
-                [attr.href]="getUrl(version)"
                 target="_blank"
                 hraFeature="version-link"
+                [attr.href]="getUrl(version)"
                 [hraClickEvent]="{ version: version.viewValue }"
               >
                 <span>{{ version.viewValue }}</span>

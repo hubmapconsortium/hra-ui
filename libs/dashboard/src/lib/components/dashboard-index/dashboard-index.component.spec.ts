@@ -1,7 +1,7 @@
 import { DashboardIndexComponent } from './dashboard-index.component';
 import { RouterModule } from '@angular/router';
 import { render, screen } from '@testing-library/angular';
-import { z } from 'zod';
+import * as z from 'zod';
 import { LONG_CARD_DEF } from '../long-card/long-card.component';
 
 describe('DashboardIndexComponent', () => {
