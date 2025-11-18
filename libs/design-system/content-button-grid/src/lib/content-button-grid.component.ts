@@ -78,8 +78,6 @@ export class ContentButtonGridComponent {
         return cards.sort((a, b) => this.compare(a, b));
       case 'nameDes':
         return cards.sort((a, b) => this.compare(b, a));
-      default:
-        return cards;
     }
   }
 
