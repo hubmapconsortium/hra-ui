@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+
+  .sheet-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .close {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  ng-scrollbar {
+    height: calc(100% - 3.5rem);
+  }
+
+  .multiple-sections {
+    .section-item:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+}
