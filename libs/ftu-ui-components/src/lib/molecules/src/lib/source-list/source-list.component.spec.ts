@@ -69,6 +69,7 @@ describe('SourceListComponent', () => {
       selection: {
         selected: testSources,
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
 
     instance.onSelectionChange();

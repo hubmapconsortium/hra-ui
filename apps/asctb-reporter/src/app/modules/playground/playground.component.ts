@@ -11,9 +11,9 @@ import { UIState } from '../../store/ui.state';
 
 @Component({
   selector: 'app-playground',
-  templateUrl: './playground.component.html',
-  styleUrls: ['./playground.component.scss'],
   standalone: false,
+  templateUrl: './playground.component.html',
+  styleUrl: './playground.component.scss',
 })
 export class PlaygroundComponent implements AfterViewInit {
   readonly store = inject(Store);
@@ -205,6 +205,7 @@ export class PlaygroundComponent implements AfterViewInit {
                 onclick() {
                   obj.setComments(
                     [parseInt(x, 10), parseInt(y, 10)],
+                    // eslint-disable-next-line no-alert
                     prompt(obj.options.text?.comments, title) ?? '',
                     '',
                   );

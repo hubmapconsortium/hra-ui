@@ -14,7 +14,6 @@ export const Densities = {
 /** Style a component to a specific density level */
 @Directive({
   selector: '[hraDensity]',
-  standalone: true,
   host: {
     '[class]': '"hra-density-" + density()',
   },

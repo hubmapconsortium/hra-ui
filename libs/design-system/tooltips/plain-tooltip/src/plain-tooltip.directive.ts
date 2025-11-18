@@ -9,7 +9,6 @@ export type PlainTooltipSize = 'small' | 'medium';
 /** Directive for Tooltip */
 @Directive({
   selector: '[hraPlainTooltip]',
-  standalone: true,
   hostDirectives: [
     {
       directive: MatTooltip,

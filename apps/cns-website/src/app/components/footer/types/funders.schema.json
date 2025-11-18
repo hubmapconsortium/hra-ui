@@ -1,0 +1,42 @@
+{
+  "$ref": "#/definitions/Funders",
+  "definitions": {
+    "Funder": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string",
+          "format": "uri"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "link", "image"],
+      "additionalProperties": false
+    },
+    "Funders": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "funders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Funder"
+          }
+        }
+      },
+      "required": ["$schema", "funders"],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

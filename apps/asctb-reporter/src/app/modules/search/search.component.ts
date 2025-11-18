@@ -1,5 +1,5 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import { Component, ElementRef, HostListener, computed, inject, input, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, computed, inject, input, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -39,7 +39,10 @@ import { TreeState } from '../../store/tree.state';
     ButtonsModule,
   ],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  styleUrl: './search.component.scss',
+  host: {
+    '(document:click)': 'clickOutsideSearchList($event)',
+  },
 })
 export class SearchComponent {
   readonly disabled = input(false);
@@ -180,7 +183,6 @@ export class SearchComponent {
     }
   }
 
-  @HostListener('document:click', ['$event'])
   clickOutsideSearchList(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
     // Check if the click was outside the element
