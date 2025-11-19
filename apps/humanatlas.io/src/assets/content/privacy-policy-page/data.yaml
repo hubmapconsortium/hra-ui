@@ -1,33 +1,29 @@
-$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+$schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Privacy Policy
-subtitle: 'Effective: 2025-10-15'
+subtitle: 'Effective: 2025-09-08'
 content:
   - component: PageSection
     tagline: Overview
     anchor: overview
     level: 2
     content:
-      - component: Markdown
-        data: |
-          At Indiana University (IU), we are committed to protecting the privacy
-          and confidentiality of personal information entrusted to us.
-          By accessing and using IU's services, you acknowledge and consent to the practices described
-          in our global privacy statement here: https://privacy.iu.edu/privacy/global.html.
-          <br><br>
+      component: Markdown
+      data: |
+        At Indiana University (IU), we are committed to protecting the privacy and confidentiality of personal information entrusted to us.
+        By accessing and using IU's services, you acknowledge and
+        consent to the practices described in our global privacy statement here: https://privacy.iu.edu/privacy/global.html.
 
-          For additional information outlining how Cyberinfrastructure for Network Science Center collects,
-          uses, and safeguards personal information obtained specifically through our website (https://cns.iu.edu/),
-          please also review the information below.
-          <br><br>
+        For additional information outlining how Cyberinfrastructure for Network Science Center collects,
+        uses, and safeguards personal information obtained specifically through our website (https://humanatlas.io/),
+        please also review the information below.
 
-          Continued use of our website indicates consent to the collection, use, and disclosure of this information
-          as described in this notice.
-          <br><br>
+        Continued use of our website indicates consent to the collection, use,
+        and disclosure of this information as described in this notice.
 
-          Visitors to other IU websites should review the privacy notices for the sites they visit,
-          as other units at the university may collect and use visitor information in different ways.
-          Cyberinfrastructure for Network Science Center is not responsible for the content of other websites
-          or for the privacy practices of websites outside the scope of this notice.
+        Visitors to other IU websites should review the privacy notices for the sites they visit,
+        as other units at the university may collect and use visitor information in different ways.
+        Cyberinfrastructure for Network Science Center is not responsible for the content of other websites
+        or for the privacy practices of websites outside the scope of this notice.
 
   - component: PageSection
     tagline: Changes
@@ -36,8 +32,8 @@ content:
     content:
       - component: Markdown
         data: |
-          Because Internet technologies continue to evolve rapidly,
-          Cyberinfrastructure for Network Science Center may make appropriate changes to this notice in the future.
+          Because Internet technologies continue to evolve rapidly, Cyberinfrastructure for Network Science Center
+          may make appropriate changes to this notice in the future.
           Any such changes will be consistent with our commitment to respecting visitor privacy,
           and will be clearly posted in a revised privacy notice.
 
@@ -83,6 +79,7 @@ content:
             to deliver the products or service for which the information is needed.
             Providing the requested information indicates your consent to the collection, use, and disclosure of this information as
             described in this notice. Information we may actively collect could include:
+
             - The email addresses of those who communicate with us via email
             - Name
 
