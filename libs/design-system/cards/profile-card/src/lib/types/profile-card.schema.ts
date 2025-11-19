@@ -12,4 +12,4 @@ export const ProfileCardSchema = ContentTemplateSchema.extend({
   pictureUrl: z.string(),
   centerContent: z.boolean().optional(),
   actions: ProjectedContentTemplateSchema.optional(),
-});
+}).meta({ id: 'ProfileCard' });

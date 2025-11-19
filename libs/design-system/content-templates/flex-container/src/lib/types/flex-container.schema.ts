@@ -7,4 +7,4 @@ export const FlexContainerSchema = ContentTemplateSchema.extend({
   rowGap: z.string().optional(),
   columnGap: z.string().optional(),
   content: AnyContentTemplateSchema.array(),
-});
+}).meta({ id: 'FlexContainer' });

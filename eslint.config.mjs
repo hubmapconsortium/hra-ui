@@ -200,6 +200,29 @@ export const configs = {
       },
     },
   ],
+
+  // Plugin rules
+  plugin: [
+    ...json.configs['flat/base'],
+    ...json.configs['flat/recommended-with-json'],
+    {
+      files: ['**/*.json'],
+      rules: {
+        '@nx/dependency-checks': [
+          'error',
+          {
+            ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}'],
+          },
+        ],
+      },
+    },
+    {
+      files: ['**/package.json', '**/package.json', '**/executors.json'],
+      rules: {
+        '@nx/nx-plugin-checks': 'error',
+      },
+    },
+  ],
 };
 
 export default configs.base;

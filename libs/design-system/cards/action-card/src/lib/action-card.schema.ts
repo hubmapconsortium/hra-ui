@@ -6,7 +6,9 @@ import * as z from 'zod';
 export type ActionCardVariant = z.infer<typeof ActionCardVariantSchema>;
 
 /** Schema for action card variants */
-export const ActionCardVariantSchema = z.enum(['elevated', 'flat', 'outlined', 'outlined-with-icons']);
+export const ActionCardVariantSchema = z
+  .enum(['elevated', 'flat', 'outlined', 'outlined-with-icons'])
+  .meta({ id: 'ActionCardVariant' });
 
 /** Content template action card data */
 export type ActionCard = z.infer<typeof ActionCardSchema>;
@@ -22,4 +24,4 @@ export const ActionCardSchema = ContentTemplateSchema.extend({
   content: ProjectedContentTemplateSchema.optional(),
   actionsLeft: ProjectedContentTemplateSchema.optional(),
   actionsRight: ProjectedContentTemplateSchema.optional(),
-});
+}).meta({ id: 'ActionCard' });
