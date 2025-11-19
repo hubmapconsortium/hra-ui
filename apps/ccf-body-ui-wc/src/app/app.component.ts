@@ -1,19 +1,18 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  computed,
+  effect,
   EventEmitter,
   inject,
   Output,
   ViewChild,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SpatialSceneNode } from '@hra-api/ng-client';
-import { NodeClickEvent } from 'ccf-body-ui';
-import { BodyUiComponent, GlobalConfigState } from 'ccf-shared';
+import { BodyUiComponent, NodeClickEvent } from 'ccf-body-ui';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
-import { lastValueFrom } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
 import { FilteredSceneService } from './core/services/filtered-scene/filtered-scene.service';
 
 /** Config */
@@ -28,11 +27,11 @@ export interface GlobalConfig {
 
 /** Root component */
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'ccf-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
   standalone: false,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   /** Reference to the body ui */
@@ -45,48 +44,62 @@ export class AppComponent {
   /** Emits when the user clicks a node */
   @Output() readonly onClick = new EventEmitter<NodeClickEvent>();
 
-  /** Global config */
-  private readonly configState: GlobalConfigState<GlobalConfig> = inject(GlobalConfigState);
   /** Scene service */
   private readonly sceneSource = inject(FilteredSceneService);
-  /** Change detector */
-  private readonly cdr = inject(ChangeDetectorRef);
 
-  /** Data */
-  readonly data$ = this.configState.getOption('data');
   /** Organs */
-  organs$ = this.sceneSource.filteredOrgans$;
+  protected readonly organs = toSignal(this.sceneSource.filteredOrgans$, { initialValue: [] });
   /** Scene */
-  scene$ = this.sceneSource.filteredScene$.pipe(tap(() => this.reset()));
+  protected readonly scene = toSignal(this.sceneSource.filteredScene$, {
+    initialValue: undefined,
+  });
+
+  /** Whether the scene has a zooming node */
+  private readonly hasZoomingNode = computed(() => !!this.scene()?.some((node) => node.zoomToOnLoad));
+
+  /** Scene bounds */
+  protected readonly bounds = computed(() =>
+    this.computeFromDimensions(
+      (x, y, z) => ({
+        x: (1.25 * x) / 1000,
+        y: (1.25 * y) / 1000,
+        z: (1.25 * z) / 1000,
+      }),
+      { x: 2.2, y: 2, z: 0.4 },
+    ),
+  );
+
+  /** Scene target */
+  protected readonly target = computed(() =>
+    this.computeFromDimensions((x, y, z) => [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2], [0, 0, 0]),
+  );
+
+  /** Setup component */
+  constructor() {
+    effect(() => {
+      if (this.scene()) {
+        this.reset();
+      }
+    });
+  }
 
   /** Resets the body ui */
   private async reset(): Promise<void> {
-    const { bodyUI } = this;
-
     await new Promise((resolve) => {
       setTimeout(resolve, 200);
     });
-    const organs = await lastValueFrom(this.organs$.pipe(take(1)));
-    const hasZoomingNode = !!bodyUI.scene?.find((node) => node.zoomToOnLoad);
 
-    bodyUI.rotation = 0;
-    bodyUI.rotationX = 0;
+    this.bodyUI.resetView();
+  }
 
-    if (!hasZoomingNode) {
-      if (organs && organs.length === 1) {
-        const { x_dimension: x, y_dimension: y, z_dimension: z } = organs[0];
-        bodyUI.bounds = {
-          x: (1.25 * x) / 1000,
-          y: (1.25 * y) / 1000,
-          z: (1.25 * z) / 1000,
-        };
-        bodyUI.target = [x / 1000 / 2, y / 1000 / 2, z / 1000 / 2];
-      } else {
-        bodyUI.bounds = { x: 2.2, y: 2, z: 0.4 };
-        bodyUI.target = [0, 0, 0];
-      }
+  /** Perform a computation base on organ dimensions */
+  private computeFromDimensions<R>(computation: (x: number, y: number, z: number) => R, defaultValue: R): R {
+    const organs = this.organs();
+    if (!this.hasZoomingNode() || organs.length !== 1) {
+      return defaultValue;
     }
 
-    this.cdr.detectChanges();
+    const { x_dimension: x, y_dimension: y, z_dimension: z } = organs[0];
+    return computation(x, y, z);
   }
 }

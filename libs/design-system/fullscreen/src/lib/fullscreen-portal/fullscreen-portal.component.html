@@ -1,13 +1,13 @@
-<ng-template [hraViewOutlet]="viewRef()"> </ng-template>
+<ng-template [hraViewOutlet]="viewRef()" />
 
 <ng-template #contentTemplate>
-  <ng-content select="hra-fullscreen-portal-content"></ng-content>
+  <ng-content select="hra-fullscreen-portal-content" />
 </ng-template>
 
 <ng-template #dialogTemplate>
-  <hra-expansion-panel hraFeature="fullscreen" [tagline]="tagline()" disabled>
+  <hra-expansion-panel hraFeature="fullscreen" disabled [tagline]="tagline()">
     <hra-expansion-panel-actions>
-      <ng-content select="hra-fullscreen-actions"></ng-content>
+      <ng-content select="hra-fullscreen-actions" />
     </hra-expansion-panel-actions>
 
     <hra-expansion-panel-header-content>
@@ -16,6 +16,6 @@
       </button>
     </hra-expansion-panel-header-content>
 
-    <ng-template [hraViewOutlet]="viewRef()" data-testid="fullscreen-outlet"></ng-template>
+    <ng-template data-testid="fullscreen-outlet" [hraViewOutlet]="viewRef()" />
   </hra-expansion-panel>
 </ng-template>

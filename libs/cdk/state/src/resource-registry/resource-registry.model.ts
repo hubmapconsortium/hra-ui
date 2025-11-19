@@ -1,6 +1,6 @@
 import { UnionMember } from '@hra-ui/utils/types';
 import { StateContext } from '@ngxs/store';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Resource identifier */
 export type ResourceId = z.infer<typeof RESOURCE_ID>;
@@ -155,7 +155,7 @@ export function payload<Props extends object>(): ResourceEntryPayload<Props> {
  * @returns A new resource type
  */
 export function createCustomType<T extends string>(
-  type: T
+  type: T,
 ): ResourceType<CustomResourceEntry<T, Partial<Record<string, unknown>>>>;
 /**
  * Creates a custom resource type with a payload. The payload should be
@@ -169,7 +169,7 @@ export function createCustomType<T extends string>(
  */
 export function createCustomType<T extends string, Props extends object>(
   type: T,
-  payload: (() => ResourceEntryPayload<Props>) | ResourceEntryPayload<Props>
+  payload: (() => ResourceEntryPayload<Props>) | ResourceEntryPayload<Props>,
 ): ResourceType<CustomResourceEntry<T, Props>>;
 /** Implementation of createCustomType overloads */
 export function createCustomType(type: string): unknown {
@@ -186,7 +186,7 @@ export function createCustomType(type: string): unknown {
 export function getEntry<T extends ResourceEntry>(
   state: ResourceRegistryModel,
   id: ResourceId,
-  type?: ResourceType<T>
+  type?: ResourceType<T>,
 ): T | undefined {
   const entry = state[id];
   const typeMatches = type === undefined || entry?.type === type;

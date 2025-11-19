@@ -10,9 +10,9 @@
       ccfNumbersOnly
       class="input"
       type="number"
+      hraPlainTooltip="Tissue thickness is measured in micrometers"
       [value]="emptyStringIfNaN(slicesConfig().thickness)"
       (keyup)="updateSlicesData($event, 'thickness')"
-      hraPlainTooltip="Tissue thickness is measured in micrometers"
     />
   </mat-form-field>
 
@@ -23,9 +23,9 @@
       ccfNumbersOnly
       class="input"
       type="number"
+      hraPlainTooltip="Total number of tissue sections"
       [value]="emptyStringIfNaN(slicesConfig().numSlices)"
       (keyup)="updateSlicesData($event, 'numSlices')"
-      hraPlainTooltip="Total number of tissue sections"
     />
   </mat-form-field>
 </div>

@@ -17,6 +17,17 @@
         focus-state-layer-opacity: 0,
       )
     );
+
+    // Fix icon alignment within chips
+    mat-icon {
+      // Make icon display inline to properly align with text
+      display: inline-flex !important;
+      vertical-align: middle;
+      font-size: 1.125rem;
+      width: 1.125rem;
+      height: 1.125rem;
+      line-height: 1;
+    }
   }
 
   // mat-chip-option and mat-chip-row - interactive chips with hover/focus states

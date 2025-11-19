@@ -120,8 +120,9 @@ export class ApiComponent {
   }
 
   /** Tracking before-try in rapidoc for analytics */
-  onBeforeTry(event: any, beforeTry: ClickEventDirective) {
-    const request = event.detail?.request;
+  onBeforeTry(event: Event, beforeTry: ClickEventDirective) {
+    type BeforeTryDetail = { request?: { url: string; method: string } };
+    const request = (event as CustomEvent<BeforeTryDetail>).detail?.request;
     const url = request?.url || '';
     const endpoint = url ? new URL(url).pathname : 'unknown';
 

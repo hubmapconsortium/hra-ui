@@ -5,23 +5,23 @@
         class="logo"
         hraFeature="logo"
         hraClickEvent
-        [inlineSVG]="'assets/logo/cns_footer_logo.svg' | assetUrl"
         aria-label="Visit CNS"
         href="https://cns.iu.edu"
         target="_self"
+        [inlineSVG]="'assets/logo/cns_footer_logo.svg' | assetUrl"
       >
       </a>
       <div class="socials">
         @for (id of socials(); track id) {
-          <hra-social-media-button [id]="$any(id)" size="large" variant="color"></hra-social-media-button>
+          <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
         }
       </div>
     </div>
 
-    <cns-funding [funders]="funders()"></cns-funding>
+    <cns-funding [funders]="funders()" />
   </div>
 
-  <mat-divider></mat-divider>
+  <mat-divider />
 
   <div class="privacy-container">
     <span class="privacy">

@@ -39,7 +39,7 @@ import { ReportService } from './report.service';
     MatDividerModule,
   ],
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.scss'],
+  styleUrl: './report.component.scss',
 })
 export class ReportComponent implements OnInit {
   readonly reportService = inject(ReportService);

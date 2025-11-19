@@ -10,7 +10,6 @@ import { HraCommonModule } from '@hra-ui/common';
 import { OmapControlsComponent } from './omap-controls.component';
 
 @NgModule({
-  declarations: [OmapControlsComponent],
   imports: [
     CommonModule,
     MatExpansionModule,
@@ -21,6 +20,7 @@ import { OmapControlsComponent } from './omap-controls.component';
     MatCheckboxModule,
     HraCommonModule,
   ],
+  declarations: [OmapControlsComponent],
   exports: [OmapControlsComponent],
 })
 export class OmapControlsModule {}

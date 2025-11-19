@@ -1,17 +1,17 @@
 <cdk-accordion hraFeature="expansion-panel">
   <cdk-accordion-item
-    #accordionItem="cdkAccordionItem"
     tabindex="0"
     [attr.aria-expanded]="accordionItem.expanded"
     [attr.aria-controls]="bodyId"
     [expanded]="expanded()"
+    #accordionItem="cdkAccordionItem"
   >
     <div class="header">
       @if (!disabled()) {
         <button
           mat-icon-button
-          [hraClickEvent]="{ expanded: accordionItem.expanded }"
           data-testid="toggle"
+          [hraClickEvent]="{ expanded: accordionItem.expanded }"
           (click)="accordionItem.toggle()"
         >
           <mat-icon [hraPlainTooltip]="accordionItem.expanded ? 'Collapse' : 'Expand'">
@@ -25,26 +25,26 @@
       </span>
 
       <span>
-        <ng-content select="hra-expansion-panel-actions"> </ng-content>
+        <ng-content select="hra-expansion-panel-actions" />
       </span>
       <div class="filler"></div>
       <span class="header-content">
-        <ng-content select="hra-expansion-panel-header-content"></ng-content>
+        <ng-content select="hra-expansion-panel-header-content" />
       </span>
     </div>
     <div
       role="region"
       class="content"
+      data-testid="body"
       [attr.id]="bodyId"
       [attr.aria-labelledby]="taglineId"
-      #body
       [@bodyExpansion]="accordionItem.expanded ? 'expanded' : 'collapsed'"
       (@bodyExpansion.start)="animationStart($event)"
       (@bodyExpansion.done)="animationDone($event)"
-      data-testid="body"
+      #body
     >
       <div class="expansion-body">
-        <ng-content></ng-content>
+        <ng-content />
       </div>
     </div>
   </cdk-accordion-item>
