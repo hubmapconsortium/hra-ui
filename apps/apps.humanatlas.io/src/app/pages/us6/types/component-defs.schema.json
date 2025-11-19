@@ -1,11 +1,30 @@
 {
-  "$ref": "#/definitions/ComponentDefs",
-  "definitions": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "ComponentDefs",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "defs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ComponentDef"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "defs"
+  ],
+  "additionalProperties": false,
+  "$defs": {
     "ComponentDef": {
+      "id": "ComponentDef",
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "$ref": "#/$defs/ComponentDefId"
         },
         "productTitle": {
           "type": "string"
@@ -21,31 +40,30 @@
         },
         "embedAs": {
           "type": "string",
-          "enum": ["inline", "overlay", "external"]
+          "enum": [
+            "inline",
+            "overlay",
+            "external"
+          ]
         },
         "docLink": {
           "type": "string"
         }
       },
-      "required": ["id", "productTitle", "webComponentName", "description", "previewImage", "embedAs"],
+      "required": [
+        "id",
+        "productTitle",
+        "webComponentName",
+        "description",
+        "previewImage",
+        "embedAs",
+        "docLink"
+      ],
       "additionalProperties": false
     },
-    "ComponentDefs": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "defs": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ComponentDef"
-          }
-        }
-      },
-      "required": ["$schema", "defs"],
-      "additionalProperties": false
+    "ComponentDefId": {
+      "id": "ComponentDefId",
+      "type": "string"
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }

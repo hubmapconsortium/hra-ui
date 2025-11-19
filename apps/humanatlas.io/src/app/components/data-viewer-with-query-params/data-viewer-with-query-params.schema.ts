@@ -11,4 +11,4 @@ export const DataViewerWithQueryParamsSchema = ContentTemplateSchema.extend({
   variant: DataViewerVariantSchema,
   githubIconsUrl: z.string(),
   releaseVersionData: ReleaseVersionDataSchema.array(),
-});
+}).meta({ id: 'DataViewWithQueryParams' });

@@ -20,6 +20,20 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'jobs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/jobs-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'privacy-policy',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'visitor-info',
     component: ContentPageComponent,
     resolve: {

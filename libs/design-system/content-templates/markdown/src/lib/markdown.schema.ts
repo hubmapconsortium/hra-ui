@@ -9,4 +9,4 @@ export const MarkdownSchema = ContentTemplateSchema.extend({
   component: z.literal('Markdown'),
   data: z.string().optional(),
   src: z.string().optional(),
-});
+}).meta({ id: 'Markdown' });

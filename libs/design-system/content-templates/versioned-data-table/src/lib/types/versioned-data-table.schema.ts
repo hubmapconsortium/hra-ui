@@ -17,10 +17,12 @@ export const VersionedDataSchema = PageTableSchema.pick({
   style: true,
   enableSort: true,
   verticalDividers: true,
-}).extend({
-  label: z.string(),
-  version: z.string(),
-});
+})
+  .extend({
+    label: z.string(),
+    version: z.string(),
+  })
+  .meta({ id: 'VersionedData' });
 
 /**
  * Type for versioned Data Table
@@ -40,9 +42,11 @@ export const VersionedDataTableSchema = ContentTemplateSchema.merge(
     enableSort: true,
     verticalDividers: true,
   }),
-).extend({
-  component: z.literal('VersionedDataTable'),
-  label: z.string(),
-  selection: z.number().optional(),
-  items: VersionedDataSchema.array(),
-});
+)
+  .extend({
+    component: z.literal('VersionedDataTable'),
+    label: z.string(),
+    selection: z.number().optional(),
+    items: VersionedDataSchema.array(),
+  })
+  .meta({ id: 'VersionedDataTable' });
