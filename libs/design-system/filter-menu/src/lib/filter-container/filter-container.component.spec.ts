@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
-import { FilterContainerComponent, FilterChip } from './filter-container.component';
+import { FilterContainerComponent, FilterChip } from '../../../../filter-container/src/lib/filter-container.component';
 
 describe('FilterContainerComponent', () => {
   async function setup(options: {

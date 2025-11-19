@@ -14,7 +14,9 @@
       hraButtonVariant="secondary"
       class="category-button"
       color="primary"
-      (click)="actionClick.emit()"
+      cdkOverlayOrigin
+      (click)="toggleMenu()"
+      #desktopMenuOrigin="cdkOverlayOrigin"
     >
       {{ action() }}
     </button>
@@ -37,3 +39,23 @@
     <mat-divider />
   }
 </div>
+
+<hra-rich-tooltip-container class="filter-menu" #content>
+  <hra-rich-tooltip-content class="filter-menu-content">
+    <hra-filter-list-flyout [filterOptionCategory]="filter()" />
+  </hra-rich-tooltip-content>
+</hra-rich-tooltip-container>
+
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="menu-open-backdrop"
+  cdkConnectedOverlayLockPosition="true"
+  cdkConnectedOverlayPush="true"
+  [cdkConnectedOverlayOpen]="menuActive()"
+  [cdkConnectedOverlayOrigin]="desktopMenuOrigin"
+  [cdkConnectedOverlayPositions]="desktopMenuPositions"
+  (overlayOutsideClick)="toggleMenu()"
+>
+  <hra-filter-list-flyout [filterOptionCategory]="filter()" />
+</ng-template>

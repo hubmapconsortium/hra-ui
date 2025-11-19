@@ -2,8 +2,17 @@ import { ChangeDetectionStrategy, Component, contentChildren, input, output } fr
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { FilterContainerComponent } from './filter-container/filter-container.component';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
+
+/** Filter option interface */
+export interface FilterToggleOption {
+  /** Option id */
+  id: string;
+  /** Option label */
+  label: string;
+}
 
 /** Filter menu option interface */
 export interface FilterMenuOption {
@@ -11,6 +20,19 @@ export interface FilterMenuOption {
   id: string;
   /** Option label */
   label: string;
+  /** Secondary label */
+  secondaryLabel?: string;
+  /** Number of results for the filter option in the data */
+  count: number;
+}
+
+/** Filter option category interface */
+export interface FilterOptionCategory {
+  id: string;
+  /** Category label */
+  label: string;
+  /** Filter options for the category */
+  options?: FilterMenuOption[];
 }
 
 /**
@@ -28,7 +50,14 @@ export class FilterMenuControlsComponent {}
  */
 @Component({
   selector: 'hra-filter-menu',
-  imports: [HraCommonModule, ScrollingModule, ScrollOverflowFadeDirective, ButtonsModule, IconsModule],
+  imports: [
+    HraCommonModule,
+    ScrollingModule,
+    ScrollOverflowFadeDirective,
+    ButtonsModule,
+    IconsModule,
+    FilterContainerComponent,
+  ],
   templateUrl: './filter-menu.component.html',
   styleUrl: './filter-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,10 +73,12 @@ export class FilterMenuComponent {
   readonly enableClose = input<boolean>();
 
   /** Filter options */
-  readonly filters = input.required<FilterMenuOption[]>();
+  readonly filters = input.required<FilterOptionCategory[]>();
 
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
+
+  readonly filterChange = output();
 
   /** Whether the user is on a wide screen */
   protected isWideScreen = watchBreakpoint('(min-width: 1100px)');

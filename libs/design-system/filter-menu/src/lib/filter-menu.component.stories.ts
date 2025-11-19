@@ -1,37 +1,52 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 
-import { FilterMenuComponent, FilterMenuControlsComponent, FilterMenuOption } from './filter-menu.component';
+import {
+  FilterMenuComponent,
+  FilterMenuControlsComponent,
+  FilterOptionCategory,
+  FilterToggleOption,
+} from './filter-menu.component';
 import { FilterMenuCustomizeComponent } from './filter-menu-customize/filter-menu-customize.component';
 
+const FILTER_OPTIONS = [
+  { id: 'a', label: 'A', count: 9999 },
+  { id: 'b', label: 'B', count: 4299 },
+  { id: 'c', label: 'C', count: 1799 },
+  { id: 'd', label: 'D', count: 899 },
+  { id: 'e', label: 'E', count: 499 },
+  { id: 'f', label: 'F', count: 299 },
+  { id: 'g', label: 'G', count: 199 },
+  { id: 'h', label: 'H', count: 99 },
+];
 const TOGGLE_OPTIONS = [
   { id: 'option1', label: 'Option 1' },
   { id: 'option2', label: 'Option 2' },
   { id: 'option3', label: 'Option 3' },
-] as FilterMenuOption[];
+] as FilterToggleOption[];
 const VIEW_AS_OPTIONS = [
   { id: 'table', label: 'Table' },
   { id: 'gallery', label: 'Gallery' },
   { id: 'list', label: 'List' },
-];
+] as FilterToggleOption[];
 const SORT_BY_OPTIONS = [
   { id: 'nameAsc', label: 'Name ascending' },
   { id: 'nameDesc', label: 'Name descending' },
   { id: 'oldest', label: 'Oldest' },
   { id: 'newest', label: 'Newest' },
   { id: 'hierachical', label: 'Hierarchical' },
-] as FilterMenuOption[];
+] as FilterToggleOption[];
 const FILTER_CATEGORIES = [
-  { id: 'category1', label: 'Category 1' },
-  { id: 'category2', label: 'Category 2' },
-  { id: 'category3', label: 'Category 3' },
-  { id: 'category4', label: 'Category 4' },
-  { id: 'category5', label: 'Category 5' },
-  { id: 'category6', label: 'Category 6' },
-  { id: 'category7', label: 'Category 7' },
-  { id: 'category8', label: 'Category 8' },
-  { id: 'category9', label: 'Category 9' },
-  { id: 'category10', label: 'Category 10' },
-] as FilterMenuOption[];
+  { id: 'category1', label: 'Category 1', options: FILTER_OPTIONS },
+  { id: 'category2', label: 'Category 2', options: FILTER_OPTIONS },
+  { id: 'category3', label: 'Category 3', options: FILTER_OPTIONS },
+  { id: 'category4', label: 'Category 4', options: FILTER_OPTIONS },
+  { id: 'category5', label: 'Category 5', options: FILTER_OPTIONS },
+  { id: 'category6', label: 'Category 6', options: FILTER_OPTIONS },
+  { id: 'category7', label: 'Category 7', options: FILTER_OPTIONS },
+  { id: 'category8', label: 'Category 8', options: FILTER_OPTIONS },
+  { id: 'category9', label: 'Category 9', options: FILTER_OPTIONS },
+  { id: 'category10', label: 'Category 10', options: FILTER_OPTIONS },
+] as FilterOptionCategory[];
 
 const meta: Meta = {
   title: 'Design System / Filter Menu',
@@ -54,7 +69,6 @@ const meta: Meta = {
     toggleOptions: TOGGLE_OPTIONS,
     viewAsOptions: VIEW_AS_OPTIONS,
     sortByOptions: SORT_BY_OPTIONS,
-    groupByOptions: FILTER_CATEGORIES,
   },
   render: (args) => ({
     props: args,
@@ -65,8 +79,7 @@ const meta: Meta = {
             [filters]="filters"
             [toggleOptions]="toggleOptions"
             [viewAsOptions]="viewAsOptions"
-            [sortByOptions]="sortByOptions"
-            [groupByOptions]="groupByOptions">
+            [sortByOptions]="sortByOptions">
           </hra-filter-menu-customize>
         </hra-filter-menu-controls>
       </hra-filter-menu>

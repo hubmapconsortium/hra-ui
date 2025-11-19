@@ -1,11 +1,11 @@
 <form>
-  <div class="customize-section" [formGroup]="form().controls.customize">
+  <div class="customize-section" [formGroup]="form()">
     <div class="customize-header">
       <hra-icon class="customize-icon" fontIcon="tune" />
       <span class="customize-title">Customize</span>
     </div>
 
-    <mat-button-toggle-group formControlName="toggle" class="toggle-group" [value]="form().value.customize?.toggle">
+    <mat-button-toggle-group formControlName="toggle" class="toggle-group">
       @for (category of toggleOptions(); track category.id) {
         <mat-button-toggle hraClickEvent [hraFeature]="category.id" [value]="category">
           {{ category.label }}
@@ -50,15 +50,5 @@
         }
       </mat-select>
     </mat-form-field>
-
-    <div class="filters-section">
-      <div class="filters-header">
-        <hra-icon class="filter-icon" fontIcon="filter_list" />
-        <span class="filters-title">Filters</span>
-      </div>
-      @for (filter of filters(); track $index) {
-        <hra-filter-container enableDivider [action]="filter.label" (actionClick)="openFilterOverlay.emit(filter)" />
-      }
-    </div>
   </div>
 </form>
