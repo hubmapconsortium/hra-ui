@@ -6,4 +6,4 @@ export const GridContainerSchema = ContentTemplateSchema.extend({
   component: z.literal('GridContainer'),
   itemMinWidth: z.string().optional(),
   content: AnyContentTemplateSchema.array(),
-});
+}).meta({ id: 'GridContainer' });

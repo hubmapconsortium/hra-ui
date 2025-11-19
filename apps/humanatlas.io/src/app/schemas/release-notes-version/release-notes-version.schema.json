@@ -1,7 +1,26 @@
 {
-  "$ref": "#/definitions/ReleaseNotesVersions",
-  "definitions": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "ReleaseNotesVersions",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ReleaseNotesVersion"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "versions"
+  ],
+  "additionalProperties": false,
+  "$defs": {
     "ReleaseNotesVersion": {
+      "id": "ReleaseNotesVersion",
       "type": "object",
       "properties": {
         "version": {
@@ -14,25 +33,12 @@
           "type": "string"
         }
       },
-      "required": ["version", "label", "date"],
-      "additionalProperties": false
-    },
-    "ReleaseNotesVersions": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "versions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ReleaseNotesVersion"
-          }
-        }
-      },
-      "required": ["$schema", "versions"],
+      "required": [
+        "version",
+        "label",
+        "date"
+      ],
       "additionalProperties": false
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }

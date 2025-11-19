@@ -13,8 +13,10 @@ export const SummaryStatisticsTableSchema = ContentTemplateSchema.merge(
   PageTableSchema.pick({
     columns: true,
   }),
-).extend({
-  component: z.literal('SummaryStatisticsTable'),
-  csvUrl: z.string().optional(),
-  organColumn: z.string().optional(),
-});
+)
+  .extend({
+    component: z.literal('SummaryStatisticsTable'),
+    csvUrl: z.string().optional(),
+    organColumn: z.string().optional(),
+  })
+  .meta({ id: 'SummaryStatisticsTable' });
