@@ -278,6 +278,10 @@
       "types": "./indicators/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators.mjs"
     },
+    "./indicators/end-of-results": {
+      "types": "./indicators/end-of-results/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-indicators-end-of-results.mjs"
+    },
     "./indicators/error-indicator": {
       "types": "./indicators/error-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-error-indicator.mjs"
