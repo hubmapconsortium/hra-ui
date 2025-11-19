@@ -14,7 +14,6 @@
             "glob": "**/*",
             "input": "apps/cns-website/public"
           },
-          "apps/cns-website/src/assets",
           {
             "input": "libs/design-system/assets",
             "glob": "**/*",
