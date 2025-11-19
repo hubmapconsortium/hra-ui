@@ -1,18 +1,62 @@
 {
-  "$ref": "#/definitions/Menus",
-  "definitions": {
-    "MenuDivider": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "HeaderMenus",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "menus": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/HeaderMenu"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "menus"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "HeaderMenu": {
+      "id": "HeaderMenu",
       "type": "object",
       "properties": {
         "type": {
           "type": "string",
-          "const": "divider"
+          "const": "menu"
+        },
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/HeaderMenuGroup"
+              },
+              {
+                "$ref": "#/$defs/HeaderMenuDivider"
+              }
+            ]
+          }
         }
       },
-      "required": ["type"],
+      "required": [
+        "type",
+        "id",
+        "label",
+        "items"
+      ],
       "additionalProperties": false
     },
-    "MenuGroup": {
+    "HeaderMenuGroup": {
+      "id": "HeaderMenuGroup",
       "type": "object",
       "properties": {
         "type": {
@@ -40,19 +84,49 @@
           "items": {
             "anyOf": [
               {
-                "$ref": "#/definitions/MenuSubGroup"
+                "$ref": "#/$defs/HeaderMenuSubGroup"
               },
               {
-                "$ref": "#/definitions/MenuItem"
+                "$ref": "#/$defs/HeaderMenuItem"
               }
             ]
           }
         }
       },
-      "required": ["type", "label", "url"],
+      "required": [
+        "type",
+        "label",
+        "url"
+      ],
       "additionalProperties": false
     },
-    "MenuItem": {
+    "HeaderMenuSubGroup": {
+      "id": "HeaderMenuSubGroup",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "subgroup"
+        },
+        "label": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HeaderMenuItem"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "HeaderMenuItem": {
+      "id": "HeaderMenuItem",
       "type": "object",
       "properties": {
         "type": {
@@ -73,75 +147,26 @@
           "type": "string"
         }
       },
-      "required": ["type", "label", "url"],
+      "required": [
+        "type",
+        "label",
+        "url"
+      ],
       "additionalProperties": false
     },
-    "Menu": {
+    "HeaderMenuDivider": {
+      "id": "HeaderMenuDivider",
       "type": "object",
       "properties": {
         "type": {
           "type": "string",
-          "const": "menu"
-        },
-        "id": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        },
-        "items": {
-          "type": "array",
-          "items": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/MenuGroup"
-              },
-              {
-                "$ref": "#/definitions/MenuDivider"
-              }
-            ]
-          }
+          "const": "divider"
         }
       },
-      "required": ["type", "id", "label", "items"],
-      "additionalProperties": false
-    },
-    "MenuSubGroup": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "subgroup"
-        },
-        "label": {
-          "type": "string"
-        },
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MenuItem"
-          }
-        }
-      },
-      "required": ["type", "label", "items"],
-      "additionalProperties": false
-    },
-    "Menus": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "menus": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Menu"
-          }
-        }
-      },
-      "required": ["$schema", "menus"],
+      "required": [
+        "type"
+      ],
       "additionalProperties": false
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }

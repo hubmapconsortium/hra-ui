@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
+import { provideBrandMarks } from './brand-marks';
 import { BrandMarkComponent } from './mark.component';
 
 const meta: Meta<BrandMarkComponent> = {
@@ -21,7 +22,21 @@ const meta: Meta<BrandMarkComponent> = {
     variant: 'default',
   },
 };
+
 export default meta;
 type Story = StoryObj<BrandMarkComponent>;
 
 export const Default: Story = {};
+export const CNS: Story = {
+  decorators: [
+    moduleMetadata({
+      providers: [
+        provideBrandMarks([
+          { variant: 'default', src: 'assets/brand/mark/cns-small.svg', width: 40, height: 40 },
+          { variant: 'contrast', src: 'assets/brand/mark/cns-small.svg', width: 40, height: 40 },
+          { variant: 'small', src: 'assets/brand/mark/cns-small.svg', width: 40, height: 40 },
+        ]),
+      ],
+    }),
+  ],
+};

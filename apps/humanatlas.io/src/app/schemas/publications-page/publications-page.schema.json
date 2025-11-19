@@ -1,15 +1,14 @@
 {
-  "$ref": "#/definitions/PublicationsPage",
-  "definitions": {
-    "PublicationsPage": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      }
-    }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "PublicationsPageData",
+  "type": "object",
+  "propertyNames": {
+    "type": "string"
   },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": {
+    "type": "array",
+    "items": {
+      "type": "string"
+    }
+  }
 }

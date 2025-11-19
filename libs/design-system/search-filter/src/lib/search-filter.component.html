@@ -1,0 +1,9 @@
+<mat-form-field class="search-field" subscriptSizing="dynamic">
+  <mat-label>{{ label() }}</mat-label>
+
+  <mat-icon matPrefix>search</mat-icon>
+
+  <input matInput type="text" [(ngModel)]="search" />
+</mat-form-field>
+
+<hra-results-indicator class="results-counter" [value]="viewingCount()" [total]="totalCount()" />
