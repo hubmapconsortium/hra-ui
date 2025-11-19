@@ -20,9 +20,6 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
     },
   },
-
-  // Content pages
-  // Please try to keep sorted in alphabetical order
   {
     path: 'visitor-info',
     component: ContentPageComponent,
