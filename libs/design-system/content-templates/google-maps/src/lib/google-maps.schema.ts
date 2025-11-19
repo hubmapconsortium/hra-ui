@@ -10,4 +10,4 @@ export const GoogleMapsSchema = ContentTemplateSchema.extend({
   url: z.string(),
   externalUrl: z.string(),
   fallbackImageUrl: z.string(),
-});
+}).meta({ id: 'GoogleMaps' });

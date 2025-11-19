@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "build": {
+      "implementation": "./src/executors/build/build",
+      "schema": "./src/executors/build/schema.json",
+      "description": "Convert zod schema definitions into json"
+    }
+  }
+}
