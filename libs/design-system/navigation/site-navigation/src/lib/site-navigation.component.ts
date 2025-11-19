@@ -44,9 +44,6 @@ export class SiteNavigationComponent {
   /** Navigation Menu Items */
   readonly navigationMenu = input(DOCS_NAVIGATION_MENU);
 
-  /** Base URL for the appliation */
-  readonly baseUrl = input.required<string>();
-
   /** State for expanded navigation category */
   readonly expandedCategory = signal('');
 

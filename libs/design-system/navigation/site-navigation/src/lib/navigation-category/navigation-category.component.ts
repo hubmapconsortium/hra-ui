@@ -21,9 +21,6 @@ export class NavigationCategoryComponent {
   /** Navigation category expanded state */
   readonly expanded = input<boolean>(false);
 
-  /** Base URL for the appliation */
-  readonly baseUrl = input.required<string>();
-
   /** Navigation category expanded state change event */
   readonly expandedChange = output<boolean>();
 
