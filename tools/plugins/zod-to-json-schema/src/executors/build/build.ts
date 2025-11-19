@@ -46,7 +46,7 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
     }
   }
 
-  logger.info(`Wrote ${count}/${files.length} schemas.`);
+  logger.info(`Wrote ${count} schemas.`);
   logger.info('All done!');
   return { success: true };
 };
