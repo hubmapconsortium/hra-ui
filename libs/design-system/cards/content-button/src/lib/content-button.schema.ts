@@ -13,4 +13,4 @@ export const ContentButtonSchema = ContentTemplateSchema.extend({
   tags: z.array(z.string()).optional(),
   link: z.string(),
   external: z.boolean().optional(),
-});
+}).meta({ id: 'ContentButton' });

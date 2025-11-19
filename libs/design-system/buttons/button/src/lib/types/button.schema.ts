@@ -14,4 +14,4 @@ export const ButtonSchema = ContentTemplateSchema.extend({
   size: z.enum(['small', 'medium']).optional(),
   disabled: z.boolean().optional(),
   icon: z.string().optional(),
-});
+}).meta({ id: 'Button' });
