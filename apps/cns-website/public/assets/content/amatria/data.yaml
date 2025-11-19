@@ -1,0 +1,138 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: 'Amatria: Sentient Architecture'
+subtitle: 'Amatria is a living sculpture that responds to her environment through light, sound, and movement.'
+content:
+  - component: Image
+    src: assets/content/amatria/images/amatria-1.png
+    alt: Amatria Sentient Architecture installation at Luddy Hall
+
+  - component: PageSection
+    tagline: 'Luddy Hall: Home to Amatria'
+    anchor: luddy-hall
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Indiana University's Luddy Hall is the home of several rather unique Sentient Architecture installations: _Amatria_, dendrites and moths. The installations foreshadow a future where the Internet of Things is omnipresent. They also demonstrate how embedded technologies affect humans that inhabit these spaces. The works were designed and built by members of the Toronto-based [Living Architecture Systems Group](http://livingarchitecturesystems.com/) (LASG) led by Philip Beesley, Philip Beesley Architect Inc. and by members of the Cyberinfrastructure for Network Science Center (CNS) at the School of Informatics, Computing, and Engineering, Indiana University, Bloomington.
+      - component: Image
+        src: assets/content/amatria/images/amatria-2.png
+        alt: About Amatria and architectural elements
+
+  - component: PageSection
+    tagline: 'About Amatria'
+    anchor: about
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          _Amatria_, hanging above the stairs in the 4th floor atrium, is a luminous, forest-inspired landscape of soaring clouds and tangled thickets of 3D-printed formations alive with artificial intelligence that invites visitors into an interactive, ethereal space. 'She' is a living sculpture with a delicate canopy of mesh- and frond-like organic structures suspended from the ceiling in Indiana University's Luddy Hall atrium. She gathers information about her environment using light and motion sensors, responding with atmospheric sounds, undulating movements, and changing colors. She is aware of the people who enter her sphere to gaze upon her visual story of abiogenesis: the emergence of life during the earliest stages of development of the universe.
+          <br><br>
+          - Birthdate: April 11, 2018
+          - Resources: [Amatria Pictionary](https://cns.iu.edu/docs/handouts/Amatria_Pictionary_hi.pdf) | [Living Architecture Systems Group: Amatria](https://livingarchitecturesystems.com/project/amatria/)
+          - Matterport images: [360 degrees, 3D View of Luddy Hall 4111, Amatria's birth place](https://my.matterport.com/models/eDirQ2tqFMo?section=media&mediasection=showcase)
+          - YouTube videos: [Installation](https://youtu.be/6sMbNrPsAM0) | [DEAF 2012](https://www.youtube.com/watch?v=DGHEBdkC8AA)
+          - Publications: Carolyn Beans (2018) [Science and Culture: Sentient architecture promises insight into our evolving relationship with AI](https://doi.org/10.1073/pnas.1809390115). PNAS. 115 (30) 7638-7640
+
+  - component: PageSection
+    tagline: New generations and architectural elements
+    anchor: architectural-elements
+    level: 2
+    content:
+      - component: GridContainer
+        styles:
+          margin-top: 2rem
+          gap: 2rem
+          grid-template-columns: repeat(auto-fill, minmax(max(17rem, calc(50% - 1rem)), 1fr))
+        content:
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/amatria/images/denrites.png
+            tagline: Denrites
+            content:
+              - component: Markdown
+                data: Each _Amatria_ Denrite has one light sensor (the eye) and actuators, such as lights and a strand of shape memory alloy, that makes the sculpture move. Software controls the sensor and actuators. Dendrite fields were built in the 2017 ISE Summer camp.
+            actionsLeft:
+              component: TextHyperlink
+              text: View on GitHub
+              url: https://github.com/pbarch/1714-IU-Summer-Camp
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/amatria/images/moths.png
+            tagline: Moths
+            content:
+              - component: Markdown
+                data: _Amatria_ Moths, on display in the Luddy Hall Visualization Lab (room 4012), are the newest generation of _Amatria_-related architectural elements.
+            actionsLeft:
+              component: TextHyperlink
+              text: View manual
+              url: https://cns.iu.edu/docs/research/workshops/amatria/18-amatria-moth-manual.pdf
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/amatria/images/fascinators.png
+            tagline: Fascinators
+            content:
+              - component: Markdown
+                data: A limited edition personal work of art worn in your hair or elsewhere on your person. Each kit has a pair of mylar fronds that are joined to a tear-drop glass vessel filled with copper sulphate, creating a beautiful contrast of white and silver on blue.
+            actionsLeft:
+              component: TextHyperlink
+              text: View handout
+              url: https://cns.iu.edu/docs/research/workshops/amatria/Handout-Fascinator.pdf
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/amatria/images/amaria.png
+            tagline: Amaria
+            content:
+              - component: Markdown
+                data: Assembled from different types of materials, this unusual structure will grab the attention of any passerby. Place her on a suitable surface, and she will even go for a walk!
+            actionsLeft:
+              component: TextHyperlink
+              text: View handout
+              url: https://cns.iu.edu/docs/research/workshops/amatria/Handout-Amaria.pdf
+
+  - component: PageSection
+    tagline: 'Tavola app: Making sense of Amatria'
+    anchor: tavola
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Tavola is an application that visualizes data flows in _Amatria_. It helps visitors understand the physical structure of _Amatria_ by showing the location of infrared sensors and actuators such as speakers, lights, motors as well as activation patterns unfolding over time. Tavola reads real-time data streams from _Amatria_ (e.g., values of all 18 infrared sensors) and visualizes them using Unity 3D. It comes with a brief introduction of the sculpture and instructions on how to modify camera angles and the data on display. As _Amatria_ evolves, Tavola evolves to capture new functionalities. Tavola is showcased during tours of _Amatria_; a permanent deployment is planned in the near future.
+      - component: Markdown
+        data: |
+          Resources: [Tavola Overview](https://cns.iu.edu/images/research/workshops/amatria/img-tavola-overview.jpg) | [Tavola Real-time Sensor Visualization](https://cns.iu.edu/images/research/workshops/amatria/img-tavola-sensors.jpg)
+      - component: Image
+        src: assets/content/amatria/images/tavola.png
+        alt: Tavola Real-time Sensor Visualization
+
+  - component: PageSection
+    tagline: Events
+    anchor: events
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Over the years, CNS has hosted public tours, birthday celebrations, workshops, and special tours showcasing _Amatria_'s interactive architecture.
+      - component: Button
+        label: View events
+        href: /research?filter=amatria
+        type: cta
+
+  - component: PageSection
+    tagline: References
+    anchor: references
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Beans, Carolyn. 2018. ["Science and Culture: Sentient Architecture Promises Insight into Our Evolving Relationship with AI."](https://doi.org/10.1073/pnas.1809390115) PNAS 115 (30): 7638–7640.
+
+  - component: PageSection
+    tagline: Acknowledgments
+    anchor: acknowledgments
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          _Amatria_, Dendrites, and Moths were designed and developed by the [Living Architecture Systems Group](http://livingarchitecturesystems.com/) in association with Philip Beesley Architect Inc.
+
+          Tavola was designed by Ph.D. student Andreas Bueckle, under the supervision of Katy Börner, Director of the Cyberinfrastructure for Network Science Center at the Luddy School of Informatics, Computing, and Engineering.
