@@ -5,7 +5,7 @@ describe('EndOfResultsIndicatorComponent', () => {
   it('should create', async () => {
     const result = await render(EndOfResultsIndicatorComponent, {
       componentInputs: {
-        resultCount: 2,
+        count: 2,
       },
     });
 
@@ -15,7 +15,7 @@ describe('EndOfResultsIndicatorComponent', () => {
   it('should display the result count and end message', async () => {
     const { container } = await render(EndOfResultsIndicatorComponent, {
       componentInputs: {
-        resultCount: 5,
+        count: 5,
       },
     });
 
