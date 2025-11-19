@@ -21,6 +21,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'privacy-policy',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'visitor-info',
     component: ContentPageComponent,
     resolve: {
