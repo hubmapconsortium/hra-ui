@@ -10,4 +10,4 @@ export const PageSectionSchema = ContentTemplateSchema.extend({
   icons: IconListSchema.optional(),
   anchor: z.string().optional(),
   content: ProjectedContentTemplateSchema,
-});
+}).meta({ id: 'PageSection' });

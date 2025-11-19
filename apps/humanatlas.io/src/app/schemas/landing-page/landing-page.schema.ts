@@ -6,18 +6,20 @@ import { SectionCardItemSchema } from '../../components/section-cards/section-ca
 export type LandingPageData = z.infer<typeof LandingPageDataSchema>;
 
 /** Landing page data schema */
-export const LandingPageDataSchema = z.object({
-  $schema: z.string(),
-  carouselItems: CarouselItemSchema.array(),
-  countInfo: z
-    .object({
-      count: z.number(),
-      label: z.string(),
-      suffix: z.string().optional(),
-      icon: z.string(),
-    })
-    .array(),
-  sectionCardInfo: SectionCardItemSchema.array(),
-});
+export const LandingPageDataSchema = z
+  .object({
+    $schema: z.string(),
+    carouselItems: CarouselItemSchema.array(),
+    countInfo: z
+      .object({
+        count: z.number(),
+        label: z.string(),
+        suffix: z.string().optional(),
+        icon: z.string(),
+      })
+      .array(),
+    sectionCardInfo: SectionCardItemSchema.array(),
+  })
+  .meta({ id: 'LandingPageData' });
 
 export default LandingPageDataSchema;

@@ -14,4 +14,4 @@ export const TextHyperlinkSchema = ContentTemplateSchema.extend({
   text: z.string(),
   url: z.string(),
   icon: z.string().optional(),
-});
+}).meta({ id: 'TextHyperlink' });
