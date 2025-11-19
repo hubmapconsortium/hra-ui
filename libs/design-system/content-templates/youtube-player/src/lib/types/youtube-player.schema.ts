@@ -9,4 +9,4 @@ export const YouTubePlayerSchema = ContentTemplateSchema.extend({
   component: z.literal('YouTubePlayer'),
   videoId: z.string(),
   label: z.string(),
-});
+}).meta({ id: 'YouTubePlayer' });

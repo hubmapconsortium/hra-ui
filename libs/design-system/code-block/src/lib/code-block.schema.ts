@@ -9,4 +9,4 @@ export const CodeBlockSchema = ContentTemplateSchema.extend({
   component: z.literal('CodeBlock'),
   code: z.string().optional(),
   language: z.string().optional(),
-});
+}).meta({ id: 'CodeBlock' });
