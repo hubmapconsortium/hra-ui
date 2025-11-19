@@ -60,7 +60,7 @@ describe('ListViewComponent', () => {
   it('should handle empty data array', async () => {
     const { container } = await setup([], false);
 
-    const items = container.querySelectorAll('.list-view-item');
+    const items = container.querySelectorAll('.content');
     expect(items.length).toBe(0);
   });
 });
