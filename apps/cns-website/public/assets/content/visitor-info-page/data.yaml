@@ -1,0 +1,70 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Visitor Info
+subtitle: |
+  Information for your visit to Indiana University’s Cyberinfrastructure for Network Science Center.
+content:
+  - component: PageSection
+    tagline: Address
+    anchor: address
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Luddy School of Informatics, Computing, and Engineering
+
+          Indiana University at Bloomington
+
+          700 N Woodlawn Ave. Luddy Hall, Suite 4018
+
+          Bloomington, IN 47408
+  - component: PageSection
+    tagline: Parking
+    anchor: parking
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The nearest visitor parking is available in the Fee Lane garage, located at 709 N. Fee Lane.
+      - component: TextHyperlink
+        text: IU Parking Map
+        url: mailto:infoccf@iu.edu
+        icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: Airport transportation
+    anchor: airport-transportation
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          - Bloomington Airport Shuttle
+          - SuperShuttle
+          - Directions: From the Indianapolis Airport (IND), head south on Highway 37, exit onto Walnut Street, then turn left on 10th St. and left on Woodlawn Ave.
+
+  - component: PageSection
+    tagline: CNS office location
+    anchor: cns-office-location
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          CNS Center is on the 4th floor at Indiana University's Luddy Hall:
+          - Arrive at the Luddy School of Informatics, Computing, and Engineering at 700 N Woodlawn Ave Bloomington, IN 47408, located at the corner of 10th Street and Woodlawn Avenue
+          - Locate the elevators and press the up button
+          - Walk into the elevation and press the 4th floor button
+          - On the 4th floor, exit the elevator to the right
+          - Take the first right turn, passing the water fountains and Vis Lab (4012)
+          - Open the door and enter room 4018 to arrive at the Cyberinfrastructure for Network Science Center
+
+      - component: GoogleMaps
+        url: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3093.095776349573!2d-86.52570008467531!3d39.17254333828355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886c66c6f37e689d%3A0xbf0b1d7c24bd0299!2sLuddy+Hall!5e0!3m2!1sen!2sus!4v1514920610609
+        externalUrl: https://maps.app.goo.gl/PqeHqwZbFdU7KBWp8
+        fallbackImageUrl: assets/ui-images/google-maps-luddy-hall.png
+
+  - component: PageSection
+    tagline: Luddy Hall 4th floor
+    anchor: cns-office-location
+    level: 3
+    content:
+      - component: Image
+        src: assets/content/visitor-info-page/images/floor-plan.png

@@ -33,7 +33,8 @@
     "lib:webcomponents",
     "lib:state",
     "app:kg-explorer",
-    "lib:application"
+    "lib:application",
+    "cns-website"
   ],
   "eslint.validate": ["yaml", "json", "javascript", "typescript"]
 }
