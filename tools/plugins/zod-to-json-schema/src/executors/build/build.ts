@@ -33,7 +33,8 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
   logger.info('Compilation complete. Starting convertions...');
   const schemas = files.map((file, index) => convertSchemaModule(file, modules[index], options));
 
-  logger.info('Convertions complete. Writing to files...');
+  logger.info('Convertions complete. Writing files...');
+  let count = 0;
   for (let index = 0; index < files.length; index++) {
     const file = files[index];
     const schema = schemas[index];
@@ -41,10 +42,12 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
 
     if (schema) {
       await fs.writeFile(outFile, schema);
+      count++;
     }
   }
 
-  logger.info('Schemas written to disk. All done!');
+  logger.info(`Wrote ${count}/${files.length} schemas.`);
+  logger.info('All done!');
   return { success: true };
 };
 
