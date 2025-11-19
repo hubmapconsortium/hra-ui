@@ -12,18 +12,18 @@ const meta: Meta<EndOfResultsIndicatorComponent> = {
     }),
   ],
   args: {
-    resultCount: 2,
+    count: 2,
   },
   argTypes: {
-    resultCount: {
+    count: {
       control: 'number',
       description: 'Number of filtered results to display',
     },
-    resultsLabel: {
+    label: {
       control: 'text',
       description: 'Custom label for results count',
     },
-    endLabel: {
+    description: {
       control: 'text',
       description: 'Custom label for end message',
     },
@@ -35,32 +35,32 @@ type Story = StoryObj<EndOfResultsIndicatorComponent>;
 
 export const Default: Story = {
   args: {
-    resultCount: 2,
+    count: 2,
   },
 };
 
 export const ManyResults: Story = {
   args: {
-    resultCount: 150,
+    count: 150,
   },
 };
 
 export const CustomLabels: Story = {
   args: {
-    resultCount: 25,
-    resultsLabel: 'Total Found:',
-    endLabel: 'No more items to display',
+    count: 25,
+    label: 'Total Found:',
+    description: 'No more items to display',
   },
 };
 
 export const SingleResult: Story = {
   args: {
-    resultCount: 1,
+    count: 1,
   },
 };
 
 export const LargeNumber: Story = {
   args: {
-    resultCount: 44102,
+    count: 44102,
   },
 };
