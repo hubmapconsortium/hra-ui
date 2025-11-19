@@ -1,0 +1,774 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for ftu-ui-components</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for ftu-ui-components</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FilterContainerComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Design system filter container component</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>hra-filter-container</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                                <code><a href="../modules/ButtonsModule.html" target="_self" >ButtonsModule</a></code>
+                                <code><a href="../miscellaneous/typealiases.html#Icon" target="_self" >MatIconModule</a></code>
+                                <code><a href="../modules/ChipsModule.html" target="_self" >MatChipsModule</a></code>
+                            <code>MatDividerModule</code>
+                                <code><a href="../components/InfoButtonComponent.html" target="_self" >InfoButtonComponent</a></code>
+                                <code><a href="../directives/InfoButtonTaglineDirective.html" target="_self" >InfoButtonTaglineDirective</a></code>
+                                <code><a href="../directives/InfoButtonActionsDirective.html" target="_self" >InfoButtonActionsDirective</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./filter-container.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./filter-container.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#removeChip" >removeChip</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#action" >action</a>
+                            </li>
+                            <li>
+                                <a href="#chips" >chips</a>
+                            </li>
+                            <li>
+                                <a href="#enableDivider" >enableDivider</a>
+                            </li>
+                            <li>
+                                <a href="#showTooltip" >showTooltip</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actionClick" >actionClick</a>
+                            </li>
+                            <li>
+                                <a href="#chips" >chips</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="action"></a>
+                        <b>action</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>tagline for the filter category</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="chips"></a>
+                        <b>chips</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of selected filter chips - two-way bindable</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="enableDivider"></a>
+                        <b>enableDivider</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false, { transform: booleanAttribute }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts:49</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to show a divider below the container</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showTooltip"></a>
+                        <b>showTooltip</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false, { transform: booleanAttribute }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts:43</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to show the info button with tooltip</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="actionClick"></a>
+                        <b>actionClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts:52</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the category button is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="chips"></a>
+                        <b>chips</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of selected filter chips - two-way bindable</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeChip"></a>
+                    <span class="name">
+                        <span ><b>removeChip</b></span>
+                        <a href="#removeChip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeChip(chip: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles the removal of a chip</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>chip</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The chip to remove</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from &#x27;@angular/core&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import {
+  InfoButtonComponent,
+  InfoButtonTaglineDirective,
+  InfoButtonActionsDirective,
+} from &#x27;@hra-ui/design-system/buttons/info-button&#x27;;
+
+/** A filter chip representing a selected filter option */
+export interface FilterChip {
+  /** Label for the chip */
+  label: string;
+}
+
+/**
+ * Design system filter container component
+ */
+@Component({
+  selector: &#x27;hra-filter-container&#x27;,
+  imports: [
+    HraCommonModule,
+    ButtonsModule,
+    MatIconModule,
+    MatChipsModule,
+    MatDividerModule,
+    InfoButtonComponent,
+    InfoButtonTaglineDirective,
+    InfoButtonActionsDirective,
+  ],
+  templateUrl: &#x27;./filter-container.component.html&#x27;,
+  styleUrl: &#x27;./filter-container.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FilterContainerComponent&lt;T extends FilterChip&gt; {
+  /** tagline for the filter category */
+  readonly action &#x3D; input.required&lt;string&gt;();
+
+  /** Whether to show the info button with tooltip */
+  readonly showTooltip &#x3D; input(false, { transform: booleanAttribute });
+
+  /** Array of selected filter chips - two-way bindable */
+  readonly chips &#x3D; model&lt;T[]&gt;([]);
+
+  /** Whether to show a divider below the container */
+  readonly enableDivider &#x3D; input(false, { transform: booleanAttribute });
+
+  /** Emits when the category button is clicked */
+  readonly actionClick &#x3D; output&lt;void&gt;();
+
+  /**
+   * Handles the removal of a chip
+   * @param chip The chip to remove
+   */
+  removeChip(chip: T): void {
+    this.chips.update((current) &#x3D;&gt; current.filter((c) &#x3D;&gt; c.label !&#x3D;&#x3D; chip.label));
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;filter-container&quot;&gt;
+  &lt;div class&#x3D;&quot;top-row&quot;&gt;
+    @if (showTooltip()) {
+      &lt;hra-info-button&gt;
+        &lt;span hraInfoButtonTagline&gt;{{ action() }}&lt;/span&gt;
+        &lt;ng-content select&#x3D;&quot;[tooltipContent]&quot; /&gt;
+        &lt;div hraInfoButtonActions&gt;
+          &lt;ng-content select&#x3D;&quot;[tooltipActions]&quot; /&gt;
+        &lt;/div&gt;
+      &lt;/hra-info-button&gt;
+    }
+    &lt;button
+      mat-button
+      hraButtonVariant&#x3D;&quot;secondary&quot;
+      class&#x3D;&quot;category-button&quot;
+      color&#x3D;&quot;primary&quot;
+      (click)&#x3D;&quot;actionClick.emit()&quot;
+    &gt;
+      {{ action() }}
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  @if (chips().length &gt; 0) {
+    &lt;mat-chip-set class&#x3D;&quot;chips-container&quot;&gt;
+      @for (chip of chips(); track chip.label) {
+        &lt;mat-chip disableRipple (removed)&#x3D;&quot;removeChip(chip)&quot;&gt;
+          {{ chip.label }}
+          &lt;button matChipRemove [attr.aria-label]&#x3D;&quot;&#x60;Remove ${chip.label}&#x60;&quot;&gt;
+            &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        &lt;/mat-chip&gt;
+      }
+    &lt;/mat-chip-set&gt;
+  }
+
+  @if (enableDivider()) {
+    &lt;mat-divider /&gt;
+  }
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="filter-container">  <div class="top-row">    @if (showTooltip()) {      <hra-info-button>        <span hraInfoButtonTagline>{{ action() }}</span>        <ng-content select="[tooltipContent]" />        <div hraInfoButtonActions>          <ng-content select="[tooltipActions]" />        </div>      </hra-info-button>    }    <button      mat-button      hraButtonVariant="secondary"      class="category-button"      color="primary"      (click)="actionClick.emit()"    >      {{ action() }}    </button>  </div>  @if (chips().length > 0) {    <mat-chip-set class="chips-container">      @for (chip of chips(); track chip.label) {        <mat-chip disableRipple (removed)="removeChip(chip)">          {{ chip.label }}          <button matChipRemove [attr.aria-label]="`Remove ${chip.label}`">            <mat-icon>close</mat-icon>          </button>        </mat-chip>      }    </mat-chip-set>  }  @if (enableDivider()) {    <mat-divider />  }</div></div>'
+    var COMPONENTS = [{'name': 'ActionCardActionComponent', 'selector': 'hra-action-card-action'},{'name': 'ActionCardComponent', 'selector': 'hra-action-card'},{'name': 'ApiCommandComponent', 'selector': 'hra-api-command'},{'name': 'AppLabelComponent', 'selector': 'hra-app-label'},{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'ArchivedPageComponent', 'selector': 'hra-archived-page'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BottomSheetComponent', 'selector': 'hra-bottom-sheet'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'hra-button'},{'name': 'CardMenuComponent', 'selector': 'hra-card-menu'},{'name': 'CategoriesComponent', 'selector': 'hra-categories'},{'name': 'CodeBlockComponent', 'selector': 'hra-code-block'},{'name': 'CodeBlockGlobalStylesComponent', 'selector': 'hra-code-block-global-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ConsentBannerComponent', 'selector': 'hra-consent-banner'},{'name': 'ContentButtonComponent', 'selector': 'hra-content-button'},{'name': 'ContentPageComponent', 'selector': 'hra-content-page'},{'name': 'CopyableUrlContainerComponent', 'selector': 'hra-copyable-url-container'},{'name': 'CountCardComponent', 'selector': 'hra-count-card'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DangerMessageIndicatorComponent', 'selector': 'hra-danger-message-indicator'},{'name': 'DataViewerComponent', 'selector': 'hra-data-viewer'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FilterContainerComponent', 'selector': 'hra-filter-container'},{'name': 'FlatCardActionsComponent', 'selector': 'hra-flat-card-actions'},{'name': 'FlatCardComponent', 'selector': 'hra-flat-card'},{'name': 'FlexContainerComponent', 'selector': 'hra-flex-container'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'GalleryCardComponent', 'selector': 'hra-gallery-card'},{'name': 'GoogleMapsComponent', 'selector': 'hra-google-maps'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HelpButtonComponent', 'selector': 'hra-help-button'},{'name': 'HraYoutubePlayerComponent', 'selector': 'hra-youtube-player'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconComponent', 'selector': 'hra-icon'},{'name': 'ImageComponent', 'selector': 'hra-image'},{'name': 'InfoButtonComponent', 'selector': 'hra-info-button'},{'name': 'InfoMessageIndicatorComponent', 'selector': 'hra-info-message-indicator'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'MarkdownComponent', 'selector': 'hra-markdown'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavigationButtonComponent', 'selector': 'hra-navigation-button'},{'name': 'NavigationCategoryComponent', 'selector': 'hra-navigation-category'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NavigationItemComponent', 'selector': 'hra-navigation-item'},{'name': 'NoResultsIndicatorComponent', 'selector': 'hra-no-results-indicator'},{'name': 'NotFoundPageComponent', 'selector': 'hra-not-found-page'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'PageLabelComponent', 'selector': 'hra-page-label'},{'name': 'PageSectionComponent', 'selector': 'hra-page-section'},{'name': 'PlainTooltipStylesComponent', 'selector': 'hra-plain-tooltip-styles'},{'name': 'PrivacyPreferencesComponent', 'selector': 'hra-privacy-preferences'},{'name': 'ProfileCardComponent', 'selector': 'hra-profile-card'},{'name': 'ProgressSpinnerComponent', 'selector': 'hra-progress-spinner'},{'name': 'RedirectPageComponent', 'selector': 'hra-redirect-page'},{'name': 'ResultsIndicatorComponent', 'selector': 'hra-results-indicator'},{'name': 'RichTooltipActionsComponent', 'selector': 'hra-rich-tooltip-actions'},{'name': 'RichTooltipContainerComponent', 'selector': 'hra-rich-tooltip-container'},{'name': 'RichTooltipContentComponent', 'selector': 'hra-rich-tooltip-content'},{'name': 'RichTooltipTaglineComponent', 'selector': 'hra-rich-tooltip-tagline'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SectionLinkComponent', 'selector': 'h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
+    h4[hra-section-link], h5[hra-section-link], h6[hra-section-link]'},{'name': 'ServerErrorPageComponent', 'selector': 'hra-server-error-page'},{'name': 'SiteNavigationComponent', 'selector': 'hra-site-navigation'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableComponent', 'selector': 'hra-table'},{'name': 'TableOfContentsComponent', 'selector': 'hra-table-of-contents'},{'name': 'TableOfContentsDemoComponent', 'selector': 'hra-table-of-contents-demo'},{'name': 'TableOfContentsLayoutComponent', 'selector': 'hra-table-of-contents-layout'},{'name': 'TableOfContentsLayoutDemoComponent', 'selector': 'hra-table-of-contents-layout-demo'},{'name': 'TableOfContentsLayoutHeaderComponent', 'selector': 'hra-table-of-contents-layout-header'},{'name': 'TextHyperlinkComponent', 'selector': 'hra-text-hyperlink'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'UiSectionComponent', 'selector': 'hra-ui-section'},{'name': 'VersionedDataTableComponent', 'selector': 'hra-versioned-data-table'},{'name': 'ViewerCardComponent', 'selector': 'hra-viewer-card'},{'name': 'ViewerMenuComponent', 'selector': 'hra-viewer-menu'},{'name': 'VisualButtonComponent', 'selector': 'hra-visual-button'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
+    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'ChipSizeDirective', 'selector': 'mat-chip[hraChipSize], mat-chip-option[hraChipSize], mat-chip-row[hraChipSize]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'DensityDirective', 'selector': '[hraDensity]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'IconRowElementDirective', 'selector': 'ng-template[hraIconRowElement]'},{'name': 'InfoButtonActionsDirective', 'selector': '[hraInfoButtonActions]'},{'name': 'InfoButtonTaglineDirective', 'selector': '[hraInfoButtonTagline]'},{'name': 'LinkRowElementDirective', 'selector': 'ng-template[hraLinkRowElement]'},{'name': 'MarkdownRowElementDirective', 'selector': 'ng-template[hraMarkdownRowElement]'},{'name': 'MenuButtonRowElementDirective', 'selector': 'ng-template[hraMenuButtonRowElement]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'NavigationButtonDescriptionDirective', 'selector': '[hraNavigationButtonDescription]'},{'name': 'NavigationButtonTaglineDirective', 'selector': '[hraNavigationButtonTagline]'},{'name': 'NavigationIconDirective', 'selector': '[hraNavigationIcon]'},{'name': 'NumericRowElementDirective', 'selector': 'ng-template[hraNumericRowElement]'},{'name': 'PlainTooltipDirective', 'selector': '[hraPlainTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'ProgressBarColorDirective', 'selector': 'mat-progress-bar[hraProgressBarColor]'},{'name': 'RichTooltipCloseDirective', 'selector': '[hraRichTooltipClose]'},{'name': 'RichTooltipContextDirective', 'selector': 'ng-template[hraRichTooltipContext]'},{'name': 'RichTooltipDirective', 'selector': '[hraRichTooltip]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextButtonDirective', 'selector': 'button[hraTextButton]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TextRowElementDirective', 'selector': 'ng-template[hraTextRowElement]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
+    var ACTUAL_COMPONENT = {'name': 'FilterContainerComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FilterContainerComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

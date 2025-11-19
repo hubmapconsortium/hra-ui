@@ -443,13 +443,15 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.lazy(() &#x3D;&gt; {
-  if (contentTemplateSpecs &#x3D;&#x3D;&#x3D; undefined) {
-    return ContentTemplateWithPropsSchema;
-  }
+                        <i>Default value : </i><code>z
+  .lazy(() &#x3D;&gt; {
+    if (contentTemplateSpecs &#x3D;&#x3D;&#x3D; undefined) {
+      return ContentTemplateWithPropsSchema;
+    }
 
-  return z.discriminatedUnion(&#x27;component&#x27;, contentTemplateSpecs) as unknown as z.ZodType&lt;AnyContentTemplate&gt;;
-})</code>
+    return z.discriminatedUnion(&#x27;component&#x27;, contentTemplateSpecs) as unknown as z.ZodType&lt;AnyContentTemplate&gt;;
+  })
+  .meta({ id: &#x27;AnyContentTemplate&#x27; })</code>
                     </td>
                 </tr>
 
@@ -481,7 +483,9 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.union([z.string(), z.string().array(), z.record(z.string(), z.any())])</code>
+                        <i>Default value : </i><code>z
+  .union([z.string(), z.string().array(), z.record(z.string(), z.any())])
+  .meta({ id: &#x27;Classes&#x27; })</code>
                     </td>
                 </tr>
 
@@ -513,12 +517,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  component: z.string() as unknown as z.ZodLiteral&lt;string&gt;,
-  classes: ClassesSchema.optional(),
-  styles: StylesSchema.optional(),
-  controllers: ControllerSchema.array().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    component: z.string() as unknown as z.ZodLiteral&lt;string&gt;,
+    classes: ClassesSchema.optional(),
+    styles: StylesSchema.optional(),
+    controllers: ControllerSchema.array().optional(),
+  })
+  .meta({ id: &#x27;ContentTemplate&#x27; })</code>
                     </td>
                 </tr>
 
@@ -582,7 +588,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>ContentTemplateSchema.loose()</code>
+                        <i>Default value : </i><code>ContentTemplateSchema.loose().meta({ id: &#x27;ContentTemplateWithProps&#x27; })</code>
                     </td>
                 </tr>
 
@@ -614,7 +620,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({ id: z.string() }).loose()</code>
+                        <i>Default value : </i><code>z.object({ id: z.string() }).loose().meta({ id: &#x27;Controller&#x27; })</code>
                     </td>
                 </tr>
 
@@ -646,7 +652,9 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.union([AnyContentTemplateSchema, AnyContentTemplateSchema.array()])</code>
+                        <i>Default value : </i><code>z
+  .union([AnyContentTemplateSchema, AnyContentTemplateSchema.array()])
+  .meta({ id: &#x27;ProjectedContentTemplate&#x27; })</code>
                     </td>
                 </tr>
 
@@ -678,7 +686,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.union([z.string(), z.record(z.string(), z.any())])</code>
+                        <i>Default value : </i><code>z.union([z.string(), z.record(z.string(), z.any())]).meta({ id: &#x27;Styles&#x27; })</code>
                     </td>
                 </tr>
 

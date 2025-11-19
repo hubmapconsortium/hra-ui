@@ -591,7 +591,7 @@
   content: ProjectedContentTemplateSchema.optional(),
   actionsLeft: ProjectedContentTemplateSchema.optional(),
   actionsRight: ProjectedContentTemplateSchema.optional(),
-})</code>
+}).meta({ id: &#x27;ActionCard&#x27; })</code>
                     </td>
                 </tr>
 
@@ -623,7 +623,9 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.enum([&#x27;elevated&#x27;, &#x27;flat&#x27;, &#x27;outlined&#x27;, &#x27;outlined-with-icons&#x27;])</code>
+                        <i>Default value : </i><code>z
+  .enum([&#x27;elevated&#x27;, &#x27;flat&#x27;, &#x27;outlined&#x27;, &#x27;outlined-with-icons&#x27;])
+  .meta({ id: &#x27;ActionCardVariant&#x27; })</code>
                     </td>
                 </tr>
 
@@ -698,14 +700,16 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  /** Text for the plain button */
-  label: z.string(),
-  /** Icon name for the button */
-  icon: z.string().optional(),
-  /** External URL for the button */
-  url: z.string().url().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    /** Text for the plain button */
+    label: z.string(),
+    /** Icon name for the button */
+    icon: z.string().optional(),
+    /** External URL for the button */
+    url: z.string().url().optional(),
+  })
+  .meta({ id: &#x27;ApiCommandButton&#x27; })</code>
                     </td>
                 </tr>
 
@@ -745,7 +749,7 @@
   method: z.enum([&#x27;GET&#x27;, &#x27;POST&#x27;]),
   /** Details of the right button */
   rightButton: ApiCommandButtonSchema,
-})</code>
+}).meta({ id: &#x27;ApiCommand&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1230,7 +1234,7 @@
   size: z.enum([&#x27;small&#x27;, &#x27;medium&#x27;]).optional(),
   disabled: z.boolean().optional(),
   icon: z.string().optional(),
-})</code>
+}).meta({ id: &#x27;Button&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1376,7 +1380,7 @@
   component: z.literal(&#x27;CodeBlock&#x27;),
   code: z.string().optional(),
   language: z.string().optional(),
-})</code>
+}).meta({ id: &#x27;CodeBlock&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1620,7 +1624,7 @@
   tags: z.array(z.string()).optional(),
   link: z.string(),
   external: z.boolean().optional(),
-})</code>
+}).meta({ id: &#x27;ContentButton&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1655,20 +1659,22 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  title: z.string(),
-  subtitle: z.string(),
-  icons: IconListSchema.optional(),
-  action: z
-    .object({
-      label: z.string(),
-      url: z.string(),
-    })
-    .optional(),
-  headerContent: ProjectedContentTemplateSchema.optional(),
-  content: ProjectedContentTemplateSchema,
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    title: z.string(),
+    subtitle: z.string(),
+    icons: IconListSchema.optional(),
+    action: z
+      .object({
+        label: z.string(),
+        url: z.string(),
+      })
+      .optional(),
+    headerContent: ProjectedContentTemplateSchema.optional(),
+    content: ProjectedContentTemplateSchema,
+  })
+  .meta({ id: &#x27;ContentPageData&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1746,7 +1752,7 @@
   variant: DataViewerVariantSchema,
   githubIconsUrl: z.string(),
   releaseVersionData: ReleaseVersionDataSchema.array(),
-})</code>
+}).meta({ id: &#x27;DataViewer&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1778,7 +1784,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.enum([&#x27;ftu&#x27;, &#x27;3d-organ&#x27;])</code>
+                        <i>Default value : </i><code>z.enum([&#x27;ftu&#x27;, &#x27;3d-organ&#x27;]).meta({ id: &#x27;DataViewerVariant&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1810,15 +1816,17 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  version: z.string(),
-  label: z.string(),
-  date: z.string(),
-  crosswalkUrl: z.string().url().optional(),
-  extractionsSitesUrl: z.string().url().optional(),
-  referenceOrgansUrl: z.string().url().optional(),
-  organData: ViewerOrganDataSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    version: z.string(),
+    label: z.string(),
+    date: z.string(),
+    crosswalkUrl: z.string().url().optional(),
+    extractionsSitesUrl: z.string().url().optional(),
+    referenceOrgansUrl: z.string().url().optional(),
+    organData: ViewerOrganDataSchema.array(),
+  })
+  .meta({ id: &#x27;ReleaseVersionData&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1850,15 +1858,17 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  label: z.string(),
-  alt: z.string().optional(),
-  fileUrl: z.string().url(),
-  sourceDataUrl: z.string().url(),
-  fullscreenUrl: z.string().url().optional(),
-  crosswalkUrl: z.string().url().optional(),
-  files: ViewerFileSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    label: z.string(),
+    alt: z.string().optional(),
+    fileUrl: z.string().url(),
+    sourceDataUrl: z.string().url(),
+    fullscreenUrl: z.string().url().optional(),
+    crosswalkUrl: z.string().url().optional(),
+    files: ViewerFileSchema.array(),
+  })
+  .meta({ id: &#x27;DataViewerCard&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1890,10 +1900,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  label: z.string(),
-  url: z.string().url(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    label: z.string(),
+    url: z.string().url(),
+  })
+  .meta({ id: &#x27;DataViewerFile&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1925,11 +1937,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  label: z.string(),
-  icon: z.string(), // This is a mat-icon svg icon
-  cards: ViewerCardSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    label: z.string(),
+    icon: z.string(), // This is a mat-icon svg icon
+    cards: ViewerCardSchema.array(),
+  })
+  .meta({ id: &#x27;DataViewerOrgan&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2213,7 +2227,9 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.array(z.union([DocsNavigationCategorySchema, DocsNavigationItemSchema]))</code>
+                        <i>Default value : </i><code>z
+  .array(z.union([DocsNavigationCategorySchema, DocsNavigationItemSchema]))
+  .meta({ id: &#x27;DocsMenuItems&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2245,12 +2261,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;category&#x27;).optional(),
-  label: z.string(),
-  icon: z.string(),
-  children: z.array(DocsNavigationItemSchema),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;category&#x27;).optional(),
+    label: z.string(),
+    icon: z.string(),
+    children: z.array(DocsNavigationItemSchema),
+  })
+  .meta({ id: &#x27;DocsNavigationCategory&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2282,12 +2300,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;item&#x27;),
-  label: z.string(),
-  icon: z.string().optional(),
-  url: z.string(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;item&#x27;),
+    label: z.string(),
+    icon: z.string().optional(),
+    url: z.string(),
+  })
+  .meta({ id: &#x27;DocsNavigationItem&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2319,10 +2339,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  menuItems: DocsMenuItemsSchema,
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    menuItems: DocsMenuItemsSchema,
+  })
+  .meta({ id: &#x27;DocsNavigationMenu&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2403,7 +2425,7 @@
   rowGap: z.string().optional(),
   columnGap: z.string().optional(),
   content: AnyContentTemplateSchema.array(),
-})</code>
+}).meta({ id: &#x27;FlexContainer&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2689,12 +2711,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  id: z.string().brand&lt;&#x27;FunderId&#x27;&gt;(),
-  name: z.string(),
-  link: z.string().url(),
-  image: z.string(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    id: z.string().brand&lt;&#x27;FunderId&#x27;&gt;(),
+    name: z.string(),
+    link: z.string().url(),
+    image: z.string(),
+  })
+  .meta({ id: &#x27;Funder&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2726,10 +2750,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  funders: FunderSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    funders: FunderSchema.array(),
+  })
+  .meta({ id: &#x27;Funders&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2807,7 +2833,7 @@
   url: z.string(),
   externalUrl: z.string(),
   fallbackImageUrl: z.string(),
-})</code>
+}).meta({ id: &#x27;GoogleMaps&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2978,7 +3004,7 @@
   component: z.literal(&#x27;GridContainer&#x27;),
   itemMinWidth: z.string().optional(),
   content: AnyContentTemplateSchema.array(),
-})</code>
+}).meta({ id: &#x27;GridContainer&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3080,10 +3106,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  label: z.string(),
-  items: HubmapMenuItemSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    label: z.string(),
+    items: HubmapMenuItemSchema.array(),
+  })
+  .meta({ id: &#x27;HubmapMenuGroup&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3115,12 +3143,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  label: z.string(),
-  description: z.string(),
-  icon: z.string(),
-  url: z.string().url(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    label: z.string(),
+    description: z.string(),
+    icon: z.string(),
+    url: z.string().url(),
+  })
+  .meta({ id: &#x27;HubmapMenuItem&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3152,10 +3182,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  groups: HubmapMenuGroupSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    groups: HubmapMenuGroupSchema.array(),
+  })
+  .meta({ id: &#x27;HubmapMenu&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3190,11 +3222,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;icon&#x27;),
-  icon: z.string(),
-  tooltip: z.string().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;icon&#x27;),
+    icon: z.string(),
+    tooltip: z.string().optional(),
+  })
+  .meta({ id: &#x27;IconColumnType&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3226,11 +3260,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;link&#x27;),
-  urlColumn: z.string(),
-  internal: z.boolean().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;link&#x27;),
+    urlColumn: z.string(),
+    internal: z.boolean().optional(),
+  })
+  .meta({ id: &#x27;LinkColumnType&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3262,9 +3298,11 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;markdown&#x27;),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;markdown&#x27;),
+  })
+  .meta({ id: &#x27;MarkdownColumnType&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3296,12 +3334,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;menu&#x27;),
-  icon: z.string(),
-  options: z.string(),
-  tooltip: z.string().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;menu&#x27;),
+    icon: z.string(),
+    options: z.string(),
+    tooltip: z.string().optional(),
+  })
+  .meta({ id: &#x27;MenuButtonColumnType&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3333,13 +3373,15 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  id: z.string(),
-  name: z.string(),
-  icon: z.string(),
-  description: z.string().optional(),
-  url: z.string().url().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    icon: z.string(),
+    description: z.string().optional(),
+    url: z.string().url().optional(),
+  })
+  .meta({ id: &#x27;MenuOptionsType&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3371,11 +3413,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;numeric&#x27;),
-  computeTotal: z.boolean().optional(),
-  // TODO add format
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;numeric&#x27;),
+    computeTotal: z.boolean().optional(),
+    // TODO add format
+  })
+  .meta({ id: &#x27;NumericColumnType&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3416,7 +3460,7 @@
   enableSort: z.boolean().optional(),
   verticalDividers: z.boolean().optional(),
   enableSelection: z.boolean().optional(),
-})</code>
+}).meta({ id: &#x27;Table&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3486,11 +3530,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  column: z.string(),
-  label: z.string(),
-  type: z.union([SimpleTableColumnTypeSchema, TableColumnTypeSchema]).default(&#x27;text&#x27;),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    column: z.string(),
+    label: z.string(),
+    type: z.union([SimpleTableColumnTypeSchema, TableColumnTypeSchema]).default(&#x27;text&#x27;),
+  })
+  .meta({ id: &#x27;TableColumn&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3561,7 +3607,9 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.array(z.any())]))</code>
+                        <i>Default value : </i><code>z
+  .record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.array(z.any())]))
+  .meta({ id: &#x27;TableRow&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3593,7 +3641,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.enum([&#x27;alternating&#x27;, &#x27;divider&#x27;, &#x27;basic&#x27;])</code>
+                        <i>Default value : </i><code>z.enum([&#x27;alternating&#x27;, &#x27;divider&#x27;, &#x27;basic&#x27;]).meta({ id: &#x27;TableVariant&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3625,9 +3673,11 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;text&#x27;),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;text&#x27;),
+  })
+  .meta({ id: &#x27;TextColumnType&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3662,12 +3712,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  svgIcon: z.string().optional(),
-  fontIcon: z.string().optional(),
-  fontSet: z.string().optional(),
-  inline: z.boolean().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    svgIcon: z.string().optional(),
+    fontIcon: z.string().optional(),
+    fontSet: z.string().optional(),
+    inline: z.boolean().optional(),
+  })
+  .meta({ id: &#x27;IconData&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3699,10 +3751,9 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.union([
-  z.union([z.string(), IconDataSchema]),
-  z.union([z.string(), IconDataSchema]).array(),
-])</code>
+                        <i>Default value : </i><code>z
+  .union([z.union([z.string(), IconDataSchema]), z.union([z.string(), IconDataSchema]).array()])
+  .meta({ id: &#x27;IconList&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3736,7 +3787,9 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>ContentTemplateSchema.extend({
   component: z.literal(&#x27;Icon&#x27;),
-}).merge(IconDataSchema)</code>
+})
+  .merge(IconDataSchema)
+  .meta({ id: &#x27;Icon&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3886,7 +3939,7 @@
   component: z.literal(&#x27;Image&#x27;),
   src: z.string(),
   alt: z.string().optional(),
-})</code>
+}).meta({ id: &#x27;Image&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3963,7 +4016,7 @@
   component: z.literal(&#x27;Markdown&#x27;),
   data: z.string().optional(),
   src: z.string().optional(),
-})</code>
+}).meta({ id: &#x27;Markdown&#x27; })</code>
                     </td>
                 </tr>
 
@@ -3998,9 +4051,11 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;divider&#x27;),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;divider&#x27;),
+  })
+  .meta({ id: &#x27;HeaderMenuDivider&#x27; })</code>
                     </td>
                 </tr>
 
@@ -4032,15 +4087,17 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;group&#x27;),
-  label: z.string(),
-  description: z.string().optional(),
-  url: z.string().url(),
-  external: z.boolean().optional(),
-  target: z.string().optional(),
-  items: z.union([MenuSubGroupSchema, MenuItemSchema]).array().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;group&#x27;),
+    label: z.string(),
+    description: z.string().optional(),
+    url: z.string().url(),
+    external: z.boolean().optional(),
+    target: z.string().optional(),
+    items: z.union([MenuSubGroupSchema, MenuItemSchema]).array().optional(),
+  })
+  .meta({ id: &#x27;HeaderMenuGroup&#x27; })</code>
                     </td>
                 </tr>
 
@@ -4072,13 +4129,15 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;item&#x27;),
-  label: z.string(),
-  url: z.string().url(),
-  external: z.boolean().optional(),
-  target: z.string().optional(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;item&#x27;),
+    label: z.string(),
+    url: z.string().url(),
+    external: z.boolean().optional(),
+    target: z.string().optional(),
+  })
+  .meta({ id: &#x27;HeaderMenuItem&#x27; })</code>
                     </td>
                 </tr>
 
@@ -4110,12 +4169,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;menu&#x27;),
-  id: z.string(),
-  label: z.string(),
-  items: z.union([MenuGroupSchema, MenuDividerSchema]).array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;menu&#x27;),
+    id: z.string(),
+    label: z.string(),
+    items: z.union([MenuGroupSchema, MenuDividerSchema]).array(),
+  })
+  .meta({ id: &#x27;HeaderMenu&#x27; })</code>
                     </td>
                 </tr>
 
@@ -4147,10 +4208,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  menus: MenuSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    menus: MenuSchema.array(),
+  })
+  .meta({ id: &#x27;HeaderMenus&#x27; })</code>
                     </td>
                 </tr>
 
@@ -4182,11 +4245,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  type: z.literal(&#x27;subgroup&#x27;),
-  label: z.string(),
-  items: MenuItemSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;subgroup&#x27;),
+    label: z.string(),
+    items: MenuItemSchema.array(),
+  })
+  .meta({ id: &#x27;HeaderMenuSubGroup&#x27; })</code>
                     </td>
                 </tr>
 
@@ -4384,7 +4449,7 @@
   icons: IconListSchema.optional(),
   anchor: z.string().optional(),
   content: ProjectedContentTemplateSchema,
-})</code>
+}).meta({ id: &#x27;PageSection&#x27; })</code>
                     </td>
                 </tr>
 
@@ -4647,7 +4712,7 @@
   pictureUrl: z.string(),
   centerContent: z.boolean().optional(),
   actions: ProjectedContentTemplateSchema.optional(),
-})</code>
+}).meta({ id: &#x27;ProfileCard&#x27; })</code>
                     </td>
                 </tr>
 
@@ -4977,13 +5042,15 @@ Primarily used to simplify testing.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  id: z.string().brand&lt;&#x27;SocialMediaId&#x27;&gt;(),
-  label: z.string(),
-  icon: z.string(),
-  isFontIcon: z.boolean().optional(),
-  link: z.string(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    id: z.string().brand&lt;&#x27;SocialMediaId&#x27;&gt;(),
+    label: z.string(),
+    icon: z.string(),
+    isFontIcon: z.boolean().optional(),
+    link: z.string(),
+  })
+  .meta({ id: &#x27;SocialMedia&#x27; })</code>
                     </td>
                 </tr>
 
@@ -5015,10 +5082,12 @@ Primarily used to simplify testing.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  socials: SocialMediaSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    socials: SocialMediaSchema.array(),
+  })
+  .meta({ id: &#x27;Socials&#x27; })</code>
                     </td>
                 </tr>
 
@@ -5173,7 +5242,7 @@ Primarily used to simplify testing.</p>
   text: z.string(),
   url: z.string(),
   icon: z.string().optional(),
-})</code>
+}).meta({ id: &#x27;TextHyperlink&#x27; })</code>
                     </td>
                 </tr>
 
@@ -5215,10 +5284,12 @@ Primarily used to simplify testing.</p>
   style: true,
   enableSort: true,
   verticalDividers: true,
-}).extend({
-  label: z.string(),
-  version: z.string(),
-})</code>
+})
+  .extend({
+    label: z.string(),
+    version: z.string(),
+  })
+  .meta({ id: &#x27;VersionedData&#x27; })</code>
                     </td>
                 </tr>
 
@@ -5257,12 +5328,14 @@ Primarily used to simplify testing.</p>
     enableSort: true,
     verticalDividers: true,
   }),
-).extend({
-  component: z.literal(&#x27;VersionedDataTable&#x27;),
-  label: z.string(),
-  selection: z.number().optional(),
-  items: VersionedDataSchema.array(),
-})</code>
+)
+  .extend({
+    component: z.literal(&#x27;VersionedDataTable&#x27;),
+    label: z.string(),
+    selection: z.number().optional(),
+    items: VersionedDataSchema.array(),
+  })
+  .meta({ id: &#x27;VersionedDataTable&#x27; })</code>
                     </td>
                 </tr>
 
@@ -5379,7 +5452,7 @@ specific to the versioned table data component.</p>
   component: z.literal(&#x27;YouTubePlayer&#x27;),
   videoId: z.string(),
   label: z.string(),
-})</code>
+}).meta({ id: &#x27;YouTubePlayer&#x27; })</code>
                     </td>
                 </tr>
 

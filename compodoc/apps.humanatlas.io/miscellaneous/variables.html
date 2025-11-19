@@ -190,10 +190,10 @@
                             <a href="#EMBED_TEMPLATES" title="src/app/pages/us6/static-data/parsed.ts" ><b>EMBED_TEMPLATES</b>&nbsp;&nbsp;&nbsp;(src/.../parsed.ts)</a>
                         </li>
                         <li>
-                            <a href="#EMPTY_DATA" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>EMPTY_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
+                            <a href="#EMPTY_DATA" title="src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts" ><b>EMPTY_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictions.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#EMPTY_DATA" title="src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts" ><b>EMPTY_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictions.component.ts)</a>
+                            <a href="#EMPTY_DATA" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>EMPTY_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
                         </li>
                         <li>
                             <a href="#EMPTY_PREDICTIONS" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>EMPTY_PREDICTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
@@ -265,10 +265,10 @@
                             <a href="#SAMPLE_URL_LINK" title="src/app/pages/us2/tissue-origin-predictor/tissue-origin-predictor.component.ts" ><b>SAMPLE_URL_LINK</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictor.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#SCRIPT_URL" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>SCRIPT_URL</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
+                            <a href="#SCRIPT_URL" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>SCRIPT_URL</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#SCRIPT_URL" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>SCRIPT_URL</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
+                            <a href="#SCRIPT_URL" title="src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts" ><b>SCRIPT_URL</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictions.component.ts)</a>
                         </li>
                         <li>
                             <a href="#serverIdResolver" title="src/app/resolvers/server-id/server-id-resolver.resolver.ts" ><b>serverIdResolver</b>&nbsp;&nbsp;&nbsp;(src/.../server-id-resolver.resolver.ts)</a>
@@ -572,15 +572,17 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  tagline: z.string(),
-  description: z.string(),
-  imagePath: z.string(),
-  logoPath: z.string(),
-  appStatus: z.optional(z.enum([&#x27;Preview&#x27;, &#x27;Alpha&#x27;, &#x27;Beta&#x27;])),
-  appUrl: z.string(),
-  documentLink: z.string(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    tagline: z.string(),
+    description: z.string(),
+    imagePath: z.string(),
+    logoPath: z.string(),
+    appStatus: z.optional(z.enum([&#x27;Preview&#x27;, &#x27;Alpha&#x27;, &#x27;Beta&#x27;])),
+    appUrl: z.string(),
+    documentLink: z.string(),
+  })
+  .meta({ id: &#x27;AppCard&#x27; })</code>
                     </td>
                 </tr>
 
@@ -612,10 +614,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  tabs: AppCardsTabSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    tabs: AppCardsTabSchema.array(),
+  })
+  .meta({ id: &#x27;AppCards&#x27; })</code>
                     </td>
                 </tr>
 
@@ -647,10 +651,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  tagline: z.string(),
-  cards: AppCardSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    tagline: z.string(),
+    cards: AppCardSchema.array(),
+  })
+  .meta({ id: &#x27;AppCardsSection&#x27; })</code>
                     </td>
                 </tr>
 
@@ -682,10 +688,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  name: z.string(),
-  sections: AppCardsSectionSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    name: z.string(),
+    sections: AppCardsSectionSchema.array(),
+  })
+  .meta({ id: &#x27;AppCardsTab&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1027,7 +1035,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.string().brand&lt;&#x27;ComponentDefId&#x27;&gt;()</code>
+                        <i>Default value : </i><code>z.string().brand&lt;&#x27;ComponentDefId&#x27;&gt;().meta({ id: &#x27;ComponentDefId&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1059,15 +1067,17 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  id: ComponentDefIdSchema,
-  productTitle: z.string(),
-  webComponentName: z.string(),
-  description: z.string(),
-  previewImage: z.string(),
-  embedAs: z.enum([&#x27;inline&#x27;, &#x27;overlay&#x27;, &#x27;external&#x27;]),
-  docLink: z.string(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    id: ComponentDefIdSchema,
+    productTitle: z.string(),
+    webComponentName: z.string(),
+    description: z.string(),
+    previewImage: z.string(),
+    embedAs: z.enum([&#x27;inline&#x27;, &#x27;overlay&#x27;, &#x27;external&#x27;]),
+    docLink: z.string(),
+  })
+  .meta({ id: &#x27;ComponentDef&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1099,10 +1109,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  defs: ComponentDefSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    defs: ComponentDefSchema.array(),
+  })
+  .meta({ id: &#x27;ComponentDefs&#x27; })</code>
                     </td>
                 </tr>
 
@@ -1777,6 +1789,77 @@
         </tbody>
     </table>
 </section>
+    <h3>src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EMPTY_DATA"></a>
+                    <span class="name">
+                        <span ><b>EMPTY_DATA</b></span>
+                        <a href="#EMPTY_DATA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/TissuePredictionData.html" target="_self" >TissuePredictionData</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  file: new File([], &#x27;&#x27;),
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Empty Inputs for Predictions page</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOOLTIP_CONTENT"></a>
+                    <span class="name">
+                        <span ><b>TOOLTIP_CONTENT</b></span>
+                        <a href="#TOOLTIP_CONTENT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
+summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations in
+the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations(sc-proteomics datasets)&#x60;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tooltip Content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/pages/us2/tissue-origin-predictions/tissue-origin-predictions.component.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -1941,77 +2024,6 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Style URLs for EUI</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/pages/us1/cell-population-predictions/cell-population-predictions.component.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="EMPTY_DATA"></a>
-                    <span class="name">
-                        <span ><b>EMPTY_DATA</b></span>
-                        <a href="#EMPTY_DATA"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/TissuePredictionData.html" target="_self" >TissuePredictionData</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
-  file: new File([], &#x27;&#x27;),
-}</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Empty Inputs for Predictions page</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="TOOLTIP_CONTENT"></a>
-                    <span class="name">
-                        <span ><b>TOOLTIP_CONTENT</b></span>
-                        <a href="#TOOLTIP_CONTENT"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x60;Cell Population: Number of cells per cell type in a tissue block, anatomical structure, or extraction site. Cell
-summaries are computed from cell type counts in experimental datasets, obtained either via cell type annotations in
-the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author-provided annotations(sc-proteomics datasets)&#x60;</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Tooltip Content</p>
 </div>
                 </td>
             </tr>
@@ -2194,7 +2206,7 @@ the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.record(z.string(), z.any())</code>
+                        <i>Default value : </i><code>z.record(z.string(), z.any()).meta({ id: &#x27;OrganAppData&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2226,11 +2238,13 @@ the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  id: z.string().brand&lt;&#x27;OrganId&#x27;&gt;(),
-  label: z.string(),
-  appData: z.record(ComponentDefIdSchema, OrganAppDataSchema),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    id: z.string().brand&lt;&#x27;OrganId&#x27;&gt;(),
+    label: z.string(),
+    appData: z.record(ComponentDefIdSchema, OrganAppDataSchema),
+  })
+  .meta({ id: &#x27;Organ&#x27; })</code>
                     </td>
                 </tr>
 
@@ -2262,10 +2276,12 @@ the HRA Workflows Runner (for sc-transcriptomics datasets), or via expert/author
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  organs: OrganSchema.array(),
-})</code>
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    organs: OrganSchema.array(),
+  })
+  .meta({ id: &#x27;Organs&#x27; })</code>
                     </td>
                 </tr>
 

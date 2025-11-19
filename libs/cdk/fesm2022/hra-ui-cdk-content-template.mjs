@@ -58,10 +58,10 @@ class ContentTemplateControllerRegistryService {
     getController(id) {
         return this.controllers.get(id);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateControllerRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateControllerRegistryService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ContentTemplateControllerRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ContentTemplateControllerRegistryService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateControllerRegistryService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ContentTemplateControllerRegistryService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -113,10 +113,10 @@ class ContentTemplateDefRegistryService {
     getDef(tag) {
         return this.defs.get(tag);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateDefRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateDefRegistryService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ContentTemplateDefRegistryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ContentTemplateDefRegistryService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateDefRegistryService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ContentTemplateDefRegistryService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -390,10 +390,10 @@ class ContentTemplateOutletDirective {
         // TODO
         throw new Error('TODO render error component instead', { cause: error });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateOutletDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.11", type: ContentTemplateOutletDirective, isStandalone: true, selector: "[hraContentTemplateOutlet]", inputs: { data: { classPropertyName: "data", publicName: "hraContentTemplateOutlet", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0 }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ContentTemplateOutletDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.12", type: ContentTemplateOutletDirective, isStandalone: true, selector: "[hraContentTemplateOutlet]", inputs: { data: { classPropertyName: "data", publicName: "hraContentTemplateOutlet", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0 }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: ContentTemplateOutletDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ContentTemplateOutletDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraContentTemplateOutlet]',
@@ -401,31 +401,39 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImpo
         }], ctorParameters: () => [], propDecorators: { data: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraContentTemplateOutlet", required: true }] }] } });
 
 /** Extra css classes for a content template component  */
-const ClassesSchema = z.union([z.string(), z.string().array(), z.record(z.string(), z.any())]);
+const ClassesSchema = z
+    .union([z.string(), z.string().array(), z.record(z.string(), z.any())])
+    .meta({ id: 'Classes' });
 /** Extra css styles for a content template component */
-const StylesSchema = z.union([z.string(), z.record(z.string(), z.any())]);
+const StylesSchema = z.union([z.string(), z.record(z.string(), z.any())]).meta({ id: 'Styles' });
 /** Schema for a content template controller */
-const ControllerSchema = z.object({ id: z.string() }).loose();
+const ControllerSchema = z.object({ id: z.string() }).loose().meta({ id: 'Controller' });
 /** Base schema for content template components */
-const ContentTemplateSchema = z.object({
+const ContentTemplateSchema = z
+    .object({
     component: z.string(),
     classes: ClassesSchema.optional(),
     styles: StylesSchema.optional(),
     controllers: ControllerSchema.array().optional(),
-});
+})
+    .meta({ id: 'ContentTemplate' });
 /** Content template with additional properties */
-const ContentTemplateWithPropsSchema = ContentTemplateSchema.loose();
+const ContentTemplateWithPropsSchema = ContentTemplateSchema.loose().meta({ id: 'ContentTemplateWithProps' });
 /** All content template specs */
 let contentTemplateSpecs = undefined;
 /** Schema for any content template */
-const AnyContentTemplateSchema = z.lazy(() => {
+const AnyContentTemplateSchema = z
+    .lazy(() => {
     if (contentTemplateSpecs === undefined) {
         return ContentTemplateWithPropsSchema;
     }
     return z.discriminatedUnion('component', contentTemplateSpecs);
-});
+})
+    .meta({ id: 'AnyContentTemplate' });
 /** Schema for projected content */
-const ProjectedContentTemplateSchema = z.union([AnyContentTemplateSchema, AnyContentTemplateSchema.array()]);
+const ProjectedContentTemplateSchema = z
+    .union([AnyContentTemplateSchema, AnyContentTemplateSchema.array()])
+    .meta({ id: 'ProjectedContentTemplate' });
 /**
  * Sets the content template specs used when validating with `AnyContentTemplateSchema`
  *

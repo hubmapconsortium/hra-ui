@@ -47,10 +47,10 @@ class MarkdownComponent {
         });
         elems.forEach((el) => listeners.push(renderer.listen(el, 'click', onClick)));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: MarkdownComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "20.3.11", type: MarkdownComponent, isStandalone: true, selector: "hra-markdown", inputs: { data: { classPropertyName: "data", publicName: "data", isSignal: true, isRequired: false, transformFunction: null }, src: { classPropertyName: "src", publicName: "src", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "<markdown\n  [data]=\"data()\"\n  [src]=\"src() ? (src()! | assetUrl) : undefined\"\n  (ready)=\"clearEventListeners(); attachEventListeners()\"\n/>\n", styles: [":host{display:block}:host markdown ::ng-deep p{margin:.75rem 0;line-height:1.6875rem}:host markdown ::ng-deep *:first-child{margin-top:0}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "component", type: MarkdownComponent$1, selector: "markdown, [markdown]", inputs: ["data", "src", "disableSanitizer", "inline", "clipboard", "clipboardButtonComponent", "clipboardButtonTemplate", "emoji", "katex", "katexOptions", "mermaid", "mermaidOptions", "lineHighlight", "line", "lineOffset", "lineNumbers", "start", "commandLine", "filterOutput", "host", "prompt", "output", "user"], outputs: ["error", "load", "ready"] }, { kind: "pipe", type: AssetUrlPipe, name: "assetUrl" }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: MarkdownComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "20.3.12", type: MarkdownComponent, isStandalone: true, selector: "hra-markdown", inputs: { data: { classPropertyName: "data", publicName: "data", isSignal: true, isRequired: false, transformFunction: null }, src: { classPropertyName: "src", publicName: "src", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "<markdown\n  [data]=\"data()\"\n  [src]=\"src() ? (src()! | assetUrl) : undefined\"\n  (ready)=\"clearEventListeners(); attachEventListeners()\"\n/>\n", styles: [":host{display:block}:host markdown ::ng-deep p{margin:.75rem 0;line-height:1.6875rem}:host markdown ::ng-deep *:first-child{margin-top:0}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "component", type: MarkdownComponent$1, selector: "markdown, [markdown]", inputs: ["data", "src", "disableSanitizer", "inline", "clipboard", "clipboardButtonComponent", "clipboardButtonTemplate", "emoji", "katex", "katexOptions", "mermaid", "mermaidOptions", "lineHighlight", "line", "lineOffset", "lineNumbers", "start", "commandLine", "filterOutput", "host", "prompt", "output", "user"], outputs: ["error", "load", "ready"] }, { kind: "pipe", type: AssetUrlPipe, name: "assetUrl" }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: MarkdownComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: MarkdownComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-markdown', imports: [CommonModule, MarkdownComponent$1, AssetUrlPipe], changeDetection: ChangeDetectionStrategy.OnPush, template: "<markdown\n  [data]=\"data()\"\n  [src]=\"src() ? (src()! | assetUrl) : undefined\"\n  (ready)=\"clearEventListeners(); attachEventListeners()\"\n/>\n", styles: [":host{display:block}:host markdown ::ng-deep p{margin:.75rem 0;line-height:1.6875rem}:host markdown ::ng-deep *:first-child{margin-top:0}\n"] }]
         }], ctorParameters: () => [], propDecorators: { data: [{ type: i0.Input, args: [{ isSignal: true, alias: "data", required: false }] }], src: [{ type: i0.Input, args: [{ isSignal: true, alias: "src", required: false }] }] } });
@@ -60,7 +60,7 @@ const MarkdownSchema = ContentTemplateSchema.extend({
     component: z.literal('Markdown'),
     data: z.string().optional(),
     src: z.string().optional(),
-});
+}).meta({ id: 'Markdown' });
 
 /** Content template definition for MarkdownComponent */
 const MarkdownDef = {

@@ -10,18 +10,22 @@ import * as i2 from '@angular/material/button';
 import * as i3 from '@angular/material/icon';
 
 /** Schema for social media item */
-const SocialMediaSchema = z.object({
+const SocialMediaSchema = z
+    .object({
     id: z.string().brand(),
     label: z.string(),
     icon: z.string(),
     isFontIcon: z.boolean().optional(),
     link: z.string(),
-});
+})
+    .meta({ id: 'SocialMedia' });
 /** Schema for social media items */
-const SocialsSchema = z.object({
+const SocialsSchema = z
+    .object({
     $schema: z.string(),
     socials: SocialMediaSchema.array(),
-});
+})
+    .meta({ id: 'Socials' });
 
 var $schema = "../types/social-media.schema.json";
 var socials = [
@@ -97,10 +101,10 @@ class SocialMediaButtonComponent {
     variant = input('dark', ...(ngDevMode ? [{ debugName: "variant" }] : []));
     /** Social media button data */
     data = computed(() => findOrThrow(SOCIALS, ({ id }) => id === this.id()), ...(ngDevMode ? [{ debugName: "data" }] : []));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: SocialMediaButtonComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.11", type: SocialMediaButtonComponent, isStandalone: true, selector: "hra-social-media-button", inputs: { id: { classPropertyName: "id", publicName: "id", isSignal: true, isRequired: true, transformFunction: null }, size: { classPropertyName: "size", publicName: "size", isSignal: true, isRequired: false, transformFunction: null }, variant: { classPropertyName: "variant", publicName: "variant", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "<a\n  mat-icon-button\n  hraFeature=\"social-media\"\n  hraClickEvent\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n  [hraIconButtonVariant]=\"variant()\"\n  [hraIconButtonSize]=\"size()\"\n  [attr.aria-label]=\"data().label\"\n  [attr.href]=\"data().link\"\n>\n  @if (data().isFontIcon) {\n    <mat-icon [fontIcon]=\"data().icon\" />\n  } @else {\n    <mat-icon [svgIcon]=\"data().icon\" />\n  }\n</a>\n", styles: [":host{display:inline-block}\n"], dependencies: [{ kind: "ngmodule", type: HraCommonModule }, { kind: "directive", type: i1.ClickEventDirective, selector: "[hraClickEvent]", inputs: ["hraClickEvent", "hraClickEventTriggerOn", "hraClickEventDisabled"], exportAs: ["hraClickEvent"] }, { kind: "directive", type: i1.FeatureDirective, selector: "[hraFeature]", inputs: ["hraFeature"] }, { kind: "ngmodule", type: IconButtonModule }, { kind: "component", type: i2.MatIconButton, selector: "button[mat-icon-button], a[mat-icon-button], button[matIconButton], a[matIconButton]", exportAs: ["matButton", "matAnchor"] }, { kind: "component", type: i3.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "directive", type: i4.IconButtonSizeDirective, selector: "[hraIconButtonSize]", inputs: ["hraIconButtonSize"] }, { kind: "directive", type: i4.IconButtonVariantDirective, selector: "[hraIconButtonVariant]", inputs: ["hraIconButtonVariant"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: SocialMediaButtonComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.12", type: SocialMediaButtonComponent, isStandalone: true, selector: "hra-social-media-button", inputs: { id: { classPropertyName: "id", publicName: "id", isSignal: true, isRequired: true, transformFunction: null }, size: { classPropertyName: "size", publicName: "size", isSignal: true, isRequired: false, transformFunction: null }, variant: { classPropertyName: "variant", publicName: "variant", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "<a\n  mat-icon-button\n  hraFeature=\"social-media\"\n  hraClickEvent\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n  [hraIconButtonVariant]=\"variant()\"\n  [hraIconButtonSize]=\"size()\"\n  [attr.aria-label]=\"data().label\"\n  [attr.href]=\"data().link\"\n>\n  @if (data().isFontIcon) {\n    <mat-icon [fontIcon]=\"data().icon\" />\n  } @else {\n    <mat-icon [svgIcon]=\"data().icon\" />\n  }\n</a>\n", styles: [":host{display:inline-block}\n"], dependencies: [{ kind: "ngmodule", type: HraCommonModule }, { kind: "directive", type: i1.ClickEventDirective, selector: "[hraClickEvent]", inputs: ["hraClickEvent", "hraClickEventTriggerOn", "hraClickEventDisabled"], exportAs: ["hraClickEvent"] }, { kind: "directive", type: i1.FeatureDirective, selector: "[hraFeature]", inputs: ["hraFeature"] }, { kind: "ngmodule", type: IconButtonModule }, { kind: "component", type: i2.MatIconButton, selector: "button[mat-icon-button], a[mat-icon-button], button[matIconButton], a[matIconButton]", exportAs: ["matButton", "matAnchor"] }, { kind: "component", type: i3.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "directive", type: i4.IconButtonSizeDirective, selector: "[hraIconButtonSize]", inputs: ["hraIconButtonSize"] }, { kind: "directive", type: i4.IconButtonVariantDirective, selector: "[hraIconButtonVariant]", inputs: ["hraIconButtonVariant"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.11", ngImport: i0, type: SocialMediaButtonComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: SocialMediaButtonComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-social-media-button', imports: [HraCommonModule, IconButtonModule], changeDetection: ChangeDetectionStrategy.OnPush, template: "<a\n  mat-icon-button\n  hraFeature=\"social-media\"\n  hraClickEvent\n  target=\"_blank\"\n  rel=\"noopener noreferrer\"\n  [hraIconButtonVariant]=\"variant()\"\n  [hraIconButtonSize]=\"size()\"\n  [attr.aria-label]=\"data().label\"\n  [attr.href]=\"data().link\"\n>\n  @if (data().isFontIcon) {\n    <mat-icon [fontIcon]=\"data().icon\" />\n  } @else {\n    <mat-icon [svgIcon]=\"data().icon\" />\n  }\n</a>\n", styles: [":host{display:inline-block}\n"] }]
         }], propDecorators: { id: [{ type: i0.Input, args: [{ isSignal: true, alias: "id", required: true }] }], size: [{ type: i0.Input, args: [{ isSignal: true, alias: "size", required: false }] }], variant: [{ type: i0.Input, args: [{ isSignal: true, alias: "variant", required: false }] }] } });
