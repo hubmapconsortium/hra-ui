@@ -14,6 +14,13 @@ export const appRoutes: Route[] = [
   // Content pages
   // Please try to keep sorted in alphabetical order
   {
+    path: 'jobs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/jobs-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'visitor-info',
     component: ContentPageComponent,
     resolve: {
