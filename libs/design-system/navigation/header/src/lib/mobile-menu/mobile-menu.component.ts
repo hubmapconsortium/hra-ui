@@ -32,4 +32,6 @@ export class MobileMenuComponent {
   readonly hubmapMenu = input.required<HubmapMenuGroup[]>();
   /** All other menus */
   readonly menus = input.required<Menu[]>();
+  /** Base url - Menu urls starting with this will be converted into router links */
+  readonly baseUrl = input.required<string | undefined>();
 }
