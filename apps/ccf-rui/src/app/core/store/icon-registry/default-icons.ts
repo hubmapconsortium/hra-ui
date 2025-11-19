@@ -30,6 +30,7 @@ export interface DefaultIconDefinition {
  */
 export const DEFAULT_ICONS: DefaultIconDefinition[] = [
   // Reference Organs
+  { name: 'adipose', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-bladder.svg' },
   { name: 'bladder', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-bladder.svg' },
   { name: 'blood', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-blood.svg' },
   { name: 'bone-marrow', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-bone-marrow.svg' },
@@ -44,6 +45,7 @@ export const DEFAULT_ICONS: DefaultIconDefinition[] = [
     url: 'assets/icons/organ-icons/organ-icon-fallopian-tube-right.svg',
   },
   { name: 'heart', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-heart.svg' },
+  { name: 'intervertebral-disk', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-bladder.svg' },
   { name: 'kidney-left', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-kidney-left.svg' },
   { name: 'kidney-right', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-kidney-right.svg' },
   { name: 'kidneys', namespace: 'app', url: 'assets/icons/organ-icons/organ-icon-kidneys.svg' },

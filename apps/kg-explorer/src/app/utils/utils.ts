@@ -221,11 +221,13 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
 /** Maps UBERON id to the correct icon in the design system */
 export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0004537': 'vasculature-thick', //blood vasculature
+  'http://purl.obolibrary.org/obo/UBERON_0014455': 'adipose',
   'http://purl.obolibrary.org/obo/UBERON_0000955': 'brain',
   'http://purl.obolibrary.org/obo/UBERON_0002182': 'extrapulmonary-bronchus',
   'http://purl.obolibrary.org/obo/UBERON_0000970': 'eye',
   'http://purl.obolibrary.org/obo/UBERON_0003889': 'fallopian-tube-left', //fallopian tube
   'http://purl.obolibrary.org/obo/UBERON_0000948': 'heart',
+  'http://purl.obolibrary.org/obo/UBERON_0001066': 'intervertebral-disk',
   'http://purl.obolibrary.org/obo/UBERON_0002113': 'kidneys', //kidney
   'http://purl.obolibrary.org/obo/UBERON_0001465': 'knee',
   'http://purl.obolibrary.org/obo/UBERON_0000059': 'large-intestine',
