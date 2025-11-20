@@ -117,10 +117,10 @@
           "$ref": "#/definitions/Button"
         },
         {
-          "$ref": "#/definitions/CodeBlock"
+          "$ref": "#/definitions/DataViewer"
         },
         {
-          "$ref": "#/definitions/DataViewer"
+          "$ref": "#/definitions/DataViewerWithQueryParams"
         },
         {
           "$ref": "#/definitions/FlexContainer"
@@ -145,6 +145,12 @@
         },
         {
           "$ref": "#/definitions/ProfileCard"
+        },
+        {
+          "$ref": "#/definitions/ReleaseNotesVersionSelector"
+        },
+        {
+          "$ref": "#/definitions/SummaryStatisticsTable"
         },
         {
           "$ref": "#/definitions/TextHyperlink"
@@ -261,32 +267,6 @@
           "additionalProperties": {}
         }
       ]
-    },
-    "CodeBlock": {
-      "type": "object",
-      "properties": {
-        "component": {
-          "type": "string",
-          "const": "CodeBlock"
-        },
-        "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
-        },
-        "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
-        },
-        "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
-        },
-        "code": {
-          "type": "string"
-        },
-        "language": {
-          "type": "string"
-        }
-      },
-      "required": ["component"],
-      "additionalProperties": false
     },
     "DataViewer": {
       "type": "object",
@@ -405,6 +385,38 @@
             },
             "required": ["version", "label", "date", "organData"],
             "additionalProperties": false
+          }
+        }
+      },
+      "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
+      "additionalProperties": false
+    },
+    "DataViewerWithQueryParams": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "DataViewerWithQueryParams"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "variant": {
+          "$ref": "#/definitions/DataViewer/properties/variant"
+        },
+        "githubIconsUrl": {
+          "type": "string"
+        },
+        "releaseVersionData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataViewer/properties/releaseVersionData/items"
           }
         }
       },
@@ -624,7 +636,7 @@
                 "anyOf": [
                   {
                     "type": "string",
-                    "enum": ["text", "numeric", "markdown"]
+                    "enum": ["text", "numeric", "markdown", "icon", "menu"]
                   },
                   {
                     "anyOf": [
@@ -645,6 +657,9 @@
                           "type": {
                             "type": "string",
                             "const": "numeric"
+                          },
+                          "computeTotal": {
+                            "type": "boolean"
                           }
                         },
                         "required": ["type"],
@@ -670,9 +685,49 @@
                           },
                           "urlColumn": {
                             "type": "string"
+                          },
+                          "internal": {
+                            "type": "boolean"
                           }
                         },
                         "required": ["type", "urlColumn"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "icon"
+                          },
+                          "icon": {
+                            "type": "string"
+                          },
+                          "tooltip": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["type", "icon"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "menu"
+                          },
+                          "icon": {
+                            "type": "string"
+                          },
+                          "options": {
+                            "type": "string"
+                          },
+                          "tooltip": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["type", "icon", "options"],
                         "additionalProperties": false
                       }
                     ]
@@ -690,7 +745,20 @@
           "items": {
             "type": "object",
             "additionalProperties": {
-              "type": ["string", "number", "boolean"]
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array"
+                }
+              ]
             }
           }
         },
@@ -702,6 +770,9 @@
           "type": "boolean"
         },
         "verticalDividers": {
+          "type": "boolean"
+        },
+        "enableSelection": {
           "type": "boolean"
         }
       },
@@ -743,6 +814,26 @@
       "required": ["component", "name", "description", "pictureUrl"],
       "additionalProperties": false
     },
+    "ReleaseNotesVersionSelector": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ReleaseNotesVersionSelector"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
+    },
     "Styles": {
       "anyOf": [
         {
@@ -753,6 +844,35 @@
           "additionalProperties": {}
         }
       ]
+    },
+    "SummaryStatisticsTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "SummaryStatisticsTable"
+        },
+        "classes": {
+          "$ref": "#/definitions/ActionCard/properties/classes"
+        },
+        "styles": {
+          "$ref": "#/definitions/ActionCard/properties/styles"
+        },
+        "controllers": {
+          "$ref": "#/definitions/ActionCard/properties/controllers"
+        },
+        "columns": {
+          "$ref": "#/definitions/PageTable/properties/columns"
+        },
+        "csvUrl": {
+          "type": "string"
+        },
+        "organColumn": {
+          "type": "string"
+        }
+      },
+      "required": ["component"],
+      "additionalProperties": false
     },
     "TextHyperlink": {
       "type": "object",

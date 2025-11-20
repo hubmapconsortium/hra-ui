@@ -8,11 +8,9 @@ import { ButtonSchema } from '@hra-ui/design-system/buttons/button';
 import { TextHyperlinkSchema } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { ActionCardSchema } from '@hra-ui/design-system/cards/action-card';
 import { ProfileCardSchema } from '@hra-ui/design-system/cards/profile-card';
-import { CodeBlockSchema } from '@hra-ui/design-system/code-block';
 import { ApiCommandSchema } from '@hra-ui/design-system/content-templates/api-command';
 import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { FlexContainerSchema } from '@hra-ui/design-system/content-templates/flex-container';
-import { GridContainerSchema } from '@hra-ui/design-system/content-templates/grid-container';
 import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
@@ -22,6 +20,7 @@ import { DataViewerSchema } from '@hra-ui/design-system/data-viewer';
 import { IconSchema } from '@hra-ui/design-system/icons';
 import { PageTableSchema } from '@hra-ui/design-system/table';
 import * as z from 'zod';
+import { GridContainerSchema } from '@hra-ui/design-system/content-templates/grid-container';
 
 export {
   ActionCardSchema,
@@ -29,7 +28,6 @@ export {
   ApiCommandSchema,
   ButtonSchema,
   ClassesSchema,
-  CodeBlockSchema,
   DataViewerSchema,
   FlexContainerSchema,
   GridContainerSchema,
@@ -50,7 +48,6 @@ export default z.lazy(() => {
     ActionCardSchema,
     ApiCommandSchema,
     ButtonSchema,
-    CodeBlockSchema,
     DataViewerSchema,
     FlexContainerSchema,
     GridContainerSchema,
