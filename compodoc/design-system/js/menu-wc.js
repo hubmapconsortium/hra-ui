@@ -799,6 +799,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/InfoModalComponent.html" data-type="entity-link" >InfoModalComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ListViewComponent.html" data-type="entity-link" >ListViewComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/MarkdownComponent.html" data-type="entity-link" >MarkdownComponent</a>
                             </li>
                             <li class="link">
@@ -1160,6 +1163,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IconFeature.html" data-type="entity-link" >IconFeature</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ListViewGroup.html" data-type="entity-link" >ListViewGroup</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ListViewItem.html" data-type="entity-link" >ListViewItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/MenuDemoOption.html" data-type="entity-link" >MenuDemoOption</a>

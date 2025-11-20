@@ -190,6 +190,10 @@
       "types": "./content-templates/image/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-image.mjs"
     },
+    "./content-templates/list-view": {
+      "types": "./content-templates/list-view/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-list-view.mjs"
+    },
     "./content-templates/markdown": {
       "types": "./content-templates/markdown/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-markdown.mjs"
