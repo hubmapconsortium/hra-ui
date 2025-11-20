@@ -1,0 +1,27 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  .list-view-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &:not(:has(h3)) {
+      gap: 2rem;
+    }
+  }
+
+  .content {
+    @include utils.use-font(body, xl);
+    color: vars.$primary;
+
+    ::ng-deep p {
+      margin-bottom: 0;
+    }
+  }
+}
