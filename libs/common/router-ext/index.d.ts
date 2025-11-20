@@ -18,7 +18,7 @@ declare class FragmentLinkDirective {
      * @param event Click event
      * @returns true if the default handler should run, false otherwise
      */
-    onClick(event: MouseEvent): boolean;
+    onClick(event: Event): boolean;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<FragmentLinkDirective, never>;
     static ɵdir: _angular_core.ɵɵDirectiveDeclaration<FragmentLinkDirective, "a[hraFragmentLink], area[hraFragmentLink]", never, { "fragment": { "alias": "hraFragmentLink"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
 }
@@ -60,7 +60,7 @@ declare class LinkDirective {
      * @param event Click event
      * @returns true if the default handler should run, false otherwise
      */
-    onClick(event: MouseEvent): boolean;
+    onClick(event: Event): boolean;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<LinkDirective, never>;
     static ɵdir: _angular_core.ɵɵDirectiveDeclaration<LinkDirective, "a[hraLink], area[hraLink]", never, { "url": { "alias": "hraLink"; "required": true; "isSignal": true; }; "external": { "alias": "hraLinkExternal"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }

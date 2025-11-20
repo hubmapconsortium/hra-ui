@@ -43,7 +43,7 @@ class FragmentLinkDirective {
      */
     onClick(event) {
         const { fragment, router } = this;
-        if (!router || isAuxClick(event)) {
+        if (!router || (event instanceof MouseEvent && isAuxClick(event))) {
             return true;
         }
         router.navigate([], { fragment: fragment() });
@@ -96,7 +96,7 @@ class LinkDirective {
      */
     onClick(event) {
         const urlTree = this.urlTree();
-        if (!urlTree || isAuxClick(event)) {
+        if (!urlTree || (event instanceof MouseEvent && isAuxClick(event))) {
             return true;
         }
         this.router?.navigateByUrl(urlTree);

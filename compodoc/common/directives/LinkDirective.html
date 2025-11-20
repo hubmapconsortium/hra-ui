@@ -298,7 +298,7 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onClick(event: MouseEvent)</code>
+<code>onClick(event: Event)</code>
                 </td>
             </tr>
 
@@ -332,7 +332,7 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
                                         <tr>
                                                 <td>event</td>
                                             <td>
-                                                        <code>MouseEvent</code>
+                                                        <code>Event</code>
                                             </td>
 
                                             <td>
@@ -416,9 +416,9 @@ export class LinkDirective {
    * @param event Click event
    * @returns true if the default handler should run, false otherwise
    */
-  onClick(event: MouseEvent): boolean {
+  onClick(event: Event): boolean {
     const urlTree &#x3D; this.urlTree();
-    if (!urlTree || isAuxClick(event)) {
+    if (!urlTree || (event instanceof MouseEvent &amp;&amp; isAuxClick(event))) {
       return true;
     }
 
