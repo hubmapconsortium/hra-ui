@@ -3,6 +3,7 @@ import { ApplicationConfig } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
+import { provideRouterExt } from '@hra-ui/common/router-ext';
 import {
   DashboardIndexComponent,
   DashboardLayoutComponent,
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
     ),
+    provideRouterExt(),
     provideHttpClient(),
     provideAnimations(),
     provideDesignSystem(),
