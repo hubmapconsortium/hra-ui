@@ -10,7 +10,7 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: LandingPageComponent,
   },
-  
+
   // Content pages
   // Please try to keep sorted in alphabetical order
   {
