@@ -7,7 +7,7 @@
   <div class="ui-section-buttons">
     <ng-container hraFeature="use-app">
       @if (appUrl(); as url) {
-        <a hraClickEvent mat-button hraCtaButton target="_self" rel="noopener noreferrer" [hraLink]="url">
+        <a hraClickEvent mat-button hraCtaButton [hraLink]="url">
           Use app
           <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
         </a>
@@ -22,8 +22,6 @@
           hraClickEvent
           hraButtonVariant="secondary"
           disableRipple
-          target="_self"
-          rel="noopener noreferrer"
           [hraLink]="docUrl"
           [attr.href]="documentationUrl()"
         >
