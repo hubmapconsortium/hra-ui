@@ -47,9 +47,9 @@ export class LinkDirective {
    * @param event Click event
    * @returns true if the default handler should run, false otherwise
    */
-  onClick(event: MouseEvent): boolean {
+  onClick(event: Event): boolean {
     const urlTree = this.urlTree();
-    if (!urlTree || isAuxClick(event)) {
+    if (!urlTree || (event instanceof MouseEvent && isAuxClick(event))) {
       return true;
     }
 
