@@ -30,4 +30,9 @@ export class TextHyperlinkComponent {
    * Text hyperlink component icon
    */
   readonly icon = input<string>();
+
+  /**
+   * Whether the link should open in a new tab/window
+   */
+  readonly external = input<boolean>(false);
 }
