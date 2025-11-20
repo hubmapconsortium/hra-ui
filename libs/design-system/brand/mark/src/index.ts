@@ -1,2 +1,2 @@
+export { provideBrandMarks } from './lib/brand-marks';
 export { BrandMarkComponent } from './lib/mark.component';
-export { BrandMarkVariant } from './lib/types/marks.schema';

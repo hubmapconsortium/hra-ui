@@ -1,0 +1,42 @@
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Jobs
+subtitle: Work at Indiana University's Cyberinfrastructure for Network Science Center.
+content:
+  - component: PageSection
+    tagline: Biomedical Consultant
+    anchor: biomedical-consultant
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The biomedical consultant will work on the NIH-funded HuBMAP project, which aims to map the human body at single-cell level.
+          They will join an interdisciplinary team that includes software developers, data scientists, medical illustrators, biologists,
+          and project managers at CNS (https://cns.iu.edu).
+          They will collaborate with external organ experts to catalogue and link anatomical structures, cell types,
+          and biomarkers to the Human Reference Atlas (HRA), document work in standard operating procedures, and contribute to scientific publications.
+          They will work with users of the HRA on defining and implementing existing and new use cases.
+          <br><br>
+          The ideal candidate will have strong oral and written communication skills and a unique combination of training
+          and/or prior experience in more than one of the following areas: biomedical imaging, histology, human anatomy and physiology,
+          data analysis, and single cell analyses. Familiarity with multiplexed microscopy image analysis software and molecular biology assays
+          and bioinformatics is a plus. The biomedical expert will have an opportunity to co-author scholarly publications in high-profile scientific outlets.
+          <br><br>
+          This is a flexible, part-time position of up to 20 hours per week and could accommodate remote work for the right candidate,
+          but would ideally be an in-person position on the Indiana University Bloomington campus.
+          To apply, email cover letter and resume to CNS at [cnscntr@iu.edu](mailto:cnscntr@iu.edu) using “Biomedical Consultant position” as the subject line.
+          <br><br>
+          Responsibilities:
+          - Supports efforts of leading scientists in harmonizing terminology across multiple areas of cellular biology.
+          - Assists researchers in interpreting and using experimental data in HRA construction and usage.
+          - Documents procedures in standard operating procedures (SOPs).
+          - Attends relevant meetings, representing the project in a professional manner.
+          - Collaborated on documenting results in scholarly publications.
+          <br>
+
+          Qualifications:
+          - Education: Master's degree in biology or a related field is strongly encouraged.
+            Research experience in a higher education environment is preferred.
+          - Experience: At least 2 years of experience working in a laboratory setting addressing biomolecular research questions.
+            With a focus on single cell experimental designs and data analysis.
+          - Required knowledge, skills, and abilities: Excellent written and oral communication skills.
+            Problem solving skills. Must be willing to work in a team-oriented environment and must be a motivated self-starter.

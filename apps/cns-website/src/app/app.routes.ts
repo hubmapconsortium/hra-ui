@@ -10,6 +10,9 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: LandingPageComponent,
   },
+  
+  // Content pages
+  // Please try to keep sorted in alphabetical order
   {
     path: 'about',
     component: ContentPageComponent,
@@ -17,8 +20,27 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/about-page/data.yaml', ContentPageDataSchema),
     },
   },
-  // Content pages
-  // Please try to keep sorted in alphabetical order
+  {
+    path: 'amatria',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/amatria/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'jobs',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/jobs-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'privacy-policy',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
+    },
+  },
   {
     path: 'visitor-info',
     component: ContentPageComponent,

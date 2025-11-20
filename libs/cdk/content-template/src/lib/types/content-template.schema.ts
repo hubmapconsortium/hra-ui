@@ -3,29 +3,33 @@ import * as z from 'zod';
 /** Class declaration */
 export type Classes = z.infer<typeof ClassesSchema>;
 /** Extra css classes for a content template component  */
-export const ClassesSchema = z.union([z.string(), z.string().array(), z.record(z.string(), z.any())]);
+export const ClassesSchema = z
+  .union([z.string(), z.string().array(), z.record(z.string(), z.any())])
+  .meta({ id: 'Classes' });
 
 /** Css style declaration */
 export type Styles = z.infer<typeof StylesSchema>;
 /** Extra css styles for a content template component */
-export const StylesSchema = z.union([z.string(), z.record(z.string(), z.any())]);
+export const StylesSchema = z.union([z.string(), z.record(z.string(), z.any())]).meta({ id: 'Styles' });
 
 /** Controller declaration */
 export type Controller = z.infer<typeof ControllerSchema>;
 
 /** Schema for a content template controller */
-export const ControllerSchema = z.object({ id: z.string() }).loose();
+export const ControllerSchema = z.object({ id: z.string() }).loose().meta({ id: 'Controller' });
 
 /** Base schema for content template components */
-export const ContentTemplateSchema = z.object({
-  component: z.string() as unknown as z.ZodLiteral<string>,
-  classes: ClassesSchema.optional(),
-  styles: StylesSchema.optional(),
-  controllers: ControllerSchema.array().optional(),
-});
+export const ContentTemplateSchema = z
+  .object({
+    component: z.string() as unknown as z.ZodLiteral<string>,
+    classes: ClassesSchema.optional(),
+    styles: StylesSchema.optional(),
+    controllers: ControllerSchema.array().optional(),
+  })
+  .meta({ id: 'ContentTemplate' });
 
 /** Content template with additional properties */
-export const ContentTemplateWithPropsSchema = ContentTemplateSchema.loose();
+export const ContentTemplateWithPropsSchema = ContentTemplateSchema.loose().meta({ id: 'ContentTemplateWithProps' });
 
 /** All content template specs */
 let contentTemplateSpecs: [AnyContentTemplateSpec, ...AnyContentTemplateSpec[]] | undefined = undefined;
@@ -36,18 +40,22 @@ export type AnyContentTemplate = z.infer<typeof ContentTemplateWithPropsSchema>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyContentTemplateSpec = z.ZodObject<(typeof ContentTemplateSchema)['shape'], any>;
 /** Schema for any content template */
-export const AnyContentTemplateSchema: z.ZodType<AnyContentTemplate> = z.lazy(() => {
-  if (contentTemplateSpecs === undefined) {
-    return ContentTemplateWithPropsSchema;
-  }
+export const AnyContentTemplateSchema: z.ZodType<AnyContentTemplate> = z
+  .lazy(() => {
+    if (contentTemplateSpecs === undefined) {
+      return ContentTemplateWithPropsSchema;
+    }
 
-  return z.discriminatedUnion('component', contentTemplateSpecs) as unknown as z.ZodType<AnyContentTemplate>;
-});
+    return z.discriminatedUnion('component', contentTemplateSpecs) as unknown as z.ZodType<AnyContentTemplate>;
+  })
+  .meta({ id: 'AnyContentTemplate' });
 
 /** Projected template content */
 export type ProjectedContentTemplate = z.infer<typeof ProjectedContentTemplateSchema>;
 /** Schema for projected content */
-export const ProjectedContentTemplateSchema = z.union([AnyContentTemplateSchema, AnyContentTemplateSchema.array()]);
+export const ProjectedContentTemplateSchema = z
+  .union([AnyContentTemplateSchema, AnyContentTemplateSchema.array()])
+  .meta({ id: 'ProjectedContentTemplate' });
 
 /**
  * Sets the content template specs used when validating with `AnyContentTemplateSchema`

@@ -1,11 +1,26 @@
 {
-  "$ref": "#/definitions/Organs",
-  "definitions": {
-    "OrganAppData": {
-      "type": "object",
-      "additionalProperties": {}
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "Organs",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
     },
+    "organs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Organ"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "organs"
+  ],
+  "additionalProperties": false,
+  "$defs": {
     "Organ": {
+      "id": "Organ",
       "type": "object",
       "properties": {
         "id": {
@@ -16,30 +31,32 @@
         },
         "appData": {
           "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/ComponentDefId"
+          },
           "additionalProperties": {
-            "$ref": "#/definitions/OrganAppData"
+            "$ref": "#/$defs/OrganAppData"
           }
         }
       },
-      "required": ["id", "label", "appData"],
+      "required": [
+        "id",
+        "label",
+        "appData"
+      ],
       "additionalProperties": false
     },
-    "Organs": {
+    "ComponentDefId": {
+      "id": "ComponentDefId",
+      "type": "string"
+    },
+    "OrganAppData": {
+      "id": "OrganAppData",
       "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "organs": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Organ"
-          }
-        }
+      "propertyNames": {
+        "type": "string"
       },
-      "required": ["$schema", "organs"],
-      "additionalProperties": false
+      "additionalProperties": {}
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }
