@@ -167,13 +167,7 @@
     },
     "build-storybook": {
       "cache": true,
-      "inputs": [
-        "production",
-        "^production",
-        {
-          "externalDependencies": ["storybook", "@storybook/test-runner"]
-        }
-      ],
+      "inputs": ["production", "^production", { "externalDependencies": ["storybook", "@storybook/test-runner"] }],
       "outputs": ["{options.outputDir}"],
       "options": {
         "configDir": "{projectRoot}/.storybook",
