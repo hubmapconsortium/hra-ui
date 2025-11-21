@@ -13,8 +13,6 @@ import { MarkdownModule } from 'ngx-markdown';
 import { HelpMenuOptions } from './app.routes';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
 
 /** Default help menu options */
 export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
@@ -61,8 +59,9 @@ export class AppComponent extends BaseApplicationComponent {
   private readonly router = inject(Router);
   /** Activated route service */
   private readonly route = inject(ActivatedRoute);
-  /** Http client */
-  private readonly http = inject(HttpClient);
+
+  /** HRA KG API service */
+  private readonly kg = inject(HraKgService);
 
   /** Page title to display on the breadcrumbs */
   private readonly pageTitle = signal<string>('');
@@ -142,8 +141,7 @@ export class AppComponent extends BaseApplicationComponent {
     });
 
     toObservable(this.objectId).subscribe((id) => {
-      const kg = new HraKgService(this.http, environment.remoteApiEndpoint);
-      kg.digitalObjects().subscribe((data) => {
+      this.kg.digitalObjects().subscribe((data) => {
         const match = data['@graph']?.find((object) => object['@id'] === id);
         this.pageTitle.set(match?.title || '');
       });

@@ -18,8 +18,6 @@ import { ProvenanceMenuComponent } from '../../components/provenance-menu/proven
 import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 
 /**
  * Metadata page for a digital object
@@ -47,8 +45,8 @@ export class MetadataPageComponent {
   private readonly route = inject(ActivatedRoute);
   /** File download service */
   private readonly download = inject(DownloadService);
-  /** Http client */
-  private readonly http = inject(HttpClient);
+  /** HRA V1 API service */
+  private readonly v1 = inject(V1Service);
 
   /** Raw digital object data from API */
   readonly doData = input.required<DigitalObjectsJsonLd>();
@@ -138,8 +136,7 @@ export class MetadataPageComponent {
         }
         this.icons.set(icons);
 
-        const v1 = new V1Service(this.http, environment.remoteApiEndpoint);
-        v1.ontologyTreeModel({}).subscribe((ontologyData) => {
+        this.v1.ontologyTreeModel({}).subscribe((ontologyData) => {
           if (pageItem) {
             this.availableVersions.set(pageItem.versions);
             const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];

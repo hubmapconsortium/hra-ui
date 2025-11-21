@@ -6,16 +6,14 @@ import { catchError, map, of } from 'rxjs';
 
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
 import { getDocumentationUrl, getProductLabel } from './utils';
-import { environment } from '../../environments/environment';
 
 /**
  * Creates a resolver that fetches the digital object data from a url
- * @param url Digital object url
  * @returns Resolver
  */
 export function kgResolver(): ResolveFn<DigitalObjectsJsonLd> {
   return () => {
-    const kg = new HraKgService(inject(HttpClient), environment.remoteApiEndpoint);
+    const kg = inject(HraKgService);
     return kg.digitalObjects().pipe(map((data) => data));
   };
 }
@@ -43,7 +41,7 @@ export function doMetadataResolver(): ResolveFn<DigitalObjectMetadata> {
  */
 export function asctbResolver(): ResolveFn<[string, number][]> {
   return () => {
-    const kg = new HraKgService(inject(HttpClient), environment.remoteApiEndpoint);
+    const kg = inject(HraKgService);
     return kg.asctbTermOccurences({}).pipe(map((data) => Object.entries(data)));
   };
 }
@@ -54,7 +52,7 @@ export function asctbResolver(): ResolveFn<[string, number][]> {
  */
 export function ontologyResolver(): ResolveFn<OntologyTree> {
   return () => {
-    const v1 = new V1Service(inject(HttpClient), environment.remoteApiEndpoint);
+    const v1 = inject(V1Service);
     return v1.ontologyTreeModel({}).pipe(map((data) => data));
   };
 }
@@ -65,7 +63,7 @@ export function ontologyResolver(): ResolveFn<OntologyTree> {
  */
 export function cellTypeResolver(): ResolveFn<OntologyTree> {
   return () => {
-    const v1 = new V1Service(inject(HttpClient), environment.remoteApiEndpoint);
+    const v1 = inject(V1Service);
     return v1.cellTypeTreeModel({}).pipe(map((data) => data));
   };
 }
@@ -76,7 +74,7 @@ export function cellTypeResolver(): ResolveFn<OntologyTree> {
  */
 export function biomarkersResolver(): ResolveFn<OntologyTree> {
   return () => {
-    const v1 = new V1Service(inject(HttpClient), environment.remoteApiEndpoint);
+    const v1 = inject(V1Service);
     return v1.biomarkerTreeModel({}).pipe(map((data) => data));
   };
 }
