@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use '../../../../styles/vars';
+@use '../../../styles/vars';
 
 :host {
   display: block;
@@ -9,6 +9,7 @@
 .filter-container {
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
 
   .top-row {
     display: flex;
@@ -63,6 +64,6 @@
   }
 
   mat-divider {
-    margin: 0.25rem 0;
+    margin-top: 0.5rem;
   }
 }

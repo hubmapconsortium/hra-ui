@@ -5,14 +5,13 @@
 </mat-form-field>
 
 <ng-scrollbar hraScrollOverflowFade class="filter-options">
-  <mat-selection-list>
+  <mat-selection-list (selectionChange)="handleSelectionChange($event)">
     @for (option of filteredOptions(); track option.id) {
       <mat-list-option
         togglePosition="before"
         [hraFeature]="option.label | slugify"
         [value]="option"
         [selected]="selectedOptions().includes(option)"
-        (click)="selectOption(option)"
       >
         <mat-label class="labels-count">
           <span class="option-labels">

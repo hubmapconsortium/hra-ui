@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
-@use '../../../../styles/utils';
-@use '../../../../styles/vars';
+@use '../../../styles/utils';
+@use '../../../styles/vars';
 
 :host {
   @include mat.list-overrides(
