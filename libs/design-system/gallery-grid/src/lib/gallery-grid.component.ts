@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, contentChild, effect, input, signal
 import { isObservable, Observable, of, Subject } from 'rxjs';
 import { GalleryGridItemDirective } from './gallery-grid-item.directive';
 
-/* Data source type for gallery grid */
+/** Data source type for gallery grid */
 export type GridDataSourceType<T> = DataSource<T> | Observable<readonly T[]> | readonly T[];
 
 /** Gallery grid component */
@@ -28,7 +28,7 @@ export class GalleryGridComponent<T> implements CollectionViewer {
   /** Current items to display */
   protected readonly items = signal<readonly T[]>([]);
 
-  /* Initializes the component */
+  /** Initializes the component */
   constructor() {
     effect((onCleanup) => {
       const source = this.dataSource();
