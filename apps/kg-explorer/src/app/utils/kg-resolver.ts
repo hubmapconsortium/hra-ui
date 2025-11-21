@@ -6,6 +6,7 @@ import { catchError, map, of } from 'rxjs';
 
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
 import { getDocumentationUrl, getProductLabel } from './utils';
+import { environment } from '../../environments/environment';
 
 /**
  * Creates a resolver that fetches the digital object data from a url
@@ -29,7 +30,7 @@ export function doMetadataResolver(): ResolveFn<DigitalObjectMetadata> {
     const version = route.paramMap.get('version') || '';
     const http = inject(HttpClient);
     return http
-      .get(`https://lod.humanatlas.io/${type}/${name}/${version}`, { responseType: 'json' })
+      .get(`${environment.mirrorUrl}/${type}/${name}/${version}/metadata.json`, { responseType: 'json' })
       .pipe(catchError(() => of(undefined)))
       .pipe(map((data) => data as DigitalObjectMetadata));
   };
