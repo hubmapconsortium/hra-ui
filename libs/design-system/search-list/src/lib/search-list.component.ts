@@ -26,7 +26,7 @@ export interface FilterMenuOption {
  * Keyboard-accessible filter list flyout menu with an optional search text field with autocomplete
  */
 @Component({
-  selector: 'hra-filter-list-flyout',
+  selector: 'hra-search-list',
   imports: [
     HraCommonModule,
     IconsModule,
@@ -40,11 +40,11 @@ export interface FilterMenuOption {
     ReactiveFormsModule,
     MatListModule,
   ],
-  templateUrl: './filter-list-flyout.component.html',
-  styleUrl: './filter-list-flyout.component.scss',
+  templateUrl: './search-list.component.html',
+  styleUrl: './search-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterListFlyoutComponent {
+export class SearchListComponent {
   /** Filter search form control */
   readonly searchControl = new FormControl();
 

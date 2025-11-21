@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
 
-import { FilterListFlyoutComponent, FilterMenuOption } from './filter-list-flyout.component';
+import { SearchListComponent, FilterMenuOption } from './search-list.component';
 
 const FILTER_OPTIONS = [
   { id: 'a', label: 'A', count: 9999 },
@@ -24,9 +24,9 @@ const FILTER_OPTIONS_MULTI = [
   { id: 'abcdefgh', label: 'BACDEFGH', secondaryLabel: 'short description', count: 99 },
 ] as FilterMenuOption[];
 
-const meta: Meta<FilterListFlyoutComponent> = {
-  component: FilterListFlyoutComponent,
-  title: 'Design System / Filter List Flyout',
+const meta: Meta<SearchListComponent> = {
+  component: SearchListComponent,
+  title: 'Design System / Search List',
   parameters: {
     design: {
       type: 'figma',
@@ -41,7 +41,7 @@ const meta: Meta<FilterListFlyoutComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<FilterListFlyoutComponent>;
+type Story = StoryObj<SearchListComponent>;
 
 export const Default: Story = {
   args: {
