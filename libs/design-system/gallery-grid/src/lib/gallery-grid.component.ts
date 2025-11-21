@@ -34,6 +34,7 @@ export class GalleryGridComponent<T> implements CollectionViewer {
   /** Currently connected DataSource instance */
   private connectedDataSource?: DataSource<T>;
 
+  /* Initializes the component */
   constructor() {
     effect((onCleanup) => {
       const source = this.dataSource();
