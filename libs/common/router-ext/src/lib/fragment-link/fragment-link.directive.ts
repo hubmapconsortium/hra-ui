@@ -27,9 +27,9 @@ export class FragmentLinkDirective {
    * @param event Click event
    * @returns true if the default handler should run, false otherwise
    */
-  onClick(event: MouseEvent): boolean {
+  onClick(event: Event): boolean {
     const { fragment, router } = this;
-    if (!router || isAuxClick(event)) {
+    if (!router || (event instanceof MouseEvent && isAuxClick(event))) {
       return true;
     }
 
