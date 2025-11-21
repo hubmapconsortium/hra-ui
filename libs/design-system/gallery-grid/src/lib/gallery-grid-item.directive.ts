@@ -21,7 +21,7 @@ export class GalleryGridItemDirective<T> {
   readonly templateRef = inject(TemplateRef<GalleryGridItemContext<T>>);
 
   /** Type guard for template type checking */
-  static ngTemplateContextGuard<T>(dir: GalleryGridItemDirective<T>, ctx: unknown): ctx is GalleryGridItemContext<T> {
+  static ngTemplateContextGuard<T>(_dir: GalleryGridItemDirective<T>, ctx: unknown): ctx is GalleryGridItemContext<T> {
     return true;
   }
 }
