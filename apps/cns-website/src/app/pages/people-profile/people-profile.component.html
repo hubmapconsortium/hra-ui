@@ -1,0 +1,37 @@
+<cns-contact-info class="contact-sidebar" [contactInfo]="contactInfo()" />
+
+<div class="main-content">
+  <hra-page-section
+    class="profile-header-section-mobile"
+    [tagline]="profileData().name"
+    [level]="1"
+    [breadcrumbs]="profileData().breadcrumbs"
+    [tags]="tags()"
+  />
+
+  <cns-contact-info class="contact-sidebar-mobile" [contactInfo]="contactInfo()" />
+
+  <hra-table-of-contents-layout>
+    <hra-table-of-contents-layout-header>
+      <hra-page-section
+        class="profile-header-section-desktop"
+        [tagline]="profileData().name"
+        [level]="1"
+        [breadcrumbs]="profileData().breadcrumbs"
+        [tags]="tags()"
+      >
+        @if (primaryRole()?.background; as background) {
+          <div class="profile-description">
+            <p>{{ background }}</p>
+          </div>
+        }
+      </hra-page-section>
+    </hra-table-of-contents-layout-header>
+
+    @for (section of sections(); track section.anchor) {
+      <hra-page-section [tagline]="section.tagline" [level]="2" [anchor]="section.anchor">
+        <markdown [data]="section.content" />
+      </hra-page-section>
+    }
+  </hra-table-of-contents-layout>
+</div>
