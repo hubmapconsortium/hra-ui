@@ -1,0 +1,152 @@
+{
+  "$schema": "../types/menus.schema.json",
+  "options": [
+    {
+      "type": "menu",
+      "id": "about",
+      "label": "About",
+      "featured": {
+        "type": "item",
+        "label": "Meet our team",
+        "url": "https://cns.iu.edu/people",
+        "imgSrc": "assets/ui-images/group.png",
+        "target": "_blank"
+      },
+      "items": [
+        {
+          "type": "group",
+          "label": "About CNS",
+          "items": [
+            {
+              "type": "item",
+              "label": "History & mission",
+              "url": "https://cns.iu.edu/about/"
+            },
+            {
+              "type": "item",
+              "label": "Jobs",
+              "url": "https://cns.iu.edu/jobs/"
+            },
+            {
+              "type": "item",
+              "label": "People",
+              "url": "https://cns.iu.edu/people/"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": "Connect",
+          "items": [
+            {
+              "type": "item",
+              "label": "Contact us",
+              "url": "https://cns.iu.edu/about#contact-us/"
+            },
+            {
+              "type": "item",
+              "label": "Donate",
+              "url": "https://give.myiu.org/iu-bloomington/I320004200.html/",
+              "external": true,
+              "target": "_blank"
+            },
+            {
+              "type": "item",
+              "label": "Visitor info",
+              "url": "https://cns.iu.edu/visitor-info/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "id": "publications",
+      "label": "Publications",
+      "url": "https://cns.iu.edu/research/?type=publications"
+    },
+    {
+      "type": "menu",
+      "id": "research",
+      "label": "Research",
+      "featured": {
+        "type": "item",
+        "label": "Explore research",
+        "tagline": "20+ years of research at Indiana University",
+        "url": "https://cns.iu.edu/research",
+        "target": "_blank"
+      },
+      "items": [
+        {
+          "type": "group",
+          "label": "Research at CNS",
+          "items": [
+            {
+              "type": "item",
+              "label": "Events",
+              "url": "https://cns.iu.edu/research/?type=events"
+            },
+            {
+              "type": "item",
+              "label": "Funding",
+              "url": "https://cns.iu.edu/research/?type=funding"
+            },
+            {
+              "type": "item",
+              "label": "News",
+              "url": "https://cns.iu.edu/research/?type=news"
+            },
+            {
+              "type": "item",
+              "label": "Publications",
+              "url": "https://cns.iu.edu/research/?type=publications"
+            },
+            {
+              "type": "item",
+              "label": "Presentations",
+              "url": "https://cns.iu.edu/research/?type=presentations"
+            },
+            {
+              "type": "item",
+              "label": "Visualizations",
+              "url": "https://cns.iu.edu/research/?type=visualizations"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": "Featured projects",
+          "items": [
+            {
+              "type": "item",
+              "label": "Amatria: Sentient Architecture",
+              "url": "https://cns.iu.edu/research/amatria"
+            },
+            {
+              "type": "item",
+              "label": "Human Reference Atlas",
+              "url": "https://humanatlas.io",
+              "external": true,
+              "target": "_blank"
+            },
+            {
+              "type": "item",
+              "label": "Places & Spaces Exhibit",
+              "url": "https://scimaps.org",
+              "external": true,
+              "target": "_blank"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "id": "teaching",
+      "label": "Teaching",
+      "url": "https://ivmooc.cns.iu.edu/",
+      "external": true,
+      "target": "_blank"
+    }
+  ]
+}

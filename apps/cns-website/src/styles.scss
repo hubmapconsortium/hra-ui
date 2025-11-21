@@ -5,3 +5,7 @@
 @include utils.global-styles() {
   @include theming.theme(cns.$theme);
 }
+
+body {
+  height: 100vh;
+}

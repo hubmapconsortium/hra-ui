@@ -1,0 +1,56 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: linear-gradient(
+    0deg,
+    rgba(235, 244, 235, 0.384) 0%,
+    rgba(235, 244, 235, 0.64) 12%,
+    rgba(235, 244, 235, 0.8) 32%
+  );
+
+  .header-content {
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+
+    .filler {
+      flex-grow: 1;
+    }
+  }
+
+  .logo {
+    display: flex;
+    padding: 0 0.5rem;
+  }
+
+  .navigation-menu {
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+
+    ::ng-deep {
+      mat-button-toggle {
+        height: 100%;
+      }
+    }
+  }
+}
+
+::ng-deep .menu-open-backdrop {
+  top: 3.5rem;
+  background-color: rgba(64, 93, 64, 0.16);
+  backdrop-filter: blur(0.5rem);
+  mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  transition: 0.3s;
+}
+
+::ng-deep .cdk-overlay-pane {
+  left: unset !important;
+  right: 0rem !important;
+}
