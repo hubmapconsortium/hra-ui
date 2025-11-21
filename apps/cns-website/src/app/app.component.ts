@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
 
 /**
@@ -15,4 +16,9 @@ import { HraCommonModule } from '@hra-ui/common';
     class: 'cns-website',
   },
 })
-export class AppComponent {}
+export class AppComponent extends BaseApplicationComponent {
+  /** Initialize application */
+  constructor() {
+    super();
+  }
+}
