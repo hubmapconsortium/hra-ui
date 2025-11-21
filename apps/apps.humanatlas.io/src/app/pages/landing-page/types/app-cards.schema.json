@@ -1,7 +1,66 @@
 {
-  "$ref": "#/definitions/Apps",
-  "definitions": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "AppCards",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "tabs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AppCardsTab"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "tabs"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "AppCardsTab": {
+      "id": "AppCardsTab",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AppCardsSection"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "sections"
+      ],
+      "additionalProperties": false
+    },
+    "AppCardsSection": {
+      "id": "AppCardsSection",
+      "type": "object",
+      "properties": {
+        "tagline": {
+          "type": "string"
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AppCard"
+          }
+        }
+      },
+      "required": [
+        "tagline",
+        "cards"
+      ],
+      "additionalProperties": false
+    },
     "AppCard": {
+      "id": "AppCard",
       "type": "object",
       "properties": {
         "tagline": {
@@ -18,7 +77,11 @@
         },
         "appStatus": {
           "type": "string",
-          "enum": ["Preview", "Alpha", "Beta"]
+          "enum": [
+            "Preview",
+            "Alpha",
+            "Beta"
+          ]
         },
         "appUrl": {
           "type": "string"
@@ -27,57 +90,15 @@
           "type": "string"
         }
       },
-      "required": ["tagline", "description", "imagePath", "logoPath", "appUrl", "documentLink"],
-      "additionalProperties": false
-    },
-    "AppCardsSection": {
-      "type": "object",
-      "properties": {
-        "tagline": {
-          "type": "string"
-        },
-        "cards": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AppCard"
-          }
-        }
-      },
-      "required": ["tagline", "cards"],
-      "additionalProperties": false
-    },
-    "AppCardsTab": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "sections": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AppCardsSection"
-          }
-        }
-      },
-      "required": ["name", "sections"],
-      "additionalProperties": false
-    },
-    "Apps": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "tabs": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AppCardsTab"
-          }
-        }
-      },
-      "required": ["$schema", "tabs"],
+      "required": [
+        "tagline",
+        "description",
+        "imagePath",
+        "logoPath",
+        "appUrl",
+        "documentLink"
+      ],
       "additionalProperties": false
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }

@@ -1,20 +1,37 @@
 {
-  "$ref": "#/definitions/DocsNavigation",
-  "definitions": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "DocsNavigationMenu",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "menuItems": {
+      "$ref": "#/$defs/DocsMenuItems"
+    }
+  },
+  "required": [
+    "$schema",
+    "menuItems"
+  ],
+  "additionalProperties": false,
+  "$defs": {
     "DocsMenuItems": {
+      "id": "DocsMenuItems",
       "type": "array",
       "items": {
         "anyOf": [
           {
-            "$ref": "#/definitions/DocsNavigationCategory"
+            "$ref": "#/$defs/DocsNavigationCategory"
           },
           {
-            "$ref": "#/definitions/DocsNavigationItem"
+            "$ref": "#/$defs/DocsNavigationItem"
           }
         ]
       }
     },
     "DocsNavigationCategory": {
+      "id": "DocsNavigationCategory",
       "type": "object",
       "properties": {
         "type": {
@@ -30,14 +47,19 @@
         "children": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/DocsNavigationItem"
+            "$ref": "#/$defs/DocsNavigationItem"
           }
         }
       },
-      "required": ["label", "icon", "children"],
+      "required": [
+        "label",
+        "icon",
+        "children"
+      ],
       "additionalProperties": false
     },
     "DocsNavigationItem": {
+      "id": "DocsNavigationItem",
       "type": "object",
       "properties": {
         "type": {
@@ -54,22 +76,12 @@
           "type": "string"
         }
       },
-      "required": ["type", "label", "url"],
-      "additionalProperties": false
-    },
-    "DocsNavigation": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "menuItems": {
-          "$ref": "#/definitions/DocsMenuItems"
-        }
-      },
-      "required": ["$schema", "menuItems"],
+      "required": [
+        "type",
+        "label",
+        "url"
+      ],
       "additionalProperties": false
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }

@@ -65,17 +65,6 @@
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/apps.humanatlas.io/browser/"
-    },
-    "build-json-schemas": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "node tools/scripts/build-json-schema.mjs apps/apps.humanatlas.io/src/app/pages/us6/types/organs.schema.ts --name Organs",
-          "node tools/scripts/build-json-schema.mjs apps/apps.humanatlas.io/src/app/pages/us6/types/component-defs.schema.ts --name ComponentDefs",
-          "node tools/scripts/build-json-schema.mjs apps/apps.humanatlas.io/src/app/pages/landing-page/types/app-cards.schema.ts --name Apps"
-        ],
-        "parallel": true
-      }
     }
   }
 }

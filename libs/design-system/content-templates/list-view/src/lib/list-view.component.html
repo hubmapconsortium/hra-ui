@@ -1,0 +1,11 @@
+@for (data of data(); track data.group) {
+  <div class="list-view-group">
+    @if (groupBy()) {
+      <h3 hra-section-link underlined>{{ data.group }}</h3>
+    }
+
+    @for (item of data.items; track $index) {
+      <hra-markdown class="content" [data]="item.content" />
+    }
+  </div>
+}

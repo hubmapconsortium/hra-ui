@@ -9,4 +9,4 @@ export const ImageSchema = ContentTemplateSchema.extend({
   component: z.literal('Image'),
   src: z.string(),
   alt: z.string().optional(),
-});
+}).meta({ id: 'Image' });
