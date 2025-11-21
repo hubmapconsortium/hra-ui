@@ -15,7 +15,7 @@ import { environment } from '../../environments/environment';
 export function kgResolver(): ResolveFn<DigitalObjectsJsonLd> {
   return () => {
     const kg = inject(HraKgService);
-    return kg.digitalObjects().pipe(map((data) => data));
+    return kg.digitalObjects();
   };
 }
 
@@ -54,7 +54,7 @@ export function asctbResolver(): ResolveFn<[string, number][]> {
 export function ontologyResolver(): ResolveFn<OntologyTree> {
   return () => {
     const v1 = inject(V1Service);
-    return v1.ontologyTreeModel({}).pipe(map((data) => data));
+    return v1.ontologyTreeModel({});
   };
 }
 
@@ -65,7 +65,7 @@ export function ontologyResolver(): ResolveFn<OntologyTree> {
 export function cellTypeResolver(): ResolveFn<OntologyTree> {
   return () => {
     const v1 = inject(V1Service);
-    return v1.cellTypeTreeModel({}).pipe(map((data) => data));
+    return v1.cellTypeTreeModel({});
   };
 }
 
@@ -76,7 +76,7 @@ export function cellTypeResolver(): ResolveFn<OntologyTree> {
 export function biomarkersResolver(): ResolveFn<OntologyTree> {
   return () => {
     const v1 = inject(V1Service);
-    return v1.biomarkerTreeModel({}).pipe(map((data) => data));
+    return v1.biomarkerTreeModel({});
   };
 }
 
