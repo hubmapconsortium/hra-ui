@@ -8,12 +8,32 @@
   color: vars.$secondary;
   padding: 1.5rem;
   height: 100%;
+  width: 20rem;
 
   .header-section {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     padding-bottom: 1.5rem;
+  }
+
+  .customize-header,
+  .drawer-header,
+  .filters-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .drawer-title,
+  .customize-title,
+  .filters-title {
+    @include utils.use-font(title, small);
+    padding: 0.5rem 0;
+  }
+
+  .customize-icon,
+  .filter-icon {
+    padding: 0.5rem;
   }
 
   .filler {
@@ -25,30 +45,18 @@
     color: vars.$primary;
   }
 
-  .drawer-title,
-  .customize-title,
-  .filters-title {
-    @include utils.use-font(title, small);
-    padding: 0.5rem 0;
+  .filter-options {
+    padding-top: 1rem;
   }
 
-  .customize-header,
-  .drawer-header,
-  .filters-header {
+  .customize-section {
+    padding-bottom: 2.5rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .filters-header {
     margin-bottom: 1rem;
-  }
-
-  .filter-icon,
-  .customize-icon {
-    padding: 0.5rem;
-  }
-
-  ng-scrollbar {
-    padding-top: 1rem;
   }
 }

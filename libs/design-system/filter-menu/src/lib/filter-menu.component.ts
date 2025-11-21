@@ -6,14 +6,6 @@ import { FilterContainerComponent } from './filter-container/filter-container.co
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 
-/** Filter option interface */
-export interface FilterToggleOption {
-  /** Option id */
-  id: string;
-  /** Option label */
-  label: string;
-}
-
 /** Filter menu option interface */
 export interface FilterMenuOption {
   /** Option id */
@@ -36,17 +28,7 @@ export interface FilterOptionCategory {
 }
 
 /**
- * Controls section for filter menu (controls inserted with ng-content)
- */
-@Component({
-  selector: 'hra-filter-menu-controls',
-  template: '<ng-content />',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class FilterMenuControlsComponent {}
-
-/**
- * A collapsing menu with waysto refine databases to particular views, sorting and grouping preferences, and filters
+ * A collapsing menu with ways to refine databases to particular views, sorting and grouping preferences, and filters
  */
 @Component({
   selector: 'hra-filter-menu',
@@ -78,6 +60,7 @@ export class FilterMenuComponent {
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
 
+  /** Emits when the filter options change */
   readonly filterChange = output();
 
   /** Whether the user is on a wide screen */

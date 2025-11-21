@@ -1,12 +1,6 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 
-import {
-  FilterMenuComponent,
-  FilterMenuControlsComponent,
-  FilterOptionCategory,
-  FilterToggleOption,
-} from './filter-menu.component';
-import { FilterMenuCustomizeComponent } from './filter-menu-customize/filter-menu-customize.component';
+import { FilterMenuComponent, FilterOptionCategory } from './filter-menu.component';
 
 const FILTER_OPTIONS = [
   { id: 'a', label: 'A', count: 9999 },
@@ -18,23 +12,6 @@ const FILTER_OPTIONS = [
   { id: 'g', label: 'G', count: 199 },
   { id: 'h', label: 'H', count: 99 },
 ];
-const TOGGLE_OPTIONS = [
-  { id: 'option1', label: 'Option 1' },
-  { id: 'option2', label: 'Option 2' },
-  { id: 'option3', label: 'Option 3' },
-] as FilterToggleOption[];
-const VIEW_AS_OPTIONS = [
-  { id: 'table', label: 'Table' },
-  { id: 'gallery', label: 'Gallery' },
-  { id: 'list', label: 'List' },
-] as FilterToggleOption[];
-const SORT_BY_OPTIONS = [
-  { id: 'nameAsc', label: 'Name ascending' },
-  { id: 'nameDesc', label: 'Name descending' },
-  { id: 'oldest', label: 'Oldest' },
-  { id: 'newest', label: 'Newest' },
-  { id: 'hierachical', label: 'Hierarchical' },
-] as FilterToggleOption[];
 const FILTER_CATEGORIES = [
   { id: 'category1', label: 'Category 1', options: FILTER_OPTIONS },
   { id: 'category2', label: 'Category 2', options: FILTER_OPTIONS },
@@ -49,16 +26,16 @@ const FILTER_CATEGORIES = [
 ] as FilterOptionCategory[];
 
 const meta: Meta = {
-  title: 'Design System / Filter Menu',
+  title: 'Design System/Filter Menu',
   decorators: [
     moduleMetadata({
-      imports: [FilterMenuComponent, FilterMenuControlsComponent, FilterMenuCustomizeComponent],
+      imports: [FilterMenuComponent],
     }),
   ],
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=12494-166042&t=U6WxS9uCkPILoojn-4',
+      url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=4929-40164',
     },
   },
   args: {
@@ -66,22 +43,15 @@ const meta: Meta = {
     description: 'Supporting text here, if needed, but make it short and straightforward',
     enableClose: true,
     filters: FILTER_CATEGORIES,
-    toggleOptions: TOGGLE_OPTIONS,
-    viewAsOptions: VIEW_AS_OPTIONS,
-    sortByOptions: SORT_BY_OPTIONS,
   },
   render: (args) => ({
     props: args,
     template: `
-      <hra-filter-menu [filters]="filters" [tagline]="tagline" [description]="description" [enableClose]="enableClose">
-        <hra-filter-menu-controls>
-          <hra-filter-menu-customize
-            [filters]="filters"
-            [toggleOptions]="toggleOptions"
-            [viewAsOptions]="viewAsOptions"
-            [sortByOptions]="sortByOptions">
-          </hra-filter-menu-customize>
-        </hra-filter-menu-controls>
+      <hra-filter-menu
+        [filters]="filters"
+        [tagline]="tagline"
+        [description]="description"
+        [enableClose]="enableClose">
       </hra-filter-menu>
     `,
     styles: [

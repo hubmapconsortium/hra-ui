@@ -9,8 +9,6 @@ import {
   InfoButtonTaglineDirective,
   InfoButtonActionsDirective,
 } from '@hra-ui/design-system/buttons/info-button';
-import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
-import { FilterListFlyoutComponent } from '../filter-list-flyout/filter-list-flyout.component';
 import { FilterOptionCategory } from '../filter-menu.component';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 
@@ -39,8 +37,6 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
     InfoButtonComponent,
     InfoButtonTaglineDirective,
     InfoButtonActionsDirective,
-    RichTooltipModule,
-    FilterListFlyoutComponent,
     OverlayModule,
   ],
   templateUrl: './filter-container.component.html',

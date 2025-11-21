@@ -3,7 +3,7 @@ import { FilterContainerComponent, FilterChip } from './filter-container.compone
 
 const meta: Meta<FilterContainerComponent<FilterChip>> = {
   component: FilterContainerComponent,
-  title: 'Design System/Filter Container',
+  title: 'Design System/Filter Menu/Filter Container',
   parameters: {
     design: {
       type: 'figma',
