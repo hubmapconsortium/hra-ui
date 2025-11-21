@@ -18,8 +18,7 @@ export class GalleryGridItemDirective<T> {
   readonly hraGalleryGridItemOf = input<T[]>();
 
   /** Template reference */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  readonly templateRef = inject<TemplateRef<GalleryGridItemContext<T>>>(TemplateRef as any);
+  readonly templateRef = inject(TemplateRef<GalleryGridItemContext<T>>);
 
   /** Type guard for template type checking */
   static ngTemplateContextGuard<T>(dir: GalleryGridItemDirective<T>, ctx: unknown): ctx is GalleryGridItemContext<T> {
