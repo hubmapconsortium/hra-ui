@@ -274,6 +274,10 @@
       "types": "./fullscreen/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-fullscreen.mjs"
     },
+    "./gallery-grid": {
+      "types": "./gallery-grid/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-gallery-grid.mjs"
+    },
     "./icons": {
       "types": "./icons/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-icons.mjs"

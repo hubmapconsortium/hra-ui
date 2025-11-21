@@ -766,6 +766,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/GalleryCardComponent.html" data-type="entity-link" >GalleryCardComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/GalleryGridComponent.html" data-type="entity-link" >GalleryGridComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/GoogleMapsComponent.html" data-type="entity-link" >GoogleMapsComponent</a>
                             </li>
                             <li class="link">
@@ -998,6 +1001,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/FullscreenDirective.html" data-type="entity-link" >FullscreenDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="directives/GalleryGridItemDirective.html" data-type="entity-link" >GalleryGridItemDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/HubmapMenuGroupDirective.html" data-type="entity-link" >HubmapMenuGroupDirective</a>
                                 </li>
                                 <li class="link">
@@ -1157,6 +1163,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/FilterChip.html" data-type="entity-link" >FilterChip</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/GalleryGridItemContext.html" data-type="entity-link" >GalleryGridItemContext</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IconConfig.html" data-type="entity-link" >IconConfig</a>
