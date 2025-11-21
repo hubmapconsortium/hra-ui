@@ -33,6 +33,11 @@ const meta: Meta<FilterListFlyoutComponent> = {
       url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=12492-44301&t=P7zcWFRIyuDoIlRW-4',
     },
   },
+  args: {
+    currentFilters: ['a', 'abc', 'abcde'],
+    showSearch: true,
+    disableRipple: false,
+  },
 };
 
 export default meta;
@@ -41,7 +46,6 @@ type Story = StoryObj<FilterListFlyoutComponent>;
 export const Default: Story = {
   args: {
     filterOptions: FILTER_OPTIONS,
-    currentFilters: ['a', 'abc', 'abcde'],
   },
 };
 

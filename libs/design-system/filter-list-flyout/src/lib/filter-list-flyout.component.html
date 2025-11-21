@@ -1,11 +1,14 @@
-<mat-form-field hraFeature="search" hraClickEvent class="search field" subscriptSizing="dynamic">
-  <mat-label class="search-label">Search</mat-label>
-  <mat-icon class="search-icon" matPrefix>search</mat-icon>
-  <input matInput type="text" [formControl]="searchControl" />
-</mat-form-field>
+@if (showSearch()) {
+  <mat-form-field hraFeature="search" hraClickEvent class="search field" subscriptSizing="dynamic">
+    <mat-label class="search-label">Search</mat-label>
+    <mat-icon class="search-icon" matPrefix>search</mat-icon>
+    <input matInput type="text" [formControl]="searchControl" />
+  </mat-form-field>
+}
+;
 
 <ng-scrollbar hraScrollOverflowFade class="filter-options">
-  <mat-selection-list (selectionChange)="handleSelectionChange($event)">
+  <mat-selection-list [disableRipple]="disableRipple()" (selectionChange)="handleSelectionChange($event)">
     @for (option of filteredOptions(); track option.id) {
       <mat-list-option
         togglePosition="before"

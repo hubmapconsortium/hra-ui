@@ -22,6 +22,9 @@ export interface FilterMenuOption {
   count: number;
 }
 
+/**
+ * Keyboard-accessible filter list flyout menu with an optional search text field with autocomplete
+ */
 @Component({
   selector: 'hra-filter-list-flyout',
   imports: [
@@ -44,6 +47,12 @@ export interface FilterMenuOption {
 export class FilterListFlyoutComponent {
   /** Filter search form control */
   readonly searchControl = new FormControl();
+
+  /** Whether to show the autocomplete search bar */
+  readonly showSearch = input<boolean>(true);
+
+  /** Whether to disable the ripple effect for list items */
+  readonly disableRipple = input<boolean>(false);
 
   /** All filter options */
   readonly filterOptions = input.required<FilterMenuOption[]>();
