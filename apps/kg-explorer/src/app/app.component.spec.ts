@@ -81,7 +81,7 @@ describe('AppComponent', () => {
                 columns: DO_COLUMNS,
               },
               resolve: {
-                data: kgResolver(''),
+                data: kgResolver(),
                 asctbTermOccurrences: asctbResolver(),
                 ontologyTree: ontologyResolver(),
                 cellTypeTree: cellTypeResolver(),
@@ -95,7 +95,7 @@ describe('AppComponent', () => {
                 columns: METADATA_COLUMNS,
               },
               resolve: {
-                doData: kgResolver(''),
+                doData: kgResolver(),
                 metadata: jest.mocked(doMetadataResolver),
                 documentationUrl: documentationUrlResolver(),
                 typeLabel: jest.mocked(productLabelResolver()),

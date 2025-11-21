@@ -18,6 +18,8 @@ import { ProvenanceMenuComponent } from '../../components/provenance-menu/proven
 import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 /**
  * Metadata page for a digital object
@@ -136,7 +138,8 @@ export class MetadataPageComponent {
         }
         this.icons.set(icons);
 
-        this.v1.ontologyTreeModel({}).subscribe((ontologyData) => {
+        const v1 = new V1Service(inject(HttpClient), environment.remoteApiEndpoint);
+        v1.ontologyTreeModel({}).subscribe((ontologyData) => {
           if (pageItem) {
             this.availableVersions.set(pageItem.versions);
             const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];

@@ -6,7 +6,7 @@ import { catchError, map, of } from 'rxjs';
 
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
 import { getDocumentationUrl, getProductLabel } from './utils';
-import { environment } from '../../environments/environment.staging';
+import { environment } from '../../environments/environment';
 
 /**
  * Creates a resolver that fetches the digital object data from a url
@@ -15,10 +15,8 @@ import { environment } from '../../environments/environment.staging';
  */
 export function kgResolver(): ResolveFn<DigitalObjectsJsonLd> {
   return () => {
-    const http = inject(HttpClient);
-    return http
-      .get(environment.remoteApiEndpoint + '/kg/digital-objects', { responseType: 'json' })
-      .pipe(map((data) => data));
+    const kg = new HraKgService(inject(HttpClient), environment.remoteApiEndpoint);
+    return kg.digitalObjects().pipe(map((data) => data));
   };
 }
 

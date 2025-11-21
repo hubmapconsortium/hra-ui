@@ -32,8 +32,7 @@ import {
   HRA_VERSION_DATA,
   sentenceCase,
 } from '../../utils/utils';
-
-import { environment } from '../../../environments/environment.staging';
+import { environment } from '../../../environments/environment';
 
 /** Digital object info interface with hraVersions */
 interface DigitalObjectInfoWithHraVersions extends DigitalObjectInfo {
