@@ -33,6 +33,8 @@ import {
   sentenceCase,
 } from '../../utils/utils';
 
+import { environment } from '../../../environments/environment.staging';
+
 /** Digital object info interface with hraVersions */
 interface DigitalObjectInfoWithHraVersions extends DigitalObjectInfo {
   /** List of HRA versions for the object */
@@ -91,8 +93,6 @@ const SCROLLBAR_TOP_OFFSET = '86';
 export class MainPageComponent {
   /** Http service */
   private readonly http = inject(HttpClient);
-  /** HRA KG API service */
-  private readonly kg = inject(HraKgService);
   /** File download service */
   readonly download = inject(DownloadService);
   /** Router service */
@@ -440,12 +440,14 @@ export class MainPageComponent {
    * @returns object search
    */
   private digitalObjectSearch(): Observable<string[]> {
+    const kg = new HraKgService(this.http, environment.remoteApiEndpoint);
+
     const currentAnatomicalStructuresFilters = this.filters().anatomicalStructures;
     const currentCellTypesFilters = this.filters().cellTypes;
     const currentBiomarkerFilters = this.filters().biomarkers;
     const currentHraVersionFilters = this.filters().releaseVersion;
 
-    return this.kg.doSearch({
+    return kg.doSearch({
       ontologyTerms: currentAnatomicalStructuresFilters,
       cellTypeTerms: currentCellTypesFilters,
       biomarkerTerms: currentBiomarkerFilters,

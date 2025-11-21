@@ -6,16 +6,19 @@ import { catchError, map, of } from 'rxjs';
 
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
 import { getDocumentationUrl, getProductLabel } from './utils';
+import { environment } from '../../environments/environment.staging';
 
 /**
  * Creates a resolver that fetches the digital object data from a url
  * @param url Digital object url
  * @returns Resolver
  */
-export function kgResolver(url: string): ResolveFn<DigitalObjectsJsonLd> {
+export function kgResolver(): ResolveFn<DigitalObjectsJsonLd> {
   return () => {
     const http = inject(HttpClient);
-    return http.get(url, { responseType: 'json' }).pipe(map((data) => data));
+    return http
+      .get(environment.remoteApiEndpoint + '/kg/digital-objects', { responseType: 'json' })
+      .pipe(map((data) => data));
   };
 }
 
@@ -42,7 +45,7 @@ export function doMetadataResolver(): ResolveFn<DigitalObjectMetadata> {
  */
 export function asctbResolver(): ResolveFn<[string, number][]> {
   return () => {
-    const kg = inject(HraKgService);
+    const kg = new HraKgService(inject(HttpClient), environment.remoteApiEndpoint);
     return kg.asctbTermOccurences({}).pipe(map((data) => Object.entries(data)));
   };
 }
@@ -53,7 +56,7 @@ export function asctbResolver(): ResolveFn<[string, number][]> {
  */
 export function ontologyResolver(): ResolveFn<OntologyTree> {
   return () => {
-    const v1 = inject(V1Service);
+    const v1 = new V1Service(inject(HttpClient), environment.remoteApiEndpoint);
     return v1.ontologyTreeModel({}).pipe(map((data) => data));
   };
 }
@@ -64,7 +67,7 @@ export function ontologyResolver(): ResolveFn<OntologyTree> {
  */
 export function cellTypeResolver(): ResolveFn<OntologyTree> {
   return () => {
-    const v1 = inject(V1Service);
+    const v1 = new V1Service(inject(HttpClient), environment.remoteApiEndpoint);
     return v1.cellTypeTreeModel({}).pipe(map((data) => data));
   };
 }
@@ -75,7 +78,7 @@ export function cellTypeResolver(): ResolveFn<OntologyTree> {
  */
 export function biomarkersResolver(): ResolveFn<OntologyTree> {
   return () => {
-    const v1 = inject(V1Service);
+    const v1 = new V1Service(inject(HttpClient), environment.remoteApiEndpoint);
     return v1.biomarkerTreeModel({}).pipe(map((data) => data));
   };
 }
