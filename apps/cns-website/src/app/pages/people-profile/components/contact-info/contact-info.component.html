@@ -1,33 +1,31 @@
-<div class="contact-info-wrapper">
-  <div class="profile-picture">
-    <img alt="Profile picture" [src]="contactInfo().image" />
-  </div>
-
-  <hra-page-section class="contact-info-section" tagline="Contact info" [level]="5">
-    @if (contactInfo().role?.office; as office) {
-      <hra-page-section tagline="Office" [level]="6">
-        <div class="value">{{ office }}</div>
-      </hra-page-section>
-    }
-
-    @if (contactInfo().role?.phone; as phone) {
-      <hra-page-section tagline="Phone" [level]="6">
-        <div class="value">{{ phone }}</div>
-      </hra-page-section>
-    }
-
-    @if (contactInfo().role?.fax; as fax) {
-      <hra-page-section tagline="Fax" [level]="6">
-        <div class="value">{{ fax }}</div>
-      </hra-page-section>
-    }
-
-    @if (contactInfo().role?.email; as email) {
-      <hra-page-section tagline="Email" [level]="6">
-        <div class="value">
-          <a [href]="`mailto:${email}`">{{ email }}</a>
-        </div>
-      </hra-page-section>
-    }
-  </hra-page-section>
+<div class="profile-picture">
+  <img alt="Profile picture" [attr.src]="contactInfo().image" />
 </div>
+
+<hra-page-section class="contact-info-section" tagline="Contact info" [level]="5">
+  @if (contactInfo().role?.office; as office) {
+    <hra-page-section tagline="Office" [level]="6">
+      <div class="value">{{ office }}</div>
+    </hra-page-section>
+  }
+
+  @if (contactInfo().role?.phone; as phone) {
+    <hra-page-section tagline="Phone" [level]="6">
+      <div class="value">{{ phone }}</div>
+    </hra-page-section>
+  }
+
+  @if (contactInfo().role?.fax; as fax) {
+    <hra-page-section tagline="Fax" [level]="6">
+      <div class="value">{{ fax }}</div>
+    </hra-page-section>
+  }
+
+  @if (contactInfo().role?.email; as email) {
+    <hra-page-section tagline="Email" [level]="6">
+      <div class="value">
+        <a [attr.href]="`mailto:${email}`">{{ email }}</a>
+      </div>
+    </hra-page-section>
+  }
+</hra-page-section>

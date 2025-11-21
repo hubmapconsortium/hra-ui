@@ -1,58 +1,68 @@
-.profile-page-container {
-  display: flex;
-  gap: 3.375rem;
+@use 'vars' as vars;
 
-  @media (max-width: 924px) {
-    padding: 2.5rem 1.5rem;
-  }
-
-  @media (max-width: 639px) {
-    flex-direction: column;
-    min-height: auto;
-  }
-}
-
-.contact-sidebar {
-  flex-shrink: 0;
-  align-self: stretch;
-
-  @media (max-width: 639px) {
-    display: none;
-  }
-}
-
-.contact-sidebar-mobile {
-  display: none;
-
-  @media (max-width: 639px) {
-    display: block;
-  }
-}
-
-.profile-header-section-mobile {
-  display: none;
-
-  @media (max-width: 639px) {
-    display: block;
-  }
-}
-
-.profile-header-section-desktop {
-  display: block;
-
-  @media (max-width: 639px) {
-    display: none;
-  }
-}
-
-.main-content {
-  flex: 1;
+:host {
   display: flex;
   flex-direction: column;
-}
 
-.profile-description {
-  @media (max-width: 924px) and (min-width: 640px) {
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+
+  .contact-sidebar {
+    flex-shrink: 0;
+    align-self: stretch;
     display: none;
+
+    @media (min-width: 640px) {
+      display: block;
+    }
+  }
+
+  .contact-sidebar-mobile {
+    display: block;
+    padding: 0 1.5rem;
+
+    @media (min-width: 640px) {
+      display: none;
+    }
+  }
+
+  .profile-header-section-mobile {
+    display: block;
+    padding: 0 1.5rem;
+
+    @media (min-width: 640px) {
+      display: none;
+    }
+  }
+
+  .profile-header-section-desktop {
+    display: none;
+
+    @media (min-width: 640px) {
+      display: block;
+    }
+  }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 640px) {
+      border-left: 1px solid vars.$outline-variant;
+    }
+  }
+
+  .profile-description {
+    display: block;
+
+    @media (max-width: 924px) and (min-width: 640px) {
+      display: none;
+    }
+  }
+
+  ::ng-deep markdown p {
+    margin: 0;
   }
 }

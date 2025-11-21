@@ -1,31 +1,19 @@
 @use 'vars' as vars;
+@use 'utils' as utils;
 
 :host {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-
-  @media (max-width: 639px) {
-    min-height: auto;
-  }
-}
-
-.contact-info-wrapper {
-  display: flex;
-  flex-direction: column;
-  background: vars.$surface-container-low;
-  padding: 2rem;
   min-width: 12.5rem;
-  max-width: 18.75rem;
-  border-right: 1px solid vars.$outline-variant;
-  flex: 1;
+  max-width: 100%;
+  flex: 0;
 
-  @media (max-width: 639px) {
-    max-width: 100%;
-    border-right: none;
-    border-bottom: 1px solid vars.$outline-variant;
-    flex: 0;
-    padding: 1.5rem;
+  @media (min-width: 640px) {
+    background: vars.$surface-container-low;
+    padding: 2rem;
+    max-width: 18.75rem;
+    flex: 1;
+    min-height: 100%;
   }
 }
 
@@ -43,10 +31,7 @@
 }
 
 .value {
-  font-size: vars.$body-large-size;
-  line-height: vars.$body-large-line-height;
-  font-weight: vars.$body-large-weight;
-  letter-spacing: vars.$body-large-tracking;
+  @include utils.use-font(body, large);
 
   a {
     color: inherit;
@@ -60,6 +45,10 @@
       h5 {
         border-bottom: 1px solid vars.$outline-variant;
       }
+    }
+
+    hra-page-section .content {
+      margin-top: 0;
     }
   }
 }
