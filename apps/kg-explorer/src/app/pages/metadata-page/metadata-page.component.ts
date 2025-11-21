@@ -47,8 +47,8 @@ export class MetadataPageComponent {
   private readonly route = inject(ActivatedRoute);
   /** File download service */
   private readonly download = inject(DownloadService);
-  /** HRA V1 API service */
-  private readonly v1 = inject(V1Service);
+  /** Http client */
+  private readonly http = inject(HttpClient);
 
   /** Raw digital object data from API */
   readonly doData = input.required<DigitalObjectsJsonLd>();
@@ -138,7 +138,7 @@ export class MetadataPageComponent {
         }
         this.icons.set(icons);
 
-        const v1 = new V1Service(inject(HttpClient), environment.remoteApiEndpoint);
+        const v1 = new V1Service(this.http, environment.remoteApiEndpoint);
         v1.ontologyTreeModel({}).subscribe((ontologyData) => {
           if (pageItem) {
             this.availableVersions.set(pageItem.versions);
