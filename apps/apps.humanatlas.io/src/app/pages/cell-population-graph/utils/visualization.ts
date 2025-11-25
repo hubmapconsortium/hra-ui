@@ -145,11 +145,17 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
               title: GRAPH_ATTRIBUTE_LABELS[options.groupBy] ?? options.groupBy,
               type: 'ordinal',
               spacing: options.groupSpacing,
-              sort: {
-                field: 'facet_sort_key',
-                op: 'min',
-                order: options.orderType,
-              },
+              sort: isGroupByNumeric
+                ? {
+                    field: 'facet_sort_key',
+                    op: 'min',
+                    order: 'ascending',
+                  }
+                : {
+                    field: 'facet_sort_key',
+                    op: 'min',
+                    order: options.orderType,
+                  },
             },
       x: {
         field: options.xAxisField,
@@ -221,9 +227,11 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
             {
               calculate: isGroupByNumeric
                 ? options.orderType === 'descending'
-                  ? `lower(datum.${options.groupBy}) === 'unknown' ? -Infinity : -datum.${options.groupBy}`
+                  ? `lower(datum.${options.groupBy}) === 'unknown' ? Infinity : (1000000 - datum.${options.groupBy})`
                   : `lower(datum.${options.groupBy}) === 'unknown' ? Infinity : datum.${options.groupBy}`
-                : `lower(datum.${options.groupBy}) === 'unknown' ? '~~~Unknown' : datum.${options.groupBy}`,
+                : options.orderType === 'descending'
+                  ? `lower(datum.${options.groupBy}) === 'unknown' ? '' : datum.${options.groupBy}`
+                  : `lower(datum.${options.groupBy}) === 'unknown' ? '~~~Unknown' : datum.${options.groupBy}`,
               as: 'facet_sort_key',
             },
           ]
