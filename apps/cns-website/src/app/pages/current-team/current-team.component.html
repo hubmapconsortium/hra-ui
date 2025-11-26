@@ -1,0 +1,50 @@
+<aside class="customize-sidebar" aria-label="Customize options">
+  <div class="sidebar-placeholder">
+    <!-- TODO: Add sidebar component here when available -->
+  </div>
+</aside>
+
+<!-- Main content area -->
+<main class="main-content">
+  <!-- Search filter with results counter -->
+  <div class="search-container">
+    <hra-search-filter
+      label="Search"
+      [totalCount]="totalCount()"
+      [viewingCount]="viewingCount()"
+      [(search)]="searchQuery"
+    />
+  </div>
+
+  <!-- No results indicator -->
+  @if (hasNoResults()) {
+    <div class="no-results-container">
+      <hra-no-results-indicator (clearFilters)="clearFilters()" />
+    </div>
+  }
+
+  <!-- Profile cards grid -->
+  @else {
+    <div class="grid-scroll-container">
+      <div class="profile-grid">
+        @for (member of filteredMembers(); track member.slug) {
+          <hra-profile-card
+            [pictureUrl]="getProfilePicture(member)"
+            [name]="member.name"
+            [description]="getMemberTitle(member)"
+            [centerContent]="true"
+          >
+            <a
+              class="learn-more-link"
+              [attr.href]="getProfileLink(member)"
+              [attr.aria-label]="`Learn more about ${member.name}`"
+            >
+              <span class="learn-more-text">Learn more</span>
+              <span class="learn-more-arrow">→</span>
+            </a>
+          </hra-profile-card>
+        }
+      </div>
+    </div>
+  }
+</main>

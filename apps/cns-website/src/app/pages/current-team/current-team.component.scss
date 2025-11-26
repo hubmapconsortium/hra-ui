@@ -1,0 +1,146 @@
+@use 'vars' as vars;
+@use 'utils';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 1100px) {
+    flex-direction: row;
+  }
+
+  // Placeholder sidebar for customize component
+  // Temporary solution until we have the sidebar component ready
+  .customize-sidebar {
+    display: none;
+    flex-shrink: 0;
+    width: 20rem;
+    background-color: #fcfcfc;
+    border-right: 0.0625rem solid vars.$outline-variant;
+
+    // Show sidebar on desktop
+    @media (min-width: 1100px) {
+      display: block;
+    }
+
+    .sidebar-placeholder {
+      padding: 1.5rem;
+      min-height: 12.5rem;
+    }
+  }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    max-width: 100%;
+    overflow-x: hidden;
+
+    @media (min-width: 640px) {
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 1100px) {
+      padding: 2rem;
+    }
+  }
+
+  .search-container {
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    @media (min-width: 640px) {
+      margin-bottom: 2rem;
+    }
+
+    ::ng-deep hra-search-filter {
+      display: flex !important;
+      justify-content: space-between;
+      align-items: center !important;
+      width: 100%;
+      gap: 1rem;
+      flex-wrap: nowrap;
+
+      @media (max-width: 48rem) {
+        flex-direction: row !important;
+        align-items: center !important;
+      }
+
+      .search-field {
+        flex: 1;
+        min-width: 7.5rem;
+      }
+
+      .results-counter {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .no-results-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+    min-height: 25rem;
+  }
+
+  ::ng-deep hra-profile-card {
+    .learn-more-link {
+      @include utils.use-font(label, medium);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.5rem 0;
+      color: vars.$tertiary;
+      text-decoration: none;
+
+      .learn-more-text {
+        text-decoration: underline solid currentColor 0.0625rem;
+        text-underline-offset: 0.125rem;
+      }
+    }
+  }
+
+  .profile-grid {
+    display: grid;
+    padding: 0;
+    gap: 1.5rem;
+    max-width: 81.25rem;
+    margin: 0 auto;
+    justify-items: center;
+
+    // Mobile (below 640px): 1 column
+    grid-template-columns: 1fr;
+
+    // Tablet (640px - 1099px): 2 columns
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    // Desktop (1100px and above): Exactly 4 columns
+    @media (min-width: 1100px) {
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 2.5rem;
+      row-gap: 5rem;
+    }
+  }
+
+  ::ng-deep hra-profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    max-width: 17rem;
+
+    --profile-card-border-color: #8dc63f;
+    --profile-card-description-color: #0f0f0f;
+  }
+}
