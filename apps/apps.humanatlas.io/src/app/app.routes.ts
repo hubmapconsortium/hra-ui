@@ -136,35 +136,35 @@ export const appRoutes: Route[] = [
   // Redirects
   {
     path: 'asctb-reporter',
-    ...createExternalRedirectRoute('https://humanatlas.io/asctb-reporter'),
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/asctb-reporter'),
   },
   {
     path: 'rui',
-    ...createExternalRedirectRoute('https://humanatlas.io/rui'),
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/rui'),
   },
   {
     path: 'eui',
-    ...createExternalRedirectRoute('https://humanatlas.io/eui'),
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/eui'),
   },
   {
     path: 'organ-info',
-    ...createExternalRedirectRoute('https://humanatlas.io/organ-info'),
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/organ-info'),
   },
   {
     path: 'body-ui',
-    ...createExternalRedirectRoute('https://humanatlas.io/body-ui'),
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/body-ui'),
   },
   {
     path: 'ftu',
-    ...createExternalRedirectRoute('https://humanatlas.io/ftu'),
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/ftu-explorer'),
   },
   {
     path: 'cde',
-    ...createExternalRedirectRoute('https://humanatlas.io/cde'),
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/cde'),
   },
   {
     path: 'kg',
-    ...createExternalRedirectRoute('https://humanatlas.io/kg'),
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/kg-explorer'),
   },
   {
     path: '**',
