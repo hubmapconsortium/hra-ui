@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
-import { HraCommonModule } from '@hra-ui/common';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';
-import { FundingComponent } from './funding/funding.component';
-import { FUNDER_IDS } from './static-data/parsed';
-import { MatDividerModule } from '@angular/material/divider';
 import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { FundingComponent } from './funding/funding.component';
+import { FUNDER_IDS } from './static-data/parsed';
 
 /**
  * CNS footer component
@@ -23,6 +24,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     FundingComponent,
     MatDividerModule,
     InlineSVGModule,
+    LinkDirective,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
