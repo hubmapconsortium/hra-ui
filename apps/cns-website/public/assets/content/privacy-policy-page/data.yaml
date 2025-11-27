@@ -1,6 +1,10 @@
 $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Privacy Policy
 subtitle: 'Effective: 2025-10-15'
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: Privacy Policy
 content:
   - component: PageSection
     tagline: Overview

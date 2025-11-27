@@ -1,6 +1,10 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: About the Cyberinfrastructure for Network Science Center
 subtitle: Celebrating 20+ years of data visualization research at Indiana University.
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: About
 content:
   - component: PageSection
     tagline: Our mission
