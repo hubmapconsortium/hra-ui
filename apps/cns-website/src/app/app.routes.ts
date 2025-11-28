@@ -3,6 +3,7 @@ import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-syst
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { LandingPageComponent } from './pages/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
+import { peopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -12,12 +13,11 @@ export const appRoutes: Route[] = [
     component: LandingPageComponent,
   },
   {
-    path: 'people/katy-borner',
+    path: 'people/:slug',
     component: PeopleProfileComponent,
-    // TODO: When JSON data is available, add resolver
-    // resolve: {
-    //   data: createJsonSpecResolver('assets/content/people/katy-borner/data.json', PeopleProfileDataSchema)
-    // }
+    resolve: {
+      data: peopleProfileResolver,
+    },
   },
 
   // Content pages
