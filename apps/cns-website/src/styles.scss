@@ -6,6 +6,10 @@
   @include theming.theme(cns.$theme);
 }
 
+html {
+  scroll-padding-top: 3.5rem;
+}
+
 body {
   height: 100vh;
 }
