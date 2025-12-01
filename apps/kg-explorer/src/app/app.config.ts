@@ -6,6 +6,8 @@ import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import { CustomRouteReuseStrategy } from './utils/route-strategy';
+import { provideApi } from '@hra-api/ng-client';
+import { environment } from '../environments/environment';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
@@ -25,5 +27,6 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'enabled' }),
     ),
+    provideApi({ basePath: environment.remoteApiEndpoint }),
   ],
 };
