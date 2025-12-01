@@ -120,10 +120,20 @@ const meta: Meta = {
       }`,
       `.toggle-group {
           width: fit-content;
+          max-width: 100%;
+          --mat-button-toggle-height: 2rem;
+      }`,
+      `mat-button-toggle {
+        font: var(--mat-sys-label-medium);
+      }`,
+      `mat-label {
+        font: var(--mat-sys-label-medium);
+        --mat-form-field-filled-label-text-color: var(--mat-sys-primary);
       }`,
       `.select-icon {
         padding-left: 0.75rem;
         padding-right: 0.5rem;
+        --mat-form-field-leading-icon-color: var(--mat-sys-secondary);
       }`,
     ],
   }),

@@ -29,6 +29,9 @@
         (
           text-horizontal-padding: 0.75rem,
           text-label-text-font: vars.$label-medium-font,
+          text-label-text-size: vars.$label-medium-size,
+          text-label-text-tracking: vars.$label-medium-tracking,
+          text-label-text-weight: vars.$label-medium-weight,
         )
       );
     }
