@@ -1,13 +1,42 @@
+@use 'utils';
+@use 'vars';
+
 :host {
   display: block;
-  height: 100%;
   background-image: url(../../../public/assets/bg-homepage.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
-  cns-footer {
-    position: absolute;
-    bottom: 0;
+  .content {
+    padding: 6.25rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    @include utils.use-font(display, large);
+    margin-bottom: 0.25rem;
+  }
+
+  .tagline {
+    @include utils.use-font(body, xl);
+    margin-bottom: 2rem;
+    max-width: 31.5rem;
+    text-align: center;
+  }
+
+  .content-filter {
+    margin-bottom: 3rem;
+  }
+
+  .content-grid {
+    width: 100%;
+    max-width: 86.5rem;
+
+    hra-gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(20.5rem, 1fr));
+    }
   }
 }
