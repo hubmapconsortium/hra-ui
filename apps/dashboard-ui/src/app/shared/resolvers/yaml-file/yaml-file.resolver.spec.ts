@@ -3,6 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { InjectionToken } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Location } from '@angular/common';
 import { Observable, firstValueFrom } from 'rxjs';
 import { YAML_FILE_CACHE } from './yaml-file-cache';
 import { yamlFileResolver } from './yaml-file.resolver';
@@ -84,6 +85,64 @@ describe('yamlFileResolver', () => {
     const resolverResult = TestBed.runInInjectionContext(() => resolver(mockRoute, mockState));
 
     const resultPromise = firstValueFrom(resolverResult as Observable<unknown>);
+    const req = httpTestingController.expectOne(yamlUrl);
+    req.flush(yamlContent);
+
+    const result = await resultPromise;
+    expect(result).toEqual(expectedData);
+
+    httpTestingController.verify();
+  });
+
+  it('should handle relative path using Location.prepareExternalUrl', async () => {
+    const relativePath = 'assets/config.yaml';
+    const preparedUrl = '/base/assets/config.yaml';
+    const yamlContent = 'relative: true';
+    const expectedData = { relative: true };
+    const location = TestBed.inject(Location);
+
+    jest.spyOn(location, 'prepareExternalUrl').mockReturnValue(preparedUrl);
+
+    const resolver = yamlFileResolver(relativePath);
+    const resolverResult = TestBed.runInInjectionContext(() => resolver(mockRoute, mockState));
+
+    const resultPromise = firstValueFrom(resolverResult as Observable<unknown>);
+    const req = httpTestingController.expectOne(preparedUrl);
+    req.flush(yamlContent);
+
+    const result = await resultPromise;
+    expect(result).toEqual(expectedData);
+    expect(location.prepareExternalUrl).toHaveBeenCalledWith(relativePath);
+  });
+
+  it('should handle ProviderToken returning Promise', async () => {
+    const URL_TOKEN = new InjectionToken<Promise<string>>('URL_TOKEN_PROMISE');
+    const yamlUrl = 'https://example.com/async.yaml';
+    const yamlContent = 'async: true';
+    const expectedData = { async: true };
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: URL_TOKEN, useValue: Promise.resolve(yamlUrl) },
+        {
+          provide: YAML_FILE_CACHE,
+          useValue: new Map<string, unknown>(),
+        },
+      ],
+    });
+
+    httpTestingController = TestBed.inject(HttpTestingController);
+
+    const resolver = yamlFileResolver(URL_TOKEN);
+    const resolverResult = TestBed.runInInjectionContext(() => resolver(mockRoute, mockState));
+
+    const resultPromise = firstValueFrom(resolverResult as Observable<unknown>);
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+
     const req = httpTestingController.expectOne(yamlUrl);
     req.flush(yamlContent);
 
