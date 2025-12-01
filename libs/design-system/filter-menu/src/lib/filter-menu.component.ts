@@ -20,6 +20,7 @@ export interface FilterMenuOption {
 
 /** Filter option category interface */
 export interface FilterOptionCategory {
+  /** Category id */
   id: string;
   /** Category label */
   label: string;
@@ -45,6 +46,9 @@ export interface FilterOptionCategory {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterMenuComponent {
+  /** Filter options */
+  readonly filters = input.required<FilterOptionCategory[]>();
+
   /** Menu tagline */
   readonly tagline = input<string>();
 
@@ -53,9 +57,6 @@ export class FilterMenuComponent {
 
   /** Whether to show the close button */
   readonly enableClose = input<boolean>();
-
-  /** Filter options */
-  readonly filters = input.required<FilterOptionCategory[]>();
 
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();

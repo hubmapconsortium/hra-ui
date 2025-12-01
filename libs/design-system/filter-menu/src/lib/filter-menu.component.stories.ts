@@ -1,6 +1,10 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 
 import { FilterMenuComponent, FilterOptionCategory } from './filter-menu.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { IconsModule } from '@hra-ui/design-system/icons';
+import { MatSelectModule } from '@angular/material/select';
 
 const FILTER_OPTIONS = [
   { id: 'a', label: 'A', count: 9999 },
@@ -29,7 +33,7 @@ const meta: Meta = {
   title: 'Design System/Filter Menu',
   decorators: [
     moduleMetadata({
-      imports: [FilterMenuComponent],
+      imports: [FilterMenuComponent, MatButtonToggleModule, MatFormFieldModule, IconsModule, MatSelectModule],
     }),
   ],
   parameters: {
@@ -43,6 +47,23 @@ const meta: Meta = {
     description: 'Supporting text here, if needed, but make it short and straightforward',
     enableClose: true,
     filters: FILTER_CATEGORIES,
+    toggleOptions: [
+      { id: 'option1', label: 'Option 1' },
+      { id: 'option2', label: 'Option 2' },
+      { id: 'option3', label: 'Option 3' },
+    ],
+    viewAsOptions: [
+      { id: 'table', label: 'Table' },
+      { id: 'gallery', label: 'Gallery' },
+      { id: 'list', label: 'List' },
+    ],
+    sortByOptions: [
+      { id: 'nameAsc', label: 'Name ascending' },
+      { id: 'nameDesc', label: 'Name descending' },
+      { id: 'oldest', label: 'Oldest' },
+      { id: 'newest', label: 'Newest' },
+      { id: 'hierachical', label: 'Hierarchical' },
+    ],
   },
   render: (args) => ({
     props: args,
@@ -51,13 +72,58 @@ const meta: Meta = {
         [filters]="filters"
         [tagline]="tagline"
         [description]="description"
-        [enableClose]="enableClose">
+        [enableClose]="enableClose"
+      >
+        <mat-button-toggle-group class="toggle-group" [value]="toggleOptions[0]">
+          @for (category of toggleOptions; track category.id) {
+            <mat-button-toggle hraClickEvent [hraFeature]="category.id" [value]="category">
+              {{ category.label }}
+            </mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+
+          <mat-form-field subscriptSizing="dynamic">
+            <hra-icon class="select-icon" matPrefix>table_view</hra-icon>
+            <mat-label>View as</mat-label>
+            <mat-select>
+              @for (option of viewAsOptions; track option) {
+                <mat-option [value]="option.id">{{ option.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field subscriptSizing="dynamic">
+            <hra-icon class="select-icon" matPrefix>sort</hra-icon>
+            <mat-label>Sort by</mat-label>
+            <mat-select>
+              @for (option of sortByOptions; track option) {
+                <mat-option [value]="option.id">{{ option.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field subscriptSizing="dynamic">
+            <hra-icon class="select-icon" matPrefix>category</hra-icon>
+            <mat-label>Group by</mat-label>
+            <mat-select>
+              @for (option of filters; track option) {
+                <mat-option [value]="option.id">{{ option.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
       </hra-filter-menu>
     `,
     styles: [
       `.hra-app {
           margin: -1rem;
           height: 100vh;
+      }`,
+      `.toggle-group {
+          width: fit-content;
+      }`,
+      `.select-icon {
+        padding-left: 0.75rem;
+        padding-right: 0.5rem;
       }`,
     ],
   }),
