@@ -434,9 +434,9 @@ export class AppComponent extends BaseApplicationComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;docs-portal&quot;&gt;
-  &lt;hra-header baseUrl&#x3D;&quot;https://docs.humanatlas.io/&quot; [cta]&#x3D;&quot;cta&quot; [(ctaDismissed)]&#x3D;&quot;ctaDismissed&quot; /&gt;
+  &lt;hra-header [cta]&#x3D;&quot;cta&quot; [(ctaDismissed)]&#x3D;&quot;ctaDismissed&quot; /&gt;
   &lt;div class&#x3D;&quot;main&quot; [class.cta-active]&#x3D;&quot;!ctaDismissed()&quot;&gt;
-    &lt;hra-site-navigation baseUrl&#x3D;&quot;https://docs.humanatlas.io/&quot; /&gt;
+    &lt;hra-site-navigation /&gt;
     &lt;div class&#x3D;&quot;content&quot;&gt;
       &lt;router-outlet /&gt;
     &lt;/div&gt;
@@ -471,7 +471,7 @@ export class AppComponent extends BaseApplicationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="docs-portal">  <hra-header baseUrl="https://docs.humanatlas.io/" [cta]="cta" [(ctaDismissed)]="ctaDismissed" />  <div class="main" [class.cta-active]="!ctaDismissed()">    <hra-site-navigation baseUrl="https://docs.humanatlas.io/" />    <div class="content">      <router-outlet />    </div>  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="docs-portal">  <hra-header [cta]="cta" [(ctaDismissed)]="ctaDismissed" />  <div class="main" [class.cta-active]="!ctaDismissed()">    <hra-site-navigation />    <div class="content">      <router-outlet />    </div>  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-docs'},{'name': 'LandingPageComponent', 'selector': 'hra-docs-landing-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

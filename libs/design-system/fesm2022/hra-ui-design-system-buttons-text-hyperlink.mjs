@@ -1,15 +1,13 @@
 import * as i0 from '@angular/core';
-import { Directive, ViewEncapsulation, ChangeDetectionStrategy, Component, makeEnvironmentProviders, input, inject, computed } from '@angular/core';
+import { Directive, ViewEncapsulation, ChangeDetectionStrategy, Component, makeEnvironmentProviders, input } from '@angular/core';
 import * as i1 from '@hra-ui/common/analytics';
 import { ClickEventDirective } from '@hra-ui/common/analytics';
 import { provideStyleComponents } from '@hra-ui/cdk/styling';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import * as i2 from '@angular/material/icon';
+import * as i1$1 from '@angular/material/icon';
 import { MatIconModule } from '@angular/material/icon';
-import * as i1$1 from '@angular/router';
-import { Router, RouterModule } from '@angular/router';
-import { isAbsolute } from '@hra-ui/common/url';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import * as z from 'zod';
 
@@ -97,26 +95,16 @@ class TextHyperlinkComponent {
      */
     icon = input(...(ngDevMode ? [undefined, { debugName: "icon" }] : []));
     /**
-     * Text hyperlink component router
+     * Whether the link should open in a new tab/window
      */
-    router = inject(Router, { optional: true });
-    /**
-     * Text hyperlink component url tree
-     */
-    urlTree = computed(() => {
-        const url = this.url();
-        if (this.router && !isAbsolute(url)) {
-            return this.router.parseUrl(url);
-        }
-        return undefined;
-    }, ...(ngDevMode ? [{ debugName: "urlTree" }] : []));
+    external = input(false, ...(ngDevMode ? [{ debugName: "external" }] : []));
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: TextHyperlinkComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.12", type: TextHyperlinkComponent, isStandalone: true, selector: "hra-text-hyperlink", inputs: { text: { classPropertyName: "text", publicName: "text", isSignal: true, isRequired: true, transformFunction: null }, url: { classPropertyName: "url", publicName: "url", isSignal: true, isRequired: true, transformFunction: null }, icon: { classPropertyName: "icon", publicName: "icon", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "@if (urlTree(); as link) {\n  <a hraHyperlink [routerLink]=\"link\">\n    {{ text() }}\n    @if (icon(); as fontIcon) {\n      <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>\n    }\n  </a>\n} @else {\n  <a hraHyperlink target=\"_blank\" rel=\"noopener noreferrer\" [attr.href]=\"url()\">\n    {{ text() }}\n    @if (icon(); as fontIcon) {\n      <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>\n    }\n  </a>\n}\n", styles: [":host a{display:inline-flex;gap:.375rem;align-items:center}:host mat-icon{width:1.5rem;height:1.5rem;font-size:1.5rem}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "ngmodule", type: RouterModule }, { kind: "directive", type: i1$1.RouterLink, selector: "[routerLink]", inputs: ["target", "queryParams", "fragment", "queryParamsHandling", "state", "info", "relativeTo", "preserveFragment", "skipLocationChange", "replaceUrl", "routerLink"] }, { kind: "ngmodule", type: MatButtonModule }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i2.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "directive", type: TextHyperlinkDirective, selector: "a[hraHyperlink]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.12", type: TextHyperlinkComponent, isStandalone: true, selector: "hra-text-hyperlink", inputs: { text: { classPropertyName: "text", publicName: "text", isSignal: true, isRequired: true, transformFunction: null }, url: { classPropertyName: "url", publicName: "url", isSignal: true, isRequired: true, transformFunction: null }, icon: { classPropertyName: "icon", publicName: "icon", isSignal: true, isRequired: false, transformFunction: null }, external: { classPropertyName: "external", publicName: "external", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "<a hraHyperlink [hraLink]=\"url()\" [hraLinkExternal]=\"external()\">\n  {{ text() }}\n  @if (icon(); as fontIcon) {\n    <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>\n  }\n</a>\n", styles: [":host a{display:inline-flex;gap:.375rem;align-items:center}:host mat-icon{width:1.5rem;height:1.5rem;font-size:1.5rem}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: LinkDirective, selector: "a[hraLink], area[hraLink]", inputs: ["hraLink", "hraLinkExternal"] }, { kind: "ngmodule", type: MatButtonModule }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i1$1.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "directive", type: TextHyperlinkDirective, selector: "a[hraHyperlink]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: TextHyperlinkComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-text-hyperlink', imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, TextHyperlinkDirective], changeDetection: ChangeDetectionStrategy.OnPush, template: "@if (urlTree(); as link) {\n  <a hraHyperlink [routerLink]=\"link\">\n    {{ text() }}\n    @if (icon(); as fontIcon) {\n      <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>\n    }\n  </a>\n} @else {\n  <a hraHyperlink target=\"_blank\" rel=\"noopener noreferrer\" [attr.href]=\"url()\">\n    {{ text() }}\n    @if (icon(); as fontIcon) {\n      <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>\n    }\n  </a>\n}\n", styles: [":host a{display:inline-flex;gap:.375rem;align-items:center}:host mat-icon{width:1.5rem;height:1.5rem;font-size:1.5rem}\n"] }]
-        }], propDecorators: { text: [{ type: i0.Input, args: [{ isSignal: true, alias: "text", required: true }] }], url: [{ type: i0.Input, args: [{ isSignal: true, alias: "url", required: true }] }], icon: [{ type: i0.Input, args: [{ isSignal: true, alias: "icon", required: false }] }] } });
+            args: [{ selector: 'hra-text-hyperlink', imports: [CommonModule, LinkDirective, MatButtonModule, MatIconModule, TextHyperlinkDirective], changeDetection: ChangeDetectionStrategy.OnPush, template: "<a hraHyperlink [hraLink]=\"url()\" [hraLinkExternal]=\"external()\">\n  {{ text() }}\n  @if (icon(); as fontIcon) {\n    <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>\n  }\n</a>\n", styles: [":host a{display:inline-flex;gap:.375rem;align-items:center}:host mat-icon{width:1.5rem;height:1.5rem;font-size:1.5rem}\n"] }]
+        }], propDecorators: { text: [{ type: i0.Input, args: [{ isSignal: true, alias: "text", required: true }] }], url: [{ type: i0.Input, args: [{ isSignal: true, alias: "url", required: true }] }], icon: [{ type: i0.Input, args: [{ isSignal: true, alias: "icon", required: false }] }], external: [{ type: i0.Input, args: [{ isSignal: true, alias: "external", required: false }] }] } });
 
 /**
  * Text hyperlink component schema
@@ -126,6 +114,7 @@ const TextHyperlinkSchema = ContentTemplateSchema.extend({
     text: z.string(),
     url: z.string(),
     icon: z.string().optional(),
+    external: z.boolean().optional(),
 }).meta({ id: 'TextHyperlink' });
 
 /**

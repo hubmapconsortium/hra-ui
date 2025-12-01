@@ -225,8 +225,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">navigation/header/src/lib/menu-content/menu-content.component.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">navigation/header/src/lib/menu-content/menu-content.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -293,12 +293,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Location } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component, Directive, inject, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Directive, input } from &#x27;@angular/core&#x27;;
 import { MatDivider } from &#x27;@angular/material/divider&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { Router, RouterModule, UrlTree } from &#x27;@angular/router&#x27;;
-import { isAbsolute as isAbsoluteUrl } from &#x27;@hra-ui/common/url&#x27;;
+import { LinkDirective } from &#x27;@hra-ui/common/router-ext&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { Menu, MenuGroup, MenuItem, MenuSubGroup } from &#x27;../types/menus.schema&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
@@ -350,7 +348,7 @@ export class MenuSubGroupDirective {
   selector: &#x27;hra-menu-content&#x27;,
   imports: [
     HraCommonModule,
-    RouterModule,
+    LinkDirective,
     MatDivider,
     MatIconModule,
     ButtonsModule,
@@ -370,34 +368,6 @@ export class MenuContentComponent {
   readonly variant &#x3D; input.required&lt;MenuContentVariant&gt;();
   /** Menu data to display */
   readonly menu &#x3D; input.required&lt;Menu&gt;();
-  /** Base url - Menu urls starting with this will be converted into router links */
-  readonly baseUrl &#x3D; input.required&lt;string | undefined&gt;();
-
-  /** Reference to the router if available */
-  private readonly router &#x3D; inject(Router, { optional: true });
-
-  /**
-   * Resolves an url against the baseUrl
-   *
-   * @param url Raw url
-   * @returns Whether the url is absolute along with the resolved url
-   */
-  resolveUrl(url: string, forceExternal &#x3D; false): { isAbsolute: boolean; value: string | UrlTree } {
-    const { router } &#x3D; this;
-    const baseUrl &#x3D; Location.stripTrailingSlash(this.baseUrl() ?? &#x27;&#x27;) + &#x27;/&#x27;;
-    let isAbsolute &#x3D; forceExternal || isAbsoluteUrl(url);
-    if (!forceExternal &amp;&amp; baseUrl &amp;&amp; url.startsWith(baseUrl)) {
-      isAbsolute &#x3D; false;
-      url &#x3D; url.slice(baseUrl.length);
-    }
-
-    let value: string | UrlTree &#x3D; url;
-    if (!isAbsolute &amp;&amp; router) {
-      value &#x3D; router.parseUrl(Location.stripTrailingSlash(url));
-    }
-
-    return { isAbsolute, value };
-  }
 }
 </code></pre>
     </div>

@@ -481,10 +481,10 @@ export class AppComponent extends BaseApplicationComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;humanatlas&quot;&gt;
-  &lt;hra-header baseUrl&#x3D;&quot;https://humanatlas.io/&quot; [cta]&#x3D;&quot;cta&quot; [(ctaDismissed)]&#x3D;&quot;ctaDismissed&quot; /&gt;
+  &lt;hra-header [cta]&#x3D;&quot;cta&quot; [(ctaDismissed)]&#x3D;&quot;ctaDismissed&quot; /&gt;
   &lt;div class&#x3D;&quot;main&quot; [class.navigation-visible]&#x3D;&quot;siteNavigationEnabled()&quot; [class.cta-active]&#x3D;&quot;!ctaDismissed()&quot;&gt;
     @if (siteNavigationEnabled()) {
-      &lt;hra-site-navigation baseUrl&#x3D;&quot;https://humanatlas.io/&quot; /&gt;
+      &lt;hra-site-navigation /&gt;
     }
     &lt;div class&#x3D;&quot;content&quot;&gt;
       &lt;router-outlet /&gt;
@@ -520,7 +520,7 @@ export class AppComponent extends BaseApplicationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="humanatlas">  <hra-header baseUrl="https://humanatlas.io/" [cta]="cta" [(ctaDismissed)]="ctaDismissed" />  <div class="main" [class.navigation-visible]="siteNavigationEnabled()" [class.cta-active]="!ctaDismissed()">    @if (siteNavigationEnabled()) {      <hra-site-navigation baseUrl="https://humanatlas.io/" />    }    <div class="content">      <router-outlet />    </div>  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="humanatlas">  <hra-header [cta]="cta" [(ctaDismissed)]="ctaDismissed" />  <div class="main" [class.navigation-visible]="siteNavigationEnabled()" [class.cta-active]="!ctaDismissed()">    @if (siteNavigationEnabled()) {      <hra-site-navigation />    }    <div class="content">      <router-outlet />    </div>  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-portal'},{'name': 'CarouselComponent', 'selector': 'hra-carousel'},{'name': 'ContentComponent', 'selector': 'hra-carousel-content'},{'name': 'ControlsComponent', 'selector': 'hra-carousel-controls'},{'name': 'CountInfoComponent', 'selector': 'hra-count-info'},{'name': 'DataViewerWithQueryParamsComponent', 'selector': 'hra-data-viewer-with-query-params'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'PublicationsPageComponent', 'selector': 'hra-publications-page'},{'name': 'ReleaseNotesVersionSelectorComponent', 'selector': 'hra-release-notes-version-selector'},{'name': 'SectionCardsComponent', 'selector': 'hra-section-cards'},{'name': 'SummaryStatisticsTableComponent', 'selector': 'hra-summary-statistics-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

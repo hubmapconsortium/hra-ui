@@ -743,6 +743,7 @@
       withComponentInputBinding(),
       withInMemoryScrolling({ anchorScrolling: &#x27;enabled&#x27;, scrollPositionRestoration: &#x27;enabled&#x27; }),
     ),
+    provideRouterExt(),
   ],
 }</code>
                     </td>
@@ -888,6 +889,43 @@
   {
     path: &#x27;500&#x27;,
     component: ServerErrorPageComponent,
+  },
+  // Redirects
+  {
+    path: &#x27;asctb-reporter&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/asctb-reporter&#x27;),
+  },
+  {
+    path: &#x27;rui&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/rui&#x27;),
+  },
+  {
+    path: &#x27;eui&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/eui&#x27;),
+  },
+  {
+    path: &#x27;organ-info&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/organ-info&#x27;),
+  },
+  {
+    path: &#x27;ftu&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/ftu-explorer&#x27;),
+  },
+  {
+    path: &#x27;cde&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/cde&#x27;),
+  },
+  {
+    path: &#x27;kg&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/kg-explorer&#x27;),
+  },
+  {
+    path: &#x27;web-components&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/us6&#x27;),
+  },
+  {
+    path: &#x27;apis&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://humanatlas.io/api&#x27;),
   },
   {
     path: &#x27;**&#x27;,

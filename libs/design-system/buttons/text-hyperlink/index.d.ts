@@ -1,7 +1,6 @@
 import * as i0 from '@angular/core';
 import { EnvironmentProviders } from '@angular/core';
 import * as i1 from '@hra-ui/common/analytics';
-import * as _angular_router from '@angular/router';
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
 import * as z from 'zod';
 
@@ -47,15 +46,11 @@ declare class TextHyperlinkComponent {
      */
     readonly icon: i0.InputSignal<string | undefined>;
     /**
-     * Text hyperlink component router
+     * Whether the link should open in a new tab/window
      */
-    private readonly router;
-    /**
-     * Text hyperlink component url tree
-     */
-    protected readonly urlTree: i0.Signal<_angular_router.UrlTree | undefined>;
+    readonly external: i0.InputSignal<boolean>;
     static ɵfac: i0.ɵɵFactoryDeclaration<TextHyperlinkComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TextHyperlinkComponent, "hra-text-hyperlink", never, { "text": { "alias": "text"; "required": true; "isSignal": true; }; "url": { "alias": "url"; "required": true; "isSignal": true; }; "icon": { "alias": "icon"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextHyperlinkComponent, "hra-text-hyperlink", never, { "text": { "alias": "text"; "required": true; "isSignal": true; }; "url": { "alias": "url"; "required": true; "isSignal": true; }; "icon": { "alias": "icon"; "required": false; "isSignal": true; }; "external": { "alias": "external"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 /**
@@ -76,6 +71,7 @@ declare const TextHyperlinkSchema: z.ZodObject<{
     text: z.ZodString;
     url: z.ZodString;
     icon: z.ZodOptional<z.ZodString>;
+    external: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 
 export { TextButtonDirective, TextHyperlinkComponent, TextHyperlinkDef, TextHyperlinkDirective, TextHyperlinkSchema, provideTextHyperlink };
