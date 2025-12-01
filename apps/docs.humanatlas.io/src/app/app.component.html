@@ -1,7 +1,7 @@
 <ng-container hraFeature="docs-portal">
-  <hra-header baseUrl="https://docs.humanatlas.io/" [cta]="cta" [(ctaDismissed)]="ctaDismissed" />
+  <hra-header [cta]="cta" [(ctaDismissed)]="ctaDismissed" />
   <div class="main" [class.cta-active]="!ctaDismissed()">
-    <hra-site-navigation baseUrl="https://docs.humanatlas.io/" />
+    <hra-site-navigation />
     <div class="content">
       <router-outlet />
     </div>

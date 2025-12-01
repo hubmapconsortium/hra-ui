@@ -3,6 +3,7 @@ import { ApplicationConfig, inject, provideAppInitializer } from '@angular/core'
 import { provideRouter } from '@angular/router';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
+import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideIcons } from '@hra-ui/design-system/icons';
 import { provideScrolling } from '@hra-ui/design-system/scrolling';
@@ -50,5 +51,6 @@ export const appConfig: ApplicationConfig = {
     ),
     provideMarkdown({ loader: HttpClient }),
     provideRouter(appRoutes),
+    provideRouterExt(),
   ],
 };

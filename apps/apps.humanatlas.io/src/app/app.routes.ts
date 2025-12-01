@@ -20,6 +20,7 @@ import {
 } from './services/hra-pop-predictions/hra-pop-predictions.service';
 import { CellPopulationGraphComponent } from './pages/cell-population-graph/cell-population-graph.component';
 import { HraPopVisualizerComponent } from './pages/hra-pop-visualizer/hra-pop-visualizer.component';
+import { createExternalRedirectRoute } from './utils/external-redirect';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -131,6 +132,43 @@ export const appRoutes: Route[] = [
   {
     path: '500',
     component: ServerErrorPageComponent,
+  },
+  // Redirects
+  {
+    path: 'asctb-reporter',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/asctb-reporter'),
+  },
+  {
+    path: 'rui',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/rui'),
+  },
+  {
+    path: 'eui',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/eui'),
+  },
+  {
+    path: 'organ-info',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/organ-info'),
+  },
+  {
+    path: 'ftu',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/ftu-explorer'),
+  },
+  {
+    path: 'cde',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/cde'),
+  },
+  {
+    path: 'kg',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/kg-explorer'),
+  },
+  {
+    path: 'web-components',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/us6'),
+  },
+  {
+    path: 'apis',
+    ...createExternalRedirectRoute('https://humanatlas.io/api'),
   },
   {
     path: '**',
