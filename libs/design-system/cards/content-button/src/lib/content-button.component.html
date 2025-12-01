@@ -1,14 +1,4 @@
-@if (external()) {
-  <a mat-button target="_blank" rel="noopener noreferrer" class="content-button" [attr.href]="link()">
-    <ng-container *ngTemplateOutlet="content" />
-  </a>
-} @else {
-  <a mat-button class="content-button" [routerLink]="link()">
-    <ng-container *ngTemplateOutlet="content" />
-  </a>
-}
-
-<ng-template #content>
+<a mat-button class="content-button" [hraLink]="link()" [hraLinkExternal]="external()">
   <div class="header">
     <img class="image" alt="" [attr.src]="imageSrc() | assetUrl" />
   </div>
@@ -22,4 +12,4 @@
       }
     </mat-chip-set>
   </div>
-</ng-template>
+</a>

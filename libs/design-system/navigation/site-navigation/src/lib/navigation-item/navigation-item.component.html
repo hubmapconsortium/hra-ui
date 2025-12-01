@@ -1,28 +1,9 @@
-@if (url().isAbsolute) {
-  <a
-    hraFeature="navigation-item-external"
-    mat-list-item
-    [hraClickEvent]="{ label: navigationItem().label }"
-    [href]="url().value"
-  >
-    <ng-container *ngTemplateOutlet="content" />
-  </a>
-} @else {
-  <a
-    hraFeature="navigation-item-internal"
-    mat-list-item
-    routerLinkActive="active"
-    [hraClickEvent]="{ label: navigationItem().label }"
-    [routerLink]="url().value"
-    [activated]="rla.isActive"
-    [routerLinkActiveOptions]="routerLinkActiveOptions"
-    #rla="routerLinkActive"
-  >
-    <ng-container *ngTemplateOutlet="content" />
-  </a>
-}
-
-<ng-template #content>
+<a
+  hraFeature="navigation-item"
+  mat-list-item
+  [hraClickEvent]="{ label: navigationItem().label }"
+  [hraLink]="navigationItem().url"
+>
   <div class="nav-content">
     @if (navigationItem().icon; as icon) {
       <mat-icon matListItemIcon>{{ icon }}</mat-icon>
@@ -32,4 +13,4 @@
       {{ navigationItem().label }}
     </span>
   </div>
-</ng-template>
+</a>
