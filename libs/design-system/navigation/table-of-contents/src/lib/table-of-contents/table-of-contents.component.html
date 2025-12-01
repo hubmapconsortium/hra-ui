@@ -3,16 +3,17 @@
     <div id="table-of-contents-navigation" class="tagline">{{ tagline() }}</div>
     <div class="links">
       @for (section of sections(); track section) {
-        <a
-          class="link"
-          matRipple
-          [class.active]="activeSection() === section"
-          [style.--indentation-level]="section.level()"
-          [routerLink]="[]"
-          [fragment]="section.anchor()"
-        >
-          {{ section.tagline() }}
-        </a>
+        @if (section.anchor(); as anchor) {
+          <a
+            class="link"
+            matRipple
+            [class.active]="activeSection() === section"
+            [style.--indentation-level]="section.level()"
+            [hraFragmentLink]="anchor"
+          >
+            {{ section.tagline() }}
+          </a>
+        }
       }
     </div>
   </nav>

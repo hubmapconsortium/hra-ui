@@ -46,12 +46,7 @@
           [cdkConnectedOverlayPositions]="desktopMenuPositions"
           (overlayOutsideClick)="closeMenu()"
         >
-          <hra-desktop-menu
-            hraFeature="desktop-menu"
-            [menu]="menu"
-            [baseUrl]="baseUrl()"
-            [style.max-height]="desktopMenuMaxHeight()"
-          />
+          <hra-desktop-menu hraFeature="desktop-menu" [menu]="menu" [style.max-height]="desktopMenuMaxHeight()" />
         </ng-template>
       }
     }
@@ -90,7 +85,7 @@
         [cdkConnectedOverlayHeight]="mobileMenuHeight()"
         #mobileMenuOverlay
       >
-        <hra-mobile-menu hraFeature="mobile-menu" [hubmapMenu]="hubmapMenu()" [menus]="menus()" [baseUrl]="baseUrl()" />
+        <hra-mobile-menu hraFeature="mobile-menu" [hubmapMenu]="hubmapMenu()" [menus]="menus()" />
       </ng-template>
     } @else {
       <ng-template
@@ -106,7 +101,6 @@
         <hra-desktop-menu
           hraFeature="desktop-menu-main"
           [menu]="hubmapMenu()"
-          [baseUrl]="baseUrl()"
           [style.max-height]="desktopMenuMaxHeight()"
         />
       </ng-template>

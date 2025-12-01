@@ -74,13 +74,13 @@
           "type": "group",
           "label": "HuBMAP Data Portal",
           "url": "https://portal.hubmapconsortium.org/",
-          "target": "_blank"
+          "external": true
         },
         {
           "type": "group",
           "label": "SenNet Data Portal",
           "url": "https://data.sennetconsortium.org/search/",
-          "target": "_blank"
+          "external": true
         }
       ]
     },
@@ -101,8 +101,7 @@
                 {
                   "type": "item",
                   "label": "Cell Distance Explorer",
-                  "url": "https://apps.humanatlas.io/cde/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/cde/"
                 },
                 {
                   "type": "item",
@@ -117,26 +116,22 @@
                 {
                   "type": "item",
                   "label": "Dashboard",
-                  "url": "https://apps.humanatlas.io/dashboard/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/dashboard/"
                 },
                 {
                   "type": "item",
                   "label": "Exploration User Interface",
-                  "url": "https://apps.humanatlas.io/eui/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/eui/"
                 },
                 {
                   "type": "item",
                   "label": "Functional Tissue Unit Explorer",
-                  "url": "https://apps.humanatlas.io/ftu-explorer/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/ftu-explorer/"
                 },
                 {
                   "type": "item",
                   "label": "HRA Organ Gallery",
-                  "url": "https://humanatlas.io/hra-organ-gallery",
-                  "target": "_blank"
+                  "url": "https://humanatlas.io/hra-organ-gallery"
                 },
                 {
                   "type": "item",
@@ -157,14 +152,12 @@
                 {
                   "type": "item",
                   "label": "ASCT+B Reporter",
-                  "url": "https://apps.humanatlas.io/asctb-reporter/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/asctb-reporter/"
                 },
                 {
                   "type": "item",
                   "label": "Registration User Interface",
-                  "url": "https://apps.humanatlas.io/rui/",
-                  "external": true
+                  "url": "https://apps.humanatlas.io/rui/"
                 }
               ]
             },
@@ -207,7 +200,7 @@
               "type": "item",
               "label": "Visible Human Course",
               "url": "https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc/",
-              "target": "_blank"
+              "external": true
             },
             {
               "type": "item",
@@ -247,7 +240,7 @@
           "type": "group",
           "label": "Join the HRA Working Group",
           "url": "https://iu.co1.qualtrics.com/jfe/form/SV_bpaBhIr8XfdiNRH",
-          "target": "_blank",
+          "external": true,
           "items": [
             {
               "type": "item",

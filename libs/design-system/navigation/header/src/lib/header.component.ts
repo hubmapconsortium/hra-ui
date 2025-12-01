@@ -15,8 +15,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule, ProgressBarMode } from '@angular/material/progress-bar';
-import { EventType, Router } from '@angular/router';
+import { EventType } from '@angular/router';
 import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
+import { injectRouter } from '@hra-ui/common/router-ext';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
@@ -77,8 +78,7 @@ export class HeaderComponent {
   readonly hubmapMenu = input(HUBMAP_MENU);
   /** All other menus */
   readonly menus = input(MENUS);
-  /** Base url - Menu urls starting with this will be converted into router links */
-  readonly baseUrl = input<string>();
+
   /** Breadcrumb items */
   readonly breadcrumbs = input<BreadcrumbItem[]>();
   /**
@@ -133,7 +133,7 @@ export class HeaderComponent {
 
     explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });
 
-    inject(Router)
+    injectRouter({ optional: true })
       ?.events.pipe(
         takeUntilDestroyed(),
         filter((navigationEvent) =>
