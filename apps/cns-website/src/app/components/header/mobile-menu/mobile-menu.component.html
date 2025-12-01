@@ -5,8 +5,7 @@
       hraFeature="logo"
       hraClickEvent
       aria-label="Visit CNS"
-      href="https://cns.iu.edu"
-      target="_self"
+      hraLink="https://cns.iu.edu/"
       [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
     >
     </a>
@@ -15,38 +14,24 @@
       <mat-icon>close</mat-icon>
     </button>
   </header>
+
   <mat-divider />
+
   <ng-scrollbar>
     <mat-accordion displayMode="flat" multi="false">
-      @for (option of menuOptions().options; track $index) {
+      @for (option of menuOptions().options; track option) {
         @if (option.type === 'item') {
-          @let url = resolve(option.url, option.external);
-          @if (url.isAbsolute) {
-            <a
-              mat-button
-              hraSecondaryButton
-              class="item-label"
-              target="_blank"
-              rel="noopener noreferrer"
-              hraClickEvent
-              [attr.href]="url.value"
-              [attr.target]="option.target ?? ''"
-              [hraFeature]="option.label | slugify"
-            >
-              {{ option.label }}
-            </a>
-          } @else {
-            <a
-              mat-button
-              hraSecondaryButton
-              class="item-label"
-              hraClickEvent
-              [routerLink]="url.value"
-              [hraFeature]="option.label | slugify"
-            >
-              {{ option.label }}
-            </a>
-          }
+          <a
+            mat-button
+            hraSecondaryButton
+            hraClickEvent
+            class="item-label"
+            [hraFeature]="option.label | slugify"
+            [hraLink]="option.url"
+            [hraLinkExternal]="option.external"
+          >
+            {{ option.label }}
+          </a>
         } @else {
           <mat-expansion-panel class="panel" hideToggle>
             <mat-expansion-panel-header class="header">
@@ -56,7 +41,7 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <cns-menu-content class="content" [menu]="option" [baseUrl]="baseUrl()" />
+            <cns-menu-content class="content" [menu]="option" />
           </mat-expansion-panel>
         }
 

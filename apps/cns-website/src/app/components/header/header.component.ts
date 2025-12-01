@@ -1,3 +1,4 @@
+import { CdkConnectedOverlay, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,21 +10,20 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { HraCommonModule } from '@hra-ui/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatIconModule } from '@angular/material/icon';
+import { EventType } from '@angular/router';
 import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
+import { HraCommonModule } from '@hra-ui/common';
+import { injectRouter, RouterExtModule } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { CdkConnectedOverlay, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';
+import { explicitEffect } from 'ngxtension/explicit-effect';
+import { filter } from 'rxjs';
+import { MegaMenuComponent } from './mega-menu/mega-menu.component';
+import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { MENUS } from './static-data/parsed';
 import { Menu } from './types/menus.schema';
-import { MatIconModule } from '@angular/material/icon';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { EventType, Router, RouterModule } from '@angular/router';
-import { filter } from 'rxjs';
-import { explicitEffect } from 'ngxtension/explicit-effect';
-import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
-import { MegaMenuComponent } from './mega-menu/mega-menu.component';
-import { resolveUrl } from '../../utils/url-resolver';
 
 /** Position of the mobile menu overlay */
 const MOBILE_MENU_POSITIONS: ConnectedPosition[] = [
@@ -41,12 +41,12 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
   selector: 'cns-header',
   imports: [
     HraCommonModule,
+    RouterExtModule,
     OverlayModule,
     MatIconModule,
     ButtonsModule,
     InlineSVGModule,
     MobileMenuComponent,
-    RouterModule,
     MegaMenuComponent,
   ],
   templateUrl: './header.component.html',
@@ -56,8 +56,6 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
 export class HeaderComponent {
   /** Navigation options to display on the header */
   readonly menuOptions = input(MENUS);
-  /** Base url - Menu urls starting with this will be converted into router links */
-  readonly baseUrl = input<string>();
   /** Whether to show the filter menu icon */
   readonly enableFilterMenu = input<boolean>(true);
 
@@ -65,8 +63,6 @@ export class HeaderComponent {
   protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);
   /** Reference to this component's html element */
   private readonly elementRef = inject<ElementRef<Element>>(ElementRef);
-  /** Reference to the router if available */
-  private readonly router = inject(Router, { optional: true });
 
   /** Overlay positions for the mobile menu */
   protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;
@@ -100,7 +96,7 @@ export class HeaderComponent {
 
     explicitEffect([this.menuOffsetPx], () => this.updateMenuPositions(), { defer: true });
 
-    inject(Router)
+    injectRouter({ optional: true })
       ?.events.pipe(
         takeUntilDestroyed(),
         filter((navigationEvent) =>
@@ -173,10 +169,5 @@ export class HeaderComponent {
   private updateMenuPositions(): void {
     /* istanbul ignore next */
     this.mobileMenuOverlay()?.overlayRef?.updatePosition();
-  }
-
-  /** Resolves a url */
-  resolve(url: string, external?: boolean) {
-    return resolveUrl(url, external, this.router, this.baseUrl());
   }
 }

@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { SOCIAL_IDS, SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 import { MenuContentComponent } from '../menu-content/menu-content.component';
 import { Menus } from '../types/menus.schema';
-import { Router, RouterModule } from '@angular/router';
-import { HraCommonModule } from '@hra-ui/common';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { InlineSVGModule } from 'ng-inline-svg-2';
-import { SOCIAL_IDS, SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
-import { resolveUrl } from '../../../utils/url-resolver';
 
 /**
  * Display a menu for mobile sized screens
@@ -19,12 +18,12 @@ import { resolveUrl } from '../../../utils/url-resolver';
   selector: 'cns-mobile-menu',
   imports: [
     HraCommonModule,
+    RouterExtModule,
     MatDividerModule,
     MatExpansionModule,
     MatIconModule,
     ScrollingModule,
     MenuContentComponent,
-    RouterModule,
     ButtonsModule,
     InlineSVGModule,
     SocialMediaButtonComponent,
@@ -36,19 +35,9 @@ import { resolveUrl } from '../../../utils/url-resolver';
 export class MobileMenuComponent {
   /** Options to display on the mobile menu */
   readonly menuOptions = input.required<Menus>();
-  /** Base url - Menu urls starting with this will be converted into router links */
-  readonly baseUrl = input.required<string | undefined>();
   /** Social media button data */
   readonly socials = input(SOCIAL_IDS);
 
   /** Emits when menu is closed */
   readonly closeMenu = output();
-
-  /** Reference to the router if available */
-  private readonly router = inject(Router, { optional: true });
-
-  /** Resolves a url */
-  resolve(url: string, external?: boolean) {
-    return resolveUrl(url, external, this.router, this.baseUrl());
-  }
 }
