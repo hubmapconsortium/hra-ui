@@ -4,7 +4,7 @@ subtitle: Celebrating 20+ years of data visualization research at Indiana Univer
 content:
   - component: PageSection
     tagline: Our mission
-    anchor: our mission
+    anchor: our-mission
     level: 2
     content:
       - component: Markdown
