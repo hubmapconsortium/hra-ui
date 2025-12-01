@@ -1,92 +1,54 @@
-@let featured = menu().featured;
-@if (featured) {
+@if (menu().featured; as featured) {
   <div class="featured-section">
-    @let url = resolve(featured.url, featured.external);
-    @if (url.isAbsolute) {
-      <a
-        mat-button
-        rel="noopener noreferrer"
-        class="featured-link"
-        [attr.href]="featured.url"
-        [attr.target]="featured.target ?? ''"
-      >
-        <ng-container *ngTemplateOutlet="content" />
-      </a>
-    } @else {
-      <a mat-button class="featured-link" [routerLink]="featured.url">
-        <ng-container *ngTemplateOutlet="content" />
-      </a>
-    }
-
-    <ng-template #content>
+    <a mat-button class="featured-link" [hraLink]="featured.url" [hraLinkExternal]="featured.external">
       <div class="featured-content-container">
-        @if (featured.imgSrc) {
-          <img class="featured-image" alt="" [src]="featured.imgSrc | assetUrl" />
+        @if (featured.imgSrc; as src) {
+          <img class="featured-image" alt="" [src]="src | assetUrl" />
         }
         <div class="featured-bottom">
           <div class="featured-label">
             <span class="label">{{ featured.label }}</span>
-            @if (featured.tagline) {
-              <span class="tagline">{{ featured.tagline }}</span>
+            @if (featured.tagline; as tagline) {
+              <span class="tagline">{{ tagline }}</span>
             }
           </div>
           <mat-icon>arrow_right_alt</mat-icon>
         </div>
       </div>
-    </ng-template>
+    </a>
   </div>
 }
+
 <div class="right-side">
   <div class="nav-items">
     <div class="groups">
-      @for (group of menu().items; track $index) {
+      @for (group of menu().items; track group) {
         <div class="group">
-          <ng-container *ngTemplateOutlet="groupTemplate; context: { $implicit: group }" />
+          <div class="group-label">
+            {{ group.label }}
+          </div>
+
+          <mat-divider class="divider" />
+          <div class="items">
+            @for (item of group.items; track item) {
+              <a
+                mat-button
+                hraSecondaryButton
+                hraClickEvent
+                class="item-label"
+                [hraFeature]="item.label | slugify"
+                [hraLink]="item.url"
+                [hraLinkExternal]="item.external"
+              >
+                {{ item.label }}
+              </a>
+            }
+          </div>
         </div>
       }
     </div>
-    <ng-template let-group #groupTemplate>
-      <div class="group-label">
-        {{ group.label }}
-      </div>
-
-      <mat-divider class="divider" />
-      <div class="items">
-        @for (item of group.items; track $index) {
-          <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }" />
-        }
-      </div>
-    </ng-template>
-
-    <ng-template let-item #itemTemplate>
-      @let url = resolve(item.url, item.external);
-      @if (url.isAbsolute) {
-        <a
-          hraClickEvent
-          mat-button
-          hraSecondaryButton
-          class="item-label"
-          rel="noopener noreferrer"
-          [attr.href]="url.value"
-          [attr.target]="item.target ?? ''"
-          [hraFeature]="item.label | slugify"
-        >
-          {{ item.label }}
-        </a>
-      } @else {
-        <a
-          hraClickEvent
-          mat-button
-          hraSecondaryButton
-          class="item-label"
-          [routerLink]="url.value"
-          [hraFeature]="item.label | slugify"
-        >
-          {{ item.label }}
-        </a>
-      }
-    </ng-template>
   </div>
+
   <div class="socials">
     @for (id of socials(); track id) {
       <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
