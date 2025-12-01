@@ -47,6 +47,7 @@ export class FilterContainerComponent<T extends FilterChip> {
   /** tagline for the filter category */
   readonly action = input.required<string>();
 
+  /** Filter option */
   readonly filter = input.required<FilterOptionCategory>();
 
   /** Whether to show the info button with tooltip */
@@ -55,6 +56,7 @@ export class FilterContainerComponent<T extends FilterChip> {
   /** Array of selected filter chips - two-way bindable */
   readonly chips = model<T[]>([]);
 
+  /** Whether the menu is active/open */
   readonly menuActive = model<boolean>(false);
 
   /** Whether to show a divider below the container */
@@ -74,6 +76,9 @@ export class FilterContainerComponent<T extends FilterChip> {
     this.chips.update((current) => current.filter((c) => c.label !== chip.label));
   }
 
+  /**
+   * Toggles menu active state and emits action click event
+   */
   toggleMenu(): void {
     this.menuActive.set(!this.menuActive());
     this.actionClick.emit();
