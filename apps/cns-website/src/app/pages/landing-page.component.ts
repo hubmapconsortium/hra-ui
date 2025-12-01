@@ -38,7 +38,10 @@ interface LandingPageContentCard {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
+  /** Content Types */
   protected readonly contentTypes = ContentTypes;
+
+  /** Selected content type */
   protected readonly selectedContentType = signal<ContentType>('Featured');
 
   /** Temporary content cards data */
