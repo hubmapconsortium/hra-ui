@@ -6,7 +6,10 @@ import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-s
 import { ValueOf } from 'type-fest';
 import { FooterComponent } from '../components/footer/footer.component';
 
+/** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
+
+/** Content Type */
 type ContentType = ValueOf<typeof ContentTypes>;
 
 /** Interface for content card */
