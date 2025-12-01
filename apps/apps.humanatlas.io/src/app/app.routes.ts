@@ -151,10 +151,6 @@ export const appRoutes: Route[] = [
     ...createExternalRedirectRoute('https://apps.humanatlas.io/organ-info'),
   },
   {
-    path: 'body-ui',
-    ...createExternalRedirectRoute('https://apps.humanatlas.io/body-ui'),
-  },
-  {
     path: 'ftu',
     ...createExternalRedirectRoute('https://apps.humanatlas.io/ftu-explorer'),
   },
@@ -165,6 +161,14 @@ export const appRoutes: Route[] = [
   {
     path: 'kg',
     ...createExternalRedirectRoute('https://apps.humanatlas.io/kg-explorer'),
+  },
+  {
+    path: 'web-components',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/us6'),
+  },
+  {
+    path: 'apis',
+    ...createExternalRedirectRoute('https://humanatlas.io/api'),
   },
   {
     path: '**',
