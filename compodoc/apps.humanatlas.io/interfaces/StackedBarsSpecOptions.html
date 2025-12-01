@@ -1091,6 +1091,16 @@ export interface StackedBarsSpecOptions {
   legendOrient?: LegendOrient;
 }
 
+/**
+ * Determines if a graph attribute is numeric/date-based or text-based
+ * @param attribute - The graph attribute to check
+ * @returns true if numeric/date, false if text
+ */
+function isNumericField(attribute: GraphAttribute): boolean {
+  const numericFields: GraphAttribute[] &#x3D; [&#x27;count&#x27;, &#x27;percentage&#x27;, &#x27;order&#x27;, &#x27;age&#x27;, &#x27;y_pos&#x27;];
+  return numericFields.includes(attribute);
+}
+
 /** * Generates a Vega-Lite specification for a stacked bar graph.
  * @param userOptions - Options for customizing the stacked bars visualization.
  * @returns A Vega-Lite specification object for rendering the stacked bars graph.
@@ -1109,6 +1119,9 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
     },
     userOptions,
   );
+
+  const hasGroupBy &#x3D; options.groupBy !&#x3D;&#x3D; &#x27;&#x27;;
+  const isGroupByNumeric &#x3D; hasGroupBy &amp;&amp; isNumericField(options.groupBy);
 
   const spec: VisualizationSpec &#x3D; {
     $schema: &#x27;https://vega.github.io/schema/vega-lite/v6.json&#x27;,
@@ -1179,20 +1192,32 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
               title: GRAPH_ATTRIBUTE_LABELS[options.groupBy] ?? options.groupBy,
               type: &#x27;ordinal&#x27;,
               spacing: options.groupSpacing,
-              sort: {
-                field: &#x27;order&#x27;,
-                op: &#x27;mean&#x27;,
-                order: options.orderType,
-              },
+              sort: isGroupByNumeric
+                ? {
+                    field: &#x27;facet_sort_key&#x27;,
+                    op: &#x27;min&#x27;,
+                    order: &#x27;ascending&#x27;,
+                  }
+                : {
+                    field: &#x27;facet_sort_key&#x27;,
+                    op: &#x27;min&#x27;,
+                    order: options.orderType,
+                  },
             },
       x: {
         field: options.xAxisField,
         title: GRAPH_ATTRIBUTE_LABELS[options.xAxisField] ?? options.xAxisField,
-        sort: {
-          field: &#x27;order&#x27;,
-          op: &#x27;sum&#x27;,
-          order: options.orderType,
-        },
+        sort: hasGroupBy
+          ? {
+              field: &#x27;index&#x27;,
+              op: &#x27;mean&#x27;,
+              order: &#x27;ascending&#x27;,
+            }
+          : {
+              field: &#x27;order&#x27;,
+              op: &#x27;sum&#x27;,
+              order: options.orderType,
+            },
         type: &#x27;nominal&#x27;,
         axis: {
           labelAngle: options.labelAngle,
@@ -1244,6 +1269,20 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
         calculate: &#x60;&#x27;${options.yAxisField}&#x27; &#x3D;&#x3D; &#x27;percentage&#x27; ? datum.${options.yAxisField}/datum.Total * 100 : datum.${options.yAxisField}&#x60;,
         as: options.yAxisField,
       },
+      ...(hasGroupBy
+        ? [
+            {
+              calculate: isGroupByNumeric
+                ? options.orderType &#x3D;&#x3D;&#x3D; &#x27;descending&#x27;
+                  ? &#x60;lower(datum.${options.groupBy}) &#x3D;&#x3D;&#x3D; &#x27;unknown&#x27; ? Infinity : (1000000 - datum.${options.groupBy})&#x60;
+                  : &#x60;lower(datum.${options.groupBy}) &#x3D;&#x3D;&#x3D; &#x27;unknown&#x27; ? Infinity : datum.${options.groupBy}&#x60;
+                : options.orderType &#x3D;&#x3D;&#x3D; &#x27;descending&#x27;
+                  ? &#x60;lower(datum.${options.groupBy}) &#x3D;&#x3D;&#x3D; &#x27;unknown&#x27; ? &#x27;&#x27; : datum.${options.groupBy}&#x60;
+                  : &#x60;lower(datum.${options.groupBy}) &#x3D;&#x3D;&#x3D; &#x27;unknown&#x27; ? &#x27;~~~Unknown&#x27; : datum.${options.groupBy}&#x60;,
+              as: &#x27;facet_sort_key&#x27;,
+            },
+          ]
+        : []),
     ],
     resolve: {
       scale: {

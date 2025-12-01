@@ -482,7 +482,7 @@
                         <i>Default value : </i><code>this.fb.group({
     datasetSource: [&#x27;&#x27;],
     sortBy: [&#x27;&#x27;],
-    orderType: [&#x27;descending&#x27;],
+    orderType: [&#x27;ascending&#x27;],
     groupBy: [&#x27;&#x27;],
     xAxisField: [&#x27;dataset_name&#x27;],
     yAxisField: [&#x27;count&#x27;],
@@ -897,7 +897,7 @@ export class ConfigSelectorComponent {
   readonly configForm: FormGroup &#x3D; this.fb.group({
     datasetSource: [&#x27;&#x27;],
     sortBy: [&#x27;&#x27;],
-    orderType: [&#x27;descending&#x27;],
+    orderType: [&#x27;ascending&#x27;],
     groupBy: [&#x27;&#x27;],
     xAxisField: [&#x27;dataset_name&#x27;],
     yAxisField: [&#x27;count&#x27;],
@@ -933,7 +933,7 @@ export class ConfigSelectorComponent {
           xAxisField: selections.xAxisField ?? &#x27;dataset_name&#x27;,
           yAxisField: selections.yAxisField ?? &#x27;count&#x27;,
           sortBy: selections.sortBy ?? &#x27;Total Cell Count&#x27;,
-          orderType: selections.orderType ?? &#x27;descending&#x27;,
+          orderType: selections.orderType ?? &#x27;ascending&#x27;,
           groupBy: selections.groupBy ?? &#x27;&#x27;,
           legendField: &#x27;cell_type&#x27;,
           legendDomain: cellTypes,
