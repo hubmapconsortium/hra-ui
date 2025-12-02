@@ -1,6 +1,6 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
-import { RouterModule } from '@angular/router';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
@@ -9,7 +9,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
  */
 @Component({
   selector: 'hra-content-button',
-  imports: [HraCommonModule, MatChipsModule, ButtonsModule, RouterModule],
+  imports: [HraCommonModule, MatChipsModule, ButtonsModule, LinkDirective],
   templateUrl: './content-button.component.html',
   styleUrl: './content-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
