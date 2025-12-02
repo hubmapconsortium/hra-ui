@@ -1,4 +1,5 @@
-import { booleanAttribute, computed, Directive, input } from '@angular/core';
+import { LocationStrategy } from '@angular/common';
+import { booleanAttribute, computed, Directive, inject, input } from '@angular/core';
 import { injectAppUrlResolver, isAbsolute, stripTrailingSlash } from '@hra-ui/common/url';
 import { injectRouter } from '../injectors';
 import { isAuxClick } from '../util/event';
@@ -10,7 +11,7 @@ import { isAuxClick } from '../util/event';
 @Directive({
   selector: 'a[hraLink], area[hraLink]',
   host: {
-    '[attr.href]': 'url()',
+    '[attr.href]': 'href()',
     '[attr.target]': 'external() ? "_blank" : null',
     '[attr.rel]': 'external() ? "noopener noreferrer" : null',
     '(click)': 'onClick($event)',
@@ -24,6 +25,8 @@ export class LinkDirective {
   // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn't work for non-trivial selectors
   readonly external = input(false, { alias: 'hraLinkExternal', transform: booleanAttribute });
 
+  /** Location strategy reference */
+  private readonly locationStrategy = inject(LocationStrategy, { optional: true });
   /** Reference to the router (if available) */
   private readonly router = injectRouter({ optional: true });
   /** Url resolving function */
@@ -39,6 +42,16 @@ export class LinkDirective {
     }
 
     return undefined;
+  });
+  /** Resolved href value */
+  protected readonly href = computed(() => {
+    const { locationStrategy, router } = this;
+    const urlTree = this.urlTree();
+    if (urlTree && locationStrategy && router) {
+      return locationStrategy.prepareExternalUrl(router.serializeUrl(urlTree));
+    }
+
+    return this.url();
   });
 
   /**
