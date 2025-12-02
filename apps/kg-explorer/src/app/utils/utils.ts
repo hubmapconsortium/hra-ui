@@ -249,6 +249,8 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0000056': 'ureter-right', //ureter
   'http://purl.obolibrary.org/obo/UBERON_0001255': 'bladder', //urinary bladder
   'http://purl.obolibrary.org/obo/UBERON_0000995': 'uterus',
+
+  // May need updates
   'http://purl.obolibrary.org/obo/UBERON_0001013': 'adipose-tissue',
   'http://purl.obolibrary.org/obo/UBERON_0000383': 'muscular-system',
   'http://purl.obolibrary.org/obo/UBERON_0001066': 'intervertebral-disc',
@@ -301,7 +303,6 @@ export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> =
  * @returns Organ id
  */
 export function getOrganId(item?: DigitalObjectInfo): string {
-  console.log(item);
   return item?.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
 }
 

@@ -57,7 +57,7 @@ export const MiscIcons: Story = {
 
 export const OrganIcons: Story = {
   args: {
-    name: 'organ:intervertebral-disc',
+    name: 'organ:bladder',
   },
   argTypes: {
     name: {
