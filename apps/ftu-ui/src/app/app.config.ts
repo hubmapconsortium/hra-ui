@@ -11,6 +11,7 @@ import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { CdkStateModule } from '@hra-ui/cdk/state';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
+import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { FTU_DATA_IMPL_ENDPOINTS, HraServiceModule } from '@hra-ui/services';
 import { HraStateModule } from '@hra-ui/state';
@@ -45,6 +46,7 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' }),
     ),
+    provideRouterExt(),
     provideStore([]),
     importProvidersFrom(CdkStateModule, HraStateModule, HraServiceModule),
     {

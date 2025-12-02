@@ -10,8 +10,7 @@
       hraFeature="logo"
       hraClickEvent
       aria-label="Visit CNS"
-      href="https://cns.iu.edu"
-      target="_self"
+      hraLink="https://cns.iu.edu/"
       [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
     >
     </a>
@@ -56,35 +55,19 @@
             [cdkConnectedOverlayPositions]="desktopMenuPositions"
             (overlayOutsideClick)="closeMenu()"
           >
-            <cns-mega-menu [menu]="category" [baseUrl]="baseUrl()" />
+            <cns-mega-menu [menu]="category" />
           </ng-template>
         } @else {
-          @let url = resolve(category.url, category.external);
-          @if (url.isAbsolute) {
-            <a
-              mat-button
-              hraSecondaryButton
-              class="item-label"
-              rel="noopener noreferrer"
-              hraClickEvent
-              [attr.href]="url.value"
-              [attr.target]="category.target ?? ''"
-              [hraFeature]="category.label | slugify"
-            >
-              {{ category.label }}
-            </a>
-          } @else {
-            <a
-              mat-button
-              hraSecondaryButton
-              class="item-label"
-              hraClickEvent
-              [routerLink]="url.value"
-              [hraFeature]="category.label | slugify"
-            >
-              {{ category.label }}
-            </a>
-          }
+          <a
+            mat-button
+            hraSecondaryButton
+            class="item-label"
+            [hraFeature]="category.label | slugify"
+            [hraLink]="category.url"
+            [hraLinkExternal]="category.external"
+          >
+            {{ category.label }}
+          </a>
         }
       }
     }
@@ -103,12 +86,7 @@
         [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"
         #mobileMenuOverlay
       >
-        <cns-mobile-menu
-          hraFeature="mobile-menu"
-          [menuOptions]="menuOptions()"
-          [baseUrl]="baseUrl()"
-          (closeMenu)="toggleMenu('mobile')"
-        />
+        <cns-mobile-menu hraFeature="mobile-menu" [menuOptions]="menuOptions()" (closeMenu)="toggleMenu('mobile')" />
       </ng-template>
     }
   </div>

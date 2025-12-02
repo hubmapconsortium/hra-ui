@@ -2,6 +2,7 @@ import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core
 import { provideRouter, RouteReuseStrategy, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
+import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
@@ -25,5 +26,6 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'enabled' }),
     ),
+    provideRouterExt(),
   ],
 };

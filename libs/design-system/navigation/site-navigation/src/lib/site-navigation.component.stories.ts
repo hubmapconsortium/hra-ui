@@ -13,7 +13,6 @@ const meta: Meta<SiteNavigationComponent> = {
   },
   args: {
     navigationMenu: DOCS_NAVIGATION_MENU,
-    baseUrl: 'http://localhost:4200',
   },
 };
 
