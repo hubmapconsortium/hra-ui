@@ -6,13 +6,19 @@ import { provideAssetHref } from '@hra-ui/common/url';
 import { fireEvent, render, RenderComponentOptions, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { EmbedSidenavContentComponent } from './embed-sidenav-content.component';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
 describe('EmbedSidenavContentComponent', () => {
   async function setup(options: RenderComponentOptions<EmbedSidenavContentComponent> = {}) {
     return render(EmbedSidenavContentComponent, {
       ...options,
       imports: [MatTabsModule, ButtonsModule, CodeBlockComponent, FlatCardModule],
-      providers: [provideAssetHref('http://localhost/'), provideCodeBlock(), ...(options.providers ?? [])],
+      providers: [
+        provideAssetHref('http://localhost/'),
+        provideCodeBlock(),
+        { provide: SnackbarService, useValue: { open: jest.fn() } },
+        ...(options.providers ?? []),
+      ],
       inputs: {
         tagline: '',
         code: '<p>Test Code</p>',
@@ -55,5 +61,26 @@ describe('EmbedSidenavContentComponent', () => {
     fireEvent.click(docButton);
 
     expect(openSpy).toHaveBeenCalledWith('https://example.com', '_blank');
+  });
+
+  it('should show snackbar when Copy button triggers copied event', async () => {
+    const snackbar = { open: jest.fn() };
+    await setup({
+      providers: [{ provide: SnackbarService, useValue: snackbar }],
+    });
+
+    const copyButton = screen.getByRole('button', { name: /copy/i });
+    fireEvent(copyButton, new CustomEvent('cdkCopyToClipboardCopied'));
+
+    expect(snackbar.open).toHaveBeenCalledWith('Copied to clipboard', '', false, 'start', { duration: 5000 });
+  });
+
+  it('should handle tab change', async () => {
+    await setup();
+
+    const tabs = screen.getAllByRole('tab');
+    await userEvent.click(tabs[1]);
+
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
   });
 });
