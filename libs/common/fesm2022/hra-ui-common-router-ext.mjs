@@ -1,7 +1,8 @@
 import * as i0 from '@angular/core';
-import { input, Directive, booleanAttribute, computed, makeEnvironmentProviders, inject, NgModule } from '@angular/core';
+import { input, Directive, booleanAttribute, inject, computed, makeEnvironmentProviders, NgModule } from '@angular/core';
 import { stripLeadingHash, injectAppUrlResolver, isAbsolute, stripTrailingSlash } from '@hra-ui/common/url';
 import { createNoopInjectionToken } from 'ngxtension/create-injection-token';
+import { LocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { getFeatureProviders } from '@hra-ui/common/util/providers';
 
@@ -73,6 +74,8 @@ class LinkDirective {
     /** Whether the link should open is a new tab/window */
     // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn't work for non-trivial selectors
     external = input(false, ...(ngDevMode ? [{ debugName: "external", alias: 'hraLinkExternal', transform: booleanAttribute }] : [{ alias: 'hraLinkExternal', transform: booleanAttribute }]));
+    /** Location strategy reference */
+    locationStrategy = inject(LocationStrategy, { optional: true });
     /** Reference to the router (if available) */
     router = injectRouter({ optional: true });
     /** Url resolving function */
@@ -88,6 +91,15 @@ class LinkDirective {
         }
         return undefined;
     }, ...(ngDevMode ? [{ debugName: "urlTree" }] : []));
+    /** Resolved href value */
+    href = computed(() => {
+        const { locationStrategy, router } = this;
+        const urlTree = this.urlTree();
+        if (urlTree && locationStrategy && router) {
+            return locationStrategy.prepareExternalUrl(router.serializeUrl(urlTree));
+        }
+        return this.url();
+    }, ...(ngDevMode ? [{ debugName: "href" }] : []));
     /**
      * Perform a navigation in response to a click event
      *
@@ -103,14 +115,14 @@ class LinkDirective {
         return false;
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: LinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.12", type: LinkDirective, isStandalone: true, selector: "a[hraLink], area[hraLink]", inputs: { url: { classPropertyName: "url", publicName: "hraLink", isSignal: true, isRequired: true, transformFunction: null }, external: { classPropertyName: "external", publicName: "hraLinkExternal", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "url()", "attr.target": "external() ? \"_blank\" : null", "attr.rel": "external() ? \"noopener noreferrer\" : null" } }, ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.12", type: LinkDirective, isStandalone: true, selector: "a[hraLink], area[hraLink]", inputs: { url: { classPropertyName: "url", publicName: "hraLink", isSignal: true, isRequired: true, transformFunction: null }, external: { classPropertyName: "external", publicName: "hraLinkExternal", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "href()", "attr.target": "external() ? \"_blank\" : null", "attr.rel": "external() ? \"noopener noreferrer\" : null" } }, ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: LinkDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'a[hraLink], area[hraLink]',
                     host: {
-                        '[attr.href]': 'url()',
+                        '[attr.href]': 'href()',
                         '[attr.target]': 'external() ? "_blank" : null',
                         '[attr.rel]': 'external() ? "noopener noreferrer" : null',
                         '(click)': 'onClick($event)',

@@ -48,12 +48,16 @@ declare class LinkDirective {
     readonly url: _angular_core.InputSignal<string>;
     /** Whether the link should open is a new tab/window */
     readonly external: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    /** Location strategy reference */
+    private readonly locationStrategy;
     /** Reference to the router (if available) */
     private readonly router;
     /** Url resolving function */
     private readonly resolve;
     /** Resolved url tree */
     private readonly urlTree;
+    /** Resolved href value */
+    protected readonly href: _angular_core.Signal<string>;
     /**
      * Perform a navigation in response to a click event
      *
