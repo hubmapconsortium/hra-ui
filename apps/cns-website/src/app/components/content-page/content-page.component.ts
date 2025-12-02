@@ -1,16 +1,15 @@
 import { coerceArray } from '@angular/cdk/coercion';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ContentPageData } from '@hra-ui/design-system/content-templates/content-page';
 import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-
-import { ContentPageData } from '@hra-ui/design-system/content-templates/content-page';
 import { FooterComponent } from '../footer/footer.component';
 
 /**
@@ -20,12 +19,12 @@ import { FooterComponent } from '../footer/footer.component';
   selector: 'cns-content-page',
   imports: [
     HraCommonModule,
+    RouterExtModule,
     ButtonsModule,
     ContentTemplateOutletDirective,
     MarkdownComponent,
     MatIconModule,
     PageSectionComponent,
-    RouterModule,
     TableOfContentsLayoutModule,
     NavigationModule,
     FooterComponent,
