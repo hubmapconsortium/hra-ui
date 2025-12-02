@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model, viewChild } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
@@ -8,7 +8,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule, MatSelectionList } from '@angular/material/list';
+import { MatListModule, MatListOption } from '@angular/material/list';
 
 /** Search list option interface */
 export interface SearchListOption {
@@ -44,10 +44,7 @@ export interface SearchListOption {
   styleUrl: './search-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchListComponent {
-  /** Reference to filters list */
-  readonly list = viewChild.required(MatSelectionList);
-
+export class SearchListComponent<T extends SearchListOption> {
   /** Whether to hide the autocomplete search bar */
   readonly disableSearch = input(false, { transform: booleanAttribute });
 
@@ -55,7 +52,7 @@ export class SearchListComponent {
   readonly disableRipple = input(false, { transform: booleanAttribute });
 
   /** All filter options */
-  readonly options = input.required<SearchListOption[]>();
+  readonly options = input.required<T[]>();
 
   /** Currently selected filter IDs */
   readonly selected = model<string[] | undefined>([]);
@@ -66,16 +63,17 @@ export class SearchListComponent {
   /** Filtered options (after typing in search bar) */
   readonly filteredOptions = computed(() => this.doSearch());
 
-  /** Updates selected option ids on update */
-  selectionUpdate() {
-    this.selected.set(this.list().selectedOptions.selected.map((x) => x.value.id));
+  /**
+   * Updates selected option ids on update
+   * @param event Selected options in list
+   */
+  selectionUpdate(event: MatListOption[]): void {
+    this.selected.set(event.map((option) => option.value.id));
   }
 
   /** Filters options according to the search bar value */
-  private doSearch() {
-    if (this.search() !== '') {
-      return this.options()?.filter((option) => option.label.toLowerCase().includes(this.search().toLowerCase())) || [];
-    }
-    return this.options();
+  private doSearch(): T[] {
+    const searchTerm = this.search().toLowerCase();
+    return this.options().filter((option) => option.label.toLowerCase().includes(searchTerm));
   }
 }

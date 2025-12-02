@@ -17,14 +17,39 @@ const FILTER_OPTIONS_MULTI = [
   { id: 'a', label: 'A', secondaryLabel: 'short description', count: 9999 },
   { id: 'ab', label: 'AB', secondaryLabel: 'short description', count: 4299 },
   { id: 'abc', label: 'ABC', secondaryLabel: 'short description', count: 1799 },
-  { id: 'abcd', label: 'ABCD', secondaryLabel: 'short description', count: 899 },
-  { id: 'abcde', label: 'ABCDE', secondaryLabel: 'short description', count: 499 },
-  { id: 'abcdef', label: 'ABCDEF', secondaryLabel: 'short description', count: 299 },
-  { id: 'abcdefg', label: 'ABCDEFG', secondaryLabel: 'short description', count: 199 },
-  { id: 'abcdefgh', label: 'BACDEFGH', secondaryLabel: 'short description', count: 99 },
+  {
+    id: 'abcd',
+    label: 'ABCD',
+    secondaryLabel: 'short description',
+    count: 899,
+  },
+  {
+    id: 'abcde',
+    label: 'ABCDE',
+    secondaryLabel: 'short description',
+    count: 499,
+  },
+  {
+    id: 'abcdef',
+    label: 'ABCDEF',
+    secondaryLabel: 'short description',
+    count: 299,
+  },
+  {
+    id: 'abcdefg',
+    label: 'ABCDEFG',
+    secondaryLabel: 'short description',
+    count: 199,
+  },
+  {
+    id: 'abcdefgh',
+    label: 'BACDEFGH',
+    secondaryLabel: 'short description',
+    count: 99,
+  },
 ] as SearchListOption[];
 
-const meta: Meta<SearchListComponent> = {
+const meta: Meta<SearchListComponent<SearchListOption>> = {
   component: SearchListComponent,
   title: 'Design System / Search List',
   parameters: {
@@ -41,7 +66,7 @@ const meta: Meta<SearchListComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<SearchListComponent>;
+type Story = StoryObj<SearchListComponent<SearchListOption>>;
 
 export const Default: Story = {
   args: {
