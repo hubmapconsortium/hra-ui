@@ -312,9 +312,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/AnatomicalStructureTagState.html" data-type="entity-link" >AnatomicalStructureTagState</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/IconRegistryState.html" data-type="entity-link" >IconRegistryState</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/MetadataService.html" data-type="entity-link" >MetadataService</a>
                                 </li>
                                 <li class="link">
@@ -358,9 +355,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/Collision.html" data-type="entity-link" >Collision</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/DefaultIconDefinition.html" data-type="entity-link" >DefaultIconDefinition</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/DocumentationContent.html" data-type="entity-link" >DocumentationContent</a>
                             </li>
                             <li class="link">
@@ -380,9 +374,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/GlobalConfig.html" data-type="entity-link" >GlobalConfig</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/IconDefinition.html" data-type="entity-link" >IconDefinition</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/MetaDataField.html" data-type="entity-link" >MetaDataField</a>
