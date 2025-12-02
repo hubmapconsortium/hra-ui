@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model, viewChild } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
@@ -6,12 +6,12 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule, MatSelectionListChange } from '@angular/material/list';
+import { MatListModule, MatSelectionList } from '@angular/material/list';
 
-/** Filter menu option interface */
-export interface FilterMenuOption {
+/** Search list option interface */
+export interface SearchListOption {
   /** Option id */
   id: string;
   /** Option label */
@@ -19,7 +19,7 @@ export interface FilterMenuOption {
   /** Secondary label */
   secondaryLabel?: string;
   /** Number of results for the filter option in the data */
-  count: number;
+  count?: number;
 }
 
 /**
@@ -45,64 +45,37 @@ export interface FilterMenuOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchListComponent {
-  /** Filter search form control */
-  readonly searchControl = new FormControl();
+  /** Reference to filters list */
+  readonly list = viewChild.required(MatSelectionList);
 
-  /** Whether to show the autocomplete search bar */
-  readonly showSearch = input<boolean>(true);
+  /** Whether to hide the autocomplete search bar */
+  readonly disableSearch = input(false, { transform: booleanAttribute });
 
   /** Whether to disable the ripple effect for list items */
-  readonly disableRipple = input<boolean>(false);
+  readonly disableRipple = input(false, { transform: booleanAttribute });
 
   /** All filter options */
-  readonly filterOptions = input.required<FilterMenuOption[]>();
+  readonly options = input.required<SearchListOption[]>();
 
   /** Currently selected filter IDs */
-  readonly currentFilters = input<string[] | undefined>();
-
-  /** Currently selected options */
-  readonly selectedOptions = signal<FilterMenuOption[]>([]);
+  readonly selected = model<string[] | undefined>([]);
 
   /** Current search bar value */
-  readonly searchValue = signal<string>('');
+  readonly search = model<string>('');
 
   /** Filtered options (after typing in search bar) */
-  readonly filteredOptions = computed(() => {
-    if (this.searchValue() !== '') {
-      return (
-        this.filterOptions()?.filter((option) =>
-          option.label.toLowerCase().includes(this.searchValue().toLowerCase()),
-        ) || []
-      );
-    }
-    return this.filterOptions();
-  });
+  readonly filteredOptions = computed(() => this.doSearch());
 
-  /** Emits currently selected filter options on change */
-  readonly filtersChanged = output<FilterMenuOption[]>();
-
-  /**
-   * Sets options in the filter menu and subscribes to searchbar inputs
-   */
-  constructor() {
-    effect(() => {
-      const selectedFilterOptions =
-        this.filterOptions()?.filter((option) => this.currentFilters()?.includes(option.id)) || []; //filter options remaining with current filters applied
-      this.selectedOptions.set(selectedFilterOptions); //set the currently selected options to the filtered options
-    });
-
-    this.searchControl.valueChanges.subscribe(() => {
-      this.searchValue.set(this.searchControl.value);
-    });
+  /** Updates selected option ids on update */
+  selectionUpdate() {
+    this.selected.set(this.list().selectedOptions.selected.map((x) => x.value.id));
   }
 
-  /**
-   * Handles selection changes in the filter menu
-   * @param event Selection change event
-   */
-  handleSelectionChange(event: MatSelectionListChange): void {
-    const selectedOptions = event.source.selectedOptions.selected.map((option) => option.value);
-    this.selectedOptions.set(selectedOptions);
-    this.filtersChanged.emit(this.selectedOptions());
+  /** Filters options according to the search bar value */
+  private doSearch() {
+    if (this.search() !== '') {
+      return this.options()?.filter((option) => option.label.toLowerCase().includes(this.search().toLowerCase())) || [];
+    }
+    return this.options();
   }
 }
