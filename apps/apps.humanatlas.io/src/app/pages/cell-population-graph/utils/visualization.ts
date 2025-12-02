@@ -44,6 +44,16 @@ export interface StackedBarsSpecOptions {
   legendOrient?: LegendOrient;
 }
 
+/**
+ * Determines if a graph attribute is numeric/date-based or text-based
+ * @param attribute - The graph attribute to check
+ * @returns true if numeric/date, false if text
+ */
+function isNumericField(attribute: GraphAttribute): boolean {
+  const numericFields: GraphAttribute[] = ['count', 'percentage', 'order', 'age', 'y_pos'];
+  return numericFields.includes(attribute);
+}
+
 /** * Generates a Vega-Lite specification for a stacked bar graph.
  * @param userOptions - Options for customizing the stacked bars visualization.
  * @returns A Vega-Lite specification object for rendering the stacked bars graph.
@@ -62,6 +72,9 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
     },
     userOptions,
   );
+
+  const hasGroupBy = options.groupBy !== '';
+  const isGroupByNumeric = hasGroupBy && isNumericField(options.groupBy);
 
   const spec: VisualizationSpec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v6.json',
@@ -132,20 +145,32 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
               title: GRAPH_ATTRIBUTE_LABELS[options.groupBy] ?? options.groupBy,
               type: 'ordinal',
               spacing: options.groupSpacing,
-              sort: {
-                field: 'order',
-                op: 'mean',
-                order: options.orderType,
-              },
+              sort: isGroupByNumeric
+                ? {
+                    field: 'facet_sort_key',
+                    op: 'min',
+                    order: 'ascending',
+                  }
+                : {
+                    field: 'facet_sort_key',
+                    op: 'min',
+                    order: options.orderType,
+                  },
             },
       x: {
         field: options.xAxisField,
         title: GRAPH_ATTRIBUTE_LABELS[options.xAxisField] ?? options.xAxisField,
-        sort: {
-          field: 'order',
-          op: 'sum',
-          order: options.orderType,
-        },
+        sort: hasGroupBy
+          ? {
+              field: 'index',
+              op: 'mean',
+              order: 'ascending',
+            }
+          : {
+              field: 'order',
+              op: 'sum',
+              order: options.orderType,
+            },
         type: 'nominal',
         axis: {
           labelAngle: options.labelAngle,
@@ -197,6 +222,20 @@ export function getStackedBarsSpec(userOptions: StackedBarsSpecOptions): Visuali
         calculate: `'${options.yAxisField}' == 'percentage' ? datum.${options.yAxisField}/datum.Total * 100 : datum.${options.yAxisField}`,
         as: options.yAxisField,
       },
+      ...(hasGroupBy
+        ? [
+            {
+              calculate: isGroupByNumeric
+                ? options.orderType === 'descending'
+                  ? `lower(datum.${options.groupBy}) === 'unknown' ? Infinity : (1000000 - datum.${options.groupBy})`
+                  : `lower(datum.${options.groupBy}) === 'unknown' ? Infinity : datum.${options.groupBy}`
+                : options.orderType === 'descending'
+                  ? `lower(datum.${options.groupBy}) === 'unknown' ? '' : datum.${options.groupBy}`
+                  : `lower(datum.${options.groupBy}) === 'unknown' ? '~~~Unknown' : datum.${options.groupBy}`,
+              as: 'facet_sort_key',
+            },
+          ]
+        : []),
     ],
     resolve: {
       scale: {
