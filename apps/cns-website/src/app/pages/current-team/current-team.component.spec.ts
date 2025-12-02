@@ -118,4 +118,19 @@ describe('CurrentTeamComponent', () => {
     const title = component.getMemberTitle(member);
     expect(title).toBe('Faculty, Center Director');
   });
+
+  it('should return empty string when member has no roles', async () => {
+    const { fixture } = await render(CurrentTeamComponent, { providers });
+    const component = fixture.componentInstance;
+    const memberWithoutRoles = {
+      name: 'Test Member',
+      lastName: 'Member',
+      image: '',
+      slug: 'test-member',
+      roles: [],
+    };
+
+    const title = component.getMemberTitle(memberWithoutRoles);
+    expect(title).toBe('');
+  });
 });
