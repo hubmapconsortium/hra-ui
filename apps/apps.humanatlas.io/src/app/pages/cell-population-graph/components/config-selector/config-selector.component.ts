@@ -95,7 +95,7 @@ export class ConfigSelectorComponent {
   readonly configForm: FormGroup = this.fb.group({
     datasetSource: [''],
     sortBy: [''],
-    orderType: ['descending'],
+    orderType: ['ascending'],
     groupBy: [''],
     xAxisField: ['dataset_name'],
     yAxisField: ['count'],
@@ -131,7 +131,7 @@ export class ConfigSelectorComponent {
           xAxisField: selections.xAxisField ?? 'dataset_name',
           yAxisField: selections.yAxisField ?? 'count',
           sortBy: selections.sortBy ?? 'Total Cell Count',
-          orderType: selections.orderType ?? 'descending',
+          orderType: selections.orderType ?? 'ascending',
           groupBy: selections.groupBy ?? '',
           legendField: 'cell_type',
           legendDomain: cellTypes,

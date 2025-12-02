@@ -6,8 +6,7 @@
         hraFeature="logo"
         hraClickEvent
         aria-label="Visit CNS"
-        href="https://cns.iu.edu"
-        target="_self"
+        hraLink="https://cns.iu.edu/"
         [inlineSVG]="'assets/logo/cns_footer_logo.svg' | assetUrl"
       >
       </a>
@@ -25,9 +24,9 @@
 
   <div class="privacy-container">
     <span class="privacy">
-      <a hraHyperlink href="#privacy-preferences" (click)="openPrivacyPreferences($event)">Privacy Preferences</a>
+      <button hraTextButton (click)="openPrivacyPreferences($event)">Privacy Preferences</button>
       <div class="separator">&#183;</div>
-      <a hraHyperlink hraFeature="hra-privacy-policy" hraLink="privacy-policy">Privacy Policy</a>
+      <a hraHyperlink hraFeature="hra-privacy-policy" hraLink="https://cns.iu.edu/privacy-policy">Privacy Policy</a>
     </span>
 
     <span class="copyright"> {{ copyrightText() }} </span>
