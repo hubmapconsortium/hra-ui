@@ -886,6 +886,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/SearchFilterComponent.html" data-type="entity-link" >SearchFilterComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/SearchListComponent.html" data-type="entity-link" >SearchListComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/SectionLinkComponent.html" data-type="entity-link" >SectionLinkComponent</a>
                             </li>
                             <li class="link">
@@ -1211,6 +1214,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/ScrollingOptions.html" data-type="entity-link" >ScrollingOptions</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SearchListOption.html" data-type="entity-link" >SearchListOption</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SinglePageSectionBottomSheetData.html" data-type="entity-link" >SinglePageSectionBottomSheetData</a>

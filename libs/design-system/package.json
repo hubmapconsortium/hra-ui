@@ -402,6 +402,10 @@
       "types": "./search-filter/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-search-filter.mjs"
     },
+    "./search-list": {
+      "types": "./search-list/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-search-list.mjs"
+    },
     "./snackbar": {
       "types": "./snackbar/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-snackbar.mjs"
