@@ -2,6 +2,10 @@ $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Visitor Info
 subtitle: |
   Information for your visit to Indiana University’s Cyberinfrastructure for Network Science Center.
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: Visitor Info
 content:
   - component: PageSection
     tagline: Address

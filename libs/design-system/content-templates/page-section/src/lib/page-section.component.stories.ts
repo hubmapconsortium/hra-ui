@@ -17,6 +17,10 @@ const meta: Meta<PageSectionComponent> = {
     level: 1,
     anchor: 'page-label',
     icons: 'product:apps',
+    breadcrumbs: [
+      { name: 'Home', route: '/' },
+      { name: 'Section', route: '/section' },
+    ],
   },
   decorators: [
     moduleMetadata({
@@ -31,7 +35,7 @@ type Story = StoryObj<PageSectionComponent>;
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<hra-page-section [tagline]="tagline" [level]="level" [icons]="icons" [anchor]="anchor">
+    template: `<hra-page-section [tagline]="tagline" [level]="level" [icons]="icons" [anchor]="anchor" [breadcrumbs]="breadcrumbs">
       This is placeholder text. We should try to keep this short. When writing content, imagine you've never been to the HRA before. What would you want to learn here?
       <ul>
         <li>Components may be swapped out for this button set</li>
