@@ -1159,7 +1159,7 @@ const UPDATE_ALL_SELECTORS: UpdateSelectors &#x3D; {
  * Creates an observable operator function that remove undefined values from a stream
  * @returns Observable operator function
  */
-function filterUndefined&lt;T&gt;(): OperatorFunction&lt;T | undefined, T&gt; {
+export function filterUndefined&lt;T&gt;(): OperatorFunction&lt;T | undefined, T&gt; {
   return filter((value): value is T &#x3D;&gt; value !&#x3D;&#x3D; undefined);
 }
 
