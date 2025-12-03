@@ -3,25 +3,10 @@
     <hra-page-section [tagline]="data().title" [icons]="data().icons" [breadcrumbs]="data().breadcrumbs">
       <hra-markdown class="subtitle" [data]="data().subtitle" />
       @if (data().action; as action) {
-        @if (action.url.startsWith('http')) {
-          <a
-            mat-button
-            hraCtaButton
-            hraPrimaryButton
-            class="action"
-            target="_self"
-            rel="noopener noreferrer"
-            [attr.href]="action.url"
-          >
-            {{ action.label }}
-            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-          </a>
-        } @else {
-          <a mat-button hraCtaButton hraPrimaryButton class="action" [routerLink]="action.url">
-            {{ action.label }}
-            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-          </a>
-        }
+        <a mat-button hraCtaButton hraPrimaryButton class="action" [hraLink]="action.url">
+          {{ action.label }}
+          <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+        </a>
       }
 
       @for (item of headerContent(); track $index) {
