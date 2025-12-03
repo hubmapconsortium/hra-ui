@@ -11,6 +11,7 @@ import {
 } from '@hra-ui/design-system/buttons/info-button';
 import { FilterOptionCategory } from '../filter-menu.component';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
+import { SearchListComponent } from '@hra-ui/design-system/search-list';
 
 /** A filter chip representing a selected filter option */
 export interface FilterChip {
@@ -38,6 +39,7 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
     InfoButtonTaglineDirective,
     InfoButtonActionsDirective,
     OverlayModule,
+    SearchListComponent,
   ],
   templateUrl: './filter-container.component.html',
   styleUrl: './filter-container.component.scss',

@@ -20,6 +20,19 @@
     >
       {{ action() }}
     </button>
+
+    <ng-template
+      cdkConnectedOverlay
+      cdkConnectedOverlayHasBackdrop="false"
+      cdkConnectedOverlayLockPosition="true"
+      cdkConnectedOverlayPush="true"
+      [cdkConnectedOverlayOpen]="menuActive()"
+      [cdkConnectedOverlayOrigin]="desktopMenuOrigin"
+      [cdkConnectedOverlayPositions]="desktopMenuPositions"
+      (overlayOutsideClick)="toggleMenu()"
+    >
+      <hra-search-list [options]="filter().options || []" />
+    </ng-template>
   </div>
 
   @if (chips().length > 0) {

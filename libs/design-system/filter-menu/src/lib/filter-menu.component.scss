@@ -14,6 +14,7 @@
     flex-direction: column;
     gap: 0.25rem;
     padding: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .customize-header,
@@ -42,10 +43,6 @@
   .header-subtext {
     @include utils.use-font(body, medium);
     color: vars.$primary;
-  }
-
-  .filter-options {
-    padding-top: 1rem;
   }
 
   .customize-section {
