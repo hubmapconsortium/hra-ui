@@ -13,7 +13,7 @@ export const FunderSchema = z
     link: z.string().url(),
     image: z.string(),
   })
-  .meta({ id: 'Funder' });
+  .meta({ id: 'CnsFunder' });
 
 /** Multiple funders object */
 export type Funders = z.infer<typeof FundersSchema>;
@@ -23,6 +23,6 @@ export const FundersSchema = z
     $schema: z.string(),
     funders: FunderSchema.array(),
   })
-  .meta({ id: 'Funders' });
+  .meta({ id: 'CnsFunders' });
 
 export default FundersSchema;

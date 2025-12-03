@@ -13,7 +13,7 @@ export const MenuItemSchema = z
     external: z.boolean().optional(),
     target: z.string().optional(),
   })
-  .meta({ id: 'HeaderMenuItem' });
+  .meta({ id: 'CnsHeaderMenuItem' });
 
 /** A menu group */
 export type MenuGroup = z.infer<typeof MenuGroupSchema>;
@@ -27,7 +27,7 @@ export const MenuGroupSchema = z
     target: z.string().optional(),
     items: MenuItemSchema.array(),
   })
-  .meta({ id: 'HeaderMenuGroup' });
+  .meta({ id: 'CnsHeaderMenuGroup' });
 
 /** A menu */
 export type Menu = z.infer<typeof MenuSchema>;
@@ -40,7 +40,7 @@ export const MenuSchema = z
     items: MenuGroupSchema.array().optional(),
     featured: MenuItemSchema.optional(),
   })
-  .meta({ id: 'HeaderMenu' });
+  .meta({ id: 'CnsHeaderMenu' });
 
 /** Multiple menus */
 export type Menus = z.infer<typeof MenusSchema>;
@@ -50,6 +50,6 @@ export const MenusSchema = z
     $schema: z.string(),
     options: z.union([MenuSchema, MenuItemSchema]).array(),
   })
-  .meta({ id: 'HeaderMenus' });
+  .meta({ id: 'CnsHeaderMenus' });
 
 export default MenusSchema;
