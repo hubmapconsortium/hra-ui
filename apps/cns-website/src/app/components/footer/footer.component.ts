@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
-import { LinkDirective, RouterExtModule } from '@hra-ui/common/router-ext';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';
@@ -25,7 +25,6 @@ import { FUNDER_IDS } from './static-data/parsed';
     FundingComponent,
     MatDividerModule,
     InlineSVGModule,
-    LinkDirective,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
