@@ -21,6 +21,7 @@ import { FooterComponent } from '../footer/footer.component';
   selector: 'cns-content-page',
   imports: [
     HraCommonModule,
+    RouterExtModule,
     ButtonsModule,
     ContentTemplateOutletDirective,
     MarkdownComponent,
@@ -29,7 +30,6 @@ import { FooterComponent } from '../footer/footer.component';
     RouterModule,
     TableOfContentsLayoutModule,
     NavigationModule,
-    RouterExtModule,
     FooterComponent,
   ],
   templateUrl: './content-page.component.html',
