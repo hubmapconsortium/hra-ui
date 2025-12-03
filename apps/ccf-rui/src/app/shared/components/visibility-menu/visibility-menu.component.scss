@@ -19,6 +19,7 @@
       transition: 0.6s;
       min-width: 1.5rem;
       cursor: pointer;
+      color: vars.$secondary;
 
       &.fade {
         opacity: 0.12;
@@ -27,7 +28,7 @@
 
     .item-name {
       font: vars.$label-small;
-      color: vars.$primary;
+      color: vars.$on-primary-fixed;
       user-select: none;
       white-space: nowrap;
       overflow: hidden;
