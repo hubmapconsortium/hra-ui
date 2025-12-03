@@ -18,10 +18,10 @@ const ANCHOR_SCROLL_PADDING = 24;
   imports: [HraCommonModule, RouterModule, NavigationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Reference to the header html element */

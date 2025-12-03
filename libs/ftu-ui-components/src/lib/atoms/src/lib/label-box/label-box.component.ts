@@ -6,6 +6,6 @@ import { CommonModule } from '@angular/common';
   selector: 'ftu-label-box',
   imports: [CommonModule],
   templateUrl: './label-box.component.html',
-  styleUrls: ['./label-box.component.scss'],
+  styleUrl: './label-box.component.scss',
 })
 export class LabelBoxComponent {}

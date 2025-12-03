@@ -11,7 +11,7 @@ import { SheetDetails, VersionDetail } from '../../models/sheet.model';
   selector: 'app-table-nested-menu',
   imports: [CommonModule, MatIconModule, MatMenuModule, MatButtonModule, ScrollingModule, HraCommonModule],
   templateUrl: './table-nested-menu.component.html',
-  styleUrls: ['./table-nested-menu.component.scss'],
+  styleUrl: './table-nested-menu.component.scss',
 })
 export class TableNestedMenuComponent {
   @Input() sheetDetails: SheetDetails[] = [];

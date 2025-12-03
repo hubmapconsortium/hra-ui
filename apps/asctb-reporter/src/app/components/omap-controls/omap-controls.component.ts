@@ -4,9 +4,9 @@ import { Error } from '../../models/response.model';
 
 @Component({
   selector: 'app-omap-controls',
-  templateUrl: './omap-controls.component.html',
-  styleUrls: ['./omap-controls.component.scss'],
   standalone: false,
+  templateUrl: './omap-controls.component.html',
+  styleUrl: './omap-controls.component.scss',
 })
 export class OmapControlsComponent {
   @Input() omaps: OmapConfig = { organsOnly: false, proteinsOnly: false };

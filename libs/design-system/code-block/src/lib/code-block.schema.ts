@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Code Block component data */
 export type CodeBlock = z.infer<typeof CodeBlockSchema>;
@@ -9,4 +9,4 @@ export const CodeBlockSchema = ContentTemplateSchema.extend({
   component: z.literal('CodeBlock'),
   code: z.string().optional(),
   language: z.string().optional(),
-});
+}).meta({ id: 'CodeBlock' });

@@ -51,7 +51,7 @@ import { SearchComponent } from '../search/search.component';
     IconsModule,
   ],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
   readonly sheetservice = inject(SheetService);

@@ -34,3 +34,33 @@ export const MultipleIcons: Story = {
     icons: ['product:ftu', 'organ:bladder'],
   },
 };
+
+export const WithBreadcrumbs: Story = {
+  args: {
+    icons: 'product:ftu',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Label', route: '/label' }, { name: 'Label' }],
+  },
+};
+
+export const WithDate: Story = {
+  args: {
+    icons: 'product:ftu',
+    date: 'October 2, 2025',
+  },
+};
+
+export const WithTags: Story = {
+  args: {
+    icons: 'product:ftu',
+    tags: ['Label', 'Label', 'Label', 'Label', 'Label'],
+  },
+};
+
+export const Complete: Story = {
+  args: {
+    icons: ['product:ftu', 'organ:bladder'],
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Label', route: '/label' }, { name: 'Label' }],
+    date: 'October 2, 2025',
+    tags: ['Label', 'Label', 'Label', 'Label', 'Label'],
+  },
+};

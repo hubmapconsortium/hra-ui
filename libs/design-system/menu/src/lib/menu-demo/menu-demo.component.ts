@@ -21,8 +21,8 @@ export interface MenuDemoOption {
   selector: 'hra-menu',
   imports: [MatButtonModule, MatMenuModule, MatIconModule, MatRippleModule],
   templateUrl: './menu-demo.component.html',
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class MenuDemoComponent {
   /** List of menu options */

@@ -13,18 +13,16 @@
     "app:docs.humanatlas.io",
     "app:ftu-ui",
     "app:humanatlas.io",
+    "app:kg-explorer",
     "app:medical-illustration",
     "app:node-dist-vis",
+    "lib:application",
     "lib:ccf-body-ui",
     "lib:ccf-scene-utils",
     "lib:ccf-shared",
     "lib:cde-visualization",
     "lib:cdk",
     "lib:common",
-    "lib:atoms",
-    "lib:molecules",
-    "lib:organisms",
-    "lib:behavioral",
     "lib:dashboard",
     "lib:design-system",
     "lib:node-dist-vis",
@@ -32,8 +30,7 @@
     "lib:utils",
     "lib:webcomponents",
     "lib:state",
-    "app:kg-explorer",
-    "lib:application"
+    "plugin:zod-to-json-schema"
   ],
   "eslint.validate": ["yaml", "json", "javascript", "typescript"]
 }

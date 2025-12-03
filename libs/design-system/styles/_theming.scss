@@ -12,9 +12,11 @@
   @include overrides.button-overrides();
   @include overrides.checkbox-overrides();
   @include overrides.chips-overrides();
-  @include overrides.icon-button-overrides();
   @include overrides.form-field-overrides();
+  @include overrides.icon-button-overrides();
+  @include overrides.list-overrides();
   @include overrides.menu-overrides();
+  @include overrides.progress-bar-overrides();
   @include overrides.radio-button-overrides();
   @include overrides.slider-overrides();
   @include overrides.select-overrides();

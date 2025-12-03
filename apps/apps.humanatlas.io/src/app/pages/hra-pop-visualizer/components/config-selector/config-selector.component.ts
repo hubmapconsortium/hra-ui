@@ -25,7 +25,6 @@ import { HraCommonModule } from '@hra-ui/common';
  */
 @Component({
   selector: 'hra-config-selector',
-  standalone: true,
   imports: [
     HraCommonModule,
     FormsModule,

@@ -5,7 +5,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   inject,
   Input,
   OnChanges,
@@ -14,19 +13,19 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
+import { HraCommonModule } from '@hra-ui/common';
+import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
+import { DataItem } from '@hra-ui/design-system/info-modal';
+import { TableColumn, TableRow } from '@hra-ui/design-system/table';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
+import { ReplaySubject } from 'rxjs';
 import { GradientPoint } from '../../../../atoms/src/lib/gradient-legend/gradient-legend.component';
 import { SizeLegend } from '../../../../atoms/src/lib/size-legend/size-legend.component';
 import { BiomarkerTableDataIconComponent } from '../../../../molecules/src';
 import { SourceListItem } from '../../../../molecules/src/lib/source-list/source-list.component';
-import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
-import { ReplaySubject } from 'rxjs';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
-import { TableColumn, TableRow } from '@hra-ui/design-system/table';
-import { DataItem } from '@hra-ui/design-system/info-modal';
-import { HraCommonModule } from '@hra-ui/common';
 
 /**
  * RGBTriblet of type RGB to store color
@@ -80,8 +79,11 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
     PlainTooltipDirective,
   ],
   templateUrl: './biomarker-table.component.html',
-  styleUrls: ['./biomarker-table.component.scss'],
+  styleUrl: './biomarker-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:mousemove)': 'onMouseMove()',
+  },
 })
 export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnChanges {
   /**
@@ -200,7 +202,6 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /**
    * Checks for column updates on mouse move
    */
-  @HostListener('window:mousemove', ['$event'])
   onMouseMove() {
     this.checkDisplayedColumns();
   }

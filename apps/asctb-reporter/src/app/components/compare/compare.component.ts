@@ -49,7 +49,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
     ScrollingModule,
   ],
   templateUrl: './compare.component.html',
-  styleUrls: ['./compare.component.scss'],
+  styleUrl: './compare.component.scss',
 })
 export class CompareComponent implements OnInit {
   /** Observable of compare data sheets */

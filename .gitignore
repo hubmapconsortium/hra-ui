@@ -9,6 +9,9 @@
 # data-schema.js is compiled on the fly
 apps/humanatlas.io/src/app/utils/data-schema.js
 
+# Generated JSON schemas from Zod schemas
+**/*.schema.json
+
 # dependencies
 /node_modules
 /dist

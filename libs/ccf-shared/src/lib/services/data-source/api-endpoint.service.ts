@@ -7,7 +7,6 @@ import {
   OntologyTree,
   SpatialEntity,
   SpatialSceneNode,
-  SpatialSearch,
   TissueBlock,
   V1Service,
 } from '@hra-api/ng-client';
@@ -18,10 +17,10 @@ import {
   delay,
   distinctUntilChanged,
   endWith,
-  filter as rxjsFilter,
   ignoreElements,
   map,
   repeat,
+  filter as rxjsFilter,
   shareReplay,
   switchMap,
   take,
@@ -61,9 +60,9 @@ interface DefaultParams {
 /** Filter parameter */
 interface FilterParams {
   /** Age range */
-  age?: MinMax;
+  age?: string;
   /** Bmi range */
-  bmi?: MinMax;
+  bmi?: string;
   /** Ontology terms */
   ontologyTerms?: string[];
   /** Cell types */
@@ -79,7 +78,7 @@ interface FilterParams {
   /** Technologies */
   technologies?: string[];
   /** Spatial positions */
-  spatial?: SpatialSearch[];
+  spatial?: string;
 }
 
 /** Subject used to flush caches */
@@ -114,9 +113,15 @@ function cast<T>(): (data: unknown) => T {
  * @returns A MinMax object
  */
 function rangeToMinMax(range: number[] | undefined, low: number, high: number): MinMax | undefined {
-  return range
-    ? { min: range[0] > low ? range[0] : undefined, max: range[1] < high ? range[1] : undefined }
-    : undefined;
+  if (range) {
+    const min = range[0] > low ? range[0] : undefined;
+    const max = range[1] < high ? range[0] : undefined;
+    if (min !== undefined || max !== undefined) {
+      return { min, max };
+    }
+  }
+
+  return undefined;
 }
 
 /**
@@ -138,18 +143,31 @@ function spatialSceneNodeReviver(nodes: SpatialSceneNode[]): SpatialSceneNode[] 
  * @param filter Filter object
  * @returns Filter parameters
  */
-function filterToParams(filter?: Filter): FilterParams {
+function filterToParams(filter: Filter = {}): FilterParams {
+  const {
+    ageRange,
+    bmiRange,
+    sex,
+    ontologyTerms,
+    cellTypeTerms,
+    biomarkerTerms,
+    consortiums,
+    tmc: providers,
+    technologies,
+    spatialSearches: spatial,
+  } = filter;
+
   return {
-    age: rangeToMinMax(filter?.ageRange, 1, 110),
-    bmi: rangeToMinMax(filter?.bmiRange, 13, 83),
-    sex: filter?.sex?.toLowerCase() as FilterParams['sex'],
-    ontologyTerms: filter?.ontologyTerms,
-    cellTypeTerms: filter?.cellTypeTerms,
-    biomarkerTerms: filter?.biomarkerTerms,
-    consortiums: filter?.consortiums,
-    providers: filter?.tmc,
-    technologies: filter?.technologies,
-    spatial: filter?.spatialSearches,
+    age: JSON.stringify(rangeToMinMax(ageRange, 1, 110)),
+    bmi: JSON.stringify(rangeToMinMax(bmiRange, 13, 83)),
+    sex: sex?.toLowerCase() as FilterParams['sex'],
+    ontologyTerms,
+    cellTypeTerms,
+    biomarkerTerms,
+    consortiums,
+    providers,
+    technologies,
+    spatial: spatial?.length ? JSON.stringify(spatial) : undefined,
   };
 }
 

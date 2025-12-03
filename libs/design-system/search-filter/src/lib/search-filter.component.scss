@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+@use '../../../styles/utils';
+@use '../../../styles/vars';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .search-field {
+    flex: 1;
+    min-width: 160px;
+    max-width: 580px;
+  }
+
+  .results-counter {
+    min-width: 5.25rem;
+    max-width: 7.5rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 48rem) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+
+    .results-counter {
+      align-self: flex-end;
+    }
+  }
+}

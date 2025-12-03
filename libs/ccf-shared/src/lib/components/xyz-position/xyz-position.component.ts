@@ -1,19 +1,16 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 /**
  * Component displaying a x, y, and z position
  */
 @Component({
   selector: 'ccf-xyz-position',
-  templateUrl: './xyz-position.component.html',
-  styleUrls: ['./xyz-position.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  templateUrl: './xyz-position.component.html',
+  styleUrl: './xyz-position.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class XYZPositionComponent {
-  /** Html class name */
-  @HostBinding('class') readonly clsName = 'ccf-xyz-position';
-
   /** X position */
   @Input() x = 0;
 

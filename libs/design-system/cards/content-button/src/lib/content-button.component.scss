@@ -1,0 +1,94 @@
+@use '@angular/material' as mat;
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-grow: 1;
+
+  width: 100%;
+  min-width: 16.25rem;
+  max-width: 23.75rem;
+  background-color: vars.$on-primary;
+
+  @include mat.button-overrides(
+    (
+      text-state-layer-color: vars.$secondary,
+      text-hover-state-layer-opacity: 0,
+    )
+  );
+
+  .content-button {
+    text-align: start;
+    justify-content: start;
+    height: fit-content;
+    width: 100%;
+    padding: 1rem;
+    border: 0.0625rem solid vars.$outline;
+    border-radius: 0.75rem;
+
+    &:hover {
+      .image {
+        max-width: 13.5rem;
+      }
+    }
+
+    &:focus-visible {
+      outline-color: vars.$secondary;
+    }
+  }
+
+  .header {
+    height: 8.25rem;
+
+    .image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-width: 11.75rem;
+      border-radius: 0.75rem;
+      object-fit: cover;
+      transition: 0.3s ease-in-out;
+      background: vars.$on-primary;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .date {
+      color: vars.$secondary;
+      margin-bottom: 0.375rem;
+      @include utils.use-font(label, medium);
+    }
+
+    .tag {
+      margin-top: 0;
+      margin-bottom: 0;
+      pointer-events: none;
+    }
+
+    .tagline {
+      color: vars.$primary;
+      margin-bottom: 1rem;
+      @include utils.use-font(label, large);
+      @include utils.line-clamp(2);
+    }
+  }
+
+  // TODO: Remove once we have globally styled chips
+  @include mat.chips-overrides(
+    (
+      elevated-container-color: vars.$surface-container-low,
+      label-text-font: vars.$label-small-font,
+      label-text-line-height: vars.$label-small-line-height,
+      label-text-size: vars.$label-small-size,
+      label-text-tracking: vars.$label-small-tracking,
+      label-text-weight: vars.$label-small-weight,
+      container-height: 1.75rem,
+    )
+  );
+}

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Zod schema for validating SPARQL binding responses for anatomical data

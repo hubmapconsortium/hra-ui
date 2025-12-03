@@ -1,5 +1,7 @@
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
+import { provideBrandLogos } from '@hra-ui/design-system/brand/logo';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { ConsentBannerComponent } from './consent-banner.component';
-import { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<ConsentBannerComponent> = {
   component: ConsentBannerComponent,
@@ -16,6 +18,22 @@ const meta: Meta<ConsentBannerComponent> = {
 export default meta;
 type Story = StoryObj<ConsentBannerComponent>;
 
-export const Primary: Story = {
-  args: {},
+export const HRA: Story = {};
+
+export const CNSWebsite: Story = {
+  decorators: [
+    moduleMetadata({
+      providers: [
+        provideAppConfiguration({
+          name: 'Design System Storybook',
+          version: '1.0.0',
+          url: 'https://humanatlas.io/',
+        }),
+        provideBrandLogos([
+          { size: 'regular', src: 'assets/brand/logo/cns-regular.svg', width: 228, height: 39 },
+          { size: 'small', src: 'assets/brand/logo/cns-small.svg', width: 84, height: 28 },
+        ]),
+      ],
+    }),
+  ],
 };

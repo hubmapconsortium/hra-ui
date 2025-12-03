@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Text hyperlink component type
@@ -14,4 +14,5 @@ export const TextHyperlinkSchema = ContentTemplateSchema.extend({
   text: z.string(),
   url: z.string(),
   icon: z.string().optional(),
-});
+  external: z.boolean().optional(),
+}).meta({ id: 'TextHyperlink' });

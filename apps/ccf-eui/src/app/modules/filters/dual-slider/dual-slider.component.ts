@@ -21,9 +21,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, NgControl, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD, MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSliderRangeThumb } from '@angular/material/slider';
+import { MatSliderModule, MatSliderRangeThumb } from '@angular/material/slider';
 import { HraCommonModule } from '@hra-ui/common';
-import { SliderModule } from '@hra-ui/design-system/slider';
 import { explicitEffect } from 'ngxtension/explicit-effect';
 import { skip, Subject } from 'rxjs';
 
@@ -38,19 +37,19 @@ let nextId = 0;
  */
 @Component({
   selector: 'ccf-dual-slider',
-  templateUrl: './dual-slider.component.html',
-  styleUrls: ['./dual-slider.component.scss'],
   imports: [
     A11yModule,
     HraCommonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSliderModule,
     OverlayModule,
     ReactiveFormsModule,
-    SliderModule,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './dual-slider.component.html',
+  styleUrl: './dual-slider.component.scss',
   providers: [{ provide: MatFormFieldControl, useExisting: DualSliderComponent }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'combobox',
     'aria-haspopup': 'dialog',

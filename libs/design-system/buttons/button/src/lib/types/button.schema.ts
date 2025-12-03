@@ -1,5 +1,5 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** HRA button type */
 export type Button = z.infer<typeof ButtonSchema>;
@@ -14,4 +14,4 @@ export const ButtonSchema = ContentTemplateSchema.extend({
   size: z.enum(['small', 'medium']).optional(),
   disabled: z.boolean().optional(),
   icon: z.string().optional(),
-});
+}).meta({ id: 'Button' });
