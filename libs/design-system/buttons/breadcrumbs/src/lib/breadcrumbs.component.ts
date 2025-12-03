@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import * as z from 'zod';
 
 /** Breadcrumb item */
 export interface BreadcrumbItem {
@@ -11,6 +12,12 @@ export interface BreadcrumbItem {
   /** Route to page */
   route?: string;
 }
+
+/** Breadcrumb Item Schema */
+export const BreadcrumbItemSchema = z.object({
+  name: z.string(),
+  route: z.string().optional(),
+});
 
 /**
  * Component used to help the user understand their location within websites

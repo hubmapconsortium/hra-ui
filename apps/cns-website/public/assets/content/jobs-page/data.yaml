@@ -1,6 +1,10 @@
 $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Jobs
 subtitle: Work at Indiana University's Cyberinfrastructure for Network Science Center.
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: Jobs
 content:
   - component: PageSection
     tagline: Biomedical Consultant

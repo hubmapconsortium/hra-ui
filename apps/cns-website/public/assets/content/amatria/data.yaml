@@ -1,6 +1,10 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: 'Amatria: Sentient Architecture'
 subtitle: 'Amatria is a living sculpture that responds to her environment through light, sound, and movement.'
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: Amatria
 content:
   - component: Image
     src: assets/content/amatria/images/amatria-1.png
