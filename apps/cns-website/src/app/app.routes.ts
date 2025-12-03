@@ -5,7 +5,7 @@ import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-fou
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
-import { peopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
+import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -18,7 +18,7 @@ export const appRoutes: Route[] = [
     path: 'people/:slug',
     component: PeopleProfileComponent,
     resolve: {
-      data: peopleProfileResolver,
+      data: createPeopleProfileResolver(),
     },
   },
 
