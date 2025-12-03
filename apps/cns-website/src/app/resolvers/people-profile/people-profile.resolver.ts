@@ -8,10 +8,16 @@ import * as z from 'zod';
 /** Base URL for CNS website content */
 const CNS_CONTENT_BASE_URL = 'https://cns-iu.github.io/cns-website/content/person';
 
-/** Role schema */
-const RoleSchema = z.object({
-  type: z.enum(['member', 'student', 'collaborator']),
-  title: z.string().optional(),
+/** Base role schema with common fields */
+const BaseRoleSchema = z.object({
+  dateStart: z.string(),
+  dateEnd: z.string().nullable(),
+});
+
+/** Member role schema */
+const MemberRoleSchema = BaseRoleSchema.extend({
+  type: z.literal('member'),
+  title: z.string(),
   displayOrder: z.number().optional(),
   office: z.string().optional(),
   phone: z.string().optional(),
@@ -20,21 +26,32 @@ const RoleSchema = z.object({
   education: z.string().optional(),
   background: z.string().optional(),
   interests: z.string().optional(),
-  dateStart: z.string(),
-  dateEnd: z.string().nullable(),
-  project: z.string().optional(),
-  topic: z.string().optional(),
-  degree: z.string().optional(),
-  department: z.string().optional(),
 });
+
+/** Student role schema */
+const StudentRoleSchema = BaseRoleSchema.extend({
+  type: z.literal('student'),
+  topic: z.string(),
+  degree: z.string(),
+  department: z.string(),
+});
+
+/** Collaborator role schema */
+const CollaboratorRoleSchema = BaseRoleSchema.extend({
+  type: z.literal('collaborator'),
+  project: z.string(),
+});
+
+/** Discriminated union of all role types */
+const RoleSchema = z.discriminatedUnion('type', [MemberRoleSchema, StudentRoleSchema, CollaboratorRoleSchema]);
 
 /** People profile data schema */
 export const PeopleProfileDataSchema = z.object({
   name: z.string(),
   lastName: z.string(),
-  image: z.string().optional(),
+  image: z.string(),
   slug: z.string().optional(),
-  roles: z.array(RoleSchema).optional(),
+  roles: z.array(RoleSchema),
 });
 
 /** People profile data type */
@@ -69,8 +86,3 @@ export function createPeopleProfileResolver(baseUrl: string = CNS_CONTENT_BASE_U
     );
   };
 }
-
-/**
- * Default people profile resolver
- */
-export const peopleProfileResolver = createPeopleProfileResolver();
