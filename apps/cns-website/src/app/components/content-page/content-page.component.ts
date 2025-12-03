@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
@@ -28,6 +29,7 @@ import { FooterComponent } from '../footer/footer.component';
     RouterModule,
     TableOfContentsLayoutModule,
     NavigationModule,
+    RouterExtModule,
     FooterComponent,
   ],
   templateUrl: './content-page.component.html',

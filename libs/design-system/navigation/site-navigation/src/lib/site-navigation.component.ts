@@ -1,13 +1,15 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
+import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
+import { injectRouter } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { injectNavigationEnd } from 'ngxtension/navigation-end';
@@ -16,7 +18,6 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
 import { DOCS_NAVIGATION_MENU } from './static-data/parsed';
 import { DocsMenuItems, DocsNavigationCategory } from './types/docs-navigation.schema';
 import { ACTIVE_MATCH_OPTIONS } from './utils/match-options';
-import { resolveUrl } from './utils/resolve-url';
 
 /** Site Navigation Component for HRA Docs */
 @Component({
@@ -43,14 +44,14 @@ export class SiteNavigationComponent {
   /** Navigation Menu Items */
   readonly navigationMenu = input(DOCS_NAVIGATION_MENU);
 
-  /** Base URL for the appliation */
-  readonly baseUrl = input.required<string>();
-
   /** State for expanded navigation category */
   readonly expandedCategory = signal('');
 
-  /** Angular Router */
-  private readonly router = inject(Router);
+  /** Angular Router (optional for navigation event monitoring) */
+  private readonly router = injectRouter({ optional: true });
+
+  /** URL resolver */
+  private readonly urlResolver = injectAppUrlResolver();
 
   /** Constructor */
   constructor() {
@@ -82,8 +83,8 @@ export class SiteNavigationComponent {
 
     for (const category of categories) {
       for (const item of category.children) {
-        const url = resolveUrl(item.url, this.router, this.baseUrl());
-        if (!url.isAbsolute && this.router.isActive(url.value, ACTIVE_MATCH_OPTIONS)) {
+        const resolvedUrl = this.urlResolver(item.url);
+        if (!isAbsolute(resolvedUrl) && this.router?.isActive(resolvedUrl, ACTIVE_MATCH_OPTIONS)) {
           return category.label;
         }
       }

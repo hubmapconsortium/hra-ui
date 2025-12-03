@@ -6,7 +6,7 @@ import { DesktopMenuComponent } from './desktop-menu.component';
 describe('DesktopMenuComponent', () => {
   it('should render a hubmap menu', async () => {
     await render(DesktopMenuComponent, {
-      inputs: { menu: HUBMAP_MENU, baseUrl: undefined },
+      inputs: { menu: HUBMAP_MENU },
     });
 
     const item = HUBMAP_MENU[0].items[0];
@@ -15,7 +15,7 @@ describe('DesktopMenuComponent', () => {
 
   it('should render a menu', async () => {
     await render(DesktopMenuComponent, {
-      inputs: { menu: MENUS[0], baseUrl: 'https://humanatlas.io/' },
+      inputs: { menu: MENUS[0] },
     });
 
     const group = MENUS[0].items?.find((item) => item.type === 'group');

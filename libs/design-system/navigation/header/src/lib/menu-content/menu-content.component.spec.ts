@@ -5,7 +5,7 @@ import { MenuContentComponent } from './menu-content.component';
 describe('MenuContentComponent', () => {
   it('should render', async () => {
     await render(MenuContentComponent, {
-      inputs: { variant: 'desktop', menu: MENUS[0], baseUrl: undefined },
+      inputs: { variant: 'desktop', menu: MENUS[0] },
     });
 
     const group = MENUS[0].items?.find((item) => item.type === 'group');
