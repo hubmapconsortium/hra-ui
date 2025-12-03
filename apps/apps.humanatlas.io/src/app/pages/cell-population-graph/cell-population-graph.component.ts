@@ -40,7 +40,7 @@ export class CellPopulationGraphComponent {
   readonly graphSelections = signal<GraphSelectionState>({
     datasetSource: '',
     sortBy: 'Total Cell Count',
-    orderType: 'descending',
+    orderType: 'ascending',
     groupBy: '',
     yAxisField: 'count',
     xAxisField: 'dataset_name',

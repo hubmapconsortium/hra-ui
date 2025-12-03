@@ -25,11 +25,11 @@
     }
 
     .tagline-link {
-      @include utils.use-font(title, medium);
-      @include utils.line-clamp(2);
       color: vars.$tertiary;
       text-decoration: underline;
       cursor: pointer;
+      @include utils.use-font(title, medium);
+      @include utils.line-clamp(2);
     }
 
     .tags {
