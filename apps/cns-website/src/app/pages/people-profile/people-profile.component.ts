@@ -1,8 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
-import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ChipsModule } from '@hra-ui/design-system/chips';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import {
@@ -10,7 +7,6 @@ import {
   TableOfContentsLayoutHeaderComponent,
 } from '@hra-ui/design-system/layouts/table-of-contents';
 import { MarkdownModule } from 'ngx-markdown';
-import { map } from 'rxjs';
 import { PeopleProfileData } from '../../resolvers/people-profile/people-profile.resolver';
 import { ContactInfo, ContactInfoComponent, Role } from './components/contact-info/contact-info.component';
 
@@ -43,36 +39,17 @@ export interface ProfileSection {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PeopleProfileComponent {
-  /** Activated route for accessing resolved data */
-  private readonly route = inject(ActivatedRoute);
-
   /**
    * Profile data from route resolver
-   * Data is fetched from external YAML source based on slug parameter
    */
-  readonly profileData = toSignal(
-    this.route.data.pipe(
-      map((data) => {
-        const profileData = data['data'] as PeopleProfileData;
-        return {
-          ...profileData,
-          breadcrumbs: [
-            { name: 'Home', route: '/' },
-            { name: 'People', route: '/people' },
-            { name: profileData.name },
-          ] as BreadcrumbItem[],
-        };
-      }),
-    ),
-    { requireSync: true },
-  );
+  readonly data = input.required<PeopleProfileData>();
 
   /** Primary role computed from profile data */
-  readonly primaryRole = computed<Role | undefined>(() => this.profileData()?.roles?.[0]);
+  readonly primaryRole = computed<Role | undefined>(() => this.data().roles?.[0]);
 
   /** Contact info computed for the sidebar */
   readonly contactInfo = computed<ContactInfo>(() => ({
-    image: this.profileData()?.image ?? '',
+    image: this.data().image ?? '',
     role: this.primaryRole(),
   }));
 

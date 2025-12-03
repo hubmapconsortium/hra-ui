@@ -45,6 +45,12 @@ const CollaboratorRoleSchema = BaseRoleSchema.extend({
 /** Discriminated union of all role types */
 const RoleSchema = z.discriminatedUnion('type', [MemberRoleSchema, StudentRoleSchema, CollaboratorRoleSchema]);
 
+/** Breadcrumb item schema */
+const BreadcrumbItemSchema = z.object({
+  name: z.string(),
+  route: z.string().optional(),
+});
+
 /** People profile data schema */
 export const PeopleProfileDataSchema = z.object({
   name: z.string(),
@@ -52,6 +58,7 @@ export const PeopleProfileDataSchema = z.object({
   image: z.string(),
   slug: z.string().optional(),
   roles: z.array(RoleSchema),
+  breadcrumbs: z.array(BreadcrumbItemSchema).optional(),
 });
 
 /** People profile data type */
@@ -81,6 +88,7 @@ export function createPeopleProfileResolver(baseUrl: string = CNS_CONTENT_BASE_U
         return {
           ...parsed,
           image: parsed.image ? `${baseUrl}/${slug}/${parsed.image}` : parsed.image,
+          breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'People', route: '/people' }, { name: parsed.name }],
         };
       }),
     );

@@ -3,9 +3,9 @@
 <div class="main-content">
   <hra-page-section
     class="profile-header-section-mobile"
-    [tagline]="profileData().name"
+    [tagline]="data().name"
     [level]="1"
-    [breadcrumbs]="profileData().breadcrumbs"
+    [breadcrumbs]="data().breadcrumbs"
     [tags]="tags()"
   />
 
@@ -15,9 +15,9 @@
     <hra-table-of-contents-layout-header>
       <hra-page-section
         class="profile-header-section-desktop"
-        [tagline]="profileData().name"
+        [tagline]="data().name"
         [level]="1"
-        [breadcrumbs]="profileData().breadcrumbs"
+        [breadcrumbs]="data().breadcrumbs"
         [tags]="tags()"
       >
         @if (primaryRole()?.background; as background) {
