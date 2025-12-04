@@ -53,4 +53,23 @@ describe('provideScrolling', () => {
     const options = TestBed.inject(NG_SCROLLBAR_OPTIONS) as NgScrollbarOptions;
     expect(options).toBeDefined();
   });
+
+  it('should use default polyfill url when no custom url is provided', () => {
+    TestBed.configureTestingModule({
+      providers: [provideScrolling()],
+    });
+
+    const options = TestBed.inject(NG_SCROLLBAR_OPTIONS) as NgScrollbarOptions;
+    expect(options).toBeDefined();
+  });
+
+  it('should handle options being undefined', () => {
+    TestBed.configureTestingModule({
+      providers: [provideScrolling(undefined)],
+    });
+
+    const options = TestBed.inject(NG_SCROLLBAR_OPTIONS) as NgScrollbarOptions;
+    expect(options).toBeDefined();
+    expect(options.visibility).toBe('hover');
+  });
 });
