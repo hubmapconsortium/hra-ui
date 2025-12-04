@@ -46,4 +46,20 @@ describe('FullscreenComponent', () => {
     expect(beforeClosed).toHaveBeenCalledTimes(1);
     expect(closed).toHaveBeenCalledTimes(1);
   });
+
+  it('should detach view from container when detach is called', async () => {
+    const { fixture } = await setup();
+    const component = fixture.componentInstance;
+    const viewOutlet = component['viewOutlet']();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const viewContainerRef = viewOutlet['viewContainerRef'];
+    const detachSpy = jest.spyOn(viewContainerRef, 'detach');
+
+    viewOutlet.detach();
+
+    expect(detachSpy).toHaveBeenCalledWith(expect.any(Number));
+  });
 });
