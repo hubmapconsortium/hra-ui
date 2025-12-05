@@ -46,10 +46,10 @@ countInfo:
     icon: misc:publications
   - count: 73
     label: organs
-    icon: organ:heart
+    icon: misc:heart
   - count: 4719
     label: anatomical structures
-    icon: product:asctb-reporter
+    icon: misc:asctb-reporter
   - count: 1303
     label: cell types
     icon: misc:cell-type
