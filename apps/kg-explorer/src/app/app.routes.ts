@@ -16,9 +16,6 @@ import {
   productLabelResolver,
 } from './utils/kg-resolver';
 
-/** Digital objects api */
-export const DO_URL = 'https://apps.humanatlas.io/api/kg/digital-objects';
-
 /** Column info for digital object table */
 export const DO_COLUMNS: TableColumn[] = [
   {
@@ -112,7 +109,7 @@ export const appRoutes: Route[] = [
       columns: DO_COLUMNS,
     },
     resolve: {
-      data: kgResolver(DO_URL),
+      data: kgResolver(),
       asctbTermOccurrences: asctbResolver(),
       ontologyTree: ontologyResolver(),
       cellTypeTree: cellTypeResolver(),
@@ -126,7 +123,7 @@ export const appRoutes: Route[] = [
       columns: METADATA_COLUMNS,
     },
     resolve: {
-      doData: kgResolver(DO_URL),
+      doData: kgResolver(),
       metadata: doMetadataResolver(),
       documentationUrl: documentationUrlResolver(),
       typeLabel: productLabelResolver(),

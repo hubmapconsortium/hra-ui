@@ -9,7 +9,6 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { MarkdownModule } from 'ngx-markdown';
 import { HelpMenuOptions } from './app.routes';
 import { isNavigating } from './utils/navigation';
@@ -45,7 +44,6 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
     MarkdownModule,
     ButtonsModule,
     IconsModule,
-    PlainTooltipDirective,
     MatMenuModule,
     MatDividerModule,
   ],
