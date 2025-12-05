@@ -17,7 +17,8 @@
         togglePosition="before"
         [hraFeature]="option.label | slugify"
         [value]="option"
-        [selected]="selected()?.includes(option.id)"
+        [selected]="selected()?.includes(option)"
+        [attr.aria-label]="`Toggle ${option.id}`"
       >
         <mat-label class="labels-count">
           <span class="option-labels">

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { FilterContainerComponent, FilterChip } from './filter-container.component';
+import { SearchListOption } from '@hra-ui/design-system/search-list';
 
 const meta: Meta<FilterContainerComponent<FilterChip>> = {
   component: FilterContainerComponent,
@@ -38,7 +39,11 @@ const meta: Meta<FilterContainerComponent<FilterChip>> = {
 export default meta;
 type Story = StoryObj<FilterContainerComponent<FilterChip>>;
 
-const sampleChips: FilterChip[] = [{ label: 'Option 1' }, { label: 'Option 2' }, { label: 'Option 3' }];
+const sampleOptions: SearchListOption[] = [
+  { id: 'option1', label: 'Option 1' },
+  { id: 'option2', label: 'Option 2' },
+  { id: 'option3', label: 'Option 3' },
+];
 
 export const Default: Story = {
   render: (args) => ({
@@ -65,9 +70,9 @@ export const WithInfoButton: Story = {
 
 export const WithChipsAndInfo: Story = {
   render: (args) => ({
-    props: { ...args, chips: sampleChips },
+    props: { ...args, selected: sampleOptions },
     template: `
-      <hra-filter-container [action]="action" [showTooltip]="true" [chips]="chips" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
+      <hra-filter-container [action]="action" [showTooltip]="true" [selected]="selected" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
         <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
         <button mat-button color="accent" tooltipActions>
           <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
@@ -84,9 +89,9 @@ export const WithChipsAndInfo: Story = {
 
 export const WithDivider: Story = {
   render: (args) => ({
-    props: { ...args, chips: sampleChips },
+    props: { ...args, selected: sampleOptions },
     template: `
-      <hra-filter-container [action]="action" [showTooltip]="true" [chips]="chips" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
+      <hra-filter-container [action]="action" [showTooltip]="true" [selected]="selected" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
         <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
         <button mat-button color="accent" tooltipActions>
           <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">

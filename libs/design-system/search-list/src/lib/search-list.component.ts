@@ -54,8 +54,8 @@ export class SearchListComponent<T extends SearchListOption> {
   /** All filter options */
   readonly options = input.required<T[]>();
 
-  /** Currently selected filter IDs */
-  readonly selected = model<string[] | undefined>([]);
+  /** Currently selected filters */
+  readonly selected = model<T[] | undefined>([]);
 
   /** Current search bar value */
   readonly search = model<string>('');
@@ -64,11 +64,11 @@ export class SearchListComponent<T extends SearchListOption> {
   readonly filteredOptions = computed(() => this.doSearch());
 
   /**
-   * Updates selected option ids on update
+   * Updates selected options on update
    * @param event Selected options in list
    */
   selectionUpdate(event: MatListOption[]): void {
-    this.selected.set(event.map((option) => option.value.id));
+    this.selected.set(event.map((option) => option.value));
   }
 
   /** Filters options according to the search bar value */

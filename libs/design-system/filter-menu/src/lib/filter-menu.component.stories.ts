@@ -5,6 +5,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatSelectModule } from '@angular/material/select';
+import { HraCommonModule } from '@hra-ui/common';
 
 const FILTER_OPTIONS = [
   { id: 'a', label: 'A', count: 9999 },
@@ -33,7 +34,14 @@ const meta: Meta = {
   title: 'Design System/Filter Menu',
   decorators: [
     moduleMetadata({
-      imports: [FilterMenuComponent, MatButtonToggleModule, MatFormFieldModule, IconsModule, MatSelectModule],
+      imports: [
+        HraCommonModule,
+        FilterMenuComponent,
+        MatButtonToggleModule,
+        MatFormFieldModule,
+        IconsModule,
+        MatSelectModule,
+      ],
     }),
   ],
   parameters: {

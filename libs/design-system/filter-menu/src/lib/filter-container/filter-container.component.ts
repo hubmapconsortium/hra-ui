@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, effect, input, model, output } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
@@ -11,7 +11,7 @@ import {
 } from '@hra-ui/design-system/buttons/info-button';
 import { FilterOptionCategory } from '../filter-menu.component';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
-import { SearchListComponent } from '@hra-ui/design-system/search-list';
+import { SearchListComponent, SearchListOption } from '@hra-ui/design-system/search-list';
 
 /** A filter chip representing a selected filter option */
 export interface FilterChip {
@@ -50,13 +50,16 @@ export class FilterContainerComponent<T extends FilterChip> {
   readonly action = input.required<string>();
 
   /** Filter option */
-  readonly filter = input.required<FilterOptionCategory>();
+  readonly filter = input<FilterOptionCategory>();
 
   /** Whether to show the info button with tooltip */
   readonly showTooltip = input(false, { transform: booleanAttribute });
 
   /** Array of selected filter chips - two-way bindable */
   readonly chips = model<T[]>([]);
+
+  /** Array of selected options */
+  readonly selected = model<SearchListOption[]>([]);
 
   /** Whether the menu is active/open */
   readonly menuActive = model<boolean>(false);
@@ -71,11 +74,26 @@ export class FilterContainerComponent<T extends FilterChip> {
   protected readonly desktopMenuPositions = DESKTOP_MENU_POSITIONS;
 
   /**
+   * Updates chips on selection change
+   */
+  constructor() {
+    effect(() => {
+      const selected = this.selected();
+      this.chips.set(
+        selected.map((x) => {
+          return { label: x.label } as T;
+        }),
+      );
+    });
+  }
+
+  /**
    * Handles the removal of a chip
    * @param chip The chip to remove
    */
   removeChip(chip: T): void {
     this.chips.update((current) => current.filter((c) => c.label !== chip.label));
+    this.selected.update((current) => current?.filter((c) => c.label !== chip.label));
   }
 
   /**
