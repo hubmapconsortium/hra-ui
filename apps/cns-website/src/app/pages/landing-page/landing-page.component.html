@@ -18,7 +18,7 @@
   <div class="content-grid">
     <hra-gallery-grid [dataSource]="contentCards">
       <hra-content-button
-        *hraGalleryGridItem="let item; let i = index"
+        *hraGalleryGridItem="let item"
         [imageSrc]="item.imageSrc"
         [date]="(item.date | date) || ''"
         [tagline]="item.tagline"

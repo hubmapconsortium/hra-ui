@@ -3,7 +3,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { HraCommonModule } from '@hra-ui/common';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
-import { FooterComponent } from '../components/footer/footer.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 /** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
@@ -13,12 +13,19 @@ type ContentType = (typeof ContentTypes)[number];
 
 /** Interface for content card */
 interface LandingPageContentCard {
+  /** Image url */
   imageSrc: string;
+  /** Date */
   date: string;
+  /** Tagline */
   tagline: string;
+  /** Tags */
   tags: string[];
+  /** Link */
   link: string;
+  /** External link */
   external: boolean;
+  /** Content type */
   contentType: ContentType;
 }
 
