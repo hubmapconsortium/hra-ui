@@ -97,7 +97,7 @@ const UPDATE_ALL_SELECTORS: UpdateSelectors = {
  * Creates an observable operator function that remove undefined values from a stream
  * @returns Observable operator function
  */
-function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
+export function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   return filter((value): value is T => value !== undefined);
 }
 
