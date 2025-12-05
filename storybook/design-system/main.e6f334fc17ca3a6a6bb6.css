@@ -1136,31 +1136,55 @@ html mat-list.hra-density-compact-4 {
 html mat-list-option {
   --mat-checkbox-state-layer-size: 3rem;
 }
-html mat-list-option [matListItemTitle]::before, html mat-list-option [matListItemTitle]::after,
+html mat-list-option .mdc-list-item__secondary-text::before, html mat-list-option .mdc-list-item__secondary-text::after,
+html mat-list-option [matListItemTitle]::before,
+html mat-list-option [matListItemTitle]::after,
 html mat-list-option [matListItemLine]::before,
 html mat-list-option [matListItemLine]::after,
+html [mat-list-option] .mdc-list-item__secondary-text::before,
+html [mat-list-option] .mdc-list-item__secondary-text::after,
+html [mat-list-option] [matListItemTitle]::before,
+html [mat-list-option] [matListItemTitle]::after,
+html [mat-list-option] [matListItemLine]::before,
+html [mat-list-option] [matListItemLine]::after,
+html mat-list-item .mdc-list-item__secondary-text::before,
+html mat-list-item .mdc-list-item__secondary-text::after,
 html mat-list-item [matListItemTitle]::before,
 html mat-list-item [matListItemTitle]::after,
 html mat-list-item [matListItemLine]::before,
-html mat-list-item [matListItemLine]::after {
+html mat-list-item [matListItemLine]::after,
+html [mat-list-item] .mdc-list-item__secondary-text::before,
+html [mat-list-item] .mdc-list-item__secondary-text::after,
+html [mat-list-item] [matListItemTitle]::before,
+html [mat-list-item] [matListItemTitle]::after,
+html [mat-list-item] [matListItemLine]::before,
+html [mat-list-item] [matListItemLine]::after {
   display: none !important;
 }
 html mat-list-option [matListItemTitle],
-html mat-list-item [matListItemTitle] {
+html [mat-list-option] [matListItemTitle],
+html mat-list-item [matListItemTitle],
+html [mat-list-item] [matListItemTitle] {
   line-height: var(--mat-sys-label-medium-line-height) !important;
   margin: 0 !important;
 }
 html mat-list-option [matListItemLine],
-html mat-list-item [matListItemLine] {
+html [mat-list-option] [matListItemLine],
+html mat-list-item [matListItemLine],
+html [mat-list-item] [matListItemLine] {
   line-height: var(--mat-sys-label-small-line-height) !important;
 }
 html mat-list-option .mdc-list-item__start,
-html mat-list-item .mdc-list-item__start {
+html [mat-list-option] .mdc-list-item__start,
+html mat-list-item .mdc-list-item__start,
+html [mat-list-item] .mdc-list-item__start {
   align-self: center !important;
   margin: 0 0.5rem 0 1rem !important;
 }
 html mat-list-option .mdc-list-item__content,
-html mat-list-item .mdc-list-item__content {
+html [mat-list-option] .mdc-list-item__content,
+html mat-list-item .mdc-list-item__content,
+html [mat-list-item] .mdc-list-item__content {
   align-self: center !important;
 }
 html .mat-mdc-menu-panel {
