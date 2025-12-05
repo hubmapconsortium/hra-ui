@@ -19,7 +19,7 @@
       "label": "Apps",
       "icon": "apps",
       "children": [
-        { "type": "item", "label": "Apps overview", "url": "https://docs.humanatlas.io/apps" },
+        { "type": "item", "label": "Apps Overview", "url": "https://docs.humanatlas.io/apps" },
         { "type": "item", "label": "API", "url": "https://humanatlas.io/api" },
         { "type": "item", "label": "ASCT+B Reporter", "url": "https://humanatlas.io/asctb-reporter" },
         { "type": "item", "label": "Cell Distance Explorer", "url": "https://humanatlas.io/user-story/5" },
@@ -61,7 +61,7 @@
           "label": "Functional Tissue Unit (FTU) Illustrations",
           "url": "https://humanatlas.io/2d-ftu-illustrations"
         },
-        { "type": "item", "label": "Millitome", "url": "https://humanatlas.io/millitome" },
+        { "type": "item", "label": "Millitomes", "url": "https://humanatlas.io/millitome" },
         { "type": "item", "label": "Organ Mapping Antibody Panels", "url": "https://humanatlas.io/omap" },
         { "type": "item", "label": "Vasculature Common Coordinate Framework", "url": "https://humanatlas.io/vccf" }
       ]
