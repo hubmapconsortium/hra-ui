@@ -61,7 +61,10 @@
   }
 
   mat-list-option,
-  mat-list-item {
+  [mat-list-option],
+  mat-list-item,
+  [mat-list-item] {
+    .mdc-list-item__secondary-text,
     [matListItemTitle],
     [matListItemLine] {
       &::before,
