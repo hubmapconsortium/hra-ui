@@ -1,0 +1,46 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: calc(100vh - 56px);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    padding: 6.25rem 2.5rem;
+    background-image: url(../../../../public/assets/bg-homepage.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .title {
+    margin-bottom: 0.25rem;
+    @include utils.use-font(display, large);
+  }
+
+  .tagline {
+    margin-bottom: 2rem;
+    max-width: 31.5rem;
+    text-align: center;
+    @include utils.use-font(body, xl);
+  }
+
+  .content-filter {
+    margin-bottom: 3rem;
+  }
+
+  .content-grid {
+    width: 100%;
+    max-width: 86.5rem;
+
+    hra-gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(20.5rem, 1fr));
+    }
+  }
+}
