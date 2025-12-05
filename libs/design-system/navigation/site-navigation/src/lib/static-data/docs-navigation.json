@@ -53,7 +53,7 @@
       "icon": "database",
       "children": [
         { "type": "item", "label": "Data Overview", "url": "https://humanatlas.io/overview-data" },
-        { "type": "item", "label": "3D Organs", "url": "https://humanatlas.io/3d-reference-library" },
+        { "type": "item", "label": "3D Reference Objects", "url": "https://humanatlas.io/3d-reference-library" },
         { "type": "item", "label": "ASCT+B Tables", "url": "https://humanatlas.io/asctb-tables" },
         { "type": "item", "label": "Cell Type Annotations", "url": "https://humanatlas.io/cell-type-annotations" },
         {
