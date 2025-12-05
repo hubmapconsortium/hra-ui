@@ -9,11 +9,12 @@
         hraFeature="opacity-toggle"
         hraPlainTooltip="Edit opacity"
         class="opacity-icon"
-        svgIcon="app:opacity"
         [hraClickEvent]="{ visible: item.visible }"
         [class.fade]="!item.visible"
         (click)="selection.set(item)"
-      />
+      >
+        opacity
+      </mat-icon>
 
       <div hraFeature="name" hraClickEvent class="item-name" [hraPlainTooltip]="name">
         {{ name }}
