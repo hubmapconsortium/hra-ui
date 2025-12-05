@@ -95,7 +95,7 @@ export const FILTER_CATEGORY_INFO: Record<string, FilterOptionCategory> = {
 /** Stores data for a doType */
 export const DO_INFO: Record<string, ObjectTypeData> = {
   'ref-organ': {
-    label: '3D Organs',
+    label: '3D Reference Objects',
     tooltip: {
       description:
         '3D models of human organ structures, complete with accurate size and position data, to support the creation of a comprehensive 3D model of the human body, with each 3D model object carefully annotated with a proper label and an identifier from the Uberon and FMA ontologies.',
@@ -202,11 +202,8 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
     tooltip: {
       description:
         'Geometry information on the human blood vascular system capturing key attributes of different vessels, such as diameter and length, population, sample size, and reference to the source of data.',
-      actionText: 'Learn more',
-      actionUrl: 'https://humanatlas.io/vccf',
     },
     icon: 'vascular-geometry',
-    documentationUrl: 'https://humanatlas.io/vccf',
   },
   vocab: {
     label: 'Vocabulary',
