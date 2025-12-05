@@ -22,7 +22,7 @@ content:
         content:
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: 3D Organs
+            tagline: 3D Reference Objects
             icons: product:3d-organ
             content:
               - component: Markdown
