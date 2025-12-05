@@ -117,7 +117,7 @@ var menuItems = [
 		children: [
 			{
 				type: "item",
-				label: "Apps overview",
+				label: "Apps Overview",
 				url: "https://docs.humanatlas.io/apps"
 			},
 			{
@@ -199,7 +199,7 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "3D Organs",
+				label: "3D Reference Objects",
 				url: "https://humanatlas.io/3d-reference-library"
 			},
 			{
@@ -219,7 +219,7 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "Millitome",
+				label: "Millitomes",
 				url: "https://humanatlas.io/millitome"
 			},
 			{
@@ -229,7 +229,7 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "Vascular Geometry",
+				label: "Vasculature Common Coordinate Framework",
 				url: "https://humanatlas.io/vccf"
 			}
 		]
