@@ -29,11 +29,6 @@
 
     ::ng-deep .mat-button-toggle-label-content {
       padding: 0 0.5rem;
-      display: flex;
-    }
-
-    ::ng-deep .mat-button-toggle-label-content > * {
-      vertical-align: unset;
     }
 
     ::ng-deep button:focus-visible {
