@@ -78,7 +78,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.8/assets/crosswalk.csv
                     files: []
               - label: Blood Vasculature
-                icon: organ:blood-vasculature
+                icon: organ:vasculature-thick
                 cards:
                   - label: Female
                     alt: Blood Vasculature, Female
@@ -294,7 +294,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Main Bronchus
-                icon: organ:extrapulmonaryBronchus
+                icon: organ:extrapulmonary-bronchus
                 cards:
                   - label: Female
                     alt: Main Bronchus, Female
