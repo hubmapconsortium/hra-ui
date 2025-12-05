@@ -1,5 +1,5 @@
 <div hraFeature="omap-controls">
-  <mat-expansion-panel class="mepNoPadding" [expanded]="!error.hasError">
+  <mat-expansion-panel class="mepNoPadding" [expanded]="!error()?.hasError">
     <mat-expansion-panel-header expandedHeight="4.5rem" collapsedHeight="4.5rem">
       <mat-panel-title>
         <div>
@@ -11,12 +11,12 @@
     <div class="py-1">
       <mat-checkbox
         hraFeature="organs-only"
-        [checked]="omaps.organsOnly"
-        [hraModelChangeEvent]="{ organsOnly: omaps.organsOnly }"
+        [checked]="omaps().organsOnly"
+        [hraModelChangeEvent]="{ organsOnly: omaps().organsOnly }"
         (change)="
           checkBoxClicked({
-            organsOnly: !omaps.organsOnly,
-            proteinsOnly: omaps.proteinsOnly,
+            organsOnly: !omaps().organsOnly,
+            proteinsOnly: omaps().proteinsOnly,
           })
         "
       >
@@ -26,12 +26,12 @@
     <div class="py-1">
       <mat-checkbox
         hraFeature="proteins-only"
-        [checked]="omaps.proteinsOnly"
-        [hraModelChangeEvent]="{ proteinsOnly: omaps.proteinsOnly }"
+        [checked]="omaps().proteinsOnly"
+        [hraModelChangeEvent]="{ proteinsOnly: omaps().proteinsOnly }"
         (change)="
           checkBoxClicked({
-            proteinsOnly: !omaps.proteinsOnly,
-            organsOnly: omaps.organsOnly,
+            proteinsOnly: !omaps().proteinsOnly,
+            organsOnly: omaps().organsOnly,
           })
         "
       >

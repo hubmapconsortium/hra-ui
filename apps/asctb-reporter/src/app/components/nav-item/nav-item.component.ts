@@ -1,12 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { HraCommonModule } from '@hra-ui/common';
 
 @Component({
   selector: 'app-nav-item',
-  standalone: false,
+  imports: [HraCommonModule],
   templateUrl: './nav-item.component.html',
   styleUrl: './nav-item.component.scss',
 })
 export class NavItemComponent {
-  @Input() label = '';
-  @Input() disabled = false;
+  /** Label for the navigation item */
+  readonly label = input<string>('');
+
+  /** Whether the navigation item is disabled */
+  readonly disabled = input<boolean>(false);
 }
