@@ -222,6 +222,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
 export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0004537': 'vasculature-thick', //blood vasculature
   'http://purl.obolibrary.org/obo/UBERON_0014455': 'adipose',
+  'http://purl.obolibrary.org/obo/UBERON_0000467': 'anatomical-systems',
   'http://purl.obolibrary.org/obo/UBERON_0000955': 'brain',
   'http://purl.obolibrary.org/obo/UBERON_0002182': 'extrapulmonary-bronchus',
   'http://purl.obolibrary.org/obo/UBERON_0000970': 'eye',
@@ -236,6 +237,7 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0000029': 'lymph-nodes', //lymph node
   'http://purl.obolibrary.org/obo/UBERON_0004536': 'lymph-nodes', //lymph vasculature
   'http://purl.obolibrary.org/obo/UBERON_0000165': 'mouth',
+  'http://purl.obolibrary.org/obo/UBERON_0000383': 'muscular-system',
   'http://purl.obolibrary.org/obo/UBERON_0000992': 'ovaries', //ovary
   'http://purl.obolibrary.org/obo/UBERON_0001264': 'pancreas',
   'http://purl.obolibrary.org/obo/UBERON_0001270': 'pelvis',
@@ -251,12 +253,6 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0000056': 'ureter-right', //ureter
   'http://purl.obolibrary.org/obo/UBERON_0001255': 'bladder', //urinary bladder
   'http://purl.obolibrary.org/obo/UBERON_0000995': 'uterus',
-
-  // May need updates
-  'http://purl.obolibrary.org/obo/UBERON_0001013': 'adipose-tissue',
-  'http://purl.obolibrary.org/obo/UBERON_0000383': 'muscular-system',
-  'http://purl.obolibrary.org/obo/UBERON_0001066': 'intervertebral-disc',
-  'http://purl.obolibrary.org/obo/UBERON_0000467': 'anatomical-systems',
 };
 
 /** HRA version data info */
