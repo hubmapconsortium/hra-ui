@@ -3,14 +3,13 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { HraCommonModule } from '@hra-ui/common';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
-import { ValueOf } from 'type-fest';
 import { FooterComponent } from '../components/footer/footer.component';
 
 /** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
 
 /** Content Type */
-type ContentType = ValueOf<typeof ContentTypes>;
+type ContentType = (typeof ContentTypes)[number];
 
 /** Interface for content card */
 interface LandingPageContentCard {

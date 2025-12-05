@@ -17,9 +17,7 @@ import { GridContainerDef } from '@hra-ui/design-system/content-templates/grid-c
 import { ImageDef } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
-import { VersionedDataTableDef } from '@hra-ui/design-system/content-templates/versioned-data-table';
 import { YouTubePlayerDef } from '@hra-ui/design-system/content-templates/youtube-player';
-import { DataViewerDef } from '@hra-ui/design-system/data-viewer';
 import { IconDef } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
@@ -38,7 +36,6 @@ export const appConfig: ApplicationConfig = {
       ActionCardDef,
       ApiCommandDef,
       ButtonDef,
-      DataViewerDef,
       FlexContainerDef,
       GridContainerDef,
       IconDef,
@@ -48,7 +45,6 @@ export const appConfig: ApplicationConfig = {
       PageTableDef,
       ProfileCardDef,
       TextHyperlinkDef,
-      VersionedDataTableDef,
       YouTubePlayerDef,
       GoogleMapsDef,
     ]),

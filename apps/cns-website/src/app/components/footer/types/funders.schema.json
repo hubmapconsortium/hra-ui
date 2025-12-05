@@ -1,7 +1,26 @@
 {
-  "$ref": "#/definitions/Funders",
-  "definitions": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "Funders",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "funders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Funder"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "funders"
+  ],
+  "additionalProperties": false,
+  "$defs": {
     "Funder": {
+      "id": "Funder",
       "type": "object",
       "properties": {
         "id": {
@@ -18,25 +37,13 @@
           "type": "string"
         }
       },
-      "required": ["id", "name", "link", "image"],
-      "additionalProperties": false
-    },
-    "Funders": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "funders": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Funder"
-          }
-        }
-      },
-      "required": ["$schema", "funders"],
+      "required": [
+        "id",
+        "name",
+        "link",
+        "image"
+      ],
       "additionalProperties": false
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }

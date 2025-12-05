@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import * as z from 'zod';
 
@@ -24,7 +24,7 @@ export const BreadcrumbItemSchema = z.object({
  */
 @Component({
   selector: 'hra-breadcrumbs',
-  imports: [CommonModule, RouterModule, MatIconModule, TextHyperlinkDirective],
+  imports: [CommonModule, LinkDirective, MatIconModule, TextHyperlinkDirective],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
