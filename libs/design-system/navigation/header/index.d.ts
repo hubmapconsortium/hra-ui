@@ -198,7 +198,7 @@ declare class HeaderComponent {
     /**
      * Closes any active menu
      */
-    closeMenu(): void;
+    closeMenu(menu?: Menu | 'main'): void;
     /**
      * Creates and attaches a resize observer that updates the menu offset
      * whenever the header size changes

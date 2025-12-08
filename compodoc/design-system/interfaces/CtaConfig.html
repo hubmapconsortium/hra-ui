@@ -483,8 +483,8 @@ export class HeaderComponent {
   /**
    * Closes any active menu
    */
-  closeMenu(): void {
-    this.activeMenu.set(undefined);
+  closeMenu(menu?: Menu | &#x27;main&#x27;): void {
+    this.activeMenu.update((current) &#x3D;&gt; (menu !&#x3D;&#x3D; undefined &amp;&amp; current !&#x3D;&#x3D; menu ? current : undefined));
   }
 
   /**
