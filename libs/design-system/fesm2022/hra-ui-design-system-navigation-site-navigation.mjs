@@ -209,7 +209,7 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "Cell Type Annotations",
+				label: "Cell Type Annotation Crosswalks",
 				url: "https://humanatlas.io/cell-type-annotations"
 			},
 			{

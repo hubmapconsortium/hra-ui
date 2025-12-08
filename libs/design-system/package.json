@@ -62,13 +62,13 @@
       "types": "./copyable-url-container/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-copyable-url-container.mjs"
     },
-    "./data-viewer": {
-      "types": "./data-viewer/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-data-viewer.mjs"
-    },
     "./dialog": {
       "types": "./dialog/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-dialog.mjs"
+    },
+    "./data-viewer": {
+      "types": "./data-viewer/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-data-viewer.mjs"
     },
     "./error-pages": {
       "types": "./error-pages/index.d.ts",
@@ -86,13 +86,13 @@
       "types": "./icons/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-icons.mjs"
     },
-    "./info-modal": {
-      "types": "./info-modal/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-info-modal.mjs"
-    },
     "./indicators": {
       "types": "./indicators/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators.mjs"
+    },
+    "./info-modal": {
+      "types": "./info-modal/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-info-modal.mjs"
     },
     "./input": {
       "types": "./input/index.d.ts",
@@ -198,13 +198,13 @@
       "types": "./buttons/delete-file-button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-delete-file-button.mjs"
     },
-    "./buttons/icon-button": {
-      "types": "./buttons/icon-button/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-buttons-icon-button.mjs"
-    },
     "./buttons/help-button": {
       "types": "./buttons/help-button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-buttons-help-button.mjs"
+    },
+    "./buttons/icon-button": {
+      "types": "./buttons/icon-button/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-buttons-icon-button.mjs"
     },
     "./buttons/navigation-category-toggle": {
       "types": "./buttons/navigation-category-toggle/index.d.ts",

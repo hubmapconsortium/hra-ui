@@ -52,7 +52,7 @@ content:
               url: https://lod.humanatlas.io/asct-b
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Cell Type Annotations
+            tagline: Cell Type Annotation Crosswalks
             icons: product:cell-type-annotations
             content:
               - component: Markdown
