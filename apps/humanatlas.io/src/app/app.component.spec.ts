@@ -47,8 +47,8 @@ describe('AppComponent', () => {
 
   it('should render header component', async () => {
     await renderComponent();
-    const header = screen.getByRole('banner');
-    expect(header).toBeInTheDocument();
+    const headers = screen.getAllByRole('banner');
+    expect(headers[0]).toBeInTheDocument();
   });
 
   it('should render router outlet', async () => {
