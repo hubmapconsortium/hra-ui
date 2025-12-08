@@ -55,7 +55,11 @@
         { "type": "item", "label": "Data Overview", "url": "https://humanatlas.io/overview-data" },
         { "type": "item", "label": "3D Reference Objects", "url": "https://humanatlas.io/3d-reference-library" },
         { "type": "item", "label": "ASCT+B Tables", "url": "https://humanatlas.io/asctb-tables" },
-        { "type": "item", "label": "Cell Type Annotation Crosswalks", "url": "https://humanatlas.io/cell-type-annotations" },
+        {
+          "type": "item",
+          "label": "Cell Type Annotation Crosswalks",
+          "url": "https://humanatlas.io/cell-type-annotations"
+        },
         {
           "type": "item",
           "label": "Functional Tissue Unit (FTU) Illustrations",
