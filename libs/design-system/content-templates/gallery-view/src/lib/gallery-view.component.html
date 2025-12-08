@@ -1,1 +1,9 @@
-<p>gallery-view works!</p>
+<hra-search-filter
+  label="Search"
+  [totalCount]="totalCount()"
+  [viewingCount]="viewingCount()"
+  (searchChange)="search($event)"
+/>
+<hra-grid-container>
+  <ng-content />
+</hra-grid-container>
