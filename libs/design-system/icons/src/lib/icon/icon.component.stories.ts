@@ -82,7 +82,7 @@ export const OrganIcons: Story = {
         'organ:lung-left',
         'organ:lung-right',
         'organ:lungs',
-        'organ:lymph-nodes',
+        'organ:lymph-node',
         'organ:neurons',
         'organ:ovaries',
         'organ:ovary-left',
