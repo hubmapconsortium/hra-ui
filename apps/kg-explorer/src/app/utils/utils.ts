@@ -117,7 +117,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
     documentationUrl: 'https://humanatlas.io/asctb-tables',
   },
   ctann: {
-    label: 'Cell Type Annotations',
+    label: 'Cell Type Annotation Crosswalks',
     tooltip: {
       description:
         'Azimuth and other cell type annotation tools are used to assign cell types to cells from sc/snRNA-seq studies. Manually compiled crosswalks are used to assign ontology IDs to cell types.',
@@ -169,7 +169,7 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
     icon: 'landmark',
   },
   millitome: {
-    label: 'Millitome',
+    label: 'Millitomes',
     tooltip: {
       description:
         'Data for cutting tissue samples using a millitome device. A digital data package that includes an STL file and a spreadsheet for assigning spatial locations to HuBMAP IDs and gathering metadata with information about the size, dimensions, donor sex, and laterality of the reference organ for which the millitome is fitted.',
