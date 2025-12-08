@@ -231,8 +231,8 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0000059': 'large-intestine',
   'http://purl.obolibrary.org/obo/UBERON_0002107': 'liver',
   'http://purl.obolibrary.org/obo/UBERON_0002048': 'lungs', //lung
-  'http://purl.obolibrary.org/obo/UBERON_0000029': 'lymph-nodes', //lymph node
-  'http://purl.obolibrary.org/obo/UBERON_0004536': 'lymph-nodes', //lymph vasculature
+  'http://purl.obolibrary.org/obo/UBERON_0000029': 'lymph-node', //lymph node
+  'http://purl.obolibrary.org/obo/UBERON_0004536': 'lymph-node', //lymph vasculature
   'http://purl.obolibrary.org/obo/UBERON_0000165': 'mouth',
   'http://purl.obolibrary.org/obo/UBERON_0000992': 'ovaries', //ovary
   'http://purl.obolibrary.org/obo/UBERON_0001264': 'pancreas',
