@@ -21,11 +21,9 @@
       <button
         hraFeature="menu-toggle"
         mat-icon-button
-        cdkOverlayOrigin
         aria-label="Open the main navigation menu"
         [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('mobile') }"
         (click)="toggleMenu('mobile')"
-        #mainMenuOrigin="cdkOverlayOrigin"
       >
         <mat-icon>menu</mat-icon>
       </button>
@@ -53,7 +51,8 @@
             [cdkConnectedOverlayOpen]="isMenuActive(category)"
             [cdkConnectedOverlayOrigin]="desktopMenuOrigin"
             [cdkConnectedOverlayPositions]="desktopMenuPositions"
-            (overlayOutsideClick)="closeMenu()"
+            (overlayOutsideClick)="closeMenu(category)"
+            (detach)="closeMenu(category)"
           >
             <cns-mega-menu [menu]="category" />
           </ng-template>
@@ -84,6 +83,7 @@
         [cdkConnectedOverlayOrigin]="mobileMenuOrigin"
         [cdkConnectedOverlayPositions]="mobileMenuPositions"
         [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"
+        (detach)="closeMenu()"
         #mobileMenuOverlay
       >
         <cns-mobile-menu hraFeature="mobile-menu" [menuOptions]="menuOptions()" (closeMenu)="toggleMenu('mobile')" />
