@@ -1,10 +1,10 @@
 import { ViewportScroller } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { ConsentService } from '@hra-ui/common/analytics';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
+import { render, screen } from '@testing-library/angular';
 import { AppComponent } from './app.component';
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -14,17 +14,12 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 }));
 
 describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
-  let mockViewportScroller: Partial<ViewportScroller>;
+  const mockViewportScroller: Partial<ViewportScroller> = {
+    setOffset: jest.fn(),
+  };
 
-  beforeEach(async () => {
-    mockViewportScroller = {
-      setOffset: jest.fn(),
-    };
-
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
+  const renderComponent = async () => {
+    return render(AppComponent, {
       providers: [
         provideRouter([{ path: '', component: AppComponent }]),
         provideHttpClient(),
@@ -33,51 +28,57 @@ describe('AppComponent', () => {
         { provide: ConsentService, useValue: { categories: jest.fn(), updateCategories: jest.fn() } },
         { provide: PrivacyPreferencesService, useValue: { launch: jest.fn() } },
       ],
-    }).compileComponents();
+    });
+  };
 
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    const { fixture } = await renderComponent();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should set viewport scroller offset on initialization', () => {
-    fixture.detectChanges();
+  it('should set viewport scroller offset on initialization', async () => {
+    await renderComponent();
     expect(mockViewportScroller.setOffset).toHaveBeenCalled();
   });
 
-  it('should render header component', () => {
-    fixture.detectChanges();
-    const header = fixture.nativeElement.querySelector('hra-header');
-    expect(header).toBeTruthy();
+  it('should render header component', async () => {
+    await renderComponent();
+    const header = screen.getByRole('banner');
+    expect(header).toBeInTheDocument();
   });
 
-  it('should render router outlet', () => {
-    fixture.detectChanges();
-    const outlet = fixture.nativeElement.querySelector('router-outlet');
+  it('should render router outlet', async () => {
+    const { container } = await renderComponent();
+    const outlet = container.querySelector('router-outlet');
     expect(outlet).toBeTruthy();
   });
 
-  it('should apply cta-active class when CTA is not dismissed', () => {
-    fixture.detectChanges();
-    const mainDiv = fixture.nativeElement.querySelector('.main');
+  it('should apply cta-active class when CTA is not dismissed', async () => {
+    const { container } = await renderComponent();
+    const mainDiv = container.querySelector('.main');
     expect(mainDiv?.classList.contains('cta-active')).toBe(true);
   });
 
-  it('should remove cta-active class when CTA is dismissed', () => {
-    fixture.detectChanges();
-    (component as unknown as { ctaDismissed: { set: (value: boolean) => void } }).ctaDismissed.set(true);
+  it('should remove cta-active class when CTA is dismissed', async () => {
+    const { fixture, container } = await renderComponent();
+    const component = fixture.componentInstance as unknown as {
+      ctaDismissed: { set: (value: boolean) => void };
+    };
+
+    component.ctaDismissed.set(true);
     fixture.detectChanges();
 
-    const mainDiv = fixture.nativeElement.querySelector('.main');
+    const mainDiv = container.querySelector('.main');
     expect(mainDiv?.classList.contains('cta-active')).toBe(false);
   });
 
-  it('should have content wrapper', () => {
-    fixture.detectChanges();
-    const content = fixture.nativeElement.querySelector('.content');
+  it('should have content wrapper', async () => {
+    const { container } = await renderComponent();
+    const content = container.querySelector('.content');
     expect(content).toBeTruthy();
   });
 });
