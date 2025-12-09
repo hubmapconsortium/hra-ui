@@ -5,6 +5,7 @@ import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-fou
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
+import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -14,12 +15,11 @@ export const appRoutes: Route[] = [
     component: LandingPageComponent,
   },
   {
-    path: 'people/katy-borner',
+    path: 'people/:slug',
     component: PeopleProfileComponent,
-    // TODO: When JSON data is available, add resolver
-    // resolve: {
-    //   data: createJsonSpecResolver('assets/content/people/katy-borner/data.json', PeopleProfileDataSchema)
-    // }
+    resolve: {
+      data: createPeopleProfileResolver(),
+    },
   },
 
   // Content pages
