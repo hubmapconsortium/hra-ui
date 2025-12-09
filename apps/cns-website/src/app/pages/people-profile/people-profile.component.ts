@@ -7,11 +7,11 @@ import {
   TableOfContentsLayoutHeaderComponent,
 } from '@hra-ui/design-system/layouts/table-of-contents';
 import { MarkdownModule } from 'ngx-markdown';
-import { PeopleProfileData } from '../../resolvers/people-profile/people-profile.resolver';
+import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 import { ContactInfo, ContactInfoComponent, Role } from './components/contact-info/contact-info.component';
 
 /** Profile section data */
-export interface ProfileSection {
+interface ProfileSection {
   /** Section title/tagline */
   tagline: string;
   /** Section anchor id */
@@ -69,6 +69,13 @@ export class PeopleProfileComponent {
     }
     return tags;
   });
+
+  /** Breadcrumbs computed for navigation */
+  readonly breadcrumbs = computed(() => [
+    { name: 'Home', route: '/' },
+    { name: 'People', route: '/people' },
+    { name: this.data().name },
+  ]);
 
   /** Profile sections computed from role data */
   readonly sections = computed<ProfileSection[]>(() => {

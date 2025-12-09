@@ -5,7 +5,7 @@
     class="profile-header-section-mobile"
     [tagline]="data().name"
     [level]="1"
-    [breadcrumbs]="data().breadcrumbs"
+    [breadcrumbs]="breadcrumbs()"
     [tags]="tags()"
   />
 
@@ -17,7 +17,7 @@
         class="profile-header-section-desktop"
         [tagline]="data().name"
         [level]="1"
-        [breadcrumbs]="data().breadcrumbs"
+        [breadcrumbs]="breadcrumbs()"
         [tags]="tags()"
       >
         @if (primaryRole()?.background; as background) {
