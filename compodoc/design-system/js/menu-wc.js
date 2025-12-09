@@ -739,6 +739,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/FilterContainerComponent.html" data-type="entity-link" >FilterContainerComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/FilterMenuComponent.html" data-type="entity-link" >FilterMenuComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/FlatCardActionsComponent.html" data-type="entity-link" >FlatCardActionsComponent</a>
                             </li>
                             <li class="link">
@@ -1166,6 +1169,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/FilterChip.html" data-type="entity-link" >FilterChip</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FilterOptionCategory.html" data-type="entity-link" >FilterOptionCategory</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/GalleryGridItemContext.html" data-type="entity-link" >GalleryGridItemContext</a>

@@ -721,6 +721,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/DesktopMenuComponent.html" data-type="entity-link" >DesktopMenuComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EndOfResultsIndicatorComponent.html" data-type="entity-link" >EndOfResultsIndicatorComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ErrorIndicatorComponent.html" data-type="entity-link" >ErrorIndicatorComponent</a>
                             </li>
                             <li class="link">
@@ -734,6 +737,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/FilterContainerComponent.html" data-type="entity-link" >FilterContainerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FilterListFlyoutComponent.html" data-type="entity-link" >FilterListFlyoutComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FilterMenuComponent.html" data-type="entity-link" >FilterMenuComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FilterMenuControlsComponent.html" data-type="entity-link" >FilterMenuControlsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FilterMenuCustomizeComponent.html" data-type="entity-link" >FilterMenuCustomizeComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/FlatCardActionsComponent.html" data-type="entity-link" >FlatCardActionsComponent</a>
@@ -872,6 +887,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/ScrollOverflowFadeStylesComponent.html" data-type="entity-link" >ScrollOverflowFadeStylesComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SearchFilterComponent.html" data-type="entity-link" >SearchFilterComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SectionLinkComponent.html" data-type="entity-link" >SectionLinkComponent</a>
@@ -1123,6 +1141,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/BrandLogo.html" data-type="entity-link" >BrandLogo</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/BrandMark.html" data-type="entity-link" >BrandMark</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/BreadcrumbItem.html" data-type="entity-link" >BreadcrumbItem</a>
                             </li>
                             <li class="link">
@@ -1142,6 +1166,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/FilterChip.html" data-type="entity-link" >FilterChip</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FilterMenuOption.html" data-type="entity-link" >FilterMenuOption</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FilterOptionCategory.html" data-type="entity-link" >FilterOptionCategory</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FilterToggleOption.html" data-type="entity-link" >FilterToggleOption</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IconConfig.html" data-type="entity-link" >IconConfig</a>

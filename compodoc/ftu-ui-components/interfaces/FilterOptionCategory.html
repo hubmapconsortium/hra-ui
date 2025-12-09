@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Code Documentation for application</title>
+        <title>Code Documentation for ftu-ui-components</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -78,7 +78,7 @@
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
-                    <a href="../" class="navbar-brand">Code Documentation for application</a>
+                    <a href="../" class="navbar-brand">Code Documentation for ftu-ui-components</a>
                     <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
                </div>
         </div>
@@ -116,7 +116,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  BrandLogo</li>
+  FilterOptionCategory</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -140,7 +140,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>/home/workflows/workspace/libs/common/injectors/src/lib/app-configuration.ts</code>
+            <code>/home/workflows/workspace/libs/design-system/filter-menu/src/lib/filter-menu.component.ts</code>
         </p>
 
 
@@ -148,7 +148,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Brand logo</p>
+                <p>Filter option category interface</p>
 
             </p>
 
@@ -166,27 +166,22 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#height" 
+                                        <a href="#id" 
 >
-                                            height
+                                            id
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#size" 
+                                        <a href="#label" 
 >
-                                            size
+                                            label
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#src" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#options" 
 >
-                                            src
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#width" 
->
-                                            width
+                                            options
                                         </a>
                                 </li>
                             </ul>
@@ -204,9 +199,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="height"></a>
-                                        <span class="name "><b>height</b>
-                                            <a href="#height">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -214,7 +209,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>height:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -222,7 +217,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                                         </td>
                                     </tr>
@@ -231,21 +226,15 @@
 
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Logo height</p>
-</div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="size"></a>
-                                        <span class="name "><b>size</b>
-                                            <a href="#size">
+                                        <a name="label"></a>
+                                        <span class="name "><b>label</b>
+                                            <a href="#label">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -253,46 +242,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>size:     <code>&quot;regular&quot; | &quot;small&quot;</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>&quot;regular&quot; | &quot;small&quot;</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Logo size</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="src"></a>
-                                        <span class="name "><b>src</b>
-                                            <a href="#src">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>src:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>label:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -311,7 +261,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Logo source url</p>
+                                    <div class="io-description"><p>Category label</p>
 </div>
                                 </td>
                             </tr>
@@ -321,9 +271,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="width"></a>
-                                        <span class="name "><b>width</b>
-                                            <a href="#width">
+                                        <a name="options"></a>
+                                        <span class="name "><b>options</b>
+                                            <a href="#options">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -331,7 +281,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>width:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>options:         <code><a href="../interfaces/FilterMenuOption.html" target="_self" >FilterMenuOption[]</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -339,18 +289,23 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/FilterMenuOption.html" target="_self" >FilterMenuOption[]</a></code>
 
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
                                         </td>
                                     </tr>
 
 
 
 
-
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Logo width</p>
+                                    <div class="io-description"><p>Filter options for the category</p>
 </div>
                                 </td>
                             </tr>
@@ -361,40 +316,94 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { createInjectionToken } from &#x27;ngxtension/create-injection-token&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, contentChildren, input, output } from &#x27;@angular/core&#x27;;
+import { watchBreakpoint } from &#x27;@hra-ui/cdk/breakpoints&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { FilterContainerComponent } from &#x27;./filter-container/filter-container.component&#x27;;
+import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { ScrollingModule, ScrollOverflowFadeDirective } from &#x27;@hra-ui/design-system/scrolling&#x27;;
 
-/** Brand logo */
-export interface BrandLogo {
-  /** Logo size */
-  size: &#x27;regular&#x27; | &#x27;small&#x27;;
-  /** Logo source url */
-  src: string;
-  /** Logo width */
-  width: number;
-  /** Logo height */
-  height: number;
+/** Filter option interface */
+export interface FilterToggleOption {
+  /** Option id */
+  id: string;
+  /** Option label */
+  label: string;
 }
 
-/** Application configuration */
-export interface AppConfiguration {
-  /** Application name */
-  name?: string;
-  /** Application version */
-  version?: string;
-  /** Application url */
-  url?: string;
-  /** Brand logos */
-  logos?: BrandLogo[];
+/** Filter menu option interface */
+export interface FilterMenuOption {
+  /** Option id */
+  id: string;
+  /** Option label */
+  label: string;
+  /** Secondary label */
+  secondaryLabel?: string;
+  /** Number of results for the filter option in the data */
+  count: number;
 }
 
-/** Application configuration */
-const APP_CONFIGURATION &#x3D; createInjectionToken((): AppConfiguration &#x3D;&gt; ({}));
+/** Filter option category interface */
+export interface FilterOptionCategory {
+  id: string;
+  /** Category label */
+  label: string;
+  /** Filter options for the category */
+  options?: FilterMenuOption[];
+}
 
-/** Inject the global application configuration */
-export const injectAppConfiguration &#x3D; APP_CONFIGURATION[0];
+/**
+ * Controls section for filter menu (controls inserted with ng-content)
+ */
+@Component({
+  selector: &#x27;hra-filter-menu-controls&#x27;,
+  template: &#x27;&lt;ng-content /&gt;&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FilterMenuControlsComponent {}
 
-/** Set the application configuration */
-export const provideAppConfiguration &#x3D; APP_CONFIGURATION[1];
+/**
+ * A collapsing menu with waysto refine databases to particular views, sorting and grouping preferences, and filters
+ */
+@Component({
+  selector: &#x27;hra-filter-menu&#x27;,
+  imports: [
+    HraCommonModule,
+    ScrollingModule,
+    ScrollOverflowFadeDirective,
+    ButtonsModule,
+    IconsModule,
+    FilterContainerComponent,
+  ],
+  templateUrl: &#x27;./filter-menu.component.html&#x27;,
+  styleUrl: &#x27;./filter-menu.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FilterMenuComponent {
+  /** Menu tagline */
+  readonly tagline &#x3D; input&lt;string&gt;();
+
+  /** Menu description */
+  readonly description &#x3D; input&lt;string&gt;();
+
+  /** Whether to show the close button */
+  readonly enableClose &#x3D; input&lt;boolean&gt;();
+
+  /** Filter options */
+  readonly filters &#x3D; input.required&lt;FilterOptionCategory[]&gt;();
+
+  /** Emits when the form opening state is toggled */
+  readonly closeClick &#x3D; output();
+
+  readonly filterChange &#x3D; output();
+
+  /** Whether the user is on a wide screen */
+  protected isWideScreen &#x3D; watchBreakpoint(&#x27;(min-width: 1100px)&#x27;);
+
+  /** Detects if there are controls in the component */
+  readonly controls &#x3D; contentChildren(&#x27;*&#x27;);
+}
 </code></pre>
     </div>
 </div>
@@ -432,7 +441,7 @@ export const provideAppConfiguration &#x3D; APP_CONFIGURATION[1];
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'BrandLogo.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'FilterOptionCategory.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

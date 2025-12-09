@@ -429,8 +429,8 @@ export class SearchListComponent&lt;T extends SearchListOption&gt; {
   /** All filter options */
   readonly options &#x3D; input.required&lt;T[]&gt;();
 
-  /** Currently selected filter IDs */
-  readonly selected &#x3D; model&lt;string[] | undefined&gt;([]);
+  /** Currently selected filters */
+  readonly selected &#x3D; model&lt;T[]&gt;([]);
 
   /** Current search bar value */
   readonly search &#x3D; model&lt;string&gt;(&#x27;&#x27;);
@@ -439,11 +439,11 @@ export class SearchListComponent&lt;T extends SearchListOption&gt; {
   readonly filteredOptions &#x3D; computed(() &#x3D;&gt; this.doSearch());
 
   /**
-   * Updates selected option ids on update
+   * Updates selected options on update
    * @param event Selected options in list
    */
   selectionUpdate(event: MatListOption[]): void {
-    this.selected.set(event.map((option) &#x3D;&gt; option.value.id));
+    this.selected.set(event.map((option) &#x3D;&gt; option.value));
   }
 
   /** Filters options according to the search bar value */

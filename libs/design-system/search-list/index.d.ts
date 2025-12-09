@@ -22,14 +22,14 @@ declare class SearchListComponent<T extends SearchListOption> {
     readonly disableRipple: _angular_core.InputSignalWithTransform<boolean, unknown>;
     /** All filter options */
     readonly options: _angular_core.InputSignal<T[]>;
-    /** Currently selected filter IDs */
-    readonly selected: _angular_core.ModelSignal<string[] | undefined>;
+    /** Currently selected filters */
+    readonly selected: _angular_core.ModelSignal<T[]>;
     /** Current search bar value */
     readonly search: _angular_core.ModelSignal<string>;
     /** Filtered options (after typing in search bar) */
     readonly filteredOptions: _angular_core.Signal<T[]>;
     /**
-     * Updates selected option ids on update
+     * Updates selected options on update
      * @param event Selected options in list
      */
     selectionUpdate(event: MatListOption[]): void;
