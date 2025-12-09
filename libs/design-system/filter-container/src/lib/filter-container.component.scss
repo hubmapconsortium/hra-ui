@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use '../../../../styles/vars';
+@use '../../../styles/vars';
 
 :host {
   display: block;
@@ -24,7 +24,6 @@
       flex: 0 1 auto;
       min-width: fit-content;
       justify-content: flex-start;
-      width: 100%;
 
       @include mat.button-overrides(
         (

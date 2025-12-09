@@ -14,25 +14,10 @@
       hraButtonVariant="secondary"
       class="category-button"
       color="primary"
-      cdkOverlayOrigin
-      (click)="toggleMenu()"
-      #desktopMenuOrigin="cdkOverlayOrigin"
+      (click)="actionClick.emit()"
     >
       {{ action() }}
     </button>
-
-    <ng-template
-      cdkConnectedOverlay
-      cdkConnectedOverlayHasBackdrop="false"
-      cdkConnectedOverlayLockPosition="true"
-      cdkConnectedOverlayPush="true"
-      [cdkConnectedOverlayOpen]="menuActive()"
-      [cdkConnectedOverlayOrigin]="desktopMenuOrigin"
-      [cdkConnectedOverlayPositions]="desktopMenuPositions"
-      (overlayOutsideClick)="toggleMenu()"
-    >
-      <hra-search-list [options]="filter()?.options || []" [(selected)]="selected" />
-    </ng-template>
   </div>
 
   @if (chips().length > 0) {

@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
+import { SearchListOption } from '@hra-ui/design-system/search-list';
 
 const FILTER_OPTIONS = [
   { id: 'a', label: 'A', count: 9999 },
@@ -16,7 +17,7 @@ const FILTER_OPTIONS = [
   { id: 'f', label: 'F', count: 299 },
   { id: 'g', label: 'G', count: 199 },
   { id: 'h', label: 'H', count: 99 },
-];
+] as SearchListOption[];
 const FILTER_CATEGORIES = [
   { id: 'category1', label: 'Category 1', options: FILTER_OPTIONS },
   { id: 'category2', label: 'Category 2', options: FILTER_OPTIONS },
@@ -28,7 +29,7 @@ const FILTER_CATEGORIES = [
   { id: 'category8', label: 'Category 8', options: FILTER_OPTIONS },
   { id: 'category9', label: 'Category 9', options: FILTER_OPTIONS },
   { id: 'category10', label: 'Category 10', options: FILTER_OPTIONS },
-] as FilterOptionCategory[];
+] as FilterOptionCategory<SearchListOption>[];
 
 const meta: Meta = {
   title: 'Design System/Filter Menu',

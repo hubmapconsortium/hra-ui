@@ -21,7 +21,7 @@
 }
 
 <ng-scrollbar hraScrollOverflowFade class="filter-options">
-  @if (controls()) {
+  @if (controls().length > 0) {
     <div class="customize-section">
       <div class="customize-header">
         <hra-icon class="customize-icon" fontIcon="tune" />
@@ -39,10 +39,30 @@
     @for (filter of filters(); track $index) {
       <hra-filter-container
         enableDivider
+        cdkOverlayOrigin
         [action]="filter.label"
-        [filter]="filter"
-        (actionClick)="filterChange.emit()"
+        [chips]="convertToChips(filter)"
+        (chipsChange)="updateChips(filter.id, $event)"
+        (click)="toggleMenu(filter.label)"
+        #desktopMenuOrigin="cdkOverlayOrigin"
       />
+
+      <ng-template
+        cdkConnectedOverlay
+        cdkConnectedOverlayHasBackdrop="false"
+        cdkConnectedOverlayLockPosition="true"
+        cdkConnectedOverlayPush="true"
+        [cdkConnectedOverlayOpen]="menuActive() === filter.label"
+        [cdkConnectedOverlayOrigin]="desktopMenuOrigin"
+        [cdkConnectedOverlayPositions]="desktopMenuPositions"
+        (overlayOutsideClick)="closeMenu()"
+      >
+        <hra-search-list
+          [options]="filter?.options || []"
+          [selected]="filter.selected"
+          (selectedChange)="updateFilter(filter.id, $event)"
+        />
+      </ng-template>
     }
   </div>
 </ng-scrollbar>
