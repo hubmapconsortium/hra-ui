@@ -31,3 +31,9 @@ markdown {
     margin: 0;
   }
 }
+
+/* Fix scroll block bug on firefox - https://github.com/angular/components/issues/23354 */
+.cdk-global-scrollblock {
+  position: relative !important;
+  overflow-y: hidden !important;
+}
