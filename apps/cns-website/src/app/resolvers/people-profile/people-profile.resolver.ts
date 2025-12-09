@@ -8,6 +8,13 @@ import { PeopleProfileData, PeopleProfileDataSchema } from '../../schemas/people
 /** Base URL for CNS website content */
 const CNS_CONTENT_BASE_URL = 'https://cns-iu.github.io/cns-website/content/person';
 
+/**
+ * Creates a redirect command for error handling that preserves navigation history
+ *
+ * @param router Angular router instance
+ * @param url Target URL to redirect to (e.g., '/404' or '/500')
+ * @returns RedirectCommand configured to skip location change and preserve history
+ */
 function createErrorRedirectCommand(router: Router, url: string): RedirectCommand {
   const path = router.parseUrl(url);
   return new RedirectCommand(path, {
