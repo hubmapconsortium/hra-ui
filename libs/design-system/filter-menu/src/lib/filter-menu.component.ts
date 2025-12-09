@@ -1,9 +1,9 @@
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { FilterChip, FilterContainerComponent } from '@hra-ui/design-system/filter-container';
+import { FilterContainerComponent } from '@hra-ui/design-system/filter-container';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { SearchListComponent, SearchListOption } from '@hra-ui/design-system/search-list';
@@ -57,12 +57,6 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** List of all filters with options */
   readonly filters = model.required<FilterOptionCategory<T>[]>();
 
-  /** Current active filter */
-  readonly activeFilter = model<FilterOptionCategory<T>>();
-
-  /** Current active filter id */
-  readonly activeFilterId = computed(() => this.activeFilter()?.id);
-
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
 
@@ -72,19 +66,11 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Overlay positions for the filter menu */
   protected readonly filterMenuPositions = FILTER_MENU_POSITIONS;
 
-  /** Detects if there are controls in the component */
-  protected readonly controls = contentChildren('*');
+  /** Current active filter */
+  protected readonly activeFilter = signal<FilterOptionCategory<T> | undefined>(undefined);
 
-  /**
-   * Updates filters on chips change
-   * @param category Filter category to update
-   * @param chips Currently active chips
-   */
-  updateFiltersFromChips(category: FilterOptionCategory<T>, chips: FilterChip[]) {
-    const selected = category.options.filter((option) => chips.map((chip) => chip.label).includes(option.label));
-    const updated = { ...category, selected };
-    this.setNewFilters(category, updated);
-  }
+  /** Current active filter id */
+  protected readonly activeFilterId = computed(() => this.activeFilter()?.id);
 
   /**
    * Updates filters on filter selection
@@ -92,33 +78,17 @@ export class FilterMenuComponent<T extends SearchListOption> {
    * @param selected Selected filter options
    */
   updateFilterSelection(category: FilterOptionCategory<T>, selected: T[] = []) {
-    const activeMenu = this.activeFilter();
-    if (activeMenu) {
-      const updated = { ...activeMenu, selected };
-      this.setNewFilters(category, updated);
-    }
+    const updated = { ...category, selected };
+    this.filters.update((filters) => filters.map((filter) => (filter.id === category.id ? updated : filter)));
   }
 
   /**
-   * Converts a filter's selected options into chips
-   * @param category Filter category
+   * Closes filter menu
+   * @param category Filter category to close
    */
-  convertToChips(category: FilterOptionCategory<T>): FilterChip[] {
-    const options = category.selected || [];
-    return options.map((option) => {
-      return { label: option.label };
-    });
-  }
-
-  /**
-   * Updates filters list with updated filter options
-   * @param category Filter category
-   * @param updated Updated filter category
-   */
-  private setNewFilters(category: FilterOptionCategory<T>, updated: FilterOptionCategory<T>): void {
-    const updatedFilters = this.filters().map((filter) => {
-      return filter.id === category.id ? updated : filter;
-    });
-    this.filters.set(updatedFilters);
+  closeFilterMenu(category?: FilterOptionCategory<T>): void {
+    this.activeFilter.update((current) =>
+      category !== undefined && current?.id !== category.id ? current : undefined,
+    );
   }
 }

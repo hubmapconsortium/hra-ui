@@ -5,61 +5,65 @@
 :host {
   display: flex;
   flex-direction: column;
-  color: vars.$secondary;
   height: 100%;
   width: 20rem;
+  color: vars.$secondary;
+  gap: 1.5rem;
 
-  .header-section {
+  .header {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding: 1.5rem;
+    align-items: center;
     margin-bottom: 1rem;
   }
 
-  .customize-header,
-  .drawer-header,
-  .filters-header {
-    display: flex;
-    align-items: center;
-  }
-
-  .drawer-title,
-  .customize-title,
-  .filters-title {
-    @include utils.use-font(title, small);
-    padding: 0.5rem 0;
-  }
-
-  .customize-icon,
-  .filter-icon {
+  .icon {
     padding: 0.5rem;
   }
 
-  .filler {
-    flex-grow: 1;
+  .title {
+    padding: 0.5rem 0;
+    @include utils.use-font(title, small);
   }
 
-  .header-subtext {
-    @include utils.use-font(body, medium);
-    color: vars.$primary;
-  }
-
-  .customize-section {
-    padding-bottom: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .filters-header {
-    margin-bottom: 1rem;
-  }
-
-  .customize-section,
-  .filters-section {
+  .section {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
     width: 20rem;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+
+    .tagline {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .filler {
+      flex-grow: 1;
+    }
+
+    .description {
+      color: vars.$primary;
+      @include utils.use-font(body, medium);
+    }
+  }
+
+  .customize:has(.customize-controls:empty) {
+    display: none;
+  }
+
+  .customize {
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-bottom: 2.5rem;
+    }
   }
 }

@@ -32,25 +32,77 @@ const FILTER_CATEGORIES = [
   { id: 'category10', label: 'Category 10', options: FILTER_OPTIONS },
 ] as FilterOptionCategory<SearchListOption>[];
 
+const CUSTOM_CONTROLS = `
+<mat-button-toggle-group class="toggle-group" [value]="toggleOptions[0]">
+  @for (category of toggleOptions; track category.id) {
+    <mat-button-toggle hraClickEvent [hraFeature]="category.id" [value]="category">
+      {{ category.label }}
+    </mat-button-toggle>
+  }
+</mat-button-toggle-group>
+
+<mat-form-field subscriptSizing="dynamic">
+  <hra-icon class="select-icon" matPrefix>table_view</hra-icon>
+  <mat-label>View as</mat-label>
+  <mat-select>
+    @for (option of viewAsOptions; track option) {
+      <mat-option [value]="option.id">{{ option.label }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field subscriptSizing="dynamic">
+  <hra-icon class="select-icon" matPrefix>sort</hra-icon>
+  <mat-label>Sort by</mat-label>
+  <mat-select>
+    @for (option of sortByOptions; track option) {
+      <mat-option [value]="option.id">{{ option.label }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field subscriptSizing="dynamic">
+  <hra-icon class="select-icon" matPrefix>category</hra-icon>
+  <mat-label>Group by</mat-label>
+  <mat-select>
+    @for (option of filters; track option) {
+      <mat-option [value]="option.id">{{ option.label }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+`;
+
+const STYLES = `
+  .hra-app {
+    height: 100vh;
+  }
+  .toggle-group {
+    width: fit-content;
+    max-width: 100%;
+    --mat-button-toggle-height: 2rem;
+  }
+  mat-button-toggle {
+      font: var(--mat-sys-label-medium);
+  }
+  mat-label {
+    font: var(--mat-sys-label-medium);
+    --mat-form-field-filled-label-text-color: var(--mat-sys-primary);
+  }
+  .select-icon {
+    padding-left: 0.75rem;
+    padding-right: 0.5rem;
+    --mat-form-field-leading-icon-color: var(--mat-sys-secondary);
+  }
+`;
+
 const meta: Meta = {
   title: 'Design System/Filter Menu',
-  decorators: [
-    moduleMetadata({
-      imports: [
-        HraCommonModule,
-        FilterMenuComponent,
-        MatButtonToggleModule,
-        MatFormFieldModule,
-        IconsModule,
-        MatSelectModule,
-      ],
-    }),
-  ],
   parameters: {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=4929-40164',
     },
+    layout: 'fullscreen',
   },
   args: {
     tagline: 'Database Headline',
@@ -75,6 +127,24 @@ const meta: Meta = {
       { id: 'hierachical', label: 'Hierarchical' },
     ],
   },
+  decorators: [
+    moduleMetadata({
+      imports: [
+        HraCommonModule,
+        FilterMenuComponent,
+        MatButtonToggleModule,
+        MatFormFieldModule,
+        IconsModule,
+        MatSelectModule,
+      ],
+    }),
+  ],
+};
+
+export default meta;
+type Story = StoryObj;
+
+export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
@@ -84,76 +154,24 @@ const meta: Meta = {
         [description]="description"
         [enableClose]="enableClose"
       >
-        <mat-button-toggle-group class="toggle-group" [value]="toggleOptions[0]">
-          @for (category of toggleOptions; track category.id) {
-            <mat-button-toggle hraClickEvent [hraFeature]="category.id" [value]="category">
-              {{ category.label }}
-            </mat-button-toggle>
-          }
-        </mat-button-toggle-group>
-
-          <mat-form-field subscriptSizing="dynamic">
-            <hra-icon class="select-icon" matPrefix>table_view</hra-icon>
-            <mat-label>View as</mat-label>
-            <mat-select>
-              @for (option of viewAsOptions; track option) {
-                <mat-option [value]="option.id">{{ option.label }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field subscriptSizing="dynamic">
-            <hra-icon class="select-icon" matPrefix>sort</hra-icon>
-            <mat-label>Sort by</mat-label>
-            <mat-select>
-              @for (option of sortByOptions; track option) {
-                <mat-option [value]="option.id">{{ option.label }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field subscriptSizing="dynamic">
-            <hra-icon class="select-icon" matPrefix>category</hra-icon>
-            <mat-label>Group by</mat-label>
-            <mat-select>
-              @for (option of filters; track option) {
-                <mat-option [value]="option.id">{{ option.label }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+        ${CUSTOM_CONTROLS}
       </hra-filter-menu>
     `,
-    styles: [
-      `.hra-app {
-          margin: -1rem;
-          height: 100vh;
-      }`,
-      `.toggle-group {
-          width: fit-content;
-          max-width: 100%;
-          --mat-button-toggle-height: 2rem;
-      }`,
-      `mat-button-toggle {
-        font: var(--mat-sys-label-medium);
-      }`,
-      `mat-label {
-        font: var(--mat-sys-label-medium);
-        --mat-form-field-filled-label-text-color: var(--mat-sys-primary);
-      }`,
-      `.select-icon {
-        padding-left: 0.75rem;
-        padding-right: 0.5rem;
-        --mat-form-field-leading-icon-color: var(--mat-sys-secondary);
-      }`,
-    ],
+    styles: [STYLES],
   }),
 };
 
-export default meta;
-type Story = StoryObj;
-
-export const Default: Story = {
-  args: {
-    enableClose: true,
-  },
+export const WithoutCustomizeControls: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <hra-filter-menu
+        [filters]="filters"
+        [tagline]="tagline"
+        [description]="description"
+        [enableClose]="enableClose"
+      />
+    `,
+    styles: [STYLES],
+  }),
 };

@@ -55,7 +55,7 @@ export class SearchListComponent<T extends SearchListOption> {
   readonly options = input.required<T[]>();
 
   /** Currently selected filters */
-  readonly selected = model<T[] | undefined>([]);
+  readonly selected = model<T[]>([]);
 
   /** Current search bar value */
   readonly search = model<string>('');
