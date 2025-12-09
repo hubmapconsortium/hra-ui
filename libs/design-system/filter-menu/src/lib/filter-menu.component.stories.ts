@@ -1,23 +1,24 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 
-import { FilterMenuComponent, FilterOptionCategory } from './filter-menu.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { IconsModule } from '@hra-ui/design-system/icons';
 import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
+import { FilterMenuComponent, FilterOptionCategory } from './filter-menu.component';
 
 const FILTER_OPTIONS = [
   { id: 'a', label: 'A', count: 9999 },
-  { id: 'b', label: 'B', count: 4299 },
-  { id: 'c', label: 'C', count: 1799 },
-  { id: 'd', label: 'D', count: 899 },
-  { id: 'e', label: 'E', count: 499 },
-  { id: 'f', label: 'F', count: 299 },
-  { id: 'g', label: 'G', count: 199 },
-  { id: 'h', label: 'H', count: 99 },
+  { id: 'ab', label: 'AB', count: 4299 },
+  { id: 'abc', label: 'ABC', count: 1799 },
+  { id: 'abcd', label: 'ABCD', count: 899 },
+  { id: 'abcde', label: 'ABCDE', count: 499 },
+  { id: 'abcdef', label: 'ABCDEF', count: 299 },
+  { id: 'abcdefg', label: 'ABCDEFG', count: 199 },
+  { id: 'abcdefgh', label: 'BACDEFGH', count: 99 },
 ] as SearchListOption[];
+
 const FILTER_CATEGORIES = [
   { id: 'category1', label: 'Category 1', options: FILTER_OPTIONS },
   { id: 'category2', label: 'Category 2', options: FILTER_OPTIONS },

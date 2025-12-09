@@ -42,9 +42,9 @@
         cdkOverlayOrigin
         [action]="filter.label"
         [chips]="convertToChips(filter)"
-        (chipsChange)="updateChips(filter.id, $event)"
-        (click)="toggleMenu(filter.label)"
-        #desktopMenuOrigin="cdkOverlayOrigin"
+        (chipsChange)="updateFiltersFromChips(filter, $event)"
+        (click)="activeFilter.set(filter)"
+        #filterMenuOrigin="cdkOverlayOrigin"
       />
 
       <ng-template
@@ -52,15 +52,15 @@
         cdkConnectedOverlayHasBackdrop="false"
         cdkConnectedOverlayLockPosition="true"
         cdkConnectedOverlayPush="true"
-        [cdkConnectedOverlayOpen]="menuActive() === filter.label"
-        [cdkConnectedOverlayOrigin]="desktopMenuOrigin"
-        [cdkConnectedOverlayPositions]="desktopMenuPositions"
-        (overlayOutsideClick)="closeMenu()"
+        [cdkConnectedOverlayOpen]="activeFilterId() === filter.id"
+        [cdkConnectedOverlayOrigin]="filterMenuOrigin"
+        [cdkConnectedOverlayPositions]="filterMenuPositions"
+        (overlayOutsideClick)="activeFilter.set(undefined)"
       >
         <hra-search-list
           [options]="filter?.options || []"
           [selected]="filter.selected"
-          (selectedChange)="updateFilter(filter.id, $event)"
+          (selectedChange)="updateFilterSelection(filter, $event)"
         />
       </ng-template>
     }

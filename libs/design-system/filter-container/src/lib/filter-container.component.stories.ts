@@ -51,15 +51,15 @@ export const WithInfoButton: Story = {
   render: (args) => ({
     props: args,
     template: `
-     <hra-filter-container [action]="action" [showTooltip]="true" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
-       <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
-       <button mat-button color="accent" tooltipActions>
-         <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-           Learn more
-         </a>
-       </button>
-     </hra-filter-container>
-   `,
+      <hra-filter-container [action]="action" [showTooltip]="true" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
+        <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
+        <button mat-button color="accent" tooltipActions>
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+            Learn more
+          </a>
+        </button>
+      </hra-filter-container>
+    `,
   }),
 };
 
@@ -68,14 +68,14 @@ export const WithChipsAndInfo: Story = {
     props: { ...args, chips: sampleChips },
     template: `
       <hra-filter-container [action]="action" [showTooltip]="true" [chips]="chips" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
-       <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
-       <button mat-button color="accent" tooltipActions>
-         <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-           Learn more
-         </a>
-       </button>
-     </hra-filter-container>
-   `,
+        <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
+        <button mat-button color="accent" tooltipActions>
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+            Learn more
+          </a>
+        </button>
+      </hra-filter-container>
+    `,
   }),
   args: {
     action: 'Category',
@@ -87,14 +87,14 @@ export const WithDivider: Story = {
     props: { ...args, chips: sampleChips },
     template: `
       <hra-filter-container [action]="action" [showTooltip]="true" [chips]="chips" [enableDivider]="enableDivider" (actionClick)="actionClick($event)">
-       <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
-       <button mat-button color="accent" tooltipActions>
-         <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-           Learn more
-         </a>
-       </button>
-     </hra-filter-container>
-   `,
+        <p tooltipContent>This filter allows you to refine your search by selecting specific options from the available choices.</p>
+        <button mat-button color="accent" tooltipActions>
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+            Learn more
+          </a>
+        </button>
+      </hra-filter-container>
+    `,
   }),
   args: {
     action: 'Category',

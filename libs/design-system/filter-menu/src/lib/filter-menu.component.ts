@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, contentChildren, input, model, output } from '@angular/core';
+import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, input, model, output } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -6,7 +7,6 @@ import { FilterChip, FilterContainerComponent } from '@hra-ui/design-system/filt
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { SearchListComponent, SearchListOption } from '@hra-ui/design-system/search-list';
-import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 
 /** Filter option category interface */
 export interface FilterOptionCategory<T extends SearchListOption> {
@@ -14,13 +14,14 @@ export interface FilterOptionCategory<T extends SearchListOption> {
   id: string;
   /** Category label */
   label: string;
-  /** Filter options for the category */
+  /** All filter options */
   options: T[];
+  /** Selected filter options */
   selected?: T[];
 }
 
-/** Position of the desktop menu overlay */
-const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
+/** Position of the filter menu overlay */
+const FILTER_MENU_POSITIONS: ConnectedPosition[] = [
   { originX: 'end', originY: 'top', overlayX: 'start', overlayY: 'top', offsetX: 16 },
 ];
 
@@ -44,9 +45,6 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterMenuComponent<T extends SearchListOption> {
-  /** Filter options */
-  readonly filters = model.required<FilterOptionCategory<T>[]>();
-
   /** Menu tagline */
   readonly tagline = input<string>();
 
@@ -56,66 +54,70 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Whether to show the close button */
   readonly enableClose = input<boolean>();
 
+  /** List of all filters with options */
+  readonly filters = model.required<FilterOptionCategory<T>[]>();
+
+  /** Current active filter */
+  readonly activeFilter = model<FilterOptionCategory<T>>();
+
+  /** Current active filter id */
+  readonly activeFilterId = computed(() => this.activeFilter()?.id);
+
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
 
   /** Whether the user is on a wide screen */
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
+  /** Overlay positions for the filter menu */
+  protected readonly filterMenuPositions = FILTER_MENU_POSITIONS;
+
   /** Detects if there are controls in the component */
   protected readonly controls = contentChildren('*');
 
-  /** Whether the menu is active/open */
-  readonly menuActive = model<string>();
-
-  /** Overlay positions for the desktop menu */
-  protected readonly desktopMenuPositions = DESKTOP_MENU_POSITIONS;
+  /**
+   * Updates filters on chips change
+   * @param category Filter category to update
+   * @param chips Currently active chips
+   */
+  updateFiltersFromChips(category: FilterOptionCategory<T>, chips: FilterChip[]) {
+    const selected = category.options.filter((option) => chips.map((chip) => chip.label).includes(option.label));
+    const updated = { ...category, selected };
+    this.setNewFilters(category, updated);
+  }
 
   /**
-   * Toggles menu active state
+   * Updates filters on filter selection
+   * @param category Filter category to update
+   * @param selected Selected filter options
    */
-  toggleMenu(id: string): void {
-    this.menuActive.set(id);
-  }
-
-  closeMenu() {
-    this.menuActive.set(undefined);
-  }
-
-  updateChips(category: string, selected: FilterChip[]) {
-    const currentCategory = this.filters().find((a) => category === a.id);
-    if (currentCategory) {
-      const newOptions = currentCategory.options.filter((option) =>
-        selected.map((chip) => chip.label).includes(option.label),
-      );
-      const updated = { ...currentCategory, selected: newOptions };
+  updateFilterSelection(category: FilterOptionCategory<T>, selected: T[] = []) {
+    const activeMenu = this.activeFilter();
+    if (activeMenu) {
+      const updated = { ...activeMenu, selected };
       this.setNewFilters(category, updated);
     }
   }
 
-  updateFilter(category: string, event: T[] = []) {
-    const currentCategory = this.filters().find((a) => this.menuActive() === a.label);
-    if (currentCategory) {
-      const updated = { ...currentCategory, selected: event };
-      this.setNewFilters(category, updated);
-    }
+  /**
+   * Converts a filter's selected options into chips
+   * @param category Filter category
+   */
+  convertToChips(category: FilterOptionCategory<T>): FilterChip[] {
+    const options = category.selected || [];
+    return options.map((option) => {
+      return { label: option.label };
+    });
   }
 
-  convertToChips(filter: FilterOptionCategory<T>): FilterChip[] {
-    if (filter.selected) {
-      return filter.selected.map((x) => {
-        return { label: x.label };
-      });
-    }
-    return [];
-  }
-
-  setNewFilters(category: string, updated: FilterOptionCategory<T>): void {
+  /**
+   * Updates filters list with updated filter options
+   * @param category Filter category
+   * @param updated Updated filter category
+   */
+  private setNewFilters(category: FilterOptionCategory<T>, updated: FilterOptionCategory<T>): void {
     const updatedFilters = this.filters().map((filter) => {
-      if (filter.id !== category) {
-        return filter;
-      }
-      return updated;
+      return filter.id === category.id ? updated : filter;
     });
     this.filters.set(updatedFilters);
   }
