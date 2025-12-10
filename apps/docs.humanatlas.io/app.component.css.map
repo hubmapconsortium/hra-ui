@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/docs.humanatlas.io/src/app/app.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n\n  .main {\n    hra-site-navigation {\n      display: none;\n    }\n    .content {\n      flex: 1 1;\n      width: 100%;\n    }\n  }\n\n  @media (min-width: 1100px) {\n    .main {\n      display: flex;\n\n      hra-site-navigation {\n        display: unset;\n      }\n\n      .content {\n        width: calc(100% - 20rem);\n      }\n\n      &.cta-active {\n        --hra-table-of-contents-layout-top-offset: 10rem;\n        --hra-site-navigation-top-offset: 7.5rem;\n      }\n    }\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;AAGE,MAAA,CAAA,KAAA;AACE,WAAA;;AAEF,MAAA,CAHA,KAGA,CAAA;AACE,QAAA,EAAA;AACA,SAAA;;AAIJ,OAAA,CAAA,SAAA,EAAA;AACE,QAAA,CAVA;AAWE,aAAA;;AAEA,QAAA,CAbF,KAaE;AACE,aAAA;;AAGF,QAAA,CAjBF,KAiBE,CAdF;AAeI,WAAA,KAAA,KAAA,EAAA;;AAGF,QAAA,CArBF,IAqBE,CAAA;AACE,+CAAA;AACA,sCAAA;;;",
+  "names": []
+}

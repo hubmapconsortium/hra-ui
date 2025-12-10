@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" data-beasties-container>
-  <head><base href="/ui--staging/ftu-ui/">
-    <meta charset="utf-8">
+<html lang="en">
+  <head><base href="/apps/ftu-ui/">
+    <meta charset="utf-8"/>
     <title>FTU Explorer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" type="image/png" href="favicon.png"/>
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const ftu = document.getElementById('ftu');
@@ -18,7 +18,7 @@
         ftu.addEventListener('nodeClicked', selectNode);
       });
     </script>
-  <style>html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}html{box-sizing:border-box;scroll-behavior:smooth}*,*:before,*:after{box-sizing:inherit}</style><link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.css"></noscript></head>
+  <link rel="stylesheet" href="styles.css"></head>
 
   <body>
     <hra-ftu-ui id="ftu" selected-illustration="https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn" datasets="assets/TEMP/ftu-datasets.jsonld" summaries="assets/TEMP/ftu-cell-summaries.jsonld"></hra-ftu-ui>

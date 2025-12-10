@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/cde-ui/src/app/app.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n  flex-direction: column;\n  height: 100vh;\n  width: 100%;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,kBAAA;AACA,UAAA;AACA,SAAA;;",
+  "names": []
+}

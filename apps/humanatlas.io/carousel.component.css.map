@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/humanatlas.io/src/app/components/carousel/carousel.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n  position: relative;\n  padding-bottom: 4rem;\n  overflow: visible;\n\n  .carousel {\n    &::part(container) {\n      overflow: visible;\n    }\n  }\n\n  .controls {\n    position: absolute;\n    bottom: 0;\n    z-index: 1;\n  }\n\n  @media (min-width: 920px) {\n    padding-bottom: 0rem;\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,YAAA;AACA,kBAAA;AACA,YAAA;;AAGE,MAAA,CAAA,QAAA,OAAA;AACE,YAAA;;AAIJ,MAAA,CAAA;AACE,YAAA;AACA,UAAA;AACA,WAAA;;AAGF,OAAA,CAAA,SAAA,EAAA;AAlBF;AAmBI,oBAAA;;;",
+  "names": []
+}
