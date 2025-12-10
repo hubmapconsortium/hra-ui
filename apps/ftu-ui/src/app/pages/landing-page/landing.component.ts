@@ -59,5 +59,5 @@ export class LandingComponent {
   /**
    * Computed property that returns the EBI link.
    */
-  protected readonly ebiLink = computed(() => this.appLink1() ?? EBI_LINK);
+  protected readonly ebiLink = computed(() => this.appLink2() ?? EBI_LINK);
 }

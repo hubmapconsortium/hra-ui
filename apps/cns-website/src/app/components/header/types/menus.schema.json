@@ -1,7 +1,64 @@
 {
-  "$ref": "#/definitions/Menus",
-  "definitions": {
-    "MenuGroup": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "HeaderMenus",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/HeaderMenu"
+          },
+          {
+            "$ref": "#/$defs/HeaderMenuItem"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "options"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "HeaderMenu": {
+      "id": "HeaderMenu",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "menu"
+        },
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HeaderMenuGroup"
+          }
+        },
+        "featured": {
+          "$ref": "#/$defs/HeaderMenuItem"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "HeaderMenuGroup": {
+      "id": "HeaderMenuGroup",
       "type": "object",
       "properties": {
         "type": {
@@ -14,10 +71,6 @@
         "description": {
           "type": "string"
         },
-        "url": {
-          "type": "string",
-          "format": "uri"
-        },
         "external": {
           "type": "boolean"
         },
@@ -27,14 +80,19 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/MenuItem"
+            "$ref": "#/$defs/HeaderMenuItem"
           }
         }
       },
-      "required": ["type", "label"],
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
       "additionalProperties": false
     },
-    "MenuItem": {
+    "HeaderMenuItem": {
+      "id": "HeaderMenuItem",
       "type": "object",
       "properties": {
         "type": {
@@ -48,29 +106,10 @@
           "type": "string",
           "format": "uri"
         },
-        "external": {
-          "type": "boolean"
-        },
-        "target": {
-          "type": "string"
-        }
-      },
-      "required": ["type", "label", "url"],
-      "additionalProperties": false
-    },
-    "Menu": {
-      "type": "object",
-      "properties": {
-        "type": {
+        "tagline": {
           "type": "string"
         },
-        "id": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        },
-        "url": {
+        "imgSrc": {
           "type": "string"
         },
         "external": {
@@ -78,38 +117,14 @@
         },
         "target": {
           "type": "string"
-        },
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MenuGroup"
-          }
-        },
-        "featured": {
-          "items": {
-            "$ref": "#/definitions/MenuItem"
-          }
         }
       },
-      "required": ["type", "id", "label"],
-      "additionalProperties": false
-    },
-    "Menus": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "options": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Menu"
-          }
-        }
-      },
-      "required": ["$schema", "options"],
+      "required": [
+        "type",
+        "label",
+        "url"
+      ],
       "additionalProperties": false
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }

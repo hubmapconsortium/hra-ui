@@ -1,0 +1,33 @@
+<div class="content">
+  <div class="title">Science you can see</div>
+  <div class="tagline">
+    Celebrating 20+ years of research at Indiana University's Cyberinfrastructure for Network Science Center.
+  </div>
+
+  <mat-button-toggle-group
+    class="content-filter"
+    hraButtonToggleSize="large"
+    [multiple]="false"
+    [(value)]="selectedContentType"
+  >
+    @for (contentType of contentTypes; track contentType) {
+      <mat-button-toggle>{{ contentType }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+
+  <div class="content-grid">
+    <hra-gallery-grid [dataSource]="contentCards">
+      <hra-content-button
+        *hraGalleryGridItem="let item"
+        [imageSrc]="item.imageSrc"
+        [date]="(item.date | date) || ''"
+        [tagline]="item.tagline"
+        [tags]="item.tags"
+        [link]="item.link"
+        [external]="item.external"
+      />
+    </hra-gallery-grid>
+  </div>
+</div>
+
+<cns-footer />
