@@ -14,9 +14,9 @@ content:
         &emsp;&emsp;&emsp;[Managing SOPs](https://docs.google.com/document/d/1FNERIQqn8sZVfIaqtg5VKjoTfogmLAVNYIR5mM-4TjE/edit?tab=t.0#heading=h.lpsf90jpnlzf)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Section Overview Template](https://docs.google.com/document/d/18c9OZ8glq7Avgef9yuf5bzSMQ_p12EuxmPr0vW01Wck/edit?tab=t.0#heading=h.4ou04n97ttbd)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[SOP Template](https://docs.google.com/document/d/1LxC74bJqpF7WuuxcensALPnmURcjxmt6DTm7F9xiJDU/edit?tab=t.0#heading=h.lpsf90jpnlzf)<br>
-        &emsp;&emsp;&emsp;[Glossary](https://docs.google.com/document/d/1IBuPOt2mkPOOMF9vUsZk5HQ3vm9M7WjnlW-ZOMG6wSY/edit?tab=t.0#heading=h.ihfnxsruj8m7)<br>
-        &emsp;&emsp;&emsp;[Human Reference Atlas Style Guide](https://zenodo.org/records/14343079)<br>
-        &emsp;&emsp;&emsp;[Human Reference Atlas Prose and Editorial Style Guide](https://zenodo.org/records/14347050)<br>
+        &emsp;&emsp;&emsp;[Glossary](https://doi.org/10.5281/zenodo.17664992)<br>
+        &emsp;&emsp;&emsp;[Human Reference Atlas Style Guide](https://doi.org/10.5281/zenodo.14343078)<br>
+        &emsp;&emsp;&emsp;[Human Reference Atlas Prose and Editorial Style Guide](https://doi.org/10.5281/zenodo.14347049)<br>
   - component: PageSection
     tagline: 3D Tissue Registration
     anchor: 3d-tissue-registration
@@ -25,11 +25,11 @@ content:
       component: Markdown
       data: |
         [3D Tissue Registration](https://docs.google.com/document/d/1l20H7brenvTh4Vomrns4SPZbqQxRnrnO7sOF3BtN2b4/edit?tab=t.0#heading=h.ng3hqucdksmt)<br>
-        &emsp;&emsp;&emsp;[Managing Human Reference Atlas Registrations](https://zenodo.org/records/11625379)<br>
-        &emsp;&emsp;&emsp;[Using the Standalone Registration User Interface](https://zenodo.org/records/14346543)<br>
-        &emsp;&emsp;&emsp;[Using the Embedded Registration User Interface](https://zenodo.org/records/14346342)<br>
+        &emsp;&emsp;&emsp;[Managing Human Reference Atlas Registrations](https://doi.org/10.5281/zenodo.10359228)<br>
+        &emsp;&emsp;&emsp;[Using the Standalone Registration User Interface](https://doi.org/10.5281/zenodo.14346542)<br>
+        &emsp;&emsp;&emsp;[Using the Embedded Registration User Interface](https://doi.org/10.5281/zenodo.14346341)<br>
         &emsp;&emsp;&emsp;[Constructing a Millitome and Generating Virtual Tissue Blocks](https://doi.org/10.5281/zenodo.7901004)<br>
-        &emsp;&emsp;&emsp;[Using a Millitome](https://zenodo.org/records/7382704)<br>
+        &emsp;&emsp;&emsp;[Using a Millitome](https://doi.org/10.5281/zenodo.7382703)<br>
   - component: PageSection
     tagline: Anatomical Structures and Cell-Type Segmentation
     anchor: anatomical-structures-and-cell-type-segmentation
@@ -38,9 +38,9 @@ content:
       component: Markdown
       data: |
         Anatomical Structures and Cell-Type Segmentation<br>
-        &emsp;&emsp;&emsp;[Manual Segmentation of Tissue](https://zenodo.org/records/6629522)<br>
+        &emsp;&emsp;&emsp;[Manual Segmentation of Tissue](https://doi.org/10.5281/zenodo.5565027)<br>
         &emsp;&emsp;&emsp;Segmentation of Single Cells and Anatomical Structures<br>
-        &emsp;&emsp;&emsp;[Running a Kaggle Competition](https://zenodo.org/records/10019550)<br>
+        &emsp;&emsp;&emsp;[Running a Kaggle Competition](https://doi.org/10.5281/zenodo.10019549)<br>
   - component: PageSection
     tagline: Vasculature Common Coordinate Framework
     anchor: vasculature-common-coordinate-framework
@@ -49,10 +49,10 @@ content:
       component: Markdown
       data: |
         [Vasculature Common Coordinate Framework](https://docs.google.com/document/d/1ORM4FJ1eoMCOpHkj0aig30iXqzIRWbFvojlxcdnkwnA/edit?tab=t.0#heading=h.4ou04n97ttbd)<br>
-        &emsp;&emsp;&emsp;[Authoring the Pathway Organ Crosswalk Tables](https://zenodo.org/records/11623745)<br>
-        &emsp;&emsp;&emsp;[Constructing Blood Vasculature-Organ Crosswalk Diagrams](https://zenodo.org/records/11623898)<br>
-        &emsp;&emsp;&emsp;[Authoring the Pathway Crosswalk Table](https://zenodo.org/records/11623415)<br>
-        &emsp;&emsp;&emsp;[Authoring the Blood Vasculature Geometry Table](https://zenodo.org/records/11623223)<br>
+        &emsp;&emsp;&emsp;[Authoring the Pathway Organ Crosswalk Tables](https://doi.org/10.5281/zenodo.11623744)<br>
+        &emsp;&emsp;&emsp;[Constructing Blood Vasculature-Organ Crosswalk Diagrams](https://doi.org/10.5281/zenodo.11623897)<br>
+        &emsp;&emsp;&emsp;[Authoring the Pathway Crosswalk Table](https://doi.org/10.5281/zenodo.11623414)<br>
+        &emsp;&emsp;&emsp;[Authoring the Blood Vasculature Geometry Table](https://doi.org/10.5281/zenodo.11623222)<br>
   - component: PageSection
     tagline: Vasculature Computations
     anchor: vasculature-computations
@@ -62,7 +62,7 @@ content:
       data: |
         Vasculature Computations<br>
         &emsp;&emsp;&emsp;Computing Vessel Properties<br>
-        &emsp;&emsp;&emsp;[Computing Cell Type to Vasculature Distance Distributions](https://zenodo.org/records/10371473)<br>
+        &emsp;&emsp;&emsp;[Computing Cell Type to Vasculature Distance Distributions](https://doi.org/10.5281/zenodo.10371472)<br>
   - component: PageSection
     tagline: Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B) Tables
     anchor: anatomical-structures-cell-types-plus-biomarkers-asctb-tables
@@ -71,15 +71,15 @@ content:
       component: Markdown
       data: |
         [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B) Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit?tab=t.0#heading=h.6ys5lo962o6b)<br>
-        &emsp;&emsp;&emsp;[Authoring ASCT+B Tables](https://zenodo.org/records/7382751)<br>
+        &emsp;&emsp;&emsp;[Authoring ASCT+B Tables](https://doi.org/10.5281/zenodo.5746152)<br>
         &emsp;&emsp;&emsp;Authoring ASCT+B Tables Using The ASCT+B Generator Python Script<br>
-        &emsp;&emsp;&emsp;[Construction of Organ Mapping Antibody Panels (OMAPs)](https://zenodo.org/records/7386417)<br>
+        &emsp;&emsp;&emsp;[Construction of Organ Mapping Antibody Panels (OMAPs)](https://doi.org/10.5281/zenodo.5749882)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[FAQ: Frequently Asked Questions (FAQ) for Organ Mapping Antibody Panels (OMAPs)](https://humanatlas.io/faq/omap)<br>
-        &emsp;&emsp;&emsp;[Constructing Antibody Validation Reports (AVRs)](https://zenodo.org/records/7418624)<br>
+        &emsp;&emsp;&emsp;[Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)](https://docs.hubmapconsortium.org/avr/avr-faq.html)<br>
-        &emsp;&emsp;&emsp;Creating Crosswalks Between ASCT+B Tables and Azimuth Reference Maps<br>
+        &emsp;&emsp;&emsp;[Authoring Cell Type Annotation Crosswalks](https://doi.org/10.5281/zenodo.17873777)<br>
         &emsp;&emsp;&emsp;Mapping Experimental Data to the HRA Using OMAPs or Azimuth<br>
-        &emsp;&emsp;&emsp;[Human Reference Atlas Working Group Communications](https://zenodo.org/records/11625313)<br>
+        &emsp;&emsp;&emsp;[Human Reference Atlas Working Group Communications](https://doi.org/10.5281/zenodo.5639622)<br>
   - component: PageSection
     tagline: 3D Reference Object Library
     anchor: 3d-reference-object-library
@@ -88,10 +88,10 @@ content:
       component: Markdown
       data: |
         [3D Reference Object Library](https://docs.google.com/document/d/1NOY6PsjGr1GDa39PZaTxoSvr0Ee4L8rW6lyYqNgyBC0/edit?tab=t.0#heading=h.6ys5lo962o6b)<br>
-        &emsp;&emsp;&emsp;[Creating 3D Models from Datasets](https://zenodo.org/records/7384276)<br>
+        &emsp;&emsp;&emsp;[Creating 3D Models from Datasets](https://doi.org/10.5281/zenodo.7384275)<br>
         &emsp;&emsp;&emsp;Creating Crosswalks between ASCT+B Tables and 3D Reference Objects<br>
-        &emsp;&emsp;&emsp;[3D Reference Object Approval](https://zenodo.org/records/5944197)<br>
-        &emsp;&emsp;&emsp;[Adding 3D Reference Objects to the Human Reference Atlas](https://zenodo.org/records/10358858)<br>
+        &emsp;&emsp;&emsp;[3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)<br>
+        &emsp;&emsp;&emsp;[Adding 3D Reference Objects to the Human Reference Atlas](https://doi.org/10.5281/zenodo.5639651)<br>
   - component: PageSection
     tagline: 2D Functional Tissue Unit (FTU) Reference Object Library
     anchor: 2d-functional-tissue-unit-ftu-reference-object-library
@@ -100,9 +100,9 @@ content:
       component: Markdown
       data: |
         2D Functional Tissue Unit (FTU) Reference Object Library<br>
-        &emsp;&emsp;&emsp;[Creating 2D Illustrations of Functional Tissue Units](https://zenodo.org/records/7409575)<br>
-        &emsp;&emsp;&emsp;[Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://zenodo.org/records/6703377)<br>
-        &emsp;&emsp;&emsp;[Mapping Functional Tissue Unit Illustrations to ASCT+B Tables](https://zenodo.org/records/14851268)<br>
+        &emsp;&emsp;&emsp;[Creating 2D Illustrations of Functional Tissue Units](https://doi.org/10.5281/zenodo.6703107)<br>
+        &emsp;&emsp;&emsp;[Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)<br>
+        &emsp;&emsp;&emsp;[Authoring Crosswalk Tables Between Functional Tissue Unit Illustrations and ASCT+B Tables](https://doi.org/10.5281/zenodo.5748154)<br>
   - component: PageSection
     tagline: Human Reference Atlas Validation and Review
     anchor: human-reference-atlas-validation-and-review
@@ -116,7 +116,7 @@ content:
         &emsp;&emsp;&emsp;Validation Checks Performed by the DO-CMS<br>
         &emsp;&emsp;&emsp;ASCT+B Table Validation with CCF Tools<br>
         &emsp;&emsp;&emsp;ASCT+B Reporter Validation Checks<br>
-        &emsp;&emsp;&emsp;[HRA Editorial Procedures](https://zenodo.org/records/7577521#.Y9R0knbMJmM)<br>
+        &emsp;&emsp;&emsp;[Human Reference Atlas (HRA) Editorial Board Procedures](https://doi.org/10.5281/zenodo.7577520)<br>
   - component: PageSection
     tagline: Human Reference Atlas Tracking and Publication
     anchor: human-reference-atlas-tracking-and-publication
@@ -126,8 +126,11 @@ content:
       data: |
         Human Reference Atlas Tracking and Publication<br>
         &emsp;&emsp;&emsp;Tracking Digital Object Status<br>
-        &emsp;&emsp;&emsp;Maintaining the HRA Portal and Designing Organ Icons<br>
-        &emsp;&emsp;&emsp;[Registering Digital Object Identifiers](https://zenodo.org/records/7384462)<br>
-        &emsp;&emsp;&emsp;Publishing CCF.OWL on BioPortal and OLS<br>
         &emsp;&emsp;&emsp;HRA Release Process<br>
+        &emsp;&emsp;&emsp;Maintaining the HRA Portal and Designing Organ Icons<br>
+        &emsp;&emsp;&emsp;[Registering Digital Object Identifiers](https://doi.org/10.5281/zenodo.7384461)<br>
+        &emsp;&emsp;&emsp;[Setting Up a Mirror Site for the Human Reference Atlas](https://doi.org/10.5281/zenodo.17873664)<br>
+        &emsp;&emsp;&emsp;Publishing CCF.OWL on BioPortal and OLS<br>
+        &emsp;&emsp;&emsp;[Adding and Updating Assets in NIH BioArt Source](https://doi.org/10.5281/zenodo.17873834)<br>
+        &emsp;&emsp;&emsp;[Adding and Updating 3D Reference Objects in the NIH3D Portal](https://doi.org/10.5281/zenodo.17873902)<br>
         &emsp;&emsp;&emsp;[Serving as a Lead Organ Contact](https://doi.org/10.5281/zenodo.15977281)<br>
