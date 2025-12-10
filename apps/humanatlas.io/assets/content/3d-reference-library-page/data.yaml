@@ -1,5 +1,5 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
-title: 3D Organs
+title: 3D Reference Objects
 subtitle: 3D human organ files mapped with ontological terminology.
 action:
   label: Get data

@@ -285,7 +285,7 @@ var menus = [
 				items: [
 					{
 						type: "item",
-						label: "3D Reference Object Library",
+						label: "3D Reference Objects",
 						url: "https://humanatlas.io/3d-reference-library/"
 					},
 					{
@@ -295,7 +295,7 @@ var menus = [
 					},
 					{
 						type: "item",
-						label: "Cell Type Annotations",
+						label: "Cell Type Annotation Crosswalks",
 						url: "https://humanatlas.io/cell-type-annotations/"
 					},
 					{

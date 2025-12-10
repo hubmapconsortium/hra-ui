@@ -1,5 +1,5 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
-title: Cell Type Annotations
+title: Cell Type Annotation Crosswalks
 subtitle: Ontology ID labels for cell type annotation cell types.
 icons: product:cell-type-annotations
 action:

@@ -515,7 +515,7 @@ export const FILTER_CATEGORY_INFO: Record&lt;string, FilterOptionCategory&gt; &#
 /** Stores data for a doType */
 export const DO_INFO: Record&lt;string, ObjectTypeData&gt; &#x3D; {
   &#x27;ref-organ&#x27;: {
-    label: &#x27;3D Organs&#x27;,
+    label: &#x27;3D Reference Objects&#x27;,
     tooltip: {
       description:
         &#x27;3D models of human organ structures, complete with accurate size and position data, to support the creation of a comprehensive 3D model of the human body, with each 3D model object carefully annotated with a proper label and an identifier from the Uberon and FMA ontologies.&#x27;,
@@ -537,7 +537,7 @@ export const DO_INFO: Record&lt;string, ObjectTypeData&gt; &#x3D; {
     documentationUrl: &#x27;https://humanatlas.io/asctb-tables&#x27;,
   },
   ctann: {
-    label: &#x27;Cell Type Annotations&#x27;,
+    label: &#x27;Cell Type Annotation Crosswalks&#x27;,
     tooltip: {
       description:
         &#x27;Azimuth and other cell type annotation tools are used to assign cell types to cells from sc/snRNA-seq studies. Manually compiled crosswalks are used to assign ontology IDs to cell types.&#x27;,
@@ -589,7 +589,7 @@ export const DO_INFO: Record&lt;string, ObjectTypeData&gt; &#x3D; {
     icon: &#x27;landmark&#x27;,
   },
   millitome: {
-    label: &#x27;Millitome&#x27;,
+    label: &#x27;Millitomes&#x27;,
     tooltip: {
       description:
         &#x27;Data for cutting tissue samples using a millitome device. A digital data package that includes an STL file and a spreadsheet for assigning spatial locations to HuBMAP IDs and gathering metadata with information about the size, dimensions, donor sex, and laterality of the reference organ for which the millitome is fitted.&#x27;,
@@ -622,11 +622,8 @@ export const DO_INFO: Record&lt;string, ObjectTypeData&gt; &#x3D; {
     tooltip: {
       description:
         &#x27;Geometry information on the human blood vascular system capturing key attributes of different vessels, such as diameter and length, population, sample size, and reference to the source of data.&#x27;,
-      actionText: &#x27;Learn more&#x27;,
-      actionUrl: &#x27;https://humanatlas.io/vccf&#x27;,
     },
     icon: &#x27;vascular-geometry&#x27;,
-    documentationUrl: &#x27;https://humanatlas.io/vccf&#x27;,
   },
   vocab: {
     label: &#x27;Vocabulary&#x27;,
