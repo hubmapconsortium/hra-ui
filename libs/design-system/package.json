@@ -62,13 +62,13 @@
       "types": "./copyable-url-container/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-copyable-url-container.mjs"
     },
-    "./dialog": {
-      "types": "./dialog/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-dialog.mjs"
-    },
     "./data-viewer": {
       "types": "./data-viewer/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-data-viewer.mjs"
+    },
+    "./dialog": {
+      "types": "./dialog/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-dialog.mjs"
     },
     "./error-pages": {
       "types": "./error-pages/index.d.ts",
@@ -126,13 +126,13 @@
       "types": "./select/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-select.mjs"
     },
-    "./slider": {
-      "types": "./slider/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-slider.mjs"
-    },
     "./snackbar": {
       "types": "./snackbar/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-snackbar.mjs"
+    },
+    "./slider": {
+      "types": "./slider/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-slider.mjs"
     },
     "./table": {
       "types": "./table/index.d.ts",

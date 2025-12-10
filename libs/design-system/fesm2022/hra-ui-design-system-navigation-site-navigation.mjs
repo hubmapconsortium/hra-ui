@@ -214,7 +214,7 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "Functional Tissue Unit (FTU) Illustrations",
+				label: "Functional Tissue Unit Illustrations",
 				url: "https://humanatlas.io/2d-ftu-illustrations"
 			},
 			{
@@ -241,7 +241,7 @@ var menuItems = [
 		children: [
 			{
 				type: "item",
-				label: "Introduction to HRA Development",
+				label: "Development Overview",
 				url: "https://docs.humanatlas.io/dev"
 			},
 			{
@@ -281,7 +281,7 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "Knowledge Graph",
+				label: "Knowledge Graph for Developers",
 				url: "https://docs.humanatlas.io/dev/kg"
 			},
 			{
