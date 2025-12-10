@@ -254,6 +254,10 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
 
 /** HRA version data info */
 export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
+  'v2.4': {
+    label: '10th Release (v2.4)',
+    date: 'December 2025',
+  },
   'v2.3': {
     label: '9th Release (v2.3)',
     date: 'June 2025',
