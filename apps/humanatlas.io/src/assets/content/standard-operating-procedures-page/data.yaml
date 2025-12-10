@@ -72,13 +72,11 @@ content:
       data: |
         [Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B) Tables](https://docs.google.com/document/d/1oppBW06hfCUifii7LAI2MpaFED78atMx-r6ezyzPTqw/edit?tab=t.0#heading=h.6ys5lo962o6b)<br>
         &emsp;&emsp;&emsp;[Authoring ASCT+B Tables](https://doi.org/10.5281/zenodo.5746152)<br>
-        &emsp;&emsp;&emsp;Authoring ASCT+B Tables Using The ASCT+B Generator Python Script<br>
         &emsp;&emsp;&emsp;[Construction of Organ Mapping Antibody Panels (OMAPs)](https://doi.org/10.5281/zenodo.5749882)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[FAQ: Frequently Asked Questions (FAQ) for Organ Mapping Antibody Panels (OMAPs)](https://humanatlas.io/faq/omap)<br>
         &emsp;&emsp;&emsp;[Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)](https://docs.hubmapconsortium.org/avr/avr-faq.html)<br>
         &emsp;&emsp;&emsp;[Authoring Cell Type Annotation Crosswalks](https://doi.org/10.5281/zenodo.17873777)<br>
-        &emsp;&emsp;&emsp;Mapping Experimental Data to the HRA Using OMAPs or Azimuth<br>
         &emsp;&emsp;&emsp;[Human Reference Atlas Working Group Communications](https://doi.org/10.5281/zenodo.5639622)<br>
   - component: PageSection
     tagline: 3D Reference Object Library
@@ -89,7 +87,6 @@ content:
       data: |
         [3D Reference Object Library](https://docs.google.com/document/d/1NOY6PsjGr1GDa39PZaTxoSvr0Ee4L8rW6lyYqNgyBC0/edit?tab=t.0#heading=h.6ys5lo962o6b)<br>
         &emsp;&emsp;&emsp;[Creating 3D Models from Datasets](https://doi.org/10.5281/zenodo.7384275)<br>
-        &emsp;&emsp;&emsp;Creating Crosswalks between ASCT+B Tables and 3D Reference Objects<br>
         &emsp;&emsp;&emsp;[3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)<br>
         &emsp;&emsp;&emsp;[Adding 3D Reference Objects to the Human Reference Atlas](https://doi.org/10.5281/zenodo.5639651)<br>
   - component: PageSection
@@ -113,7 +110,6 @@ content:
         [Human Reference Atlas Validation and Review](https://docs.google.com/document/d/1zT_BTZ3v31juq0hhRMG2Ya36DdZp_9P5muyxWFdOyIU/edit?tab=t.0#heading=h.4ou04n97ttbd)<br>
         &emsp;&emsp;&emsp;Internal Validation of ASCT+B Tables, and 2D and 3D Reference Objects<br>
         &emsp;&emsp;&emsp;External Review of ASCT+B Tables<br>
-        &emsp;&emsp;&emsp;Validation Checks Performed by the DO-CMS<br>
         &emsp;&emsp;&emsp;ASCT+B Table Validation with CCF Tools<br>
         &emsp;&emsp;&emsp;ASCT+B Reporter Validation Checks<br>
         &emsp;&emsp;&emsp;[Human Reference Atlas (HRA) Editorial Board Procedures](https://doi.org/10.5281/zenodo.7577520)<br>
@@ -127,7 +123,6 @@ content:
         Human Reference Atlas Tracking and Publication<br>
         &emsp;&emsp;&emsp;Tracking Digital Object Status<br>
         &emsp;&emsp;&emsp;[HRA Release Process](https://doi.org/10.5281/zenodo.17884703)<br>
-        &emsp;&emsp;&emsp;Maintaining the HRA Portal and Designing Organ Icons<br>
         &emsp;&emsp;&emsp;[Registering Digital Object Identifiers](https://doi.org/10.5281/zenodo.7384461)<br>
         &emsp;&emsp;&emsp;[Setting Up a Mirror Site for the Human Reference Atlas](https://doi.org/10.5281/zenodo.17873664)<br>
         &emsp;&emsp;&emsp;Publishing CCF.OWL on BioPortal and OLS<br>
