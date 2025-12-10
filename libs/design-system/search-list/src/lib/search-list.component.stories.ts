@@ -59,7 +59,11 @@ const meta: Meta<SearchListComponent<SearchListOption>> = {
     },
   },
   args: {
-    selected: ['a', 'abc', 'abcde'],
+    selected: [
+      { id: 'a', label: 'A' },
+      { id: 'abc', label: 'ABC' },
+      { id: 'abcde', label: 'ABCDE' },
+    ],
     disableSearch: false,
     disableRipple: false,
   },
