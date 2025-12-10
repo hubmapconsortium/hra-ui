@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'utils';
 @use 'vars';
 
@@ -37,6 +38,11 @@
 
   .content-filter {
     margin-bottom: 3rem;
+    @include mat.button-toggle-overrides(
+      (
+        background-color: vars.$on-primary,
+      )
+    );
   }
 
   .content-grid {

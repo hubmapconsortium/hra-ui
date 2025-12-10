@@ -11,7 +11,7 @@
     [(value)]="selectedContentType"
   >
     @for (contentType of contentTypes; track contentType) {
-      <mat-button-toggle>{{ contentType }}</mat-button-toggle>
+      <mat-button-toggle [value]="contentType">{{ contentType }}</mat-button-toggle>
     }
   </mat-button-toggle-group>
 
