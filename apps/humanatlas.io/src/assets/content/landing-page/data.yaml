@@ -8,6 +8,12 @@ carouselItems:
     link:
       url: https://www.nature.com/articles/s41592-024-02563-5
   - tagline: New publication
+    description: Exploring endothelial cell environments across organs in spatially resolved omics data
+    imageSrc: assets/content/landing-page/images/carousel6.png
+    action: Read
+    link:
+      url: https://doi.org/10.1101/2025.09.23.678129
+  - tagline: New publication
     description: Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph
     imageSrc: assets/content/landing-page/images/carousel2.png
     action: Read
@@ -46,10 +52,10 @@ countInfo:
     icon: misc:publications
   - count: 73
     label: organs
-    icon: organ:heart
+    icon: misc:heart
   - count: 4719
     label: anatomical structures
-    icon: product:asctb-reporter
+    icon: misc:asctb-reporter
   - count: 1303
     label: cell types
     icon: misc:cell-type
