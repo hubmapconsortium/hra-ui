@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
+import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
@@ -58,6 +59,10 @@ export const appRoutes: Route[] = [
     resolve: {
       data: createYamlSpecResolver('assets/content/visitor-info-page/data.yaml', ContentPageDataSchema),
     },
+  },
+  {
+    path: '500',
+    component: ServerErrorPageComponent,
   },
   {
     path: '**',
