@@ -9,7 +9,6 @@
 .filter-container {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
 
   .top-row {
     display: flex;
@@ -30,6 +29,9 @@
         (
           text-horizontal-padding: 0.75rem,
           text-label-text-font: vars.$label-medium-font,
+          text-label-text-size: vars.$label-medium-size,
+          text-label-text-tracking: vars.$label-medium-tracking,
+          text-label-text-weight: vars.$label-medium-weight,
         )
       );
     }
@@ -64,6 +66,6 @@
   }
 
   mat-divider {
-    margin-top: 0.5rem;
+    margin: 0.25rem 0;
   }
 }
