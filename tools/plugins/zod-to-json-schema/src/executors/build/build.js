@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const devkit_1 = require("@nx/devkit");
 const promises_1 = tslib_1.__importDefault(require("node:fs/promises"));
-const node_os_1 = tslib_1.__importDefault(require("node:os"));
 const node_path_1 = tslib_1.__importDefault(require("node:path"));
 const schema_module_1 = require("./util/schema-module");
 /**
@@ -16,8 +15,6 @@ const runExecutor = async (options, context) => {
     devkit_1.logger.verbose('Starting zod-to-json-schema build executor');
     devkit_1.logger.verbose(`Options: ${JSON.stringify(options, undefined, 2)}`);
     const projectConfig = resolveProjectConfiguration(context);
-    const buildDir = await promises_1.default.mkdtemp(node_path_1.default.join(node_os_1.default.tmpdir(), 'zod-to-json-schema-'));
-    devkit_1.logger.verbose(`Temporary build directory: ${buildDir}`);
     const files = await (0, schema_module_1.findSchemaModules)(context, projectConfig);
     if (files.length === 0) {
         devkit_1.logger.warn('No schema files found in the project. Exiting...');
@@ -25,8 +22,8 @@ const runExecutor = async (options, context) => {
     }
     devkit_1.logger.info(`Found ${files.length} schema files. Starting compilation...`);
     devkit_1.logger.verbose('Schema files: ', files);
-    const compiledFiles = await Promise.all(files.map((file) => (0, schema_module_1.compileSchemaModule)(file, buildDir, context.isVerbose)));
-    const modules = await Promise.all(compiledFiles.map((file) => (0, schema_module_1.loadSchemaModule)(file)));
+    const compiledFiles = await Promise.all(files.map((file) => (0, schema_module_1.compileSchemaModule)(file, context.isVerbose)));
+    const modules = await Promise.all(compiledFiles.map((content) => (0, schema_module_1.loadSchemaModule)(content)));
     devkit_1.logger.info('Compilation complete. Starting convertions...');
     const schemas = files.map((file, index) => (0, schema_module_1.convertSchemaModule)(file, modules[index], options));
     devkit_1.logger.info('Convertions complete. Writing files...');
@@ -40,7 +37,7 @@ const runExecutor = async (options, context) => {
             count++;
         }
     }
-    devkit_1.logger.info(`Wrote ${count} schemas.`);
+    devkit_1.logger.info(`Built ${count} schemas.`);
     devkit_1.logger.info('All done!');
     return { success: true };
 };

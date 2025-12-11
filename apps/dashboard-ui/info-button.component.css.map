@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/buttons/info-button/src/lib/info-button.component.scss"],
-  "sourcesContent": [":host {\n  display: inline-block;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;",
-  "names": []
-}

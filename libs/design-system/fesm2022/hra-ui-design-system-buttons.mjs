@@ -47,8 +47,8 @@ const REEXPORTS = [
 ];
 /** Packages up subpackage angular exports for easier use */
 class ButtonsModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ButtonsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.12", ngImport: i0, type: ButtonsModule, imports: [MatButtonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ButtonsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: ButtonsModule, imports: [MatButtonModule,
             MatButtonToggleModule,
             MatChipsModule,
             IconButtonModule,
@@ -99,7 +99,7 @@ class ButtonsModule {
             TextButtonDirective,
             TextHyperlinkComponent,
             TextHyperlinkDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ButtonsModule, imports: [MatButtonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ButtonsModule, imports: [MatButtonModule,
             MatButtonToggleModule,
             MatChipsModule,
             IconButtonModule,
@@ -116,7 +116,7 @@ class ButtonsModule {
             MatChipsModule,
             IconButtonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: ButtonsModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ButtonsModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: REEXPORTS,

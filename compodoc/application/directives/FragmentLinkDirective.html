@@ -263,7 +263,7 @@ Must be used on <code>&lt;a&gt;</code> or <code>&lt;area&gt;</code> elements.</p
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onClick(event: MouseEvent)</code>
+<code>onClick(event: Event)</code>
                 </td>
             </tr>
 
@@ -297,7 +297,7 @@ Must be used on <code>&lt;a&gt;</code> or <code>&lt;area&gt;</code> elements.</p
                                         <tr>
                                                 <td>event</td>
                                             <td>
-                                                        <code>MouseEvent</code>
+                                                        <code>Event</code>
                                             </td>
 
                                             <td>
@@ -361,9 +361,9 @@ export class FragmentLinkDirective {
    * @param event Click event
    * @returns true if the default handler should run, false otherwise
    */
-  onClick(event: MouseEvent): boolean {
+  onClick(event: Event): boolean {
     const { fragment, router } &#x3D; this;
-    if (!router || isAuxClick(event)) {
+    if (!router || (event instanceof MouseEvent &amp;&amp; isAuxClick(event))) {
       return true;
     }
 

@@ -140,7 +140,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>/home/workflows/workspace/libs/design-system/filter-menu/src/lib/filter-container/filter-container.component.ts</code>
+            <code>/home/workflows/workspace/libs/design-system/filter-container/src/lib/filter-container.component.ts</code>
         </p>
 
 
@@ -237,21 +237,12 @@ import {
   InfoButtonTaglineDirective,
   InfoButtonActionsDirective,
 } from &#x27;@hra-ui/design-system/buttons/info-button&#x27;;
-import { RichTooltipModule } from &#x27;@hra-ui/design-system/tooltips/rich-tooltip&#x27;;
-import { FilterListFlyoutComponent } from &#x27;../filter-list-flyout/filter-list-flyout.component&#x27;;
-import { FilterOptionCategory } from &#x27;../filter-menu.component&#x27;;
-import { ConnectedPosition, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
 
 /** A filter chip representing a selected filter option */
 export interface FilterChip {
   /** Label for the chip */
   label: string;
 }
-
-/** Position of the desktop menu overlay */
-const DESKTOP_MENU_POSITIONS: ConnectedPosition[] &#x3D; [
-  { originX: &#x27;end&#x27;, originY: &#x27;top&#x27;, overlayX: &#x27;start&#x27;, overlayY: &#x27;top&#x27;, offsetX: 16 },
-];
 
 /**
  * Design system filter container component
@@ -267,9 +258,6 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] &#x3D; [
     InfoButtonComponent,
     InfoButtonTaglineDirective,
     InfoButtonActionsDirective,
-    RichTooltipModule,
-    FilterListFlyoutComponent,
-    OverlayModule,
   ],
   templateUrl: &#x27;./filter-container.component.html&#x27;,
   styleUrl: &#x27;./filter-container.component.scss&#x27;,
@@ -279,15 +267,11 @@ export class FilterContainerComponent&lt;T extends FilterChip&gt; {
   /** tagline for the filter category */
   readonly action &#x3D; input.required&lt;string&gt;();
 
-  readonly filter &#x3D; input.required&lt;FilterOptionCategory&gt;();
-
   /** Whether to show the info button with tooltip */
   readonly showTooltip &#x3D; input(false, { transform: booleanAttribute });
 
   /** Array of selected filter chips - two-way bindable */
   readonly chips &#x3D; model&lt;T[]&gt;([]);
-
-  readonly menuActive &#x3D; model&lt;boolean&gt;(false);
 
   /** Whether to show a divider below the container */
   readonly enableDivider &#x3D; input(false, { transform: booleanAttribute });
@@ -295,20 +279,12 @@ export class FilterContainerComponent&lt;T extends FilterChip&gt; {
   /** Emits when the category button is clicked */
   readonly actionClick &#x3D; output&lt;void&gt;();
 
-  /** Overlay positions for the desktop menu */
-  protected readonly desktopMenuPositions &#x3D; DESKTOP_MENU_POSITIONS;
-
   /**
    * Handles the removal of a chip
    * @param chip The chip to remove
    */
   removeChip(chip: T): void {
     this.chips.update((current) &#x3D;&gt; current.filter((c) &#x3D;&gt; c.label !&#x3D;&#x3D; chip.label));
-  }
-
-  toggleMenu(): void {
-    this.menuActive.set(!this.menuActive());
-    this.actionClick.emit();
   }
 }
 </code></pre>

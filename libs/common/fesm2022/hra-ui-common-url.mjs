@@ -102,10 +102,10 @@ class AppUrlPipe {
     transform(value) {
         return this.resolver(value);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: AppUrlPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
-    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "20.3.12", ngImport: i0, type: AppUrlPipe, isStandalone: true, name: "appUrl" });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: AppUrlPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
+    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: AppUrlPipe, isStandalone: true, name: "appUrl" });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: AppUrlPipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: AppUrlPipe, decorators: [{
             type: Pipe,
             args: [{
                     name: 'appUrl',
@@ -219,10 +219,10 @@ class AssetUrlPipe {
     transform(value) {
         return this.resolver(value);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: AssetUrlPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
-    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "20.3.12", ngImport: i0, type: AssetUrlPipe, isStandalone: true, name: "assetUrl" });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: AssetUrlPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
+    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: AssetUrlPipe, isStandalone: true, name: "assetUrl" });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: AssetUrlPipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: AssetUrlPipe, decorators: [{
             type: Pipe,
             args: [{
                     name: 'assetUrl',
@@ -252,10 +252,10 @@ class CssUrlPipe {
     transform(value) {
         return `url("${value}")`;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: CssUrlPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
-    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "20.3.12", ngImport: i0, type: CssUrlPipe, isStandalone: true, name: "cssUrl" });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: CssUrlPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
+    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: CssUrlPipe, isStandalone: true, name: "cssUrl" });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: CssUrlPipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: CssUrlPipe, decorators: [{
             type: Pipe,
             args: [{
                     name: 'cssUrl',
@@ -302,10 +302,10 @@ class PageUrlPipe {
     transform(value) {
         return this.resolver(value);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: PageUrlPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
-    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "20.3.12", ngImport: i0, type: PageUrlPipe, isStandalone: true, name: "pageUrl" });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: PageUrlPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
+    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: PageUrlPipe, isStandalone: true, name: "pageUrl" });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: PageUrlPipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: PageUrlPipe, decorators: [{
             type: Pipe,
             args: [{
                     name: 'pageUrl',
@@ -313,11 +313,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImpo
         }] });
 
 class UrlModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: UrlModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.12", ngImport: i0, type: UrlModule, imports: [AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe], exports: [AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: UrlModule });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: UrlModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: UrlModule, imports: [AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe], exports: [AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: UrlModule });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.12", ngImport: i0, type: UrlModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: UrlModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [AppUrlPipe, AssetUrlPipe, PageUrlPipe, CssUrlPipe],

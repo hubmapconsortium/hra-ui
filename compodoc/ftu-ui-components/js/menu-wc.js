@@ -739,16 +739,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/FilterContainerComponent.html" data-type="entity-link" >FilterContainerComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/FilterListFlyoutComponent.html" data-type="entity-link" >FilterListFlyoutComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/FilterMenuComponent.html" data-type="entity-link" >FilterMenuComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/FilterMenuControlsComponent.html" data-type="entity-link" >FilterMenuControlsComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/FilterMenuCustomizeComponent.html" data-type="entity-link" >FilterMenuCustomizeComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/FlatCardActionsComponent.html" data-type="entity-link" >FlatCardActionsComponent</a>
@@ -776,6 +767,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/GalleryCardComponent.html" data-type="entity-link" >GalleryCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GalleryGridComponent.html" data-type="entity-link" >GalleryGridComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/GoogleMapsComponent.html" data-type="entity-link" >GoogleMapsComponent</a>
@@ -809,6 +803,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/InfoModalComponent.html" data-type="entity-link" >InfoModalComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ListViewComponent.html" data-type="entity-link" >ListViewComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/MarkdownComponent.html" data-type="entity-link" >MarkdownComponent</a>
@@ -890,6 +887,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/SearchFilterComponent.html" data-type="entity-link" >SearchFilterComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SearchListComponent.html" data-type="entity-link" >SearchListComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SectionLinkComponent.html" data-type="entity-link" >SectionLinkComponent</a>
@@ -1005,6 +1005,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="directives/FullscreenDirective.html" data-type="entity-link" >FullscreenDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/GalleryGridItemDirective.html" data-type="entity-link" >GalleryGridItemDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/HubmapMenuGroupDirective.html" data-type="entity-link" >HubmapMenuGroupDirective</a>
@@ -1168,19 +1171,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/FilterChip.html" data-type="entity-link" >FilterChip</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/FilterMenuOption.html" data-type="entity-link" >FilterMenuOption</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/FilterOptionCategory.html" data-type="entity-link" >FilterOptionCategory</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/FilterToggleOption.html" data-type="entity-link" >FilterToggleOption</a>
+                                <a href="interfaces/GalleryGridItemContext.html" data-type="entity-link" >GalleryGridItemContext</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IconConfig.html" data-type="entity-link" >IconConfig</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IconFeature.html" data-type="entity-link" >IconFeature</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ListViewGroup.html" data-type="entity-link" >ListViewGroup</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ListViewItem.html" data-type="entity-link" >ListViewItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/MenuDemoOption.html" data-type="entity-link" >MenuDemoOption</a>
@@ -1214,6 +1220,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/ScrollingOptions.html" data-type="entity-link" >ScrollingOptions</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SearchListOption.html" data-type="entity-link" >SearchListOption</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SinglePageSectionBottomSheetData.html" data-type="entity-link" >SinglePageSectionBottomSheetData</a>

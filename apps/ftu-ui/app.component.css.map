@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/ftu-ui/src/app/app.component.scss"],
-  "sourcesContent": ["@use 'vars';\n\n:host {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n\n  &.app-height {\n    height: 100vh;\n  }\n\n  .main {\n    display: flex;\n    flex: 1;\n    height: calc(100vh - 7.1rem);\n    .content {\n      flex: 1;\n      display: flex;\n      flex-direction: column;\n      overflow: hidden;\n    }\n  }\n}\n"],
-  "mappings": ";AAEA;AACE,WAAA;AACA,kBAAA;AACA,SAAA;;AAEA,KAAA,CAAA;AACE,UAAA;;AAGF,MAAA,CAAA;AACE,WAAA;AACA,QAAA;AACA,UAAA,KAAA,MAAA,EAAA;;AACA,MAAA,CAJF,KAIE,CAAA;AACE,QAAA;AACA,WAAA;AACA,kBAAA;AACA,YAAA;;",
-  "names": []
-}
