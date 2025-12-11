@@ -1,5 +1,5 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
-title: Data overview
+title: Data Overview
 subtitle: |
   The evolving Human Reference Atlas is built with distinct data structures called <a href="/overview-data#digital-objects">digital objects</a>.
   New and updated data is released twice a year on June 15 and December 15.
@@ -22,7 +22,7 @@ content:
         content:
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: 3D Organs
+            tagline: 3D Reference Objects
             icons: product:3d-organ
             content:
               - component: Markdown
@@ -52,7 +52,7 @@ content:
               url: https://lod.humanatlas.io/asct-b
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Cell Type Annotations
+            tagline: Cell Type Annotation Crosswalks
             icons: product:cell-type-annotations
             content:
               - component: Markdown
@@ -84,22 +84,7 @@ content:
               url: https://lod.humanatlas.io/2d-ftu
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Organ Mapping Antibody Panel (OMAP) Tables
-            icons: product:omaps
-            content:
-              - component: Markdown
-                data: Collections of antibodies spatially mapping anatomical structures and cell types.
-            actionsLeft:
-              component: TextHyperlink
-              text: Learn more
-              url: /omap
-            actionsRight:
-              component: TextHyperlink
-              text: Get data
-              url: https://lod.humanatlas.io/omap
-          - component: ActionCard
-            variant: outlined-with-icons
-            tagline: Millitome
+            tagline: Millitomes
             icons: product:millitome
             content:
               - component: Markdown
@@ -114,19 +99,19 @@ content:
               url: https://lod.humanatlas.io/millitome
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Vascular Geometry
-            icons: product:vascular-geometry
+            tagline: Organ Mapping Antibody Panels (OMAPs)
+            icons: product:omaps
             content:
               - component: Markdown
-                data: Human blood vascular system information capturing key attributes of different vessels.
+                data: Collections of antibodies spatially mapping anatomical structures and cell types.
             actionsLeft:
               component: TextHyperlink
               text: Learn more
-              url: /vccf
+              url: /omap
             actionsRight:
               component: TextHyperlink
               text: Get data
-              url: https://lod.humanatlas.io/vascular-geometry
+              url: https://lod.humanatlas.io/omap
   - component: PageSection
     tagline: Collaborator data portals
     anchor: collaborator-data-portals
