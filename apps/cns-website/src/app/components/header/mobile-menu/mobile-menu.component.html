@@ -1,55 +1,53 @@
-<div class="menu-container">
-  <header class="menu-header">
-    <a
-      class="logo"
-      hraFeature="logo"
-      hraClickEvent
-      aria-label="Visit CNS"
-      hraLink="https://cns.iu.edu/"
-      [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
-    >
-    </a>
+<header class="menu-header">
+  <a
+    class="logo"
+    hraFeature="logo"
+    hraClickEvent
+    aria-label="Visit CNS"
+    hraLink="https://cns.iu.edu/"
+    [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
+  >
+  </a>
 
-    <button mat-icon-button (click)="closeMenu.emit()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </header>
+  <button mat-icon-button (click)="closeMenu.emit()">
+    <mat-icon>close</mat-icon>
+  </button>
+</header>
 
-  <mat-divider />
+<mat-divider class="divider" />
 
-  <ng-scrollbar>
-    <mat-accordion displayMode="flat" multi="false">
-      @for (option of menuOptions().options; track option) {
-        @if (option.type === 'item') {
-          <a
-            mat-button
-            hraSecondaryButton
-            hraClickEvent
-            class="item-label"
-            [hraFeature]="option.label | slugify"
-            [hraLink]="option.url"
-            [hraLinkExternal]="option.external"
-          >
-            {{ option.label }}
-          </a>
-        } @else {
-          <mat-expansion-panel class="panel" hideToggle>
-            <mat-expansion-panel-header class="header">
-              <mat-panel-title>
-                {{ option.label }}
-                <mat-icon class="toggle-icon" />
-              </mat-panel-title>
-            </mat-expansion-panel-header>
+<ng-scrollbar class="categories-container">
+  <mat-accordion class="categories" displayMode="flat" multi="false">
+    @for (option of menuOptions().options; track option) {
+      @if (option.type === 'item') {
+        <a
+          mat-button
+          hraSecondaryButton
+          hraClickEvent
+          class="category link"
+          [hraFeature]="option.label | slugify"
+          [hraLink]="option.url"
+          [hraLinkExternal]="option.external"
+        >
+          {{ option.label }}
+        </a>
+      } @else {
+        <mat-expansion-panel class="category panel" hideToggle>
+          <mat-expansion-panel-header class="header">
+            <mat-panel-title class="title">
+              {{ option.label }}
+              <mat-icon class="toggle" />
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-            <cns-menu-content class="content" [menu]="option" />
-          </mat-expansion-panel>
-        }
-
-        <mat-divider />
+          <cns-menu-content class="content" [menu]="option" />
+        </mat-expansion-panel>
       }
-    </mat-accordion>
-  </ng-scrollbar>
-</div>
+
+      <mat-divider class="divider" />
+    }
+  </mat-accordion>
+</ng-scrollbar>
 
 <div class="socials">
   @for (id of socials(); track id) {
