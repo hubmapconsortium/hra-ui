@@ -1,7 +1,7 @@
 import { Directive, input } from '@angular/core';
 
 /** Input options for icon button color */
-export type IconButtonVariant = 'light' | 'dark' | 'color';
+export type IconButtonVariant = 'light' | 'dark' | 'color' | 'inverse';
 
 /**
  * Directive for icon button variants (color)
