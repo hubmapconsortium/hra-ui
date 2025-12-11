@@ -1,6 +1,8 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Millitomes
-subtitle: A unique 3D printed tool for the uniform sectioning of organs
+subtitle:
+  Protocol for automating the spatial registration of tissue by partitioning 3D reference objects into tissue blocks
+  and adding 3D virtual presentations of these tissue blocks to the EUI so data can be explored in 3D
 icons: product:millitome
 action:
   label: Get data
@@ -13,34 +15,197 @@ content:
     content:
       component: Markdown
       data: |
-        A millitome is a device designed to hold a freshly procured human organ and
-        facilitate cutting it into many small tissue blocks for usage in single-cell analysis.
-        A millitome has discrete, equally placed cutting grooves in three dimensions (x, y, and z)
-        to guide a carbon steel cutting knife to produce standard size slices or cubes of tissue material.
-        Millitomes are used to create uniformly sized tissue blocks that match the shape and
-        size of organs from the CCF 3D Reference Object Library.
-
-        This page allows you to download complete millitome sets for 3D-printing.
-
-        Specific download packages are accessed by selecting the organ (i.e., VH_F_Kidney_L = female kidney, left).
-        Each organ folder contains three compressed download packages, distinguished by sample block size
-        (i.e., VH_F_Kidney_L_20 = female kidney, left, 20mm block size).
-
-        Each package contains six 3D-printable .STL files for the requested organ,
-        three each for the bottom and top half.
-        Each millitome comes in three size variations to cover a range of organ sizes: large (115%),
-        medium (100%), small (85%). Also included in each package are six matching lookup files in
-        .CSV file format to record data about the sample blocks taken from the organ.
-
+        The millitome defines a protocol for scaling up the partitioning a human organ model and registering the
+        resulting tissue blocks into extraction sites within the HRA 3D reference objects. The protocol can be implemented
+        using a cutting mold. Alternatively, a projection can align the geometry of samples to reference objects using the
+        [HRA AMAP](https://github.com/cns-iu/hra-amap) process, which also automates the assignment of tissue blocks to extraction sites.
   - component: PageSection
-    tagline: Millitome files
-    anchor: millitome-catalog
-    level: 3
+    tagline: Standard operating procedures (SOPs)
+    anchor: standard-operating-procedures
+    level: 2
     content:
       - component: Markdown
         data: |
-          Download millitome sets for 3D-printing.
+          -  [Constructing a Millitome and Generating Virtual Tissue Blocks](https://doi.org/10.5281/zenodo.7901004)
+          -  [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)
+  - component: PageSection
+    tagline: Templates
+    anchor: templates
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          -  [Dataset Lookup Table](https://docs.google.com/spreadsheets/d/1IAcv-txw63wmiBUTUvqrbjSuocsonvwt/edit?gid=2105616310#gid=2105616310)
+  - component: PageSection
+    tagline: List of millitomes
+    anchor: list-of-millitomes
+    level: 2
+    content:
+      - component: PageTable
+        styles:
+          --hra-table-max-height: 35rem
+        style: alternating
+        enableSort: true
+        columns:
+          - column: Organ
+            label: Organ
+          - column: Sex
+            label: Sex
+          - column: Team
+            label: Team*
+          - column: Initial3D
+            label: Initial 3D model
+            type:
+              type: link
+              urlColumn: initialUrl
+          - column: Transformed3D
+            label: Transformed 3D model
+            type:
+              type: link
+              urlColumn: transformedUrl
+          - column: EUI
+            label: Exploration User Interface
+            type:
+              type: link
+              urlColumn: euiUrl
+        rows:
+          - Organ: Fallopian Tube Left
+            Sex: Female
+            Team: U Penn
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/fallopian-tube-female-left-upenn/v1.0/fallopian-tube-left-millitome.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/fallopian-tube-female-left-upenn/v1.0/fallopian-tube-female-left-upenn.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/fallopian-tube-female-left-upenn/v1.0/index.html
+          - Organ: Fallopian Tube Right
+            Sex: Female
+            Team: U Penn
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/fallopian-tube-female-right-upenn/v1.0/fallopian-tube-right-millitome.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/fallopian-tube-female-right-upenn/v1.0/fallopian-tube-female-right-upenn.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/fallopian-tube-female-right-upenn/v1.0/index.html
+          - Organ: Kidney Left
+            Sex: Female
+            Team: VU
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/kidney-female-left-vu/v1.0/Kidney_7-14-2.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-female-left-vu/v1.0/kidney-female-left-vu.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-female-left-vu/v1.0/index.html
+          - Organ: Kidney Right
+            Sex: Female
+            Team: VU
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/kidney-female-right-vu/v1.0/Kidney_7-14-2.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-female-right-vu/v1.0/kidney-female-right-vu.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-female-right-vu/v1.0/index.html
+          - Organ: Kidney Left
+            Sex: Male
+            Team: VU
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/kidney-male-left-vu/v1.0/Kidney_7-14-2.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-male-left-vu/v1.0/kidney-male-left-vu.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-male-left-vu/v1.0/index.html
+          - Organ: Kidney Right
+            Sex: Male
+            Team: VU
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/kidney-male-right-vu/v1.0/Kidney_7-14-2.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-male-right-vu/v1.0/kidney-male-right-vu.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-male-right-vu/v1.0/index.html
+          - Organ: Ovary Left
+            Sex: Female
+            Team: U Penn
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/ovary-female-left-upenn/v1.0/generic_ovary_left.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/ovary-female-left-upenn/v1.0/ovary-female-left-upenn.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/ovary-female-left-upenn/v1.0/index.html
+          - Organ: Ovary Right
+            Sex: Female
+            Team: U Penn
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/ovary-female-right-upenn/v1.0/generic_ovary_right.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/ovary-female-right-upenn/v1.0/ovary-female-right-upenn.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/ovary-female-right-upenn/v1.0/index.html
+          - Organ: Pancreas
+            Sex: Female
+            Team: UF
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/pancreas-female-uf/v1.0/generic-pancreas-organ.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-female-uf/v1.0/pancreas-female-uf.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-female-uf/v1.0/index.html
+          - Organ: Pancreas
+            Sex: Female
+            Team: VU
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/pancreas-female-vu/v1.0/generic-pancreas-organ.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-female-vu/v1.0/pancreas-female-vu.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-female-vu/v1.0/index.html
+          - Organ: Pancreas
+            Sex: Male
+            Team: UF
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/pancreas-male-uf/v1.0/generic-pancreas-organ.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-male-uf/v1.0/pancreas-male-uf.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-male-uf/v1.0/index.html
+          - Organ: Pancreas
+            Sex: Male
+            Team: VU
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/pancreas-male-vu/v1.0/generic-pancreas-organ.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-male-vu/v1.0/pancreas-male-vu.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-male-vu/v1.0/index.html
+          - Organ: Uterus
+            Sex: Female
+            Team: U Penn
+            Initial3D: Input GLB
+            initialUrl: https://github.com/cns-iu/hra-amap/blob/main/input-data/millitome/uterus-female-upenn/v1.0/uterus-millitome.glb
+            Transformed3D: 3D view
+            transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/uterus-female-upenn/v1.0/uterus-female-upenn.glb
+            EUI: EUI
+            euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/uterus-female-upenn/v1.0/index.html
+      - component: Markdown
+        data: |
+          *Pennsylvania University (U Penn), Vanderbilt University (VU), University of Florida (UF)
+  - component: PageSection
+    tagline: 3D printable millitome molds
+    anchor: 3d-printable-millitome-molds
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The millitome protocol can use a 3D-printed mold that is designed for holding a freshly procured
+          human organ and cutting it into many small tissue blocks (cite). This mold has discrete, equally
+          placed cutting grooves in three dimensions (x, y, and z) to guide a carbon steel cutting knife
+          to produce standard size slices or cubes of tissue material. Millitome molds are used to create
+          uniformly sized tissue blocks that match the shape and size of organs from 3D reference objects.
 
+          The following table provides a listing of downloadable millitome mold packages, categorized by
+          organ, sex, and laterality. Each package is further subdivided by sample block size (10, 15, and
+          20 millimeters) and organ size (large, medium, and small). Each folder also includes six matching
+          lookup tables that record data about the sample blocks taken from the organ.
       - component: PageTable
         styles:
           --hra-table-max-height: 35rem
@@ -55,7 +220,7 @@ content:
           - column: Sex
             label: Sex
           - column: LeftRight
-            label: Left/Right
+            label: Left/right
         rows:
           - Organ: Kidney
             organUrl: https://github.com/hubmapconsortium/hra-millitome/tree/main/millitomes/VH_F_Kidney_L/
