@@ -1,9 +1,52 @@
-<hra-search-filter
-  label="Search"
-  [totalCount]="totalCount()"
-  [viewingCount]="viewingCount()"
-  (searchChange)="search($event)"
-/>
-<hra-grid-container>
-  <ng-content />
-</hra-grid-container>
+<mat-sidenav-container autosize [hasBackdrop]="!isWideScreen()">
+  <mat-sidenav [mode]="!isWideScreen() ? 'over' : 'side'" [opened]="isWideScreen()" [fixedInViewport]="true" #sidenav>
+    <hra-filter-menu [filters]="[]" />
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="search">
+      <hra-search-filter
+        label="Search"
+        [totalCount]="totalCount()"
+        [viewingCount]="viewingCount()"
+        [(search)]="search"
+        (searchChange)="search.set($event)"
+      />
+    </div>
+    @if (viewingCount() === 0) {
+      <ng-container [ngTemplateOutlet]="empty" />
+    } @else {
+      <ng-scrollbar>
+        <hra-grid-container>
+          @if (variant() === 'gallery') {
+            @for (item of filteredGalleryItems(); track $index) {
+              <hra-gallery-card
+                [tagline]="item.name"
+                [imageSrc]="item.imageSrc"
+                [date]="item.date!"
+                [link]="item.link"
+                [external]="item.external || false"
+                [tags]="item.tags || []"
+              />
+            }
+          }
+          @if (variant() === 'profile') {
+            @for (item of filteredGalleryItems(); track $index) {
+              <hra-profile-card [name]="item.name" [pictureUrl]="item.imageSrc" [description]="item.description || ''">
+                <a hraHyperlink target="_blank" rel="noopener noreferrer" class="action-link" [href]="item.link">
+                  {{ item.actionText }} <hra-icon>arrow_right_alt</hra-icon>
+                </a>
+              </hra-profile-card>
+            }
+          }
+        </hra-grid-container>
+      </ng-scrollbar>
+    }
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #empty>
+  <div class="empty">
+    <div>No results. Adjust filters or search again.</div>
+    <button mat-flat-button (click)="search.set('')">Clear filters</button>
+  </div>
+</ng-template>

@@ -1,3 +1,42 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
 :host {
-  display: block;
+  display: flex;
+  height: 100%;
+
+  mat-sidenav {
+    border-right: 1px solid vars.$outline;
+    border-radius: 0;
+  }
+
+  mat-sidenav-container {
+    width: 100%;
+  }
+
+  mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .action-link {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .search {
+    padding: 2rem 2.5rem;
+    display: fixed;
+  }
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    font: vars.$label-large;
+    @include utils.use-font(label, large);
+  }
 }
