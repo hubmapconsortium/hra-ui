@@ -22,7 +22,7 @@ import { HraCommonModule } from '@hra-ui/common';
     PlainTooltipDirective,
   ],
   templateUrl: './medical-illustration-behavior.component.html',
-  styleUrls: ['./medical-illustration-behavior.component.scss'],
+  styleUrl: './medical-illustration-behavior.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MedicalIllustrationBehaviorComponent {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, contentChildren, Directive, TemplateRef, viewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { RichTooltipController } from '../rich-tooltip.types';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
  * Directive to provide tooltip context
@@ -74,7 +74,7 @@ export class RichTooltipCloseDirective {
  */
 @Component({
   selector: 'hra-rich-tooltip-container',
-  imports: [RichTooltipContextDirective, ButtonsModule],
+  imports: [RichTooltipContextDirective, MatButtonModule],
   templateUrl: './rich-tooltip-content.component.html',
   styleUrl: './rich-tooltip-content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

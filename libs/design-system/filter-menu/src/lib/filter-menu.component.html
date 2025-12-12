@@ -1,0 +1,69 @@
+@if (tagline() || description() || enableClose()) {
+  <div hraFeature="header" class="intro section">
+    <div class="tagline">
+      <span class="title">{{ tagline() }}</span>
+      <div class="filler"></div>
+      @if (!isWideScreen() && enableClose()) {
+        <button
+          hraFeature="close"
+          hraClickEvent
+          hraHoverEvent
+          mat-icon-button
+          aria-label="Close filter menu"
+          (click)="closeClick.emit()"
+        >
+          <hra-icon class="close" fontIcon="close" />
+        </button>
+      }
+    </div>
+    <div class="description">{{ description() }}</div>
+  </div>
+}
+
+<ng-scrollbar hraScrollOverflowFade>
+  <div class="customize section">
+    <div class="header">
+      <hra-icon class="icon" fontIcon="tune" />
+      <span class="title">Customize</span>
+    </div>
+    <div class="controls">
+      <ng-content />
+    </div>
+  </div>
+
+  <div class="filters section">
+    <div class="header">
+      <hra-icon class="icon" fontIcon="filter_list" />
+      <span class="title">Filters</span>
+    </div>
+    @for (filter of filters(); track $index) {
+      <hra-filter-container
+        enableDivider
+        cdkOverlayOrigin
+        [action]="filter.label"
+        [chips]="filter.selected ?? []"
+        (chipsChange)="updateFilterSelection(filter, $event)"
+        (actionClick)="activeFilter.set(filter)"
+        #filterMenuOrigin="cdkOverlayOrigin"
+      />
+
+      <ng-template
+        cdkConnectedOverlay
+        cdkConnectedOverlayHasBackdrop="false"
+        cdkConnectedOverlayLockPosition="true"
+        cdkConnectedOverlayPush="true"
+        [cdkConnectedOverlayOpen]="activeFilterId() === filter.id"
+        [cdkConnectedOverlayOrigin]="filterMenuOrigin"
+        [cdkConnectedOverlayPositions]="filterMenuPositions"
+        (overlayOutsideClick)="closeFilterMenu(filter)"
+        (detach)="closeFilterMenu(filter)"
+      >
+        <hra-search-list
+          [options]="filter.options"
+          [selected]="filter.selected ?? []"
+          (selectedChange)="updateFilterSelection(filter, $event)"
+        />
+      </ng-template>
+    }
+  </div>
+</ng-scrollbar>

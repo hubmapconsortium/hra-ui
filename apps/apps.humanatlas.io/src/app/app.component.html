@@ -1,6 +1,5 @@
 <ng-container hraFeature="hra-apps">
   <hra-header
-    baseUrl="https://apps.humanatlas.io/"
     [menus]="menus()"
     [cta]="cta"
     [breadcrumbs]="crumbs()"
@@ -8,10 +7,10 @@
     [(ctaDismissed)]="ctaDismissed"
   >
     @if (!isHraPopVisualizerPage()) {
-      <hra-help-button [action]="getHelpUrl()"></hra-help-button>
+      <hra-help-button [action]="getHelpUrl()" />
     } @else {
       <!-- Help & documentation Menu -->
-      <mat-menu #helpMenu class="more-menu">
+      <mat-menu class="more-menu" #helpMenu>
         <a mat-menu-item href="https://youtu.be/Ueei7BOctzY?si=WGE7HydMaFW1ABqv" target="_blank">
           <div>Watch demo video</div>
         </a>
@@ -21,11 +20,11 @@
         </a>
       </mat-menu>
 
-      <hra-help-button [action]="helpMenu"></hra-help-button>
+      <hra-help-button [action]="helpMenu" />
     }
   </hra-header>
   <div class="content" [class.cta-active]="!ctaDismissed()">
-    <router-outlet></router-outlet>
+    <router-outlet />
   </div>
-  <hra-footer></hra-footer>
+  <hra-footer />
 </ng-container>

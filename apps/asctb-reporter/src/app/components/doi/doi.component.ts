@@ -10,7 +10,7 @@ import { DOI } from '../../models/sheet.model';
   selector: 'app-doi',
   imports: [HraCommonModule, MatIconModule, MatButtonModule, MatBottomSheetModule],
   templateUrl: './doi.component.html',
-  styleUrls: ['./doi.component.scss'],
+  styleUrl: './doi.component.scss',
 })
 export class DoiComponent implements OnInit {
   data = inject<DOI[]>(MAT_BOTTOM_SHEET_DATA);

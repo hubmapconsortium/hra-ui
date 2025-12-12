@@ -2,16 +2,16 @@
   mat-icon-button
   hraFeature="social-media"
   hraClickEvent
+  target="_blank"
+  rel="noopener noreferrer"
   [hraIconButtonVariant]="variant()"
   [hraIconButtonSize]="size()"
   [attr.aria-label]="data().label"
   [attr.href]="data().link"
-  target="_blank"
-  rel="noopener noreferrer"
 >
   @if (data().isFontIcon) {
-    <mat-icon [fontIcon]="data().icon"></mat-icon>
+    <mat-icon [fontIcon]="data().icon" />
   } @else {
-    <mat-icon [svgIcon]="data().icon"></mat-icon>
+    <mat-icon [svgIcon]="data().icon" />
   }
 </a>

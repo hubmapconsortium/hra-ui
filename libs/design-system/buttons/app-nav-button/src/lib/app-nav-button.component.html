@@ -1,5 +1,5 @@
-<a matRipple hraFeature="app-nav" hraClickEvent [attr.href]="link()" target="_blank" rel="noopener noreferrer">
-  <img class="icon" [attr.src]="icon()" alt="" />
+<a matRipple hraFeature="app-nav" hraClickEvent target="_blank" rel="noopener noreferrer" [attr.href]="link()">
+  <img class="icon" alt="" [attr.src]="icon() | assetUrl" />
   <span class="tagline">{{ tagline() }}</span>
   <span class="description">{{ description() }}</span>
 </a>

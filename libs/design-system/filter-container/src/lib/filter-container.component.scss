@@ -1,0 +1,71 @@
+@use '@angular/material' as mat;
+@use '../../../styles/vars';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+
+  .top-row {
+    display: flex;
+    align-items: center;
+    color: vars.$secondary;
+
+    .info-icon {
+      padding: 0.5rem;
+      color: vars.$secondary;
+    }
+
+    .category-button {
+      flex: 0 1 auto;
+      min-width: fit-content;
+      justify-content: flex-start;
+
+      @include mat.button-overrides(
+        (
+          text-horizontal-padding: 0.75rem,
+          text-label-text-font: vars.$label-medium-font,
+          text-label-text-size: vars.$label-medium-size,
+          text-label-text-tracking: vars.$label-medium-tracking,
+          text-label-text-weight: vars.$label-medium-weight,
+        )
+      );
+    }
+  }
+
+  .chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          label-text-font: vars.$label-medium-font,
+          label-text-line-height: vars.$label-medium-line-height,
+          label-text-size: vars.$label-medium-size,
+          label-text-tracking: vars.$label-medium-tracking,
+          label-text-weight: vars.$label-medium-weight,
+          container-height: 2rem,
+        )
+      );
+
+      button[matChipRemove] {
+        mat-icon {
+          font-size: 1.25rem;
+          width: 1.25rem;
+          height: 1.25rem;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  mat-divider {
+    margin: 0.25rem 0;
+  }
+}

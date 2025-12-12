@@ -1,7 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { render } from '@testing-library/angular';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
@@ -9,8 +9,8 @@ import { RichTooltipModule } from '../rich-tooltip.module';
 import { RichTooltipContainerComponent } from './rich-tooltip-content.component';
 
 @Component({
-  imports: [RichTooltipModule, MatIconModule, ButtonsModule],
   selector: 'hra-test-custom-content-host',
+  imports: [RichTooltipModule, MatIconModule, MatButtonModule],
   template: `
     <button
       mat-icon-button
@@ -25,10 +25,10 @@ import { RichTooltipContainerComponent } from './rich-tooltip-content.component'
 class SimpleContentHostComponent {}
 
 @Component({
-  imports: [RichTooltipModule, MatIconModule, ButtonsModule],
   selector: 'hra-test-custom-content-host',
+  imports: [RichTooltipModule, MatIconModule, MatButtonModule],
   template: `
-    <hra-rich-tooltip-container #content data-testid="tooltip-container">
+    <hra-rich-tooltip-container data-testid="tooltip-container" #content>
       <hra-rich-tooltip-tagline> Hello Developer! </hra-rich-tooltip-tagline>
       <hra-rich-tooltip-content> This is some brand new component. </hra-rich-tooltip-content>
       <hra-rich-tooltip-actions>
@@ -36,7 +36,7 @@ class SimpleContentHostComponent {}
         <button mat-button color="accent">Do Nothing</button>
       </hra-rich-tooltip-actions>
     </hra-rich-tooltip-container>
-    <button mat-icon-button [hraRichTooltip]="content" data-testid="tooltip-button">
+    <button mat-icon-button data-testid="tooltip-button" [hraRichTooltip]="content">
       <mat-icon>info</mat-icon>
     </button>
   `,

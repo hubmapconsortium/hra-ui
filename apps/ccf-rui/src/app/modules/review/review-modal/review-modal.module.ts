@@ -7,8 +7,8 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ReviewModalComponent } from './review-modal.component';
 
 @NgModule({
-  declarations: [ReviewModalComponent],
   imports: [HraCommonModule, MatDialogModule, MatIconModule, ButtonsModule],
+  declarations: [ReviewModalComponent],
   exports: [ReviewModalComponent],
 })
 export class ReviewModalModule {}

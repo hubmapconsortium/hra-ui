@@ -1,0 +1,14 @@
+<img class="image" alt="" [attr.src]="imageSrc() | assetUrl" />
+<div class="content">
+  <div class="date">{{ date() }}</div>
+  <a class="tagline-link" hraHyperlink [hraLink]="link()" [hraLinkExternal]="external()" [hraPlainTooltip]="tagline()">
+    {{ tagline() }}
+  </a>
+  @if (tags().length > 0) {
+    <mat-chip-set class="tags">
+      @for (tag of tags(); track tag) {
+        <mat-chip>{{ tag }}</mat-chip>
+      }
+    </mat-chip-set>
+  }
+</div>

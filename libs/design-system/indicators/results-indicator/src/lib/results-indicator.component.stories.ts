@@ -21,3 +21,11 @@ export default meta;
 type Story = StoryObj<ResultsIndicatorComponent>;
 
 export const Default: Story = {};
+
+export const DifferentCounts: Story = {
+  args: {
+    value: 50000,
+    total: 100000,
+    description: 'Viewing',
+  },
+};

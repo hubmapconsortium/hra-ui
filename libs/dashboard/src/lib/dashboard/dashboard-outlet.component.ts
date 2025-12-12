@@ -5,8 +5,8 @@ import { DashboardComponentAnySpec } from './dashboard.model';
 /** Dashboard component outlet component */
 @Component({
   selector: 'hra-dashboard-component-outlet',
-  template: `<ng-container *hraDashboardComponentOutlet="spec()"></ng-container>`,
   imports: [DashboardComponentOutletDirective],
+  template: `<ng-container *hraDashboardComponentOutlet="spec()" />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponentOutletComponent {

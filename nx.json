@@ -27,6 +27,10 @@
     {
       "plugin": "@nx/storybook/plugin",
       "options": {}
+    },
+    {
+      "plugin": "@hra-ui/zod-to-json-schema",
+      "options": {}
     }
   ],
   "targetDefaults": {
@@ -163,7 +167,13 @@
     },
     "build-storybook": {
       "cache": true,
-      "inputs": ["production", "^production", { "externalDependencies": ["storybook", "@storybook/test-runner"] }],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": ["storybook", "@storybook/test-runner"]
+        }
+      ],
       "outputs": ["{options.outputDir}"],
       "options": {
         "configDir": "{projectRoot}/.storybook",
@@ -208,6 +218,11 @@
       "cache": true,
       "inputs": ["production", "^production"],
       "outputs": ["{workspaceRoot}/dist/{projectRoot}/cli.js"]
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "generators": {

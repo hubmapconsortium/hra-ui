@@ -5,7 +5,6 @@ import { Directive } from '@angular/core';
  */
 @Directive({
   selector: '[hraCheckboxErrorVariant]',
-  standalone: true,
   host: {
     class: 'hra-checkbox-error-variant',
   },

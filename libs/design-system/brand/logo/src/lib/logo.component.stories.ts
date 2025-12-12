@@ -1,4 +1,5 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { provideBrandLogos } from './brand-logos';
 import { BrandLogoComponent } from './logo.component';
 
 const meta: Meta<BrandLogoComponent> = {
@@ -36,4 +37,17 @@ export const WhiteLogoText: Story = {
     props: args,
     styles: ['hra-brand-logo { --hra-brand-logo-text-color: white; }'],
   }),
+};
+
+export const CNS: Story = {
+  decorators: [
+    moduleMetadata({
+      providers: [
+        provideBrandLogos([
+          { size: 'regular', src: 'assets/brand/logo/cns-regular.svg', width: 228, height: 39 },
+          { size: 'small', src: 'assets/brand/logo/cns-small.svg', width: 84, height: 28 },
+        ]),
+      ],
+    }),
+  ],
 };

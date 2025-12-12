@@ -5,6 +5,7 @@ import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withVi
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
+import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideIcons } from '@hra-ui/design-system/icons';
 import { ROUTES } from './app.routes';
@@ -30,6 +31,7 @@ export const appConfig: ApplicationConfig = {
       }),
       withViewTransitions(),
     ),
+    provideRouterExt(),
     provideAnimations(),
     provideHttpClient(),
     provideIcons(),

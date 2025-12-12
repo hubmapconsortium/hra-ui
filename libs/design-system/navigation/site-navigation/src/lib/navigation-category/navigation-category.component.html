@@ -1,10 +1,10 @@
 <mat-expansion-panel
   hraFeature="navigation-category-expansion"
+  class="category"
   [hraClickEvent]="{
     label: navigationCategory().label,
     action: expanded() ? 'collapse' : 'expand',
   }"
-  class="category"
   [expanded]="expanded()"
   (expandedChange)="expandedChange.emit($event)"
 >
@@ -15,7 +15,7 @@
 
   <div matExpansionPanelContent>
     @for (navigationItem of navigationCategory().children; track navigationItem) {
-      <hra-navigation-item [navigationItem]="navigationItem" [baseUrl]="baseUrl()" />
+      <hra-navigation-item [navigationItem]="navigationItem" />
     }
   </div>
 </mat-expansion-panel>

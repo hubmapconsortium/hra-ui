@@ -1,0 +1,18 @@
+@use '../../../../../../libs/design-system/styles/vars';
+@use '../../../../../../libs/design-system/styles/utils';
+
+:host {
+  display: block;
+
+  .indicator-text {
+    @include utils.use-font(label, large);
+    color: vars.$secondary;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+  }
+}

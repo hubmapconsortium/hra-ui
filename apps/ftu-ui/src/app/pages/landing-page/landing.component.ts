@@ -27,7 +27,7 @@ const EBI_LINK = 'https://www.ebi.ac.uk/';
   selector: 'ftu-landing',
   imports: [HraCommonModule, ButtonsModule, MatIconModule, IconsModule, RouterModule],
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss'],
+  styleUrl: './landing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingComponent {
@@ -59,5 +59,5 @@ export class LandingComponent {
   /**
    * Computed property that returns the EBI link.
    */
-  protected readonly ebiLink = computed(() => this.appLink1() ?? EBI_LINK);
+  protected readonly ebiLink = computed(() => this.appLink2() ?? EBI_LINK);
 }

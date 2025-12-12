@@ -1,0 +1,37 @@
+@if (!disableSearch()) {
+  <mat-form-field hraFeature="search" hraClickEvent class="search field" subscriptSizing="dynamic">
+    <mat-label class="search-label">Search</mat-label>
+    <mat-icon class="search-icon" matPrefix>search</mat-icon>
+    <input matInput type="text" [(ngModel)]="search" />
+  </mat-form-field>
+}
+
+<ng-scrollbar hraScrollOverflowFade class="filter-options">
+  <mat-selection-list
+    [disableRipple]="disableRipple()"
+    (selectionChange)="selectionUpdate(list.selectedOptions.selected)"
+    #list
+  >
+    @for (option of filteredOptions(); track option.id) {
+      <mat-list-option
+        togglePosition="before"
+        [hraFeature]="option.label | slugify"
+        [value]="option"
+        [selected]="selected().includes(option)"
+        [attr.aria-label]="`Toggle ${option.id}`"
+      >
+        <mat-label class="labels-count">
+          <span class="option-labels">
+            <div class="option-primary-label">{{ option.label }}</div>
+            @if (option.secondaryLabel) {
+              <div class="option-secondary-label">{{ option.secondaryLabel }}</div>
+            }
+          </span>
+          @if (option.count) {
+            <span class="option-count">{{ option.count | number }}</span>
+          }
+        </mat-label>
+      </mat-list-option>
+    }
+  </mat-selection-list>
+</ng-scrollbar>

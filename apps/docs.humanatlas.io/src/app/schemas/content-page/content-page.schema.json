@@ -1,7 +1,170 @@
 {
-  "$ref": "#/definitions/ContentPage",
-  "definitions": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/ContentPageData",
+  "$defs": {
+    "ContentPageData": {
+      "id": "ContentPageData",
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "icons": {
+          "$ref": "#/$defs/IconList"
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "headerContent": {
+          "$ref": "#/$defs/ProjectedContentTemplate"
+        },
+        "content": {
+          "$ref": "#/$defs/ProjectedContentTemplate"
+        }
+      },
+      "required": [
+        "$schema",
+        "title",
+        "subtitle",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "IconList": {
+      "id": "IconList",
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/IconData"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/IconData"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "IconData": {
+      "id": "IconData",
+      "type": "object",
+      "properties": {
+        "svgIcon": {
+          "type": "string"
+        },
+        "fontIcon": {
+          "type": "string"
+        },
+        "fontSet": {
+          "type": "string"
+        },
+        "inline": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ProjectedContentTemplate": {
+      "id": "ProjectedContentTemplate",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AnyContentTemplate"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AnyContentTemplate"
+          }
+        }
+      ]
+    },
+    "AnyContentTemplate": {
+      "id": "AnyContentTemplate",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ActionCard"
+        },
+        {
+          "$ref": "#/$defs/ApiCommand"
+        },
+        {
+          "$ref": "#/$defs/Button"
+        },
+        {
+          "$ref": "#/$defs/CodeBlock"
+        },
+        {
+          "$ref": "#/$defs/DataViewer"
+        },
+        {
+          "$ref": "#/$defs/FlexContainer"
+        },
+        {
+          "$ref": "#/$defs/GridContainer"
+        },
+        {
+          "$ref": "#/$defs/Icon"
+        },
+        {
+          "$ref": "#/$defs/Image"
+        },
+        {
+          "$ref": "#/$defs/Markdown"
+        },
+        {
+          "$ref": "#/$defs/PageSection"
+        },
+        {
+          "$ref": "#/$defs/Table"
+        },
+        {
+          "$ref": "#/$defs/ProfileCard"
+        },
+        {
+          "$ref": "#/$defs/TextHyperlink"
+        },
+        {
+          "$ref": "#/$defs/VersionedDataTable"
+        },
+        {
+          "$ref": "#/$defs/YouTubePlayer"
+        }
+      ]
+    },
     "ActionCard": {
+      "id": "ActionCard",
       "type": "object",
       "properties": {
         "component": {
@@ -9,27 +172,19 @@
           "const": "ActionCard"
         },
         "classes": {
-          "$ref": "#/definitions/Classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/Styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              }
-            },
-            "required": ["id"],
-            "additionalProperties": true
+            "$ref": "#/$defs/Controller"
           }
         },
         "variant": {
-          "type": "string",
-          "enum": ["elevated", "flat", "outlined", "outlined-with-icons"]
+          "$ref": "#/$defs/ActionCardVariant"
         },
         "tagline": {
           "type": "string"
@@ -41,211 +196,27 @@
           "type": "string"
         },
         "icons": {
-          "anyOf": [
-            {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "svgIcon": {
-                      "type": "string"
-                    },
-                    "fontIcon": {
-                      "type": "string"
-                    },
-                    "fontSet": {
-                      "type": "string"
-                    },
-                    "inline": {
-                      "type": "boolean"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              ]
-            },
-            {
-              "type": "array",
-              "items": {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1"
-                  }
-                ]
-              }
-            }
-          ]
+          "$ref": "#/$defs/IconList"
         },
         "content": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/AnyContentTemplate"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/AnyContentTemplate"
-              }
-            }
-          ]
+          "$ref": "#/$defs/ProjectedContentTemplate"
         },
         "actionsLeft": {
-          "$ref": "#/definitions/ActionCard/properties/content"
+          "$ref": "#/$defs/ProjectedContentTemplate"
         },
         "actionsRight": {
-          "$ref": "#/definitions/ActionCard/properties/content"
+          "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": ["component", "variant", "tagline"],
-      "additionalProperties": false
-    },
-    "AnyContentTemplate": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/ActionCard"
-        },
-        {
-          "$ref": "#/definitions/ApiCommand"
-        },
-        {
-          "$ref": "#/definitions/Button"
-        },
-        {
-          "$ref": "#/definitions/CodeBlock"
-        },
-        {
-          "$ref": "#/definitions/DataViewer"
-        },
-        {
-          "$ref": "#/definitions/FlexContainer"
-        },
-        {
-          "$ref": "#/definitions/GridContainer"
-        },
-        {
-          "$ref": "#/definitions/Icon"
-        },
-        {
-          "$ref": "#/definitions/Image"
-        },
-        {
-          "$ref": "#/definitions/Markdown"
-        },
-        {
-          "$ref": "#/definitions/PageSection"
-        },
-        {
-          "$ref": "#/definitions/PageTable"
-        },
-        {
-          "$ref": "#/definitions/ProfileCard"
-        },
-        {
-          "$ref": "#/definitions/TextHyperlink"
-        },
-        {
-          "$ref": "#/definitions/VersionedDataTable"
-        },
-        {
-          "$ref": "#/definitions/YouTubePlayer"
-        }
-      ]
-    },
-    "ApiCommand": {
-      "type": "object",
-      "properties": {
-        "component": {
-          "type": "string",
-          "const": "ApiCommand"
-        },
-        "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
-        },
-        "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
-        },
-        "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
-        },
-        "request": {
-          "type": "string"
-        },
-        "method": {
-          "type": "string",
-          "enum": ["GET", "POST"]
-        },
-        "rightButton": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "icon": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string",
-              "format": "uri"
-            }
-          },
-          "required": ["label"],
-          "additionalProperties": false
-        }
-      },
-      "required": ["component", "request", "method", "rightButton"],
-      "additionalProperties": false
-    },
-    "Button": {
-      "type": "object",
-      "properties": {
-        "component": {
-          "type": "string",
-          "const": "Button"
-        },
-        "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
-        },
-        "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
-        },
-        "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
-        },
-        "label": {
-          "type": "string"
-        },
-        "href": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "enum": ["default", "flat", "cta", "fab"]
-        },
-        "variant": {
-          "type": "string",
-          "enum": ["primary", "secondary"]
-        },
-        "size": {
-          "type": "string",
-          "enum": ["small", "medium"]
-        },
-        "disabled": {
-          "type": "boolean"
-        },
-        "icon": {
-          "type": "string"
-        }
-      },
-      "required": ["component", "label", "href"],
+      "required": [
+        "component",
+        "variant",
+        "tagline"
+      ],
       "additionalProperties": false
     },
     "Classes": {
+      "id": "Classes",
       "anyOf": [
         {
           "type": "string"
@@ -258,11 +229,178 @@
         },
         {
           "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
           "additionalProperties": {}
         }
       ]
     },
+    "Styles": {
+      "id": "Styles",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        }
+      ]
+    },
+    "Controller": {
+      "id": "Controller",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": {}
+    },
+    "ActionCardVariant": {
+      "id": "ActionCardVariant",
+      "type": "string",
+      "enum": [
+        "elevated",
+        "flat",
+        "outlined",
+        "outlined-with-icons"
+      ]
+    },
+    "ApiCommand": {
+      "id": "ApiCommand",
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "ApiCommand"
+        },
+        "classes": {
+          "$ref": "#/$defs/Classes"
+        },
+        "styles": {
+          "$ref": "#/$defs/Styles"
+        },
+        "controllers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
+        },
+        "request": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST"
+          ]
+        },
+        "rightButton": {
+          "$ref": "#/$defs/ApiCommandButton"
+        }
+      },
+      "required": [
+        "component",
+        "request",
+        "method",
+        "rightButton"
+      ],
+      "additionalProperties": false
+    },
+    "ApiCommandButton": {
+      "id": "ApiCommandButton",
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "Button": {
+      "id": "Button",
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "Button"
+        },
+        "classes": {
+          "$ref": "#/$defs/Classes"
+        },
+        "styles": {
+          "$ref": "#/$defs/Styles"
+        },
+        "controllers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
+        },
+        "label": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "default",
+            "flat",
+            "cta",
+            "fab"
+          ]
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary"
+          ]
+        },
+        "size": {
+          "type": "string",
+          "enum": [
+            "small",
+            "medium"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "label",
+        "href"
+      ],
+      "additionalProperties": false
+    },
     "CodeBlock": {
+      "id": "CodeBlock",
       "type": "object",
       "properties": {
         "component": {
@@ -270,13 +408,16 @@
           "const": "CodeBlock"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "code": {
           "type": "string"
@@ -285,10 +426,13 @@
           "type": "string"
         }
       },
-      "required": ["component"],
+      "required": [
+        "component"
+      ],
       "additionalProperties": false
     },
     "DataViewer": {
+      "id": "DataViewer",
       "type": "object",
       "properties": {
         "component": {
@@ -296,17 +440,19 @@
           "const": "DataViewer"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "variant": {
-          "type": "string",
-          "enum": ["ftu", "3d-organ"]
+          "$ref": "#/$defs/DataViewerVariant"
         },
         "githubIconsUrl": {
           "type": "string"
@@ -314,104 +460,151 @@
         "releaseVersionData": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "version": {
-                "type": "string"
-              },
-              "label": {
-                "type": "string"
-              },
-              "date": {
-                "type": "string"
-              },
-              "crosswalkUrl": {
-                "type": "string",
-                "format": "uri"
-              },
-              "extractionsSitesUrl": {
-                "type": "string",
-                "format": "uri"
-              },
-              "referenceOrgansUrl": {
-                "type": "string",
-                "format": "uri"
-              },
-              "organData": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string"
-                    },
-                    "icon": {
-                      "type": "string"
-                    },
-                    "cards": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "label": {
-                            "type": "string"
-                          },
-                          "alt": {
-                            "type": "string"
-                          },
-                          "fileUrl": {
-                            "type": "string",
-                            "format": "uri"
-                          },
-                          "sourceDataUrl": {
-                            "type": "string",
-                            "format": "uri"
-                          },
-                          "fullscreenUrl": {
-                            "type": "string",
-                            "format": "uri"
-                          },
-                          "crosswalkUrl": {
-                            "type": "string",
-                            "format": "uri"
-                          },
-                          "files": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "label": {
-                                  "type": "string"
-                                },
-                                "url": {
-                                  "type": "string",
-                                  "format": "uri"
-                                }
-                              },
-                              "required": ["label", "url"],
-                              "additionalProperties": false
-                            }
-                          }
-                        },
-                        "required": ["label", "fileUrl", "sourceDataUrl", "files"],
-                        "additionalProperties": false
-                      }
-                    }
-                  },
-                  "required": ["label", "icon", "cards"],
-                  "additionalProperties": false
-                }
-              }
-            },
-            "required": ["version", "label", "date", "organData"],
-            "additionalProperties": false
+            "$ref": "#/$defs/ReleaseVersionData"
           }
         }
       },
-      "required": ["component", "variant", "githubIconsUrl", "releaseVersionData"],
+      "required": [
+        "component",
+        "variant",
+        "githubIconsUrl",
+        "releaseVersionData"
+      ],
+      "additionalProperties": false
+    },
+    "DataViewerVariant": {
+      "id": "DataViewerVariant",
+      "type": "string",
+      "enum": [
+        "ftu",
+        "3d-organ"
+      ]
+    },
+    "ReleaseVersionData": {
+      "id": "ReleaseVersionData",
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "crosswalkUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "extractionsSitesUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "referenceOrgansUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "organData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DataViewerOrgan"
+          }
+        }
+      },
+      "required": [
+        "version",
+        "label",
+        "date",
+        "organData"
+      ],
+      "additionalProperties": false
+    },
+    "DataViewerOrgan": {
+      "id": "DataViewerOrgan",
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DataViewerCard"
+          }
+        }
+      },
+      "required": [
+        "label",
+        "icon",
+        "cards"
+      ],
+      "additionalProperties": false
+    },
+    "DataViewerCard": {
+      "id": "DataViewerCard",
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        },
+        "fileUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "sourceDataUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "fullscreenUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "crosswalkUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DataViewerFile"
+          }
+        }
+      },
+      "required": [
+        "label",
+        "fileUrl",
+        "sourceDataUrl",
+        "files"
+      ],
+      "additionalProperties": false
+    },
+    "DataViewerFile": {
+      "id": "DataViewerFile",
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
       "additionalProperties": false
     },
     "FlexContainer": {
+      "id": "FlexContainer",
       "type": "object",
       "properties": {
         "component": {
@@ -419,13 +612,16 @@
           "const": "FlexContainer"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "rowGap": {
           "type": "string"
@@ -436,14 +632,18 @@
         "content": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/AnyContentTemplate"
+            "$ref": "#/$defs/AnyContentTemplate"
           }
         }
       },
-      "required": ["component", "content"],
+      "required": [
+        "component",
+        "content"
+      ],
       "additionalProperties": false
     },
     "GridContainer": {
+      "id": "GridContainer",
       "type": "object",
       "properties": {
         "component": {
@@ -451,25 +651,35 @@
           "const": "GridContainer"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
+        },
+        "itemMinWidth": {
+          "type": "string"
         },
         "content": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/AnyContentTemplate"
+            "$ref": "#/$defs/AnyContentTemplate"
           }
         }
       },
-      "required": ["component", "content"],
+      "required": [
+        "component",
+        "content"
+      ],
       "additionalProperties": false
     },
     "Icon": {
+      "id": "Icon",
       "type": "object",
       "properties": {
         "component": {
@@ -477,31 +687,37 @@
           "const": "Icon"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "svgIcon": {
-          "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/svgIcon"
+          "type": "string"
         },
         "fontIcon": {
-          "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/fontIcon"
+          "type": "string"
         },
         "fontSet": {
-          "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/fontSet"
+          "type": "string"
         },
         "inline": {
-          "$ref": "#/definitions/ActionCard/properties/icons/anyOf/0/anyOf/1/properties/inline"
+          "type": "boolean"
         }
       },
-      "required": ["component"],
+      "required": [
+        "component"
+      ],
       "additionalProperties": false
     },
     "Image": {
+      "id": "Image",
       "type": "object",
       "properties": {
         "component": {
@@ -509,13 +725,16 @@
           "const": "Image"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "src": {
           "type": "string"
@@ -524,10 +743,14 @@
           "type": "string"
         }
       },
-      "required": ["component", "src"],
+      "required": [
+        "component",
+        "src"
+      ],
       "additionalProperties": false
     },
     "Markdown": {
+      "id": "Markdown",
       "type": "object",
       "properties": {
         "component": {
@@ -535,13 +758,16 @@
           "const": "Markdown"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "data": {
           "type": "string"
@@ -550,10 +776,13 @@
           "type": "string"
         }
       },
-      "required": ["component"],
+      "required": [
+        "component"
+      ],
       "additionalProperties": false
     },
     "PageSection": {
+      "id": "PageSection",
       "type": "object",
       "properties": {
         "component": {
@@ -561,13 +790,16 @@
           "const": "PageSection"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "tagline": {
           "type": "string"
@@ -578,19 +810,24 @@
           "maximum": 6
         },
         "icons": {
-          "$ref": "#/definitions/ActionCard/properties/icons"
+          "$ref": "#/$defs/IconList"
         },
         "anchor": {
           "type": "string"
         },
         "content": {
-          "$ref": "#/definitions/ActionCard/properties/content"
+          "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": ["component", "tagline", "content"],
+      "required": [
+        "component",
+        "tagline",
+        "content"
+      ],
       "additionalProperties": false
     },
-    "PageTable": {
+    "Table": {
+      "id": "Table",
       "type": "object",
       "properties": {
         "component": {
@@ -598,13 +835,16 @@
           "const": "PageTable"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "csvUrl": {
           "type": "string"
@@ -612,103 +852,249 @@
         "columns": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "column": {
-                "type": "string"
-              },
-              "label": {
-                "type": "string"
-              },
-              "type": {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "enum": ["text", "numeric", "markdown"]
-                  },
-                  {
-                    "anyOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "const": "text"
-                          }
-                        },
-                        "required": ["type"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "const": "numeric"
-                          }
-                        },
-                        "required": ["type"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "const": "markdown"
-                          }
-                        },
-                        "required": ["type"],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "const": "link"
-                          },
-                          "urlColumn": {
-                            "type": "string"
-                          }
-                        },
-                        "required": ["type", "urlColumn"],
-                        "additionalProperties": false
-                      }
-                    ]
-                  }
-                ],
-                "default": "text"
-              }
-            },
-            "required": ["column", "label"],
-            "additionalProperties": false
+            "$ref": "#/$defs/TableColumn"
           }
         },
         "rows": {
           "type": "array",
           "items": {
-            "type": "object",
-            "additionalProperties": {
-              "type": ["string", "number", "boolean"]
-            }
+            "$ref": "#/$defs/TableRow"
           }
         },
         "style": {
-          "type": "string",
-          "enum": ["alternating", "divider", "basic"]
+          "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {
           "type": "boolean"
         },
         "verticalDividers": {
           "type": "boolean"
+        },
+        "enableSelection": {
+          "type": "boolean"
         }
       },
-      "required": ["component"],
+      "required": [
+        "component"
+      ],
       "additionalProperties": false
     },
+    "TableColumn": {
+      "id": "TableColumn",
+      "type": "object",
+      "properties": {
+        "column": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "default": "text",
+          "anyOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "text"
+                },
+                {
+                  "type": "string",
+                  "const": "numeric"
+                },
+                {
+                  "type": "string",
+                  "const": "markdown"
+                },
+                {
+                  "type": "string",
+                  "const": "icon"
+                },
+                {
+                  "type": "string",
+                  "const": "menu"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TextColumnType"
+                },
+                {
+                  "$ref": "#/$defs/NumericColumnType"
+                },
+                {
+                  "$ref": "#/$defs/MarkdownColumnType"
+                },
+                {
+                  "$ref": "#/$defs/LinkColumnType"
+                },
+                {
+                  "$ref": "#/$defs/IconColumnType"
+                },
+                {
+                  "$ref": "#/$defs/MenuButtonColumnType"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "column",
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TextColumnType": {
+      "id": "TextColumnType",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "text"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "NumericColumnType": {
+      "id": "NumericColumnType",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "numeric"
+        },
+        "computeTotal": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "MarkdownColumnType": {
+      "id": "MarkdownColumnType",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "markdown"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "LinkColumnType": {
+      "id": "LinkColumnType",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "link"
+        },
+        "urlColumn": {
+          "type": "string"
+        },
+        "internal": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "urlColumn"
+      ],
+      "additionalProperties": false
+    },
+    "IconColumnType": {
+      "id": "IconColumnType",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "icon"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "tooltip": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "icon"
+      ],
+      "additionalProperties": false
+    },
+    "MenuButtonColumnType": {
+      "id": "MenuButtonColumnType",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "menu"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "options": {
+          "type": "string"
+        },
+        "tooltip": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "icon",
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "TableRow": {
+      "id": "TableRow",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "array",
+            "items": {}
+          }
+        ]
+      }
+    },
+    "TableVariant": {
+      "id": "TableVariant",
+      "type": "string",
+      "enum": [
+        "alternating",
+        "divider",
+        "basic"
+      ]
+    },
     "ProfileCard": {
+      "id": "ProfileCard",
       "type": "object",
       "properties": {
         "component": {
@@ -716,13 +1102,16 @@
           "const": "ProfileCard"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "name": {
           "type": "string"
@@ -737,24 +1126,19 @@
           "type": "boolean"
         },
         "actions": {
-          "$ref": "#/definitions/ActionCard/properties/content"
+          "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": ["component", "name", "description", "pictureUrl"],
+      "required": [
+        "component",
+        "name",
+        "description",
+        "pictureUrl"
+      ],
       "additionalProperties": false
     },
-    "Styles": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "object",
-          "additionalProperties": {}
-        }
-      ]
-    },
     "TextHyperlink": {
+      "id": "TextHyperlink",
       "type": "object",
       "properties": {
         "component": {
@@ -762,13 +1146,16 @@
           "const": "TextHyperlink"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "text": {
           "type": "string"
@@ -778,12 +1165,20 @@
         },
         "icon": {
           "type": "string"
+        },
+        "external": {
+          "type": "boolean"
         }
       },
-      "required": ["component", "text", "url"],
+      "required": [
+        "component",
+        "text",
+        "url"
+      ],
       "additionalProperties": false
     },
     "VersionedDataTable": {
+      "id": "VersionedDataTable",
       "type": "object",
       "properties": {
         "component": {
@@ -791,25 +1186,31 @@
           "const": "VersionedDataTable"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "columns": {
-          "$ref": "#/definitions/PageTable/properties/columns"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TableColumn"
+          }
         },
         "style": {
-          "$ref": "#/definitions/PageTable/properties/style"
+          "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {
-          "$ref": "#/definitions/PageTable/properties/enableSort"
+          "type": "boolean"
         },
         "verticalDividers": {
-          "$ref": "#/definitions/PageTable/properties/verticalDividers"
+          "type": "boolean"
         },
         "label": {
           "type": "string"
@@ -820,42 +1221,60 @@
         "items": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "csvUrl": {
-                "$ref": "#/definitions/PageTable/properties/csvUrl"
-              },
-              "columns": {
-                "$ref": "#/definitions/PageTable/properties/columns"
-              },
-              "rows": {
-                "$ref": "#/definitions/PageTable/properties/rows"
-              },
-              "style": {
-                "$ref": "#/definitions/PageTable/properties/style"
-              },
-              "enableSort": {
-                "$ref": "#/definitions/PageTable/properties/enableSort"
-              },
-              "verticalDividers": {
-                "$ref": "#/definitions/PageTable/properties/verticalDividers"
-              },
-              "label": {
-                "type": "string"
-              },
-              "version": {
-                "type": "string"
-              }
-            },
-            "required": ["label", "version"],
-            "additionalProperties": false
+            "$ref": "#/$defs/VersionedData"
           }
         }
       },
-      "required": ["component", "label", "items"],
+      "required": [
+        "component",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "VersionedData": {
+      "id": "VersionedData",
+      "type": "object",
+      "properties": {
+        "csvUrl": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TableColumn"
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TableRow"
+          }
+        },
+        "style": {
+          "$ref": "#/$defs/TableVariant"
+        },
+        "enableSort": {
+          "type": "boolean"
+        },
+        "verticalDividers": {
+          "type": "boolean"
+        },
+        "label": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "version"
+      ],
       "additionalProperties": false
     },
     "YouTubePlayer": {
+      "id": "YouTubePlayer",
       "type": "object",
       "properties": {
         "component": {
@@ -863,59 +1282,30 @@
           "const": "YouTubePlayer"
         },
         "classes": {
-          "$ref": "#/definitions/ActionCard/properties/classes"
+          "$ref": "#/$defs/Classes"
         },
         "styles": {
-          "$ref": "#/definitions/ActionCard/properties/styles"
+          "$ref": "#/$defs/Styles"
         },
         "controllers": {
-          "$ref": "#/definitions/ActionCard/properties/controllers"
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
         },
         "videoId": {
           "type": "string"
+        },
+        "label": {
+          "type": "string"
         }
       },
-      "required": ["component", "videoId"],
-      "additionalProperties": false
-    },
-    "ContentPage": {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "subtitle": {
-          "type": "string"
-        },
-        "icons": {
-          "$ref": "#/definitions/ActionCard/properties/icons"
-        },
-        "action": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            }
-          },
-          "required": ["label", "url"],
-          "additionalProperties": false
-        },
-        "headerContent": {
-          "$ref": "#/definitions/ActionCard/properties/content"
-        },
-        "content": {
-          "$ref": "#/definitions/ActionCard/properties/content"
-        }
-      },
-      "required": ["$schema", "title", "subtitle", "content"],
+      "required": [
+        "component",
+        "videoId",
+        "label"
+      ],
       "additionalProperties": false
     }
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  }
 }

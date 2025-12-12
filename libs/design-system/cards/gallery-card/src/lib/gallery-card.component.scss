@@ -1,0 +1,39 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars';
+
+:host {
+  min-width: 17rem;
+  max-width: 28rem;
+
+  .image {
+    width: 100%;
+    max-height: 12.5rem;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    min-height: 6.875rem;
+
+    .date {
+      @include utils.use-font(label, medium);
+      color: vars.$on-secondary-fixed;
+    }
+
+    .tagline-link {
+      color: vars.$tertiary;
+      text-decoration: underline;
+      cursor: pointer;
+      @include utils.use-font(title, medium);
+      @include utils.line-clamp(2);
+    }
+
+    .tags {
+      padding-top: 1.25rem;
+    }
+  }
+}
