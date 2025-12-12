@@ -112,7 +112,7 @@
     },
     "AnyContentTemplate": {
       "id": "AnyContentTemplate",
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/$defs/ActionCard"
         },
@@ -1165,6 +1165,9 @@
         },
         "icon": {
           "type": "string"
+        },
+        "external": {
+          "type": "boolean"
         }
       },
       "required": [

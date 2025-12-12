@@ -218,11 +218,14 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
 /** Maps UBERON id to the correct icon in the design system */
 export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0004537': 'vasculature-thick', //blood vasculature
+  'http://purl.obolibrary.org/obo/UBERON_0014455': 'adipose',
+  'http://purl.obolibrary.org/obo/UBERON_0000467': 'anatomical-systems',
   'http://purl.obolibrary.org/obo/UBERON_0000955': 'brain',
   'http://purl.obolibrary.org/obo/UBERON_0002182': 'extrapulmonary-bronchus',
   'http://purl.obolibrary.org/obo/UBERON_0000970': 'eye',
   'http://purl.obolibrary.org/obo/UBERON_0003889': 'fallopian-tube-left', //fallopian tube
   'http://purl.obolibrary.org/obo/UBERON_0000948': 'heart',
+  'http://purl.obolibrary.org/obo/UBERON_0001066': 'intervertebral-disk',
   'http://purl.obolibrary.org/obo/UBERON_0002113': 'kidneys', //kidney
   'http://purl.obolibrary.org/obo/UBERON_0001465': 'knee',
   'http://purl.obolibrary.org/obo/UBERON_0000059': 'large-intestine',
@@ -231,6 +234,7 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0000029': 'lymph-node', //lymph node
   'http://purl.obolibrary.org/obo/UBERON_0004536': 'lymph-node', //lymph vasculature
   'http://purl.obolibrary.org/obo/UBERON_0000165': 'mouth',
+  'http://purl.obolibrary.org/obo/UBERON_0000383': 'muscular-system',
   'http://purl.obolibrary.org/obo/UBERON_0000992': 'ovaries', //ovary
   'http://purl.obolibrary.org/obo/UBERON_0001264': 'pancreas',
   'http://purl.obolibrary.org/obo/UBERON_0001270': 'pelvis',
@@ -246,16 +250,14 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0000056': 'ureter-right', //ureter
   'http://purl.obolibrary.org/obo/UBERON_0001255': 'bladder', //urinary bladder
   'http://purl.obolibrary.org/obo/UBERON_0000995': 'uterus',
-
-  // May need updates
-  'http://purl.obolibrary.org/obo/UBERON_0001013': 'adipose-tissue',
-  'http://purl.obolibrary.org/obo/UBERON_0000383': 'muscular-system',
-  'http://purl.obolibrary.org/obo/UBERON_0001066': 'intervertebral-disc',
-  'http://purl.obolibrary.org/obo/UBERON_0000467': 'anatomical-systems',
 };
 
 /** HRA version data info */
 export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
+  'v2.4': {
+    label: '10th Release (v2.4)',
+    date: 'December 2025',
+  },
   'v2.3': {
     label: '9th Release (v2.3)',
     date: 'June 2025',
