@@ -21,8 +21,8 @@ content:
         - 5,924 detailed anatomical structures
         - 2,313 precisely classified cell types
         - 2,570 rigorously defined biomarkers
-        - 10 million nodes interconnected by 171 million edges
-        - Approximately 126 GB of graph data
+        - 11 million nodes interconnected by 189 million edges
+        - Approximately 137 GB of graph data
 
         The Knowledge Graph supports semantic queries, detailed analytics, and seamless integration with external applications and platforms.
 
