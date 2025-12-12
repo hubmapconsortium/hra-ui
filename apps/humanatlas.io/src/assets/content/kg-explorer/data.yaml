@@ -1,0 +1,304 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Knowledge Graph
+subtitle: Filter, query, and download Human Reference Atlas digital object data.
+icons: product:knowledge-graph
+headerContent:
+  component: FlexContainer
+  columnGap: 2rem
+  content:
+    - component: Button
+      label: Use app
+      href: https://lod.humanatlas.io
+      type: cta
+    - component: Button
+      label: Read publication
+      href: https://doi.org/10.1038/s41597-025-05183-6
+      type: cta
+      variant: secondary
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        The Human Reference Atlas (HRA) Knowledge Graph is the data backbone connecting HRA apps.
+        It brings together all curated digital objects, such as 3D reference objects, ASCT+B Tables,
+        cell type annotations, ontology vocabularies, and more, into one searchable, browsable graph.
+
+        Instead of looking at each digital object in isolation, the Knowledge Graph helps people:
+          - **Discover what exists in the HRA:** Which organs, data types, schemas, and vocabularies are available
+          - **Understand how things relate:** How an ASCT+B table connects to a 3D reference object,
+            which ASCT+B Table supports a functional tissue unit illustration, which ontologies are used for labeling
+          - **Find reusable assets:** Preview, download, and reuse models, tables, schemas, and vocabularies in your own tools and analyses
+
+        Each item in the Knowledge Graph app is a digital object belonging to one of 13 digital object types.
+        Each digital object has a metadata page with rich details and download options in commonly used formats
+        (for example, tabular files, RDF exports, and GLB 3D model files). Some digital objects may include
+        previews that provide a quick visual sense of the content (e.g., 3D reference objects and functional tissue unit illustrations).
+
+        This page focuses on how any user can explore and reuse the Knowledge Graph through the app.
+  - component: PageSection
+    tagline: Demo video
+    anchor: demo-video
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          A short tutorial video walks through the Knowledge Graph app, showing how to:
+            - Navigate the main interface
+            - Search and filter digital objects
+            - Open digital object metadata pages
+            - Download files and follow links to related resources
+      - component: YouTubePlayer
+        videoId: KFIVSO5F8aE
+        label: KG Explorer demo video
+  - component: PageSection
+    tagline: Search & filter
+    anchor: search-filter
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Use the search bar to look for digital objects by name or label (e.g., “kidney”, “glomerulus”,
+          “FTU illustration”). Search results show matching digital objects across all types. Combine
+          search with filters to narrow down results further. Filters include:
+      - component: PageTable
+        styles:
+          --hra-table-max-height: 35rem
+        style: alternating
+        enableSort: true
+        verticalDividers: true
+        columns:
+          - column: filter
+            label: Filter
+          - column: description
+            label: Description
+        rows:
+          - filter: Digital object type
+            description: Categories of unique data structures that construct the evolving Human Reference Atlas.
+          - filter: HRA release version
+            description: New and updated data is released twice a year on June 15 and December 15.
+          - filter: Organ
+            description: Distinct body structures made of specialized cells and tissues that work together to perform specific biological functions.
+          - filter: Anatomical structure
+            description: A distinct biological entity with a 3D volume and shape, e.g., an organ, functional tissue unit, or cell.
+          - filter: Cell type
+            description: |
+              Mammalian cells are biological units with a defined function that typically have a nucleus and
+              cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs
+              and specialized functions or morphological or molecular features within each organ or region.
+              Tissue is composed of different (resident and transitory) cell types that are characterized or
+              identified via biomarkers.
+          - filter: Biomarker
+            description: |
+              Molecular, histological, morphological, radiological, physiological or anatomical features that
+              help to characterize the biological state of the body. Here we focus on the molecular markers
+              that can be measured to characterize a cell type. They include genes (BG), proteins (BP),
+              metabolites (BM), proteoforms (BF), and lipids (BL).
+      - component: Markdown
+        data: |
+          Combine multiple filters (for example, “Digital object type = Functional Tissue Unit Illustration”
+          and “Organ = kidney”) to quickly find exactly what you need.
+  - component: PageSection
+    tagline: Digital object types
+    anchor: do-types
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Knowledge Graph organizes HRA data into 13 unique digital object types. Below are the types,
+          with their tooltip definitions verbatim, plus brief notes on how they live inside the Knowledge Graph,
+          available file formats to download, and their connection to other digital objects:
+      - component: PageTable
+        styles:
+          --hra-table-max-height: 35rem
+        style: alternating
+        enableSort: true
+        verticalDividers: true
+        columns:
+          - column: doType
+            label: Digital object type
+          - column: withinKg
+            label: Within the Knowledge Graph
+          - column: tooltip
+            label: Tooltip description
+          - column: fileFormats
+            label: File formats
+          - column: crosswalkConnection
+            label: |
+              Crosswalk CSV connection to:
+        rows:
+          - doType: 3D reference objects
+            withinKg: |
+              Each 3D reference organ model is represented as a digital object connected to related tissues,
+              dataset graphs, millitomes, and landmarks. These links enable spatial registration and visualization across apps.
+            tooltip: |
+              3D models of human organ structures, complete with accurate size and position data, to support the
+              creation of a comprehensive 3D model of the human body, with each 3D model object carefully annotated
+              with a proper label and an identifier from the Uberon and FMA ontologies.
+            fileFormats: GLB, CSV, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: ASCT+B tables
+          - doType: Anatomical structures, cell types, and biomarkers (ASCT+B) tables
+            withinKg: |
+              ASCT+B tables are central Knowledge Graph objects linking to ontology vocabularies while capturing partonomy
+              of anatomical structures, cell types, and biomarkers. ASCT+B tables may have relationships to some digital
+              objects via crosswalk CSV files, such as 3D reference objects, cell type annotation crosswalks, functional
+              tissue unit illustrations, and landmarks.
+            tooltip: |
+              Anatomical structures, cell types and biomarkers (ASCT+B) tables are authored by multiple experts across
+              many consortia. Tables capture the partonomy of anatomical structures, cell types, and major biomarkers
+              (e.g., gene, protein, lipid, or metabolic markers). Cellular identity is supported by scientific evidence
+              and linked to ontologies.
+            fileFormats: CSV, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: 3D reference objects, cell type annotation crosswalks, functional tissue unit illustrations, landmarks
+          - doType: Cell type annotation crosswalks
+            withinKg: |
+              Cell type annotation objects record how sc/snRNA-seq data have been labeled, and how those labels connect
+              to ontology IDs. They link assays and datasets to standardized cell type vocabularies.
+            tooltip: |
+              Azimuth and other cell type annotation tools are used to assign cell types to cells from sc/snRNA-seq studies.
+              Manually compiled crosswalks are used to assign ontology IDs to cell types.
+            fileFormats: CSV, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: ASCT+B tables
+          - doType: Collections
+            withinKg: |
+              Collection objects group multiple related digital objects—for example, a new release of the HRA containing
+              all digital objects, or APIs informing all HRA apps, that form a coherent package—making it easier to reuse and reference together.
+            tooltip: Multiple digital objects that create a collection of data.
+            fileFormats: YAML, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: N/A
+          - doType: Dataset graphs
+            withinKg: |
+              Dataset graphs connect anatomical context (where a sample came from in 3D space) to downstream assay results.
+              In the Knowledge Graph, they act as bridges between 3D reference objects, sample metadata, and analytical datasets.
+            tooltip: |
+              Sample registration information submitted by consortium members in HuBMAP or other efforts, including accurate
+              sample sizes and positions. When combined with 3D reference object data, this information helps create 3D visual
+              tissue sample placements. Additionally, the sample information is linked to datasets from researchers' assay
+              analyses that offer deeper insights into the tissue samples.
+            fileFormats: JSON-LD (raw data distribution), JSON, Turtle, JSON-LD (graph data distribution), RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: N/A
+          - doType: Functional tissue unit illustrations
+            withinKg: |
+              Curated medical illustrations for repeated functional tissue units (e.g., nephron, liver lobule) that are
+              explicitly linked to ASCT+B tables and vocabularies. This helps connect visual anatomy to structured, searchable data.
+            tooltip: |
+              A functional tissue unit is the smallest tissue organization, i.e. a set of cells, that performs a unique
+              physiologic function and is replicated multiple times in a whole organ. Functional tissue unit illustrations
+              are linked to ASCT+B tables.
+            fileFormats: SVG, PNG, Adobe Illustrator, CSV, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: ASCT+B tables
+          - doType: Graphs
+            withinKg: |
+              These objects represent externally created RDF graph data, like all HRA cell type populations or all FTU
+              Illustrations, that can be integrated into or referenced from the HRA Knowledge Graph. Graph digital objects
+              extend the Knowledge Graph with additional semantic content.
+            tooltip: Externally created RDF graph data.
+            fileFormats: GLB (HRApop only), JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: N/A
+          - doType: Landmarks
+            withinKg: |
+              Landmark objects are 3D reference shapes near organs (like nearby bones or vessels) that help orient tissue
+              registration. In the graph, they are tied to specific organs and millitome configurations.
+            tooltip: |
+              3D model shapes representing features near organs of interest (e.g., an artery or pelvis bone near a kidney)
+              to help experts accurately orient themselves when registering tissue blocks into a 3D organ.
+            fileFormats: GLB, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: ASCT+B tables
+          - doType: Millitomes
+            withinKg: |
+              Millitomes capture how tissue is physically cut and mapped into 3D reference space. They connect 3D reference
+              organ models, sample registration coordinates, and HuBMAP IDs.
+            tooltip: |
+              Data for cutting tissue samples using a millitome device. A digital data package that includes an STL file
+              and a spreadsheet for assigning spatial locations to HuBMAP IDs and gathering metadata with information about
+              the size, dimensions, donor sex, and laterality of the reference organ for which the millitome is fitted.
+            fileFormats: JSON, Turtle, JSON-LD (graph data), JSON-LD (Raw data distribution), RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: N/A
+          - doType: Organ mapping antibody panels
+            withinKg: |
+              These objects describe curated antibody panels designed for spatial mapping. Within the Knowledge Graph,
+              they link to anatomical structures and cell types from ASCT+B tables and vocabularies.
+            tooltip: Collections of antibodies spatially mapping anatomical structures and cell types.
+            fileFormats: CSV, XLSX, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: N/A
+          - doType: Schemas
+            withinKg: |
+              Schema objects define the structure of normalized data types and shared concepts. They describe the fields,
+              relationships, and constraints used across multiple digital object types and datasets.
+            tooltip: |
+              Describes the structure, i.e., the schema, of the normalized form of a single data type, its metadata, or
+              shared concepts between data types.
+            fileFormats: YAML, JSON-LD (graph data distribution), JSON-LD (raw data distribution), MMD, SVG, PNG, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: N/A
+          - doType: Vascular geometry
+            withinKg: |
+              Vascular geometry objects capture the geometry and attributes of the human blood vascular system.
+              In the Knowledge Graph, they connect to references for multi-scale vascular navigation.
+            tooltip: |
+              Geometry information on the human blood vascular system capturing key attributes of different vessels,
+              such as diameter and length, population, sample size, and reference to the source of data.
+            fileFormats: CSV, JSON, Turtle, JSON-LD, RDF/XML, N-Triple, N-Quads
+            crosswalkConnection: N/A
+          - doType: Vocabulary
+            withinKg: |
+              Vocabulary objects represent the ontologies and controlled vocabularies that give the HRA its shared language.
+              They are heavily linked throughout most digtial objects in the Knowledge Graph.
+            tooltip: |
+              Various reference ontologies and vocabularies that hold standard concepts and relationships used to
+              construct data components. Vocabularies are typically external biomedical ontologies, like CL and Uberon,
+              and they provide a convenient mechanism for querying reference ontologies alongside HRA-curated data.
+            fileFormats: CSV, JSON, Turtle, JSON-LD, RDF/XML (raw data distribution), RDF/XML (graph data distribution), N-Triple, N-Quads
+            crosswalkConnection: N/A
+  - component: PageSection
+    tagline: Digital object metadata pages
+    anchor: do-metadata-pages
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Every digital object in the Knowledge Graph has its own metadata page. From the app table view,
+          click a digital object name to open its metadata page to:
+            - View core details, such as the title, digital object type, description, bibliography, digital
+              object version, contributors, a persistent identifier, and more
+            - Download digital object files in various formats
+            - Cite and reuse the object: Metadata pages include references so you can acknowledge HRA
+              digital objects in publications, presentations, and tools
+  - component: PageSection
+    tagline: Explore developer documentation
+    anchor: explore-documentation
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Ready to work directly with the HRA Knowledge Graph data to query RDF, use APIs, or integrate
+          it into your own tools? See the developer documentation:
+      - component: Button
+        label: Knowledge Graph for Developers
+        href: https://docs.humanatlas.io/dev/kg
+        type: cta
+        variant: secondary
+      - component: GridContainer
+        styles:
+          background-color: rgba(23, 145, 255, 0.12)
+          border-radius: 0.5rem
+          padding: .75rem
+          padding-bottom: 0
+          font: var(--mat-sys-label-large)
+          display: flex
+          gap: .75rem
+        content:
+          - component: TextHyperlink
+            text: ''
+            url: ''
+            icon: info
+            styles:
+              pointer-events: none
+              --mat-sys-tertiary: '#00529C'
+          - component: Markdown
+            data: |
+              The app documentation (this page) and the dev docs are meant to complement each other: Start here
+              to understand what the Knowledge Graph offers, then dive into the dev docs when ready to work
+              with the data programmatically.
