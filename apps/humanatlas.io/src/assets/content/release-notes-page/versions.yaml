@@ -1,5 +1,9 @@
 $schema: ../../../app/schemas/release-notes-version/release-notes-version.schema.json
 versions:
+  - version: '2.4'
+    label: 10th Release (v2.4)
+    date: December 2025
+
   - version: '2.3'
     label: 9th Release (v2.3)
     date: June 2025
