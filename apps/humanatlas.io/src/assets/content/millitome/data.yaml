@@ -1,8 +1,6 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Millitomes
-subtitle:
-  Protocol for automating the spatial registration of tissue by partitioning 3D reference objects into tissue blocks
-  and adding 3D virtual presentations of these tissue blocks to the EUI so data can be explored in 3D
+subtitle: Protocol for registering human tissue at scale into HRA 3D reference objects using millitomes
 icons: product:millitome
 action:
   label: Get data
@@ -15,10 +13,11 @@ content:
     content:
       component: Markdown
       data: |
-        The millitome defines a protocol for scaling up the partitioning a human organ model and registering the
-        resulting tissue blocks into extraction sites within the HRA 3D reference objects. The protocol can be implemented
-        using a cutting mold. Alternatively, a projection can align the geometry of samples to reference objects using the
-        [HRA AMAP](https://github.com/cns-iu/hra-amap) process, which also automates the assignment of tissue blocks to extraction sites.
+        The millitome defines a protocol for scaling up tissue registration by partitioning a human organ
+        model and registering the resulting tissue blocks into extraction sites within the HRA three-dimensional
+        (3D) reference objects. The protocol can be implemented using a 3D cutting mold. Alternatively, a
+        projection can align the geometry of samples to reference objects using the [HRA AMAP](https://github.com/cns-iu/hra-amap)
+        process, which also automates the assignment of tissue blocks to extraction sites.
   - component: PageSection
     tagline: Standard operating procedures (SOPs)
     anchor: standard-operating-procedures
@@ -213,10 +212,10 @@ content:
       - component: Markdown
         data: |
           The millitome protocol can use a 3D-printed mold that is designed for holding a freshly procured
-          human organ and cutting it into many small tissue blocks (cite). This mold has discrete, equally
-          placed cutting grooves in three dimensions (x, y, and z) to guide a carbon steel cutting knife
-          to produce standard size slices or cubes of tissue material. Millitome molds are used to create
-          uniformly sized tissue blocks that match the shape and size of organs from 3D reference objects.
+          human organ and cutting it into many small tissue blocks (see [Using a Millitome](https://doi.org/10.5281/zenodo.7382703)).
+          This mold has discrete, equally placed cutting grooves in three dimensions (x, y, and z) to guide a carbon steel
+          cutting knife to produce standard size slices or cubes of tissue material. Millitome molds are used
+          to create uniformly sized tissue blocks that match the shape and size of organs from 3D reference objects.
 
           The following table provides a listing of downloadable millitome mold packages, categorized by
           organ, sex, and laterality. Each package is further subdivided by sample block size (10, 15, and
