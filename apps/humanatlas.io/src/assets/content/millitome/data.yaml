@@ -49,6 +49,9 @@ content:
         columns:
           - column: Organ
             label: Organ
+            type:
+              type: link
+              urlColumn: purl
           - column: Sex
             label: Sex
           - column: Team
@@ -69,7 +72,8 @@ content:
               type: link
               urlColumn: euiUrl
         rows:
-          - Organ: Fallopian Tube Left
+          - purl: https://purl.humanatlas.io/millitome/fallopian-tube-female-left-upenn/v1.0
+            Organ: Fallopian Tube Left
             Sex: Female
             Team: U Penn
             Initial3D: Input GLB
@@ -78,7 +82,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/fallopian-tube-female-left-upenn/v1.0/fallopian-tube-female-left-upenn.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/fallopian-tube-female-left-upenn/v1.0/index.html
-          - Organ: Fallopian Tube Right
+          - purl: https://purl.humanatlas.io/millitome/fallopian-tube-female-right-upenn/v1.0
+            Organ: Fallopian Tube Right
             Sex: Female
             Team: U Penn
             Initial3D: Input GLB
@@ -87,7 +92,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/fallopian-tube-female-right-upenn/v1.0/fallopian-tube-female-right-upenn.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/fallopian-tube-female-right-upenn/v1.0/index.html
-          - Organ: Kidney Left
+          - purl: https://purl.humanatlas.io/millitome/kidney-female-left-vu/v1.0
+            Organ: Kidney Left
             Sex: Female
             Team: VU
             Initial3D: Input GLB
@@ -96,7 +102,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-female-left-vu/v1.0/kidney-female-left-vu.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-female-left-vu/v1.0/index.html
-          - Organ: Kidney Right
+          - purl: https://purl.humanatlas.io/millitome/kidney-female-right-vu/v1.0
+            Organ: Kidney Right
             Sex: Female
             Team: VU
             Initial3D: Input GLB
@@ -105,7 +112,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-female-right-vu/v1.0/kidney-female-right-vu.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-female-right-vu/v1.0/index.html
-          - Organ: Kidney Left
+          - purl: https://purl.humanatlas.io/millitome/kidney-male-left-vu/v1.0
+            Organ: Kidney Left
             Sex: Male
             Team: VU
             Initial3D: Input GLB
@@ -114,7 +122,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-male-left-vu/v1.0/kidney-male-left-vu.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-male-left-vu/v1.0/index.html
-          - Organ: Kidney Right
+          - purl: https://purl.humanatlas.io/millitome/kidney-male-right-vu/v1.0
+            Organ: Kidney Right
             Sex: Male
             Team: VU
             Initial3D: Input GLB
@@ -123,7 +132,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-male-right-vu/v1.0/kidney-male-right-vu.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/kidney-male-right-vu/v1.0/index.html
-          - Organ: Ovary Left
+          - purl: https://purl.humanatlas.io/millitome/ovary-female-left-upenn/v1.0
+            Organ: Ovary Left
             Sex: Female
             Team: U Penn
             Initial3D: Input GLB
@@ -132,7 +142,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/ovary-female-left-upenn/v1.0/ovary-female-left-upenn.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/ovary-female-left-upenn/v1.0/index.html
-          - Organ: Ovary Right
+          - purl: https://purl.humanatlas.io/millitome/ovary-female-right-upenn/v1.0
+            Organ: Ovary Right
             Sex: Female
             Team: U Penn
             Initial3D: Input GLB
@@ -141,7 +152,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/ovary-female-right-upenn/v1.0/ovary-female-right-upenn.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/ovary-female-right-upenn/v1.0/index.html
-          - Organ: Pancreas
+          - purl: https://purl.humanatlas.io/millitome/pancreas-female-uf/v1.0
+            Organ: Pancreas
             Sex: Female
             Team: UF
             Initial3D: Input GLB
@@ -150,7 +162,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-female-uf/v1.0/pancreas-female-uf.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-female-uf/v1.0/index.html
-          - Organ: Pancreas
+          - purl: https://purl.humanatlas.io/millitome/pancreas-female-vu/v1.0
+            Organ: Pancreas
             Sex: Female
             Team: VU
             Initial3D: Input GLB
@@ -159,7 +172,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-female-vu/v1.0/pancreas-female-vu.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-female-vu/v1.0/index.html
-          - Organ: Pancreas
+          - purl: https://purl.humanatlas.io/millitome/pancreas-male-uf/v1.0
+            Organ: Pancreas
             Sex: Male
             Team: UF
             Initial3D: Input GLB
@@ -168,7 +182,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-male-uf/v1.0/pancreas-male-uf.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-male-uf/v1.0/index.html
-          - Organ: Pancreas
+          - purl: https://purl.humanatlas.io/millitome/pancreas-male-vu/v1.0
+            Organ: Pancreas
             Sex: Male
             Team: VU
             Initial3D: Input GLB
@@ -177,7 +192,8 @@ content:
             transformedUrl: https://sandbox.babylonjs.com/?assetUrl=https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-male-vu/v1.0/pancreas-male-vu.glb
             EUI: EUI
             euiUrl: https://cns-iu.github.io/hra-amap/output-data/millitome/pancreas-male-vu/v1.0/index.html
-          - Organ: Uterus
+          - purl: https://purl.humanatlas.io/millitome/uterus-female-upenn/v1.0
+            Organ: Uterus
             Sex: Female
             Team: U Penn
             Initial3D: Input GLB
