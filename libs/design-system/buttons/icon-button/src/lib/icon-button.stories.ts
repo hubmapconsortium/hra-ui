@@ -26,7 +26,7 @@ const meta: Meta = {
     },
     variant: {
       control: 'select',
-      options: ['dark', 'light', 'color'],
+      options: ['dark', 'light', 'color', 'inverse'],
     },
   },
   decorators: [
