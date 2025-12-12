@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/layouts/table-of-contents/src/lib/table-of-contents-layout.component.scss"],
-  "sourcesContent": [":host {\n  display: flex;\n  flex-direction: row;\n  margin: 2.5rem 1rem;\n\n  .content-container {\n    display: flex;\n    width: 100%;\n    flex-direction: column;\n    gap: 3rem;\n  }\n\n  @media (min-width: 640px) {\n    margin: 2.5rem;\n  }\n\n  @media (min-width: 1100px) {\n    margin-right: 0;\n    gap: 2.5rem;\n\n    .content-container {\n      flex: 1;\n      width: calc(100% - 17rem - 2.5rem);\n      max-width: 87.5rem;\n      margin: auto;\n    }\n\n    .toc {\n      position: sticky;\n      top: var(--hra-table-of-contents-layout-top-offset, 7rem);\n      width: 17rem;\n      height: min-content;\n      margin: 0 0.75rem 1rem;\n    }\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,kBAAA;AACA,UAAA,OAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,SAAA;AACA,kBAAA;AACA,OAAA;;AAGF,OAAA,CAAA,SAAA,EAAA;AAZF;AAaI,YAAA;;;AAGF,OAAA,CAAA,SAAA,EAAA;AAhBF;AAiBI,kBAAA;AACA,SAAA;;AAEA,QAAA,CAfF;AAgBI,UAAA;AACA,WAAA,KAAA,KAAA,EAAA,MAAA,EAAA;AACA,eAAA;AACA,YAAA;;AAGF,QAAA,CAAA;AACE,cAAA;AACA,SAAA,IAAA,yCAAA,EAAA;AACA,WAAA;AACA,YAAA;AACA,YAAA,EAAA,QAAA;;;",
-  "names": []
-}

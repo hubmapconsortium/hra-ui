@@ -21,6 +21,8 @@ declare class ContentButtonComponent {
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<ContentButtonComponent, "hra-content-button", never, { "imageSrc": { "alias": "imageSrc"; "required": true; "isSignal": true; }; "date": { "alias": "date"; "required": true; "isSignal": true; }; "tagline": { "alias": "tagline"; "required": true; "isSignal": true; }; "tags": { "alias": "tags"; "required": false; "isSignal": true; }; "link": { "alias": "link"; "required": true; "isSignal": true; }; "external": { "alias": "external"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
+/** Content button action card type */
+type ContentButton = z.infer<typeof ContentButtonSchema>;
 /** Schema for content button action card data */
 declare const ContentButtonSchema: z.ZodObject<{
     classes: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>, z.ZodRecord<z.ZodString, z.ZodAny>]>>;
@@ -29,7 +31,7 @@ declare const ContentButtonSchema: z.ZodObject<{
         id: z.ZodString;
     }, z.core.$loose>>>;
     component: z.ZodLiteral<"ContentButton">;
-    image: z.ZodString;
+    imageSrc: z.ZodString;
     date: z.ZodString;
     tagline: z.ZodString;
     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -38,3 +40,4 @@ declare const ContentButtonSchema: z.ZodObject<{
 }, z.core.$strip>;
 
 export { ContentButtonComponent, ContentButtonSchema };
+export type { ContentButton };

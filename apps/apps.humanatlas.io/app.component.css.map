@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/apps.humanatlas.io/src/app/app.component.scss"],
-  "sourcesContent": ["@use 'vars';\n\n:host {\n  display: block;\n  background: linear-gradient(to bottom, vars.$surface-container-high, vars.$surface-container-lowest);\n\n  .content {\n    display: flex;\n    flex-direction: column;\n\n    &.cta-active {\n      --hra-table-of-contents-layout-top-offset: 10rem;\n      --hra-site-navigation-top-offset: 7.5rem;\n    }\n  }\n}\n"],
-  "mappings": ";AAEA;AACE,WAAA;AACA;IAAA;MAAA,GAAA,MAAA;MAAA,IAAA,iCAAA;MAAA,IAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,kBAAA;;AAEA,MAAA,CAJF,OAIE,CAAA;AACE,6CAAA;AACA,oCAAA;;",
-  "names": []
-}

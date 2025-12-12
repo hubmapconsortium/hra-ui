@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/apps.humanatlas.io/src/app/pages/us6/embed-sidenav-content/embed-sidenav-content.component.scss"],
-  "sourcesContent": ["@use 'vars';\n\n:host {\n  display: block;\n  height: 100%;\n  width: 100%;\n\n  .card-actions {\n    .filler {\n      flex-grow: 1;\n    }\n  }\n\n  .iframe-container .app-iframe {\n    border: none;\n    width: 28.875rem;\n    height: calc(100vh - 9.5rem);\n  }\n}\n"],
-  "mappings": ";AAEA;AACE,WAAA;AACA,UAAA;AACA,SAAA;;AAGE,MAAA,CAAA,aAAA,CAAA;AACE,aAAA;;AAIJ,MAAA,CAAA,iBAAA,CAAA;AACE,UAAA;AACA,SAAA;AACA,UAAA,KAAA,MAAA,EAAA;;",
-  "names": []
-}
