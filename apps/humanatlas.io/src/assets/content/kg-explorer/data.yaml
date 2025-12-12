@@ -21,39 +21,40 @@ content:
     anchor: overview
     level: 2
     content:
-      component: Markdown
-      data: |
-        The Human Reference Atlas (HRA) Knowledge Graph is the data backbone connecting HRA apps.
-        It brings together all curated digital objects, such as 3D reference objects, ASCT+B Tables,
-        cell type annotations, ontology vocabularies, and more, into one searchable, browsable graph.
-
-        Instead of looking at each digital object in isolation, the Knowledge Graph helps people:
-          - **Discover what exists in the HRA:** Which organs, data types, schemas, and vocabularies are available
-          - **Understand how things relate:** How an ASCT+B table connects to a 3D reference object,
-            which ASCT+B Table supports a functional tissue unit illustration, which ontologies are used for labeling
-          - **Find reusable assets:** Preview, download, and reuse models, tables, schemas, and vocabularies in your own tools and analyses
-
-        Each item in the Knowledge Graph app is a digital object belonging to one of 13 digital object types.
-        Each digital object has a metadata page with rich details and download options in commonly used formats
-        (for example, tabular files, RDF exports, and GLB 3D model files). Some digital objects may include
-        previews that provide a quick visual sense of the content (e.g., 3D reference objects and functional tissue unit illustrations).
-
-        This page focuses on how any user can explore and reuse the Knowledge Graph through the app.
-  - component: PageSection
-    tagline: Demo video
-    anchor: demo-video
-    level: 2
-    content:
       - component: Markdown
         data: |
-          A short tutorial video walks through the Knowledge Graph app, showing how to:
-            - Navigate the main interface
-            - Search and filter digital objects
-            - Open digital object metadata pages
-            - Download files and follow links to related resources
-      - component: YouTubePlayer
-        videoId: KFIVSO5F8aE
-        label: KG Explorer demo video
+          The Human Reference Atlas (HRA) Knowledge Graph is the data backbone connecting HRA apps.
+          It brings together all curated digital objects, such as 3D reference objects, ASCT+B Tables,
+          cell type annotations, ontology vocabularies, and more, into one searchable, browsable graph.
+
+          Instead of looking at each digital object in isolation, the Knowledge Graph helps people:
+            - **Discover what exists in the HRA:** Which organs, data types, schemas, and vocabularies are available
+            - **Understand how things relate:** How an ASCT+B table connects to a 3D reference object,
+              which ASCT+B Table supports a functional tissue unit illustration, which ontologies are used for labeling
+            - **Find reusable assets:** Preview, download, and reuse models, tables, schemas, and vocabularies in your own tools and analyses
+
+          Each item in the Knowledge Graph app is a digital object belonging to one of 13 digital object types.
+          Each digital object has a metadata page with rich details and download options in commonly used formats
+          (for example, tabular files, RDF exports, and GLB 3D model files). Some digital objects may include
+          previews that provide a quick visual sense of the content (e.g., 3D reference objects and functional tissue unit illustrations).
+
+          This page focuses on how any user can explore and reuse the Knowledge Graph through the app.
+
+      - component: PageSection
+        tagline: Demo video
+        anchor: demo-video
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              A short tutorial video walks through the Knowledge Graph app, showing how to:
+                - Navigate the main interface
+                - Search and filter digital objects
+                - Open digital object metadata pages
+                - Download files and follow links to related resources
+          - component: YouTubePlayer
+            videoId: KFIVSO5F8aE
+            label: KG Explorer demo video
   - component: PageSection
     tagline: Search & filter
     anchor: search-filter
@@ -65,10 +66,7 @@ content:
           “FTU illustration”). Search results show matching digital objects across all types. Combine
           search with filters to narrow down results further. Filters include:
       - component: PageTable
-        styles:
-          --hra-table-max-height: 35rem
         style: alternating
-        enableSort: true
         verticalDividers: true
         columns:
           - column: filter
@@ -112,10 +110,7 @@ content:
           with their tooltip definitions verbatim, plus brief notes on how they live inside the Knowledge Graph,
           available file formats to download, and their connection to other digital objects:
       - component: PageTable
-        styles:
-          --hra-table-max-height: 35rem
         style: alternating
-        enableSort: true
         verticalDividers: true
         columns:
           - column: doType
@@ -275,11 +270,10 @@ content:
         data: |
           Ready to work directly with the HRA Knowledge Graph data to query RDF, use APIs, or integrate
           it into your own tools? See the developer documentation:
-      - component: Button
-        label: Knowledge Graph for Developers
-        href: https://docs.humanatlas.io/dev/kg
-        type: cta
-        variant: secondary
+      - component: TextHyperlink
+        text: Knowledge Graph for Developers
+        url: https://docs.humanatlas.io/dev/kg
+        icon: arrow_right_alt
       - component: GridContainer
         styles:
           background-color: rgba(23, 145, 255, 0.12)
