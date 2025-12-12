@@ -3,10 +3,9 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { DigitalObjectsJsonLd, HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
 import { catchError, map, of } from 'rxjs';
-
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
+import { injectMirrorUrl } from './endpoints';
 import { getDocumentationUrl, getProductLabel } from './utils';
-import { environment } from '../../environments/environment';
 
 /**
  * Creates a resolver that fetches the digital object data from a url
@@ -29,8 +28,9 @@ export function doMetadataResolver(): ResolveFn<DigitalObjectMetadata> {
     const name = route.paramMap.get('name') || '';
     const version = route.paramMap.get('version') || '';
     const http = inject(HttpClient);
+    const mirrorUrl = injectMirrorUrl();
     return http
-      .get(`${environment.mirrorUrl}/${type}/${name}/${version}/metadata.json`, { responseType: 'json' })
+      .get(`${mirrorUrl()}/${type}/${name}/${version}/metadata.json`, { responseType: 'json' })
       .pipe(catchError(() => of(undefined)))
       .pipe(map((data) => data as DigitalObjectMetadata));
   };

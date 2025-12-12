@@ -1,9 +1,18 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  Signal,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { HraKgService } from '@hra-api/ng-client';
+import { DigitalObjectsJsonLd, HraKgService } from '@hra-api/ng-client';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -11,6 +20,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { MarkdownModule } from 'ngx-markdown';
 import { HelpMenuOptions } from './app.routes';
+import { setMirrorUrl, setRemoteApiEndpoint } from './utils/endpoints';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
 
@@ -102,6 +112,9 @@ export class AppComponent extends BaseApplicationComponent {
   /** Id of digital object computed from params */
   readonly objectId = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
 
+  /** Digital objects */
+  private readonly digitalObjects: Signal<DigitalObjectsJsonLd>;
+
   /**
    * Gets the page title for breadcrumbs
    */
@@ -130,7 +143,14 @@ export class AppComponent extends BaseApplicationComponent {
       }
     });
 
-    this.router.events.subscribe(() => {
+    effect(() => {
+      const id = this.objectId();
+      const objects = this.digitalObjects();
+      const match = objects['@graph']?.find((object) => object['@id'] === id);
+      this.pageTitle.set(match?.title || '');
+    });
+
+    this.router.events.pipe(takeUntilDestroyed()).subscribe(() => {
       const type = this.route.snapshot.root.firstChild?.params['type'];
       const name = this.route.snapshot.root.firstChild?.params['name'];
       if (type && name) {
@@ -140,11 +160,16 @@ export class AppComponent extends BaseApplicationComponent {
       }
     });
 
-    toObservable(this.objectId).subscribe((id) => {
-      this.kg.digitalObjects().subscribe((data) => {
-        const match = data['@graph']?.find((object) => object['@id'] === id);
-        this.pageTitle.set(match?.title || '');
-      });
-    });
+    const el = inject(ElementRef).nativeElement as HTMLElement;
+    const apiEndpoint = el.getAttribute('remote-api-endpoint');
+    if (apiEndpoint) {
+      setRemoteApiEndpoint(apiEndpoint);
+    }
+    const mirrorUrl = el.getAttribute('mirror-url');
+    if (mirrorUrl) {
+      setMirrorUrl(mirrorUrl);
+    }
+
+    this.digitalObjects = toSignal(this.kg.digitalObjects(), { initialValue: {} });
   }
 }
