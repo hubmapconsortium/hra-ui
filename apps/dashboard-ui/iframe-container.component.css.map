@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/dashboard/src/lib/components/iframe-container/iframe-container.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n\n  .iframe-container {\n    width: 100%;\n\n    ::ng-deep {\n      .content {\n        height: 100%;\n      }\n\n      iframe {\n        width: 100%;\n        height: 100%;\n        border: 0px;\n      }\n    }\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA,CAAA;AACE,SAAA;;AAGE,MAAA,CAJJ,iBAII,UAAA,CAAA;AACE,UAAA;;AAGF,MAAA,CARJ,iBAQI,UAAA;AACE,SAAA;AACA,UAAA;AACA,UAAA;;",
+  "names": []
+}

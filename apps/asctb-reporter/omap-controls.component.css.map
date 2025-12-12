@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/asctb-reporter/src/app/components/omap-controls/omap-controls.component.scss"],
+  "sourcesContent": ["@import './../../../assets/stylesheets/_colors.scss';\n\n.mat-expansion-panel:not([class*='mat-elevation-z']) {\n  box-shadow: none;\n}\n\n.mat-expansion-panel-header:not(.compare) {\n  border-top-left-radius: 0.5rem !important;\n  border-top-right-radius: 0.5rem !important;\n}\n\n.mat-expansion-panel-header {\n  transition: all 0.3s;\n  background-color: $secondary !important;\n  padding-left: 0.9375rem !important;\n  padding-right: 0.9375rem !important;\n  border-top-left-radius: 0.5rem !important;\n  border-top-right-radius: 0.5rem !important;\n}\n\n.mat-expansion-panel-header:hover {\n  background-color: darken($color: $secondary, $amount: 8%) !important;\n}\n\n.checkbox-label {\n  font-size: 0.89rem;\n}\n"],
+  "mappings": ";AAEA,CAAA,mBAAA,KAAA,CAAA;AACE,cAAA;;AAGF,CAAA,0BAAA,KAAA,CAAA;AACE,0BAAA;AACA,2BAAA;;AAGF,CALA;AAME,cAAA,IAAA;AACA,oBAAA;AACA,gBAAA;AACA,iBAAA;AACA,0BAAA;AACA,2BAAA;;AAGF,CAdA,0BAcA;AACE,oBAAA,IAAA,KAAA,EAAA,KAAA,EAAA;;AAGF,CAAA;AACE,aAAA;;",
+  "names": []
+}

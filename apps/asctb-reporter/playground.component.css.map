@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/asctb-reporter/src/app/modules/playground/playground.component.scss"],
+  "sourcesContent": ["app-tree::ng-deep > div {\n  height: calc(100vh - 15.2rem) !important;\n}\n\n.jexcel_about {\n  visibility: none !important;\n}\n\n::ng-deep .jexcel tbody tr:nth-child(11) {\n  font-weight: bold;\n}\n\n.remove-border-bottom ::ng-deep .mat-tab-header {\n  // border-bottom: none;\n  border-bottom: 0.1875rem solid #444a6510;\n}\n\n::ng-deep .mat-tab-labels {\n  background-color: white !important;\n  border: 0rem !important;\n}\n\n::ng-deep .mat-mdc-tab.mdc-tab {\n  padding: 0rem 3.75rem;\n}\n\n::ng-deep .jexcel > tbody > tr > td:nth-child(2) {\n  border: 0.0625rem solid #e3e3e3;\n  overflow: visible;\n}\n\n::ng-deep .jexcel > thead > tr > td {\n  border: 0.0625rem solid #e3e3e3;\n  overflow: visible;\n}\n"],
+  "mappings": ";AAAA,QAAA,UAAA,EAAA;AACE,UAAA,KAAA,MAAA,EAAA;;AAGF,CAAA;AACE,cAAA;;AAGF,UAAA,CAAA,OAAA,MAAA,EAAA;AACE,eAAA;;AAGF,CAAA,qBAAA,UAAA,CAAA;AAEE,iBAAA,UAAA,MAAA,KAAA,EAAA,EAAA,EAAA,EAAA,GAAA,EAAA;;AAGF,UAAA,CAAA;AACE,oBAAA;AACA,UAAA;;AAGF,UAAA,CAAA,WAAA,CAAA;AACE,WAAA,KAAA;;AAGF,UAAA,CAlBA,OAkBA,EAAA,MAAA,EAAA,GAAA,EAAA,EAAA;AACE,UAAA,UAAA,MAAA;AACA,YAAA;;AAGF,UAAA,CAvBA,OAuBA,EAAA,MAAA,EAAA,GAAA,EAAA;AACE,UAAA,UAAA,MAAA;AACA,YAAA;;",
+  "names": []
+}
