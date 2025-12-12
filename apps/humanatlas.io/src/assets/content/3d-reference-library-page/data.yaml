@@ -60,6 +60,7 @@ content:
           - version: '10'
             label: 10th Release (v2.4)
             date: December 2025
+            crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/asct-b-3d-models-crosswalk/v1.9/assets/asct-b-3d-models-crosswalk.csv
             organData:
               - label: All Organs
                 icon: organ:all-organs

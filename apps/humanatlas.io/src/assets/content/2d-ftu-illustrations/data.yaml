@@ -52,6 +52,7 @@ content:
         - version: '2.4'
           label: 10th Release (v2.4)
           date: December 2025
+          crosswalkUrl: https://cdn.humanatlas.io/digital-objects/2d-ftu/asct-b-2d-models-crosswalk/v1.5/assets/asct-b-2d-models-crosswalk.csv
           organData:
             - label: Kidney
               icon: organ:kidneys
