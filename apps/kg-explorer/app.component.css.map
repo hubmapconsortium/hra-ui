@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/kg-explorer/src/app/app.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n\n  .content {\n    display: flex;\n    flex-direction: column;\n  }\n\n  hra-footer {\n    position: relative;\n    z-index: 1;\n  }\n\n  ::ng-deep .navigation {\n    display: none !important;\n\n    @media (min-width: 640px) {\n      display: flex !important;\n    }\n  }\n}\n\n::ng-deep .help-menu {\n  width: 17.75rem;\n\n  .option {\n    min-height: 3rem;\n  }\n\n  .container {\n    display: flex;\n    flex-direction: column;\n    gap: 0.125rem;\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,kBAAA;;AAGF,MAAA;AACE,YAAA;AACA,WAAA;;AAGF,MAAA,UAAA,CAAA;AACE,WAAA;;AAEA,OAAA,CAAA,SAAA,EAAA;AAHF,QAAA,UAAA,CAAA;AAII,aAAA;;;AAKN,UAAA,CAAA;AACE,SAAA;;AAEA,UAAA,CAHF,UAGE,CAAA;AACE,cAAA;;AAGF,UAAA,CAPF,UAOE,CAAA;AACE,WAAA;AACA,kBAAA;AACA,OAAA;;",
-  "names": []
-}

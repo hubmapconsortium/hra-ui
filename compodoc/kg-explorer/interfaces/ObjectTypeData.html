@@ -587,11 +587,14 @@ export const DO_INFO: Record&lt;string, ObjectTypeData&gt; &#x3D; {
 /** Maps UBERON id to the correct icon in the design system */
 export const ORGAN_ICON_MAP: Record&lt;string, string&gt; &#x3D; {
   &#x27;http://purl.obolibrary.org/obo/UBERON_0004537&#x27;: &#x27;vasculature-thick&#x27;, //blood vasculature
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0014455&#x27;: &#x27;adipose&#x27;,
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0000467&#x27;: &#x27;anatomical-systems&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000955&#x27;: &#x27;brain&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0002182&#x27;: &#x27;extrapulmonary-bronchus&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000970&#x27;: &#x27;eye&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0003889&#x27;: &#x27;fallopian-tube-left&#x27;, //fallopian tube
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000948&#x27;: &#x27;heart&#x27;,
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0001066&#x27;: &#x27;intervertebral-disk&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0002113&#x27;: &#x27;kidneys&#x27;, //kidney
   &#x27;http://purl.obolibrary.org/obo/UBERON_0001465&#x27;: &#x27;knee&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000059&#x27;: &#x27;large-intestine&#x27;,
@@ -600,6 +603,7 @@ export const ORGAN_ICON_MAP: Record&lt;string, string&gt; &#x3D; {
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000029&#x27;: &#x27;lymph-node&#x27;, //lymph node
   &#x27;http://purl.obolibrary.org/obo/UBERON_0004536&#x27;: &#x27;lymph-node&#x27;, //lymph vasculature
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000165&#x27;: &#x27;mouth&#x27;,
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0000383&#x27;: &#x27;muscular-system&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000992&#x27;: &#x27;ovaries&#x27;, //ovary
   &#x27;http://purl.obolibrary.org/obo/UBERON_0001264&#x27;: &#x27;pancreas&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0001270&#x27;: &#x27;pelvis&#x27;,
@@ -615,16 +619,14 @@ export const ORGAN_ICON_MAP: Record&lt;string, string&gt; &#x3D; {
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000056&#x27;: &#x27;ureter-right&#x27;, //ureter
   &#x27;http://purl.obolibrary.org/obo/UBERON_0001255&#x27;: &#x27;bladder&#x27;, //urinary bladder
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000995&#x27;: &#x27;uterus&#x27;,
-
-  // May need updates
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0001013&#x27;: &#x27;adipose-tissue&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000383&#x27;: &#x27;muscular-system&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0001066&#x27;: &#x27;intervertebral-disc&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000467&#x27;: &#x27;anatomical-systems&#x27;,
 };
 
 /** HRA version data info */
 export const HRA_VERSION_DATA: Record&lt;string, { label: string; date: string }&gt; &#x3D; {
+  &#x27;v2.4&#x27;: {
+    label: &#x27;10th Release (v2.4)&#x27;,
+    date: &#x27;December 2025&#x27;,
+  },
   &#x27;v2.3&#x27;: {
     label: &#x27;9th Release (v2.3)&#x27;,
     date: &#x27;June 2025&#x27;,

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/humanatlas.io/src/app/components/data-viewer-with-query-params/data-viewer-with-query-params.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;",
-  "names": []
-}

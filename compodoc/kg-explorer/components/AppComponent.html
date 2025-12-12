@@ -194,7 +194,6 @@
                             <code>MarkdownModule</code>
                             <code>ButtonsModule</code>
                             <code>IconsModule</code>
-                            <code>PlainTooltipDirective</code>
                             <code>MatMenuModule</code>
                             <code>MatDividerModule</code>
                 </td>
@@ -296,7 +295,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/app.component.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/app.component.ts:116</a></div>
                             </td>
                         </tr>
 
@@ -355,7 +354,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/app.component.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/app.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -394,7 +393,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/app.component.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/app.component.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -433,7 +432,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/app.component.ts:96</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/app.component.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -471,7 +470,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/app.component.ts:87</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/app.component.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -510,7 +509,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/app.component.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/app.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -548,7 +547,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/app.component.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/app.component.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -586,7 +585,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/app.component.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/app.component.ts:110</a></div>
                         </td>
                     </tr>
 
@@ -625,7 +624,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/app.component.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/app.component.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -644,20 +643,29 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from &#x27;@angular/core&#x27;;
-import { toObservable } from &#x27;@angular/core/rxjs-interop&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  Signal,
+  signal,
+} from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed, toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
 import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
 import { ActivatedRoute, Router, RouterModule } from &#x27;@angular/router&#x27;;
-import { HraKgService } from &#x27;@hra-api/ng-client&#x27;;
+import { DigitalObjectsJsonLd, HraKgService } from &#x27;@hra-api/ng-client&#x27;;
 import { BaseApplicationComponent } from &#x27;@hra-ui/application&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
 import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
-import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 import { MarkdownModule } from &#x27;ngx-markdown&#x27;;
 import { HelpMenuOptions } from &#x27;./app.routes&#x27;;
+import { setMirrorUrl, setRemoteApiEndpoint } from &#x27;./utils/endpoints&#x27;;
 import { isNavigating } from &#x27;./utils/navigation&#x27;;
 import { routeData } from &#x27;./utils/route-data&#x27;;
 
@@ -691,7 +699,6 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] &#x3D; [
     MarkdownModule,
     ButtonsModule,
     IconsModule,
-    PlainTooltipDirective,
     MatMenuModule,
     MatDividerModule,
   ],
@@ -750,6 +757,9 @@ export class AppComponent extends BaseApplicationComponent {
   /** Id of digital object computed from params */
   readonly objectId &#x3D; computed(() &#x3D;&gt; [&#x27;https://lod.humanatlas.io&#x27;].concat(this.params()).join(&#x27;/&#x27;));
 
+  /** Digital objects */
+  private readonly digitalObjects: Signal&lt;DigitalObjectsJsonLd&gt;;
+
   /**
    * Gets the page title for breadcrumbs
    */
@@ -778,7 +788,14 @@ export class AppComponent extends BaseApplicationComponent {
       }
     });
 
-    this.router.events.subscribe(() &#x3D;&gt; {
+    effect(() &#x3D;&gt; {
+      const id &#x3D; this.objectId();
+      const objects &#x3D; this.digitalObjects();
+      const match &#x3D; objects[&#x27;@graph&#x27;]?.find((object) &#x3D;&gt; object[&#x27;@id&#x27;] &#x3D;&#x3D;&#x3D; id);
+      this.pageTitle.set(match?.title || &#x27;&#x27;);
+    });
+
+    this.router.events.pipe(takeUntilDestroyed()).subscribe(() &#x3D;&gt; {
       const type &#x3D; this.route.snapshot.root.firstChild?.params[&#x27;type&#x27;];
       const name &#x3D; this.route.snapshot.root.firstChild?.params[&#x27;name&#x27;];
       if (type &amp;&amp; name) {
@@ -788,12 +805,17 @@ export class AppComponent extends BaseApplicationComponent {
       }
     });
 
-    toObservable(this.objectId).subscribe((id) &#x3D;&gt; {
-      this.kg.digitalObjects().subscribe((data) &#x3D;&gt; {
-        const match &#x3D; data[&#x27;@graph&#x27;]?.find((object) &#x3D;&gt; object[&#x27;@id&#x27;] &#x3D;&#x3D;&#x3D; id);
-        this.pageTitle.set(match?.title || &#x27;&#x27;);
-      });
-    });
+    const el &#x3D; inject(ElementRef).nativeElement as HTMLElement;
+    const apiEndpoint &#x3D; el.getAttribute(&#x27;remote-api-endpoint&#x27;);
+    if (apiEndpoint) {
+      setRemoteApiEndpoint(apiEndpoint);
+    }
+    const mirrorUrl &#x3D; el.getAttribute(&#x27;mirror-url&#x27;);
+    if (mirrorUrl) {
+      setMirrorUrl(mirrorUrl);
+    }
+
+    this.digitalObjects &#x3D; toSignal(this.kg.digitalObjects(), { initialValue: {} });
   }
 }
 </code></pre>

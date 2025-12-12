@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/ccf-rui/src/app/modules/content/content.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background-color: black;\n  border: 1px solid #acb5c3;\n  border-bottom: none;\n\n  .top-bar {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    height: 7.5rem;\n    padding: 0 1rem;\n\n    .reset {\n      transform: scaleX(-1);\n      cursor: pointer;\n      transition: 0.6s;\n      font-size: 2rem;\n      height: 2rem;\n      width: 2rem;\n    }\n\n    .gizmo {\n      width: 3.375rem;\n    }\n  }\n\n  .main-content {\n    display: flex;\n    height: calc(100% - 7.5rem);\n    padding: 0.5rem;\n\n    .body-ui {\n      width: 100%;\n      transition: opacity 1s;\n    }\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,SAAA;AACA,UAAA;AACA,YAAA;AACA,oBAAA;AACA,UAAA,IAAA,MAAA;AACA,iBAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,mBAAA;AACA,eAAA;AACA,UAAA;AACA,WAAA,EAAA;;AAEA,MAAA,CAPF,QAOE,CAAA;AACE,aAAA,OAAA;AACA,UAAA;AACA,cAAA;AACA,aAAA;AACA,UAAA;AACA,SAAA;;AAGF,MAAA,CAhBF,QAgBE,CAAA;AACE,SAAA;;AAIJ,MAAA,CAAA;AACE,WAAA;AACA,UAAA,KAAA,KAAA,EAAA;AACA,WAAA;;AAEA,MAAA,CALF,aAKE,CAAA;AACE,SAAA;AACA,cAAA,QAAA;;",
-  "names": []
-}

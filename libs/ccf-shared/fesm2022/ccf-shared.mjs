@@ -846,6 +846,13 @@ const ALL_POSSIBLE_ORGANS = [
         id: 'http://purl.obolibrary.org/obo/UBERON_0002097',
     },
     {
+        src: 'app:adipose',
+        organ: 'Adipose',
+        name: 'Adipose',
+        hasSex: true,
+        id: 'http://purl.obolibrary.org/obo/UBERON_0014455',
+    },
+    {
         src: 'app:brain',
         organ: 'Brain',
         name: 'Brain',
@@ -926,6 +933,13 @@ const ALL_POSSIBLE_ORGANS = [
         name: 'Heart',
         hasSex: true,
         id: 'http://purl.obolibrary.org/obo/UBERON_0000948',
+    },
+    {
+        src: 'app:intervertebral-disk',
+        organ: 'Intervertebral Disk',
+        name: 'Intervertebral Disk',
+        hasSex: true,
+        id: 'http://purl.obolibrary.org/obo/UBERON_0001066',
     },
     {
         disabled: true,

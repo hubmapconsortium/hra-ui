@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/bottom-sheet/src/lib/bottom-sheet.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n  height: 100%;\n  overflow: hidden;\n\n  .sheet-header {\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-end;\n\n    .close {\n      margin-bottom: 0.5rem;\n    }\n  }\n\n  hra-table {\n    height: auto;\n    max-height: min(22.6rem, 80vh - 3rem - 2 * 0.5rem);\n  }\n\n  ng-scrollbar {\n    height: calc(100% - 3.5rem);\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,UAAA;AACA,YAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,kBAAA;AACA,mBAAA;;AAEA,MAAA,CALF,aAKE,CAAA;AACE,iBAAA;;AAIJ,MAAA;AACE,UAAA;AACA,cAAA,IAAA,OAAA,EAAA,KAAA,EAAA,KAAA,EAAA;;AAGF,MAAA;AACE,UAAA,KAAA,KAAA,EAAA;;",
-  "names": []
-}

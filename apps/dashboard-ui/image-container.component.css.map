@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/dashboard/src/lib/components/image-container/image-container.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n  height: 100%;\n\n  .card {\n    width: 100%;\n    height: 100%;\n\n    img {\n      width: 100%;\n      object-fit: contain;\n      border-radius: 1rem;\n    }\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,UAAA;;AAEA,MAAA,CAAA;AACE,SAAA;AACA,UAAA;;AAEA,MAAA,CAJF,KAIE;AACE,SAAA;AACA,cAAA;AACA,iBAAA;;",
-  "names": []
-}
