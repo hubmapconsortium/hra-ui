@@ -34,9 +34,9 @@ content:
           - id: VersionedTableParamSync
         label: Release Version
         items:
-          - label: 9th Release (v2.3)
-            version: v2.3
-            csvUrl: assets/content/asctb-tables-page/table-data/asctb_release9.csv
+          - label: 10th Release (v2.4)
+            version: v2.4
+            csvUrl: assets/content/asctb-tables-page/table-data/asctb_release10.csv
             columns: &table_columns
               - column: Organ
                 label: Organ
@@ -130,6 +130,10 @@ content:
                 type:
                   type: numeric
                   computeTotal: true
+          - label: 9th Release (v2.3)
+            version: v2.3
+            csvUrl: assets/content/asctb-tables-page/table-data/asctb_release9.csv
+            columns: *table_columns
           - label: 8th Release (v2.2)
             version: v2.2
             csvUrl: assets/content/asctb-tables-page/table-data/asctb_release8.csv
