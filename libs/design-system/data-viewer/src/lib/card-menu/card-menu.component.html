@@ -28,7 +28,9 @@
     </a>
   }
 
-  <mat-divider class="menu-divider" />
+  @if (card().files.length > 0) {
+    <mat-divider class="menu-divider" />
+  }
 
   <a mat-menu-item hraClickEvent class="download-csv" download [attr.href]="card().crosswalkUrl">
     <mat-icon>download</mat-icon>
