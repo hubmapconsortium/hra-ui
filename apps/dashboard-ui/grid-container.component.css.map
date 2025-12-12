@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/dashboard/src/lib/components/grid-container/grid-container.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n  margin-bottom: 1.5rem;\n\n  .container {\n    display: grid;\n    gap: 1.5rem;\n  }\n\n  @media (max-width: 1012px) {\n    .container {\n      grid-template-columns: 1fr !important;\n\n      ::ng-deep > * {\n        min-width: 42rem;\n        min-height: 33.875rem;\n      }\n    }\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,iBAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,OAAA;;AAGF,OAAA,CAAA,SAAA,EAAA;AACE,QAAA,CANF;AAOI,2BAAA;;AAEA,QAAA,CATJ,UASI,UAAA,EAAA;AACE,eAAA;AACA,gBAAA;;;",
+  "names": []
+}

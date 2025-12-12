@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/cde-visualization/src/lib/components/violin/violin-menu/violin-menu.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;",
+  "names": []
+}

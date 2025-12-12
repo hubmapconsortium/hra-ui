@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/body-ui/src/styles.scss"],
+  "sourcesContent": ["/* You can add global styles to this file, and also import other style files */\n\nbody {\n  margin: 0;\n}\n"],
+  "mappings": ";AAEA;AACE,UAAA;;",
+  "names": []
+}
