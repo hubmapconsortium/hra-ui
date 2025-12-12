@@ -107,7 +107,7 @@ export const OrganIcons: Story = {
         'organ:larynx',
         'organ:palatine-tonsil',
         'organ:trachea',
-        'organ:adipose-tissue',
+        'organ:adipose',
         'organ:anatomical-systems',
         'organ:intervertebral-disc',
         'organ:muscular-system',

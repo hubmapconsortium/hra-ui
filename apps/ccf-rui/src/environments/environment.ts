@@ -7,8 +7,8 @@ export const environment = {
   disableDbWorker: true,
   dbOptions: {},
   customization: {
-    collisionsEndpoint: 'https://apps.humanatlas.io/api/v1/collisions',
-    referenceData: 'https://apps.humanatlas.io/api/v1/rui-reference-data',
+    collisionsEndpoint: 'https://apps.humanatlas.io/api--staging/v1/collisions',
+    referenceData: 'https://apps.humanatlas.io/api--staging/v1/rui-reference-data',
   },
   skipUnsavedChangesConfirmation: true,
 };

@@ -64,6 +64,12 @@ lung,alveolus of lung,UBERON:0002299,lung pericyte,CL:0009089,0,2
 lung,alveolus of lung,UBERON:0002299,pulmonary alveolar type 1 cell,CL:0002062,0,14
 lung,alveolus of lung,UBERON:0002299,pulmonary alveolar type 2 cell,CL:0002063,0,6
 lung,alveolus of lung,UBERON:0002299,secondary crest myofibroblast,CL:4033016,0,9
+lung,bronchus submucosal gland,UBERON:8410043,airway submucosal gland collecting duct epithelial cell,CL:4033023,0,2
+lung,bronchus submucosal gland,UBERON:8410043,airway submucosal gland duct basal cell,CL:4033024,0,12
+lung,bronchus submucosal gland,UBERON:8410043,airway submucosal gland duct multiciliated cell,CL:4033055,0,16
+lung,bronchus submucosal gland,UBERON:8410043,mucus secreting cell of bronchus submucosal gland,CL:4033022,0,52
+lung,bronchus submucosal gland,UBERON:8410043,myoepithelial cell of bronchus submucosal gland,CL:4033003,0,20
+lung,bronchus submucosal gland,UBERON:8410043,serous secreting cell of bronchus submucosal gland,CL:4033005,0,55
 mouth,parotid gland,UBERON:0001831,IgA plasma cell,CL:0000987,0,13
 mouth,parotid gland,UBERON:0001831,adipocyte,CL:0000136,0,1
 mouth,parotid gland,UBERON:0001831,dendritic cell,CL:0000451,0,1
@@ -123,7 +129,7 @@ skin of body,epidermal ridge of digit,UBERON:0013487,Merkel cell,CL:0000242,0,2
 skin of body,epidermal ridge of digit,UBERON:0013487,basal cell,CL:0000646,0,35
 skin of body,epidermal ridge of digit,UBERON:0013487,epidermal Langerhans cell,CL:0002457,0,3
 skin of body,epidermal ridge of digit,UBERON:0013487,melanocyte of skin,CL:1000458,0,4
-skin of body,epidermal ridge of digit,UBERON:0013487,prickle cell,CL:0000649,0,104
+skin of body,epidermal ridge of digit,UBERON:0013487,spinous cell of epidermis,CL:0000649,0,104
 skin of body,hair follicle,UBERON:0002073,arrector muscle of hair,UBERON:0002033,1,0
 skin of body,hair follicle,UBERON:0002073,cortex of hair,UBERON:0002077,1,0
 skin of body,hair follicle,UBERON:0002073,cuticle of hair,UBERON:0002076,1,0
