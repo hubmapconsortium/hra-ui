@@ -38,7 +38,7 @@ content:
     level: 3
     content:
       - component: Image
-        src: libs/design-system/assets/ui-images/annotated-ui-asctb-reporter.png
+        src: assets/ui-images/annotated-ui-asctb-reporter.png
 
   - component: PageSection
     tagline: App guide
