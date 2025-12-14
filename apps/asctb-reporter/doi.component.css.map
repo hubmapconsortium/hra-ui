@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/asctb-reporter/src/app/components/doi/doi.component.scss"],
+  "sourcesContent": [".doi {\n  max-height: 18.75rem;\n  overflow: auto;\n}\n.loading-wait {\n  width: 10%;\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,cAAA;AACA,YAAA;;AAEF,CAAA;AACE,SAAA;;",
+  "names": []
+}

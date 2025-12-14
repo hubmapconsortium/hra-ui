@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/ccf-eui/src/app/modules/results-browser/thumbnail-list/thumbnail-list.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1rem;\n  row-gap: 0.5rem;\n\n  .slide {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .thumbnail {\n    cursor: pointer;\n    width: 3.75rem;\n    height: 2.5rem;\n    background-position: center;\n    background-size: contain;\n    background-repeat: no-repeat;\n    background-color: var(--mat-sys-inverse-primary);\n\n    &:hover {\n      opacity: 0.75;\n    }\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,aAAA;AACA,OAAA;AACA,WAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,kBAAA;AACA,eAAA;;AAGF,MAAA,CAAA;AACE,UAAA;AACA,SAAA;AACA,UAAA;AACA,uBAAA;AACA,mBAAA;AACA,qBAAA;AACA,oBAAA,IAAA;;AAEA,MAAA,CATF,SASE;AACE,WAAA;;",
+  "names": []
+}
