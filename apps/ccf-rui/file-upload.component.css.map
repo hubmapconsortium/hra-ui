@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/ccf-rui/src/app/shared/components/file-upload/file-upload.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;",
-  "names": []
-}
