@@ -499,7 +499,7 @@ export class ContentComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;img class&#x3D;&quot;image&quot; [src]&#x3D;&quot;item().imageSrc | assetUrl&quot; alt&#x3D;&quot;&quot; /&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;img class&#x3D;&quot;image&quot; alt&#x3D;&quot;&quot; [src]&#x3D;&quot;item().imageSrc | assetUrl&quot; /&gt;
 
 &lt;div class&#x3D;&quot;info&quot; hraFeature&#x3D;&quot;content&quot;&gt;
   &lt;div class&#x3D;&quot;tagline&quot;&gt;{{ item().tagline }}&lt;/div&gt;
@@ -510,10 +510,10 @@ export class ContentComponent {
       mat-button
       hraCtaButton
       class&#x3D;&quot;action&quot;
-      [href]&#x3D;&quot;getLink(item())&quot;
       target&#x3D;&quot;_blank&quot;
       hraFeature&#x3D;&quot;carousel-external-link&quot;
       hraClickEvent
+      [href]&#x3D;&quot;getLink(item())&quot;
     &gt;
       {{ item().action }}
       &lt;mat-icon iconPositionEnd&gt;arrow_right_alt&lt;/mat-icon&gt;
@@ -555,7 +555,7 @@ export class ContentComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><img class="image" [src]="item().imageSrc | assetUrl" alt="" /><div class="info" hraFeature="content">  <div class="tagline">{{ item().tagline }}</div>  <div class="description">{{ item().description }}</div>  @if (getLinkType(item()) === \'url\') {    <a      mat-button      hraCtaButton      class="action"      [href]="getLink(item())"      target="_blank"      hraFeature="carousel-external-link"      hraClickEvent    >      {{ item().action }}      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>    </a>  } @else {    <!-- <a mat-stroked-button class="get-button" [routerLink]="[\'\', item().route]">{{ item().buttonText }}</a> -->    <a mat-button hraCtaButton class="action" hraFeature="action" hraClickEvent target="_blank">      {{ item().action }}      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>    </a>  }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><img class="image" alt="" [src]="item().imageSrc | assetUrl" /><div class="info" hraFeature="content">  <div class="tagline">{{ item().tagline }}</div>  <div class="description">{{ item().description }}</div>  @if (getLinkType(item()) === \'url\') {    <a      mat-button      hraCtaButton      class="action"      target="_blank"      hraFeature="carousel-external-link"      hraClickEvent      [href]="getLink(item())"    >      {{ item().action }}      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>    </a>  } @else {    <!-- <a mat-stroked-button class="get-button" [routerLink]="[\'\', item().route]">{{ item().buttonText }}</a> -->    <a mat-button hraCtaButton class="action" hraFeature="action" hraClickEvent target="_blank">      {{ item().action }}      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>    </a>  }</div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-portal'},{'name': 'CarouselComponent', 'selector': 'hra-carousel'},{'name': 'ContentComponent', 'selector': 'hra-carousel-content'},{'name': 'ControlsComponent', 'selector': 'hra-carousel-controls'},{'name': 'CountInfoComponent', 'selector': 'hra-count-info'},{'name': 'DataViewerWithQueryParamsComponent', 'selector': 'hra-data-viewer-with-query-params'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'PublicationsPageComponent', 'selector': 'hra-publications-page'},{'name': 'ReleaseNotesVersionSelectorComponent', 'selector': 'hra-release-notes-version-selector'},{'name': 'SectionCardsComponent', 'selector': 'hra-section-cards'},{'name': 'SummaryStatisticsTableComponent', 'selector': 'hra-summary-statistics-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ContentComponent'};

@@ -4,7 +4,7 @@ import * as rxjs from 'rxjs';
 import { SpatialSceneNode as SpatialSceneNode$1 } from '@hra-api/ng-client';
 import * as _angular_core from '@angular/core';
 import { OutputEmitterRef } from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 import { JsonLdObj } from 'jsonld/jsonld-spec';
 import { AABB, Vec3 } from 'cannon-es';
 

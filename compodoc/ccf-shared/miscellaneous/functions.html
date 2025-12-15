@@ -142,15 +142,6 @@
                             <a href="#filterToParams" title="src/lib/services/data-source/api-endpoint.service.ts" ><b>filterToParams</b>&nbsp;&nbsp;&nbsp;(src/.../api-endpoint.service.ts)</a>
                         </li>
                         <li>
-                            <a href="#flatten" title="rxjs-ext/operators/src/lib/flatten.ts" ><b>flatten</b>&nbsp;&nbsp;&nbsp;(rxjs-ext/.../flatten.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#innerMap" title="rxjs-ext/operators/src/lib/inner-map.ts" ><b>innerMap</b>&nbsp;&nbsp;&nbsp;(rxjs-ext/.../inner-map.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#normalize" title="src/lib/components/decorated-text/decorated-range.ts" ><b>normalize</b>&nbsp;&nbsp;&nbsp;(src/.../decorated-range.ts)</a>
-                        </li>
-                        <li>
                             <a href="#pluckUnique" title="rxjs-ext/operators/src/lib/pluck-unique.ts" ><b>pluckUnique</b>&nbsp;&nbsp;&nbsp;(rxjs-ext/.../pluck-unique.ts)</a>
                         </li>
                         <li>
@@ -179,9 +170,6 @@
                         </li>
                         <li>
                             <a href="#rangeToMinMax" title="src/lib/services/data-source/api-endpoint.service.ts" ><b>rangeToMinMax</b>&nbsp;&nbsp;&nbsp;(src/.../api-endpoint.service.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#resolveIndex" title="src/lib/components/decorated-text/decorated-range.ts" ><b>resolveIndex</b>&nbsp;&nbsp;&nbsp;(src/.../decorated-range.ts)</a>
                         </li>
                         <li>
                             <a href="#sexEquals" title="src/lib/services/organ-info/organ-info.service.ts" ><b>sexEquals</b>&nbsp;&nbsp;&nbsp;(src/.../organ-info.service.ts)</a>
@@ -600,285 +588,6 @@
             </tr>
         </tbody>
     </table>
-</section>    <h3>rxjs-ext/operators/src/lib/flatten.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="flatten"></a>
-                    <span class="name">
-                        <span ><b>flatten</b></span>
-                        <a href="#flatten"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>flatten()</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Flattens a single level of nested arrays.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;()[], T[]&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>An <code>Observable</code> operator</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    <h3>rxjs-ext/operators/src/lib/inner-map.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="innerMap"></a>
-                    <span class="name">
-                        <span ><b>innerMap</b></span>
-                        <a href="#innerMap"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>innerMap(project)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Maps the values of each emitted array.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>project</td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Mapping callback invoked for each element</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;T[], R[]&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>An <code>Observable</code> operator</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    <h3>src/lib/components/decorated-text/decorated-range.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="normalize"></a>
-                    <span class="name">
-                        <span ><b>normalize</b></span>
-                        <a href="#normalize"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>normalize(range: Partial, length: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Produces a new range object based on the input where all properties have been normalized.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>range</td>
-                                            <td>
-                                                        <code>Partial</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The object to normalize.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>length</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Max length for indices.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/DecoratedRange.html" target="_self" >DecoratedRange</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>A new object where all undefined values have been replaced with defaults and
-where all indices have been constrained to the range [0, length].</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="resolveIndex"></a>
-                    <span class="name">
-                        <span ><b>resolveIndex</b></span>
-                        <a href="#resolveIndex"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>resolveIndex(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, length: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Resolves and normalizes an index for indexing into an array of length <code>length</code>.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>index</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The index value to resolve. May be negative indicating an index from end.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>length</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The length of the object on which this index will be used.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>A positive index in range [0, length]</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>    <h3>rxjs-ext/operators/src/lib/pluck-unique.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -956,7 +665,7 @@ as well as adding a <code>shareReplay</code>.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;T, &gt;</code>
+                            <b>Returns : </b>    <code>OperatorFunction&lt;T, unknown&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -1058,7 +767,7 @@ as well as adding a <code>shareReplay</code>.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;T, &gt;</code>
+                            <b>Returns : </b>    <code>OperatorFunction&lt;T, unknown&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -1176,7 +885,7 @@ as well as adding a <code>shareReplay</code>.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;T, &gt;</code>
+                            <b>Returns : </b>    <code>OperatorFunction&lt;T, unknown&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -1310,7 +1019,7 @@ as well as adding a <code>shareReplay</code>.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;T, &gt;</code>
+                            <b>Returns : </b>    <code>OperatorFunction&lt;T, unknown&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -1460,7 +1169,7 @@ as well as adding a <code>shareReplay</code>.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;T, &gt;</code>
+                            <b>Returns : </b>    <code>OperatorFunction&lt;T, unknown&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -1626,7 +1335,7 @@ as well as adding a <code>shareReplay</code>.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;T, &gt;</code>
+                            <b>Returns : </b>    <code>OperatorFunction&lt;T, unknown&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -1824,7 +1533,7 @@ as well as adding a <code>shareReplay</code>.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>OperatorFunction&lt;, &gt;</code>
+                            <b>Returns : </b>    <code>OperatorFunction&lt;unknown, unknown&gt;</code>
 
                         </div>
                             <div class="io-description">

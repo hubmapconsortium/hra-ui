@@ -174,10 +174,6 @@
                 <td class="col-md-9"><code>hra-metrics-item</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
 
 
 
@@ -255,7 +251,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/components/metrics/item/metrics-item.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/lib/components/metrics/item/metrics-item.component.ts:23</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -277,7 +273,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 
 /** Type definition of Metrics Item */
 export type MetricsItemSpec &#x3D; z.infer&lt;typeof METRICS_ITEM_DEF&gt;;
@@ -294,7 +290,6 @@ export const METRICS_ITEM_DEF &#x3D; z.object({
   selector: &#x27;hra-metrics-item&#x27;,
   templateUrl: &#x27;./metrics-item.component.html&#x27;,
   styleUrl: &#x27;./metrics-item.component.scss&#x27;,
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetricsItemComponent {

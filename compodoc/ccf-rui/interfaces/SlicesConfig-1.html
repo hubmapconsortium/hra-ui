@@ -271,7 +271,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, HostBinding, model, output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, model, output } from &#x27;@angular/core&#x27;;
 
 /**
  * Interface containing slices data of the tissue block
@@ -294,15 +294,12 @@ const DEFAULT_SLICES_CONFIG: SlicesConfig &#x3D; {
  */
 @Component({
   selector: &#x27;ccf-slices-input&#x27;,
-  templateUrl: &#x27;./slices-input.component.html&#x27;,
-  styleUrls: [&#x27;./slices-input.component.scss&#x27;],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  templateUrl: &#x27;./slices-input.component.html&#x27;,
+  styleUrl: &#x27;./slices-input.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SlicesInputComponent {
-  /** HTML class name */
-  @HostBinding(&#x27;class&#x27;) readonly clsName &#x3D; &#x27;ccf-slices-input&#x27;;
-
   /**
    * Values of block dimensions to be emitted
    */

@@ -157,10 +157,6 @@
                         <td class="col-md-9"><code>ng-template[hraHubmapMenuGroup]</code></td>
                     </tr>
 
-                    <tr>
-                        <td class="col-md-3">Standalone</td>
-                        <td class="col-md-9"><code>true</code></td>
-                    </tr>
 
 
 
@@ -222,15 +218,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>ngTemplateContextGuard(_dir: <a href="../directives/HubmapMenuGroupDirective.html" target="_self">HubmapMenuGroupDirective</a>, _ctx)</code>
+                    <code>ngTemplateContextGuard(_dir: <a href="../directives/HubmapMenuGroupDirective.html" target="_self">HubmapMenuGroupDirective</a>, _ctx: unknown)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="14"
-                                    class="link-to-prism">navigation/header/src/lib/hubmap-menu-content/hubmap-menu-content.component.ts:14</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="13"
+                                    class="link-to-prism">navigation/header/src/lib/hubmap-menu-content/hubmap-menu-content.component.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -267,6 +263,7 @@
                                         <tr>
                                                 <td>_ctx</td>
                                             <td>
+                                                        <code>unknown</code>
                                             </td>
 
                                             <td>
@@ -304,7 +301,6 @@ import { HubmapMenuGroup, HubmapMenuItem } from &#x27;../types/hubmap-menu.schem
 /** Directive used to type the context for menu group templates */
 @Directive({
   selector: &#x27;ng-template[hraHubmapMenuGroup]&#x27;,
-  standalone: true,
 })
 export class HubmapMenuGroupDirective {
   /** Types the context as &#x60;HubmapMenuGroup&#x60; */
@@ -317,7 +313,6 @@ export class HubmapMenuGroupDirective {
 /** Directive used to type the context for menu item templates */
 @Directive({
   selector: &#x27;ng-template[hraHubmapMenuItem]&#x27;,
-  standalone: true,
 })
 export class HubmapMenuItemDirective {
   /** Types the context as &#x60;HubmapMenuItem&#x60; */

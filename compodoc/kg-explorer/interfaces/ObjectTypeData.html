@@ -587,19 +587,23 @@ export const DO_INFO: Record&lt;string, ObjectTypeData&gt; &#x3D; {
 /** Maps UBERON id to the correct icon in the design system */
 export const ORGAN_ICON_MAP: Record&lt;string, string&gt; &#x3D; {
   &#x27;http://purl.obolibrary.org/obo/UBERON_0004537&#x27;: &#x27;vasculature-thick&#x27;, //blood vasculature
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0014455&#x27;: &#x27;adipose&#x27;,
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0000467&#x27;: &#x27;anatomical-systems&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000955&#x27;: &#x27;brain&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0002182&#x27;: &#x27;extrapulmonary-bronchus&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000970&#x27;: &#x27;eye&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0003889&#x27;: &#x27;fallopian-tube-left&#x27;, //fallopian tube
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000948&#x27;: &#x27;heart&#x27;,
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0001066&#x27;: &#x27;intervertebral-disk&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0002113&#x27;: &#x27;kidneys&#x27;, //kidney
   &#x27;http://purl.obolibrary.org/obo/UBERON_0001465&#x27;: &#x27;knee&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000059&#x27;: &#x27;large-intestine&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0002107&#x27;: &#x27;liver&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0002048&#x27;: &#x27;lungs&#x27;, //lung
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000029&#x27;: &#x27;lymph-nodes&#x27;, //lymph node
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0004536&#x27;: &#x27;lymph-nodes&#x27;, //lymph vasculature
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0000029&#x27;: &#x27;lymph-node&#x27;, //lymph node
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0004536&#x27;: &#x27;lymph-node&#x27;, //lymph vasculature
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000165&#x27;: &#x27;mouth&#x27;,
+  &#x27;http://purl.obolibrary.org/obo/UBERON_0000383&#x27;: &#x27;muscular-system&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0000992&#x27;: &#x27;ovaries&#x27;, //ovary
   &#x27;http://purl.obolibrary.org/obo/UBERON_0001264&#x27;: &#x27;pancreas&#x27;,
   &#x27;http://purl.obolibrary.org/obo/UBERON_0001270&#x27;: &#x27;pelvis&#x27;,
@@ -619,6 +623,10 @@ export const ORGAN_ICON_MAP: Record&lt;string, string&gt; &#x3D; {
 
 /** HRA version data info */
 export const HRA_VERSION_DATA: Record&lt;string, { label: string; date: string }&gt; &#x3D; {
+  &#x27;v2.4&#x27;: {
+    label: &#x27;10th Release (v2.4)&#x27;,
+    date: &#x27;December 2025&#x27;,
+  },
   &#x27;v2.3&#x27;: {
     label: &#x27;9th Release (v2.3)&#x27;,
     date: &#x27;June 2025&#x27;,
@@ -663,7 +671,6 @@ export const HRA_VERSION_DATA: Record&lt;string, { label: string; date: string }
  * @returns Organ id
  */
 export function getOrganId(item?: DigitalObjectInfo): string {
-  // console.log(item)
   return item?.organIds &amp;&amp; item.organIds.length &#x3D;&#x3D;&#x3D; 1 ? item.organIds[0] : &#x27;&#x27;;
 }
 

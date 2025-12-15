@@ -227,7 +227,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Signal, Type } from &#x27;@angular/core&#x27;;
-import { ZodSafeParseResult, ZodLiteral, ZodTypeAny, z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
+import { ZodSafeParseResult, ZodLiteral, ZodTypeAny } from &#x27;zod&#x27;;
 
 /** Type representing any DashboardComponent specification */
 export type DashboardComponentAnySpec &#x3D; { type: string };

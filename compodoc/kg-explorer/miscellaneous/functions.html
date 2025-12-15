@@ -166,6 +166,12 @@
                             <a href="#getProductTooltip" title="src/app/utils/utils.ts" ><b>getProductTooltip</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
+                            <a href="#injectMirrorUrl" title="src/app/utils/endpoints.ts" ><b>injectMirrorUrl</b>&nbsp;&nbsp;&nbsp;(src/.../endpoints.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectRemoteApiEndpoint" title="src/app/utils/endpoints.ts" ><b>injectRemoteApiEndpoint</b>&nbsp;&nbsp;&nbsp;(src/.../endpoints.ts)</a>
+                        </li>
+                        <li>
                             <a href="#isNavigating" title="src/app/utils/navigation.ts" ><b>isNavigating</b>&nbsp;&nbsp;&nbsp;(src/.../navigation.ts)</a>
                         </li>
                         <li>
@@ -185,6 +191,12 @@
                         </li>
                         <li>
                             <a href="#sentenceCase" title="src/app/utils/utils.ts" ><b>sentenceCase</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#setMirrorUrl" title="src/app/utils/endpoints.ts" ><b>setMirrorUrl</b>&nbsp;&nbsp;&nbsp;(src/.../endpoints.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#setRemoteApiEndpoint" title="src/app/utils/endpoints.ts" ><b>setRemoteApiEndpoint</b>&nbsp;&nbsp;&nbsp;(src/.../endpoints.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -221,7 +233,7 @@
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>ResolveFn&lt;[]&gt;</code>
+                            <b>Returns : </b>    <code>ResolveFn&lt;unknown[]&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -393,7 +405,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>kgResolver(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>kgResolver()</code>
                 </td>
             </tr>
 
@@ -405,38 +417,6 @@
                         <div class="io-description"><p>Creates a resolver that fetches the digital object data from a url</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>url</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Digital object url</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
                             <b>Returns : </b>    <code>ResolveFn&lt;DigitalObjectsJsonLd&gt;</code>
 
@@ -1106,6 +1086,200 @@
                             <div class="io-description">
                                 <p>String in sentence case</p>
 
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/utils/endpoints.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectMirrorUrl"></a>
+                    <span class="name">
+                        <span ><b>injectMirrorUrl</b></span>
+                        <a href="#injectMirrorUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>injectMirrorUrl()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns a read-only signal for the mirror URL.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Signal&lt;string&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectRemoteApiEndpoint"></a>
+                    <span class="name">
+                        <span ><b>injectRemoteApiEndpoint</b></span>
+                        <a href="#injectRemoteApiEndpoint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>injectRemoteApiEndpoint()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns a signal for the API endpoint (from config or environment).</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Signal&lt;string&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setMirrorUrl"></a>
+                    <span class="name">
+                        <span ><b>setMirrorUrl</b></span>
+                        <a href="#setMirrorUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setMirrorUrl(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates the mirror URL signal.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setRemoteApiEndpoint"></a>
+                    <span class="name">
+                        <span ><b>setRemoteApiEndpoint</b></span>
+                        <a href="#setRemoteApiEndpoint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setRemoteApiEndpoint(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sets the API endpoint in <code>HraApiConfiguration</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
                             </div>
                 </td>
             </tr>

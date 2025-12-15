@@ -1022,25 +1022,20 @@ export class FileUploadComponent&lt;T, OptionsT&gt; {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;file-upload&quot;&gt;
   @if (!file &amp;&amp; errorMessage()) {
-    &lt;hra-error-indicator [errors]&#x3D;&quot;[errorMessage(), errorActionMessage()]&quot;&gt;&lt;/hra-error-indicator&gt;
+    &lt;hra-error-indicator [errors]&#x3D;&quot;[errorMessage(), errorActionMessage()]&quot; /&gt;
   }
 
   @if (file &amp;&amp; !errorMessage()) {
-    &lt;hra-delete-file-button
-      [fileName]&#x3D;&quot;file.name&quot;
-      (cancelLoad)&#x3D;&quot;cancelLoad()&quot;
-      hraFeature&#x3D;&quot;delete&quot;
-      hraClickEvent
-    &gt;&lt;/hra-delete-file-button&gt;
+    &lt;hra-delete-file-button hraFeature&#x3D;&quot;delete&quot; hraClickEvent [fileName]&#x3D;&quot;file.name&quot; (cancelLoad)&#x3D;&quot;cancelLoad()&quot; /&gt;
   } @else {
     &lt;button
       mat-flat-button
       class&#x3D;&quot;upload&quot;
-      (click)&#x3D;&quot;fileInput.click()&quot;
       hraPrimaryButton
       hraButtonSize&#x3D;&quot;large&quot;
       hraFeature&#x3D;&quot;upload&quot;
       hraClickEvent
+      (click)&#x3D;&quot;fileInput.click()&quot;
     &gt;
       Upload CSV
     &lt;/button&gt;
@@ -1048,9 +1043,9 @@ export class FileUploadComponent&lt;T, OptionsT&gt; {
       type&#x3D;&quot;file&quot;
       style&#x3D;&quot;display: none&quot;
       name&#x3D;&quot;fileInput&quot;
+      data-testid&#x3D;&quot;file-upload&quot;
       [attr.accept]&#x3D;&quot;accept()&quot;
       (change)&#x3D;&quot;load(fileInput)&quot;
-      data-testid&#x3D;&quot;file-upload&quot;
       #fileInput
     /&gt;
   }
@@ -1084,7 +1079,7 @@ export class FileUploadComponent&lt;T, OptionsT&gt; {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="file-upload">  @if (!file && errorMessage()) {    <hra-error-indicator [errors]="[errorMessage(), errorActionMessage()]"></hra-error-indicator>  }  @if (file && !errorMessage()) {    <hra-delete-file-button      [fileName]="file.name"      (cancelLoad)="cancelLoad()"      hraFeature="delete"      hraClickEvent    ></hra-delete-file-button>  } @else {    <button      mat-flat-button      class="upload"      (click)="fileInput.click()"      hraPrimaryButton      hraButtonSize="large"      hraFeature="upload"      hraClickEvent    >      Upload CSV    </button>    <input      type="file"      style="display: none"      name="fileInput"      [attr.accept]="accept()"      (change)="load(fileInput)"      data-testid="file-upload"      #fileInput    />  }</ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="file-upload">  @if (!file && errorMessage()) {    <hra-error-indicator [errors]="[errorMessage(), errorActionMessage()]" />  }  @if (file && !errorMessage()) {    <hra-delete-file-button hraFeature="delete" hraClickEvent [fileName]="file.name" (cancelLoad)="cancelLoad()" />  } @else {    <button      mat-flat-button      class="upload"      hraPrimaryButton      hraButtonSize="large"      hraFeature="upload"      hraClickEvent      (click)="fileInput.click()"    >      Upload CSV    </button>    <input      type="file"      style="display: none"      name="fileInput"      data-testid="file-upload"      [attr.accept]="accept()"      (change)="load(fileInput)"      #fileInput    />  }</ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'FileUploadComponent'};

@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
 import { ComponentRef, EnvironmentProviders, Type } from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** A structural directive that renders a content template component */
 declare class ContentTemplateOutletDirective {

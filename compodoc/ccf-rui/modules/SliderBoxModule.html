@@ -258,7 +258,6 @@ import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain
 import { SliderBoxComponent } from &#x27;./slider-box.component&#x27;;
 
 @NgModule({
-  declarations: [SliderBoxComponent],
   imports: [
     HraCommonModule,
     MatIconModule,
@@ -269,6 +268,7 @@ import { SliderBoxComponent } from &#x27;./slider-box.component&#x27;;
     PlainTooltipDirective,
     OverlayModule,
   ],
+  declarations: [SliderBoxComponent],
   exports: [SliderBoxComponent],
 })
 export class SliderBoxModule {}

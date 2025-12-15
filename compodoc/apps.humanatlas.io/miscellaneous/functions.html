@@ -130,6 +130,9 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#createExternalRedirectRoute" title="src/app/utils/external-redirect.ts" ><b>createExternalRedirectRoute</b>&nbsp;&nbsp;&nbsp;(src/.../external-redirect.ts)</a>
+                        </li>
+                        <li>
                             <a href="#createPredictionsResolver" title="src/app/resolvers/predictions.resolver.ts" ><b>createPredictionsResolver</b>&nbsp;&nbsp;&nbsp;(src/.../predictions.resolver.ts)</a>
                         </li>
                         <li>
@@ -154,13 +157,16 @@
                             <a href="#isNavigationFinishEvent" title="src/app/utils/navigation.ts" ><b>isNavigationFinishEvent</b>&nbsp;&nbsp;&nbsp;(src/.../navigation.ts)</a>
                         </li>
                         <li>
+                            <a href="#isNumericField" title="src/app/pages/cell-population-graph/utils/visualization.ts" ><b>isNumericField</b>&nbsp;&nbsp;&nbsp;(src/.../visualization.ts)</a>
+                        </li>
+                        <li>
                             <a href="#loadRapidocStyles" title="src/app/pages/api/api.component.ts" ><b>loadRapidocStyles</b>&nbsp;&nbsp;&nbsp;(src/.../api.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#loadSampleFileFactory" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>loadSampleFileFactory</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
+                            <a href="#loadSampleFileFactory" title="src/app/pages/us2/tissue-origin-predictor/tissue-origin-predictor.component.ts" ><b>loadSampleFileFactory</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictor.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#loadSampleFileFactory" title="src/app/pages/us2/tissue-origin-predictor/tissue-origin-predictor.component.ts" ><b>loadSampleFileFactory</b>&nbsp;&nbsp;&nbsp;(src/.../tissue-origin-predictor.component.ts)</a>
+                            <a href="#loadSampleFileFactory" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>loadSampleFileFactory</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
                         </li>
                         <li>
                             <a href="#parseAnatomical" title="src/app/pages/hra-pop-visualizer/utils/models/anatomical-data.model.ts" ><b>parseAnatomical</b>&nbsp;&nbsp;&nbsp;(src/.../anatomical-data.model.ts)</a>
@@ -181,7 +187,78 @@
     </table>
 </section>
 
-    <h3>src/app/resolvers/predictions.resolver.ts</h3>
+    <h3>src/app/utils/external-redirect.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createExternalRedirectRoute"></a>
+                    <span class="name">
+                        <span ><b>createExternalRedirectRoute</b></span>
+                        <a href="#createExternalRedirectRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createExternalRedirectRoute(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Create a route that redirects to an external url</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>External url</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Route</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A route configured to redirect</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/resolvers/predictions.resolver.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -565,6 +642,77 @@ with independent scales per tool for optimal data visualization.</p>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isNumericField"></a>
+                    <span class="name">
+                        <span ><b>isNumericField</b></span>
+                        <a href="#isNumericField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isNumericField(attribute: <a href="../undefineds/GraphAttribute.html" target="_self">GraphAttribute</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Determines if a graph attribute is numeric/date-based or text-based</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>attribute</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#GraphAttribute" target="_self" >GraphAttribute</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The graph attribute to check</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if numeric/date, false if text</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>src/app/pages/hra-pop-visualizer/utils/data-type-config.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -813,45 +961,6 @@ with independent scales per tool for optimal data visualization.</p>
             </tr>
         </tbody>
     </table>
-</section>    <h3>src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="loadSampleFileFactory"></a>
-                    <span class="name">
-                        <span ><b>loadSampleFileFactory</b></span>
-                        <a href="#loadSampleFileFactory"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>loadSampleFileFactory()</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Loads a sample JSON file from the configured assets URL and wraps it in a File object.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>HttpResourceRef&lt;File | undefined&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>A HttpResourceRef that resolves to a File or undefined</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>    <h3>src/app/pages/us2/tissue-origin-predictor/tissue-origin-predictor.component.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -877,6 +986,45 @@ with independent scales per tool for optimal data visualization.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Loads a sample CSV file from the configured assets URL and wraps it in a File object.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>HttpResourceRef&lt;File | undefined&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A HttpResourceRef that resolves to a File or undefined</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadSampleFileFactory"></a>
+                    <span class="name">
+                        <span ><b>loadSampleFileFactory</b></span>
+                        <a href="#loadSampleFileFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadSampleFileFactory()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Loads a sample JSON file from the configured assets URL and wraps it in a File object.</p>
 </div>
 
                         <div class="io-description">

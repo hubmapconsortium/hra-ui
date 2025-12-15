@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
 import * as i0 from '@angular/core';
 import { Signal } from '@angular/core';

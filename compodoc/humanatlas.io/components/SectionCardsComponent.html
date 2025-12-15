@@ -174,10 +174,6 @@
                 <td class="col-md-9"><code>hra-section-cards</code></td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
 
             <tr>
                 <td class="col-md-3">imports</td>
@@ -266,7 +262,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/section-cards/section-cards.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/section-cards/section-cards.component.ts:28</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -287,14 +283,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { TextHyperlinkDirective } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
 import { ActionCardActionComponent, ActionCardComponent } from &#x27;@hra-ui/design-system/cards/action-card&#x27;;
-
-import { SectionCardItem } from &#x27;./section-cards.schema&#x27;;
 import { GridContainerComponent } from &#x27;@hra-ui/design-system/content-templates/grid-container&#x27;;
+import { SectionCardItem } from &#x27;./section-cards.schema&#x27;;
 
 /**
  * Section card that links to another page
@@ -312,7 +307,6 @@ import { GridContainerComponent } from &#x27;@hra-ui/design-system/content-templ
   templateUrl: &#x27;./section-cards.component.html&#x27;,
   styleUrl: &#x27;./section-cards.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class SectionCardsComponent {
   /** List of card info */
@@ -334,7 +328,7 @@ export class SectionCardsComponent {
         [hraFeature]&#x3D;&quot;card.tagline | slugify&quot;
       &gt;
         &lt;hra-action-card-action&gt;
-          &lt;a hraHyperlink [attr.href]&#x3D;&quot;card.url&quot; target&#x3D;&quot;_blank&quot;&gt;{{ card.action }}&lt;/a&gt;
+          &lt;a hraHyperlink target&#x3D;&quot;_blank&quot; [attr.href]&#x3D;&quot;card.url&quot;&gt;{{ card.action }}&lt;/a&gt;
         &lt;/hra-action-card-action&gt;
       &lt;/hra-action-card&gt;
     } @else {
@@ -380,7 +374,7 @@ export class SectionCardsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><span class="section-title">Explore the Human Reference Atlas</span><hra-grid-container class="cards" hraFeature="section-cards">  @for (card of cardInfo(); track card) {    @if (card.url; as url) {      <hra-action-card        variant="outlined-with-icons"        [tagline]="card.tagline"        [icons]="[card.icon]"        [hraFeature]="card.tagline | slugify"      >        <hra-action-card-action>          <a hraHyperlink [attr.href]="card.url" target="_blank">{{ card.action }}</a>        </hra-action-card-action>      </hra-action-card>    } @else {      <hra-action-card        variant="outlined-with-icons"        [tagline]="card.tagline"        [icons]="[card.icon]"        [hraFeature]="card.tagline | slugify"      >        <hra-action-card-action>          <a hraHyperlink [routerLink]="card.route">{{ card.action }}</a>        </hra-action-card-action>      </hra-action-card>    }  }</hra-grid-container></div>'
+        var COMPONENT_TEMPLATE = '<div><span class="section-title">Explore the Human Reference Atlas</span><hra-grid-container class="cards" hraFeature="section-cards">  @for (card of cardInfo(); track card) {    @if (card.url; as url) {      <hra-action-card        variant="outlined-with-icons"        [tagline]="card.tagline"        [icons]="[card.icon]"        [hraFeature]="card.tagline | slugify"      >        <hra-action-card-action>          <a hraHyperlink target="_blank" [attr.href]="card.url">{{ card.action }}</a>        </hra-action-card-action>      </hra-action-card>    } @else {      <hra-action-card        variant="outlined-with-icons"        [tagline]="card.tagline"        [icons]="[card.icon]"        [hraFeature]="card.tagline | slugify"      >        <hra-action-card-action>          <a hraHyperlink [routerLink]="card.route">{{ card.action }}</a>        </hra-action-card-action>      </hra-action-card>    }  }</hra-grid-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-portal'},{'name': 'CarouselComponent', 'selector': 'hra-carousel'},{'name': 'ContentComponent', 'selector': 'hra-carousel-content'},{'name': 'ControlsComponent', 'selector': 'hra-carousel-controls'},{'name': 'CountInfoComponent', 'selector': 'hra-count-info'},{'name': 'DataViewerWithQueryParamsComponent', 'selector': 'hra-data-viewer-with-query-params'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'PublicationsPageComponent', 'selector': 'hra-publications-page'},{'name': 'ReleaseNotesVersionSelectorComponent', 'selector': 'hra-release-notes-version-selector'},{'name': 'SectionCardsComponent', 'selector': 'hra-section-cards'},{'name': 'SummaryStatisticsTableComponent', 'selector': 'hra-summary-statistics-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SectionCardsComponent'};

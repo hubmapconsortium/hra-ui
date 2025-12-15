@@ -434,6 +434,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; this.activeTab()?.sections ?? [])</code>
                     </td>
                 </tr>
@@ -467,6 +473,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>linkedSignal(() &#x3D;&gt; this.tabs().at(0))</code>
                     </td>
                 </tr>
@@ -498,6 +510,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>this.tabsResource.value</code>
@@ -582,7 +600,7 @@ export class LandingPageComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;landing-page&quot;&gt;
   &lt;div class&#x3D;&quot;splash-header&quot;&gt;
-    &lt;img [attr.src]&#x3D;&quot;&#x27;assets/ui-images/splash-image.png&#x27; | assetUrl&quot; alt&#x3D;&quot;&quot; class&#x3D;&quot;splash-header-img&quot; /&gt;
+    &lt;img alt&#x3D;&quot;&quot; class&#x3D;&quot;splash-header-img&quot; [attr.src]&#x3D;&quot;&#x27;assets/ui-images/splash-image.png&#x27; | assetUrl&quot; /&gt;
     &lt;div class&#x3D;&quot;splash-header-content&quot;&gt;
       &lt;p&gt;Construct, use, and visualize data with applications of the Human Reference Atlas&lt;/p&gt;
       &lt;mat-button-toggle-group
@@ -593,7 +611,7 @@ export class LandingPageComponent {
         [(ngModel)]&#x3D;&quot;activeTab&quot;
       &gt;
         @for (tab of tabs(); track tab.name) {
-          &lt;mat-button-toggle [hraFeature]&#x3D;&quot;tab.name | slugify&quot; hraClickEvent [value]&#x3D;&quot;tab&quot;&gt;
+          &lt;mat-button-toggle hraClickEvent [hraFeature]&#x3D;&quot;tab.name | slugify&quot; [value]&#x3D;&quot;tab&quot;&gt;
             {{ tab.name }}
           &lt;/mat-button-toggle&gt;
         }
@@ -615,8 +633,8 @@ export class LandingPageComponent {
               [logo]&#x3D;&quot;card.logoPath&quot;
               [appStatus]&#x3D;&quot;card.appStatus&quot;
               [appUrl]&#x3D;&quot;card.appUrl&quot;
-              (openAppUrl)&#x3D;&quot;onOpenAppUrl(card.appUrl)&quot;
               [documentationUrl]&#x3D;&quot;card.documentLink&quot;
+              (openAppUrl)&#x3D;&quot;onOpenAppUrl(card.appUrl)&quot;
               (openDocumentationLink)&#x3D;&quot;onOpenDocumentationLink(card.documentLink)&quot;
             /&gt;
           }
@@ -654,7 +672,7 @@ export class LandingPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <div class="splash-header">    <img [attr.src]="\'assets/ui-images/splash-image.png\' | assetUrl" alt="" class="splash-header-img" />    <div class="splash-header-content">      <p>Construct, use, and visualize data with applications of the Human Reference Atlas</p>      <mat-button-toggle-group        class="tab-toggles"        hideSingleSelectionIndicator        hraFeature="active-tab"        hraButtonToggleSize="large"        [(ngModel)]="activeTab"      >        @for (tab of tabs(); track tab.name) {          <mat-button-toggle [hraFeature]="tab.name | slugify" hraClickEvent [value]="tab">            {{ tab.name }}          </mat-button-toggle>        }      </mat-button-toggle-group>    </div>  </div>  <div class="apps-container">    @for (section of activeSections(); track section.tagline) {      <div class="section-container">        <h2 class="apps-header-text">{{ section.tagline }}</h2>        <div class="apps-list">          @for (card of section.cards; track card.tagline) {            <hra-ui-section              [hraFeature]="card.tagline | slugify"              [tagline]="card.tagline"              [description]="card.description"              [imagePath]="card.imagePath"              [logo]="card.logoPath"              [appStatus]="card.appStatus"              [appUrl]="card.appUrl"              (openAppUrl)="onOpenAppUrl(card.appUrl)"              [documentationUrl]="card.documentLink"              (openDocumentationLink)="onOpenDocumentationLink(card.documentLink)"            />          }        </div>      </div>    }  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <div class="splash-header">    <img alt="" class="splash-header-img" [attr.src]="\'assets/ui-images/splash-image.png\' | assetUrl" />    <div class="splash-header-content">      <p>Construct, use, and visualize data with applications of the Human Reference Atlas</p>      <mat-button-toggle-group        class="tab-toggles"        hideSingleSelectionIndicator        hraFeature="active-tab"        hraButtonToggleSize="large"        [(ngModel)]="activeTab"      >        @for (tab of tabs(); track tab.name) {          <mat-button-toggle hraClickEvent [hraFeature]="tab.name | slugify" [value]="tab">            {{ tab.name }}          </mat-button-toggle>        }      </mat-button-toggle-group>    </div>  </div>  <div class="apps-container">    @for (section of activeSections(); track section.tagline) {      <div class="section-container">        <h2 class="apps-header-text">{{ section.tagline }}</h2>        <div class="apps-list">          @for (card of section.cards; track card.tagline) {            <hra-ui-section              [hraFeature]="card.tagline | slugify"              [tagline]="card.tagline"              [description]="card.description"              [imagePath]="card.imagePath"              [logo]="card.logoPath"              [appStatus]="card.appStatus"              [appUrl]="card.appUrl"              [documentationUrl]="card.documentLink"              (openAppUrl)="onOpenAppUrl(card.appUrl)"              (openDocumentationLink)="onOpenDocumentationLink(card.documentLink)"            />          }        </div>      </div>    }  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LandingPageComponent'};

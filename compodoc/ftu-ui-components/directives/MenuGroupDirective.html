@@ -157,10 +157,6 @@
                         <td class="col-md-9"><code>ng-template[hraMenuGroup]</code></td>
                     </tr>
 
-                    <tr>
-                        <td class="col-md-3">Standalone</td>
-                        <td class="col-md-9"><code>true</code></td>
-                    </tr>
 
 
 
@@ -222,15 +218,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>ngTemplateContextGuard(_dir: <a href="../directives/MenuGroupDirective.html" target="_self">MenuGroupDirective</a>, _ctx)</code>
+                    <code>ngTemplateContextGuard(_dir: <a href="../directives/MenuGroupDirective.html" target="_self">MenuGroupDirective</a>, _ctx: unknown)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="22"
-                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/menu-content/menu-content.component.ts:22</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/menu-content/menu-content.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -267,6 +263,7 @@
                                         <tr>
                                                 <td>_ctx</td>
                                             <td>
+                                                        <code>unknown</code>
                                             </td>
 
                                             <td>
@@ -296,12 +293,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Location } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component, Directive, inject, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Directive, input } from &#x27;@angular/core&#x27;;
 import { MatDivider } from &#x27;@angular/material/divider&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { Router, RouterModule, UrlTree } from &#x27;@angular/router&#x27;;
-import { isAbsolute as isAbsoluteUrl } from &#x27;@hra-ui/common/url&#x27;;
+import { LinkDirective } from &#x27;@hra-ui/common/router-ext&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { Menu, MenuGroup, MenuItem, MenuSubGroup } from &#x27;../types/menus.schema&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
@@ -312,7 +307,6 @@ export type MenuContentVariant &#x3D; &#x27;desktop&#x27; | &#x27;mobile&#x27;;
 /** Directive used to type the context for menu group templates */
 @Directive({
   selector: &#x27;ng-template[hraMenuGroup]&#x27;,
-  standalone: true,
 })
 export class MenuGroupDirective {
   /** Types the context as &#x60;MenuGroup&#x60; */
@@ -325,7 +319,6 @@ export class MenuGroupDirective {
 /** Directive used to type the context for menu item templates */
 @Directive({
   selector: &#x27;ng-template[hraMenuItem]&#x27;,
-  standalone: true,
 })
 export class MenuItemDirective {
   /** Types the context as &#x60;MenuItem&#x60; */
@@ -338,7 +331,6 @@ export class MenuItemDirective {
 /** Directive used to type the context for menu subgroup templates */
 @Directive({
   selector: &#x27;ng-template[hraMenuSubGroup]&#x27;,
-  standalone: true,
 })
 export class MenuSubGroupDirective {
   /** Types the context as &#x60;MenuSubGroup&#x60; */
@@ -356,7 +348,7 @@ export class MenuSubGroupDirective {
   selector: &#x27;hra-menu-content&#x27;,
   imports: [
     HraCommonModule,
-    RouterModule,
+    LinkDirective,
     MatDivider,
     MatIconModule,
     ButtonsModule,
@@ -376,34 +368,6 @@ export class MenuContentComponent {
   readonly variant &#x3D; input.required&lt;MenuContentVariant&gt;();
   /** Menu data to display */
   readonly menu &#x3D; input.required&lt;Menu&gt;();
-  /** Base url - Menu urls starting with this will be converted into router links */
-  readonly baseUrl &#x3D; input.required&lt;string | undefined&gt;();
-
-  /** Reference to the router if available */
-  private readonly router &#x3D; inject(Router, { optional: true });
-
-  /**
-   * Resolves an url against the baseUrl
-   *
-   * @param url Raw url
-   * @returns Whether the url is absolute along with the resolved url
-   */
-  resolveUrl(url: string, forceExternal &#x3D; false): { isAbsolute: boolean; value: string | UrlTree } {
-    const { router } &#x3D; this;
-    const baseUrl &#x3D; Location.stripTrailingSlash(this.baseUrl() ?? &#x27;&#x27;) + &#x27;/&#x27;;
-    let isAbsolute &#x3D; forceExternal || isAbsoluteUrl(url);
-    if (!forceExternal &amp;&amp; baseUrl &amp;&amp; url.startsWith(baseUrl)) {
-      isAbsolute &#x3D; false;
-      url &#x3D; url.slice(baseUrl.length);
-    }
-
-    let value: string | UrlTree &#x3D; url;
-    if (!isAbsolute &amp;&amp; router) {
-      value &#x3D; router.parseUrl(Location.stripTrailingSlash(url));
-    }
-
-    return { isAbsolute, value };
-  }
 }
 </code></pre>
     </div>

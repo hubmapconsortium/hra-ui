@@ -588,6 +588,12 @@ Updates the ontology tree model in the state if it changes</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>new Map([
     [&#x27;gene&#x27;, &#x27;Genes&#x27;],
     [&#x27;protein&#x27;, &#x27;Proteins&#x27;],
@@ -656,6 +662,12 @@ Updates the ontology tree model in the state if it changes</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>inject(OntologySearchService)</code>
@@ -760,9 +772,9 @@ import { OntologyTreeComponent } from &#x27;../ontology-tree/ontology-tree.compo
  */
 @Component({
   selector: &#x27;ccf-ontology-selection&#x27;,
+  imports: [CommonModule, OntologyTreeComponent],
   templateUrl: &#x27;./ontology-selection.component.html&#x27;,
   providers: [OntologySearchService],
-  imports: [CommonModule, OntologyTreeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OntologySelectionComponent {
@@ -856,11 +868,10 @@ export class OntologySelectionComponent {
     [occurenceData]&#x3D;&quot;occurenceData()&quot;
     [termData]&#x3D;&quot;termData()&quot;
     [biomarkerMenuOptions]&#x3D;&quot;biomarkerMenuOptions&quot;
+    [tooltip]&#x3D;&quot;tooltip()&quot;
     (nodeSelected)&#x3D;&quot;ontologySelection.emit($event)&quot;
     (biomarkerOptionsChange)&#x3D;&quot;filterNodes($event)&quot;
-    [tooltip]&#x3D;&quot;tooltip()&quot;
-  &gt;
-  &lt;/ccf-ontology-tree&gt;
+  /&gt;
 }
 </code></pre>
     </div>
@@ -891,7 +902,7 @@ export class OntologySelectionComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (rootNode$ | async) {  <ccf-ontology-tree    class="tree"    [rootNode]="rootNode"    [getChildren]="ontologySearchService.getChildren"    [occurenceData]="occurenceData()"    [termData]="termData()"    [biomarkerMenuOptions]="biomarkerMenuOptions"    (nodeSelected)="ontologySelection.emit($event)"    (biomarkerOptionsChange)="filterNodes($event)"    [tooltip]="tooltip()"  >  </ccf-ontology-tree>}</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (rootNode$ | async) {  <ccf-ontology-tree    class="tree"    [rootNode]="rootNode"    [getChildren]="ontologySearchService.getChildren"    [occurenceData]="occurenceData()"    [termData]="termData()"    [biomarkerMenuOptions]="biomarkerMenuOptions"    [tooltip]="tooltip()"    (nodeSelected)="ontologySelection.emit($event)"    (biomarkerOptionsChange)="filterNodes($event)"  />}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OntologySelectionComponent'};

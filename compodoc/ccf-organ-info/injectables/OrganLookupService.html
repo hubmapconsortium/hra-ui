@@ -213,8 +213,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -310,8 +310,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -400,15 +400,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getOrganInfo(iri: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, side?: OrganInfo, _sex: Filter)</code>
+<code>getOrganInfo(iri: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, side?: OrganInfo)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -427,7 +427,6 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Default value</td>
                                                 <td>Description</td>
                                         </tr>
                                     </thead>
@@ -442,8 +441,6 @@
                                                     No
                                             </td>
 
-                                            <td>
-                                            </td>
 
                                             <td>
                                                     <p>Organ iri</p>
@@ -460,30 +457,9 @@
                                                     Yes
                                             </td>
 
-                                            <td>
-                                            </td>
 
                                             <td>
                                                     <p>Side</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>_sex</td>
-                                            <td>
-                                                        <code>Filter</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-                                            <td>
-                                                    <code>FilterSexEnum.Female</code>
-                                            </td>
-
-                                            <td>
-                                                    <p>Donor sez</p>
 
                                             </td>
                                         </tr>
@@ -522,8 +498,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -619,8 +595,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/services/organ-lookup/organ-lookup.service.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -730,14 +706,9 @@ export class OrganLookupService {
    *
    * @param iri Organ iri
    * @param side Side
-   * @param _sex Donor sez
    * @returns Organ info if found
    */
-  getOrganInfo(
-    iri: string,
-    side?: OrganInfo[&#x27;side&#x27;],
-    _sex: Filter[&#x27;sex&#x27;] &#x3D; FilterSexEnum.Female,
-  ): Observable&lt;OrganInfo | undefined&gt; {
+  getOrganInfo(iri: string, side?: OrganInfo[&#x27;side&#x27;]): Observable&lt;OrganInfo | undefined&gt; {
     let info &#x3D; this.organs.find((item) &#x3D;&gt; item.id &#x3D;&#x3D;&#x3D; iri);
     if (!info) {
       return of(undefined);

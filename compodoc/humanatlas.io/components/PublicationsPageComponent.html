@@ -314,6 +314,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; this.normalizePublications(this.publications()))</code>
                     </td>
                 </tr>
@@ -426,13 +432,13 @@ export class PublicationsPageComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;banner&quot;&gt;
-  &lt;img [attr.src]&#x3D;&quot;&#x27;assets/content/publications-page/images/publications.png&#x27; | assetUrl&quot; alt&#x3D;&quot;&quot; /&gt;
+  &lt;img alt&#x3D;&quot;&quot; [attr.src]&#x3D;&quot;&#x27;assets/content/publications-page/images/publications.png&#x27; | assetUrl&quot; /&gt;
   &lt;span class&#x3D;&quot;banner-text&quot;&gt;Publications&lt;/span&gt;
 &lt;/div&gt;
 
 &lt;hra-table-of-contents-layout&gt;
   @for (item of items(); track item.year) {
-    &lt;hra-page-section [tagline]&#x3D;&quot;item.tagline&quot; level&#x3D;&quot;2&quot; [anchor]&#x3D;&quot;item.anchor&quot;&gt;
+    &lt;hra-page-section level&#x3D;&quot;2&quot; [tagline]&#x3D;&quot;item.tagline&quot; [anchor]&#x3D;&quot;item.anchor&quot;&gt;
       @for (content of item.contents; track content) {
         &lt;markdown [data]&#x3D;&quot;content&quot; /&gt;
       }
@@ -469,7 +475,7 @@ export class PublicationsPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="banner">  <img [attr.src]="\'assets/content/publications-page/images/publications.png\' | assetUrl" alt="" />  <span class="banner-text">Publications</span></div><hra-table-of-contents-layout>  @for (item of items(); track item.year) {    <hra-page-section [tagline]="item.tagline" level="2" [anchor]="item.anchor">      @for (content of item.contents; track content) {        <markdown [data]="content" />      }    </hra-page-section>  }</hra-table-of-contents-layout><hra-footer /></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="banner">  <img alt="" [attr.src]="\'assets/content/publications-page/images/publications.png\' | assetUrl" />  <span class="banner-text">Publications</span></div><hra-table-of-contents-layout>  @for (item of items(); track item.year) {    <hra-page-section level="2" [tagline]="item.tagline" [anchor]="item.anchor">      @for (content of item.contents; track content) {        <markdown [data]="content" />      }    </hra-page-section>  }</hra-table-of-contents-layout><hra-footer /></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-portal'},{'name': 'CarouselComponent', 'selector': 'hra-carousel'},{'name': 'ContentComponent', 'selector': 'hra-carousel-content'},{'name': 'ControlsComponent', 'selector': 'hra-carousel-controls'},{'name': 'CountInfoComponent', 'selector': 'hra-count-info'},{'name': 'DataViewerWithQueryParamsComponent', 'selector': 'hra-data-viewer-with-query-params'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'PublicationsPageComponent', 'selector': 'hra-publications-page'},{'name': 'ReleaseNotesVersionSelectorComponent', 'selector': 'hra-release-notes-version-selector'},{'name': 'SectionCardsComponent', 'selector': 'hra-section-cards'},{'name': 'SummaryStatisticsTableComponent', 'selector': 'hra-summary-statistics-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'PublicationsPageComponent'};

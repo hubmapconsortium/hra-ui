@@ -343,6 +343,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>effect((onCleanup) &#x3D;&gt; {
     if (this.isCustomVisualization()) {
       const handler &#x3D; (event: Event) &#x3D;&gt; event.preventDefault();
@@ -380,6 +386,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>effect(() &#x3D;&gt; {
@@ -421,6 +433,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>this.location.prepareExternalUrl(&#x27;/&#x27;)</code>
@@ -510,12 +528,7 @@ export class VisualizationPageComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;cde-visualization
-  #vis
-  [attr.home-link]&#x3D;&quot;homeLink&quot;
-  data-testid&#x3D;&quot;visualization&quot;
-  hraFeature&#x3D;&quot;visualization-page&quot;
-&gt;&lt;/cde-visualization&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;cde-visualization data-testid&#x3D;&quot;visualization&quot; hraFeature&#x3D;&quot;visualization-page&quot; [attr.home-link]&#x3D;&quot;homeLink&quot; #vis /&gt;
 </code></pre>
     </div>
 
@@ -545,7 +558,7 @@ export class VisualizationPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><cde-visualization  #vis  [attr.home-link]="homeLink"  data-testid="visualization"  hraFeature="visualization-page"></cde-visualization></div>'
+        var COMPONENT_TEMPLATE = '<div><cde-visualization data-testid="visualization" hraFeature="visualization-page" [attr.home-link]="homeLink" #vis /></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'VisualizationPageComponent'};

@@ -3,7 +3,7 @@ import * as i1 from '@ngxs/store';
 import { Action as Action$5, State, Selector, NgxsModule } from '@ngxs/store';
 import * as i0 from '@angular/core';
 import { Injectable, inject, NgZone, NgModule } from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { createExternalUrl } from '@hra-ui/utils';
@@ -90,8 +90,8 @@ let BaseHrefState = class BaseHrefState {
         }
         ctx.setState(baseHref);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: BaseHrefState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: BaseHrefState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: BaseHrefState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: BaseHrefState }); }
 };
 __decorate([
     Action$5(Set$2),
@@ -105,7 +105,7 @@ BaseHrefState = __decorate([
         defaults: '',
     })
 ], BaseHrefState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: BaseHrefState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: BaseHrefState, decorators: [{
             type: Injectable
         }], propDecorators: { setBaseHref: [] } });
 
@@ -329,8 +329,8 @@ let LinkRegistryState = class LinkRegistryState {
         const url = createExternalUrl(entry.url, extras);
         window.open(url, entry.target, entry.rel);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: LinkRegistryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: LinkRegistryState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: LinkRegistryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: LinkRegistryState }); }
 };
 __decorate([
     Action$5(Add$1),
@@ -368,7 +368,7 @@ LinkRegistryState = __decorate([
         defaults: {},
     })
 ], LinkRegistryState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: LinkRegistryState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: LinkRegistryState, decorators: [{
             type: Injectable
         }], propDecorators: { addOne: [], addMany: [], addYaml: [], loadYaml: [], navigate: [] } });
 
@@ -636,8 +636,8 @@ let ResourceRegistryState = class ResourceRegistryState {
     loadMarkdown(ctx, { id, url }) {
         return this.http.get(url, { responseType: 'text' }).pipe(map((markdown) => new Add(id, { type: BuiltinResourceType.Markdown, markdown })), map((action) => this.addOne(ctx, action)));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ResourceRegistryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ResourceRegistryState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ResourceRegistryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ResourceRegistryState }); }
 };
 __decorate([
     Action$5(Add),
@@ -675,7 +675,7 @@ ResourceRegistryState = __decorate([
         defaults: {},
     })
 ], ResourceRegistryState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ResourceRegistryState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ResourceRegistryState, decorators: [{
             type: Injectable
         }], propDecorators: { addOne: [], addMany: [], addYaml: [], loadYaml: [], loadMarkdown: [] } });
 
@@ -919,8 +919,8 @@ let StorageState = class StorageState {
             draft[id] += 1;
         }));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: StorageState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: StorageState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: StorageState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: StorageState }); }
 };
 __decorate([
     Action$5(Set$1),
@@ -949,7 +949,7 @@ StorageState = StorageState_1 = __decorate([
         },
     })
 ], StorageState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: StorageState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: StorageState, decorators: [{
             type: Injectable
         }], propDecorators: { set: [], delete: [], clear: [] } });
 
@@ -991,11 +991,11 @@ __decorate([
 ], StorageSelectors, "length", null);
 
 class CdkStateModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: CdkStateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.9", ngImport: i0, type: CdkStateModule, imports: [i1.ɵNgxsFeatureModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: CdkStateModule, imports: [NgxsModule.forFeature([BaseHrefState, LinkRegistryState, ResourceRegistryState, StorageState])] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: CdkStateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: CdkStateModule, imports: [i1.ɵNgxsFeatureModule] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: CdkStateModule, imports: [NgxsModule.forFeature([BaseHrefState, LinkRegistryState, ResourceRegistryState, StorageState])] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: CdkStateModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: CdkStateModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [NgxsModule.forFeature([BaseHrefState, LinkRegistryState, ResourceRegistryState, StorageState])],

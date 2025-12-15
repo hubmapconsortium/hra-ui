@@ -3,7 +3,7 @@ import { ConnectedPosition } from '@angular/cdk/overlay';
 import * as _angular_core from '@angular/core';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** A menu item */
 type MenuItem = z.infer<typeof MenuItemSchema>;
@@ -144,8 +144,6 @@ declare class HeaderComponent {
             })[] | undefined;
         })[];
     }[]>;
-    /** Base url - Menu urls starting with this will be converted into router links */
-    readonly baseUrl: _angular_core.InputSignal<string | undefined>;
     /** Breadcrumb items */
     readonly breadcrumbs: _angular_core.InputSignal<BreadcrumbItem[] | undefined>;
     /**
@@ -200,7 +198,7 @@ declare class HeaderComponent {
     /**
      * Closes any active menu
      */
-    closeMenu(): void;
+    closeMenu(menu?: Menu | 'main'): void;
     /**
      * Creates and attaches a resize observer that updates the menu offset
      * whenever the header size changes
@@ -223,7 +221,7 @@ declare class HeaderComponent {
      */
     private updateMenuPositions;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<HeaderComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<HeaderComponent, "hra-header", never, { "cta": { "alias": "cta"; "required": false; "isSignal": true; }; "hubmapMenu": { "alias": "hubmapMenu"; "required": false; "isSignal": true; }; "menus": { "alias": "menus"; "required": false; "isSignal": true; }; "baseUrl": { "alias": "baseUrl"; "required": false; "isSignal": true; }; "breadcrumbs": { "alias": "breadcrumbs"; "required": false; "isSignal": true; }; "progress": { "alias": "progress"; "required": false; "isSignal": true; }; "ctaDismissed": { "alias": "ctaDismissed"; "required": false; "isSignal": true; }; }, { "ctaDismissed": "ctaDismissedChange"; }, never, ["*"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<HeaderComponent, "hra-header", never, { "cta": { "alias": "cta"; "required": false; "isSignal": true; }; "hubmapMenu": { "alias": "hubmapMenu"; "required": false; "isSignal": true; }; "menus": { "alias": "menus"; "required": false; "isSignal": true; }; "breadcrumbs": { "alias": "breadcrumbs"; "required": false; "isSignal": true; }; "progress": { "alias": "progress"; "required": false; "isSignal": true; }; "ctaDismissed": { "alias": "ctaDismissed"; "required": false; "isSignal": true; }; }, { "ctaDismissed": "ctaDismissedChange"; }, never, ["*"], true, never>;
 }
 
 /** A hubmap menu item */

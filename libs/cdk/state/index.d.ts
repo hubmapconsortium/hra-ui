@@ -3,7 +3,7 @@ import * as i1 from '@ngxs/store';
 import { StateContext } from '@ngxs/store';
 import * as i0 from '@angular/core';
 import { UrlCreationOptions } from '@angular/router';
-import { z } from 'zod';
+import * as z from 'zod';
 import { UnionMember } from '@hra-ui/utils/types';
 import { Observable } from 'rxjs';
 

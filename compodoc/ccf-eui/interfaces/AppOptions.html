@@ -692,13 +692,13 @@ interface AppOptions {
  */
 @Component({
   selector: &#x27;ccf-root&#x27;,
+  standalone: false,
   templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;],
+  styleUrl: &#x27;./app.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: &#x27;hra-app&#x27;,
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Set selected searches */
@@ -749,6 +749,8 @@ export class AppComponent extends BaseApplicationComponent {
   protected readonly spatialSearchItems &#x3D; this.store.selectSignal(SpatialSearchFilterSelectors.items);
   /** Database state */
   protected readonly databaseReady &#x3D; this.store.selectSignal(DataStateSelectors.isDatabaseReady);
+  /** Query status */
+  protected readonly queryStatus &#x3D; toSignal(this.data.queryStatus$, { requireSync: true });
   /** Cell type tree */
   protected readonly cellTypeTree &#x3D; this.store.selectSignal(DataStateSelectors.cellTypesTreeModel);
   /** Ontology tree */

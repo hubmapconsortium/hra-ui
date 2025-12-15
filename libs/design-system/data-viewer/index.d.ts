@@ -1,5 +1,5 @@
 import * as _angular_core from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
 
 /** Type for viewer file data, includes label and URL */

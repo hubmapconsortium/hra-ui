@@ -197,7 +197,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>send(data: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>, doFetch)</code>
+<code>send(data: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>, doFetch: unknown)</code>
                 </td>
             </tr>
 
@@ -250,6 +250,7 @@
                                         <tr>
                                                 <td>doFetch</td>
                                             <td>
+                                                        <code>unknown</code>
                                             </td>
 
                                             <td>
@@ -292,7 +293,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>stringify(data)</code>
+<code>stringify(data: unknown)</code>
                 </td>
             </tr>
 
@@ -317,6 +318,7 @@
                                     <thead>
                                         <tr>
                                             <td>Name</td>
+                                                <td>Type</td>
                                             <td>Optional</td>
                                                 <td>Description</td>
                                         </tr>
@@ -324,6 +326,9 @@
                                     <tbody>
                                         <tr>
                                                 <td>data</td>
+                                            <td>
+                                                        <code>unknown</code>
+                                            </td>
 
                                             <td>
                                                     No

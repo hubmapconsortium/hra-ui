@@ -120,6 +120,10 @@
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
         <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -174,18 +178,18 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                            <code>CommonModule</code>
+                            <code>HraCommonModule</code>
                                 <code><a href="../miscellaneous/typealiases.html#YouTubePlayer" target="_self" >YouTubePlayer</a></code>
                 </td>
             </tr>
 
 
 
-            <tr>
-                <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;youtube-player [videoId]&#x3D;&quot;videoId()&quot; [disableCookies]&#x3D;&quot;true&quot; /&gt;</code></pre></td>
-            </tr>
 
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./youtube-player.component.html</code></td>
+            </tr>
 
 
 
@@ -206,7 +210,52 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#hasCookiesEnabled" >hasCookiesEnabled</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#player" >player</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#thumbnailUrl" >thumbnailUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#videoUrl" >videoUrl</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#onEnableCookiesClick" >onEnableCookiesClick</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -216,6 +265,9 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#label" >label</a>
+                            </li>
                             <li>
                                 <a href="#videoId" >videoId</a>
                             </li>
@@ -237,6 +289,38 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="label"></a>
+                        <b>label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">/home/workflows/workspace/libs/design-system/content-templates/youtube-player/src/lib/youtube-player.component.ts:21</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Label for the video used in accessibility text</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="videoId"></a>
                         <b>videoId</b>
                     </td>
@@ -254,7 +338,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">/home/workflows/workspace/libs/design-system/content-templates/youtube-player/src/lib/youtube-player.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">/home/workflows/workspace/libs/design-system/content-templates/youtube-player/src/lib/youtube-player.component.ts:18</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -269,31 +353,292 @@
 
 
 
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEnableCookiesClick"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>onEnableCookiesClick</b></span>
+                        <a href="#onEnableCookiesClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onEnableCookiesClick()</code>
+                </td>
+            </tr>
 
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/content-templates/youtube-player/src/lib/youtube-player.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle enable cookies button click - opens privacy preferences modal</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasCookiesEnabled"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>hasCookiesEnabled</b></span>
+                        <a href="#hasCookiesEnabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.consentService.isCategoryEnabled(EventCategory.Marketing))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">/home/workflows/workspace/libs/design-system/content-templates/youtube-player/src/lib/youtube-player.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether marketing cookies are enabled</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="player"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>player</b></span>
+                        <a href="#player"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>viewChild&lt;YouTubePlayer&gt;(&#x27;player&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">/home/workflows/workspace/libs/design-system/content-templates/youtube-player/src/lib/youtube-player.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ViewChild reference to the YouTube player for programmatic control</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="thumbnailUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>thumbnailUrl</b></span>
+                        <a href="#thumbnailUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; &#x60;https://img.youtube.com/vi/${this.videoId()}/sddefault.jpg&#x60;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">/home/workflows/workspace/libs/design-system/content-templates/youtube-player/src/lib/youtube-player.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Computed thumbnail URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="videoUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>videoUrl</b></span>
+                        <a href="#videoUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; &#x60;https://www.youtube.com/watch?v&#x3D;${this.videoId()}&#x60;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">/home/workflows/workspace/libs/design-system/content-templates/youtube-player/src/lib/youtube-player.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>YouTube video URL</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ChangeDetectionStrategy, Component, computed, inject, input, viewChild } from &#x27;@angular/core&#x27;;
 import { YouTubePlayer } from &#x27;@angular/youtube-player&#x27;;
+import { ConsentService } from &#x27;@hra-ui/common/analytics&#x27;;
+import { EventCategory } from &#x27;@hra-ui/common/analytics/events&#x27;;
+import { PrivacyPreferencesService } from &#x27;@hra-ui/design-system/privacy&#x27;;
 
 /** YouTube Player wrapper component for Content Pages */
 @Component({
   selector: &#x27;hra-youtube-player&#x27;,
-  imports: [CommonModule, YouTubePlayer],
-  template: &#x60;&lt;youtube-player [videoId]&#x3D;&quot;videoId()&quot; [disableCookies]&#x3D;&quot;true&quot; /&gt;&#x60;,
+  imports: [HraCommonModule, YouTubePlayer],
+  templateUrl: &#x27;./youtube-player.component.html&#x27;,
   styleUrl: &#x27;./youtube-player.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HraYoutubePlayerComponent {
   /** The ID of the YouTube video to play*/
-  protected readonly videoId &#x3D; input.required&lt;string&gt;();
+  readonly videoId &#x3D; input.required&lt;string&gt;();
+
+  /** Label for the video used in accessibility text */
+  readonly label &#x3D; input.required&lt;string&gt;();
+
+  /** ViewChild reference to the YouTube player for programmatic control */
+  readonly player &#x3D; viewChild&lt;YouTubePlayer&gt;(&#x27;player&#x27;);
+
+  /** Consent service to check if marketing cookies are enabled */
+  private readonly consentService &#x3D; inject(ConsentService);
+
+  /** Privacy preferences service to open modal */
+  private readonly privacyPreferencesService &#x3D; inject(PrivacyPreferencesService);
+
+  /** Whether marketing cookies are enabled */
+  protected readonly hasCookiesEnabled &#x3D; computed(() &#x3D;&gt; this.consentService.isCategoryEnabled(EventCategory.Marketing));
+
+  /** Computed thumbnail URL */
+  protected readonly thumbnailUrl &#x3D; computed(() &#x3D;&gt; &#x60;https://img.youtube.com/vi/${this.videoId()}/sddefault.jpg&#x60;);
+
+  /** YouTube video URL */
+  protected readonly videoUrl &#x3D; computed(() &#x3D;&gt; &#x60;https://www.youtube.com/watch?v&#x3D;${this.videoId()}&#x60;);
+
+  /** Handle enable cookies button click - opens privacy preferences modal */
+  protected onEnableCookiesClick(): void {
+    this.privacyPreferencesService.openPrivacyPreferences(&#x27;consent&#x27;);
+  }
 }
 </code></pre>
     </div>
 
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">@if (hasCookiesEnabled()) {
+  &lt;youtube-player
+    hraFeature&#x3D;&quot;youtube-player&quot;
+    hraClickEvent
+    [videoId]&#x3D;&quot;videoId()&quot;
+    [playerVars]&#x3D;&quot;{ rel: 0, showinfo: 0 }&quot;
+    [disableCookies]&#x3D;&quot;true&quot;
+    #player
+  /&gt;
+} @else {
+  &lt;div class&#x3D;&quot;youtube-thumbnail-container&quot; hraFeature&#x3D;&quot;youtube-thumbnail&quot;&gt;
+    &lt;a target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot; hraFeature&#x3D;&quot;watch-on-youtube&quot; hraClickEvent [attr.href]&#x3D;&quot;videoUrl()&quot;&gt;
+      &lt;img class&#x3D;&quot;thumbnail-image&quot; [attr.src]&#x3D;&quot;thumbnailUrl()&quot; [attr.alt]&#x3D;&quot;&#x60;YouTube video thumbnail for ${label()}&#x60;&quot; /&gt;
+    &lt;/a&gt;
+    &lt;div class&#x3D;&quot;enable-cookies-message&quot;&gt;
+      &lt;button hraFeature&#x3D;&quot;enable-cookies&quot; hraClickEvent class&#x3D;&quot;enable-cookies-button&quot; (click)&#x3D;&quot;onEnableCookiesClick()&quot;&gt;
+        Enable cookies
+      &lt;/button&gt;
+      to watch videos
+    &lt;/div&gt;
+  &lt;/div&gt;
+}
+</code></pre>
+    </div>
 
 
     <div class="tab-pane fade " id="tree">
@@ -321,10 +666,10 @@ export class HraYoutubePlayerComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><youtube-player [videoId]="videoId()" [disableCookies]="true" /></div>'
-    var COMPONENTS = [{'name': 'ActionCardActionComponent', 'selector': 'hra-action-card-action'},{'name': 'ActionCardComponent', 'selector': 'hra-action-card'},{'name': 'ApiCommandComponent', 'selector': 'hra-api-command'},{'name': 'AppLabelComponent', 'selector': 'hra-app-label'},{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BottomSheetComponent', 'selector': 'hra-bottom-sheet'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'hra-button'},{'name': 'CardMenuComponent', 'selector': 'hra-card-menu'},{'name': 'CategoriesComponent', 'selector': 'hra-categories'},{'name': 'CodeBlockComponent', 'selector': 'hra-code-block'},{'name': 'CodeBlockGlobalStylesComponent', 'selector': 'hra-code-block-global-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ConsentBannerComponent', 'selector': 'hra-consent-banner'},{'name': 'ContentPageComponent', 'selector': 'hra-content-page'},{'name': 'CopyableUrlContainerComponent', 'selector': 'hra-copyable-url-container'},{'name': 'CountCardComponent', 'selector': 'hra-count-card'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DangerMessageIndicatorComponent', 'selector': 'hra-danger-message-indicator'},{'name': 'DataViewerComponent', 'selector': 'hra-data-viewer'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FlatCardActionsComponent', 'selector': 'hra-flat-card-actions'},{'name': 'FlatCardComponent', 'selector': 'hra-flat-card'},{'name': 'FlexContainerComponent', 'selector': 'hra-flex-container'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HelpButtonComponent', 'selector': 'hra-help-button'},{'name': 'HraYoutubePlayerComponent', 'selector': 'hra-youtube-player'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconComponent', 'selector': 'hra-icon'},{'name': 'ImageComponent', 'selector': 'hra-image'},{'name': 'InfoMessageIndicatorComponent', 'selector': 'hra-info-message-indicator'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'MarkdownComponent', 'selector': 'hra-markdown'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavigationCategoryComponent', 'selector': 'hra-navigation-category'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NavigationItemComponent', 'selector': 'hra-navigation-item'},{'name': 'NotFoundPageComponent', 'selector': 'hra-not-found-page'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'PageLabelComponent', 'selector': 'hra-page-label'},{'name': 'PageSectionComponent', 'selector': 'hra-page-section'},{'name': 'PlainTooltipStylesComponent', 'selector': 'hra-plain-tooltip-styles'},{'name': 'PrivacyPreferencesComponent', 'selector': 'hra-privacy-preferences'},{'name': 'ProfileCardComponent', 'selector': 'hra-profile-card'},{'name': 'ProgressSpinnerComponent', 'selector': 'hra-progress-spinner'},{'name': 'ResultsIndicatorComponent', 'selector': 'hra-results-indicator'},{'name': 'RichTooltipActionsComponent', 'selector': 'hra-rich-tooltip-actions'},{'name': 'RichTooltipContainerComponent', 'selector': 'hra-rich-tooltip-container'},{'name': 'RichTooltipContentComponent', 'selector': 'hra-rich-tooltip-content'},{'name': 'RichTooltipTaglineComponent', 'selector': 'hra-rich-tooltip-tagline'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SectionLinkComponent', 'selector': 'h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
+        var COMPONENT_TEMPLATE = '<div>@if (hasCookiesEnabled()) {  <youtube-player    hraFeature="youtube-player"    hraClickEvent    [videoId]="videoId()"    [playerVars]="{ rel: 0, showinfo: 0 }"    [disableCookies]="true"    #player  />} @else {  <div class="youtube-thumbnail-container" hraFeature="youtube-thumbnail">    <a target="_blank" rel="noopener noreferrer" hraFeature="watch-on-youtube" hraClickEvent [attr.href]="videoUrl()">      <img class="thumbnail-image" [attr.src]="thumbnailUrl()" [attr.alt]="`YouTube video thumbnail for ${label()}`" />    </a>    <div class="enable-cookies-message">      <button hraFeature="enable-cookies" hraClickEvent class="enable-cookies-button" (click)="onEnableCookiesClick()">        Enable cookies      </button>      to watch videos    </div>  </div>}</div>'
+    var COMPONENTS = [{'name': 'ActionCardActionComponent', 'selector': 'hra-action-card-action'},{'name': 'ActionCardComponent', 'selector': 'hra-action-card'},{'name': 'ApiCommandComponent', 'selector': 'hra-api-command'},{'name': 'AppLabelComponent', 'selector': 'hra-app-label'},{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'ArchivedPageComponent', 'selector': 'hra-archived-page'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BottomSheetComponent', 'selector': 'hra-bottom-sheet'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'hra-button'},{'name': 'CardMenuComponent', 'selector': 'hra-card-menu'},{'name': 'CategoriesComponent', 'selector': 'hra-categories'},{'name': 'CodeBlockComponent', 'selector': 'hra-code-block'},{'name': 'CodeBlockGlobalStylesComponent', 'selector': 'hra-code-block-global-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ConsentBannerComponent', 'selector': 'hra-consent-banner'},{'name': 'ContentButtonComponent', 'selector': 'hra-content-button'},{'name': 'ContentPageComponent', 'selector': 'hra-content-page'},{'name': 'CopyableUrlContainerComponent', 'selector': 'hra-copyable-url-container'},{'name': 'CountCardComponent', 'selector': 'hra-count-card'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DangerMessageIndicatorComponent', 'selector': 'hra-danger-message-indicator'},{'name': 'DataViewerComponent', 'selector': 'hra-data-viewer'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'EndOfResultsIndicatorComponent', 'selector': 'hra-end-of-results-indicator'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FilterContainerComponent', 'selector': 'hra-filter-container'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FlatCardActionsComponent', 'selector': 'hra-flat-card-actions'},{'name': 'FlatCardComponent', 'selector': 'hra-flat-card'},{'name': 'FlexContainerComponent', 'selector': 'hra-flex-container'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'GalleryCardComponent', 'selector': 'hra-gallery-card'},{'name': 'GalleryGridComponent', 'selector': 'hra-gallery-grid'},{'name': 'GoogleMapsComponent', 'selector': 'hra-google-maps'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HelpButtonComponent', 'selector': 'hra-help-button'},{'name': 'HraYoutubePlayerComponent', 'selector': 'hra-youtube-player'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconComponent', 'selector': 'hra-icon'},{'name': 'ImageComponent', 'selector': 'hra-image'},{'name': 'InfoButtonComponent', 'selector': 'hra-info-button'},{'name': 'InfoMessageIndicatorComponent', 'selector': 'hra-info-message-indicator'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'ListViewComponent', 'selector': 'hra-list-view'},{'name': 'MarkdownComponent', 'selector': 'hra-markdown'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavigationButtonComponent', 'selector': 'hra-navigation-button'},{'name': 'NavigationCategoryComponent', 'selector': 'hra-navigation-category'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NavigationItemComponent', 'selector': 'hra-navigation-item'},{'name': 'NoResultsIndicatorComponent', 'selector': 'hra-no-results-indicator'},{'name': 'NotFoundPageComponent', 'selector': 'hra-not-found-page'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'PageLabelComponent', 'selector': 'hra-page-label'},{'name': 'PageSectionComponent', 'selector': 'hra-page-section'},{'name': 'PlainTooltipStylesComponent', 'selector': 'hra-plain-tooltip-styles'},{'name': 'PrivacyPreferencesComponent', 'selector': 'hra-privacy-preferences'},{'name': 'ProfileCardComponent', 'selector': 'hra-profile-card'},{'name': 'ProgressSpinnerComponent', 'selector': 'hra-progress-spinner'},{'name': 'RedirectPageComponent', 'selector': 'hra-redirect-page'},{'name': 'ResultsIndicatorComponent', 'selector': 'hra-results-indicator'},{'name': 'RichTooltipActionsComponent', 'selector': 'hra-rich-tooltip-actions'},{'name': 'RichTooltipContainerComponent', 'selector': 'hra-rich-tooltip-container'},{'name': 'RichTooltipContentComponent', 'selector': 'hra-rich-tooltip-content'},{'name': 'RichTooltipTaglineComponent', 'selector': 'hra-rich-tooltip-tagline'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SearchFilterComponent', 'selector': 'hra-search-filter'},{'name': 'SearchListComponent', 'selector': 'hra-search-list'},{'name': 'SectionLinkComponent', 'selector': 'h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
     h4[hra-section-link], h5[hra-section-link], h6[hra-section-link]'},{'name': 'ServerErrorPageComponent', 'selector': 'hra-server-error-page'},{'name': 'SiteNavigationComponent', 'selector': 'hra-site-navigation'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableComponent', 'selector': 'hra-table'},{'name': 'TableOfContentsComponent', 'selector': 'hra-table-of-contents'},{'name': 'TableOfContentsDemoComponent', 'selector': 'hra-table-of-contents-demo'},{'name': 'TableOfContentsLayoutComponent', 'selector': 'hra-table-of-contents-layout'},{'name': 'TableOfContentsLayoutDemoComponent', 'selector': 'hra-table-of-contents-layout-demo'},{'name': 'TableOfContentsLayoutHeaderComponent', 'selector': 'hra-table-of-contents-layout-header'},{'name': 'TextHyperlinkComponent', 'selector': 'hra-text-hyperlink'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'UiSectionComponent', 'selector': 'hra-ui-section'},{'name': 'VersionedDataTableComponent', 'selector': 'hra-versioned-data-table'},{'name': 'ViewerCardComponent', 'selector': 'hra-viewer-card'},{'name': 'ViewerMenuComponent', 'selector': 'hra-viewer-menu'},{'name': 'VisualButtonComponent', 'selector': 'hra-visual-button'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
-    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'IconRowElementDirective', 'selector': 'ng-template[hraIconRowElement]'},{'name': 'LinkRowElementDirective', 'selector': 'ng-template[hraLinkRowElement]'},{'name': 'MarkdownRowElementDirective', 'selector': 'ng-template[hraMarkdownRowElement]'},{'name': 'MenuButtonRowElementDirective', 'selector': 'ng-template[hraMenuButtonRowElement]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'NumericRowElementDirective', 'selector': 'ng-template[hraNumericRowElement]'},{'name': 'PlainTooltipDirective', 'selector': '[hraPlainTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'RichTooltipCloseDirective', 'selector': '[hraRichTooltipClose]'},{'name': 'RichTooltipContextDirective', 'selector': 'ng-template[hraRichTooltipContext]'},{'name': 'RichTooltipDirective', 'selector': '[hraRichTooltip]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TextRowElementDirective', 'selector': 'ng-template[hraTextRowElement]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
+    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'ChipSizeDirective', 'selector': 'mat-chip[hraChipSize], mat-chip-option[hraChipSize], mat-chip-row[hraChipSize]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'DensityDirective', 'selector': '[hraDensity]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'GalleryGridItemDirective', 'selector': '[hraGalleryGridItem]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'IconRowElementDirective', 'selector': 'ng-template[hraIconRowElement]'},{'name': 'InfoButtonActionsDirective', 'selector': '[hraInfoButtonActions]'},{'name': 'InfoButtonTaglineDirective', 'selector': '[hraInfoButtonTagline]'},{'name': 'LinkRowElementDirective', 'selector': 'ng-template[hraLinkRowElement]'},{'name': 'MarkdownRowElementDirective', 'selector': 'ng-template[hraMarkdownRowElement]'},{'name': 'MenuButtonRowElementDirective', 'selector': 'ng-template[hraMenuButtonRowElement]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'NavigationButtonDescriptionDirective', 'selector': '[hraNavigationButtonDescription]'},{'name': 'NavigationButtonTaglineDirective', 'selector': '[hraNavigationButtonTagline]'},{'name': 'NavigationIconDirective', 'selector': '[hraNavigationIcon]'},{'name': 'NumericRowElementDirective', 'selector': 'ng-template[hraNumericRowElement]'},{'name': 'PlainTooltipDirective', 'selector': '[hraPlainTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'ProgressBarColorDirective', 'selector': 'mat-progress-bar[hraProgressBarColor]'},{'name': 'RichTooltipCloseDirective', 'selector': '[hraRichTooltipClose]'},{'name': 'RichTooltipContextDirective', 'selector': 'ng-template[hraRichTooltipContext]'},{'name': 'RichTooltipDirective', 'selector': '[hraRichTooltip]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextButtonDirective', 'selector': 'button[hraTextButton]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TextRowElementDirective', 'selector': 'ng-template[hraTextRowElement]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'HraYoutubePlayerComponent'};
 </script>
 <script src="../js/tree.js"></script>

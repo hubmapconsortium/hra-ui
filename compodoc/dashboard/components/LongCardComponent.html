@@ -344,7 +344,7 @@ import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { Router, RouterModule } from &#x27;@angular/router&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { VisualButtonComponent } from &#x27;@hra-ui/design-system/buttons/visual-button&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 
 /** Long card data */
 export type LongCardSpec &#x3D; z.infer&lt;typeof LONG_CARD_DEF&gt;;
@@ -383,7 +383,7 @@ export class LongCardComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;spec-card&quot; [hraClickEvent]&#x3D;&quot;{ title: spec().title | slugify }&quot;&gt;
-  &lt;hra-visual-button [label]&#x3D;&quot;spec().title&quot; [imageUrl]&#x3D;&quot;spec().background&quot; (cardClick)&#x3D;&quot;onClick()&quot;&gt; &lt;/hra-visual-button&gt;
+  &lt;hra-visual-button [label]&#x3D;&quot;spec().title&quot; [imageUrl]&#x3D;&quot;spec().background&quot; (cardClick)&#x3D;&quot;onClick()&quot; /&gt;
 &lt;/ng-container&gt;
 </code></pre>
     </div>
@@ -414,7 +414,7 @@ export class LongCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="spec-card" [hraClickEvent]="{ title: spec().title | slugify }">  <hra-visual-button [label]="spec().title" [imageUrl]="spec().background" (cardClick)="onClick()"> </hra-visual-button></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="spec-card" [hraClickEvent]="{ title: spec().title | slugify }">  <hra-visual-button [label]="spec().title" [imageUrl]="spec().background" (cardClick)="onClick()" /></ng-container></div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'LongCardComponent'};

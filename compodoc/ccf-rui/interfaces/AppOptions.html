@@ -432,15 +432,15 @@ export type Side &#x3D; &#x27;left&#x27; | &#x27;right&#x27; | &#x27;anterior&#x
  */
 @Component({
   selector: &#x27;ccf-root&#x27;,
+  standalone: false,
   templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;],
+  styleUrl: &#x27;./app.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: &#x27;hra-app&#x27;,
     &#x27;[class.embedded]&#x27;: &#x27;embedded()&#x27;,
     &#x27;(document:mousedown)&#x27;: &#x27;handleClick($event.target)&#x27;,
   },
-  standalone: false,
 })
 export class AppComponent extends BaseApplicationComponent implements OnDestroy, OnInit {
   /** Model state */
@@ -535,7 +535,11 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy,
    * Disables block position change if an input element is clicked
    * @param target The element clicked
    */
-  handleClick(target: HTMLElement): void {
+  handleClick(target: EventTarget | null): void {
+    if (!target || !(target instanceof HTMLElement)) {
+      return;
+    }
+
     const disableWhenClicked &#x3D; [&#x27;mat-mdc-input-element&#x27;, &#x27;mat-mdc-form-field&#x27;, &#x27;form-input-label&#x27;];
     for (const className of disableWhenClicked) {
       if (typeof target.className &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; target.className.includes(className)) {

@@ -145,6 +145,20 @@ declare function isAbsolute(path: string): boolean;
  * @returns The concatenated path
  */
 declare function joinWithSlash(start: string, end: string): string;
+/**
+ * Remove the trailing slash from a path while preserving the fragment and query parameters (if present)
+ *
+ * @param path Url to strip
+ * @returns New url
+ */
+declare function stripTrailingSlash(path: string): string;
+/**
+ * Remove the leading hash symbol from a fragment (if present)
+ *
+ * @param fragment Fragment to strip
+ * @returns New fragment
+ */
+declare function stripLeadingHash(fragment: string): string;
 
 /** A value or a factory function */
 type ValueOrFactory<T> = T | (() => T);
@@ -157,5 +171,5 @@ type UrlResolverFn = (value: string) => string;
 /** Url resolver inject function */
 type InjectUrlResolverFn = () => UrlResolverFn;
 
-export { AppUrlPipe, AssetUrlPipe, CssUrlPipe, PageUrlPipe, UrlModule, appUrl, assetUrl, cssUrl, injectAppHref, injectAppUrlResolver, injectAssetHref, injectAssetUrlResolver, injectPageHref, injectPageUrlResolver, isAbsolute, joinWithSlash, pageUrl, provideAppHref, provideAssetHref, providePageHref };
+export { AppUrlPipe, AssetUrlPipe, CssUrlPipe, PageUrlPipe, UrlModule, appUrl, assetUrl, cssUrl, injectAppHref, injectAppUrlResolver, injectAssetHref, injectAssetUrlResolver, injectPageHref, injectPageUrlResolver, isAbsolute, joinWithSlash, pageUrl, provideAppHref, provideAssetHref, providePageHref, stripLeadingHash, stripTrailingSlash };
 export type { InjectHrefFn, InjectUrlResolverFn, ProvideHrefFn, UrlResolverFn };

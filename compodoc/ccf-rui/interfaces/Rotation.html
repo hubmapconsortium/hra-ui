@@ -344,14 +344,14 @@ export type Axis &#x3D; &#x27;x&#x27; | &#x27;y&#x27; | &#x27;z&#x27;;
  */
 @Component({
   selector: &#x27;ccf-rotation-slider&#x27;,
+  standalone: false,
   templateUrl: &#x27;./rotation-slider.component.html&#x27;,
-  styleUrls: [&#x27;./rotation-slider.component.scss&#x27;],
+  styleUrl: &#x27;./rotation-slider.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     &#x27;(document:keydown)&#x27;: &#x27;changeStep($event)&#x27;,
     &#x27;(document:keyup)&#x27;: &#x27;changeStep($event)&#x27;,
   },
-  standalone: false,
 })
 export class RotationSliderComponent {
   /** Input that allows the rotation to be changed from outside of the component */

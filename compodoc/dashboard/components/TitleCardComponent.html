@@ -180,7 +180,7 @@
                 <td class="col-md-9">
                             <code>HraCommonModule</code>
                             <code>MatIconModule</code>
-                            <code>OverlayModule</code>
+                            <code>ButtonsModule</code>
                 </td>
             </tr>
 
@@ -211,24 +211,6 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#tooltipOpen" >tooltipOpen</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#tooltipPositions" >tooltipPositions</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
                 <tr>
@@ -277,7 +259,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/lib/components/title-card/title-card.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/components/title-card/title-card.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -293,85 +275,16 @@
 
 
 
-    <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tooltipOpen"></a>
-                    <span class="name">
-                        <span ><b>tooltipOpen</b></span>
-                        <a href="#tooltipOpen"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/components/title-card/title-card.component.ts:54</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Flag to check if tooltip is open</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tooltipPositions"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>tooltipPositions</b></span>
-                        <a href="#tooltipPositions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>TOOLTIP_POSITIONS</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/lib/components/title-card/title-card.component.ts:51</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Setting the tooltip positions</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConnectionPositionPair, OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
-import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
-import { z } from &#x27;zod&#x27;;
+import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import * as z from &#x27;zod&#x27;;
 
 /** Type definition of Title Card */
 export type TitleCardSpec &#x3D; z.infer&lt;typeof TITLE_CARD_DEF&gt;;
@@ -382,32 +295,10 @@ export const TITLE_CARD_DEF &#x3D; z.object({
   tooltip: z.string(),
 });
 
-/** Tooltip positions definition */
-const TOOLTIP_POSITIONS: ConnectionPositionPair[] &#x3D; [
-  {
-    originX: &#x27;start&#x27;,
-    originY: &#x27;bottom&#x27;,
-    overlayX: &#x27;start&#x27;,
-    overlayY: &#x27;top&#x27;,
-  },
-  {
-    originX: &#x27;center&#x27;,
-    originY: &#x27;bottom&#x27;,
-    overlayX: &#x27;center&#x27;,
-    overlayY: &#x27;top&#x27;,
-  },
-  {
-    originX: &#x27;end&#x27;,
-    originY: &#x27;bottom&#x27;,
-    overlayX: &#x27;end&#x27;,
-    overlayY: &#x27;top&#x27;,
-  },
-];
-
 /** Title card component, renders title, tooltip and contents inside the card */
 @Component({
   selector: &#x27;hra-title-card&#x27;,
-  imports: [HraCommonModule, MatIconModule, OverlayModule],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule],
   templateUrl: &#x27;./title-card.component.html&#x27;,
   styleUrl: &#x27;./title-card.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -415,12 +306,6 @@ const TOOLTIP_POSITIONS: ConnectionPositionPair[] &#x3D; [
 export class TitleCardComponent {
   /** Input for title card component */
   readonly spec &#x3D; input.required&lt;TitleCardSpec&gt;();
-
-  /** Setting the tooltip positions  */
-  readonly tooltipPositions &#x3D; TOOLTIP_POSITIONS;
-
-  /** Flag to check if tooltip is open */
-  tooltipOpen &#x3D; false;
 }
 </code></pre>
     </div>
@@ -428,33 +313,13 @@ export class TitleCardComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;h3 class&#x3D;&quot;title&quot; hraFeature&#x3D;&quot;title-card&quot;&gt;
   {{ spec().title }}
-  &lt;mat-icon
-    hraFeature&#x3D;&quot;info&quot;
-    [hraHoverEvent]&#x3D;&quot;{ title: spec().title }&quot;
-    class&#x3D;&quot;material-symbols-rounded&quot;
-    cdkOverlayOrigin
-    #resetTrigger&#x3D;&quot;cdkOverlayOrigin&quot;
-    (mouseover)&#x3D;&quot;tooltipOpen &#x3D; true&quot;
-    (mouseout)&#x3D;&quot;tooltipOpen &#x3D; false&quot;
-    &gt;info&lt;/mat-icon
-  &gt;
+  &lt;hra-info-button&gt;
+    {{ spec().tooltip }}
+  &lt;/hra-info-button&gt;
 &lt;/h3&gt;
 
-&lt;ng-template
-  cdkConnectedOverlay
-  [cdkConnectedOverlayPanelClass]&#x3D;&quot;[&#x27;tooltip-panel&#x27;]&quot;
-  [cdkConnectedOverlayOrigin]&#x3D;&quot;resetTrigger&quot;
-  [cdkConnectedOverlayPositions]&#x3D;&quot;tooltipPositions&quot;
-  [cdkConnectedOverlayOpen]&#x3D;&quot;tooltipOpen&quot;
-  [cdkConnectedOverlayOffsetX]&#x3D;&quot;5&quot;
-&gt;
-  &lt;div class&#x3D;&quot;mat-caption&quot;&gt;
-    {{ spec().tooltip }}
-  &lt;/div&gt;
-&lt;/ng-template&gt;
-
 &lt;div class&#x3D;&quot;content&quot;&gt;
-  &lt;ng-content&gt;&lt;/ng-content&gt;
+  &lt;ng-content /&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -485,7 +350,7 @@ export class TitleCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h3 class="title" hraFeature="title-card">  {{ spec().title }}  <mat-icon    hraFeature="info"    [hraHoverEvent]="{ title: spec().title }"    class="material-symbols-rounded"    cdkOverlayOrigin    #resetTrigger="cdkOverlayOrigin"    (mouseover)="tooltipOpen = true"    (mouseout)="tooltipOpen = false"    >info</mat-icon  ></h3><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayPanelClass]="[\'tooltip-panel\']"  [cdkConnectedOverlayOrigin]="resetTrigger"  [cdkConnectedOverlayPositions]="tooltipPositions"  [cdkConnectedOverlayOpen]="tooltipOpen"  [cdkConnectedOverlayOffsetX]="5">  <div class="mat-caption">    {{ spec().tooltip }}  </div></ng-template><div class="content">  <ng-content></ng-content></div></div>'
+        var COMPONENT_TEMPLATE = '<div><h3 class="title" hraFeature="title-card">  {{ spec().title }}  <hra-info-button>    {{ spec().tooltip }}  </hra-info-button></h3><div class="content">  <ng-content /></div></div>'
     var COMPONENTS = [{'name': 'DashboardComponentOutletComponent', 'selector': 'hra-dashboard-component-outlet'},{'name': 'DashboardIndexComponent', 'selector': 'hra-dashboard-index'},{'name': 'DashboardLayoutComponent', 'selector': 'hra-dashboard-layout'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'IframeContainerComponent', 'selector': 'hra-iframe-container'},{'name': 'ImageContainerComponent', 'selector': 'hra-image-container'},{'name': 'LongCardComponent', 'selector': 'hra-long-card'},{'name': 'MetricsContainerComponent', 'selector': 'hra-dashboard-metrics-container'},{'name': 'MetricsItemComponent', 'selector': 'hra-metrics-item'},{'name': 'TitleCardComponent', 'selector': 'hra-title-card'},{'name': 'VegaContainerComponent', 'selector': 'hra-vega-container'}];
     var DIRECTIVES = [{'name': 'DashboardComponentOutletDirective', 'selector': '[hraDashboardComponentOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'TitleCardComponent'};

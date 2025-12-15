@@ -842,11 +842,11 @@ function normalizeStatLabels(stats: AggregateCount[], label?: string): Aggregate
     ProgressSpinnerComponent,
   ],
   templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;],
+  styleUrl: &#x27;./app.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: &#x27;hra-app&#x27;,
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Emits when the user switches the model sex */
@@ -890,12 +890,12 @@ export class AppComponent extends BaseApplicationComponent {
       side: this.side(),
     }),
     stream: (params) &#x3D;&gt; {
-      const { iri, sex, side } &#x3D; params.params;
+      const { iri, side } &#x3D; params.params;
       if (iri &#x3D;&#x3D;&#x3D; undefined) {
         return of(undefined);
       }
 
-      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;], sex);
+      const info$ &#x3D; this.lookupService.getOrganInfo(iri, side?.toLowerCase() as OrganInfo[&#x27;side&#x27;]);
       return info$;
     },
   });

@@ -2,11 +2,9 @@ import * as _hra_ui_cdk_state from '@hra-ui/cdk/state';
 import { Iri, SourceReference, CellSummary, IllustrationMappingItem, Url, TissueLibrary, Tissue } from '@hra-ui/services';
 import * as i1 from '@ngxs/store';
 import { StateContext, NgxsOnInit } from '@ngxs/store';
-import * as zod from 'zod';
-import { z } from 'zod';
+import * as z from 'zod';
 import { Observable } from 'rxjs';
 import * as i0 from '@angular/core';
-import { ModuleWithProviders } from '@angular/core';
 import { EmptyObject } from 'type-fest';
 
 declare const Load_base$5: _hra_ui_cdk_state.ActionConstructor;
@@ -247,11 +245,11 @@ declare class CellSummaryState {
 /**
  * SVG DEFAULT FORMAT CREATE ID
  */
-declare const Svg: string & zod.$brand<"DownloadFormatId">;
+declare const Svg: string & z.$brand<"DownloadFormatId">;
 /**
  * PNG DEFAULT FORMAT CREATE ID
  */
-declare const Png: string & zod.$brand<"DownloadFormatId">;
+declare const Png: string & z.$brand<"DownloadFormatId">;
 
 declare const builtinFormatsIds_d_Png: typeof Png;
 declare const builtinFormatsIds_d_Svg: typeof Svg;
@@ -713,21 +711,21 @@ declare class IllustratorSelectors {
 }
 
 /** Landing page id */
-declare const LandingPage: string & zod.$brand<"LinkId">;
+declare const LandingPage: string & z.$brand<"LinkId">;
 /** Product title link id */
-declare const ProductTitle$1: string & zod.$brand<"LinkId">;
+declare const ProductTitle$1: string & z.$brand<"LinkId">;
 /** About Link id */
-declare const About: string & zod.$brand<"LinkId">;
+declare const About: string & z.$brand<"LinkId">;
 /** LinkId for HRA Portal */
-declare const Portal: string & zod.$brand<"LinkId">;
+declare const Portal: string & z.$brand<"LinkId">;
 /** LinkId for Illustration metadata */
-declare const Illustration: string & zod.$brand<"LinkId">;
+declare const Illustration: string & z.$brand<"LinkId">;
 /** LinkId for Embed */
-declare const Embed: string & zod.$brand<"LinkId">;
+declare const Embed: string & z.$brand<"LinkId">;
 /** LinkId for Explore FTU */
-declare const ExploreFTU: string & zod.$brand<"LinkId">;
+declare const ExploreFTU: string & z.$brand<"LinkId">;
 /** LinkId for read more in landing page content */
-declare const LandingPageReadMore: string & zod.$brand<"LinkId">;
+declare const LandingPageReadMore: string & z.$brand<"LinkId">;
 
 declare const linkIds_d_About: typeof About;
 declare const linkIds_d_Embed: typeof Embed;
@@ -750,47 +748,47 @@ declare namespace linkIds_d {
 }
 
 /** Product title id */
-declare const ProductTitle: string & zod.$brand<"ResourceId">;
+declare const ProductTitle: string & z.$brand<"ResourceId">;
 /** Product logo url id */
-declare const ProductLogoUrl: string & zod.$brand<"ResourceId">;
+declare const ProductLogoUrl: string & z.$brand<"ResourceId">;
 /** Landing Page Title id */
-declare const LandingPageTitle: string & zod.$brand<"ResourceId">;
+declare const LandingPageTitle: string & z.$brand<"ResourceId">;
 /** Landing Page Description id */
-declare const LandingPageDescription: string & zod.$brand<"ResourceId">;
+declare const LandingPageDescription: string & z.$brand<"ResourceId">;
 /** Landing Page Partners id */
-declare const LandingPagePartners: string & zod.$brand<"ResourceId">;
+declare const LandingPagePartners: string & z.$brand<"ResourceId">;
 /** Landing Page More Text id */
-declare const LandingPageIntroMoreText: string & zod.$brand<"ResourceId">;
+declare const LandingPageIntroMoreText: string & z.$brand<"ResourceId">;
 /** Landing Page Read More text (For web components) */
-declare const LandingPageIntroReadMore: string & zod.$brand<"ResourceId">;
+declare const LandingPageIntroReadMore: string & z.$brand<"ResourceId">;
 /** Landing Page Intro Image id */
-declare const LandingPageIntroImg: string & zod.$brand<"ResourceId">;
+declare const LandingPageIntroImg: string & z.$brand<"ResourceId">;
 /** Metrics Logo id */
-declare const MetricsLogo: string & zod.$brand<"ResourceId">;
+declare const MetricsLogo: string & z.$brand<"ResourceId">;
 /** Metrics Title id */
-declare const MetricsTitle: string & zod.$brand<"ResourceId">;
+declare const MetricsTitle: string & z.$brand<"ResourceId">;
 /** Landing Page Depth Title */
-declare const LandingPageDepthTitle: string & zod.$brand<"ResourceId">;
+declare const LandingPageDepthTitle: string & z.$brand<"ResourceId">;
 /** Landing Page Depth Img id */
-declare const LandingPageDepthImg: string & zod.$brand<"ResourceId">;
+declare const LandingPageDepthImg: string & z.$brand<"ResourceId">;
 /** Lanading Page Depth Description id */
-declare const LandingPageDepthDescription: string & zod.$brand<"ResourceId">;
+declare const LandingPageDepthDescription: string & z.$brand<"ResourceId">;
 /** Landing Page Depth More Text id */
-declare const LandingPageDepthMoreText: string & zod.$brand<"ResourceId">;
+declare const LandingPageDepthMoreText: string & z.$brand<"ResourceId">;
 /** metrics id */
-declare const Metrics$1: string & zod.$brand<"ResourceId">;
+declare const Metrics$1: string & z.$brand<"ResourceId">;
 /** Message to display after submitting contact form */
-declare const ContactAcknowledgement: string & zod.$brand<"ResourceId">;
+declare const ContactAcknowledgement: string & z.$brand<"ResourceId">;
 /** App title id */
-declare const AppTitle: string & zod.$brand<"ResourceId">;
+declare const AppTitle: string & z.$brand<"ResourceId">;
 /** Gradient legend id */
-declare const GradientLegend: string & zod.$brand<"ResourceId">;
+declare const GradientLegend: string & z.$brand<"ResourceId">;
 /** Size legend id */
-declare const SizeLegend: string & zod.$brand<"ResourceId">;
+declare const SizeLegend: string & z.$brand<"ResourceId">;
 /** Info to show on the tooltip for Gradient legend */
-declare const GradientLegendInfo: string & zod.$brand<"ResourceId">;
+declare const GradientLegendInfo: string & z.$brand<"ResourceId">;
 /** Info to show on the tooltip for Size legend */
-declare const SizeLegendInfo: string & zod.$brand<"ResourceId">;
+declare const SizeLegendInfo: string & z.$brand<"ResourceId">;
 
 declare const resourceIds_d_AppTitle: typeof AppTitle;
 declare const resourceIds_d_ContactAcknowledgement: typeof ContactAcknowledgement;
@@ -882,10 +880,6 @@ declare namespace resourceTypes_d {
 type HraStateModuleOptions = EmptyObject;
 /** Provides all states */
 declare class HraStateModule {
-    /** Static method for configuring the module
-     * Returns a configuration object with the module and the providers
-     */
-    static forRoot(_options: HraStateModuleOptions): ModuleWithProviders<HraStateModule>;
     static ɵfac: i0.ɵɵFactoryDeclaration<HraStateModule, never>;
     static ɵmod: i0.ɵɵNgModuleDeclaration<HraStateModule, never, [typeof i1.ɵNgxsFeatureModule], never>;
     static ɵinj: i0.ɵɵInjectorDeclaration<HraStateModule>;

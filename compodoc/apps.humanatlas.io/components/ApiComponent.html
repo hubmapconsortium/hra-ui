@@ -428,7 +428,7 @@ and change within the component</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onBeforeTry(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, beforeTry: ClickEventDirective)</code>
+<code>onBeforeTry(event: Event, beforeTry: ClickEventDirective)</code>
                 </td>
             </tr>
 
@@ -461,7 +461,7 @@ and change within the component</p>
                                         <tr>
                                                 <td>event</td>
                                             <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        <code>Event</code>
                                             </td>
 
                                             <td>
@@ -665,6 +665,12 @@ and change within the component</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
     return this.servers.find((item) &#x3D;&gt; item.id &#x3D;&#x3D;&#x3D; this.serverId()) ?? this.servers[0];
   })</code>
@@ -702,6 +708,12 @@ and change within the component</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>servers</code>
@@ -850,8 +862,9 @@ export class ApiComponent {
   }
 
   /** Tracking before-try in rapidoc for analytics */
-  onBeforeTry(event: any, beforeTry: ClickEventDirective) {
-    const request &#x3D; event.detail?.request;
+  onBeforeTry(event: Event, beforeTry: ClickEventDirective) {
+    type BeforeTryDetail &#x3D; { request?: { url: string; method: string } };
+    const request &#x3D; (event as CustomEvent&lt;BeforeTryDetail&gt;).detail?.request;
     const url &#x3D; request?.url || &#x27;&#x27;;
     const endpoint &#x3D; url ? new URL(url).pathname : &#x27;unknown&#x27;;
 
@@ -900,17 +913,13 @@ export class ApiComponent {
         [servers]&#x3D;&quot;servers&quot;
         [selectedServer]&#x3D;&quot;selectedServer()&quot;
         (selectedServerChange)&#x3D;&quot;updateRapidoc($event)&quot;
-      &gt;&lt;/hra-server-selector&gt;
+      /&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;rapidoc-embed&quot;&gt;
       &lt;rapi-doc
         hraClickEvent
         hraFeature&#x3D;&quot;rapi-doc&quot;
-        #beforeTry&#x3D;&quot;hraClickEvent&quot;
         hraClickEventTriggerOn&#x3D;&quot;none&quot;
-        (before-try)&#x3D;&quot;onBeforeTry($event, beforeTry)&quot;
-        #rapidoc
-        [attr.spec-url]&#x3D;&quot;selectedServer().spec&quot;
         fill-request-fields-with-example&#x3D;&quot;false&quot;
         show-header&#x3D;&quot;false&quot;
         render-style&#x3D;&quot;view&quot;
@@ -924,8 +933,11 @@ export class ApiComponent {
         css-classes&#x3D;&quot;rapidoc-hra-api-theme&quot;
         show-info&#x3D;&quot;false&quot;
         allow-server-selection&#x3D;&quot;false&quot;
-      &gt;
-      &lt;/rapi-doc&gt;
+        [attr.spec-url]&#x3D;&quot;selectedServer().spec&quot;
+        (before-try)&#x3D;&quot;onBeforeTry($event, beforeTry)&quot;
+        #beforeTry&#x3D;&quot;hraClickEvent&quot;
+        #rapidoc
+      /&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 &lt;/ng-container&gt;
@@ -958,7 +970,7 @@ export class ApiComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="api">  <section class="splash">    <div class="splash-image">      <video autoplay muted loop playsinline [src]="\'videos/api-anim-v2.mp4\' | assetUrl" #video></video>    </div>    <div class="splash-content">      <hra-icon class="logo" [svgIcon]="logo()" />      <div class="splash-title m">HRA API</div>      <div class="splash-description">        This API provides programmatic access to data registered to the Human Reference Atlas.      </div>      <div class="splash-action">        <button          hraClickEvent          hraFeature="scroll-down"          mat-button          hraCtaButton          hraButtonVariant="primary"          (click)="scrollTo(apiContainer)"        >          Use APIs          <mat-icon iconPositionEnd>arrow_forward</mat-icon>        </button>      </div>    </div>  </section>  <section class="rapidoc-container" data-testid="api-container" #apiContainer>    <div class="rapidoc-custom-header">      <div class="title">HRA API Directory</div>      <hra-server-selector        class="server-select"        [servers]="servers"        [selectedServer]="selectedServer()"        (selectedServerChange)="updateRapidoc($event)"      ></hra-server-selector>    </div>    <div class="rapidoc-embed">      <rapi-doc        hraClickEvent        hraFeature="rapi-doc"        #beforeTry="hraClickEvent"        hraClickEventTriggerOn="none"        (before-try)="onBeforeTry($event, beforeTry)"        #rapidoc        [attr.spec-url]="selectedServer().spec"        fill-request-fields-with-example="false"        show-header="false"        render-style="view"        layout="column"        allow-authentication="false"        theme="light"        text-color="#201E3D"        header-color="#201E3D"        primary-color="#FF0043"        css-file="rapidoc-theme.css"        css-classes="rapidoc-hra-api-theme"        show-info="false"        allow-server-selection="false"      >      </rapi-doc>    </div>  </section></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="api">  <section class="splash">    <div class="splash-image">      <video autoplay muted loop playsinline [src]="\'videos/api-anim-v2.mp4\' | assetUrl" #video></video>    </div>    <div class="splash-content">      <hra-icon class="logo" [svgIcon]="logo()" />      <div class="splash-title m">HRA API</div>      <div class="splash-description">        This API provides programmatic access to data registered to the Human Reference Atlas.      </div>      <div class="splash-action">        <button          hraClickEvent          hraFeature="scroll-down"          mat-button          hraCtaButton          hraButtonVariant="primary"          (click)="scrollTo(apiContainer)"        >          Use APIs          <mat-icon iconPositionEnd>arrow_forward</mat-icon>        </button>      </div>    </div>  </section>  <section class="rapidoc-container" data-testid="api-container" #apiContainer>    <div class="rapidoc-custom-header">      <div class="title">HRA API Directory</div>      <hra-server-selector        class="server-select"        [servers]="servers"        [selectedServer]="selectedServer()"        (selectedServerChange)="updateRapidoc($event)"      />    </div>    <div class="rapidoc-embed">      <rapi-doc        hraClickEvent        hraFeature="rapi-doc"        hraClickEventTriggerOn="none"        fill-request-fields-with-example="false"        show-header="false"        render-style="view"        layout="column"        allow-authentication="false"        theme="light"        text-color="#201E3D"        header-color="#201E3D"        primary-color="#FF0043"        css-file="rapidoc-theme.css"        css-classes="rapidoc-hra-api-theme"        show-info="false"        allow-server-selection="false"        [attr.spec-url]="selectedServer().spec"        (before-try)="onBeforeTry($event, beforeTry)"        #beforeTry="hraClickEvent"        #rapidoc      />    </div>  </section></ng-container></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ApiComponent'};

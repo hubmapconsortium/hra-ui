@@ -22,45 +22,69 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_ErrorPagesModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="148,-70 148,-268 348,-268 348,-70 148,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="59,-70 59,-268 437,-268 437,-70 59,-70"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_ErrorPagesModule_imports</title>
-<polygon fill="none" stroke="black" points="157,-78 157,-130 339,-130 339,-78 157,-78"/>
+<polygon fill="none" stroke="black" points="70,-78 70,-130 426,-130 426,-78 70,-78"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_ErrorPagesModule_exports</title>
-<polygon fill="none" stroke="black" points="156,-208 156,-260 340,-260 340,-208 156,-208"/>
+<polygon fill="none" stroke="black" points="67,-208 67,-260 429,-260 429,-208 67,-208"/>
 </g>
 <!-- NotFoundPageComponent -->
 <g id="node1" class="node">
 <title>NotFoundPageComponent</title>
-<polygon fill="#8dd3c7" stroke="black" points="330.82,-122 327.82,-126 306.82,-126 303.82,-122 165.18,-122 165.18,-86 330.82,-86 330.82,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">NotFoundPageComponent</text>
+<polygon fill="#8dd3c7" stroke="black" points="417.82,-122 414.82,-126 393.82,-126 390.82,-122 252.18,-122 252.18,-86 417.82,-86 417.82,-122"/>
+<text text-anchor="middle" x="335" y="-99.8" font-family="Times,serif" font-size="14.00">NotFoundPageComponent</text>
 </g>
 <!-- ErrorPagesModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>ErrorPagesModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="308.74,-187 305.74,-191 284.74,-191 281.74,-187 187.26,-187 187.26,-151 308.74,-151 308.74,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">ErrorPagesModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="217.74,-187 214.74,-191 193.74,-191 190.74,-187 96.26,-187 96.26,-151 217.74,-151 217.74,-187"/>
+<text text-anchor="middle" x="157" y="-164.8" font-family="Times,serif" font-size="14.00">ErrorPagesModule</text>
 </g>
 <!-- NotFoundPageComponent&#45;&gt;ErrorPagesModule -->
 <g id="edge1" class="edge">
 <title>NotFoundPageComponent&#45;&gt;ErrorPagesModule</title>
-<path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
-<polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
+<path fill="none" stroke="black" d="M362.64,-122.02C362.64,-139.37 362.64,-163 362.64,-163 362.64,-163 227.86,-163 227.86,-163"/>
+<polygon fill="black" stroke="black" points="227.86,-159.5 217.86,-163 227.86,-166.5 227.86,-159.5"/>
+</g>
+<!-- RedirectPageComponent -->
+<g id="node2" class="node">
+<title>RedirectPageComponent</title>
+<polygon fill="#8dd3c7" stroke="black" points="233.97,-122 230.97,-126 209.97,-126 206.97,-122 78.03,-122 78.03,-86 233.97,-86 233.97,-122"/>
+<text text-anchor="middle" x="156" y="-99.8" font-family="Times,serif" font-size="14.00">RedirectPageComponent</text>
+</g>
+<!-- RedirectPageComponent&#45;&gt;ErrorPagesModule -->
+<g id="edge2" class="edge">
+<title>RedirectPageComponent&#45;&gt;ErrorPagesModule</title>
+<path fill="none" stroke="black" d="M157,-122.11C157,-122.11 157,-140.99 157,-140.99"/>
+<polygon fill="black" stroke="black" points="153.5,-140.99 157,-150.99 160.5,-140.99 153.5,-140.99"/>
 </g>
 <!-- NotFoundPageComponent  -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>NotFoundPageComponent </title>
-<polygon fill="#fb8072" stroke="black" points="332.32,-252 163.68,-252 163.68,-216 332.32,-216 332.32,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00">NotFoundPageComponent </text>
+<polygon fill="#fb8072" stroke="black" points="421.32,-252 252.68,-252 252.68,-216 421.32,-216 421.32,-252"/>
+<text text-anchor="middle" x="337" y="-229.8" font-family="Times,serif" font-size="14.00">NotFoundPageComponent </text>
 </g>
 <!-- ErrorPagesModule&#45;&gt;NotFoundPageComponent  -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>ErrorPagesModule&#45;&gt;NotFoundPageComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M248,-187.11C248,-187.11 248,-205.99 248,-205.99"/>
-<polygon fill="black" stroke="black" points="244.5,-205.99 248,-215.99 251.5,-205.99 244.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M217.83,-175C259.63,-175 307.61,-175 307.61,-175 307.61,-175 307.61,-205.98 307.61,-205.98"/>
+<polygon fill="black" stroke="black" points="304.11,-205.98 307.61,-215.98 311.11,-205.98 304.11,-205.98"/>
+</g>
+<!-- RedirectPageComponent  -->
+<g id="node5" class="node">
+<title>RedirectPageComponent </title>
+<polygon fill="#fb8072" stroke="black" points="234.97,-252 75.03,-252 75.03,-216 234.97,-216 234.97,-252"/>
+<text text-anchor="middle" x="155" y="-229.8" font-family="Times,serif" font-size="14.00">RedirectPageComponent </text>
+</g>
+<!-- ErrorPagesModule&#45;&gt;RedirectPageComponent  -->
+<g id="edge4" class="edge">
+<title>ErrorPagesModule&#45;&gt;RedirectPageComponent </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M157,-187.11C157,-187.11 157,-205.99 157,-205.99"/>
+<polygon fill="black" stroke="black" points="153.5,-205.99 157,-215.99 160.5,-205.99 153.5,-205.99"/>
 </g>
 </g>
 </svg>

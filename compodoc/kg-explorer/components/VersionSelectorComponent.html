@@ -396,7 +396,7 @@ export class VersionSelectorComponent {
       (selectionChange)&#x3D;&quot;versionChange.emit($event.value)&quot;
     &gt;
       @for (version of availableVersions(); track $index) {
-        &lt;mat-option [hraFeature]&#x3D;&quot;version&quot; hraClickEvent [value]&#x3D;&quot;version&quot;&gt;
+        &lt;mat-option hraClickEvent [hraFeature]&#x3D;&quot;version&quot; [value]&#x3D;&quot;version&quot;&gt;
           {{ version }}
         &lt;/mat-option&gt;
       }
@@ -432,7 +432,7 @@ export class VersionSelectorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (availableVersions().length === 1) {  <div class="single-version-label">    <span class="label">Digital object version</span>    <span class="version">{{ availableVersions()[0] }}</span>  </div>} @else {  <mat-form-field subscriptSizing="dynamic">    <mat-label>Digital object version</mat-label>    <mat-select      disableRipple      panelClass="options-container"      [value]="version() === \'latest\' ? availableVersions()[0] : version()"      (selectionChange)="versionChange.emit($event.value)"    >      @for (version of availableVersions(); track $index) {        <mat-option [hraFeature]="version" hraClickEvent [value]="version">          {{ version }}        </mat-option>      }    </mat-select>  </mat-form-field>}</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (availableVersions().length === 1) {  <div class="single-version-label">    <span class="label">Digital object version</span>    <span class="version">{{ availableVersions()[0] }}</span>  </div>} @else {  <mat-form-field subscriptSizing="dynamic">    <mat-label>Digital object version</mat-label>    <mat-select      disableRipple      panelClass="options-container"      [value]="version() === \'latest\' ? availableVersions()[0] : version()"      (selectionChange)="versionChange.emit($event.value)"    >      @for (version of availableVersions(); track $index) {        <mat-option hraClickEvent [hraFeature]="version" [value]="version">          {{ version }}        </mat-option>      }    </mat-select>  </mat-form-field>}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'VersionSelectorComponent'};

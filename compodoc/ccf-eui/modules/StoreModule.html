@@ -152,8 +152,7 @@ import { NgModule } from &#x27;@angular/core&#x27;;
 import { NgxsDispatchPluginModule } from &#x27;@ngxs-labs/dispatch-decorator&#x27;;
 import { NgxsLoggerPluginModule } from &#x27;@ngxs/logger-plugin&#x27;;
 import { NgxsModule } from &#x27;@ngxs/store&#x27;;
-import { CallToActionState, GlobalConfigState } from &#x27;ccf-shared&#x27;;
-
+import { GlobalConfigState } from &#x27;ccf-shared&#x27;;
 import { environment } from &#x27;../../../environments/environment&#x27;;
 import { ColorAssignmentState } from &#x27;./color-assignment/color-assignment.state&#x27;;
 import { DataState } from &#x27;./data/data.state&#x27;;
@@ -171,7 +170,6 @@ export const ROOT_STATES &#x3D; [
   ListResultsState,
   DataState,
   SceneState,
-  CallToActionState,
   SpatialSearchUiState,
   SpatialSearchFilterState,
 ];

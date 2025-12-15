@@ -281,7 +281,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
@@ -322,11 +322,11 @@ export class VisualCardComponent {
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;visual-cards&quot;&gt;
   @for (card of cardData(); track card.label) {
     &lt;a
-      [routerLink]&#x3D;&quot;card.route&quot;
       class&#x3D;&quot;visual-card cta-flat&quot;
       rel&#x3D;&quot;noopener noreferrer&quot;
-      [hraFeature]&#x3D;&quot;card.label | slugify&quot;
       hraClickEvent
+      [routerLink]&#x3D;&quot;card.route&quot;
+      [hraFeature]&#x3D;&quot;card.label | slugify&quot;
     &gt;
       &lt;img [attr.src]&#x3D;&quot;card.image&quot; [alt]&#x3D;&quot;card.alt&quot; /&gt;
       &lt;button class&#x3D;&quot;label&quot; mat-button hraCtaButton hraSecondaryButton&gt;
@@ -365,7 +365,7 @@ export class VisualCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="visual-cards">  @for (card of cardData(); track card.label) {    <a      [routerLink]="card.route"      class="visual-card cta-flat"      rel="noopener noreferrer"      [hraFeature]="card.label | slugify"      hraClickEvent    >      <img [attr.src]="card.image" [alt]="card.alt" />      <button class="label" mat-button hraCtaButton hraSecondaryButton>        {{ card.label }}        <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>      </button>    </a>  }</ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="visual-cards">  @for (card of cardData(); track card.label) {    <a      class="visual-card cta-flat"      rel="noopener noreferrer"      hraClickEvent      [routerLink]="card.route"      [hraFeature]="card.label | slugify"    >      <img [attr.src]="card.image" [alt]="card.alt" />      <button class="label" mat-button hraCtaButton hraSecondaryButton>        {{ card.label }}        <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>      </button>    </a>  }</ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'VisualCardComponent'};

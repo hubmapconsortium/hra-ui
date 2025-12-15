@@ -1,7 +1,7 @@
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
 import * as _angular_core from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Displays a card for users to copy and access API information */
 declare class ApiCommandComponent {

@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -194,10 +190,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./app.component.scss</code></td>
-            </tr>
 
 
 
@@ -208,6 +200,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
 
 
 
@@ -314,9 +310,9 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-    description: &#x27;🎉  9th Release (v2.3) has arrived!&#x27;,
+    description: &#x27;🎉  10th Release (v2.4) has arrived!&#x27;,
     action: &#x27;Learn more&#x27;,
-    url: &#x27;https://humanatlas.io/release-notes/v2.3&#x27;,
+    url: &#x27;https://humanatlas.io/release-notes/v2.4&#x27;,
   }</code>
                     </td>
                 </tr>
@@ -350,6 +346,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>signal(false)</code>
                     </td>
                 </tr>
@@ -381,6 +383,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; this.data()[&#x27;siteNavigation&#x27;] !&#x3D;&#x3D; false)</code>
@@ -427,7 +435,7 @@ const ANCHOR_SCROLL_PADDING &#x3D; 24;
   selector: &#x27;hra-portal&#x27;,
   imports: [HraCommonModule, RouterModule, NavigationModule],
   templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;],
+  styleUrl: &#x27;./app.component.scss&#x27;,
   host: {
     class: &#x27;hra-app&#x27;,
   },
@@ -444,9 +452,9 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Call to action message */
   protected readonly cta: CtaConfig &#x3D; {
-    description: &#x27;🎉  9th Release (v2.3) has arrived!&#x27;,
+    description: &#x27;🎉  10th Release (v2.4) has arrived!&#x27;,
     action: &#x27;Learn more&#x27;,
-    url: &#x27;https://humanatlas.io/release-notes/v2.3&#x27;,
+    url: &#x27;https://humanatlas.io/release-notes/v2.4&#x27;,
   };
 
   /** Whether the CTA is dismissed or not */
@@ -473,10 +481,10 @@ export class AppComponent extends BaseApplicationComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;humanatlas&quot;&gt;
-  &lt;hra-header baseUrl&#x3D;&quot;https://humanatlas.io/&quot; [cta]&#x3D;&quot;cta&quot; [(ctaDismissed)]&#x3D;&quot;ctaDismissed&quot; /&gt;
+  &lt;hra-header [cta]&#x3D;&quot;cta&quot; [(ctaDismissed)]&#x3D;&quot;ctaDismissed&quot; /&gt;
   &lt;div class&#x3D;&quot;main&quot; [class.navigation-visible]&#x3D;&quot;siteNavigationEnabled()&quot; [class.cta-active]&#x3D;&quot;!ctaDismissed()&quot;&gt;
     @if (siteNavigationEnabled()) {
-      &lt;hra-site-navigation baseUrl&#x3D;&quot;https://humanatlas.io/&quot; /&gt;
+      &lt;hra-site-navigation /&gt;
     }
     &lt;div class&#x3D;&quot;content&quot;&gt;
       &lt;router-outlet /&gt;
@@ -486,43 +494,6 @@ export class AppComponent extends BaseApplicationComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./app.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">:host {
-  display: block;
-
-  .main {
-    display: flex;
-
-    .content {
-      flex: 1 1;
-      width: 100%;
-    }
-
-    &amp;.cta-active {
-      --hra-table-of-contents-layout-top-offset: 10rem;
-      --hra-site-navigation-top-offset: 7.5rem;
-    }
-  }
-
-  hra-site-navigation {
-    display: none;
-  }
-
-  @media (min-width: 1100px) {
-    hra-site-navigation {
-      display: block;
-    }
-
-    .main.navigation-visible .content {
-      max-width: calc(100% - 20rem);
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -549,7 +520,7 @@ export class AppComponent extends BaseApplicationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="humanatlas">  <hra-header baseUrl="https://humanatlas.io/" [cta]="cta" [(ctaDismissed)]="ctaDismissed" />  <div class="main" [class.navigation-visible]="siteNavigationEnabled()" [class.cta-active]="!ctaDismissed()">    @if (siteNavigationEnabled()) {      <hra-site-navigation baseUrl="https://humanatlas.io/" />    }    <div class="content">      <router-outlet />    </div>  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="humanatlas">  <hra-header [cta]="cta" [(ctaDismissed)]="ctaDismissed" />  <div class="main" [class.navigation-visible]="siteNavigationEnabled()" [class.cta-active]="!ctaDismissed()">    @if (siteNavigationEnabled()) {      <hra-site-navigation />    }    <div class="content">      <router-outlet />    </div>  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-portal'},{'name': 'CarouselComponent', 'selector': 'hra-carousel'},{'name': 'ContentComponent', 'selector': 'hra-carousel-content'},{'name': 'ControlsComponent', 'selector': 'hra-carousel-controls'},{'name': 'CountInfoComponent', 'selector': 'hra-count-info'},{'name': 'DataViewerWithQueryParamsComponent', 'selector': 'hra-data-viewer-with-query-params'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'PublicationsPageComponent', 'selector': 'hra-publications-page'},{'name': 'ReleaseNotesVersionSelectorComponent', 'selector': 'hra-release-notes-version-selector'},{'name': 'SectionCardsComponent', 'selector': 'hra-section-cards'},{'name': 'SummaryStatisticsTableComponent', 'selector': 'hra-summary-statistics-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

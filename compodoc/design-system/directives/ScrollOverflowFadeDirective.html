@@ -159,10 +159,6 @@ is additional content available through scrolling.</p>
                         <td class="col-md-9"><code>[hraScrollOverflowFade]</code></td>
                     </tr>
 
-                    <tr>
-                        <td class="col-md-3">Standalone</td>
-                        <td class="col-md-9"><code>true</code></td>
-                    </tr>
 
 
 
@@ -209,7 +205,7 @@ is additional content available through scrolling.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -240,7 +236,7 @@ is additional content available through scrolling.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:72</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -311,11 +307,10 @@ const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] &#x3D; [
 /** Scroll overflow fade global styles component */
 @Component({
   selector: &#x27;hra-scroll-overflow-fade-styles&#x27;,
-  standalone: true,
   template: &#x27;&#x27;,
-  styleUrls: [&#x27;./scroll-overflow-fade.directive.scss&#x27;],
-  encapsulation: ViewEncapsulation.None,
+  styleUrl: &#x27;./scroll-overflow-fade.directive.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ScrollOverflowFadeStylesComponent {}
 
@@ -326,7 +321,6 @@ export class ScrollOverflowFadeStylesComponent {}
  */
 @Directive({
   selector: &#x27;[hraScrollOverflowFade]&#x27;,
-  standalone: true,
   host: {
     &#x27;[style.--hra-scroll-overflow-fade-offset.px]&#x27;: &#x27;scrollOverflowFadeOffset()&#x27;,
   },

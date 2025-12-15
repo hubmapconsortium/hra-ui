@@ -1,25 +1,23 @@
 import * as _angular_core from '@angular/core';
-import * as zod from 'zod';
-import { z } from 'zod';
+import * as z from 'zod';
+import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 
 /**
  * Global footer component
  */
 declare class FooterComponent {
     /** List of funders to show */
-    readonly funders: _angular_core.InputSignal<(string & zod.$brand<"FunderId">)[]>;
+    readonly funders: _angular_core.InputSignal<(string & z.$brand<"FunderId">)[]>;
     /** List of social media link to show */
-    readonly socials: _angular_core.InputSignal<(string & zod.$brand<"SocialMediaId">)[]>;
+    readonly socials: _angular_core.InputSignal<(string & z.$brand<"SocialMediaId">)[]>;
     /** inject Privacy Preference Service */
-    private readonly privacyPreferences;
-    /** Open Privacy Preferences Modal */
-    openPrivacyPreferences(event: Event): void;
+    readonly privacyPreferences: PrivacyPreferencesService;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<FooterComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<FooterComponent, "hra-footer", never, { "funders": { "alias": "funders"; "required": false; "isSignal": true; }; "socials": { "alias": "socials"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 /** All available funder ids */
-declare const FUNDER_IDS: (string & zod.$brand<"FunderId">)[];
+declare const FUNDER_IDS: (string & z.$brand<"FunderId">)[];
 
 /** Data id of a funder */
 type FunderId = Funder['id'];

@@ -591,6 +591,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;string[]&gt;([])</code>
                     </td>
                 </tr>
@@ -621,6 +627,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
@@ -655,6 +667,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;MenuOptionsType[]&gt;([])</code>
                     </td>
                 </tr>
@@ -685,6 +703,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;string[]&gt;([])</code>
@@ -762,6 +786,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>watchBreakpoint(&#x27;(min-width: 1100px), (max-width: 639px)&#x27;)</code>
                     </td>
                 </tr>
@@ -792,6 +822,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
@@ -826,6 +862,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;{ provenance: string; metadata: string }[]&gt;([])</code>
                     </td>
                 </tr>
@@ -856,6 +898,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;{ id: string; label: string; type: string }[]&gt;([])</code>
@@ -1118,16 +1166,16 @@ export class MetadataPageComponent {
           &lt;hra-copyable-url-container [url]&#x3D;&quot;purl()&quot; /&gt;
           @if (getImage()) {
             @if (imageTypes[metadata().type] &#x3D;&#x3D;&#x3D; &#x27;image/svg+xml&#x27;) {
-              &lt;img [src]&#x3D;&quot;getImage()&quot; alt&#x3D;&quot;Metadata Image&quot; class&#x3D;&quot;metadata-image&quot; /&gt;
+              &lt;img alt&#x3D;&quot;Metadata Image&quot; class&#x3D;&quot;metadata-image&quot; [src]&#x3D;&quot;getImage()&quot; /&gt;
             }
             @if (imageTypes[metadata().type] &#x3D;&#x3D;&#x3D; &#x27;model/gltf-binary&#x27;) {
               &lt;div hraFeature&#x3D;&quot;3d-model-viewer&quot; hraClickEvent class&#x3D;&quot;viewer-container&quot;&gt;
                 &lt;model-viewer
                   class&#x3D;&quot;model-viewer&quot;
-                  [src]&#x3D;&quot;getImage()&quot;
                   shadow-intensity&#x3D;&quot;1&quot;
                   camera-controls
                   auto-rotate
+                  [src]&#x3D;&quot;getImage()&quot;
                 /&gt;
               &lt;/div&gt;
             }
@@ -1160,7 +1208,7 @@ export class MetadataPageComponent {
           &lt;hra-page-section tagline&#x3D;&quot;Tags&quot; [level]&#x3D;&quot;2&quot;&gt;
             &lt;mat-chip-set hraFeature&#x3D;&quot;tags&quot;&gt;
               @for (tag of tags(); track $index) {
-                &lt;mat-chip [hraFeature]&#x3D;&quot;tag.label | slugify&quot; hraClickEvent (click)&#x3D;&quot;tagClick(tag.id, tag.type)&quot;&gt;
+                &lt;mat-chip hraClickEvent [hraFeature]&#x3D;&quot;tag.label | slugify&quot; (click)&#x3D;&quot;tagClick(tag.id, tag.type)&quot;&gt;
                   {{ tag.label }}
                 &lt;/mat-chip&gt;
               }
@@ -1177,11 +1225,11 @@ export class MetadataPageComponent {
             [availableVersions]&#x3D;&quot;availableVersions()&quot;
             [downloadOptions]&#x3D;&quot;downloadOptions()&quot;
             (versionChange)&#x3D;&quot;currentVersion.set($event)&quot;
-          &gt;&lt;/hra-provenance-menu&gt;
+          /&gt;
         }
       &lt;/hra-metadata-layout-content&gt;
     &lt;/hra-metadata-layout&gt;
-    &lt;hra-footer&gt;&lt;/hra-footer&gt;
+    &lt;hra-footer /&gt;
   }
 &lt;/ng-container&gt;
 </code></pre>
@@ -1213,7 +1261,7 @@ export class MetadataPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="metadata-page">  @if (metadata()) {    <hra-metadata-layout      [hraFeature]="metadata().was_derived_from.title | slugify"      [rows]="rows()"      [columns]="columns()"      [version]="currentVersion()"      [availableVersions]="availableVersions()"      [downloadOptions]="downloadOptions()"      (versionChange)="currentVersion.set($event)"    >      <hra-metadata-layout-header>        <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()" />        <div class="header-content">          <hra-copyable-url-container [url]="purl()" />          @if (getImage()) {            @if (imageTypes[metadata().type] === \'image/svg+xml\') {              <img [src]="getImage()" alt="Metadata Image" class="metadata-image" />            }            @if (imageTypes[metadata().type] === \'model/gltf-binary\') {              <div hraFeature="3d-model-viewer" hraClickEvent class="viewer-container">                <model-viewer                  class="model-viewer"                  [src]="getImage()"                  shadow-intensity="1"                  camera-controls                  auto-rotate                />              </div>            }          }        </div>      </hra-metadata-layout-header>      <hra-metadata-layout-content [class.medium-screen]="!isNotMediumScreen()">        <div class="sections">          <hra-page-section class="description" tagline="Description" [level]="2">            <markdown [data]="metadata().was_derived_from.description" />          </hra-page-section>          @if (metadata().was_derived_from.publisher) {            <hra-page-section tagline="Publisher" [level]="2">              <markdown [data]="metadata().was_derived_from.publisher" />            </hra-page-section>          }          @if (metadata().was_derived_from.funders) {            <hra-page-section tagline="Funder" [level]="2">              <ul>                @for (funder of metadata().was_derived_from.funders; track $index) {                  <li>{{ `${funder.funder} (Award number ${funder.awardNumber})` }}</li>                }              </ul>            </hra-page-section>          }          <hra-page-section tagline="License" [level]="2">            <markdown [data]="metadata().was_derived_from.license" />          </hra-page-section>          <hra-page-section tagline="Tags" [level]="2">            <mat-chip-set hraFeature="tags">              @for (tag of tags(); track $index) {                <mat-chip [hraFeature]="tag.label | slugify" hraClickEvent (click)="tagClick(tag.id, tag.type)">                  {{ tag.label }}                </mat-chip>              }            </mat-chip-set>          </hra-page-section>        </div>        @if (!isNotMediumScreen()) {          <hra-provenance-menu            hraFeature="provenance-menu"            [rows]="rows()"            [columns]="columns()"            [version]="currentVersion()"            [availableVersions]="availableVersions()"            [downloadOptions]="downloadOptions()"            (versionChange)="currentVersion.set($event)"          ></hra-provenance-menu>        }      </hra-metadata-layout-content>    </hra-metadata-layout>    <hra-footer></hra-footer>  }</ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="metadata-page">  @if (metadata()) {    <hra-metadata-layout      [hraFeature]="metadata().was_derived_from.title | slugify"      [rows]="rows()"      [columns]="columns()"      [version]="currentVersion()"      [availableVersions]="availableVersions()"      [downloadOptions]="downloadOptions()"      (versionChange)="currentVersion.set($event)"    >      <hra-metadata-layout-header>        <hra-page-section [tagline]="metadata().was_derived_from.title" [icons]="icons()" />        <div class="header-content">          <hra-copyable-url-container [url]="purl()" />          @if (getImage()) {            @if (imageTypes[metadata().type] === \'image/svg+xml\') {              <img alt="Metadata Image" class="metadata-image" [src]="getImage()" />            }            @if (imageTypes[metadata().type] === \'model/gltf-binary\') {              <div hraFeature="3d-model-viewer" hraClickEvent class="viewer-container">                <model-viewer                  class="model-viewer"                  shadow-intensity="1"                  camera-controls                  auto-rotate                  [src]="getImage()"                />              </div>            }          }        </div>      </hra-metadata-layout-header>      <hra-metadata-layout-content [class.medium-screen]="!isNotMediumScreen()">        <div class="sections">          <hra-page-section class="description" tagline="Description" [level]="2">            <markdown [data]="metadata().was_derived_from.description" />          </hra-page-section>          @if (metadata().was_derived_from.publisher) {            <hra-page-section tagline="Publisher" [level]="2">              <markdown [data]="metadata().was_derived_from.publisher" />            </hra-page-section>          }          @if (metadata().was_derived_from.funders) {            <hra-page-section tagline="Funder" [level]="2">              <ul>                @for (funder of metadata().was_derived_from.funders; track $index) {                  <li>{{ `${funder.funder} (Award number ${funder.awardNumber})` }}</li>                }              </ul>            </hra-page-section>          }          <hra-page-section tagline="License" [level]="2">            <markdown [data]="metadata().was_derived_from.license" />          </hra-page-section>          <hra-page-section tagline="Tags" [level]="2">            <mat-chip-set hraFeature="tags">              @for (tag of tags(); track $index) {                <mat-chip hraClickEvent [hraFeature]="tag.label | slugify" (click)="tagClick(tag.id, tag.type)">                  {{ tag.label }}                </mat-chip>              }            </mat-chip-set>          </hra-page-section>        </div>        @if (!isNotMediumScreen()) {          <hra-provenance-menu            hraFeature="provenance-menu"            [rows]="rows()"            [columns]="columns()"            [version]="currentVersion()"            [availableVersions]="availableVersions()"            [downloadOptions]="downloadOptions()"            (versionChange)="currentVersion.set($event)"          />        }      </hra-metadata-layout-content>    </hra-metadata-layout>    <hra-footer />  }</ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MetadataPageComponent'};

@@ -333,8 +333,9 @@ import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatProgressBarModule, ProgressBarMode } from &#x27;@angular/material/progress-bar&#x27;;
-import { EventType, Router } from &#x27;@angular/router&#x27;;
+import { EventType } from &#x27;@angular/router&#x27;;
 import { Breakpoints, watchBreakpoint } from &#x27;@hra-ui/cdk/breakpoints&#x27;;
+import { injectRouter } from &#x27;@hra-ui/common/router-ext&#x27;;
 import { BrandModule } from &#x27;@hra-ui/design-system/brand&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { BreadcrumbItem } from &#x27;@hra-ui/design-system/buttons/breadcrumbs&#x27;;
@@ -395,8 +396,7 @@ export class HeaderComponent {
   readonly hubmapMenu &#x3D; input(HUBMAP_MENU);
   /** All other menus */
   readonly menus &#x3D; input(MENUS);
-  /** Base url - Menu urls starting with this will be converted into router links */
-  readonly baseUrl &#x3D; input&lt;string&gt;();
+
   /** Breadcrumb items */
   readonly breadcrumbs &#x3D; input&lt;BreadcrumbItem[]&gt;();
   /**
@@ -451,7 +451,7 @@ export class HeaderComponent {
 
     explicitEffect([this.menuOffsetPx], () &#x3D;&gt; this.updateMenuPositions(), { defer: true });
 
-    inject(Router)
+    injectRouter({ optional: true })
       ?.events.pipe(
         takeUntilDestroyed(),
         filter((navigationEvent) &#x3D;&gt;
@@ -483,8 +483,8 @@ export class HeaderComponent {
   /**
    * Closes any active menu
    */
-  closeMenu(): void {
-    this.activeMenu.set(undefined);
+  closeMenu(menu?: Menu | &#x27;main&#x27;): void {
+    this.activeMenu.update((current) &#x3D;&gt; (menu !&#x3D;&#x3D; undefined &amp;&amp; current !&#x3D;&#x3D; menu ? current : undefined));
   }
 
   /**

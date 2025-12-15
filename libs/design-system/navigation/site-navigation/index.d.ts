@@ -1,5 +1,5 @@
 import * as _angular_core from '@angular/core';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Site Navigation Component for HRA Docs */
 declare class SiteNavigationComponent {
@@ -20,12 +20,12 @@ declare class SiteNavigationComponent {
         }[];
         type?: "category" | undefined;
     })[]>;
-    /** Base URL for the appliation */
-    readonly baseUrl: _angular_core.InputSignal<string>;
     /** State for expanded navigation category */
     readonly expandedCategory: _angular_core.WritableSignal<string>;
-    /** Angular Router */
+    /** Angular Router (optional for navigation event monitoring) */
     private readonly router;
+    /** URL resolver */
+    private readonly urlResolver;
     /** Constructor */
     constructor();
     /** Event handler to change the expanded navigation category */
@@ -37,7 +37,7 @@ declare class SiteNavigationComponent {
      */
     private findExpandedCategory;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<SiteNavigationComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<SiteNavigationComponent, "hra-site-navigation", never, { "navigationMenu": { "alias": "navigationMenu"; "required": false; "isSignal": true; }; "baseUrl": { "alias": "baseUrl"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<SiteNavigationComponent, "hra-site-navigation", never, { "navigationMenu": { "alias": "navigationMenu"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 /** Docs Navigation Item */

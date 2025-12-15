@@ -428,6 +428,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>this.cellTypes.asReadonly()</code>
                     </td>
                 </tr>
@@ -458,6 +464,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>this.graphData.asReadonly()</code>
@@ -502,7 +514,7 @@ export class CellPopulationDataService {
   private readonly loading &#x3D; signal&lt;boolean&gt;(false);
 
   /** Graph data signal to hold the loaded data */
-  private readonly graphData &#x3D; signal&lt;Record&lt;string, any&gt;[]&gt;([]);
+  private readonly graphData &#x3D; signal&lt;Record&lt;string, unknown&gt;[]&gt;([]);
 
   /** Cell types signal to hold unique cell types */
   private readonly cellTypes &#x3D; signal&lt;string[]&gt;([]);
@@ -533,14 +545,14 @@ export class CellPopulationDataService {
    * @param url - URL to fetch the CSV data from
    * @returns Promise resolving to an array of records
    */
-  private async getCsv(url: string): Promise&lt;Record&lt;string, any&gt;[]&gt; {
+  private async getCsv(url: string): Promise&lt;Record&lt;string, unknown&gt;[]&gt; {
     return new Promise((resolve, reject) &#x3D;&gt; {
-      parse(url, {
+      parse&lt;Record&lt;string, unknown&gt;&gt;(url, {
         download: true,
         delimiter: &#x27;,&#x27;,
         header: true,
         skipEmptyLines: true,
-        complete: (result: any) &#x3D;&gt; resolve(result.data),
+        complete: (result) &#x3D;&gt; resolve(result.data),
         error: () &#x3D;&gt; reject(&#x60;Failed to load from URL: ${url}&#x60;),
       });
     });
@@ -580,7 +592,7 @@ export class CellPopulationDataService {
    * @returns Promise resolving to an object containing graph data, cell types, and configuration
    */
   async loadDataset(datasetSource: string): Promise&lt;{
-    graphData: Record&lt;string, any&gt;[];
+    graphData: Record&lt;string, unknown&gt;[];
     cellTypes: string[];
     config: Configuration;
   }&gt; {
@@ -595,7 +607,7 @@ export class CellPopulationDataService {
     }
 
     this.loading.set(true);
-    const newGraphData: Record&lt;string, any&gt;[] &#x3D; [];
+    const newGraphData: Record&lt;string, unknown&gt;[] &#x3D; [];
     const uniqueCTs &#x3D; new Set&lt;string&gt;();
 
     try {
@@ -609,7 +621,7 @@ export class CellPopulationDataService {
           row[&#x27;index&#x27;] &#x3D; index;
           row[&#x27;dataset_name&#x27;] ??&#x3D; &#x27;Unknown&#x27;;
           row[&#x27;cell_type_ontology_id&#x27;] ??&#x3D; &#x27;Unknown&#x27;;
-          uniqueCTs.add(row[&#x27;cell_type&#x27;]);
+          uniqueCTs.add(row[&#x27;cell_type&#x27;] as string);
           newGraphData.push(row);
         }),
       );

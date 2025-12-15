@@ -301,10 +301,15 @@ function toJsonLd(data: unknown): JsonLdObj[] {
 /** Web component */
 @Component({
   selector: &#x27;ccf-root-wc&#x27;,
-  template:
-    &#x27;&lt;ccf-root *ngIf&#x3D;&quot;initialized&quot; (onMouseEnter)&#x3D;&quot;onMouseEnter.emit($event)&quot; (onMouseLeave)&#x3D;&quot;onMouseLeave.emit($event)&quot; (onClick)&#x3D;&quot;onClick.emit($event)&quot;&gt;&lt;/ccf-root&gt;&#x27;,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  template:
+    &#x27;&lt;ccf-root *ngIf&#x3D;&quot;initialized&quot; (onMouseEnter)&#x3D;&quot;onMouseEnter.emit($event)&quot; (onMouseLeave)&#x3D;&quot;onMouseLeave.emit($event)&quot; (onClick)&#x3D;&quot;onClick.emit($event)&quot; /&gt;&#x27;,
+  styles: &#x60;
+    :host {
+      display: block;
+    }
+  &#x60;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Data */

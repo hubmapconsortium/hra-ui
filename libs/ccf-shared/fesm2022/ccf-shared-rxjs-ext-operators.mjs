@@ -1,4 +1,4 @@
-import { filter, map, pluck, distinctUntilChanged, shareReplay } from 'rxjs/operators';
+import { filter, pluck, distinctUntilChanged, shareReplay } from 'rxjs/operators';
 
 /**
  * Removes all `null` and `undefined` values from a stream.
@@ -7,25 +7,6 @@ import { filter, map, pluck, distinctUntilChanged, shareReplay } from 'rxjs/oper
  */
 function filterNulls() {
     return filter((value) => value != null);
-}
-
-/**
- * Flattens a single level of nested arrays.
- *
- * @returns An `Observable` operator
- */
-function flatten() {
-    return map((array) => [].concat(...array));
-}
-
-/**
- * Maps the values of each emitted array.
- *
- * @param project Mapping callback invoked for each element
- * @returns An `Observable` operator
- */
-function innerMap(project) {
-    return map((array, outerIndex) => array.map((value, index) => project(value, index, outerIndex)));
 }
 
 /**
@@ -54,5 +35,5 @@ function pluckUnique(...props) {
  * Generated bundle index. Do not edit.
  */
 
-export { filterNulls, flatten, innerMap, pluckUnique };
+export { filterNulls, pluckUnique };
 //# sourceMappingURL=ccf-shared-rxjs-ext-operators.mjs.map

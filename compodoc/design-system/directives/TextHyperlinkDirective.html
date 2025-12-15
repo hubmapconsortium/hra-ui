@@ -158,10 +158,6 @@ Also attaches a click event for analytics.</p>
                         <td class="col-md-9"><code>a[hraHyperlink]</code></td>
                     </tr>
 
-                    <tr>
-                        <td class="col-md-3">Standalone</td>
-                        <td class="col-md-9"><code>true</code></td>
-                    </tr>
 
                     <tr>
                         <td class="col-md-3">HostDirectives</td>
@@ -199,16 +195,15 @@ import { ClickEventDirective } from &#x27;@hra-ui/common/analytics&#x27;;
  */
 @Directive({
   selector: &#x27;a[hraHyperlink]&#x27;,
-  standalone: true,
+  host: {
+    class: &#x27;hra-text-hyperlink&#x27;,
+  },
   hostDirectives: [
     {
       directive: ClickEventDirective,
       inputs: [&#x27;hraClickEvent: hraHyperlink&#x27;],
     },
   ],
-  host: {
-    class: &#x27;hra-text-hyperlink&#x27;,
-  },
 })
 export class TextHyperlinkDirective {}
 </code></pre>

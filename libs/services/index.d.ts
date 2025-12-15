@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 import * as i0 from '@angular/core';
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';

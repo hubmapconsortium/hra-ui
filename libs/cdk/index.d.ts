@@ -19,11 +19,11 @@ declare class LinkDirective implements DoCheck {
     /** Nagivate relative to a route. Only affects internal links. */
     relativeTo?: ActivatedRoute;
     /** href of the element */
-    href?: string;
+    protected href?: string;
     /** rel attribute of the element */
-    rel?: string;
+    protected rel?: string;
     /** target attribute of the element */
-    target?: string;
+    protected target?: string;
     /** Reference to this component's injector */
     private readonly injector;
     /** Element tag on which this directive is mounted */

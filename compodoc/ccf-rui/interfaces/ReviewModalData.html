@@ -271,7 +271,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, HostBinding, inject, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, signal } from &#x27;@angular/core&#x27;;
 import { MAT_DIALOG_DATA, MatDialogRef } from &#x27;@angular/material/dialog&#x27;;
 import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
 
@@ -293,10 +293,10 @@ interface ReviewModalData {
  */
 @Component({
   selector: &#x27;ccf-review-modal&#x27;,
-  templateUrl: &#x27;./review-modal.component.html&#x27;,
-  styleUrls: [&#x27;./review-modal.component.scss&#x27;],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  templateUrl: &#x27;./review-modal.component.html&#x27;,
+  styleUrl: &#x27;./review-modal.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewModalComponent {
   /** Dialog reference */
@@ -305,9 +305,6 @@ export class ReviewModalComponent {
   readonly data &#x3D; inject&lt;ReviewModalData&gt;(MAT_DIALOG_DATA);
   /** Snackbar service */
   private readonly snackbar &#x3D; inject(SnackbarService);
-
-  /** HTML class name */
-  @HostBinding(&#x27;class&#x27;) readonly clsName &#x3D; &#x27;ccf-review-modal&#x27;;
 
   /**
    * The object containing all of the review information for displaying inside the modal

@@ -316,7 +316,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, HostBinding, model, output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, model, output } from &#x27;@angular/core&#x27;;
 
 /**
  * Interface for objects containing tissue block dimensions
@@ -342,15 +342,12 @@ const DEFAULT_BLOCK_SIZE: BlockSize &#x3D; {
  */
 @Component({
   selector: &#x27;ccf-block-size-input&#x27;,
-  templateUrl: &#x27;./block-size-input.component.html&#x27;,
-  styleUrls: [&#x27;./block-size-input.component.scss&#x27;],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
+  templateUrl: &#x27;./block-size-input.component.html&#x27;,
+  styleUrl: &#x27;./block-size-input.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlockSizeInputComponent {
-  /** HTML class name */
-  @HostBinding(&#x27;class&#x27;) readonly clsName &#x3D; &#x27;ccf-block-size-input&#x27;;
-
   /** Values of block dimensions to be emitted */
   readonly blockSize &#x3D; model(DEFAULT_BLOCK_SIZE);
 

@@ -241,9 +241,9 @@ import { ConfigModule } from &#x27;./services/config/config.module&#x27;;
 import { StoreModule } from &#x27;./store/store.module&#x27;;
 
 @NgModule({
-  exports: [],
   imports: [ConfigModule, StoreModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],
+  exports: [],
 })
 export class CoreModule {
   constructor() {

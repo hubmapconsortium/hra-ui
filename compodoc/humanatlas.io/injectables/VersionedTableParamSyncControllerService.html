@@ -237,7 +237,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>attach(componentRef: ComponentRef<>, options: Controller)</code>
+<code>attach(componentRef: ComponentRef<unknown>)</code>
                 </td>
             </tr>
 
@@ -270,19 +270,7 @@
                                         <tr>
                                                 <td>componentRef</td>
                                             <td>
-                                                        <code>ComponentRef&lt;&gt;</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>options</td>
-                                            <td>
-                                                        <code>Controller</code>
+                                                        <code>ComponentRef&lt;unknown&gt;</code>
                                             </td>
 
                                             <td>
@@ -396,7 +384,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ComponentRef, effect, Injectable, signal } from &#x27;@angular/core&#x27;;
-import { ContentTemplateController, Controller } from &#x27;@hra-ui/cdk/content-template&#x27;;
+import { ContentTemplateController } from &#x27;@hra-ui/cdk/content-template&#x27;;
 import { VersionedDataTableComponent } from &#x27;@hra-ui/design-system/content-templates/versioned-data-table&#x27;;
 import { linkedQueryParam } from &#x27;ngxtension/linked-query-param&#x27;;
 
@@ -430,7 +418,7 @@ export class VersionedTableParamSyncControllerService implements ContentTemplate
   }
 
   /** attach function that sets the correct version in the URL*/
-  attach(componentRef: ComponentRef&lt;unknown&gt;, options: Controller): void {
+  attach(componentRef: ComponentRef&lt;unknown&gt;): void {
     const { instance } &#x3D; componentRef;
     if (instance instanceof VersionedDataTableComponent) {
       this.componentRef.set(componentRef as ComponentRef&lt;VersionedDataTableComponent&gt;);

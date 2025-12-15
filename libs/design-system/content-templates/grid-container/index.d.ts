@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
 import { AnyContentTemplateDef } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Layout component that allows for grid arrangement of child elements.

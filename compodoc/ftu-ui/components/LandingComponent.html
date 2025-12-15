@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -190,10 +186,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./landing.component.scss</code></td>
-            </tr>
 
 
 
@@ -204,6 +196,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./landing.component.scss</code></td>
+            </tr>
 
 
 
@@ -392,7 +388,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.appLink1() ?? EBI_LINK)</code>
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.appLink2() ?? EBI_LINK)</code>
                     </td>
                 </tr>
                     <tr>
@@ -423,6 +425,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; this.appLink1() ?? KPMP_LINK)</code>
@@ -456,6 +464,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; this.publicationLink() ?? PUBLICATION_LINK)</code>
@@ -511,7 +525,7 @@ const EBI_LINK &#x3D; &#x27;https://www.ebi.ac.uk/&#x27;;
   selector: &#x27;ftu-landing&#x27;,
   imports: [HraCommonModule, ButtonsModule, MatIconModule, IconsModule, RouterModule],
   templateUrl: &#x27;./landing.component.html&#x27;,
-  styleUrls: [&#x27;./landing.component.scss&#x27;],
+  styleUrl: &#x27;./landing.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingComponent {
@@ -543,7 +557,7 @@ export class LandingComponent {
   /**
    * Computed property that returns the EBI link.
    */
-  protected readonly ebiLink &#x3D; computed(() &#x3D;&gt; this.appLink1() ?? EBI_LINK);
+  protected readonly ebiLink &#x3D; computed(() &#x3D;&gt; this.appLink2() ?? EBI_LINK);
 }
 </code></pre>
     </div>
@@ -551,14 +565,16 @@ export class LandingComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;landing-page&quot;&gt;
   &lt;div class&#x3D;&quot;splash-wrapper&quot;&gt;
-    &lt;img [attr.src]&#x3D;&quot;&#x27;assets/ui-images/ftu-splash.png&#x27; | assetUrl&quot; alt&#x3D;&quot;&quot; class&#x3D;&quot;splash-header-img&quot; /&gt;
+    &lt;img alt&#x3D;&quot;&quot; class&#x3D;&quot;splash-header-img&quot; [attr.src]&#x3D;&quot;&#x27;assets/ui-images/ftu-splash.png&#x27; | assetUrl&quot; /&gt;
     &lt;div class&#x3D;&quot;splash-section&quot;&gt;
-      &lt;hra-icon class&#x3D;&quot;misc-logo&quot; [svgIcon]&#x3D;&quot;&#x27;product:ftu&#x27;&quot; /&gt;
-      &lt;div class&#x3D;&quot;header&quot;&gt;Explore functional tissue units&lt;/div&gt;
-      &lt;div class&#x3D;&quot;description&quot;&gt;
-        A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function
-        and is replicated multiple times in a whole organ. Use functional tissue unit illustrations to explore cell type
-        populations by gene, protein, and lipid biomarkers.
+      &lt;div class&#x3D;&quot;splash-content&quot;&gt;
+        &lt;hra-icon class&#x3D;&quot;misc-logo&quot; svgIcon&#x3D;&quot;product:ftu&quot; /&gt;
+        &lt;div class&#x3D;&quot;header&quot;&gt;Explore functional tissue units&lt;/div&gt;
+        &lt;div class&#x3D;&quot;description&quot;&gt;
+          A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function
+          and is replicated multiple times in a whole organ. Use functional tissue unit illustrations to explore cell
+          type populations by gene, protein, and lipid biomarkers.
+        &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;actions&quot;&gt;
         &lt;a
@@ -581,8 +597,8 @@ export class LandingComponent {
           hraSecondaryButton
           hraCtaButton
           class&#x3D;&quot;action&quot;
-          [attr.href]&#x3D;&quot;publicationLinkDefault()&quot;
           target&#x3D;&quot;_blank&quot;
+          [attr.href]&#x3D;&quot;publicationLinkDefault()&quot;
         &gt;
           Read publication
           &lt;mat-icon iconPositionEnd&gt;arrow_right_alt&lt;/mat-icon&gt;
@@ -592,7 +608,7 @@ export class LandingComponent {
   &lt;/div&gt;
 
   &lt;div class&#x3D;&quot;collaborators-wrapper&quot;&gt;
-    &lt;img [attr.src]&#x3D;&quot;&#x27;assets/ui-images/ftu-splash-2.png&#x27; | assetUrl&quot; alt&#x3D;&quot;splas-img-2&quot; class&#x3D;&quot;splash-header-img-2&quot; /&gt;
+    &lt;img alt&#x3D;&quot;splas-img-2&quot; class&#x3D;&quot;splash-header-img-2&quot; [attr.src]&#x3D;&quot;&#x27;assets/ui-images/ftu-splash-2.png&#x27; | assetUrl&quot; /&gt;
     &lt;div class&#x3D;&quot;collaborators-section&quot;&gt;
       &lt;div class&#x3D;&quot;thankyou-container&quot;&gt;
         &lt;div class&#x3D;&quot;thank-you-header&quot;&gt;A special thanks to our partners&lt;/div&gt;
@@ -605,15 +621,15 @@ export class LandingComponent {
         &lt;a
           hraFeature&#x3D;&quot;kpmp&quot;
           hraClickEvent
-          [href]&#x3D;&quot;kpmpLink()&quot;
           class&#x3D;&quot;app-logo&quot;
           target&#x3D;&quot;_blank&quot;
           rel&#x3D;&quot;noopener noreferrer&quot;
+          [href]&#x3D;&quot;kpmpLink()&quot;
         &gt;
-          &lt;hra-icon class&#x3D;&quot;kpmp&quot; [svgIcon]&#x3D;&quot;&#x27;KPMP&#x27;&quot; /&gt;
+          &lt;hra-icon class&#x3D;&quot;kpmp&quot; svgIcon&#x3D;&quot;KPMP&quot; /&gt;
         &lt;/a&gt;
-        &lt;a hraClickEvent hraFeature&#x3D;&quot;ebi&quot; [href]&#x3D;&quot;ebiLink()&quot; class&#x3D;&quot;app-logo&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;
-          &lt;hra-icon class&#x3D;&quot;partner&quot; [svgIcon]&#x3D;&quot;&#x27;partner-logos&#x27;&quot; /&gt;
+        &lt;a hraClickEvent hraFeature&#x3D;&quot;ebi&quot; class&#x3D;&quot;app-logo&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot; [href]&#x3D;&quot;ebiLink()&quot;&gt;
+          &lt;hra-icon class&#x3D;&quot;partner&quot; svgIcon&#x3D;&quot;partner-logos&quot; /&gt;
         &lt;/a&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -622,173 +638,6 @@ export class LandingComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./landing.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;utils&#x27;;
-@use &#x27;vars&#x27;;
-
-:host {
-  display: block;
-
-  .splash-wrapper {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    row-gap: 40px;
-    margin: 0;
-    height: 720px;
-
-    .splash-header-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .splash-section {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      row-gap: 56px;
-      width: 100%;
-      max-width: 740px;
-      padding: 80px 40px;
-
-      .misc-logo {
-        width: 4rem;
-        height: 4rem;
-      }
-
-      .header {
-        @include utils.use-font(display, large);
-        color: vars.$on-background;
-      }
-
-      .description {
-        font: vars.$body-xl;
-        color: vars.$primary;
-      }
-
-      .actions {
-        display: flex;
-        flex-direction: row;
-        column-gap: 32px;
-        flex-wrap: wrap;
-
-        .action {
-          @include utils.use-font(label, medium);
-        }
-      }
-    }
-  }
-
-  .collaborators-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    row-gap: 8px;
-    margin: 0;
-    height: 720px;
-
-    .splash-header-img-2 {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .collaborators-section {
-      position: absolute;
-      top: 7.875rem;
-      left: 820px;
-      right: 40px;
-      display: flex;
-      flex-direction: column;
-      // width: 100%;
-      // margin-right: 40px;
-      padding: 96px 0;
-      row-gap: 56px;
-
-      .thankyou-container {
-        display: flex;
-        flex-direction: column;
-        row-gap: 2rem;
-
-        .thank-you-header {
-          @include utils.use-font(headline, large);
-          color: vars.$on-background;
-        }
-
-        .thank-you-description {
-          font: vars.$body-xl;
-          color: vars.$on-secondary-fixed;
-          max-width: 660px;
-        }
-      }
-
-      .logo-wrapper {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 64px;
-
-        .kpmp {
-          width: 7.4375rem;
-          height: 3.6875rem;
-        }
-
-        .partner {
-          width: 8.3125rem;
-          height: 2.5625rem;
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 20rem) and (max-width: 39.9375rem) {
-  :host {
-    .splash-wrapper {
-      height: 900px;
-
-      .splash-section {
-        padding: 96px 16px;
-        min-height: 554px;
-        min-width: 272px;
-
-        .actions {
-          row-gap: 32px;
-
-          .action {
-            flex: none;
-          }
-        }
-      }
-    }
-
-    .collaborators-wrapper {
-      row-gap: 0.5rem;
-
-      .collaborators-section {
-        left: 16px;
-        right: 16px;
-        padding: 0;
-        min-width: 272px;
-      }
-    }
-  }
-}
-
-::ng-deep .navigation {
-  @media (min-width: 20rem) and (max-width: 39.9375rem) {
-    display: none !important;
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -815,7 +664,7 @@ export class LandingComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <div class="splash-wrapper">    <img [attr.src]="\'assets/ui-images/ftu-splash.png\' | assetUrl" alt="" class="splash-header-img" />    <div class="splash-section">      <hra-icon class="misc-logo" [svgIcon]="\'product:ftu\'" />      <div class="header">Explore functional tissue units</div>      <div class="description">        A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function        and is replicated multiple times in a whole organ. Use functional tissue unit illustrations to explore cell type        populations by gene, protein, and lipid biomarkers.      </div>      <div class="actions">        <a          hraFeature="explore-ftus"          hraClickEvent          mat-button          hraCtaButton          hraPrimaryButton          class="action"          routerLink="/ftu"          [queryParams]="{ id: \'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle\' }"        >          Explore FTUs          <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>        </a>        <a          hraFeature="read-publication"          hraClickEvent          mat-button          hraSecondaryButton          hraCtaButton          class="action"          [attr.href]="publicationLinkDefault()"          target="_blank"        >          Read publication          <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>        </a>      </div>    </div>  </div>  <div class="collaborators-wrapper">    <img [attr.src]="\'assets/ui-images/ftu-splash-2.png\' | assetUrl" alt="splas-img-2" class="splash-header-img-2" />    <div class="collaborators-section">      <div class="thankyou-container">        <div class="thank-you-header">A special thanks to our partners</div>        <div class="thank-you-description">          This application was designed in close collaboration with Kidney Precision Medicine Project and European          Bioinformatics Institute. It showcases single-cell expression data from the Anatomogram site by EMBL-EBI.        </div>      </div>      <div class="logo-wrapper">        <a          hraFeature="kpmp"          hraClickEvent          [href]="kpmpLink()"          class="app-logo"          target="_blank"          rel="noopener noreferrer"        >          <hra-icon class="kpmp" [svgIcon]="\'KPMP\'" />        </a>        <a hraClickEvent hraFeature="ebi" [href]="ebiLink()" class="app-logo" target="_blank" rel="noopener noreferrer">          <hra-icon class="partner" [svgIcon]="\'partner-logos\'" />        </a>      </div>    </div>  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <div class="splash-wrapper">    <img alt="" class="splash-header-img" [attr.src]="\'assets/ui-images/ftu-splash.png\' | assetUrl" />    <div class="splash-section">      <div class="splash-content">        <hra-icon class="misc-logo" svgIcon="product:ftu" />        <div class="header">Explore functional tissue units</div>        <div class="description">          A functional tissue unit (FTU) is the smallest tissue organization that performs a unique physiologic function          and is replicated multiple times in a whole organ. Use functional tissue unit illustrations to explore cell          type populations by gene, protein, and lipid biomarkers.        </div>      </div>      <div class="actions">        <a          hraFeature="explore-ftus"          hraClickEvent          mat-button          hraCtaButton          hraPrimaryButton          class="action"          routerLink="/ftu"          [queryParams]="{ id: \'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle\' }"        >          Explore FTUs          <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>        </a>        <a          hraFeature="read-publication"          hraClickEvent          mat-button          hraSecondaryButton          hraCtaButton          class="action"          target="_blank"          [attr.href]="publicationLinkDefault()"        >          Read publication          <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>        </a>      </div>    </div>  </div>  <div class="collaborators-wrapper">    <img alt="splas-img-2" class="splash-header-img-2" [attr.src]="\'assets/ui-images/ftu-splash-2.png\' | assetUrl" />    <div class="collaborators-section">      <div class="thankyou-container">        <div class="thank-you-header">A special thanks to our partners</div>        <div class="thank-you-description">          This application was designed in close collaboration with Kidney Precision Medicine Project and European          Bioinformatics Institute. It showcases single-cell expression data from the Anatomogram site by EMBL-EBI.        </div>      </div>      <div class="logo-wrapper">        <a          hraFeature="kpmp"          hraClickEvent          class="app-logo"          target="_blank"          rel="noopener noreferrer"          [href]="kpmpLink()"        >          <hra-icon class="kpmp" svgIcon="KPMP" />        </a>        <a hraClickEvent hraFeature="ebi" class="app-logo" target="_blank" rel="noopener noreferrer" [href]="ebiLink()">          <hra-icon class="partner" svgIcon="partner-logos" />        </a>      </div>    </div>  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ftu-ui-root'},{'name': 'FtuComponent', 'selector': 'ftu-ftu-page'},{'name': 'LandingComponent', 'selector': 'ftu-landing'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LandingComponent'};

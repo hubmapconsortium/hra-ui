@@ -24,13 +24,13 @@
 <title>cluster_UrlModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="27,-70 27,-268 469,-268 469,-70 27,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_UrlModule_exports</title>
-<polygon fill="none" stroke="black" points="35,-208 35,-260 461,-260 461,-208 35,-208"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_UrlModule_imports</title>
 <polygon fill="none" stroke="black" points="44,-78 44,-130 454,-130 454,-78 44,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_UrlModule_exports</title>
+<polygon fill="none" stroke="black" points="35,-208 35,-260 461,-260 461,-208 35,-208"/>
 </g>
 <!-- AppUrlPipe -->
 <g id="node1" class="node">

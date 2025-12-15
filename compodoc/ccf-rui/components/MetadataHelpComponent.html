@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -190,10 +186,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./metadata-help.component.scss</code></td>
-            </tr>
 
 
 
@@ -204,6 +196,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./metadata-help.component.scss</code></td>
+            </tr>
 
 
 
@@ -237,7 +233,7 @@ import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
   selector: &#x27;ccf-metadata-help&#x27;,
   imports: [HraCommonModule, MatDividerModule, MatIconModule, MatMenuModule, ButtonsModule],
   templateUrl: &#x27;./metadata-help.component.html&#x27;,
-  styleUrls: [&#x27;./metadata-help.component.scss&#x27;],
+  styleUrl: &#x27;./metadata-help.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MetadataHelpComponent {}
@@ -245,7 +241,7 @@ export class MetadataHelpComponent {}
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-help-button [action]&#x3D;&quot;help&quot;&gt;&lt;/hra-help-button&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;hra-help-button [action]&#x3D;&quot;help&quot; /&gt;
 
 &lt;mat-menu hraFeature&#x3D;&quot;menu&quot; class&#x3D;&quot;metadata-help&quot; backdropClass&#x3D;&quot;metadata-help-backdrop&quot; #help&#x3D;&quot;matMenu&quot;&gt;
   &lt;a
@@ -279,7 +275,7 @@ export class MetadataHelpComponent {}
     Use standard operating procedure
   &lt;/a&gt;
 
-  &lt;mat-divider class&#x3D;&quot;menu-divider&quot;&gt;&lt;/mat-divider&gt;
+  &lt;mat-divider class&#x3D;&quot;menu-divider&quot; /&gt;
 
   &lt;a
     hraFeature&#x3D;&quot;explore-registrations&quot;
@@ -295,29 +291,6 @@ export class MetadataHelpComponent {}
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./metadata-help.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;@angular/material&#x27; as mat;
-@use &#x27;vars&#x27;;
-
-::ng-deep .metadata-help {
-  @include mat.divider-overrides(
-    (
-      color: vars.$outline-variant,
-    )
-  );
-
-  @include mat.menu-overrides(
-    (
-      divider-bottom-spacing: 0,
-      divider-top-spacing: 0,
-    )
-  );
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -344,7 +317,7 @@ export class MetadataHelpComponent {}
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-help-button [action]="help"></hra-help-button><mat-menu hraFeature="menu" class="metadata-help" backdropClass="metadata-help-backdrop" #help="matMenu">  <a    hraFeature="watch-video"    hraClickEvent    mat-menu-item    href="https://youtu.be/18imQj068Iw"    target="_blank"    rel="noopener noreferrer"  >    Watch video tutorial  </a>  <a    hraFeature="app-guide"    hraClickEvent    mat-menu-item    href="https://humanatlas.io/registration-user-interface"    target="_blank"    rel="noopener noreferrer"  >    App guide & documentation  </a>  <a    hraFeature="sop"    hraClickEvent    mat-menu-item    href="https://doi.org/10.5281/zenodo.5575776"    target="_blank"    rel="noopener noreferrer"  >    Use standard operating procedure  </a>  <mat-divider class="menu-divider"></mat-divider>  <a    hraFeature="explore-registrations"    hraClickEvent    mat-menu-item    href="https://apps.humanatlas.io/eui/"    target="_blank"    rel="noopener noreferrer"  >    Explore all registrations  </a></mat-menu></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-help-button [action]="help" /><mat-menu hraFeature="menu" class="metadata-help" backdropClass="metadata-help-backdrop" #help="matMenu">  <a    hraFeature="watch-video"    hraClickEvent    mat-menu-item    href="https://youtu.be/18imQj068Iw"    target="_blank"    rel="noopener noreferrer"  >    Watch video tutorial  </a>  <a    hraFeature="app-guide"    hraClickEvent    mat-menu-item    href="https://humanatlas.io/registration-user-interface"    target="_blank"    rel="noopener noreferrer"  >    App guide & documentation  </a>  <a    hraFeature="sop"    hraClickEvent    mat-menu-item    href="https://doi.org/10.5281/zenodo.5575776"    target="_blank"    rel="noopener noreferrer"  >    Use standard operating procedure  </a>  <mat-divider class="menu-divider" />  <a    hraFeature="explore-registrations"    hraClickEvent    mat-menu-item    href="https://apps.humanatlas.io/eui/"    target="_blank"    rel="noopener noreferrer"  >    Explore all registrations  </a></mat-menu></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'BlockSizeInputComponent', 'selector': 'ccf-block-size-input'},{'name': 'ContentComponent', 'selector': 'ccf-content'},{'name': 'FileUploadComponent', 'selector': 'ccf-file-upload'},{'name': 'LeftSidebarComponent', 'selector': 'ccf-left-sidebar'},{'name': 'MetadataAuthorFormComponent', 'selector': 'ccf-metadata-author-form'},{'name': 'MetadataConfirmationDialogComponent', 'selector': 'ccf-metadata-confirmation-dialog'},{'name': 'MetadataDonorFormComponent', 'selector': 'ccf-metadata-donor-form'},{'name': 'MetadataHelpComponent', 'selector': 'ccf-metadata-help'},{'name': 'MetadataModalComponent', 'selector': 'ccf-metadata-modal'},{'name': 'ReviewButtonComponent', 'selector': 'ccf-review-button'},{'name': 'ReviewModalComponent', 'selector': 'ccf-review-modal'},{'name': 'RightSidebarComponent', 'selector': 'ccf-right-sidebar'},{'name': 'RotationSliderComponent', 'selector': 'ccf-rotation-slider'},{'name': 'SlicesInputComponent', 'selector': 'ccf-slices-input'},{'name': 'SliderBoxComponent', 'selector': 'ccf-slider-box'},{'name': 'TagListComponent', 'selector': 'ccf-tag-list'},{'name': 'TagSearchComponent', 'selector': 'ccf-tag-search'},{'name': 'VisibilityMenuComponent', 'selector': 'ccf-visibility-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MetadataHelpComponent'};

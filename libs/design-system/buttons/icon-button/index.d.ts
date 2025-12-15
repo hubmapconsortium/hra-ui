@@ -15,7 +15,7 @@ declare class IconButtonSizeDirective {
 }
 
 /** Input options for icon button color */
-type IconButtonVariant = 'light' | 'dark' | 'color';
+type IconButtonVariant = 'light' | 'dark' | 'color' | 'inverse';
 /**
  * Directive for icon button variants (color)
  */

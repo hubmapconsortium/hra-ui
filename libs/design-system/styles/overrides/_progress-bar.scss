@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+@use '../vars';
+
+@mixin overrides() {
+  mat-progress-bar {
+    &.hra-progress-bar-color-dark {
+      @include mat.progress-bar-overrides(
+        (
+          active-indicator-color: vars.$on-secondary-fixed,
+        )
+      );
+    }
+
+    &.hra-progress-bar-color-color {
+      @include mat.progress-bar-overrides(
+        (
+          active-indicator-color: vars.$tertiary,
+        )
+      );
+    }
+  }
+}

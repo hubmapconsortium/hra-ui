@@ -182,7 +182,7 @@
                                 <code><a href="../components/VisualCardComponent.html" target="_self" >VisualCardComponent</a></code>
                             <code>MatIconModule</code>
                             <code>ButtonsModule</code>
-                            <code>YouTubePlayerModule</code>
+                            <code>HraYoutubePlayerComponent</code>
                             <code>NavigationModule</code>
                 </td>
             </tr>
@@ -262,7 +262,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/landing-page/landing-page.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/landing-page/landing-page.component.ts:28</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -285,9 +285,9 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { YouTubePlayerModule } from &#x27;@angular/youtube-player&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { HraYoutubePlayerComponent } from &#x27;@hra-ui/design-system/content-templates/youtube-player&#x27;;
 import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
 import { VisualCard, VisualCardComponent } from &#x27;../../components/visual-card/visual-card.component&#x27;;
 
@@ -296,7 +296,14 @@ import { VisualCard, VisualCardComponent } from &#x27;../../components/visual-ca
  */
 @Component({
   selector: &#x27;cde-landing-page&#x27;,
-  imports: [HraCommonModule, VisualCardComponent, MatIconModule, ButtonsModule, YouTubePlayerModule, NavigationModule],
+  imports: [
+    HraCommonModule,
+    VisualCardComponent,
+    MatIconModule,
+    ButtonsModule,
+    HraYoutubePlayerComponent,
+    NavigationModule,
+  ],
   templateUrl: &#x27;./landing-page.component.html&#x27;,
   styleUrl: &#x27;./landing-page.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -320,7 +327,7 @@ export class LandingPageComponent {
           embedded on websites.
         &lt;/h4&gt;
       &lt;/div&gt;
-      &lt;cde-visual-card [cardData]&#x3D;&quot;cards()&quot;&gt;&lt;/cde-visual-card&gt;
+      &lt;cde-visual-card [cardData]&#x3D;&quot;cards()&quot; /&gt;
     &lt;/div&gt;
   &lt;/section&gt;
   &lt;section class&#x3D;&quot;vccf-container&quot; hraFeature&#x3D;&quot;vccf&quot;&gt;
@@ -358,10 +365,10 @@ export class LandingPageComponent {
                 hraCtaButton
                 hraSecondaryButton
                 disableRipple
-                [attr.href]&#x3D;&quot;&#x27;assets/VCCF_March2024.pdf&#x27; | assetUrl&quot;
                 target&#x3D;&quot;_blank&quot;
                 rel&#x3D;&quot;noopener noreferrer&quot;
                 hraClickEvent
+                [attr.href]&#x3D;&quot;&#x27;assets/VCCF_March2024.pdf&#x27; | assetUrl&quot;
               &gt;
                 VCCF Visualization Poster
                 &lt;mat-icon class&#x3D;&quot;material-symbols-rounded&quot; iconPositionEnd&gt;arrow_right_alt&lt;/mat-icon&gt;
@@ -371,11 +378,11 @@ export class LandingPageComponent {
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;youtube-player&quot;&gt;
-        &lt;youtube-player videoId&#x3D;&quot;zQeMgxo8n_U&quot; hraFeature&#x3D;&quot;video&quot; hraClickEvent&gt;&lt;/youtube-player&gt;
+        &lt;hra-youtube-player videoId&#x3D;&quot;zQeMgxo8n_U&quot; label&#x3D;&quot;Vasculature Common Coordinate Framework&quot; hraFeature&#x3D;&quot;video&quot; /&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/section&gt;
-  &lt;hra-footer&gt;&lt;/hra-footer&gt;
+  &lt;hra-footer /&gt;
 &lt;/ng-container&gt;
 </code></pre>
     </div>
@@ -406,7 +413,7 @@ export class LandingPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <section class="create-and-explore" hraFeature="create-and-explore">    <div class="create-explore-content">      <div class="header">        <h1 class="title">Create and explore cell distance visualizations</h1>        <h4 class="description">          This website supports visualization and quantification of cells and cell-cell distance distributions in          processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be          embedded on websites.        </h4>      </div>      <cde-visual-card [cardData]="cards()"></cde-visual-card>    </div>  </section>  <section class="vccf-container" hraFeature="vccf">    <div class="vccf">      <div class="content-container">        <h2 class="background-header">          Background Information: Constructing the Vasculature Common Coordinate Framework        </h2>        <div class="content">          <div class="paper">            <p class="background-text">              The vasculature is the human body\'s delivery system. It is also a cornerstone of medicine, helping              surgeons guide surgeries, pathologists diagnose disease, and serving as a landmark for medical              practitioners of all stripes. The Vasculature Common Coordinate Framework (VCCF) taps into this organic              infrastructure in order to map the cells in the body based on their proximity to nearby blood vessels.            </p>            <div class="links">              <a                class="vccf-paper"                mat-button                hraCtaButton                hraPrimaryButton                disableRipple                href="https://doi.org/10.3389/fcvm.2020.00029"                target="_blank"                rel="noopener noreferrer"                hraClickEvent              >                Read VCCF Paper                <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>              </a>              <a                mat-button                hraCtaButton                hraSecondaryButton                disableRipple                [attr.href]="\'assets/VCCF_March2024.pdf\' | assetUrl"                target="_blank"                rel="noopener noreferrer"                hraClickEvent              >                VCCF Visualization Poster                <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>              </a>            </div>          </div>        </div>      </div>      <div class="youtube-player">        <youtube-player videoId="zQeMgxo8n_U" hraFeature="video" hraClickEvent></youtube-player>      </div>    </div>  </section>  <hra-footer></hra-footer></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <section class="create-and-explore" hraFeature="create-and-explore">    <div class="create-explore-content">      <div class="header">        <h1 class="title">Create and explore cell distance visualizations</h1>        <h4 class="description">          This website supports visualization and quantification of cells and cell-cell distance distributions in          processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be          embedded on websites.        </h4>      </div>      <cde-visual-card [cardData]="cards()" />    </div>  </section>  <section class="vccf-container" hraFeature="vccf">    <div class="vccf">      <div class="content-container">        <h2 class="background-header">          Background Information: Constructing the Vasculature Common Coordinate Framework        </h2>        <div class="content">          <div class="paper">            <p class="background-text">              The vasculature is the human body\'s delivery system. It is also a cornerstone of medicine, helping              surgeons guide surgeries, pathologists diagnose disease, and serving as a landmark for medical              practitioners of all stripes. The Vasculature Common Coordinate Framework (VCCF) taps into this organic              infrastructure in order to map the cells in the body based on their proximity to nearby blood vessels.            </p>            <div class="links">              <a                class="vccf-paper"                mat-button                hraCtaButton                hraPrimaryButton                disableRipple                href="https://doi.org/10.3389/fcvm.2020.00029"                target="_blank"                rel="noopener noreferrer"                hraClickEvent              >                Read VCCF Paper                <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>              </a>              <a                mat-button                hraCtaButton                hraSecondaryButton                disableRipple                target="_blank"                rel="noopener noreferrer"                hraClickEvent                [attr.href]="\'assets/VCCF_March2024.pdf\' | assetUrl"              >                VCCF Visualization Poster                <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>              </a>            </div>          </div>        </div>      </div>      <div class="youtube-player">        <hra-youtube-player videoId="zQeMgxo8n_U" label="Vasculature Common Coordinate Framework" hraFeature="video" />      </div>    </div>  </section>  <hra-footer /></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'LandingPageComponent'};

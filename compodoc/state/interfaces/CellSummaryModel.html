@@ -409,7 +409,7 @@ having the summaries and aggregrates</p>
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CellSummary, FtuDataSchemas } from &#x27;@hra-ui/services&#x27;;
 import { StateContext } from &#x27;@ngxs/store&#x27;;
-import { z } from &#x27;zod&#x27;;
+import * as z from &#x27;zod&#x27;;
 
 /** Single aggregate cell */
 export type CellSummaryAggregateCell &#x3D; z.infer&lt;typeof AGGREGATE_CELL&gt;;

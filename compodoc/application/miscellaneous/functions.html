@@ -211,6 +211,9 @@
                             <a href="#isAbsolute" title="/home/workflows/workspace/libs/common/url/src/lib/util/path.ts" ><b>isAbsolute</b>&nbsp;&nbsp;&nbsp;(/.../path.ts)</a>
                         </li>
                         <li>
+                            <a href="#isAuxClick" title="/home/workflows/workspace/libs/common/router-ext/src/lib/util/event.ts" ><b>isAuxClick</b>&nbsp;&nbsp;&nbsp;(/.../event.ts)</a>
+                        </li>
+                        <li>
                             <a href="#joinWithSlash" title="/home/workflows/workspace/libs/common/url/src/lib/util/path.ts" ><b>joinWithSlash</b>&nbsp;&nbsp;&nbsp;(/.../path.ts)</a>
                         </li>
                         <li>
@@ -232,6 +235,9 @@
                             <a href="#provideAnalytics" title="/home/workflows/workspace/libs/common/analytics/src/lib/providers.ts" ><b>provideAnalytics</b>&nbsp;&nbsp;&nbsp;(/.../providers.ts)</a>
                         </li>
                         <li>
+                            <a href="#provideRouterExt" title="/home/workflows/workspace/libs/common/router-ext/src/lib/providers.ts" ><b>provideRouterExt</b>&nbsp;&nbsp;&nbsp;(/.../providers.ts)</a>
+                        </li>
+                        <li>
                             <a href="#resolveAppUrl" title="/home/workflows/workspace/libs/common/url/src/lib/url/app.ts" ><b>resolveAppUrl</b>&nbsp;&nbsp;&nbsp;(/.../app.ts)</a>
                         </li>
                         <li>
@@ -248,6 +254,12 @@
                         </li>
                         <li>
                             <a href="#setupRouterEventListener" title="/home/workflows/workspace/libs/common/analytics/src/lib/analytics-features/router-events.ts" ><b>setupRouterEventListener</b>&nbsp;&nbsp;&nbsp;(/.../router-events.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#stripLeadingHash" title="/home/workflows/workspace/libs/common/url/src/lib/util/path.ts" ><b>stripLeadingHash</b>&nbsp;&nbsp;&nbsp;(/.../path.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#stripTrailingSlash" title="/home/workflows/workspace/libs/common/url/src/lib/util/path.ts" ><b>stripTrailingSlash</b>&nbsp;&nbsp;&nbsp;(/.../path.ts)</a>
                         </li>
                         <li>
                             <a href="#withErrorHandler" title="/home/workflows/workspace/libs/common/analytics/src/lib/providers.ts" ><b>withErrorHandler</b>&nbsp;&nbsp;&nbsp;(/.../providers.ts)</a>
@@ -1882,6 +1894,14 @@ Currently handles the following objects:</p>
                                     </tbody>
                                 </table>
                             </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A new value to serialize</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2417,6 +2437,14 @@ The function also automatically adds the feature path to the event props on each
                         <div class="io-description"><p>Inject the global window</p>
 </div>
 
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The window object</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2571,6 +2599,215 @@ The function also automatically adds the feature path to the event props on each
                         </div>
                             <div class="io-description">
                                 <p>The concatenated path</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stripLeadingHash"></a>
+                    <span class="name">
+                        <span ><b>stripLeadingHash</b></span>
+                        <a href="#stripLeadingHash"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>stripLeadingHash(fragment: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Remove the leading hash symbol from a fragment (if present)</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fragment</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Fragment to strip</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>New fragment</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stripTrailingSlash"></a>
+                    <span class="name">
+                        <span ><b>stripTrailingSlash</b></span>
+                        <a href="#stripTrailingSlash"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>stripTrailingSlash(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Remove the trailing slash from a path while preserving the fragment and query parameters (if present)</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>path</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Url to strip</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>New url</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/router-ext/src/lib/util/event.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAuxClick"></a>
+                    <span class="name">
+                        <span ><b>isAuxClick</b></span>
+                        <a href="#isAuxClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isAuxClick(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Test whether a mouse event is an auxiliary click</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Click event</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if the event is an auxiliary click, false otherwise</p>
 
                             </div>
                 </td>
@@ -2995,6 +3232,74 @@ The function also automatically adds the feature path to the event props on each
                         </div>
                             <div class="io-description">
                                 <p>An analytics feature</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/router-ext/src/lib/providers.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideRouterExt"></a>
+                    <span class="name">
+                        <span ><b>provideRouterExt</b></span>
+                        <a href="#provideRouterExt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideRouterExt(...features: undefined)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provide additional router features.
+Must be used along side of <code>provideRouter</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>features</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Router extension features</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>EnvironmentProviders</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Environment providers</p>
 
                             </div>
                 </td>

@@ -359,6 +359,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>computed(
     () &#x3D;&gt; this.versions().find((v) &#x3D;&gt; v.version &#x3D;&#x3D;&#x3D; this.version())?.label ?? &#x27;&#x27;,
   )</code>
@@ -393,6 +399,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>injectParams((params) &#x3D;&gt; (params[&#x27;version&#x27;] as string | undefined)?.slice(1) ?? &#x27;&#x27;)</code>
                     </td>
                 </tr>
@@ -423,6 +435,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>injectRouteData((data) &#x3D;&gt; (data[&#x27;versions&#x27;] as ReleaseNotesVersions | undefined)?.versions ?? [])</code>
@@ -496,8 +514,8 @@ export class ReleaseNotesVersionSelectorComponent {
   &lt;mat-select
     disableRipple
     panelClass&#x3D;&quot;options-container&quot;
-    (selectionChange)&#x3D;&quot;navigateToVersion($event.value)&quot;
     [value]&#x3D;&quot;version()&quot;
+    (selectionChange)&#x3D;&quot;navigateToVersion($event.value)&quot;
   &gt;
     &lt;mat-select-trigger&gt;
       {{ selectedVersionLabel() }}
@@ -539,7 +557,7 @@ export class ReleaseNotesVersionSelectorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field>  <mat-label>Release Version</mat-label>  <mat-select    disableRipple    panelClass="options-container"    (selectionChange)="navigateToVersion($event.value)"    [value]="version()"  >    <mat-select-trigger>      {{ selectedVersionLabel() }}    </mat-select-trigger>    @for (ver of versions(); track $index) {      <mat-option [value]="ver.version">        <div>{{ ver.label }}</div>        <div class="release-date">{{ ver.date }}</div>      </mat-option>    }  </mat-select></mat-form-field></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-form-field>  <mat-label>Release Version</mat-label>  <mat-select    disableRipple    panelClass="options-container"    [value]="version()"    (selectionChange)="navigateToVersion($event.value)"  >    <mat-select-trigger>      {{ selectedVersionLabel() }}    </mat-select-trigger>    @for (ver of versions(); track $index) {      <mat-option [value]="ver.version">        <div>{{ ver.label }}</div>        <div class="release-date">{{ ver.date }}</div>      </mat-option>    }  </mat-select></mat-form-field></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-portal'},{'name': 'CarouselComponent', 'selector': 'hra-carousel'},{'name': 'ContentComponent', 'selector': 'hra-carousel-content'},{'name': 'ControlsComponent', 'selector': 'hra-carousel-controls'},{'name': 'CountInfoComponent', 'selector': 'hra-count-info'},{'name': 'DataViewerWithQueryParamsComponent', 'selector': 'hra-data-viewer-with-query-params'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'PublicationsPageComponent', 'selector': 'hra-publications-page'},{'name': 'ReleaseNotesVersionSelectorComponent', 'selector': 'hra-release-notes-version-selector'},{'name': 'SectionCardsComponent', 'selector': 'hra-section-cards'},{'name': 'SummaryStatisticsTableComponent', 'selector': 'hra-summary-statistics-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ReleaseNotesVersionSelectorComponent'};

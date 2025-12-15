@@ -3,19 +3,87 @@
 @use '../vars';
 
 @mixin overrides() {
-  @include mat.chips-overrides(
-    (
-      elevated-selected-container-color: vars.$secondary,
-      focus-outline-color: vars.$tertiary,
-      focus-state-layer-color: vars.$on-primary,
-      hover-state-layer-color: vars.$secondary,
-      label-text-font: vars.$label-medium-font,
-      label-text-line-height: vars.$label-medium-line-height,
-      label-text-size: vars.$label-medium-size,
-      label-text-tracking: vars.$label-medium-tracking,
-      label-text-weight: vars.$label-medium-weight,
-      outline-color: vars.$outline-variant,
-      selected-focus-state-layer-color: vars.$secondary,
-    )
-  );
+  // Default stateless chip (mat-chip) - no interactions
+  mat-chip {
+    @include mat.chips-overrides(
+      (
+        elevated-selected-container-color: vars.$secondary,
+        label-text-font: vars.$label-medium-font,
+        label-text-line-height: vars.$label-medium-line-height,
+        label-text-size: vars.$label-medium-size,
+        label-text-tracking: vars.$label-medium-tracking,
+        label-text-weight: vars.$label-medium-weight,
+        hover-state-layer-opacity: 0,
+        focus-state-layer-opacity: 0,
+      )
+    );
+
+    // Fix icon alignment within chips
+    mat-icon {
+      // Make icon display inline to properly align with text
+      display: inline-flex !important;
+      vertical-align: middle;
+      font-size: 1.125rem;
+      width: 1.125rem;
+      height: 1.125rem;
+      line-height: 1;
+    }
+  }
+
+  // mat-chip-option and mat-chip-row - interactive chips with hover/focus states
+  mat-chip-option,
+  mat-chip-row {
+    @include mat.chips-overrides(
+      (
+        elevated-selected-container-color: vars.$secondary,
+        label-text-font: vars.$label-medium-font,
+        label-text-line-height: vars.$label-medium-line-height,
+        label-text-size: vars.$label-medium-size,
+        label-text-tracking: vars.$label-medium-tracking,
+        label-text-weight: vars.$label-medium-weight,
+        // Material Design default opacity values
+        hover-state-layer-opacity: 0.08,
+        focus-state-layer-opacity: 0.12,
+        selected-hover-state-layer-opacity: 0.08,
+        selected-focus-state-layer-opacity: 0.12,
+      )
+    );
+  }
+
+  // Size variants for chips (applied via hraChipSize directive)
+  .hra-chip-small {
+    @include mat.chips-overrides(
+      (
+        label-text-font: vars.$label-small-font,
+        label-text-line-height: vars.$label-small-line-height,
+        label-text-size: vars.$label-small-size,
+        label-text-tracking: vars.$label-small-tracking,
+        label-text-weight: vars.$label-small-weight,
+      )
+    );
+  }
+
+  .hra-chip-medium {
+    @include mat.chips-overrides(
+      (
+        label-text-font: vars.$label-medium-font,
+        label-text-line-height: vars.$label-medium-line-height,
+        label-text-size: vars.$label-medium-size,
+        label-text-tracking: vars.$label-medium-tracking,
+        label-text-weight: vars.$label-medium-weight,
+      )
+    );
+  }
+
+  .hra-chip-large {
+    @include mat.chips-overrides(
+      (
+        label-text-font: vars.$label-large-font,
+        label-text-line-height: vars.$label-large-line-height,
+        label-text-size: vars.$label-large-size,
+        label-text-tracking: vars.$label-large-tracking,
+        label-text-weight: vars.$label-large-weight,
+      )
+    );
+  }
 }

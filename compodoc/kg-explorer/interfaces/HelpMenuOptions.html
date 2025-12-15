@@ -391,9 +391,6 @@ import {
   productLabelResolver,
 } from &#x27;./utils/kg-resolver&#x27;;
 
-/** Digital objects api */
-export const DO_URL &#x3D; &#x27;https://apps.humanatlas.io/api/kg/digital-objects&#x27;;
-
 /** Column info for digital object table */
 export const DO_COLUMNS: TableColumn[] &#x3D; [
   {
@@ -487,7 +484,7 @@ export const appRoutes: Route[] &#x3D; [
       columns: DO_COLUMNS,
     },
     resolve: {
-      data: kgResolver(DO_URL),
+      data: kgResolver(),
       asctbTermOccurrences: asctbResolver(),
       ontologyTree: ontologyResolver(),
       cellTypeTree: cellTypeResolver(),
@@ -501,7 +498,7 @@ export const appRoutes: Route[] &#x3D; [
       columns: METADATA_COLUMNS,
     },
     resolve: {
-      doData: kgResolver(DO_URL),
+      doData: kgResolver(),
       metadata: doMetadataResolver(),
       documentationUrl: documentationUrlResolver(),
       typeLabel: productLabelResolver(),

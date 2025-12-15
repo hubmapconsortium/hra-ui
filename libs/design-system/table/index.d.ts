@@ -5,7 +5,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { NgScrollbar } from 'ngx-scrollbar';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Type for table style */
 type TableVariant = z.infer<typeof TableVariantSchema>;

@@ -1,0 +1,479 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Release Notes
+subtitle: What's new in the Human Reference Atlas.
+headerContent:
+  component: ReleaseNotesVersionSelector
+content:
+  - component: PageSection
+    tagline: '10th Release (v2.4): December 15, 2025'
+    anchor: announcement
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          HuBMAP's Indiana University Mapping Component (MC-IU) has published the 10th Release of the Human Reference Atlas
+          in close collaboration with the HuBMAP team and experts from more than 25 other consortia and teams. Users can now
+          query and explore 4,810 anatomical structures, 1,334 cell types, and 2,070 biomarkers linked to ontologies (Uberon/FMA, CL, and HGNC respectively) across scales. Every six months, a new version of Human Reference Atlas data and code is released with user interfaces that make it possible to visually explore the atlas or programmatically access the data. Learn more in our *Nature Methods* publication entitled “[Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage](https://doi.org/10.1038/s41592-024-02563-5)”.
+
+  - component: PageSection
+    tagline: Data
+    anchor: data
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Human Reference Atlas now includes:
+            * 34 ASCT+B tables with
+              * 4,810 anatomical structures linked to Uberon/FMA
+              * 1,334 cell types linked to Cell Ontology (CL)
+              * 2,070 biomarkers linked to HGNC
+            * 26 functional tissue unit illustrations
+            * 77 3D reference objects with 1,469 3D anatomical structures
+            * 37 organ mapping antibody panels
+            * 7 Vasculature Common Coordinate Framework (VCCF) tables
+            * 12 crosswalk tables from 3D reference organs, cell type annotation crosswalks, functional tissue unit illustrations to ASCT+B tables
+
+      - component: Button
+        label: Get data
+        href: https://purl.humanatlas.io/collection/hra/v2.4
+        type: cta
+
+  - component: PageSection
+    tagline: New data
+    anchor: new-digital-objects
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          * 7 Cell Type Annotation Crosswalks
+            * DeepCell Types Crosswalk
+            * DeepCell Types (HuBMAP Edition) Crosswalk
+            * FRMatch Crosswalk
+            * Pan-human Azimuth Crosswalk
+            * Robust Image-Based Cell Annotator (RIBCA) Crosswalk
+            * SpaTial cELl LeARning (STELLAR) Crosswalk
+            * Vasculature Common Coordinate Framework (VCCF) Crosswalk
+          * 13 Millitomes
+            * UPenn Fallopian Tube, Female, Left
+            * UPenn Fallopian Tube, Female, Right
+            * VU Kidney, Female, Left
+            * VU Kidney, Female, Right
+            * VU Kidney, Male, Left
+            * VU Kidney, Male, Right
+            * UPenn Ovary, Female, Left
+            * UPenn Ovary, Female, Right
+            * UF Pancreas, Female
+            * VU Pancreas, Female
+            * UF Pancreas, Male
+            * VU Pancreas, Male
+            * UPenn Uterus, Female
+          * 7 Organ Mapping Antibody Panels
+            * OMAP-31: Fallopian Tube, CODEX
+            * OMAP-32: Uterus, CODEX
+            * OMAP-33: Ovary, CODEX
+            * OMAP-34: Esophagus, CODEX
+            * OMAP-35: Brain, Cell DIVE
+            * OMAP-36: Heart, MICS
+            * OMAP-37: Liver, MICS
+          * 4 3D Reference Objects
+            * Adipose, female
+            * Adipose, male
+            * Intervertebral disk, female
+            * Intervertebral disk, male
+
+  - component: PageSection
+    tagline: Revised data
+    anchor: revised-digital-objects
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          * 20 Functional Tissue Unit Illustrations
+            * Kidney, ascending thin loop of henle
+            * Kidney, cortical collecting duct
+            * Kidney, descending thin loop of henle
+            * Kidney, outer medullary collecting duct
+            * Kidney, renal corpuscle
+            * Large Intestine, crypt of lieberkuhn
+            * Liver, liver lobule
+            * Lung, bronchial submucosal gland
+            * Lung, pulmonary alveolus
+            * Mouth, submandibular gland
+            * Mouth, sublingual gland
+            * Mouth, parotid gland
+            * Pancreas, islets of langerhans
+            * Pancreas, pancreatic acinus
+            * Skin, dermal papilla
+            * Skin, hair follicle
+            * Small Intestine, intestinal villus
+            * Spleen, red pulp
+            * Spleen, white pulp
+            * Thymus, thymus lobule
+          * 10 ASCT+B Tables
+            * Brain
+            * Blood Vasculature
+            * Heart
+            * Kidney
+            * Large Intestine
+            * Liver
+            * Mouth
+            * Pancreas
+            * Skin
+            * Small Intestine
+          * 3 Cell Type Annotation Crosswalks
+            * Azimuth Crosswalk
+            * CellTypist Crosswalk
+            * popV Crosswalk
+          * 2 Organ Mapping Antibody Panels
+            * OMAP-16: Lung, CODEX
+            * OMAP-25: Lung, CODEX
+          * 2 3D Reference Objects
+            * United, female
+            * United, male
+          * 4 Crosswalk Tables
+            * 3D Reference Object Crosswalk
+            * Functional Tissue Unit Crosswalk
+            * Blood Vasculature to Organ Crosswalk
+            * Pathway Crosswalk
+
+  - component: PageSection
+    tagline: Updated ontologies
+    anchor: ontology-updates
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Existing ontologies do not (yet) properly represent healthy anatomical structures and cell types. HuBMAP and other teams are
+          actively adding anatomical structure terms and axiom links to Uberon and novel cell types to Cell Ontology (CL) and the Provisional
+          Cell Ontology (PCL) and to improve the quality and coverage of these ontologies.
+
+      - component: PageTable
+        style: alternating
+        columns:
+          - column: ontology
+            label: Ontology
+          - column: published
+            label: Last published release
+            type:
+              type: link
+              urlColumn: publishedUrl
+          - column: termsAdded
+            label: Terms Added
+            type:
+              type: numeric
+          - column: axiomsAdded
+            label: Axioms Added
+            type:
+              type: numeric
+        rows:
+          - ontology: Uberon
+            published: Uberon v2025-12-05
+            publishedUrl: https://github.com/obophenotype/uberon/releases/tag/v2025-12-04
+            termsAdded: 198
+            axiomsAdded: 931
+          - ontology: CL
+            published: CL v2025-11-27
+            publishedUrl: https://github.com/obophenotype/cell-ontology/releases/tag/v2025-11-27
+            termsAdded: 233
+            axiomsAdded: 555
+          - ontology: PCL
+            published: PCL v2025-07-08
+            publishedUrl: https://github.com/obophenotype/provisional_cell_ontology/releases/tag/v2025-07-08
+            termsAdded: 468
+            axiomsAdded: 468
+
+  - component: PageSection
+    tagline: Applications
+    anchor: applications
+    level: 2
+    content:
+      - component: PageSection
+        tagline: 'New app: Knowledge Graph'
+        anchor: new-app-kg
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              Introducing a new application to search, query, and download all data organized in the Human Reference Atlas Knowledge Graph.
+
+              Check out all resources to learn more about this effort:
+
+              * **Explore the app:** [Knowledge Graph](https://lod.humanatlas.io)
+              * **New help & documentation content:**
+                * [App documentation](https://docs.humanatlas.io/apps/kg): Start here, then go to the developer documentation when you areready to work with the data programmatically
+                * [Developer documentation](https://docs.humanatlas.io/dev/kg)
+              * **Read publication:** Bueckle, Andreas, Bruce W. Herr II, Josef Hardi, Ellen M Quardokus, Mark A. Musen, and Katy Börner. 2025\. ["Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph"](https://www.nature.com/articles/s41597-025-05183-6). *Nature Scientific Data* doi: 10.1038/s41597-025-05183-6.
+
+      - component: PageSection
+        tagline: 'New app: HRApop Visualizer'
+        anchor: new-app-hrapop-vis
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              This new tool enables users to visualize the number and percentage of cells per cell type for 73 anatomical structures (112 when sex-specific) across 17 organs (31 when sex-specific). These cell type populations are separated by organ, sex, cell type annotation tool, and entity (anatomical structure, extraction site, dataset).
+
+              * **Explore the app:** [HRApop Visualizer](https://apps.humanatlas.io/hra-pop-visualizer)
+              * **Watch tutorial on YouTube:** [Visualizing HRA Cell Type Populations](https://www.youtube.com/watch?v=Ueei7BOctzY)
+              * **Read publication:** Bueckle, Andreas, Bruce W Herr II, Lu Chen, Daniel Bolin, Danial Qaurooni, Michael Ginda, Yashvardhan Jain, Aleix Puig-Barbe, Kristin Ardlie, Fusheng Wang, and Katy Börner. 2025\. ["Cell type populations for 3D anatomical structures of the Human Reference Atlas"](https://www.biorxiv.org/content/10.1101/2025.08.14.670406). *bioRxiv* doi: 10.1101/2024.12.13.628309.
+
+  - component: PageSection
+    tagline: Updated apps
+    anchor: updated-apps
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          1. [API](https://apps.humanatlas.io/api): Added 10th release data
+          2. [ASCT+B Reporter](https://apps.humanatlas.io/asctb-reporter/): Added 10th release data and redesigned the app
+          3. [Cell Distance Explorer](https://apps.humanatlas.io/cde/): Added global navigation
+          4. [Cell Population Graphs](https://apps.humanatlas.io/cell-population-graphs): Redesigned app
+          5. [Cell Population Predictor](https://apps.humanatlas.io/us1): Added 10th release data
+          6. [Dashboard](https://apps.humanatlas.io/dashboard/): Added 10th release data and improved tooltip experience
+          7. [Exploration User Interface](https://apps.humanatlas.io/eui/): Added 10th release data
+          8. [Functional Tissue Unit Explorer](https://apps.humanatlas.io/ftu-explorer/): Added 10th release data and redesigned the app
+          9. [Help & Documentation](https://docs.humanatlas.io/): Added 10th release data and updated content
+          10. [HRA Organ Gallery](https://humanatlas.io/hra-organ-gallery): Added 10th release data and new features
+          11. [Registration User Interface](https://apps.humanatlas.io/rui/): Added 10th release data
+          12. [Tissue Origin Predictor](https://apps.humanatlas.io/us2): Added 10th release data
+          13. [Web Components](https://apps.humanatlas.io/us6): Added 10th release data
+
+  - component: PageSection
+    tagline: Other Updates
+    anchor: other-updates
+    level: 2
+    content:
+      - component: PageSection
+        tagline: 'SenNet collaborations'
+        anchor: sennet-collaborations
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              [Yashvardhan Jain](https://orcid.org/0000-0002-6300-5568) is leading the VCCF Vis effort that uses five CODEX Lymph Node datasets from
+              [Rong Fan](https://orcid.org/0000-0001-7805-8059)'s SenNet team. The effort aims to analyze and visualize cell-to-nearest-endothelial-cell
+              distance distributions across datasets.
+
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/cde.jpg
+            alt: Nancy posing with the butterfly visualization at the SenNet All-Hands Meeting 2025
+
+          - component: Markdown
+            data: |
+              Cell-to-nearest-endothelial-cell distance visualization of a lymph node dataset containing 3,158,210 cells in the
+              [Cell Distance Explorer app](https://apps.humanatlas.io/cde).
+
+      - component: PageSection
+        tagline: Cellular Senescence Network (SenNet) SciTech Webinar Series featuring HRA Knowledge Graph
+        anchor: sennet-webinar
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              [Andreas Bueckle](https://orcid.org/0000-0002-8977-498X) and [Bruce W. Herr II](https://orcid.org/0000-0002-6703-7647) present their work on the Human Reference Atlas.
+
+          - component: YouTubePlayer
+            videoId: -9_1GVB-iuE
+            label: Cellular Senescence Network (SenNet) SciTech Webinar Series featuring HRA Knowledge Graph
+
+      - component: PageSection
+        tagline: SenNet co-author network for 2021-2025
+        anchor: sennet-co-author-network
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              [Michael Ginda](https://orcid.org/0000-0002-7500-8096) at MC-IU computed various data visualizations to communicate [SenNet](https://sennetconsortium.org/) progress
+              and impact using funding, publication, and experimental biomarkers data. Visualizations include an overview of SenNet funding over time, evolving co-authorship networks,
+              an initial and final organ and biomarkers bi-modal network, and a publication MeSH descriptors co-occurrence network that show topical coverage of SenNet works.
+
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/sennet-coauthorship_network-2021_2025.gif
+            alt: Nancy posing with the butterfly visualization at the SenNet All-Hands Meeting 2025
+
+          - component: Markdown
+            data: |
+              SenNet co-author network for 2021-2025.
+
+              The network shown represents co-authorship relationships derived from 336 scholarly articles published by the SenNet team between 2021-2025. There are 609 researchers who are
+              represented as circles (nodes) in the network, and who are authors on at least two SenNet publications between 2021 & 2025. There are 64 researchers who have contributed to 6 or
+              more articles—these individuals are highlighted with purple nodes and labels. There are 6,763 relationships between pairs of researchers which are shown as lines (edges).
+
+      - component: PageSection
+        tagline: 'New video: 1010 — A Multiscale Voyage through the Human Body'
+        anchor: new-video-multiscale-voyage
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              This short animation is both an exciting journey through the human body and a vivid showcase for some of the fascinating data and imagery generated by the Human Reference Atlas (HRA).
+              After a brief homage to some of the great anatomical drawings of the past, our journey begins at the level of the adult human body. From there, we move through increasing levels of
+              magnification—zooming in by powers of 10—to view the anatomical structures, functional tissue units, cells, organelles, ribosomes, and amino acid chains that become visible at each new level.
+              As we move to magnification strengths that have only recently become technologically possible, the human anatomy we encounter appears even more strange and wondrous. In the end, we zoom back out
+              to the familiar body view, but we arrive there with an awareness of the amazing worlds that exist within the multiscale human body.
+
+              All data and code used to create the video is freely available.
+
+          - component: TextHyperlink
+            text: Learn more
+            url: https://cns-iu.github.io/cns-multiscale-voyage
+            icon: arrow_right_alt
+
+          - component: YouTubePlayer
+            videoId: -YNP5XdnLPA
+            label: 'New video: 1010 — A Multiscale Voyage through the Human Body'
+
+          - component: Markdown
+            data: |
+              #### Credits
+
+               * Producer (Initial Story / Guidance / Resources): Katy Börner, Luddy School of Informatics, Computing, and Engineering, Indiana University
+               * Director (Animation / Art / Design / Editing): Ushma Patel, Indiana University
+               * Animator / Programmer: Andreas Bueckle, Luddy School of Informatics, Computing, and Engineering, Indiana University
+               * Story Advisor: Todd N. Theriault, Luddy School of Informatics, Computing, and Engineering, Indiana University
+               * Sound Artist (Music / Soundtrack): Norbert Herber, Department of Telecommunications, Indiana University
+               * 2D and 3D FTUs: Rachel Bajema, Heidi Schlehlein, and Supriya Bidanta, Luddy School of Informatics, Computing, and Engineering, Indiana University
+               * FTU Images Extraction Programmer: Kiki Kong, Luddy School of Informatics, Computing, and Engineering, Indiana University
+               * Helios-Web Programmer: Filipi Nascimento Silva, Northwestern University–Kellogg
+               * Mosaic and Grid Animation Programmer: Parth Godse, Luddy School of Informatics, Computing, and Engineering, Indiana University
+               * Sphere Animation Programmer: Peter Kienle, Luddy School of Informatics, Computing, and Engineering, Indiana University
+
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/sennet-coauthorship_network-2021_2025.gif
+            alt: Nancy posing with the butterfly visualization at the SenNet All-Hands Meeting 2025
+
+          - component: Markdown
+            data: |
+              SenNet co-author network for 2021-2025.
+
+              The network shown represents co-authorship relationships derived from 336 scholarly articles published by the SenNet team between 2021-2025. There are 609 researchers who are
+              represented as circles (nodes) in the network, and who are authors on at least two SenNet publications between 2021 & 2025. There are 64 researchers who have contributed to 6 or
+              more articles—these individuals are highlighted with purple nodes and labels. There are 6,763 relationships between pairs of researchers which are shown as lines (edges).
+
+      - component: PageSection
+        tagline: 'Andreas Bueckle appears on CFDE “Decoding the Data Ecosystem” Podcast'
+        anchor: decoding-the-data-ecosystem
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              Andreas Bueckle, Ph.D., appeared on the CFDE podcast with host Dr. Allissa Dillmann. This marked the first instance of a video episode in the series. Dr. Bueckle presented the ongoing work to make HuBMAP, SenNet, and GTEx datasets more [Findable, Accessible, Interoperable, and Reusable (FAIR)](https://doi.org/10.1038/sdata.2016.18) with the [HRA Organ Gallery](https://humanatlas.io/hra-organ-gallery) in virtual reality.
+
+          - component: TextHyperlink
+            text: Watch on Vimeo
+            url: https://vimeo.com/1143496413
+            icon: arrow_right_alt
+
+      - component: PageSection
+        tagline: 'HuBMAP Human Reference Atlas Workshop: June 23-24, 2025'
+        anchor: hra-workshop-june-2025
+        level: 3
+        content:
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/2025-06-23_hra_workshop.png
+            alt: 'HuBMAP Human Reference Atlas Workshop: June 23-24, 2025'
+
+          - component: Markdown
+            data: |
+              This workshop brought together experts from the National Library of Medicine, the J. Craig Venter Institute (JCVI),
+              and HuBMAP to share and integrate human atlas data and code across efforts.
+
+          - component: TextHyperlink
+            text: Learn more
+            url: https://cns-iu.github.io/workshops/2025-06-23_hra_workshop/
+            icon: arrow_right_alt
+
+      - component: PageSection
+        tagline: 'HuBMAP Human Reference Atlas Hackathon: August 25-26, 2025'
+        anchor: hra-hackathon-august-2025
+        level: 3
+        content:
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/2025-08-25_hra_hackathon.png
+            alt: 'HuBMAP Human Reference Atlas Hackathon: August 25-26, 2025'
+
+          - component: Markdown
+            data: |
+              This hackathon brought together experts from the Kidney Precision Medicine Project (KPMP), the Human Phenotype Ontology (HPO),
+              and HuBMAP to share and integrate human atlas data and code across efforts.
+
+          - component: TextHyperlink
+            text: Learn more
+            url: https://cns-iu.github.io/workshops/2025-08-25_hra_hackathon/
+            icon: arrow_right_alt
+
+      - component: PageSection
+        tagline: 'IEEE VIS Panel: November 5, 2025'
+        anchor: ieee-vis-panel-november-2025
+        level: 3
+        content:
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/ieee_vis_panel_nov_2025.png
+            alt: 'HuBMAP Human Reference Atlas Workshop: June 23-24, 2025'
+
+          - component: Markdown
+            data: |
+              TALK, TRY, TELL: Challenges and Opportunities for Theory-Grounded Data Visualization in Extended Reality was co-organized by
+              Dr. Andreas Bueckle and held at IEEE VIS addressed gaps in the standardization of data visualization in extended reality (XR) through an
+              innovative “TALK, TRY, TELL” format that combined theoretical discourse with hands-on experience. Five expert speakers present their own research
+              on theory and practice and examine how established principles translate to immersive environments, representing a diverse and balanced spectrum
+              from XR specialists and information designers, including implementers and theorists. Following the presentations, attendees engage with three
+              VR demonstration applications, including the HRA Organ Gallery in VR.
+
+          - component: TextHyperlink
+            text: Learn more
+            url: https://cns-iu.github.io/data-vis-xr-panel-2025/
+            icon: arrow_right_alt
+
+  - component: PageSection
+    tagline: Publications
+    anchor: publications
+    level: 2
+    content:
+      - component: PageSection
+        tagline: 'Scholarly publications'
+        anchor: scholarly-publications
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              * Bueckle, Andreas, Bruce W Herr II, Lu Chen, Daniel Bolin, Danial Qaurooni, Michael Ginda, Yashvardhan Jain, Aleix Puig-Barbe, Kristin Ardlie,
+              Fusheng Wang, and Katy Börner. 2025\. ["Cell type populations for 3D anatomical structures of the Human Reference Atlas"](https://www.biorxiv.org/content/10.1101/2025.08.14.670406).
+              *bioRxiv* doi: 10.1101/2024.12.13.628309.
+              * Kong, Yongxin, and Katy Börner. 2025\.
+              ["AI-Supported Extraction of Functional Tissue Unit Properties for Human Reference Atlas Construction"](https://www.biorxiv.org/content/10.1101/2025.09.11.675730v1).
+              *bioRxiv* doi: 10.1101/2025.09.11.675730.
+              * Jain, Yashvardhan, Jodie Jepson, Roy Chen, Elizabeth Maier, Bruce W. Herr II, Aleix Puig-Barbe, Ellen M. Quardokus, Danial Qaurooni, Clarence Yapp, Samuel L. Ewing,
+              Archibald Enninful, Negin Farzad, Andreas Bueckle, Quinn T. Easter, Bruno Matuck, Chenchen Zhu, Emma Marie Monte, Jeffrey Purkerson, Matthew Jehrio, Ravi Misra, Rong Fan,
+              Fiona Ginty, Arivarasan Karunamurthy, Jean Fan, Martha Campbell-Thompson, Gloria S. Pryhuber, Kevin M. Byrd, John W. Hickey, and Katy Börner. 2025\.
+              ["Exploring endothelial cell environments across organs in spatially resolved omics data"](https://www.biorxiv.org/content/10.1101/2025.09.23.678129v1).
+              *bioRxiv* doi.org: 10.1101/2025.09.23.678129.
+              * Wu, Ruopeng, Yichao Chen, Feng-Yu (Leo) Yeh, Jie Zheng, Nikki Bonevich, Jeff Hodgin, Alexander D. Diehl, William D. Duncan, Laura Barisoni, Avi Z. Rosenberg, Sanjay Jain,
+              Ravi Iyengar, Jimmy P. Phuong, the Kidney Precision Medicine Project, Bruce W. Herr II, and Yongqun He. 2025\. ["Ontology-supported Integration of Gene Expression Data from
+              Heterogeneous Subjects in KPMP and HuBMAP Resources for Systematic Kidney Disease Analysis"](https://cns.iu.edu/docs/publications/ICIBM_2025_Poster_Ruopeng_Wu.pdf).
+              *International Conference on Intelligent, Biology and Medicine (ICIBM), Columbus, Ohio*.
+              * Bueckle, Andreas, Bruce W. Herr II, Josef Hardi, Ellen M Quardokus, Mark A. Musen, and Katy Börner. 2025\.
+              ["Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph"](https://www.nature.com/articles/s41597-025-05183-6).
+              *Nature Scientific Data* doi: 10.1038/s41597-025-05183-6.
+              * Herr II, Bruce W, Lei Liu, Roland Eils, Lei Gu, Feizhen Wu, Yongxin Kong, Andreas Bueckle, and Katy Börner. 2025\.
+              ["Chinese Human Reference Atlas Mirror: Setup, Localization, and Usage"](https://cns.iu.edu/docs/publications/25GM-HRA-Mirror-Poster.pdf).
+              *Human Cell Atlas General Meeting, Singapore*.
+
+      - component: PageSection
+        tagline: Standard operating procedures (SOPs)
+        anchor: sops
+        level: 3
+        content:
+          - component: PageSection
+            tagline: New and revised SOPs
+            anchor: new-and-revised-sops
+            level: 4
+            content:
+              - component: Markdown
+                data: |
+                  * [Authoring Cell Type Annotation Crosswalks](https://doi.org/10.5281/zenodo.17873777)
+                  * [Setting Up a Mirror Site for the Human Reference Atlas](https://doi.org/10.5281/zenodo.17873664)
+                  * [Human Reference Atlas Digital Object Release Process](https://doi.org/10.5281/zenodo.17884703)
+                  * [Adding and Updating Assets in NIH BioArt Source](https://doi.org/10.5281/zenodo.17873834)
+                  * [Adding and Updating 3D Reference Objects in the NIH3D Portal](https://doi.org/10.5281/zenodo.17873902)
+                  * [Human Reference Atlas Standard Operating Procedures Glossary](https://doi.org/10.5281/zenodo.17664992)

@@ -10,10 +10,11 @@ import { ButtonToggleSizeDirective, provideButtonToggle } from '@hra-ui/design-s
 import { CheckboxErrorVariantDirective } from '@hra-ui/design-system/buttons/checkbox';
 import { HelpButtonComponent } from '@hra-ui/design-system/buttons/help-button';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
+import { InfoButtonComponent, InfoButtonTaglineDirective, InfoButtonActionsDirective } from '@hra-ui/design-system/buttons/info-button';
+import { NavigationButtonComponent, NavigationButtonTaglineDirective, NavigationButtonDescriptionDirective, NavigationIconDirective } from '@hra-ui/design-system/buttons/navigation-button';
 import { NavigationCategoryToggleComponent } from '@hra-ui/design-system/buttons/navigation-category-toggle';
 import { SocialMediaButtonComponent } from '@hra-ui/design-system/buttons/social-media-button';
-import { TextHyperlinkComponent, TextHyperlinkDirective, provideTextHyperlink } from '@hra-ui/design-system/buttons/text-hyperlink';
-import { provideRadioButton } from '@hra-ui/design-system/buttons/radio-button';
+import { TextButtonDirective, TextHyperlinkComponent, TextHyperlinkDirective, provideTextHyperlink } from '@hra-ui/design-system/buttons/text-hyperlink';
 
 /** All re-exported modules, components, directives, etc. */
 const REEXPORTS = [
@@ -21,6 +22,9 @@ const REEXPORTS = [
     MatButtonToggleModule,
     MatChipsModule,
     IconButtonModule,
+    InfoButtonComponent,
+    InfoButtonTaglineDirective,
+    InfoButtonActionsDirective,
     AppNavButtonComponent,
     BreadcrumbsComponent,
     ButtonSizeDirective,
@@ -29,20 +33,28 @@ const REEXPORTS = [
     CheckboxErrorVariantDirective,
     CtaButtonDirective,
     HelpButtonComponent,
+    NavigationButtonComponent,
+    NavigationButtonTaglineDirective,
+    NavigationButtonDescriptionDirective,
+    NavigationIconDirective,
     NavigationCategoryToggleComponent,
     PrimaryButtonVariantDirective,
     SecondaryButtonVariantDirective,
     SocialMediaButtonComponent,
+    TextButtonDirective,
     TextHyperlinkComponent,
     TextHyperlinkDirective,
 ];
 /** Packages up subpackage angular exports for easier use */
 class ButtonsModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ButtonsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.9", ngImport: i0, type: ButtonsModule, imports: [MatButtonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ButtonsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: ButtonsModule, imports: [MatButtonModule,
             MatButtonToggleModule,
             MatChipsModule,
             IconButtonModule,
+            InfoButtonComponent,
+            InfoButtonTaglineDirective,
+            InfoButtonActionsDirective,
             AppNavButtonComponent,
             BreadcrumbsComponent,
             ButtonSizeDirective,
@@ -51,15 +63,23 @@ class ButtonsModule {
             CheckboxErrorVariantDirective,
             CtaButtonDirective,
             HelpButtonComponent,
+            NavigationButtonComponent,
+            NavigationButtonTaglineDirective,
+            NavigationButtonDescriptionDirective,
+            NavigationIconDirective,
             NavigationCategoryToggleComponent,
             PrimaryButtonVariantDirective,
             SecondaryButtonVariantDirective,
             SocialMediaButtonComponent,
+            TextButtonDirective,
             TextHyperlinkComponent,
             TextHyperlinkDirective], exports: [MatButtonModule,
             MatButtonToggleModule,
             MatChipsModule,
             IconButtonModule,
+            InfoButtonComponent,
+            InfoButtonTaglineDirective,
+            InfoButtonActionsDirective,
             AppNavButtonComponent,
             BreadcrumbsComponent,
             ButtonSizeDirective,
@@ -68,19 +88,26 @@ class ButtonsModule {
             CheckboxErrorVariantDirective,
             CtaButtonDirective,
             HelpButtonComponent,
+            NavigationButtonComponent,
+            NavigationButtonTaglineDirective,
+            NavigationButtonDescriptionDirective,
+            NavigationIconDirective,
             NavigationCategoryToggleComponent,
             PrimaryButtonVariantDirective,
             SecondaryButtonVariantDirective,
             SocialMediaButtonComponent,
+            TextButtonDirective,
             TextHyperlinkComponent,
             TextHyperlinkDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ButtonsModule, imports: [MatButtonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ButtonsModule, imports: [MatButtonModule,
             MatButtonToggleModule,
             MatChipsModule,
             IconButtonModule,
+            InfoButtonComponent,
             AppNavButtonComponent,
             BreadcrumbsComponent,
             HelpButtonComponent,
+            NavigationButtonComponent,
             NavigationCategoryToggleComponent,
             SocialMediaButtonComponent,
             TextHyperlinkComponent,
@@ -89,7 +116,7 @@ class ButtonsModule {
             MatChipsModule,
             IconButtonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImport: i0, type: ButtonsModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ButtonsModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: REEXPORTS,
@@ -103,7 +130,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.9", ngImpor
  * @returns Button providers
  */
 function provideButtons() {
-    return makeEnvironmentProviders([provideButtonToggle(), provideRadioButton(), provideTextHyperlink()]);
+    return makeEnvironmentProviders([provideButtonToggle(), provideTextHyperlink()]);
 }
 
 /**

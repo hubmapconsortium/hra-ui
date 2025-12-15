@@ -238,6 +238,7 @@
       withComponentInputBinding(),
       withInMemoryScrolling({ anchorScrolling: &#x27;enabled&#x27;, scrollPositionRestoration: &#x27;enabled&#x27; }),
     ),
+    provideRouterExt(),
   ],
 }</code>
                     </td>
@@ -405,12 +406,20 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z.object({
-  $schema: z.string(),
-  tagline: z.string(),
-  bannerUrl: z.string(),
-  cards: ActionCardSchema.array(),
-})</code>
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    $schema: z.string(),
+    tagline: z.string(),
+    bannerUrl: z.string(),
+    cards: ActionCardSchema.array(),
+  })
+  .meta({ id: &#x27;LandingPageData&#x27; })</code>
                     </td>
                 </tr>
 

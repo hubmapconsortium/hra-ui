@@ -27,6 +27,22 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/hra-ui-common.mjs"
     },
+    "./analytics": {
+      "types": "./analytics/index.d.ts",
+      "default": "./fesm2022/hra-ui-common-analytics.mjs"
+    },
+    "./analytics/events": {
+      "types": "./analytics/events/index.d.ts",
+      "default": "./fesm2022/hra-ui-common-analytics-events.mjs"
+    },
+    "./analytics/plugins/hra-analytics": {
+      "types": "./analytics/plugins/hra-analytics/index.d.ts",
+      "default": "./fesm2022/hra-ui-common-analytics-plugins-hra-analytics.mjs"
+    },
+    "./analytics/plugins/hra-event-filter": {
+      "types": "./analytics/plugins/hra-event-filter/index.d.ts",
+      "default": "./fesm2022/hra-ui-common-analytics-plugins-hra-event-filter.mjs"
+    },
     "./array-util": {
       "types": "./array-util/index.d.ts",
       "default": "./fesm2022/hra-ui-common-array-util.mjs"
@@ -34,10 +50,6 @@
     "./custom-scroll": {
       "types": "./custom-scroll/index.d.ts",
       "default": "./fesm2022/hra-ui-common-custom-scroll.mjs"
-    },
-    "./analytics": {
-      "types": "./analytics/index.d.ts",
-      "default": "./fesm2022/hra-ui-common-analytics.mjs"
     },
     "./fs": {
       "types": "./fs/index.d.ts",
@@ -51,25 +63,17 @@
       "types": "./injectors/index.d.ts",
       "default": "./fesm2022/hra-ui-common-injectors.mjs"
     },
+    "./router-ext": {
+      "types": "./router-ext/index.d.ts",
+      "default": "./fesm2022/hra-ui-common-router-ext.mjs"
+    },
     "./url": {
       "types": "./url/index.d.ts",
       "default": "./fesm2022/hra-ui-common-url.mjs"
     },
-    "./analytics/events": {
-      "types": "./analytics/events/index.d.ts",
-      "default": "./fesm2022/hra-ui-common-analytics-events.mjs"
-    },
     "./util/providers": {
       "types": "./util/providers/index.d.ts",
       "default": "./fesm2022/hra-ui-common-util-providers.mjs"
-    },
-    "./analytics/plugins/hra-analytics": {
-      "types": "./analytics/plugins/hra-analytics/index.d.ts",
-      "default": "./fesm2022/hra-ui-common-analytics-plugins-hra-analytics.mjs"
-    },
-    "./analytics/plugins/hra-event-filter": {
-      "types": "./analytics/plugins/hra-event-filter/index.d.ts",
-      "default": "./fesm2022/hra-ui-common-analytics-plugins-hra-event-filter.mjs"
     }
   },
   "dependencies": {

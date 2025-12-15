@@ -271,7 +271,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, HostBinding, input, output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input, output } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatCheckboxModule } from &#x27;@angular/material/checkbox&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
@@ -294,15 +294,12 @@ export interface SpatialSearchListItem {
  */
 @Component({
   selector: &#x27;ccf-spatial-search-list&#x27;,
-  templateUrl: &#x27;./spatial-search-list.component.html&#x27;,
-  styleUrls: [&#x27;./spatial-search-list.component.scss&#x27;],
   imports: [HraCommonModule, MatButtonModule, MatIconModule, MatCheckboxModule, MatListModule],
+  templateUrl: &#x27;./spatial-search-list.component.html&#x27;,
+  styleUrl: &#x27;./spatial-search-list.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpatialSearchListComponent&lt;T extends SpatialSearchListItem&gt; {
-  /** HTML class */
-  @HostBinding(&#x27;class&#x27;) readonly clsName &#x3D; &#x27;ccf-spatial-search-list&#x27;;
-
   /** Label for the list */
   readonly label &#x3D; input&lt;string&gt;(&#x27;&#x27;);
 

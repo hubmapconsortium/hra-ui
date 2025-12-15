@@ -626,6 +626,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
@@ -656,6 +662,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>signal(&#x27;#000000&#x27;)</code>
@@ -690,6 +702,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>effect(() &#x3D;&gt; this.hexColor.set(rgbToHex(this.color())))</code>
                     </td>
                 </tr>
@@ -719,6 +737,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>false</code>
@@ -751,6 +775,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>TOOLTIP_POSITION_COLOR_PICKER_LABEL</code>
@@ -848,32 +878,32 @@ export class ColorPickerLabelComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;span
   class&#x3D;&quot;color-pick&quot;
-  [style.background]&#x3D;&quot;hexColor()&quot;
-  [colorPicker]&#x3D;&quot;hexColor()&quot;
   cpWidth&#x3D;&quot;264px&quot;
   cpOutputFormat&#x3D;&quot;hex&quot;
   cpPositionOffset&#x3D;&quot;-17%&quot;
-  [cpOKButton]&#x3D;&quot;true&quot;
   cpOKButtonClass&#x3D;&quot;accept-button&quot;
   cpOKButtonText&#x3D;&quot;Accept&quot;
-  [cpCancelButton]&#x3D;&quot;true&quot;
   cpCancelButtonClass&#x3D;&quot;cancel-button&quot;
   cpAlphaChannel&#x3D;&quot;disabled&quot;
+  data-testid&#x3D;&quot;color-picker-button&quot;
+  [style.background]&#x3D;&quot;hexColor()&quot;
+  [colorPicker]&#x3D;&quot;hexColor()&quot;
+  [cpOKButton]&#x3D;&quot;true&quot;
+  [cpCancelButton]&#x3D;&quot;true&quot;
   [cpUseRootViewContainer]&#x3D;&quot;true&quot;
   (colorPickerOpen)&#x3D;&quot;colorPickerOpen.emit(colorPicker)&quot;
   (colorPickerClose)&#x3D;&quot;colorPickerOpen.emit(null)&quot;
   (colorPickerChange)&#x3D;&quot;hexColor.set($event)&quot;
   (colorPickerSelect)&#x3D;&quot;selectColor($event)&quot;
-  data-testid&#x3D;&quot;color-picker-button&quot;
   #colorPicker&#x3D;&quot;ngxColorPicker&quot;
 &gt;&lt;/span&gt;
 @if (isAnchor()) {
   &lt;mat-icon
     class&#x3D;&quot;material-symbols-rounded anchor&quot;
     cdkOverlayOrigin
-    #resetTrigger&#x3D;&quot;cdkOverlayOrigin&quot;
     (mouseover)&#x3D;&quot;anchorOpen &#x3D; true&quot;
     (mouseout)&#x3D;&quot;anchorOpen &#x3D; false&quot;
+    #resetTrigger&#x3D;&quot;cdkOverlayOrigin&quot;
   &gt;
     anchor
     &lt;ng-container&gt;
@@ -896,11 +926,11 @@ export class ColorPickerLabelComponent {
 }
 &lt;div
   cdkOverlayOrigin
-  #resetTrigger&#x3D;&quot;cdkOverlayOrigin&quot;
   class&#x3D;&quot;label&quot;
+  data-testid&#x3D;&quot;label&quot;
   (mouseover)&#x3D;&quot;handleHover($event)&quot;
   (mouseout)&#x3D;&quot;tooltipOpen &#x3D; false&quot;
-  data-testid&#x3D;&quot;label&quot;
+  #resetTrigger&#x3D;&quot;cdkOverlayOrigin&quot;
 &gt;
   {{ label() }}
   &lt;ng-container&gt;
@@ -947,7 +977,7 @@ export class ColorPickerLabelComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><span  class="color-pick"  [style.background]="hexColor()"  [colorPicker]="hexColor()"  cpWidth="264px"  cpOutputFormat="hex"  cpPositionOffset="-17%"  [cpOKButton]="true"  cpOKButtonClass="accept-button"  cpOKButtonText="Accept"  [cpCancelButton]="true"  cpCancelButtonClass="cancel-button"  cpAlphaChannel="disabled"  [cpUseRootViewContainer]="true"  (colorPickerOpen)="colorPickerOpen.emit(colorPicker)"  (colorPickerClose)="colorPickerOpen.emit(null)"  (colorPickerChange)="hexColor.set($event)"  (colorPickerSelect)="selectColor($event)"  data-testid="color-picker-button"  #colorPicker="ngxColorPicker"></span>@if (isAnchor()) {  <mat-icon    class="material-symbols-rounded anchor"    cdkOverlayOrigin    #resetTrigger="cdkOverlayOrigin"    (mouseover)="anchorOpen = true"    (mouseout)="anchorOpen = false"  >    anchor    <ng-container>      <ng-template        cdkConnectedOverlay        [cdkConnectedOverlayPanelClass]="[\'info-tooltip-panel\', \'anchor-tooltip\']"        [cdkConnectedOverlayOrigin]="resetTrigger"        [cdkConnectedOverlayPositions]="tooltipPosition"        [cdkConnectedOverlayOpen]="anchorOpen"        [cdkConnectedOverlayOffsetX]="5"      >        <div>          The anchor cell type represents the cell type to which the nearest cell distance distributions should be          computed and visualized. The nearest cell distance is computed based on the Euclidian distance between two          cells.        </div>      </ng-template>    </ng-container>  </mat-icon>}<div  cdkOverlayOrigin  #resetTrigger="cdkOverlayOrigin"  class="label"  (mouseover)="handleHover($event)"  (mouseout)="tooltipOpen = false"  data-testid="label">  {{ label() }}  <ng-container>    <ng-template      cdkConnectedOverlay      [cdkConnectedOverlayPanelClass]="[\'info-tooltip-panel\', \'label-tooltip\']"      [cdkConnectedOverlayOrigin]="resetTrigger"      [cdkConnectedOverlayPositions]="tooltipPosition"      [cdkConnectedOverlayOpen]="tooltipOpen"      [cdkConnectedOverlayOffsetX]="5"    >      <div>        {{ label() }}      </div>    </ng-template>  </ng-container></div></div>'
+        var COMPONENT_TEMPLATE = '<div><span  class="color-pick"  cpWidth="264px"  cpOutputFormat="hex"  cpPositionOffset="-17%"  cpOKButtonClass="accept-button"  cpOKButtonText="Accept"  cpCancelButtonClass="cancel-button"  cpAlphaChannel="disabled"  data-testid="color-picker-button"  [style.background]="hexColor()"  [colorPicker]="hexColor()"  [cpOKButton]="true"  [cpCancelButton]="true"  [cpUseRootViewContainer]="true"  (colorPickerOpen)="colorPickerOpen.emit(colorPicker)"  (colorPickerClose)="colorPickerOpen.emit(null)"  (colorPickerChange)="hexColor.set($event)"  (colorPickerSelect)="selectColor($event)"  #colorPicker="ngxColorPicker"></span>@if (isAnchor()) {  <mat-icon    class="material-symbols-rounded anchor"    cdkOverlayOrigin    (mouseover)="anchorOpen = true"    (mouseout)="anchorOpen = false"    #resetTrigger="cdkOverlayOrigin"  >    anchor    <ng-container>      <ng-template        cdkConnectedOverlay        [cdkConnectedOverlayPanelClass]="[\'info-tooltip-panel\', \'anchor-tooltip\']"        [cdkConnectedOverlayOrigin]="resetTrigger"        [cdkConnectedOverlayPositions]="tooltipPosition"        [cdkConnectedOverlayOpen]="anchorOpen"        [cdkConnectedOverlayOffsetX]="5"      >        <div>          The anchor cell type represents the cell type to which the nearest cell distance distributions should be          computed and visualized. The nearest cell distance is computed based on the Euclidian distance between two          cells.        </div>      </ng-template>    </ng-container>  </mat-icon>}<div  cdkOverlayOrigin  class="label"  data-testid="label"  (mouseover)="handleHover($event)"  (mouseout)="tooltipOpen = false"  #resetTrigger="cdkOverlayOrigin">  {{ label() }}  <ng-container>    <ng-template      cdkConnectedOverlay      [cdkConnectedOverlayPanelClass]="[\'info-tooltip-panel\', \'label-tooltip\']"      [cdkConnectedOverlayOrigin]="resetTrigger"      [cdkConnectedOverlayPositions]="tooltipPosition"      [cdkConnectedOverlayOpen]="tooltipOpen"      [cdkConnectedOverlayOffsetX]="5"    >      <div>        {{ label() }}      </div>    </ng-template>  </ng-container></div></div>'
     var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ColorPickerLabelComponent'};

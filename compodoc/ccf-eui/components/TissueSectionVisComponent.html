@@ -124,10 +124,6 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -186,10 +182,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./tissue-section-vis.component.scss</code></td>
-            </tr>
 
 
 
@@ -200,6 +192,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./tissue-section-vis.component.scss</code></td>
+            </tr>
 
 
 
@@ -412,10 +408,10 @@ import { TissueSection } from &#x27;@hra-api/ng-client&#x27;;
 /** Tissue section visualization */
 @Component({
   selector: &#x27;ccf-tissue-section-vis&#x27;,
-  templateUrl: &#x27;./tissue-section-vis.component.html&#x27;,
-  styleUrls: [&#x27;./tissue-section-vis.component.scss&#x27;],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule],
+  templateUrl: &#x27;./tissue-section-vis.component.html&#x27;,
+  styleUrl: &#x27;./tissue-section-vis.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TissueSectionVisComponent {
   /** The total numebr of tissue sections, used for end label */
@@ -439,8 +435,8 @@ export class TissueSectionVisComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div&gt;0&lt;/div&gt;
 &lt;div class&#x3D;&quot;container&quot;&gt;
-  @for (item of [].constructor(totalTissueSections); track item; let i &#x3D; $index) {
-    &lt;div class&#x3D;&quot;line-tick&quot; [class.line-tick-visible]&#x3D;&quot;tissueSectionExists(i + 1)&quot;&gt;&lt;/div&gt;
+  @for (item of [].constructor(totalTissueSections); track item) {
+    &lt;div class&#x3D;&quot;line-tick&quot; [class.line-tick-visible]&#x3D;&quot;tissueSectionExists($index + 1)&quot;&gt;&lt;/div&gt;
   }
   &lt;div class&#x3D;&quot;x-axis&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -448,49 +444,6 @@ export class TissueSectionVisComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./tissue-section-vis.component.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss">@use &#x27;vars&#x27;;
-
-:host {
-  width: 100%;
-  height: 2.5rem;
-  padding: 0.5rem 0.5rem 0 0;
-  display: flex;
-  align-items: center;
-  font: vars.$label-medium;
-
-  .container {
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
-    flex-grow: 1;
-    display: flex;
-    position: relative;
-    justify-content: space-evenly;
-    border-left: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
-    height: 100%;
-    align-items: center;
-
-    .line-tick {
-      height: 100%;
-      width: 1px;
-      z-index: 1;
-      background-color: #00c853;
-    }
-
-    .x-axis {
-      width: 100%;
-      height: 2px;
-      position: absolute;
-      background-color: #2979ff;
-    }
-  }
-}
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -517,7 +470,7 @@ export class TissueSectionVisComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div>0</div><div class="container">  @for (item of [].constructor(totalTissueSections); track item; let i = $index) {    <div class="line-tick" [class.line-tick-visible]="tissueSectionExists(i + 1)"></div>  }  <div class="x-axis"></div></div><div>{{ totalTissueSections() }}</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div>0</div><div class="container">  @for (item of [].constructor(totalTissueSections); track item) {    <div class="line-tick" [class.line-tick-visible]="tissueSectionExists($index + 1)"></div>  }  <div class="x-axis"></div></div><div>{{ totalTissueSections() }}</div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TissueSectionVisComponent'};

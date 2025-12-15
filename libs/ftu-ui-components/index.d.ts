@@ -11,8 +11,8 @@ import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree'
 import * as _hra_ui_cdk_state from '@hra-ui/cdk/state';
 import { LinkId } from '@hra-ui/cdk/state';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { TableVirtualScrollDataSource } from 'ng-table-virtual-scroll';
 import { DataItem } from '@hra-ui/design-system/info-modal';
+import { TableVirtualScrollDataSource } from 'ng-table-virtual-scroll';
 import * as _hra_ui_utils_types from '@hra-ui/utils/types';
 import * as zod from 'zod';
 import { CellSummaryAggregate } from '@hra-ui/state';

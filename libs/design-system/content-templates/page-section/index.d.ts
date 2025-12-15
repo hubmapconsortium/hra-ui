@@ -1,7 +1,8 @@
 import * as _angular_core from '@angular/core';
 import { Signal, ElementRef, ProviderToken, Provider } from '@angular/core';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { AnyContentTemplateDef } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Page section instance */
 interface PageSectionInstance {
@@ -76,12 +77,18 @@ declare class PageSectionComponent implements PageSectionInstance {
     })[] | undefined>;
     /** Anchor id for the section */
     readonly anchor: _angular_core.InputSignal<string | undefined>;
+    /** Breadcrumbs to display above the label */
+    readonly breadcrumbs: _angular_core.InputSignal<BreadcrumbItem[] | undefined>;
+    /** Date to display below the label */
+    readonly date: _angular_core.InputSignal<string | undefined>;
+    /** Tags/labels to display below the date */
+    readonly tags: _angular_core.InputSignal<string[]>;
     /** Reference to the section element */
     readonly elementRef: _angular_core.Signal<ElementRef<any>>;
     /** Registers this section with the PageSectionService if available */
     constructor();
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<PageSectionComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<PageSectionComponent, "hra-page-section", never, { "tagline": { "alias": "tagline"; "required": true; "isSignal": true; }; "level": { "alias": "level"; "required": false; "isSignal": true; }; "icons": { "alias": "icons"; "required": false; "isSignal": true; }; "anchor": { "alias": "anchor"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<PageSectionComponent, "hra-page-section", never, { "tagline": { "alias": "tagline"; "required": true; "isSignal": true; }; "level": { "alias": "level"; "required": false; "isSignal": true; }; "icons": { "alias": "icons"; "required": false; "isSignal": true; }; "anchor": { "alias": "anchor"; "required": false; "isSignal": true; }; "breadcrumbs": { "alias": "breadcrumbs"; "required": false; "isSignal": true; }; "date": { "alias": "date"; "required": false; "isSignal": true; }; "tags": { "alias": "tags"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
 
 /** PageSection content template definition */

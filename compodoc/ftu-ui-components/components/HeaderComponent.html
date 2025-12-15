@@ -301,9 +301,6 @@ Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#baseUrl" >baseUrl</a>
-                            </li>
-                            <li>
                                 <a href="#breadcrumbs" >breadcrumbs</a>
                             </li>
                             <li>
@@ -377,33 +374,6 @@ Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="baseUrl"></a>
-                        <b>baseUrl</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/header.component.ts:81</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Base url - Menu urls starting with this will be converted into router links</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="breadcrumbs"></a>
                         <b>breadcrumbs</b>
                     </td>
@@ -443,7 +413,7 @@ Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/header.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/header.component.ts:76</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -495,7 +465,7 @@ Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/header.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/header.component.ts:78</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -521,7 +491,7 @@ Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/header.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">/home/workflows/workspace/libs/design-system/navigation/header/src/lib/header.component.ts:80</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -611,7 +581,7 @@ Using false disables and hides the progress bar.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>closeMenu()</code>
+<code>closeMenu(menu?: <a href="../undefineds/Menu.html" target="_self">Menu | &quot;main&quot;</a>)</code>
                 </td>
             </tr>
 
@@ -629,10 +599,40 @@ Using false disables and hides the progress bar.</p>
                         <div class="io-description"><p>Closes any active menu</p>
 </div>
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>menu</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Menu" target="_self" >Menu | &quot;main&quot;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -807,6 +807,12 @@ Using false disables and hides the progress bar.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; &#x60;calc(100vh - ${this.menuOffsetPx()}px - 16px)&#x60;)</code>
                     </td>
                 </tr>
@@ -838,6 +844,12 @@ Using false disables and hides the progress bar.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>DESKTOP_MENU_POSITIONS</code>
@@ -873,6 +885,12 @@ Using false disables and hides the progress bar.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>watchBreakpoint(Breakpoints.Mobile)</code>
                     </td>
                 </tr>
@@ -904,6 +922,12 @@ Using false disables and hides the progress bar.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>signal&lt;number&gt;(0)</code>
@@ -939,6 +963,12 @@ Using false disables and hides the progress bar.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>inject(Overlay).scrollStrategies.block()</code>
                     </td>
                 </tr>
@@ -970,6 +1000,12 @@ Using false disables and hides the progress bar.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; &#x60;calc(100vh - ${this.menuOffsetPx()}px)&#x60;)</code>
@@ -1005,6 +1041,12 @@ Using false disables and hides the progress bar.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>MOBILE_MENU_POSITIONS</code>
                     </td>
                 </tr>
@@ -1036,6 +1078,12 @@ Using false disables and hides the progress bar.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed((): ProgressBarMode &#x3D;&gt; {
@@ -1081,8 +1129,9 @@ import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatProgressBarModule, ProgressBarMode } from &#x27;@angular/material/progress-bar&#x27;;
-import { EventType, Router } from &#x27;@angular/router&#x27;;
+import { EventType } from &#x27;@angular/router&#x27;;
 import { Breakpoints, watchBreakpoint } from &#x27;@hra-ui/cdk/breakpoints&#x27;;
+import { injectRouter } from &#x27;@hra-ui/common/router-ext&#x27;;
 import { BrandModule } from &#x27;@hra-ui/design-system/brand&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { BreadcrumbItem } from &#x27;@hra-ui/design-system/buttons/breadcrumbs&#x27;;
@@ -1143,8 +1192,7 @@ export class HeaderComponent {
   readonly hubmapMenu &#x3D; input(HUBMAP_MENU);
   /** All other menus */
   readonly menus &#x3D; input(MENUS);
-  /** Base url - Menu urls starting with this will be converted into router links */
-  readonly baseUrl &#x3D; input&lt;string&gt;();
+
   /** Breadcrumb items */
   readonly breadcrumbs &#x3D; input&lt;BreadcrumbItem[]&gt;();
   /**
@@ -1199,7 +1247,7 @@ export class HeaderComponent {
 
     explicitEffect([this.menuOffsetPx], () &#x3D;&gt; this.updateMenuPositions(), { defer: true });
 
-    inject(Router)
+    injectRouter({ optional: true })
       ?.events.pipe(
         takeUntilDestroyed(),
         filter((navigationEvent) &#x3D;&gt;
@@ -1231,8 +1279,8 @@ export class HeaderComponent {
   /**
    * Closes any active menu
    */
-  closeMenu(): void {
-    this.activeMenu.set(undefined);
+  closeMenu(menu?: Menu | &#x27;main&#x27;): void {
+    this.activeMenu.update((current) &#x3D;&gt; (menu !&#x3D;&#x3D; undefined &amp;&amp; current !&#x3D;&#x3D; menu ? current : undefined));
   }
 
   /**
@@ -1293,9 +1341,9 @@ export class HeaderComponent {
   hraFeature&#x3D;&quot;header&quot;
   class&#x3D;&quot;header&quot;
   cdkOverlayOrigin
+  data-testid&#x3D;&quot;header&quot;
   [class.mobile-menu-open]&#x3D;&quot;isMobile() &amp;&amp; isMenuActive(&#x27;main&#x27;)&quot;
   #mobileMenuOrigin&#x3D;&quot;cdkOverlayOrigin&quot;
-  data-testid&#x3D;&quot;header&quot;
 &gt;
   &lt;div hraFeature&#x3D;&quot;navigation&quot; class&#x3D;&quot;menus&quot; #desktopMenuOrigin&gt;
     &lt;hra-brand-logo hraFeature&#x3D;&quot;brand-logo&quot; size&#x3D;&quot;small&quot; /&gt;
@@ -1305,10 +1353,10 @@ export class HeaderComponent {
     @if (!isMobile()) {
       @for (menu of menus(); track menu.id) {
         &lt;hra-navigation-category-toggle
-          [hraFeature]&#x3D;&quot;menu.id | slugify&quot;
           hraClickEvent
           hraHoverEvent
           cdkOverlayOrigin
+          [hraFeature]&#x3D;&quot;menu.id | slugify&quot;
           [toggled]&#x3D;&quot;isMenuActive(menu)&quot;
           (toggledChange)&#x3D;&quot;toggleMenu(menu)&quot;
           #navigationCategoryMenuOrigin&#x3D;&quot;cdkOverlayOrigin&quot;
@@ -1324,24 +1372,20 @@ export class HeaderComponent {
           [cdkConnectedOverlayOpen]&#x3D;&quot;isMenuActive(menu)&quot;
           [cdkConnectedOverlayOrigin]&#x3D;&quot;navigationCategoryMenuOrigin&quot;
           [cdkConnectedOverlayPositions]&#x3D;&quot;desktopMenuPositions&quot;
-          (overlayOutsideClick)&#x3D;&quot;closeMenu()&quot;
+          (overlayOutsideClick)&#x3D;&quot;closeMenu(menu)&quot;
+          (detach)&#x3D;&quot;closeMenu(menu)&quot;
         &gt;
-          &lt;hra-desktop-menu
-            hraFeature&#x3D;&quot;desktop-menu&quot;
-            [menu]&#x3D;&quot;menu&quot;
-            [baseUrl]&#x3D;&quot;baseUrl()&quot;
-            [style.max-height]&#x3D;&quot;desktopMenuMaxHeight()&quot;
-          /&gt;
+          &lt;hra-desktop-menu hraFeature&#x3D;&quot;desktop-menu&quot; [menu]&#x3D;&quot;menu&quot; [style.max-height]&#x3D;&quot;desktopMenuMaxHeight()&quot; /&gt;
         &lt;/ng-template&gt;
       }
     }
 
     &lt;button
       hraFeature&#x3D;&quot;menu-toggle&quot;
-      [hraClickEvent]&#x3D;&quot;{ action: &#x27;toggle-menu&#x27;, isMobile: isMobile(), currentState: isMenuActive(&#x27;main&#x27;) }&quot;
       mat-icon-button
       cdkOverlayOrigin
       aria-label&#x3D;&quot;Open the main navigation menu&quot;
+      [hraClickEvent]&#x3D;&quot;{ action: &#x27;toggle-menu&#x27;, isMobile: isMobile(), currentState: isMenuActive(&#x27;main&#x27;) }&quot;
       (click)&#x3D;&quot;toggleMenu(&#x27;main&#x27;)&quot;
       #mainMenuOrigin&#x3D;&quot;cdkOverlayOrigin&quot;
     &gt;
@@ -1362,15 +1406,16 @@ export class HeaderComponent {
         cdkConnectedOverlayDisposeOnNavigation&#x3D;&quot;true&quot;
         cdkConnectedOverlayHasBackdrop&#x3D;&quot;false&quot;
         cdkConnectedOverlayLockPosition&#x3D;&quot;true&quot;
+        cdkConnectedOverlayWidth&#x3D;&quot;100%&quot;
         [cdkConnectedOverlayOpen]&#x3D;&quot;isMenuActive(&#x27;main&#x27;)&quot;
         [cdkConnectedOverlayOrigin]&#x3D;&quot;mobileMenuOrigin&quot;
         [cdkConnectedOverlayPositions]&#x3D;&quot;mobileMenuPositions&quot;
         [cdkConnectedOverlayScrollStrategy]&#x3D;&quot;mobileMenuBlockScroll&quot;
         [cdkConnectedOverlayHeight]&#x3D;&quot;mobileMenuHeight()&quot;
-        [cdkConnectedOverlayWidth]&#x3D;&quot;&#x27;100%&#x27;&quot;
+        (detach)&#x3D;&quot;closeMenu()&quot;
         #mobileMenuOverlay
       &gt;
-        &lt;hra-mobile-menu hraFeature&#x3D;&quot;mobile-menu&quot; [hubmapMenu]&#x3D;&quot;hubmapMenu()&quot; [menus]&#x3D;&quot;menus()&quot; [baseUrl]&#x3D;&quot;baseUrl()&quot; /&gt;
+        &lt;hra-mobile-menu hraFeature&#x3D;&quot;mobile-menu&quot; [hubmapMenu]&#x3D;&quot;hubmapMenu()&quot; [menus]&#x3D;&quot;menus()&quot; /&gt;
       &lt;/ng-template&gt;
     } @else {
       &lt;ng-template
@@ -1381,12 +1426,12 @@ export class HeaderComponent {
         [cdkConnectedOverlayOpen]&#x3D;&quot;isMenuActive(&#x27;main&#x27;)&quot;
         [cdkConnectedOverlayOrigin]&#x3D;&quot;mainMenuOrigin&quot;
         [cdkConnectedOverlayPositions]&#x3D;&quot;desktopMenuPositions&quot;
-        (overlayOutsideClick)&#x3D;&quot;closeMenu()&quot;
+        (overlayOutsideClick)&#x3D;&quot;closeMenu(&#x27;main&#x27;)&quot;
+        (detach)&#x3D;&quot;closeMenu(&#x27;main&#x27;)&quot;
       &gt;
         &lt;hra-desktop-menu
           hraFeature&#x3D;&quot;desktop-menu-main&quot;
           [menu]&#x3D;&quot;hubmapMenu()&quot;
-          [baseUrl]&#x3D;&quot;baseUrl()&quot;
           [style.max-height]&#x3D;&quot;desktopMenuMaxHeight()&quot;
         /&gt;
       &lt;/ng-template&gt;
@@ -1435,10 +1480,10 @@ export class HeaderComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@let ctaConfig = cta();@if (ctaConfig && !ctaDismissed()) {  <hra-cta-bar    hraFeature="cta-bar"    [action]="ctaConfig.action"    [description]="ctaConfig.description"    [url]="ctaConfig.url"    (closeClick)="ctaDismissed.set(true)"  />}<header  hraFeature="header"  class="header"  cdkOverlayOrigin  [class.mobile-menu-open]="isMobile() && isMenuActive(\'main\')"  #mobileMenuOrigin="cdkOverlayOrigin"  data-testid="header">  <div hraFeature="navigation" class="menus" #desktopMenuOrigin>    <hra-brand-logo hraFeature="brand-logo" size="small" />    <div class="filler"></div>    @if (!isMobile()) {      @for (menu of menus(); track menu.id) {        <hra-navigation-category-toggle          [hraFeature]="menu.id | slugify"          hraClickEvent          hraHoverEvent          cdkOverlayOrigin          [toggled]="isMenuActive(menu)"          (toggledChange)="toggleMenu(menu)"          #navigationCategoryMenuOrigin="cdkOverlayOrigin"        >          {{ menu.label }}        </hra-navigation-category-toggle>        <ng-template          cdkConnectedOverlay          cdkConnectedOverlayHasBackdrop="false"          cdkConnectedOverlayLockPosition="true"          cdkConnectedOverlayPush="true"          [cdkConnectedOverlayOpen]="isMenuActive(menu)"          [cdkConnectedOverlayOrigin]="navigationCategoryMenuOrigin"          [cdkConnectedOverlayPositions]="desktopMenuPositions"          (overlayOutsideClick)="closeMenu()"        >          <hra-desktop-menu            hraFeature="desktop-menu"            [menu]="menu"            [baseUrl]="baseUrl()"            [style.max-height]="desktopMenuMaxHeight()"          />        </ng-template>      }    }    <button      hraFeature="menu-toggle"      [hraClickEvent]="{ action: \'toggle-menu\', isMobile: isMobile(), currentState: isMenuActive(\'main\') }"      mat-icon-button      cdkOverlayOrigin      aria-label="Open the main navigation menu"      (click)="toggleMenu(\'main\')"      #mainMenuOrigin="cdkOverlayOrigin"    >      <mat-icon>        @if (isMenuActive(\'main\')) {          close        } @else if (isMobile()) {          menu        } @else {          apps        }      </mat-icon>    </button>    @if (isMobile()) {      <ng-template        cdkConnectedOverlay        cdkConnectedOverlayDisposeOnNavigation="true"        cdkConnectedOverlayHasBackdrop="false"        cdkConnectedOverlayLockPosition="true"        [cdkConnectedOverlayOpen]="isMenuActive(\'main\')"        [cdkConnectedOverlayOrigin]="mobileMenuOrigin"        [cdkConnectedOverlayPositions]="mobileMenuPositions"        [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"        [cdkConnectedOverlayHeight]="mobileMenuHeight()"        [cdkConnectedOverlayWidth]="\'100%\'"        #mobileMenuOverlay      >        <hra-mobile-menu hraFeature="mobile-menu" [hubmapMenu]="hubmapMenu()" [menus]="menus()" [baseUrl]="baseUrl()" />      </ng-template>    } @else {      <ng-template        cdkConnectedOverlay        cdkConnectedOverlayHasBackdrop="false"        cdkConnectedOverlayLockPosition="true"        cdkConnectedOverlayPush="true"        [cdkConnectedOverlayOpen]="isMenuActive(\'main\')"        [cdkConnectedOverlayOrigin]="mainMenuOrigin"        [cdkConnectedOverlayPositions]="desktopMenuPositions"        (overlayOutsideClick)="closeMenu()"      >        <hra-desktop-menu          hraFeature="desktop-menu-main"          [menu]="hubmapMenu()"          [baseUrl]="baseUrl()"          [style.max-height]="desktopMenuMaxHeight()"        />      </ng-template>    }  </div>  @if (breadcrumbs(); as crumbs) {    <mat-divider />    <div hraFeature="breadcrumbs" class="navigation">      <hra-breadcrumbs [crumbs]="crumbs" />      <ng-content />    </div>  }</header>@if (progress() !== false) {  <mat-progress-bar hraFeature="progress-bar" class="progress-bar" [mode]="progressMode()" [value]="progress()" />}</div>'
-    var COMPONENTS = [{'name': 'ActionCardActionComponent', 'selector': 'hra-action-card-action'},{'name': 'ActionCardComponent', 'selector': 'hra-action-card'},{'name': 'ApiCommandComponent', 'selector': 'hra-api-command'},{'name': 'AppLabelComponent', 'selector': 'hra-app-label'},{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BottomSheetComponent', 'selector': 'hra-bottom-sheet'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'hra-button'},{'name': 'CardMenuComponent', 'selector': 'hra-card-menu'},{'name': 'CategoriesComponent', 'selector': 'hra-categories'},{'name': 'CodeBlockComponent', 'selector': 'hra-code-block'},{'name': 'CodeBlockGlobalStylesComponent', 'selector': 'hra-code-block-global-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ConsentBannerComponent', 'selector': 'hra-consent-banner'},{'name': 'ContentPageComponent', 'selector': 'hra-content-page'},{'name': 'CopyableUrlContainerComponent', 'selector': 'hra-copyable-url-container'},{'name': 'CountCardComponent', 'selector': 'hra-count-card'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DangerMessageIndicatorComponent', 'selector': 'hra-danger-message-indicator'},{'name': 'DataViewerComponent', 'selector': 'hra-data-viewer'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FlatCardActionsComponent', 'selector': 'hra-flat-card-actions'},{'name': 'FlatCardComponent', 'selector': 'hra-flat-card'},{'name': 'FlexContainerComponent', 'selector': 'hra-flex-container'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HelpButtonComponent', 'selector': 'hra-help-button'},{'name': 'HraYoutubePlayerComponent', 'selector': 'hra-youtube-player'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconComponent', 'selector': 'hra-icon'},{'name': 'ImageComponent', 'selector': 'hra-image'},{'name': 'InfoMessageIndicatorComponent', 'selector': 'hra-info-message-indicator'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'MarkdownComponent', 'selector': 'hra-markdown'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavigationCategoryComponent', 'selector': 'hra-navigation-category'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NavigationItemComponent', 'selector': 'hra-navigation-item'},{'name': 'NotFoundPageComponent', 'selector': 'hra-not-found-page'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'PageLabelComponent', 'selector': 'hra-page-label'},{'name': 'PageSectionComponent', 'selector': 'hra-page-section'},{'name': 'PlainTooltipStylesComponent', 'selector': 'hra-plain-tooltip-styles'},{'name': 'PrivacyPreferencesComponent', 'selector': 'hra-privacy-preferences'},{'name': 'ProfileCardComponent', 'selector': 'hra-profile-card'},{'name': 'ProgressSpinnerComponent', 'selector': 'hra-progress-spinner'},{'name': 'ResultsIndicatorComponent', 'selector': 'hra-results-indicator'},{'name': 'RichTooltipActionsComponent', 'selector': 'hra-rich-tooltip-actions'},{'name': 'RichTooltipContainerComponent', 'selector': 'hra-rich-tooltip-container'},{'name': 'RichTooltipContentComponent', 'selector': 'hra-rich-tooltip-content'},{'name': 'RichTooltipTaglineComponent', 'selector': 'hra-rich-tooltip-tagline'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SectionLinkComponent', 'selector': 'h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
+        var COMPONENT_TEMPLATE = '<div>@let ctaConfig = cta();@if (ctaConfig && !ctaDismissed()) {  <hra-cta-bar    hraFeature="cta-bar"    [action]="ctaConfig.action"    [description]="ctaConfig.description"    [url]="ctaConfig.url"    (closeClick)="ctaDismissed.set(true)"  />}<header  hraFeature="header"  class="header"  cdkOverlayOrigin  data-testid="header"  [class.mobile-menu-open]="isMobile() && isMenuActive(\'main\')"  #mobileMenuOrigin="cdkOverlayOrigin">  <div hraFeature="navigation" class="menus" #desktopMenuOrigin>    <hra-brand-logo hraFeature="brand-logo" size="small" />    <div class="filler"></div>    @if (!isMobile()) {      @for (menu of menus(); track menu.id) {        <hra-navigation-category-toggle          hraClickEvent          hraHoverEvent          cdkOverlayOrigin          [hraFeature]="menu.id | slugify"          [toggled]="isMenuActive(menu)"          (toggledChange)="toggleMenu(menu)"          #navigationCategoryMenuOrigin="cdkOverlayOrigin"        >          {{ menu.label }}        </hra-navigation-category-toggle>        <ng-template          cdkConnectedOverlay          cdkConnectedOverlayHasBackdrop="false"          cdkConnectedOverlayLockPosition="true"          cdkConnectedOverlayPush="true"          [cdkConnectedOverlayOpen]="isMenuActive(menu)"          [cdkConnectedOverlayOrigin]="navigationCategoryMenuOrigin"          [cdkConnectedOverlayPositions]="desktopMenuPositions"          (overlayOutsideClick)="closeMenu(menu)"          (detach)="closeMenu(menu)"        >          <hra-desktop-menu hraFeature="desktop-menu" [menu]="menu" [style.max-height]="desktopMenuMaxHeight()" />        </ng-template>      }    }    <button      hraFeature="menu-toggle"      mat-icon-button      cdkOverlayOrigin      aria-label="Open the main navigation menu"      [hraClickEvent]="{ action: \'toggle-menu\', isMobile: isMobile(), currentState: isMenuActive(\'main\') }"      (click)="toggleMenu(\'main\')"      #mainMenuOrigin="cdkOverlayOrigin"    >      <mat-icon>        @if (isMenuActive(\'main\')) {          close        } @else if (isMobile()) {          menu        } @else {          apps        }      </mat-icon>    </button>    @if (isMobile()) {      <ng-template        cdkConnectedOverlay        cdkConnectedOverlayDisposeOnNavigation="true"        cdkConnectedOverlayHasBackdrop="false"        cdkConnectedOverlayLockPosition="true"        cdkConnectedOverlayWidth="100%"        [cdkConnectedOverlayOpen]="isMenuActive(\'main\')"        [cdkConnectedOverlayOrigin]="mobileMenuOrigin"        [cdkConnectedOverlayPositions]="mobileMenuPositions"        [cdkConnectedOverlayScrollStrategy]="mobileMenuBlockScroll"        [cdkConnectedOverlayHeight]="mobileMenuHeight()"        (detach)="closeMenu()"        #mobileMenuOverlay      >        <hra-mobile-menu hraFeature="mobile-menu" [hubmapMenu]="hubmapMenu()" [menus]="menus()" />      </ng-template>    } @else {      <ng-template        cdkConnectedOverlay        cdkConnectedOverlayHasBackdrop="false"        cdkConnectedOverlayLockPosition="true"        cdkConnectedOverlayPush="true"        [cdkConnectedOverlayOpen]="isMenuActive(\'main\')"        [cdkConnectedOverlayOrigin]="mainMenuOrigin"        [cdkConnectedOverlayPositions]="desktopMenuPositions"        (overlayOutsideClick)="closeMenu(\'main\')"        (detach)="closeMenu(\'main\')"      >        <hra-desktop-menu          hraFeature="desktop-menu-main"          [menu]="hubmapMenu()"          [style.max-height]="desktopMenuMaxHeight()"        />      </ng-template>    }  </div>  @if (breadcrumbs(); as crumbs) {    <mat-divider />    <div hraFeature="breadcrumbs" class="navigation">      <hra-breadcrumbs [crumbs]="crumbs" />      <ng-content />    </div>  }</header>@if (progress() !== false) {  <mat-progress-bar hraFeature="progress-bar" class="progress-bar" [mode]="progressMode()" [value]="progress()" />}</div>'
+    var COMPONENTS = [{'name': 'ActionCardActionComponent', 'selector': 'hra-action-card-action'},{'name': 'ActionCardComponent', 'selector': 'hra-action-card'},{'name': 'ApiCommandComponent', 'selector': 'hra-api-command'},{'name': 'AppLabelComponent', 'selector': 'hra-app-label'},{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'ArchivedPageComponent', 'selector': 'hra-archived-page'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BottomSheetComponent', 'selector': 'hra-bottom-sheet'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'hra-button'},{'name': 'CardMenuComponent', 'selector': 'hra-card-menu'},{'name': 'CategoriesComponent', 'selector': 'hra-categories'},{'name': 'CodeBlockComponent', 'selector': 'hra-code-block'},{'name': 'CodeBlockGlobalStylesComponent', 'selector': 'hra-code-block-global-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ConsentBannerComponent', 'selector': 'hra-consent-banner'},{'name': 'ContentButtonComponent', 'selector': 'hra-content-button'},{'name': 'ContentPageComponent', 'selector': 'hra-content-page'},{'name': 'CopyableUrlContainerComponent', 'selector': 'hra-copyable-url-container'},{'name': 'CountCardComponent', 'selector': 'hra-count-card'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DangerMessageIndicatorComponent', 'selector': 'hra-danger-message-indicator'},{'name': 'DataViewerComponent', 'selector': 'hra-data-viewer'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'EndOfResultsIndicatorComponent', 'selector': 'hra-end-of-results-indicator'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FilterContainerComponent', 'selector': 'hra-filter-container'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FlatCardActionsComponent', 'selector': 'hra-flat-card-actions'},{'name': 'FlatCardComponent', 'selector': 'hra-flat-card'},{'name': 'FlexContainerComponent', 'selector': 'hra-flex-container'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'GalleryCardComponent', 'selector': 'hra-gallery-card'},{'name': 'GalleryGridComponent', 'selector': 'hra-gallery-grid'},{'name': 'GoogleMapsComponent', 'selector': 'hra-google-maps'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HelpButtonComponent', 'selector': 'hra-help-button'},{'name': 'HraYoutubePlayerComponent', 'selector': 'hra-youtube-player'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconComponent', 'selector': 'hra-icon'},{'name': 'ImageComponent', 'selector': 'hra-image'},{'name': 'InfoButtonComponent', 'selector': 'hra-info-button'},{'name': 'InfoMessageIndicatorComponent', 'selector': 'hra-info-message-indicator'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'ListViewComponent', 'selector': 'hra-list-view'},{'name': 'MarkdownComponent', 'selector': 'hra-markdown'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavigationButtonComponent', 'selector': 'hra-navigation-button'},{'name': 'NavigationCategoryComponent', 'selector': 'hra-navigation-category'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NavigationItemComponent', 'selector': 'hra-navigation-item'},{'name': 'NoResultsIndicatorComponent', 'selector': 'hra-no-results-indicator'},{'name': 'NotFoundPageComponent', 'selector': 'hra-not-found-page'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'PageLabelComponent', 'selector': 'hra-page-label'},{'name': 'PageSectionComponent', 'selector': 'hra-page-section'},{'name': 'PlainTooltipStylesComponent', 'selector': 'hra-plain-tooltip-styles'},{'name': 'PrivacyPreferencesComponent', 'selector': 'hra-privacy-preferences'},{'name': 'ProfileCardComponent', 'selector': 'hra-profile-card'},{'name': 'ProgressSpinnerComponent', 'selector': 'hra-progress-spinner'},{'name': 'RedirectPageComponent', 'selector': 'hra-redirect-page'},{'name': 'ResultsIndicatorComponent', 'selector': 'hra-results-indicator'},{'name': 'RichTooltipActionsComponent', 'selector': 'hra-rich-tooltip-actions'},{'name': 'RichTooltipContainerComponent', 'selector': 'hra-rich-tooltip-container'},{'name': 'RichTooltipContentComponent', 'selector': 'hra-rich-tooltip-content'},{'name': 'RichTooltipTaglineComponent', 'selector': 'hra-rich-tooltip-tagline'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SearchFilterComponent', 'selector': 'hra-search-filter'},{'name': 'SearchListComponent', 'selector': 'hra-search-list'},{'name': 'SectionLinkComponent', 'selector': 'h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
     h4[hra-section-link], h5[hra-section-link], h6[hra-section-link]'},{'name': 'ServerErrorPageComponent', 'selector': 'hra-server-error-page'},{'name': 'SiteNavigationComponent', 'selector': 'hra-site-navigation'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableComponent', 'selector': 'hra-table'},{'name': 'TableOfContentsComponent', 'selector': 'hra-table-of-contents'},{'name': 'TableOfContentsDemoComponent', 'selector': 'hra-table-of-contents-demo'},{'name': 'TableOfContentsLayoutComponent', 'selector': 'hra-table-of-contents-layout'},{'name': 'TableOfContentsLayoutDemoComponent', 'selector': 'hra-table-of-contents-layout-demo'},{'name': 'TableOfContentsLayoutHeaderComponent', 'selector': 'hra-table-of-contents-layout-header'},{'name': 'TextHyperlinkComponent', 'selector': 'hra-text-hyperlink'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'UiSectionComponent', 'selector': 'hra-ui-section'},{'name': 'VersionedDataTableComponent', 'selector': 'hra-versioned-data-table'},{'name': 'ViewerCardComponent', 'selector': 'hra-viewer-card'},{'name': 'ViewerMenuComponent', 'selector': 'hra-viewer-menu'},{'name': 'VisualButtonComponent', 'selector': 'hra-visual-button'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
-    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'IconRowElementDirective', 'selector': 'ng-template[hraIconRowElement]'},{'name': 'LinkRowElementDirective', 'selector': 'ng-template[hraLinkRowElement]'},{'name': 'MarkdownRowElementDirective', 'selector': 'ng-template[hraMarkdownRowElement]'},{'name': 'MenuButtonRowElementDirective', 'selector': 'ng-template[hraMenuButtonRowElement]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'NumericRowElementDirective', 'selector': 'ng-template[hraNumericRowElement]'},{'name': 'PlainTooltipDirective', 'selector': '[hraPlainTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'RichTooltipCloseDirective', 'selector': '[hraRichTooltipClose]'},{'name': 'RichTooltipContextDirective', 'selector': 'ng-template[hraRichTooltipContext]'},{'name': 'RichTooltipDirective', 'selector': '[hraRichTooltip]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TextRowElementDirective', 'selector': 'ng-template[hraTextRowElement]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
+    var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'ChipSizeDirective', 'selector': 'mat-chip[hraChipSize], mat-chip-option[hraChipSize], mat-chip-row[hraChipSize]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'DensityDirective', 'selector': '[hraDensity]'},{'name': 'FullscreenDirective', 'selector': '[hraFullscreen]'},{'name': 'GalleryGridItemDirective', 'selector': '[hraGalleryGridItem]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'IconRowElementDirective', 'selector': 'ng-template[hraIconRowElement]'},{'name': 'InfoButtonActionsDirective', 'selector': '[hraInfoButtonActions]'},{'name': 'InfoButtonTaglineDirective', 'selector': '[hraInfoButtonTagline]'},{'name': 'LinkRowElementDirective', 'selector': 'ng-template[hraLinkRowElement]'},{'name': 'MarkdownRowElementDirective', 'selector': 'ng-template[hraMarkdownRowElement]'},{'name': 'MenuButtonRowElementDirective', 'selector': 'ng-template[hraMenuButtonRowElement]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'NavigationButtonDescriptionDirective', 'selector': '[hraNavigationButtonDescription]'},{'name': 'NavigationButtonTaglineDirective', 'selector': '[hraNavigationButtonTagline]'},{'name': 'NavigationIconDirective', 'selector': '[hraNavigationIcon]'},{'name': 'NumericRowElementDirective', 'selector': 'ng-template[hraNumericRowElement]'},{'name': 'PlainTooltipDirective', 'selector': '[hraPlainTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'ProgressBarColorDirective', 'selector': 'mat-progress-bar[hraProgressBarColor]'},{'name': 'RichTooltipCloseDirective', 'selector': '[hraRichTooltipClose]'},{'name': 'RichTooltipContextDirective', 'selector': 'ng-template[hraRichTooltipContext]'},{'name': 'RichTooltipDirective', 'selector': '[hraRichTooltip]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextButtonDirective', 'selector': 'button[hraTextButton]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TextRowElementDirective', 'selector': 'ng-template[hraTextRowElement]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];
     var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
 </script>
 <script src="../js/tree.js"></script>

@@ -148,9 +148,6 @@
                             <a href="#CACHE_CONFIG_PARAMS" title="src/lib/services/data-source/api-endpoint.service.ts" ><b>CACHE_CONFIG_PARAMS</b>&nbsp;&nbsp;&nbsp;(src/.../api-endpoint.service.ts)</a>
                         </li>
                         <li>
-                            <a href="#DEFAULT_MAX_OPTIONS" title="src/lib/components/text-search/text-search.component.ts" ><b>DEFAULT_MAX_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../text-search.component.ts)</a>
-                        </li>
-                        <li>
                             <a href="#DEFAULT_OPTIONS" title="web-components/src/lib/config-manager.ts" ><b>DEFAULT_OPTIONS</b>&nbsp;&nbsp;&nbsp;(web-components/.../config-manager.ts)</a>
                         </li>
                         <li>
@@ -164,12 +161,6 @@
                         </li>
                         <li>
                             <a href="#global" title="src/lib/services/globals/globals.service.ts" ><b>global</b>&nbsp;&nbsp;&nbsp;(src/.../globals.service.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#POPUP_SHOWN_STORAGE_KEY" title="src/lib/states/call-to-action/call-to-action.state.ts" ><b>POPUP_SHOWN_STORAGE_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../call-to-action.state.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#SPATIAL_SEARCH_README" title="src/lib/states/call-to-action/call-to-action.state.ts" ><b>SPATIAL_SEARCH_README</b>&nbsp;&nbsp;&nbsp;(src/.../call-to-action.state.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -191,6 +182,12 @@
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>ALL_POSSIBLE_ORGANS.filter((organ) &#x3D;&gt; organ.disabled !&#x3D;&#x3D; true)</code>
@@ -219,6 +216,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>(
   [
     {
@@ -227,6 +230,13 @@
       name: &#x27;Skin&#x27;,
       hasSex: true,
       id: &#x27;http://purl.obolibrary.org/obo/UBERON_0002097&#x27;,
+    },
+    {
+      src: &#x27;app:adipose&#x27;,
+      organ: &#x27;Adipose&#x27;,
+      name: &#x27;Adipose&#x27;,
+      hasSex: true,
+      id: &#x27;http://purl.obolibrary.org/obo/UBERON_0014455&#x27;,
     },
     {
       src: &#x27;app:brain&#x27;,
@@ -309,6 +319,13 @@
       name: &#x27;Heart&#x27;,
       hasSex: true,
       id: &#x27;http://purl.obolibrary.org/obo/UBERON_0000948&#x27;,
+    },
+    {
+      src: &#x27;app:intervertebral-disk&#x27;,
+      organ: &#x27;Intervertebral Disk&#x27;,
+      name: &#x27;Intervertebral Disk&#x27;,
+      hasSex: true,
+      id: &#x27;http://purl.obolibrary.org/obo/UBERON_0001066&#x27;,
     },
     {
       disabled: true,
@@ -749,6 +766,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>new Subject&lt;unknown&gt;()</code>
                     </td>
                 </tr>
@@ -832,41 +855,6 @@
         </tbody>
     </table>
 </section>
-    <h3>src/lib/components/text-search/text-search.component.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="DEFAULT_MAX_OPTIONS"></a>
-                    <span class="name">
-                        <span ><b>DEFAULT_MAX_OPTIONS</b></span>
-                        <a href="#DEFAULT_MAX_OPTIONS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new InjectionToken(&#x27;Maximum number of autocomplete options displayed&#x27;, {
-  providedIn: &#x27;root&#x27;,
-  factory(): number {
-    return 10;
-  },
-})</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Token to provide a default for the maximum number of
-autocomplete suggestions to show at the same time.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
     <h3>web-components/src/lib/config-manager.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -921,7 +909,7 @@ autocomplete suggestions to show at the same time.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/PluckUniqueOptions.html" target="_self" >PluckUniqueOptions&lt;&gt;</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/PluckUniqueOptions.html" target="_self" >PluckUniqueOptions&lt;unknown&gt;</a></code>
 
                     </td>
                 </tr>
@@ -995,6 +983,12 @@ autocomplete suggestions to show at the same time.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>new Set(Object.keys(DIRECTION_FACTORS))</code>
                     </td>
                 </tr>
@@ -1032,73 +1026,6 @@ autocomplete suggestions to show at the same time.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Redeclare the global scope</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/lib/states/call-to-action/call-to-action.state.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="POPUP_SHOWN_STORAGE_KEY"></a>
-                    <span class="name">
-                        <span ><b>POPUP_SHOWN_STORAGE_KEY</b></span>
-                        <a href="#POPUP_SHOWN_STORAGE_KEY"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;callToActionPopupShown&#x27;</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Key for boolean determining if poup has been shown</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="SPATIAL_SEARCH_README"></a>
-                    <span class="name">
-                        <span ><b>SPATIAL_SEARCH_README</b></span>
-                        <a href="#SPATIAL_SEARCH_README"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;assets/docs/SPATIAL_SEARCH_README.md&#x27;</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Path to readme markup doc</p>
 </div>
                 </td>
             </tr>

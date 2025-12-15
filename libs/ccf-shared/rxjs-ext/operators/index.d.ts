@@ -8,21 +8,6 @@ import { OperatorFunction } from 'rxjs';
 declare function filterNulls<T>(): OperatorFunction<T | null | undefined, T>;
 
 /**
- * Flattens a single level of nested arrays.
- *
- * @returns An `Observable` operator
- */
-declare function flatten<T>(): OperatorFunction<readonly (readonly T[])[], T[]>;
-
-/**
- * Maps the values of each emitted array.
- *
- * @param project Mapping callback invoked for each element
- * @returns An `Observable` operator
- */
-declare function innerMap<T, R>(project: (value: T, index: number, outerIndex: number) => R): OperatorFunction<readonly T[], R[]>;
-
-/**
  * Options for `pluckUnique` operator
  */
 interface PluckUniqueOptions<T> {
@@ -118,5 +103,5 @@ declare function pluckUnique<T, R>(...props: [string, ...string[]]): OperatorFun
  */
 declare function pluckUnique<T, R>(...props: [string, ...string[], PluckUniqueOptions<R>]): OperatorFunction<T, R>;
 
-export { filterNulls, flatten, innerMap, pluckUnique };
+export { filterNulls, pluckUnique };
 export type { PluckUniqueOptions };

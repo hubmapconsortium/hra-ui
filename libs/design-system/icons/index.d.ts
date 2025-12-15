@@ -3,7 +3,7 @@ import * as i0 from '@angular/core';
 import { Signal, Provider, EnvironmentProviders } from '@angular/core';
 import * as i2 from '@angular/material/icon';
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /**
  * Design system icon.
