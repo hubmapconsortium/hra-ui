@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/cde-ui/src/app/components/file-upload/file-upload.component.scss"],
-  "sourcesContent": [":host {\n  hra-error-indicator {\n    margin-bottom: 2rem;\n  }\n}\n"],
-  "mappings": ";AACE,MAAA;AACE,iBAAA;;",
-  "names": []
-}
