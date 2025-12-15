@@ -155,6 +155,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'kg',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kg-explorer/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'landing-page',
     redirectTo: '/',
   },
