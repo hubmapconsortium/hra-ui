@@ -289,7 +289,7 @@ content:
 
           - component: Image
             src: assets/content/release-notes-page/images/v2.4/sennet-coauthorship_network-2021_2025.gif
-            alt: Nancy posing with the butterfly visualization at the SenNet All-Hands Meeting 2025
+            alt: A network visualization animated to show the growth of the SenNet co-author relationships growing from 2021 to 2025.
 
           - component: Markdown
             data: |
@@ -337,18 +337,6 @@ content:
                * Helios-Web Programmer: Filipi Nascimento Silva, Northwestern University–Kellogg
                * Mosaic and Grid Animation Programmer: Parth Godse, Luddy School of Informatics, Computing, and Engineering, Indiana University
                * Sphere Animation Programmer: Peter Kienle, Luddy School of Informatics, Computing, and Engineering, Indiana University
-
-          - component: Image
-            src: assets/content/release-notes-page/images/v2.4/sennet-coauthorship_network-2021_2025.gif
-            alt: Nancy posing with the butterfly visualization at the SenNet All-Hands Meeting 2025
-
-          - component: Markdown
-            data: |
-              SenNet co-author network for 2021-2025.
-
-              The network shown represents co-authorship relationships derived from 336 scholarly articles published by the SenNet team between 2021-2025. There are 609 researchers who are
-              represented as circles (nodes) in the network, and who are authors on at least two SenNet publications between 2021 & 2025. There are 64 researchers who have contributed to 6 or
-              more articles—these individuals are highlighted with purple nodes and labels. There are 6,763 relationships between pairs of researchers which are shown as lines (edges).
 
       - component: PageSection
         tagline: 'Andreas Bueckle appears on CFDE “Decoding the Data Ecosystem” Podcast'
