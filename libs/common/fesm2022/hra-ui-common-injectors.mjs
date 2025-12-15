@@ -18,18 +18,20 @@ function injectDocument() {
     return inject(DOCUMENT);
 }
 
-/**
- * Inject the global window
- *
- * @returns The window object
- */
-function injectWindow() {
+/** Get the global window */
+function getWindow() {
     return injectDocument().defaultView ?? window;
 }
+/** window */
+const WINDOW = createInjectionToken(getWindow);
+/** Inject the window object */
+const injectWindow = WINDOW[0];
+/** Provide a new window object. Only intended for testing purposes. */
+const provideWindow = WINDOW[1];
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { injectAppConfiguration, injectDocument, injectWindow, provideAppConfiguration };
+export { injectAppConfiguration, injectDocument, injectWindow, provideAppConfiguration, provideWindow };
 //# sourceMappingURL=hra-ui-common-injectors.mjs.map

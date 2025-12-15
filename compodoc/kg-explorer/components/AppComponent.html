@@ -193,7 +193,6 @@
                             <code>NavigationModule</code>
                             <code>MarkdownModule</code>
                             <code>ButtonsModule</code>
-                            <code>IconsModule</code>
                             <code>MatMenuModule</code>
                             <code>MatDividerModule</code>
                 </td>
@@ -295,7 +294,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/app.component.ts:116</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/app.component.ts:122</a></div>
                             </td>
                         </tr>
 
@@ -354,7 +353,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/app.component.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/app.component.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -393,7 +392,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/app.component.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/app.component.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -432,7 +431,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/app.component.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/app.component.ts:110</a></div>
                         </td>
                     </tr>
 
@@ -470,7 +469,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/app.component.ts:95</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/app.component.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -509,7 +508,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/app.component.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/app.component.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -547,7 +546,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/app.component.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/app.component.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -585,7 +584,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/app.component.ts:110</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/app.component.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -624,7 +623,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/app.component.ts:101</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/app.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -661,7 +660,6 @@ import { DigitalObjectsJsonLd, HraKgService } from &#x27;@hra-api/ng-client&#x27
 import { BaseApplicationComponent } from &#x27;@hra-ui/application&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
-import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
 import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
 import { MarkdownModule } from &#x27;ngx-markdown&#x27;;
 import { HelpMenuOptions } from &#x27;./app.routes&#x27;;
@@ -677,12 +675,20 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] &#x3D; [
   },
   {
     label: &#x27;Knowledge Graph&#x27;,
+    url: &#x27;https://docs.humanatlas.io/apps/kg&#x27;,
+    description: &#x27;App guide &amp; documentation&#x27;,
+  },
+  {
+    label: &#x27;Knowledge Graph for Developers&#x27;,
     url: &#x27;https://docs.humanatlas.io/dev/kg&#x27;,
-    description: &#x27;App guidance &amp; documentation&#x27;,
+    description: &#x27;Developer documentation&#x27;,
+    icon: &#x27;code&#x27;,
+    divider: true,
   },
   {
     label: &#x27;Read publication&#x27;,
     url: &#x27;https://doi.org/10.1038/s41597-025-05183-6&#x27;,
+    icon: &#x27;open_in_new&#x27;,
     divider: true,
   },
 ];
@@ -698,7 +704,6 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] &#x3D; [
     NavigationModule,
     MarkdownModule,
     ButtonsModule,
-    IconsModule,
     MatMenuModule,
     MatDividerModule,
   ],
@@ -840,6 +845,9 @@ export class AppComponent extends BaseApplicationComponent {
           [hraFeature]&#x3D;&quot;option.label | slugify&quot;
           [attr.href]&#x3D;&quot;option.url&quot;
         &gt;
+          @if (option.icon) {
+            &lt;mat-icon matSuffix&gt;{{ option.icon }}&lt;/mat-icon&gt;
+          }
           &lt;div class&#x3D;&quot;option-text&quot;&gt;
             &lt;span class&#x3D;&quot;option-name&quot;&gt;
               {{ option.label }}
@@ -885,7 +893,7 @@ export class AppComponent extends BaseApplicationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="kg-explorer">  <hra-header hraFeature="header" [breadcrumbs]="crumbs()" [progress]="isNavigating()">    <hra-help-button [action]="menuOptions" />    <mat-menu hraFeature="help-menu" class="help-menu" #menuOptions="matMenu">      @for (option of helpMenuOptions(); track option) {        @if (option.divider) {          <mat-divider />        }        <a          hraClickEvent          class="option"          mat-menu-item          target="_blank"          rel="noopener noreferrer"          [hraFeature]="option.label | slugify"          [attr.href]="option.url"        >          <div class="option-text">            <span class="option-name">              {{ option.label }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>  </hra-header>  <div class="content">    <router-outlet />  </div></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="kg-explorer">  <hra-header hraFeature="header" [breadcrumbs]="crumbs()" [progress]="isNavigating()">    <hra-help-button [action]="menuOptions" />    <mat-menu hraFeature="help-menu" class="help-menu" #menuOptions="matMenu">      @for (option of helpMenuOptions(); track option) {        @if (option.divider) {          <mat-divider />        }        <a          hraClickEvent          class="option"          mat-menu-item          target="_blank"          rel="noopener noreferrer"          [hraFeature]="option.label | slugify"          [attr.href]="option.url"        >          @if (option.icon) {            <mat-icon matSuffix>{{ option.icon }}</mat-icon>          }          <div class="option-text">            <span class="option-name">              {{ option.label }}            </span>            <span class="option-description">              {{ option.description }}            </span>          </div>        </a>      }    </mat-menu>  </hra-header>  <div class="content">    <router-outlet />  </div></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

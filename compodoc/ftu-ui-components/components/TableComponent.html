@@ -339,7 +339,7 @@
                                 <a href="#rows" >rows</a>
                             </li>
                             <li>
-                                <a href="#style" >style</a>
+                                <a href="#variant" >variant</a>
                             </li>
                             <li>
                                 <a href="#verticalDividers" >verticalDividers</a>
@@ -583,8 +583,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="style"></a>
-                        <b>style</b>
+                        <a name="variant"></a>
+                        <b>variant</b>
                     </td>
                 </tr>
                 <tr>
@@ -605,7 +605,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Table style</p>
+                        <div class="io-description"><p>Table variant</p>
 </div>
                     </td>
                 </tr>
@@ -1783,7 +1783,7 @@ export class NumericRowElementDirective {
   templateUrl: &#x27;table.component.html&#x27;,
   styleUrl: &#x27;table.component.scss&#x27;,
   host: {
-    &#x27;[class]&#x27;: &#x27;&quot;hra-table-style-&quot; + style()&#x27;,
+    &#x27;[class]&#x27;: &#x27;&quot;hra-table-variant-&quot; + variant()&#x27;,
     &#x27;[class.sortable]&#x27;: &#x27;enableSort()&#x27;,
     &#x27;[class.vertical-dividers]&#x27;: &#x27;verticalDividers()&#x27;,
   },
@@ -1798,8 +1798,8 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
   /** Unsorted data */
   readonly rows &#x3D; input&lt;T[]&gt;();
 
-  /** Table style */
-  readonly style &#x3D; input&lt;TableVariant&gt;(&#x27;alternating&#x27;);
+  /** Table variant */
+  readonly variant &#x3D; input&lt;TableVariant&gt;(&#x27;alternating&#x27;);
 
   /** Enables sorting */
   readonly enableSort &#x3D; input&lt;boolean&gt;(false);

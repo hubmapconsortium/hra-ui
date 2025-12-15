@@ -459,10 +459,7 @@
   },
   {
     path: &#x27;kg&#x27;,
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver(&#x27;assets/content/kg-explorer/data.yaml&#x27;, ContentPageDataSchema),
-    },
+    ...createExternalRedirectRoute(&#x27;https://docs.humanatlas.io/apps/kg&#x27;),
   },
   {
     path: &#x27;landing-page&#x27;,

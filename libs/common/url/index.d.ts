@@ -1,6 +1,7 @@
 import * as _angular_core from '@angular/core';
 import { PipeTransform, WritableSignal, Signal, Provider } from '@angular/core';
 import * as _hra_ui_common_url from '@hra-ui/common/url';
+import { IsActiveMatchOptions } from '@angular/router';
 import { CreateInjectionTokenReturn } from 'ngxtension/create-injection-token';
 
 /** Inject the application href */
@@ -130,6 +131,23 @@ declare class UrlModule {
     static ɵinj: _angular_core.ɵɵInjectorDeclaration<UrlModule>;
 }
 
+declare global {
+    /** URLSearchParams */
+    interface URLSearchParams {
+        /** Iterator */
+        [Symbol.iterator](): Iterator<[string, string]>;
+    }
+}
+/**
+ * Check whether a target url matches the current url based on the match options.
+ *
+ * @param targetUrl Url to test
+ * @param currentUrl Current/active url to test against
+ * @param options Comparison options
+ * @returns true if `targetUrl` matches `currentUrl`, false otherwise
+ */
+declare function isUrlActive(targetUrl: string, currentUrl: string, options: IsActiveMatchOptions): boolean;
+
 /**
  * Test whether a path is an absolute url
  *
@@ -171,5 +189,5 @@ type UrlResolverFn = (value: string) => string;
 /** Url resolver inject function */
 type InjectUrlResolverFn = () => UrlResolverFn;
 
-export { AppUrlPipe, AssetUrlPipe, CssUrlPipe, PageUrlPipe, UrlModule, appUrl, assetUrl, cssUrl, injectAppHref, injectAppUrlResolver, injectAssetHref, injectAssetUrlResolver, injectPageHref, injectPageUrlResolver, isAbsolute, joinWithSlash, pageUrl, provideAppHref, provideAssetHref, providePageHref, stripLeadingHash, stripTrailingSlash };
+export { AppUrlPipe, AssetUrlPipe, CssUrlPipe, PageUrlPipe, UrlModule, appUrl, assetUrl, cssUrl, injectAppHref, injectAppUrlResolver, injectAssetHref, injectAssetUrlResolver, injectPageHref, injectPageUrlResolver, isAbsolute, isUrlActive, joinWithSlash, pageUrl, provideAppHref, provideAssetHref, providePageHref, stripLeadingHash, stripTrailingSlash };
 export type { InjectHrefFn, InjectUrlResolverFn, ProvideHrefFn, UrlResolverFn };

@@ -44,7 +44,7 @@ content:
         The crosswalk that links 3D structures (called nodes in the crosswalk)
         to their ontology ID is available on the [HRA LOD Server](https://lod.humanatlas.io/ref-organ/asct-b-3d-models-crosswalk/latest/).
   - component: PageSection
-    tagline: Data Viewer
+    tagline: Data viewer
     anchor: data-viewer
     level: 3
     content:
@@ -4067,7 +4067,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/uterus-female/v1.1/assets/crosswalk.csv
                     files: []
   - component: PageSection
-    tagline: Summary Statistics
+    tagline: Summary statistics
     anchor: summary-statistics
     level: 3
     content:
@@ -4079,7 +4079,7 @@ content:
         label: Release Verison
         enableSort: false
         verticalDividers: false
-        style: alternating
+        variant: alternating
         columns:
           - column: organ
             label: Organ
@@ -4089,7 +4089,7 @@ content:
           - column: sex
             label: Sex
           - column: as_count
-            label: Number of Anatomical Structures
+            label: Number of anatomical structures
             type:
               type: numeric
           - column: uberon_id
@@ -4099,16 +4099,16 @@ content:
             version: '10'
             csvUrl: assets/content/3d-reference-library-page/table-data/as-per-organ.csv
   - component: PageSection
-    tagline: Standard Operating Procedures (SOP)
+    tagline: Standard operating procedures (SOPs)
     anchor: sop
     level: 3
     content:
       - component: Markdown
         data: |
-          -  [SOP: 3D Reference Object Approval](https://zenodo.org/records/5944197)
-          -  [SOP: Using 3D Reference Objects](https://zenodo.org/records/10358858)
-          -  [SOP: Using the CCF Registration User Interface](https://zenodo.org/records/14675303)
-          -  [SOP: Assigning RUI Data to Multiple Tissue Blocks](https://zenodo.org/records/6628459)
+          -  [3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)
+          -  [Adding 3D Reference Objects to the Human Reference Atlas](https://doi.org/10.5281/zenodo.5639651)
+          -  [Using the CCF Registration User Interface](https://doi.org/10.5281/zenodo.5575776)
+          -  [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
   - component: PageSection
     tagline: License
     anchor: license
@@ -4118,7 +4118,7 @@ content:
         data: |
           All HRA 3D reference objects are released under [Attribution 4.0 International (CC BY 4.0).](https://creativecommons.org/licenses/by/4.0/)
   - component: PageSection
-    tagline: Terms of Use
+    tagline: Terms of use
     anchor: terms-of-use
     level: 2
     content:
