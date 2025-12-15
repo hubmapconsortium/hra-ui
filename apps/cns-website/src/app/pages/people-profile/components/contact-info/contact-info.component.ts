@@ -17,7 +17,7 @@ export interface Role {
   /** Department */
   department?: string;
   /** Display order */
-  displayOrder?: number;
+  displayOrder?: number | null;
   /** Office location */
   office?: string;
   /** Phone number */
