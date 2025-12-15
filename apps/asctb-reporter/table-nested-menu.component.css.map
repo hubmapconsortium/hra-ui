@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/asctb-reporter/src/app/components/table-nested-menu/table-nested-menu.component.scss"],
-  "sourcesContent": [".nested-menu {\n  height: 28.25rem;\n}\n\n::ng-deep .mat-mdc-menu-panel {\n  width: 200px !important;\n}\n"],
-  "mappings": ";AAAA,CAAA;AACE,UAAA;;AAGF,UAAA,CAAA;AACE,SAAA;;",
-  "names": []
-}
