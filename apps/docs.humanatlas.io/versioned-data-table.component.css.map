@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/design-system/content-templates/versioned-data-table/src/lib/versioned-data-table.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n\n  hra-table {\n    height: 100%;\n  }\n\n  mat-form-field ~ hra-table {\n    height: calc(100% - 4.25rem);\n  }\n\n  .download {\n    margin-left: 1rem;\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA;AACE,UAAA;;AAGF,MAAA,eAAA,EAAA;AACE,UAAA,KAAA,KAAA,EAAA;;AAGF,MAAA,CAAA;AACE,eAAA;;",
+  "names": []
+}

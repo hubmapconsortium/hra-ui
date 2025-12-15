@@ -360,8 +360,8 @@ content:
               Andreas Bueckle, Ph.D., appeared on the CFDE podcast with host Dr. Allissa Dillmann. This marked the first instance of a video episode in the series. Dr. Bueckle presented the ongoing work to make HuBMAP, SenNet, and GTEx datasets more [Findable, Accessible, Interoperable, and Reusable (FAIR)](https://doi.org/10.1038/sdata.2016.18) with the [HRA Organ Gallery](https://humanatlas.io/hra-organ-gallery) in virtual reality.
 
           - component: TextHyperlink
-            text: Watch on Vimeo
-            url: https://vimeo.com/1143496413
+            text: Watch podcast
+            url: https://blubrry.com/3847772/150751389/episode-12-exploring-the-human-reference-atlas-hra-organ-gallery-in-immersive-3d/
             icon: arrow_right_alt
 
       - component: PageSection
