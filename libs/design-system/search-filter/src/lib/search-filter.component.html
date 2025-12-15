@@ -4,6 +4,12 @@
   <mat-icon matPrefix>search</mat-icon>
 
   <input matInput type="text" [(ngModel)]="search" />
+
+  @if (search().length > 0) {
+    <button matSuffix mat-icon-button aria-label="Clear search" (click)="search.set('')">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  }
 </mat-form-field>
 
 <hra-results-indicator class="results-counter" [value]="viewingCount()" [total]="totalCount()" />
