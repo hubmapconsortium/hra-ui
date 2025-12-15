@@ -3,7 +3,9 @@ import { stripLeadingHash } from './path';
 
 // As of 5.9.3, typescript is missing the iterator methods on URLSearchParams in lib.dom.d.ts
 declare global {
+  /** URLSearchParams */
   interface URLSearchParams {
+    /** Iterator */
     [Symbol.iterator](): Iterator<[string, string]>;
   }
 }
