@@ -6,29 +6,58 @@
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  height: 100%;
 
   @media (min-width: 1100px) {
     flex-direction: row;
   }
 
-  // Placeholder sidebar for customize component
-  // Temporary solution until we have the sidebar component ready
+  // Filter menu sidebar
   .customize-sidebar {
     display: none;
     flex-shrink: 0;
     width: 20rem;
     background-color: #fcfcfc;
     border-right: 0.0625rem solid vars.$outline-variant;
+    position: relative;
 
     // Show sidebar on desktop
     @media (min-width: 1100px) {
       display: block;
     }
 
-    .sidebar-placeholder {
-      padding: 1.5rem;
-      min-height: 12.5rem;
+    hra-filter-menu {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .filter-control {
+      margin-bottom: 1rem;
+
+      mat-button-toggle-group {
+        width: 100%;
+        display: flex;
+
+        mat-button-toggle {
+          flex: 1;
+        }
+      }
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      mat-label {
+        font: var(--mat-sys-label-medium);
+        --mat-form-field-filled-label-text-color: var(--mat-sys-primary);
+      }
+
+      .select-icon {
+        padding-left: 0.75rem;
+        padding-right: 0.5rem;
+        --mat-form-field-leading-icon-color: var(--mat-sys-secondary);
+      }
     }
   }
 
@@ -80,14 +109,6 @@
         white-space: nowrap;
       }
     }
-  }
-
-  .no-results-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 1rem;
-    min-height: 25rem;
   }
 
   ::ng-deep hra-profile-card {

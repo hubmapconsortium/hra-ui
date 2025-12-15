@@ -1,7 +1,45 @@
 <aside class="customize-sidebar" aria-label="Customize options">
-  <div class="sidebar-placeholder">
-    <!-- TODO: Add sidebar component here when available -->
-  </div>
+  <hra-filter-menu
+    tagline="People at the Cyberinfrastructure for Network Science Center"
+    description=""
+    [(filters)]="filters"
+  >
+    <!-- Team type toggle -->
+    <div class="filter-control">
+      <mat-button-toggle-group aria-label="Team type" [(value)]="teamType">
+        <mat-button-toggle value="current">Current team</mat-button-toggle>
+        <mat-button-toggle value="former">Former team</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <!-- Sort by dropdown -->
+    <div class="filter-control">
+      <mat-form-field subscriptSizing="dynamic">
+        <hra-icon class="select-icon" matPrefix>sort</hra-icon>
+        <mat-label>Sort by</mat-label>
+        <mat-select [(value)]="sortBy">
+          <mat-option value="hierarchical">Hierarchical</mat-option>
+          <mat-option value="lastNameAsc">Last name (ascending A-Z)</mat-option>
+          <mat-option value="lastNameDesc">Last name (descending Z-A)</mat-option>
+          <mat-option value="startYearNewest">Start year (newest to oldest)</mat-option>
+          <mat-option value="startYearOldest">Start year (oldest to newest)</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Group by dropdown -->
+    <div class="filter-control">
+      <mat-form-field subscriptSizing="dynamic">
+        <hra-icon class="select-icon" matPrefix>category</hra-icon>
+        <mat-label>Group by</mat-label>
+        <mat-select [(value)]="groupBy">
+          <mat-option [value]="null">None</mat-option>
+          <mat-option value="role">Role</mat-option>
+          <mat-option value="startYear">Start year</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </hra-filter-menu>
 </aside>
 
 <!-- Main content area -->

@@ -1,214 +1,204 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
+import { FilterMenuComponent, FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no-results-indicator';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
+import { SearchListOption } from '@hra-ui/design-system/search-list';
+import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 
-/** Role information for a team member */
-export interface TeamMemberRole {
-  /** Role type (e.g., 'member', 'affiliate') */
-  type: string;
-  /** Job title/position */
-  title: string;
-  /** Display order priority */
-  displayOrder: number;
-  /** Office location */
-  office?: string;
-  /** Phone number */
-  phone?: string;
-  /** Fax number */
-  fax?: string;
-  /** Email address */
-  email?: string;
-  /** Educational background */
-  education?: string;
-  /** Professional background/bio */
-  background?: string;
-  /** Research interests */
-  interests?: string;
-  /** Role start date */
-  dateStart: string | null;
-  /** Role end date (null if current) */
-  dateEnd: string | null;
-}
-
-/** Team member data interface matching PeopleProfileData structure */
-export interface TeamMember {
-  /** Member's full name */
-  name: string;
-  /** Member's last name for sorting */
-  lastName: string;
-  /** Profile picture URL */
-  image: string;
-  /** URL slug for profile page */
-  slug: string;
-  /** Array of roles (using first role's title for display) */
-  roles: TeamMemberRole[];
-}
+/** Team member data type (alias for PeopleProfileData) */
+export type TeamMember = PeopleProfileData;
 
 /**
  * Page component for displaying current team members
  */
 @Component({
   selector: 'cns-current-team',
-  imports: [HraCommonModule, SearchFilterComponent, ProfileCardComponent, NoResultsIndicatorComponent, ButtonsModule],
+  imports: [
+    HraCommonModule,
+    SearchFilterComponent,
+    ProfileCardComponent,
+    NoResultsIndicatorComponent,
+    ButtonsModule,
+    FilterMenuComponent,
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    IconsModule,
+  ],
   templateUrl: './current-team.component.html',
   styleUrl: './current-team.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentTeamComponent {
+  /**
+   * Team members data from route resolver
+   */
+  readonly data = input.required<PeopleProfileData[]>();
+
   /** Search query signal */
   readonly searchQuery = signal<string>('');
 
-  /**
-   * Team members data
-   * TODO: This will be populated from a JSON data source when available
-   */
-  readonly teamMembers = signal<TeamMember[]>([
+  /** Team type selection (current or former) */
+  readonly teamType = signal<'current' | 'former'>('current');
+
+  /** Sort by option */
+  readonly sortBy = signal<'hierarchical' | 'lastNameAsc' | 'lastNameDesc' | 'startYearNewest' | 'startYearOldest'>(
+    'hierarchical',
+  );
+
+  /** Group by option */
+  readonly groupBy = signal<string | null>(null);
+
+  /** Filter menu filters */
+  readonly filters = signal<FilterOptionCategory<SearchListOption>[]>([
     {
-      name: 'Katy Börner',
-      lastName: 'Börner',
-      image: '/assets/people/katy-borner.png',
-      slug: 'katy-borner',
-      roles: [
-        {
-          type: 'member',
-          title: 'Faculty, Center Director',
-          displayOrder: 1,
-          dateStart: '2005-01-01',
-          dateEnd: null,
-        },
+      id: 'roles',
+      label: 'Roles',
+      options: [
+        { id: 'collaborators', label: 'Collaborators' },
+        { id: 'faculty', label: 'Faculty' },
+        { id: 'postdocs', label: 'Postdocs' },
+        { id: 'phd-students', label: 'PhD students' },
+        { id: 'staff', label: 'Staff' },
+        { id: 'students', label: 'Students' },
       ],
+      selected: [],
     },
     {
-      name: 'Andreas Bueckle',
-      lastName: 'Bueckle',
-      image: '',
-      slug: 'andreas-bueckle',
-      roles: [
-        {
-          type: 'member',
-          title: 'Research Lead, Faculty',
-          displayOrder: 2,
-          dateStart: null,
-          dateEnd: null,
-        },
+      id: 'startYear',
+      label: 'Start year',
+      options: [
+        { id: '2020', label: '2020+' },
+        { id: '2015', label: '2015-2019' },
+        { id: '2010', label: '2010-2014' },
+        { id: '2005', label: '2005-2009' },
+        { id: 'before2005', label: 'Before 2005' },
       ],
-    },
-    {
-      name: 'Bruce W. Herr II',
-      lastName: 'Herr',
-      image: '',
-      slug: 'bruce-herr',
-      roles: [
-        {
-          type: 'member',
-          title: 'Technical Director',
-          displayOrder: 3,
-          dateStart: null,
-          dateEnd: null,
-        },
-      ],
-    },
-    {
-      name: 'Lisel Record',
-      lastName: 'Record',
-      image: '',
-      slug: 'lisel-record',
-      roles: [
-        {
-          type: 'member',
-          title: 'Associate Director',
-          displayOrder: 4,
-          dateStart: null,
-          dateEnd: null,
-        },
-      ],
-    },
-    {
-      name: 'Daniel Bolin',
-      lastName: 'Bolin',
-      image: '',
-      slug: 'daniel-bolin',
-      roles: [
-        {
-          type: 'member',
-          title: 'Senior Software Developer',
-          displayOrder: 5,
-          dateStart: null,
-          dateEnd: null,
-        },
-      ],
-    },
-    {
-      name: 'Mike Gallant',
-      lastName: 'Gallant',
-      image: '',
-      slug: 'mike-gallant',
-      roles: [
-        {
-          type: 'member',
-          title: 'Assistant Director of IT',
-          displayOrder: 6,
-          dateStart: null,
-          dateEnd: null,
-        },
-      ],
-    },
-    {
-      name: 'Michael Glinda',
-      lastName: 'Glinda',
-      image: '',
-      slug: 'michael-glinda',
-      roles: [
-        {
-          type: 'member',
-          title: 'Senior Research Analyst',
-          displayOrder: 7,
-          dateStart: null,
-          dateEnd: null,
-        },
-      ],
-    },
-    {
-      name: 'Yashvardhan Jain',
-      lastName: 'Jain',
-      image: '',
-      slug: 'yashvardhan-jain',
-      roles: [
-        {
-          type: 'member',
-          title: 'Research Software Engineer - Machine Learning',
-          displayOrder: 8,
-          dateStart: null,
-          dateEnd: null,
-        },
-      ],
+      selected: [],
     },
   ]);
 
-  /** Filtered team members based on search query */
+  /** Filtered and sorted team members based on all filters */
   readonly filteredMembers = computed(() => {
     const query = this.searchQuery().toLowerCase().trim();
-    const members = this.teamMembers();
+    const teamType = this.teamType();
+    const sortBy = this.sortBy();
+    const filterCategories = this.filters();
+    let members = this.data();
 
-    if (!query) {
-      return members;
+    // Filter by team type (current vs former)
+    members = members.filter((member) => {
+      const isCurrent = member.roles.some((role) => role.dateEnd === null);
+      return teamType === 'current' ? isCurrent : !isCurrent;
+    });
+
+    // Filter by roles
+    const roleFilters = filterCategories.find((f) => f.id === 'roles')?.selected ?? [];
+    if (roleFilters.length > 0) {
+      members = members.filter((member) => {
+        const role = member.roles[0];
+        if (!role) {
+          return false;
+        }
+
+        let titleText = '';
+        switch (role.type) {
+          case 'member':
+            titleText = role.title?.toLowerCase() || '';
+            break;
+          case 'student':
+            titleText = `${role.degree} ${role.topic}`.toLowerCase();
+            break;
+          case 'collaborator':
+            titleText = `collaborator ${role.project}`.toLowerCase();
+            break;
+        }
+
+        return roleFilters.some((filter) => titleText.includes(filter.id.toLowerCase()));
+      });
     }
 
-    return members.filter((member) => {
-      const title = member.roles[0]?.title || '';
-      return (
-        member.name.toLowerCase().includes(query) ||
-        title.toLowerCase().includes(query) ||
-        member.lastName.toLowerCase().includes(query)
-      );
+    // Filter by start year
+    const startYearFilters = filterCategories.find((f) => f.id === 'startYear')?.selected ?? [];
+    if (startYearFilters.length > 0) {
+      members = members.filter((member) => {
+        const startDate = member.roles[0]?.dateStart;
+        if (!startDate) {
+          return false;
+        }
+
+        const year = new Date(startDate).getFullYear();
+        return startYearFilters.some((filter) => {
+          switch (filter.id) {
+            case '2020':
+              return year >= 2020;
+            case '2015':
+              return year >= 2015 && year < 2020;
+            case '2010':
+              return year >= 2010 && year < 2015;
+            case '2005':
+              return year >= 2005 && year < 2010;
+            case 'before2005':
+              return year < 2005;
+            default:
+              return false;
+          }
+        });
+      });
+    }
+
+    // Filter by search query
+    if (query) {
+      members = members.filter((member) => {
+        const memberTitle = this.getMemberTitle(member).toLowerCase();
+        return (
+          member.name.toLowerCase().includes(query) ||
+          memberTitle.includes(query) ||
+          member.lastName.toLowerCase().includes(query)
+        );
+      });
+    }
+
+    // Sort members
+    members = [...members].sort((a, b) => {
+      switch (sortBy) {
+        case 'lastNameAsc':
+          return a.lastName.localeCompare(b.lastName);
+        case 'lastNameDesc':
+          return b.lastName.localeCompare(a.lastName);
+        case 'startYearNewest': {
+          const dateA = a.roles[0]?.dateStart ? new Date(a.roles[0].dateStart).getTime() : 0;
+          const dateB = b.roles[0]?.dateStart ? new Date(b.roles[0].dateStart).getTime() : 0;
+          return dateB - dateA; // Most recent first
+        }
+        case 'startYearOldest': {
+          const dateA = a.roles[0]?.dateStart ? new Date(a.roles[0].dateStart).getTime() : 0;
+          const dateB = b.roles[0]?.dateStart ? new Date(b.roles[0].dateStart).getTime() : 0;
+          return dateA - dateB; // Oldest first
+        }
+        default: {
+          // Hierarchical (by displayOrder) - only available for member roles
+          const roleA = a.roles[0];
+          const roleB = b.roles[0];
+          const orderA = roleA?.type === 'member' && roleA.displayOrder != null ? roleA.displayOrder : 999;
+          const orderB = roleB?.type === 'member' && roleB.displayOrder != null ? roleB.displayOrder : 999;
+          return orderA - orderB;
+        }
+      }
     });
+
+    return members;
   });
 
   /** Total count of team members */
-  readonly totalCount = computed(() => this.teamMembers().length);
+  readonly totalCount = computed(() => this.data().length);
 
   /** Count of filtered members */
   readonly viewingCount = computed(() => this.filteredMembers().length);
@@ -224,6 +214,7 @@ export class CurrentTeamComponent {
    */
   clearFilters(): void {
     this.searchQuery.set('');
+    this.filters.update((filters) => filters.map((f) => ({ ...f, selected: [] })));
   }
 
   /**
@@ -244,6 +235,20 @@ export class CurrentTeamComponent {
    * Get member's title from their first role
    */
   getMemberTitle(member: TeamMember): string {
-    return member.roles[0]?.title || '';
+    const role = member.roles[0];
+    if (!role) {
+      return '';
+    }
+
+    switch (role.type) {
+      case 'member':
+        return role.title || '';
+      case 'student':
+        return `${role.degree} Student - ${role.topic}`;
+      case 'collaborator':
+        return `Collaborator - ${role.project}`;
+      default:
+        return '';
+    }
   }
 }

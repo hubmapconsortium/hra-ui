@@ -50,7 +50,7 @@
   transition: 0.3s;
 }
 
-::ng-deep .cdk-overlay-pane {
+::ng-deep .menu-open-backdrop ~ .cdk-overlay-pane {
   left: unset !important;
   right: 0rem !important;
 }
