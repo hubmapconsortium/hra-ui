@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/content-templates/flex-container/src/lib/flex-container.component.scss"],
-  "sourcesContent": [":host {\n  display: flex;\n  flex-wrap: wrap;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,aAAA;;",
-  "names": []
-}
