@@ -42,7 +42,7 @@ declare class VersionedDataTableComponent {
             };
         }[] | undefined;
         rows?: Record<string, string | number | boolean | any[]>[] | undefined;
-        style?: "alternating" | "divider" | "basic" | undefined;
+        variant?: "alternating" | "divider" | "basic" | undefined;
         enableSort?: boolean | undefined;
         verticalDividers?: boolean | undefined;
     }[]>;
@@ -74,8 +74,8 @@ declare class VersionedDataTableComponent {
             tooltip?: string | undefined;
         };
     }[] | undefined>;
-    /** The style of the table */
-    readonly style: _angular_core.InputSignal<"alternating" | "divider" | "basic">;
+    /** The variant of the table */
+    readonly variant: _angular_core.InputSignal<"alternating" | "divider" | "basic">;
     /** The sort of the table */
     readonly enableSort: _angular_core.InputSignal<boolean>;
     /** The dividers of the table */
@@ -113,14 +113,14 @@ declare class VersionedDataTableComponent {
             };
         }[] | undefined;
         rows?: Record<string, string | number | boolean | any[]>[] | undefined;
-        style?: "alternating" | "divider" | "basic" | undefined;
+        variant?: "alternating" | "divider" | "basic" | undefined;
         enableSort?: boolean | undefined;
         verticalDividers?: boolean | undefined;
     }>;
     /** function to download CSV or data of rows */
     download(): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<VersionedDataTableComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<VersionedDataTableComponent, "hra-versioned-data-table", never, { "label": { "alias": "label"; "required": true; "isSignal": true; }; "items": { "alias": "items"; "required": true; "isSignal": true; }; "selection": { "alias": "selection"; "required": false; "isSignal": true; }; "columns": { "alias": "columns"; "required": false; "isSignal": true; }; "style": { "alias": "style"; "required": false; "isSignal": true; }; "enableSort": { "alias": "enableSort"; "required": false; "isSignal": true; }; "verticalDividers": { "alias": "verticalDividers"; "required": false; "isSignal": true; }; "hideVersionSelector": { "alias": "hideVersionSelector"; "required": false; "isSignal": true; }; }, { "selection": "selectionChange"; }, never, never, true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<VersionedDataTableComponent, "hra-versioned-data-table", never, { "label": { "alias": "label"; "required": true; "isSignal": true; }; "items": { "alias": "items"; "required": true; "isSignal": true; }; "selection": { "alias": "selection"; "required": false; "isSignal": true; }; "columns": { "alias": "columns"; "required": false; "isSignal": true; }; "variant": { "alias": "variant"; "required": false; "isSignal": true; }; "enableSort": { "alias": "enableSort"; "required": false; "isSignal": true; }; "verticalDividers": { "alias": "verticalDividers"; "required": false; "isSignal": true; }; "hideVersionSelector": { "alias": "hideVersionSelector"; "required": false; "isSignal": true; }; }, { "selection": "selectionChange"; }, never, never, true, never>;
 }
 
 /** Content template definition for VersionedTableDataComponent */
@@ -167,7 +167,7 @@ declare const VersionedDataTableSchema: z.ZodObject<{
             tooltip: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>]>]>>;
     }, z.core.$strip>>>;
-    style: z.ZodOptional<z.ZodEnum<{
+    variant: z.ZodOptional<z.ZodEnum<{
         alternating: "alternating";
         divider: "divider";
         basic: "basic";
@@ -205,7 +205,7 @@ declare const VersionedDataTableSchema: z.ZodObject<{
             }, z.core.$strip>]>]>>;
         }, z.core.$strip>>>;
         rows: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodBoolean, z.ZodArray<z.ZodAny>]>>>>;
-        style: z.ZodOptional<z.ZodEnum<{
+        variant: z.ZodOptional<z.ZodEnum<{
             alternating: "alternating";
             divider: "divider";
             basic: "basic";

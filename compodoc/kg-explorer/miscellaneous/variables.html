@@ -481,12 +481,20 @@
   },
   {
     label: &#x27;Knowledge Graph&#x27;,
+    url: &#x27;https://docs.humanatlas.io/apps/kg&#x27;,
+    description: &#x27;App guide &amp; documentation&#x27;,
+  },
+  {
+    label: &#x27;Knowledge Graph for Developers&#x27;,
     url: &#x27;https://docs.humanatlas.io/dev/kg&#x27;,
-    description: &#x27;App guidance &amp; documentation&#x27;,
+    description: &#x27;Developer documentation&#x27;,
+    icon: &#x27;code&#x27;,
+    divider: true,
   },
   {
     label: &#x27;Read publication&#x27;,
     url: &#x27;https://doi.org/10.1038/s41597-025-05183-6&#x27;,
+    icon: &#x27;open_in_new&#x27;,
     divider: true,
   },
 ]</code>
@@ -550,6 +558,7 @@
       description: z.string(),
       distributions: DistributionsInfoSchema.array(),
       doi: z.string(),
+      externalReviewers: PersonInfoSchema.array().optional(),
       funders: z
         .object({
           awardNumber: z.string(),

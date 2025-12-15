@@ -7,9 +7,9 @@ import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { NgScrollbar } from 'ngx-scrollbar';
 import * as z from 'zod';
 
-/** Type for table style */
+/** Type for table variant */
 type TableVariant = z.infer<typeof TableVariantSchema>;
-/** Schema for table style */
+/** Schema for table variant */
 declare const TableVariantSchema: z.ZodEnum<{
     alternating: "alternating";
     divider: "divider";
@@ -168,7 +168,7 @@ declare const PageTableSchema: z.ZodObject<{
         }, z.core.$strip>]>]>>;
     }, z.core.$strip>>>;
     rows: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodBoolean, z.ZodArray<z.ZodAny>]>>>>;
-    style: z.ZodOptional<z.ZodEnum<{
+    variant: z.ZodOptional<z.ZodEnum<{
         alternating: "alternating";
         divider: "divider";
         basic: "basic";
@@ -212,8 +212,8 @@ declare class TableComponent<T = TableRow> {
     }[] | undefined>;
     /** Unsorted data */
     readonly rows: _angular_core.InputSignal<T[] | undefined>;
-    /** Table style */
-    readonly style: _angular_core.InputSignal<"alternating" | "divider" | "basic">;
+    /** Table variant */
+    readonly variant: _angular_core.InputSignal<"alternating" | "divider" | "basic">;
     /** Enables sorting */
     readonly enableSort: _angular_core.InputSignal<boolean>;
     /** Enables dividers between columns */
@@ -344,7 +344,7 @@ declare class TableComponent<T = TableRow> {
     /** Scrolls to top of the table */
     scrollToTop(): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<TableComponent<any>, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<TableComponent<any>, "hra-table", never, { "csvUrl": { "alias": "csvUrl"; "required": false; "isSignal": true; }; "columns": { "alias": "columns"; "required": false; "isSignal": true; }; "rows": { "alias": "rows"; "required": false; "isSignal": true; }; "style": { "alias": "style"; "required": false; "isSignal": true; }; "enableSort": { "alias": "enableSort"; "required": false; "isSignal": true; }; "verticalDividers": { "alias": "verticalDividers"; "required": false; "isSignal": true; }; "enableRowSelection": { "alias": "enableRowSelection"; "required": false; "isSignal": true; }; "hideHeaders": { "alias": "hideHeaders"; "required": false; "isSignal": true; }; }, { "selectionChange": "selectionChange"; "routeClicked": "routeClicked"; "downloadHovered": "downloadHovered"; }, never, ["*"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<TableComponent<any>, "hra-table", never, { "csvUrl": { "alias": "csvUrl"; "required": false; "isSignal": true; }; "columns": { "alias": "columns"; "required": false; "isSignal": true; }; "rows": { "alias": "rows"; "required": false; "isSignal": true; }; "variant": { "alias": "variant"; "required": false; "isSignal": true; }; "enableSort": { "alias": "enableSort"; "required": false; "isSignal": true; }; "verticalDividers": { "alias": "verticalDividers"; "required": false; "isSignal": true; }; "enableRowSelection": { "alias": "enableRowSelection"; "required": false; "isSignal": true; }; "hideHeaders": { "alias": "hideHeaders"; "required": false; "isSignal": true; }; }, { "selectionChange": "selectionChange"; "routeClicked": "routeClicked"; "downloadHovered": "downloadHovered"; }, never, ["*"], true, never>;
 }
 
 /** Content template definition for TableComponent */

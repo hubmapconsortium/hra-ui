@@ -139,7 +139,7 @@ content:
           novel cell types to Cell Ontology (CL) and the Provisional Cell Ontology (PCL) to improve
           the quality and coverage of these ontologies.
       - component: PageTable
-        style: alternating
+        variant: alternating
         columns:
           - column: ontology
             label: Ontology

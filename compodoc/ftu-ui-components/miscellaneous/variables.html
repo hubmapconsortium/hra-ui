@@ -1621,7 +1621,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>ContentTemplateSchema.extend({
   component: z.literal(&#x27;ContentButton&#x27;),
-  image: z.string(),
+  imageSrc: z.string(),
   date: z.string(),
   tagline: z.string(),
   tags: z.array(z.string()).optional(),
@@ -3496,7 +3496,7 @@
   csvUrl: z.string().optional(),
   columns: TableColumnSchema.array().optional(),
   rows: z.array(TableRowSchema).optional(),
-  style: TableVariantSchema.optional(),
+  variant: TableVariantSchema.optional(),
   enableSort: z.boolean().optional(),
   verticalDividers: z.boolean().optional(),
   enableSelection: z.boolean().optional(),
@@ -3687,7 +3687,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schema for table style</p>
+                    <div class="io-description"><p>Schema for table variant</p>
 </div>
                 </td>
             </tr>
@@ -5322,7 +5322,7 @@ Primarily used to simplify testing.</p>
   csvUrl: true,
   columns: true,
   rows: true,
-  style: true,
+  variant: true,
   enableSort: true,
   verticalDividers: true,
 })
@@ -5365,7 +5365,7 @@ Primarily used to simplify testing.</p>
                         <i>Default value : </i><code>ContentTemplateSchema.merge(
   PageTableSchema.pick({
     columns: true,
-    style: true,
+    variant: true,
     enableSort: true,
     verticalDividers: true,
   }),
