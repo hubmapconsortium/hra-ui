@@ -13,23 +13,41 @@ import { MatListItem, MatListItemTitle, MatListModule } from '@angular/material/
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
-import { LinkDirective, injectRouter } from '@hra-ui/common/router-ext';
+import { LinkDirective, LinkActiveDirective, injectRouter } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { injectNavigationEnd } from 'ngxtension/navigation-end';
 import { CommonModule } from '@angular/common';
 import * as i2 from '@hra-ui/common/analytics';
 
+/** Options for active link matching */
+const ACTIVE_MATCH_OPTIONS = {
+    paths: 'exact',
+    matrixParams: 'ignored',
+    queryParams: 'ignored',
+    fragment: 'ignored',
+};
+
 /** Navigation Item Component */
 class NavigationItemComponent {
     /** Navigation Item Data */
     navigationItem = input.required(...(ngDevMode ? [{ debugName: "navigationItem" }] : []));
+    /** Link matching options */
+    matchOptions = ACTIVE_MATCH_OPTIONS;
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: NavigationItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.15", type: NavigationItemComponent, isStandalone: true, selector: "hra-navigation-item", inputs: { navigationItem: { classPropertyName: "navigationItem", publicName: "navigationItem", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0, template: "<a\n  hraFeature=\"navigation-item\"\n  mat-list-item\n  [hraClickEvent]=\"{ label: navigationItem().label }\"\n  [hraLink]=\"navigationItem().url\"\n>\n  <div class=\"nav-content\">\n    @if (navigationItem().icon; as icon) {\n      <mat-icon matListItemIcon>{{ icon }}</mat-icon>\n    }\n\n    <span matListItemTitle>\n      {{ navigationItem().label }}\n    </span>\n  </div>\n</a>\n", styles: [":host{display:block}:host a{border-radius:.5rem;cursor:pointer;gap:.75rem;height:unset!important;margin:.5rem 0;padding:.5rem 0 .5rem 1rem!important;margin-left:var(--hra-navigation-item-padding-left, 0)!important;width:unset}:host a.active span{color:var(--mat-sys-tertiary-fixed)}:host a:hover mat-icon{color:var(--mat-sys-tertiary-fixed)}:host a .nav-content{align-items:center;display:flex;gap:.75rem}:host a mat-icon{margin:0}:host a span{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);white-space:normal}:host .in-category{padding-left:3.5rem!important}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "component", type: MatListItem, selector: "mat-list-item, a[mat-list-item], button[mat-list-item]", inputs: ["activated"], exportAs: ["matListItem"] }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i1.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "directive", type: MatListItemTitle, selector: "[matListItemTitle]" }, { kind: "ngmodule", type: HraCommonModule }, { kind: "directive", type: i2.ClickEventDirective, selector: "[hraClickEvent]", inputs: ["hraClickEvent", "hraClickEventTriggerOn", "hraClickEventDisabled"], exportAs: ["hraClickEvent"] }, { kind: "directive", type: i2.FeatureDirective, selector: "[hraFeature]", inputs: ["hraFeature"] }, { kind: "directive", type: LinkDirective, selector: "a[hraLink], area[hraLink]", inputs: ["hraLink", "hraLinkExternal"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.15", type: NavigationItemComponent, isStandalone: true, selector: "hra-navigation-item", inputs: { navigationItem: { classPropertyName: "navigationItem", publicName: "navigationItem", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0, template: "<a\n  hraFeature=\"navigation-item\"\n  mat-list-item\n  hraLinkActive=\"active\"\n  [hraClickEvent]=\"{ label: navigationItem().label }\"\n  [hraLink]=\"navigationItem().url\"\n  [hraLinkActiveOptions]=\"matchOptions\"\n  [activated]=\"linkActive.isActive()\"\n  #linkActive=\"hraLinkActive\"\n>\n  <div class=\"nav-content\">\n    @if (navigationItem().icon; as icon) {\n      <mat-icon matListItemIcon>{{ icon }}</mat-icon>\n    }\n\n    <span matListItemTitle>\n      {{ navigationItem().label }}\n    </span>\n  </div>\n</a>\n", styles: [":host{display:block}:host a{border-radius:.5rem;cursor:pointer;gap:.75rem;height:unset!important;margin:.5rem 0;padding:.5rem 0 .5rem 1rem!important;margin-left:var(--hra-navigation-item-padding-left, 0)!important;width:unset}:host a.active span{color:var(--mat-sys-tertiary-fixed)}:host a:hover mat-icon{color:var(--mat-sys-tertiary-fixed)}:host a .nav-content{align-items:center;display:flex;gap:.75rem}:host a mat-icon{margin:0}:host a span{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);white-space:normal}:host .in-category{padding-left:3.5rem!important}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "component", type: MatListItem, selector: "mat-list-item, a[mat-list-item], button[mat-list-item]", inputs: ["activated"], exportAs: ["matListItem"] }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i1.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "directive", type: MatListItemTitle, selector: "[matListItemTitle]" }, { kind: "ngmodule", type: HraCommonModule }, { kind: "directive", type: i2.ClickEventDirective, selector: "[hraClickEvent]", inputs: ["hraClickEvent", "hraClickEventTriggerOn", "hraClickEventDisabled"], exportAs: ["hraClickEvent"] }, { kind: "directive", type: i2.FeatureDirective, selector: "[hraFeature]", inputs: ["hraFeature"] }, { kind: "directive", type: LinkDirective, selector: "a[hraLink], area[hraLink]", inputs: ["hraLink", "hraLinkExternal"] }, { kind: "directive", type: LinkActiveDirective, selector: "[hraLinkActive]", inputs: ["hraLinkActive", "hraLinkActiveOptions"], outputs: ["isActiveChange"], exportAs: ["hraLinkActive"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: NavigationItemComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-navigation-item', imports: [CommonModule, MatListItem, MatIconModule, MatListItemTitle, HraCommonModule, LinkDirective], changeDetection: ChangeDetectionStrategy.OnPush, template: "<a\n  hraFeature=\"navigation-item\"\n  mat-list-item\n  [hraClickEvent]=\"{ label: navigationItem().label }\"\n  [hraLink]=\"navigationItem().url\"\n>\n  <div class=\"nav-content\">\n    @if (navigationItem().icon; as icon) {\n      <mat-icon matListItemIcon>{{ icon }}</mat-icon>\n    }\n\n    <span matListItemTitle>\n      {{ navigationItem().label }}\n    </span>\n  </div>\n</a>\n", styles: [":host{display:block}:host a{border-radius:.5rem;cursor:pointer;gap:.75rem;height:unset!important;margin:.5rem 0;padding:.5rem 0 .5rem 1rem!important;margin-left:var(--hra-navigation-item-padding-left, 0)!important;width:unset}:host a.active span{color:var(--mat-sys-tertiary-fixed)}:host a:hover mat-icon{color:var(--mat-sys-tertiary-fixed)}:host a .nav-content{align-items:center;display:flex;gap:.75rem}:host a mat-icon{margin:0}:host a span{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);white-space:normal}:host .in-category{padding-left:3.5rem!important}\n"] }]
+            args: [{ selector: 'hra-navigation-item', imports: [
+                        CommonModule,
+                        MatListItem,
+                        MatIconModule,
+                        MatListItemTitle,
+                        HraCommonModule,
+                        LinkDirective,
+                        LinkActiveDirective,
+                    ], changeDetection: ChangeDetectionStrategy.OnPush, template: "<a\n  hraFeature=\"navigation-item\"\n  mat-list-item\n  hraLinkActive=\"active\"\n  [hraClickEvent]=\"{ label: navigationItem().label }\"\n  [hraLink]=\"navigationItem().url\"\n  [hraLinkActiveOptions]=\"matchOptions\"\n  [activated]=\"linkActive.isActive()\"\n  #linkActive=\"hraLinkActive\"\n>\n  <div class=\"nav-content\">\n    @if (navigationItem().icon; as icon) {\n      <mat-icon matListItemIcon>{{ icon }}</mat-icon>\n    }\n\n    <span matListItemTitle>\n      {{ navigationItem().label }}\n    </span>\n  </div>\n</a>\n", styles: [":host{display:block}:host a{border-radius:.5rem;cursor:pointer;gap:.75rem;height:unset!important;margin:.5rem 0;padding:.5rem 0 .5rem 1rem!important;margin-left:var(--hra-navigation-item-padding-left, 0)!important;width:unset}:host a.active span{color:var(--mat-sys-tertiary-fixed)}:host a:hover mat-icon{color:var(--mat-sys-tertiary-fixed)}:host a .nav-content{align-items:center;display:flex;gap:.75rem}:host a mat-icon{margin:0}:host a span{font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking);white-space:normal}:host .in-category{padding-left:3.5rem!important}\n"] }]
         }], propDecorators: { navigationItem: [{ type: i0.Input, args: [{ isSignal: true, alias: "navigationItem", required: true }] }] } });
 
 /** Navigation Category Component */
@@ -277,14 +295,6 @@ var docsNavigation = {
 
 /** Docs Navigation Menu */
 const DOCS_NAVIGATION_MENU = menuItems;
-
-/** Options for active link matching */
-const ACTIVE_MATCH_OPTIONS = {
-    paths: 'exact',
-    matrixParams: 'ignored',
-    queryParams: 'ignored',
-    fragment: 'ignored',
-};
 
 /** Site Navigation Component for HRA Docs */
 class SiteNavigationComponent {

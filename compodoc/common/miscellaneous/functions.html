@@ -142,6 +142,24 @@
                             <a href="#buildEventData" title="analytics/plugins/hra-analytics/src/lib/plugin.ts" ><b>buildEventData</b>&nbsp;&nbsp;&nbsp;(analytics/.../plugin.ts)</a>
                         </li>
                         <li>
+                            <a href="#checkSubset" title="url/src/lib/util/compare-url.ts" ><b>checkSubset</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#checkSubsetSize" title="url/src/lib/util/compare-url.ts" ><b>checkSubsetSize</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#compareFragments" title="url/src/lib/util/compare-url.ts" ><b>compareFragments</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#compareMatrixParams" title="url/src/lib/util/compare-url.ts" ><b>compareMatrixParams</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#comparePathsWithMatrixParams" title="url/src/lib/util/compare-url.ts" ><b>comparePathsWithMatrixParams</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#compareQueryParams" title="url/src/lib/util/compare-url.ts" ><b>compareQueryParams</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
+                        </li>
+                        <li>
                             <a href="#createCategoryPreferences" title="analytics/src/lib/consent/consent.service.ts" ><b>createCategoryPreferences</b>&nbsp;&nbsp;&nbsp;(analytics/.../consent.service.ts)</a>
                         </li>
                         <li>
@@ -190,6 +208,9 @@
                             <a href="#getNoMatchError" title="array-util/src/lib/find-or-throw.ts" ><b>getNoMatchError</b>&nbsp;&nbsp;&nbsp;(array-util/.../find-or-throw.ts)</a>
                         </li>
                         <li>
+                            <a href="#getWindow" title="injectors/src/lib/window.ts" ><b>getWindow</b>&nbsp;&nbsp;&nbsp;(injectors/.../window.ts)</a>
+                        </li>
+                        <li>
                             <a href="#hraAnalyticsPlugin" title="analytics/plugins/hra-analytics/src/lib/plugin.ts" ><b>hraAnalyticsPlugin</b>&nbsp;&nbsp;&nbsp;(analytics/.../plugin.ts)</a>
                         </li>
                         <li>
@@ -205,13 +226,13 @@
                             <a href="#injectLogEvent" title="analytics/src/lib/analytics/analytics.service.ts" ><b>injectLogEvent</b>&nbsp;&nbsp;&nbsp;(analytics/.../analytics.service.ts)</a>
                         </li>
                         <li>
-                            <a href="#injectWindow" title="injectors/src/lib/window.ts" ><b>injectWindow</b>&nbsp;&nbsp;&nbsp;(injectors/.../window.ts)</a>
-                        </li>
-                        <li>
                             <a href="#isAbsolute" title="url/src/lib/util/path.ts" ><b>isAbsolute</b>&nbsp;&nbsp;&nbsp;(url/.../path.ts)</a>
                         </li>
                         <li>
                             <a href="#isAuxClick" title="router-ext/src/lib/util/event.ts" ><b>isAuxClick</b>&nbsp;&nbsp;&nbsp;(router-ext/.../event.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isUrlActive" title="url/src/lib/util/compare-url.ts" ><b>isUrlActive</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
                         </li>
                         <li>
                             <a href="#joinWithSlash" title="url/src/lib/util/path.ts" ><b>joinWithSlash</b>&nbsp;&nbsp;&nbsp;(url/.../path.ts)</a>
@@ -224,6 +245,12 @@
                         </li>
                         <li>
                             <a href="#pageHref" title="url/src/lib/url/page.ts" ><b>pageHref</b>&nbsp;&nbsp;&nbsp;(url/.../page.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#parsePathSegments" title="url/src/lib/util/compare-url.ts" ><b>parsePathSegments</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#parseSegment" title="url/src/lib/util/compare-url.ts" ><b>parseSegment</b>&nbsp;&nbsp;&nbsp;(url/.../compare-url.ts)</a>
                         </li>
                         <li>
                             <a href="#pick" title="analytics/plugins/hra-analytics/src/lib/util/serialize.ts" ><b>pick</b>&nbsp;&nbsp;&nbsp;(analytics/.../serialize.ts)</a>
@@ -771,6 +798,838 @@ Adds common fields like app, version, etc. and normalizes event payloads.</p>
                         </div>
                             <div class="io-description">
                                 <p>An analytics plugin</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>url/src/lib/util/compare-url.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkSubset"></a>
+                    <span class="name">
+                        <span ><b>checkSubset</b></span>
+                        <a href="#checkSubset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkSubset(iterable1: Iterable, iterable2: Iterable)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Test whether a set is a subset of another set.
+Keys are compared case insensitively.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>iterable1</td>
+                                            <td>
+                                                        <code>Iterable</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>First set of key/value pairs</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>iterable2</td>
+                                            <td>
+                                                        <code>Iterable</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Second set of key/value pairs</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if the first set is a subset of the second one, false otherwise</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkSubsetSize"></a>
+                    <span class="name">
+                        <span ><b>checkSubsetSize</b></span>
+                        <a href="#checkSubsetSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkSubsetSize(size1: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, size2: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, exact: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Test whether a set could possibly be a subset of another set purely based on their sizes.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>size1</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Size of the first set</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>size2</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Size of the second set</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>exact</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Whether the sizes should match exactly</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if the <code>size1</code> is less or equal to <code>size2</code>, false otherwise</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareFragments"></a>
+                    <span class="name">
+                        <span ><b>compareFragments</b></span>
+                        <a href="#compareFragments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>compareFragments(fragment1: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fragment2: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, options: IsActiveMatchOptions)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Check whether two url fragments match.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fragment1</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>First fragment</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>fragment2</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Second fragment</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>IsActiveMatchOptions</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Comparison options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if the fragments match, false otherwise</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareMatrixParams"></a>
+                    <span class="name">
+                        <span ><b>compareMatrixParams</b></span>
+                        <a href="#compareMatrixParams"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>compareMatrixParams(params1: <a href="../undefineds/MatrixParams.html" target="_self">MatrixParams</a>, params2: <a href="../undefineds/MatrixParams.html" target="_self">MatrixParams</a>, options: IsActiveMatchOptions)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Check whether two sets of matrix parameters match.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>params1</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#MatrixParams" target="_self" >MatrixParams</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>First set of matrix parameters</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>params2</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#MatrixParams" target="_self" >MatrixParams</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Second set of matrix parameters</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>IsActiveMatchOptions</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Comparison options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if the first set matches the second set, false otherwise</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="comparePathsWithMatrixParams"></a>
+                    <span class="name">
+                        <span ><b>comparePathsWithMatrixParams</b></span>
+                        <a href="#comparePathsWithMatrixParams"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>comparePathsWithMatrixParams(path1: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, path2: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, options: IsActiveMatchOptions)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Check whether two url paths match.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>path1</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>First raw path</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>path2</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Second raw path</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>IsActiveMatchOptions</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Comparison options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if the two paths matches, false otherwise</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareQueryParams"></a>
+                    <span class="name">
+                        <span ><b>compareQueryParams</b></span>
+                        <a href="#compareQueryParams"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>compareQueryParams(params1: <a href="../interfaces/URLSearchParams.html" target="_self">URLSearchParams</a>, params2: <a href="../interfaces/URLSearchParams.html" target="_self">URLSearchParams</a>, options: IsActiveMatchOptions)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Check whether two sets of query parameters match.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>params1</td>
+                                            <td>
+                                                            <code><a href="../interfaces/URLSearchParams.html" target="_self" >URLSearchParams</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>First set of query parameters</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>params2</td>
+                                            <td>
+                                                            <code><a href="../interfaces/URLSearchParams.html" target="_self" >URLSearchParams</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Second set of query parameters</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>IsActiveMatchOptions</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Comparison options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if the query parameters match, false otherwise</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isUrlActive"></a>
+                    <span class="name">
+                        <span ><b>isUrlActive</b></span>
+                        <a href="#isUrlActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isUrlActive(targetUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, currentUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, options: IsActiveMatchOptions)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Check whether a target url matches the current url based on the match options.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>targetUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Url to test</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>currentUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Current/active url to test against</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>IsActiveMatchOptions</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Comparison options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if <code>targetUrl</code> matches <code>currentUrl</code>, false otherwise</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parsePathSegments"></a>
+                    <span class="name">
+                        <span ><b>parsePathSegments</b></span>
+                        <a href="#parsePathSegments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parsePathSegments(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Parse a path that may contain matrix parameters in one or more segments.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>path</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Raw path</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/SegmentWithMatrixParams.html" target="_self" >SegmentWithMatrixParams[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Array of path segments</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseSegment"></a>
+                    <span class="name">
+                        <span ><b>parseSegment</b></span>
+                        <a href="#parseSegment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parseSegment(segment: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Parse a path segment that may contain matrix parameters.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>segment</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Raw segment string</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/SegmentWithMatrixParams.html" target="_self" >SegmentWithMatrixParams</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A parsed segment object</p>
 
                             </div>
                 </td>
@@ -2220,6 +3079,41 @@ Currently handles the following objects:</p>
             </tr>
         </tbody>
     </table>
+</section>    <h3>injectors/src/lib/window.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWindow"></a>
+                    <span class="name">
+                        <span ><b>getWindow</b></span>
+                        <a href="#getWindow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getWindow()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the global window</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>analytics/plugins/hra-event-filter/src/lib/plugin.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -2404,45 +3298,6 @@ The function also automatically adds the feature path to the event props on each
                         </div>
                             <div class="io-description">
                                 <p>A function to log events</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    <h3>injectors/src/lib/window.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="injectWindow"></a>
-                    <span class="name">
-                        <span ><b>injectWindow</b></span>
-                        <a href="#injectWindow"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>injectWindow()</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Inject the global window</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The window object</p>
 
                             </div>
                 </td>

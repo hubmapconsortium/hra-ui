@@ -1,6 +1,7 @@
 import * as _angular_core from '@angular/core';
 import { EnvironmentProviders } from '@angular/core';
-import { Router } from '@angular/router';
+import * as _angular_router from '@angular/router';
+import { Router, IsActiveMatchOptions } from '@angular/router';
 import { ProviderFeature } from '@hra-ui/common/util/providers';
 
 /**
@@ -40,6 +41,42 @@ declare const injectRouter: {
 };
 
 /**
+ * Apply classes when a connected link directive becomes active as determined by `Router#isActive`
+ */
+declare class LinkActiveDirective {
+    /** Classes to apply when active */
+    readonly classes: _angular_core.InputSignal<string | Record<string, unknown> | string[]>;
+    /** Options controlling how matching is performed */
+    readonly options: _angular_core.InputSignal<IsActiveMatchOptions>;
+    /** Emits when the active state changes */
+    readonly isActiveChange: _angular_core.OutputEmitterRef<boolean>;
+    /** Whether this link is currently active */
+    readonly isActive: _angular_core.Signal<boolean>;
+    /** Associated link directive if placed on the same element */
+    private readonly link;
+    /** Child link directives if this is placed on a parent element */
+    private readonly sublinks;
+    /** All links */
+    private readonly links;
+    /** Reference to the window object */
+    private readonly window;
+    /** Reference to the router if available */
+    private readonly router;
+    /** Notifier used to update computed signals on route changes */
+    private readonly routeChanges;
+    /** Initialize the directive */
+    constructor();
+    /**
+     * Check whether any connected link is currently active.
+     *
+     * @returns true if any connected link is active, false otherwise
+     */
+    private hasActiveLinks;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LinkActiveDirective, never>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<LinkActiveDirective, "[hraLinkActive]", ["hraLinkActive"], { "classes": { "alias": "hraLinkActive"; "required": false; "isSignal": true; }; "options": { "alias": "hraLinkActiveOptions"; "required": false; "isSignal": true; }; }, { "isActiveChange": "isActiveChange"; }, ["sublinks"], never, true, never>;
+}
+
+/**
  * Simpler version of `RouterLink`.
  * Only supports absolute urls and must be used on `<a>` or `<area>` elements.
  */
@@ -48,14 +85,14 @@ declare class LinkDirective {
     readonly url: _angular_core.InputSignal<string>;
     /** Whether the link should open is a new tab/window */
     readonly external: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    /** Resolved url tree */
+    readonly urlTree: _angular_core.Signal<_angular_router.UrlTree | undefined>;
     /** Location strategy reference */
     private readonly locationStrategy;
     /** Reference to the router (if available) */
     private readonly router;
     /** Url resolving function */
     private readonly resolve;
-    /** Resolved url tree */
-    private readonly urlTree;
     /** Resolved href value */
     protected readonly href: _angular_core.Signal<string>;
     /**
@@ -85,9 +122,9 @@ declare function provideRouterExt(...features: RouterExtFeature[]): EnvironmentP
 
 declare class RouterExtModule {
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<RouterExtModule, never>;
-    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<RouterExtModule, never, [typeof LinkDirective, typeof FragmentLinkDirective], [typeof LinkDirective, typeof FragmentLinkDirective]>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<RouterExtModule, never, [typeof LinkActiveDirective, typeof LinkDirective, typeof FragmentLinkDirective], [typeof LinkActiveDirective, typeof LinkDirective, typeof FragmentLinkDirective]>;
     static ɵinj: _angular_core.ɵɵInjectorDeclaration<RouterExtModule>;
 }
 
-export { FragmentLinkDirective, LinkDirective, RouterExtModule, injectRouter, provideRouterExt };
+export { FragmentLinkDirective, LinkActiveDirective, LinkDirective, RouterExtModule, injectRouter, provideRouterExt };
 export type { RouterExtFeature };

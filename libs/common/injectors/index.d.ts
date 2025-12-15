@@ -31,12 +31,20 @@ declare const provideAppConfiguration: (() => _angular_core.Provider) & ((value:
  */
 declare function injectDocument(): Document;
 
-/**
- * Inject the global window
- *
- * @returns The window object
- */
-declare function injectWindow(): typeof window;
+/** Inject the window object */
+declare const injectWindow: {
+    (): Window & typeof globalThis;
+    (injectOptions: _angular_core.InjectOptions & {
+        optional?: false;
+    } & {
+        injector?: _angular_core.Injector;
+    }): Window & typeof globalThis;
+    (injectOptions: _angular_core.InjectOptions & {
+        injector?: _angular_core.Injector;
+    }): (Window & typeof globalThis) | null;
+};
+/** Provide a new window object. Only intended for testing purposes. */
+declare const provideWindow: (() => _angular_core.Provider) & ((value: (Window & typeof globalThis) | (() => Window & typeof globalThis)) => _angular_core.Provider);
 
-export { injectAppConfiguration, injectDocument, injectWindow, provideAppConfiguration };
+export { injectAppConfiguration, injectDocument, injectWindow, provideAppConfiguration, provideWindow };
 export type { AppConfiguration };
