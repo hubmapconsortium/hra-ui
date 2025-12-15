@@ -138,14 +138,14 @@
     }
   }
 
-  &.hra-table-style-basic {
+  &.hra-table-variant-basic {
     ::ng-deep thead {
       background-color: vars.$on-primary;
     }
   }
 
-  &.hra-table-style-divider,
-  &.hra-table-style-alternating {
+  &.hra-table-variant-divider,
+  &.hra-table-variant-alternating {
     @include mat.table-overrides(
       (
         background-color: vars.$on-primary,
@@ -187,7 +187,7 @@
     }
   }
 
-  &.hra-table-style-divider {
+  &.hra-table-variant-divider {
     @include mat.table-overrides(
       (
         row-item-outline-color: vars.$outline-variant,
@@ -196,14 +196,9 @@
     );
   }
 
-  &.hra-table-style-alternating {
+  &.hra-table-variant-alternating {
     ::ng-deep tbody tr:nth-child(even) {
       background-color: vars.$surface-container;
     }
-  }
-
-  .link.internal {
-    color: vars.$on-tertiary-fixed;
-    cursor: pointer;
   }
 }

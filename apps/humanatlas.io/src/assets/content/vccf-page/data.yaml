@@ -16,9 +16,9 @@ content:
         biomarkers, the vessel type, anastomoses, portal systems, microvasculature, functional tissue units, links to
         3D reference objects, vessel geometries (length, diameter), and mappings to anatomical structures the
         vessels supply or drain. This database is used to derive the blood vasculature ASCT+B table; and,
-        it can be used as a coordinate system for describing the location within the body--a Vasculature Common Coordinate Framework (VCCF).
+        it can be used as a coordinate system for describing the location within the body—a Vasculature Common Coordinate Framework (VCCF).
   - component: PageSection
-    tagline: HRA-VCCF Data Files
+    tagline: HRA-VCCF data files
     anchor: hra-vccf-data-files
     level: 3
     content:
@@ -28,7 +28,7 @@ content:
       - component: VersionedDataTable
         styles:
           --hra-table-max-height: 35rem
-        style: alternating
+        variant: alternating
         enableSort: false
         verticalDividers: false
         label: Release Version
@@ -39,14 +39,14 @@ content:
               type: link
               urlColumn: url
           - column: FileType
-            label: Download HRA-VCCF File
+            label: Download file
             type:
               type: link
               urlColumn: FileLink
           - column: releaseVersion
-            label: Release Version
+            label: Release version
           - column: dot
-            label: Digital Object Type
+            label: Digital object type
         items:
           - label: 10th Release (v2.4)
             version: v2.4
@@ -80,7 +80,7 @@ content:
             csvUrl: assets/content/vccf-page/table-data/version1_0.csv
 
   - component: PageSection
-    tagline: Terms of Use
+    tagline: Terms of use
     anchor: terms-of-use
     level: 2
     content:

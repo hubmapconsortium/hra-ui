@@ -156,10 +156,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'kg',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/kg-explorer/data.yaml', ContentPageDataSchema),
-    },
+    ...createExternalRedirectRoute('https://docs.humanatlas.io/apps/kg'),
   },
   {
     path: 'landing-page',

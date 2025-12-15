@@ -109,7 +109,7 @@ const meta: Meta<TableComponent> = {
     rows,
   },
   argTypes: {
-    style: {
+    variant: {
       control: 'select',
       options: ['alternating', 'divider', 'basic'],
     },
@@ -127,25 +127,25 @@ type Story = StoryObj<TableComponent>;
 
 export const Alternating: Story = {
   args: {
-    style: 'alternating',
+    variant: 'alternating',
   },
 };
 
 export const Divider: Story = {
   args: {
-    style: 'divider',
+    variant: 'divider',
   },
 };
 
 export const Basic: Story = {
   args: {
-    style: 'basic',
+    variant: 'basic',
   },
 };
 
 export const WithSelection: Story = {
   args: {
-    style: 'alternating',
+    variant: 'alternating',
     enableRowSelection: true,
   },
 };
@@ -170,14 +170,14 @@ export const WithCsvUrl: Story = {
 
 export const WithoutHeaders: Story = {
   args: {
-    style: 'alternating',
+    variant: 'alternating',
     hideHeaders: true,
   },
 };
 
 export const WithTotalsFooter: Story = {
   args: {
-    style: 'alternating',
+    variant: 'alternating',
     columns: columnsWithTotals,
     rows,
   },
