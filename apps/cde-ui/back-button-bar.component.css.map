@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/navigation/back-button-bar/src/lib/back-button-bar.component.scss"],
-  "sourcesContent": ["@use '../../../../styles/utils';\n@use '../../../../styles/vars';\n\n:host {\n  display: block;\n  width: 100%;\n  height: 3rem;\n  padding: 0.25rem;\n  background-color: utils.with-alpha(vars.$surface-bright, 80%);\n  backdrop-filter: blur(10rem);\n  box-shadow: 0 0.25rem 0.25rem 0 utils.with-alpha(vars.$secondary, 20%);\n}\n"],
-  "mappings": ";AAGA;AACE,WAAA;AACA,SAAA;AACA,UAAA;AACA,WAAA;AACA,oBAAA,IAAA,KAAA,IAAA,0BAAA,EAAA,EAAA,CAAA,CAAA;AACA,2BAAA,KAAA;AAAA,mBAAA,KAAA;AACA,cAAA,EAAA,QAAA,QAAA,EAAA,IAAA,KAAA,IAAA,qBAAA,EAAA,EAAA,CAAA,CAAA;;",
-  "names": []
-}
