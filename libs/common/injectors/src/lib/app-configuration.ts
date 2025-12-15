@@ -15,5 +15,6 @@ const APP_CONFIGURATION = createInjectionToken((): AppConfiguration => ({}));
 
 /** Inject the global application configuration */
 export const injectAppConfiguration = APP_CONFIGURATION[0];
+
 /** Set the application configuration */
 export const provideAppConfiguration = APP_CONFIGURATION[1];

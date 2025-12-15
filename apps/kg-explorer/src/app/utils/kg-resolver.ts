@@ -3,19 +3,18 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { DigitalObjectsJsonLd, HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
 import { catchError, map, of } from 'rxjs';
-
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
+import { injectMirrorUrl } from './endpoints';
 import { getDocumentationUrl, getProductLabel } from './utils';
 
 /**
  * Creates a resolver that fetches the digital object data from a url
- * @param url Digital object url
  * @returns Resolver
  */
-export function kgResolver(url: string): ResolveFn<DigitalObjectsJsonLd> {
+export function kgResolver(): ResolveFn<DigitalObjectsJsonLd> {
   return () => {
-    const http = inject(HttpClient);
-    return http.get(url, { responseType: 'json' }).pipe(map((data) => data));
+    const kg = inject(HraKgService);
+    return kg.digitalObjects();
   };
 }
 
@@ -29,8 +28,9 @@ export function doMetadataResolver(): ResolveFn<DigitalObjectMetadata> {
     const name = route.paramMap.get('name') || '';
     const version = route.paramMap.get('version') || '';
     const http = inject(HttpClient);
+    const mirrorUrl = injectMirrorUrl();
     return http
-      .get(`https://lod.humanatlas.io/${type}/${name}/${version}`, { responseType: 'json' })
+      .get(`${mirrorUrl()}/${type}/${name}/${version}/metadata.json`, { responseType: 'json' })
       .pipe(catchError(() => of(undefined)))
       .pipe(map((data) => data as DigitalObjectMetadata));
   };
@@ -54,7 +54,7 @@ export function asctbResolver(): ResolveFn<[string, number][]> {
 export function ontologyResolver(): ResolveFn<OntologyTree> {
   return () => {
     const v1 = inject(V1Service);
-    return v1.ontologyTreeModel({}).pipe(map((data) => data));
+    return v1.ontologyTreeModel({});
   };
 }
 
@@ -65,7 +65,7 @@ export function ontologyResolver(): ResolveFn<OntologyTree> {
 export function cellTypeResolver(): ResolveFn<OntologyTree> {
   return () => {
     const v1 = inject(V1Service);
-    return v1.cellTypeTreeModel({}).pipe(map((data) => data));
+    return v1.cellTypeTreeModel({});
   };
 }
 
@@ -76,7 +76,7 @@ export function cellTypeResolver(): ResolveFn<OntologyTree> {
 export function biomarkersResolver(): ResolveFn<OntologyTree> {
   return () => {
     const v1 = inject(V1Service);
-    return v1.biomarkerTreeModel({}).pipe(map((data) => data));
+    return v1.biomarkerTreeModel({});
   };
 }
 

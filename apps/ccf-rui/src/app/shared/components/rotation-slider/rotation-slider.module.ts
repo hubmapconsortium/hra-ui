@@ -6,8 +6,8 @@ import { RotationSliderComponent } from './rotation-slider.component';
 import { SliderBoxModule } from './slider-box/slider-box.module';
 
 @NgModule({
-  declarations: [RotationSliderComponent],
   imports: [HraCommonModule, PlainTooltipDirective, SliderBoxModule],
+  declarations: [RotationSliderComponent],
   exports: [RotationSliderComponent],
 })
 export class RotationSliderModule {}

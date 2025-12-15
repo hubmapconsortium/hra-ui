@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  HostBinding,
   inject,
   Input,
   model,
@@ -98,7 +97,7 @@ const UPDATE_ALL_SELECTORS: UpdateSelectors = {
  * Creates an observable operator function that remove undefined values from a stream
  * @returns Observable operator function
  */
-function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
+export function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
   return filter((value): value is T => value !== undefined);
 }
 
@@ -122,17 +121,14 @@ function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
     LinkDirective,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'hra-app',
+    class: 'hra-app mat-typography',
     '[class.app-height]': '!isLanding()',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent implements OnChanges, OnInit {
-  /** Host binding of app component */
-  @HostBinding('class.mat-typography') readonly matTypography = true;
-
   /** Illustration to display (choosen automatically if not provided) */
   @Input() selectedIllustration?: string | RawIllustration;
 

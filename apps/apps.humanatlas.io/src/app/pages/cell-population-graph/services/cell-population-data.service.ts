@@ -16,7 +16,7 @@ export class CellPopulationDataService {
   private readonly loading = signal<boolean>(false);
 
   /** Graph data signal to hold the loaded data */
-  private readonly graphData = signal<Record<string, any>[]>([]);
+  private readonly graphData = signal<Record<string, unknown>[]>([]);
 
   /** Cell types signal to hold unique cell types */
   private readonly cellTypes = signal<string[]>([]);
@@ -47,14 +47,14 @@ export class CellPopulationDataService {
    * @param url - URL to fetch the CSV data from
    * @returns Promise resolving to an array of records
    */
-  private async getCsv(url: string): Promise<Record<string, any>[]> {
+  private async getCsv(url: string): Promise<Record<string, unknown>[]> {
     return new Promise((resolve, reject) => {
-      parse(url, {
+      parse<Record<string, unknown>>(url, {
         download: true,
         delimiter: ',',
         header: true,
         skipEmptyLines: true,
-        complete: (result: any) => resolve(result.data),
+        complete: (result) => resolve(result.data),
         error: () => reject(`Failed to load from URL: ${url}`),
       });
     });
@@ -94,7 +94,7 @@ export class CellPopulationDataService {
    * @returns Promise resolving to an object containing graph data, cell types, and configuration
    */
   async loadDataset(datasetSource: string): Promise<{
-    graphData: Record<string, any>[];
+    graphData: Record<string, unknown>[];
     cellTypes: string[];
     config: Configuration;
   }> {
@@ -109,7 +109,7 @@ export class CellPopulationDataService {
     }
 
     this.loading.set(true);
-    const newGraphData: Record<string, any>[] = [];
+    const newGraphData: Record<string, unknown>[] = [];
     const uniqueCTs = new Set<string>();
 
     try {
@@ -123,7 +123,7 @@ export class CellPopulationDataService {
           row['index'] = index;
           row['dataset_name'] ??= 'Unknown';
           row['cell_type_ontology_id'] ??= 'Unknown';
-          uniqueCTs.add(row['cell_type']);
+          uniqueCTs.add(row['cell_type'] as string);
           newGraphData.push(row);
         }),
       );

@@ -31,3 +31,32 @@ export function joinWithSlash(start: string, end: string): string {
   end = end.replace(/^\/+/, '');
   return `${start}/${end}`;
 }
+
+/**
+ * Remove the trailing slash from a path while preserving the fragment and query parameters (if present)
+ *
+ * @param path Url to strip
+ * @returns New url
+ */
+export function stripTrailingSlash(path: string): string {
+  const index = path.search(/#|\?|$/);
+  if (path[index - 1] === '/') {
+    return path.slice(0, index - 1) + path.slice(index);
+  }
+
+  return path;
+}
+
+/**
+ * Remove the leading hash symbol from a fragment (if present)
+ *
+ * @param fragment Fragment to strip
+ * @returns New fragment
+ */
+export function stripLeadingHash(fragment: string): string {
+  if (fragment && fragment[0] === '#') {
+    return fragment.slice(1);
+  }
+
+  return fragment;
+}

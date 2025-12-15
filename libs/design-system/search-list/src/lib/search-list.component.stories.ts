@@ -1,0 +1,85 @@
+import { type Meta, type StoryObj } from '@storybook/angular';
+
+import { SearchListComponent, SearchListOption } from './search-list.component';
+
+const FILTER_OPTIONS = [
+  { id: 'a', label: 'A', count: 9999 },
+  { id: 'ab', label: 'AB', count: 4299 },
+  { id: 'abc', label: 'ABC', count: 1799 },
+  { id: 'abcd', label: 'ABCD', count: 899 },
+  { id: 'abcde', label: 'ABCDE', count: 499 },
+  { id: 'abcdef', label: 'ABCDEF', count: 299 },
+  { id: 'abcdefg', label: 'ABCDEFG', count: 199 },
+  { id: 'abcdefgh', label: 'BACDEFGH', count: 99 },
+] as SearchListOption[];
+
+const FILTER_OPTIONS_MULTI = [
+  { id: 'a', label: 'A', secondaryLabel: 'short description', count: 9999 },
+  { id: 'ab', label: 'AB', secondaryLabel: 'short description', count: 4299 },
+  { id: 'abc', label: 'ABC', secondaryLabel: 'short description', count: 1799 },
+  {
+    id: 'abcd',
+    label: 'ABCD',
+    secondaryLabel: 'short description',
+    count: 899,
+  },
+  {
+    id: 'abcde',
+    label: 'ABCDE',
+    secondaryLabel: 'short description',
+    count: 499,
+  },
+  {
+    id: 'abcdef',
+    label: 'ABCDEF',
+    secondaryLabel: 'short description',
+    count: 299,
+  },
+  {
+    id: 'abcdefg',
+    label: 'ABCDEFG',
+    secondaryLabel: 'short description',
+    count: 199,
+  },
+  {
+    id: 'abcdefgh',
+    label: 'BACDEFGH',
+    secondaryLabel: 'short description',
+    count: 99,
+  },
+] as SearchListOption[];
+
+const meta: Meta<SearchListComponent<SearchListOption>> = {
+  component: SearchListComponent,
+  title: 'Design System / Search List',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=12492-44301&t=P7zcWFRIyuDoIlRW-4',
+    },
+  },
+  args: {
+    selected: [
+      { id: 'a', label: 'A' },
+      { id: 'abc', label: 'ABC' },
+      { id: 'abcde', label: 'ABCDE' },
+    ],
+    disableSearch: false,
+    disableRipple: false,
+  },
+};
+
+export default meta;
+type Story = StoryObj<SearchListComponent<SearchListOption>>;
+
+export const Default: Story = {
+  args: {
+    options: FILTER_OPTIONS,
+  },
+};
+
+export const MultiLine: Story = {
+  args: {
+    options: FILTER_OPTIONS_MULTI,
+  },
+};

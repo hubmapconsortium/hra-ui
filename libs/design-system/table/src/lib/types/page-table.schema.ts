@@ -1,86 +1,102 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Type for table style */
 export type TableVariant = z.infer<typeof TableVariantSchema>;
 
 /** Schema for table style */
-export const TableVariantSchema = z.enum(['alternating', 'divider', 'basic']);
+export const TableVariantSchema = z.enum(['alternating', 'divider', 'basic']).meta({ id: 'TableVariant' });
 
 /** Type for a single table row */
 export type TableRow = z.infer<typeof TableRowSchema>;
 
 /** Schema for a single table row */
-export const TableRowSchema = z.record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.array(z.any())]));
+export const TableRowSchema = z
+  .record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.array(z.any())]))
+  .meta({ id: 'TableRow' });
 
 /** Type for Text Column */
 export type TextColumnType = z.infer<typeof TextColumnTypeSchema>;
 
 /** Schema for Text Column */
-export const TextColumnTypeSchema = z.object({
-  type: z.literal('text'),
-});
+export const TextColumnTypeSchema = z
+  .object({
+    type: z.literal('text'),
+  })
+  .meta({ id: 'TextColumnType' });
 
 /** Type for Numeric Column */
 export type NumericColumnType = z.infer<typeof NumericColumnTypeSchema>;
 
 /** Schema for Numeric Column */
-export const NumericColumnTypeSchema = z.object({
-  type: z.literal('numeric'),
-  computeTotal: z.boolean().optional(),
-  // TODO add format
-});
+export const NumericColumnTypeSchema = z
+  .object({
+    type: z.literal('numeric'),
+    computeTotal: z.boolean().optional(),
+    // TODO add format
+  })
+  .meta({ id: 'NumericColumnType' });
 
 /** Type for Markdown Column */
 export type MarkdownColumnType = z.infer<typeof MarkdownColumnTypeSchema>;
 
 /** Schema for Markdown Column */
-export const MarkdownColumnTypeSchema = z.object({
-  type: z.literal('markdown'),
-});
+export const MarkdownColumnTypeSchema = z
+  .object({
+    type: z.literal('markdown'),
+  })
+  .meta({ id: 'MarkdownColumnType' });
 
 /** Type for Icon Column */
 export type IconColumnType = z.infer<typeof IconColumnTypeSchema>;
 
 /** Schema for Icon Column */
-export const IconColumnTypeSchema = z.object({
-  type: z.literal('icon'),
-  icon: z.string(),
-  tooltip: z.string().optional(),
-});
+export const IconColumnTypeSchema = z
+  .object({
+    type: z.literal('icon'),
+    icon: z.string(),
+    tooltip: z.string().optional(),
+  })
+  .meta({ id: 'IconColumnType' });
 
 /** Type for Link Column */
 export type LinkColumnType = z.infer<typeof LinkColumnTypeSchema>;
 
 /** Schema for Link Column */
-export const LinkColumnTypeSchema = z.object({
-  type: z.literal('link'),
-  urlColumn: z.string(),
-  internal: z.boolean().optional(),
-});
+export const LinkColumnTypeSchema = z
+  .object({
+    type: z.literal('link'),
+    urlColumn: z.string(),
+    internal: z.boolean().optional(),
+  })
+  .meta({ id: 'LinkColumnType' });
 
 /** Type for MenuButton Column */
 export type MenuButtonColumnType = z.infer<typeof MenuButtonColumnTypeSchema>;
 
 /** Schema for MenuButton Column */
-export const MenuButtonColumnTypeSchema = z.object({
-  type: z.literal('menu'),
-  icon: z.string(),
-  options: z.string(),
-  tooltip: z.string().optional(),
-});
+export const MenuButtonColumnTypeSchema = z
+  .object({
+    type: z.literal('menu'),
+    icon: z.string(),
+    options: z.string(),
+    tooltip: z.string().optional(),
+  })
+  .meta({ id: 'MenuButtonColumnType' });
 
 /** Type for MenuOptions Column */
 export type MenuOptionsType = z.infer<typeof MenuOptionsTypeSchema>;
 
 /** Schema for MenuOptions Column */
-export const MenuOptionsTypeSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  icon: z.string(),
-  description: z.string().optional(),
-  url: z.string().url().optional(),
-});
+export const MenuOptionsTypeSchema = z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    icon: z.string(),
+    description: z.string().optional(),
+    url: z.string().url().optional(),
+  })
+  .meta({ id: 'MenuOptionsType' });
 
 /** Union of Schema Types for Simple Columns */
 export const SimpleTableColumnTypeSchema = z.union([
@@ -111,11 +127,13 @@ export type TableColumn = z.infer<typeof TableColumnSchema>;
 export type TableColumnWithType<C extends TableColumnType> = Omit<TableColumn, 'type'> & { type: C };
 
 /** Schema for table columns */
-export const TableColumnSchema = z.object({
-  column: z.string(),
-  label: z.string(),
-  type: z.union([SimpleTableColumnTypeSchema, TableColumnTypeSchema]).default('text'),
-});
+export const TableColumnSchema = z
+  .object({
+    column: z.string(),
+    label: z.string(),
+    type: z.union([SimpleTableColumnTypeSchema, TableColumnTypeSchema]).default('text'),
+  })
+  .meta({ id: 'TableColumn' });
 
 /** Page table component data */
 export type PageTable = z.infer<typeof PageTableSchema>;
@@ -130,4 +148,4 @@ export const PageTableSchema = ContentTemplateSchema.extend({
   enableSort: z.boolean().optional(),
   verticalDividers: z.boolean().optional(),
   enableSelection: z.boolean().optional(),
-});
+}).meta({ id: 'Table' });

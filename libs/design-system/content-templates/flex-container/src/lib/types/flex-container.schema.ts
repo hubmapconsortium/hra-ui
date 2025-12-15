@@ -1,5 +1,5 @@
 import { AnyContentTemplateSchema, ContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Schema structure of a flex container */
 export const FlexContainerSchema = ContentTemplateSchema.extend({
@@ -7,4 +7,4 @@ export const FlexContainerSchema = ContentTemplateSchema.extend({
   rowGap: z.string().optional(),
   columnGap: z.string().optional(),
   content: AnyContentTemplateSchema.array(),
-});
+}).meta({ id: 'FlexContainer' });

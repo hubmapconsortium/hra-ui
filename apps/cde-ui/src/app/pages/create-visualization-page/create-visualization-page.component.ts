@@ -1,4 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, inject, input, viewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +11,6 @@ import {
   ColorMapFileLoaderService,
   DEFAULT_COLOR_MAP_KEY,
   DEFAULT_COLOR_MAP_VALUE_KEY,
-  TOOLTIP_POSITION_BELOW,
 } from '@hra-ui/cde-visualization';
 import { HraCommonModule } from '@hra-ui/common';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
@@ -20,7 +18,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { TooltipCardComponent, TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { DeprecatedWorkflowCardComponent } from '@hra-ui/design-system/workflow-card';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
@@ -67,9 +64,7 @@ function optionalValue<T>(): T | null {
     FileUploadComponent,
     MarkEmptyFormControlDirective,
     NavigationModule,
-    OverlayModule,
     StepIndicatorComponent,
-    TooltipCardComponent,
     ErrorIndicatorComponent,
   ],
   templateUrl: './create-visualization-page.component.html',
@@ -161,57 +156,6 @@ export class CreateVisualizationPageComponent {
       header: true,
     },
   };
-
-  /** Tooltip position config */
-  readonly tooltipPosition = TOOLTIP_POSITION_BELOW;
-
-  /** Tooltip content */
-  readonly tooltips: TooltipContent[][] = [
-    [
-      {
-        description:
-          'Use the template to format single-cell spatial feature tables for exploration. The cell type column can include damage and proliferation markers.',
-      },
-    ],
-    [
-      {
-        description: 'Verify column headers and edit as needed. Select optional column headers.',
-      },
-    ],
-    [
-      {
-        title: 'Anchor Cell Type',
-        description:
-          'The anchor cell type represents the cell type to which the nearest cell distance distributions should be computed and visualized. Euclidian distance is used to compute the distance between two cells. \n“Endothelial” is used as the default anchor cell type. If an “Endothelial” cell label is not present, the first listed cell type label is used as the anchor cell type.',
-      },
-      {
-        title: 'Distance Threshold (µm)',
-        description: 'Configure the distance threshold to modify visualizations for analysis.',
-      },
-      {
-        title: 'Pixel Size (µm/pixel)',
-        description:
-          'Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already in micrometers.',
-      },
-    ],
-    [
-      {
-        description:
-          'Information in these fields will not change the visualization output. Metadata may be helpful for taking screenshots of the uploaded data and resulting visualizations in the Visualization App.',
-      },
-    ],
-    [
-      {
-        description:
-          'Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors may be changed individually while exploring the visualization in the Visualization App.',
-      },
-    ],
-    [
-      {
-        description: 'Data on the Create Visualization page cannot be modified after a visualization is generated.',
-      },
-    ],
-  ];
 
   /** Whether to show upload info tooltip */
   uploadInfoOpen = false;

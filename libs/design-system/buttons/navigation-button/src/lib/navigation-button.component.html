@@ -1,0 +1,21 @@
+<a matRipple hraFeature="navigation-button" hraClickEvent [attr.href]="link()">
+  <div class="content">
+    @if (indented()) {
+      <div class="indent"></div>
+    } @else {
+      <!-- Leading icon -->
+      <ng-content select="[hraNavigationIcon='leading']" />
+    }
+
+    <div class="text-container">
+      <!-- Tagline -->
+      <ng-content select="[hraNavigationButtonTagline]" />
+
+      <!-- Description -->
+      <ng-content select="[hraNavigationButtonDescription]" />
+    </div>
+
+    <!-- Trailing icon -->
+    <ng-content select="[hraNavigationIcon]:not([hraNavigationIcon='leading'])" />
+  </div>
+</a>

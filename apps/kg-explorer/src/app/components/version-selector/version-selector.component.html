@@ -13,7 +13,7 @@
       (selectionChange)="versionChange.emit($event.value)"
     >
       @for (version of availableVersions(); track $index) {
-        <mat-option [hraFeature]="version" hraClickEvent [value]="version">
+        <mat-option hraClickEvent [hraFeature]="version" [value]="version">
           {{ version }}
         </mat-option>
       }

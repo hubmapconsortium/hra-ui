@@ -24,7 +24,7 @@ content:
              If using the RUI integrated into the HuBMAP Ingestion Portal, registration information is automatically saved with the associated tissue block.
 
       - component: Image
-        src: assets/content/rui-page/images/rui_features.png
+        src: assets/ui-images/annotated-ui-rui.png
 
   - component: PageSection
     tagline: Standard operating procedures (SOPs)
@@ -43,3 +43,4 @@ content:
     content:
       - component: YouTubePlayer
         videoId: 18imQj068Iw
+        label: Registration user interface application demo video

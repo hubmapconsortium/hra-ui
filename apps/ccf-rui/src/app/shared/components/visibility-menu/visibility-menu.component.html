@@ -7,13 +7,14 @@
     <div cdkOverlayOrigin class="item-entry" [class.selected]="selected" #origin="cdkOverlayOrigin">
       <mat-icon
         hraFeature="opacity-toggle"
-        [hraClickEvent]="{ visible: item.visible }"
         hraPlainTooltip="Edit opacity"
         class="opacity-icon"
+        [hraClickEvent]="{ visible: item.visible }"
         [class.fade]="!item.visible"
-        svgIcon="app:opacity"
         (click)="selection.set(item)"
-      ></mat-icon>
+      >
+        opacity
+      </mat-icon>
 
       <div hraFeature="name" hraClickEvent class="item-name" [hraPlainTooltip]="name">
         {{ name }}
@@ -36,8 +37,7 @@
         (opacityChange)="updateOpacity($event)"
         (opacityReset)="resetItem()"
         (visibilityToggle)="toggleVisibility(item)"
-      >
-      </ccf-opacity-slider>
+      />
     </ng-template>
   </ng-container>
 }

@@ -25,7 +25,7 @@ content:
     level: 3
     content:
       - component: Image
-        src: assets/content/cell-distance-explorer-page/images/app-features.png
+        src: assets/ui-images/annotated-ui-cde.png
 
   - component: PageSection
     tagline: Demo video
@@ -34,6 +34,7 @@ content:
     content:
       - component: YouTubePlayer
         videoId: onJB6Ee3nLw
+        label: Cell distance explorer demo video
 
   - component: PageSection
     tagline: Code

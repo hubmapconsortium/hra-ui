@@ -25,6 +25,7 @@ content:
     content:
       - component: YouTubePlayer
         videoId: OxZOZ_TTq80
+        label: Awards ceremony video
 
   - component: PageSection
     tagline: Winning teams

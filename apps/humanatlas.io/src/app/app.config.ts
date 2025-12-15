@@ -4,6 +4,7 @@ import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from 
 import { provideContentTemplateControllers, provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
+import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { ButtonDef } from '@hra-ui/design-system/buttons/button';
 import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
@@ -66,5 +67,6 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' }),
     ),
+    provideRouterExt(),
   ],
 };

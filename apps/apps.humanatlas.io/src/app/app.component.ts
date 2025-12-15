@@ -21,7 +21,6 @@ import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { CtaConfig, DEFAULT_MENUS, HeaderComponent, Menu } from '@hra-ui/design-system/navigation/header';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { isNavigating } from './utils/navigation';
 
 /** Padding when scrolling to an anchor in px */
@@ -38,14 +37,13 @@ const ANCHOR_SCROLL_PADDING = 24;
     NavigationModule,
     MatMenuModule,
     MatDividerModule,
-    PlainTooltipDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent extends BaseApplicationComponent {
   /** Additional header menus */
@@ -75,9 +73,9 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Call to action message */
   protected readonly cta: CtaConfig = {
-    description: '🎉  9th Release (v2.3) has arrived!',
+    description: '🎉  10th Release (v2.4) has arrived!',
     action: 'Learn more',
-    url: 'https://humanatlas.io/release-notes/v2.3',
+    url: 'https://humanatlas.io/release-notes/v2.4',
   };
 
   /** Whether the CTA is dismissed or not */

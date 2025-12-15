@@ -30,7 +30,7 @@ content:
           - Registered data: Dig deeper into the source data with the cards in the results list on the right side menu.
 
       - component: Image
-        src: assets/ui-images/eui_features.png
+        src: assets/ui-images/annotated-ui-eui.png
 
   - component: PageSection
     tagline: Tutorials and demo videos
@@ -46,6 +46,7 @@ content:
 
       - component: YouTubePlayer
         videoId: OQ0N8pZS4Rc
+        label: Exploration user interface demo video
 
   - component: PageSection
     tagline: Using spatial search filters

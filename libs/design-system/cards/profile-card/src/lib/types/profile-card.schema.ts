@@ -1,5 +1,5 @@
 import { ContentTemplateSchema, ProjectedContentTemplateSchema } from '@hra-ui/cdk/content-template';
-import { z } from 'zod';
+import * as z from 'zod';
 
 /** Type for profile card */
 export type ProfileCard = z.infer<typeof ProfileCardSchema>;
@@ -12,4 +12,4 @@ export const ProfileCardSchema = ContentTemplateSchema.extend({
   pictureUrl: z.string(),
   centerContent: z.boolean().optional(),
   actions: ProjectedContentTemplateSchema.optional(),
-});
+}).meta({ id: 'ProfileCard' });

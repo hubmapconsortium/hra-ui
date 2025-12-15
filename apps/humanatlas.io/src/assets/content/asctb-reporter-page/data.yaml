@@ -38,7 +38,7 @@ content:
     level: 3
     content:
       - component: Image
-        src: assets/content/asctb-reporter-page/images/app-features.png
+        src: assets/ui-images/annotated-ui-asctb-reporter.png
 
   - component: PageSection
     tagline: App guide
@@ -53,6 +53,7 @@ content:
     content:
       - component: YouTubePlayer
         videoId: pzUFmDhQEO8
+        label: Asct+b reporter application demo video
 
   - component: PageSection
     tagline: Comparing datasets

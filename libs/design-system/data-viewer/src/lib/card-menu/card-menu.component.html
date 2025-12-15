@@ -11,9 +11,9 @@
     mat-menu-item
     hraFeature="source-data"
     hraClickEvent
-    [attr.href]="card().sourceDataUrl"
     target="_blank"
     rel="noopener noreferrer"
+    [attr.href]="card().sourceDataUrl"
   >
     <mat-icon class="reset icon">database</mat-icon>
     View source data
@@ -22,15 +22,17 @@
 
 <mat-menu class="hra-data-viewer-download-menu" hraFeature="download" #submenu="matMenu">
   @for (file of card().files; track file) {
-    <a mat-menu-item hraClickEvent [attr.href]="file.url" download>
+    <a mat-menu-item hraClickEvent download [attr.href]="file.url">
       <mat-icon>download</mat-icon>
       {{ file.label }}
     </a>
   }
 
-  <mat-divider class="menu-divider" />
+  @if (card().files.length > 0) {
+    <mat-divider class="menu-divider" />
+  }
 
-  <a mat-menu-item hraClickEvent class="download-csv" [attr.href]="card().crosswalkUrl" download>
+  <a mat-menu-item hraClickEvent class="download-csv" download [attr.href]="card().crosswalkUrl">
     <mat-icon>download</mat-icon>
     <div class="container">
       <span class="label">CSV-Crosswalk</span>

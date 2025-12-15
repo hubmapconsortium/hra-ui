@@ -5,14 +5,12 @@ import { routeData } from './route-data';
 
 @Component({
   template: 'Child',
-  standalone: true,
 })
 class ChildComponent {}
 
 @Component({
-  template: '<router-outlet></router-outlet>',
-  standalone: true,
   imports: [RouterOutlet],
+  template: '<router-outlet />',
 })
 class TestAppComponent {
   data = routeData();
