@@ -4079,7 +4079,7 @@ content:
         label: Release Verison
         enableSort: false
         verticalDividers: false
-        style: alternating
+        variant: alternating
         columns:
           - column: organ
             label: Organ

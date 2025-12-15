@@ -66,7 +66,7 @@ content:
           “FTU illustration”). Search results show matching digital objects across all types. Combine
           search with filters to narrow down results further. Filters include:
       - component: PageTable
-        style: alternating
+        variant: alternating
         verticalDividers: true
         columns:
           - column: filter
@@ -110,7 +110,7 @@ content:
           with their tooltip definitions verbatim, plus brief notes on how they live inside the Knowledge Graph,
           available file formats to download, and their connection to other digital objects:
       - component: PageTable
-        style: alternating
+        variant: alternating
         verticalDividers: true
         columns:
           - column: doType

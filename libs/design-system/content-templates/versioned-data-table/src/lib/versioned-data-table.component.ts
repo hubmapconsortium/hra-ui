@@ -44,8 +44,8 @@ export class VersionedDataTableComponent {
   /** The columns */
   readonly columns = input<TableColumn[]>();
 
-  /** The style of the table */
-  readonly style = input<TableVariant>('alternating');
+  /** The variant of the table */
+  readonly variant = input<TableVariant>('alternating');
 
   /** The sort of the table */
   readonly enableSort = input(false);

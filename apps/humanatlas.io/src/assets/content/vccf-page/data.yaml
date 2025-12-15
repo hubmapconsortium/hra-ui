@@ -28,7 +28,7 @@ content:
       - component: VersionedDataTable
         styles:
           --hra-table-max-height: 35rem
-        style: alternating
+        variant: alternating
         enableSort: false
         verticalDividers: false
         label: Release Version
