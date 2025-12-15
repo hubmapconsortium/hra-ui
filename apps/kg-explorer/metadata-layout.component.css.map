@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/kg-explorer/src/app/components/metadata-layout/metadata-layout.component.scss"],
-  "sourcesContent": ["@use 'vars';\n\n:host {\n  display: flex;\n  flex-direction: row;\n  padding: 2.5rem 1rem;\n  overflow-wrap: break-word;\n\n  .content-container {\n    display: flex;\n    width: 100%;\n    flex-direction: column;\n    gap: 2.5rem;\n  }\n\n  @media (min-width: 640px) {\n    padding: 2.5rem;\n\n    .content-container {\n      flex: 1;\n      width: calc(100% - 17rem - 2.5rem);\n      max-width: 87.5rem;\n      margin: auto;\n    }\n  }\n\n  @media (min-width: 1100px) {\n    margin-right: 0;\n    gap: 2.5rem;\n\n    .content-container {\n      width: calc(100% - 23rem - 2.5rem);\n    }\n  }\n}\n"],
-  "mappings": ";AAEA;AACE,WAAA;AACA,kBAAA;AACA,WAAA,OAAA;AACA,iBAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,SAAA;AACA,kBAAA;AACA,OAAA;;AAGF,OAAA,CAAA,SAAA,EAAA;AAbF;AAcI,aAAA;;AAEA,QAAA,CAVF;AAWI,UAAA;AACA,WAAA,KAAA,KAAA,EAAA,MAAA,EAAA;AACA,eAAA;AACA,YAAA;;;AAIJ,OAAA,CAAA,SAAA,EAAA;AAxBF;AAyBI,kBAAA;AACA,SAAA;;AAEA,QAAA,CAtBF;AAuBI,WAAA,KAAA,KAAA,EAAA,MAAA,EAAA;;;",
-  "names": []
-}

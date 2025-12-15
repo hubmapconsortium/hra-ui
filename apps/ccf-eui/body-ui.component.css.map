@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/ccf-body-ui/src/lib/body-ui/body-ui.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n  position: relative;\n  width: 100%;\n  height: 100%;\n\n  canvas {\n    background-color: #000;\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,YAAA;AACA,SAAA;AACA,UAAA;;AAEA,MAAA;AACE,oBAAA;;",
-  "names": []
-}
