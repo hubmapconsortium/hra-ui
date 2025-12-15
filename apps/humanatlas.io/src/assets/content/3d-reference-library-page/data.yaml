@@ -4105,10 +4105,10 @@ content:
     content:
       - component: Markdown
         data: |
-          -  [3D Reference Object Approval](https://zenodo.org/records/5944197)
-          -  [Using 3D Reference Objects](https://zenodo.org/records/10358858)
-          -  [Using the CCF Registration User Interface](https://zenodo.org/records/14675303)
-          -  [Assigning RUI Data to Multiple Tissue Blocks](https://zenodo.org/records/6628459)
+          -  [3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)
+          -  [Adding 3D Reference Objects to the Human Reference Atlas](https://doi.org/10.5281/zenodo.5639651)
+          -  [Using the CCF Registration User Interface](https://doi.org/10.5281/zenodo.5575776)
+          -  [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
   - component: PageSection
     tagline: License
     anchor: license
