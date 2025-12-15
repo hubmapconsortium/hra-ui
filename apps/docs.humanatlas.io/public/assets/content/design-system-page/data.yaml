@@ -2,7 +2,6 @@ $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Design System
 subtitle: |
   A unified visual and interaction framework for all Human Reference Atlas applications.
-
 icons: product:design-system
 content:
   - component: PageSection
@@ -37,20 +36,20 @@ content:
     anchor: design-to-dev
     level: 3
     content:
-      component: Markdown
-      data: |
-        Designers initiate a formal handoff to developers when a component or app design is ready to be built.
+      - component: Markdown
+        data: |
+          Designers initiate a formal handoff to developers when a component or app design is ready to be built.
 
-        1. A designer submits a GitHub issue in the [HRA-UI monorepo](https://github.com/hubmapconsortium/hra-ui) to indicate that a UI design is ready for development, with the following details:
-            - A description of the specified UI design and its interactions
-            - Figma links to anything relevant for implementation
-            - Any accessibility, responsive behavior, and feature notes
+          1. A designer submits a GitHub issue in the [HRA-UI monorepo](https://github.com/hubmapconsortium/hra-ui) to indicate that a UI design is ready for development, with the following details:
+              - A description of the specified UI design and its interactions
+              - Figma links to anything relevant for implementation
+              - Any accessibility, responsive behavior, and feature notes
 
-        2. A developer uses the issue to:
-            - Implement the component in code
-            - Integrate it into the HRA Design System Storybook for reuse across the HRA app ecosystem
+          2. A developer uses the issue to:
+              - Implement the component in code
+              - Integrate it into the HRA Design System Storybook for reuse across the HRA app ecosystem
 
-        This collaborative handoff ensures that visual fidelity, interaction behavior, and accessibility are maintained across the design and development cycle.
+          This collaborative handoff ensures that visual fidelity, interaction behavior, and accessibility are maintained across the design and development cycle.
 
   - component: PageSection
     tagline: Storybook for developers
