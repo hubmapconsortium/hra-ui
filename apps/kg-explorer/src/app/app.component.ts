@@ -16,7 +16,6 @@ import { DigitalObjectsJsonLd, HraKgService } from '@hra-api/ng-client';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { MarkdownModule } from 'ngx-markdown';
 import { HelpMenuOptions } from './app.routes';
@@ -32,12 +31,20 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
   },
   {
     label: 'Knowledge Graph',
+    url: 'https://docs.humanatlas.io/apps/kg',
+    description: 'App guide & documentation',
+  },
+  {
+    label: 'Knowledge Graph for Developers',
     url: 'https://docs.humanatlas.io/dev/kg',
-    description: 'App guidance & documentation',
+    description: 'Developer documentation',
+    icon: 'code',
+    divider: true,
   },
   {
     label: 'Read publication',
     url: 'https://doi.org/10.1038/s41597-025-05183-6',
+    icon: 'open_in_new',
     divider: true,
   },
 ];
@@ -53,7 +60,6 @@ export const DEFAULT_HELP_OPTIONS: HelpMenuOptions[] = [
     NavigationModule,
     MarkdownModule,
     ButtonsModule,
-    IconsModule,
     MatMenuModule,
     MatDividerModule,
   ],
