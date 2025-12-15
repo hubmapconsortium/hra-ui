@@ -67,7 +67,7 @@ content:
               url: https://lod.humanatlas.io/ctann
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Functional Tissue Unit (FTU) Illustrations
+            tagline: Functional Tissue Unit Illustrations
             icons: product:ftu
             content:
               - component: Markdown
@@ -88,7 +88,7 @@ content:
             icons: product:millitome
             content:
               - component: Markdown
-                data: Files for assigning spatial locations to HuBMAP IDs and gathering metadata.
+                data: Protocol for registering human tissue at scale into 3D reference objects.
             actionsLeft:
               component: TextHyperlink
               text: Learn more
@@ -99,7 +99,7 @@ content:
               url: https://lod.humanatlas.io/millitome
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Organ Mapping Antibody Panels (OMAPs)
+            tagline: Organ Mapping Antibody Panels
             icons: product:omaps
             content:
               - component: Markdown
