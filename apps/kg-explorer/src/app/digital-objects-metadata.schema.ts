@@ -62,6 +62,7 @@ export const DigitalObjectMetadataSchema = z
       description: z.string(),
       distributions: DistributionsInfoSchema.array(),
       doi: z.string(),
+      externalReviewers: PersonInfoSchema.array(),
       funders: z
         .object({
           awardNumber: z.string(),
