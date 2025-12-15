@@ -200,7 +200,7 @@ content:
 
               * **Explore the app:** [Knowledge Graph](https://lod.humanatlas.io)
               * **New help & documentation content:**
-                * [App documentation](https://docs.humanatlas.io/apps/kg): Start here, then go to the developer documentation when you areready to work with the data programmatically
+                * [App documentation](https://docs.humanatlas.io/apps/kg): Start here, then go to the developer documentation when you are ready to work with the data programmatically
                 * [Developer documentation](https://docs.humanatlas.io/dev/kg)
               * **Read publication:** Bueckle, Andreas, Bruce W. Herr II, Josef Hardi, Ellen M Quardokus, Mark A. Musen, and Katy Börner. 2025\. ["Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph"](https://www.nature.com/articles/s41597-025-05183-6). *Nature Scientific Data* doi: 10.1038/s41597-025-05183-6.
 
@@ -360,8 +360,8 @@ content:
               Andreas Bueckle, Ph.D., appeared on the CFDE podcast with host Dr. Allissa Dillmann. This marked the first instance of a video episode in the series. Dr. Bueckle presented the ongoing work to make HuBMAP, SenNet, and GTEx datasets more [Findable, Accessible, Interoperable, and Reusable (FAIR)](https://doi.org/10.1038/sdata.2016.18) with the [HRA Organ Gallery](https://humanatlas.io/hra-organ-gallery) in virtual reality.
 
           - component: TextHyperlink
-            text: Watch on Vimeo
-            url: https://vimeo.com/1143496413
+            text: Watch podcast
+            url: https://blubrry.com/3847772/150751389/episode-12-exploring-the-human-reference-atlas-hra-organ-gallery-in-immersive-3d/
             icon: arrow_right_alt
 
       - component: PageSection
