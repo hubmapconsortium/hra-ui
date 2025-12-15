@@ -1,10 +1,10 @@
 import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
 import * as z from 'zod';
 
-/** Type for table style */
+/** Type for table variant */
 export type TableVariant = z.infer<typeof TableVariantSchema>;
 
-/** Schema for table style */
+/** Schema for table variant */
 export const TableVariantSchema = z.enum(['alternating', 'divider', 'basic']).meta({ id: 'TableVariant' });
 
 /** Type for a single table row */
@@ -144,7 +144,7 @@ export const PageTableSchema = ContentTemplateSchema.extend({
   csvUrl: z.string().optional(),
   columns: TableColumnSchema.array().optional(),
   rows: z.array(TableRowSchema).optional(),
-  style: TableVariantSchema.optional(),
+  variant: TableVariantSchema.optional(),
   enableSort: z.boolean().optional(),
   verticalDividers: z.boolean().optional(),
   enableSelection: z.boolean().optional(),

@@ -304,7 +304,7 @@ export class MainPageComponent {
           secondaryLabel: versionData ? versionData.date : undefined,
         };
       })
-      .sort((o1, o2) => o2.label.localeCompare(o1.label)); //Reverse order
+      .sort((o1, o2) => o2.label.localeCompare(o1.id)); //Reverse order
   }
 
   /**
