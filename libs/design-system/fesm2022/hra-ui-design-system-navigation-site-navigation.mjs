@@ -129,7 +129,7 @@ var menuItems = [
 			{
 				type: "item",
 				label: "Knowledge Graph",
-				url: "https://docs.humanatlas.io/dev/kg"
+				url: "https://humanatlas.io/kg"
 			},
 			{
 				type: "item",
