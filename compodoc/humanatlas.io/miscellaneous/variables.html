@@ -458,6 +458,13 @@
     },
   },
   {
+    path: &#x27;kg&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/kg-explorer/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
     path: &#x27;landing-page&#x27;,
     redirectTo: &#x27;/&#x27;,
   },
