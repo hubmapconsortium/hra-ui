@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/design-system/brand/mark/src/lib/mark.component.scss"],
+  "sourcesContent": ["@use '../../../../../../libs/design-system/styles/vars' as vars;\n\n:host {\n  color: var(--hra-brand-mark-color, vars.$tertiary);\n}\n"],
+  "mappings": ";AAEA;AACE,SAAA,IAAA,sBAAA,EAAA,IAAA;;",
+  "names": []
+}
