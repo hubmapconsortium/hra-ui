@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/cde-ui/src/app/pages/visualization/visualization.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n  width: 100%;\n  flex-grow: 1;\n  height: 0;\n  overflow-y: auto;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,SAAA;AACA,aAAA;AACA,UAAA;AACA,cAAA;;",
+  "names": []
+}
