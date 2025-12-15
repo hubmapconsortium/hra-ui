@@ -148,7 +148,7 @@ content:
           Cell Ontology (PCL) and to improve the quality and coverage of these ontologies.
 
       - component: PageTable
-        style: alternating
+        variant: alternating
         columns:
           - column: ontology
             label: Ontology

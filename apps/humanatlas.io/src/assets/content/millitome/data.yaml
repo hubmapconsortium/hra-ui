@@ -43,7 +43,7 @@ content:
       - component: PageTable
         styles:
           --hra-table-max-height: 35rem
-        style: alternating
+        variant: alternating
         enableSort: true
         columns:
           - column: Organ
@@ -224,7 +224,7 @@ content:
       - component: PageTable
         styles:
           --hra-table-max-height: 35rem
-        style: alternating
+        variant: alternating
         enableSort: true
         columns:
           - column: Organ
