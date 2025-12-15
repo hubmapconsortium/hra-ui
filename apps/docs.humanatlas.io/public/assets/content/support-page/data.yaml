@@ -11,7 +11,7 @@ content:
     content:
       - component: Markdown
         data: |
-            This support page provides guidance, troubleshooting, and resources to help integrate APIs, visualize data, or contribute tools and datasets.
+          This support page provides guidance, troubleshooting, and resources to help integrate APIs, visualize data, or contribute tools and datasets.
   - component: PageSection
     tagline: Quick links
     anchor: quick-links

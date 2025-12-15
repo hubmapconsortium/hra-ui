@@ -12,9 +12,9 @@ content:
       - component: Markdown
         data: |
           Designers use Figma to create reusable components, patterns, and styles that ensure consistency when designing Human Reference Atlas (HRA) applications.
-          
+
           The HRA Design System Figma file acts as the single source of truth for all websites and applications in the HRA app ecosystem. Designers structure this Figma file into three main elements, each organized by page for clarity and reuse:
-          
+
           - [Style Guide](https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=6977-27335&t=XzEQuK8OAk0GjIUE-4): Provides guidance on the use of colors, typefaces, logos, imagery, and overall branding to maintain design consistency
           - [Component Library](https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=4844-22169&t=XzEQuK8OAk0GjIUE-4): A collection of user interface components, such as buttons, input fields, modals, and navigation bars
           - [Pattern Library](https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=13531-40993&t=XzEQuK8OAk0GjIUE-4): User interface guidelines and structures used to create reusable templates for pages and applications
