@@ -10,7 +10,7 @@ const BaseRoleSchema = z.object({
 const MemberRoleSchema = BaseRoleSchema.extend({
   type: z.literal('member'),
   title: z.string(),
-  displayOrder: z.number().optional(),
+  displayOrder: z.union([z.number(), z.null()]).optional(),
   office: z.string().optional(),
   phone: z.string().optional(),
   fax: z.string().optional(),
