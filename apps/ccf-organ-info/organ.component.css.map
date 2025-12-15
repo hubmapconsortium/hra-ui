@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/ccf-organ-info/src/app/components/organ/organ.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n  flex-direction: column;\n  background-color: black;\n  border-radius: 0.5rem;\n  color: white;\n  height: 100%;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,kBAAA;AACA,oBAAA;AACA,iBAAA;AACA,SAAA;AACA,UAAA;;",
+  "names": []
+}

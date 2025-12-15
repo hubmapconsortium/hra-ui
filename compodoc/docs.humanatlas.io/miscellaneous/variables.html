@@ -295,6 +295,13 @@
     },
   },
   {
+    path: &#x27;apps/kg&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/kg-explorer/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
     path: &#x27;dev&#x27;,
     component: ContentPageComponent,
     resolve: {
