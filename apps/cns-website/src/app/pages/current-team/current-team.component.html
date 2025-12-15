@@ -56,9 +56,7 @@
 
   <!-- No results indicator -->
   @if (hasNoResults()) {
-    <div class="no-results-container">
-      <hra-no-results-indicator (clearFilters)="clearFilters()" />
-    </div>
+    <hra-no-results-indicator (clearFilters)="clearFilters()" />
   }
 
   <!-- Profile cards grid -->

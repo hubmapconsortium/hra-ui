@@ -7,7 +7,7 @@
   min-height: 100vh;
   width: 100%;
 
-  @media (min-width: 1100px) {
+  @media (min-width: 68.75rem) {
     flex-direction: row;
   }
 
@@ -21,7 +21,7 @@
     position: relative;
 
     // Show sidebar on desktop
-    @media (min-width: 1100px) {
+    @media (min-width: 68.75rem) {
       display: block;
     }
 
@@ -69,11 +69,11 @@
     max-width: 100%;
     overflow-x: hidden;
 
-    @media (min-width: 640px) {
+    @media (min-width: 40rem) {
       padding: 1.5rem;
     }
 
-    @media (min-width: 1100px) {
+    @media (min-width: 68.75rem) {
       padding: 2rem;
     }
   }
@@ -82,7 +82,7 @@
     margin-bottom: 1.5rem;
     width: 100%;
 
-    @media (min-width: 640px) {
+    @media (min-width: 40rem) {
       margin-bottom: 2rem;
     }
 
@@ -128,6 +128,10 @@
     }
   }
 
+  hra-no-results-indicator {
+    margin-top: 1.25rem;
+  }
+
   .profile-grid {
     display: grid;
     padding: 0;
@@ -136,16 +140,16 @@
     margin: 0 auto;
     justify-items: center;
 
-    // Mobile (below 640px): 1 column
+    // Mobile (below 40rem): 1 column
     grid-template-columns: 1fr;
 
-    // Tablet (640px - 1099px): 2 columns
-    @media (min-width: 640px) {
+    // Tablet (40rem - 68.75rem): 2 columns
+    @media (min-width: 40rem) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    // Desktop (1100px and above): Exactly 4 columns
-    @media (min-width: 1100px) {
+    // Desktop (68.75rem and above): Exactly 4 columns
+    @media (min-width: 68.75rem) {
       grid-template-columns: repeat(4, 1fr);
       column-gap: 2.5rem;
       row-gap: 5rem;
