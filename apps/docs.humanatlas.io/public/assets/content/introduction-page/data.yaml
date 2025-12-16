@@ -67,7 +67,7 @@ content:
             content:
               - component: Markdown
                 data: |
-                  Explore downloadable resources like 3D Organs, ASCT+B tables, and coordinate frameworks in various formats (GLB, JSON, CSV).
+                  Explore data downloads and coordinate frameworks in various formats (GLB, JSON, CSV, and more).
             actionsLeft:
               component: TextHyperlink
               text: Learn more
@@ -100,7 +100,7 @@ content:
               url: dev/faq
           - component: ActionCard
             variant: outlined
-            tagline: Knowledge Graph
+            tagline: Knowledge Graph for Developers
             content:
               - component: Markdown
                 data: |
@@ -112,7 +112,7 @@ content:
             actionsRight:
               component: TextHyperlink
               text: Get data
-              url: https://purl.humanatlas.io/ds-graph
+              url: https://lod.humanatlas.io
           - component: ActionCard
             variant: outlined
             tagline: Support
