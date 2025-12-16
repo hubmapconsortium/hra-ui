@@ -60,5 +60,5 @@ content:
 
           - component: TextHyperlink
             text: Learn more
-            href: https://cns-iu.github.io/hra-scrollytelling/index.html
+            url: https://cns-iu.github.io/hra-scrollytelling/index.html
             icon: arrow_right_alt
