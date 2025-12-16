@@ -1,6 +1,20 @@
+<header hraFeature="header" class="header" data-testid="header">
+  <div hraFeature="navigation" class="header-content">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <hra-icon>tune</hra-icon>
+    </button>
+  </div>
+</header>
+
 <mat-sidenav-container autosize [hasBackdrop]="!isWideScreen()">
-  <mat-sidenav [mode]="!isWideScreen() ? 'over' : 'side'" [opened]="isWideScreen()" [fixedInViewport]="true" #sidenav>
-    <hra-filter-menu [filters]="[]" />
+  <mat-sidenav
+    [mode]="!isWideScreen() ? 'over' : 'side'"
+    [opened]="isWideScreen()"
+    [fixedInViewport]="true"
+    [fixedTopGap]="72"
+    #sidenav
+  >
+    <ng-content />
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="search">

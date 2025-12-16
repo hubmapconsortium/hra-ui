@@ -6,7 +6,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { CardsModule } from '@hra-ui/design-system/cards';
 import { GridContainerComponent } from '@hra-ui/design-system/content-templates/grid-container';
-import { FilterMenuComponent } from '@hra-ui/design-system/filter-menu';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
@@ -44,7 +43,6 @@ type GalleryVariant = 'gallery' | 'profile';
     GridContainerComponent,
     CardsModule,
     SearchFilterComponent,
-    FilterMenuComponent,
     MatSidenavModule,
     IconsModule,
     TextHyperlinkDirective,
