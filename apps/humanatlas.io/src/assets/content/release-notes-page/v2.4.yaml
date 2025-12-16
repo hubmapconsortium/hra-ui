@@ -256,7 +256,7 @@ content:
 
           - component: Image
             src: assets/content/release-notes-page/images/v2.4/cde.jpg
-            alt: Nancy posing with the butterfly visualization at the SenNet All-Hands Meeting 2025
+            alt: A screenshot of the Cell Distance Explorer application showing a colorful custom network visualization.
 
           - component: Markdown
             data: |
@@ -357,10 +357,6 @@ content:
         anchor: hra-workshop-june-2025
         level: 3
         content:
-          - component: Image
-            src: assets/content/release-notes-page/images/v2.4/2025-06-23_hra_workshop.png
-            alt: 'HuBMAP Human Reference Atlas Workshop: June 23-24, 2025'
-
           - component: Markdown
             data: |
               This workshop brought together experts from the National Library of Medicine, the J. Craig Venter Institute (JCVI),
@@ -371,15 +367,15 @@ content:
             url: https://cns-iu.github.io/workshops/2025-06-23_hra_workshop/
             icon: arrow_right_alt
 
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/2025-06-23_hra_workshop.png
+            alt: A group photo of workshop attendees under Amatria at Indiana University`s Luddy School of Informatics, Computing, and Engineering.
+
       - component: PageSection
         tagline: 'HuBMAP Human Reference Atlas Hackathon: August 25-26, 2025'
         anchor: hra-hackathon-august-2025
         level: 3
         content:
-          - component: Image
-            src: assets/content/release-notes-page/images/v2.4/2025-08-25_hra_hackathon.png
-            alt: 'HuBMAP Human Reference Atlas Hackathon: August 25-26, 2025'
-
           - component: Markdown
             data: |
               This hackathon brought together experts from the Kidney Precision Medicine Project (KPMP), the Human Phenotype Ontology (HPO),
@@ -390,15 +386,15 @@ content:
             url: https://cns-iu.github.io/workshops/2025-08-25_hra_hackathon/
             icon: arrow_right_alt
 
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/2025-08-25_hra_hackathon.png
+            alt: A group photo of workshop attendees under Amatria at Indiana University`s Luddy School of Informatics, Computing, and Engineering.
+
       - component: PageSection
         tagline: 'IEEE VIS Panel: November 5, 2025'
         anchor: ieee-vis-panel-november-2025
         level: 3
         content:
-          - component: Image
-            src: assets/content/release-notes-page/images/v2.4/ieee_vis_panel_nov_2025.png
-            alt: 'HuBMAP Human Reference Atlas Workshop: June 23-24, 2025'
-
           - component: Markdown
             data: |
               TALK, TRY, TELL: Challenges and Opportunities for Theory-Grounded Data Visualization in Extended Reality was co-organized by
@@ -413,6 +409,10 @@ content:
             url: https://cns-iu.github.io/data-vis-xr-panel-2025/
             icon: arrow_right_alt
 
+          - component: Image
+            src: assets/content/release-notes-page/images/v2.4/ieee_vis_panel_nov_2025.png
+            alt: A three-part collage from the panel. Photo 1: A full room of people listen to the talk. Photo 2: A person wearing a VR headset explores virtual reality. Photo 3: Co-organizers present their slides.
+            
   - component: PageSection
     tagline: Publications
     anchor: publications
