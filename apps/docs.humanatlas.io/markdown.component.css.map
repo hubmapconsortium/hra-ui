@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/content-templates/markdown/src/lib/markdown.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n\n  markdown ::ng-deep {\n    p {\n      margin: 0.75rem 0;\n      line-height: 1.6875rem;\n    }\n\n    *:first-child {\n      margin-top: 0;\n    }\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;AAGE,MAAA,SAAA,UAAA;AACE,UAAA,QAAA;AACA,eAAA;;AAGF,MAAA,SAAA,UAAA,CAAA;AACE,cAAA;;",
-  "names": []
-}
