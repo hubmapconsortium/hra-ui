@@ -50,7 +50,7 @@ content:
         type: cta
 
       - component: PageSection
-        tagline: New: Human Atlas Stories
+        tagline: 'New: Human Atlas Stories'
         anchor: human-atlas-stories
         level: 2
         content:
