@@ -24,6 +24,11 @@ content:
             Spleen IBEX, Retina IBEX, Pancreas CODEX
             - 1 new vasculature geometry: Blood vasculature
 
+      - component: Button
+        label: Get data
+        href: https://purl.humanatlas.io/collection/hra/v1.4
+        type: cta
+
       - component: PageSection
         tagline: Human Reference Atlas Diversity
         anchor: diversity
@@ -43,11 +48,6 @@ content:
               - Interface tester
               - Other
               - I prefer not to respond
-
-      - component: Button
-        label: Get data
-        href: https://purl.humanatlas.io/collection/hra/v1.4
-        type: cta
 
       - component: PageSection
         tagline: 'New: Human Atlas Stories'
