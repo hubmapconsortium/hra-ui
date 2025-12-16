@@ -412,7 +412,7 @@ content:
           - component: Image
             src: assets/content/release-notes-page/images/v2.4/ieee_vis_panel_nov_2025.png
             alt: A three-part collage from the panel. Photo 1: A full room of people listen to the talk. Photo 2: A person wearing a VR headset explores virtual reality. Photo 3: Co-organizers present their slides.
-            
+
   - component: PageSection
     tagline: Publications
     anchor: publications
