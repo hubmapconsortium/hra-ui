@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/asctb-reporter/src/app/modules/control-pane/control-pane.component.scss"],
+  "sourcesContent": ["@use 'utils';\n@use 'vars';\n\n:host {\n  display: flex;\n  flex-direction: column;\n  position: relative;\n\n  .control-pane-items {\n    height: calc(100vh - 12.1rem);\n    ng-scrollbar {\n      --_scrollbar-content-width: unset;\n    }\n    display: flex;\n    flex-direction: column;\n  }\n\n  ::ng-deep .scroller .ng-scroll-content {\n    width: 100% !important;\n  }\n\n  div[footer] {\n    flex: 1;\n  }\n\n  .report {\n    border: 0.0625rem solid rgba(245, 159, 61);\n    border-radius: 0.5rem !important;\n    color: black;\n    transition: all 0.3s;\n  }\n\n  .report:hover {\n    background-color: rgb(245, 159, 61);\n  }\n\n  a {\n    color: grey;\n  }\n  .arrow-left-button {\n    border-radius: 0.5rem;\n  }\n  .arrow-left-icon {\n    font-weight: bold;\n  }\n}\n\n::ng-deep .header-menu {\n  width: 13.5rem !important;\n}\n"],
+  "mappings": ";AAGA;AACE,WAAA;AACA,kBAAA;AACA,YAAA;;AAEA,MAAA,CAAA;AACE,UAAA,KAAA,MAAA,EAAA;AAIA,WAAA;AACA,kBAAA;;AAJA,MAAA,CAFF,mBAEE;AACE,8BAAA;;AAMJ,MAAA,UAAA,CAAA,SAAA,CAAA;AACE,SAAA;;AAGF,MAAA,GAAA,CAAA;AACE,QAAA;;AAGF,MAAA,CAAA;AACE,UAAA,UAAA,MAAA,IAAA,GAAA,EAAA,GAAA,EAAA;AACA,iBAAA;AACA,SAAA;AACA,cAAA,IAAA;;AAGF,MAAA,CAPA,MAOA;AACE,oBAAA,IAAA,GAAA,EAAA,GAAA,EAAA;;AAGF,MAAA;AACE,SAAA;;AAEF,MAAA,CAAA;AACE,iBAAA;;AAEF,MAAA,CAAA;AACE,eAAA;;AAIJ,UAAA,CAAA;AACE,SAAA;;",
+  "names": []
+}

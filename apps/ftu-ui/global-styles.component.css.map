@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["node_modules/highlight.js/styles/vs.css"],
+  "sourcesContent": ["pre code.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 1em\n}\ncode.hljs {\n  padding: 3px 5px\n}\n/*\n\nVisual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>\n\n*/\n.hljs {\n  background: white;\n  color: black\n}\n.hljs-comment,\n.hljs-quote,\n.hljs-variable {\n  color: #008000\n}\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-built_in,\n.hljs-name,\n.hljs-tag {\n  color: #00f\n}\n.hljs-string,\n.hljs-title,\n.hljs-section,\n.hljs-attribute,\n.hljs-literal,\n.hljs-template-tag,\n.hljs-template-variable,\n.hljs-type,\n.hljs-addition {\n  color: #a31515\n}\n.hljs-deletion,\n.hljs-selector-attr,\n.hljs-selector-pseudo,\n.hljs-meta {\n  color: #2b91af\n}\n.hljs-doctag {\n  color: #808080\n}\n.hljs-attr {\n  color: #f00\n}\n.hljs-symbol,\n.hljs-bullet,\n.hljs-link {\n  color: #00b0e8\n}\n.hljs-emphasis {\n  font-style: italic\n}\n.hljs-strong {\n  font-weight: bold\n}"],
+  "mappings": ";AAAA,IAAA,IAAA,CAAA;AACE,WAAA;AACA,cAAA;AACA,WAAA;;AAEF,IAAA,CALA;AAME,WAAA,IAAA;;AAOF,CAbA;AAcE,cAAA;AACA,SAAA;;AAEF,CAAA;AAAA,CAAA;AAAA,CAAA;AAGE,SAAA;;AAEF,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AAKE,SAAA;;AAEF,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AASE,SAAA;;AAEF,CAAA;AAAA,CAAA;AAAA,CAAA;AAAA,CAAA;AAIE,SAAA;;AAEF,CAAA;AACE,SAAA;;AAEF,CAAA;AACE,SAAA;;AAEF,CAAA;AAAA,CAAA;AAAA,CAAA;AAGE,SAAA;;AAEF,CAAA;AACE,cAAA;;AAEF,CAAA;AACE,eAAA;;",
+  "names": []
+}
