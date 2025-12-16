@@ -215,37 +215,36 @@ describe('CurrentTeamComponent', () => {
     expect(screen.getByText('Jane Doe')).toBeInTheDocument();
   });
 
-  it('should filter by start year 2020+', async () => {
+  it('should filter by start year', async () => {
     const { fixture } = await render(CurrentTeamComponent, {
       providers,
       componentInputs: { data: mockData },
     });
 
     fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2020', label: '2020+' }] } : f)),
+      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2021', label: '2021' }] } : f)),
     );
     fixture.detectChanges();
 
     await waitFor(() => {
       const profileCards = screen.queryAllByText(/learn more/i);
       expect(profileCards.length).toBeGreaterThan(0);
-      expect(profileCards.length).toBeLessThanOrEqual(2); // John and Jane
     });
   });
 
-  it('should filter by start year 2015-2019', async () => {
+  it('should filter by start year 2021', async () => {
     const { fixture } = await render(CurrentTeamComponent, {
       providers,
       componentInputs: { data: mockData },
     });
 
     fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2015', label: '2015-2019' }] } : f)),
+      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2021', label: '2021' }] } : f)),
     );
     fixture.detectChanges();
 
     await waitFor(() => {
-      expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
+      expect(screen.getByText('Jane Doe')).toBeInTheDocument();
     });
   });
 
@@ -320,73 +319,57 @@ describe('CurrentTeamComponent', () => {
     expect(searchInput).toHaveValue('');
   });
 
-  it('should filter by year range 2010-2014', async () => {
+  it('should filter by multiple years', async () => {
+    const testData: PeopleProfileData[] = [
+      ...mockData,
+      {
+        name: 'Test Member 2022',
+        lastName: 'Test2022',
+        image: '',
+        slug: 'test-2022',
+        roles: [{ type: 'member', title: 'Staff', dateStart: '2022-01-01', dateEnd: null, displayOrder: 10 }],
+      },
+    ];
+
+    const { fixture } = await render(CurrentTeamComponent, {
+      providers,
+      componentInputs: { data: testData },
+    });
+
+    fixture.componentInstance.filters.update((filters) =>
+      filters.map((f) =>
+        f.id === 'startYear'
+          ? {
+              ...f,
+              selected: [
+                { id: '2021', label: '2021' },
+                { id: '2022', label: '2022' },
+              ],
+            }
+          : f,
+      ),
+    );
+    fixture.detectChanges();
+
+    await waitFor(() => {
+      const profileCards = screen.queryAllByText(/learn more/i);
+      expect(profileCards.length).toBeGreaterThan(0);
+    });
+  });
+
+  it('should show no results for year with no members', async () => {
     const { fixture } = await render(CurrentTeamComponent, {
       providers,
       componentInputs: { data: mockData },
     });
 
     fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2010', label: '2010-2014' }] } : f)),
+      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2025', label: '2025' }] } : f)),
     );
     fixture.detectChanges();
 
-    // No members in our mock data have start dates between 2010-2014
     await waitFor(() => {
       expect(screen.queryByText(/learn more/i)).not.toBeInTheDocument();
-    });
-  });
-
-  it('should filter by year range 2005-2009', async () => {
-    const dataWith2005Member: PeopleProfileData[] = [
-      {
-        name: 'Test User 2005',
-        lastName: '2005',
-        image: '',
-        slug: 'test-2005',
-        roles: [{ type: 'member', title: 'Staff', dateStart: '2007-01-01', dateEnd: null, displayOrder: 10 }],
-      },
-    ];
-
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: dataWith2005Member },
-    });
-
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2005', label: '2005-2009' }] } : f)),
-    );
-    fixture.detectChanges();
-
-    await waitFor(() => {
-      expect(screen.getByText('Test User 2005')).toBeInTheDocument();
-    });
-  });
-
-  it('should filter by year range before 2005', async () => {
-    const dataWithOldMember: PeopleProfileData[] = [
-      ...mockData,
-      {
-        name: 'Old Member',
-        lastName: 'Old',
-        image: '',
-        slug: 'old-member',
-        roles: [{ type: 'member', title: 'Legacy Staff', dateStart: '2000-01-01', dateEnd: null, displayOrder: 5 }],
-      },
-    ];
-
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: dataWithOldMember },
-    });
-
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: 'before2005', label: 'Before 2005' }] } : f)),
-    );
-    fixture.detectChanges();
-
-    await waitFor(() => {
-      expect(screen.getByText('Old Member')).toBeInTheDocument();
     });
   });
 
@@ -415,25 +398,6 @@ describe('CurrentTeamComponent', () => {
     // Member with no roles should not appear
     await waitFor(() => {
       expect(screen.queryByText('No Role Member')).not.toBeInTheDocument();
-    });
-  });
-
-  it('should handle member with no start date in year filter', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
-
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2020', label: '2020+' }] } : f)),
-    );
-    fixture.detectChanges();
-
-    // Should filter to only show members from 2020+
-    await waitFor(() => {
-      const profileCards = screen.queryAllByText(/learn more/i);
-      expect(profileCards.length).toBeGreaterThan(0);
-      expect(profileCards.length).toBeLessThan(4);
     });
   });
 
@@ -499,7 +463,7 @@ describe('CurrentTeamComponent', () => {
     });
   });
 
-  it('should handle filtering with multiple role types', async () => {
+  it('should handle filtering with multiple role types and years', async () => {
     const { fixture } = await render(CurrentTeamComponent, {
       providers,
       componentInputs: { data: mockData },
@@ -510,19 +474,13 @@ describe('CurrentTeamComponent', () => {
         if (f.id === 'roles') {
           return {
             ...f,
-            selected: [
-              { id: 'phd', label: 'PhD' },
-              { id: 'collaborator', label: 'Collaborators' },
-            ],
+            selected: [{ id: 'phd', label: 'PhD' }],
           };
         }
         if (f.id === 'startYear') {
           return {
             ...f,
-            selected: [
-              { id: '2015', label: '2015-2019' },
-              { id: '2020', label: '2020+' },
-            ],
+            selected: [{ id: '2021', label: '2021' }],
           };
         }
         return f;
@@ -530,10 +488,9 @@ describe('CurrentTeamComponent', () => {
     );
     fixture.detectChanges();
 
-    // Should show PhD students and collaborators from 2015+
+    // Should show PhD students from 2021
     await waitFor(() => {
       expect(screen.getByText('Jane Doe')).toBeInTheDocument();
-      expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
     });
   });
   it('should return empty string for unknown role type in getMemberTitle', async () => {

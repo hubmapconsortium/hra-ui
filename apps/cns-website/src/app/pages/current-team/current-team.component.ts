@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -56,6 +56,29 @@ export class CurrentTeamComponent {
   /** Group by option */
   readonly groupBy = signal<string | null>(null);
 
+  /** Computed start year options based on actual data */
+  private readonly startYearOptions = computed(() => {
+    const members = this.data();
+    const currentYear = new Date().getFullYear();
+
+    // Find the earliest start year in the data
+    const earliestYear = members.reduce((earliest, member) => {
+      const startDate = member.roles[0]?.dateStart;
+      if (startDate) {
+        const year = new Date(startDate).getFullYear();
+        return year < earliest ? year : earliest;
+      }
+      return earliest;
+    }, currentYear);
+
+    // Generate years from current year to earliest year
+    const yearCount = currentYear - earliestYear + 1;
+    return Array.from({ length: yearCount }, (_, i) => {
+      const year = (currentYear - i).toString();
+      return { id: year, label: year };
+    });
+  });
+
   /** Filter menu filters */
   readonly filters = signal<FilterOptionCategory<SearchListOption>[]>([
     {
@@ -74,16 +97,18 @@ export class CurrentTeamComponent {
     {
       id: 'startYear',
       label: 'Start year',
-      options: [
-        { id: '2020', label: '2020+' },
-        { id: '2015', label: '2015-2019' },
-        { id: '2010', label: '2010-2014' },
-        { id: '2005', label: '2005-2009' },
-        { id: 'before2005', label: 'Before 2005' },
-      ],
+      options: [],
       selected: [],
     },
   ]);
+
+  constructor() {
+    // Update start year options when data changes
+    effect(() => {
+      const yearOptions = this.startYearOptions();
+      this.filters.update((filters) => filters.map((f) => (f.id === 'startYear' ? { ...f, options: yearOptions } : f)));
+    });
+  }
 
   /** Filtered and sorted team members based on all filters */
   readonly filteredMembers = computed(() => {
@@ -135,22 +160,7 @@ export class CurrentTeamComponent {
         }
 
         const year = new Date(startDate).getFullYear();
-        return startYearFilters.some((filter) => {
-          switch (filter.id) {
-            case '2020':
-              return year >= 2020;
-            case '2015':
-              return year >= 2015 && year < 2020;
-            case '2010':
-              return year >= 2010 && year < 2015;
-            case '2005':
-              return year >= 2005 && year < 2010;
-            case 'before2005':
-              return year < 2005;
-            default:
-              return false;
-          }
-        });
+        return startYearFilters.some((filter) => year === parseInt(filter.id, 10));
       });
     }
 

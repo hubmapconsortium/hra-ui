@@ -61,7 +61,7 @@
         <hra-search-list
           [options]="filter.options"
           [selected]="filter.selected ?? []"
-          [disableSearch]="filter.id === 'roles' || filter.id === 'startYear'"
+          [disableSearch]="filter.id === 'roles'"
           (selectedChange)="updateFilterSelection(filter, $event)"
         />
       </ng-template>
