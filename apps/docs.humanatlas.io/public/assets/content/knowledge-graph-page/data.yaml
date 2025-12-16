@@ -1,5 +1,5 @@
 $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
-title: Knowledge Graph
+title: Knowledge Graph for Developers
 subtitle: |
   The Human Resource Atlas (HRA) Knowledge Graph (KG) integrates anatomical structures, cell types,
   and biomarkers across the healthy human body into a unified, semantically-rich data graph designed for querying, visualization,
