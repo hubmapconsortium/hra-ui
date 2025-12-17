@@ -6,13 +6,18 @@ import { ControlsComponent } from './controls.component';
 describe('ControlsComponent', () => {
   const providers = [provideHttpClient()];
 
+  async function setup() {
+    const result = await render(ControlsComponent, { providers });
+    return result;
+  }
+
   it('should create', async () => {
-    const { fixture } = await render(ControlsComponent, { providers });
-    expect(fixture.componentInstance).toBeTruthy();
+    const { container } = await setup();
+    expect(container).toBeTruthy();
   });
 
   it('should render navigation buttons and pagination container', async () => {
-    const { container } = await render(ControlsComponent, { providers });
+    const { container } = await setup();
 
     const prevButton = container.querySelector('.prev-button');
     const nextButton = container.querySelector('.next-button');

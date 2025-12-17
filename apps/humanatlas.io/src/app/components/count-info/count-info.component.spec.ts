@@ -20,19 +20,18 @@ describe('CountInfoComponent', () => {
 
   const providers = [provideHttpClient()];
 
+  async function setup(inputs = { countInfoList: mockCountInfo }) {
+    const result = await render(CountInfoComponent, { providers, inputs });
+    return result;
+  }
+
   it('should create', async () => {
-    const { fixture } = await render(CountInfoComponent, {
-      providers,
-      inputs: { countInfoList: mockCountInfo },
-    });
-    expect(fixture.componentInstance).toBeTruthy();
+    const { container } = await setup();
+    expect(container).toBeTruthy();
   });
 
   it('should render all count cards with labels and counts', async () => {
-    const { container } = await render(CountInfoComponent, {
-      providers,
-      inputs: { countInfoList: mockCountInfo },
-    });
+    const { container } = await setup();
 
     const cards = container.querySelectorAll('.count-card');
     expect(cards.length).toBe(2);

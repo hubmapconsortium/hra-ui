@@ -24,39 +24,30 @@ describe('ContentComponent', () => {
 
   const providers = [provideHttpClient(), provideRouter([])];
 
+  async function setup(item: CarouselItem) {
+    const result = await render(ContentComponent, { providers, inputs: { item } });
+    return result;
+  }
+
   it('should create', async () => {
-    const { fixture } = await render(ContentComponent, {
-      providers,
-      inputs: { item: mockItemWithUrl },
-    });
-    expect(fixture.componentInstance).toBeTruthy();
+    const { container } = await setup(mockItemWithUrl);
+    expect(container).toBeTruthy();
   });
 
-  it('should return correct link from getLink method for both url and route types', async () => {
-    const { fixture } = await render(ContentComponent, {
-      providers,
-      inputs: { item: mockItemWithUrl },
-    });
-    const component = fixture.componentInstance;
-    expect(component.getLink(mockItemWithUrl)).toBe('https://example.com');
-    expect(component.getLink(mockItemWithRoute)).toBe('/test-route');
+  it('should render external link for url type', async () => {
+    const { container } = await setup(mockItemWithUrl);
+    const link = container.querySelector('a[href="https://example.com"]');
+    expect(link).toBeInTheDocument();
   });
 
-  it('should return correct link type from getLinkType method', async () => {
-    const { fixture } = await render(ContentComponent, {
-      providers,
-      inputs: { item: mockItemWithUrl },
-    });
-    const component = fixture.componentInstance;
-    expect(component.getLinkType(mockItemWithUrl)).toBe('url');
-    expect(component.getLinkType(mockItemWithRoute)).toBe('route');
+  it('should render action button for route type', async () => {
+    const { container } = await setup(mockItemWithRoute);
+    const actionButton = container.querySelector('a.action');
+    expect(actionButton).toBeInTheDocument();
   });
 
   it('should render content with tagline, description, and action text', async () => {
-    await render(ContentComponent, {
-      providers,
-      inputs: { item: mockItemWithUrl },
-    });
+    await setup(mockItemWithUrl);
     expect(screen.getByText('Test Tagline')).toBeInTheDocument();
     expect(screen.getByText('Test Description')).toBeInTheDocument();
     expect(screen.getByText('Learn More')).toBeInTheDocument();

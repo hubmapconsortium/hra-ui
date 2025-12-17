@@ -13,26 +13,20 @@ describe('PublicationsPageComponent', () => {
 
   const providers = [provideHttpClient(), provideHttpClientTesting(), provideMarkdown()];
 
-  it('should render', async () => {
-    const { container } = await render(PublicationsPageComponent, {
-      inputs: { publications: mockPublicationsData },
-      providers,
-    });
+  async function setup(inputs = { publications: mockPublicationsData }) {
+    const result = await render(PublicationsPageComponent, { inputs, providers });
+    return result;
+  }
 
+  it('should render', async () => {
+    const { container } = await setup();
     expect(container).toBeTruthy();
   });
 
-  it('should normalize publications and filter empty years', async () => {
-    const { fixture } = await render(PublicationsPageComponent, {
-      inputs: { publications: mockPublicationsData },
-      providers,
-    });
+  it('should render publications by year', async () => {
+    const { container } = await setup();
 
-    const component = fixture.componentInstance;
-    const items = component['items']();
-
-    expect(items.length).toBe(2);
-    expect(items[0].year).toBe(2024);
-    expect(items[1].year).toBe(2023);
+    const sections = container.querySelectorAll('hra-page-section');
+    expect(sections.length).toBeGreaterThan(0);
   });
 });

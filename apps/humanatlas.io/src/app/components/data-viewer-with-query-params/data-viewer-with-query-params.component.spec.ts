@@ -35,27 +35,24 @@ describe('DataViewerWithQueryParamsComponent', () => {
 
   const providers = [provideHttpClient(), provideRouter([])];
 
+  async function setup(
+    inputs = {
+      releaseVersionData: mockReleaseVersionData,
+      variant: 'ftu' as const,
+      githubIconsUrl: 'https://github.com/test',
+    },
+  ) {
+    const result = await render(DataViewerWithQueryParamsComponent, { providers, inputs });
+    return result;
+  }
+
   it('should create', async () => {
-    const { fixture } = await render(DataViewerWithQueryParamsComponent, {
-      providers,
-      inputs: {
-        releaseVersionData: mockReleaseVersionData,
-        variant: 'ftu' as const,
-        githubIconsUrl: 'https://github.com/test',
-      },
-    });
-    expect(fixture.componentInstance).toBeTruthy();
+    const { container } = await setup();
+    expect(container).toBeTruthy();
   });
 
   it('should render data viewer with inputs', async () => {
-    const { container } = await render(DataViewerWithQueryParamsComponent, {
-      providers,
-      inputs: {
-        releaseVersionData: mockReleaseVersionData,
-        variant: 'ftu' as const,
-        githubIconsUrl: 'https://github.com/test',
-      },
-    });
+    const { container } = await setup();
 
     const dataViewer = container.querySelector('hra-data-viewer');
     expect(dataViewer).toBeTruthy();

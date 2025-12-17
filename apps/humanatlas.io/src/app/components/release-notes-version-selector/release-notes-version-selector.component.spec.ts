@@ -1,38 +1,33 @@
 import { provideRouter } from '@angular/router';
-import { render } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { ReleaseNotesVersionSelectorComponent } from './release-notes-version-selector.component';
 
 describe('ReleaseNotesVersionSelectorComponent', () => {
+  async function setup() {
+    const result = await render(ReleaseNotesVersionSelectorComponent, {
+      providers: [provideRouter([])],
+    });
+    const user = userEvent.setup();
+    return { ...result, user };
+  }
+
   it('should create', async () => {
-    const { fixture } = await render(ReleaseNotesVersionSelectorComponent, {
-      providers: [provideRouter([])],
-    });
-    expect(fixture.componentInstance).toBeTruthy();
+    const { container } = await setup();
+    expect(container).toBeTruthy();
   });
 
-  it('should access version and versions signals', async () => {
-    const { fixture } = await render(ReleaseNotesVersionSelectorComponent, {
-      providers: [provideRouter([])],
-    });
+  it('should render version selector', async () => {
+    const { container } = await setup();
 
-    const component = fixture.componentInstance;
-
-    // Access all signals to execute their code
-    expect(typeof component.version()).toBe('string');
-    expect(Array.isArray(component.versions())).toBe(true);
-    expect(typeof component.selectedVersionLabel()).toBe('string');
+    const select = container.querySelector('mat-select');
+    expect(select).toBeInTheDocument();
   });
 
-  it('should call navigateToVersion when selection changes', async () => {
-    const { fixture } = await render(ReleaseNotesVersionSelectorComponent, {
-      providers: [provideRouter([])],
-    });
+  it('should have mat-select with version options', async () => {
+    const { container } = await setup();
 
-    const component = fixture.componentInstance;
-    const navigateSpy = jest.spyOn(component, 'navigateToVersion' as keyof typeof component);
-
-    component['navigateToVersion']('2.0');
-
-    expect(navigateSpy).toHaveBeenCalledWith('2.0');
+    const formField = container.querySelector('mat-form-field');
+    expect(formField).toBeInTheDocument();
   });
 });

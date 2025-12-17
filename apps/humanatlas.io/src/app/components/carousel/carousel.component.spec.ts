@@ -25,12 +25,14 @@ describe('CarouselComponent', () => {
 
   const providers = [provideHttpClient(), provideRouter([])];
 
+  async function setup(inputs = { items: mockItems }) {
+    const result = await render(CarouselComponent, { providers, inputs });
+    return result;
+  }
+
   it('should create', async () => {
-    const { fixture } = await render(CarouselComponent, {
-      providers,
-      inputs: { items: mockItems },
-    });
-    expect(fixture.componentInstance).toBeTruthy();
+    const { container } = await setup();
+    expect(container).toBeTruthy();
   });
 
   it('should render swiper container and slides for all items', async () => {
