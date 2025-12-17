@@ -85,13 +85,10 @@ describe('isUrlActive(targetUrl, currentUrl, options)', () => {
     ],
   ];
 
-  for (const [targetUrl, currentUrl, options, result] of testCases) {
-    const prettyOptions = Object.entries(options)
-      .map(([key, value]) => `${key}: ${value}`)
-      .join(', ');
-
-    it(`should return ${result} when matching '${targetUrl}' against '${currentUrl}' with options '{${prettyOptions}}'`, () => {
-      expect(isUrlActive(targetUrl, currentUrl, { ...defaultMatchOptions, ...options })).toEqual(result);
-    });
-  }
+  it.each(testCases)(
+    "should match '%s' against '%s' with options %j with a result of %p",
+    (targetUrl, currentUrl, options, expected) => {
+      expect(isUrlActive(targetUrl, currentUrl, { ...defaultMatchOptions, ...options })).toEqual(expected);
+    },
+  );
 });
