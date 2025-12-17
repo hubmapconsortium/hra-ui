@@ -4107,7 +4107,8 @@ content:
         data: |
           -  [3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)
           -  [Adding 3D Reference Objects to the Human Reference Atlas](https://doi.org/10.5281/zenodo.5639651)
-          -  [Using the CCF Registration User Interface](https://doi.org/10.5281/zenodo.5575776)
+          -  [Using the Standalone Registration User Interface](https://doi.org/10.5281/zenodo.14346542)
+          -  [Using the Embedded Registration User Interface](https://doi.org/10.5281/zenodo.14346341)
           -  [Assigning RUI Data to Multiple Tissue Blocks](https://doi.org/10.5281/zenodo.5746143)
   - component: PageSection
     tagline: License
