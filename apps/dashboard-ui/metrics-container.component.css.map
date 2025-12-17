@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/dashboard/src/lib/components/metrics/container/metrics-container.component.scss"],
+  "sourcesContent": [":host {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 0.75rem;\n\n  .card {\n    .items {\n      display: grid;\n      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n      gap: 1rem;\n\n      border-top: solid 1px #d5dbe3;\n      padding-top: 1rem;\n    }\n  }\n\n  .span-columns {\n    grid-column: 1 / 3;\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,yBAAA,IAAA;AACA,OAAA;;AAGE,MAAA,CAAA,KAAA,CAAA;AACE,WAAA;AACA,yBAAA,OAAA,QAAA,EAAA,OAAA,KAAA,EAAA;AACA,OAAA;AAEA,cAAA,MAAA,IAAA;AACA,eAAA;;AAIJ,MAAA,CAAA;AACE,eAAA,CAAA,CAAA;;",
+  "names": []
+}

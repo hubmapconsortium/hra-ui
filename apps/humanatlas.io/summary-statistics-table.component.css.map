@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/humanatlas.io/src/app/components/summary-statistics-table/summary-statistics-table.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n\n  .download {\n    margin-left: 1rem;\n    margin-top: 0.5rem;\n    margin-bottom: 2rem;\n    padding: 0;\n\n    mat-icon {\n      padding: 0;\n      margin: 0;\n    }\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA,CAAA;AACE,eAAA;AACA,cAAA;AACA,iBAAA;AACA,WAAA;;AAEA,MAAA,CANF,SAME;AACE,WAAA;AACA,UAAA;;",
+  "names": []
+}
