@@ -8,6 +8,7 @@ module.exports = {
   ...createCjsPreset(),
 
   testEnvironment: 'jest-preset-angular/environments/jest-jsdom-env',
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   transformIgnorePatterns: [`/node_modules/(?!${esModules.join('|')})/`],
   moduleNameMapper: {
     '^nanoid$': 'node_modules/nanoid/index.browser.js',
@@ -15,8 +16,37 @@ module.exports = {
   },
 
   collectCoverage: true,
-  coverageReporters: ['html', 'lcov'],
-  coveragePathIgnorePatterns: ['/node_modules/', 'index.ts', '.*-routing.module.ts'],
+  coverageReporters: ['html', 'lcovonly', 'json-summary', 'text-summary'],
+  collectCoverageFrom: [
+    '<rootDir>/**/*.ts',
+
+    // General exclusions
+    '!<rootDir>/**/index.ts',
+    '!<rootDir>/**/*.schemas.ts',
+
+    // Testing exclusions
+    '!<rootDir>/**/*.spec.ts',
+    '!<rootDir>/**/test-setup.ts',
+    '!<rootDir>/**/jest.config.ts',
+    '!<rootDir>/**/__mocks__/**',
+
+    // Application exclusions
+    '!<rootDir>/**/main.ts',
+    '!<rootDir>/**/polyfills.ts',
+    '!<rootDir>/**/environments/**',
+
+    // Storybook exclusions
+    '!<rootDir>/**/.storybook/**',
+    '!<rootDir>/**/*.stories.ts',
+
+    // Other exclusions
+    '!<rootDir>/**/*.d.ts',
+    '!<rootDir>/dist/**',
+    '!<rootDir>/node_modules/**',
+
+    // Special exclusions
+    '!<rootDir>/**/import-meta.ts',
+  ],
   coverageThreshold: {
     global: {
       branches: 85,
