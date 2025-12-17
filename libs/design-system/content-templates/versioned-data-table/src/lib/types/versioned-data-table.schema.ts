@@ -14,7 +14,7 @@ export const VersionedDataSchema = PageTableSchema.pick({
   csvUrl: true,
   columns: true,
   rows: true,
-  style: true,
+  variant: true,
   enableSort: true,
   verticalDividers: true,
 })
@@ -38,7 +38,7 @@ export type VersionedDataTable = z.infer<typeof VersionedDataTableSchema>;
 export const VersionedDataTableSchema = ContentTemplateSchema.merge(
   PageTableSchema.pick({
     columns: true,
-    style: true,
+    variant: true,
     enableSort: true,
     verticalDividers: true,
   }),

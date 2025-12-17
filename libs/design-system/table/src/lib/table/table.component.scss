@@ -23,7 +23,7 @@
 
   .vertical-divider th:not(:first-child),
   .vertical-divider td:not(:first-child) {
-    border-left: 1px solid vars.$outline;
+    border-left: 1px solid vars.$outline-variant;
   }
 
   @include mat.table-overrides(
@@ -138,17 +138,19 @@
     }
   }
 
-  &.hra-table-style-basic {
+  &.hra-table-variant-basic {
     ::ng-deep thead {
       background-color: vars.$on-primary;
     }
   }
 
-  &.hra-table-style-divider,
-  &.hra-table-style-alternating {
+  &.hra-table-variant-divider,
+  &.hra-table-variant-alternating {
     @include mat.table-overrides(
       (
         background-color: vars.$on-primary,
+        row-item-outline-color: vars.$outline-variant,
+        row-item-outline-width: 0.0625rem,
       )
     );
 
@@ -157,7 +159,7 @@
     }
 
     ::ng-deep thead {
-      background-color: vars.$surface-dim;
+      background-color: vars.$surface-container;
 
       th {
         border-bottom: 0.0625rem solid vars.$outline;
@@ -175,7 +177,7 @@
     }
 
     ::ng-deep tfoot {
-      background-color: vars.$surface-dim;
+      background-color: vars.$surface-container;
 
       td {
         color: vars.$secondary;
@@ -187,23 +189,9 @@
     }
   }
 
-  &.hra-table-style-divider {
-    @include mat.table-overrides(
-      (
-        row-item-outline-color: vars.$outline-variant,
-        row-item-outline-width: 0.0625rem,
-      )
-    );
-  }
-
-  &.hra-table-style-alternating {
+  &.hra-table-variant-alternating {
     ::ng-deep tbody tr:nth-child(even) {
-      background-color: vars.$surface-container;
+      background-color: vars.$surface-bright;
     }
-  }
-
-  .link.internal {
-    color: vars.$on-tertiary-fixed;
-    cursor: pointer;
   }
 }

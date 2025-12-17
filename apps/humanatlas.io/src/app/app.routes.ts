@@ -155,6 +155,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'kg',
+    ...createExternalRedirectRoute('https://docs.humanatlas.io/apps/kg'),
+  },
+  {
     path: 'landing-page',
     redirectTo: '/',
   },

@@ -96,6 +96,8 @@ export interface HelpMenuOptions {
   description?: string;
   /** If the option should have a divider (on top) */
   divider?: boolean;
+  /** Optional icon for menu option */
+  icon?: string;
 }
 
 /** Application routes */
