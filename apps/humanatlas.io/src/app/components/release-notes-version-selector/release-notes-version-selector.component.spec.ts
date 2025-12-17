@@ -13,21 +13,22 @@ describe('ReleaseNotesVersionSelectorComponent', () => {
   }
 
   it('should create', async () => {
-    const { container } = await setup();
-    expect(container).toBeTruthy();
+    await setup();
+    const select = screen.getByRole('combobox');
+    expect(select).toBeInTheDocument();
   });
 
   it('should render version selector', async () => {
-    const { container } = await setup();
+    await setup();
 
-    const select = container.querySelector('mat-select');
+    const select = screen.getByRole('combobox');
     expect(select).toBeInTheDocument();
   });
 
   it('should have mat-select with version options', async () => {
-    const { container } = await setup();
+    await setup();
 
-    const formField = container.querySelector('mat-form-field');
+    const formField = screen.getByRole('combobox');
     expect(formField).toBeInTheDocument();
   });
 });
