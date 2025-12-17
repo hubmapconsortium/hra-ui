@@ -26,15 +26,12 @@ describe('CountInfoComponent', () => {
   }
 
   it('should create', async () => {
-    const { container } = await setup();
-    expect(container).toBeTruthy();
+    await setup();
+    expect(screen.getByText('Datasets')).toBeInTheDocument();
   });
 
   it('should render all count cards with labels and counts', async () => {
-    const { container } = await setup();
-
-    const cards = container.querySelectorAll('.count-card');
-    expect(cards.length).toBe(2);
+    await setup();
 
     expect(screen.getByText('Datasets')).toBeInTheDocument();
     expect(screen.getByText('150')).toBeInTheDocument();

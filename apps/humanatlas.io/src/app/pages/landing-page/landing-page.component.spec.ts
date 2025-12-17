@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { render } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 import { LandingPageComponent } from './landing-page.component';
 import { LandingPageData } from '../../schemas/landing-page/landing-page.schema';
 
@@ -34,33 +34,32 @@ describe('LandingPageComponent', () => {
   };
 
   it('should render', async () => {
-    const { container } = await render(LandingPageComponent, {
+    await render(LandingPageComponent, {
       inputs: { data: mockLandingPageData },
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
 
-    const intro = container.querySelector('.intro');
-    expect(intro).toBeTruthy();
-    expect(intro?.textContent).toContain('Human Reference Atlas');
+    const intro = screen.getAllByText(/Human Reference Atlas/i);
+    expect(intro.length).toBeGreaterThan(0);
   });
 
   it('should render count cards', async () => {
-    const { fixture } = await render(LandingPageComponent, {
+    await render(LandingPageComponent, {
       inputs: { data: mockLandingPageData },
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
 
-    const countCards = fixture.nativeElement.querySelectorAll('hra-count-card');
-    expect(countCards.length).toBe(1);
+    const countLabel = screen.getByText('Datasets');
+    expect(countLabel).toBeInTheDocument();
   });
 
   it('should render carousel component', async () => {
-    const { fixture } = await render(LandingPageComponent, {
+    await render(LandingPageComponent, {
       inputs: { data: mockLandingPageData },
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
 
-    const carousel = fixture.nativeElement.querySelector('hra-carousel');
-    expect(carousel).toBeTruthy();
+    const carouselText = screen.getByText('Test Carousel');
+    expect(carouselText).toBeInTheDocument();
   });
 });

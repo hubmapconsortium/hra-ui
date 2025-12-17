@@ -32,8 +32,16 @@ Heart,Ventricle,UBERON:0002084,Cardiomyocyte,CL:0000746,30,15`;
   }
 
   it('should create', async () => {
-    const { container } = await setup();
-    expect(container).toBeTruthy();
+    const { httpMock } = await setup();
+
+    const requests = httpMock.match((req) => req.url.includes('ftu-cell-counts'));
+    requests.forEach((req) => req.flush(mockCsvData));
+
+    const button = await screen.findByRole('button');
+    expect(button).toBeInTheDocument();
+    expect(button.textContent).toContain('download');
+
+    httpMock.verify();
   });
 
   it('should load and display CSV data', async () => {
@@ -65,13 +73,12 @@ Heart,Ventricle,UBERON:0002084,Cardiomyocyte,CL:0000746,30,15`;
 
   it('should trigger download when button is clicked', async () => {
     const saveAs = (await import('file-saver')).default;
-    const { httpMock, user, container } = await setup({ csvUrl: 'test.csv' });
+    const { httpMock, user } = await setup({ csvUrl: 'test.csv' });
 
     const requests = httpMock.match('test.csv');
     requests.forEach((req) => req.flush(mockCsvData));
 
-    const downloadButton = container.querySelector('button.download') as HTMLElement;
-    expect(downloadButton).toBeInTheDocument();
+    const downloadButton = await screen.findByRole('button');
     await user.click(downloadButton);
 
     expect(saveAs).toHaveBeenCalled();
@@ -81,12 +88,12 @@ Heart,Ventricle,UBERON:0002084,Cardiomyocyte,CL:0000746,30,15`;
 
   it('should download blob when csvUrl is not provided', async () => {
     const saveAs = (await import('file-saver')).default;
-    const { httpMock, user, container } = await setup({ csvUrl: '' });
+    const { httpMock, user } = await setup({ csvUrl: '' });
 
     const requests = httpMock.match('');
     requests.forEach((req) => req.flush(mockCsvData));
 
-    const downloadButton = container.querySelector('button.download') as HTMLElement;
+    const downloadButton = await screen.findByRole('button');
     await user.click(downloadButton);
 
     expect(saveAs).toHaveBeenCalledWith(expect.any(Blob), 'Kidney.csv');
