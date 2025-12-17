@@ -1,0 +1,78 @@
+@use 'utils';
+@use 'vars' as vars;
+
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  .header {
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    background: linear-gradient(rgba(235, 244, 235, 0.48), rgba(235, 244, 235, 0.8), rgba(235, 244, 235, 1));
+
+    button {
+      margin: 0.25rem;
+    }
+  }
+
+  mat-sidenav {
+    border-right: 1px solid vars.$outline;
+    border-radius: 0;
+    width: auto;
+  }
+
+  mat-sidenav-container {
+    width: 100%;
+  }
+
+  mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search {
+    padding: 2rem 2.5rem;
+  }
+
+  ng-scrollbar {
+    padding: 2.5rem;
+  }
+
+  .action-link {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    font: vars.$label-large;
+    @include utils.use-font(label, large);
+  }
+
+  // Control styles
+  .toggle-group {
+    width: fit-content;
+    max-width: 100%;
+    --mat-button-toggle-height: 2rem;
+  }
+  mat-button-toggle {
+    font: var(--mat-sys-label-medium);
+  }
+  mat-label {
+    font: var(--mat-sys-label-medium);
+    --mat-form-field-filled-label-text-color: var(--mat-sys-primary);
+  }
+  .select-icon {
+    padding-left: 0.75rem;
+    padding-right: 0.5rem;
+    --mat-form-field-leading-icon-color: var(--mat-sys-secondary);
+  }
+}

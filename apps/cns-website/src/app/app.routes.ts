@@ -7,6 +7,7 @@ import { ContentPageComponent } from './components/content-page/content-page.com
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
+import { GalleryViewPageComponent } from './components/gallery-view-page/gallery-view-page.component';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -21,6 +22,11 @@ export const appRoutes: Route[] = [
     resolve: {
       data: createPeopleProfileResolver(),
     },
+  },
+
+  {
+    path: 'research',
+    component: GalleryViewPageComponent,
   },
 
   // Content pages

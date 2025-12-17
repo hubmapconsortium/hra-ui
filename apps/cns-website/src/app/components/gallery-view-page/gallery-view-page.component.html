@@ -1,0 +1,85 @@
+<mat-sidenav-container autosize [hasBackdrop]="!isWideScreen()">
+  <mat-sidenav
+    [mode]="!isWideScreen() ? 'over' : 'side'"
+    [opened]="isWideScreen()"
+    [fixedInViewport]="true"
+    [fixedTopGap]="56"
+    #sidenav
+  >
+    <hra-filter-menu tagline="Research at the Cyberinfrastructure for Network Science Center" [filters]="filters()">
+      <mat-button-toggle-group class="toggle-group" [value]="toggleOptions()[0]">
+        @for (category of toggleOptions(); track category.id) {
+          <mat-button-toggle hraClickEvent [hraFeature]="category.id" [value]="category">
+            {{ category.label }}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <hra-icon class="select-icon" matPrefix>table_view</hra-icon>
+        <mat-label>View as</mat-label>
+        <mat-select>
+          @for (option of viewAsOptions(); track option) {
+            <mat-option [value]="option.id">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <hra-icon class="select-icon" matPrefix>sort</hra-icon>
+        <mat-label>Sort by</mat-label>
+        <mat-select>
+          @for (option of sortByOptions(); track option) {
+            <mat-option [value]="option.id">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <hra-icon class="select-icon" matPrefix>category</hra-icon>
+        <mat-label>Group by</mat-label>
+        <mat-select>
+          @for (option of filters(); track option) {
+            <mat-option [value]="option.id">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </hra-filter-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="search">
+      <hra-search-filter
+        label="Search"
+        [totalCount]="totalCount()"
+        [viewingCount]="viewingCount()"
+        [(search)]="search"
+        (searchChange)="search.set($event)"
+      />
+    </div>
+    @if (viewingCount() === 0) {
+      <ng-container [ngTemplateOutlet]="empty" />
+    } @else {
+      <ng-scrollbar>
+        <hra-grid-container>
+          @for (item of filteredGalleryItems(); track $index) {
+            <hra-gallery-card
+              [tagline]="item.name"
+              [imageSrc]="item.imageSrc"
+              [date]="item.date!"
+              [link]="item.link"
+              [external]="item.external || false"
+              [tags]="item.tags || []"
+            />
+          }
+        </hra-grid-container>
+      </ng-scrollbar>
+    }
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #empty>
+  <div class="empty">
+    <div>No results. Adjust filters or search again.</div>
+    <button mat-flat-button (click)="search.set('')">Clear filters</button>
+  </div>
+</ng-template>
