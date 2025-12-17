@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { render } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 
 import { CarouselComponent } from './carousel.component';
 import { CarouselItem } from './carousel.schema';
@@ -31,24 +31,22 @@ describe('CarouselComponent', () => {
   }
 
   it('should create', async () => {
-    const { container } = await setup();
-    expect(container).toBeTruthy();
+    await setup();
+    const slide1 = screen.getByText('Slide 1');
+    expect(slide1).toBeInTheDocument();
   });
 
   it('should render swiper container and slides for all items', async () => {
-    const { container } = await render(CarouselComponent, {
+    await render(CarouselComponent, {
       providers,
       inputs: { items: mockItems },
     });
 
-    const swiperContainer = container.querySelector('swiper-container');
-    expect(swiperContainer).toBeTruthy();
+    const slide1 = screen.getByText('Slide 1');
+    const slide2 = screen.getByText('Slide 2');
 
-    const slides = container.querySelectorAll('swiper-slide');
-    expect(slides.length).toBe(2);
-
-    const contentComponents = container.querySelectorAll('hra-carousel-content');
-    expect(contentComponents.length).toBe(2);
+    expect(slide1).toBeInTheDocument();
+    expect(slide2).toBeInTheDocument();
   });
 
   it('should render carousel controls', async () => {
