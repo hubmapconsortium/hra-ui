@@ -6,13 +6,13 @@ import { provideAnalytics } from '@hra-ui/common/analytics';
 
 describe('MarkdownComponent', () => {
   it('should render', async () => {
-    const component = await render(MarkdownComponent, {
+    const result = render(MarkdownComponent, {
       providers: [provideMarkdown(), provideHttpClient()],
       inputs: {
         src: 'assets/content/changelog-page/CHANGELOG.md',
       },
     });
-    expect(component).toBeTruthy();
+    await expect(result).resolves.toBeTruthy();
   });
 
   it('should call logEvent when anchor is clicked', async () => {
