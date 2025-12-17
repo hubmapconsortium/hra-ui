@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { render } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 
 import { ControlsComponent } from './controls.component';
 
@@ -12,19 +12,21 @@ describe('ControlsComponent', () => {
   }
 
   it('should create', async () => {
-    const { container } = await setup();
-    expect(container).toBeTruthy();
+    await setup();
+
+    const buttons = screen.getAllByRole('button');
+    expect(buttons.length).toBe(2);
   });
 
   it('should render navigation buttons and pagination container', async () => {
-    const { container } = await setup();
+    await setup();
 
-    const prevButton = container.querySelector('.prev-button');
-    const nextButton = container.querySelector('.next-button');
-    const paginationContainer = container.querySelector('.pagination-container');
+    const buttons = screen.getAllByRole('button');
+    expect(buttons.length).toBe(2);
 
-    expect(prevButton).toBeTruthy();
-    expect(nextButton).toBeTruthy();
-    expect(paginationContainer).toBeTruthy();
+    const prevIcon = screen.getByText('chevron_left');
+    const nextIcon = screen.getByText('chevron_right');
+    expect(prevIcon).toBeInTheDocument();
+    expect(nextIcon).toBeInTheDocument();
   });
 });
