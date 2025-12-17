@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { render } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 
 import { DataViewerWithQueryParamsComponent } from './data-viewer-with-query-params.component';
 import { ReleaseVersionData } from '@hra-ui/design-system/data-viewer';
@@ -47,14 +47,16 @@ describe('DataViewerWithQueryParamsComponent', () => {
   }
 
   it('should create', async () => {
-    const { container } = await setup();
-    expect(container).toBeTruthy();
+    await setup();
+
+    const releaseLabel = await screen.findByText(/Release 1\.0/);
+    expect(releaseLabel).toBeInTheDocument();
   });
 
   it('should render data viewer with inputs', async () => {
-    const { container } = await setup();
+    await setup();
 
-    const dataViewer = container.querySelector('hra-data-viewer');
-    expect(dataViewer).toBeTruthy();
+    const kidneyLabel = await screen.findByText(/Kidney/);
+    expect(kidneyLabel).toBeInTheDocument();
   });
 });

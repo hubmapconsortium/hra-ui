@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { render } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 import { provideMarkdown } from 'ngx-markdown';
 import { PublicationsPageComponent } from './publications-page.component';
 import { PublicationsPageData } from '../../schemas/publications-page/publications-page.schema';
@@ -19,14 +19,19 @@ describe('PublicationsPageComponent', () => {
   }
 
   it('should render', async () => {
-    const { container } = await setup();
-    expect(container).toBeTruthy();
+    await setup();
+
+    const bannerText = screen.getByText('Publications');
+    expect(bannerText).toBeInTheDocument();
   });
 
   it('should render publications by year', async () => {
-    const { container } = await setup();
+    await setup();
 
-    const sections = container.querySelectorAll('hra-page-section');
-    expect(sections.length).toBeGreaterThan(0);
+    const publication2024 = screen.getByText(/Test Publication 2024/);
+    const publication2023 = screen.getByText(/Author/);
+
+    expect(publication2024).toBeInTheDocument();
+    expect(publication2023).toBeInTheDocument();
   });
 });
