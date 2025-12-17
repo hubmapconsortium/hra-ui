@@ -3,30 +3,29 @@ import { render } from '@testing-library/angular';
 import { provideHttpClient } from '@angular/common/http';
 import { MarkdownComponent } from './markdown.component';
 import { provideAnalytics } from '@hra-ui/common/analytics';
+import userEvent from '@testing-library/user-event';
 
 describe('MarkdownComponent', () => {
-  it('should render', async () => {
-    const result = render(MarkdownComponent, {
-      providers: [provideMarkdown(), provideHttpClient()],
-      inputs: {
-        src: 'assets/content/changelog-page/CHANGELOG.md',
-      },
+  async function setup(data?: string) {
+    const user = userEvent.setup();
+    const result = await render(MarkdownComponent, {
+      providers: [provideMarkdown(), provideHttpClient(), provideAnalytics()],
+      inputs: data ? { data } : { src: 'assets/content/changelog-page/CHANGELOG.md' },
     });
-    await expect(result).resolves.toBeTruthy();
+    return { ...result, user };
+  }
+
+  it('should render', async () => {
+    const { container } = await setup();
+    expect(container).toBeTruthy();
   });
 
   it('should call logEvent when anchor is clicked', async () => {
-    const { fixture } = await render(MarkdownComponent, {
-      providers: [provideMarkdown(), provideHttpClient(), provideAnalytics()],
-      inputs: {
-        data: '# Test\n[Link](https://example.com)',
-      },
-    });
+    const { container, fixture, user } = await setup('# Test\n[Link](https://example.com)');
 
     const component = fixture.componentInstance;
-    fixture.detectChanges();
 
-    const hostEl = fixture.nativeElement;
+    const hostEl = container.querySelector('hra-markdown') || container;
     const anchor = document.createElement('a');
     anchor.href = 'https://example.com';
     anchor.textContent = 'Link';
@@ -34,21 +33,17 @@ describe('MarkdownComponent', () => {
 
     component.attachEventListeners();
 
-    expect(() => anchor.click()).not.toThrow();
+    await user.click(anchor);
+
+    expect(anchor.href).toBe('https://example.com/');
   });
 
   it('should push listeners when attaching event listeners', async () => {
-    const { fixture } = await render(MarkdownComponent, {
-      providers: [provideMarkdown(), provideHttpClient(), provideAnalytics()],
-      inputs: {
-        data: '# Test',
-      },
-    });
+    const { container, fixture } = await setup('# Test');
 
     const component = fixture.componentInstance;
-    fixture.detectChanges();
 
-    const hostEl = fixture.nativeElement;
+    const hostEl = container.querySelector('hra-markdown') || container;
     const anchor1 = document.createElement('a');
     anchor1.href = 'https://example.com';
     hostEl.appendChild(anchor1);
@@ -63,17 +58,11 @@ describe('MarkdownComponent', () => {
   });
 
   it('should call unlisten functions when clearing event listeners', async () => {
-    const { fixture } = await render(MarkdownComponent, {
-      providers: [provideMarkdown(), provideHttpClient(), provideAnalytics()],
-      inputs: {
-        data: '# Test',
-      },
-    });
+    const { container, fixture } = await setup('# Test');
 
     const component = fixture.componentInstance;
-    fixture.detectChanges();
 
-    const hostEl = fixture.nativeElement;
+    const hostEl = container.querySelector('hra-markdown') || container;
     const anchor = document.createElement('a');
     anchor.href = 'https://example.com';
     hostEl.appendChild(anchor);
