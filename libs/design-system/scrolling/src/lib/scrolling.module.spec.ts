@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { StyleComponentManagerService } from '@hra-ui/cdk/styling';
 import { NG_SCROLLBAR_OPTIONS, NgScrollbarOptions } from 'ngx-scrollbar';
 import { provideScrolling } from './scrolling.module';
 
@@ -34,42 +33,20 @@ describe('provideScrolling', () => {
     expect(options.thumbClass).toBe('hra-scrollbar-thumb');
   });
 
-  it('should provide style component manager service', () => {
-    TestBed.configureTestingModule({
-      providers: [provideScrolling()],
-    });
-
-    const service = TestBed.inject(StyleComponentManagerService);
-    expect(service).toBeDefined();
-  });
-
-  it('should handle custom polyfill url', () => {
-    const customPolyfillUrl = 'custom/path/to/polyfill.js';
+  it('should merge custom options with defaults', () => {
+    const customOptions = {
+      visibility: 'native' as const,
+      trackClass: 'custom-track',
+    };
 
     TestBed.configureTestingModule({
-      providers: [provideScrolling({ polyfillUrl: customPolyfillUrl })],
+      providers: [provideScrolling(customOptions)],
     });
 
     const options = TestBed.inject(NG_SCROLLBAR_OPTIONS) as NgScrollbarOptions;
-    expect(options).toBeDefined();
-  });
-
-  it('should use default polyfill url when no custom url is provided', () => {
-    TestBed.configureTestingModule({
-      providers: [provideScrolling()],
-    });
-
-    const options = TestBed.inject(NG_SCROLLBAR_OPTIONS) as NgScrollbarOptions;
-    expect(options).toBeDefined();
-  });
-
-  it('should handle options being undefined', () => {
-    TestBed.configureTestingModule({
-      providers: [provideScrolling(undefined)],
-    });
-
-    const options = TestBed.inject(NG_SCROLLBAR_OPTIONS) as NgScrollbarOptions;
-    expect(options).toBeDefined();
-    expect(options.visibility).toBe('hover');
+    expect(options.visibility).toBe('native');
+    expect(options.appearance).toBe('compact');
+    expect(options.trackClass).toBe('custom-track');
+    expect(options.thumbClass).toBe('hra-scrollbar-thumb');
   });
 });
