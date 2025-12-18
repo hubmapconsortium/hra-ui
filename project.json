@@ -1,0 +1,25 @@
+{
+  "name": "hra-ui",
+  "targets": {
+    "global-test-coverage-report": {
+      "command": "node tools/scripts/create-coverage-report.mjs ./coverage",
+      "cache": true,
+      "inputs": [
+        {
+          "dependentTasksOutputFiles": "**/coverage-summary.json"
+        }
+      ],
+      "outputs": ["{workspaceRoot}/coverage/coverage-summary.json"],
+      "dependsOn": [
+        {
+          "projects": "*",
+          "target": "test",
+          "params": "forward"
+        }
+      ]
+    },
+    "global-test-coverage-report-no-deps": {
+      "command": "node tools/scripts/create-coverage-report.mjs ./coverage"
+    }
+  }
+}
