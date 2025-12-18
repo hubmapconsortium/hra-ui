@@ -1004,9 +1004,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/DensityDirective.html" data-type="entity-link" >DensityDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="directives/FullscreenDirective.html" data-type="entity-link" >FullscreenDirective</a>
-                                </li>
-                                <li class="link">
                                     <a href="directives/GalleryGridItemDirective.html" data-type="entity-link" >GalleryGridItemDirective</a>
                                 </li>
                                 <li class="link">
