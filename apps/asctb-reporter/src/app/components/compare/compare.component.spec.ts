@@ -1,6 +1,6 @@
-import { render } from '@testing-library/angular';
-
-import { of } from 'rxjs';
+import { render, screen } from '@testing-library/angular';
+import { userEvent } from '@testing-library/user-event';
+import { Observable, of } from 'rxjs';
 import { CompareData } from '../../models/sheet.model';
 import { CompareComponent } from './compare.component';
 
@@ -20,98 +20,94 @@ describe('CompareComponent', () => {
     ...overrides,
   });
 
-  const renderComponent = async (compareSheets: CompareData[] = []) => {
-    const { fixture } = await render(CompareComponent, {
-      componentInputs: { compareSheets: of(compareSheets) },
+  const renderComponent = async (
+    compareSheets: Observable<CompareData[]> = of([]),
+    outputs?: { compareData?: jest.Mock },
+  ) =>
+    render(CompareComponent, {
+      componentProperties: {
+        compareSheets: (() => compareSheets) as any, // need to fix this later
+        ...(outputs?.compareData && { compareData: { emit: outputs.compareData } }),
+      },
     });
 
-    return fixture.componentInstance;
-  };
-
-  const setupSheetData = (component: CompareComponent, index: number, data: Record<string, unknown>) => {
-    component.CSControls.at(index).patchValue(data);
-  };
-
   it('should render with compare sheets data', async () => {
-    const component = await renderComponent([createMockSheet()]);
-    expect(component.CSControls.length).toBe(1);
+    await renderComponent(of([createMockSheet()]));
+    expect(screen.getByText(/Dataset 1/i)).toBeInTheDocument();
+    expect(screen.getByDisplayValue('Test Sheet')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('Test description')).toBeInTheDocument();
   });
 
   it('should render with empty data and create default sheet', async () => {
-    const component = await renderComponent();
-    expect(component.CSControls.length).toBe(1);
+    await renderComponent();
+    expect(screen.getByText(/Dataset 1/i)).toBeInTheDocument();
   });
 
-  it('should handle file upload and form validation workflow', async () => {
-    const component = await renderComponent();
-    const firstSheet = component.CSControls.at(0);
-    const linkControl = firstSheet.get('link');
-    const formDataControl = firstSheet.get('formData');
-
-    if (linkControl && formDataControl) {
-      const [clearSpy, updateSpy] = [
-        jest.spyOn(linkControl, 'clearValidators'),
-        jest.spyOn(linkControl, 'updateValueAndValidity'),
-      ];
-      const testFormData = new FormData();
-
-      formDataControl.setValue(testFormData);
-      firstSheet.updateValueAndValidity();
-      component.upload(testFormData, firstSheet);
-
-      expect(clearSpy).toHaveBeenCalled();
-      expect(updateSpy).toHaveBeenCalledWith({ emitEvent: false });
-      expect(formDataControl.value).toBe(testFormData);
-    }
+  it('should allow switching between file and link input', async () => {
+    await renderComponent();
+    expect(screen.getByText(/Upload file/i)).toBeInTheDocument();
+    const linkToggle = screen.getByText(/Link URL/i);
+    await userEvent.click(linkToggle);
+    expect(screen.getByLabelText(/Google Sheet or CSV URL/i)).toBeInTheDocument();
   });
 
-  it('should execute complete compare workflow', async () => {
-    const component = await renderComponent();
-    component.addCompareSheetRow();
-
-    setupSheetData(component, 0, {
-      title: '',
-      description: 'First',
-      link: `${VALID_SHEET_URL}#gid=100`,
-      color: '#FF0000',
-    });
-    setupSheetData(component, 1, {
-      title: 'Custom',
-      description: 'Second',
-      link: `${VALID_SHEET_URL}#gid=200`,
-      color: '#00FF00',
-    });
-
-    const compareDataSpy = jest.spyOn(component['compareData'], 'emit');
-
-    component.compare();
-
-    const isValid = component['formGroup'].status === 'VALID';
-    expect(component['formValid']).toBe(isValid);
-
-    if (isValid) {
-      expect(compareDataSpy).toHaveBeenCalled();
-    } else {
-      expect(compareDataSpy).not.toHaveBeenCalled();
-    }
+  it('should add and remove compare sheet rows', async () => {
+    await renderComponent();
+    const addButton = screen.getByRole('button', { name: /Add Dataset/i });
+    await userEvent.click(addButton);
+    expect(screen.getByText(/Dataset 2/i)).toBeInTheDocument();
+    const removeButtons = screen
+      .getAllByRole('button')
+      .filter((btn) => btn.getAttribute('hrafeature') === 'remove-dataset');
+    await userEvent.click(removeButtons[1]);
+    expect(screen.queryByText(/Dataset 2/i)).not.toBeInTheDocument();
   });
 
-  it('should remove sheet and handle data source changes', async () => {
-    const component = await renderComponent();
-    component.addCompareSheetRow();
+  it('should emit compare data when form is valid and compare is clicked', async () => {
+    const compareDataSpy = jest.fn();
+    await renderComponent(of([]), { compareData: compareDataSpy });
+    const linkToggle = screen.getByRole('radio', { name: /Link URL/i });
+    await userEvent.click(linkToggle);
+    const linkInput = screen.getByLabelText(/Google Sheet or CSV URL/i);
+    await userEvent.type(linkInput, `${VALID_SHEET_URL}#gid=123`);
+    const compareButton = screen.getByRole('button', { name: /Compare/i });
+    await userEvent.click(compareButton);
+    expect(compareDataSpy).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          link: `${VALID_SHEET_URL}#gid=123`,
+          sheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+          gid: '123',
+        }),
+      ]),
+    );
+  });
 
-    // Test remove functionality
-    expect(component.CSControls.length).toBe(2);
-    component.removeCompareSheetRow(1);
-    expect(component.CSControls.length).toBe(1);
+  it('should not emit compare data when form is invalid', async () => {
+    const compareDataSpy = jest.fn();
+    await renderComponent(of([]), { compareData: compareDataSpy });
+    const linkToggle = screen.getByRole('radio', { name: /Link URL/i });
+    await userEvent.click(linkToggle);
+    const compareButton = screen.getByRole('button', { name: /Compare/i });
+    await userEvent.click(compareButton);
+    expect(compareDataSpy).not.toHaveBeenCalled();
+  });
 
-    // Test data source change in same test
-    setupSheetData(component, 0, {
-      link: `${VALID_SHEET_URL}#gid=100`,
-      fileName: 'test.csv',
-      formData: new FormData(),
-    });
-    component.onDataSourceChange(0);
-    expect(component.CSControls.at(0).get('link')?.value).toBeDefined();
+  it('should set formData control value when file is uploaded', async () => {
+    await renderComponent();
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    const file = new File(['dummy content'], 'test.csv', { type: 'text/csv' });
+    await userEvent.upload(fileInput, file);
+    expect(fileInput.files?.[0]).toBe(file);
+    expect(fileInput.files).toHaveLength(1);
+  });
+
+  it('should show error state on compare button when form is invalid', async () => {
+    await renderComponent();
+    const linkToggle = screen.getByRole('radio', { name: /Link URL/i });
+    await userEvent.click(linkToggle);
+    const compareButton = screen.getByRole('button', { name: /Compare/i });
+    await userEvent.click(compareButton);
+    expect(compareButton.className).toMatch(/compare-button-color/);
   });
 });

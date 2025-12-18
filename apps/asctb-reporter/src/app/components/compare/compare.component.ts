@@ -282,12 +282,4 @@ export class CompareComponent implements OnInit {
     }
     return color;
   }
-
-  doesFormHaveError() {
-    (this.formGroup.controls['sheets'].value as UntypedFormGroup[]).forEach((sheet) => {
-      // mark as touched for all controls
-      sheet.controls['link'].markAsTouched();
-    });
-    return this.formGroup.status !== 'VALID';
-  }
 }
