@@ -8,7 +8,6 @@ module.exports = {
   ...createCjsPreset(),
 
   testEnvironment: 'jest-preset-angular/environments/jest-jsdom-env',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   transformIgnorePatterns: [`/node_modules/(?!${esModules.join('|')})/`],
   moduleNameMapper: {
     '^nanoid$': 'node_modules/nanoid/index.browser.js',
