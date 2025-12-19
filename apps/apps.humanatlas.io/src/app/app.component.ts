@@ -73,9 +73,9 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Call to action message */
   protected readonly cta: CtaConfig = {
-    description: '🎉  9th Release (v2.3) has arrived!',
+    description: '🎉  10th Release (v2.4) has arrived!',
     action: 'Learn more',
-    url: 'https://humanatlas.io/release-notes/v2.3',
+    url: 'https://humanatlas.io/release-notes/v2.4',
   };
 
   /** Whether the CTA is dismissed or not */

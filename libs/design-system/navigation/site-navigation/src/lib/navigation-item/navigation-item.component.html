@@ -1,8 +1,12 @@
 <a
   hraFeature="navigation-item"
   mat-list-item
+  hraLinkActive="active"
   [hraClickEvent]="{ label: navigationItem().label }"
   [hraLink]="navigationItem().url"
+  [hraLinkActiveOptions]="matchOptions"
+  [activated]="linkActive.isActive()"
+  #linkActive="hraLinkActive"
 >
   <div class="nav-content">
     @if (navigationItem().icon; as icon) {
