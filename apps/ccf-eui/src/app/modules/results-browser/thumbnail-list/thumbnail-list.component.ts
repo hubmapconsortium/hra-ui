@@ -1,10 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TissueDataset } from '@hra-api/ng-client';
 import { HraCommonModule } from '@hra-ui/common';
-import { GlobalConfigState } from 'ccf-shared';
 
 /**
  * List containing sample thumbnails in expanded donor cards
@@ -22,16 +20,4 @@ export class ThumbnailListComponent {
 
   /** Outputs the result whose link was clicked */
   readonly linkClicked = output<TissueDataset>();
-
-  /** Base href */
-  private readonly baseHref = toSignal(inject(GlobalConfigState).getOption('baseHref'), { initialValue: '' });
-
-  /**
-   * Returns thumbnail url from item
-   * @param item TissueDataset item
-   * @returns url
-   */
-  thumbnailUrl(item: TissueDataset): string {
-    return `url(${this.baseHref() + item.thumbnail})`;
-  }
 }

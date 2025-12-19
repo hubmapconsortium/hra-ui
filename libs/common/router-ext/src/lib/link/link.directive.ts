@@ -25,14 +25,8 @@ export class LinkDirective {
   // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn't work for non-trivial selectors
   readonly external = input(false, { alias: 'hraLinkExternal', transform: booleanAttribute });
 
-  /** Location strategy reference */
-  private readonly locationStrategy = inject(LocationStrategy, { optional: true });
-  /** Reference to the router (if available) */
-  private readonly router = injectRouter({ optional: true });
-  /** Url resolving function */
-  private readonly resolve = injectAppUrlResolver();
   /** Resolved url tree */
-  private readonly urlTree = computed(() => {
+  readonly urlTree = computed(() => {
     const { router, resolve } = this;
     if (router && !this.external()) {
       const url = resolve(this.url());
@@ -43,6 +37,13 @@ export class LinkDirective {
 
     return undefined;
   });
+
+  /** Location strategy reference */
+  private readonly locationStrategy = inject(LocationStrategy, { optional: true });
+  /** Reference to the router (if available) */
+  private readonly router = injectRouter({ optional: true });
+  /** Url resolving function */
+  private readonly resolve = injectAppUrlResolver();
   /** Resolved href value */
   protected readonly href = computed(() => {
     const { locationStrategy, router } = this;

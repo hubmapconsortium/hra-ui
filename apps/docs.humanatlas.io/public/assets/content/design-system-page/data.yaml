@@ -2,13 +2,57 @@ $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Design System
 subtitle: |
   A unified visual and interaction framework for all Human Reference Atlas applications.
-
-  Designers use [Figma's design system file structure](https://help.figma.com/hc/en-us/articles/14552802134807-Lesson-1-Welcome-to-design-systems) to create reusable components,
-  patterns, and styles that ensure consistency across the Human Reference Atlas (HRA) applications.
 icons: product:design-system
 content:
   - component: PageSection
-    tagline: Storybook UI components
+    tagline: Figma for designers
+    anchor: figma
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Designers use Figma to create reusable components, patterns, and styles that ensure consistency when designing Human Reference Atlas (HRA) applications.
+
+          The HRA Design System Figma file acts as the single source of truth for all websites and applications in the HRA app ecosystem. Designers structure this Figma file into three main elements, each organized by page for clarity and reuse:
+
+          - [Style Guide](https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=6977-27335&t=XzEQuK8OAk0GjIUE-4): Provides guidance on the use of colors, typefaces, logos, imagery, and overall branding to maintain design consistency
+          - [Component Library](https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=4844-22169&t=XzEQuK8OAk0GjIUE-4): A collection of user interface components, such as buttons, input fields, modals, and navigation bars
+          - [Pattern Library](https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=13531-40993&t=XzEQuK8OAk0GjIUE-4): User interface guidelines and structures used to create reusable templates for pages and applications
+
+  - component: PageSection
+    tagline: Figma component organization
+    anchor: component-organization
+    level: 3
+    content:
+      - component: Image
+        src: assets/content/design-system-page/images/figma_comp_organization.png
+
+      - component: Markdown
+        data: |
+          Designers organize the HRA Design System Figma file Component Library page by categories for easy navigation and developer handoff.
+
+  - component: PageSection
+    tagline: Design to development handoff
+    anchor: design-to-dev
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Designers initiate a formal handoff to developers when a component or app design is ready to be built.
+
+          1. A designer submits a GitHub issue in the [HRA-UI monorepo](https://github.com/hubmapconsortium/hra-ui) to indicate that a UI design is ready for development, with the following details:
+              - A description of the specified UI design and its interactions
+              - Figma links to anything relevant for implementation
+              - Any accessibility, responsive behavior, and feature notes
+
+          2. A developer uses the issue to:
+              - Implement the component in code
+              - Integrate it into the HRA Design System Storybook for reuse across the HRA app ecosystem
+
+          This collaborative handoff ensures that visual fidelity, interaction behavior, and accessibility are maintained across the design and development cycle.
+
+  - component: PageSection
+    tagline: Storybook for developers
     anchor: storybook
     level: 2
     content:
@@ -17,84 +61,9 @@ content:
 
       - component: Markdown
         data: |
-          The **Human Reference Atlas design system** includes a documented and interactive component library available in **Storybook**.
+          Developers maintain the Human Reference Atlas Design System in Storybook, which features a documented, interactive component library. Developers can explore, test, and integrate reusable UI components consistently across all HRA apps.
 
-          Developers can explore, test, and integrate reusable UI components consistently across all HRA applications.
-
-          - Each component has its own page with configurable props and usage examples.
-          - Components align with the HRA design patterns and color guidelines defined in **Figma**.
-          - Stories are organized by categories such as **buttons**, **forms**, **navigation**, and more.
-          - The Storybook is automatically updated with new components and changes from the design system.
-          - **Stories** are linked to their corresponding Figma designs for easy reference.
-
-  - component: PageSection
-    tagline: Human Reference Atlas design system - Figma
-    anchor: figma
-    level: 2
-    content:
-      - component: Markdown
-        data: |
-          Designers rely on **Figma** as the single source of truth for all websites and applications built around the Human Reference Atlas (HRA).
-
-          The HRA Design System is structured into three main elements, each organized by page for clarity and reuse.
-
-      - component: Markdown
-        data: |
-          ### Style guide
-          Provides guidance on the use of colors, typefaces, logos, imagery, and overall branding to maintain design consistency.
-      - component: TextHyperlink
-        text: Open style guide
-        url: https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=0-1
-        icon: arrow_right_alt
-
-      - component: Markdown
-        data: |
-          ### Component library
-          A collection of user interface components, such as buttons, input fields, modals, and navigation bars, that make up the foundation of HRA apps.
-      - component: TextHyperlink
-        text: Open component library
-        url: https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=103-4
-        icon: arrow_right_alt
-
-      - component: Markdown
-        data: |
-          ### Pattern library
-          User interface guidelines and structures used to create reusable templates for pages and applications.
-      - component: TextHyperlink
-        text: Open pattern library
-        url: https://www.figma.com/design/gQEMLugLjweDvbsNNUVffD/HRA-Design-System-Repository?node-id=281-932
-        icon: arrow_right_alt
-
-  - component: PageSection
-    tagline: Component library organization
-    anchor: component-organization
-    level: 2
-    content:
-      - component: Image
-        src: assets/content/design-system-page/images/figma_comp_organization.png
-
-      - component: Markdown
-        data: |
-          Designers organize the **Component library** in figma by categories for easy navigation and developer handoff.
-
-          Each component is associated with a corresponding application screen or UI pattern, helping ensure traceability from design to implementation.
-
-  - component: PageSection
-    tagline: Component handoff- from design to development
-    anchor: design-to-dev
-    level: 2
-    content:
-      component: Markdown
-      data: |
-        Once a component is finalized in Figma, designers initiate a formal handoff to developers in the [Human Reference Atlas component file](https://www.figma.com/design/BCEJn9KCIbBJ5MzqnojKQp/HRA-Components?node-id=2-841).
-
-        1. A designer submits a **GitHub issue** to indicate that it is ready for development, with the following details:
-            - A description of the component and its interactions
-            - Links to relevant figma pages
-            - Any accessibility or responsive behavior notes
-
-        2. A developer uses the issue to:
-            - Implement the component in code
-            - Integrate it into the **HRA storybook design system** for visibility and reuse
-
-        This collaborative handoff ensures that visual fidelity, interaction behavior, and accessibility are maintained across the design and development cycle.
+          - Each component has its own page with configurable props and usage examples
+          - Components align with the design patterns and color guidelines defined in Figma
+          - Stories are organized by categories such as buttons, forms, navigation, and more
+          - Stories are linked to their corresponding Figma designs for easy reference

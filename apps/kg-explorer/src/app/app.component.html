@@ -16,6 +16,9 @@
           [hraFeature]="option.label | slugify"
           [attr.href]="option.url"
         >
+          @if (option.icon) {
+            <mat-icon matSuffix>{{ option.icon }}</mat-icon>
+          }
           <div class="option-text">
             <span class="option-name">
               {{ option.label }}

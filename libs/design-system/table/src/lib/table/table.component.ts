@@ -161,7 +161,7 @@ export class NumericRowElementDirective {
   templateUrl: 'table.component.html',
   styleUrl: 'table.component.scss',
   host: {
-    '[class]': '"hra-table-style-" + style()',
+    '[class]': '"hra-table-variant-" + variant()',
     '[class.sortable]': 'enableSort()',
     '[class.vertical-dividers]': 'verticalDividers()',
   },
@@ -176,8 +176,8 @@ export class TableComponent<T = TableRow> {
   /** Unsorted data */
   readonly rows = input<T[]>();
 
-  /** Table style */
-  readonly style = input<TableVariant>('alternating');
+  /** Table variant */
+  readonly variant = input<TableVariant>('alternating');
 
   /** Enables sorting */
   readonly enableSort = input<boolean>(false);
