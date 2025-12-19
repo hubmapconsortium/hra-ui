@@ -1,4 +1,6 @@
-@for (item of data(); track item.thumbnail) {
+@for (item of data(); track item) {
+  @let thumbnail = item.thumbnail ? (item.thumbnail | assetUrl | cssUrl) : undefined;
+
   <div hraFeature="thumbnail" class="slide">
     <a
       hraClickEvent
@@ -6,8 +8,9 @@
       target="_blank"
       rel="noopener noreferrer"
       [hraFeature]="item.technology ?? 'no-technology' | slugify"
+      [class.empty]="thumbnail === undefined"
+      [style.background-image]="thumbnail"
       [attr.href]="item.link"
-      [style.background-image]="thumbnailUrl(item)"
       (click)="linkClicked.emit(item)"
     ></a>
     <div>
