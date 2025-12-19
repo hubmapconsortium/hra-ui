@@ -7,4 +7,13 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../../coverage/tools/plugins/zod-to-json-schema',
+  // TODO increase to 85%!
+  coverageThreshold: {
+    global: {
+      statements: 0,
+      branches: 0,
+      lines: 0,
+      functions: 0,
+    },
+  },
 };

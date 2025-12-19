@@ -1,7 +1,7 @@
 import { Express, Request, Response } from 'express';
 import papa from 'papaparse';
 
-import { PLAYGROUND_CSV } from '../../const';
+import { PLAYGROUND_CSV } from '../data/const';
 import { makeASCTBData } from '../functions/api.functions';
 
 /** Adds playground routes */

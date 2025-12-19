@@ -18,7 +18,7 @@ content:
           scholarly and experimental data evidence for the HRA; plus diversity of atlas authors, donors, and users.
 
       - component: Image
-        src: assets/content/dashboard-page/images/dashboard_diversity.png
+        src: assets/ui-images/annotated-ui-dashboard.png
 
   - component: PageSection
     tagline: Code

@@ -58,6 +58,16 @@
       );
     }
 
+    // Inverse variant
+    &.hra-icon-button-variant-inverse {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$inverse-primary,
+          state-layer-color: vars.$inverse-primary,
+        )
+      );
+    }
+
     // Workaround
     // Material doesn't set the icon size correctly when inside a button
     mat-icon {

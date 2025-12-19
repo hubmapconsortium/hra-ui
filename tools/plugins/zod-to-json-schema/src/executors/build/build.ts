@@ -1,6 +1,5 @@
 import { ExecutorContext, ProjectConfiguration, PromiseExecutor, logger } from '@nx/devkit';
 import fs from 'node:fs/promises';
-import os from 'node:os';
 import path from 'node:path';
 import { BuildExecutorSchema } from './schema';
 import { compileSchemaModule, convertSchemaModule, findSchemaModules, loadSchemaModule } from './util/schema-module';
@@ -16,9 +15,6 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
   logger.verbose(`Options: ${JSON.stringify(options, undefined, 2)}`);
 
   const projectConfig = resolveProjectConfiguration(context);
-  const buildDir = await fs.mkdtemp(path.join(os.tmpdir(), 'zod-to-json-schema-'));
-  logger.verbose(`Temporary build directory: ${buildDir}`);
-
   const files = await findSchemaModules(context, projectConfig);
   if (files.length === 0) {
     logger.warn('No schema files found in the project. Exiting...');
@@ -27,8 +23,8 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
 
   logger.info(`Found ${files.length} schema files. Starting compilation...`);
   logger.verbose('Schema files: ', files);
-  const compiledFiles = await Promise.all(files.map((file) => compileSchemaModule(file, buildDir, context.isVerbose)));
-  const modules = await Promise.all(compiledFiles.map((file) => loadSchemaModule(file)));
+  const compiledFiles = await Promise.all(files.map((file) => compileSchemaModule(file, context.isVerbose)));
+  const modules = await Promise.all(compiledFiles.map((content) => loadSchemaModule(content)));
 
   logger.info('Compilation complete. Starting convertions...');
   const schemas = files.map((file, index) => convertSchemaModule(file, modules[index], options));
@@ -46,7 +42,7 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
     }
   }
 
-  logger.info(`Wrote ${count} schemas.`);
+  logger.info(`Built ${count} schemas.`);
   logger.info('All done!');
   return { success: true };
 };

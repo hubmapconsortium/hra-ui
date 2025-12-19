@@ -11,7 +11,21 @@
   "targets": {
     "build": {
       "configurations": {
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/kg-explorer/src/environments/environment.ts",
+              "with": "apps/kg-explorer/src/environments/environment.staging.ts"
+            }
+          ]
+        },
         "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/kg-explorer/src/environments/environment.ts",
+              "with": "apps/kg-explorer/src/environments/environment.prod.ts"
+            }
+          ],
           "budgets": [
             {
               "type": "initial",

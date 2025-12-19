@@ -165,8 +165,8 @@ export class HeaderComponent {
   /**
    * Closes any active menu
    */
-  closeMenu(): void {
-    this.activeMenu.set(undefined);
+  closeMenu(menu?: Menu | 'main'): void {
+    this.activeMenu.update((current) => (menu !== undefined && current !== menu ? current : undefined));
   }
 
   /**

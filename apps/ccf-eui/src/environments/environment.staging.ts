@@ -7,7 +7,7 @@ export const environment = {
     'https://data.sennetconsortium.org',
   ],
   dbOptions: {
-    remoteApiEndpoint: 'https://apps.humanatlas.io/api',
+    remoteApiEndpoint: 'https://apps.humanatlas.io/api--staging',
   },
   customization: {
     theme: 'hubmap',
