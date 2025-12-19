@@ -1,0 +1,43 @@
+$schema: ../../../../src/app/schemas/news/news.schema.json
+news:
+  - name: A
+    imageSrc: assets/ui-images/placeholder.png
+    date: March 15, 2024
+    link: https://humanatlas.io
+    external: true
+    tags:
+      - Research
+      - HRA
+  - name: AB
+    imageSrc: assets/ui-images/placeholder.png
+    date: March 15, 2024
+    link: https://humanatlas.io
+    external: true
+    tags:
+      - Research
+      - HRA
+      - Test
+  - name: ABC
+    imageSrc: assets/ui-images/placeholder.png
+    date: June 15, 2024
+    link: https://humanatlas.io
+    external: true
+    tags:
+      - Research
+      - HRA
+      - Label
+  - name: ABCD
+    imageSrc: assets/ui-images/placeholder.png
+    date: May 15, 2024
+    link: https://humanatlas.io
+    external: true
+    tags:
+      - HRA
+  - name: ABCDE
+    imageSrc: assets/ui-images/placeholder.png
+    date: April 15, 2024
+    link: https://humanatlas.io
+    external: true
+    tags:
+      - Research
+      - HRA

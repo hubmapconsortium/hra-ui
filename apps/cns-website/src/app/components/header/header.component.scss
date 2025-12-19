@@ -50,7 +50,9 @@
   transition: 0.3s;
 }
 
-::ng-deep .cdk-overlay-pane {
-  left: unset !important;
-  right: 0rem !important;
+::ng-deep .cdk-overlay-container:has(.menu-open-backdrop) {
+  .cdk-overlay-pane {
+    left: unset !important;
+    right: 0rem !important;
+  }
 }

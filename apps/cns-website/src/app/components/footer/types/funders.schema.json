@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "Funders",
+  "id": "CnsFunders",
   "type": "object",
   "properties": {
     "$schema": {
@@ -9,7 +9,7 @@
     "funders": {
       "type": "array",
       "items": {
-        "$ref": "#/$defs/Funder"
+        "$ref": "#/$defs/CnsFunder"
       }
     }
   },
@@ -19,8 +19,8 @@
   ],
   "additionalProperties": false,
   "$defs": {
-    "Funder": {
-      "id": "Funder",
+    "CnsFunder": {
+      "id": "CnsFunder",
       "type": "object",
       "properties": {
         "id": {

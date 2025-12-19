@@ -1,20 +1,12 @@
 <mat-sidenav-container autosize [hasBackdrop]="!isWideScreen()">
   <mat-sidenav
     [mode]="!isWideScreen() ? 'over' : 'side'"
-    [opened]="isWideScreen()"
+    [opened]="menuOpen()"
     [fixedInViewport]="true"
     [fixedTopGap]="56"
     #sidenav
   >
     <hra-filter-menu tagline="Research at the Cyberinfrastructure for Network Science Center" [filters]="filters()">
-      <mat-button-toggle-group class="toggle-group" [value]="toggleOptions()[0]">
-        @for (category of toggleOptions(); track category.id) {
-          <mat-button-toggle hraClickEvent [hraFeature]="category.id" [value]="category">
-            {{ category.label }}
-          </mat-button-toggle>
-        }
-      </mat-button-toggle-group>
-
       <mat-form-field subscriptSizing="dynamic">
         <hra-icon class="select-icon" matPrefix>table_view</hra-icon>
         <mat-label>View as</mat-label>

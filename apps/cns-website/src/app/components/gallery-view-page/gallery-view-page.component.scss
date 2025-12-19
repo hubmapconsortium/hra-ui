@@ -31,6 +31,7 @@
   mat-sidenav-content {
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 3.5rem);
   }
 
   .search {
@@ -38,7 +39,9 @@
   }
 
   ng-scrollbar {
-    padding: 2.5rem;
+    hra-grid-container {
+      padding: 2.5rem;
+    }
   }
 
   .action-link {
