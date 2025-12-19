@@ -17,7 +17,10 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: var(--mat-sys-inverse-primary);
+
+    &.empty {
+      background-color: var(--mat-sys-inverse-primary);
+    }
 
     &:hover {
       opacity: 0.75;

@@ -78,7 +78,7 @@ content:
             icons: product:cell-population-predictor
             content:
               - component: Markdown
-                data: Compare cell type populations across datasets.
+                data: Upload a 3D tissue extraction site to predict cell type populations.
             actionsLeft:
               component: TextHyperlink
               text: Learn more
