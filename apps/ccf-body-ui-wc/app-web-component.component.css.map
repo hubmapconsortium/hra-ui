@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/ccf-body-ui-wc/src/app/app-web-component.component.ts"],
+  "sourcesContent": ["\n    :host {\n      display: block;\n    }\n  "],
+  "mappings": ";AACI;AACE,WAAA;;",
+  "names": []
+}
