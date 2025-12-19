@@ -19,7 +19,6 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonSizeDirective, ButtonVariantDirective } from '@hra-ui/design-system/buttons/button';
 import { ButtonToggleSizeDirective } from '@hra-ui/design-system/buttons/button-toggle';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { Observable } from 'rxjs';
 import { CompareData } from '../../models/sheet.model';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { SidenavHeaderComponent } from '../sidenav-header/sidenav-header.component';
@@ -50,14 +49,14 @@ import { SidenavModule } from '../sidenav/sidenav.module';
   styleUrl: './compare.component.scss',
 })
 export class CompareComponent implements OnInit {
-  /** Observable of compare data sheets */
-  readonly compareSheets = input.required<Observable<CompareData[]>>();
+  /** Compare data sheets (array) */
+  readonly compareSheets = input.required<CompareData[]>();
 
   /** Close compare event emitter */
   protected readonly closeCompare = output<boolean>();
 
   /** Compare data event emitter */
-  protected readonly compareData = output<CompareData[]>();
+  readonly compareData = output<CompareData[]>();
 
   /** FormBuilder instance */
   private readonly fb = inject(FormBuilder);
@@ -70,36 +69,30 @@ export class CompareComponent implements OnInit {
   /** Boolean value indicating whether the form is valid or not */
   protected formValid = true;
 
-  /** Getter for compare sheet controls */
-  get CSControls(): FormArray {
-    return this.formGroup.get('sheets') as FormArray;
-  }
-
   /** Getter to access sheets as FormArray */
   get formSheets(): FormArray {
-    return this.CSControls;
+    return this.formGroup.get('sheets') as FormArray;
   }
 
   /** Initialize the component */
   ngOnInit(): void {
-    this.compareSheets().subscribe((sheets) => {
-      if (sheets.length) {
-        for (const source of sheets) {
-          this.formSheets.push(
-            this.createCompareForm(
-              source.link,
-              source.color,
-              source.title,
-              source.description,
-              source.formData,
-              source.fileName,
-            ),
-          );
-        }
-      } else {
-        this.formSheets.push(this.createCompareForm());
+    const sheets = this.compareSheets();
+    if (sheets && sheets.length) {
+      for (const source of sheets) {
+        this.formSheets.push(
+          this.createCompareForm(
+            source.link,
+            source.color,
+            source.title,
+            source.description,
+            source.formData,
+            source.fileName,
+          ),
+        );
       }
-    });
+    } else {
+      this.formSheets.push(this.createCompareForm());
+    }
 
     this.formGroup.valueChanges.subscribe(() => {
       const formArray = this.formGroup.controls['sheets'] as FormArray;

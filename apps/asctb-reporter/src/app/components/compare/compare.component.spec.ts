@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/angular';
-import { userEvent } from '@testing-library/user-event';
-import { Observable, of } from 'rxjs';
+import userEvent from '@testing-library/user-event';
 import { CompareData } from '../../models/sheet.model';
 import { CompareComponent } from './compare.component';
 
@@ -20,19 +19,20 @@ describe('CompareComponent', () => {
     ...overrides,
   });
 
-  const renderComponent = async (
-    compareSheets: Observable<CompareData[]> = of([]),
-    outputs?: { compareData?: jest.Mock },
-  ) =>
-    render(CompareComponent, {
-      componentProperties: {
-        compareSheets: (() => compareSheets) as any, // need to fix this later
-        ...(outputs?.compareData && { compareData: { emit: outputs.compareData } }),
+  const renderComponent = async (compareSheets: CompareData[] = []) => {
+    const compareDataSpy = jest.fn();
+    const result = await render(CompareComponent, {
+      inputs: {
+        compareSheets,
       },
+      on: { compareData: compareDataSpy },
     });
 
+    return { fixture: result.fixture, compareDataSpy };
+  };
+
   it('should render with compare sheets data', async () => {
-    await renderComponent(of([createMockSheet()]));
+    await renderComponent([createMockSheet()]);
     expect(screen.getByText(/Dataset 1/i)).toBeInTheDocument();
     expect(screen.getByDisplayValue('Test Sheet')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Test description')).toBeInTheDocument();
@@ -44,34 +44,36 @@ describe('CompareComponent', () => {
   });
 
   it('should allow switching between file and link input', async () => {
+    const user = userEvent.setup();
     await renderComponent();
     expect(screen.getByText(/Upload file/i)).toBeInTheDocument();
     const linkToggle = screen.getByText(/Link URL/i);
-    await userEvent.click(linkToggle);
+    await user.click(linkToggle);
     expect(screen.getByLabelText(/Google Sheet or CSV URL/i)).toBeInTheDocument();
   });
 
   it('should add and remove compare sheet rows', async () => {
+    const user = userEvent.setup();
     await renderComponent();
     const addButton = screen.getByRole('button', { name: /Add Dataset/i });
-    await userEvent.click(addButton);
+    await user.click(addButton);
     expect(screen.getByText(/Dataset 2/i)).toBeInTheDocument();
     const removeButtons = screen
       .getAllByRole('button')
       .filter((btn) => btn.getAttribute('hrafeature') === 'remove-dataset');
-    await userEvent.click(removeButtons[1]);
+    await user.click(removeButtons[1]);
     expect(screen.queryByText(/Dataset 2/i)).not.toBeInTheDocument();
   });
 
   it('should emit compare data when form is valid and compare is clicked', async () => {
-    const compareDataSpy = jest.fn();
-    await renderComponent(of([]), { compareData: compareDataSpy });
+    const user = userEvent.setup();
+    const { compareDataSpy } = await renderComponent([]);
     const linkToggle = screen.getByRole('radio', { name: /Link URL/i });
-    await userEvent.click(linkToggle);
+    await user.click(linkToggle);
     const linkInput = screen.getByLabelText(/Google Sheet or CSV URL/i);
-    await userEvent.type(linkInput, `${VALID_SHEET_URL}#gid=123`);
+    await user.type(linkInput, `${VALID_SHEET_URL}#gid=123`);
     const compareButton = screen.getByRole('button', { name: /Compare/i });
-    await userEvent.click(compareButton);
+    await user.click(compareButton);
     expect(compareDataSpy).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -84,30 +86,32 @@ describe('CompareComponent', () => {
   });
 
   it('should not emit compare data when form is invalid', async () => {
-    const compareDataSpy = jest.fn();
-    await renderComponent(of([]), { compareData: compareDataSpy });
+    const user = userEvent.setup();
+    const { compareDataSpy } = await renderComponent([]);
     const linkToggle = screen.getByRole('radio', { name: /Link URL/i });
-    await userEvent.click(linkToggle);
+    await user.click(linkToggle);
     const compareButton = screen.getByRole('button', { name: /Compare/i });
-    await userEvent.click(compareButton);
+    await user.click(compareButton);
     expect(compareDataSpy).not.toHaveBeenCalled();
   });
 
   it('should set formData control value when file is uploaded', async () => {
+    const user = userEvent.setup();
     await renderComponent();
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
     const file = new File(['dummy content'], 'test.csv', { type: 'text/csv' });
-    await userEvent.upload(fileInput, file);
+    await user.upload(fileInput, file);
     expect(fileInput.files?.[0]).toBe(file);
     expect(fileInput.files).toHaveLength(1);
   });
 
   it('should show error state on compare button when form is invalid', async () => {
+    const user = userEvent.setup();
     await renderComponent();
     const linkToggle = screen.getByRole('radio', { name: /Link URL/i });
-    await userEvent.click(linkToggle);
+    await user.click(linkToggle);
     const compareButton = screen.getByRole('button', { name: /Compare/i });
-    await userEvent.click(compareButton);
+    await user.click(compareButton);
     expect(compareButton.className).toMatch(/compare-button-color/);
   });
 });
