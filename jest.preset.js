@@ -30,7 +30,7 @@ module.exports = {
 
   collectCoverage: true,
   coverageReporters: ['html', 'lcovonly', 'json-summary', 'text-summary'],
-  collectCoverageFrom: isRunningInNx() ? COVERAGE_GLOBS : this.undefined,
+  collectCoverageFrom: isRunningInNx() ? COVERAGE_GLOBS : undefined,
   coverageThreshold: {
     global: {
       branches: 85,
