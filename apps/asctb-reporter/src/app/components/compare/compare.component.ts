@@ -2,12 +2,10 @@ import { Component, OnInit, inject, input, output } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
+  FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  UntypedFormArray,
-  UntypedFormBuilder,
-  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -61,30 +59,29 @@ export class CompareComponent implements OnInit {
   /** Compare data event emitter */
   protected readonly compareData = output<CompareData[]>();
 
-  /** Form group for the compare form */
-  protected formGroup!: UntypedFormGroup;
+  /** FormBuilder instance */
+  private readonly fb = inject(FormBuilder);
 
-  /** Form array for the compare sheets */
-  protected formSheets!: UntypedFormArray;
+  /** Form group for the compare form */
+  protected formGroup: FormGroup = this.fb.group({
+    sheets: this.fb.array([]),
+  });
 
   /** Boolean value indicating whether the form is valid or not */
   protected formValid = true;
 
-  /** FormBuilder instance */
-  private readonly fb = inject(UntypedFormBuilder);
-
   /** Getter for compare sheet controls */
-  get CSControls() {
-    return this.formGroup.get('sheets') as UntypedFormArray;
+  get CSControls(): FormArray {
+    return this.formGroup.get('sheets') as FormArray;
+  }
+
+  /** Getter to access sheets as FormArray */
+  get formSheets(): FormArray {
+    return this.CSControls;
   }
 
   /** Initialize the component */
   ngOnInit(): void {
-    this.formGroup = this.fb.group({
-      sheets: this.fb.array([]),
-    });
-    this.formSheets = this.formGroup.get('sheets') as UntypedFormArray;
-
     this.compareSheets().subscribe((sheets) => {
       if (sheets.length) {
         for (const source of sheets) {
@@ -105,9 +102,9 @@ export class CompareComponent implements OnInit {
     });
 
     this.formGroup.valueChanges.subscribe(() => {
-      const formArray = this.formGroup.controls['sheets'] as UntypedFormArray;
+      const formArray = this.formGroup.controls['sheets'] as FormArray;
       formArray.controls.forEach((control) => {
-        const sheet = control as UntypedFormGroup;
+        const sheet = control as FormGroup;
         const file = sheet.controls['formData'];
         const link = sheet.controls['link'];
         if (file.value != null) {
@@ -124,7 +121,7 @@ export class CompareComponent implements OnInit {
    * @param control The form control to update
    */
   upload(fileFormDataEvent: FormData, control: AbstractControl): void {
-    const sheet = control as UntypedFormGroup;
+    const sheet = control as FormGroup;
     sheet.controls['formData'].setValue(fileFormDataEvent);
   }
 
@@ -184,9 +181,9 @@ export class CompareComponent implements OnInit {
    * Recursively mark all controls in a form group as touched
    * @param formGroup The form group to mark as touched
    */
-  private markFormGroupTouched(formGroup: UntypedFormGroup): void {
+  private markFormGroupTouched(formGroup: FormGroup): void {
     Object.values(formGroup.controls).forEach((control) => {
-      const form = control as UntypedFormGroup;
+      const form = control as FormGroup;
       form.markAsTouched();
 
       if (form.controls) {
@@ -235,7 +232,7 @@ export class CompareComponent implements OnInit {
     description = '',
     formData?: FormData,
     fileName?: string,
-  ): UntypedFormGroup {
+  ): FormGroup {
     if (!color) {
       color = this.getRandomColor();
     }
@@ -261,7 +258,7 @@ export class CompareComponent implements OnInit {
    * @param group The form group to validate
    * @returns Validation error object or null if valid
    */
-  private atLeastOnePhoneRequired(group: UntypedFormGroup): { [s: string]: boolean } | null {
+  private atLeastOnePhoneRequired(group: FormGroup): { [s: string]: boolean } | null {
     if (group) {
       if (group.controls['link'].value || group.controls['fileName'].value) {
         return null;
