@@ -1,5 +1,5 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
-title: Cell Type Annotations
+title: Cell Type Annotation Crosswalks
 subtitle: Ontology ID labels for cell type annotation cell types.
 icons: product:cell-type-annotations
 action:
@@ -37,7 +37,7 @@ content:
       - component: PageTable
         styles:
           --hra-table-max-height: 35rem
-        style: alternating
+        variant: alternating
         enableSort: true
         csvUrl: assets/content/cell-type-annotations-page/ct-per-organ-per-tool.csv
         columns:

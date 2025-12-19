@@ -105,8 +105,12 @@ export class MetadataPageComponent {
               metadata: this.createMarkdownList(metadata.was_derived_from.project_leads),
             },
             {
-              provenance: 'Reviewer(s)',
+              provenance: 'Internal reviewer(s)',
               metadata: this.createMarkdownList(metadata.was_derived_from.reviewers),
+            },
+            {
+              provenance: 'External reviewer(s)',
+              metadata: this.createMarkdownList(metadata.was_derived_from.externalReviewers),
             },
             {
               provenance: 'DOI',

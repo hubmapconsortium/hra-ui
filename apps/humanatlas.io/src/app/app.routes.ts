@@ -155,6 +155,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'kg',
+    ...createExternalRedirectRoute('https://docs.humanatlas.io/apps/kg'),
+  },
+  {
     path: 'landing-page',
     redirectTo: '/',
   },
@@ -223,7 +227,7 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     // Preferably this would redirect to the latest version based on the versions data
     // But it is not available at this point. Async redirectTo may become available in angular 20
-    redirectTo: '/release-notes/v2.3',
+    redirectTo: '/release-notes/v2.4',
   },
   {
     path: 'release-notes/:version',
