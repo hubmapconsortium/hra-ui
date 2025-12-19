@@ -26,7 +26,7 @@ async function internalCreateNodesV2(configFile, opts, context) {
     const options = normalizeOptions(opts);
     const projectRoot = path.dirname(configFile);
     const dir = path.join(context.workspaceRoot, projectRoot);
-    if (!(await hasSchemaFiles(dir))) {
+    if (projectRoot === '.' || !(await hasSchemaFiles(dir))) {
         return {};
     }
     return {
