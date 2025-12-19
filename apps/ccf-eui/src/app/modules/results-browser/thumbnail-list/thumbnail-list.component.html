@@ -8,8 +8,9 @@
       target="_blank"
       rel="noopener noreferrer"
       [hraFeature]="item.technology ?? 'no-technology' | slugify"
-      [attr.href]="item.link"
+      [class.empty]="thumbnail === undefined"
       [style.background-image]="thumbnail"
+      [attr.href]="item.link"
       (click)="linkClicked.emit(item)"
     ></a>
     <div>
