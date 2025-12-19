@@ -300,7 +300,7 @@ content:
               more articles—these individuals are highlighted with purple nodes and labels. There are 6,763 relationships between pairs of researchers which are shown as lines (edges).
 
       - component: PageSection
-        tagline: 'New video: 1010 — A Multiscale Voyage through the Human Body'
+        tagline: 'New video: 10^10 — A Multiscale Voyage through the Human Body'
         anchor: new-video-multiscale-voyage
         level: 3
         content:
