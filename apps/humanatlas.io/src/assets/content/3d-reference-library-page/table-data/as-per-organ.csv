@@ -1,16 +1,26 @@
 organ,sex,as_count,uberon_id,url
+left palatine tonsil,Female,1,FMA:54974,https://purl.humanatlas.io/ref-organ/palatine-tonsil-female-left/v1.2
+left palatine tonsil,Male,1,FMA:54974,https://purl.humanatlas.io/ref-organ/palatine-tonsil-male-left/v1.2
+right palatine tonsil,Female,1,FMA:54973,https://purl.humanatlas.io/ref-organ/palatine-tonsil-female-right/v1.2
+right palatine tonsil,Male,1,FMA:54973,https://purl.humanatlas.io/ref-organ/palatine-tonsil-male-right/v1.2
+set of lactiferous glands in left breast,Female,9,FMA:57991,https://purl.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1
+set of lactiferous glands in right breast,Female,9,FMA:57987,https://purl.humanatlas.io/ref-organ/mammary-gland-female-right/v1.1
 blood vasculature,Female,125,UBERON:0004537,https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3
 blood vasculature,Male,123,UBERON:0004537,https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3
-body proper,Female,799,UBERON:0013702,https://purl.humanatlas.io/ref-organ/united-female/v1.8
-body proper,Male,761,UBERON:0013702,https://purl.humanatlas.io/ref-organ/united-male/v1.8
+body proper,Female,723,UBERON:0013702,https://purl.humanatlas.io/ref-organ/united-female/v1.9
+body proper,Male,761,UBERON:0013702,https://purl.humanatlas.io/ref-organ/united-male/v1.9
 brain,Female,108,UBERON:0000955,https://purl.humanatlas.io/ref-organ/brain-female/v1.4
 brain,Male,108,UBERON:0000955,https://purl.humanatlas.io/ref-organ/brain-male/v1.4
 extrapulmonary bronchus,Female,5,UBERON:0002182,https://purl.humanatlas.io/ref-organ/main-bronchus-female/v1.1
 extrapulmonary bronchus,Male,5,UBERON:0002182,https://purl.humanatlas.io/ref-organ/main-bronchus-male/v1.1
 heart,Female,17,UBERON:0000948,https://purl.humanatlas.io/ref-organ/heart-female/v1.3
 heart,Male,17,UBERON:0000948,https://purl.humanatlas.io/ref-organ/heart-male/v1.3
+intervertebral disk,Female,55,UBERON:0001066,https://purl.humanatlas.io/ref-organ/intervertebral-disk-female/v1.0
+intervertebral disk,Male,50,UBERON:0001066,https://purl.humanatlas.io/ref-organ/intervertebral-disk-male/v1.0
 large intestine,Female,11,UBERON:0000059,https://purl.humanatlas.io/ref-organ/large-intestine-female/v1.3
 large intestine,Male,11,UBERON:0000059,https://purl.humanatlas.io/ref-organ/large-intestine-male/v1.3
+larynx,Female,11,UBERON:0001737,https://purl.humanatlas.io/ref-organ/larynx-female/v1.1
+larynx,Male,11,UBERON:0001737,https://purl.humanatlas.io/ref-organ/larynx-male/v1.1
 left eye,Female,24,UBERON:0004548,https://purl.humanatlas.io/ref-organ/eye-female-left/v1.3
 left eye,Male,24,UBERON:0004548,https://purl.humanatlas.io/ref-organ/eye-male-left/v1.3
 left fallopian tube,Female,5,UBERON:0001303,https://purl.humanatlas.io/ref-organ/fallopian-tube-female-left/v1.2
@@ -19,6 +29,8 @@ left kidney,Male,27,UBERON:0004538,https://purl.humanatlas.io/ref-organ/kidney-m
 left knee,Female,16,FMA:24978,https://purl.humanatlas.io/ref-organ/knee-female-left/v1.3
 left knee,Male,16,FMA:24978,https://purl.humanatlas.io/ref-organ/knee-male-left/v1.2
 left ovary,Female,1,UBERON:0002119,https://purl.humanatlas.io/ref-organ/ovary-female-left/v1.3
+left renal pelvis,Female,1,UBERON:0018115,https://purl.humanatlas.io/ref-organ/renal-pelvis-female-left/v1.0
+left renal pelvis,Male,1,UBERON:0018115,https://purl.humanatlas.io/ref-organ/renal-pelvis-male-left/v1.0
 left ureter,Female,1,UBERON:0001223,https://purl.humanatlas.io/ref-organ/ureter-female-left/v1.2
 left ureter,Male,1,UBERON:0001223,https://purl.humanatlas.io/ref-organ/ureter-male-left/v1.2
 liver,Female,23,UBERON:0002107,https://purl.humanatlas.io/ref-organ/liver-female/v1.2
@@ -26,6 +38,7 @@ liver,Male,23,UBERON:0002107,https://purl.humanatlas.io/ref-organ/liver-male/v1.
 main bronchus,Female,5,UBERON:0002182,https://purl.humanatlas.io/ref-organ/main-bronchus-female/v1.1
 main bronchus,Male,5,UBERON:0002182,https://purl.humanatlas.io/ref-organ/main-bronchus-male/v1.1
 male reproductive system,Male,18,UBERON:0000079,https://purl.humanatlas.io/ref-organ/prostate-male/v1.2
+manubrium,Female,1,UBERON:2001553,https://purl.humanatlas.io/ref-organ/manubrium-female/v1.0
 mesenteric lymph node,Female,8,UBERON:0002509,https://purl.humanatlas.io/ref-organ/lymph-node-female/v1.4
 mesenteric lymph node,Male,8,UBERON:0002509,https://purl.humanatlas.io/ref-organ/lymph-node-male/v1.4
 mouth,Female,32,UBERON:0000165,https://purl.humanatlas.io/ref-organ/mouth-female/v1.0
@@ -45,6 +58,8 @@ right kidney,Male,29,UBERON:0004539,https://purl.humanatlas.io/ref-organ/kidney-
 right knee,Female,16,FMA:24977,https://purl.humanatlas.io/ref-organ/knee-female-right/v1.3
 right knee,Male,16,FMA:24977,https://purl.humanatlas.io/ref-organ/knee-male-right/v1.2
 right ovary,Female,1,UBERON:0002118,https://purl.humanatlas.io/ref-organ/ovary-female-right/v1.3
+right renal pelvis,Female,1,UBERON:0018116,https://purl.humanatlas.io/ref-organ/renal-pelvis-female-right/v1.0
+right renal pelvis,Male,1,UBERON:0018116,https://purl.humanatlas.io/ref-organ/renal-pelvis-male-right/v1.0
 right ureter,Female,1,UBERON:0001222,https://purl.humanatlas.io/ref-organ/ureter-female-right/v1.2
 right ureter,Male,1,UBERON:0001222,https://purl.humanatlas.io/ref-organ/ureter-male-right/v1.2
 skin,Female,2,UBERON:0002097,https://purl.humanatlas.io/ref-organ/skin-female/v1.5
@@ -56,6 +71,8 @@ spinal cord,Male,31,UBERON:0002240,https://purl.humanatlas.io/ref-organ/spinal-c
 spleen,Female,6,UBERON:0002106,https://purl.humanatlas.io/ref-organ/spleen-female/v1.3
 spleen,Male,6,UBERON:0002106,https://purl.humanatlas.io/ref-organ/spleen-male/v1.3
 sternum,Female,1,UBERON:0000975,https://purl.humanatlas.io/ref-organ/sternum-female/v1.0
+subcutaneous abdominal adipose tissue,Female,4,UBERON:0014455,https://purl.humanatlas.io/ref-organ/adipose-female/v1.0
+subcutaneous abdominal adipose tissue,Male,4,UBERON:0014455,https://purl.humanatlas.io/ref-organ/adipose-male/v1.0
 thoracic thymus,Female,3,UBERON:0002370,https://purl.humanatlas.io/ref-organ/thymus-female/v1.3
 thoracic thymus,Male,3,UBERON:0002370,https://purl.humanatlas.io/ref-organ/thymus-male/v1.3
 thymus,Female,3,UBERON:0002370,https://purl.humanatlas.io/ref-organ/thymus-female/v1.3

@@ -50,19 +50,19 @@ countInfo:
     label: publications
     suffix: +
     icon: misc:publications
-  - count: 73
+  - count: 77
     label: organs
     icon: misc:heart
-  - count: 4719
+  - count: 4810
     label: anatomical structures
     icon: misc:asctb-reporter
-  - count: 1303
+  - count: 1334
     label: cell types
     icon: misc:cell-type
-  - count: 2018
+  - count: 2070
     label: biomarkers
     icon: misc:biomarker
-  - count: 30
+  - count: 37
     label: organ mapping antibody panels
     icon: misc:omaps
   - count: 26
