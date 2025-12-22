@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, input, si
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -12,9 +12,10 @@ import { FilterMenuComponent, FilterOptionCategory } from '@hra-ui/design-system
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
+import { ListViewComponent, ListViewGroup } from '@hra-ui/design-system/content-templates/list-view';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
 import { ResearchPageData } from '../../schemas/research/research.schema';
-import { HeaderEventsService } from '../header/header.component';
+import { HeaderEventsService } from '../../components/header/header.component';
 
 @Component({
   selector: 'cns-gallery-view-page',
@@ -30,6 +31,7 @@ import { HeaderEventsService } from '../header/header.component';
     GridContainerComponent,
     SearchFilterComponent,
     FilterMenuComponent,
+    ListViewComponent,
   ],
   templateUrl: './gallery-view-page.component.html',
   styleUrl: './gallery-view-page.component.scss',
@@ -41,10 +43,14 @@ export class GalleryViewPageComponent {
 
   readonly headerEvents = inject(HeaderEventsService);
 
+  private readonly router = inject(Router);
+
+  readonly route = inject(ActivatedRoute);
+
   readonly menuOpen = computed(() => this.headerEvents.menuState());
 
   /** List of gallery cards */
-  readonly data = input<ResearchPageData>();
+  readonly data = input.required<ResearchPageData>();
 
   /** Current search bar value */
   readonly search = signal<string>('');
@@ -53,10 +59,12 @@ export class GalleryViewPageComponent {
   readonly filteredGalleryItems = computed(() => this.doGallerySearch());
 
   /** Total number of cards */
-  readonly totalCount = computed(() => this.data()?.news.length);
+  readonly totalCount = computed(() => this.data()?.data.length);
 
   /** Number of cards after filtering */
   readonly viewingCount = computed(() => this.filteredGalleryItems()?.length);
+
+  readonly viewType = signal<string>('news');
 
   /** Whether the user is on a wide screen */
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
@@ -77,6 +85,14 @@ export class GalleryViewPageComponent {
   ]);
 
   constructor() {
+    this.router.events.subscribe(() => {
+      const type = this.route.snapshot.queryParams['type'];
+      this.viewType.set(type);
+    });
+
+    effect(() => {
+      console.log(this.data());
+    });
     effect(() => {
       this.headerEvents.menuState.set(this.isWideScreen());
     });
@@ -85,6 +101,26 @@ export class GalleryViewPageComponent {
   /** Filters items according to the search bar value */
   private doGallerySearch() {
     const searchTerm = this.search().toLowerCase();
-    return this.data()?.news.filter((option) => option.name.toLowerCase().includes(searchTerm));
+    return this.data()?.data.filter((option) => option.title?.toLowerCase().includes(searchTerm));
+  }
+
+  convertToListItems(data: ResearchPageData): ListViewGroup[] {
+    const groupedData: Record<string, string[]> = {};
+    data.data.forEach((item) => {
+      const year = item.startDate?.split('-')[0];
+      if (!groupedData[year]) {
+        groupedData[year] = [item.description || ''];
+      } else {
+        groupedData[year].push(item.description || '');
+      }
+    });
+    const listItems = Object.entries(groupedData);
+
+    listItems.sort((a, b) => parseInt(b[0]) - parseInt(a[0])); //sort by year in descending order
+
+    return listItems.map(([year, descriptions]) => ({
+      group: year,
+      items: descriptions.map((description) => ({ content: description })),
+    }));
   }
 }

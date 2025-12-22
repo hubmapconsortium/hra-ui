@@ -52,18 +52,24 @@
       <ng-container [ngTemplateOutlet]="empty" />
     } @else {
       <ng-scrollbar>
-        <hra-grid-container>
-          @for (item of filteredGalleryItems(); track $index) {
-            <hra-gallery-card
-              [tagline]="item.name"
-              [imageSrc]="item.imageSrc"
-              [date]="item.date!"
-              [link]="item.link"
-              [external]="item.external || false"
-              [tags]="item.tags || []"
-            />
+        @if (data().data) {
+          @if (viewType() === 'publications') {
+            <hra-list-view [data]="convertToListItems({ data: filteredGalleryItems() })" [groupBy]="true" />
+          } @else {
+            <hra-grid-container>
+              @for (item of filteredGalleryItems(); track $index) {
+                <hra-gallery-card
+                  [tagline]="item.title || ''"
+                  [imageSrc]="item.imgSrc"
+                  [date]="item.startDate"
+                  [link]="item.link || ''"
+                  [external]="true"
+                  [tags]="item.tags"
+                />
+              }
+            </hra-grid-container>
           }
-        </hra-grid-container>
+        }
       </ng-scrollbar>
     }
   </mat-sidenav-content>

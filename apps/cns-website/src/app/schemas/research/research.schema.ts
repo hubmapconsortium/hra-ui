@@ -1,12 +1,28 @@
 import * as z from 'zod';
-import { GalleryCardItemSchema } from '@hra-ui/design-system/cards/gallery-card';
+
+export type ResearchItem = z.infer<typeof ResearchItemSchema>;
+
+export const ResearchItemSchema = z
+  .object({
+    slug: z.string(),
+    category: z.string(),
+    type: z.string(),
+    people: z.string().array(),
+    link: z.string().optional(),
+    title: z.string().optional(),
+    description: z.string().optional(),
+    tags: z.string().array(),
+    startDate: z.string(),
+    endDate: z.string().optional(),
+    imgSrc: z.string(),
+  })
+  .meta({ id: 'ResearchItem' });
 
 export type ResearchPageData = z.infer<typeof ResearchPageDataSchema>;
 
 export const ResearchPageDataSchema = z
   .object({
-    $schema: z.string(),
-    news: GalleryCardItemSchema.array(),
+    data: ResearchItemSchema.array(),
   })
   .meta({ id: 'ResearchPageData' });
 

@@ -1,43 +1,67 @@
-$schema: ../../../../src/app/schemas/news/news.schema.json
-news:
-  - name: A
-    imageSrc: assets/ui-images/placeholder.png
-    date: March 15, 2024
+data:
+  - slug: a
+    category: news
+    type: test
+    people:
+      - firstname-lastname
+      - firstname-lastname
     link: https://humanatlas.io
-    external: true
+    title: A
     tags:
       - Research
       - HRA
-  - name: AB
-    imageSrc: assets/ui-images/placeholder.png
-    date: March 15, 2024
+    startDate: March 15, 2024
+    imgSrc: assets/ui-images/placeholder.png
+  - slug: ab
+    category: news
+    type: test
+    people:
+      - firstname-lastname
+      - firstname-lastname
     link: https://humanatlas.io
-    external: true
+    title: AB
     tags:
       - Research
       - HRA
       - Test
-  - name: ABC
-    imageSrc: assets/ui-images/placeholder.png
-    date: June 15, 2024
+    startDate: March 15, 2024
+    imgSrc: assets/ui-images/placeholder.png
+  - slug: abc
+    category: news
+    type: test
+    people:
+      - firstname-lastname
+      - firstname-lastname
     link: https://humanatlas.io
-    external: true
+    title: ABC
     tags:
       - Research
       - HRA
       - Label
-  - name: ABCD
-    imageSrc: assets/ui-images/placeholder.png
-    date: May 15, 2024
+    startDate: June 15, 2024
+    imgSrc: assets/ui-images/placeholder.png
+  - slug: abcd
+    category: news
+    type: test
+    people:
+      - firstname-lastname
+      - firstname-lastname
     link: https://humanatlas.io
-    external: true
+    title: ABCD
     tags:
       - HRA
-  - name: ABCDE
-    imageSrc: assets/ui-images/placeholder.png
-    date: April 15, 2024
+    startDate: May 15, 2024
+    imgSrc: assets/ui-images/placeholder.png
+  - slug: abcde
+    category: news
+    type: test
+    people:
+      - firstname-lastname
+      - firstname-lastname
     link: https://humanatlas.io
-    external: true
+    title: ABCDE
     tags:
       - Research
       - HRA
+    startDate: April 15, 2024
+    imgSrc: assets/ui-images/placeholder.png

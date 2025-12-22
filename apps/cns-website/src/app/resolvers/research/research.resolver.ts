@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
-import { of } from 'rxjs';
+import { map, of } from 'rxjs';
 import { ResearchPageData, ResearchPageDataSchema } from '../../schemas/research/research.schema';
 
 const FILTER_OPTIONS: Record<string, SearchListOption[]> = {
@@ -59,13 +61,18 @@ const FILTER_CATEGORIES = [
   { id: 'year', label: 'Year', options: FILTER_OPTIONS['year'] },
 ] as FilterOptionCategory<SearchListOption>[];
 
+const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publications.json';
+const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-tags.json';
+const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
+const PUBLICATION_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publication-types.json';
+
 export function createFiltersResolver(): ResolveFn<FilterOptionCategory<SearchListOption>[]> {
   return () => {
     return of(FILTER_CATEGORIES);
   };
 }
 
-export function createNewsResolver(): ResolveFn<ResearchPageData> {
+export function createResearchResolver(): ResolveFn<ResearchPageData> {
   return (route, state) => {
     const queryParams = route.queryParams;
     if (queryParams['type'] === 'news') {
@@ -73,6 +80,14 @@ export function createNewsResolver(): ResolveFn<ResearchPageData> {
       const resolver = createYamlSpecResolver(url, ResearchPageDataSchema);
       return resolver(route, state);
     }
-    return of({} as ResearchPageData);
+
+    const http = inject(HttpClient);
+    return http.get(PUBLICATIONS_INDEX_URL, { responseType: 'json' }).pipe(
+      map((data) => {
+        return {
+          data,
+        } as ResearchPageData;
+      }),
+    );
   };
 }
