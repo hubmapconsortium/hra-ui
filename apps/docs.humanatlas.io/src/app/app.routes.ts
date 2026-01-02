@@ -27,6 +27,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'apps/kg',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/kg-explorer/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'dev',
     component: ContentPageComponent,
     resolve: {
