@@ -53,7 +53,7 @@ export class CurrentTeamComponent {
     'hierarchical',
   );
 
-  /** Group by option */
+  /** Group by option for organizing team members display */
   readonly groupBy = signal<string | null>(null);
 
   /** Computed start year options based on actual data */
@@ -102,6 +102,9 @@ export class CurrentTeamComponent {
     },
   ]);
 
+  /**
+   * Constructor - sets up effects for dynamic filter options
+   */
   constructor() {
     // Update start year options when data changes
     effect(() => {
