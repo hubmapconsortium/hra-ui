@@ -2,16 +2,15 @@ import { render, screen } from '@testing-library/angular';
 import { NavItemComponent } from './nav-item.component';
 
 describe('NavItemComponent', () => {
-  it('should create and render with label and disabled state', async () => {
-    const { fixture } = await render(NavItemComponent, {
-      componentInputs: { label: 'Home', disabled: true },
+  it('renders label when provided via inputs', async () => {
+    await render(NavItemComponent, {
+      inputs: { label: 'Home', disabled: true },
     });
 
-    expect(fixture.componentInstance).toBeTruthy();
-    expect(screen.getByText(/Home/)).toBeInTheDocument();
+    expect(screen.getByText('Home')).toBeInTheDocument();
   });
 
-  it('should render projected content', async () => {
+  it('renders projected content', async () => {
     await render(
       `
       <app-nav-item>

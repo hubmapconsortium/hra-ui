@@ -1,8 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { YouTubePlayer } from '@angular/youtube-player';
-import { provideIcons } from '@hra-ui/design-system/icons';
+import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { provideMarkdown } from 'ngx-markdown';
 import { HomeComponent } from './home.component';
 
@@ -11,50 +10,49 @@ type MockYouTubePlayer = Pick<YouTubePlayer, 'pauseVideo' | 'seekTo' | 'playVide
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HomeComponent, RouterModule.forRoot([])],
-      providers: [provideHttpClient(), provideMarkdown(), provideIcons()],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    const result = await render(HomeComponent, {
+      providers: [provideHttpClient(), provideMarkdown()],
+    });
+    component = result.fixture.componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should seek video and update selected section', () => {
-    // Mock the YouTube player
+  it('should seek video and update selected section when clicking chapter button', async () => {
     const mockPlayer: MockYouTubePlayer = {
       pauseVideo: jest.fn(),
       seekTo: jest.fn(),
       playVideo: jest.fn(),
     };
 
-    // Mock the player signal to return our mock player
     const youtubeComponent = component.youtubePlayerComponent();
     jest.spyOn(youtubeComponent, 'player').mockReturnValue(mockPlayer as YouTubePlayer);
 
-    component.seekVideo(30, 2);
+    const chapterBtn = screen.getByText('Introduction').closest('button') as HTMLElement;
+    await userEvent.click(chapterBtn);
 
-    expect(component['selectedVideoSection']()).toBe(2);
+    expect(chapterBtn.className).toMatch(/section-selected/);
     expect(mockPlayer.pauseVideo).toHaveBeenCalled();
-    expect(mockPlayer.seekTo).toHaveBeenCalledWith(30, true);
+    expect(mockPlayer.seekTo).toHaveBeenCalledWith(3, true);
     expect(mockPlayer.playVideo).toHaveBeenCalled();
   });
 
-  it('should update selected video section state', () => {
-    // Test just the state change without YouTube player interaction
-    const initialSection = component['selectedVideoSection']();
-    expect(initialSection).toBe(0);
+  it('should update selected video section when clicking on different chapters', async () => {
+    const introBtn = screen.getByText('Introduction').closest('button') as HTMLElement;
+    const searchBtn = screen.getByText('Search').closest('button') as HTMLElement;
 
-    // We can test state changes by accessing the signal directly
-    component['selectedVideoSection'].set(3);
-    expect(component['selectedVideoSection']()).toBe(3);
+    // Initially the first chapter is selected
+    expect(introBtn.className).toMatch(/section-selected/);
+
+    await userEvent.click(searchBtn);
+    expect(searchBtn.className).toMatch(/section-selected/);
+    expect(introBtn.className).not.toMatch(/section-selected/);
+
+    await userEvent.click(introBtn);
+    expect(introBtn.className).toMatch(/section-selected/);
   });
 });

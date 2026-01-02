@@ -1,4 +1,5 @@
-import { Component, OnInit, inject, input, output } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
   FormArray,
@@ -48,7 +49,7 @@ import { SidenavModule } from '../sidenav/sidenav.module';
   templateUrl: './compare.component.html',
   styleUrl: './compare.component.scss',
 })
-export class CompareComponent implements OnInit {
+export class CompareComponent {
   /** Compare data sheets (array) */
   readonly compareSheets = input.required<CompareData[]>();
 
@@ -74,27 +75,29 @@ export class CompareComponent implements OnInit {
     return this.formGroup.get('sheets') as FormArray;
   }
 
-  /** Initialize the component */
-  ngOnInit(): void {
-    const sheets = this.compareSheets();
-    if (sheets && sheets.length) {
-      for (const source of sheets) {
-        this.formSheets.push(
-          this.createCompareForm(
-            source.link,
-            source.color,
-            source.title,
-            source.description,
-            source.formData,
-            source.fileName,
-          ),
-        );
+  /** Constructor */
+  constructor() {
+    effect(() => {
+      const sheets = this.compareSheets();
+      if (sheets && sheets.length) {
+        for (const source of sheets) {
+          this.formSheets.push(
+            this.createCompareForm(
+              source.link,
+              source.color,
+              source.title,
+              source.description,
+              source.formData,
+              source.fileName,
+            ),
+          );
+        }
+      } else {
+        this.formSheets.push(this.createCompareForm());
       }
-    } else {
-      this.formSheets.push(this.createCompareForm());
-    }
+    });
 
-    this.formGroup.valueChanges.subscribe(() => {
+    this.formGroup.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
       const formArray = this.formGroup.controls['sheets'] as FormArray;
       formArray.controls.forEach((control) => {
         const sheet = control as FormGroup;

@@ -1,4 +1,5 @@
-import { render } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { Sheet } from '../../models/sheet.model';
 import { Logs } from '../../models/ui.model';
 import { DebugLogsComponent } from './debug-logs.component';
@@ -17,19 +18,21 @@ describe('DebugLogsComponent', () => {
   };
 
   it('should render with required inputs', async () => {
-    const { fixture } = await render(DebugLogsComponent, {
-      componentInputs: { currentSheet: mockSheet, logs: mockLogs },
+    await render(DebugLogsComponent, {
+      inputs: { currentSheet: mockSheet, logs: mockLogs },
     });
-    expect(fixture.componentInstance).toBeTruthy();
+    expect(screen.getByText('Test Display')).toBeInTheDocument();
   });
 
   it('should emit closeDebug event', async () => {
-    const { fixture } = await render(DebugLogsComponent, {
-      componentInputs: { currentSheet: mockSheet, logs: mockLogs },
+    const spy = jest.fn();
+    const { container } = await render(DebugLogsComponent, {
+      inputs: { currentSheet: mockSheet, logs: mockLogs },
+      on: { closeDebug: spy },
     });
-    const component = fixture.componentInstance;
-    const spy = jest.spyOn(component.closeDebug, 'emit');
-    component.closeDebug.emit();
+
+    const closeBtn = container.querySelector('[hraFeature="close"]') as HTMLElement;
+    await userEvent.click(closeBtn);
     expect(spy).toHaveBeenCalled();
   });
 });

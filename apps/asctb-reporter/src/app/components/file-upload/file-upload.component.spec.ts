@@ -1,59 +1,70 @@
+import { render, screen } from '@testing-library/angular';
+import { userEvent } from '@testing-library/user-event';
 import { FileUploadComponent } from './file-upload.component';
 
 describe('FileUploadComponent', () => {
-  let component: FileUploadComponent;
-
   const createMockFile = (name = 'test.csv') => new File(['test'], name, { type: 'text/csv' });
-  const createFileEvent = (file: File) => ({ target: { files: [file] } }) as unknown as Event;
-  const createMockInput = (value = '') => ({ value, click: jest.fn() }) as unknown as HTMLInputElement;
 
-  beforeEach(() => {
-    component = new FileUploadComponent();
+  const renderComponent = async () => render(FileUploadComponent);
+
+  it('should render upload button', async () => {
+    await renderComponent();
+    expect(screen.getByRole('button', { name: /upload/i })).toBeInTheDocument();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should handle file selection and update fileName and emit formData', async () => {
+    const { container, fixture } = await renderComponent();
+    const fileInput = container.querySelector('input[type="file"]') as HTMLInputElement;
+    const file = createMockFile();
+    const spy = jest.fn();
+    // attach to output
+    jest.spyOn(fixture.componentInstance.fileFormDataEvent, 'emit').mockImplementation(spy);
+
+    await userEvent.upload(fileInput, file);
+
+    expect(screen.getByText('test.csv')).toBeInTheDocument();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should handle file selection and update fileName', () => {
-    const mockFile = createMockFile();
-    const mockEvent = createFileEvent(mockFile);
-    jest.spyOn(component, 'onChange');
+  it('should remove file and clear fileName', async () => {
+    const { container, fixture } = await renderComponent();
+    const fileInput = container.querySelector('input[type="file"]') as HTMLInputElement;
+    const file = createMockFile();
+    const spy = jest.fn();
+    jest.spyOn(fixture.componentInstance.fileFormDataEvent, 'emit').mockImplementation(spy);
 
-    component.onFileSelected(mockEvent);
+    await userEvent.upload(fileInput, file);
+    const deleteBtn = container.querySelector('[hraFeature="delete"]') as HTMLElement;
+    await userEvent.click(deleteBtn);
 
-    expect(component.fileName).toBe('test.csv');
-    expect(component.onChange).toHaveBeenCalledWith('test.csv');
+    expect(container.querySelector('.filename')).toBeNull();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should remove file and clear fileName', () => {
-    const mockInput = createMockInput('test.csv');
-    component.fileName = 'test.csv';
+  it('should trigger input click when upload button is clicked', async () => {
+    const { container } = await renderComponent();
+    const fileInput = container.querySelector('input[type="file"]') as HTMLInputElement;
+    const clickSpy = jest.spyOn(fileInput, 'click');
 
-    component.onFileRemove(mockInput);
+    const uploadBtn = screen.getByRole('button', { name: /upload/i });
+    await userEvent.click(uploadBtn);
 
-    expect(mockInput.value).toBe('');
-    expect(component.fileName).toBe('');
+    expect(clickSpy).toHaveBeenCalled();
   });
 
-  it('should trigger input click', () => {
-    const mockInput = createMockInput();
-    component.onClick(mockInput);
-    expect(mockInput.click).toHaveBeenCalled();
-  });
+  it('should implement ControlValueAccessor interface', async () => {
+    const { fixture } = await renderComponent();
+    const component = fixture.componentInstance;
 
-  it('should implement ControlValueAccessor interface', () => {
     const callbacks = {
       onChange: jest.fn(),
       onTouched: jest.fn(),
       onValidatorChange: jest.fn(),
     };
 
-    // Test writeValue
     component.writeValue('test-file.csv');
     expect(component.fileName).toBe('test-file.csv');
 
-    // Test callback registration and execution
     component.registerOnChange(callbacks.onChange);
     component.registerOnTouched(callbacks.onTouched);
     component.registerOnValidatorChange(callbacks.onValidatorChange);
@@ -66,7 +77,6 @@ describe('FileUploadComponent', () => {
     expect(callbacks.onTouched).toHaveBeenCalled();
     expect(callbacks.onValidatorChange).toHaveBeenCalled();
 
-    // Test validation
     expect(component.validate()).toBeNull();
   });
 });

@@ -52,7 +52,7 @@ describe('FunctionsComponent', () => {
         { provide: Store, useValue: mockStore },
         { provide: BimodalService, useValue: mockBimodalService },
       ],
-      componentInputs: {
+      inputs: {
         error,
         omaps: { organsOnly: false, proteinsOnly: false },
       },

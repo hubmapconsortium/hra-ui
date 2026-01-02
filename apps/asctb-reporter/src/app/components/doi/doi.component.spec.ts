@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { render } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { DOI } from '../../models/sheet.model';
 import { DoiComponent } from './doi.component';
 
@@ -12,35 +13,36 @@ describe('DoiComponent', () => {
     { doi: '10.1234/example2', id: '2', notes: 'Test note 2' },
   ];
 
-  const mockBottomSheetRef = { dismiss: jest.fn() };
-
   const renderComponent = async () => {
-    return render(DoiComponent, {
+    const dismissSpy = jest.fn();
+    const mockBottomSheetRef = { dismiss: dismissSpy };
+
+    const result = await render(DoiComponent, {
       providers: [
         { provide: MAT_BOTTOM_SHEET_DATA, useValue: mockData },
         { provide: MatBottomSheetRef, useValue: mockBottomSheetRef },
       ],
       imports: [CommonModule, MatIconModule, MatButtonModule, MatBottomSheetModule],
     });
+
+    return { ...result, dismissSpy };
   };
 
   it('should render with data', async () => {
-    const { fixture } = await renderComponent();
-    expect(fixture.componentInstance).toBeTruthy();
+    await renderComponent();
+    expect(screen.getByText('DOI Details')).toBeInTheDocument();
   });
 
   it('should trim DOI prefix on init', async () => {
-    const { fixture } = await renderComponent();
-    const component = fixture.componentInstance;
-    component.ngOnInit();
-    expect(component.data[0].doi).toBe('10.1234/example1');
-    expect(component.data[1].doi).toBe('10.1234/example2');
+    await renderComponent();
+    expect(screen.getByText('10.1234/example1')).toBeInTheDocument();
+    expect(screen.getByText('10.1234/example2')).toBeInTheDocument();
   });
 
   it('should close bottom sheet', async () => {
-    const { fixture } = await renderComponent();
-    const component = fixture.componentInstance;
-    component.close();
-    expect(mockBottomSheetRef.dismiss).toHaveBeenCalled();
+    const { dismissSpy, container } = await renderComponent();
+    const closeBtn = container.querySelector('[hraFeature="close"]') as HTMLElement;
+    await userEvent.click(closeBtn);
+    expect(dismissSpy).toHaveBeenCalled();
   });
 });

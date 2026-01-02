@@ -1,44 +1,58 @@
 import { NgControl } from '@angular/forms';
-import { render } from '@testing-library/angular';
+import { fireEvent, render, screen } from '@testing-library/angular';
 import { BehaviorSubject } from 'rxjs';
 import { OmapControlsComponent } from './omap-controls.component';
 
 describe('OmapControlsComponent', () => {
-  async function setup() {
-    return render(OmapControlsComponent, {
-      providers: [
-        {
-          provide: NgControl,
-          useValue: { valueChanges: new BehaviorSubject(null) },
-        },
-      ],
+  const defaultProviders = [
+    {
+      provide: NgControl,
+      useValue: { valueChanges: new BehaviorSubject(null) },
+    },
+  ];
+
+  async function renderOmapControls(onUpdate?: jest.Mock) {
+    const spy = onUpdate ?? (jest.fn() as jest.Mock);
+
+    await render('<app-omap-controls (updateConfig)="onUpdate($event)" />', {
+      imports: [OmapControlsComponent],
+      providers: defaultProviders,
+      componentProperties: { onUpdate: spy },
     });
+
+    return { onUpdate: spy };
   }
 
-  it('should create', async () => {
-    const { fixture } = await setup();
-    expect(fixture.componentInstance).toBeTruthy();
+  it('renders header and checkboxes', async () => {
+    await renderOmapControls();
+
+    expect(screen.getByText(/Organ Mapping Antibody Panels/i)).toBeTruthy();
+    expect(screen.getByRole('checkbox', { name: /OMAP Organs Only/i })).toBeTruthy();
+    expect(screen.getByRole('checkbox', { name: /OMAP Proteins Only/i })).toBeTruthy();
   });
 
-  it('should emit updated config when checkbox is clicked', async () => {
-    const { fixture } = await setup();
-    const component = fixture.componentInstance;
+  it('emits updated config when a checkbox is clicked', async () => {
     const updateConfigSpy = jest.fn();
-    component['updateConfig'].subscribe(updateConfigSpy);
 
-    component.checkBoxClicked({ organsOnly: true, proteinsOnly: false });
+    await renderOmapControls(updateConfigSpy);
+
+    const organsCheckbox = screen.getByRole('checkbox', { name: /OMAP Organs Only/i });
+    await fireEvent.click(organsCheckbox);
 
     expect(updateConfigSpy).toHaveBeenCalledWith({ organsOnly: true, proteinsOnly: false });
   });
 
-  it('should update both checkbox values', async () => {
-    const { fixture } = await setup();
-    const component = fixture.componentInstance;
+  it('emits updated configs when both checkboxes are clicked', async () => {
     const updateConfigSpy = jest.fn();
-    component['updateConfig'].subscribe(updateConfigSpy);
 
-    component.checkBoxClicked({ organsOnly: true, proteinsOnly: true });
+    await renderOmapControls(updateConfigSpy);
 
-    expect(updateConfigSpy).toHaveBeenCalledWith({ organsOnly: true, proteinsOnly: true });
+    const organsCheckbox = screen.getByRole('checkbox', { name: /OMAP Organs Only/i });
+    const proteinsCheckbox = screen.getByRole('checkbox', { name: /OMAP Proteins Only/i });
+
+    await fireEvent.click(organsCheckbox);
+    await fireEvent.click(proteinsCheckbox);
+
+    expect(updateConfigSpy).toHaveBeenLastCalledWith({ organsOnly: true, proteinsOnly: true });
   });
 });

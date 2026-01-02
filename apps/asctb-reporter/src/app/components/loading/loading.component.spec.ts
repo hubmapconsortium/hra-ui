@@ -1,38 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { NgxsModule } from '@ngxs/store';
+import { render, screen } from '@testing-library/angular';
 import { of } from 'rxjs';
 
 import { UIStateModel } from '../../store/ui.state';
 import { LoadingComponent } from './loading.component';
 
 describe('LoadingComponent', () => {
-  let component: LoadingComponent;
-  let fixture: ComponentFixture<LoadingComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LoadingComponent, NgxsModule.forRoot([])],
+  it('should create and display loading content and show provided loading text', async () => {
+    const { fixture, container } = await render(LoadingComponent, {
       providers: [{ provide: MAT_DIALOG_DATA, useValue: 'Initial message' }],
-    }).compileComponents();
+      // prevent initial change detection so we can assign the selector observable first
+      detectChangesOnRender: false,
+    });
 
-    fixture = TestBed.createComponent(LoadingComponent);
-    component = fixture.componentInstance;
-
-    // Mock the @Select decorator properly
+    const component = fixture.componentInstance;
+    // Override the select-decorated getter with a test observable
     Object.defineProperty(component, 'loadingText$', {
       value: of({ loadingText: 'Loading...' } as UIStateModel),
-      writable: false,
+      configurable: true,
     });
-  });
-
-  it('should create and display loading content', () => {
-    expect(component).toBeTruthy();
 
     fixture.detectChanges();
 
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.h5').textContent).toBe('Please wait...');
-    expect(compiled.querySelector('hra-progress-spinner')).toBeTruthy();
+    expect(screen.getByText('Please wait...')).toBeTruthy();
+    expect(container.querySelector('hra-progress-spinner')).toBeTruthy();
+    expect(screen.getByText('Loading...')).toBeTruthy();
   });
 });

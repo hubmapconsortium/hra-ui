@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, model, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -25,18 +25,23 @@ import { Error } from '../../models/response.model';
 })
 export class OmapControlsComponent {
   /** OMAP configuration */
-  protected readonly omaps = input<OmapConfig>({ organsOnly: false, proteinsOnly: false });
+  readonly omaps = model<OmapConfig>({ organsOnly: false, proteinsOnly: false });
 
   /** Error information */
-  protected readonly error = input<Error>();
+  readonly error = input<Error>();
 
   /** Output for OMAP configuration update */
-  protected readonly updateConfig = output<OmapConfig>();
+  readonly updateConfig = output<OmapConfig>();
 
   /** Handles checkbox click events */
   checkBoxClicked(event: Record<string, boolean>) {
-    this.omaps().organsOnly = event['organsOnly'];
-    this.omaps().proteinsOnly = event['proteinsOnly'];
-    this.updateConfig.emit(this.omaps());
+    const current = this.omaps();
+    const next: OmapConfig = {
+      ...current,
+      organsOnly: event['organsOnly'],
+      proteinsOnly: event['proteinsOnly'],
+    };
+    this.omaps.set(next);
+    this.updateConfig.emit(next);
   }
 }
