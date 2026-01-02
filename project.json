@@ -17,9 +17,6 @@
           "params": "forward"
         }
       ]
-    },
-    "global-test-coverage-report-no-deps": {
-      "command": "node tools/scripts/create-coverage-report.mjs ./coverage"
     }
   }
 }
