@@ -382,4 +382,213 @@ describe('AppWebComponent', () => {
       );
     });
   });
+
+  describe('Edge Cases and Additional Coverage', () => {
+    afterEach(() => {
+      // Restore default mock behaviors after each test
+      mockOrganLookupService.getOrganInfo.mockReturnValue(of(mockOrganInfo));
+      mockOrganLookupService.getOrgan.mockReturnValue(of(mockSpatialEntity));
+      mockOrganLookupService.getOrganScene.mockReturnValue(of(mockSceneNodes));
+      mockOrganLookupService.getBlocks.mockReturnValue(of(mockTissueBlocks));
+      mockOrganLookupService.getOrganStats.mockReturnValue(of(mockAggregateCount));
+    });
+
+    it('should handle organ without sex property', async () => {
+      const organWithoutSex = { ...mockOrganInfo, hasSex: false };
+      mockOrganLookupService.getOrganInfo.mockReturnValue(of(organWithoutSex));
+
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: { organIri: mockOrganInfo.id },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrgan).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should handle undefined organInfo response', async () => {
+      mockOrganLookupService.getOrganInfo.mockReturnValue(of(undefined));
+
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: { organIri: mockOrganInfo.id },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrganInfo).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should handle undefined organ entity response', async () => {
+      mockOrganLookupService.getOrgan.mockReturnValue(of(undefined));
+
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: { organIri: mockOrganInfo.id },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrganInfo).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should handle custom donor label', async () => {
+      const customLabel = 'Participants';
+
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: {
+          organIri: mockOrganInfo.id,
+          donorLabel: customLabel,
+        },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrganStats).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should render without organIri', async () => {
+      const { fixture } = await render(AppWebComponent, {
+        providers,
+        componentInputs: { sex: 'female', side: 'left' },
+      });
+
+      // Component should render even without organIri
+      expect(fixture.componentInstance).toBeTruthy();
+
+      // Wait a bit to ensure services aren't called
+      await new Promise((resolve) => setTimeout(resolve, 200));
+
+      // Should not call services without organIri
+      expect(mockOrganLookupService.getOrganInfo).not.toHaveBeenCalled();
+    });
+
+    it('should handle empty data sources array', async () => {
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: {
+          organIri: mockOrganInfo.id,
+          dataSources: [],
+        },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrgan).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should handle empty highlight providers array', async () => {
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: {
+          organIri: mockOrganInfo.id,
+          highlightProviders: [],
+        },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrgan).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should handle single string highlight provider', async () => {
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: {
+          organIri: mockOrganInfo.id,
+          highlightProviders: 'single-provider',
+        },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrgan).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should handle organ with side specified', async () => {
+      const organWithSide = { ...mockOrganInfo, side: 'left' };
+      mockOrganLookupService.getOrganInfo.mockReturnValue(of(organWithSide));
+
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: {
+          organIri: mockOrganInfo.id,
+          side: 'left',
+        },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrganInfo).toHaveBeenCalledWith(mockOrganInfo.id, 'left');
+          expect(mockOrganLookupService.getOrgan).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should handle both male and female sex for organ without hasSex', async () => {
+      const organWithoutSex = { ...mockOrganInfo, hasSex: false };
+      mockOrganLookupService.getOrganInfo.mockReturnValue(of(organWithoutSex));
+
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: {
+          organIri: mockOrganInfo.id,
+          sex: 'both',
+        },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrgan).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it('should handle combination of sex, side, and providers', async () => {
+      await render(AppWebComponent, {
+        providers,
+        componentInputs: {
+          organIri: mockOrganInfo.id,
+          sex: 'male',
+          side: 'right',
+          highlightProviders: ['provider1'],
+          dataSources: ['source1'],
+        },
+      });
+
+      await waitFor(
+        () => {
+          expect(mockOrganLookupService.getOrganInfo).toHaveBeenCalledWith(mockOrganInfo.id, 'right');
+          expect(mockOrganLookupService.getOrgan).toHaveBeenCalled();
+          expect(mockOrganLookupService.getOrganScene).toHaveBeenCalled();
+        },
+        { timeout: 2000 },
+      );
+    });
+  });
 });
