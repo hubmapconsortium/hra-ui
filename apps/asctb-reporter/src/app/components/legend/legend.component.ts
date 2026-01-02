@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, inject } from '@angular/core';
+import { Component, Input, OnChanges, inject } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
@@ -17,7 +17,7 @@ import { LegendService } from '../../services/legend/legend.service';
   styleUrl: './legend.component.scss',
   providers: [LegendService],
 })
-export class LegendComponent implements OnInit, OnChanges {
+export class LegendComponent implements OnChanges {
   readonly ls = inject(LegendService);
 
   // expose legend stream for the template via async pipe
