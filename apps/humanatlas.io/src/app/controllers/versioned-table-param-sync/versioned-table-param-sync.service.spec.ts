@@ -1,13 +1,16 @@
-import { ComponentRef } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { Component, ComponentRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VersionedDataTableComponent } from '@hra-ui/design-system/content-templates/versioned-data-table';
+import { render } from '@testing-library/angular';
 import { of } from 'rxjs';
 import { VersionedTableParamSyncControllerService } from './versioned-table-param-sync.service';
 
+@Component({ standalone: true, template: '' })
+class TestComponent {}
+
 describe('VersionedTableParamSyncControllerService', () => {
-  function setup(queryParams = {}, fragment: string | null = null): VersionedTableParamSyncControllerService {
-    TestBed.configureTestingModule({
+  async function setup(queryParams = {}, fragment: string | null = null) {
+    const renderResult = await render(TestComponent, {
       providers: [
         VersionedTableParamSyncControllerService,
         {
@@ -24,11 +27,13 @@ describe('VersionedTableParamSyncControllerService', () => {
       ],
     });
 
-    return TestBed.inject(VersionedTableParamSyncControllerService);
+    const service = renderResult.fixture.debugElement.injector.get(VersionedTableParamSyncControllerService);
+
+    return { ...renderResult, service };
   }
 
-  it('should be created', () => {
-    const service = setup();
+  it('should be created', async () => {
+    const { service } = await setup();
     expect(service).toBeTruthy();
   });
 
@@ -36,8 +41,8 @@ describe('VersionedTableParamSyncControllerService', () => {
     expect(VersionedTableParamSyncControllerService.id).toBe('VersionedTableParamSync');
   });
 
-  it('should attach VersionedDataTableComponent and subscribe to selection', () => {
-    const service = setup();
+  it('should attach VersionedDataTableComponent and subscribe to selection', async () => {
+    const { service } = await setup();
     const selectionSubscribe = jest.fn((callback: (value: number) => void) => {
       callback(0);
     });
@@ -60,8 +65,8 @@ describe('VersionedTableParamSyncControllerService', () => {
     expect(selectionSubscribe).toHaveBeenCalled();
   });
 
-  it('should handle non-VersionedDataTableComponent gracefully', () => {
-    const service = setup();
+  it('should handle non-VersionedDataTableComponent gracefully', async () => {
+    const { service } = await setup();
     const mockComponentRef = {
       instance: {},
       setInput: jest.fn(),
@@ -70,13 +75,13 @@ describe('VersionedTableParamSyncControllerService', () => {
     expect(() => service.attach(mockComponentRef)).not.toThrow();
   });
 
-  it('should detach without errors', () => {
-    const service = setup();
+  it('should detach without errors', async () => {
+    const { service } = await setup();
     expect(() => service.detach()).not.toThrow();
   });
 
-  it('should set selection when valid version is in URL', () => {
-    const service = setup({ version: 'v2.0' });
+  it('should set selection when valid version is in URL', async () => {
+    const { service, fixture } = await setup({ version: 'v2.0' });
     const itemsGet = jest.fn(() => [{ version: 'v1.0' }, { version: 'v2.0' }, { version: 'v3.0' }]);
     const setInputMock = jest.fn();
 
@@ -93,13 +98,13 @@ describe('VersionedTableParamSyncControllerService', () => {
     } as unknown as ComponentRef<VersionedDataTableComponent>;
 
     service.attach(mockComponentRef);
-    TestBed.flushEffects();
+    fixture.detectChanges();
 
     expect(setInputMock).toHaveBeenCalledWith('selection', 1);
   });
 
-  it('should update URL when selection changes', () => {
-    const service = setup();
+  it('should update URL when selection changes', async () => {
+    const { service } = await setup();
     let selectionCallback: ((value: number) => void) | undefined;
     const selectionSubscribe = jest.fn((callback: (value: number) => void) => {
       selectionCallback = callback;
