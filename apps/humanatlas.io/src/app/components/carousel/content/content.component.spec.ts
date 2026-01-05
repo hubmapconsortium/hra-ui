@@ -58,12 +58,12 @@ describe('ContentComponent', () => {
   });
 
   it('should render image and icon correctly', async () => {
-    const { container } = await render(ContentComponent, {
+    await render(ContentComponent, {
       providers,
       inputs: { item: mockItemWithUrl },
     });
-    const image = container.querySelector('img.image') as HTMLImageElement;
-    expect(image).toBeTruthy();
+    const image = document.querySelector('img.image') as HTMLImageElement;
+    expect(image).toBeInTheDocument();
     expect(image.src).toContain('test-image.png');
   });
 

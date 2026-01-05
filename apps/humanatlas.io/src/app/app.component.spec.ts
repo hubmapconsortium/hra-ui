@@ -36,8 +36,9 @@ describe('AppComponent', () => {
   });
 
   it('should create', async () => {
-    const { container } = await renderComponent();
-    expect(container).toBeTruthy();
+    await renderComponent();
+    const headers = screen.getAllByRole('banner');
+    expect(headers[0]).toBeInTheDocument();
   });
 
   it('should set viewport scroller offset on initialization', async () => {
@@ -52,26 +53,26 @@ describe('AppComponent', () => {
   });
 
   it('should render router outlet', async () => {
-    const { container } = await renderComponent();
-    const outlet = container.querySelector('router-outlet');
-    expect(outlet).toBeTruthy();
+    await renderComponent();
+    const outlet = document.querySelector('router-outlet');
+    expect(outlet).toBeInTheDocument();
   });
 
   it('should apply cta-active class when CTA is not dismissed', async () => {
-    const { container } = await renderComponent();
-    const mainDiv = container.querySelector('.main');
-    expect(mainDiv?.classList.contains('cta-active')).toBe(true);
+    await renderComponent();
+    const mainDiv = document.querySelector('.main');
+    expect(mainDiv).toHaveClass('cta-active');
   });
 
   it('should have main div with appropriate classes', async () => {
-    const { container } = await renderComponent();
-    const mainDiv = container.querySelector('.main');
+    await renderComponent();
+    const mainDiv = document.querySelector('.main');
     expect(mainDiv).toBeInTheDocument();
   });
 
   it('should have content wrapper', async () => {
-    const { container } = await renderComponent();
-    const content = container.querySelector('.content');
-    expect(content).toBeTruthy();
+    await renderComponent();
+    const content = document.querySelector('.content');
+    expect(content).toBeInTheDocument();
   });
 });
