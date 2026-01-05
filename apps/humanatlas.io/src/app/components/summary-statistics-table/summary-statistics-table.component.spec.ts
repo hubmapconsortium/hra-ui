@@ -1,6 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
@@ -25,7 +24,7 @@ Heart,Ventricle,UBERON:0002084,Cardiomyocyte,CL:0000746,30,15`;
       inputs: data,
     });
 
-    const httpMock = TestBed.inject(HttpTestingController);
+    const httpMock = renderResult.fixture.debugElement.injector.get(HttpTestingController);
     const user = userEvent.setup();
 
     return { ...renderResult, httpMock, user };
