@@ -50,12 +50,12 @@ describe('CarouselComponent', () => {
   });
 
   it('should render carousel controls', async () => {
-    const { container } = await render(CarouselComponent, {
+    await render(CarouselComponent, {
       providers,
       inputs: { items: mockItems },
     });
 
-    const controls = container.querySelector('hra-carousel-controls');
-    expect(controls).toBeTruthy();
+    const controls = document.querySelector('hra-carousel-controls');
+    expect(controls).toBeInTheDocument();
   });
 });
