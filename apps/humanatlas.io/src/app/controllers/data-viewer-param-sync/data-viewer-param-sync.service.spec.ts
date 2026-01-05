@@ -1,13 +1,16 @@
-import { ComponentRef } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { Component, ComponentRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataViewerComponent } from '@hra-ui/design-system/data-viewer';
+import { render } from '@testing-library/angular';
 import { of } from 'rxjs';
 import { DataViewerParamSyncControllerService } from './data-viewer-param-sync.service';
 
+@Component({ standalone: true, template: '' })
+class TestComponent {}
+
 describe('DataViewerParamSyncControllerService', () => {
-  function setup(queryParams = {}, fragment: string | null = null): DataViewerParamSyncControllerService {
-    TestBed.configureTestingModule({
+  async function setup(queryParams = {}, fragment: string | null = null) {
+    const renderResult = await render(TestComponent, {
       providers: [
         DataViewerParamSyncControllerService,
         {
@@ -24,11 +27,13 @@ describe('DataViewerParamSyncControllerService', () => {
       ],
     });
 
-    return TestBed.inject(DataViewerParamSyncControllerService);
+    const service = renderResult.fixture.debugElement.injector.get(DataViewerParamSyncControllerService);
+
+    return { ...renderResult, service };
   }
 
-  it('should be created', () => {
-    const service = setup();
+  it('should be created', async () => {
+    const { service } = await setup();
     expect(service).toBeTruthy();
   });
 
@@ -36,8 +41,8 @@ describe('DataViewerParamSyncControllerService', () => {
     expect(DataViewerParamSyncControllerService.id).toBe('DataViewerParamSync');
   });
 
-  it('should attach DataViewerComponent and subscribe to observables', () => {
-    const service = setup();
+  it('should attach DataViewerComponent and subscribe to observables', async () => {
+    const { service } = await setup();
     const releaseVersionSubscribe = jest.fn((callback: (value: string) => void) => {
       callback('v1.0');
     });
@@ -62,8 +67,8 @@ describe('DataViewerParamSyncControllerService', () => {
     expect(organSubscribe).toHaveBeenCalled();
   });
 
-  it('should handle non-DataViewerComponent gracefully', () => {
-    const service = setup();
+  it('should handle non-DataViewerComponent gracefully', async () => {
+    const { service } = await setup();
     const mockComponentRef = {
       instance: {},
     } as unknown as ComponentRef<unknown>;
@@ -71,13 +76,13 @@ describe('DataViewerParamSyncControllerService', () => {
     expect(() => service.attach(mockComponentRef)).not.toThrow();
   });
 
-  it('should detach without errors', () => {
-    const service = setup();
+  it('should detach without errors', async () => {
+    const { service } = await setup();
     expect(() => service.detach()).not.toThrow();
   });
 
-  it('should set version when valid version is in URL', () => {
-    const service = setup({ version: 'v1.5' });
+  it('should set version when valid version is in URL', async () => {
+    const { service, fixture } = await setup({ version: 'v1.5' });
     const releaseVersionSet = jest.fn();
     const releaseVersionGet = jest.fn(() => '');
 
@@ -103,13 +108,13 @@ describe('DataViewerParamSyncControllerService', () => {
     } as unknown as ComponentRef<DataViewerComponent>;
 
     service.attach(mockComponentRef);
-    TestBed.flushEffects();
+    fixture.detectChanges();
 
     expect(releaseVersionSet).toHaveBeenCalledWith('v1.5');
   });
 
-  it('should set organ when valid organ and releaseVersion in URL', () => {
-    const service = setup({ version: 'v1.5', organ: 'heart' });
+  it('should set organ when valid organ and releaseVersion in URL', async () => {
+    const { service, fixture } = await setup({ version: 'v1.5', organ: 'heart' });
     const organSet = jest.fn();
     const releaseVersionGet = jest.fn(() => 'v1.5');
 
@@ -135,7 +140,7 @@ describe('DataViewerParamSyncControllerService', () => {
     } as unknown as ComponentRef<DataViewerComponent>;
 
     service.attach(mockComponentRef);
-    TestBed.flushEffects();
+    fixture.detectChanges();
 
     expect(organSet).toHaveBeenCalledWith('heart');
   });
