@@ -1,37 +1,58 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ActivatedRoute } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
+import { map } from 'rxjs';
+import { FeaturedContentData, FeaturedContentItem } from '../../schemas/featured-content/featured-content.schema';
 import { FooterComponent } from '../../components/footer/footer.component';
 
-/** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
 
-/** Content Type */
 type ContentType = (typeof ContentTypes)[number];
 
-/** Interface for content card */
 interface LandingPageContentCard {
-  /** Image url */
   imageSrc: string;
-  /** Date */
+
   date: string;
-  /** Tagline */
+
   tagline: string;
-  /** Tags */
+
   tags: string[];
-  /** Link */
+
   link: string;
-  /** External link */
+
   external: boolean;
-  /** Content type */
-  contentType: ContentType;
 }
 
-/**
- * Landing page of CNS website
- */
+function mapToContentCard(item: FeaturedContentItem): LandingPageContentCard {
+  const isExternal = item.link.startsWith('http://') || item.link.startsWith('https://');
+
+  const displayTags = item.tags.map((tag) => capitalizeFirstLetter(tag));
+
+  if (item.type && !displayTags.includes(item.type)) {
+    displayTags.unshift(capitalizeFirstLetter(item.type.replace(/-/g, ' ')));
+  }
+
+  return {
+    imageSrc: 'assets/ui-images/placeholder.png',
+    date: item.dateStart,
+    tagline: item.title,
+    tags: displayTags,
+    link: item.link,
+    external: isExternal,
+  };
+}
+
+function capitalizeFirstLetter(str: string): string {
+  return str
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 @Component({
   selector: 'cns-landing-page',
   imports: [
@@ -47,67 +68,42 @@ interface LandingPageContentCard {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  /** Content Types */
+  private readonly route = inject(ActivatedRoute);
+
   protected readonly contentTypes = ContentTypes;
 
-  /** Selected content type */
   protected readonly selectedContentType = signal<ContentType>('Featured');
 
-  /** Temporary content cards data */
-  protected readonly contentCards: LandingPageContentCard[] = [
-    {
-      imageSrc: 'assets/ui-images/placeholder.png',
-      date: '2024-01-15',
-      tagline: 'Featured Research: Advances in Neural Networks',
-      tags: ['AI', 'Research'],
-      link: '/research/neural-networks',
-      external: false,
-      contentType: 'Featured',
-    },
-    {
-      imageSrc: 'assets/ui-images/placeholder.png',
-      date: '2024-01-10',
-      tagline: 'New Publication: Deep Learning in Medical Imaging',
-      tags: ['Publication', 'Deep Learning'],
-      link: '/publications/medical-imaging',
-      external: false,
-      contentType: 'Publications',
-    },
-    {
-      imageSrc: 'assets/ui-images/placeholder.png',
-      date: '2024-01-05',
-      tagline: 'CNS Team Wins Best Paper Award at Conference',
-      tags: ['Award', 'Conference'],
-      link: 'https://example.com/news/best-paper',
-      external: true,
-      contentType: 'News',
-    },
-    {
-      imageSrc: 'assets/ui-images/placeholder.png',
-      date: '2023-12-20',
-      tagline: 'Featured: Breakthrough in Computational Neuroscience',
-      tags: ['Neuroscience', 'Innovation'],
-      link: '/featured/computational-breakthrough',
-      external: false,
-      contentType: 'Featured',
-    },
-    {
-      imageSrc: 'assets/ui-images/placeholder.png',
-      date: '2023-12-15',
-      tagline: 'Latest Publication on Brain Connectivity Analysis',
-      tags: ['Brain', 'Connectivity'],
-      link: '/publications/brain-connectivity',
-      external: false,
-      contentType: 'Publications',
-    },
-    {
-      imageSrc: 'assets/ui-images/placeholder.png',
-      date: '2023-12-10',
-      tagline: 'CNS Lab Receives Major Research Grant',
-      tags: ['Funding', 'Research'],
-      link: '/news/research-grant',
-      external: false,
-      contentType: 'News',
-    },
-  ];
+  private readonly featuredContentData = toSignal(
+    this.route.data.pipe(map((data) => data['featuredContent'] as FeaturedContentData | undefined)),
+  );
+
+  private readonly contentCardsSignal = computed<LandingPageContentCard[]>(() => {
+    const data = this.featuredContentData();
+    const selectedType = this.selectedContentType();
+
+    if (!data) {
+      return [];
+    }
+
+    let items: FeaturedContentItem[] = [];
+
+    switch (selectedType) {
+      case 'Featured':
+        items = data.featured;
+        break;
+      case 'Publications':
+        items = data.publications;
+        break;
+      case 'News':
+        items = data.news;
+        break;
+    }
+
+    return items.map(mapToContentCard);
+  });
+
+  protected get contentCards(): LandingPageContentCard[] {
+    return this.contentCardsSignal();
+  }
 }
