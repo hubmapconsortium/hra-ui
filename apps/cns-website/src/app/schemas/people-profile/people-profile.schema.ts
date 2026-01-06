@@ -44,7 +44,7 @@ export const PeopleProfileDataSchema = z
   .object({
     name: z.string(),
     lastName: z.string(),
-    image: z.string(),
+    image: z.string().optional(),
     slug: z.string().optional(),
     roles: z.array(RoleSchema),
   })

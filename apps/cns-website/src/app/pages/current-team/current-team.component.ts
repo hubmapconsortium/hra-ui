@@ -131,25 +131,54 @@ export class CurrentTeamComponent {
     const roleFilters = filterCategories.find((f) => f.id === 'roles')?.selected ?? [];
     if (roleFilters.length > 0) {
       members = members.filter((member) => {
-        const role = member.roles[0];
-        if (!role) {
+        if (!member.roles || member.roles.length === 0) {
           return false;
         }
 
-        let titleText = '';
-        switch (role.type) {
-          case 'member':
-            titleText = role.title?.toLowerCase() || '';
-            break;
-          case 'student':
-            titleText = `${role.degree} ${role.topic}`.toLowerCase();
-            break;
-          case 'collaborator':
-            titleText = `collaborator ${role.project}`.toLowerCase();
-            break;
-        }
+        // Check if ANY of the member's roles matches the selected filters
+        return roleFilters.some((filter) => {
+          const filterId = filter.id.toLowerCase();
 
-        return roleFilters.some((filter) => titleText.includes(filter.id.toLowerCase()));
+          return member.roles.some((role) => {
+            switch (filterId) {
+              case 'collaborators':
+                return role.type === 'collaborator';
+
+              case 'faculty':
+                if (role.type === 'member') {
+                  const title = role.title?.toLowerCase() || '';
+                  return title.includes('faculty') || title.includes('professor');
+                }
+                return false;
+
+              case 'postdocs':
+                if (role.type === 'member') {
+                  const title = role.title?.toLowerCase() || '';
+                  return title.includes('postdoc');
+                }
+                return false;
+
+              case 'phd-students':
+                if (role.type === 'student') {
+                  return role.degree.toLowerCase().includes('ph.d');
+                }
+                return false;
+
+              case 'staff':
+                if (role.type === 'member') {
+                  const title = role.title?.toLowerCase() || '';
+                  return title.includes('staff');
+                }
+                return false;
+
+              case 'students':
+                return role.type === 'student';
+
+              default:
+                return false;
+            }
+          });
+        });
       });
     }
 
