@@ -160,7 +160,8 @@ export class CurrentTeamComponent {
 
               case 'phd-students':
                 if (role.type === 'student') {
-                  return role.degree.toLowerCase().includes('ph.d');
+                  const degree = role.degree.toLowerCase().replace(/\./g, '');
+                  return degree.includes('phd');
                 }
                 return false;
 

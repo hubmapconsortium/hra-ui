@@ -204,7 +204,7 @@ describe('CurrentTeamComponent', () => {
     });
 
     fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'roles' ? { ...f, selected: [{ id: 'phd', label: 'PhD' }] } : f)),
+      filters.map((f) => (f.id === 'roles' ? { ...f, selected: [{ id: 'phd-students', label: 'PhD students' }] } : f)),
     );
     fixture.detectChanges();
 
@@ -474,7 +474,7 @@ describe('CurrentTeamComponent', () => {
         if (f.id === 'roles') {
           return {
             ...f,
-            selected: [{ id: 'phd', label: 'PhD' }],
+            selected: [{ id: 'phd-students', label: 'PhD students' }],
           };
         }
         if (f.id === 'startYear') {
