@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { booleanAttribute, Component, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 
 @Component({
@@ -12,5 +12,5 @@ export class NavItemComponent {
   readonly label = input<string>('');
 
   /** Whether the navigation item is disabled */
-  readonly disabled = input<boolean>(false);
+  readonly disabled = input(false, { transform: booleanAttribute });
 }

@@ -14,21 +14,12 @@ import { HraCommonModule } from '@hra-ui/common';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { ClearSheetLogs } from '../../actions/logs.actions';
 import { UpdateGetFromCache } from '../../actions/sheet.actions';
 import { ToggleControlPane, ToggleDebugLogs } from '../../actions/ui.actions';
 import { ConfigService } from '../../app-config.service';
 import { OrganTableSelectorComponent } from '../../components/organ-table-selector/organ-table-selector.component';
-import {
-  PlaygroundSheetOptions,
-  Sheet,
-  SheetDetails,
-  SheetOptions,
-  Version,
-  VersionDetail,
-} from '../../models/sheet.model';
-import { SheetService } from '../../services/sheet/sheet.service';
-import { SheetState, SheetStateModel } from '../../store/sheet.state';
+import { SheetDetails, VersionDetail } from '../../models/sheet.model';
+import { SheetState } from '../../store/sheet.state';
 import { UIState, UIStateModel } from '../../store/ui.state';
 import { SearchComponent } from '../search/search.component';
 
@@ -54,52 +45,11 @@ import { SearchComponent } from '../search/search.component';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
-  readonly sheetservice = inject(SheetService);
   readonly configService = inject(ConfigService);
   readonly store = inject(Store);
   readonly router = inject(Router);
   readonly dialog = inject(MatDialog);
 
-  /**
-   * Available Data versions (depricated)
-   */
-  versions: Version[] = [];
-  /**
-   * Menu options
-   */
-  moreOptions: { type: string; url: string; name: string }[] = [];
-  /**
-   * Export options
-   */
-  imgOptions: string[] = [];
-  /**
-   * Sheet configs
-   */
-  sheetOptions: SheetOptions[] = [];
-  /**
-   * Sheet configs
-   */
-  omapSheetOptions: SheetDetails[] = [];
-  /**
-   * Document window object
-   */
-  window: Window = window;
-  /**
-   * Organ sheet selected
-   */
-  selectedSheetOption!: string;
-  /**
-   * Selected data version
-   */
-  selectedVersion: string | undefined;
-  /**
-   * Currently selected sheet
-   */
-  currentSheet!: Sheet;
-  /**
-   * Currently selecte mode
-   */
-  mode!: string;
   /**
    * Currently selected organs
    */
@@ -121,7 +71,6 @@ export class NavbarComponent implements OnInit {
   omapSheetConfig: SheetDetails[] = [];
 
   // state observables
-  @Select(SheetState) sheet$!: Observable<SheetStateModel>;
   @Select(UIState) ui$!: Observable<UIStateModel>;
   @Select(SheetState.getMode) mode$!: Observable<string>;
   @Select(SheetState.getSelectedOrgans) selectedOrgans$!: Observable<string[]>;
@@ -144,48 +93,17 @@ export class NavbarComponent implements OnInit {
     }
     return x;
   }
-  playgroundSheetOptions: PlaygroundSheetOptions[] = [];
-  masterSheetLink!: string;
 
   constructor() {
     this.configService.sheetConfiguration$.subscribe((sheetOptions) => {
       this.sheetConfig = sheetOptions;
-      this.sheetOptions = sheetOptions as unknown as SheetOptions[];
     });
     this.configService.omapsheetConfiguration$.subscribe((sheetOptions) => {
       this.omapSheetConfig = sheetOptions;
-      this.omapSheetOptions = sheetOptions;
-    });
-
-    this.configService.config$.subscribe((config) => {
-      this.versions = config['version'] as Version[];
-      this.moreOptions = config['moreOptions'] as {
-        type: string;
-        url: string;
-        name: string;
-      }[];
-      this.imgOptions = config['imgOptions'] as string[];
-      this.playgroundSheetOptions = config['playgroundSheetOptions'] as PlaygroundSheetOptions[];
-      this.masterSheetLink = config['masterSheetLink'] as string;
     });
   }
 
   ngOnInit(): void {
-    this.sheet$.subscribe((sheet) => {
-      if (sheet.sheet) {
-        this.currentSheet = sheet.sheet;
-        this.selectedSheetOption = sheet.sheet.display;
-        this.selectedVersion = this.versions.find((s) => s.folder === sheet.version)?.display;
-      }
-    });
-
-    this.mode$.subscribe((mode) => {
-      this.mode = mode;
-      if (mode === 'playground') {
-        this.sheetOptions = this.playgroundSheetOptions;
-      }
-    });
-
     this.selectedOrgans$.subscribe((organs) => {
       const selectedOrgansNames: string[] = [];
       this.selectedOrgans = organs;
@@ -219,37 +137,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  getSheetSelection(sheet: string) {
-    const selectedSheet = this.sheetOptions.find((s) => (s as unknown as { name: string }).name === sheet);
-    this.store.dispatch(new ClearSheetLogs());
-    this.router.navigate(['/vis'], {
-      queryParams: { sheet: selectedSheet?.sheet ?? '' },
-      queryParamsHandling: 'merge',
-    });
-  }
-
-  getVersionSelection(version: string) {
-    const selectedVersion = this.versions.find((s) => s.display === version);
-    this.router.navigate(['/vis'], {
-      queryParams: { version: selectedVersion?.folder },
-      queryParamsHandling: 'merge',
-    });
-  }
-
-  openMasterDataTables() {
-    window.open(this.masterSheetLink, '_blank');
-  }
-
-  refreshData() {
-    this.router.navigate(['/vis'], {
-      queryParams: {
-        selectedOrgans: this.selectedOrgans?.join(','),
-        playground: false,
-        omapSelectedOrgans: this.omapSelectedOrgans?.join(','),
-      },
-    });
-  }
-
   /** Toggles the side pane */
   togglePane() {
     this.store.dispatch(new ToggleControlPane());
@@ -258,24 +145,6 @@ export class NavbarComponent implements OnInit {
   /** Toggles debug logs drawer */
   toggleDebugLogs() {
     this.store.dispatch(new ToggleDebugLogs());
-  }
-
-  exportImage(imageType: string) {
-    this.export.emit(imageType);
-  }
-
-  onOptionClick(type: string, url: string) {
-    switch (type) {
-      case 'route':
-        this.router.navigate([url]);
-        break;
-      case 'tab':
-        this.window.open(url, '_blank');
-        break;
-      default:
-        this.window.open(url, '_blank');
-        break;
-    }
   }
 
   openSelectOrgansDialog() {

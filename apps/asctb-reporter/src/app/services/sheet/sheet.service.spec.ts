@@ -162,17 +162,6 @@ describe('SheetService', () => {
     expect(result).toBe('https://docs.google.com/spreadsheets/d/sheet123/export?format=csv&gid=gid456');
   });
 
-  it('should log data in testCallback', () => {
-    const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
-    const testData = { test: 'data' } as unknown as JSON;
-
-    const result = service.testCallback(testData);
-
-    expect(consoleSpy).toHaveBeenCalledWith(testData);
-    expect(result).toBe(testData);
-    consoleSpy.mockRestore();
-  });
-
   it('should fetch data from assets', () => {
     const mockSheet = {
       name: 'test-sheet',

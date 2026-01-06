@@ -471,7 +471,7 @@ describe('SheetState', () => {
 
   describe('FetchInitialPlaygroundData', () => {
     it('should fetch and handle playground data', async () => {
-      const playgroundData = { csv: 'playground,csv', data: [mockRow], parsed: [] };
+      const playgroundData: ResponseData = { csv: 'playground,csv', data: [mockRow], parsed: [] };
       sheetService.fetchPlaygroundData.mockReturnValue(of(playgroundData));
 
       const state = await dispatchWithDelay(store, new FetchInitialPlaygroundData(), 0);
@@ -492,7 +492,7 @@ describe('SheetState', () => {
         ['AS/1', 'Label1', 'ID1'],
         ['AS/2', 'Label2', 'ID2'],
       ];
-      const updatedData = { csv: 'updated,csv', data: [mockRow], parsed: parsedData };
+      const updatedData: ResponseData = { csv: 'updated,csv', data: [mockRow], parsed: parsedData };
       sheetService.updatePlaygroundData.mockReturnValue(of(updatedData));
 
       const state = await dispatchWithDelay(store, new UpdatePlaygroundData(parsedData), 0);

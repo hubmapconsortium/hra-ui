@@ -1,13 +1,9 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { render, waitFor } from '@testing-library/angular';
+import { render, screen, waitFor } from '@testing-library/angular';
+import { mock } from 'jest-mock-extended';
 import { StateReset } from 'ngxs-reset-plugin';
 import { BehaviorSubject, of } from 'rxjs';
-import { ConfigService } from '../../app-config.service';
-import { IndentedListService } from '../../components/indented-list/indented-list.service';
-import { ReportService } from '../../components/report/report.service';
 import { SearchStructure } from '../../models/tree.model';
 import { SheetState } from '../../store/sheet.state';
 import { TreeState } from '../../store/tree.state';
@@ -21,46 +17,27 @@ describe('RootComponent', () => {
     error: { hasError: false, msg: '' },
   });
 
-  const mockStore = {
-    select: jest.fn((selector) => {
-      const map = new Map<any, any>([
-        [TreeState.getLatestSearchStructure, searchStructure$.asObservable()],
-        [UIState.getError, error$.asObservable()],
-        [SheetState.getCompareData, of([])],
-        [SheetState.getDataFromCache, of(false)],
-        [TreeState.getTreeData, of([])],
-        [TreeState.getBottomSheetData, of({})],
-        [TreeState.getBimodal, of({})],
-        [UIState.getControlPaneState, of(false)],
-        [UIState.getLoadingText, of('Loading...')],
-        [UIState.getReport, of(false)],
-        [SheetState.getMode, of('vis')],
-      ]);
-
-      return map.has(selector) ? map.get(selector) : of(null);
-    }),
-    dispatch: jest.fn().mockReturnValue(of({})),
-  };
-
-  const mockServices = {
-    configService: {},
-    dialog: {},
-    indent: {},
-    report: {},
-    router: {},
-  };
+  const mockStore = mock<Store>();
+  const selectorMap = new Map<Parameters<Store['select']>[0], ReturnType<Store['select']>>([
+    [TreeState.getLatestSearchStructure, searchStructure$.asObservable()],
+    [UIState.getError, error$.asObservable()],
+    [SheetState.getCompareData, of([])],
+    [SheetState.getDataFromCache, of(false)],
+    [TreeState.getTreeData, of([])],
+    [TreeState.getBottomSheetData, of({})],
+    [TreeState.getBimodal, of({})],
+    [UIState.getControlPaneState, of(false)],
+    [UIState.getLoadingText, of('Loading...')],
+    [UIState.getReport, of(false)],
+    [SheetState.getMode, of('vis')],
+  ]);
+  mockStore.select.mockImplementation((selector) => selectorMap.get(selector) ?? of(null));
+  mockStore.dispatch.mockReturnValue(of());
 
   async function setup() {
     const result = await render(RootComponent, {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [
-        { provide: Store, useValue: mockStore },
-        { provide: ConfigService, useValue: mockServices.configService },
-        { provide: MatDialog, useValue: mockServices.dialog },
-        { provide: IndentedListService, useValue: mockServices.indent },
-        { provide: ReportService, useValue: mockServices.report },
-        { provide: Router, useValue: mockServices.router },
-      ],
+      providers: [{ provide: Store, useValue: mockStore }],
     });
     return { ...result, component: result.fixture.componentInstance };
   }
@@ -72,19 +49,19 @@ describe('RootComponent', () => {
   });
 
   it('should create and initialize with observables and default values', async () => {
-    const { component, container } = await setup();
+    const { component } = await setup();
 
     expect(component).toBeTruthy();
-    expect(container.querySelector('.tree-div')).toBeTruthy();
-    expect(container.querySelector('.playground-dig')).toBeNull();
+    expect(screen.getByTestId('view-tree')).toBeTruthy();
+    expect(screen.queryByTestId('view-playground')).toBeNull();
   });
 
   it('should subscribe to error observable and update error state', async () => {
-    const { container } = await setup();
+    await setup();
 
     error$.next({ error: { hasError: true, msg: 'Test error' } });
 
-    await waitFor(() => expect(container.querySelector('app-error')).toBeTruthy());
+    await waitFor(() => expect(screen.getByTestId('view-error')).toBeTruthy());
   });
 
   it('should handle search structure scrolling when structure is provided', async () => {

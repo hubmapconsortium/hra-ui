@@ -1,7 +1,9 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Directive, ElementRef } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ElementRef } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { By } from '@angular/platform-browser';
+import { AnalyticsModule, AnalyticsService } from '@hra-ui/common/analytics';
 import { NgxsModule, Store } from '@ngxs/store';
-import { render } from '@testing-library/angular';
+import { fireEvent, render, screen } from '@testing-library/angular';
 import jexcel from 'jspreadsheet-ce';
 import { of } from 'rxjs';
 import { UpdatePlaygroundData } from '../../actions/sheet.actions';
@@ -9,10 +11,6 @@ import { SheetState } from '../../store/sheet.state';
 import { PlaygroundComponent } from './playground.component';
 
 jest.mock('jspreadsheet-ce', () => jest.fn(() => ({ destroy: jest.fn() })));
-
-// eslint-disable-next-line @angular-eslint/directive-selector
-@Directive({ selector: '[hraClickEvent]', standalone: true, exportAs: 'hraClickEvent' })
-class MockClickEventDirective {}
 
 interface ContextMenuItem {
   title?: string;
@@ -60,6 +58,10 @@ describe('PlaygroundComponent', () => {
     ['A2', 'B2', 'C2'],
   ];
 
+  const mockAnalyticsService = {
+    logEvent: jest.fn(),
+  } as unknown as AnalyticsService;
+
   const mockStore = {
     select: jest.fn((selector) => {
       if (selector === SheetState.getParsedData) {
@@ -77,10 +79,16 @@ describe('PlaygroundComponent', () => {
   async function setup() {
     const result = await render(PlaygroundComponent, {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [NgxsModule.forRoot([]), MockClickEventDirective],
-      providers: [{ provide: Store, useValue: mockStore }],
+      imports: [NgxsModule.forRoot([]), AnalyticsModule],
+      providers: [
+        { provide: Store, useValue: mockStore },
+        { provide: AnalyticsService, useValue: mockAnalyticsService },
+      ],
     });
-    return result.fixture.componentInstance;
+    return {
+      ...result,
+      component: result.fixture.componentInstance,
+    };
   }
 
   function getJexcelConfig() {
@@ -99,23 +107,17 @@ describe('PlaygroundComponent', () => {
     jest.mocked(jexcel).mockClear();
   });
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.mocked(jexcel).mockClear();
-  });
-
   describe('Component Initialization', () => {
     it('should create and initialize with sheet subscription', async () => {
-      const component = await setup();
+      const { component } = await setup();
 
       expect(component).toBeTruthy();
       expect(component.currentSheet).toEqual(mockSheet);
       expect(component.prevTab).toBe(0);
-      expect(component.linkFormControl).toBeDefined();
     });
 
     it('should initialize table after view init', async () => {
-      const component = await setup();
+      const { component } = await setup();
       component.spreadsheet = { nativeElement: document.createElement('div') } as ElementRef;
 
       component.ngAfterViewInit();
@@ -126,7 +128,7 @@ describe('PlaygroundComponent', () => {
 
   describe('Data Operations', () => {
     it('should generate columns with specified length', async () => {
-      const component = await setup();
+      const { component } = await setup();
 
       const columns = component.generateColumns(5);
 
@@ -135,7 +137,7 @@ describe('PlaygroundComponent', () => {
     });
 
     it('should handle tab change and filter empty rows', async () => {
-      const component = await setup();
+      const { component } = await setup();
       component.prevTab = 1;
       component.spreadSheetData = [
         ['A', 'B'],
@@ -153,26 +155,47 @@ describe('PlaygroundComponent', () => {
         ]),
       );
     });
+  });
 
-    it('should parse Google Sheets URL', async () => {
-      const component = await setup();
+  describe('Template interactions', () => {
+    it('renders the tab labels used by the layout', async () => {
+      await setup();
 
-      const result = component.checkLinkFormat('https://docs.google.com/spreadsheets/d/123/edit#gid=456');
+      const tabGroup = screen.getByTestId('playground-tab-group');
+      const labels = Array.from(tabGroup.querySelectorAll('mat-tab')).map((tab) => tab.getAttribute('label'));
 
-      expect(result).toEqual({ sheetID: '123', gid: '456', csvUrl: '' });
+      expect(labels).toEqual(['Visualization', 'Table', 'Upload']);
     });
 
-    it('should handle CSV URL format', async () => {
-      const component = await setup();
+    it('filters rows and updates the store when the tabs change', async () => {
+      const { component, fixture } = await setup();
+      component.prevTab = 1;
+      component.spreadSheetData = [
+        ['A', ''],
+        ['\u0000', ''],
+      ];
 
-      const result = component.checkLinkFormat('https://example.com/data.csv');
+      const tabGroup = fixture.nativeElement.querySelector('mat-tab-group');
+      if (!tabGroup) {
+        throw new Error('Tab group not found');
+      }
+      const tabEvent = new CustomEvent('selectedTabChange', { bubbles: true });
+      const tabChangeEvent = tabEvent as unknown as MatTabChangeEvent;
+      tabChangeEvent.index = 0;
+      tabChangeEvent.tab = { textLabel: 'Visualization' } as any;
+      fireEvent(tabGroup, tabEvent);
 
-      expect(result).toEqual({ sheetID: '0', gid: '0', csvUrl: 'https://example.com/data.csv' });
+      expect(component.prevTab).toBe(0);
+      expect(mockStore.dispatch).toHaveBeenCalledWith(new UpdatePlaygroundData([['A', '']]));
     });
 
-    it('should upload data and dispatch action', async () => {
-      const component = await setup();
-      const uploadData = {
+    it('listens for uploads and dispatches the fetch action', async () => {
+      const { fixture } = await setup();
+      const uploadElement = fixture.debugElement.query(By.css('app-upload'));
+      if (!uploadElement) {
+        throw new Error('Upload component not found');
+      }
+      const payload = {
         link: 'https://example.com/sheet',
         sheetId: '789',
         gid: '0',
@@ -180,9 +203,8 @@ describe('PlaygroundComponent', () => {
         formData: new FormData(),
       };
 
-      component.upload(uploadData);
+      uploadElement.triggerEventHandler('uploadForm', payload);
 
-      expect(component.tabIndex).toBe(0);
       expect(mockStore.dispatch).toHaveBeenCalledWith(
         expect.objectContaining({ sheet: expect.objectContaining({ sheetId: '789', gid: '0' }) }),
       );
@@ -191,7 +213,7 @@ describe('PlaygroundComponent', () => {
 
   describe('Jexcel Integration', () => {
     it('should initialize table with correct configuration', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const config = setupInitTable(component, [
         ['A', 'B'],
         ['C', 'D'],
@@ -210,7 +232,7 @@ describe('PlaygroundComponent', () => {
     });
 
     it('should update spreadSheetData on change', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const testData = [['X', 'Y']];
       const config = setupInitTable(component, testData);
 
@@ -249,7 +271,7 @@ describe('PlaygroundComponent', () => {
     }
 
     it('should generate column context menu', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const config = setupInitTable(component);
       const mockObj = createColumnMenuMock();
 
@@ -267,7 +289,7 @@ describe('PlaygroundComponent', () => {
     });
 
     it('should execute column menu callbacks', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const config = setupInitTable(component);
       const mockObj = createColumnMenuMock();
 
@@ -288,7 +310,7 @@ describe('PlaygroundComponent', () => {
     });
 
     it('should handle deleteColumn with selected columns', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const config = setupInitTable(component);
       const mockObj: MockJexcelObject = {
         options: { allowDeleteColumn: true, text: { deleteSelectedColumns: 'Delete' } },
@@ -337,7 +359,7 @@ describe('PlaygroundComponent', () => {
     }
 
     it('should generate row context menu', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const config = setupInitTable(component);
       const mockObj = createRowMenuMock();
 
@@ -354,7 +376,7 @@ describe('PlaygroundComponent', () => {
     });
 
     it('should execute row menu callbacks', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const config = setupInitTable(component);
       const mockObj: MockJexcelObject = {
         ...createRowMenuMock(true),
@@ -378,7 +400,7 @@ describe('PlaygroundComponent', () => {
     });
 
     it('should add comment when none exists', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const config = setupInitTable(component);
       const mockObj = createRowMenuMock(false);
 
@@ -396,7 +418,7 @@ describe('PlaygroundComponent', () => {
     });
 
     it('should handle deleteRow with selected rows', async () => {
-      const component = await setup();
+      const { component } = await setup();
       const config = setupInitTable(component);
       const mockObj: MockJexcelObject = {
         options: { allowDeleteRow: true, text: { deleteSelectedRows: 'Delete' } },

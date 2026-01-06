@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { JsonLd } from 'jsonld/jsonld-spec';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Row, Sheet, SheetInfo, Structure } from '../../models/sheet.model';
+import { GraphData, ResponseData, Row, Sheet, SheetInfo, Structure } from '../../models/sheet.model';
 import { URL, getAssetsURL } from '../../static/url';
+
+type SheetFetchOutput = 'graph' | 'jsonld' | 'owl';
+type SheetFetchResponse = ResponseData | GraphData | JsonLd | string;
 
 @Injectable({
   providedIn: 'root',
 })
 export class SheetService {
   private readonly http = inject(HttpClient);
-
   /**
    * Service to fetch the data for a sheet from CSV file or Google sheet using the api
    * @param sheetId id of the sheet
@@ -22,31 +25,45 @@ export class SheetService {
     gid: string,
     csvFileUrl?: string,
     formData?: FormData,
-    output?: string,
+    output?: SheetFetchOutput,
     cache = false,
-  ) {
+  ): Observable<SheetFetchResponse> {
     if (csvFileUrl) {
-      return this.http.get(`${URL}/v2/csv`, {
-        responseType: output === 'owl' ? 'text' : (undefined as unknown as 'text'),
-        params: {
-          csvUrl: csvFileUrl,
-          output: output ? output : 'json',
-        },
-      });
+      const params = {
+        csvUrl: csvFileUrl,
+        output: output ? output : 'json',
+      };
+
+      if (output === 'graph') {
+        return this.http.get<GraphData>(`${URL}/v2/csv`, { params });
+      }
+      if (output === 'jsonld') {
+        return this.http.get<JsonLd>(`${URL}/v2/csv`, { params });
+      }
+      if (output === 'owl') {
+        return this.http
+          .get(`${URL}/v2/csv`, {
+            observe: 'response',
+            responseType: 'text',
+            params,
+          })
+          .pipe(map((response) => response.body ?? ''));
+      }
+      return this.http.get<ResponseData>(`${URL}/v2/csv`, { params });
     } else if (formData) {
-      return this.http.post(`${URL}/v2/csv`, formData);
+      return this.http.post<ResponseData>(`${URL}/v2/csv`, formData);
     }
     if (output === 'graph') {
-      return this.http.get(`${URL}/v2/${sheetId}/${gid}/graph`);
+      return this.http.get<GraphData>(`${URL}/v2/${sheetId}/${gid}/graph`);
     } else if (output === 'jsonld') {
-      return this.http.get(`${URL}/v2/csv`, {
+      return this.http.get<JsonLd>(`${URL}/v2/csv`, {
         params: {
           csvUrl: `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`,
           output: output ? output : 'jsonld',
         },
       });
     }
-    return this.http.get(`${URL}/v2/${sheetId}/${gid}`, {
+    return this.http.get<ResponseData>(`${URL}/v2/${sheetId}/${gid}`, {
       params: {
         cache,
       },
@@ -60,7 +77,7 @@ export class SheetService {
    * @param dataVersion version of the data
    * @param currentSheet current sheet
    */
-  fetchDataFromAssets(dataVersion: string, currentSheet: Sheet) {
+  fetchDataFromAssets(dataVersion: string, currentSheet: Sheet): Observable<string> {
     return this.http.get(getAssetsURL(dataVersion, currentSheet), {
       responseType: 'text',
     });
@@ -112,8 +129,8 @@ export class SheetService {
   /**
    * Fetching initial playground data
    */
-  fetchPlaygroundData() {
-    return this.http.get(`${URL}/v2/playground`);
+  fetchPlaygroundData(): Observable<ResponseData> {
+    return this.http.get<ResponseData>(`${URL}/v2/playground`);
   }
 
   /**
@@ -122,15 +139,15 @@ export class SheetService {
    *
    * @param data updated tabular data
    */
-  updatePlaygroundData(data: string[][]) {
-    return this.http.post(`${URL}/v2/playground`, { data });
+  updatePlaygroundData(data: string[][]): Observable<ResponseData> {
+    return this.http.post<ResponseData>(`${URL}/v2/playground`, { data });
   }
 
   /**
    * Service to add body for each AS to the data
    * @param data is the parsed ASCTB data from the csv file of the sheet
    */
-  getDataWithBody(data: Row[], organName: string) {
+  getDataWithBody(data: Row[], organName: string): Row[] {
     const organ: Structure = {
       name: 'Body',
       id: 'UBERON:0013702',
@@ -149,7 +166,7 @@ export class SheetService {
    * @param sheetID id of the sheet
    * @param gID of the sheet
    */
-  formURL(sheetID: string, gID: string) {
+  formURL(sheetID: string, gID: string): string {
     return `https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv&gid=${gID}`;
   }
 }

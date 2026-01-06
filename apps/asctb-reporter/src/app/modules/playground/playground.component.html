@@ -2,6 +2,7 @@
   class="remove-border-bottom"
   hraClickEvent
   hraClickEventTriggerOn="none"
+  data-testid="playground-tab-group"
   [mat-stretch-tabs]="false"
   [(selectedIndex)]="tabIndex"
   (selectedTabChange)="tabChange($event); event.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"

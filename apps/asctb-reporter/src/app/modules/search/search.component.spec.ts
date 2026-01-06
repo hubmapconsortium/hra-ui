@@ -1,48 +1,66 @@
 import { CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import { MatListOption } from '@angular/material/list';
 import { NavigationEnd, Router } from '@angular/router';
-import { NgxsModule, Store } from '@ngxs/store';
-import { render } from '@testing-library/angular';
+import { Store } from '@ngxs/store';
+import { render, screen, waitFor, within } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
+import { mock } from 'jest-mock-extended';
 import { of, Subject } from 'rxjs';
-import { UpdateConfig } from '../../actions/sheet.actions';
-import { DiscrepencyLabel, DoSearch } from '../../actions/tree.actions';
+import { DoSearch } from '../../actions/tree.actions';
 import { CloseSearch, OpenSearch } from '../../actions/ui.actions';
+import { BimodalData } from '../../models/bimodal.model';
 import { SearchStructure } from '../../models/tree.model';
 import { TreeState } from '../../store/tree.state';
 import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
-  const mockTreeData = [
+  const mockTreeData: (SearchStructure & { children: number })[] = [
     { id: 1, name: 'Heart', children: 2, x: 0, y: 0, groupName: 'Anatomical Structures' },
     { id: 2, name: 'Liver', children: 1, x: 0, y: 0, groupName: 'Anatomical Structures' },
   ];
 
-  const mockBimodal = {
+  const mockBimodalData: BimodalData = {
     nodes: [
-      { id: 3, name: 'Neuron', x: 0, y: 0, groupName: 'Cell Types' },
-      { id: 4, name: 'CD4', x: 0, y: 0, groupName: 'Biomarkers' },
+      { id: 3, name: 'Neuron', x: 0, y: 0, groupName: 'Cell Types' } as SearchStructure,
+      { id: 4, name: 'CD4', x: 0, y: 0, groupName: 'Biomarkers' } as SearchStructure,
     ],
-  };
+    links: [],
+    config: {
+      CT: { sort: 'Alphabetically', size: 'None' },
+      BM: { sort: 'Alphabetically', size: 'None', type: 'All' },
+    },
+  } as unknown as BimodalData;
 
-  const routerEvents$ = new Subject();
-  const mockStore = {
-    selectSignal: jest.fn((selector) => {
-      if (selector === TreeState.getTreeData) {
-        return signal(mockTreeData);
-      }
-      if (selector === TreeState.getBimodal) {
-        return signal(mockBimodal);
-      }
-      return signal([]);
-    }),
-    selectSnapshot: jest.fn(() => ({ discrepencyId: false, discrepencyLabel: false, duplicateId: false })),
-    dispatch: jest.fn().mockReturnValue(of({})),
-  };
+  const treeSignal = signal<SearchStructure[]>(mockTreeData as SearchStructure[]);
+  const bimodalSignal = signal<BimodalData>(mockBimodalData);
+  const emptySignal = signal<SearchStructure[]>([]);
+
+  const mockStore = mock<Store>();
+  mockStore.selectSignal.mockImplementation((selector) => {
+    if (selector === TreeState.getTreeData) {
+      return treeSignal;
+    }
+    if (selector === TreeState.getBimodal) {
+      return bimodalSignal;
+    }
+    return emptySignal;
+  });
+  mockStore.selectSnapshot.mockReturnValue({
+    discrepencyId: false,
+    discrepencyLabel: false,
+    duplicateId: false,
+  });
+  mockStore.dispatch.mockReturnValue(of(undefined));
+
+  let routerEvents$: Subject<NavigationEnd>;
+
+  beforeEach(() => {
+    routerEvents$ = new Subject<NavigationEnd>();
+    jest.clearAllMocks();
+  });
 
   async function setup() {
-    return await render(SearchComponent, {
+    return render(SearchComponent, {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [NgxsModule.forRoot([])],
       providers: [
         { provide: Store, useValue: mockStore },
         { provide: Router, useValue: { events: routerEvents$ } },
@@ -50,117 +68,79 @@ describe('SearchComponent', () => {
     });
   }
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+  async function openSearchModal(user: ReturnType<typeof userEvent.setup>) {
+    await user.click(screen.getByTestId('search-trigger'));
+    return screen.findByTestId('search-modal');
+  }
 
-  it('should initialize and handle navigation', async () => {
-    const { fixture } = await setup();
-    const component = fixture.componentInstance;
+  async function renderAndOpen() {
+    const user = userEvent.setup();
+    await setup();
+    const modal = await openSearchModal(user);
+    return { user, modal };
+  }
 
-    // Test initialization
-    expect(component['structures']()).toHaveLength(4);
-    expect(component['searchValue']()).toBe('');
-    expect(component['selection']()).toEqual([]);
+  it('opens the modal, dispatches OpenSearch, and renders every structure', async () => {
+    const { modal } = await renderAndOpen();
 
-    // Test navigation reset
-    component['searchValue'].set('test');
-    component['selection'].set([mockTreeData[0] as SearchStructure]);
-    routerEvents$.next(new NavigationEnd(1, '/test', '/test'));
-    expect(component['searchValue']()).toBe('');
-    expect(component['selection']()).toEqual([]);
-  });
-
-  it('should filter structures and toggle selection', async () => {
-    const { fixture } = await setup();
-    const component = fixture.componentInstance;
-
-    // Test filtering by search
-    component['searchValue'].set('heart');
-    expect(component['filteredStructures']()[0].name).toBe('Heart');
-
-    // Test filtering by category
-    component['searchValue'].set('');
-    component['categories'].set(['Cell Types']);
-    expect(component['filteredStructures']()[0].name).toBe('Neuron');
-
-    // Test selection toggle
-    const struct = mockTreeData[0] as SearchStructure;
-    component.toggleOption({ value: struct, selected: true } as MatListOption);
-    expect(component['selection']()).toContain(struct);
-    expect(mockStore.dispatch).toHaveBeenCalledWith(expect.any(DoSearch));
-    expect(mockStore.dispatch).toHaveBeenCalledWith(expect.any(UpdateConfig));
-    expect(mockStore.dispatch).toHaveBeenCalledWith(expect.any(DiscrepencyLabel));
-
-    // Test deselection
-    component.toggleOption({ value: struct, selected: false } as MatListOption);
-    expect(component['selection']()).not.toContain(struct);
-  });
-
-  it('should handle multi-select operations', async () => {
-    const { fixture } = await setup();
-    const component = fixture.componentInstance;
-    const mockOptions = [{ value: mockTreeData[0] as SearchStructure }] as MatListOption[];
-
-    // Test select all
-    jest.spyOn(component as never, 'multiSelect').mockReturnValue({ selectAll: () => mockOptions } as never);
-    component.selectAllOptions();
-    expect(component['selection']()).toHaveLength(1);
-
-    // Test deselect all
-    jest.spyOn(component as never, 'multiSelect').mockReturnValue({ deselectAll: () => mockOptions } as never);
-    component.deselectAllOptions();
-    expect(component['selection']()).toEqual([]);
-
-    // Test missing multiSelect
-    jest.spyOn(component as never, 'multiSelect').mockReturnValue(undefined as never);
-    expect(() => component.selectAllOptions()).not.toThrow();
-    expect(() => component.deselectAllOptions()).not.toThrow();
-  });
-
-  it('should handle search list visibility and clicks', async () => {
-    const { fixture } = await setup();
-    const component = fixture.componentInstance;
-
-    // Test open
-    component.openSearchList();
-    expect(component['searchOpen']()).toBe(true);
     expect(mockStore.dispatch).toHaveBeenCalledWith(expect.any(OpenSearch));
-
-    // Test close when open
-    component.closeSearchList();
-    expect(component['searchOpen']()).toBe(false);
-    expect(mockStore.dispatch).toHaveBeenCalledWith(expect.any(CloseSearch));
-
-    // Test no close action when already closed
-    mockStore.dispatch.mockClear();
-    component.closeSearchList();
-    expect(mockStore.dispatch).not.toHaveBeenCalled();
-
-    // Test outside click
-    component['searchOpen'].set(true);
-    component.clickOutsideSearchList({ target: document.createElement('div') } as unknown as MouseEvent);
-    expect(component['searchOpen']()).toBe(false);
-
-    // Test inside click
-    component['searchOpen'].set(true);
-    component.clickOutsideSearchList({ target: fixture.nativeElement } as unknown as MouseEvent);
-    expect(component['searchOpen']()).toBe(true);
+    const options = within(modal).getAllByRole('option');
+    expect(options).toHaveLength(4);
+    expect(within(modal).getByTestId('structure-option-1')).toHaveTextContent('Heart');
   });
 
-  it('should compute derived properties', async () => {
-    const { fixture } = await setup();
-    const component = fixture.componentInstance;
-    const struct = mockTreeData[0] as SearchStructure;
+  it('filters the list while typing in the search field', async () => {
+    const { user, modal } = await renderAndOpen();
+    const searchInput = within(modal).getByTestId('search-input') as HTMLInputElement;
 
-    // Test selection label
-    component['selection'].set([struct, mockTreeData[1] as SearchStructure]);
-    expect(component['selectionLabel']()).toBe('Heart, Liver');
+    await user.type(searchInput, 'neuron');
 
-    // Test selection set
-    expect(component['selectionSet']().has(struct)).toBe(true);
+    expect(within(modal).getByText('Neuron')).toBeTruthy();
+    expect(within(modal).queryByText('Heart')).toBeNull();
+  });
 
-    // Test compare function
-    expect(component['selectionCompareFunction'](struct, struct)).toBe(true);
+  it('updates the trigger label and dispatches DoSearch when an option is selected', async () => {
+    const { user, modal } = await renderAndOpen();
+    const heartOption = within(modal).getByTestId('structure-option-1');
+
+    await user.click(heartOption);
+
+    const triggerInput = screen.getByTestId('search-trigger-input') as HTMLInputElement;
+    expect(triggerInput.value).toBe('Heart');
+    expect(mockStore.dispatch).toHaveBeenCalledWith(expect.any(DoSearch));
+  });
+
+  it('selects and deselects every structure via the action buttons', async () => {
+    const { user } = await renderAndOpen();
+
+    await user.click(screen.getByTestId('select-all-button'));
+
+    expect(screen.getByTestId('search-trigger-input')).toHaveValue('Heart, Liver, Neuron, CD4');
+
+    await user.click(screen.getByTestId('deselect-all-button'));
+    expect(screen.getByTestId('search-trigger-input')).toHaveValue('');
+  });
+
+  it('resets the search state when navigation occurs', async () => {
+    const { user, modal } = await renderAndOpen();
+    const searchInput = within(modal).getByTestId('search-input') as HTMLInputElement;
+
+    await user.type(searchInput, 'heart');
+    await user.click(within(modal).getByTestId('structure-option-1'));
+    expect(screen.getByTestId('search-trigger-input')).toHaveValue('Heart');
+
+    routerEvents$.next(new NavigationEnd(1, '/from', '/to'));
+
+    await waitFor(() => expect(screen.getByTestId('search-trigger-input')).toHaveValue(''));
+    await waitFor(() => expect(searchInput).toHaveValue(''));
+  });
+
+  it('closes the modal through the close control and dispatches CloseSearch', async () => {
+    const { user } = await renderAndOpen();
+
+    await user.click(screen.getByTestId('close-search-button'));
+
+    expect(screen.queryByTestId('search-modal')).toBeNull();
+    expect(mockStore.dispatch).toHaveBeenCalledWith(expect.any(CloseSearch));
   });
 });
