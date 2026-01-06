@@ -9,10 +9,13 @@ import { map } from 'rxjs';
 import { FeaturedContentData, FeaturedContentItem } from '../../schemas/featured-content/featured-content.schema';
 import { FooterComponent } from '../../components/footer/footer.component';
 
+/** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
 
+/** Content Type */
 type ContentType = (typeof ContentTypes)[number];
 
+/** Interface for content card display */
 interface LandingPageContentCard {
   imageSrc: string;
 
@@ -27,6 +30,12 @@ interface LandingPageContentCard {
   external: boolean;
 }
 
+/**
+ * Maps a FeaturedContentItem to a LandingPageContentCard
+ *
+ * @param item The featured content item from the API
+ * @returns A content card for display
+ */
 function mapToContentCard(item: FeaturedContentItem): LandingPageContentCard {
   const isExternal = item.link.startsWith('http://') || item.link.startsWith('https://');
 
@@ -46,6 +55,12 @@ function mapToContentCard(item: FeaturedContentItem): LandingPageContentCard {
   };
 }
 
+/**
+ * Capitalizes the first letter of each word in a string
+ *
+ * @param str The string to capitalize
+ * @returns The capitalized string
+ */
 function capitalizeFirstLetter(str: string): string {
   return str
     .split(' ')
@@ -53,6 +68,9 @@ function capitalizeFirstLetter(str: string): string {
     .join(' ');
 }
 
+/**
+ * Landing page of CNS website
+ */
 @Component({
   selector: 'cns-landing-page',
   imports: [
@@ -68,16 +86,21 @@ function capitalizeFirstLetter(str: string): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
+  /** Activated route */
   private readonly route = inject(ActivatedRoute);
 
+  /** Content Types */
   protected readonly contentTypes = ContentTypes;
 
+  /** Selected content type */
   protected readonly selectedContentType = signal<ContentType>('Featured');
 
+  /** Featured content data from resolver */
   private readonly featuredContentData = toSignal(
     this.route.data.pipe(map((data) => data['featuredContent'] as FeaturedContentData | undefined)),
   );
 
+  /** Content cards filtered by selected content type */
   private readonly contentCardsSignal = computed<LandingPageContentCard[]>(() => {
     const data = this.featuredContentData();
     const selectedType = this.selectedContentType();
@@ -103,6 +126,7 @@ export class LandingPageComponent {
     return items.map(mapToContentCard);
   });
 
+  /** Content cards as array for the gallery grid */
   protected get contentCards(): LandingPageContentCard[] {
     return this.contentCardsSignal();
   }
