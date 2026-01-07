@@ -7,6 +7,7 @@ import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-butt
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
 import { map } from 'rxjs';
 import { FeaturedContentData, FeaturedContentItem } from '../../schemas/featured-content/featured-content.schema';
+import { TagsData } from '../../schemas/tags/tags.schema';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 /** Content Types Array */
@@ -34,12 +35,15 @@ interface LandingPageContentCard {
  * Maps a FeaturedContentItem to a LandingPageContentCard
  *
  * @param item The featured content item from the API
+ * @param tagsMap Map of tag slugs to their display names
  * @returns A content card for display
  */
-function mapToContentCard(item: FeaturedContentItem): LandingPageContentCard {
+function mapToContentCard(item: FeaturedContentItem, tagsMap: Map<string, string>): LandingPageContentCard {
+  /** Determine if the link is external */
   const isExternal = item.link.startsWith('http://') || item.link.startsWith('https://');
 
-  const displayTags = item.tags.map((tag) => capitalizeFirstLetter(tag));
+  /** Map tag slugs to their proper display names */
+  const displayTags = item.tags.map((tagSlug) => tagsMap.get(tagSlug) ?? capitalizeFirstLetter(tagSlug));
 
   if (item.type && !displayTags.includes(item.type)) {
     displayTags.unshift(capitalizeFirstLetter(item.type.replace(/-/g, ' ')));
@@ -100,10 +104,23 @@ export class LandingPageComponent {
     this.route.data.pipe(map((data) => data['featuredContent'] as FeaturedContentData | undefined)),
   );
 
+  /** Tags data from resolver */
+  private readonly tagsData = toSignal(this.route.data.pipe(map((data) => data['tags'] as TagsData | undefined)));
+
+  /** Tags map for quick lookup of tag names by slug */
+  private readonly tagsMap = computed<Map<string, string>>(() => {
+    const tags = this.tagsData();
+    if (!tags) {
+      return new Map();
+    }
+    return new Map(tags.map((tag) => [tag.slug, tag.name]));
+  });
+
   /** Content cards filtered by selected content type */
   private readonly contentCardsSignal = computed<LandingPageContentCard[]>(() => {
     const data = this.featuredContentData();
     const selectedType = this.selectedContentType();
+    const tagsMap = this.tagsMap();
 
     if (!data) {
       return [];
@@ -123,7 +140,7 @@ export class LandingPageComponent {
         break;
     }
 
-    return items.map(mapToContentCard);
+    return items.map((item) => mapToContentCard(item, tagsMap));
   });
 
   /** Content cards as array for the gallery grid */
