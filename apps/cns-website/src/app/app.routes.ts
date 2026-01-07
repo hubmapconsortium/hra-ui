@@ -8,6 +8,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
 import { createFeaturedContentResolver } from './resolvers/featured-content/featured-content.resolver';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
+import { createTagsResolver } from './resolvers/tags/tags.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -17,6 +18,7 @@ export const appRoutes: Route[] = [
     component: LandingPageComponent,
     resolve: {
       featuredContent: createFeaturedContentResolver(),
+      tags: createTagsResolver(),
     },
   },
   {
