@@ -18,16 +18,17 @@ type ContentType = (typeof ContentTypes)[number];
 
 /** Interface for content card display */
 interface LandingPageContentCard {
+  /** Image source URL */
   imageSrc: string;
-
+  /** Date string */
   date: string;
-
+  /** Tagline or title */
   tagline: string;
-
+  /** Tags associated with the content */
   tags: string[];
-
+  /** Link URL */
   link: string;
-
+  /** Whether the link is external */
   external: boolean;
 }
 
