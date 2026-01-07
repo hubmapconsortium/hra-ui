@@ -36,4 +36,9 @@
     color: vars.$tertiary;
     text-decoration: underline;
   }
+
+  .youtube-thumbnail-container .thumbnail-image {
+    width: 100%;
+    height: auto;
+  }
 }
