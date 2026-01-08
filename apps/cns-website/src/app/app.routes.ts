@@ -25,7 +25,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'current-team',
+    path: 'people',
     component: CurrentTeamComponent,
     resolve: {
       data: currentTeamResolver,
