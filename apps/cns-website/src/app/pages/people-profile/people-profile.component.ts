@@ -10,6 +10,9 @@ import { MarkdownModule } from 'ngx-markdown';
 import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 import { ContactInfo, ContactInfoComponent, Role } from './components/contact-info/contact-info.component';
 
+/** Base URL for CNS website people content */
+const CNS_PEOPLE_CONTENT_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people/';
+
 /** Profile section data */
 interface ProfileSection {
   /** Section title/tagline */
@@ -48,10 +51,15 @@ export class PeopleProfileComponent {
   readonly primaryRole = computed<Role | undefined>(() => this.data().roles?.[0]);
 
   /** Contact info computed for the sidebar */
-  readonly contactInfo = computed<ContactInfo>(() => ({
-    image: this.data().image ?? '',
-    role: this.primaryRole(),
-  }));
+  readonly contactInfo = computed<ContactInfo>(() => {
+    const slug = this.data().slug;
+    const imageUrl = slug ? `${CNS_PEOPLE_CONTENT_BASE_URL}${slug}/image.jpg` : '';
+
+    return {
+      image: imageUrl,
+      role: this.primaryRole(),
+    };
+  });
 
   /** Role tags computed for display */
   readonly tags = computed(() => {
