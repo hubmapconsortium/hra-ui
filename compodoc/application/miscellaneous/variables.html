@@ -163,6 +163,9 @@
                             <a href="#CoreEvents" title="/home/workflows/workspace/libs/common/analytics/events/src/lib/core-events.ts" ><b>CoreEvents</b>&nbsp;&nbsp;&nbsp;(/.../core-events.ts)</a>
                         </li>
                         <li>
+                            <a href="#DEFAULT_MATCH_OPTIONS" title="/home/workflows/workspace/libs/common/router-ext/src/lib/link-active/link-active.directive.ts" ><b>DEFAULT_MATCH_OPTIONS</b>&nbsp;&nbsp;&nbsp;(/.../link-active.directive.ts)</a>
+                        </li>
+                        <li>
                             <a href="#FEATURE_KIND" title="/home/workflows/workspace/libs/common/util/providers/src/lib/feature.ts" ><b>FEATURE_KIND</b>&nbsp;&nbsp;&nbsp;(/.../feature.ts)</a>
                         </li>
                         <li>
@@ -206,6 +209,9 @@
                         </li>
                         <li>
                             <a href="#injectTelemetryParameterFilters" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>injectTelemetryParameterFilters</b>&nbsp;&nbsp;&nbsp;(/.../telemetry.tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#injectWindow" title="/home/workflows/workspace/libs/common/injectors/src/lib/window.ts" ><b>injectWindow</b>&nbsp;&nbsp;&nbsp;(/.../window.ts)</a>
                         </li>
                         <li>
                             <a href="#INTERSECTION_OBSERVER" title="/home/workflows/workspace/libs/common/src/lib/injection-tokens.ts" ><b>INTERSECTION_OBSERVER</b>&nbsp;&nbsp;&nbsp;(/.../injection-tokens.ts)</a>
@@ -253,6 +259,9 @@
                             <a href="#provideTelemetryParameterFilter" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/telemetry/telemetry.tokens.ts" ><b>provideTelemetryParameterFilter</b>&nbsp;&nbsp;&nbsp;(/.../telemetry.tokens.ts)</a>
                         </li>
                         <li>
+                            <a href="#provideWindow" title="/home/workflows/workspace/libs/common/injectors/src/lib/window.ts" ><b>provideWindow</b>&nbsp;&nbsp;&nbsp;(/.../window.ts)</a>
+                        </li>
+                        <li>
                             <a href="#ROUTER" title="/home/workflows/workspace/libs/common/router-ext/src/lib/injectors.ts" ><b>ROUTER</b>&nbsp;&nbsp;&nbsp;(/.../injectors.ts)</a>
                         </li>
                         <li>
@@ -266,6 +275,9 @@
                         </li>
                         <li>
                             <a href="#WINDOW" title="/home/workflows/workspace/libs/common/src/lib/injection-tokens.ts" ><b>WINDOW</b>&nbsp;&nbsp;&nbsp;(/.../injection-tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#WINDOW" title="/home/workflows/workspace/libs/common/injectors/src/lib/window.ts" ><b>WINDOW</b>&nbsp;&nbsp;&nbsp;(/.../window.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -1003,6 +1015,46 @@ Doesn&#39;t need to be initialized as it should only ever be used as a type.</p>
         </tbody>
     </table>
 </section>
+    <h3>/home/workflows/workspace/libs/common/router-ext/src/lib/link-active/link-active.directive.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_MATCH_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_MATCH_OPTIONS</b></span>
+                        <a href="#DEFAULT_MATCH_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>IsActiveMatchOptions</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  paths: &#x27;subset&#x27;,
+  queryParams: &#x27;subset&#x27;,
+  fragment: &#x27;ignored&#x27;,
+  matrixParams: &#x27;ignored&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Default match options</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>/home/workflows/workspace/libs/common/util/providers/src/lib/feature.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -1660,6 +1712,105 @@ Use instead of <code>inject(Router, { optional: true })</code> for better tree s
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Telemetry parameter filters</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>/home/workflows/workspace/libs/common/injectors/src/lib/window.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injectWindow"></a>
+                    <span class="name">
+                        <span ><b>injectWindow</b></span>
+                        <a href="#injectWindow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>WINDOW[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Inject the window object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideWindow"></a>
+                    <span class="name">
+                        <span ><b>provideWindow</b></span>
+                        <a href="#provideWindow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>WINDOW[1]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Provide a new window object. Only intended for testing purposes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="WINDOW"></a>
+                    <span class="name">
+                        <span ><b>WINDOW</b></span>
+                        <a href="#WINDOW"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createInjectionToken(getWindow)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>window</p>
 </div>
                 </td>
             </tr>

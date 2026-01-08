@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/ccf-shared/src/lib/components/store-debug/store-debug.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;",
-  "names": []
-}

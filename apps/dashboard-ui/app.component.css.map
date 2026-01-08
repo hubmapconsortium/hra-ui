@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/dashboard-ui/src/app/app.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n\n  button {\n    width: 2.5rem;\n    height: 2.5rem;\n  }\n\n  @media (max-width: 1440px) {\n    hra-header {\n      margin-bottom: 6.5rem;\n    }\n  }\n\n  @media (max-width: 1280px) {\n    hra-header {\n      margin-bottom: 3rem;\n    }\n  }\n\n  @media (max-width: 1012px) {\n    hra-header {\n      margin-bottom: 2rem;\n    }\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA;AACE,SAAA;AACA,UAAA;;AAGF,OAAA,CAAA,SAAA,EAAA;AACE,QAAA;AACE,mBAAA;;;AAIJ,OAAA,CAAA,SAAA,EAAA;AACE,QAAA;AACE,mBAAA;;;AAIJ,OAAA,CAAA,SAAA,EAAA;AACE,QAAA;AACE,mBAAA;;;",
-  "names": []
-}
