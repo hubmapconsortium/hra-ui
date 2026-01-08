@@ -18,6 +18,8 @@ export interface FilterOptionCategory<T extends SearchListOption> {
   options: T[];
   /** Selected filter options */
   selected?: T[];
+  /** Whether search should be disabled for this filter */
+  disableSearch?: boolean;
 }
 
 /** Position of the filter menu overlay */
