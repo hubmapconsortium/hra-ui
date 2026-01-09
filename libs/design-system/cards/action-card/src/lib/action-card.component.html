@@ -1,5 +1,4 @@
-<!-- Need to refactor this -->
-@if (variant() !== 'outlined-with-icons' && variant() !== 'collection') {
+@if (headerVisible()) {
   <div class="header">
     @if (image(); as src) {
       <img class="image" alt="" [attr.src]="src | assetUrl" />
