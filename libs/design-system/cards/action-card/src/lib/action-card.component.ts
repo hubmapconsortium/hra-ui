@@ -45,7 +45,7 @@ export class ActionCardComponent {
   /** Image url show on top except for `outlined-with-icons` cards */
   readonly image = input<string>();
 
-  /** Icons shown for `outlined-with-icons` cards */
+  /** Icons shown for `outlined-with-icons` and `collection` cards */
   readonly icons = input([], { transform: coerceIconList });
 
   /** Chips shown for `collection` cards */
