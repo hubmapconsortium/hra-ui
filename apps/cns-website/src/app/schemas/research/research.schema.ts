@@ -12,8 +12,8 @@ export const ResearchItemSchema = z
     title: z.string().optional(),
     description: z.string().optional(),
     tags: z.string().array(),
-    startDate: z.string(),
-    endDate: z.string().optional(),
+    dateStart: z.string(),
+    dateEnd: z.string().optional(),
     imgSrc: z.string(),
   })
   .meta({ id: 'ResearchItem' });

@@ -6,7 +6,7 @@
     [fixedTopGap]="56"
     #sidenav
   >
-    <hra-filter-menu tagline="Research at the Cyberinfrastructure for Network Science Center" [filters]="filters()">
+    <hra-filter-menu tagline="Research at the Cyberinfrastructure for Network Science Center" [(filters)]="filters">
       <mat-form-field subscriptSizing="dynamic">
         <hra-icon class="select-icon" matPrefix>table_view</hra-icon>
         <mat-label>View as</mat-label>
@@ -54,14 +54,14 @@
       <ng-scrollbar>
         @if (data().data) {
           @if (viewType() === 'publications') {
-            <hra-list-view [data]="convertToListItems({ data: filteredGalleryItems() })" [groupBy]="true" />
+            <hra-list-view [data]="convertToListItems({ data: filteredItems() })" [groupBy]="true" />
           } @else {
             <hra-grid-container>
-              @for (item of filteredGalleryItems(); track $index) {
+              @for (item of filteredItems(); track $index) {
                 <hra-gallery-card
                   [tagline]="item.title || ''"
                   [imageSrc]="item.imgSrc"
-                  [date]="item.startDate"
+                  [date]="item.dateStart"
                   [link]="item.link || ''"
                   [external]="true"
                   [tags]="item.tags"

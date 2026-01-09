@@ -6,9 +6,9 @@ import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/serv
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
+import { ResearchPageComponent } from './pages/research-page/research-page.component';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
-import { GalleryViewPageComponent } from './pages/gallery-view-page/gallery-view-page.component';
-import { createFiltersResolver, createResearchResolver } from './resolvers/research/research.resolver';
+import { createPeopleResolver, createResearchResolver } from './resolvers/research/research.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -26,11 +26,11 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'research',
-    component: GalleryViewPageComponent,
+    component: ResearchPageComponent,
     runGuardsAndResolvers: 'always',
     resolve: {
       data: createResearchResolver(),
-      filters: createFiltersResolver(),
+      people: createPeopleResolver(),
     },
   },
 
