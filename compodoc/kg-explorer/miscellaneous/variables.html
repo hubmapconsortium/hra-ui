@@ -222,8 +222,7 @@
       url: &#x27;https://apps.humanatlas.io/kg-explorer/&#x27;,
     }),
     provideAnalytics(withRouterEvents(), withErrorHandler()),
-    { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy },
-    provideZonelessChangeDetection(),
+    provideApi(environment.remoteApiEndpoint),
     provideDesignSystem(),
     provideMarkdown(),
     provideRouter(
@@ -232,6 +231,8 @@
       withInMemoryScrolling({ anchorScrolling: &#x27;disabled&#x27;, scrollPositionRestoration: &#x27;enabled&#x27; }),
     ),
     provideRouterExt(),
+    { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy },
+    provideZonelessChangeDetection(),
   ],
 }</code>
                     </td>
