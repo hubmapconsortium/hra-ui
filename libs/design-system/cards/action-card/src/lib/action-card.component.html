@@ -1,4 +1,5 @@
-@if (variant() !== 'outlined-with-icons') {
+<!-- Need to refactor this -->
+@if (variant() !== 'outlined-with-icons' && variant() !== 'collection') {
   <div class="header">
     @if (image(); as src) {
       <img class="image" alt="" [attr.src]="src | assetUrl" />
@@ -18,8 +19,23 @@
     @for (icon of icons(); track icon) {
       <hra-icon class="icon" [icon]="icon" />
     }
-    <span>{{ tagline() }}</span>
+    <div class="container">
+      <span>{{ tagline() }}</span>
+      @if (variant() === 'collection') {
+        <mat-chip-set class="chips" aria-label="Tags">
+          @for (chip of chips(); track chip) {
+            <mat-chip hraChipSize="small">{{ chip }}</mat-chip>
+          }
+        </mat-chip-set>
+      }
+    </div>
   </div>
+
+  @if (variant() === 'collection') {
+    @if (image(); as src) {
+      <img class="image" alt="" [attr.src]="src | assetUrl" />
+    }
+  }
 
   <div class="description">
     <ng-content />

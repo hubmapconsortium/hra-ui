@@ -48,7 +48,8 @@
   &.hra-action-card-variant-elevated,
   &.hra-action-card-variant-flat,
   &.hra-action-card-variant-outlined,
-  &.hra-action-card-variant-outlined-with-icons {
+  &.hra-action-card-variant-outlined-with-icons,
+  &.hra-action-card-variant-collection {
     width: 100%;
     min-width: 17rem;
     max-width: 25.5rem;
@@ -115,9 +116,35 @@
   &.hra-action-card-variant-outlined-with-icons {
     .content {
       margin: 1rem;
+    }
+  }
 
+  &.hra-action-card-variant-collection {
+    border: 0.0625rem solid vars.$outline;
+    border-radius: 0.75rem;
+    background-color: vars.$on-primary;
+
+    .image {
+      border-top: 0.0625rem solid vars.$outline;
+      border-bottom: 0.0625rem solid vars.$outline;
+    }
+
+    .content {
       .tagline {
-        margin-bottom: 0.75rem;
+        @include utils.use-font(title, small);
+        margin-bottom: 0;
+        padding: 1rem;
+      }
+
+      .description {
+        padding: 1rem;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+
+      .actions {
+        padding: 1rem;
+        align-items: center;
       }
     }
   }

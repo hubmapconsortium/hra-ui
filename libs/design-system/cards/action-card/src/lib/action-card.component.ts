@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { AssetUrlPipe } from '@hra-ui/common/url';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { HraCommonModule } from '@hra-ui/common';
+import { AssetUrlPipe } from '@hra-ui/common/url';
 import { coerceIconList, IconsModule } from '@hra-ui/design-system/icons';
 import { ActionCardVariant } from './action-card.schema';
 
@@ -23,7 +24,7 @@ export class ActionCardActionComponent {
  */
 @Component({
   selector: 'hra-action-card',
-  imports: [AssetUrlPipe, HraCommonModule, MatDividerModule, IconsModule],
+  imports: [AssetUrlPipe, HraCommonModule, MatDividerModule, IconsModule, MatChipsModule],
   templateUrl: './action-card.component.html',
   styleUrl: './action-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,4 +43,6 @@ export class ActionCardComponent {
   readonly image = input<string>();
   /** Icons shown for `outlined-with-icons` cards */
   readonly icons = input([], { transform: coerceIconList });
+  /** Chips shown for `collection` cards */
+  readonly chips = input<string[]>([]);
 }

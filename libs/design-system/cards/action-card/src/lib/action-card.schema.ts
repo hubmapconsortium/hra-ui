@@ -7,7 +7,7 @@ export type ActionCardVariant = z.infer<typeof ActionCardVariantSchema>;
 
 /** Schema for action card variants */
 export const ActionCardVariantSchema = z
-  .enum(['elevated', 'flat', 'outlined', 'outlined-with-icons'])
+  .enum(['elevated', 'flat', 'outlined', 'outlined-with-icons', 'collection'])
   .meta({ id: 'ActionCardVariant' });
 
 /** Content template action card data */
