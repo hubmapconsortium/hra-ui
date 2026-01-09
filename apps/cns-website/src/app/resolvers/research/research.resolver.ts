@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
+import { FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
-import { map } from 'rxjs';
-import { ResearchPageData } from '../../schemas/research/research.schema';
+import { map, of } from 'rxjs';
+import { ResearchPageData, ResearchPageDataSchema } from '../../schemas/research/research.schema';
 
 const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publications.json';
 const NEWS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-news.json';

@@ -17,9 +17,22 @@ import { SearchListOption } from '@hra-ui/design-system/search-list';
 import { HeaderEventsService } from '../../components/header/header.component';
 import { ResearchItem, ResearchPageData } from '../../schemas/research/research.schema';
 
+/** Current filter interface (each category contains string of filter option IDs) */
+export interface CurrentFilters {
+  category?: SearchListOption[];
+  eventType?: SearchListOption[];
+  fundingType?: SearchListOption[];
+  publicationType?: SearchListOption[];
+  people?: SearchListOption[];
+  project?: SearchListOption[];
+  year?: SearchListOption[];
+}
+
+type ViewType = 'gallery' | 'list' | 'table';
+
 const FILTER_OPTIONS: Record<string, SearchListOption[]> = {
   category: [
-    { id: 'dataTools', label: 'Data & tools' },
+    { id: 'data-tools', label: 'Data & tools' },
     { id: 'events', label: 'Events' },
     { id: 'funding', label: 'Funding' },
     { id: 'displays', label: 'Interactive displays' },
@@ -30,36 +43,32 @@ const FILTER_OPTIONS: Record<string, SearchListOption[]> = {
   ],
   publicationType: [
     { id: 'book', label: 'Book' },
-    { id: 'bookChapter', label: 'Book chapter' },
+    { id: 'book-chapter', label: 'Book chapter' },
     { id: 'conference', label: 'Conference proceedings' },
-    { id: 'editedBooks', label: 'Edited books' },
-    { id: 'journalArticles', label: 'Journal articles' },
+    { id: 'edited-books', label: 'Edited books' },
+    { id: 'journal-articles', label: 'Journal articles' },
     { id: 'other', label: 'Other' },
     { id: 'patents', label: 'Patents' },
-    { id: 'technicalReports', label: 'Technical reports' },
+    { id: 'technical-reports', label: 'Technical reports' },
     { id: 'unreferred', label: 'Unreferred' },
   ],
   fundingType: [
-    { id: 'researchFunding', label: 'Research funding' },
-    { id: 'teachingFunding', label: 'Teaching funding' },
-    { id: 'workshopFunding', label: 'Workshop funding' },
+    { id: 'research-funding', label: 'Research funding' },
+    { id: 'teaching-funding', label: 'Teaching funding' },
+    { id: 'workshop-funding', label: 'Workshop funding' },
   ],
   eventType: [
     { id: '24Hour', label: '24-hour' },
     { id: 'amatria', label: 'Amatria' },
     { id: 'workshops', label: 'Workshops' },
   ],
+  project: [
+    {
+      id: 'project-name',
+      label: 'Project Name',
+    },
+  ],
 };
-
-const FILTER_CATEGORIES = [
-  { id: 'category', label: 'Category', options: FILTER_OPTIONS['category'] },
-  { id: 'eventType', label: 'Event type', options: FILTER_OPTIONS['eventType'] },
-  { id: 'fundingType', label: 'Funding type', options: FILTER_OPTIONS['fundingType'] },
-  { id: 'publicationType', label: 'Publication type', options: FILTER_OPTIONS['publicationType'] },
-  { id: 'people', label: 'People', options: [] },
-  { id: 'project', label: 'Project', options: [] },
-  { id: 'year', label: 'Year', options: [] },
-] as FilterOptionCategory<SearchListOption>[];
 
 @Component({
   selector: 'cns-research-page',
@@ -108,23 +117,16 @@ export class ResearchPageComponent {
   /** Number of cards after filtering */
   readonly viewingCount = computed(() => this.filteredItems()?.length);
 
-  readonly viewType = signal<string>('news');
+  readonly viewType = signal<ViewType>('gallery');
 
   /** Whether the user is on a wide screen */
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
-  readonly filters = signal<FilterOptionCategory<SearchListOption>[]>(FILTER_CATEGORIES);
+  readonly filters = computed<FilterOptionCategory<SearchListOption>[]>(() => this.currentFiltersToFilters());
+
+  readonly currentFilters = signal<CurrentFilters>({});
 
   readonly people = input<SearchListOption[]>([]);
-
-  readonly peopleIds = computed(() => {
-    const params: Params = this.route.snapshot.queryParams;
-    const people = params['people'];
-    if (people) {
-      return Array.isArray(people) ? people : [people];
-    }
-    return [];
-  });
 
   readonly viewAsOptions = signal([
     { id: 'table', label: 'Table' },
@@ -140,10 +142,8 @@ export class ResearchPageComponent {
   ]);
 
   constructor() {
-    this.router.events.subscribe(() => {
-      const category = this.route.snapshot.queryParams['category'];
-      this.viewType.set(category);
-    });
+    const queryParams$ = inject(ActivatedRoute).queryParams;
+    queryParams$.subscribe((queryParams) => this.setFiltersFomParams(queryParams));
 
     effect(() => {
       const peopleFilters = this.filters().find((filter) => filter.id === 'people');
@@ -168,13 +168,36 @@ export class ResearchPageComponent {
     });
   }
 
+  private setFiltersFomParams(queryParams: Params) {
+    const category = queryParams['category'];
+    const people = queryParams['people'];
+    const search = queryParams['search'];
+
+    if (search) {
+      this.search.set(search);
+    }
+
+    this.currentFilters.set({
+      category: FILTER_OPTIONS['category'].filter((cat) => category?.includes(cat.id)),
+      people: this.people().filter((person) => people?.includes(person.id)),
+    });
+
+    this.updateQueryParamsFromFilters();
+  }
+
   /** Filters items according to the search bar value */
   private doGallerySearch(): ResearchItem[] {
-    const peopleFilters = this.filters().find((filter) => filter.id === 'people');
-    const filtered = this.doPeopleSearch(peopleFilters?.selected?.map((option) => option.id) || []);
+    const peopleFilters = this.currentFilters().people;
+    const filtered = this.doPeopleSearch(peopleFilters?.map((person) => person.id) || []);
 
-    const searchTerm = this.search().toLowerCase();
-    return filtered.filter((option) => option.title?.toLowerCase().includes(searchTerm));
+    const searchTerm = this.search()?.toLowerCase();
+    console.log(searchTerm);
+    console.log(!!searchTerm);
+    this.updateQueryParamsFromFilters();
+    if (searchTerm) {
+      return filtered.filter((option) => option.title?.toLowerCase().includes(searchTerm));
+    }
+    return filtered;
   }
 
   private doPeopleSearch(ids: string[]): ResearchItem[] {
@@ -205,13 +228,80 @@ export class ResearchPageComponent {
     }));
   }
 
-  // handleFilterSelectionChanges() {
-  // this.router.navigate(['/research'], {
-  //   queryParamsHandling: 'merge',
-  //   queryParams: {
-  //     category: this.viewType(),
-  //     people: this.peopleIds(),
-  //   },
-  // });
-  // }
+  currentFiltersToFilters(): FilterOptionCategory<SearchListOption>[] {
+    const { category, eventType, fundingType, publicationType, people, project, year } = this.currentFilters();
+    return [
+      {
+        id: 'category',
+        label: 'Category',
+        options: FILTER_OPTIONS['category'],
+        selected: category,
+      },
+      {
+        id: 'eventType',
+        label: 'Event type',
+        options: FILTER_OPTIONS['eventType'],
+        selected: eventType,
+      },
+      {
+        id: 'fundingType',
+        label: 'Funding type',
+        options: FILTER_OPTIONS['fundingType'],
+        selected: fundingType,
+      },
+      {
+        id: 'publicationType',
+        label: 'Publication type',
+        options: FILTER_OPTIONS['publicationType'],
+        selected: publicationType,
+      },
+      {
+        id: 'people',
+        label: 'People',
+        options: this.people(),
+        selected: people,
+      },
+      {
+        id: 'project',
+        label: 'Project',
+        options: FILTER_OPTIONS['project'],
+        selected: project,
+      },
+      {
+        id: 'year',
+        label: 'Year',
+        options: FILTER_OPTIONS['year'],
+        selected: year,
+      },
+    ];
+  }
+
+  updateFilters(updatedFilters: FilterOptionCategory<SearchListOption>[]) {
+    const newCurrentFilters: CurrentFilters = {};
+    console.log(updatedFilters);
+    updatedFilters.forEach((filter) => {
+      if (filter.selected && filter.selected.length > 0) {
+        newCurrentFilters[filter.id as keyof CurrentFilters] = filter.selected;
+      }
+    });
+    this.currentFilters.set(newCurrentFilters);
+    this.updateQueryParamsFromFilters();
+  }
+
+  private updateQueryParamsFromFilters() {
+    console.log(this.currentFilters());
+    this.router.navigate(['/research'], {
+      queryParamsHandling: 'merge',
+      queryParams: {
+        category: this.currentFilters().category?.map((cat) => cat.id),
+        eventType: this.currentFilters().eventType?.map((event) => event.id),
+        fundingType: this.currentFilters().fundingType?.map((funding) => funding.id),
+        publicationType: this.currentFilters().publicationType?.map((pubType) => pubType.id),
+        people: this.currentFilters().people?.map((person) => person.id),
+        project: this.currentFilters().project?.map((proj) => proj.id),
+        year: this.currentFilters().year?.map((year) => year.id),
+        search: this.search() === '' ? null : this.search(),
+      },
+    });
+  }
 }

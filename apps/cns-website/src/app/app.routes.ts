@@ -27,7 +27,7 @@ export const appRoutes: Route[] = [
   {
     path: 'research',
     component: ResearchPageComponent,
-    runGuardsAndResolvers: 'always',
+    // runGuardsAndResolvers: 'always',
     resolve: {
       data: createResearchResolver(),
       people: createPeopleResolver(),

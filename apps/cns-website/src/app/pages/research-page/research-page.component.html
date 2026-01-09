@@ -6,11 +6,15 @@
     [fixedTopGap]="56"
     #sidenav
   >
-    <hra-filter-menu tagline="Research at the Cyberinfrastructure for Network Science Center" [(filters)]="filters">
+    <hra-filter-menu
+      tagline="Research at the Cyberinfrastructure for Network Science Center"
+      [filters]="filters()"
+      (filtersChange)="updateFilters($event)"
+    >
       <mat-form-field subscriptSizing="dynamic">
         <hra-icon class="select-icon" matPrefix>table_view</hra-icon>
         <mat-label>View as</mat-label>
-        <mat-select>
+        <mat-select [value]="viewType()" (selectionChange)="viewType.set($event.value)">
           @for (option of viewAsOptions(); track option) {
             <mat-option [value]="option.id">{{ option.label }}</mat-option>
           }
@@ -45,7 +49,6 @@
         [totalCount]="totalCount()"
         [viewingCount]="viewingCount()"
         [(search)]="search"
-        (searchChange)="search.set($event)"
       />
     </div>
     @if (viewingCount() === 0) {
@@ -53,7 +56,7 @@
     } @else {
       <ng-scrollbar>
         @if (data().data) {
-          @if (viewType() === 'publications') {
+          @if (viewType() === 'list') {
             <hra-list-view [data]="convertToListItems({ data: filteredItems() })" [groupBy]="true" />
           } @else {
             <hra-grid-container>
