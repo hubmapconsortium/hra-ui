@@ -169,14 +169,12 @@ export const CollectionCard: Story = {
               </mat-chip-set>
           </div>
           <hra-action-card-action>
-            <div class="left-actions">
               <button mat-flat-button hraButtonSize="medium" disabled="false">
                 Action
               </button>
               <button mat-icon-button hraIconButtonSize="large" hraIconButtonVariant="dark">
                 <mat-icon>more_vert</mat-icon>
               </button>
-            </div>
           </hra-action-card-action>
           <hra-action-card-action alignment="right">
             <button mat-button hraButtonSize="medium" disabled="false">
@@ -196,7 +194,7 @@ export const CollectionCard: Story = {
         margin-bottom: 1rem;
       }
 
-      .left-actions {
+      hra-action-card-action {
         display: flex;
         gap: 0.5rem;
         align-items: center;

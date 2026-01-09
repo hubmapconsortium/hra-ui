@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { HraYoutubePlayerComponent } from '@hra-ui/design-system/content-templates/youtube-player';
+import { ActionCard, ActionCardActionComponent, ActionCardComponent } from '@hra-ui/design-system/cards/action-card';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { VisualCard, VisualCardComponent } from '../../components/visual-card/visual-card.component';
-
 /**
  * Landing Page Component
  */
@@ -13,11 +12,12 @@ import { VisualCard, VisualCardComponent } from '../../components/visual-card/vi
   selector: 'cde-landing-page',
   imports: [
     HraCommonModule,
-    VisualCardComponent,
     MatIconModule,
     ButtonsModule,
-    HraYoutubePlayerComponent,
     NavigationModule,
+    LinkDirective,
+    ActionCardComponent,
+    ActionCardActionComponent,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
@@ -25,5 +25,5 @@ import { VisualCard, VisualCardComponent } from '../../components/visual-card/vi
 })
 export class LandingPageComponent {
   /** Visual cards to display on the landing page */
-  readonly cards = input<VisualCard[]>([]);
+  readonly cards = input<ActionCard[]>([]);
 }

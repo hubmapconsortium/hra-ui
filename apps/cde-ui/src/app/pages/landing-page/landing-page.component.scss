@@ -1,277 +1,79 @@
 @use 'vars';
+@use 'utils';
 
 :host {
-  & > section {
-    margin: 0 auto;
-  }
+  background-color: vars.$secondary-container;
   display: block;
-  background-color: rgba(252, 252, 252, 1);
-  position: relative;
-  top: 4.5rem;
 
-  h4 {
-    color: vars.$primary;
+  section {
+    padding: 6rem 2.5rem;
   }
 
-  .create-explore-content {
-    padding: 3rem 1rem 5rem 1rem;
-
-    .header .title {
-      font: vars.$display-small;
-      letter-spacing: vars.$display-small-tracking;
-      margin: 0 0 0.5rem 0;
-    }
-
-    .header .description {
-      font: vars.$body-xl;
-      letter-spacing: vars.$body-xl-tracking;
-      margin: 0 0 3rem 0;
-    }
-  }
-
-  .vccf-container {
-    background: url('../../../assets/backgrounds/eui_bg.png') no-repeat;
-    opacity: 98%;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-  }
-
-  .vccf {
-    max-width: 18rem;
-    padding: 4rem 0;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      'video'
-      'content-container';
-    row-gap: 3rem;
-  }
-
-  .vccf .content-container {
-    grid-area: content-container;
-    background: vars.$on-primary;
-    padding: 2rem 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0px 5px 16px 0px rgb(from vars.$shadow r g b / 0.24);
-  }
-
-  .vccf .content {
-    grid-area: content;
-    display: flex;
-  }
-
-  .paper {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .background-header {
-    grid-area: header;
-    font: vars.$headline-small;
-    letter-spacing: vars.$headline-small-tracking;
-    line-height: 2.25rem;
-    margin: 0 0 0.5rem 0;
-  }
-
-  .background-text {
-    font: vars.$body-medium;
-    letter-spacing: vars.$body-medium-tracking;
-    margin: 0 0 2rem 0;
-  }
-
-  .links {
-    .vccf-paper {
-      margin-bottom: 1rem;
-    }
-
-    mat-icon {
-      margin-left: 0.25rem;
-    }
-  }
-
-  .youtube-player {
-    grid-area: video;
-
-    ::ng-deep .youtube-player-placeholder,
-    ::ng-deep iframe {
-      width: 100% !important;
-    }
-
-    .youtube-player,
-    ::ng-deep .youtube-player-placeholder,
-    ::ng-deep iframe {
-      height: 157px !important;
-
-      @media (min-width: 430px) {
-        height: 217px !important;
-      }
-
-      @media (min-width: 768px) {
-        height: 353px !important;
-      }
-
-      @media (min-width: 1280px) {
-        height: 262px !important;
-      }
-
-      @media (min-width: 1440px) {
-        height: 320px !important;
-      }
-    }
-  }
-
-  @media (min-width: 430px) {
-    .vccf {
-      max-width: 23.75rem;
-
-      .content-container {
-        padding: 1.5rem 2rem;
-      }
-
-      .background-header {
-        font: vars.$headline-medium;
-        letter-spacing: vars.$headline-medium-tracking;
-      }
-
-      .background-text {
-        font: vars.$body-large;
-        letter-spacing: vars.$body-large-tracking;
-      }
-    }
-  }
-
-  @media (min-width: 544px) {
-    .create-explore-content {
-      .header .title {
-        font: vars.$display-medium;
-        letter-spacing: vars.$display-medium-tracking;
-      }
-    }
-
-    .vccf {
-      max-width: 29.25rem;
-    }
-
-    .youtube-player {
-      padding: 0 40.5px;
-    }
-
-    .links {
+  .visualize {
+    .cards-container {
       display: flex;
-      flex-direction: row;
-      gap: 0.5rem;
-
-      .vccf-paper {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  @media (min-width: 768px) {
-    .create-and-explore {
-      max-width: 38.75rem;
-    }
-
-    .create-explore-content {
-      .header .title {
-        font: vars.$display-large;
-        letter-spacing: vars.$display-large-tracking;
-      }
-    }
-
-    .vccf {
-      max-width: 39.4375rem;
-    }
-
-    .youtube-player {
-      padding: 0;
-    }
-
-    .links {
-      gap: 2rem;
-    }
-  }
-
-  @media (min-width: 1012px) {
-    .create-and-explore {
-      max-width: 53rem;
-
-      .create-explore-content {
-        padding: 3rem 0 5rem 0;
-      }
-    }
-
-    .header {
-      padding: 0 4.5rem 0 2.5rem;
-    }
-
-    .vccf {
-      padding: 7.5rem 0;
-
-      .content-container {
-        padding: 2rem 2.5rem;
-      }
-
-      .background-header {
-        font: vars.$headline-large;
-        letter-spacing: vars.$headline-large-tracking;
-      }
-    }
-
-    .links {
-      gap: 3rem;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .create-and-explore {
-      max-width: 77.5rem;
-    }
-
-    .vccf {
-      max-width: 71.6875rem;
-      grid-template-columns: 55% auto;
-      grid-template-rows: auto;
-      grid-template-areas: 'content-container video';
-      column-gap: 3rem;
-    }
-
-    .youtube-player {
-      display: flex;
-      flex-direction: column;
       justify-content: center;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .create-explore-content {
-      padding: 5rem 0 7rem 0;
+      align-items: center;
     }
 
-    .vccf {
-      max-width: 82.625rem;
-      column-gap: 7.5rem;
-    }
-  }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(387px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+      max-width: 107.5rem;
+      width: 100%;
 
-  @media (min-width: 1920px) {
-    .create-and-explore {
-      max-width: 100rem;
-    }
+      hra-action-card {
+        max-width: 24.1875rem;
 
-    .create-explore-content {
-      padding: 5rem 0 7rem 0;
+        .label {
+          @include utils.use-font(label, large);
+        }
 
-      .header .description {
-        margin-bottom: 4rem;
+        .supporting-text {
+          @include utils.use-font(label, medium);
+          margin-bottom: 1rem;
+        }
+
+        hra-action-card-action {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
       }
     }
 
-    .vccf {
-      max-width: 94.25rem;
-      column-gap: 9.5625rem;
+    .title {
+      @include utils.use-font(display, large);
+      margin-bottom: 3.5rem;
+      text-align: center;
+    }
+  }
+
+  .cite {
+    background-image: url(/assets/backgrounds/cde-lung-bg.png);
+
+    .content-container {
+      margin: 0 auto;
+      max-width: 90rem;
+    }
+
+    .content {
+      max-width: 59.25rem;
+
+      .title {
+        @include utils.use-font(headline, medium);
+        margin-bottom: 0.75rem;
+      }
+
+      .description {
+        @include utils.use-font(body, xl);
+      }
+
+      .copy-citation {
+        margin-top: 1.5rem;
+      }
     }
   }
 }
