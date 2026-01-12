@@ -122,7 +122,7 @@ export class LandingPageComponent {
       return [];
     }
 
-    const items = data[selectedType];
+    const items = data[selectedType] ?? [];
 
     return items.map((item) => mapToContentCard(item, tagsMap));
   });
