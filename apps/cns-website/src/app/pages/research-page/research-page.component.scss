@@ -32,16 +32,47 @@
     display: flex;
     flex-direction: column;
     height: calc(100vh - 3.5rem);
+    align-items: center;
+  }
+
+  .search,
+  ng-scrollbar {
+    max-width: 100rem;
+    width: 100%;
   }
 
   .search {
     padding: 1.5rem 2.5rem;
+
+    @media (max-width: 639px) {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
   ng-scrollbar {
     hra-grid-container,
     hra-list-view {
       padding: 0 2.5rem 2.5rem;
+
+      @media (max-width: 639px) {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+
+    .page-end {
+      padding: 0 2.5rem;
+
+      @media (max-width: 639px) {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+
+    hra-end-of-results-indicator {
+      padding-top: 2rem;
+      padding-bottom: 2.5rem;
     }
   }
 

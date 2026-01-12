@@ -10,8 +10,8 @@
 
   .search-field {
     flex: 1;
-    min-width: 160px;
-    max-width: 580px;
+    min-width: 10rem;
+    max-width: 36.25rem;
   }
 
   .results-counter {
@@ -22,7 +22,7 @@
 
   @media (max-width: 48rem) {
     align-items: stretch;
-    gap: 8px;
+    gap: 1rem;
 
     .results-counter {
       align-self: flex-end;

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, viewChild } from '@angular/core';
+import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
@@ -11,6 +12,7 @@ import { GridContainerComponent } from '@hra-ui/design-system/content-templates/
 import { ListViewComponent, ListViewGroup } from '@hra-ui/design-system/content-templates/list-view';
 import { FilterMenuComponent, FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
 import { IconsModule } from '@hra-ui/design-system/icons';
+import { EndOfResultsIndicatorComponent } from '@hra-ui/design-system/indicators/end-of-results';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
@@ -87,6 +89,8 @@ const FILTER_OPTIONS: Record<string, SearchListOption[]> = {
     FilterMenuComponent,
     ListViewComponent,
     FooterComponent,
+    EndOfResultsIndicatorComponent,
+    MatDivider,
   ],
   templateUrl: './research-page.component.html',
   styleUrl: './research-page.component.scss',

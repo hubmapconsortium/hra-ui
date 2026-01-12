@@ -46,6 +46,7 @@
     <div class="search">
       <hra-search-filter
         label="Search"
+        separator="/"
         [totalCount]="totalCount()"
         [viewingCount]="viewingCount()"
         [(search)]="search"
@@ -55,24 +56,27 @@
       <ng-container [ngTemplateOutlet]="empty" />
     } @else {
       <ng-scrollbar>
-        @if (data()) {
-          @if (viewType() === 'list') {
-            <hra-list-view [data]="convertToListItems(filteredItems())" [groupBy]="true" />
-          } @else {
-            <hra-grid-container>
-              @for (item of filteredItems(); track $index) {
-                <hra-gallery-card
-                  [tagline]="item.title || ''"
-                  [imageSrc]="item.imgSrc"
-                  [date]="item.dateStart"
-                  [link]="item.link || ''"
-                  [external]="true"
-                  [tags]="item.tags"
-                />
-              }
-            </hra-grid-container>
-          }
+        @if (viewType() === 'list') {
+          <hra-list-view [data]="convertToListItems(filteredItems())" [groupBy]="true" />
+        } @else {
+          <hra-grid-container>
+            @for (item of filteredItems(); track $index) {
+              <hra-gallery-card
+                [tagline]="item.title || ''"
+                [imageSrc]="item.imgSrc"
+                [date]="item.dateStart"
+                [link]="item.link || ''"
+                [external]="true"
+                [tags]="item.tags"
+              />
+            }
+          </hra-grid-container>
         }
+
+        <div class="page-end">
+          <mat-divider />
+          <hra-end-of-results-indicator [count]="viewingCount()" />
+        </div>
         <cns-footer />
       </ng-scrollbar>
     }
