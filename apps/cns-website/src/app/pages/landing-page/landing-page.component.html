@@ -11,12 +11,12 @@
     [(value)]="selectedContentType"
   >
     @for (contentType of contentTypes; track contentType) {
-      <mat-button-toggle [value]="contentType">{{ contentType }}</mat-button-toggle>
+      <mat-button-toggle [value]="contentType.toLowerCase()">{{ contentType }}</mat-button-toggle>
     }
   </mat-button-toggle-group>
 
   <div class="content-grid">
-    <hra-gallery-grid [dataSource]="contentCards">
+    <hra-gallery-grid [dataSource]="contentCards()">
       <hra-content-button
         *hraGalleryGridItem="let item"
         [imageSrc]="item.imageSrc"
