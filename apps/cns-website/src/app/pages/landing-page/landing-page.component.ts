@@ -122,19 +122,7 @@ export class LandingPageComponent {
       return [];
     }
 
-    let items: FeaturedContentItem[] = [];
-
-    switch (selectedType) {
-      case 'featured':
-        items = data.featured;
-        break;
-      case 'publications':
-        items = data.publications;
-        break;
-      case 'news':
-        items = data.news;
-        break;
-    }
+    const items = data[selectedType];
 
     return items.map((item) => mapToContentCard(item, tagsMap));
   });
