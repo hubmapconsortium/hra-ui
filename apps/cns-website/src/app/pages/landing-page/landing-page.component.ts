@@ -13,6 +13,9 @@ const ContentTypes = ['Featured', 'Publications', 'News'] as const;
 /** Content Type */
 type ContentType = (typeof ContentTypes)[number];
 
+/** Lowercase Content Type */
+type LowercaseContentType = Lowercase<ContentType>;
+
 /** Interface for content card display */
 interface LandingPageContentCard {
   /** Image source URL */
@@ -92,7 +95,7 @@ export class LandingPageComponent {
   protected readonly contentTypes = ContentTypes;
 
   /** Selected content type */
-  protected readonly selectedContentType = signal<ContentType>('Featured');
+  protected readonly selectedContentType = signal<LowercaseContentType>('featured');
 
   /** Featured content data from resolver */
   readonly featuredContent = input<FeaturedContentData>();
@@ -122,13 +125,13 @@ export class LandingPageComponent {
     let items: FeaturedContentItem[] = [];
 
     switch (selectedType) {
-      case 'Featured':
+      case 'featured':
         items = data.featured;
         break;
-      case 'Publications':
+      case 'publications':
         items = data.publications;
         break;
-      case 'News':
+      case 'news':
         items = data.news;
         break;
     }
