@@ -1,0 +1,27 @@
+<div class="tagline">
+  @for (icon of icons(); track icon) {
+    <hra-icon class="icon" [icon]="icon" />
+  }
+  <div class="container">
+    <span>{{ tagline() }}</span>
+    <mat-chip-set class="chips" aria-label="Tags">
+      @for (chip of chips(); track chip) {
+        <mat-chip hraChipSize="small">{{ chip }}</mat-chip>
+      }
+    </mat-chip-set>
+  </div>
+</div>
+
+@if (image(); as src) {
+  <img class="image" alt="" [attr.src]="src | assetUrl" />
+}
+
+<div class="description">
+  <ng-content />
+</div>
+
+<div class="actions">
+  <ng-content select="hra-collection-card-action:not([alignment='right'])" />
+  <div class="spacer"></div>
+  <ng-content select="hra-collection-card-action[alignment='right']" />
+</div>
