@@ -55,9 +55,9 @@
       <ng-container [ngTemplateOutlet]="empty" />
     } @else {
       <ng-scrollbar>
-        @if (data().data) {
+        @if (data()) {
           @if (viewType() === 'list') {
-            <hra-list-view [data]="convertToListItems({ data: filteredItems() })" [groupBy]="true" />
+            <hra-list-view [data]="convertToListItems(filteredItems())" [groupBy]="true" />
           } @else {
             <hra-grid-container>
               @for (item of filteredItems(); track $index) {

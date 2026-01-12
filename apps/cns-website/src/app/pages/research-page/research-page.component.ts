@@ -39,7 +39,7 @@ const FILTER_OPTIONS: Record<string, SearchListOption[]> = {
     { id: 'miscellaneous', label: 'Miscellaneous' },
     { id: 'news', label: 'News' },
     { id: 'presentations', label: 'Presentations' },
-    { id: 'publications', label: 'Publications' },
+    { id: 'publication', label: 'Publications' },
   ],
   publicationType: [
     { id: 'book', label: 'Book' },
@@ -102,17 +102,22 @@ export class ResearchPageComponent {
 
   readonly menuOpen = computed(() => this.headerEvents.menuState());
 
-  /** List of gallery cards */
-  readonly data = input.required<ResearchPageData>();
+  /** List of news items */
+  readonly news = input.required<ResearchPageData>();
+
+  /** List of publication items */
+  readonly publications = input.required<ResearchPageData>();
+
+  readonly data = computed(() => this.news().concat(this.publications()));
 
   /** Current search bar value */
   readonly search = signal<string>('');
 
-  /** Filtered items (after typing in search bar) */
-  readonly filteredItems = computed<ResearchItem[]>(() => this.doGallerySearch());
+  /** Filtered items */
+  readonly filteredItems = computed<ResearchItem[]>(() => this.filterResults());
 
   /** Total number of cards */
-  readonly totalCount = computed(() => this.data()?.data.length);
+  readonly totalCount = computed(() => this.data()?.length);
 
   /** Number of cards after filtering */
   readonly viewingCount = computed(() => this.filteredItems()?.length);
@@ -124,9 +129,21 @@ export class ResearchPageComponent {
 
   readonly filters = computed<FilterOptionCategory<SearchListOption>[]>(() => this.currentFiltersToFilters());
 
+  readonly filterIds = signal<Record<string, string[]>>({
+    category: [],
+    eventType: [],
+    fundingType: [],
+    publicationType: [],
+    people: [],
+    project: [],
+    year: [],
+  });
+
   readonly currentFilters = signal<CurrentFilters>({});
 
   readonly people = input<SearchListOption[]>([]);
+
+  readonly yearOptions = signal<SearchListOption[]>([]);
 
   readonly viewAsOptions = signal([
     { id: 'table', label: 'Table' },
@@ -143,20 +160,24 @@ export class ResearchPageComponent {
 
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
-    queryParams$.subscribe((queryParams) => this.setFiltersFomParams(queryParams));
+    queryParams$.subscribe((queryParams) => this.setFilterIdsFromParams(queryParams));
+
+    effect(() => {
+      const years = Array.from(
+        new Set(
+          this.data()
+            ?.map((item) => item.dateStart?.split('-')[0])
+            .filter((year): year is string => year !== undefined),
+        ),
+      ).sort((a, b) => parseInt(b) - parseInt(a));
+      this.yearOptions.set(years.map((year) => ({ id: year, label: year })));
+    });
 
     effect(() => {
       const peopleFilters = this.filters().find((filter) => filter.id === 'people');
       const yearFilters = this.filters().find((filter) => filter.id === 'year');
       if (yearFilters) {
-        const years = Array.from(
-          new Set(
-            this.data()
-              ?.data.map((item) => item.dateStart?.split('-')[0])
-              .filter((year): year is string => year !== undefined),
-          ),
-        ).sort((a, b) => parseInt(b) - parseInt(a));
-        yearFilters.options = years.map((year) => ({ id: year, label: year }));
+        yearFilters.options = this.yearOptions();
       }
       if (peopleFilters) {
         peopleFilters.options = this.people();
@@ -166,51 +187,82 @@ export class ResearchPageComponent {
     effect(() => {
       this.headerEvents.menuState.set(this.isWideScreen());
     });
+
+    effect(() => {
+      this.setCurrentFiltersFromFilterIds();
+    });
   }
 
-  private setFiltersFomParams(queryParams: Params) {
+  private setFilterIdsFromParams(queryParams: Params) {
     const category = queryParams['category'];
     const people = queryParams['people'];
     const search = queryParams['search'];
+    const eventType = queryParams['eventType'];
+    const fundingType = queryParams['fundingType'];
+    const publicationType = queryParams['publicationType'];
+    const project = queryParams['project'];
+    const year = queryParams['year'];
 
     if (search) {
       this.search.set(search);
     }
 
-    this.currentFilters.set({
-      category: FILTER_OPTIONS['category'].filter((cat) => category?.includes(cat.id)),
-      people: this.people().filter((person) => people?.includes(person.id)),
+    this.filterIds.set({
+      category: category || [],
+      people: people || [],
+      year: year || [],
+      eventType: eventType || [],
+      fundingType: fundingType || [],
+      publicationType: publicationType || [],
+      project: project || [],
     });
-
-    this.updateQueryParamsFromFilters();
   }
 
-  /** Filters items according to the search bar value */
-  private doGallerySearch(): ResearchItem[] {
-    const peopleFilters = this.currentFilters().people;
-    const filtered = this.doPeopleSearch(peopleFilters?.map((person) => person.id) || []);
-
-    const searchTerm = this.search()?.toLowerCase();
-    console.log(searchTerm);
-    console.log(!!searchTerm);
-    this.updateQueryParamsFromFilters();
-    if (searchTerm) {
-      return filtered.filter((option) => option.title?.toLowerCase().includes(searchTerm));
-    }
-    return filtered;
+  private setCurrentFiltersFromFilterIds() {
+    this.currentFilters.set({
+      category: FILTER_OPTIONS['category'].filter((cat) => this.filterIds()['category'].includes(cat.id)),
+      people: this.people().filter((person) => this.filterIds()['people'].includes(person.id)),
+      year: this.yearOptions().filter((yr) => this.filterIds()['year'].includes(yr.id)),
+    });
   }
 
-  private doPeopleSearch(ids: string[]): ResearchItem[] {
-    const allData = this.data()?.data || [];
-    if (ids.length === 0) {
-      return allData;
+  private filterResults(): ResearchItem[] {
+    let filteredData = this.data() || [];
+
+    if (this.search() && this.search() !== '') {
+      filteredData = filteredData.filter((option) => option.title?.toLowerCase().includes(this.search().toLowerCase()));
     }
-    return allData.filter((item) => item.people.some((person) => ids.includes(person)));
+
+    if (this.currentFilters().category && this.filterIds()['category'].length > 0) {
+      filteredData = filteredData.filter((item) =>
+        this.currentFilters().category?.some((cat) => cat.id === item.category),
+      );
+    }
+
+    if (this.currentFilters().publicationType && this.filterIds()['publicationType'].length > 0) {
+      filteredData = filteredData.filter((item) =>
+        this.currentFilters().publicationType?.some((pubType) => pubType.id === item.type),
+      );
+    }
+
+    if (this.currentFilters().year && this.filterIds()['year'].length > 0) {
+      filteredData = filteredData.filter((item) => {
+        const itemYear = item.dateStart?.split('-')[0];
+        return this.currentFilters().year?.some((year) => year.id === itemYear);
+      });
+    }
+
+    if (this.currentFilters().people && this.filterIds()['people'].length > 0) {
+      filteredData = filteredData.filter((item) =>
+        this.currentFilters().people?.some((person) => item.people.includes(person.id)),
+      );
+    }
+    return filteredData;
   }
 
   convertToListItems(data: ResearchPageData): ListViewGroup[] {
     const groupedData: Record<string, string[]> = {};
-    data.data.forEach((item) => {
+    data.forEach((item) => {
       const year = item.dateStart?.split('-')[0];
       if (!groupedData[year]) {
         groupedData[year] = [item.description || ''];
@@ -228,7 +280,7 @@ export class ResearchPageComponent {
     }));
   }
 
-  currentFiltersToFilters(): FilterOptionCategory<SearchListOption>[] {
+  private currentFiltersToFilters(): FilterOptionCategory<SearchListOption>[] {
     const { category, eventType, fundingType, publicationType, people, project, year } = this.currentFilters();
     return [
       {
@@ -270,7 +322,7 @@ export class ResearchPageComponent {
       {
         id: 'year',
         label: 'Year',
-        options: FILTER_OPTIONS['year'],
+        options: this.yearOptions(),
         selected: year,
       },
     ];
@@ -278,7 +330,6 @@ export class ResearchPageComponent {
 
   updateFilters(updatedFilters: FilterOptionCategory<SearchListOption>[]) {
     const newCurrentFilters: CurrentFilters = {};
-    console.log(updatedFilters);
     updatedFilters.forEach((filter) => {
       if (filter.selected && filter.selected.length > 0) {
         newCurrentFilters[filter.id as keyof CurrentFilters] = filter.selected;
@@ -289,9 +340,7 @@ export class ResearchPageComponent {
   }
 
   private updateQueryParamsFromFilters() {
-    console.log(this.currentFilters());
     this.router.navigate(['/research'], {
-      queryParamsHandling: 'merge',
       queryParams: {
         category: this.currentFilters().category?.map((cat) => cat.id),
         eventType: this.currentFilters().eventType?.map((event) => event.id),

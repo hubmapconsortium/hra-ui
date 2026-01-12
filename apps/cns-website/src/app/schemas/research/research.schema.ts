@@ -20,10 +20,6 @@ export const ResearchItemSchema = z
 
 export type ResearchPageData = z.infer<typeof ResearchPageDataSchema>;
 
-export const ResearchPageDataSchema = z
-  .object({
-    data: ResearchItemSchema.array(),
-  })
-  .meta({ id: 'ResearchPageData' });
+export const ResearchPageDataSchema = ResearchItemSchema.array().meta({ id: 'ResearchPageData' });
 
 export default ResearchPageDataSchema;

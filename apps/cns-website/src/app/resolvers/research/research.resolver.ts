@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
-import { map, of } from 'rxjs';
-import { ResearchPageData, ResearchPageDataSchema } from '../../schemas/research/research.schema';
+import { map } from 'rxjs';
+import { ResearchPageData } from '../../schemas/research/research.schema';
 
 const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publications.json';
 const NEWS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-news.json';
@@ -27,26 +26,16 @@ export function createPeopleResolver(): ResolveFn<SearchListOption[]> {
   };
 }
 
-export function createResearchResolver(): ResolveFn<ResearchPageData> {
-  return (route) => {
-    const queryParams = route.queryParams;
+export function createNewsResolver(): ResolveFn<ResearchPageData> {
+  return () => {
     const http = inject(HttpClient);
-    if (queryParams['category'] === 'news') {
-      return http.get(NEWS_INDEX_URL, { responseType: 'json' }).pipe(
-        map((data) => {
-          return {
-            data,
-          } as ResearchPageData;
-        }),
-      );
-    }
+    return http.get(NEWS_INDEX_URL, { responseType: 'json' }).pipe(map((data) => data as ResearchPageData));
+  };
+}
 
-    return http.get(PUBLICATIONS_INDEX_URL, { responseType: 'json' }).pipe(
-      map((data) => {
-        return {
-          data,
-        } as ResearchPageData;
-      }),
-    );
+export function createPublicationsResolver(): ResolveFn<ResearchPageData> {
+  return () => {
+    const http = inject(HttpClient);
+    return http.get(PUBLICATIONS_INDEX_URL, { responseType: 'json' }).pipe(map((data) => data as ResearchPageData));
   };
 }
