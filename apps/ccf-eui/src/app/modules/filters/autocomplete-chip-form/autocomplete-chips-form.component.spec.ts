@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { render, screen, waitFor, within } from '@testing-library/angular';
@@ -10,31 +9,26 @@ const FILTER_OPTIONS = ['Kidney', 'Heart', 'Lung'];
 
 async function renderComponent(initialValue: string[] = []) {
   const selectedOptions = jest.fn();
+  const form = new FormControl<string[] | null>(initialValue);
 
-  @Component({
-    imports: [AutocompleteChipsFormComponent],
-    template: `
-      <ccf-autocomplete-chips-form
-        label="Organ"
-        [filterOptions]="filterOptions"
-        [form]="form"
-        (selectedOptions)="selectedOptions()"
-      />
-    `,
-  })
-  class HostComponent {
-    filterOptions = FILTER_OPTIONS;
-    form = new FormControl<string[] | null>(initialValue);
-    selectedOptions = selectedOptions;
-  }
+  const result = await render(AutocompleteChipsFormComponent, {
+    imports: [MatIconTestingModule],
+    inputs: {
+      label: 'Organ',
+      filterOptions: FILTER_OPTIONS,
+      form,
+    },
+    on: {
+      selectedOptions,
+    },
+  });
 
-  const result = await render(HostComponent, { imports: [MatIconTestingModule] });
-  return { ...result, selectedOptions };
+  return { ...result, form, selectedOptions };
 }
 
 describe('AutocompleteChipsFormComponent', () => {
   it('adds an autocomplete option as a chip and marks the form dirty', async () => {
-    const { fixture, selectedOptions } = await renderComponent();
+    const { form, selectedOptions } = await renderComponent();
 
     const input = screen.getByPlaceholderText('Search');
     await userEvent.click(input);
@@ -45,13 +39,13 @@ describe('AutocompleteChipsFormComponent', () => {
     await waitFor(() => {
       expect(screen.getByText('Kidney')).toBeInTheDocument();
     });
-    expect(fixture.componentInstance.form.value).toEqual(['Kidney']);
-    expect(fixture.componentInstance.form.dirty).toBe(true);
+    expect(form.value).toEqual(['Kidney']);
+    expect(form.dirty).toBe(true);
     expect(selectedOptions).toHaveBeenCalledTimes(1);
   });
 
   it('adds a chip when the checkbox is checked', async () => {
-    const { fixture, selectedOptions } = await renderComponent();
+    const { form, selectedOptions } = await renderComponent();
 
     const input = screen.getByPlaceholderText('Search');
     await userEvent.click(input);
@@ -63,25 +57,25 @@ describe('AutocompleteChipsFormComponent', () => {
     await waitFor(() => {
       expect(screen.getByText('Heart')).toBeInTheDocument();
     });
-    expect(fixture.componentInstance.form.value).toEqual(['Heart']);
-    expect(fixture.componentInstance.form.dirty).toBe(true);
+    expect(form.value).toEqual(['Heart']);
+    expect(form.dirty).toBe(true);
     expect(selectedOptions).toHaveBeenCalledTimes(1);
   });
 
   it('removes a chip via the remove button', async () => {
-    const { fixture } = await renderComponent(['Lung']);
+    const { form } = await renderComponent(['Lung']);
 
     await userEvent.click(screen.getByLabelText('remove Lung'));
 
     await waitFor(() => {
       expect(screen.queryByLabelText('remove Lung')).not.toBeInTheDocument();
     });
-    expect(fixture.componentInstance.form.value).toEqual([]);
-    expect(fixture.componentInstance.form.dirty).toBe(true);
+    expect(form.value).toEqual([]);
+    expect(form.dirty).toBe(true);
   });
 
   it('clears all chips with the clear button', async () => {
-    const { fixture, container } = await renderComponent(['Heart', 'Kidney']);
+    const { form, container } = await renderComponent(['Heart', 'Kidney']);
 
     const clearButton = container.querySelector('[hrafeature="clear"]') as HTMLButtonElement;
     expect(clearButton).not.toBeNull();
@@ -90,8 +84,8 @@ describe('AutocompleteChipsFormComponent', () => {
     await waitFor(() => {
       expect(screen.queryAllByRole('row')).toHaveLength(0);
     });
-    expect(fixture.componentInstance.form.value).toEqual([]);
-    expect(fixture.componentInstance.form.dirty).toBe(true);
+    expect(form.value).toEqual([]);
+    expect(form.dirty).toBe(true);
   });
 
   it('adds a chip when the input token event fires with a matching option', async () => {
@@ -111,7 +105,7 @@ describe('AutocompleteChipsFormComponent', () => {
   });
 
   it('shows an error state when no matches are found and prevents adding chips', async () => {
-    const { fixture } = await renderComponent();
+    const { form } = await renderComponent();
 
     const input = screen.getByPlaceholderText('Search');
     await userEvent.click(input);
@@ -122,7 +116,7 @@ describe('AutocompleteChipsFormComponent', () => {
       expect(screen.getByText('No matches found')).toBeInTheDocument();
     });
     expect(screen.queryAllByRole('row')).toHaveLength(0);
-    expect(fixture.componentInstance.form.value).toEqual([]);
+    expect(form.value).toEqual([]);
   });
 
   it('closes the autocomplete panel on Escape', async () => {
