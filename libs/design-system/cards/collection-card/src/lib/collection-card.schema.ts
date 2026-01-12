@@ -13,6 +13,7 @@ export const CollectionCardSchema = ContentTemplateSchema.extend({
   icons: IconListSchema.optional(),
   chips: z.array(z.string()).optional(),
   content: ProjectedContentTemplateSchema.optional(),
+  additionalInfo: z.record(z.string(), z.string()).optional(),
   actionsLeft: ProjectedContentTemplateSchema.optional(),
   actionsRight: ProjectedContentTemplateSchema.optional(),
 }).meta({ id: 'CollectionCard' });

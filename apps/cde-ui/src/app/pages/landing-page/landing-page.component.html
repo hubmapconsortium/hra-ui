@@ -7,13 +7,13 @@
           @let chips = card.chips ?? [];
           @let additionalInfo = card.additionalInfo ?? {};
 
-          <hra-action-card variant="collection" [tagline]="card.tagline" [image]="card.image" [chips]="chips">
+          <hra-collection-card [tagline]="card.tagline" [image]="card.image" [chips]="chips">
             <div>
               <div class="label">{{ additionalInfo['label'] }}</div>
               <div class="supporting-text">{{ additionalInfo['supportingText'] }}</div>
             </div>
             @if (additionalInfo['leftActionText'] && additionalInfo['leftActionUrl']) {
-              <hra-action-card-action>
+              <hra-collection-card-action>
                 <a
                   mat-flat-button
                   hraButtonSize="medium"
@@ -21,16 +21,16 @@
                   [hraLink]="additionalInfo['leftActionUrl']"
                   >{{ additionalInfo['leftActionText'] }}</a
                 >
-              </hra-action-card-action>
+              </hra-collection-card-action>
             }
             @if (additionalInfo['rightActionText'] && additionalInfo['rightActionUrl']) {
-              <hra-action-card-action alignment="right">
+              <hra-collection-card-action alignment="right">
                 <a mat-button hraButtonSize="medium" disabled="false" [hraLink]="additionalInfo['rightActionUrl']">{{
                   additionalInfo['rightActionText']
                 }}</a>
-              </hra-action-card-action>
+              </hra-collection-card-action>
             }
-          </hra-action-card>
+          </hra-collection-card>
         }
       </div>
     </div>
