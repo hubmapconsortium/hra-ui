@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { HraCommonModule } from '@hra-ui/common';
+import { isAbsolute } from '@hra-ui/common/url';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
 import { FeaturedContentData, FeaturedContentItem } from '../../schemas/featured-content/featured-content.schema';
@@ -41,7 +42,7 @@ interface LandingPageContentCard {
  */
 function mapToContentCard(item: FeaturedContentItem, tagsMap: Map<string, string>): LandingPageContentCard {
   /** Determine if the link is external */
-  const isExternal = item.link.startsWith('http://') || item.link.startsWith('https://');
+  const isExternal = isAbsolute(item.link);
 
   /** Map tag slugs to their proper display names */
   const displayTags = item.tags.map((tagSlug) => tagsMap.get(tagSlug) ?? capitalizeFirstLetter(tagSlug));
@@ -91,24 +92,21 @@ function capitalizeFirstLetter(str: string): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
+  /** Featured content data from resolver */
+  readonly featuredContent = input.required<FeaturedContentData>();
+
+  /** Tags data from resolver */
+  readonly tags = input.required<TagsData>();
+
   /** Content Types */
   protected readonly contentTypes = ContentTypes;
 
   /** Selected content type */
   protected readonly selectedContentType = signal<LowercaseContentType>('featured');
 
-  /** Featured content data from resolver */
-  readonly featuredContent = input<FeaturedContentData>();
-
-  /** Tags data from resolver */
-  readonly tags = input<TagsData>();
-
   /** Tags map for quick lookup of tag names by slug */
   private readonly tagsMap = computed<Map<string, string>>(() => {
     const tags = this.tags();
-    if (!tags) {
-      return new Map();
-    }
     return new Map(tags.map((tag) => [tag.slug, tag.name]));
   });
 
@@ -117,10 +115,6 @@ export class LandingPageComponent {
     const data = this.featuredContent();
     const selectedType = this.selectedContentType();
     const tagsMap = this.tagsMap();
-
-    if (!data) {
-      return [];
-    }
 
     const items = data[selectedType] ?? [];
 
