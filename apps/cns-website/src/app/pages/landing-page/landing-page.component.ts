@@ -1,11 +1,8 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { ActivatedRoute } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
-import { map } from 'rxjs';
 import { FeaturedContentData, FeaturedContentItem } from '../../schemas/featured-content/featured-content.schema';
 import { TagsData } from '../../schemas/tags/tags.schema';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -91,9 +88,6 @@ function capitalizeFirstLetter(str: string): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  /** Activated route */
-  private readonly route = inject(ActivatedRoute);
-
   /** Content Types */
   protected readonly contentTypes = ContentTypes;
 
@@ -101,16 +95,14 @@ export class LandingPageComponent {
   protected readonly selectedContentType = signal<ContentType>('Featured');
 
   /** Featured content data from resolver */
-  private readonly featuredContentData = toSignal(
-    this.route.data.pipe(map((data) => data['featuredContent'] as FeaturedContentData | undefined)),
-  );
+  readonly featuredContent = input<FeaturedContentData>();
 
   /** Tags data from resolver */
-  private readonly tagsData = toSignal(this.route.data.pipe(map((data) => data['tags'] as TagsData | undefined)));
+  readonly tags = input<TagsData>();
 
   /** Tags map for quick lookup of tag names by slug */
   private readonly tagsMap = computed<Map<string, string>>(() => {
-    const tags = this.tagsData();
+    const tags = this.tags();
     if (!tags) {
       return new Map();
     }
@@ -118,8 +110,8 @@ export class LandingPageComponent {
   });
 
   /** Content cards filtered by selected content type */
-  private readonly contentCardsSignal = computed<LandingPageContentCard[]>(() => {
-    const data = this.featuredContentData();
+  protected readonly contentCards = computed<LandingPageContentCard[]>(() => {
+    const data = this.featuredContent();
     const selectedType = this.selectedContentType();
     const tagsMap = this.tagsMap();
 
@@ -143,9 +135,4 @@ export class LandingPageComponent {
 
     return items.map((item) => mapToContentCard(item, tagsMap));
   });
-
-  /** Content cards as array for the gallery grid */
-  protected get contentCards(): LandingPageContentCard[] {
-    return this.contentCardsSignal();
-  }
 }
