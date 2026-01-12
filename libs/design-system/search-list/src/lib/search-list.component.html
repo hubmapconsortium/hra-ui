@@ -7,11 +7,7 @@
 }
 
 <ng-scrollbar hraScrollOverflowFade class="filter-options">
-  <mat-selection-list
-    [disableRipple]="disableRipple()"
-    (selectionChange)="selectionUpdate(list.selectedOptions.selected)"
-    #list
-  >
+  <mat-selection-list [disableRipple]="disableRipple()" #list>
     @for (option of filteredOptions(); track option.id) {
       <mat-list-option
         togglePosition="before"
@@ -19,6 +15,7 @@
         [value]="option"
         [selected]="selected().includes(option)"
         [attr.aria-label]="`Toggle ${option.id}`"
+        (click)="selectionUpdate(option)"
       >
         <mat-label class="labels-count">
           <span class="option-labels">

@@ -1,14 +1,14 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule, MatListOption } from '@angular/material/list';
 
 /** Search list option interface */
 export interface SearchListOption {
@@ -64,11 +64,15 @@ export class SearchListComponent<T extends SearchListOption> {
   readonly filteredOptions = computed(() => this.doSearch());
 
   /**
-   * Updates selected options on update
-   * @param event Selected options in list
+   * Updates selected options on option click
+   * @param value Option clicked
    */
-  selectionUpdate(event: MatListOption[]): void {
-    this.selected.set(event.map((option) => option.value));
+  selectionUpdate(value: T) {
+    if (this.selected().includes(value)) {
+      this.selected.set(this.selected().filter((x) => x !== value));
+    } else {
+      this.selected.set(this.selected().concat([value]));
+    }
   }
 
   /** Filters options according to the search bar value */
