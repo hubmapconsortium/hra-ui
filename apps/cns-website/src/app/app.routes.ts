@@ -8,11 +8,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
 import { ResearchPageComponent } from './pages/research-page/research-page.component';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
-import {
-  createNewsResolver,
-  createPeopleResolver,
-  createPublicationsResolver,
-} from './resolvers/research/research.resolver';
+import { createPeopleResolver, createResearchResolver } from './resolvers/research/research.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -31,11 +27,9 @@ export const appRoutes: Route[] = [
   {
     path: 'research',
     component: ResearchPageComponent,
-    // runGuardsAndResolvers: 'always',
     resolve: {
       people: createPeopleResolver(),
-      news: createNewsResolver(),
-      publications: createPublicationsResolver(),
+      data: createResearchResolver(),
     },
   },
 

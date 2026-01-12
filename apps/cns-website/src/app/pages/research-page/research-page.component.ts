@@ -14,6 +14,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
+import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderEventsService } from '../../components/header/header.component';
 import { ResearchItem, ResearchPageData } from '../../schemas/research/research.schema';
 
@@ -85,49 +86,26 @@ const FILTER_OPTIONS: Record<string, SearchListOption[]> = {
     SearchFilterComponent,
     FilterMenuComponent,
     ListViewComponent,
+    FooterComponent,
   ],
   templateUrl: './research-page.component.html',
   styleUrl: './research-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResearchPageComponent {
+  private readonly router = inject(Router);
+
+  private readonly headerEvents = inject(HeaderEventsService);
+
   /** Reference to sidenav element */
   readonly sidenav = viewChild<MatSidenav>('sidenav');
 
-  readonly headerEvents = inject(HeaderEventsService);
-
-  private readonly router = inject(Router);
-
-  readonly route = inject(ActivatedRoute);
-
-  readonly menuOpen = computed(() => this.headerEvents.menuState());
-
-  /** List of news items */
-  readonly news = input.required<ResearchPageData>();
-
-  /** List of publication items */
-  readonly publications = input.required<ResearchPageData>();
-
-  readonly data = computed(() => this.news().concat(this.publications()));
+  readonly people = input<SearchListOption[]>([]);
 
   /** Current search bar value */
   readonly search = signal<string>('');
 
-  /** Filtered items */
-  readonly filteredItems = computed<ResearchItem[]>(() => this.filterResults());
-
-  /** Total number of cards */
-  readonly totalCount = computed(() => this.data()?.length);
-
-  /** Number of cards after filtering */
-  readonly viewingCount = computed(() => this.filteredItems()?.length);
-
   readonly viewType = signal<ViewType>('gallery');
-
-  /** Whether the user is on a wide screen */
-  protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
-
-  readonly filters = computed<FilterOptionCategory<SearchListOption>[]>(() => this.currentFiltersToFilters());
 
   readonly filterIds = signal<Record<string, string[]>>({
     category: [],
@@ -140,8 +118,6 @@ export class ResearchPageComponent {
   });
 
   readonly currentFilters = signal<CurrentFilters>({});
-
-  readonly people = input<SearchListOption[]>([]);
 
   readonly yearOptions = signal<SearchListOption[]>([]);
 
@@ -157,6 +133,24 @@ export class ResearchPageComponent {
     { id: 'newest', label: 'Newest' },
     { id: 'hierachical', label: 'Hierarchical' },
   ]);
+
+  readonly menuOpen = computed(() => this.headerEvents.menuState());
+
+  readonly data = input.required<ResearchPageData>();
+
+  /** Filtered items */
+  readonly filteredItems = computed<ResearchItem[]>(() => this.filterResults());
+
+  /** Total number of cards */
+  readonly totalCount = computed(() => this.data()?.length);
+
+  /** Number of cards after filtering */
+  readonly viewingCount = computed(() => this.filteredItems()?.length);
+
+  readonly filters = computed<FilterOptionCategory<SearchListOption>[]>(() => this.currentFiltersToFilters());
+
+  /** Whether the user is on a wide screen */
+  protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
