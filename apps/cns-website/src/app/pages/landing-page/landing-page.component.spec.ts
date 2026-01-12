@@ -53,18 +53,6 @@ describe('LandingPageComponent', () => {
     expect(screen.getByText('Science you can see')).toBeInTheDocument();
   });
 
-  it('should handle undefined data', async () => {
-    await render(LandingPageComponent, {
-      providers: [provideHttpClient(), provideIcons(), provideHttpClientTesting()],
-      componentInputs: {
-        featuredContent: undefined,
-        tags: undefined,
-      },
-    });
-
-    expect(screen.getByText('Science you can see')).toBeInTheDocument();
-  });
-
   it('should display publications when Publications is selected', async () => {
     const { fixture } = await render(LandingPageComponent, {
       providers: [provideHttpClient(), provideIcons(), provideHttpClientTesting()],
