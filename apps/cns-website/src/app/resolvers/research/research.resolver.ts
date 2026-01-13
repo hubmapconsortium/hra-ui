@@ -11,6 +11,22 @@ const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/ap
 const PUBLICATION_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publication-types.json';
 const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-tags.json';
 
+export function createResearchResolver(): ResolveFn<ResearchPageData> {
+  return () => {
+    const http = inject(HttpClient);
+    return forkJoin({
+      news: http.get(NEWS_INDEX_URL, { responseType: 'json' }),
+      publications: http.get(PUBLICATIONS_INDEX_URL, { responseType: 'json' }),
+    }).pipe(
+      map(({ news, publications }) => {
+        return [...(news as ResearchPageData), ...(publications as ResearchPageData)].sort((a, b) =>
+          b.dateStart.localeCompare(a.dateStart),
+        );
+      }),
+    );
+  };
+}
+
 export function createPeopleResolver(): ResolveFn<SearchListOption[]> {
   return () => {
     const http = inject(HttpClient);
@@ -26,16 +42,23 @@ export function createPeopleResolver(): ResolveFn<SearchListOption[]> {
   };
 }
 
-export function createResearchResolver(): ResolveFn<ResearchPageData> {
+export function createPublicationTypesResolver(): ResolveFn<SearchListOption[]> {
   return () => {
     const http = inject(HttpClient);
-    return forkJoin({
-      news: http.get(NEWS_INDEX_URL, { responseType: 'json' }),
-      publications: http.get(PUBLICATIONS_INDEX_URL, { responseType: 'json' }),
-    }).pipe(
-      map(({ news, publications }) => {
-        return [...(news as ResearchPageData), ...(publications as ResearchPageData)];
+    return http.get<{ label: string; value: string }[]>(PUBLICATION_TYPES_INDEX_URL, { responseType: 'json' }).pipe(
+      map((types) => {
+        return types.map(({ label, value }) => ({
+          id: value,
+          label,
+        }));
       }),
     );
+  };
+}
+
+export function createTagsResolver(): ResolveFn<{ slug: string; name: string; description: string }[]> {
+  return () => {
+    const http = inject(HttpClient);
+    return http.get<{ slug: string; name: string; description: string }[]>(TAGS_INDEX_URL, { responseType: 'json' });
   };
 }

@@ -15,6 +15,9 @@ export const ResearchItemSchema = z
     dateStart: z.string(),
     dateEnd: z.string().optional(),
     imgSrc: z.string(),
+    fundingType: z.string(),
+    eventType: z.string(),
+    project: z.string(),
   })
   .meta({ id: 'ResearchItem' });
 

@@ -67,7 +67,7 @@
                 [date]="item.dateStart"
                 [link]="item.link || ''"
                 [external]="true"
-                [tags]="item.tags"
+                [tags]="fetchTagLabels(item.tags)"
               />
             }
           </hra-grid-container>
@@ -86,6 +86,6 @@
 <ng-template #empty>
   <div class="empty">
     <div>No results. Adjust filters or search again.</div>
-    <button mat-flat-button (click)="search.set('')">Clear filters</button>
+    <button mat-flat-button (click)="clearFilters()">Clear filters</button>
   </div>
 </ng-template>
