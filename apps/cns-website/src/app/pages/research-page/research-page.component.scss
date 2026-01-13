@@ -111,3 +111,16 @@
     --mat-form-field-leading-icon-color: var(--mat-sys-secondary);
   }
 }
+
+mat-option {
+  padding: 0 0.75rem;
+
+  ::ng-deep mat-icon {
+    margin-right: 0.75rem !important;
+  }
+
+  ::ng-deep span {
+    display: flex;
+    align-items: center;
+  }
+}

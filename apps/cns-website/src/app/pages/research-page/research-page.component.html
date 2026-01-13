@@ -12,11 +12,14 @@
       (filtersChange)="updateFilters($event)"
     >
       <mat-form-field subscriptSizing="dynamic">
-        <hra-icon class="select-icon" matPrefix>table_view</hra-icon>
+        <hra-icon class="select-icon" matPrefix>{{ viewType() === 'gallery' ? 'cards' : 'list' }}</hra-icon>
         <mat-label>View as</mat-label>
         <mat-select [value]="viewType()" (selectionChange)="viewType.set($event.value)">
           @for (option of viewAsOptions(); track option) {
-            <mat-option [value]="option.id">{{ option.label }}</mat-option>
+            <mat-option [value]="option.id">
+              <hra-icon class="select-icon" [fontIcon]="option.id === 'gallery' ? 'cards' : 'list'" />
+              {{ option.label }}
+            </mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -35,7 +38,7 @@
         <hra-icon class="select-icon" matPrefix>category</hra-icon>
         <mat-label>Group by</mat-label>
         <mat-select>
-          @for (option of filters(); track option) {
+          @for (option of groupByOptions(); track option) {
             <mat-option [value]="option.id">{{ option.label }}</mat-option>
           }
         </mat-select>
@@ -55,7 +58,7 @@
     @if (viewingCount() === 0) {
       <ng-container [ngTemplateOutlet]="empty" />
     } @else {
-      <ng-scrollbar>
+      <ng-scrollbar hraScrollOverflowFade>
         @if (viewType() === 'list') {
           <hra-list-view [data]="convertToListItems(filteredItems())" [groupBy]="true" />
         } @else {
