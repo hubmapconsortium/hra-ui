@@ -13,26 +13,49 @@ import {
 import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
 import { PeopleProfileItem } from '../../../schemas/people-profile/people-profile.schema';
 
+/**
+ * Team type filter - current or past members
+ */
 export type TeamType = 'current' | 'past';
 
+/**
+ * Role type option for filtering
+ */
 export interface RoleTypeOption extends SearchListOption {
+  /** The role type identifier */
   id: RoleType;
 }
 
+/**
+ * Year option for filtering
+ */
 export interface YearOption extends SearchListOption {
+  /** The year value */
   year: number;
 }
 
+/**
+ * Props provided by the filters feature
+ */
 export type FilterProps = {
+  /** List of people after applying all filters */
   filteredPeople: Signal<PeopleProfileItem[]>;
 };
 
+/**
+ * Internal state for filters
+ */
 interface FilterState {
   team: TeamType;
   filters: [FilterOptionCategory<RoleTypeOption>, FilterOptionCategory<YearOption>];
   search: string;
 }
 
+/**
+ * Create a list of years from startYear to current year
+ * @param startYear - The starting year
+ * @returns Array of years in descending order
+ */
 function createYearList(startYear: number): number[] {
   const currentYear = new Date().getFullYear();
   const years: number[] = [];
@@ -43,6 +66,9 @@ function createYearList(startYear: number): number[] {
   return years;
 }
 
+/**
+ * Initial state for filters
+ */
 const initialFilterState: FilterState = {
   team: 'current',
   filters: [
@@ -73,6 +99,11 @@ const initialFilterState: FilterState = {
   search: '',
 };
 
+/**
+ * Adds filtering capabilities for team members
+ * Filters by team type (current/past), role, active year, and search text
+ * @returns Signal store feature
+ */
 export function withFilters() {
   return signalStoreFeature(
     { props: type<PeopleProps>(), methods: type<PeopleMethods>() },

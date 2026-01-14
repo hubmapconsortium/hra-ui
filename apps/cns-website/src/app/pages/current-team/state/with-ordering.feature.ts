@@ -12,7 +12,11 @@ import { PeopleProfileItem, Role } from '../../../schemas/people-profile/people-
 import { FilterProps } from './with-filters.feature';
 import { PeopleProps, RoleType } from './with-people.feature';
 
-/** Convert a role to its role type */
+/**
+ * Convert a role to its role type
+ * @param role - The role to convert
+ * @returns The normalized role type
+ */
 function roleToType(role: Role): RoleType {
   switch (role.type) {
     case 'collaborator':
@@ -29,28 +33,55 @@ function roleToType(role: Role): RoleType {
   }
 }
 
+/**
+ * Sort options for team members
+ */
 export type SortBy = 'hierarchical' | 'lastNameAsc' | 'lastNameDesc' | 'endYearNewest' | 'startYearOldest';
+
+/**
+ * Group by options for team members
+ */
 export type GroupBy = 'role' | 'startYear' | 'endYear' | null;
 
+/**
+ * Group of people with a label
+ */
 export interface GroupedPeople {
+  /** The group label */
   label: string;
+  /** Team members in this group */
   members: PeopleProfileItem[];
 }
 
+/**
+ * Props provided by the ordering feature
+ */
 export type OrderingProps = {
+  /** People grouped and sorted according to current settings */
   groupedPeople: Signal<GroupedPeople[]>;
 };
 
+/**
+ * Internal state for ordering
+ */
 interface OrderingState {
   sortBy: SortBy;
   groupBy: GroupBy;
 }
 
+/**
+ * Initial state for ordering
+ */
 const initialOrderingState: OrderingState = {
   sortBy: 'hierarchical',
   groupBy: null,
 };
 
+/**
+ * Get display label for a role type
+ * @param roleType - The role type
+ * @returns Human-readable label
+ */
 function getRoleTypeLabel(roleType: RoleType): string {
   switch (roleType) {
     case 'collaborator':
@@ -66,6 +97,11 @@ function getRoleTypeLabel(roleType: RoleType): string {
   }
 }
 
+/**
+ * Adds sorting and grouping capabilities for team members
+ * Supports multiple sort orders and grouping by role, start year, or end year
+ * @returns Signal store feature
+ */
 export function withOrdering() {
   return signalStoreFeature(
     { props: type<FilterProps & PeopleProps>() },

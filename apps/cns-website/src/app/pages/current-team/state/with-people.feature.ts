@@ -3,27 +3,51 @@ import { patchState, signalMethod, signalStoreFeature, type, withComputed, withM
 import { entityConfig, setEntities, withEntities } from '@ngrx/signals/entities';
 import { PeopleProfileItem, Role } from '../../../schemas/people-profile/people-profile.schema';
 
+/**
+ * Normalized role types for team members
+ */
 export type RoleType = 'collaborator' | 'master-student' | 'phd-student' | 'staff' | 'student';
 
+/**
+ * Props provided by the people feature
+ */
 export type PeopleProps = {
+  /** List of all people */
   people: Signal<PeopleProfileItem[]>;
+  /** Map of people to their role types */
   rolesByPerson: Signal<Map<PeopleProfileItem, Set<RoleType>>>;
+  /** Map of people to their start year */
   startYearByPerson: Signal<Map<PeopleProfileItem, number>>;
+  /** Map of people to their end year (null if currently active) */
   endYearByPerson: Signal<Map<PeopleProfileItem, number | null>>;
 };
 
+/**
+ * Methods provided by the people feature
+ */
 export type PeopleMethods = {
+  /** Set the list of people */
   setPeople(people: PeopleProfileItem[]): void;
+  /** Check if a person was active in a given year */
   isActiveInYear(person: PeopleProfileItem, year: number): boolean;
+  /** Get the display title for a team member */
   getMemberTitle(person: PeopleProfileItem): string;
 };
 
+/**
+ * Entity configuration for people
+ */
 const peopleConfig = entityConfig({
   collection: 'people',
   entity: type<PeopleProfileItem>(),
   selectId: (person) => person.slug,
 });
 
+/**
+ * Convert a role to its normalized role type
+ * @param role - The role to convert
+ * @returns The normalized role type
+ */
 function roleToType(role: Role): RoleType {
   switch (role.type) {
     case 'collaborator':
@@ -40,6 +64,10 @@ function roleToType(role: Role): RoleType {
   }
 }
 
+/**
+ * Adds people data, role mappings, and query methods
+ * @returns Signal store feature
+ */
 export function withPeople() {
   return signalStoreFeature(
     withEntities(peopleConfig),
