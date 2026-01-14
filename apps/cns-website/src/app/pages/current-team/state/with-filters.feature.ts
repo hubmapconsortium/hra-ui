@@ -46,8 +46,11 @@ export type FilterProps = {
  * Internal state for filters
  */
 interface FilterState {
+  /** Selected team filter */
   team: TeamType;
+  /** Filter categories for roles and years */
   filters: [FilterOptionCategory<RoleTypeOption>, FilterOptionCategory<YearOption>];
+  /** Search text for filtering by name */
   search: string;
 }
 

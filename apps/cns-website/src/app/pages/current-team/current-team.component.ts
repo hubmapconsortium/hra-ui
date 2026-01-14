@@ -57,6 +57,7 @@ export class CurrentTeamComponent {
     transform: (value?: string): TeamType => (value === 'past' ? 'past' : 'current'),
   });
 
+  /** Store for managing team member state and filters */
   protected readonly store = inject(CurrentTeamStore);
 
   /** Gender neutral placeholder image for members without pictures */

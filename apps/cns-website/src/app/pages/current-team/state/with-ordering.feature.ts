@@ -65,7 +65,9 @@ export type OrderingProps = {
  * Internal state for ordering
  */
 interface OrderingState {
+  /** Selected sort order */
   sortBy: SortBy;
+  /** Selected grouping option */
   groupBy: GroupBy;
 }
 
