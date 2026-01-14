@@ -1,5 +1,5 @@
 import { Signal } from '@angular/core';
-import { AccessorContext } from '@deck.gl/core/typed';
+import { AccessorContext, Position } from '@deck.gl/core/typed';
 import { NextObserver } from 'rxjs';
 import {
   AnyDataEntry,
@@ -13,7 +13,7 @@ import {
   loadViewKeyMapping,
 } from './data-view';
 import { NodeFilterView } from './filters';
-import { batch, cachedAccessor } from './utils';
+import { batch, cachedAccessor, Dimensions, inplaceMinMax } from './utils';
 
 /** Node view input */
 export type NodesInput = DataViewInput<NodesView>;
@@ -73,25 +73,69 @@ export class NodesView extends BaseNodesView {
   };
 
   /**
-   * Get the dimensions (sometimes called 'extent') of all nodes
-   * across the X, Y, and Z axes
+   * Get the dimensions of all nodes **for each** of the X, Y, and Z axes
    *
-   * @returns An array of [minimum, maximum] values
+   * @returns An array of [minimum, maximum] pairs for each axis
    */
-  readonly getDimensions = cachedAccessor(this, (): [number, number] => {
-    let min = Number.MAX_VALUE;
-    let max = -Number.MAX_VALUE;
+  readonly getDimensions3D = cachedAccessor(this, (): [Dimensions, Dimensions, Dimensions] => {
+    const xDims: Dimensions = [Number.MAX_VALUE, -Number.MAX_VALUE];
+    const yDims: Dimensions = [Number.MAX_VALUE, -Number.MAX_VALUE];
+    const zDims: Dimensions = [Number.MAX_VALUE, -Number.MAX_VALUE];
     for (const obj of this) {
-      const x = this.getXFor(obj);
-      const y = this.getYFor(obj);
-      const z = this.getZFor(obj) ?? 0;
-      min = Math.min(min, x, y, z);
-      max = Math.max(max, x, y, z);
+      inplaceMinMax(xDims, this.getXFor(obj));
+      inplaceMinMax(yDims, this.getYFor(obj));
+      inplaceMinMax(zDims, this.getZFor(obj) ?? 0);
     }
 
-    return [min, max];
+    return [xDims, yDims, zDims];
   });
 
+  /**
+   * Get the dimensions of all nodes **across** the X, Y, and Z axes
+   *
+   * @returns A [minimum, maximum] pair
+   */
+  readonly getDimensions = cachedAccessor(this, (): Dimensions => {
+    const [[minX, maxX], [minY, maxY], [minZ, maxZ]] = this.getDimensions3D();
+    return [Math.min(minX, minY, minZ), Math.max(maxX, maxY, maxZ)];
+  });
+
+  /**
+   * Get the scale **for each** of the X, Y, and Z axes
+   *
+   * @returns A tuple of [X-scale, Y-scale, Z-scale]
+   */
+  readonly getScale3D = cachedAccessor(this, (): [number, number, number] => {
+    const [[minX, maxX], [minY, maxY], [minZ, maxZ]] = this.getDimensions3D();
+    return [maxX - minX, maxY - minY, maxZ - minZ];
+  });
+
+  /**
+   * Get the scale of all nodes **across** the X, Y, and Z axes.
+   * This can also be viewed as the radius of the bounding sphere containing all nodes.
+   *
+   * @returns The scale/radius
+   */
+  readonly getScale = cachedAccessor(this, (): number => {
+    const [min, max] = this.getDimensions();
+    return max - min;
+  });
+
+  /**
+   * Get center of all nodes. This is the same as the center of the bounding box/sphere.
+   *
+   * @returns The center point
+   */
+  readonly getCenter = cachedAccessor(this, (): Position => {
+    const [[minX, maxX], [minY, maxY], [minZ, maxZ]] = this.getDimensions3D();
+    return [(minX + maxX) / 2, (minY + maxY) / 2, (minZ + maxZ) / 2];
+  });
+
+  /**
+   * Get node counts for each cell type.
+   *
+   * @returns A mapping from cell type to the number of nodes
+   */
   readonly getCounts = cachedAccessor(this, () => {
     const counts: Record<string, number> = {};
     for (const obj of this) {
@@ -103,10 +147,23 @@ export class NodesView extends BaseNodesView {
     return new Map(Object.entries(counts));
   });
 
+  /**
+   * Create a filtering function from a filter view using node accessors from this view.
+   *
+   * @param filterView Filter view
+   * @returns A function for testing whether a node is included in the filter
+   */
   readonly createFilter = (filterView: NodeFilterView): DataViewEntryFilter => {
     return (obj, index) => filterView.includes(this.getCellTypeFor(obj), index);
   };
 
+  /**
+   * Create a new index for nodes included in a filter.
+   * Only indices for nodes included by the filter should be used.
+   *
+   * @param filterView Filter view
+   * @returns A new index
+   */
   readonly createReindexer = async (filterView: NodeFilterView) => {
     const BATCH_SIZE = 20000;
     const result: number[] = [];

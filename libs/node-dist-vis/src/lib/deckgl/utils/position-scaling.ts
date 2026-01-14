@@ -1,7 +1,35 @@
 import { AccessorFunction, Position } from '@deck.gl/core/typed';
+import { Dimensions } from '@hra-ui/node-dist-vis/models';
 
 /**
- * Create a position accessor that scales position to the range [-1, 1]
+ * Applies scaling to a position value
+ *
+ * @param dest Destination position array (must have length >= 3)
+ * @param position Unscaled position
+ * @param offset Position offset
+ * @param scale Scale length
+ * @returns The `dest` array cast to a `Position` containing the scaled position
+ */
+function applyScaling(dest: number[], position: Position, offset: number, scale: number): Position {
+  dest[0] = (position[0] - offset) / scale;
+  dest[1] = 1 - (position[1] - offset) / scale;
+  dest[2] = ((position[2] ?? 0) - offset) / scale;
+  return dest as Position;
+}
+
+/**
+ * Scales a position to the range [0, 1]
+ *
+ * @param position Unscaled position
+ * @param dimensions Dimensions of visualization
+ * @returns Scaled position
+ */
+export function scalePosition(position: Position, dimensions: Dimensions): Position {
+  return applyScaling([0, 0, 0], position, dimensions[0], dimensions[1] - dimensions[0]);
+}
+
+/**
+ * Create a position accessor that scales position to the range [0, 1]
  *
  * @param accessor Unscaled position accessor
  * @param dimensions Dimensions of visualization
@@ -9,18 +37,11 @@ import { AccessorFunction, Position } from '@deck.gl/core/typed';
  */
 export function createScaledPositionAccessor<T>(
   accessor: AccessorFunction<T, Position>,
-  dimensions: [number, number],
+  dimensions: Dimensions,
 ): AccessorFunction<T, Position> {
-  const [min, max] = dimensions;
-  const diff = max - min;
-  const scale = (value: number) => (value - min) / diff;
-
   return (obj, info) => {
     const { target } = info;
     const position = accessor(obj, info);
-    target[0] = scale(position[0]);
-    target[1] = 1 - scale(position[1]);
-    target[2] = scale(position[2] ?? 0);
-    return target as Position;
+    return applyScaling(target, position, dimensions[0], dimensions[1] - dimensions[0]);
   };
 }
