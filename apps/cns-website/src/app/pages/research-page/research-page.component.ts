@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  model,
+  signal,
+  viewChild,
+  WritableSignal,
+} from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,7 +33,7 @@ import { ResearchItem, ResearchPageData } from '../../schemas/research/research.
 
 type ViewType = 'gallery' | 'list' | 'table';
 
-const FILTER_TYPES = ['category', 'people', 'year', 'eventType', 'fundingType', 'publicationType', 'project'];
+const PARAMS = ['category', 'people', 'year', 'event-type', 'funding-type', 'publication-type', 'project'];
 
 @Component({
   selector: 'cns-research-page',
@@ -59,9 +70,9 @@ export class ResearchPageComponent {
 
   readonly data = input.required<ResearchPageData>();
 
-  readonly people = input<SearchListOption[]>([]);
+  readonly people = model<SearchListOption[]>([]);
 
-  readonly publicationTypes = input<SearchListOption[]>([]);
+  readonly publicationTypes = model<SearchListOption[]>([]);
 
   readonly tags = input<{ slug: string; name: string; description: string }[]>([]);
 
@@ -141,21 +152,44 @@ export class ResearchPageComponent {
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
   constructor() {
-    effect(() => {
-      this.setYearOptions();
-      this.setCurrentFiltersFromParams();
-    });
-
-    effect(() => {
+    toObservable(this.data).subscribe(() => {
       this.headerEvents.menuState.set(this.isWideScreen());
+
+      this.setCurrentFiltersFromParams();
+      this.setYearOptions();
+
+      this.updateFilterCounts(this.categoryOptions, 'category');
+      this.updateFilterCounts(this.publicationTypes, 'type');
+      this.updateFilterCounts(this.people, 'people');
+      this.updateFilterCounts(this.fundingOptions, 'fundingType');
+      this.updateFilterCounts(this.eventOptions, 'eventType');
+      this.updateFilterCounts(this.projectOptions, 'project');
+      this.updateFilterCounts(this.yearOptions, 'year');
     });
+  }
+
+  private updateFilterCounts(optionsSignal: WritableSignal<SearchListOption[]>, type: string) {
+    let value: SearchListOption[] = [];
+    value = optionsSignal().map((option) => ({
+      ...option,
+      count: this.data().filter((item) => {
+        if (Array.isArray(item[type as keyof ResearchItem])) {
+          return (item[type as keyof ResearchItem] as string[]).includes(option.id);
+        }
+        if (type === 'year') {
+          return item.dateStart.split('-')[0] === option.id;
+        }
+        return item[type as keyof ResearchItem] === option.id;
+      }).length,
+    }));
+    optionsSignal.set(value);
   }
 
   private setCurrentFiltersFromParams() {
     const queryParams = this.route.snapshot.queryParams;
     this.search.set(queryParams['search']);
     const filterIds: Record<string, string[]> = {};
-    FILTER_TYPES.forEach((type) => {
+    PARAMS.forEach((type) => {
       if (queryParams[type]) {
         filterIds[type] = Array.isArray(queryParams[type]) ? queryParams[type] : [queryParams[type]];
       }
@@ -165,9 +199,9 @@ export class ResearchPageComponent {
       category: this.categoryOptions().filter((cat) => filterIds['category']?.includes(cat.id)),
       people: this.people().filter((person) => filterIds['people']?.includes(person.id)),
       year: this.yearOptions().filter((yr) => filterIds['year']?.includes(yr.id)),
-      publicationType: this.publicationTypes().filter((type) => filterIds['publicationType']?.includes(type.id)),
-      eventType: this.eventOptions().filter((type) => filterIds['eventType']?.includes(type.id)),
-      fundingType: this.fundingOptions().filter((type) => filterIds['fundingType']?.includes(type.id)),
+      publicationType: this.publicationTypes().filter((type) => filterIds['publication-type']?.includes(type.id)),
+      eventType: this.eventOptions().filter((type) => filterIds['event-type']?.includes(type.id)),
+      fundingType: this.fundingOptions().filter((type) => filterIds['funding-type']?.includes(type.id)),
       project: this.projectOptions().filter((type) => filterIds['project']?.includes(type.id)),
     });
   }
@@ -189,14 +223,13 @@ export class ResearchPageComponent {
       );
     }
 
-    FILTER_TYPES.forEach((type) => {
+    PARAMS.forEach((type) => {
       const currentFilterValue = currentFilters[type];
       if (currentFilterValue && currentFilterValue.length > 0) {
         filteredData = filteredData.filter((item) => {
           if (type === 'year') {
             return currentFilterValue.some((option) => item.dateStart.includes(option.id));
           }
-
           if (Array.isArray(item[type as keyof ResearchItem])) {
             return currentFilterValue.some((option) => item[type as keyof ResearchItem]?.includes(option.id));
           }
