@@ -1,24 +1,32 @@
 @use 'vars' as vars;
 @use 'utils';
+@use '@angular/material' as mat;
 
 :host {
-  display: flex;
-  flex-direction: column;
+  display: block;
   min-height: 100vh;
   width: 100%;
 
-  @media (min-width: 68.75rem) {
-    flex-direction: row;
+  mat-sidenav-container {
+    height: 100vh;
+    --mat-sidenav-content-background-color: var(--mat-sys-on-primary);
   }
 
   // Filter menu sidebar
-  .customize-sidebar {
+  mat-sidenav.customize-sidebar {
     display: none;
-    flex-shrink: 0;
     width: 20rem;
-    background-color: #fcfcfc;
+    background-color: var(--mat-sys-secondary-container);
     border-right: 0.0625rem solid vars.$outline-variant;
-    position: relative;
+
+    --mat-sidenav-container-shape: 0;
+    --mat-sidenav-container-elevation-shadow: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    ::ng-deep .mat-drawer-inner-container {
+      overflow: hidden;
+    }
 
     // Show sidebar on desktop
     @media (min-width: 68.75rem) {
@@ -30,18 +38,17 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     .filter-control {
-      margin-bottom: 1rem;
-
       mat-button-toggle-group {
-        width: 100%;
-        display: flex;
-
-        mat-button-toggle {
-          flex: 1;
-        }
+        @include mat.button-toggle-overrides(
+          (
+            shape: 0.25rem,
+          )
+        );
       }
 
       mat-form-field {
@@ -49,7 +56,7 @@
       }
 
       mat-label {
-        font: var(--mat-sys-label-medium);
+        @include utils.use-font(label, medium);
         --mat-form-field-filled-label-text-color: var(--mat-sys-primary);
       }
 
@@ -61,30 +68,24 @@
     }
   }
 
-  .main-content {
+  mat-sidenav-content.main-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .people-section {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    max-width: 100%;
-    overflow-x: hidden;
-
-    @media (min-width: 40rem) {
-      padding: 1.5rem;
-    }
-
-    @media (min-width: 68.75rem) {
-      padding: 2rem;
-    }
   }
 
   .search-container {
-    margin-bottom: 1.5rem;
+    max-width: 81.25rem;
+    margin: 0 auto;
     width: 100%;
-
-    @media (min-width: 40rem) {
-      margin-bottom: 2rem;
-    }
+    padding: 2rem 2.5rem;
 
     ::ng-deep hra-search-filter {
       display: flex !important;
@@ -111,44 +112,53 @@
     }
   }
 
-  ::ng-deep hra-profile-card {
-    .learn-more-link {
-      @include utils.use-font(label, medium);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      padding: 0.5rem 0;
-      color: vars.$tertiary;
-      text-decoration: none;
+  .learn-more-link {
+    @include utils.use-font(label, medium);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+    color: vars.$tertiary;
+    text-decoration: none;
 
-      .learn-more-text {
-        text-decoration: underline solid currentColor 0.0625rem;
-        text-underline-offset: 0.125rem;
-      }
+    .learn-more-text {
+      text-decoration: underline solid currentColor 0.0625rem;
+      text-underline-offset: 0.125rem;
     }
   }
 
   hra-no-results-indicator {
-    margin-top: 1.25rem;
-  }
-
-  .profile-grid {
-    display: grid;
-    padding: 0;
-    gap: 1.5rem;
+    flex: 1;
     max-width: 81.25rem;
     margin: 0 auto;
-    justify-items: center;
+    width: 100%;
+    padding: 2.5rem;
+  }
 
-    // Mobile (below 40rem): 1 column
+  .group-section {
+    max-width: 81.25rem;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    width: 100%;
+
+    h3[hra-section-link] {
+      padding-top: 2.5rem;
+      margin-bottom: 0;
+    }
+  }
+
+  ::ng-deep hra-gallery-grid {
+    padding: 2.5rem 0;
+    // Mobile (below 639px): 1 column
     grid-template-columns: 1fr;
+    gap: 1.5rem;
 
-    // Tablet (40rem - 68.75rem): 2 columns
-    @media (min-width: 40rem) {
+    // Tablet (639px - 1099px): 2 columns
+    @media (min-width: 39.9375rem) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    // Desktop (68.75rem and above): Exactly 4 columns
+    // Desktop (1100px and above): 4 columns with larger gaps
     @media (min-width: 68.75rem) {
       grid-template-columns: repeat(4, 1fr);
       column-gap: 2.5rem;
@@ -157,13 +167,10 @@
   }
 
   ::ng-deep hra-profile-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
     height: 100%;
     width: 100%;
     max-width: 17rem;
+    align-items: center;
 
     --profile-card-border-color: #8dc63f;
     --profile-card-description-color: #0f0f0f;
