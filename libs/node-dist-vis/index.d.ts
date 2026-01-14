@@ -6,13 +6,34 @@ import * as _angular_core from '@angular/core';
 import { OutputEmitterRef, Signal } from '@angular/core';
 import { ViewMode, NodesInput, NodeKeysInput, EdgesInput, EdgeKeysInput, AnyData, ColorMapView, KeyMapping, ColorMapEntry, NodeFilterInput } from '@hra-ui/node-dist-vis/models';
 
+/** Options for the `zoomToFit` method */
+interface ZoomToFitOptions {
+    /** Margins around the visualization */
+    margin?: {
+        x: number;
+        y: number;
+    };
+    /** Whether to reset camera rotation when zooming */
+    resetRotation?: boolean;
+    /** Whether to reset camera target when zooming */
+    resetTarget?: boolean;
+    /** Duration of the transition in milliseconds (default: 0) */
+    transitionDuration?: number;
+}
+/** Node interaction event data */
 interface NodeEvent {
+    /** Index of the node in the data */
     index: number;
+    /** Screen x-position */
     clientX: number;
+    /** Screen y-position */
     clientY: number;
+    /** The materialized node object */
     object: object;
 }
+/** Default node target */
 declare const DEFAULT_NODE_TARGET_SELECTOR = "Endothelial";
+/** Default max edge distance */
 declare const DEFAULT_MAX_EDGE_DISTANCE = 1000;
 /** Node distance visualization */
 declare class NodeDistVisComponent {
@@ -89,6 +110,7 @@ declare class NodeDistVisComponent {
     private viewStateVersion;
     /** Current deckgl view state */
     private readonly viewState;
+    /** Node target selector with fallbacks applied */
     private readonly nodeTargetSelectorWithDefault;
     /** View of the node data */
     private readonly nodesView;
@@ -112,13 +134,30 @@ declare class NodeDistVisComponent {
     private readonly controller;
     /** Deckgl props */
     private readonly props;
+    /** Canvas resize observer */
+    private readonly resizeObserver;
+    /** Whether to call `zoomToFit` on resize events */
+    private readonly zoomToFitOnResize;
     /** Currently hovered node entry */
     private activeHover;
     /** Initialize the visualization */
     constructor();
+    /**
+     * Zooms the visualization to fit all nodes on screen.
+     * Has no effect until the nodes have been loaded.
+     */
+    zoomToFit(options?: ZoomToFitOptions): void;
+    /**
+     * Enable or disable automatic `zoomToFit` calls on resize events.
+     *
+     * @param enable Whether to enable `zoomToFit`
+     */
+    setZoomToFitOnResize(enable: boolean): void;
     /** Resets the view to the original location and rotation */
     resetView(): void;
+    /** Resets the rotation of the orbit view */
     resetOrbit(): void;
+    /** Clears any active selection */
     clearSelection(): void;
     /**
      * Creates a blob representing the image in the canvas.
@@ -147,8 +186,35 @@ declare class NodeDistVisComponent {
      * @param info Deckgl picking information
      */
     private onHover;
+    /**
+     * Handle node selection in deckgl
+     *
+     * @param infos Deckgl picking information
+     */
     private onSelect;
+    /**
+     * Handle visualization interactions in deckgl
+     *
+     * @param state Current interactions
+     */
+    private onInteraction;
+    /**
+     * Handle canvas resizing
+     */
+    private onResize;
+    /**
+     * Convert deckgl picking information to a node event
+     *
+     * @param info Deckgl picking information
+     * @returns Node event data
+     */
     private pickingInfoToNodeEvent;
+    /**
+     * Listen to view data changes and emit the data when available
+     *
+     * @param view Data view object
+     * @param outputRef Output emitter
+     */
     private bindDataOutput;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NodeDistVisComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<NodeDistVisComponent, "hra-node-dist-vis", never, { "mode": { "alias": "mode"; "required": false; "isSignal": true; }; "nodes": { "alias": "nodes"; "required": false; "isSignal": true; }; "nodeKeys": { "alias": "nodeKeys"; "required": false; "isSignal": true; }; "nodeTargetSelector": { "alias": "nodeTargetSelector"; "required": false; "isSignal": true; }; "nodeTargetKey": { "alias": "nodeTargetKey"; "required": false; "isSignal": true; }; "nodeTargetValue": { "alias": "nodeTargetValue"; "required": false; "isSignal": true; }; "edges": { "alias": "edges"; "required": false; "isSignal": true; }; "edgeKeys": { "alias": "edgeKeys"; "required": false; "isSignal": true; }; "edgesDisabled": { "alias": "edgesDisabled"; "required": false; "isSignal": true; }; "maxEdgeDistance": { "alias": "maxEdgeDistance"; "required": false; "isSignal": true; }; "colorMap": { "alias": "colorMap"; "required": false; "isSignal": true; }; "colorMapKeys": { "alias": "colorMapKeys"; "required": false; "isSignal": true; }; "colorMapKey": { "alias": "colorMapKey"; "required": false; "isSignal": true; }; "colorMapValue": { "alias": "colorMapValue"; "required": false; "isSignal": true; }; "nodeFilter": { "alias": "nodeFilter"; "required": false; "isSignal": true; }; "selection": { "alias": "selection"; "required": false; "isSignal": true; }; }, { "nodesChange": "nodes"; "edgesChange": "edges"; "colorMapChange": "colorMap"; "nodeClick": "nodeClick"; "nodeHover": "nodeHover"; "nodeSelectionChange": "nodeSelectionChange"; }, never, never, true, never>;
@@ -160,4 +226,4 @@ type NodeDistVisElement = InstanceType<Awaited<typeof NodeDistVisElement>>;
 declare const NodeDistVisElement: Promise<_angular_elements.NgElementConstructor<InputProps<NodeDistVisComponent> & _hra_ui_webcomponents.NgElementExtensions<NodeDistVisComponent>>>;
 
 export { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeDistVisComponent, NodeDistVisElement };
-export type { NodeDistVisElementProps, NodeEvent };
+export type { NodeDistVisElementProps, NodeEvent, ZoomToFitOptions };

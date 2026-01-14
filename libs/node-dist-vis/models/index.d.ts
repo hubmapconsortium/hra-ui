@@ -1,11 +1,13 @@
 import * as _hra_ui_node_dist_vis_models from '@hra-ui/node-dist-vis/models';
 import { Signal, Type } from '@angular/core';
-import { Color, AccessorContext } from '@deck.gl/core/typed';
+import { Color, AccessorContext, Position } from '@deck.gl/core/typed';
 import { NextObserver, Observable } from 'rxjs';
 import { FileLoader } from '@hra-ui/common/fs';
 
 /** Accepted data input types */
 type DataInput<T> = T | File | URL | string | null | undefined;
+/** A tuple of [min, max] */
+type Dimensions = [number, number];
 /**
  * Loads data from either an url, file, json encoded string, or passed directly.
  * The resulting signal value is undefined until data has has been sucessfully loaded.
@@ -374,14 +376,56 @@ declare class NodesView extends BaseNodesView {
      */
     readonly getPositionFor: (obj: AnyDataEntry, info?: AccessorContext<AnyDataEntry>) => [number, number, number];
     /**
-     * Get the dimensions (sometimes called 'extent') of all nodes
-     * across the X, Y, and Z axes
+     * Get the dimensions of all nodes **for each** of the X, Y, and Z axes
      *
-     * @returns An array of [minimum, maximum] values
+     * @returns An array of [minimum, maximum] pairs for each axis
      */
-    readonly getDimensions: () => [number, number];
+    readonly getDimensions3D: () => [Dimensions, Dimensions, Dimensions];
+    /**
+     * Get the dimensions of all nodes **across** the X, Y, and Z axes
+     *
+     * @returns A [minimum, maximum] pair
+     */
+    readonly getDimensions: () => Dimensions;
+    /**
+     * Get the scale **for each** of the X, Y, and Z axes
+     *
+     * @returns A tuple of [X-scale, Y-scale, Z-scale]
+     */
+    readonly getScale3D: () => [number, number, number];
+    /**
+     * Get the scale of all nodes **across** the X, Y, and Z axes.
+     * This can also be viewed as the radius of the bounding sphere containing all nodes.
+     *
+     * @returns The scale/radius
+     */
+    readonly getScale: () => number;
+    /**
+     * Get center of all nodes. This is the same as the center of the bounding box/sphere.
+     *
+     * @returns The center point
+     */
+    readonly getCenter: () => Position;
+    /**
+     * Get node counts for each cell type.
+     *
+     * @returns A mapping from cell type to the number of nodes
+     */
     readonly getCounts: () => Map<string, number>;
+    /**
+     * Create a filtering function from a filter view using node accessors from this view.
+     *
+     * @param filterView Filter view
+     * @returns A function for testing whether a node is included in the filter
+     */
     readonly createFilter: (filterView: NodeFilterView) => DataViewEntryFilter;
+    /**
+     * Create a new index for nodes included in a filter.
+     * Only indices for nodes included by the filter should be used.
+     *
+     * @param filterView Filter view
+     * @returns A new index
+     */
     readonly createReindexer: (filterView: NodeFilterView) => Promise<number[]>;
 }
 /** Empty nodes view */
@@ -505,4 +549,4 @@ declare function createEdgeGenerator(nodes: Signal<NodesView>, edges: Signal<Edg
 type ViewMode = 'explore' | 'inspect' | 'select';
 
 export { ColorMapView, EMPTY_COLOR_MAP_VIEW, EMPTY_EDGES_VIEW, EMPTY_NODES_VIEW, EdgesView, NodeFilterView, NodesView, OPTIONAL_KEYS$2 as OPTIONAL_COLOR_MAP_KEYS, OPTIONAL_KEYS as OPTIONAL_EDGE_KEYS, OPTIONAL_KEYS$1 as OPTIONAL_NODE_KEYS, REQUIRED_KEYS$2 as REQUIRED_COLOR_MAP_KEYS, REQUIRED_KEYS as REQUIRED_EDGE_KEYS, REQUIRED_KEYS$1 as REQUIRED_NODE_KEYS, createColorMapGenerator, createDataView, createDataViewClass, createEdgeGenerator, generateEdges, inferViewKeyMapping, inferViewKeyMappingImpl, loadColorMap, loadData, loadEdges, loadNodeFilter, loadNodes, loadViewData, loadViewKeyMapping, toCsv, validateViewKeyMapping, withDataViewDefaultGenerator };
-export type { AnyData, AnyDataEntry, AnyDataView, AnyKeyMapping, ColorMap, ColorMapEntry, ColorMapInput, ColorMapKeysInput, DataInput, DataView, DataViewAccessors, DataViewConstructor, DataViewEntryComputedValueFn, DataViewEntryFilter, DataViewEntryValueTransform, DataViewInput, DataViewSerializationOptions, EdgeEntry, EdgeKeysInput, EdgesInput, KeyMapping, KeyMappingInput, KeyMappingMixins, NodeEntry, NodeFilter, NodeFilterEntry, NodeFilterInput, NodeFilterPredFn, NodeKeysInput, NodesInput, ViewMode };
+export type { AnyData, AnyDataEntry, AnyDataView, AnyKeyMapping, ColorMap, ColorMapEntry, ColorMapInput, ColorMapKeysInput, DataInput, DataView, DataViewAccessors, DataViewConstructor, DataViewEntryComputedValueFn, DataViewEntryFilter, DataViewEntryValueTransform, DataViewInput, DataViewSerializationOptions, Dimensions, EdgeEntry, EdgeKeysInput, EdgesInput, KeyMapping, KeyMappingInput, KeyMappingMixins, NodeEntry, NodeFilter, NodeFilterEntry, NodeFilterInput, NodeFilterPredFn, NodeKeysInput, NodesInput, ViewMode };
