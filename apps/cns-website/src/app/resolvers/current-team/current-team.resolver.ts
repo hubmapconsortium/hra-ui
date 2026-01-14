@@ -12,25 +12,8 @@ const CNS_PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexe
  *
  * @returns A resolver function that fetches and validates team members data
  */
-export const currentTeamResolver: ResolveFn<PeopleProfileData[]> = () => {
+export const currentTeamResolver: ResolveFn<PeopleProfileData> = () => {
   const http = inject(HttpClient);
 
-  return http.get<PeopleProfileData[]>(CNS_PEOPLE_INDEX_URL).pipe(
-    map((data) => {
-      // Parse and validate the data using the schema with safeParse
-      const validatedData: PeopleProfileData[] = [];
-
-      data.forEach((person) => {
-        const result = PeopleProfileDataSchema.safeParse(person);
-        if (result.success) {
-          validatedData.push(result.data);
-        } else {
-          // Still add the person even if validation fails
-          validatedData.push(person as PeopleProfileData);
-        }
-      });
-
-      return validatedData;
-    }),
-  );
+  return http.get<PeopleProfileData>(CNS_PEOPLE_INDEX_URL).pipe(map((data) => PeopleProfileDataSchema.parse(data)));
 };
