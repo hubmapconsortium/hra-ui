@@ -7,6 +7,9 @@ import { catchError, filter, finalize, map, NextObserver, of } from 'rxjs';
 /** Accepted data input types */
 export type DataInput<T> = T | File | URL | string | null | undefined;
 
+/** A tuple of [min, max] */
+export type Dimensions = [number, number];
+
 /**
  * Tests whether a value is a plain object
  *
@@ -28,6 +31,20 @@ export function isColor(obj: unknown): obj is Color {
     (Array.isArray(obj) || obj instanceof Uint8Array || obj instanceof Uint8ClampedArray) &&
     (obj.length === 3 || obj.length === 4)
   );
+}
+
+/**
+ * Checks if a value is outside the current range and if so updates the range array inplace.
+ *
+ * @param dest Range to update inplace
+ * @param value New value
+ */
+export function inplaceMinMax(dest: Dimensions, value: number): void {
+  if (value < dest[0]) {
+    dest[0] = value;
+  } else if (value > dest[1]) {
+    dest[1] = value;
+  }
 }
 
 /**
