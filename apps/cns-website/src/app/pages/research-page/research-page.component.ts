@@ -199,7 +199,7 @@ export class ResearchPageComponent {
       category: this.categoryOptions().filter((cat) => filterIds['category']?.includes(cat.id)),
       people: this.people().filter((person) => filterIds['people']?.includes(person.id)),
       year: this.yearOptions().filter((yr) => filterIds['year']?.includes(yr.id)),
-      publicationType: this.publicationTypes().filter((type) => filterIds['publication-type']?.includes(type.id)),
+      type: this.publicationTypes().filter((type) => filterIds['publication-type']?.includes(type.id)),
       eventType: this.eventOptions().filter((type) => filterIds['event-type']?.includes(type.id)),
       fundingType: this.fundingOptions().filter((type) => filterIds['funding-type']?.includes(type.id)),
       project: this.projectOptions().filter((type) => filterIds['project']?.includes(type.id)),
@@ -224,17 +224,25 @@ export class ResearchPageComponent {
     }
 
     PARAMS.forEach((type) => {
-      const currentFilterValue = currentFilters[type];
+      const paramToResearchItemKey: Record<string, string> = {
+        category: 'category',
+        people: 'people',
+        year: 'dateStart',
+        'event-type': 'eventType',
+        'funding-type': 'fundingType',
+        'publication-type': 'type',
+        project: 'project',
+      };
+
+      const itemKey = paramToResearchItemKey[type] as keyof ResearchItem;
+      const currentFilterValue = type === 'year' ? currentFilters['year'] : currentFilters[itemKey];
+
       if (currentFilterValue && currentFilterValue.length > 0) {
         filteredData = filteredData.filter((item) => {
-          if (type === 'year') {
-            return currentFilterValue.some((option) => item.dateStart.includes(option.id));
+          if (type === 'year' || Array.isArray(item[itemKey])) {
+            return currentFilterValue.some((option) => item[itemKey]?.includes(option.id));
           }
-          if (Array.isArray(item[type as keyof ResearchItem])) {
-            return currentFilterValue.some((option) => item[type as keyof ResearchItem]?.includes(option.id));
-          }
-
-          return currentFilterValue.some((option) => option.id === item[type as keyof ResearchItem]);
+          return currentFilterValue.some((option) => option.id === item[itemKey]);
         });
       }
     });
@@ -264,7 +272,7 @@ export class ResearchPageComponent {
   }
 
   private currentFiltersToFilters(): FilterOptionCategory<SearchListOption>[] {
-    const { category, eventType, fundingType, publicationType, people, project, year } = this.currentFilters();
+    const { category, eventType, fundingType, type, people, project, year } = this.currentFilters();
     return [
       {
         id: 'category',
@@ -285,10 +293,10 @@ export class ResearchPageComponent {
         selected: fundingType,
       },
       {
-        id: 'publicationType',
+        id: 'type',
         label: 'Publication type',
         options: this.publicationTypes(),
-        selected: publicationType,
+        selected: type,
       },
       {
         id: 'people',
@@ -328,7 +336,7 @@ export class ResearchPageComponent {
         category: this.currentFilters()['category']?.map((cat) => cat.id),
         'event-type': this.currentFilters()['eventType']?.map((event) => event.id),
         'funding-type': this.currentFilters()['fundingType']?.map((funding) => funding.id),
-        'publication-type': this.currentFilters()['publicationType']?.map((pubType) => pubType.id),
+        'publication-type': this.currentFilters()['type']?.map((pubType) => pubType.id),
         people: this.currentFilters()['people']?.map((person) => person.id),
         project: this.currentFilters()['project']?.map((proj) => proj.id),
         year: this.currentFilters()['year']?.map((year) => year.id),
