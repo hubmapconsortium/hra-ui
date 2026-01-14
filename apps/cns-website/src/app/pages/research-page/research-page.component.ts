@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   input,
   model,
@@ -93,7 +94,7 @@ export class ResearchPageComponent {
     { id: 'miscellaneous', label: 'Miscellaneous' },
     { id: 'news', label: 'News' },
     { id: 'presentations', label: 'Presentations' },
-    { id: 'publication', label: 'Publications' },
+    { id: 'publications', label: 'Publications' },
     { id: 'software-products', label: 'Software Products' },
     { id: 'teaching', label: 'Teaching' },
     { id: 'visualizations', label: 'Visualizations' },
@@ -152,12 +153,10 @@ export class ResearchPageComponent {
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
   constructor() {
+    const queryParams$ = inject(ActivatedRoute).queryParams;
+    queryParams$.subscribe(() => this.setCurrentFiltersFromParams());
+
     toObservable(this.data).subscribe(() => {
-      this.headerEvents.menuState.set(this.isWideScreen());
-
-      this.setCurrentFiltersFromParams();
-      this.setYearOptions();
-
       this.updateFilterCounts(this.categoryOptions, 'category');
       this.updateFilterCounts(this.publicationTypes, 'type');
       this.updateFilterCounts(this.people, 'people');
@@ -165,6 +164,12 @@ export class ResearchPageComponent {
       this.updateFilterCounts(this.eventOptions, 'eventType');
       this.updateFilterCounts(this.projectOptions, 'project');
       this.updateFilterCounts(this.yearOptions, 'year');
+    });
+
+    effect(() => {
+      this.setYearOptions();
+      this.setCurrentFiltersFromParams();
+      this.headerEvents.menuState.set(this.isWideScreen());
     });
   }
 

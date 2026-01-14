@@ -18,9 +18,13 @@ export function createResearchResolver(): ResolveFn<ResearchPageData> {
       publications: http.get(PUBLICATIONS_INDEX_URL, { responseType: 'json' }),
     }).pipe(
       map(({ news, publications }) => {
-        return [...(news as ResearchPageData), ...(publications as ResearchPageData)].sort((a, b) =>
-          b.dateStart.localeCompare(a.dateStart),
-        );
+        return [
+          ...(news as ResearchPageData),
+          ...(publications as ResearchPageData).map((item) => ({
+            ...item,
+            category: item.category === 'publication' ? 'publications' : item.type,
+          })),
+        ].sort((a, b) => b.dateStart.localeCompare(a.dateStart));
       }),
     );
   };
@@ -47,7 +51,7 @@ export function createPublicationTypesResolver(): ResolveFn<SearchListOption[]> 
     return http.get<{ label: string; value: string }[]>(PUBLICATION_TYPES_INDEX_URL, { responseType: 'json' }).pipe(
       map((types) => {
         return types.map(({ label, value }) => ({
-          id: value,
+          id: value === 'publication' ? 'publications' : value,
           label,
         }));
       }),
