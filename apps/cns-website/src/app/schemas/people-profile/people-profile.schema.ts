@@ -2,15 +2,18 @@ import * as z from 'zod';
 
 /** Base role schema with common fields */
 const BaseRoleSchema = z.object({
-  dateStart: z.string(),
-  dateEnd: z.string().nullable(),
+  dateStart: z.iso.date().transform((date) => new Date(date)),
+  dateEnd: z.iso
+    .date()
+    .transform((date) => new Date(date))
+    .nullable(),
 });
 
 /** Member role schema */
 const MemberRoleSchema = BaseRoleSchema.extend({
   type: z.literal('member'),
   title: z.string(),
-  displayOrder: z.union([z.number(), z.null()]).optional(),
+  displayOrder: z.number().nullable().optional(),
   office: z.string().optional(),
   phone: z.string().optional(),
   fax: z.string().optional(),
@@ -34,21 +37,33 @@ const CollaboratorRoleSchema = BaseRoleSchema.extend({
   project: z.string(),
 }).meta({ id: 'PeopleProfileCollaboratorRole' });
 
+export type Role = z.infer<typeof RoleSchema>;
+export type MemberRole = z.infer<typeof MemberRoleSchema>;
+export type StudentRole = z.infer<typeof StudentRoleSchema>;
+export type CollaboratorRole = z.infer<typeof CollaboratorRoleSchema>;
+export type RoleType = Role['type'];
+
 /** Discriminated union of all role types */
 const RoleSchema = z
   .discriminatedUnion('type', [MemberRoleSchema, StudentRoleSchema, CollaboratorRoleSchema])
   .meta({ id: 'PeopleProfileRole' });
 
-/** People profile data schema */
-export const PeopleProfileDataSchema = z
+/** People profile item type */
+export type PeopleProfileItem = z.infer<typeof PeopleProfileItemSchema>;
+
+/** People profile item schema */
+export const PeopleProfileItemSchema = z
   .object({
+    slug: z.string(),
     name: z.string(),
     lastName: z.string(),
     image: z.string().optional(),
-    slug: z.string().optional(),
     roles: z.array(RoleSchema),
   })
-  .meta({ id: 'PeopleProfileData' });
+  .meta({ id: 'PeopleProfileItem' });
 
 /** People profile data type */
 export type PeopleProfileData = z.infer<typeof PeopleProfileDataSchema>;
+
+/** People profile data schema (array of items) */
+export const PeopleProfileDataSchema = z.array(PeopleProfileItemSchema);
