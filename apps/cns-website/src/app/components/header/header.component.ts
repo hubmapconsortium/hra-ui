@@ -67,7 +67,7 @@ export class HeaderComponent {
   /** Navigation options to display on the header */
   readonly menuOptions = input(MENUS);
   /** Whether to show the filter menu icon */
-  readonly enableFilterMenu = input<boolean>(true);
+  readonly enableFilterMenu = input(false);
 
   readonly headerEvents = inject(HeaderEventsService);
 

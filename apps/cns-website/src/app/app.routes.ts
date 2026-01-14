@@ -27,23 +27,6 @@ export const appRoutes: Route[] = [
       tags: createTagsResolver(),
     },
   },
-  {
-    path: 'people/:slug',
-    component: PeopleProfileComponent,
-    resolve: {
-      data: createPeopleProfileResolver(),
-    },
-  },
-  {
-    path: 'research',
-    component: ResearchPageComponent,
-    resolve: {
-      data: createResearchResolver(),
-      people: createPeopleResolver(),
-      publicationTypes: createPublicationTypesResolver(),
-      tags: createTagsResolver(),
-    },
-  },
 
   // Content pages
   // Please try to keep sorted in alphabetical order
@@ -69,10 +52,27 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'people/:slug',
+    component: PeopleProfileComponent,
+    resolve: {
+      data: createPeopleProfileResolver(),
+    },
+  },
+  {
     path: 'privacy-policy',
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'research',
+    component: ResearchPageComponent,
+    resolve: {
+      data: createResearchResolver(),
+      people: createPeopleResolver(),
+      publicationTypes: createPublicationTypesResolver(),
+      tags: createTagsResolver(),
     },
   },
   {
@@ -82,6 +82,8 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/visitor-info-page/data.yaml', ContentPageDataSchema),
     },
   },
+
+  // Error pages
   {
     path: '500',
     component: ServerErrorPageComponent,
