@@ -1,15 +1,12 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RedirectCommand, ResolveFn, Router } from '@angular/router';
+import { load } from 'js-yaml';
 import { catchError, map, of } from 'rxjs';
-import {
-  PeopleProfileData,
-  PeopleProfileItem,
-  PeopleProfileItemSchema,
-} from '../../schemas/people-profile/people-profile.schema';
+import { PeopleProfileItem, PeopleProfileItemSchema } from '../../schemas/people-profile/people-profile.schema';
 
-/** Base URL for CNS website people index */
-const CNS_PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
+/** Base URL for CNS website content */
+const CNS_CONTENT_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people';
 
 /**
  * Creates a redirect command for error handling that preserves navigation history
@@ -27,12 +24,12 @@ function createErrorRedirectCommand(router: Router, url: string): RedirectComman
 }
 
 /**
- * Creates a resolver that fetches people profile data from people index JSON
+ * Creates a resolver that fetches people profile data from external YAML source
  *
- * @param indexUrl URL of the people index JSON file
+ * @param baseUrl Base URL for person content
  * @returns A resolver function that fetches and validates person data
  */
-export function createPeopleProfileResolver(indexUrl: string = CNS_PEOPLE_INDEX_URL): ResolveFn<PeopleProfileItem> {
+export function createPeopleProfileResolver(baseUrl: string = CNS_CONTENT_BASE_URL): ResolveFn<PeopleProfileItem> {
   return (route: ActivatedRouteSnapshot) => {
     const http = inject(HttpClient);
     const router = inject(Router);
@@ -42,22 +39,20 @@ export function createPeopleProfileResolver(indexUrl: string = CNS_PEOPLE_INDEX_
       return createErrorRedirectCommand(router, '/404');
     }
 
-    return http.get<PeopleProfileData>(indexUrl).pipe(
-      map((people) => {
-        // Find the person with matching slug
-        const person = people.find((p) => p.slug === slug);
+    const url = `${baseUrl}/${slug}/data.yaml`;
 
-        if (!person) {
-          throw new Error('Person not found');
-        }
-
-        // Validate and return the person data
-        return PeopleProfileItemSchema.parse(person);
+    return http.get(url, { responseType: 'text' }).pipe(
+      map((data) => load(data, { filename: url }) as unknown),
+      map((data) => {
+        const parsed = PeopleProfileItemSchema.parse({ ...(data as object), slug });
+        return {
+          ...parsed,
+          image: parsed.image ? `${baseUrl}/${slug}/${parsed.image}` : parsed.image,
+        };
       }),
       catchError((error: unknown) => {
         const is404 = error instanceof HttpErrorResponse && error.status === 404;
-        const isPersonNotFound = error instanceof Error && error.message === 'Person not found';
-        return of(createErrorRedirectCommand(router, is404 || isPersonNotFound ? '/404' : '/500'));
+        return of(createErrorRedirectCommand(router, is404 ? '/404' : '/500'));
       }),
     );
   };
