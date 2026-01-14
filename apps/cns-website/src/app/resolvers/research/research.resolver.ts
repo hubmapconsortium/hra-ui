@@ -9,7 +9,6 @@ const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/inde
 const NEWS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-news.json';
 const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
 const PUBLICATION_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publication-types.json';
-const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-tags.json';
 
 export function createResearchResolver(): ResolveFn<ResearchPageData> {
   return () => {
@@ -53,12 +52,5 @@ export function createPublicationTypesResolver(): ResolveFn<SearchListOption[]> 
         }));
       }),
     );
-  };
-}
-
-export function createTagsResolver(): ResolveFn<{ slug: string; name: string; description: string }[]> {
-  return () => {
-    const http = inject(HttpClient);
-    return http.get<{ slug: string; name: string; description: string }[]>(TAGS_INDEX_URL, { responseType: 'json' });
   };
 }

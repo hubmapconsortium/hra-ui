@@ -7,13 +7,14 @@ import { ContentPageComponent } from './components/content-page/content-page.com
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
 import { ResearchPageComponent } from './pages/research-page/research-page.component';
+import { createFeaturedContentResolver } from './resolvers/featured-content/featured-content.resolver';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
 import {
   createPeopleResolver,
   createPublicationTypesResolver,
   createResearchResolver,
-  createTagsResolver,
 } from './resolvers/research/research.resolver';
+import { createTagsResolver } from './resolvers/tags/tags.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -21,6 +22,10 @@ export const appRoutes: Route[] = [
     path: '',
     pathMatch: 'full',
     component: LandingPageComponent,
+    resolve: {
+      featuredContent: createFeaturedContentResolver(),
+      tags: createTagsResolver(),
+    },
   },
   {
     path: 'people/:slug',
