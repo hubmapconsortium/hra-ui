@@ -33,9 +33,9 @@ export interface Role {
   /** Interests */
   interests?: string;
   /** Start date */
-  dateStart: string;
+  dateStart: Date;
   /** End date (null if current) */
-  dateEnd: string | null;
+  dateEnd: Date | null;
 }
 
 /** Contact information for a person */

@@ -38,8 +38,8 @@
     </div>
     @for (filter of filters(); track $index) {
       <hra-filter-container
-        enableDivider
         cdkOverlayOrigin
+        [enableDivider]="!$last"
         [action]="filter.label"
         [chips]="filter.selected ?? []"
         (chipsChange)="updateFilterSelection(filter, $event)"
