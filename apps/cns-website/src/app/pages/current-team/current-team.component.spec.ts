@@ -1,20 +1,30 @@
-import { render, screen, waitFor } from '@testing-library/angular';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
+import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { provideMarkdown } from 'ngx-markdown';
 import { CurrentTeamComponent } from './current-team.component';
 import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 
 describe('CurrentTeamComponent', () => {
-  const providers = [provideMarkdown()];
+  const providers = [provideMarkdown(), provideHttpClient(), provideHttpClientTesting()];
+  const imports = [MatIconTestingModule];
 
-  const mockData: PeopleProfileData[] = [
+  const mockData: PeopleProfileData = [
     {
       name: 'Katy Börner',
       lastName: 'Börner',
       image: '/assets/people/katy-borner.png',
       slug: 'katy-borner',
       roles: [
-        { type: 'member', title: 'Faculty, Center Director', dateStart: '2005-01-01', dateEnd: null, displayOrder: 1 },
+        {
+          type: 'member',
+          title: 'Faculty, Center Director',
+          dateStart: new Date('2005-01-01'),
+          dateEnd: null,
+          displayOrder: 1,
+        },
       ],
     },
     {
@@ -23,7 +33,13 @@ describe('CurrentTeamComponent', () => {
       image: '/assets/people/john-smith.png',
       slug: 'john-smith',
       roles: [
-        { type: 'member', title: 'Postdoctoral Fellow', dateStart: '2020-01-01', dateEnd: null, displayOrder: 2 },
+        {
+          type: 'member',
+          title: 'Postdoctoral Fellow',
+          dateStart: new Date('2020-01-01'),
+          dateEnd: null,
+          displayOrder: 2,
+        },
       ],
     },
     {
@@ -35,9 +51,9 @@ describe('CurrentTeamComponent', () => {
         {
           type: 'student',
           topic: 'Data Visualization',
-          degree: 'PhD',
+          degree: 'Ph.D.',
           department: 'Informatics',
-          dateStart: '2021-08-01',
+          dateStart: new Date('2021-08-01'),
           dateEnd: null,
         },
       ],
@@ -47,7 +63,7 @@ describe('CurrentTeamComponent', () => {
       lastName: 'Johnson',
       image: '/assets/people/bob-johnson.png',
       slug: 'bob-johnson',
-      roles: [{ type: 'collaborator', project: 'HuBMAP', dateStart: '2019-01-01', dateEnd: null }],
+      roles: [{ type: 'collaborator', project: 'HuBMAP', dateStart: new Date('2019-01-01'), dateEnd: null }],
     },
     {
       name: 'Former Member',
@@ -58,73 +74,67 @@ describe('CurrentTeamComponent', () => {
         {
           type: 'member',
           title: 'Research Assistant',
-          dateStart: '2010-01-01',
-          dateEnd: '2015-12-31',
+          dateStart: new Date('2010-01-01'),
+          dateEnd: new Date('2015-12-31'),
           displayOrder: 3,
         },
       ],
     },
   ];
 
-  it('should create', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
+  async function renderComponent(data: PeopleProfileData = mockData, type = 'current') {
+    return render(CurrentTeamComponent, {
       providers,
-      componentInputs: { data: mockData },
+      imports,
+      inputs: { data, type },
     });
+  }
 
+  it('should create', async () => {
+    const { fixture } = await renderComponent();
     expect(fixture.componentInstance).toBeTruthy();
   });
 
   it('should show current members by default', async () => {
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const profileCards = screen.getAllByText(/learn more/i);
-    expect(profileCards).toHaveLength(4);
+    const learnMoreLinks = screen.getAllByText(/learn more/i);
+    expect(learnMoreLinks).toHaveLength(4);
     expect(screen.getByText('Katy Börner')).toBeInTheDocument();
     expect(screen.getByText('John Smith')).toBeInTheDocument();
+    expect(screen.getByText('Jane Doe')).toBeInTheDocument();
+    expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
   });
 
   it('should show former members when selected', async () => {
     const user = userEvent.setup();
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const formerTeamButton = screen.getByRole('radio', { name: /former team/i });
-    await user.click(formerTeamButton);
+    const formerTeamToggle = screen.getByRole('radio', { name: /former team/i });
+    await user.click(formerTeamToggle);
 
-    const profileCards = screen.getAllByText(/learn more/i);
-    expect(profileCards).toHaveLength(1);
-    expect(screen.getByText('Former Member')).toBeInTheDocument();
+    expect(await screen.findByText('Former Member')).toBeInTheDocument();
+    const learnMoreLinks = screen.getAllByText(/learn more/i);
+    expect(learnMoreLinks).toHaveLength(1);
   });
 
   it('should filter by search text', async () => {
     const user = userEvent.setup();
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const searchInput = screen.getByLabelText(/search/i);
+    const searchInput = screen.getByRole('textbox', { name: /search/i });
     await user.type(searchInput, 'Katy');
 
-    const profileCards = screen.getAllByText(/learn more/i);
-    expect(profileCards).toHaveLength(1);
-    expect(screen.getByText('Katy Börner')).toBeInTheDocument();
+    expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
+    const learnMoreLinks = screen.getAllByText(/learn more/i);
+    expect(learnMoreLinks).toHaveLength(1);
   });
 
-  it('should show no results when search has no matches', async () => {
+  it('should show no results indicator when search has no matches', async () => {
     const user = userEvent.setup();
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const searchInput = screen.getByLabelText(/search/i);
+    const searchInput = screen.getByRole('textbox', { name: /search/i });
     await user.type(searchInput, 'XYZ123');
 
     expect(await screen.findByText(/no results/i)).toBeInTheDocument();
@@ -132,13 +142,11 @@ describe('CurrentTeamComponent', () => {
 
   it('should sort by last name ascending', async () => {
     const user = userEvent.setup();
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const sortSelect = screen.getByLabelText(/sort by/i);
+    const sortSelect = screen.getByRole('combobox', { name: /sort by/i });
     await user.click(sortSelect);
+
     const option = await screen.findByRole('option', { name: /last name \(ascending a-z\)/i });
     await user.click(option);
 
@@ -151,13 +159,11 @@ describe('CurrentTeamComponent', () => {
 
   it('should sort by last name descending', async () => {
     const user = userEvent.setup();
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const sortSelect = screen.getByLabelText(/sort by/i);
+    const sortSelect = screen.getByRole('combobox', { name: /sort by/i });
     await user.click(sortSelect);
+
     const option = await screen.findByRole('option', { name: /last name \(descending z-a\)/i });
     await user.click(option);
 
@@ -165,216 +171,143 @@ describe('CurrentTeamComponent', () => {
     expect(names[0]).toHaveTextContent('John Smith');
   });
 
-  it('should sort by start year newest first', async () => {
-    const user = userEvent.setup();
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
-
-    const sortSelect = screen.getByLabelText(/sort by/i);
-    await user.click(sortSelect);
-    const option = await screen.findByRole('option', { name: /start year \(newest to oldest\)/i });
-    await user.click(option);
-
-    const names = screen.getAllByText(/^(Katy Börner|John Smith|Jane Doe|Bob Johnson)$/);
-    expect(names[0]).toHaveTextContent('Jane Doe');
-  });
-
   it('should sort by start year oldest first', async () => {
     const user = userEvent.setup();
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const sortSelect = screen.getByLabelText(/sort by/i);
+    const sortSelect = screen.getByRole('combobox', { name: /sort by/i });
     await user.click(sortSelect);
-    const option = await screen.findByRole('option', { name: /start year \(oldest to newest\)/i });
+
+    const option = await screen.findByRole('option', { name: /start year \(old to new\)/i });
     await user.click(option);
 
     const names = screen.getAllByText(/^(Katy Börner|John Smith|Jane Doe|Bob Johnson)$/);
     expect(names[0]).toHaveTextContent('Katy Börner');
   });
 
-  it('should filter by role', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+  it('should display profile pictures with correct alt text', async () => {
+    await renderComponent();
 
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'roles' ? { ...f, selected: [{ id: 'phd-students', label: 'PhD students' }] } : f)),
-    );
-    fixture.detectChanges();
-
-    await waitFor(() => {
-      const profileCards = screen.getAllByText(/learn more/i);
-      expect(profileCards).toHaveLength(1);
-    });
-    expect(screen.getByText('Jane Doe')).toBeInTheDocument();
+    const katyImage = screen.getByRole('img', { name: /profile picture of katy börner/i });
+    expect(katyImage).toBeInTheDocument();
+    expect(katyImage).toHaveAttribute('src');
   });
 
-  it('should filter by start year', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+  it('should use placeholder image for members without pictures', async () => {
+    await renderComponent();
 
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2021', label: '2021' }] } : f)),
-    );
-    fixture.detectChanges();
-
-    await waitFor(() => {
-      const profileCards = screen.queryAllByText(/learn more/i);
-      expect(profileCards.length).toBeGreaterThan(0);
-    });
-  });
-
-  it('should filter by start year 2021', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
-
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2021', label: '2021' }] } : f)),
-    );
-    fixture.detectChanges();
-
-    await waitFor(() => {
-      expect(screen.getByText('Jane Doe')).toBeInTheDocument();
-    });
-  });
-
-  it('should handle member with no roles', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
-    const component = fixture.componentInstance;
-
-    const memberWithoutRoles: PeopleProfileData = {
-      name: 'Test',
-      lastName: 'User',
-      image: '',
-      slug: 'test-user',
-      roles: [],
-    };
-
-    expect(component.getMemberTitle(memberWithoutRoles)).toBe('');
-  });
-
-  it('should display profile pictures correctly', async () => {
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
-
-    // Member with image should have correct src
-    const images = screen.getAllByRole('img');
-    const katyImage = images.find((img) => img.getAttribute('alt')?.includes('Katy'));
-    expect(katyImage).toBeDefined();
-
-    // Member without image should use placeholder
-    const janeImage = images.find((img) => img.getAttribute('alt')?.includes('Jane'));
-    expect(janeImage?.getAttribute('src')).toContain('placeholder');
+    const janeImage = screen.getByRole('img', { name: /profile picture of jane doe/i });
+    expect(janeImage).toBeInTheDocument();
+    expect(janeImage.getAttribute('src')).toContain('placeholder');
   });
 
   it('should have correct profile links', async () => {
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const katyLink = screen.getAllByRole('link', { name: /learn more about katy/i })[0];
+    const katyLink = screen.getByRole('link', { name: /learn more about katy/i });
     expect(katyLink).toHaveAttribute('href', '/people/katy-borner');
   });
 
   it('should display member titles correctly', async () => {
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
     expect(screen.getByText('Faculty, Center Director')).toBeInTheDocument();
-    expect(screen.getByText('PhD Student - Data Visualization')).toBeInTheDocument();
+    expect(screen.getByText('Ph.D. Student - Data Visualization')).toBeInTheDocument();
     expect(screen.getByText('Collaborator - HuBMAP')).toBeInTheDocument();
   });
 
   it('should clear filters when clear button is clicked', async () => {
     const user = userEvent.setup();
-    await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+    await renderComponent();
 
-    const searchInput = screen.getByLabelText(/search/i);
+    const searchInput = screen.getByRole('textbox', { name: /search/i });
     await user.type(searchInput, 'NonExistentPerson');
 
-    const clearButton = await screen.findByRole('button', { name: /clear filters/i });
-    await user.click(clearButton);
+    const clearFiltersButton = await screen.findByRole('button', { name: /clear filters/i });
+    await user.click(clearFiltersButton);
 
-    expect(searchInput).toHaveValue('');
+    // After clearing, all current members should be visible again
+    const learnMoreLinks = await screen.findAllByText(/learn more/i);
+    expect(learnMoreLinks).toHaveLength(4);
   });
 
-  it('should filter by multiple years', async () => {
-    const testData: PeopleProfileData[] = [
-      ...mockData,
-      {
-        name: 'Test Member 2022',
-        lastName: 'Test2022',
-        image: '',
-        slug: 'test-2022',
-        roles: [{ type: 'member', title: 'Staff', dateStart: '2022-01-01', dateEnd: null, displayOrder: 10 }],
-      },
-    ];
+  it('should display results counter', async () => {
+    await renderComponent();
 
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: testData },
-    });
-
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) =>
-        f.id === 'startYear'
-          ? {
-              ...f,
-              selected: [
-                { id: '2021', label: '2021' },
-                { id: '2022', label: '2022' },
-              ],
-            }
-          : f,
-      ),
-    );
-    fixture.detectChanges();
-
-    await waitFor(() => {
-      const profileCards = screen.queryAllByText(/learn more/i);
-      expect(profileCards.length).toBeGreaterThan(0);
-    });
+    // Results indicator shows "X of Y" format - use function matcher for flexibility
+    expect(screen.getByText((content) => content.includes('4') && content.includes('of'))).toBeInTheDocument();
   });
 
-  it('should show no results for year with no members', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+  it('should update results counter when filtering', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
 
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: '2025', label: '2025' }] } : f)),
-    );
-    fixture.detectChanges();
+    const searchInput = screen.getByRole('textbox', { name: /search/i });
+    await user.type(searchInput, 'Katy');
 
-    await waitFor(() => {
-      expect(screen.queryByText(/learn more/i)).not.toBeInTheDocument();
-    });
+    // Wait for filtering to complete
+    await screen.findByText('Katy Börner');
+    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
   });
 
-  it('should handle member with no roles in role filter', async () => {
-    const dataWithNoRole: PeopleProfileData[] = [
+  it('should toggle between current and former team', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+
+    // Default: current team
+    expect(screen.getAllByText(/learn more/i)).toHaveLength(4);
+
+    // Switch to former team
+    const formerToggle = screen.getByRole('radio', { name: /former team/i });
+    await user.click(formerToggle);
+
+    expect(await screen.findByText('Former Member')).toBeInTheDocument();
+    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+
+    // Switch back to current team
+    const currentToggle = screen.getByRole('radio', { name: /current team/i });
+    await user.click(currentToggle);
+
+    expect(await screen.findAllByText(/learn more/i)).toHaveLength(4);
+  });
+
+  it('should show hierarchical sort by default for current team', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+
+    // Open the sort select to verify Hierarchical option exists for current team
+    const sortSelect = screen.getByRole('combobox', { name: /sort by/i });
+    await user.click(sortSelect);
+
+    // Hierarchical should be available as an option for current team
+    expect(await screen.findByRole('option', { name: /hierarchical/i })).toBeInTheDocument();
+  });
+
+  it('should not show hierarchical sort option for former team', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+
+    const formerToggle = screen.getByRole('radio', { name: /former team/i });
+    await user.click(formerToggle);
+
+    // Wait for UI to update
+    await screen.findByText('Former Member');
+
+    const sortSelect = screen.getByRole('combobox', { name: /sort by/i });
+    await user.click(sortSelect);
+
+    expect(screen.queryByRole('option', { name: /hierarchical/i })).not.toBeInTheDocument();
+  });
+
+  it('should handle empty data gracefully', async () => {
+    await renderComponent([]);
+
+    // With empty data, should show "0 of 0" in results indicator
+    expect(screen.getByText((content) => content.includes('0') && content.includes('of'))).toBeInTheDocument();
+  });
+
+  it('should filter out members with no roles', async () => {
+    const dataWithNoRoles: PeopleProfileData = [
       ...mockData,
       {
         name: 'No Role Member',
@@ -385,129 +318,158 @@ describe('CurrentTeamComponent', () => {
       },
     ];
 
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: dataWithNoRole },
-    });
+    await renderComponent(dataWithNoRoles);
 
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'roles' ? { ...f, selected: [{ id: 'faculty', label: 'Faculty' }] } : f)),
-    );
-    fixture.detectChanges();
-
-    // Member with no roles should not appear
-    await waitFor(() => {
-      expect(screen.queryByText('No Role Member')).not.toBeInTheDocument();
-    });
+    // Should still show 4 members (not 5), excluding the one with no roles
+    expect(screen.getAllByText(/learn more/i)).toHaveLength(4);
+    expect(screen.queryByText('No Role Member')).not.toBeInTheDocument();
   });
 
-  it('should handle invalid year filter gracefully', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+  it('should persist search when switching teams', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
 
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'startYear' ? { ...f, selected: [{ id: 'invalid', label: 'Invalid' }] } : f)),
-    );
-    fixture.detectChanges();
+    const searchInput = screen.getByRole('textbox', { name: /search/i });
+    await user.type(searchInput, 'Former'); // Only matches Former Member
 
-    // Should show no results for invalid filter
-    expect(screen.queryByText(/learn more/i)).not.toBeInTheDocument();
+    // No matches on current team, should show no results
+    expect(await screen.findByText(/no results/i)).toBeInTheDocument();
+
+    const formerToggle = screen.getByRole('radio', { name: /former team/i });
+    await user.click(formerToggle);
+
+    // Search should persist and now show Former Member
+    expect(searchInput).toHaveValue('Former');
+    expect(await screen.findByText('Former Member')).toBeInTheDocument();
   });
 
-  it('should return empty title for member role with no title', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
-    const component = fixture.componentInstance;
+  it('should display all role types correctly', async () => {
+    await renderComponent();
 
-    const memberWithNoTitle = {
-      name: 'Test',
-      lastName: 'User',
-      image: '',
-      slug: 'test',
-      roles: [{ type: 'member' as const, dateStart: '2020-01-01', dateEnd: null, displayOrder: 1 }],
-    } as PeopleProfileData;
+    // Member role with title
+    expect(screen.getByText('Faculty, Center Director')).toBeInTheDocument();
+    expect(screen.getByText('Postdoctoral Fellow')).toBeInTheDocument();
 
-    expect(component.getMemberTitle(memberWithNoTitle)).toBe('');
+    // Student role with degree and topic
+    expect(screen.getByText('Ph.D. Student - Data Visualization')).toBeInTheDocument();
+
+    // Collaborator role with project
+    expect(screen.getByText('Collaborator - HuBMAP')).toBeInTheDocument();
   });
 
-  it('should filter out collaborators without role when filtering', async () => {
-    const dataWithEmptyRole: PeopleProfileData[] = [
-      ...mockData,
+  it('should handle masters student degree correctly', async () => {
+    const dataWithMasters: PeopleProfileData = [
       {
-        name: 'Test Member',
-        lastName: 'Test',
+        name: 'Masters Student',
+        lastName: 'Student',
         image: '',
-        slug: 'test',
-        roles: [{ type: 'collaborator', project: 'Test Project', dateStart: '2020-01-01', dateEnd: null }],
+        slug: 'masters-student',
+        roles: [
+          {
+            type: 'student',
+            topic: 'Machine Learning',
+            degree: 'Masters',
+            department: 'Computer Science',
+            dateStart: new Date('2022-01-01'),
+            dateEnd: null,
+          },
+        ],
       },
     ];
 
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: dataWithEmptyRole },
-    });
+    await renderComponent(dataWithMasters);
 
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => (f.id === 'roles' ? { ...f, selected: [{ id: 'faculty', label: 'Faculty' }] } : f)),
-    );
-    fixture.detectChanges();
-
-    // Should only show faculty members, not the collaborator
-    await waitFor(() => {
-      expect(screen.queryByText('Test Member')).not.toBeInTheDocument();
-      expect(screen.getByText('Katy Börner')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Masters Student - Machine Learning')).toBeInTheDocument();
   });
 
-  it('should handle filtering with multiple role types and years', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
+  it('should handle members active across multiple years', async () => {
+    const longTermMember: PeopleProfileData = [
+      {
+        name: 'Long Term Member',
+        lastName: 'LongTerm',
+        image: '',
+        slug: 'long-term',
+        roles: [
+          {
+            type: 'member',
+            title: 'Senior Researcher',
+            dateStart: new Date('2015-01-01'),
+            dateEnd: null,
+            displayOrder: 1,
+          },
+        ],
+      },
+    ];
 
-    fixture.componentInstance.filters.update((filters) =>
-      filters.map((f) => {
-        if (f.id === 'roles') {
-          return {
-            ...f,
-            selected: [{ id: 'phd-students', label: 'PhD students' }],
-          };
-        }
-        if (f.id === 'startYear') {
-          return {
-            ...f,
-            selected: [{ id: '2021', label: '2021' }],
-          };
-        }
-        return f;
-      }),
-    );
-    fixture.detectChanges();
+    await renderComponent(longTermMember);
 
-    // Should show PhD students from 2021
-    await waitFor(() => {
-      expect(screen.getByText('Jane Doe')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Long Term Member')).toBeInTheDocument();
+    expect(screen.getByText('Senior Researcher')).toBeInTheDocument();
   });
-  it('should return empty string for unknown role type in getMemberTitle', async () => {
-    const { fixture } = await render(CurrentTeamComponent, {
-      providers,
-      componentInputs: { data: mockData },
-    });
-    const component = fixture.componentInstance;
 
-    const memberWithUnknownRole = {
-      name: 'Test',
-      lastName: 'User',
-      image: '',
-      slug: 'test',
-      roles: [{ type: 'unknown', dateStart: '2020-01-01', dateEnd: null }],
-    } as unknown as PeopleProfileData;
+  it('should group by role when selected', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
 
-    expect(component.getMemberTitle(memberWithUnknownRole)).toBe('');
+    const groupBySelect = screen.getByRole('combobox', { name: /group by/i });
+    await user.click(groupBySelect);
+
+    const roleOption = await screen.findByRole('option', { name: /^role$/i });
+    await user.click(roleOption);
+
+    // Should show group headers
+    expect(await screen.findByText('Staff')).toBeInTheDocument();
+  });
+
+  it('should group by start year when selected', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+
+    const groupBySelect = screen.getByRole('combobox', { name: /group by/i });
+    await user.click(groupBySelect);
+
+    const startYearOption = await screen.findByRole('option', { name: /start year/i });
+    await user.click(startYearOption);
+
+    // Should show year headers based on start dates
+    expect(await screen.findByText('2021')).toBeInTheDocument();
+  });
+
+  it('should sort by end year newest first', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+
+    const sortSelect = screen.getByRole('combobox', { name: /sort by/i });
+    await user.click(sortSelect);
+
+    const option = await screen.findByRole('option', { name: /end year \(new to old\)/i });
+    await user.click(option);
+
+    // Should not throw and members should still be displayed
+    const learnMoreLinks = screen.getAllByText(/learn more/i);
+    expect(learnMoreLinks).toHaveLength(4);
+  });
+
+  it('should have clear search button when search has value', async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+
+    const searchInput = screen.getByRole('textbox', { name: /search/i });
+    await user.type(searchInput, 'test');
+
+    const clearSearchButton = await screen.findByRole('button', { name: /clear search/i });
+    expect(clearSearchButton).toBeInTheDocument();
+
+    await user.click(clearSearchButton);
+    expect(searchInput).toHaveValue('');
+  });
+
+  it('should initialize with past team type when provided', async () => {
+    await renderComponent(mockData, 'past');
+
+    // Former team should be selected
+    expect(screen.getByText('Former Member')).toBeInTheDocument();
+    const learnMoreLinks = screen.getAllByText(/learn more/i);
+    expect(learnMoreLinks).toHaveLength(1);
   });
 });
