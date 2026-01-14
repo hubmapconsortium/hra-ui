@@ -57,7 +57,7 @@ export class HeaderComponent {
   /** Navigation options to display on the header */
   readonly menuOptions = input(MENUS);
   /** Whether to show the filter menu icon */
-  readonly enableFilterMenu = input<boolean>(true);
+  readonly enableFilterMenu = input(false);
 
   /** Whether the screen is currently mobile sized */
   protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);

@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
   effect,
   ElementRef,
   ErrorHandler,
@@ -13,6 +14,7 @@ import {
   OutputEmitterRef,
   Signal,
   signal,
+  untracked,
   viewChild,
 } from '@angular/core';
 import { DeckProps, OrbitView, OrbitViewState, PickingInfo, View } from '@deck.gl/core/typed';
@@ -45,6 +47,7 @@ import { createEdgesLayer } from '../deckgl/edges';
 import { createNodesLayer } from '../deckgl/nodes';
 import { createScaleBarLayer } from '../deckgl/scale-bar';
 import { createSelectionLayer } from '../deckgl/selection';
+import { scalePosition } from '../deckgl/utils/position-scaling';
 
 /** CursorState is not exported by deckgl */
 type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
@@ -53,15 +56,38 @@ type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
 type OrbitViewProps = ConstructorParameters<typeof OrbitView>[0] &
   ConstructorParameters<typeof View<OrbitViewState>>[0];
 
+/** Options for the `zoomToFit` method */
+export interface ZoomToFitOptions {
+  /** Margins around the visualization */
+  margin?: { x: number; y: number };
+  /** Whether to reset camera rotation when zooming */
+  resetRotation?: boolean;
+  /** Whether to reset camera target when zooming */
+  resetTarget?: boolean;
+  /** Duration of the transition in milliseconds (default: 0) */
+  transitionDuration?: number;
+}
+
+/** Node interaction event data */
 export interface NodeEvent {
+  /** Index of the node in the data */
   index: number;
+  /** Screen x-position */
   clientX: number;
+  /** Screen y-position */
   clientY: number;
+  /** The materialized node object */
   object: object;
 }
 
+/** Default node target */
 export const DEFAULT_NODE_TARGET_SELECTOR = 'Endothelial';
+/** Default max edge distance */
 export const DEFAULT_MAX_EDGE_DISTANCE = 1000;
+/** Default value for zoomToFit margin */
+const DEFAULT_ZOOM_TO_FIT_MARGIN = { x: 24, y: 24 };
+/** Default transition duration for zoomToFit during resizes */
+const DEFAULT_ZOOM_TO_FIT_ON_RESIZE_TRANSITION_DURATION = 200;
 
 /** Initial visualization deckgl state */
 const INITIAL_VIEW_STATE = {
@@ -170,6 +196,7 @@ export class NodeDistVisComponent {
     getCursor: this.getCursor.bind(this),
     onClick: this.onClick.bind(this),
     onHover: this.onHover.bind(this),
+    onInteractionStateChange: this.onInteraction.bind(this),
     onViewStateChange: ({ viewState }) => this.viewState.set(viewState),
     onError: (error) => this.errorHandler.handleError(error),
   });
@@ -184,6 +211,7 @@ export class NodeDistVisComponent {
   /** Current deckgl view state */
   private readonly viewState = signal<object>(INITIAL_VIEW_STATE);
 
+  /** Node target selector with fallbacks applied */
   private readonly nodeTargetSelectorWithDefault = computed(() => {
     return this.nodeTargetSelector() || this.nodeTargetValue() || DEFAULT_NODE_TARGET_SELECTOR;
   });
@@ -238,6 +266,12 @@ export class NodeDistVisComponent {
     };
   });
 
+  /** Canvas resize observer */
+  private readonly resizeObserver = new ResizeObserver(this.onResize.bind(this));
+
+  /** Whether to call `zoomToFit` on resize events */
+  private readonly zoomToFitOnResize = signal(true);
+
   /** Currently hovered node entry */
   private activeHover: AnyDataEntry | undefined = undefined;
 
@@ -246,10 +280,79 @@ export class NodeDistVisComponent {
     // Connect data to deckgl
     effect(() => this.deck().setProps(this.props()));
 
+    // React to node changes
+    effect(() => {
+      this.nodesView();
+      untracked(() => {
+        this.setZoomToFitOnResize(true);
+        this.zoomToFit();
+      });
+    });
+
+    // Watch resize events
+    effect((onCleanup) => {
+      if (this.zoomToFitOnResize()) {
+        const { resizeObserver } = this;
+        const el = untracked(this.canvas);
+        resizeObserver.observe(el);
+        onCleanup(() => resizeObserver.unobserve(el));
+      }
+    });
+
     // Connect outputs
     this.bindDataOutput(this.nodesView, this.nodesChange);
     this.bindDataOutput(this.edgesView, this.edgesChange);
     this.bindDataOutput(this.colorMapView, this.colorMapChange);
+
+    // Attach cleanup logic
+    const destroyRef = inject(DestroyRef);
+    destroyRef.onDestroy(() => this.resizeObserver.disconnect());
+  }
+
+  /**
+   * Zooms the visualization to fit all nodes on screen.
+   * Has no effect until the nodes have been loaded.
+   */
+  zoomToFit(options: ZoomToFitOptions = {}): void {
+    const view = this.nodesView();
+    if (view.length === 0) {
+      return;
+    }
+
+    const {
+      margin: { x: marginX, y: marginY } = DEFAULT_ZOOM_TO_FIT_MARGIN,
+      resetRotation = true,
+      resetTarget = true,
+      transitionDuration = 0,
+    } = options;
+    const { width, height } = this.deck();
+    const pixelRatio = window.devicePixelRatio;
+    const target = scalePosition(view.getCenter(), view.getDimensions());
+    const scale = view.getScale();
+    const [scaleX, scaleY] = view.getScale3D();
+    const zoomX = Math.log2((scale * (width - 2 * marginX)) / (pixelRatio * scaleX));
+    const zoomY = Math.log2((scale * (height - 2 * marginY)) / (pixelRatio * scaleY));
+    const zoom = Math.min(zoomX, zoomY);
+
+    this.deck().setProps({
+      initialViewState: {
+        ...this.viewState(),
+        transitionDuration,
+        zoom,
+        ...(resetTarget ? { target } : {}),
+        ...(resetRotation ? { rotationX: 0, rotationOrbit: 0 } : {}),
+        version: ++this.viewStateVersion,
+      },
+    });
+  }
+
+  /**
+   * Enable or disable automatic `zoomToFit` calls on resize events.
+   *
+   * @param enable Whether to enable `zoomToFit`
+   */
+  setZoomToFitOnResize(enable: boolean): void {
+    this.zoomToFitOnResize.set(enable);
   }
 
   /** Resets the view to the original location and rotation */
@@ -262,6 +365,7 @@ export class NodeDistVisComponent {
     });
   }
 
+  /** Resets the rotation of the orbit view */
   resetOrbit(): void {
     this.deck().setProps({
       initialViewState: {
@@ -273,6 +377,7 @@ export class NodeDistVisComponent {
     });
   }
 
+  /** Clears any active selection */
   clearSelection(): void {
     this.selectionLayer()?.clearSelection();
   }
@@ -339,17 +444,59 @@ export class NodeDistVisComponent {
     }
   }
 
+  /**
+   * Handle node selection in deckgl
+   *
+   * @param infos Deckgl picking information
+   */
   private onSelect(infos: PickingInfo[]): void {
     const events = infos.map((info) => this.pickingInfoToNodeEvent(info));
     this.nodeSelectionChange.emit(events);
   }
 
+  /**
+   * Handle visualization interactions in deckgl
+   *
+   * @param state Current interactions
+   */
+  private onInteraction(state: Record<string, boolean>): void {
+    // Override `inTransition` when checking for interactions
+    const values = Object.values({ ...state, inTransition: false });
+    const isInteracting = values.some((v) => v);
+    if (isInteracting) {
+      this.setZoomToFitOnResize(false);
+    }
+  }
+
+  /**
+   * Handle canvas resizing
+   */
+  private onResize(): void {
+    this.zoomToFit({
+      resetRotation: false,
+      resetTarget: false,
+      transitionDuration: DEFAULT_ZOOM_TO_FIT_ON_RESIZE_TRANSITION_DURATION,
+    });
+  }
+
+  /**
+   * Convert deckgl picking information to a node event
+   *
+   * @param info Deckgl picking information
+   * @returns Node event data
+   */
   private pickingInfoToNodeEvent(info: PickingInfo): NodeEvent {
     const view = this.nodesView();
     const { index, x, y } = info;
     return { index, clientX: x, clientY: y, object: view.materializeAt(index) };
   }
 
+  /**
+   * Listen to view data changes and emit the data when available
+   *
+   * @param view Data view object
+   * @param outputRef Output emitter
+   */
   private bindDataOutput<V extends AnyDataView>(view: Signal<V>, outputRef: OutputEmitterRef<AnyData>): void {
     effect(() => {
       if (view().length !== 0) {
