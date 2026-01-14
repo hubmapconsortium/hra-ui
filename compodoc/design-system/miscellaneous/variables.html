@@ -175,6 +175,12 @@
                             <a href="#CodeBlockSchema" title="code-block/src/lib/code-block.schema.ts" ><b>CodeBlockSchema</b>&nbsp;&nbsp;&nbsp;(code-block/.../code-block.schema.ts)</a>
                         </li>
                         <li>
+                            <a href="#CollectionCardDef" title="cards/collection-card/src/lib/collection-card.definition.ts" ><b>CollectionCardDef</b>&nbsp;&nbsp;&nbsp;(cards/.../collection-card.definition.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CollectionCardSchema" title="cards/collection-card/src/lib/collection-card.schema.ts" ><b>CollectionCardSchema</b>&nbsp;&nbsp;&nbsp;(cards/.../collection-card.schema.ts)</a>
+                        </li>
+                        <li>
                             <a href="#COMPONENTS" title="workflow-card/src/index.ts" ><b>COMPONENTS</b>&nbsp;&nbsp;&nbsp;(workflow-card/.../index.ts)</a>
                         </li>
                         <li>
@@ -1390,6 +1396,93 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Schema for Code Block component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>cards/collection-card/src/lib/collection-card.definition.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CollectionCardDef"></a>
+                    <span class="name">
+                        <span ><b>CollectionCardDef</b></span>
+                        <a href="#CollectionCardDef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/CollectionCardComponent.html" target="_self" >ContentTemplateDef&lt;CollectionCardComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  component: CollectionCardComponent,
+  spec: CollectionCardSchema,
+  projectedProperties: {
+    &#x27;*&#x27;: &#x27;content&#x27;,
+    &quot;hra-collection-card-action:not([alignment&#x3D;&#x27;right&#x27;])&quot;: &#x27;actionsLeft&#x27;,
+    &quot;hra-collection-card-action[alignment&#x3D;&#x27;right&#x27;]&quot;: &#x27;actionsRight&#x27;,
+  },
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Content template definition for collection card</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>cards/collection-card/src/lib/collection-card.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CollectionCardSchema"></a>
+                    <span class="name">
+                        <span ><b>CollectionCardSchema</b></span>
+                        <a href="#CollectionCardSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ContentTemplateSchema.extend({
+  component: z.literal(&#x27;CollectionCard&#x27;),
+  tagline: z.string(),
+  image: z.string().optional(),
+  icons: IconListSchema.optional(),
+  chips: z.array(z.string()).optional(),
+  content: ProjectedContentTemplateSchema.optional(),
+  actionsLeft: ProjectedContentTemplateSchema.optional(),
+  actionsRight: ProjectedContentTemplateSchema.optional(),
+}).meta({ id: &#x27;CollectionCard&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for content template collection card data</p>
 </div>
                 </td>
             </tr>

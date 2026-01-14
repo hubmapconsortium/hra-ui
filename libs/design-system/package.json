@@ -126,6 +126,10 @@
       "types": "./cards/action-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-action-card.mjs"
     },
+    "./cards/collection-card": {
+      "types": "./cards/collection-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards-collection-card.mjs"
+    },
     "./cards/content-button": {
       "types": "./cards/content-button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-content-button.mjs"

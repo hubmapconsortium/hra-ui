@@ -188,6 +188,7 @@ followed by a title and content and optionally actions</p>
                             <code>HraCommonModule</code>
                             <code>MatDividerModule</code>
                                 <code><a href="../modules/IconsModule.html" target="_self" >IconsModule</a></code>
+                                <code><a href="../modules/ChipsModule.html" target="_self" >MatChipsModule</a></code>
                 </td>
             </tr>
 
@@ -229,6 +230,9 @@ followed by a title and content and optionally actions</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#chips" >chips</a>
+                            </li>
+                            <li>
                                 <a href="#icons" >icons</a>
                             </li>
                             <li>
@@ -261,6 +265,38 @@ followed by a title and content and optionally actions</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="chips"></a>
+                        <b>chips</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:47</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Chips shown for <code>collection</code> cards</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="icons"></a>
                         <b>icons</b>
                     </td>
@@ -272,7 +308,7 @@ followed by a title and content and optionally actions</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:45</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -299,7 +335,7 @@ followed by a title and content and optionally actions</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:43</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -326,7 +362,7 @@ followed by a title and content and optionally actions</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:41</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -358,7 +394,7 @@ followed by a title and content and optionally actions</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:39</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -390,7 +426,7 @@ followed by a title and content and optionally actions</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:37</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -412,9 +448,10 @@ followed by a title and content and optionally actions</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
-import { AssetUrlPipe } from &#x27;@hra-ui/common/url&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
 import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { AssetUrlPipe } from &#x27;@hra-ui/common/url&#x27;;
 import { coerceIconList, IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
 import { ActionCardVariant } from &#x27;./action-card.schema&#x27;;
 
@@ -436,7 +473,7 @@ export class ActionCardActionComponent {
  */
 @Component({
   selector: &#x27;hra-action-card&#x27;,
-  imports: [AssetUrlPipe, HraCommonModule, MatDividerModule, IconsModule],
+  imports: [AssetUrlPipe, HraCommonModule, MatDividerModule, IconsModule, MatChipsModule],
   templateUrl: &#x27;./action-card.component.html&#x27;,
   styleUrl: &#x27;./action-card.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -455,12 +492,15 @@ export class ActionCardComponent {
   readonly image &#x3D; input&lt;string&gt;();
   /** Icons shown for &#x60;outlined-with-icons&#x60; cards */
   readonly icons &#x3D; input([], { transform: coerceIconList });
+  /** Chips shown for &#x60;collection&#x60; cards */
+  readonly chips &#x3D; input&lt;string[]&gt;([]);
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">@if (variant() !&#x3D;&#x3D; &#x27;outlined-with-icons&#x27;) {
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Need to refactor this --&gt;
+@if (variant() !&#x3D;&#x3D; &#x27;outlined-with-icons&#x27; &amp;&amp; variant() !&#x3D;&#x3D; &#x27;collection&#x27;) {
   &lt;div class&#x3D;&quot;header&quot;&gt;
     @if (image(); as src) {
       &lt;img class&#x3D;&quot;image&quot; alt&#x3D;&quot;&quot; [attr.src]&#x3D;&quot;src | assetUrl&quot; /&gt;
@@ -480,8 +520,23 @@ export class ActionCardComponent {
     @for (icon of icons(); track icon) {
       &lt;hra-icon class&#x3D;&quot;icon&quot; [icon]&#x3D;&quot;icon&quot; /&gt;
     }
-    &lt;span&gt;{{ tagline() }}&lt;/span&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+      &lt;span&gt;{{ tagline() }}&lt;/span&gt;
+      @if (variant() &#x3D;&#x3D;&#x3D; &#x27;collection&#x27;) {
+        &lt;mat-chip-set class&#x3D;&quot;chips&quot; aria-label&#x3D;&quot;Tags&quot;&gt;
+          @for (chip of chips(); track chip) {
+            &lt;mat-chip hraChipSize&#x3D;&quot;small&quot;&gt;{{ chip }}&lt;/mat-chip&gt;
+          }
+        &lt;/mat-chip-set&gt;
+      }
+    &lt;/div&gt;
   &lt;/div&gt;
+
+  @if (variant() &#x3D;&#x3D;&#x3D; &#x27;collection&#x27;) {
+    @if (image(); as src) {
+      &lt;img class&#x3D;&quot;image&quot; alt&#x3D;&quot;&quot; [attr.src]&#x3D;&quot;src | assetUrl&quot; /&gt;
+    }
+  }
 
   &lt;div class&#x3D;&quot;description&quot;&gt;
     &lt;ng-content /&gt;
@@ -522,7 +577,7 @@ export class ActionCardComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (variant() !== \'outlined-with-icons\') {  <div class="header">    @if (image(); as src) {      <img class="image" alt="" [attr.src]="src | assetUrl" />    }  </div>}@if (variant() === \'outlined\' && image()) {  <mat-divider />}<div class="content">  @if (variant() === \'elevated\') {    <div class="subtagline">{{ subtagline() }}</div>  }  <div class="tagline">    @for (icon of icons(); track icon) {      <hra-icon class="icon" [icon]="icon" />    }    <span>{{ tagline() }}</span>  </div>  <div class="description">    <ng-content />  </div>  <div class="actions">    <ng-content select="hra-action-card-action:not([alignment=\'right\'])" />    <div class="spacer"></div>    <ng-content select="hra-action-card-action[alignment=\'right\']" />  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Need to refactor this -->@if (variant() !== \'outlined-with-icons\' && variant() !== \'collection\') {  <div class="header">    @if (image(); as src) {      <img class="image" alt="" [attr.src]="src | assetUrl" />    }  </div>}@if (variant() === \'outlined\' && image()) {  <mat-divider />}<div class="content">  @if (variant() === \'elevated\') {    <div class="subtagline">{{ subtagline() }}</div>  }  <div class="tagline">    @for (icon of icons(); track icon) {      <hra-icon class="icon" [icon]="icon" />    }    <div class="container">      <span>{{ tagline() }}</span>      @if (variant() === \'collection\') {        <mat-chip-set class="chips" aria-label="Tags">          @for (chip of chips(); track chip) {            <mat-chip hraChipSize="small">{{ chip }}</mat-chip>          }        </mat-chip-set>      }    </div>  </div>  @if (variant() === \'collection\') {    @if (image(); as src) {      <img class="image" alt="" [attr.src]="src | assetUrl" />    }  }  <div class="description">    <ng-content />  </div>  <div class="actions">    <ng-content select="hra-action-card-action:not([alignment=\'right\'])" />    <div class="spacer"></div>    <ng-content select="hra-action-card-action[alignment=\'right\']" />  </div></div></div>'
     var COMPONENTS = [{'name': 'ActionCardActionComponent', 'selector': 'hra-action-card-action'},{'name': 'ActionCardComponent', 'selector': 'hra-action-card'},{'name': 'ApiCommandComponent', 'selector': 'hra-api-command'},{'name': 'AppLabelComponent', 'selector': 'hra-app-label'},{'name': 'AppNavButtonComponent', 'selector': 'hra-app-nav-button'},{'name': 'ArchivedPageComponent', 'selector': 'hra-archived-page'},{'name': 'BackButtonBarComponent', 'selector': 'hra-back-button-bar'},{'name': 'BottomSheetComponent', 'selector': 'hra-bottom-sheet'},{'name': 'BrandLogoComponent', 'selector': 'hra-brand-logo'},{'name': 'BrandMarkComponent', 'selector': 'hra-brand-mark'},{'name': 'BreadcrumbsComponent', 'selector': 'hra-breadcrumbs'},{'name': 'ButtonComponent', 'selector': 'hra-button'},{'name': 'CardMenuComponent', 'selector': 'hra-card-menu'},{'name': 'CategoriesComponent', 'selector': 'hra-categories'},{'name': 'CodeBlockComponent', 'selector': 'hra-code-block'},{'name': 'CodeBlockGlobalStylesComponent', 'selector': 'hra-code-block-global-styles'},{'name': 'ColorPickerComponent', 'selector': 'hra-color-picker'},{'name': 'ConsentBannerComponent', 'selector': 'hra-consent-banner'},{'name': 'ContentButtonComponent', 'selector': 'hra-content-button'},{'name': 'ContentPageComponent', 'selector': 'hra-content-page'},{'name': 'CopyableUrlContainerComponent', 'selector': 'hra-copyable-url-container'},{'name': 'CountCardComponent', 'selector': 'hra-count-card'},{'name': 'CtaBarComponent', 'selector': 'hra-cta-bar'},{'name': 'DangerMessageIndicatorComponent', 'selector': 'hra-danger-message-indicator'},{'name': 'DataViewerComponent', 'selector': 'hra-data-viewer'},{'name': 'DeleteFileButtonComponent', 'selector': 'hra-delete-file-button'},{'name': 'DeprecatedWorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'DesktopMenuComponent', 'selector': 'hra-desktop-menu'},{'name': 'EndOfResultsIndicatorComponent', 'selector': 'hra-end-of-results-indicator'},{'name': 'ErrorIndicatorComponent', 'selector': 'hra-error-indicator'},{'name': 'ExpansionPanelActionsComponent', 'selector': 'hra-expansion-panel-actions'},{'name': 'ExpansionPanelComponent', 'selector': 'hra-expansion-panel'},{'name': 'ExpansionPanelHeaderContentComponent', 'selector': 'hra-expansion-panel-header-content'},{'name': 'FilterContainerComponent', 'selector': 'hra-filter-container'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FlatCardActionsComponent', 'selector': 'hra-flat-card-actions'},{'name': 'FlatCardComponent', 'selector': 'hra-flat-card'},{'name': 'FlexContainerComponent', 'selector': 'hra-flex-container'},{'name': 'FooterComponent', 'selector': 'hra-footer'},{'name': 'FullscreenActionsComponent', 'selector': 'hra-fullscreen-actions'},{'name': 'FullscreenPortalComponent', 'selector': 'hra-fullscreen-portal'},{'name': 'FullscreenPortalContentComponent', 'selector': 'hra-fullscreen-portal-content'},{'name': 'FundingComponent', 'selector': 'hra-funding'},{'name': 'GalleryCardComponent', 'selector': 'hra-gallery-card'},{'name': 'GalleryGridComponent', 'selector': 'hra-gallery-grid'},{'name': 'GoogleMapsComponent', 'selector': 'hra-google-maps'},{'name': 'GridContainerComponent', 'selector': 'hra-grid-container'},{'name': 'HeaderComponent', 'selector': 'hra-header'},{'name': 'HelpButtonComponent', 'selector': 'hra-help-button'},{'name': 'HraYoutubePlayerComponent', 'selector': 'hra-youtube-player'},{'name': 'HubmapMenuContentComponent', 'selector': 'hra-hubmap-menu-content'},{'name': 'IconComponent', 'selector': 'hra-icon'},{'name': 'ImageComponent', 'selector': 'hra-image'},{'name': 'InfoButtonComponent', 'selector': 'hra-info-button'},{'name': 'InfoMessageIndicatorComponent', 'selector': 'hra-info-message-indicator'},{'name': 'InfoModalComponent', 'selector': 'hra-info-modal'},{'name': 'ListViewComponent', 'selector': 'hra-list-view'},{'name': 'MarkdownComponent', 'selector': 'hra-markdown'},{'name': 'MenuContentComponent', 'selector': 'hra-menu-content'},{'name': 'MenuDemoComponent', 'selector': 'hra-menu'},{'name': 'MobileMenuComponent', 'selector': 'hra-mobile-menu'},{'name': 'NavHeaderButtonsComponent', 'selector': 'hra-nav-header-buttons'},{'name': 'NavigationButtonComponent', 'selector': 'hra-navigation-button'},{'name': 'NavigationCategoryComponent', 'selector': 'hra-navigation-category'},{'name': 'NavigationCategoryToggleComponent', 'selector': 'hra-navigation-category-toggle'},{'name': 'NavigationItemComponent', 'selector': 'hra-navigation-item'},{'name': 'NoResultsIndicatorComponent', 'selector': 'hra-no-results-indicator'},{'name': 'NotFoundPageComponent', 'selector': 'hra-not-found-page'},{'name': 'NoticeComponent', 'selector': 'hra-notice'},{'name': 'PageLabelComponent', 'selector': 'hra-page-label'},{'name': 'PageSectionComponent', 'selector': 'hra-page-section'},{'name': 'PlainTooltipStylesComponent', 'selector': 'hra-plain-tooltip-styles'},{'name': 'PrivacyPreferencesComponent', 'selector': 'hra-privacy-preferences'},{'name': 'ProfileCardComponent', 'selector': 'hra-profile-card'},{'name': 'ProgressSpinnerComponent', 'selector': 'hra-progress-spinner'},{'name': 'RedirectPageComponent', 'selector': 'hra-redirect-page'},{'name': 'ResultsIndicatorComponent', 'selector': 'hra-results-indicator'},{'name': 'RichTooltipActionsComponent', 'selector': 'hra-rich-tooltip-actions'},{'name': 'RichTooltipContainerComponent', 'selector': 'hra-rich-tooltip-container'},{'name': 'RichTooltipContentComponent', 'selector': 'hra-rich-tooltip-content'},{'name': 'RichTooltipTaglineComponent', 'selector': 'hra-rich-tooltip-tagline'},{'name': 'ScrollbarStylesComponent', 'selector': 'hra-scrollbar-styles'},{'name': 'ScrollOverflowFadeStylesComponent', 'selector': 'hra-scroll-overflow-fade-styles'},{'name': 'SearchFilterComponent', 'selector': 'hra-search-filter'},{'name': 'SearchListComponent', 'selector': 'hra-search-list'},{'name': 'SectionLinkComponent', 'selector': 'h1[hra-section-link], h2[hra-section-link], h3[hra-section-link],
     h4[hra-section-link], h5[hra-section-link], h6[hra-section-link]'},{'name': 'ServerErrorPageComponent', 'selector': 'hra-server-error-page'},{'name': 'SiteNavigationComponent', 'selector': 'hra-site-navigation'},{'name': 'SnackbarComponent', 'selector': 'hra-snackbar'},{'name': 'SocialMediaButtonComponent', 'selector': 'hra-social-media-button'},{'name': 'SoftwareStatusIndicatorComponent', 'selector': 'hra-software-status-indicator'},{'name': 'StepIndicatorComponent', 'selector': 'hra-step-indicator'},{'name': 'TableComponent', 'selector': 'hra-table'},{'name': 'TableOfContentsComponent', 'selector': 'hra-table-of-contents'},{'name': 'TableOfContentsDemoComponent', 'selector': 'hra-table-of-contents-demo'},{'name': 'TableOfContentsLayoutComponent', 'selector': 'hra-table-of-contents-layout'},{'name': 'TableOfContentsLayoutDemoComponent', 'selector': 'hra-table-of-contents-layout-demo'},{'name': 'TableOfContentsLayoutHeaderComponent', 'selector': 'hra-table-of-contents-layout-header'},{'name': 'TextHyperlinkComponent', 'selector': 'hra-text-hyperlink'},{'name': 'TextHyperlinkGlobalStylesComponent', 'selector': 'hra-text-hyperlink-global-styles'},{'name': 'TooltipCardComponent', 'selector': 'hra-tooltip-card'},{'name': 'TreeDemoComponent', 'selector': 'hra-tree-demo'},{'name': 'TreeStylesComponent', 'selector': 'hra-tree-styles'},{'name': 'UiSectionComponent', 'selector': 'hra-ui-section'},{'name': 'VersionedDataTableComponent', 'selector': 'hra-versioned-data-table'},{'name': 'ViewerCardComponent', 'selector': 'hra-viewer-card'},{'name': 'ViewerMenuComponent', 'selector': 'hra-viewer-menu'},{'name': 'VisualButtonComponent', 'selector': 'hra-visual-button'},{'name': 'WorkflowCardActionsComponent', 'selector': 'hra-workflow-card-actions'},{'name': 'WorkflowCardComponent', 'selector': 'hra-workflow-card'},{'name': 'WorkflowCardExtraComponent', 'selector': 'hra-workflow-card-extra'}];
     var DIRECTIVES = [{'name': 'BaseButtonVariantDirective', 'selector': ''},{'name': 'ButtonSizeDirective', 'selector': 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]'},{'name': 'ButtonToggleSizeDirective', 'selector': 'mat-button-toggle-group[hraButtonToggleSize]'},{'name': 'ButtonVariantDirective', 'selector': 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]'},{'name': 'CheckboxErrorVariantDirective', 'selector': '[hraCheckboxErrorVariant]'},{'name': 'ChipSizeDirective', 'selector': 'mat-chip[hraChipSize], mat-chip-option[hraChipSize], mat-chip-row[hraChipSize]'},{'name': 'CtaButtonDirective', 'selector': 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]'},{'name': 'DensityDirective', 'selector': '[hraDensity]'},{'name': 'GalleryGridItemDirective', 'selector': '[hraGalleryGridItem]'},{'name': 'HubmapMenuGroupDirective', 'selector': 'ng-template[hraHubmapMenuGroup]'},{'name': 'HubmapMenuItemDirective', 'selector': 'ng-template[hraHubmapMenuItem]'},{'name': 'IconButtonSizeDirective', 'selector': '[hraIconButtonSize]'},{'name': 'IconButtonVariantDirective', 'selector': '[hraIconButtonVariant]'},{'name': 'IconRowElementDirective', 'selector': 'ng-template[hraIconRowElement]'},{'name': 'InfoButtonActionsDirective', 'selector': '[hraInfoButtonActions]'},{'name': 'InfoButtonTaglineDirective', 'selector': '[hraInfoButtonTagline]'},{'name': 'LinkRowElementDirective', 'selector': 'ng-template[hraLinkRowElement]'},{'name': 'MarkdownRowElementDirective', 'selector': 'ng-template[hraMarkdownRowElement]'},{'name': 'MenuButtonRowElementDirective', 'selector': 'ng-template[hraMenuButtonRowElement]'},{'name': 'MenuGroupDirective', 'selector': 'ng-template[hraMenuGroup]'},{'name': 'MenuItemDirective', 'selector': 'ng-template[hraMenuItem]'},{'name': 'MenuSubGroupDirective', 'selector': 'ng-template[hraMenuSubGroup]'},{'name': 'NavigationButtonDescriptionDirective', 'selector': '[hraNavigationButtonDescription]'},{'name': 'NavigationButtonTaglineDirective', 'selector': '[hraNavigationButtonTagline]'},{'name': 'NavigationIconDirective', 'selector': '[hraNavigationIcon]'},{'name': 'NumericRowElementDirective', 'selector': 'ng-template[hraNumericRowElement]'},{'name': 'PlainTooltipDirective', 'selector': '[hraPlainTooltip]'},{'name': 'PrimaryButtonVariantDirective', 'selector': 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]'},{'name': 'ProgressBarColorDirective', 'selector': 'mat-progress-bar[hraProgressBarColor]'},{'name': 'RichTooltipCloseDirective', 'selector': '[hraRichTooltipClose]'},{'name': 'RichTooltipContextDirective', 'selector': 'ng-template[hraRichTooltipContext]'},{'name': 'RichTooltipDirective', 'selector': '[hraRichTooltip]'},{'name': 'ScrollOverflowFadeDirective', 'selector': '[hraScrollOverflowFade]'},{'name': 'SecondaryButtonVariantDirective', 'selector': 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]'},{'name': 'SoftwareStatusSizeDirective', 'selector': '[hraSoftwareStatusSize]'},{'name': 'TextButtonDirective', 'selector': 'button[hraTextButton]'},{'name': 'TextHyperlinkDirective', 'selector': 'a[hraHyperlink]'},{'name': 'TextRowElementDirective', 'selector': 'ng-template[hraTextRowElement]'},{'name': 'TreeSizeDirective', 'selector': '[hraTreeSize]'},{'name': 'ViewOutletDirective', 'selector': '[hraViewOutlet]'}];

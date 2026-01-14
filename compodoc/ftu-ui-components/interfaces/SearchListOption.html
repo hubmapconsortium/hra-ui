@@ -374,16 +374,16 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model } from &#x27;@angular/core&#x27;;
-import { MatAutocompleteModule } from &#x27;@angular/material/autocomplete&#x27;;
 import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatAutocompleteModule } from &#x27;@angular/material/autocomplete&#x27;;
 
-import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
-import { MatInputModule } from &#x27;@angular/material/input&#x27;;
-import { MatListModule } from &#x27;@angular/material/list&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
 import { ScrollingModule, ScrollOverflowFadeDirective } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatListModule, MatListOption } from &#x27;@angular/material/list&#x27;;
 
 /** Search list option interface */
 export interface SearchListOption {
@@ -439,15 +439,11 @@ export class SearchListComponent&lt;T extends SearchListOption&gt; {
   readonly filteredOptions &#x3D; computed(() &#x3D;&gt; this.doSearch());
 
   /**
-   * Updates selected options on option click
-   * @param value Option clicked
+   * Updates selected options on update
+   * @param event Selected options in list
    */
-  selectionUpdate(value: T) {
-    if (this.selected().includes(value)) {
-      this.selected.set(this.selected().filter((x) &#x3D;&gt; x !&#x3D;&#x3D; value));
-    } else {
-      this.selected.set(this.selected().concat([value]));
-    }
+  selectionUpdate(event: MatListOption[]): void {
+    this.selected.set(event.map((option) &#x3D;&gt; option.value));
   }
 
   /** Filters options according to the search bar value */

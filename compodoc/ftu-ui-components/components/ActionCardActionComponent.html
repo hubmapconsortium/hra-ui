@@ -238,7 +238,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">/home/workflows/workspace/libs/design-system/cards/action-card/src/lib/action-card.component.ts:17</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -260,9 +260,10 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
-import { AssetUrlPipe } from &#x27;@hra-ui/common/url&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
 import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { AssetUrlPipe } from &#x27;@hra-ui/common/url&#x27;;
 import { coerceIconList, IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
 import { ActionCardVariant } from &#x27;./action-card.schema&#x27;;
 
@@ -284,7 +285,7 @@ export class ActionCardActionComponent {
  */
 @Component({
   selector: &#x27;hra-action-card&#x27;,
-  imports: [AssetUrlPipe, HraCommonModule, MatDividerModule, IconsModule],
+  imports: [AssetUrlPipe, HraCommonModule, MatDividerModule, IconsModule, MatChipsModule],
   templateUrl: &#x27;./action-card.component.html&#x27;,
   styleUrl: &#x27;./action-card.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -303,6 +304,8 @@ export class ActionCardComponent {
   readonly image &#x3D; input&lt;string&gt;();
   /** Icons shown for &#x60;outlined-with-icons&#x60; cards */
   readonly icons &#x3D; input([], { transform: coerceIconList });
+  /** Chips shown for &#x60;collection&#x60; cards */
+  readonly chips &#x3D; input&lt;string[]&gt;([]);
 }
 </code></pre>
     </div>
