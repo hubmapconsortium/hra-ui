@@ -2,7 +2,7 @@
   <section hraFeature="visualize" class="visualize">
     <div class="title">Visualize and quantify distances</div>
     <div class="cards-container">
-      <div class="cards">
+      <div class="cards" hraFeature="cde-cards">
         @for (card of cards(); track card.tagline) {
           @let chips = card.chips ?? [];
           @let additionalInfo = card.additionalInfo ?? {};
@@ -15,9 +15,11 @@
             @if (additionalInfo['leftActionText'] && additionalInfo['leftActionUrl']) {
               <hra-collection-card-action>
                 <a
+                  hraFeature="left-action"
                   mat-flat-button
                   hraButtonSize="medium"
                   disabled="false"
+                  [hraClickEvent]="{ url: additionalInfo['leftActionUrl'] }"
                   [hraLink]="additionalInfo['leftActionUrl']"
                   >{{ additionalInfo['leftActionText'] }}</a
                 >
@@ -25,9 +27,15 @@
             }
             @if (additionalInfo['rightActionText'] && additionalInfo['rightActionUrl']) {
               <hra-collection-card-action alignment="right">
-                <a mat-button hraButtonSize="medium" disabled="false" [hraLink]="additionalInfo['rightActionUrl']">{{
-                  additionalInfo['rightActionText']
-                }}</a>
+                <a
+                  hraFeature="right-action"
+                  mat-button
+                  hraButtonSize="medium"
+                  disabled="false"
+                  [hraClickEvent]="{ url: additionalInfo['rightActionUrl'] }"
+                  [hraLink]="additionalInfo['rightActionUrl']"
+                  >{{ additionalInfo['rightActionText'] }}</a
+                >
               </hra-collection-card-action>
             }
           </hra-collection-card>
