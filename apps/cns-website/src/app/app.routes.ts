@@ -6,7 +6,9 @@ import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/serv
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
+import { createFeaturedContentResolver } from './resolvers/featured-content/featured-content.resolver';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
+import { createTagsResolver } from './resolvers/tags/tags.resolver';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -14,6 +16,10 @@ export const appRoutes: Route[] = [
     path: '',
     pathMatch: 'full',
     component: LandingPageComponent,
+    resolve: {
+      featuredContent: createFeaturedContentResolver(),
+      tags: createTagsResolver(),
+    },
   },
   {
     path: 'people/:slug',
