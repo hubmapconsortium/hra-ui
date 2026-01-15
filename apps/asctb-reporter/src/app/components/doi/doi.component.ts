@@ -13,8 +13,11 @@ import { DOI } from '../../models/sheet.model';
   styleUrl: './doi.component.scss',
 })
 export class DoiComponent implements OnInit {
-  data = inject<DOI[]>(MAT_BOTTOM_SHEET_DATA);
-  readonly sheetRef = inject(MatBottomSheetRef);
+  readonly data: DOI[] = inject<DOI[]>(MAT_BOTTOM_SHEET_DATA);
+  private readonly sheetRef = inject(MatBottomSheetRef);
+
+  // Derived array used for rendering so the injected data stays immutable
+  displayData: DOI[] = [];
 
   loading = true;
   noId = false;
@@ -23,14 +26,10 @@ export class DoiComponent implements OnInit {
   ngOnInit(): void {
     this.loading = false;
 
-    /**
-     * Trimming the intial part of the doi property as it as "DOI: " in its respective property.
-     */
-    this.data = this.data.map((item) => {
-      if (item.doi.toUpperCase().search('DOI') === 0) {
-        item.doi = item.doi.substring(5);
-      }
-      return item;
+    // Populate a derived list with trimmed DOI values without mutating the injected data
+    this.displayData = this.data.map((item) => {
+      const doi = item.doi && item.doi.toUpperCase().startsWith('DOI') ? item.doi.substring(5).trim() : item.doi;
+      return { ...item, doi } as DOI;
     });
   }
 

@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -40,6 +49,7 @@ import { ReportService } from './report.service';
   ],
   templateUrl: './report.component.html',
   styleUrl: './report.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ReportComponent implements OnInit {
   readonly reportService = inject(ReportService);
