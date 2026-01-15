@@ -119,14 +119,24 @@ export function withFilters() {
     { props: type<PeopleProps>(), methods: type<PeopleMethods>() },
     withState<FilterState>(initialFilterState),
     withComputed((store) => {
-      const _filteredByTeam = computed(() => {
-        const team = store.team();
+      const _peopleByTeam = computed(() => {
         const people = store.people();
         const endYearByPerson = store.endYearByPerson();
-        return people.filter((person) => {
+        const currentTeam: PeopleProfileItem[] = [];
+        const pastTeam: PeopleProfileItem[] = [];
+        for (const person of people) {
           const isActive = endYearByPerson.get(person) === null;
-          return team === 'current' ? isActive : !isActive;
-        });
+          const team = isActive ? currentTeam : pastTeam;
+          team.push(person);
+        }
+
+        return { current: currentTeam, past: pastTeam };
+      });
+
+      const _filteredByTeam = computed(() => {
+        const team = store.team();
+        const peopleByTeam = _peopleByTeam();
+        return peopleByTeam[team];
       });
 
       const _filteredByRole = computed(() => {
@@ -170,6 +180,7 @@ export function withFilters() {
         filteredPeople: _filteredBySearch,
         numFilteredPeople: computed(() => _filteredBySearch().length),
         untypedFilters: store.filters as Signal<FilterOptionCategory<SearchListOption>[]>,
+        _peopleByTeam,
         _filteredByTeam,
         _filteredByRole,
         _filteredByYear,

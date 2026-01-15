@@ -107,7 +107,7 @@ export function withPeople() {
     withEntities(peopleConfig),
     withComputed(({ peopleEntities }) => {
       const people = computed(() => peopleEntities().filter((person) => person.roles.length > 0));
-      const numPeople = computed(() => peopleEntities().length);
+      const numPeople = computed(() => people().length);
 
       const rolesByPerson = computed(() =>
         createRolesPropertyMap(
