@@ -30,9 +30,8 @@ import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderEventsService } from '../../components/header/header.component';
+import { ViewType } from '../../resolvers/research/research.resolver';
 import { ResearchItem, ResearchPageData } from '../../schemas/research/research.schema';
-
-type ViewType = 'gallery' | 'list' | 'table';
 
 const PARAMS = ['category', 'people', 'year', 'event-type', 'funding-type', 'publication-type', 'project'];
 
@@ -79,8 +78,6 @@ export class ResearchPageComponent {
 
   /** Current search bar value */
   readonly search = signal<string>('');
-
-  readonly viewType = signal<ViewType>('gallery');
 
   readonly currentFilters = signal<Record<string, SearchListOption[]>>({});
 
@@ -136,6 +133,10 @@ export class ResearchPageComponent {
     { id: 'year', label: 'Year' },
   ]);
 
+  readonly viewType = signal<ViewType>('gallery');
+  readonly sortBy = signal<string>('newest');
+  readonly groupBy = signal<string>('none');
+
   readonly menuOpen = computed(() => this.headerEvents.menuState());
 
   /** Filtered items */
@@ -154,7 +155,10 @@ export class ResearchPageComponent {
 
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
-    queryParams$.subscribe(() => this.setCurrentFiltersFromParams());
+    queryParams$.subscribe(() => {
+      this.setCurrentFiltersFromParams();
+      this.setInitialControls();
+    });
 
     toObservable(this.data).subscribe(() => {
       this.updateFilterCounts(this.categoryOptions, 'category');
@@ -167,10 +171,70 @@ export class ResearchPageComponent {
     });
 
     effect(() => {
+      this.setControls(this.data());
       this.setYearOptions();
       this.setCurrentFiltersFromParams();
       this.headerEvents.menuState.set(this.isWideScreen());
     });
+  }
+
+  setInitialControls() {
+    const params = this.route.snapshot.queryParams;
+    this.sortBy.set('newest');
+    this.viewType.set('gallery');
+    this.groupBy.set('none');
+
+    if (params['category']) {
+      const category = params['category'];
+      if (category === 'visualizations') {
+        this.groupBy.set('year');
+      }
+      if (['publications', 'events', 'funding', 'presentations'].includes(category)) {
+        this.viewType.set('list');
+        this.groupBy.set('year');
+      }
+    }
+  }
+
+  private setControls(data: ResearchPageData) {
+    // Set sort
+    const sort = this.sortBy();
+    let sortedItems = data;
+    switch (sort) {
+      case 'nameAsc':
+        sortedItems = sortedItems.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+        break;
+      case 'nameDesc':
+        sortedItems = sortedItems.sort((a, b) => (b.title || '').localeCompare(a.title || ''));
+        break;
+      case 'newest':
+        sortedItems = sortedItems.sort((a, b) => (b.dateStart || '').localeCompare(a.dateStart || ''));
+        break;
+      case 'oldest':
+        sortedItems = sortedItems.sort((a, b) => (a.dateStart || '').localeCompare(b.dateStart || ''));
+        break;
+    }
+
+    const groupBy = this.groupBy();
+    if (groupBy !== 'none') {
+      const groupedItems: Record<string, ResearchItem[]> = {};
+      sortedItems.forEach((item) => {
+        let key = '';
+        if (groupBy === 'year') {
+          key = item.dateStart?.split('-')[0] || 'Unknown';
+        } else if (groupBy === 'publicationType') {
+          key = item.type || 'Unknown';
+        } else if (groupBy === 'project') {
+          key = item.project || 'Unknown';
+        }
+        if (!groupedItems[key]) {
+          groupedItems[key] = [item];
+        } else {
+          groupedItems[key].push(item);
+        }
+      });
+    }
+    return sortedItems;
   }
 
   private updateFilterCounts(optionsSignal: WritableSignal<SearchListOption[]>, type: string) {
@@ -253,7 +317,7 @@ export class ResearchPageComponent {
     });
 
     this.updateQueryParamsFromFilters();
-    return filteredData;
+    return this.setControls(filteredData);
   }
 
   convertToListItems(data: ResearchPageData): ListViewGroup[] {

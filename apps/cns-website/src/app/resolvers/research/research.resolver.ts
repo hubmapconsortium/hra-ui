@@ -23,6 +23,7 @@ export function createResearchResolver(): ResolveFn<ResearchPageData> {
           ...(publications as ResearchPageData).map((item) => ({
             ...item,
             category: item.category === 'publication' ? 'publications' : item.type,
+            title: item.title?.trim(),
           })),
         ].sort((a, b) => b.dateStart.localeCompare(a.dateStart));
       }),
@@ -58,3 +59,5 @@ export function createPublicationTypesResolver(): ResolveFn<SearchListOption[]> 
     );
   };
 }
+
+export type ViewType = 'gallery' | 'list' | 'table';

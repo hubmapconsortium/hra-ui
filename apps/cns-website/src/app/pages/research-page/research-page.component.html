@@ -27,7 +27,7 @@
       <mat-form-field subscriptSizing="dynamic">
         <hra-icon class="select-icon" matPrefix>sort</hra-icon>
         <mat-label>Sort by</mat-label>
-        <mat-select>
+        <mat-select [value]="sortBy()" (selectionChange)="sortBy.set($event.value)">
           @for (option of sortByOptions(); track option) {
             <mat-option [value]="option.id">{{ option.label }}</mat-option>
           }
@@ -37,7 +37,7 @@
       <mat-form-field subscriptSizing="dynamic">
         <hra-icon class="select-icon" matPrefix>category</hra-icon>
         <mat-label>Group by</mat-label>
-        <mat-select>
+        <mat-select [value]="groupBy()" (selectionChange)="groupBy.set($event.value)">
           @for (option of groupByOptions(); track option) {
             <mat-option [value]="option.id">{{ option.label }}</mat-option>
           }
