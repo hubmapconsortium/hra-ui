@@ -85,6 +85,14 @@ export class FilterMenuComponent<T extends SearchListOption> {
   }
 
   /**
+   * Toggles filter menu open/close
+   * @param category Filter category to toggle
+   */
+  toggleFilterMenu(category?: FilterOptionCategory<T>): void {
+    this.activeFilter.update((current) => (current === category ? undefined : category));
+  }
+
+  /**
    * Closes filter menu
    * @param category Filter category to close
    */

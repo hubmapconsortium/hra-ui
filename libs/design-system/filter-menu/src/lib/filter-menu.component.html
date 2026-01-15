@@ -41,9 +41,10 @@
         cdkOverlayOrigin
         [enableDivider]="!$last"
         [action]="filter.label"
+        [active]="activeFilter() === filter"
         [chips]="filter.selected ?? []"
         (chipsChange)="updateFilterSelection(filter, $event)"
-        (actionClick)="activeFilter.set(filter)"
+        (actionClick)="toggleFilterMenu(filter)"
         #filterMenuOrigin="cdkOverlayOrigin"
       />
 

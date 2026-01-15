@@ -71,23 +71,23 @@
 
       <!-- Profile cards grid -->
       @else {
-        @for (group of store.groupedPeople(); track group.label) {
+        @for (group of store.sortedGroupedPeople(); track group.label) {
           <section class="group-section">
             @if (group.label) {
               <h3 hra-section-link [underlined]="true">{{ group.label }}</h3>
             }
-            <hra-gallery-grid [dataSource]="group.members">
+            <hra-gallery-grid [dataSource]="group.people">
               <hra-profile-card
-                *hraGalleryGridItem="let member"
-                [pictureUrl]="member.image ? member.image : placeholderImage"
-                [name]="member.name"
-                [description]="store.getMemberTitle(member)"
+                *hraGalleryGridItem="let person"
+                [pictureUrl]="person.image ? person.image : placeholderImage"
+                [name]="person.name"
+                [description]="store.getMemberTitle(person)"
                 [centerContent]="true"
               >
                 <a
                   class="learn-more-link"
-                  [attr.href]="`/people/${member.slug}`"
-                  [attr.aria-label]="`Learn more about ${member.name}`"
+                  [attr.href]="`/people/${person.slug}`"
+                  [attr.aria-label]="`Learn more about ${person.name}`"
                 >
                   <span class="learn-more-text">Learn more</span>
                   <span class="learn-more-arrow">→</span>

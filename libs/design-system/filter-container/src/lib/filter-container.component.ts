@@ -39,6 +39,9 @@ export class FilterContainerComponent<T extends FilterChip> {
   /** tagline for the filter category */
   readonly action = input.required<string>();
 
+  /** Whether the filter container is active/open */
+  readonly active = model(false);
+
   /** Whether to show the info button with tooltip */
   readonly showTooltip = input(false, { transform: booleanAttribute });
 

@@ -10,8 +10,8 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
 import { PeopleProfileItem } from '../../../schemas/people-profile/people-profile.schema';
+import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
 
 /**
  * Team type filter - current or past members
@@ -40,7 +40,14 @@ export interface YearOption extends SearchListOption {
 export type FilterProps = {
   /** List of people after applying all filters */
   filteredPeople: Signal<PeopleProfileItem[]>;
+  /** Number of people after applying all filters */
+  numFilteredPeople: Signal<number>;
+  /** List of filters with selected options */
+  untypedFilters: Signal<FilterOptionCategory<SearchListOption>[]>;
 };
+
+/** Any internal props */
+type InternalProps = { [key: `_${string}`]: unknown };
 
 /**
  * Internal state for filters
@@ -111,9 +118,8 @@ export function withFilters() {
   return signalStoreFeature(
     { props: type<PeopleProps>(), methods: type<PeopleMethods>() },
     withState<FilterState>(initialFilterState),
-    withComputed((store) => ({
-      untypedFilters: computed(() => store.filters() as FilterOptionCategory<SearchListOption>[]),
-      _filteredByTeam: computed(() => {
+    withComputed((store) => {
+      const _filteredByTeam = computed(() => {
         const team = store.team();
         const people = store.people();
         const endYearByPerson = store.endYearByPerson();
@@ -121,27 +127,26 @@ export function withFilters() {
           const isActive = endYearByPerson.get(person) === null;
           return team === 'current' ? isActive : !isActive;
         });
-      }),
-    })),
-    withComputed((store) => ({
-      _filteredByRole: computed(() => {
-        const roles = store.filters()[0].selected ?? [];
-        const people = store._filteredByTeam();
-        if (roles.length === 0) {
+      });
+
+      const _filteredByRole = computed(() => {
+        const selectedRoles = store.filters()[0].selected ?? [];
+        const selectedTypes = new Set(selectedRoles.map((option) => option.id));
+        const people = _filteredByTeam();
+        if (selectedRoles.length === 0) {
           return people;
         }
 
         const rolesByPerson = store.rolesByPerson();
         return people.filter((person) => {
-          const personRoles = rolesByPerson.get(person);
-          return personRoles && roles.some((role) => personRoles.has(role.id));
+          const roles = rolesByPerson.get(person);
+          return roles && roles.some((role) => selectedTypes.has(store.getRoleType(role)));
         });
-      }),
-    })),
-    withComputed((store) => ({
-      _filteredByYear: computed(() => {
+      });
+
+      const _filteredByYear = computed(() => {
         const years = store.filters()[1].selected ?? [];
-        const people = store._filteredByRole();
+        const people = _filteredByRole();
         if (years.length === 0) {
           return people;
         }
@@ -149,22 +154,28 @@ export function withFilters() {
         return people.filter((person) => {
           return years.some((yearOption) => store.isActiveInYear(person, yearOption.year));
         });
-      }),
-    })),
-    withComputed((store) => ({
-      _filteredBySearch: computed(() => {
-        const search = store.search().toLowerCase();
-        const people = store._filteredByYear();
-        if (search.trim() === '') {
+      });
+
+      const _filteredBySearch = computed(() => {
+        const search = store.search().toLowerCase().trim();
+        const people = _filteredByYear();
+        if (!search) {
           return people;
         }
 
         return people.filter((person) => person.name.toLowerCase().includes(search));
-      }),
-    })),
-    withComputed((store) => ({
-      filteredPeople: computed(() => store._filteredBySearch()),
-    })),
+      });
+
+      return {
+        filteredPeople: _filteredBySearch,
+        numFilteredPeople: computed(() => _filteredBySearch().length),
+        untypedFilters: store.filters as Signal<FilterOptionCategory<SearchListOption>[]>,
+        _filteredByTeam,
+        _filteredByRole,
+        _filteredByYear,
+        _filteredBySearch,
+      } satisfies FilterProps & InternalProps;
+    }),
     withMethods((store) => ({
       setTeam: signalMethod((team: TeamType) => patchState(store, { team })),
       setFilters: signalMethod((filters: FilterOptionCategory<SearchListOption>[]) =>
