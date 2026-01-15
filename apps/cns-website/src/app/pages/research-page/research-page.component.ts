@@ -10,18 +10,19 @@ import {
   viewChild,
   WritableSignal,
 } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
 import { GridContainerComponent } from '@hra-ui/design-system/content-templates/grid-container';
 import { ListViewComponent, ListViewGroup } from '@hra-ui/design-system/content-templates/list-view';
+import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { FilterMenuComponent, FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { EndOfResultsIndicatorComponent } from '@hra-ui/design-system/indicators/end-of-results';
@@ -53,6 +54,7 @@ const PARAMS = ['category', 'people', 'year', 'event-type', 'funding-type', 'pub
     FooterComponent,
     EndOfResultsIndicatorComponent,
     MatDivider,
+    SectionLinkComponent,
   ],
   templateUrl: './research-page.component.html',
   styleUrl: './research-page.component.scss',
@@ -153,11 +155,14 @@ export class ResearchPageComponent {
   /** Whether the user is on a wide screen */
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
+  readonly queryParams = toSignal(this.route.queryParams, { initialValue: {} });
+
+  readonly initiated = signal<boolean>(false);
+
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
     queryParams$.subscribe(() => {
       this.setCurrentFiltersFromParams();
-      this.setInitialControls();
     });
 
     toObservable(this.data).subscribe(() => {
@@ -171,21 +176,116 @@ export class ResearchPageComponent {
     });
 
     effect(() => {
-      this.setControls(this.data());
+      this.setControls();
       this.setYearOptions();
       this.setCurrentFiltersFromParams();
       this.headerEvents.menuState.set(this.isWideScreen());
     });
   }
 
-  setInitialControls() {
-    const params = this.route.snapshot.queryParams;
+  updateFilters(updatedFilters: FilterOptionCategory<SearchListOption>[]) {
+    const newCurrentFilters: Record<string, SearchListOption[]> = {};
+    updatedFilters.forEach((filter) => {
+      if (filter.selected && filter.selected.length > 0) {
+        newCurrentFilters[filter.id] = filter.selected;
+      }
+    });
+    this.currentFilters.set(newCurrentFilters);
+    this.updateQueryParamsFromFilters();
+  }
+
+  clearFilters() {
+    this.search.set('');
+    this.currentFilters.set({});
+    this.updateQueryParamsFromFilters();
+  }
+
+  fetchTagLabels(tags: string[]): string[] {
+    return tags.map((tag) => {
+      return this.tags().find((tagg) => tagg.slug === tag)?.name || '';
+    });
+  }
+
+  convertToListItems(data: ResearchPageData): ListViewGroup[] {
+    const groupedData: Record<string, string[]> = {};
+    const groupBy = this.groupBy();
+    data.forEach((item) => {
+      if (groupBy === 'year') {
+        const year = item.dateStart?.split('-')[0];
+        if (!groupedData[year]) {
+          groupedData[year] = [item.description || ''];
+        } else {
+          groupedData[year].push(item.description || '');
+        }
+      }
+      if (groupBy === 'publicationType') {
+        const title = this.publicationTypes().find((pubType) => pubType.id === item.type)?.label || 'Other';
+        if (!groupedData[title]) {
+          groupedData[title] = [item.description || ''];
+        } else {
+          groupedData[title].push(item.description || '');
+        }
+      }
+      if (groupBy === 'project') {
+        const project = item.project || 'Other';
+        if (!groupedData[project]) {
+          groupedData[project] = [item.description || ''];
+        } else {
+          groupedData[project].push(item.description || '');
+        }
+      }
+
+      if (groupBy === 'none') {
+        groupedData['All'] = data.map((itm) => itm.description || '');
+      }
+    });
+    const listItems = Object.entries(groupedData);
+
+    listItems.sort((a, b) => parseInt(b[0]) - parseInt(a[0])); //sort by type in descending order
+
+    return listItems.map(([type, descriptions]) => ({
+      group: type,
+      items: descriptions.map((description) => ({ content: description })),
+    }));
+  }
+
+  setGroupedItems(data: ResearchPageData): [string, ResearchItem[]][] {
+    const groupBy = this.groupBy();
+    if (groupBy !== 'none') {
+      const groupedItems: Map<string, ResearchItem[]> = new Map();
+      data.forEach((item) => {
+        let key = '';
+        if (groupBy === 'year') {
+          key = item.dateStart.split('-')[0];
+        } else if (groupBy === 'publicationType') {
+          const title = this.publicationTypes().find((pubType) => pubType.id === item.type)?.label;
+          key = title || 'Other';
+        } else if (groupBy === 'project') {
+          key = item.project || 'Other';
+        }
+
+        if (!groupedItems.has(key)) {
+          groupedItems.set(key, [item]);
+        } else {
+          groupedItems.get(key)?.push(item);
+        }
+      });
+      return Array.from(groupedItems.entries());
+    }
+    return [];
+  }
+
+  private setControls() {
+    if (this.initiated()) {
+      return;
+    }
+    const params = this.queryParams() as Params;
     this.sortBy.set('newest');
     this.viewType.set('gallery');
     this.groupBy.set('none');
 
     if (params['category']) {
-      const category = params['category'];
+      const category = Array.isArray(params['category']) ? params['category'][0] : params['category'];
       if (category === 'visualizations') {
         this.groupBy.set('year');
       }
@@ -194,10 +294,10 @@ export class ResearchPageComponent {
         this.groupBy.set('year');
       }
     }
+    this.initiated.set(true);
   }
 
-  private setControls(data: ResearchPageData) {
-    // Set sort
+  private setSortedItems(data: ResearchPageData): ResearchItem[] {
     const sort = this.sortBy();
     let sortedItems = data;
     switch (sort) {
@@ -213,26 +313,6 @@ export class ResearchPageComponent {
       case 'oldest':
         sortedItems = sortedItems.sort((a, b) => (a.dateStart || '').localeCompare(b.dateStart || ''));
         break;
-    }
-
-    const groupBy = this.groupBy();
-    if (groupBy !== 'none') {
-      const groupedItems: Record<string, ResearchItem[]> = {};
-      sortedItems.forEach((item) => {
-        let key = '';
-        if (groupBy === 'year') {
-          key = item.dateStart?.split('-')[0] || 'Unknown';
-        } else if (groupBy === 'publicationType') {
-          key = item.type || 'Unknown';
-        } else if (groupBy === 'project') {
-          key = item.project || 'Unknown';
-        }
-        if (!groupedItems[key]) {
-          groupedItems[key] = [item];
-        } else {
-          groupedItems[key].push(item);
-        }
-      });
     }
     return sortedItems;
   }
@@ -317,27 +397,7 @@ export class ResearchPageComponent {
     });
 
     this.updateQueryParamsFromFilters();
-    return this.setControls(filteredData);
-  }
-
-  convertToListItems(data: ResearchPageData): ListViewGroup[] {
-    const groupedData: Record<string, string[]> = {};
-    data.forEach((item) => {
-      const year = item.dateStart?.split('-')[0];
-      if (!groupedData[year]) {
-        groupedData[year] = [item.description || ''];
-      } else {
-        groupedData[year].push(item.description || '');
-      }
-    });
-    const listItems = Object.entries(groupedData);
-
-    listItems.sort((a, b) => parseInt(b[0]) - parseInt(a[0])); //sort by year in descending order
-
-    return listItems.map(([year, descriptions]) => ({
-      group: year,
-      items: descriptions.map((description) => ({ content: description })),
-    }));
+    return this.setSortedItems(filteredData);
   }
 
   private currentFiltersToFilters(): FilterOptionCategory<SearchListOption>[] {
@@ -388,17 +448,6 @@ export class ResearchPageComponent {
     ];
   }
 
-  updateFilters(updatedFilters: FilterOptionCategory<SearchListOption>[]) {
-    const newCurrentFilters: Record<string, SearchListOption[]> = {};
-    updatedFilters.forEach((filter) => {
-      if (filter.selected && filter.selected.length > 0) {
-        newCurrentFilters[filter.id] = filter.selected;
-      }
-    });
-    this.currentFilters.set(newCurrentFilters);
-    this.updateQueryParamsFromFilters();
-  }
-
   private updateQueryParamsFromFilters() {
     this.router.navigate(['/research'], {
       queryParams: {
@@ -411,18 +460,6 @@ export class ResearchPageComponent {
         year: this.currentFilters()['year']?.map((year) => year.id),
         search: this.search() === '' ? null : this.search(),
       },
-    });
-  }
-
-  clearFilters() {
-    this.search.set('');
-    this.currentFilters.set({});
-    this.updateQueryParamsFromFilters();
-  }
-
-  fetchTagLabels(tags: string[]): string[] {
-    return tags.map((tag) => {
-      return this.tags().find((tagg) => tagg.slug === tag)?.name || '';
     });
   }
 }

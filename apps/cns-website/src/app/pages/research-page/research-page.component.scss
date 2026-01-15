@@ -92,6 +92,15 @@
     @include utils.use-font(label, large);
   }
 
+  .gallery-group {
+    display: flex;
+    flex-direction: column;
+
+    .group-title {
+      padding: 0 2.5rem 2.5rem;
+    }
+  }
+
   // Control styles
   .toggle-group {
     width: fit-content;

@@ -59,9 +59,27 @@
       <ng-container [ngTemplateOutlet]="empty" />
     } @else {
       <ng-scrollbar hraScrollOverflowFade>
-        @if (viewType() === 'list') {
-          <hra-list-view [data]="convertToListItems(filteredItems())" [groupBy]="true" />
-        } @else {
+        @if (groupBy() !== 'none' && viewType() === 'gallery') {
+          @for (group of setGroupedItems(filteredItems()); track group) {
+            <div class="gallery-group">
+              <h3 hra-section-link underlined class="group-title">{{ group[0] }}</h3>
+              <hra-grid-container>
+                @for (item of group[1]; track $index) {
+                  <hra-gallery-card
+                    [tagline]="item.title || ''"
+                    [imageSrc]="item.imgSrc"
+                    [date]="item.dateStart"
+                    [link]="item.link || ''"
+                    [external]="true"
+                    [tags]="fetchTagLabels(item.tags)"
+                  />
+                }
+              </hra-grid-container>
+            </div>
+          }
+        }
+
+        @if (groupBy() === 'none' && viewType() === 'gallery') {
           <hra-grid-container>
             @for (item of filteredItems(); track $index) {
               <hra-gallery-card
@@ -74,6 +92,10 @@
               />
             }
           </hra-grid-container>
+        }
+
+        @if (viewType() === 'list') {
+          <hra-list-view [data]="convertToListItems(filteredItems())" [groupBy]="groupBy() !== 'none'" />
         }
 
         <div class="page-end">

@@ -5,6 +5,7 @@ import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { HeaderComponent } from './components/header/header.component';
+import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 
 /**
  * Main application component
@@ -20,6 +21,8 @@ import { HeaderComponent } from './components/header/header.component';
   },
 })
 export class AppComponent extends BaseApplicationComponent {
+  protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
+
   /** Initialize application */
   constructor() {
     super();

@@ -10,6 +10,8 @@ const NEWS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-
 const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
 const PUBLICATION_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publication-types.json';
 
+export type ViewType = 'gallery' | 'list' | 'table';
+
 export function createResearchResolver(): ResolveFn<ResearchPageData> {
   return () => {
     const http = inject(HttpClient);
@@ -25,7 +27,7 @@ export function createResearchResolver(): ResolveFn<ResearchPageData> {
             category: item.category === 'publication' ? 'publications' : item.type,
             title: item.title?.trim(),
           })),
-        ].sort((a, b) => b.dateStart.localeCompare(a.dateStart));
+        ];
       }),
     );
   };
@@ -36,8 +38,7 @@ export function createPeopleResolver(): ResolveFn<SearchListOption[]> {
     const http = inject(HttpClient);
     return http.get<{ slug: string; name: string }[]>(PEOPLE_INDEX_URL, { responseType: 'json' }).pipe(
       map((people) => {
-        const sortedPeople = people.sort((a, b) => a.name.localeCompare(b.name));
-        return sortedPeople.map((person) => ({
+        return people.map((person) => ({
           id: person.slug,
           label: person.name,
         }));
@@ -59,5 +60,3 @@ export function createPublicationTypesResolver(): ResolveFn<SearchListOption[]> 
     );
   };
 }
-
-export type ViewType = 'gallery' | 'list' | 'table';
