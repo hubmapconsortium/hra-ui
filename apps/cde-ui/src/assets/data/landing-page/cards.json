@@ -1,22 +1,22 @@
 [
   {
     "tagline": "Create a Visualization",
-    "chips": ["Upload data", "Configure settings"],
+    "taglineChips": ["Upload data", "Configure settings"],
     "image": "assets/examples/create-a-visualization.png",
-    "additionalInfo": {
-      "label": "Featured app",
-      "supportingText": "Analye your data with the Cell Distance Explorer",
+    "label": "Featured app",
+    "supportingText": "Analye your data with the Cell Distance Explorer",
+    "actionsInfo": {
       "leftActionText": "Use app",
       "leftActionUrl": "/create"
     }
   },
   {
     "tagline": "New: Spatial Omics Gallery",
-    "chips": ["14 studies", "399 datasets"],
+    "taglineChips": ["14 studies", "399 datasets"],
     "image": "assets/examples/spatial-omics-gallery.png",
-    "additionalInfo": {
-      "label": "New feature",
-      "supportingText": "Explore spatial omics datasets",
+    "label": "New feature",
+    "supportingText": "Explore spatial omics datasets",
+    "actionsInfo": {
       "leftActionText": "Use app",
       "leftActionUrl": "/gallery",
       "rightActionText": "Publication",
@@ -25,11 +25,11 @@
   },
   {
     "tagline": "Explore 2D data",
-    "chips": ["Large intestine", "CyCIF"],
+    "taglineChips": ["Large intestine", "CyCIF"],
     "image": "assets/examples/2d-data-intestine.png",
-    "additionalInfo": {
-      "label": "Quick start",
-      "supportingText": "Data provided by Sorger Lab at Harvard Medical School",
+    "label": "Quick start",
+    "supportingText": "Data provided by Sorger Lab at Harvard Medical School",
+    "actionsInfo": {
       "leftActionText": "Use app",
       "leftActionUrl": "/example/0",
       "rightActionText": "Learn more",
@@ -38,11 +38,11 @@
   },
   {
     "tagline": "Explore 3D data",
-    "chips": ["Skin", "Cell DIVE"],
+    "taglineChips": ["Skin", "Cell DIVE"],
     "image": "assets/examples/3d-data-skin.png",
-    "additionalInfo": {
-      "label": "Quick start",
-      "supportingText": "Data provided by Sorger Lab at Harvard Medical School",
+    "label": "Quick start",
+    "supportingText": "Data provided by Sorger Lab at Harvard Medical School",
+    "actionsInfo": {
       "leftActionText": "Use app",
       "leftActionUrl": "/example/1",
       "rightActionText": "Learn more",

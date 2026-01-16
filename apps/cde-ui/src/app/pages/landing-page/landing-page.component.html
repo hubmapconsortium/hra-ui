@@ -4,37 +4,39 @@
     <div class="cards-container">
       <div class="cards" hraFeature="cde-cards">
         @for (card of cards(); track card.tagline) {
-          @let chips = card.chips ?? [];
-          @let additionalInfo = card.additionalInfo ?? {};
+          @let taglineChips = card.taglineChips ?? [];
+          @let actionsInfo = card.actionsInfo ?? {};
 
-          <hra-collection-card [tagline]="card.tagline" [image]="card.image" [chips]="chips">
-            <div>
-              <div class="label">{{ additionalInfo['label'] }}</div>
-              <div class="supporting-text">{{ additionalInfo['supportingText'] }}</div>
-            </div>
-            @if (additionalInfo['leftActionText'] && additionalInfo['leftActionUrl']) {
+          <hra-collection-card
+            [tagline]="card.tagline"
+            [image]="card.image"
+            [taglineChips]="taglineChips"
+            [label]="card.label"
+            [supportingText]="card.supportingText"
+          >
+            @if (actionsInfo['leftActionText'] && actionsInfo['leftActionUrl']) {
               <hra-collection-card-action>
                 <a
                   hraFeature="left-action"
                   mat-flat-button
                   hraButtonSize="medium"
                   disabled="false"
-                  [hraClickEvent]="{ url: additionalInfo['leftActionUrl'] }"
-                  [hraLink]="additionalInfo['leftActionUrl']"
-                  >{{ additionalInfo['leftActionText'] }}</a
+                  [hraClickEvent]="{ url: actionsInfo['leftActionUrl'] }"
+                  [hraLink]="actionsInfo['leftActionUrl']"
+                  >{{ actionsInfo['leftActionText'] }}</a
                 >
               </hra-collection-card-action>
             }
-            @if (additionalInfo['rightActionText'] && additionalInfo['rightActionUrl']) {
+            @if (actionsInfo['rightActionText'] && actionsInfo['rightActionUrl']) {
               <hra-collection-card-action alignment="right">
                 <a
                   hraFeature="right-action"
                   mat-button
                   hraButtonSize="medium"
                   disabled="false"
-                  [hraClickEvent]="{ url: additionalInfo['rightActionUrl'] }"
-                  [hraLink]="additionalInfo['rightActionUrl']"
-                  >{{ additionalInfo['rightActionText'] }}</a
+                  [hraClickEvent]="{ url: actionsInfo['rightActionUrl'] }"
+                  [hraLink]="actionsInfo['rightActionUrl']"
+                  >{{ actionsInfo['rightActionText'] }}</a
                 >
               </hra-collection-card-action>
             }
@@ -63,6 +65,12 @@
           mat-flat-button
           disabled="false"
           class="copy-citation"
+          cdkCopyToClipboard="Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,
+          Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,
+          Monte, E. M., Purkerson, J. M., Jehrio, M., & Misra, R. S. (2025).
+          Exploring endothelial cell environments across organs in spatially resolved omics data.
+          BioRxiv. https://doi.org/10.1101/2025.09.23.678129"
+          (cdkCopyToClipboardCopied)="openCopiedSnackbar()"
         >
           Copy citation
           <mat-icon>content_copy</mat-icon>
@@ -71,3 +79,4 @@
     </div>
   </section>
 </ng-container>
+<hra-footer />
