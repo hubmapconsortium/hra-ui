@@ -12,10 +12,10 @@ import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-s
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no-results-indicator';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
-import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 import { CurrentTeamStore } from './state/current-team.store';
-import { TeamType } from './state/with-filters.feature';
+import { teamTypeAttribute } from './state/with-filters.feature';
 
 /**
  * Page component for displaying current team members
@@ -53,9 +53,7 @@ export class CurrentTeamComponent {
   /**
    * Team type from query parameter
    */
-  readonly type = input('current', {
-    transform: (value?: string): TeamType => (value === 'past' ? 'past' : 'current'),
-  });
+  readonly type = input('current', { transform: teamTypeAttribute });
 
   /** Store for managing team member state and filters */
   protected readonly store = inject(CurrentTeamStore);

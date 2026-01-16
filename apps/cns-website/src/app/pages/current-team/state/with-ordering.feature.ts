@@ -9,7 +9,7 @@ import {
   withState,
 } from '@ngrx/signals';
 import { PeopleProfileItem, Role } from '../../../schemas/people-profile/people-profile.schema';
-import { FilterProps } from './with-filters.feature';
+import { FilterProps, TeamType } from './with-filters.feature';
 import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
 
 /**
@@ -36,6 +36,8 @@ export interface SortedGroup {
  * Props provided by the ordering feature
  */
 export type OrderingProps = {
+  /** Selected sort order */
+  sortBy: Signal<SortBy>;
   /** People grouped and sorted according to current settings */
   sortedGroupedPeople: Signal<SortedGroup[]>;
 };
@@ -48,7 +50,7 @@ type InternalProps = { [key: `_${string}`]: unknown };
  */
 interface OrderingState {
   /** Selected sort order */
-  sortBy: SortBy;
+  _sortBy: SortBy | null;
   /** Selected grouping option */
   groupBy: GroupBy;
 }
@@ -60,7 +62,7 @@ type GroupByKey = '' | 'current' | 'unknown' | 'skip' | RoleType | number;
  * Initial state for ordering
  */
 const initialOrderingState: OrderingState = {
-  sortBy: 'hierarchical',
+  _sortBy: null,
   groupBy: null,
 };
 
@@ -105,9 +107,8 @@ function compareByNumericProperty(
 
 /**
  * Order of groupBy keys for sorting.
- * Some keys should never appear at this point, but are included to ensure consistent ordering.
- * They are given high values (9999) to appear at the end.
- * Also 'current' should only appear in combination with numeric years and is always placed first.
+ * Some keys should never appear at this point, but are included to ensure consistency. They are instead given high values (9999).
+ * Also 'current' should only appear in combination with numeric years and is always placed before any year.
  */
 const GROUP_BY_KEY_ORDER: Record<GroupByKey, number> = {
   '': 9999,
@@ -247,10 +248,22 @@ function groupKeyToLabel(key: GroupByKey): string {
  */
 export function withOrdering() {
   return signalStoreFeature(
-    { props: type<FilterProps & PeopleProps>(), methods: type<PeopleMethods>() },
+    { state: type<{ team: TeamType }>(), props: type<FilterProps & PeopleProps>(), methods: type<PeopleMethods>() },
     withState<OrderingState>(initialOrderingState),
     withComputed((store) => {
-      const _sortFn = computed(() => createSortFn(store.sortBy(), store));
+      const sortBy = computed(() => {
+        const _sortBy = store._sortBy();
+        const team = store.team();
+        if (!_sortBy) {
+          return team === 'current' ? 'hierarchical' : 'endYearNewest';
+        } else if (team === 'past' && _sortBy === 'hierarchical') {
+          return 'endYearNewest';
+        }
+
+        return _sortBy;
+      });
+
+      const _sortFn = computed(() => createSortFn(sortBy(), store));
       const _sortedPeople = computed(() => {
         const people = store.filteredPeople();
         return [...people].sort(_sortFn());
@@ -290,6 +303,7 @@ export function withOrdering() {
       });
 
       return {
+        sortBy,
         sortedGroupedPeople,
         _sortFn,
         _sortedPeople,
@@ -298,7 +312,7 @@ export function withOrdering() {
       } satisfies OrderingProps & InternalProps;
     }),
     withMethods((store) => ({
-      setSortBy: signalMethod((sortBy: SortBy) => patchState(store, { sortBy })),
+      setSortBy: signalMethod((sortBy: SortBy) => patchState(store, { _sortBy: sortBy })),
       setGroupBy: signalMethod((groupBy: GroupBy) => patchState(store, { groupBy })),
     })),
   );

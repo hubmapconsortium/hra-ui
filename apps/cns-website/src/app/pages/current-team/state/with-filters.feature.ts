@@ -62,6 +62,16 @@ interface FilterState {
 }
 
 /**
+ * Get the team type from any attribute value
+ *
+ * @param team Team type value
+ * @returns Normalized team type
+ */
+export function teamTypeAttribute(team: unknown): TeamType {
+  return team && String(team).toLowerCase().trim() === 'past' ? 'past' : 'current';
+}
+
+/**
  * Create a list of years from startYear to current year
  * @param startYear - The starting year
  * @returns Array of years in descending order

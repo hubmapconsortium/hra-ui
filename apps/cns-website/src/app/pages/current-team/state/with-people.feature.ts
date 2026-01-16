@@ -67,7 +67,7 @@ const peopleConfig = entityConfig({
  */
 function createRolesPropertyMap<T, R>(
   people: PeopleProfileItem[],
-  getProperty: (person: Role) => T,
+  getProperty: (role: Role) => T,
   reducer: (values: T[]) => R,
 ): Map<PeopleProfileItem, R> {
   const result = new Map<PeopleProfileItem, R>();
