@@ -59,6 +59,7 @@ export function createResearchDataResolver(): ResolveFn<ResearchPageData> {
             ...item,
             category: item.category === 'publication' ? 'publications' : item.type,
             title: item.title?.trim(),
+            tags: [...new Set(item.tags)],
           })),
         ];
       }),
@@ -87,7 +88,7 @@ export function getPublicationTypes(): Observable<SearchListOption[]> {
       return types
         .map(({ label, value }) => ({
           id: value,
-          label,
+          label: label.charAt(0).toUpperCase() + label.slice(1).toLowerCase(),
         }))
         .sort((a, b) => a.label.localeCompare(b.label));
     }),
@@ -103,10 +104,10 @@ export function createOptionsResolver(): ResolveFn<Record<string, SearchListOpti
       map(({ publicationTypes, people }) => {
         return {
           category: CATEGORY_OPTIONS,
-          type: publicationTypes,
-          people: people,
           eventType: EVENT_OPTIONS,
           fundingType: FUNDING_OPTIONS,
+          type: publicationTypes,
+          people: people,
           project: PROJECT_OPTIONS,
           year: [], // to be filled in dynamically in the component,
         };

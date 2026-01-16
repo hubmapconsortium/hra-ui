@@ -59,7 +59,7 @@
       <ng-container [ngTemplateOutlet]="empty" />
     } @else {
       <ng-scrollbar hraScrollOverflowFade>
-        @if (groupBy() !== 'none' && viewType() === 'gallery') {
+        @if (!groupBy() || (groupBy() !== 'none' && viewType() === 'gallery')) {
           @for (group of setGroupedItems(filteredItems()); track $index) {
             <div class="gallery-group">
               <h3 hra-section-link underlined class="group-title">{{ group[0] }}</h3>
@@ -79,7 +79,7 @@
           }
         }
 
-        @if (groupBy() === 'none' && viewType() === 'gallery') {
+        @if (!groupBy() || (groupBy() === 'none' && viewType() === 'gallery')) {
           <hra-grid-container>
             @for (item of filteredItems(); track $index) {
               <hra-gallery-card

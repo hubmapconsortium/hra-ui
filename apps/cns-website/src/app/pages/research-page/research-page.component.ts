@@ -1,14 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  input,
-  model,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, model, signal, viewChild } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -35,12 +25,12 @@ import { ResearchItem, ResearchPageData } from '../../schemas/research/research.
 
 const queryParamToOptionsKey: Record<string, string> = {
   category: 'category',
-  people: 'people',
-  year: 'year',
   'event-type': 'eventType',
   'funding-type': 'fundingType',
   'publication-type': 'type',
-  project: 'project',
+  people: 'people',
+  // project: 'project',
+  year: 'year',
 };
 
 @Component({
@@ -97,14 +87,14 @@ export class ResearchPageComponent {
   ]);
   readonly groupByOptions = signal([
     { id: 'none', label: 'None' },
-    { id: 'project', label: 'Project' },
+    // { id: 'project', label: 'Project' },
     { id: 'type', label: 'Publication type' },
     { id: 'year', label: 'Year' },
   ]);
 
   readonly viewType = signal<ViewType>('gallery');
   readonly sortBy = signal<string>('newest');
-  readonly groupBy = signal<string>('none');
+  readonly groupBy = signal<string | undefined>(undefined);
 
   readonly menuOpen = computed(() => this.headerEvents.menuState());
 
@@ -131,12 +121,6 @@ export class ResearchPageComponent {
       this.setYearOptions();
       this.updateFilterCounts();
       this.setCurrentFiltersFromParams();
-    });
-
-    effect(() => {
-      this.setCurrentFiltersFromParams();
-      this.setControls();
-      this.headerEvents.menuState.set(this.isWideScreen());
     });
   }
 
@@ -168,7 +152,7 @@ export class ResearchPageComponent {
     const groupedData: Record<string, string[]> = {};
     data.forEach((item) => {
       let type = '';
-      if (groupBy() === 'none') {
+      if (!groupBy() || groupBy() === 'none') {
         groupedData['All'] = data.map((itm) => itm.description || '');
       } else {
         if (groupBy() === 'year') {
@@ -199,7 +183,7 @@ export class ResearchPageComponent {
   setGroupedItems(data: ResearchPageData): [string, ResearchItem[]][] {
     const { groupBy, options } = this;
     const groupedItems: Map<string, ResearchItem[]> = new Map();
-    if (groupBy() === 'none') {
+    if (!groupBy() || groupBy() === 'none') {
       return [];
     }
     data.forEach((item) => {
@@ -220,6 +204,7 @@ export class ResearchPageComponent {
       }
     });
     const groups = Array.from(groupedItems.entries());
+
     if (groupBy() === 'year') {
       groups.sort((a, b) => parseInt(b[0]) - parseInt(a[0])); //sort by year in descending order
       return groups;
@@ -235,7 +220,6 @@ export class ResearchPageComponent {
     const params = this.queryParams() as Params;
     this.sortBy.set('newest');
     this.viewType.set('gallery');
-    this.groupBy.set('none');
     if (params['category']) {
       const category = Array.isArray(params['category']) ? params['category'][0] : params['category'];
       if (category === 'visualizations') {

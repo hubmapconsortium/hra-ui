@@ -1,7 +1,15 @@
 @use 'utils';
 @use 'vars' as vars;
+@use '@angular/material' as mat;
 
 :host {
+  @include mat.sidenav-overrides(
+    (
+      container-background-color: vars.$surface-container-low,
+      content-background-color: vars.$on-primary,
+    )
+  );
+
   display: flex;
   height: 100%;
   flex-direction: column;
