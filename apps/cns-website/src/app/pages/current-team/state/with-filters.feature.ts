@@ -59,9 +59,9 @@ interface FilterState {
   /** Selected team filter */
   team: TeamType;
   /** Selected roles filter */
-  roles: RoleTypeOption[];
+  roles: RoleTypeOption[] | null;
   /** Selected years filter */
-  years: YearOption[];
+  years: YearOption[] | null;
   /** Search text for filtering by name */
   search: string | null;
 }
@@ -115,8 +115,8 @@ const YEARS_FILTER: FilterOptionCategory<YearOption> = {
  */
 const initialFilterState: FilterState = {
   team: TeamType.Current,
-  roles: [],
-  years: [],
+  roles: null,
+  years: null,
   search: null,
 };
 
@@ -130,9 +130,9 @@ export function withFilters() {
     { props: type<PeopleProps>(), methods: type<PeopleMethods>() },
     withState<FilterState>(initialFilterState),
     withComputed((store) => {
-      const _rolesFilter = computed(() => ({ ...ROLES_FILTER, selected: store.roles() }));
-      const _yearsFilter = computed(() => ({ ...YEARS_FILTER, selected: store.years() }));
-      const filters = computed(() => [_rolesFilter(), _yearsFilter()] as FilterOptionCategory<SearchListOption>[]);
+      const _rolesFilter = computed(() => ({ ...ROLES_FILTER, selected: store.roles() ?? [] }));
+      const _yearsFilter = computed(() => ({ ...YEARS_FILTER, selected: store.years() ?? [] }));
+      const filters = computed((): FilterOptionCategory<SearchListOption>[] => [_rolesFilter(), _yearsFilter()]);
 
       const _peopleByTeam = computed(() => {
         const people = store.people();
@@ -155,7 +155,7 @@ export function withFilters() {
       });
 
       const _filteredByRole = computed(() => {
-        const selectedRoles = store.roles();
+        const selectedRoles = store.roles() ?? [];
         const selectedTypes = new Set(selectedRoles.map((option) => option.id));
         const people = _filteredByTeam();
         if (selectedRoles.length === 0) {
@@ -170,7 +170,7 @@ export function withFilters() {
       });
 
       const _filteredByYear = computed(() => {
-        const years = store.years();
+        const years = store.years() ?? [];
         const people = _filteredByRole();
         if (years.length === 0) {
           return people;
@@ -206,8 +206,8 @@ export function withFilters() {
     }),
     withMethods((store) => ({
       setTeam: signalMethod((team: TeamType) => patchState(store, { team })),
-      setRoles: signalMethod((roles: RoleTypeOption[]) => patchState(store, { roles })),
-      setYears: signalMethod((years: YearOption[]) => patchState(store, { years })),
+      setRoles: signalMethod((roles: RoleTypeOption[] | null) => patchState(store, { roles })),
+      setYears: signalMethod((years: YearOption[] | null) => patchState(store, { years })),
       setFilters: signalMethod((filters: FilterOptionCategory<SearchListOption>[]) => {
         const roles = filters[0].selected as RoleTypeOption[];
         const years = filters[1].selected as YearOption[];

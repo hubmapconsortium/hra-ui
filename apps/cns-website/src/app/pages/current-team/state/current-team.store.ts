@@ -4,6 +4,7 @@ import { linkedQueryParam } from 'ngxtension/linked-query-param';
 import {
   parseGroupBy,
   parseRoles,
+  parseSearch,
   parseSortBy,
   parseTeamType,
   parseYears,
@@ -43,7 +44,7 @@ export const CurrentTeamStore = signalStore(
       linkedQueryParam('team', { source: teamType, parse: parseTeamType, ...commonOptions });
       linkedQueryParam('roles', { source: roles, parse: parseRoles, stringify: serializeRoles, ...commonOptions });
       linkedQueryParam('years', { source: years, parse: parseYears, stringify: serializeYears, ...commonOptions });
-      linkedQueryParam('search', { source: search, ...commonOptions });
+      linkedQueryParam('search', { source: search, parse: parseSearch, ...commonOptions });
       linkedQueryParam('sortBy', { source: sortBy, parse: parseSortBy, ...commonOptions });
       linkedQueryParam('groupBy', { source: groupBy, parse: parseGroupBy, ...commonOptions });
     },
