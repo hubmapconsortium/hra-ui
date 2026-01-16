@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, model, signal, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  model,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,6 +42,25 @@ const queryParamToOptionsKey: Record<string, string> = {
   // project: 'project',
   year: 'year',
 };
+
+const VIEW_AS_OPTIONS = [
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'list', label: 'List' },
+];
+
+const SORT_BY_OPTIONS = [
+  { id: 'nameAsc', label: 'Ascending (A-Z) by title' },
+  { id: 'nameDesc', label: 'Descending (Z-A) by title' },
+  { id: 'newest', label: 'Newest' },
+  { id: 'oldest', label: 'Oldest' },
+];
+
+const DEFAULT_GROUP_OPTIONS = [
+  { id: 'none', label: 'None' },
+  // { id: 'project', label: 'Project' },
+  { id: 'type', label: 'Publication type' },
+  { id: 'year', label: 'Year' },
+];
 
 @Component({
   selector: 'cns-research-page',
@@ -75,22 +104,18 @@ export class ResearchPageComponent {
 
   readonly currentFilters = signal<Record<string, SearchListOption[]>>({});
 
-  readonly viewAsOptions = signal([
-    { id: 'gallery', label: 'Gallery' },
-    { id: 'list', label: 'List' },
-  ]);
-  readonly sortByOptions = signal([
-    { id: 'nameAsc', label: 'Ascending (A-Z) by title' },
-    { id: 'nameDesc', label: 'Descending (Z-A) by title' },
-    { id: 'newest', label: 'Newest' },
-    { id: 'oldest', label: 'Oldest' },
-  ]);
-  readonly groupByOptions = signal([
-    { id: 'none', label: 'None' },
-    // { id: 'project', label: 'Project' },
-    { id: 'type', label: 'Publication type' },
-    { id: 'year', label: 'Year' },
-  ]);
+  readonly viewAsOptions = signal(VIEW_AS_OPTIONS);
+  readonly sortByOptions = signal(SORT_BY_OPTIONS);
+  readonly groupByOptions = computed(() => {
+    const qp = this.queryParams() as Params;
+    if (qp['category']) {
+      const category = Array.isArray(qp['category']) ? qp['category'][0] : qp['category'];
+      if (category.length > 0 && !category.includes('publications')) {
+        return DEFAULT_GROUP_OPTIONS.filter((option) => option.id !== 'type');
+      }
+    }
+    return DEFAULT_GROUP_OPTIONS;
+  });
 
   readonly viewType = signal<ViewType>('gallery');
   readonly sortBy = signal<string>('newest');
@@ -120,6 +145,10 @@ export class ResearchPageComponent {
     toObservable(this.data).subscribe(() => {
       this.setYearOptions();
       this.updateFilterCounts();
+    });
+
+    effect(() => {
+      this.setControls();
       this.setCurrentFiltersFromParams();
     });
   }
@@ -172,7 +201,11 @@ export class ResearchPageComponent {
       }
     });
     const listItems = Object.entries(groupedData);
-    listItems.sort((a, b) => b[0].localeCompare(a[0])); //sort by type in descending order
+    if (groupBy() === 'year') {
+      listItems.sort((a, b) => b[0].localeCompare(a[0])); //sort by year in descending order
+    } else {
+      listItems.sort((a, b) => a[0].localeCompare(b[0])); //sort by type in alphabetical order
+    }
 
     return listItems.map(([type, descriptions]) => ({
       group: type,
@@ -209,7 +242,7 @@ export class ResearchPageComponent {
       groups.sort((a, b) => parseInt(b[0]) - parseInt(a[0])); //sort by year in descending order
       return groups;
     }
-    const sortedGroups = groups.sort((a, b) => a[0].localeCompare(b[0])); //sort by type in descending order
+    const sortedGroups = groups.sort((a, b) => a[0].localeCompare(b[0])); //sort by type in alphabetical order
     return sortedGroups;
   }
 
@@ -275,20 +308,27 @@ export class ResearchPageComponent {
 
   private setCurrentFiltersFromParams() {
     const queryParams = this.queryParams() as Params;
+    const queryParamsArray: Record<string, string[]> = {};
+
     this.search.set(queryParams['search']);
-    const filterIds: Record<string, string[]> = {};
+
+    if (Object.values(queryParams).length === 0) {
+      this.clearFilters();
+    }
     Object.keys(queryParamToOptionsKey).forEach((type) => {
       if (queryParams[type]) {
-        filterIds[type] = Array.isArray(queryParams[type]) ? queryParams[type] : [queryParams[type]];
+        queryParamsArray[type] = Array.isArray(queryParams[type]) ? queryParams[type] : [queryParams[type]];
       }
     });
-    Object.entries(queryParamToOptionsKey).forEach(([query, optionKey]) => {
+    Object.entries(queryParamToOptionsKey).forEach(([queryParam, optionKey]) => {
       this.currentFilters.update((filters) => {
         {
-          if (filterIds[query]) {
+          if (queryParamsArray[queryParam]) {
             return {
               ...filters,
-              [optionKey]: this.options()[optionKey].filter((option) => filterIds[query].includes(option.id)),
+              [optionKey]: this.options()[optionKey].filter((option) =>
+                queryParamsArray[queryParam].includes(option.id),
+              ),
             };
           }
           return filters;
