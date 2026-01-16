@@ -4,11 +4,11 @@
 
 :host {
   display: block;
-  min-height: 100vh;
+  height: calc(100vh - 3.5rem);
   width: 100%;
 
   mat-sidenav-container {
-    height: 100vh;
+    height: 100%;
     --mat-sidenav-content-background-color: var(--mat-sys-on-primary);
   }
 
@@ -72,7 +72,11 @@
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
+
+    ng-scrollbar {
+      flex: 1;
+    }
   }
 
   .people-section {
@@ -82,6 +86,10 @@
   }
 
   .search-container {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--mat-sys-on-primary);
     max-width: 81.25rem;
     margin: 0 auto;
     width: 100%;

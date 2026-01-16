@@ -52,53 +52,55 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="main-content">
-    <!-- Search filter with results counter -->
-    <div class="search-container">
-      <hra-search-filter
-        label="Search"
-        [totalCount]="store.numPeople()"
-        [viewingCount]="store.numFilteredPeople()"
-        [search]="store.search()"
-        (searchChange)="store.setSearch($event)"
-      />
-    </div>
+    <ng-scrollbar>
+      <!-- Search filter with results counter -->
+      <div class="search-container">
+        <hra-search-filter
+          label="Search"
+          [totalCount]="store.numPeople()"
+          [viewingCount]="store.numFilteredPeople()"
+          [search]="store.search()"
+          (searchChange)="store.setSearch($event)"
+        />
+      </div>
 
-    <div class="people-section">
-      <!-- No results indicator -->
-      @if (store.numFilteredPeople() === 0) {
-        <hra-no-results-indicator (clearFilters)="store.resetFilters()" />
-      }
-
-      <!-- Profile cards grid -->
-      @else {
-        @for (group of store.sortedGroupedPeople(); track group.label) {
-          <section class="group-section">
-            @if (group.label) {
-              <h3 hra-section-link [underlined]="true">{{ group.label }}</h3>
-            }
-            <hra-gallery-grid [dataSource]="group.people">
-              <hra-profile-card
-                *hraGalleryGridItem="let person"
-                [pictureUrl]="person.image ? person.image : placeholderImage"
-                [name]="person.name"
-                [description]="store.getMemberTitle(person)"
-                [centerContent]="true"
-              >
-                <a
-                  class="learn-more-link"
-                  [attr.href]="`/people/${person.slug}`"
-                  [attr.aria-label]="`Learn more about ${person.name}`"
-                >
-                  <span class="learn-more-text">Learn more</span>
-                  <span class="learn-more-arrow">→</span>
-                </a>
-              </hra-profile-card>
-            </hra-gallery-grid>
-          </section>
+      <div class="people-section">
+        <!-- No results indicator -->
+        @if (store.numFilteredPeople() === 0) {
+          <hra-no-results-indicator (clearFilters)="store.resetFilters()" />
         }
-      }
-    </div>
 
-    <cns-footer />
+        <!-- Profile cards grid -->
+        @else {
+          @for (group of store.sortedGroupedPeople(); track group.label) {
+            <section class="group-section">
+              @if (group.label) {
+                <h3 hra-section-link [underlined]="true">{{ group.label }}</h3>
+              }
+              <hra-gallery-grid [dataSource]="group.people">
+                <hra-profile-card
+                  *hraGalleryGridItem="let person"
+                  [pictureUrl]="person.image ? person.image : placeholderImage"
+                  [name]="person.name"
+                  [description]="store.getMemberTitle(person)"
+                  [centerContent]="true"
+                >
+                  <a
+                    class="learn-more-link"
+                    [attr.href]="`/people/${person.slug}`"
+                    [attr.aria-label]="`Learn more about ${person.name}`"
+                  >
+                    <span class="learn-more-text">Learn more</span>
+                    <span class="learn-more-arrow">→</span>
+                  </a>
+                </hra-profile-card>
+              </hra-gallery-grid>
+            </section>
+          }
+        }
+      </div>
+
+      <cns-footer />
+    </ng-scrollbar>
   </mat-sidenav-content>
 </mat-sidenav-container>
