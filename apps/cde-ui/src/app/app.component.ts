@@ -41,7 +41,7 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Breadcrumbs data (computed from above signal). */
   protected readonly crumbs = computed(() => {
-    if (this.data()['data']) {
+    if (this.data()['data'] && this.data()['data'].metadata) {
       return this.data()['crumbs'].concat([{ name: this.data()['data'].metadata.sourceFileName }]);
     }
     return this.data()['crumbs'];

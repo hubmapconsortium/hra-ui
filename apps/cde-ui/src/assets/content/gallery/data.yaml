@@ -1,0 +1,223 @@
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Spatial Omics Gallery
+subtitle: Collection of all cell distance distributions of spatial omics datasets.
+icons: product:cde
+content:
+  - component: PageSection
+    tagline: Overview
+    anchor: overview
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          This gallery showcases a collection of cell feature tables from single-cell spatial omics—spatial proteomics and spatial
+          transcriptomics—datasets collected by the Human Reference Atlas team and processed and visualized in the Cell Distance Explorer.
+
+      - component: Button
+        label: Publication
+        href: 'https://doi.org/10.1101/2025.09.23.678129'
+        type: cta
+
+  - component: PageSection
+    tagline: Featured studies
+    anchor: featured-studies
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Explore cell-to-nearest-endothelial-cell distance distributions for various cell types using 399 spatially resolved omics datasets
+          from 14 studies comprising 12 tissue types with a total of 47,349,496 cells.
+
+      - component: GridContainer
+        itemMinWidth: 312px
+        content:
+          - component: OmicsFeaturedStudyCard
+            tagline: Bone marrow, CODEX
+            taglineChips: ['37 datasets', '1,214,088 cells']
+            image: assets/content/gallery/images/cards/bone-marrow-codex.png
+            label: Tan Lab
+            supportingText: Children's Hospital of Philadelphia
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Large intestine, CyCIF
+            taglineChips: ['25 datasets', '12,768,141 cells']
+            image: assets/content/gallery/images/cards/large-intestine-cycif.png
+            label: Sorger Lab
+            supportingText: Harvard Medical School
+            tags:
+              - icon: diversity_3
+                text: 'HTAN'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Large intestine, Xenium
+            taglineChips: ['29 datasets', '2,639,215 cells']
+            image: assets/content/gallery/images/cards/large-intestine-xenium.png
+            label: Snyder Lab
+            supportingText: Stanford University
+            tags:
+              - icon: diversity_3
+                text: 'HTAN'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Esophagus, CODEX
+            taglineChips: ['1 dataset', '45,858 cells']
+            image: assets/content/gallery/images/cards/esophagus-codex.png
+            label: Snyder Lab
+            supportingText: Stanford University
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Large and small intestine, CODEX
+            taglineChips: ['64 datasets', '2,512,185 cells']
+            image: assets/content/gallery/images/cards/large-and-small-intestine-codex.png
+            label: Snyder Lab, Hickey Lab
+            supportingText: Stanford University, Duke University
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Lung, CODEX
+            taglineChips: ['2 datasets', '1,209,309 cells']
+            image: assets/content/gallery/images/cards/lung-codex.png
+            label: Pryhuber Research Lab
+            supportingText: University of Rochester Medical Center
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Lymph node, CODEX
+            taglineChips: ['5 datasets', '8,918,845 cells']
+            image: assets/content/gallery/images/cards/lymph-node-codex.png
+            label: Fan Lab
+            supportingText: Yale University
+            tags:
+              - icon: diversity_3
+                text: 'SenNet'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Maternal fetal interface, MIBI-TOF
+            taglineChips: ['209 datasets', '477,747 cells']
+            image: assets/content/gallery/images/cards/maternal-fetal-interface-mibitof.png
+            label: Angelo Lab
+            supportingText: Stanford University
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Oral cavity, CODEX
+            taglineChips: ['12 datasets', '1,412,189 cells']
+            image: assets/content/gallery/images/cards/oral-cavity-codex.png
+            label: Lab of Oral & Craniofacial Innovation
+            supportingText: Virginia Commonwealth University
+            tags:
+              - icon: diversity_3
+                text: 'CZI'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Pancreas, GeoMx
+            taglineChips: ['6 datasets', '1,581,873 cells']
+            image: assets/content/gallery/images/cards/pancreas-geomx.png
+            label: Martha L. Campbell-Thompson Lab
+            supportingText: University of Florida
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Skin, Cell DIVE
+            taglineChips: ['9 datasets', '281,423 cells']
+            image: assets/content/gallery/images/cards/skin-cell-dive.png
+            label: Fiona Ginty Lab
+            supportingText: GE HealthCare Technology and Innovation Center
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Skin, Confocal Microscopy
+            taglineChips: ['2 datasets', '55,255 cells']
+            image: assets/content/gallery/images/cards/skin-confocal-microscopy.png
+            label: Sorger Lab
+            supportingText: Harvard Medical School
+            tags:
+              - icon: diversity_3
+                text: 'HTAN'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Spleen, CODEX
+            taglineChips: ['6 datasets', '992,899 cells']
+            image: assets/content/gallery/images/cards/spleen-codex.png
+            label: Fan Lab
+            supportingText: Johns Hopkins University
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+              - icon: check_circle
+                text: 'HRA registered'
+
+          - component: OmicsFeaturedStudyCard
+            tagline: Tonsil, CODEX
+            taglineChips: ['1 dataset', '173,968 cells']
+            image: assets/content/gallery/images/cards/tonsil-codex.png
+            label: Snyder Lab
+            supportingText: Stanford University
+            tags:
+              - icon: diversity_3
+                text: 'HuBMAP'
+
+  - component: PageSection
+    tagline: View collection in the Exploration User Interface
+    anchor: view-collection-in-eui
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          A total of 203 out of 399 datasets are registered into the HRA and can be explored together within the context of the male and female reference body.
+
+      - component: TextHyperlink
+        text: Use app
+        url: https://hubmapconsortium.github.io/hra-registrations/vccf-federated/
+        icon: arrow_right_alt
+
+      - component: Image
+        src: assets/content/gallery/images/eui-screenshot.png
+
+  - component: PageSection
+    tagline: Collaborate with us
+    anchor: collaborate-with-us
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Interested in featuring your datasets? Email us at [infoccf@iu.edu](mailto:infoccf@iu.edu) to collaborate!
+
+      - component: CopyEmailButton
+        emailId: infoccf@iu.edu
