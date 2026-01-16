@@ -60,7 +60,7 @@ export interface Row {
 export interface ResponseData {
   csv: string;
   data: Row[];
-  parsed: [];
+  parsed: string[][];
   isOmap?: boolean;
 }
 
