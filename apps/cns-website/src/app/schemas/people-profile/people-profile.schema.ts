@@ -38,7 +38,7 @@ const CollaboratorRoleSchema = BaseRoleSchema.extend({
 }).meta({ id: 'PeopleProfileCollaboratorRole' });
 
 /** Union type representing any valid role */
-export type Role = z.infer<typeof RoleSchema>;
+export type AnyRole = z.infer<typeof RoleSchema>;
 /** Type representing a team member role */
 export type MemberRole = z.infer<typeof MemberRoleSchema>;
 /** Type representing a student role */
@@ -46,7 +46,7 @@ export type StudentRole = z.infer<typeof StudentRoleSchema>;
 /** Type representing a collaborator role */
 export type CollaboratorRole = z.infer<typeof CollaboratorRoleSchema>;
 /** Literal union of all possible role type discriminators */
-export type RoleType = Role['type'];
+export type RoleType = AnyRole['type'];
 
 /** Discriminated union of all role types */
 const RoleSchema = z

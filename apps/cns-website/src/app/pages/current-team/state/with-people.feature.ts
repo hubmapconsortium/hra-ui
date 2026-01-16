@@ -9,12 +9,18 @@ import {
   withMethods,
 } from '@ngrx/signals';
 import { entityConfig, setEntities, withEntities } from '@ngrx/signals/entities';
-import { PeopleProfileItem, Role } from '../../../schemas/people-profile/people-profile.schema';
+import { AnyRole, PeopleProfileItem } from '../../../schemas/people-profile/people-profile.schema';
 
 /**
  * Normalized role types for team members
  */
-export type RoleType = 'collaborator' | 'master-student' | 'phd-student' | 'staff' | 'student';
+export enum RoleType {
+  Collaborator = 'collaborator',
+  MasterStudent = 'masterStudent',
+  PhDStudent = 'phdStudent',
+  Staff = 'staff',
+  Student = 'student',
+}
 
 /**
  * Props provided by the people feature
@@ -25,7 +31,7 @@ export type PeopleProps = {
   /** Total number of people */
   numPeople: Signal<number>;
   /** Map of people to their roles (sorted by most recent role) */
-  rolesByPerson: Signal<Map<PeopleProfileItem, Role[]>>;
+  rolesByPerson: Signal<Map<PeopleProfileItem, AnyRole[]>>;
   /** Map of people to their start year */
   startYearByPerson: Signal<Map<PeopleProfileItem, number>>;
   /** Map of people to their end year (null if currently active) */
@@ -39,7 +45,7 @@ export type PeopleProps = {
  */
 export type PeopleMethods = {
   /** Get the normalized role type for a given role */
-  getRoleType(role: Role): RoleType;
+  getRoleType(role: AnyRole): RoleType;
   /** Get the display title for a team member */
   getMemberTitle(person: PeopleProfileItem): string;
   /** Check if a person was active in a given year */
@@ -67,7 +73,7 @@ const peopleConfig = entityConfig({
  */
 function createRolesPropertyMap<T, R>(
   people: PeopleProfileItem[],
-  getProperty: (role: Role) => T,
+  getProperty: (role: AnyRole) => T,
   reducer: (values: T[]) => R,
 ): Map<PeopleProfileItem, R> {
   const result = new Map<PeopleProfileItem, R>();
@@ -85,7 +91,7 @@ function createRolesPropertyMap<T, R>(
  * @param b Second role
  * @returns Comparison result
  */
-function sortRoleByDateDesc(a: Role, b: Role): number {
+function sortRoleByDateDesc(a: AnyRole, b: AnyRole): number {
   const aEnd = a.dateEnd?.getTime();
   const bEnd = b.dateEnd?.getTime();
   if (aEnd === undefined) {
@@ -170,19 +176,19 @@ export function withPeople() {
             return '';
         }
       },
-      getRoleType: (role: Role): RoleType => {
+      getRoleType: (role: AnyRole): RoleType => {
         switch (role.type) {
           case 'collaborator':
-            return 'collaborator';
+            return RoleType.Collaborator;
           case 'student':
             if (role.degree === 'Ph.D.') {
-              return 'phd-student';
+              return RoleType.PhDStudent;
             } else if (role.degree === 'Masters') {
-              return 'master-student';
+              return RoleType.MasterStudent;
             }
-            return 'student';
+            return RoleType.Student;
           case 'member':
-            return 'staff';
+            return RoleType.Staff;
         }
       },
       isActiveInYear: (person: PeopleProfileItem, year: number) => {

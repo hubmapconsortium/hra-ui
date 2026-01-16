@@ -8,19 +8,29 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { PeopleProfileItem, Role } from '../../../schemas/people-profile/people-profile.schema';
+import { AnyRole, PeopleProfileItem } from '../../../schemas/people-profile/people-profile.schema';
 import { FilterProps, TeamType } from './with-filters.feature';
 import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
 
 /**
  * Sort options for team members
  */
-export type SortBy = 'hierarchical' | 'lastNameAsc' | 'lastNameDesc' | 'endYearNewest' | 'startYearOldest';
+export enum SortBy {
+  Hierarchical = 'hierarchical',
+  LastNameAsc = 'lastNameAsc',
+  LastNameDesc = 'lastNameDesc',
+  EndYearNewest = 'endYearNewest',
+  StartYearOldest = 'startYearOldest',
+}
 
 /**
  * Group by options for team members
  */
-export type GroupBy = 'role' | 'startYear' | 'endYear' | null;
+export enum GroupBy {
+  Role = 'role',
+  StartYear = 'startYear',
+  EndYear = 'endYear',
+}
 
 /**
  * Group of people with a label
@@ -52,7 +62,7 @@ interface OrderingState {
   /** Selected sort order */
   _sortBy: SortBy | null;
   /** Selected grouping option */
-  groupBy: GroupBy;
+  groupBy: GroupBy | null;
 }
 
 /** Grouping keys */
@@ -112,14 +122,14 @@ function compareByNumericProperty(
  */
 const GROUP_BY_KEY_ORDER: Record<GroupByKey, number> = {
   '': 9999,
-  collaborator: 5,
   current: -1,
-  'master-student': 3,
-  'phd-student': 2,
   skip: 9999,
-  staff: 0,
-  student: 4,
   unknown: 6,
+  [RoleType.Collaborator]: 5,
+  [RoleType.MasterStudent]: 3,
+  [RoleType.PhDStudent]: 2,
+  [RoleType.Staff]: 0,
+  [RoleType.Student]: 4,
 };
 
 /**
@@ -152,16 +162,16 @@ function compareByGroupKey(a: GroupByKey, b: GroupByKey): number {
  */
 function createSortFn(sortBy: SortBy, store: PeopleProps): (a: PeopleProfileItem, b: PeopleProfileItem) => number {
   switch (sortBy) {
-    case 'lastNameAsc':
+    case SortBy.LastNameAsc:
       return (a, b) => compareByName(a, b, 1);
-    case 'lastNameDesc':
+    case SortBy.LastNameDesc:
       return (a, b) => compareByName(a, b, -1);
 
-    case 'endYearNewest': {
+    case SortBy.EndYearNewest: {
       const endYearByPerson = store.endYearByPerson();
       return (a, b) => compareByNumericProperty(a, b, endYearByPerson, -1);
     }
-    case 'startYearOldest': {
+    case SortBy.StartYearOldest: {
       const startYearByPerson = store.startYearByPerson();
       return (a, b) => compareByNumericProperty(a, b, startYearByPerson, 1);
     }
@@ -181,7 +191,7 @@ function createSortFn(sortBy: SortBy, store: PeopleProps): (a: PeopleProfileItem
  * @returns A function that derives group keys for team members
  */
 function createGroupByKeyFn(
-  groupBy: GroupBy,
+  groupBy: GroupBy | null,
   store: PeopleProps & PeopleMethods,
 ): (person: PeopleProfileItem) => GroupByKey {
   const rolesByPerson = store.rolesByPerson();
@@ -199,13 +209,16 @@ function createGroupByKeyFn(
  * @param store Store containing people properties
  * @returns A function that derives group keys from a role
  */
-function createGroupByKeyImpl(groupBy: GroupBy, store: PeopleProps & PeopleMethods): (role: Role) => GroupByKey {
+function createGroupByKeyImpl(
+  groupBy: GroupBy | null,
+  store: PeopleProps & PeopleMethods,
+): (role: AnyRole) => GroupByKey {
   switch (groupBy) {
-    case 'role':
+    case GroupBy.Role:
       return (role) => store.getRoleType(role);
-    case 'startYear':
+    case GroupBy.StartYear:
       return (role) => role.dateStart.getFullYear();
-    case 'endYear':
+    case GroupBy.EndYear:
       return (role) => role.dateEnd?.getFullYear() ?? 'current';
     default:
       return () => 'unknown';
@@ -217,14 +230,14 @@ function createGroupByKeyImpl(groupBy: GroupBy, store: PeopleProps & PeopleMetho
  */
 const GROUP_BY_KEY_LABELS: Record<GroupByKey, string> = {
   '': '',
-  collaborator: 'Collaborators',
   current: 'Current',
-  'master-student': 'Master Students',
-  'phd-student': 'PhD Students',
   skip: '',
-  staff: 'Staff',
-  student: 'Students',
   unknown: 'Unknown',
+  [RoleType.Collaborator]: 'Collaborators',
+  [RoleType.MasterStudent]: 'Master Students',
+  [RoleType.PhDStudent]: 'PhD Students',
+  [RoleType.Staff]: 'Staff',
+  [RoleType.Student]: 'Students',
 };
 
 /**
@@ -255,9 +268,9 @@ export function withOrdering() {
         const _sortBy = store._sortBy();
         const team = store.team();
         if (!_sortBy) {
-          return team === 'current' ? 'hierarchical' : 'endYearNewest';
-        } else if (team === 'past' && _sortBy === 'hierarchical') {
-          return 'endYearNewest';
+          return team === 'current' ? SortBy.Hierarchical : SortBy.EndYearNewest;
+        } else if (team === 'past' && _sortBy === SortBy.Hierarchical) {
+          return SortBy.EndYearNewest;
         }
 
         return _sortBy;
@@ -312,8 +325,8 @@ export function withOrdering() {
       } satisfies OrderingProps & InternalProps;
     }),
     withMethods((store) => ({
-      setSortBy: signalMethod((sortBy: SortBy) => patchState(store, { _sortBy: sortBy })),
-      setGroupBy: signalMethod((groupBy: GroupBy) => patchState(store, { groupBy })),
+      setSortBy: signalMethod((sortBy: SortBy | null) => patchState(store, { _sortBy: sortBy })),
+      setGroupBy: signalMethod((groupBy: GroupBy | null) => patchState(store, { groupBy })),
     })),
   );
 }

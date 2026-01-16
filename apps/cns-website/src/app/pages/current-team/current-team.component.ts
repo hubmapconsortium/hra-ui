@@ -16,7 +16,6 @@ import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 import { CurrentTeamStore } from './state/current-team.store';
-import { teamTypeAttribute } from './state/with-filters.feature';
 
 /**
  * Page component for displaying current team members
@@ -52,11 +51,6 @@ export class CurrentTeamComponent {
    */
   readonly data = input.required<PeopleProfileData>();
 
-  /**
-   * Team type from query parameter
-   */
-  readonly type = input('current', { transform: teamTypeAttribute });
-
   /** Store for managing team member state and filters */
   protected readonly store = inject(CurrentTeamStore);
 
@@ -66,10 +60,8 @@ export class CurrentTeamComponent {
   /**
    * Initializes the component and store with route data
    * - Sets people data from route resolver
-   * - Sets team type from query parameter (current/past)
    */
   constructor() {
     this.store.setPeople(this.data);
-    this.store.setTeam(this.type);
   }
 }

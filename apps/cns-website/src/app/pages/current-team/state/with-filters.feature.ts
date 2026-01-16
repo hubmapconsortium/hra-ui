@@ -16,7 +16,10 @@ import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
 /**
  * Team type filter - current or past members
  */
-export type TeamType = 'current' | 'past';
+export enum TeamType {
+  Current = 'current',
+  Past = 'past',
+}
 
 /**
  * Role type option for filtering
@@ -43,7 +46,7 @@ export type FilterProps = {
   /** Number of people after applying all filters */
   numFilteredPeople: Signal<number>;
   /** List of filters with selected options */
-  untypedFilters: Signal<FilterOptionCategory<SearchListOption>[]>;
+  filters: Signal<FilterOptionCategory<SearchListOption>[]>;
 };
 
 /** Any internal props */
@@ -55,20 +58,12 @@ type InternalProps = { [key: `_${string}`]: unknown };
 interface FilterState {
   /** Selected team filter */
   team: TeamType;
-  /** Filter categories for roles and years */
-  filters: [FilterOptionCategory<RoleTypeOption>, FilterOptionCategory<YearOption>];
+  /** Selected roles filter */
+  roles: RoleTypeOption[];
+  /** Selected years filter */
+  years: YearOption[];
   /** Search text for filtering by name */
-  search: string;
-}
-
-/**
- * Get the team type from any attribute value
- *
- * @param team Team type value
- * @returns Normalized team type
- */
-export function teamTypeAttribute(team: unknown): TeamType {
-  return team && String(team).toLowerCase().trim() === 'past' ? 'past' : 'current';
+  search: string | null;
 }
 
 /**
@@ -86,37 +81,43 @@ function createYearList(startYear: number): number[] {
   return years;
 }
 
+export const ROLE_TYPE_OPTIONS: RoleTypeOption[] = [
+  { id: RoleType.Collaborator, label: 'Collaborators' },
+  { id: RoleType.MasterStudent, label: 'Masters student' },
+  { id: RoleType.PhDStudent, label: 'PhD students' },
+  { id: RoleType.Staff, label: 'Staff' },
+  { id: RoleType.Student, label: 'Students' },
+];
+
+export const YEAR_OPTIONS: YearOption[] = createYearList(2000).map((year) => ({
+  id: year.toString(),
+  label: year.toString(),
+  year,
+}));
+
+const ROLES_FILTER: FilterOptionCategory<RoleTypeOption> = {
+  id: 'roles',
+  label: 'Roles',
+  disableSearch: true,
+  options: ROLE_TYPE_OPTIONS,
+  selected: [],
+};
+
+const YEARS_FILTER: FilterOptionCategory<YearOption> = {
+  id: 'years',
+  label: 'Active year',
+  options: YEAR_OPTIONS,
+  selected: [],
+};
+
 /**
  * Initial state for filters
  */
 const initialFilterState: FilterState = {
-  team: 'current',
-  filters: [
-    {
-      id: 'roles',
-      label: 'Roles',
-      disableSearch: true,
-      options: [
-        { id: 'collaborator', label: 'Collaborators' },
-        { id: 'master-student', label: 'Masters student' },
-        { id: 'phd-student', label: 'PhD students' },
-        { id: 'staff', label: 'Staff' },
-        { id: 'student', label: 'Students' },
-      ],
-      selected: [],
-    },
-    {
-      id: 'years',
-      label: 'Active year',
-      options: createYearList(2000).map((year) => ({
-        id: year.toString(),
-        label: year.toString(),
-        year,
-      })),
-      selected: [],
-    },
-  ],
-  search: '',
+  team: TeamType.Current,
+  roles: [],
+  years: [],
+  search: null,
 };
 
 /**
@@ -129,6 +130,10 @@ export function withFilters() {
     { props: type<PeopleProps>(), methods: type<PeopleMethods>() },
     withState<FilterState>(initialFilterState),
     withComputed((store) => {
+      const _rolesFilter = computed(() => ({ ...ROLES_FILTER, selected: store.roles() }));
+      const _yearsFilter = computed(() => ({ ...YEARS_FILTER, selected: store.years() }));
+      const filters = computed(() => [_rolesFilter(), _yearsFilter()] as FilterOptionCategory<SearchListOption>[]);
+
       const _peopleByTeam = computed(() => {
         const people = store.people();
         const endYearByPerson = store.endYearByPerson();
@@ -150,7 +155,7 @@ export function withFilters() {
       });
 
       const _filteredByRole = computed(() => {
-        const selectedRoles = store.filters()[0].selected ?? [];
+        const selectedRoles = store.roles();
         const selectedTypes = new Set(selectedRoles.map((option) => option.id));
         const people = _filteredByTeam();
         if (selectedRoles.length === 0) {
@@ -165,7 +170,7 @@ export function withFilters() {
       });
 
       const _filteredByYear = computed(() => {
-        const years = store.filters()[1].selected ?? [];
+        const years = store.years();
         const people = _filteredByRole();
         if (years.length === 0) {
           return people;
@@ -177,7 +182,7 @@ export function withFilters() {
       });
 
       const _filteredBySearch = computed(() => {
-        const search = store.search().toLowerCase().trim();
+        const search = store.search()?.toLowerCase().trim();
         const people = _filteredByYear();
         if (!search) {
           return people;
@@ -187,9 +192,11 @@ export function withFilters() {
       });
 
       return {
+        filters,
         filteredPeople: _filteredBySearch,
         numFilteredPeople: computed(() => _filteredBySearch().length),
-        untypedFilters: store.filters as Signal<FilterOptionCategory<SearchListOption>[]>,
+        _rolesFilter,
+        _yearsFilter,
         _peopleByTeam,
         _filteredByTeam,
         _filteredByRole,
@@ -199,10 +206,14 @@ export function withFilters() {
     }),
     withMethods((store) => ({
       setTeam: signalMethod((team: TeamType) => patchState(store, { team })),
-      setFilters: signalMethod((filters: FilterOptionCategory<SearchListOption>[]) =>
-        patchState(store, { filters: filters as FilterState['filters'] }),
-      ),
-      setSearch: signalMethod((search: string) => patchState(store, { search })),
+      setRoles: signalMethod((roles: RoleTypeOption[]) => patchState(store, { roles })),
+      setYears: signalMethod((years: YearOption[]) => patchState(store, { years })),
+      setFilters: signalMethod((filters: FilterOptionCategory<SearchListOption>[]) => {
+        const roles = filters[0].selected as RoleTypeOption[];
+        const years = filters[1].selected as YearOption[];
+        patchState(store, { roles, years });
+      }),
+      setSearch: signalMethod((search: string | null) => patchState(store, { search })),
       resetFilters: () => patchState(store, initialFilterState),
     })),
   );

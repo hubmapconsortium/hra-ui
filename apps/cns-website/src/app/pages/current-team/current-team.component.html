@@ -2,7 +2,7 @@
   <mat-sidenav mode="side" opened class="customize-sidebar" aria-label="Customize options">
     <hra-filter-menu
       tagline="People at the Cyberinfrastructure for Network Science Center"
-      [filters]="store.untypedFilters()"
+      [filters]="store.filters()"
       (filtersChange)="store.setFilters($event)"
     >
       <!-- Team type toggle -->
@@ -22,7 +22,7 @@
       <div class="filter-control">
         <mat-form-field subscriptSizing="dynamic">
           <hra-icon class="select-icon" matPrefix>sort</hra-icon>
-          <mat-label>Sort by*</mat-label>
+          <mat-label>Sort by</mat-label>
           <mat-select [value]="store.sortBy()" (valueChange)="store.setSortBy($event)">
             @if (store.team() === 'current') {
               <mat-option value="hierarchical">Hierarchical</mat-option>
@@ -59,7 +59,7 @@
           label="Search"
           [totalCount]="store.numPeople()"
           [viewingCount]="store.numFilteredPeople()"
-          [search]="store.search()"
+          [search]="store.search() ?? ''"
           (searchChange)="store.setSearch($event)"
         />
       </div>
