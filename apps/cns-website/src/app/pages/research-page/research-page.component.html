@@ -58,7 +58,7 @@
     } @else {
       <ng-scrollbar hraScrollOverflowFade>
         <div class="scroll-content">
-          @if ((!groupBy() || groupBy() !== 'none') && viewType() === 'gallery') {
+          @if (groupBy() && groupBy() !== 'none' && viewType() === 'gallery') {
             <div class="gallery-groups">
               @for (group of setGroupedItems(filteredItems()); track $index) {
                 <div class="gallery-group">

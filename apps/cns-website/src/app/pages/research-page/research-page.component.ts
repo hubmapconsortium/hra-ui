@@ -104,9 +104,9 @@ export class ResearchPageComponent {
 
   readonly currentFilters = signal<Record<string, SearchListOption[]>>({});
 
-  readonly viewAsOptions = signal(VIEW_AS_OPTIONS);
-  readonly sortByOptions = signal(SORT_BY_OPTIONS);
-  readonly groupByOptions = computed(() => {
+  readonly viewAsOptions = signal<SearchListOption[]>(VIEW_AS_OPTIONS);
+  readonly sortByOptions = signal<SearchListOption[]>(SORT_BY_OPTIONS);
+  readonly groupByOptions = computed<SearchListOption[]>(() => {
     const qp = this.queryParams() as Params;
     if (qp['category']) {
       const category = Array.isArray(qp['category']) ? qp['category'][0] : qp['category'];
@@ -150,6 +150,16 @@ export class ResearchPageComponent {
     effect(() => {
       this.setControls();
       this.setCurrentFiltersFromParams();
+      this.headerEvents.menuState.set(this.isWideScreen());
+    });
+
+    toObservable(this.groupByOptions).subscribe((options) => {
+      if (!options.find((x) => x.id === 'type') && this.groupBy() === 'type') {
+        this.groupBy.set(undefined);
+      }
+      if (!options.find((x) => x.id === 'project') && this.groupBy() === 'project') {
+        this.groupBy.set(undefined);
+      }
     });
   }
 
