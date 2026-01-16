@@ -1,6 +1,6 @@
 <header hraFeature="header" class="header" cdkOverlayOrigin data-testid="header" #mobileMenuOrigin="cdkOverlayOrigin">
   <div hraFeature="navigation" class="header-content" #desktopMenuOrigin>
-    @if (enableFilterMenu()) {
+    @if (!isWideScreen()) {
       <button mat-icon-button (click)="headerEvents.toggle()">
         <mat-icon>tune</mat-icon>
       </button>

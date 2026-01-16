@@ -8,7 +8,6 @@ import {
   model,
   signal,
   viewChild,
-  WritableSignal,
 } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { MatDivider } from '@angular/material/divider';
@@ -34,7 +33,15 @@ import { HeaderEventsService } from '../../components/header/header.component';
 import { ViewType } from '../../resolvers/research/research.resolver';
 import { ResearchItem, ResearchPageData } from '../../schemas/research/research.schema';
 
-const PARAMS = ['category', 'people', 'year', 'event-type', 'funding-type', 'publication-type', 'project'];
+const queryParamToOptionsKey: Record<string, string> = {
+  category: 'category',
+  people: 'people',
+  year: 'year',
+  'event-type': 'eventType',
+  'funding-type': 'fundingType',
+  'publication-type': 'type',
+  project: 'project',
+};
 
 @Component({
   selector: 'cns-research-page',
@@ -61,20 +68,15 @@ const PARAMS = ['category', 'people', 'year', 'event-type', 'funding-type', 'pub
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResearchPageComponent {
-  private readonly router = inject(Router);
-
-  private readonly headerEvents = inject(HeaderEventsService);
-
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  readonly headerEvents = inject(HeaderEventsService);
 
   /** Reference to sidenav element */
   readonly sidenav = viewChild<MatSidenav>('sidenav');
 
   readonly data = input.required<ResearchPageData>();
-
-  readonly people = model<SearchListOption[]>([]);
-
-  readonly publicationTypes = model<SearchListOption[]>([]);
+  readonly options = model.required<Record<string, SearchListOption[]>>();
 
   readonly tags = input<{ slug: string; name: string; description: string }[]>([]);
 
@@ -82,41 +84,6 @@ export class ResearchPageComponent {
   readonly search = signal<string>('');
 
   readonly currentFilters = signal<Record<string, SearchListOption[]>>({});
-
-  readonly yearOptions = signal<SearchListOption[]>([]);
-
-  readonly categoryOptions = signal<SearchListOption[]>([
-    { id: 'data-tools', label: 'Data & tools' },
-    { id: 'events', label: 'Events' },
-    { id: 'funding', label: 'Funding' },
-    { id: 'displays', label: 'Interactive displays' },
-    { id: 'miscellaneous', label: 'Miscellaneous' },
-    { id: 'news', label: 'News' },
-    { id: 'presentations', label: 'Presentations' },
-    { id: 'publications', label: 'Publications' },
-    { id: 'software-products', label: 'Software Products' },
-    { id: 'teaching', label: 'Teaching' },
-    { id: 'visualizations', label: 'Visualizations' },
-  ]);
-
-  readonly fundingOptions = signal<SearchListOption[]>([
-    { id: 'research-funding', label: 'Research funding' },
-    { id: 'teaching-funding', label: 'Teaching funding' },
-    { id: 'workshop-funding', label: 'Workshop funding' },
-  ]);
-
-  readonly eventOptions = signal<SearchListOption[]>([
-    { id: '24-hour', label: '24-hour' },
-    { id: 'amatria', label: 'Amatria' },
-    { id: 'workshops', label: 'Workshops' },
-  ]);
-
-  readonly projectOptions = signal<SearchListOption[]>([
-    {
-      id: 'project-name',
-      label: 'Project Name',
-    },
-  ]);
 
   readonly viewAsOptions = signal([
     { id: 'gallery', label: 'Gallery' },
@@ -131,7 +98,7 @@ export class ResearchPageComponent {
   readonly groupByOptions = signal([
     { id: 'none', label: 'None' },
     { id: 'project', label: 'Project' },
-    { id: 'publicationType', label: 'Publication type' },
+    { id: 'type', label: 'Publication type' },
     { id: 'year', label: 'Year' },
   ]);
 
@@ -157,28 +124,18 @@ export class ResearchPageComponent {
 
   readonly queryParams = toSignal(this.route.queryParams, { initialValue: {} });
 
-  readonly initiated = signal<boolean>(false);
+  readonly pageLoaded = signal<boolean>(false);
 
   constructor() {
-    const queryParams$ = inject(ActivatedRoute).queryParams;
-    queryParams$.subscribe(() => {
-      this.setCurrentFiltersFromParams();
-    });
-
     toObservable(this.data).subscribe(() => {
-      this.updateFilterCounts(this.categoryOptions, 'category');
-      this.updateFilterCounts(this.publicationTypes, 'type');
-      this.updateFilterCounts(this.people, 'people');
-      this.updateFilterCounts(this.fundingOptions, 'fundingType');
-      this.updateFilterCounts(this.eventOptions, 'eventType');
-      this.updateFilterCounts(this.projectOptions, 'project');
-      this.updateFilterCounts(this.yearOptions, 'year');
+      this.setYearOptions();
+      this.updateFilterCounts();
+      this.setCurrentFiltersFromParams();
     });
 
     effect(() => {
-      this.setControls();
-      this.setYearOptions();
       this.setCurrentFiltersFromParams();
+      this.setControls();
       this.headerEvents.menuState.set(this.isWideScreen());
     });
   }
@@ -207,41 +164,31 @@ export class ResearchPageComponent {
   }
 
   convertToListItems(data: ResearchPageData): ListViewGroup[] {
+    const { groupBy, options } = this;
     const groupedData: Record<string, string[]> = {};
-    const groupBy = this.groupBy();
     data.forEach((item) => {
-      if (groupBy === 'year') {
-        const year = item.dateStart?.split('-')[0];
-        if (!groupedData[year]) {
-          groupedData[year] = [item.description || ''];
-        } else {
-          groupedData[year].push(item.description || '');
-        }
-      }
-      if (groupBy === 'publicationType') {
-        const title = this.publicationTypes().find((pubType) => pubType.id === item.type)?.label || 'Other';
-        if (!groupedData[title]) {
-          groupedData[title] = [item.description || ''];
-        } else {
-          groupedData[title].push(item.description || '');
-        }
-      }
-      if (groupBy === 'project') {
-        const project = item.project || 'Other';
-        if (!groupedData[project]) {
-          groupedData[project] = [item.description || ''];
-        } else {
-          groupedData[project].push(item.description || '');
-        }
-      }
-
-      if (groupBy === 'none') {
+      let type = '';
+      if (groupBy() === 'none') {
         groupedData['All'] = data.map((itm) => itm.description || '');
+      } else {
+        if (groupBy() === 'year') {
+          type = item.dateStart?.split('-')[0];
+        }
+        if (groupBy() === 'type') {
+          type = options()['type'].find((pubType) => pubType.id === item.type)?.label || 'Other';
+        }
+        if (groupBy() === 'project') {
+          type = item.project || 'Other';
+        }
+        if (!groupedData[type]) {
+          groupedData[type] = [item.description || ''];
+        } else {
+          groupedData[type].push(item.description || '');
+        }
       }
     });
     const listItems = Object.entries(groupedData);
-
-    listItems.sort((a, b) => parseInt(b[0]) - parseInt(a[0])); //sort by type in descending order
+    listItems.sort((a, b) => b[0].localeCompare(a[0])); //sort by type in descending order
 
     return listItems.map(([type, descriptions]) => ({
       group: type,
@@ -250,40 +197,45 @@ export class ResearchPageComponent {
   }
 
   setGroupedItems(data: ResearchPageData): [string, ResearchItem[]][] {
-    const groupBy = this.groupBy();
-    if (groupBy !== 'none') {
-      const groupedItems: Map<string, ResearchItem[]> = new Map();
-      data.forEach((item) => {
-        let key = '';
-        if (groupBy === 'year') {
-          key = item.dateStart.split('-')[0];
-        } else if (groupBy === 'publicationType') {
-          const title = this.publicationTypes().find((pubType) => pubType.id === item.type)?.label;
-          key = title || 'Other';
-        } else if (groupBy === 'project') {
-          key = item.project || 'Other';
-        }
-
-        if (!groupedItems.has(key)) {
-          groupedItems.set(key, [item]);
-        } else {
-          groupedItems.get(key)?.push(item);
-        }
-      });
-      return Array.from(groupedItems.entries());
+    const { groupBy, options } = this;
+    const groupedItems: Map<string, ResearchItem[]> = new Map();
+    if (groupBy() === 'none') {
+      return [];
     }
-    return [];
+    data.forEach((item) => {
+      let key = '';
+      if (groupBy() === 'year') {
+        key = item.dateStart.split('-')[0];
+      } else if (groupBy() === 'type') {
+        const title = options()['type'].find((pubType) => pubType.id === item.type)?.label;
+        key = title || 'Other';
+      } else if (groupBy() === 'project') {
+        key = item.project || 'Other';
+      }
+
+      if (!groupedItems.has(key)) {
+        groupedItems.set(key, [item]);
+      } else {
+        groupedItems.get(key)?.push(item);
+      }
+    });
+    const groups = Array.from(groupedItems.entries());
+    if (groupBy() === 'year') {
+      groups.sort((a, b) => parseInt(b[0]) - parseInt(a[0])); //sort by year in descending order
+      return groups;
+    }
+    const sortedGroups = groups.sort((a, b) => a[0].localeCompare(b[0])); //sort by type in descending order
+    return sortedGroups;
   }
 
   private setControls() {
-    if (this.initiated()) {
+    if (this.pageLoaded()) {
       return;
     }
     const params = this.queryParams() as Params;
     this.sortBy.set('newest');
     this.viewType.set('gallery');
     this.groupBy.set('none');
-
     if (params['category']) {
       const category = Array.isArray(params['category']) ? params['category'][0] : params['category'];
       if (category === 'visualizations') {
@@ -294,7 +246,7 @@ export class ResearchPageComponent {
         this.groupBy.set('year');
       }
     }
-    this.initiated.set(true);
+    this.pageLoaded.set(true);
   }
 
   private setSortedItems(data: ResearchPageData): ResearchItem[] {
@@ -314,44 +266,50 @@ export class ResearchPageComponent {
         sortedItems = sortedItems.sort((a, b) => (a.dateStart || '').localeCompare(b.dateStart || ''));
         break;
     }
+
     return sortedItems;
   }
 
-  private updateFilterCounts(optionsSignal: WritableSignal<SearchListOption[]>, type: string) {
-    let value: SearchListOption[] = [];
-    value = optionsSignal().map((option) => ({
-      ...option,
-      count: this.data().filter((item) => {
-        if (Array.isArray(item[type as keyof ResearchItem])) {
-          return (item[type as keyof ResearchItem] as string[]).includes(option.id);
-        }
-        if (type === 'year') {
-          return item.dateStart.split('-')[0] === option.id;
-        }
-        return item[type as keyof ResearchItem] === option.id;
-      }).length,
-    }));
-    optionsSignal.set(value);
+  private updateFilterCounts() {
+    const updatedOptions = this.options();
+    Object.values(queryParamToOptionsKey).forEach((key) => {
+      updatedOptions[key] = this.options()[key].map((option) => ({
+        ...option,
+        count: this.data().filter((item) => {
+          if (key === 'people') {
+            return item.people.includes(option.id);
+          }
+          if (key === 'year') {
+            return item.dateStart.split('-')[0] === option.id;
+          }
+          return item[key as keyof ResearchItem] === option.id;
+        }).length,
+      }));
+    });
+    this.options.set(updatedOptions);
   }
 
   private setCurrentFiltersFromParams() {
-    const queryParams = this.route.snapshot.queryParams;
+    const queryParams = this.queryParams() as Params;
     this.search.set(queryParams['search']);
     const filterIds: Record<string, string[]> = {};
-    PARAMS.forEach((type) => {
+    Object.keys(queryParamToOptionsKey).forEach((type) => {
       if (queryParams[type]) {
         filterIds[type] = Array.isArray(queryParams[type]) ? queryParams[type] : [queryParams[type]];
       }
     });
-
-    this.currentFilters.set({
-      category: this.categoryOptions().filter((cat) => filterIds['category']?.includes(cat.id)),
-      people: this.people().filter((person) => filterIds['people']?.includes(person.id)),
-      year: this.yearOptions().filter((yr) => filterIds['year']?.includes(yr.id)),
-      type: this.publicationTypes().filter((type) => filterIds['publication-type']?.includes(type.id)),
-      eventType: this.eventOptions().filter((type) => filterIds['event-type']?.includes(type.id)),
-      fundingType: this.fundingOptions().filter((type) => filterIds['funding-type']?.includes(type.id)),
-      project: this.projectOptions().filter((type) => filterIds['project']?.includes(type.id)),
+    Object.entries(queryParamToOptionsKey).forEach(([query, optionKey]) => {
+      this.currentFilters.update((filters) => {
+        {
+          if (filterIds[query]) {
+            return {
+              ...filters,
+              [optionKey]: this.options()[optionKey].filter((option) => filterIds[query].includes(option.id)),
+            };
+          }
+          return filters;
+        }
+      });
     });
   }
 
@@ -359,107 +317,60 @@ export class ResearchPageComponent {
     const years = Array.from(new Set(this.data().map((item) => item.dateStart.split('-')[0]))).sort(
       (a, b) => parseInt(b) - parseInt(a),
     );
-    this.yearOptions.set(years.map((year) => ({ id: year, label: year })));
+    this.options.update((opts) => ({
+      ...opts,
+      year: years.map((year) => ({ id: year, label: year })),
+    }));
   }
 
   private filterResults(): ResearchItem[] {
     let filteredData = this.data() || [];
     const currentFilters = this.currentFilters();
-
     if (this.search() && this.search() !== '') {
       filteredData = filteredData.filter((dataItem) =>
         dataItem.title?.toLowerCase().includes(this.search().toLowerCase()),
       );
     }
 
-    PARAMS.forEach((type) => {
-      const paramToResearchItemKey: Record<string, string> = {
-        category: 'category',
-        people: 'people',
-        year: 'dateStart',
-        'event-type': 'eventType',
-        'funding-type': 'fundingType',
-        'publication-type': 'type',
-        project: 'project',
-      };
-
-      const itemKey = paramToResearchItemKey[type] as keyof ResearchItem;
+    Object.keys(queryParamToOptionsKey).forEach((type) => {
+      const itemKey = queryParamToOptionsKey[type] as keyof ResearchItem;
       const currentFilterValue = type === 'year' ? currentFilters['year'] : currentFilters[itemKey];
-
       if (currentFilterValue && currentFilterValue.length > 0) {
         filteredData = filteredData.filter((item) => {
-          if (type === 'year' || Array.isArray(item[itemKey])) {
+          if (type === 'year') {
+            return currentFilterValue.some((option) => item.dateStart.split('-')[0] === option.id);
+          }
+          if (Array.isArray(item[itemKey])) {
             return currentFilterValue.some((option) => item[itemKey]?.includes(option.id));
           }
           return currentFilterValue.some((option) => option.id === item[itemKey]);
         });
       }
     });
-
     this.updateQueryParamsFromFilters();
+
     return this.setSortedItems(filteredData);
   }
 
   private currentFiltersToFilters(): FilterOptionCategory<SearchListOption>[] {
-    const { category, eventType, fundingType, type, people, project, year } = this.currentFilters();
-    return [
-      {
-        id: 'category',
-        label: 'Category',
-        options: this.categoryOptions(),
-        selected: category,
-      },
-      {
-        id: 'eventType',
-        label: 'Event type',
-        options: this.eventOptions(),
-        selected: eventType,
-      },
-      {
-        id: 'fundingType',
-        label: 'Funding type',
-        options: this.fundingOptions(),
-        selected: fundingType,
-      },
-      {
-        id: 'type',
-        label: 'Publication type',
-        options: this.publicationTypes(),
-        selected: type,
-      },
-      {
-        id: 'people',
-        label: 'People',
-        options: this.people(),
-        selected: people,
-      },
-      {
-        id: 'project',
-        label: 'Project',
-        options: this.projectOptions(),
-        selected: project,
-      },
-      {
-        id: 'year',
-        label: 'Year',
-        options: this.yearOptions(),
-        selected: year,
-      },
-    ];
+    return Object.entries(queryParamToOptionsKey).map(([queryParam, optionsKey]) => {
+      return {
+        id: optionsKey,
+        label: queryParam.replace('-', ' ').replace(queryParam[0], queryParam[0].toUpperCase()),
+        options: this.options()[optionsKey],
+        selected: this.currentFilters()[optionsKey],
+      };
+    });
   }
 
   private updateQueryParamsFromFilters() {
+    const queryParams = {} as Params;
+    Object.entries(queryParamToOptionsKey).forEach(([queryParam, optionsKey]) => {
+      queryParams[queryParam] = this.currentFilters()[optionsKey]?.map((option) => option.id);
+    });
+    queryParams['search'] = this.search() === '' ? null : this.search();
     this.router.navigate(['/research'], {
-      queryParams: {
-        category: this.currentFilters()['category']?.map((cat) => cat.id),
-        'event-type': this.currentFilters()['eventType']?.map((event) => event.id),
-        'funding-type': this.currentFilters()['fundingType']?.map((funding) => funding.id),
-        'publication-type': this.currentFilters()['type']?.map((pubType) => pubType.id),
-        people: this.currentFilters()['people']?.map((person) => person.id),
-        project: this.currentFilters()['project']?.map((proj) => proj.id),
-        year: this.currentFilters()['year']?.map((year) => year.id),
-        search: this.search() === '' ? null : this.search(),
-      },
+      queryParams,
     });
   }
 }

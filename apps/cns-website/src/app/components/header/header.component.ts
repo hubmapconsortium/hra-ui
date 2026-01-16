@@ -97,6 +97,8 @@ export class HeaderComponent {
   /** Currently open menu or undefined */
   private readonly activeMenu = signal<Menu | 'mobile' | undefined>(undefined);
 
+  protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
+
   /** Initialize the header */
   constructor() {
     effect((cleanup) => {

@@ -1,4 +1,4 @@
-<mat-sidenav-container autosize [hasBackdrop]="!isWideScreen()">
+<mat-sidenav-container autosize [hasBackdrop]="!isWideScreen()" (backdropClick)="headerEvents.toggle()">
   <mat-sidenav
     [mode]="!isWideScreen() ? 'over' : 'side'"
     [opened]="menuOpen()"
@@ -15,7 +15,7 @@
         <hra-icon class="select-icon" matPrefix>{{ viewType() === 'gallery' ? 'cards' : 'list' }}</hra-icon>
         <mat-label>View as</mat-label>
         <mat-select [value]="viewType()" (selectionChange)="viewType.set($event.value)">
-          @for (option of viewAsOptions(); track option) {
+          @for (option of viewAsOptions(); track $index) {
             <mat-option [value]="option.id">
               <hra-icon class="select-icon" [fontIcon]="option.id === 'gallery' ? 'cards' : 'list'" />
               {{ option.label }}
@@ -28,7 +28,7 @@
         <hra-icon class="select-icon" matPrefix>sort</hra-icon>
         <mat-label>Sort by</mat-label>
         <mat-select [value]="sortBy()" (selectionChange)="sortBy.set($event.value)">
-          @for (option of sortByOptions(); track option) {
+          @for (option of sortByOptions(); track $index) {
             <mat-option [value]="option.id">{{ option.label }}</mat-option>
           }
         </mat-select>
@@ -38,7 +38,7 @@
         <hra-icon class="select-icon" matPrefix>category</hra-icon>
         <mat-label>Group by</mat-label>
         <mat-select [value]="groupBy()" (selectionChange)="groupBy.set($event.value)">
-          @for (option of groupByOptions(); track option) {
+          @for (option of groupByOptions(); track $index) {
             <mat-option [value]="option.id">{{ option.label }}</mat-option>
           }
         </mat-select>
@@ -60,7 +60,7 @@
     } @else {
       <ng-scrollbar hraScrollOverflowFade>
         @if (groupBy() !== 'none' && viewType() === 'gallery') {
-          @for (group of setGroupedItems(filteredItems()); track group) {
+          @for (group of setGroupedItems(filteredItems()); track $index) {
             <div class="gallery-group">
               <h3 hra-section-link underlined class="group-title">{{ group[0] }}</h3>
               <hra-grid-container>
