@@ -11,6 +11,7 @@ import { FilterMenuComponent } from '@hra-ui/design-system/filter-menu';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no-results-indicator';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -38,6 +39,7 @@ import { TeamType } from './state/with-filters.feature';
     IconsModule,
     FooterComponent,
     SectionLinkComponent,
+    ScrollingModule,
   ],
   templateUrl: './current-team.component.html',
   styleUrl: './current-team.component.scss',
