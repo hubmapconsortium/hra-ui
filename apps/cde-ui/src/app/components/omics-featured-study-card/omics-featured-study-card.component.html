@@ -1,0 +1,42 @@
+<hra-collection-card
+  hraFeature="spatial-omics-gallery.featured-study"
+  [tagline]="tagline()"
+  [image]="image()"
+  [taglineChips]="taglineChips()"
+  [label]="label()"
+  [supportingText]="supportingText()"
+  [tags]="tags()"
+>
+  <hra-collection-card-action>
+    <div class="left-actions">
+      <button hraFeature="view-datasets" hraClickEvent mat-flat-button hraButtonSize="medium">View datasets</button>
+      <button
+        hraFeature="more-options"
+        hraClickEvent
+        mat-icon-button
+        hraIconButtonSize="large"
+        hraIconButtonVariant="dark"
+        hraPlainTooltip="More"
+        [matMenuTriggerFor]="helpMenu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+  </hra-collection-card-action>
+  <hra-collection-card-action alignment="right">
+    <button hraFeature="source-data" hraClickEvent mat-button hraButtonSize="medium">Source data</button>
+  </hra-collection-card-action>
+</hra-collection-card>
+
+<mat-menu class="more-menu" #helpMenu>
+  <a
+    hraClickEvent
+    hraFeature="view-datasets-in-eui"
+    mat-menu-item
+    hraLink="https://hubmapconsortium.github.io/hra-registrations/vccf-federated/
+"
+  >
+    <mat-icon>open_in_new</mat-icon>
+    View datasets in the Exploration User Interface
+  </a>
+</mat-menu>
