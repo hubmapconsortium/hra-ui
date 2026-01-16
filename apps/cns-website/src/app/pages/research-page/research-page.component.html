@@ -46,63 +46,68 @@
     </hra-filter-menu>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="search">
-      <hra-search-filter
-        label="Search"
-        separator="/"
-        [totalCount]="totalCount()"
-        [viewingCount]="viewingCount()"
-        [(search)]="search"
-      />
-    </div>
+    <hra-search-filter
+      label="Search"
+      separator="/"
+      [totalCount]="totalCount()"
+      [viewingCount]="viewingCount()"
+      [(search)]="search"
+    />
     @if (viewingCount() === 0) {
       <ng-container [ngTemplateOutlet]="empty" />
     } @else {
       <ng-scrollbar hraScrollOverflowFade>
-        @if (!groupBy() || (groupBy() !== 'none' && viewType() === 'gallery')) {
-          @for (group of setGroupedItems(filteredItems()); track $index) {
-            <div class="gallery-group">
-              <h3 hra-section-link underlined class="group-title">{{ group[0] }}</h3>
-              <hra-grid-container>
-                @for (item of group[1]; track $index) {
-                  <hra-gallery-card
-                    [tagline]="item.title || ''"
-                    [imageSrc]="item.imgSrc"
-                    [date]="item.dateStart"
-                    [link]="item.link || ''"
-                    [external]="true"
-                    [tags]="fetchTagLabels(item.tags)"
-                  />
-                }
-              </hra-grid-container>
+        <div class="scroll-content">
+          @if ((!groupBy() || groupBy() !== 'none') && viewType() === 'gallery') {
+            <div class="gallery-groups">
+              @for (group of setGroupedItems(filteredItems()); track $index) {
+                <div class="gallery-group">
+                  <h3 hra-section-link underlined class="group-title">{{ group[0] }}</h3>
+                  <hra-grid-container>
+                    @for (item of group[1]; track $index) {
+                      <hra-gallery-card
+                        [tagline]="item.title || ''"
+                        [imageSrc]="item.imgSrc"
+                        [date]="item.dateStart"
+                        [link]="item.link || ''"
+                        [external]="true"
+                        [tags]="fetchTagLabels(item.tags)"
+                      />
+                    }
+                  </hra-grid-container>
+                </div>
+              }
             </div>
           }
-        }
 
-        @if (!groupBy() || (groupBy() === 'none' && viewType() === 'gallery')) {
-          <hra-grid-container>
-            @for (item of filteredItems(); track $index) {
-              <hra-gallery-card
-                [tagline]="item.title || ''"
-                [imageSrc]="item.imgSrc"
-                [date]="item.dateStart"
-                [link]="item.link || ''"
-                [external]="true"
-                [tags]="fetchTagLabels(item.tags)"
-              />
-            }
-          </hra-grid-container>
-        }
+          @if ((!groupBy() || groupBy() === 'none') && viewType() === 'gallery') {
+            <hra-grid-container>
+              @for (item of filteredItems(); track $index) {
+                <hra-gallery-card
+                  [tagline]="item.title || ''"
+                  [imageSrc]="item.imgSrc"
+                  [date]="item.dateStart"
+                  [link]="item.link || ''"
+                  [external]="true"
+                  [tags]="fetchTagLabels(item.tags)"
+                />
+              }
+            </hra-grid-container>
+          }
 
-        @if (viewType() === 'list') {
-          <hra-list-view [data]="convertToListItems(filteredItems())" [groupBy]="groupBy() !== 'none'" />
-        }
+          @if (viewType() === 'list') {
+            <hra-list-view
+              [data]="convertToListItems(filteredItems())"
+              [groupBy]="!!groupBy() && groupBy() !== 'none'"
+            />
+          }
 
-        <div class="page-end">
-          <mat-divider />
-          <hra-end-of-results-indicator [count]="viewingCount()" />
+          <div class="page-end">
+            <mat-divider />
+            <hra-end-of-results-indicator [count]="viewingCount()" />
+          </div>
+          <cns-footer />
         </div>
-        <cns-footer />
       </ng-scrollbar>
     }
   </mat-sidenav-content>
