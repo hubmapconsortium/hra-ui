@@ -1,6 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
 import { render, screen } from '@testing-library/angular';
 
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { CountInfoComponent } from './count-info.component';
 import { CountInfoItem } from './count-info.schema';
 
@@ -18,7 +19,7 @@ describe('CountInfoComponent', () => {
     },
   ];
 
-  const providers = [provideHttpClient()];
+  const providers = [provideIcons(), provideHttpClient()];
 
   async function setup(inputs = { countInfoList: mockCountInfo }) {
     const result = await render(CountInfoComponent, { providers, inputs });
