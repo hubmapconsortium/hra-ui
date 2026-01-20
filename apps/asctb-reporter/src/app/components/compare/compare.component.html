@@ -3,7 +3,7 @@
     <app-sidenav-header
       title="Compare Data"
       tooltipString="Link your own data to compare it with the Master Data Tables"
-      (closeSideNav)="closeCompare.emit()"
+      (closeSideNav)="closeCompare.emit(true)"
     />
   </div>
 
@@ -12,7 +12,7 @@
       <div class="content px-3">
         <form [formGroup]="formGroup">
           <div formArrayName="sheets">
-            <div *ngFor="let sheet of CSControls.controls; let i = index" class="sheet">
+            <div *ngFor="let sheet of formSheets.controls; let i = index" class="sheet">
               <div class="dataset-block" [formGroupName]="i">
                 <div class="title-container">
                   <div class="title">Dataset {{ i + 1 }}</div>
