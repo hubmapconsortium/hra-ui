@@ -81,6 +81,7 @@ function createYearList(startYear: number): number[] {
   return years;
 }
 
+/** Available role type options for filtering team members by their role */
 export const ROLE_TYPE_OPTIONS: RoleTypeOption[] = [
   { id: RoleType.Collaborator, label: 'Collaborators' },
   { id: RoleType.MasterStudent, label: 'Masters student' },
@@ -89,12 +90,14 @@ export const ROLE_TYPE_OPTIONS: RoleTypeOption[] = [
   { id: RoleType.Student, label: 'Students' },
 ];
 
+/** Available year options for filtering team members by active year (from 2000 to current year) */
 export const YEAR_OPTIONS: YearOption[] = createYearList(2000).map((year) => ({
   id: year.toString(),
   label: year.toString(),
   year,
 }));
 
+/** Filter configuration for roles with all available role type options */
 const ROLES_FILTER: FilterOptionCategory<RoleTypeOption> = {
   id: 'roles',
   label: 'Roles',
@@ -103,6 +106,7 @@ const ROLES_FILTER: FilterOptionCategory<RoleTypeOption> = {
   selected: [],
 };
 
+/** Filter configuration for years with all available year options */
 const YEARS_FILTER: FilterOptionCategory<YearOption> = {
   id: 'years',
   label: 'Active year',

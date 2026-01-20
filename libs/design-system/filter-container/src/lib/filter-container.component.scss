@@ -20,20 +20,16 @@
       color: vars.$secondary;
     }
 
+    @include mat.button-toggle-overrides(
+      (
+        divider-color: transparent,
+      )
+    );
+
     .category-button {
       flex: 0 1 auto;
       min-width: fit-content;
       justify-content: flex-start;
-
-      @include mat.button-overrides(
-        (
-          text-horizontal-padding: 0.75rem,
-          text-label-text-font: vars.$label-medium-font,
-          text-label-text-size: vars.$label-medium-size,
-          text-label-text-tracking: vars.$label-medium-tracking,
-          text-label-text-weight: vars.$label-medium-weight,
-        )
-      );
     }
   }
 
