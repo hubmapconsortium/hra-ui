@@ -182,13 +182,19 @@ export function withFilters() {
       });
 
       const _filteredBySearch = computed(() => {
-        const search = store.search()?.toLowerCase().trim();
+        const search = store.search()?.trim();
         const people = _filteredByYear();
         if (!search) {
           return people;
         }
 
-        return people.filter((person) => person.name.toLowerCase().includes(search));
+        const normalizedSearch = search
+          .toLocaleLowerCase()
+          .normalize('NFD')
+          .replace(/\p{Diacritic}/gu, '')
+          .replace(/\s{2,}/, ' ');
+
+        return people.filter((person) => store.getSearchableText(person).includes(normalizedSearch));
       });
 
       return {

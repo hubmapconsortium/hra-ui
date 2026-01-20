@@ -39,7 +39,7 @@ export const CurrentTeamStore = signalStore(
       const search = createWritableStateSlice(store.search, store.setSearch);
       const sortBy = createWritableStateSlice(store._sortBy, store.setSortBy);
       const groupBy = createWritableStateSlice(store.groupBy, store.setGroupBy);
-      const commonOptions = { replaceUrl: false, preserveFragment: true };
+      const commonOptions = { replaceUrl: true, preserveFragment: true };
 
       linkedQueryParam('team', { source: teamType, parse: parseTeamType, ...commonOptions });
       linkedQueryParam('roles', { source: roles, parse: parseRoles, stringify: serializeRoles, ...commonOptions });

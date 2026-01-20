@@ -48,6 +48,8 @@ export type PeopleMethods = {
   getRoleType(role: AnyRole): RoleType;
   /** Get the display title for a team member */
   getMemberTitle(person: PeopleProfileItem): string;
+  /** Get the searchable text for a team member */
+  getSearchableText(person: PeopleProfileItem): string;
   /** Check if a person was active in a given year */
   isActiveInYear(person: PeopleProfileItem, year: number): boolean;
   /** Set the list of people */
@@ -161,8 +163,8 @@ export function withPeople() {
         endYearByPerson,
       } satisfies PeopleProps;
     }),
-    withMethods((store) => ({
-      getMemberTitle: (person: PeopleProfileItem) => {
+    withMethods((store) => {
+      const getMemberTitle = (person: PeopleProfileItem) => {
         const rolesByPerson = store.rolesByPerson();
         const role = rolesByPerson.get(person)?.[0];
         switch (role?.type) {
@@ -175,8 +177,9 @@ export function withPeople() {
           default:
             return '';
         }
-      },
-      getRoleType: (role: AnyRole): RoleType => {
+      };
+
+      const getRoleType = (role: AnyRole): RoleType => {
         switch (role.type) {
           case 'collaborator':
             return RoleType.Collaborator;
@@ -190,8 +193,20 @@ export function withPeople() {
           case 'member':
             return RoleType.Staff;
         }
-      },
-      isActiveInYear: (person: PeopleProfileItem, year: number) => {
+      };
+
+      const getSearchableText = (person: PeopleProfileItem): string => {
+        const parts = [person.name, getMemberTitle(person)];
+        return parts
+          .join('\t')
+          .toLocaleLowerCase()
+          .trim()
+          .normalize('NFD')
+          .replace(/\p{Diacritic}/gu, '')
+          .replace(/\s{2,}/, ' ');
+      };
+
+      const isActiveInYear = (person: PeopleProfileItem, year: number): boolean => {
         for (const role of person.roles) {
           const startYear = role.dateStart.getFullYear();
           const endYear = role.dateEnd ? role.dateEnd.getFullYear() : null;
@@ -201,8 +216,13 @@ export function withPeople() {
         }
 
         return false;
-      },
-      setPeople: signalMethod((people: PeopleProfileItem[]) => patchState(store, setEntities(people, peopleConfig))),
-    })),
+      };
+
+      const setPeople = signalMethod((people: PeopleProfileItem[]) =>
+        patchState(store, setEntities(people, peopleConfig)),
+      );
+
+      return { getMemberTitle, getRoleType, getSearchableText, isActiveInYear, setPeople } satisfies PeopleMethods;
+    }),
   );
 }
