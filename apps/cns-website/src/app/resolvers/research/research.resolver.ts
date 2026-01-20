@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { ResolveFn } from '@angular/router';
+import { RedirectCommand, ResolveFn, Router } from '@angular/router';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
-import { forkJoin, map, Observable } from 'rxjs';
-import { ResearchPageData } from '../../schemas/research/research.schema';
+import { catchError, forkJoin, map, Observable, of } from 'rxjs';
+import * as z from 'zod';
+import ResearchPageDataSchema, { ResearchPageData } from '../../schemas/research/research.schema';
 
 const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publications.json';
 const NEWS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-news.json';
@@ -13,17 +14,17 @@ const PUBLICATION_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets
 export type ViewType = 'gallery' | 'list' | 'table';
 
 const CATEGORY_OPTIONS: SearchListOption[] = [
-  { id: 'data-tools', label: 'Data & tools' },
-  { id: 'events', label: 'Events' },
+  { id: 'data-tool', label: 'Data & tools' },
+  { id: 'event', label: 'Events' },
   { id: 'funding', label: 'Funding' },
-  { id: 'displays', label: 'Interactive displays' },
+  { id: 'display', label: 'Interactive displays' },
   { id: 'miscellaneous', label: 'Miscellaneous' },
   { id: 'news', label: 'News' },
-  { id: 'presentations', label: 'Presentations' },
-  { id: 'publications', label: 'Publications' },
-  { id: 'software-products', label: 'Software Products' },
+  { id: 'presentation', label: 'Presentations' },
+  { id: 'publication', label: 'Publications' },
+  { id: 'software', label: 'Software Products' },
   { id: 'teaching', label: 'Teaching' },
-  { id: 'visualizations', label: 'Visualizations' },
+  { id: 'visualization', label: 'Visualizations' },
 ];
 
 const FUNDING_OPTIONS: SearchListOption[] = [
@@ -35,7 +36,7 @@ const FUNDING_OPTIONS: SearchListOption[] = [
 const EVENT_OPTIONS: SearchListOption[] = [
   { id: '24-hour', label: '24-hour' },
   { id: 'amatria', label: 'Amatria' },
-  { id: 'workshops', label: 'Workshops' },
+  { id: 'workshop', label: 'Workshops' },
 ];
 
 const PROJECT_OPTIONS: SearchListOption[] = [
@@ -45,26 +46,74 @@ const PROJECT_OPTIONS: SearchListOption[] = [
   },
 ];
 
-export function createResearchDataResolver(): ResolveFn<ResearchPageData> {
+function createErrorRedirectCommand(router: Router, type: '404' | '500'): RedirectCommand {
+  const path = router.parseUrl(`/${type}`);
+  return new RedirectCommand(path, {
+    skipLocationChange: true,
+    replaceUrl: false,
+  });
+}
+
+function createZodValidatedDataResolver<T extends z.ZodType>(url: string, schema: T): ResolveFn<z.infer<T>> {
   return () => {
+    const router = inject(Router);
     const http = inject(HttpClient);
-    return forkJoin({
-      news: http.get(NEWS_INDEX_URL, { responseType: 'json' }),
-      publications: http.get(PUBLICATIONS_INDEX_URL, { responseType: 'json' }),
-    }).pipe(
-      map(({ news, publications }) => {
-        return [
-          ...(news as ResearchPageData),
-          ...(publications as ResearchPageData).map((item) => ({
-            ...item,
-            category: item.category === 'publication' ? 'publications' : item.type,
-            title: item.title?.trim(),
-            tags: [...new Set(item.tags)],
-          })),
-        ];
+
+    return http.get(url, { responseType: 'json' }).pipe(
+      map((data) => schema.parse(data)),
+      catchError((error) => {
+        const is404 = error instanceof HttpErrorResponse && error.status === 404;
+        return of(createErrorRedirectCommand(router, is404 ? '404' : '500'));
       }),
     );
   };
+}
+
+export function createPublicationsDataResolver(): ResolveFn<ResearchPageData> {
+  return createZodValidatedDataResolver(PUBLICATIONS_INDEX_URL, ResearchPageDataSchema);
+}
+
+export function createNewsDataResolver(): ResolveFn<ResearchPageData> {
+  return createZodValidatedDataResolver(NEWS_INDEX_URL, ResearchPageDataSchema);
+}
+
+export function createResearchDataResolver(): ResolveFn<ResearchPageData> {
+  return (route, state) => {
+    const publications = createPublicationsDataResolver()(route, state) as Observable<
+      ResearchPageData | RedirectCommand
+    >;
+    const news = createNewsDataResolver()(route, state) as Observable<ResearchPageData | RedirectCommand>;
+    return forkJoin({ publications, news }).pipe(
+      map((data) => {
+        if (data.news instanceof RedirectCommand) {
+          return data.news;
+        } else if (data.publications instanceof RedirectCommand) {
+          return data.publications;
+        }
+
+        return [...data.news, ...data.publications];
+      }),
+    );
+  };
+  // return () => {
+  //   const http = inject(HttpClient);
+  //   return forkJoin({
+  //     news: http.get(NEWS_INDEX_URL, { responseType: 'json' }),
+  //     publications: http.get(PUBLICATIONS_INDEX_URL, { responseType: 'json' }),
+  //   }).pipe(
+  //     map(({ news, publications }) => {
+  //       return [
+  //         ...(news as ResearchPageData),
+  //         ...(publications as ResearchPageData).map((item) => ({
+  //           ...item,
+  //           category: item.category === 'publication' ? 'publications' : item.type,
+  //           title: item.title?.trim(),
+  //           tags: [...new Set(item.tags)],
+  //         })),
+  //       ];
+  //     }),
+  //   );
+  // };
 }
 
 export function getPeopleData(): Observable<SearchListOption[]> {

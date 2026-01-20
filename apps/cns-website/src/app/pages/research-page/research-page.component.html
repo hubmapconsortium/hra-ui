@@ -1,121 +1,96 @@
-<mat-sidenav-container autosize [hasBackdrop]="!isWideScreen()" (backdropClick)="headerEvents.toggle()">
-  <mat-sidenav
-    [mode]="!isWideScreen() ? 'over' : 'side'"
-    [opened]="menuOpen()"
-    [fixedInViewport]="true"
-    [fixedTopGap]="56"
-    #sidenav
-  >
+<mat-sidenav-container>
+  <mat-sidenav mode="side" class="filter-sidenav" [opened]="true">
     <hra-filter-menu
       tagline="Research at the Cyberinfrastructure for Network Science Center"
-      [filters]="filters()"
-      (filtersChange)="updateFilters($event)"
+      [filters]="store.filters()"
+      (filtersChange)="store.updateFilters($event)"
     >
       <mat-form-field subscriptSizing="dynamic">
-        <hra-icon class="select-icon" matPrefix>{{ viewType() === 'gallery' ? 'cards' : 'list' }}</hra-icon>
+        <hra-icon class="select-icon" matPrefix>{{ store.view() === 'gallery' ? 'cards' : 'list' }}</hra-icon>
         <mat-label>View as</mat-label>
-        <mat-select [value]="viewType()" (selectionChange)="viewType.set($event.value)">
-          @for (option of viewAsOptions(); track $index) {
-            <mat-option [value]="option.id">
-              <hra-icon class="select-icon" [fontIcon]="option.id === 'gallery' ? 'cards' : 'list'" />
-              {{ option.label }}
-            </mat-option>
-          }
+        <mat-select [value]="store.view()" (valueChange)="store.setView($event)">
+          <mat-option value="gallery">
+            <hra-icon class="select-icon" fontIcon="cards" />
+            Gallery
+          </mat-option>
+          <mat-option value="list">
+            <hra-icon class="select-icon" fontIcon="list" />
+            List
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
         <hra-icon class="select-icon" matPrefix>sort</hra-icon>
         <mat-label>Sort by</mat-label>
-        <mat-select [value]="sortBy()" (selectionChange)="sortBy.set($event.value)">
-          @for (option of sortByOptions(); track $index) {
-            <mat-option [value]="option.id">{{ option.label }}</mat-option>
-          }
+        <mat-select [value]="store.sortBy()" (valueChange)="store.setSortBy($event)">
+          <mat-option [value]="null">None</mat-option>
+          <mat-option value="nameAsc">Ascending (A-Z) by title</mat-option>
+          <mat-option value="nameDesc">Descending (Z-A) by title</mat-option>
+          <mat-option value="newest">Newest</mat-option>
+          <mat-option value="oldest">Oldest</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
         <hra-icon class="select-icon" matPrefix>category</hra-icon>
         <mat-label>Group by</mat-label>
-        <mat-select [value]="groupBy()" (selectionChange)="groupBy.set($event.value)">
-          @for (option of groupByOptions(); track $index) {
-            <mat-option [value]="option.id">{{ option.label }}</mat-option>
-          }
+        <mat-select [value]="store.groupBy()" (valueChange)="store.setGroupBy($event)">
+          <mat-option [value]="null">None</mat-option>
+          <mat-option value="publicationType">Publication type</mat-option>
+          <mat-option value="year">Year</mat-option>
         </mat-select>
       </mat-form-field>
     </hra-filter-menu>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <hra-search-filter
-      label="Search"
-      separator="/"
-      [totalCount]="totalCount()"
-      [viewingCount]="viewingCount()"
-      [(search)]="search"
-    />
-    @if (viewingCount() === 0) {
-      <ng-container [ngTemplateOutlet]="empty" />
-    } @else {
-      <ng-scrollbar hraScrollOverflowFade>
-        <div class="scroll-content">
-          @if (groupBy() && groupBy() !== 'none' && viewType() === 'gallery') {
-            <div class="gallery-groups">
-              @for (group of setGroupedItems(filteredItems()); track $index) {
-                <div class="gallery-group">
-                  <h3 hra-section-link underlined class="group-title">{{ group[0] }}</h3>
-                  <hra-grid-container>
-                    @for (item of group[1]; track $index) {
-                      <hra-gallery-card
-                        [tagline]="item.title || ''"
-                        [imageSrc]="item.imgSrc"
-                        [date]="item.dateStart"
-                        [link]="item.link || ''"
-                        [external]="true"
-                        [tags]="fetchTagLabels(item.tags)"
-                      />
-                    }
-                  </hra-grid-container>
-                </div>
-              }
-            </div>
-          }
 
-          @if ((!groupBy() || groupBy() === 'none') && viewType() === 'gallery') {
-            <hra-grid-container>
-              @for (item of filteredItems(); track $index) {
+  <mat-sidenav-content>
+    <ng-scrollbar hraScrollOverflowFade>
+      <div class="search-container">
+        <hra-search-filter
+          label="Search"
+          separator="/"
+          [totalCount]="store.numResearchItems()"
+          [viewingCount]="store.numFilteredItems()"
+          [search]="store.search() ?? ''"
+          (searchChange)="store.setSearch($event)"
+        />
+      </div>
+
+      <div class="content">
+        @if (store.numFilteredItems() === 0) {
+          <hra-no-results-indicator (clearFilters)="store.resetFilters()" />
+        } @else if (store.view() === 'gallery') {
+          @for (group of store.sortedGroupedItems(); track group.label) {
+            <section>
+              @if (group.label) {
+                <h3 hra-section-link underlined class="group-title">{{ group.label }}</h3>
+              }
+
+              <hra-gallery-grid [dataSource]="group.items">
                 <hra-gallery-card
-                  [tagline]="item.title || ''"
-                  [imageSrc]="item.imgSrc"
-                  [date]="item.dateStart"
+                  *hraGalleryGridItem="let item"
+                  imageSrc=""
+                  [tagline]="item.title"
+                  [date]="(item.dateStart | date) ?? ''"
                   [link]="item.link || ''"
                   [external]="true"
-                  [tags]="fetchTagLabels(item.tags)"
+                  [tags]="item.tags"
                 />
-              }
-            </hra-grid-container>
+              </hra-gallery-grid>
+            </section>
           }
+        } @else {
+          <hra-list-view [data]="store.sortedGroupedListItems()" [groupBy]="store.groupBy() !== null" />
+        }
+      </div>
 
-          @if (viewType() === 'list') {
-            <hra-list-view
-              [data]="convertToListItems(filteredItems())"
-              [groupBy]="!!groupBy() && groupBy() !== 'none'"
-            />
-          }
+      <div class="page-end">
+        <mat-divider />
+        <hra-end-of-results-indicator [count]="store.numFilteredItems()" />
+      </div>
 
-          <div class="page-end">
-            <mat-divider />
-            <hra-end-of-results-indicator [count]="viewingCount()" />
-          </div>
-          <cns-footer />
-        </div>
-      </ng-scrollbar>
-    }
+      <cns-footer />
+    </ng-scrollbar>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<ng-template #empty>
-  <div class="empty">
-    <div>No results. Adjust filters or search again.</div>
-    <button mat-flat-button (click)="clearFilters()">Clear filters</button>
-  </div>
-</ng-template>
