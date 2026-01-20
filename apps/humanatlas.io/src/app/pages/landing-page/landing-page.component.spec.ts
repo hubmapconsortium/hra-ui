@@ -1,8 +1,9 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen } from '@testing-library/angular';
-import { LandingPageComponent } from './landing-page.component';
 import { LandingPageData } from '../../schemas/landing-page/landing-page.schema';
+import { LandingPageComponent } from './landing-page.component';
 
 describe('LandingPageComponent', () => {
   const mockLandingPageData: LandingPageData = {
@@ -21,22 +22,24 @@ describe('LandingPageComponent', () => {
         count: 100,
         label: 'Datasets',
         suffix: '+',
-        icon: 'database',
+        icon: 'misc:data',
       },
     ],
     sectionCardInfo: [
       {
         tagline: 'Explore',
-        icon: 'explore',
+        icon: 'misc:explore',
         action: 'View',
       },
     ],
   };
 
+  const providers = [provideIcons(), provideHttpClient(), provideHttpClientTesting()];
+
   it('should render', async () => {
     await render(LandingPageComponent, {
       inputs: { data: mockLandingPageData },
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers,
     });
 
     const intro = screen.getAllByText(/Human Reference Atlas/i);
@@ -46,7 +49,7 @@ describe('LandingPageComponent', () => {
   it('should render count cards', async () => {
     await render(LandingPageComponent, {
       inputs: { data: mockLandingPageData },
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers,
     });
 
     const countLabel = screen.getByText('Datasets');
@@ -56,7 +59,7 @@ describe('LandingPageComponent', () => {
   it('should render carousel component', async () => {
     await render(LandingPageComponent, {
       inputs: { data: mockLandingPageData },
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers,
     });
 
     const carouselText = screen.getByText('Test Carousel');
