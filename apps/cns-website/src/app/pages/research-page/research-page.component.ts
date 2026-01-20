@@ -32,35 +32,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderEventsService } from '../../components/header/header.component';
 import { ViewType } from '../../resolvers/research/research.resolver';
 import { ResearchItem, ResearchPageData } from '../../schemas/research/research.schema';
-
-const queryParamToOptionsKey: Record<string, string> = {
-  category: 'category',
-  'event-type': 'eventType',
-  'funding-type': 'fundingType',
-  'publication-type': 'type',
-  people: 'people',
-  // project: 'project',
-  year: 'year',
-};
-
-const VIEW_AS_OPTIONS = [
-  { id: 'gallery', label: 'Gallery' },
-  { id: 'list', label: 'List' },
-];
-
-const SORT_BY_OPTIONS = [
-  { id: 'nameAsc', label: 'Ascending (A-Z) by title' },
-  { id: 'nameDesc', label: 'Descending (Z-A) by title' },
-  { id: 'newest', label: 'Newest' },
-  { id: 'oldest', label: 'Oldest' },
-];
-
-const DEFAULT_GROUP_OPTIONS = [
-  { id: 'none', label: 'None' },
-  // { id: 'project', label: 'Project' },
-  { id: 'type', label: 'Publication type' },
-  { id: 'year', label: 'Year' },
-];
+import { DEFAULT_GROUP_OPTIONS, QUERY_PARAM_OPTIONS_KEY, SORT_BY_OPTIONS, VIEW_AS_OPTIONS } from './control-options';
 
 @Component({
   selector: 'cns-research-page',
@@ -150,24 +122,27 @@ export class ResearchPageComponent {
     effect(() => {
       this.setControls();
       this.setCurrentFiltersFromParams();
-      this.headerEvents.menuState.set(this.isWideScreen());
     });
 
     toObservable(this.groupByOptions).subscribe((options) => {
-      if (!options.find((x) => x.id === 'type') && this.groupBy() === 'type') {
+      if (!options.find((x) => x.id === 'publicationType') && this.groupBy() === 'publicationType') {
         this.groupBy.set(undefined);
       }
       if (!options.find((x) => x.id === 'project') && this.groupBy() === 'project') {
         this.groupBy.set(undefined);
       }
     });
+
+    effect(() => {
+      this.headerEvents.menuState.set(this.isWideScreen());
+    });
   }
 
   updateFilters(updatedFilters: FilterOptionCategory<SearchListOption>[]) {
     const newCurrentFilters: Record<string, SearchListOption[]> = {};
-    updatedFilters.forEach((filter) => {
-      if (filter.selected && filter.selected.length > 0) {
-        newCurrentFilters[filter.id] = filter.selected;
+    updatedFilters.forEach((f) => {
+      if (f.selected && f.selected.length > 0) {
+        newCurrentFilters[f.id] = f.selected;
       }
     });
     this.currentFilters.set(newCurrentFilters);
@@ -197,8 +172,8 @@ export class ResearchPageComponent {
         if (groupBy() === 'year') {
           type = item.dateStart?.split('-')[0];
         }
-        if (groupBy() === 'type') {
-          type = options()['type'].find((pubType) => pubType.id === item.type)?.label || 'Other';
+        if (groupBy() === 'publicationType') {
+          type = options()['publicationType'].find((pubType) => pubType.id === item.type)?.label || 'Other';
         }
         if (groupBy() === 'project') {
           type = item.project || 'Other';
@@ -233,8 +208,8 @@ export class ResearchPageComponent {
       let key = '';
       if (groupBy() === 'year') {
         key = item.dateStart.split('-')[0];
-      } else if (groupBy() === 'type') {
-        const title = options()['type'].find((pubType) => pubType.id === item.type)?.label;
+      } else if (groupBy() === 'publicationType') {
+        const title = options()['publicationType'].find((pubType) => pubType.id === item.type)?.label;
         key = title || 'Other';
       } else if (groupBy() === 'project') {
         key = item.project || 'Other';
@@ -257,14 +232,15 @@ export class ResearchPageComponent {
   }
 
   private setControls() {
+    const queryParams = this.queryParams() as Params;
+
     if (this.pageLoaded()) {
       return;
     }
-    const params = this.queryParams() as Params;
     this.sortBy.set('newest');
     this.viewType.set('gallery');
-    if (params['category']) {
-      const category = Array.isArray(params['category']) ? params['category'][0] : params['category'];
+    if (queryParams['category']) {
+      const category = Array.isArray(queryParams['category']) ? queryParams['category'][0] : queryParams['category'];
       if (category === 'visualizations') {
         this.groupBy.set('year');
       }
@@ -299,7 +275,7 @@ export class ResearchPageComponent {
 
   private updateFilterCounts() {
     const updatedOptions = this.options();
-    Object.values(queryParamToOptionsKey).forEach((key) => {
+    Object.values(QUERY_PARAM_OPTIONS_KEY).forEach((key) => {
       updatedOptions[key] = this.options()[key].map((option) => ({
         ...option,
         count: this.data().filter((item) => {
@@ -308,6 +284,9 @@ export class ResearchPageComponent {
           }
           if (key === 'year') {
             return item.dateStart.split('-')[0] === option.id;
+          }
+          if (key === 'publicationType') {
+            return item.type === option.id;
           }
           return item[key as keyof ResearchItem] === option.id;
         }).length,
@@ -318,33 +297,28 @@ export class ResearchPageComponent {
 
   private setCurrentFiltersFromParams() {
     const queryParams = this.queryParams() as Params;
-    const queryParamsArray: Record<string, string[]> = {};
-
     this.search.set(queryParams['search']);
 
     if (Object.values(queryParams).length === 0) {
       this.clearFilters();
-    }
-    Object.keys(queryParamToOptionsKey).forEach((type) => {
-      if (queryParams[type]) {
-        queryParamsArray[type] = Array.isArray(queryParams[type]) ? queryParams[type] : [queryParams[type]];
-      }
-    });
-    Object.entries(queryParamToOptionsKey).forEach(([queryParam, optionKey]) => {
-      this.currentFilters.update((filters) => {
-        {
-          if (queryParamsArray[queryParam]) {
-            return {
-              ...filters,
-              [optionKey]: this.options()[optionKey].filter((option) =>
-                queryParamsArray[queryParam].includes(option.id),
-              ),
-            };
+    } else {
+      Object.entries(QUERY_PARAM_OPTIONS_KEY).forEach(([queryParam, optionKey]) => {
+        this.currentFilters.update((filters) => {
+          {
+            if (queryParams[queryParam]) {
+              const params = Array.isArray(queryParams[queryParam])
+                ? queryParams[queryParam]
+                : [queryParams[queryParam]];
+              return {
+                ...filters,
+                [optionKey]: this.options()[optionKey].filter((option) => params.includes(option.id)),
+              };
+            }
+            return filters;
           }
-          return filters;
-        }
+        });
       });
-    });
+    }
   }
 
   private setYearOptions() {
@@ -366,8 +340,8 @@ export class ResearchPageComponent {
       );
     }
 
-    Object.keys(queryParamToOptionsKey).forEach((type) => {
-      const itemKey = queryParamToOptionsKey[type] as keyof ResearchItem;
+    Object.keys(QUERY_PARAM_OPTIONS_KEY).forEach((type) => {
+      const itemKey = QUERY_PARAM_OPTIONS_KEY[type] as keyof ResearchItem;
       const currentFilterValue = type === 'year' ? currentFilters['year'] : currentFilters[itemKey];
       if (currentFilterValue && currentFilterValue.length > 0) {
         filteredData = filteredData.filter((item) => {
@@ -387,7 +361,7 @@ export class ResearchPageComponent {
   }
 
   private currentFiltersToFilters(): FilterOptionCategory<SearchListOption>[] {
-    return Object.entries(queryParamToOptionsKey).map(([queryParam, optionsKey]) => {
+    return Object.entries(QUERY_PARAM_OPTIONS_KEY).map(([queryParam, optionsKey]) => {
       return {
         id: optionsKey,
         label: queryParam.replace('-', ' ').replace(queryParam[0], queryParam[0].toUpperCase()),
@@ -399,7 +373,7 @@ export class ResearchPageComponent {
 
   private updateQueryParamsFromFilters() {
     const queryParams = {} as Params;
-    Object.entries(queryParamToOptionsKey).forEach(([queryParam, optionsKey]) => {
+    Object.entries(QUERY_PARAM_OPTIONS_KEY).forEach(([queryParam, optionsKey]) => {
       queryParams[queryParam] = this.currentFilters()[optionsKey]?.map((option) => option.id);
     });
     queryParams['search'] = this.search() === '' ? null : this.search();

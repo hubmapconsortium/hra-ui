@@ -106,7 +106,7 @@ export function createOptionsResolver(): ResolveFn<Record<string, SearchListOpti
           category: CATEGORY_OPTIONS,
           eventType: EVENT_OPTIONS,
           fundingType: FUNDING_OPTIONS,
-          type: publicationTypes,
+          publicationType: publicationTypes,
           people: people,
           project: PROJECT_OPTIONS,
           year: [], // to be filled in dynamically in the component,
