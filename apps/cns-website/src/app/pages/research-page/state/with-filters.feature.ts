@@ -91,7 +91,16 @@ export const FUNDING_OPTIONS: FundingOption[] = [
 ];
 
 export const PUBLICATION_OPTIONS: PublicationOption[] = [
-  // Add publication type options here
+  { id: 'broadcast' as ResearchPublicationType, label: 'Audio/video' },
+  { id: 'book' as ResearchPublicationType, label: 'Book' },
+  { id: 'chapter' as ResearchPublicationType, label: 'Book chapter' },
+  { id: 'periodical' as ResearchPublicationType, label: 'Edited journal' },
+  { id: 'article-journal' as ResearchPublicationType, label: 'Journal article' },
+  { id: 'patent' as ResearchPublicationType, label: 'Patent' },
+  { id: 'report' as ResearchPublicationType, label: 'Tech report' },
+  { id: 'thesis' as ResearchPublicationType, label: 'Thesis' },
+  { id: 'manuscript' as ResearchPublicationType, label: 'Unrefereed' },
+  { id: 'paper-conference' as ResearchPublicationType, label: 'Visualizations' },
 ];
 
 export const YEAR_OPTIONS: YearOption[] = createYearList(2000).map((year) => ({

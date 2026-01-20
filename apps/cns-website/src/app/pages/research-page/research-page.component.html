@@ -1,5 +1,10 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="side" class="filter-sidenav" [opened]="true">
+  <mat-sidenav
+    mode="side"
+    class="filter-sidenav"
+    [mode]="!isWideScreen() ? 'over' : 'side'"
+    [opened]="headerEvents.menuState()"
+  >
     <hra-filter-menu
       tagline="Research at the Cyberinfrastructure for Network Science Center"
       [filters]="store.filters()"
@@ -46,16 +51,14 @@
 
   <mat-sidenav-content>
     <ng-scrollbar hraScrollOverflowFade>
-      <div class="search-container">
-        <hra-search-filter
-          label="Search"
-          separator="/"
-          [totalCount]="store.numResearchItems()"
-          [viewingCount]="store.numFilteredItems()"
-          [search]="store.search() ?? ''"
-          (searchChange)="store.setSearch($event)"
-        />
-      </div>
+      <hra-search-filter
+        label="Search"
+        separator="/"
+        [totalCount]="store.numResearchItems()"
+        [viewingCount]="store.numFilteredItems()"
+        [search]="store.search() ?? ''"
+        (searchChange)="store.setSearch($event)"
+      />
 
       <div class="content">
         @if (store.numFilteredItems() === 0) {
@@ -83,14 +86,14 @@
         } @else {
           <hra-list-view [data]="store.sortedGroupedListItems()" [groupBy]="store.groupBy() !== null" />
         }
-      </div>
 
-      <div class="page-end">
-        <mat-divider />
-        <hra-end-of-results-indicator [count]="store.numFilteredItems()" />
-      </div>
+        <div class="page-end">
+          <mat-divider />
+          <hra-end-of-results-indicator [count]="store.numFilteredItems()" />
+        </div>
 
-      <cns-footer />
+        <cns-footer />
+      </div>
     </ng-scrollbar>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
@@ -16,6 +17,7 @@ import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { HeaderEventsService } from '../../components/header/header.component';
 import { ResearchPageData } from '../../schemas/research/research.schema';
 import { ResearchStore } from './state/research.store';
 
@@ -49,9 +51,16 @@ import { ResearchStore } from './state/research.store';
 export class ResearchPageComponent {
   readonly data = input.required<ResearchPageData>();
 
+  readonly headerEvents = inject(HeaderEventsService);
   protected readonly store = inject(ResearchStore);
+
+  protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
   constructor() {
     this.store.setResearchItems(this.data);
+
+    effect(() => {
+      this.headerEvents.menuState.set(this.isWideScreen());
+    });
   }
 }

@@ -89,8 +89,8 @@ export const ResearchStore = signalStore(
         ...commonOptions,
       });
       linkedQueryParam('search', { source: search, parse: parseSearch, ...commonOptions });
-      linkedQueryParam('sortBy', { source: sortBy, parse: parseSortBy, ...commonOptions });
-      linkedQueryParam('groupBy', { source: groupBy, parse: parseGroupBy, ...commonOptions });
+      linkedQueryParam('sort-by', { source: sortBy, parse: parseSortBy, ...commonOptions });
+      linkedQueryParam('group-by', { source: groupBy, parse: parseGroupBy, ...commonOptions });
     },
   }),
 );

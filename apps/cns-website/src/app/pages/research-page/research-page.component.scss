@@ -22,14 +22,18 @@
 
   hra-search-filter {
     padding: 1.5rem 2.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
     max-width: 100rem;
+    margin: 0 auto;
 
     @media (max-width: 639px) {
       padding: 1.5rem 1.25rem 2rem;
     }
   }
 
-  .scroll-content {
+  .content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,33 +44,10 @@
     @media (max-width: 639px) {
       padding: 0 1.25rem;
     }
-
-    hra-list-view,
-    hra-grid-container,
-    .gallery-groups,
-    .page-end,
-    cns-footer {
-      width: 100%;
-    }
-  }
-
-  .gallery-groups {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-
-    .gallery-group {
-      hra-grid-container {
-        margin-top: 1rem;
-      }
-    }
-  }
-
-  hra-grid-container {
-    gap: 3rem;
   }
 
   .page-end {
+    width: 100%;
     padding-bottom: 2.5rem;
   }
 
