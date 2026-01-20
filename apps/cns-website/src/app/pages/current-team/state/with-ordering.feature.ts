@@ -312,6 +312,9 @@ export function withOrdering() {
       const sortedGroupedPeople = computed(() => {
         const groups = Array.from(_groupedPeople().entries());
         groups.sort((a, b) => compareByGroupKey(a[0], b[0]));
+        if (store.groupBy() === GroupBy.StartYear) {
+          groups.reverse();
+        }
         return groups.map(([key, people]) => ({ label: groupKeyToLabel(key), people }));
       });
 
