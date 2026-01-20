@@ -20,16 +20,20 @@
     align-items: center;
   }
 
-  hra-search-filter {
-    padding: 1.5rem 2.5rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    max-width: 100rem;
-    margin: 0 auto;
+  ng-scrollbar {
+    width: 100%;
 
-    @media (max-width: 639px) {
-      padding: 1.5rem 1.25rem 2rem;
+    hra-search-filter {
+      padding: 1.5rem 2.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      max-width: 100rem;
+      margin: 0 auto;
+
+      @media (max-width: 639px) {
+        padding: 1.5rem 1.25rem 2rem;
+      }
     }
   }
 
@@ -44,40 +48,30 @@
     @media (max-width: 639px) {
       padding: 0 1.25rem;
     }
-  }
 
-  .page-end {
-    width: 100%;
-    padding-bottom: 2.5rem;
-  }
+    section {
+      width: 100%;
+    }
 
-  mat-divider {
-    margin-top: 2rem;
-    margin-bottom: 2.5rem;
-  }
+    .page-end {
+      width: 100%;
+      padding-bottom: 2.5rem;
 
-  hra-end-of-results-indicator {
-    padding: 0;
-    flex-direction: row;
-  }
+      mat-divider {
+        margin-top: 2rem;
+        margin-bottom: 2.5rem;
+      }
 
-  cns-footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
+      cns-footer {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
 
-  ng-scrollbar {
-    width: 100%;
-  }
-
-  .empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 1.25rem;
-    font: vars.$label-large;
-    @include utils.use-font(label, large);
+    hra-end-of-results-indicator {
+      padding: 0;
+      flex-direction: row;
+    }
   }
 
   // Control styles
