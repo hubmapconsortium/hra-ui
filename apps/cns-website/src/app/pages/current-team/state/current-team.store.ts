@@ -15,6 +15,13 @@ import { withFilters } from './with-filters.feature';
 import { withOrdering } from './with-ordering.feature';
 import { withPeople } from './with-people.feature';
 
+/**
+ * Creates a WritableSignal wrapper around a read-only state signal and setter function.
+ * Used to bridge ngrx signal store state with APIs that expect WritableSignal.
+ * @param stateSignal - The read-only signal from the store
+ * @param set - The setter function to update the state
+ * @returns A WritableSignal that wraps the state signal
+ */
 function createWritableStateSlice<T>(stateSignal: Signal<T>, set: (value: T) => void): WritableSignal<T> {
   const signal = computed(() => stateSignal()) as WritableSignal<T>;
   signal.set = set;
