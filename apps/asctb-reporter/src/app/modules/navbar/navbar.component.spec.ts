@@ -1,3 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { provideIcons } from '@hra-ui/design-system/icons';
@@ -96,6 +98,8 @@ describe('NavbarComponent', () => {
       imports: [NgxsModule.forRoot([])],
       providers: [
         provideIcons(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
         { provide: Store, useValue: store },
         { provide: Router, useValue: router },
         { provide: MatDialog, useValue: dialog },
