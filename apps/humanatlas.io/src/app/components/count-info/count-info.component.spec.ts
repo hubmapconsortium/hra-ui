@@ -9,12 +9,12 @@ describe('CountInfoComponent', () => {
     {
       label: 'Datasets',
       count: 150,
-      icon: 'dataset',
+      icon: 'misc:data',
     },
     {
       label: 'Contributors',
       count: '75',
-      icon: 'person',
+      icon: 'misc:contribute',
     },
   ];
 
