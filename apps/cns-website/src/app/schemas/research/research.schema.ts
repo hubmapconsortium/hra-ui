@@ -35,6 +35,10 @@ export const ResearchPublicationType = z
 
 export type ResearchItemType = ResearchEventType | ResearchFundingType | ResearchPublicationType;
 
+export type ResearchPersonType = z.infer<typeof ResearchPersonType>;
+
+export const ResearchPersonType = z.string().meta({ id: 'ResearchPersonType' });
+
 export type ResearchItem = z.infer<typeof ResearchItemSchema>;
 
 export const ResearchItemSchema = z
@@ -60,3 +64,17 @@ export type ResearchPageData = z.infer<typeof ResearchPageDataSchema>;
 export const ResearchPageDataSchema = ResearchItemSchema.array().meta({ id: 'ResearchPageData' });
 
 export default ResearchPageDataSchema;
+
+export type PeopleResearchItem = z.infer<typeof PeopleResearchItemSchema>;
+
+/** People research data schema */
+export const PeopleResearchItemSchema = z
+  .object({
+    slug: z.string().optional(),
+    name: z.string(),
+    lastName: z.string(),
+    roles: z.array(z.any()),
+  })
+  .meta({ id: 'PeopleResearchItem' });
+
+export const PeopleResearchDataSchema = PeopleResearchItemSchema.array().meta({ id: 'PeopleResearchData' });

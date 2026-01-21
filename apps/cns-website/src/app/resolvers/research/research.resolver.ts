@@ -1,10 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { RedirectCommand, ResolveFn, Router } from '@angular/router';
-import { SearchListOption } from '@hra-ui/design-system/search-list';
 import { catchError, forkJoin, map, Observable, of } from 'rxjs';
 import * as z from 'zod';
-import ResearchPageDataSchema, { ResearchPageData } from '../../schemas/research/research.schema';
+import ResearchPageDataSchema, {
+  PeopleResearchDataSchema,
+  PeopleResearchItem,
+  ResearchPageData,
+} from '../../schemas/research/research.schema';
 
 const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publications.json';
 const NEWS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-news.json';
@@ -60,6 +63,10 @@ export function createResearchDataResolver(): ResolveFn<ResearchPageData> {
       }),
     );
   };
+}
+
+export function createPeopleResolver(): ResolveFn<PeopleResearchItem[]> {
+  return createZodValidatedDataResolver(PEOPLE_INDEX_URL, PeopleResearchDataSchema);
 }
 
 // export function getPeopleData(): Observable<SearchListOption[]> {

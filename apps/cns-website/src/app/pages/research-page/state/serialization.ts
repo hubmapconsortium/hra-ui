@@ -71,8 +71,8 @@ export function parsePublications(value: unknown): PublicationOption[] | null {
   return parseOptions(PUBLICATION_OPTIONS, value);
 }
 
-export function parsePeople(value: unknown): PeopleOption[] | null {
-  return parseOptions([], value); // TODO fix
+export function parsePeople(value: unknown, options: PeopleOption[] = []): PeopleOption[] | null {
+  return parseOptions(options, value);
 }
 
 export function parseYears(value: unknown): YearOption[] | null {

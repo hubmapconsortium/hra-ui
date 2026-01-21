@@ -1,4 +1,4 @@
-import { computed, Signal, WritableSignal } from '@angular/core';
+import { computed, effect, Signal, WritableSignal } from '@angular/core';
 import { signalStore, withHooks } from '@ngrx/signals';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
 import {
@@ -78,7 +78,7 @@ export const ResearchStore = signalStore(
       });
       linkedQueryParam('people', {
         source: people,
-        parse: parsePeople,
+        parse: (value) => parsePeople(value, store.peopleOptions()),
         stringify: serializePeople,
         ...commonOptions,
       });
@@ -91,6 +91,20 @@ export const ResearchStore = signalStore(
       linkedQueryParam('search', { source: search, parse: parseSearch, ...commonOptions });
       linkedQueryParam('sort-by', { source: sortBy, parse: parseSortBy, ...commonOptions });
       linkedQueryParam('group-by', { source: groupBy, parse: parseGroupBy, ...commonOptions });
+
+      // Re-parse people query param after options are loaded
+      effect(() => {
+        if (store.peopleOptions().length > 0) {
+          const currentParams = new URLSearchParams(window.location.search);
+          const peopleParam = currentParams.get('people');
+          if (peopleParam) {
+            const parsed = parsePeople(peopleParam, store.peopleOptions());
+            if (parsed) {
+              people.set(parsed);
+            }
+          }
+        }
+      });
     },
   }),
 );

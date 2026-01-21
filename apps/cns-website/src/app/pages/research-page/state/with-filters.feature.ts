@@ -16,6 +16,7 @@ import {
   ResearchFundingType,
   ResearchItem,
   ResearchItemType,
+  ResearchPersonType,
   ResearchPublicationType,
 } from '../../../schemas/research/research.schema';
 import { ResearchState } from './with-research.feature';
@@ -30,7 +31,7 @@ export type FundingOption = TypedSearchListOption<ResearchFundingType>;
 
 export type PublicationOption = TypedSearchListOption<ResearchPublicationType>;
 
-export type PeopleOption = TypedSearchListOption<string>; // TODO stricter type
+export type PeopleOption = TypedSearchListOption<ResearchPersonType>; // TODO stricter type
 
 export interface YearOption extends SearchListOption {
   year: number;
@@ -199,7 +200,11 @@ export function withFilters() {
       const _eventsFilter = computed(() => ({ ...EVENTS_FILTER, selected: store.events() ?? [] }));
       const _fundingFilter = computed(() => ({ ...FUNDING_FILTER, selected: store.funding() ?? [] }));
       const _publicationsFilter = computed(() => ({ ...PUBLICATIONS_FILTER, selected: store.publications() ?? [] }));
-      const _peopleFilter = computed(() => ({ ...PEOPLE_FILTER, selected: store.people() ?? [] }));
+      const _peopleFilter = computed(() => ({
+        ...PEOPLE_FILTER,
+        selected: store.people() ?? [],
+        options: store.peopleOptions(),
+      }));
       const _yearsFilter = computed(() => ({ ...YEARS_FILTER, selected: store.years() ?? [] }));
       const filters = computed((): FilterOptionCategory<SearchListOption>[] => [
         _categoriesFilter(),
@@ -222,7 +227,7 @@ export function withFilters() {
         selectedTypes.has(item.type),
       );
 
-      const _selectedPeople = optionsToSet(store.people);
+      const _selectedPeople = optionsToSet<ResearchPersonType>(store.people);
       const _filteredByPeople = createFilteredBy(_filteredByType, _selectedPeople, (item, selectedPeople) =>
         item.people.some((person) => selectedPeople.has(person)),
       );
