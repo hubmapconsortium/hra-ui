@@ -57,7 +57,7 @@
       <div class="search-container">
         <hra-search-filter
           label="Search"
-          [totalCount]="store.numPeople()"
+          [totalCount]="store.numFilteredByTeam()"
           [viewingCount]="store.numFilteredPeople()"
           [search]="store.search() ?? ''"
           (searchChange)="store.setSearch($event)"

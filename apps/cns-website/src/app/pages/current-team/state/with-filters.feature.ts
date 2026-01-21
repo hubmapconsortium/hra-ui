@@ -45,6 +45,8 @@ export type FilterProps = {
   filteredPeople: Signal<PeopleProfileItem[]>;
   /** Number of people after applying all filters */
   numFilteredPeople: Signal<number>;
+  /** Number of people in the selected team (current/past) before other filters */
+  numFilteredByTeam: Signal<number>;
   /** List of filters with selected options */
   filters: Signal<FilterOptionCategory<SearchListOption>[]>;
 };
@@ -205,6 +207,7 @@ export function withFilters() {
         filters,
         filteredPeople: _filteredBySearch,
         numFilteredPeople: computed(() => _filteredBySearch().length),
+        numFilteredByTeam: computed(() => _filteredByTeam().length),
         _rolesFilter,
         _yearsFilter,
         _peopleByTeam,
