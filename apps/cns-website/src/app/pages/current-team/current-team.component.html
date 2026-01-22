@@ -4,6 +4,7 @@
     aria-label="Filter team members"
     [mode]="sidebarStore.mode()"
     [opened]="sidebarStore.isOpen()"
+    [disableClose]="sidebarStore.mode() === 'side'"
     (closedStart)="sidebarStore.close()"
   >
     <hra-filter-menu
