@@ -3,14 +3,20 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { patchState, signalStore, withComputed, withLinkedState, withMethods, withState } from '@ngrx/signals';
 
+/** Sidebar global state */
 interface SidebarState {
+  /** The currently active sidebar component */
   sidebar: MatSidenav | null;
 }
 
+/** Initial state for sidebar */
 const initialState: SidebarState = {
   sidebar: null,
 };
 
+/**
+ * Global store for managing the sidebar state
+ */
 export const SidebarStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),

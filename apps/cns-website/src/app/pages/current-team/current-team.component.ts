@@ -63,6 +63,7 @@ export class CurrentTeamComponent {
   /** Gender neutral placeholder image for members without pictures */
   protected readonly placeholderImage = '/assets/placeholder.png';
 
+  /** Reference to the sidebar component */
   private readonly sidebar = viewChild.required(MatSidenav);
 
   /**
