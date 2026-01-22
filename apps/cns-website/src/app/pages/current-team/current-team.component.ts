@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
@@ -15,7 +15,9 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
+import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { CurrentTeamStore } from './state/current-team.store';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 
 /**
  * Page component for displaying current team members
@@ -24,20 +26,21 @@ import { CurrentTeamStore } from './state/current-team.store';
   selector: 'cns-current-team',
   imports: [
     HraCommonModule,
-    SearchFilterComponent,
-    ProfileCardComponent,
-    NoResultsIndicatorComponent,
     ButtonsModule,
     FilterMenuComponent,
+    FooterComponent,
     GalleryGridComponent,
     GalleryGridItemDirective,
+    IconsModule,
+    LinkDirective,
     MatButtonToggleModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSidenavModule,
-    IconsModule,
-    FooterComponent,
+    NoResultsIndicatorComponent,
+    ProfileCardComponent,
     ScrollingModule,
+    SearchFilterComponent,
     SectionLinkComponent,
   ],
   templateUrl: './current-team.component.html',
@@ -54,8 +57,13 @@ export class CurrentTeamComponent {
   /** Store for managing team member state and filters */
   protected readonly store = inject(CurrentTeamStore);
 
+  /** Sidebar store for managing sidebar state */
+  protected readonly sidebarStore = inject(SidebarStore);
+
   /** Gender neutral placeholder image for members without pictures */
-  readonly placeholderImage = '/assets/placeholder.png';
+  protected readonly placeholderImage = '/assets/placeholder.png';
+
+  private readonly sidebar = viewChild.required(MatSidenav);
 
   /**
    * Initializes the component and store with route data
@@ -63,5 +71,10 @@ export class CurrentTeamComponent {
    */
   constructor() {
     this.store.setPeople(this.data);
+
+    effect((onCleanup) => {
+      this.sidebarStore.setSidebar(this.sidebar());
+      onCleanup(() => this.sidebarStore.clearSidebar());
+    });
   }
 }

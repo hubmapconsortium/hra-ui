@@ -20,16 +20,22 @@
       color: vars.$secondary;
     }
 
-    @include mat.button-toggle-overrides(
-      (
-        divider-color: transparent,
-      )
-    );
-
     .category-button {
       flex: 0 1 auto;
       min-width: fit-content;
       justify-content: flex-start;
+      border: none;
+
+      @include mat.button-toggle-overrides(
+        (
+          label-text-font: vars.$label-medium-font,
+          label-text-size: vars.$label-medium-size,
+          label-text-line-height: vars.$label-medium-line-height,
+          label-text-weight: vars.$label-medium-weight,
+          label-text-tracking: vars.$label-medium-tracking,
+          text-color: vars.$secondary,
+        )
+      );
     }
   }
 
@@ -62,6 +68,6 @@
   }
 
   mat-divider {
-    margin: 1rem 0;
+    margin: 0.25rem 0;
   }
 }
