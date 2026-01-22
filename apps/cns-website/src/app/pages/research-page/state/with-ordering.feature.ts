@@ -9,14 +9,9 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import {
-  ResearchEventType,
-  ResearchFundingType,
-  ResearchItem,
-  ResearchItemType,
-  ResearchPublicationType,
-} from '../../../schemas/research/research.schema';
+import { PublicationTypes, ResearchItem, ResearchItemType } from '../../../schemas/research/research.schema';
 import { FilterProps } from './with-filters.feature';
+import { ResearchState } from './with-research.feature';
 
 export enum SortBy {
   NameAsc = 'nameAsc',
@@ -47,14 +42,6 @@ const initialState: OrderingState = {
   groupBy: null,
 };
 
-function compareByGroupKey(a: GroupByKey, b: GroupByKey): number {
-  if (typeof a === 'number' && typeof b === 'number') {
-    return b - a;
-  }
-
-  return String(a).localeCompare(String(b));
-}
-
 function createSortByFn(sortBy: SortBy | null): ((a: ResearchItem, b: ResearchItem) => number) | undefined {
   switch (sortBy) {
     case SortBy.NameAsc:
@@ -81,34 +68,23 @@ function createGroupByKeyFn(groupBy: GroupBy | null): (item: ResearchItem) => Gr
   }
 }
 
-const GROUP_BY_KEY_LABELS: Record<GroupByKey, string> = {
-  '': '',
-  unknown: 'Unknown',
-  ['news' as ResearchItemType]: 'News',
-  ['paper-conference' as ResearchPublicationType]: 'Visualizations',
-  ['report' as ResearchPublicationType]: 'Tech report',
-  ['article-journal' as ResearchPublicationType]: 'Journal article',
-  ['manuscript' as ResearchPublicationType]: 'Unrefereed',
-  ['chapter' as ResearchPublicationType]: 'Book chapter',
-  ['book' as ResearchPublicationType]: 'Book',
-  ['periodical' as ResearchPublicationType]: 'Edited journal',
-  ['broadcast' as ResearchPublicationType]: 'Audio/video',
-  ['thesis' as ResearchPublicationType]: 'Thesis',
-  ['patent' as ResearchPublicationType]: 'Patent',
-  ['research-funding' as ResearchFundingType]: 'Research funding',
-  ['teaching-funding' as ResearchFundingType]: 'Teaching funding',
-  ['workshop-funding' as ResearchFundingType]: 'Workshop funding',
-  ['24-hour' as ResearchEventType]: '24-hour',
-  ['amatria' as ResearchEventType]: 'Amatria',
-  ['workshop' as ResearchEventType]: 'Workshops',
-};
+function createKeyLabelsMap(pubTypes: PublicationTypes): Record<GroupByKey, string> {
+  const map: Record<GroupByKey, string> = {
+    '': '',
+    unknown: 'Unknown',
+  };
+  for (const pubType of pubTypes) {
+    map[pubType.value as GroupByKey] = pubType.label;
+  }
+  return map;
+}
 
-function groupByKeyToLabel(key: GroupByKey): string {
+function groupByKeyToLabel(key: GroupByKey, keyLabels: Record<GroupByKey, string>): string {
   if (typeof key === 'number') {
     return key.toString();
   }
 
-  return GROUP_BY_KEY_LABELS[key] ?? key;
+  return keyLabels[key] ?? 'Other';
 }
 
 function convertToListViewItem(item: ResearchItem): ListViewItem {
@@ -117,7 +93,7 @@ function convertToListViewItem(item: ResearchItem): ListViewItem {
 
 export function withOrdering() {
   return signalStoreFeature(
-    { props: type<FilterProps>() },
+    { state: type<ResearchState>(), props: type<FilterProps>() },
     withState(initialState),
     withComputed((store) => {
       const _sortByFn = computed(() => createSortByFn(store.sortBy()));
@@ -152,13 +128,21 @@ export function withOrdering() {
 
       const sortedGroupedItems = computed(() => {
         const groups = Array.from(_groupedItems());
-        const sortBy = store.sortBy();
-        groups.sort((a, b) => compareByGroupKey(a[0], b[0]));
-        if (sortBy === SortBy.NameDesc || sortBy === SortBy.Oldest) {
-          groups.reverse();
+        const groupBy = store.groupBy();
+        const pubTypes = store.pubTypes();
+        const keyLabels = createKeyLabelsMap(pubTypes);
+
+        const groupedItems = groups.map(([key, items]) => ({
+          label: groupByKeyToLabel(key, keyLabels),
+          items,
+        }));
+
+        groupedItems.sort((a, b) => a.label.localeCompare(b.label));
+        if (groupBy === GroupBy.Year) {
+          groupedItems.reverse();
         }
 
-        return groups.map(([key, items]) => ({ label: groupByKeyToLabel(key), items }));
+        return groupedItems;
       });
 
       const sortedGroupedListItems = computed(() => {

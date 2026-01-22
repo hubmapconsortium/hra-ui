@@ -1,18 +1,17 @@
 import { computed } from '@angular/core';
 import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
-import { PeopleResearchItem, ResearchItem } from '../../../schemas/research/research.schema';
-import { PeopleOption } from './with-filters.feature';
+import { PeopleResearchItem, PublicationTypes, ResearchItem } from '../../../schemas/research/research.schema';
 
 export interface ResearchState {
   researchItems: ResearchItem[];
-  peopleOptions: PeopleOption[];
-  // Define state properties here
+  peopleItems: PeopleResearchItem[];
+  pubTypes: PublicationTypes;
 }
 
 const initialState: ResearchState = {
   researchItems: [],
-  peopleOptions: [],
-  // Initialize other state properties here
+  peopleItems: [],
+  pubTypes: [],
 };
 
 export function withResearch() {
@@ -25,19 +24,8 @@ export function withResearch() {
     }),
     withMethods((store) => ({
       setResearchItems: signalMethod((researchItems: ResearchItem[]) => patchState(store, { researchItems })),
-      setPeopleOptions: signalMethod((peopleData: PeopleResearchItem[]) =>
-        patchState(store, { peopleOptions: createPeopleList(peopleData) }),
-      ),
+      setPeopleItems: signalMethod((peopleItems: PeopleResearchItem[]) => patchState(store, { peopleItems })),
+      setPublicationTypes: signalMethod((pubTypes: PublicationTypes) => patchState(store, { pubTypes })),
     })),
   );
-}
-
-function createPeopleList(options: PeopleResearchItem[] | null): PeopleOption[] {
-  if (options) {
-    return options.map((person) => ({
-      id: person.slug || '',
-      label: person.name,
-    }));
-  }
-  return [];
 }

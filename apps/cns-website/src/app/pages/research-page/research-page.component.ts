@@ -18,7 +18,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderEventsService } from '../../components/header/header.component';
-import { PeopleResearchItem, ResearchPageData } from '../../schemas/research/research.schema';
+import { PeopleResearchItem, PublicationTypes, ResearchPageData } from '../../schemas/research/research.schema';
 import { ResearchStore } from './state/research.store';
 
 @Component({
@@ -51,6 +51,7 @@ import { ResearchStore } from './state/research.store';
 export class ResearchPageComponent {
   readonly data = input.required<ResearchPageData>();
   readonly peopleData = input.required<PeopleResearchItem[]>();
+  readonly pubTypes = input.required<PublicationTypes>();
 
   readonly headerEvents = inject(HeaderEventsService);
   protected readonly store = inject(ResearchStore);
@@ -58,8 +59,9 @@ export class ResearchPageComponent {
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 
   constructor() {
-    this.store.setPeopleOptions(this.peopleData);
     this.store.setResearchItems(this.data);
+    this.store.setPeopleItems(this.peopleData);
+    this.store.setPublicationTypes(this.pubTypes);
 
     effect(() => {
       this.headerEvents.menuState.set(this.isWideScreen());

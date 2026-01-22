@@ -57,6 +57,8 @@ export class SearchListComponent<T extends SearchListOption> {
   /** Currently selected filters */
   readonly selected = model<T[]>([]);
 
+  readonly counts = input<Record<string, number>>();
+
   /** Current search bar value */
   readonly search = model<string>('');
 
@@ -73,6 +75,10 @@ export class SearchListComponent<T extends SearchListOption> {
     } else {
       this.selected.set(this.selected().concat([value]));
     }
+  }
+
+  getCount(option: T): number | undefined {
+    return option.count ?? this.counts()?.[option.id];
   }
 
   /** Filters options according to the search bar value */

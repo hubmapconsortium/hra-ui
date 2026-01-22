@@ -24,8 +24,8 @@
               <div class="option-secondary-label">{{ option.secondaryLabel }}</div>
             }
           </span>
-          @if (option.count) {
-            <span class="option-count">{{ option.count | number }}</span>
+          @if (getCount(option) !== undefined) {
+            <span class="option-count">{{ getCount(option) | number }}</span>
           }
         </mat-label>
       </mat-list-option>

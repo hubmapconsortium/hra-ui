@@ -8,6 +8,7 @@
     <hra-filter-menu
       tagline="Research at the Cyberinfrastructure for Network Science Center"
       [filters]="store.filters()"
+      [counts]="store.counts()"
       (filtersChange)="store.updateFilters($event)"
     >
       <mat-form-field subscriptSizing="dynamic">

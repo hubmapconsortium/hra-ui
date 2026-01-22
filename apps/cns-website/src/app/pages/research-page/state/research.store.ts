@@ -1,4 +1,4 @@
-import { computed, effect, Signal, WritableSignal } from '@angular/core';
+import { computed, Signal, WritableSignal } from '@angular/core';
 import { signalStore, withHooks } from '@ngrx/signals';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
 import {
@@ -6,8 +6,8 @@ import {
   parseEvents,
   parseFunding,
   parseGroupBy,
-  parsePeople,
-  parsePublications,
+  parsePeopleIds,
+  parsePublicationIds,
   parseSearch,
   parseSortBy,
   parseView,
@@ -15,8 +15,8 @@ import {
   serializeCategories,
   serializeEvents,
   serializeFunding,
-  serializePeople,
-  serializePublications,
+  serializePeopleIds,
+  serializePublicationIds,
   serializeYears,
 } from './serialization';
 import { withFilters } from './with-filters.feature';
@@ -43,8 +43,8 @@ export const ResearchStore = signalStore(
       const categories = createWritableStateSlice(store.categories, store.setCategories);
       const events = createWritableStateSlice(store.events, store.setEvents);
       const funding = createWritableStateSlice(store.funding, store.setFunding);
-      const publications = createWritableStateSlice(store.publications, store.setPublications);
-      const people = createWritableStateSlice(store.people, store.setPeople);
+      const publications = createWritableStateSlice(store.publicationIds, store.setPublicationIds);
+      const people = createWritableStateSlice(store.peopleIds, store.setPeopleIds);
       const years = createWritableStateSlice(store.years, store.setYears);
       const search = createWritableStateSlice(store.search, store.setSearch);
       const sortBy = createWritableStateSlice(store.sortBy, store.setSortBy);
@@ -72,14 +72,14 @@ export const ResearchStore = signalStore(
       });
       linkedQueryParam('publication', {
         source: publications,
-        parse: parsePublications,
-        stringify: serializePublications,
+        parse: parsePublicationIds,
+        stringify: serializePublicationIds,
         ...commonOptions,
       });
       linkedQueryParam('people', {
         source: people,
-        parse: (value) => parsePeople(value, store.peopleOptions()),
-        stringify: serializePeople,
+        parse: parsePeopleIds,
+        stringify: serializePeopleIds,
         ...commonOptions,
       });
       linkedQueryParam('year', {
@@ -91,20 +91,6 @@ export const ResearchStore = signalStore(
       linkedQueryParam('search', { source: search, parse: parseSearch, ...commonOptions });
       linkedQueryParam('sort-by', { source: sortBy, parse: parseSortBy, ...commonOptions });
       linkedQueryParam('group-by', { source: groupBy, parse: parseGroupBy, ...commonOptions });
-
-      // Re-parse people query param after options are loaded
-      effect(() => {
-        if (store.peopleOptions().length > 0) {
-          const currentParams = new URLSearchParams(window.location.search);
-          const peopleParam = currentParams.get('people');
-          if (peopleParam) {
-            const parsed = parsePeople(peopleParam, store.peopleOptions());
-            if (parsed) {
-              people.set(parsed);
-            }
-          }
-        }
-      });
     },
   }),
 );

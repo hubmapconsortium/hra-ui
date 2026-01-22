@@ -9,7 +9,11 @@ import { PeopleProfileComponent } from './pages/people-profile/people-profile.co
 import { ResearchPageComponent } from './pages/research-page/research-page.component';
 import { createFeaturedContentResolver } from './resolvers/featured-content/featured-content.resolver';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
-import { createPeopleResolver, createResearchDataResolver } from './resolvers/research/research.resolver';
+import {
+  createPeopleResolver,
+  createPublicationTypesResolver,
+  createResearchDataResolver,
+} from './resolvers/research/research.resolver';
 import { createTagsResolver } from './resolvers/tags/tags.resolver';
 
 /** Application routes */
@@ -67,6 +71,7 @@ export const appRoutes: Route[] = [
     resolve: {
       data: createResearchDataResolver(),
       peopleData: createPeopleResolver(),
+      pubTypes: createPublicationTypesResolver(),
     },
   },
   {

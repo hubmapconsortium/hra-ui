@@ -31,16 +31,22 @@ export type FundingOption = TypedSearchListOption<ResearchFundingType>;
 
 export type PublicationOption = TypedSearchListOption<ResearchPublicationType>;
 
-export type PeopleOption = TypedSearchListOption<ResearchPersonType>; // TODO stricter type
+export type PeopleOption = TypedSearchListOption<ResearchPersonType>;
 
 export interface YearOption extends SearchListOption {
   year: number;
 }
 
 export interface FilterProps {
+  people: Signal<PeopleOption[]>;
   filters: Signal<FilterOptionCategory<SearchListOption>[]>;
   filteredItems: Signal<ResearchItem[]>;
   numFilteredItems: Signal<number>;
+  countsByCategory: Signal<Record<string, number>>;
+  countsByType: Signal<Record<string, number>>;
+  countsByPeople: Signal<Record<string, number>>;
+  countsByYear: Signal<Record<string, number>>;
+  counts: Signal<Record<string, number>[]>;
 }
 
 type InternalProps = { [key: `_${string}`]: unknown };
@@ -49,8 +55,8 @@ interface FilterState {
   categories: CategoryOption[] | null;
   events: EventOption[] | null;
   funding: FundingOption[] | null;
-  publications: PublicationOption[] | null;
-  people: PeopleOption[] | null;
+  publicationIds: string[] | null;
+  peopleIds: string[] | null;
   years: YearOption[] | null;
   search: string | null;
 }
@@ -91,20 +97,7 @@ export const FUNDING_OPTIONS: FundingOption[] = [
   { id: 'workshop-funding' as ResearchFundingType, label: 'Workshop funding' },
 ];
 
-export const PUBLICATION_OPTIONS: PublicationOption[] = [
-  { id: 'broadcast' as ResearchPublicationType, label: 'Audio/video' },
-  { id: 'book' as ResearchPublicationType, label: 'Book' },
-  { id: 'chapter' as ResearchPublicationType, label: 'Book chapter' },
-  { id: 'periodical' as ResearchPublicationType, label: 'Edited journal' },
-  { id: 'article-journal' as ResearchPublicationType, label: 'Journal article' },
-  { id: 'patent' as ResearchPublicationType, label: 'Patent' },
-  { id: 'report' as ResearchPublicationType, label: 'Tech report' },
-  { id: 'thesis' as ResearchPublicationType, label: 'Thesis' },
-  { id: 'manuscript' as ResearchPublicationType, label: 'Unrefereed' },
-  { id: 'paper-conference' as ResearchPublicationType, label: 'Visualizations' },
-];
-
-export const YEAR_OPTIONS: YearOption[] = createYearList(2000).map((year) => ({
+export const YEAR_OPTIONS: YearOption[] = createYearList(1991).map((year) => ({
   id: year.toString(),
   label: year.toString(),
   year,
@@ -134,7 +127,7 @@ const FUNDING_FILTER: FilterOptionCategory<FundingOption> = {
 const PUBLICATIONS_FILTER: FilterOptionCategory<PublicationOption> = {
   id: 'publication-type',
   label: 'Publication Type',
-  options: PUBLICATION_OPTIONS,
+  options: [],
   selected: [],
 };
 
@@ -156,11 +149,19 @@ const initialState: FilterState = {
   categories: null,
   events: null,
   funding: null,
-  publications: null,
-  people: null,
+  publicationIds: null,
+  peopleIds: null,
   years: null,
   search: null,
 };
+
+function optionsToFilter<Opt extends SearchListOption>(
+  base: FilterOptionCategory<Opt>,
+  selected: () => Opt[] | null,
+  options?: () => Opt[],
+): Signal<FilterOptionCategory<Opt>> {
+  return computed(() => ({ ...base, options: options?.() ?? base.options, selected: selected() ?? [] }));
+}
 
 function optionsToSet<Opt extends string>(...options: (() => TypedSearchListOption<Opt>[] | null)[]): Signal<Set<Opt>> {
   return computed(() => new Set<Opt>(options.flatMap((opts) => opts()?.map((option) => option.id) ?? [])));
@@ -191,21 +192,66 @@ function normalizeSearchString(str: string): string {
     .replace(/\s{2,}/, ' ');
 }
 
+function toSentenceCase(str: string): string {
+  return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+function countsByKey(
+  items: () => ResearchItem[],
+  keyFn: (item: ResearchItem) => string | string[],
+): Signal<Record<string, number>> {
+  return computed(() => {
+    const counts: Record<string, number> = {};
+    for (const item of items()) {
+      const keys = keyFn(item);
+      for (const key of Array.isArray(keys) ? keys : [keys]) {
+        counts[key] ??= 0;
+        counts[key] += 1;
+      }
+    }
+    return counts;
+  });
+}
+
 export function withFilters() {
   return signalStoreFeature(
     { state: type<ResearchState>() },
     withState(initialState),
     withComputed((store) => {
-      const _categoriesFilter = computed(() => ({ ...CATEGORIES_FILTER, selected: store.categories() ?? [] }));
-      const _eventsFilter = computed(() => ({ ...EVENTS_FILTER, selected: store.events() ?? [] }));
-      const _fundingFilter = computed(() => ({ ...FUNDING_FILTER, selected: store.funding() ?? [] }));
-      const _publicationsFilter = computed(() => ({ ...PUBLICATIONS_FILTER, selected: store.publications() ?? [] }));
-      const _peopleFilter = computed(() => ({
-        ...PEOPLE_FILTER,
-        selected: store.people() ?? [],
-        options: store.peopleOptions(),
-      }));
-      const _yearsFilter = computed(() => ({ ...YEARS_FILTER, selected: store.years() ?? [] }));
+      const _peopleOptions = computed(() =>
+        store
+          .peopleItems()
+          .map((person) => ({ id: person.slug, label: person.name }))
+          .sort((a, b) => a.label.localeCompare(b.label)),
+      );
+      const people = computed(() => {
+        const options = _peopleOptions();
+        const ids = new Set(store.peopleIds() ?? []);
+        return options.filter((option) => ids.has(option.id));
+      });
+
+      const _publicationOptions = computed(() =>
+        store
+          .pubTypes()
+          .map((pubType) => ({
+            id: pubType.value,
+            label: toSentenceCase(pubType.label),
+          }))
+          .sort((a, b) => a.label.localeCompare(b.label)),
+      );
+      const publications = computed(() => {
+        const options = _publicationOptions();
+        const ids = new Set(store.publicationIds() ?? []);
+        return options.filter((option) => ids.has(option.id));
+      });
+
+      const _categoriesFilter = optionsToFilter(CATEGORIES_FILTER, store.categories);
+      const _eventsFilter = optionsToFilter(EVENTS_FILTER, store.events);
+      const _fundingFilter = optionsToFilter(FUNDING_FILTER, store.funding);
+      const _publicationsFilter = optionsToFilter(PUBLICATIONS_FILTER, publications, _publicationOptions);
+      const _peopleFilter = optionsToFilter(PEOPLE_FILTER, people, _peopleOptions);
+      const _yearsFilter = optionsToFilter(YEARS_FILTER, store.years);
+
       const filters = computed((): FilterOptionCategory<SearchListOption>[] => [
         _categoriesFilter(),
         _eventsFilter(),
@@ -222,12 +268,16 @@ export function withFilters() {
         (item, selectedCategories) => selectedCategories.has(item.category),
       );
 
-      const _selectedTypes = optionsToSet<ResearchItemType>(store.events, store.funding, store.publications);
+      const _selectedTypes = optionsToSet<ResearchItemType>(
+        store.events,
+        store.funding,
+        publications as Signal<PublicationOption[]>,
+      );
       const _filteredByType = createFilteredBy(_filteredByCategory, _selectedTypes, (item, selectedTypes) =>
         selectedTypes.has(item.type),
       );
 
-      const _selectedPeople = optionsToSet<ResearchPersonType>(store.people);
+      const _selectedPeople = optionsToSet<ResearchPersonType>(people);
       const _filteredByPeople = createFilteredBy(_filteredByType, _selectedPeople, (item, selectedPeople) =>
         item.people.some((person) => selectedPeople.has(person)),
       );
@@ -248,10 +298,30 @@ export function withFilters() {
         return items.filter((item) => normalizeSearchString(item.title).includes(normalizedSearch));
       });
 
+      const countsByCategory = countsByKey(_filteredBySearch, (item) => item.category);
+      const countsByType = countsByKey(_filteredBySearch, (item) => item.type);
+      const countsByPeople = countsByKey(_filteredBySearch, (item) => item.people);
+      const countsByYear = countsByKey(_filteredBySearch, (item) => item.dateStart.getFullYear().toString());
+
+      const counts = computed(() => [
+        countsByCategory(),
+        countsByType(),
+        countsByType(),
+        countsByType(),
+        countsByPeople(),
+        countsByYear(),
+      ]);
+
       return {
+        people,
         filters,
         filteredItems: _filteredBySearch,
         numFilteredItems: computed(() => _filteredBySearch().length),
+        countsByCategory,
+        countsByType,
+        countsByPeople,
+        countsByYear,
+        counts,
         _filteredByCategory,
         _filteredByType,
         _filteredByPeople,
@@ -262,8 +332,11 @@ export function withFilters() {
       setCategories: signalMethod((categories: CategoryOption[] | null) => patchState(store, { categories })),
       setEvents: signalMethod((events: EventOption[] | null) => patchState(store, { events })),
       setFunding: signalMethod((funding: FundingOption[] | null) => patchState(store, { funding })),
-      setPublications: signalMethod((publications: PublicationOption[] | null) => patchState(store, { publications })),
-      setPeople: signalMethod((people: PeopleOption[] | null) => patchState(store, { people })),
+      setPublicationIds: signalMethod((publicationIds: string[] | null) => patchState(store, { publicationIds })),
+      setPeopleIds: signalMethod((peopleIds: string[] | null) => patchState(store, { peopleIds })),
+      setPeople: signalMethod((people: PeopleOption[] | null) =>
+        patchState(store, { peopleIds: people?.map((p) => p.id) ?? null }),
+      ),
       setYears: signalMethod((years: YearOption[] | null) => patchState(store, { years })),
       setSearch: signalMethod((search: string | null) => patchState(store, { search })),
       updateFilters: signalMethod((filters: FilterOptionCategory<SearchListOption>[]) => {
@@ -278,8 +351,8 @@ export function withFilters() {
           categories: categories.length > 0 ? categories : null,
           events: events.length > 0 ? events : null,
           funding: funding.length > 0 ? funding : null,
-          publications: publications.length > 0 ? publications : null,
-          people: people.length > 0 ? people : null,
+          publicationIds: publications.length > 0 ? publications.map((p) => p.id) : null,
+          peopleIds: people.length > 0 ? people.map((p) => p.id) : null,
           years: years.length > 0 ? years : null,
         });
       }),

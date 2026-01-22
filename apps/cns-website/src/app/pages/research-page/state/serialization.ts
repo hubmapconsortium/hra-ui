@@ -5,9 +5,6 @@ import {
   EventOption,
   FUNDING_OPTIONS,
   FundingOption,
-  PeopleOption,
-  PUBLICATION_OPTIONS,
-  PublicationOption,
   YEAR_OPTIONS,
   YearOption,
 } from './with-filters.feature';
@@ -67,12 +64,22 @@ export function parseFunding(value: unknown): FundingOption[] | null {
   return parseOptions(FUNDING_OPTIONS, value);
 }
 
-export function parsePublications(value: unknown): PublicationOption[] | null {
-  return parseOptions(PUBLICATION_OPTIONS, value);
+export function parsePublicationIds(value: unknown): string[] | null {
+  if (!value) {
+    return [];
+  }
+
+  const strValue = String(value).toLowerCase().trim();
+  return strValue.split(',').map((part) => part.trim());
 }
 
-export function parsePeople(value: unknown, options: PeopleOption[] = []): PeopleOption[] | null {
-  return parseOptions(options, value);
+export function parsePeopleIds(value: unknown): string[] | null {
+  if (!value) {
+    return [];
+  }
+
+  const strValue = String(value).toLowerCase().trim();
+  return strValue.split(',').map((part) => part.trim());
 }
 
 export function parseYears(value: unknown): YearOption[] | null {
@@ -103,12 +110,12 @@ export function serializeFunding(options: FundingOption[] | null): string | null
   return serializeOptions(options);
 }
 
-export function serializePublications(options: PublicationOption[] | null): string | null {
-  return serializeOptions(options);
+export function serializePublicationIds(ids: string[] | null): string | null {
+  return ids?.join(',') || null;
 }
 
-export function serializePeople(options: PeopleOption[] | null): string | null {
-  return serializeOptions(options);
+export function serializePeopleIds(ids: string[] | null): string | null {
+  return ids?.join(',') || null;
 }
 
 export function serializeYears(options: YearOption[] | null): string | null {

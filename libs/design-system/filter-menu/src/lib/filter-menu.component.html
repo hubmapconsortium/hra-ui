@@ -61,6 +61,7 @@
         <hra-search-list
           [options]="filter.options"
           [selected]="filter.selected ?? []"
+          [counts]="counts()?.[$index]"
           (selectedChange)="updateFilterSelection(filter, $event)"
         />
       </ng-template>

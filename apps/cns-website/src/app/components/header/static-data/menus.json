@@ -84,7 +84,7 @@
             {
               "type": "item",
               "label": "Events",
-              "url": "https://cns.iu.edu/research/?category=events"
+              "url": "https://cns.iu.edu/research/?category=event"
             },
             {
               "type": "item",
@@ -99,17 +99,17 @@
             {
               "type": "item",
               "label": "Publications",
-              "url": "https://cns.iu.edu/research/?category=publications"
+              "url": "https://cns.iu.edu/research/?category=publication"
             },
             {
               "type": "item",
               "label": "Presentations",
-              "url": "https://cns.iu.edu/research/?category=presentations"
+              "url": "https://cns.iu.edu/research/?category=presentation"
             },
             {
               "type": "item",
               "label": "Visualizations",
-              "url": "https://cns.iu.edu/research/?category=visualizations"
+              "url": "https://cns.iu.edu/research/?category=visualization"
             }
           ]
         },

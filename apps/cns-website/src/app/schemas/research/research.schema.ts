@@ -70,7 +70,7 @@ export type PeopleResearchItem = z.infer<typeof PeopleResearchItemSchema>;
 /** People research data schema */
 export const PeopleResearchItemSchema = z
   .object({
-    slug: z.string().optional(),
+    slug: z.string(),
     name: z.string(),
     lastName: z.string(),
     roles: z.array(z.any()),
@@ -78,3 +78,13 @@ export const PeopleResearchItemSchema = z
   .meta({ id: 'PeopleResearchItem' });
 
 export const PeopleResearchDataSchema = PeopleResearchItemSchema.array().meta({ id: 'PeopleResearchData' });
+
+export const PublicationTypeSchema = z
+  .object({
+    label: z.string(),
+    value: z.string(),
+  })
+  .meta({ id: 'PublicationType' });
+
+export const PublicationTypesSchema = PublicationTypeSchema.array().meta({ id: 'PublicationTypeData' });
+export type PublicationTypes = z.infer<typeof PublicationTypesSchema>;
