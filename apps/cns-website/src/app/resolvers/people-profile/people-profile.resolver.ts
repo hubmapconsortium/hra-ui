@@ -6,7 +6,7 @@ import { catchError, map, of } from 'rxjs';
 import { PeopleProfileItem, PeopleProfileItemSchema } from '../../schemas/people-profile/people-profile.schema';
 
 /** Base URL for CNS website content */
-const CNS_CONTENT_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people';
+const CNS_CONTENT_BASE_URL = 'https://raw.githubusercontent.com/cns-iu/cns-website/refs/heads/gh-pages/content/people';
 
 /**
  * Creates a redirect command for error handling that preserves navigation history

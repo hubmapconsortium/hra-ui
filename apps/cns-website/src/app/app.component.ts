@@ -16,7 +16,7 @@ import { HeaderComponent } from './components/header/header.component';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'cns-website',
+    class: 'hra-app',
   },
 })
 export class AppComponent extends BaseApplicationComponent {

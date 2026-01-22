@@ -16,6 +16,7 @@
       <mat-button-toggle-group
         hraButtonToggleSize="medium"
         class="team-toggle"
+        aria-label="Select team"
         [value]="store.team()"
         (valueChange)="store.setTeam($event)"
       >
@@ -50,7 +51,7 @@
     </hra-filter-menu>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content role="main">
     <ng-scrollbar>
       <div class="content">
         <div class="search-bar">
