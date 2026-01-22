@@ -1,7 +1,7 @@
 <header hraFeature="header" class="header" cdkOverlayOrigin data-testid="header" #mobileMenuOrigin="cdkOverlayOrigin">
   <div hraFeature="navigation" class="header-content" #desktopMenuOrigin>
-    @if (enableFilterMenu()) {
-      <button mat-icon-button>
+    @if (sidebarStore.hasSidebar()) {
+      <button mat-icon-button aria-label="Toggle sidebar menu" (click)="sidebarStore.toggle()">
         <mat-icon>tune</mat-icon>
       </button>
     }
