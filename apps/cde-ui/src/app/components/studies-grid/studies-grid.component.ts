@@ -91,9 +91,13 @@ export class StudiesGridComponent {
    * @throws ZodError if validation fails
    */
   private parseGalleryYaml(yamlText: string): RawStudy[] {
-    const parsedYaml = YAML.load(yamlText) as unknown;
-    const { studies } = GalleryDataSchema.parse(parsedYaml);
-    return studies;
+    try {
+      const parsedYaml = YAML.load(yamlText) as unknown;
+      const { studies } = GalleryDataSchema.parse(parsedYaml);
+      return studies;
+    } catch {
+      return [];
+    }
   }
 
   /**
@@ -118,15 +122,16 @@ export class StudiesGridComponent {
     }
 
     const thumbnailFilename = study.thumbnail?.split('/').pop() ?? '';
-    const image = thumbnailFilename
-      ? `assets/data/gallery/thumbnails/${thumbnailFilename}`
-      : 'assets/ui-images/placeholder.png';
+    const image = `assets/data/gallery/thumbnails/${thumbnailFilename}`;
 
     const rawPublications = study.publication ?? study.publications ?? [];
-    const publications = rawPublications.map((url, idx) => ({
-      url,
-      label: study.citations?.[idx],
-    }));
+    const publications = rawPublications
+      .map((u) => (typeof u === 'string' ? u.trim() : u))
+      .filter(Boolean)
+      .map((url, idx) => ({
+        url: url as string,
+        label: study.citations?.[idx],
+      }));
 
     return {
       tagline: `${study.organName}, ${study.technology}`,
