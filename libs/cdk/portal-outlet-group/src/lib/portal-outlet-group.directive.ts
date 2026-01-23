@@ -5,14 +5,6 @@ import { HraPortalOutletNameDirective } from './portal-outlet-name.directive';
 /**
  * Directive that manages a group of named portal outlets.
  * It takes portal content and can dynamically switch which outlet the content is attached to.
- *
- * @example
- * ```html
- * <div hraPortalOutletGroup [portal]="myPortal" [activeOutlet]="'main'">
- *   <div hraPortalOutletName="main"><ng-template cdkPortalOutlet /></div>
- *   <div hraPortalOutletName="secondary"><ng-template cdkPortalOutlet /></div>
- * </div>
- * ```
  */
 @Directive({
   selector: '[hraPortalOutletGroup]',
