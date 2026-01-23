@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RedirectCommand, ResolveFn, Router } from '@angular/router';
 import { load } from 'js-yaml';
 import { catchError, map, of } from 'rxjs';
-import { PeopleProfileItem, PeopleProfileItemSchema } from '../../schemas/people-profile/people-profile.schema';
+import { PeopleItem, PeopleItemSchema } from '../../schemas/people.schema';
 
 /** Base URL for CNS website content */
 const CNS_CONTENT_BASE_URL = 'https://raw.githubusercontent.com/cns-iu/cns-website/refs/heads/gh-pages/content/people';
@@ -29,7 +29,7 @@ function createErrorRedirectCommand(router: Router, url: string): RedirectComman
  * @param baseUrl Base URL for person content
  * @returns A resolver function that fetches and validates person data
  */
-export function createPeopleProfileResolver(baseUrl: string = CNS_CONTENT_BASE_URL): ResolveFn<PeopleProfileItem> {
+export function createPeopleProfileResolver(baseUrl: string = CNS_CONTENT_BASE_URL): ResolveFn<PeopleItem> {
   return (route: ActivatedRouteSnapshot) => {
     const http = inject(HttpClient);
     const router = inject(Router);
@@ -44,7 +44,7 @@ export function createPeopleProfileResolver(baseUrl: string = CNS_CONTENT_BASE_U
     return http.get(url, { responseType: 'text' }).pipe(
       map((data) => load(data, { filename: url }) as unknown),
       map((data) => {
-        const parsed = PeopleProfileItemSchema.parse({ ...(data as object), slug });
+        const parsed = PeopleItemSchema.parse({ ...(data as object), slug });
         return {
           ...parsed,
           image: parsed.image ? `${baseUrl}/${slug}/${parsed.image}` : parsed.image,

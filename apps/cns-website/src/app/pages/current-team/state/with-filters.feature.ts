@@ -10,8 +10,8 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { PeopleProfileItem } from '../../../schemas/people-profile/people-profile.schema';
 import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
+import { PeopleItem } from '../../../schemas/people.schema';
 
 /**
  * Team type filter - current or past members
@@ -42,7 +42,7 @@ export interface YearOption extends SearchListOption {
  */
 export type FilterProps = {
   /** List of people after applying all filters */
-  filteredPeople: Signal<PeopleProfileItem[]>;
+  filteredPeople: Signal<PeopleItem[]>;
   /** Number of people after applying all filters */
   numFilteredPeople: Signal<number>;
   /** Number of people in the selected team (current/past) before other filters */
@@ -143,8 +143,8 @@ export function withFilters() {
       const _peopleByTeam = computed(() => {
         const people = store.people();
         const endYearByPerson = store.endYearByPerson();
-        const currentTeam: PeopleProfileItem[] = [];
-        const pastTeam: PeopleProfileItem[] = [];
+        const currentTeam: PeopleItem[] = [];
+        const pastTeam: PeopleItem[] = [];
         for (const person of people) {
           const isActive = endYearByPerson.get(person) === null;
           const team = isActive ? currentTeam : pastTeam;

@@ -8,7 +8,8 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { AnyRole, PeopleProfileItem } from '../../../schemas/people-profile/people-profile.schema';
+import { PeopleItem } from '../../../schemas/people.schema';
+import { AnyRole } from '../../../schemas/roles.schema';
 import { FilterProps, TeamType } from './with-filters.feature';
 import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
 
@@ -39,7 +40,7 @@ export interface SortedGroup {
   /** The group label */
   label: string;
   /** Team members in this group */
-  people: PeopleProfileItem[];
+  people: PeopleItem[];
 }
 
 /**
@@ -84,7 +85,7 @@ const initialOrderingState: OrderingState = {
  * @param order Comparison order (-1 for descending, 1 for ascending)
  * @returns Comparison result
  */
-function compareByName(a: PeopleProfileItem, b: PeopleProfileItem, order: -1 | 1): number {
+function compareByName(a: PeopleItem, b: PeopleItem, order: -1 | 1): number {
   const comparison = a.lastName.localeCompare(b.lastName);
   return order * comparison;
 }
@@ -99,9 +100,9 @@ function compareByName(a: PeopleProfileItem, b: PeopleProfileItem, order: -1 | 1
  * @returns Comparison result
  */
 function compareByNumericProperty(
-  a: PeopleProfileItem,
-  b: PeopleProfileItem,
-  propertyMap: Map<PeopleProfileItem, number | null>,
+  a: PeopleItem,
+  b: PeopleItem,
+  propertyMap: Map<PeopleItem, number | null>,
   order: -1 | 1,
 ): number {
   const propA = propertyMap.get(a) ?? null;
@@ -160,7 +161,7 @@ function compareByGroupKey(a: GroupByKey, b: GroupByKey): number {
  * @param store Store containing people properties
  * @returns A comparison function for sorting team members
  */
-function createSortFn(sortBy: SortBy, store: PeopleProps): (a: PeopleProfileItem, b: PeopleProfileItem) => number {
+function createSortFn(sortBy: SortBy, store: PeopleProps): (a: PeopleItem, b: PeopleItem) => number {
   switch (sortBy) {
     case SortBy.LastNameAsc:
       return (a, b) => compareByName(a, b, 1);
@@ -193,7 +194,7 @@ function createSortFn(sortBy: SortBy, store: PeopleProps): (a: PeopleProfileItem
 function createGroupByKeyFn(
   groupBy: GroupBy | null,
   store: PeopleProps & PeopleMethods,
-): (person: PeopleProfileItem) => GroupByKey {
+): (person: PeopleItem) => GroupByKey {
   const rolesByPerson = store.rolesByPerson();
   const impl = createGroupByKeyImpl(groupBy, store);
   return (person) => {
@@ -287,11 +288,11 @@ export function withOrdering() {
         const people = _sortedPeople();
         const groupBy = store.groupBy();
         if (!groupBy) {
-          return new Map<GroupByKey, PeopleProfileItem[]>([['', people]]);
+          return new Map<GroupByKey, PeopleItem[]>([['', people]]);
         }
 
         const groupByKeyFn = _groupByKeyFn();
-        const groups = new Map<GroupByKey, PeopleProfileItem[]>();
+        const groups = new Map<GroupByKey, PeopleItem[]>();
         for (const person of people) {
           const groupKey = groupByKeyFn(person);
           if (groupKey === 'skip') {

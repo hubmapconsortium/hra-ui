@@ -1,5 +1,5 @@
 import { ResolveFn } from '@angular/router';
-import { FeaturedContentData, FeaturedContentDataSchema } from '../../schemas/featured-content/featured-content.schema';
+import { FeaturedData, FeaturedDataSchema } from '../../schemas/featured.schema';
 import { createJsonResolver } from '../json-resolver.util';
 
 /** URL for the featured content JSON data */
@@ -11,6 +11,6 @@ const FEATURED_CONTENT_URL = 'https://cns-iu.github.io/cns-website/assets/indexe
  * @param url Optional custom URL for the featured content data
  * @returns A resolver function that fetches and validates featured content data
  */
-export function createFeaturedContentResolver(url: string = FEATURED_CONTENT_URL): ResolveFn<FeaturedContentData> {
-  return createJsonResolver(url, FeaturedContentDataSchema);
+export function createFeaturedContentResolver(url: string = FEATURED_CONTENT_URL): ResolveFn<FeaturedData> {
+  return createJsonResolver(url, FeaturedDataSchema);
 }

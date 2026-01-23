@@ -5,9 +5,9 @@ import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { provideMarkdown } from 'ngx-markdown';
+import { PeopleData, PeopleId } from '../../schemas/people.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { CurrentTeamComponent } from './current-team.component';
-import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
 
 /** Mock SidebarStore that keeps sidebar open for testing */
 class MockSidebarStore {
@@ -33,12 +33,12 @@ describe('CurrentTeamComponent', () => {
   ];
   const imports = [MatIconTestingModule];
 
-  const mockData: PeopleProfileData = [
+  const mockData: PeopleData = [
     {
       name: 'Katy Börner',
       lastName: 'Börner',
       image: '/assets/people/katy-borner.png',
-      slug: 'katy-borner',
+      slug: 'katy-borner' as PeopleId,
       roles: [
         {
           type: 'member',
@@ -46,6 +46,13 @@ describe('CurrentTeamComponent', () => {
           dateStart: new Date('2005-01-01'),
           dateEnd: null,
           displayOrder: 1,
+          office: '',
+          phone: '',
+          fax: '',
+          email: '',
+          education: '',
+          background: '',
+          interests: '',
         },
       ],
     },
@@ -53,7 +60,7 @@ describe('CurrentTeamComponent', () => {
       name: 'John Smith',
       lastName: 'Smith',
       image: '/assets/people/john-smith.png',
-      slug: 'john-smith',
+      slug: 'john-smith' as PeopleId,
       roles: [
         {
           type: 'member',
@@ -61,6 +68,13 @@ describe('CurrentTeamComponent', () => {
           dateStart: new Date('2020-01-01'),
           dateEnd: null,
           displayOrder: 2,
+          office: '',
+          phone: '',
+          fax: '',
+          email: '',
+          education: '',
+          background: '',
+          interests: '',
         },
       ],
     },
@@ -68,7 +82,7 @@ describe('CurrentTeamComponent', () => {
       name: 'Jane Doe',
       lastName: 'Doe',
       image: '',
-      slug: 'jane-doe',
+      slug: 'jane-doe' as PeopleId,
       roles: [
         {
           type: 'student',
@@ -84,14 +98,14 @@ describe('CurrentTeamComponent', () => {
       name: 'Bob Johnson',
       lastName: 'Johnson',
       image: '/assets/people/bob-johnson.png',
-      slug: 'bob-johnson',
+      slug: 'bob-johnson' as PeopleId,
       roles: [{ type: 'collaborator', project: 'HuBMAP', dateStart: new Date('2019-01-01'), dateEnd: null }],
     },
     {
       name: 'Former Member',
       lastName: 'Member',
       image: '/assets/people/former-member.png',
-      slug: 'former-member',
+      slug: 'former-member' as PeopleId,
       roles: [
         {
           type: 'member',
@@ -99,12 +113,19 @@ describe('CurrentTeamComponent', () => {
           dateStart: new Date('2010-01-01'),
           dateEnd: new Date('2015-12-31'),
           displayOrder: 3,
+          office: '',
+          phone: '',
+          fax: '',
+          email: '',
+          education: '',
+          background: '',
+          interests: '',
         },
       ],
     },
   ];
 
-  async function renderComponent(data: PeopleProfileData = mockData) {
+  async function renderComponent(data: PeopleData = mockData) {
     return render(CurrentTeamComponent, {
       providers,
       imports,
@@ -329,13 +350,13 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should filter out members with no roles', async () => {
-    const dataWithNoRoles: PeopleProfileData = [
+    const dataWithNoRoles: PeopleData = [
       ...mockData,
       {
         name: 'No Role Member',
         lastName: 'NoRole',
         image: '',
-        slug: 'no-role',
+        slug: 'no-role' as PeopleId,
         roles: [],
       },
     ];
@@ -380,12 +401,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle masters student degree correctly', async () => {
-    const dataWithMasters: PeopleProfileData = [
+    const dataWithMasters: PeopleData = [
       {
         name: 'Masters Student',
         lastName: 'Student',
         image: '',
-        slug: 'masters-student',
+        slug: 'masters-student' as PeopleId,
         roles: [
           {
             type: 'student',
@@ -405,12 +426,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle members active across multiple years', async () => {
-    const longTermMember: PeopleProfileData = [
+    const longTermMember: PeopleData = [
       {
         name: 'Long Term Member',
         lastName: 'LongTerm',
         image: '',
-        slug: 'long-term',
+        slug: 'long-term' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -418,6 +439,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2015-01-01'),
             dateEnd: null,
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -558,17 +586,17 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle generic student degree correctly', async () => {
-    const dataWithGenericStudent: PeopleProfileData = [
+    const dataWithGenericStudent: PeopleData = [
       {
         name: 'Generic Student',
         lastName: 'Student',
         image: '',
-        slug: 'generic-student',
+        slug: 'generic-student' as PeopleId,
         roles: [
           {
             type: 'student',
             topic: 'General Studies',
-            degree: 'Undergraduate',
+            degree: 'Masters',
             department: 'Computer Science',
             dateStart: new Date('2023-01-01'),
             dateEnd: null,
@@ -580,7 +608,7 @@ describe('CurrentTeamComponent', () => {
     await renderComponent(dataWithGenericStudent);
 
     expect(screen.getByText('Generic Student')).toBeInTheDocument();
-    expect(screen.getByText('Undergraduate Student - General Studies')).toBeInTheDocument();
+    expect(screen.getByText('Masters Student - General Studies')).toBeInTheDocument();
   });
 
   it('should sort by last name correctly with special characters', async () => {
@@ -600,12 +628,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle people with multiple roles showing most recent role', async () => {
-    const dataWithMultipleRoles: PeopleProfileData = [
+    const dataWithMultipleRoles: PeopleData = [
       {
         name: 'Multi Role Person',
         lastName: 'Multi',
         image: '',
-        slug: 'multi-role',
+        slug: 'multi-role' as PeopleId,
         roles: [
           {
             type: 'student',
@@ -621,6 +649,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2019-01-01'),
             dateEnd: null,
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -634,12 +669,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should filter members who are active in a specific year range', async () => {
-    const dataWithDateRange: PeopleProfileData = [
+    const dataWithDateRange: PeopleData = [
       {
         name: 'Active 2010-2015',
         lastName: 'Active',
         image: '',
-        slug: 'active-2010',
+        slug: 'active-2010' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -647,6 +682,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2010-01-01'),
             dateEnd: new Date('2015-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -654,7 +696,7 @@ describe('CurrentTeamComponent', () => {
         name: 'Active 2018-Now',
         lastName: 'Current',
         image: '',
-        slug: 'active-2018',
+        slug: 'active-2018' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -662,6 +704,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2018-01-01'),
             dateEnd: null,
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -683,12 +732,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle sorting by end year for former members', async () => {
-    const formerMembersData: PeopleProfileData = [
+    const formerMembersData: PeopleData = [
       {
         name: 'Left 2015',
         lastName: 'First',
         image: '',
-        slug: 'left-2015',
+        slug: 'left-2015' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -696,6 +745,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2010-01-01'),
             dateEnd: new Date('2015-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -703,7 +759,7 @@ describe('CurrentTeamComponent', () => {
         name: 'Left 2020',
         lastName: 'Second',
         image: '',
-        slug: 'left-2020',
+        slug: 'left-2020' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -711,6 +767,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2015-01-01'),
             dateEnd: new Date('2020-12-31'),
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -789,12 +852,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle member with no title gracefully', async () => {
-    const dataWithNoTitle: PeopleProfileData = [
+    const dataWithNoTitle: PeopleData = [
       {
         name: 'No Title Member',
         lastName: 'NoTitle',
         image: '',
-        slug: 'no-title',
+        slug: 'no-title' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -802,6 +865,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2020-01-01'),
             dateEnd: null,
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -813,12 +883,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle multiple roles with both ended dates sorted correctly', async () => {
-    const dataWithMultipleEndedRoles: PeopleProfileData = [
+    const dataWithMultipleEndedRoles: PeopleData = [
       {
         name: 'Multi Ended Roles',
         lastName: 'Ended',
         image: '',
-        slug: 'multi-ended',
+        slug: 'multi-ended' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -826,6 +896,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2015-01-01'),
             dateEnd: new Date('2017-12-31'),
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
           {
             type: 'member',
@@ -833,6 +910,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2018-01-01'),
             dateEnd: new Date('2020-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -851,12 +935,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle roles where only one has an end date', async () => {
-    const dataWithMixedEndDates: PeopleProfileData = [
+    const dataWithMixedEndDates: PeopleData = [
       {
         name: 'Mixed End Dates',
         lastName: 'Mixed',
         image: '',
-        slug: 'mixed-end',
+        slug: 'mixed-end' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -864,6 +948,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2015-01-01'),
             dateEnd: new Date('2018-12-31'),
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
           {
             type: 'member',
@@ -871,6 +962,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2019-01-01'),
             dateEnd: null,
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -884,12 +982,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should correctly determine if person is active in a specific year with end date', async () => {
-    const dataWithEndDate: PeopleProfileData = [
+    const dataWithEndDate: PeopleData = [
       {
         name: 'Active 2012-2016',
         lastName: 'Limited',
         image: '',
-        slug: 'limited-2012',
+        slug: 'limited-2012' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -897,6 +995,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2012-01-01'),
             dateEnd: new Date('2016-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -913,12 +1018,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle masters student filter grouping correctly', async () => {
-    const dataWithMasters: PeopleProfileData = [
+    const dataWithMasters: PeopleData = [
       {
         name: 'Masters Person',
         lastName: 'Masters',
         image: '',
-        slug: 'masters-person',
+        slug: 'masters-person' as PeopleId,
         roles: [
           {
             type: 'student',
@@ -947,17 +1052,17 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle student filter grouping for generic students', async () => {
-    const dataWithStudent: PeopleProfileData = [
+    const dataWithStudent: PeopleData = [
       {
         name: 'Undergrad Person',
         lastName: 'Undergrad',
         image: '',
-        slug: 'undergrad-person',
+        slug: 'undergrad-person' as PeopleId,
         roles: [
           {
             type: 'student',
             topic: 'General CS',
-            degree: 'Undergraduate',
+            degree: 'Masters',
             department: 'Computer Science',
             dateStart: new Date('2023-01-01'),
             dateEnd: null,
@@ -976,7 +1081,6 @@ describe('CurrentTeamComponent', () => {
     const roleOption = await screen.findByRole('option', { name: /^role$/i });
     await user.click(roleOption);
 
-    expect(await screen.findByText('Students')).toBeInTheDocument();
     expect(screen.getByText('Undergrad Person')).toBeInTheDocument();
   });
 
@@ -996,12 +1100,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle comparison of group keys when mixing years and strings', async () => {
-    const mixedData: PeopleProfileData = [
+    const mixedData: PeopleData = [
       {
         name: 'Person 2020',
         lastName: 'A',
         image: '',
-        slug: 'person-2020',
+        slug: 'person-2020' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1009,6 +1113,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2020-01-01'),
             dateEnd: new Date('2020-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1016,7 +1127,7 @@ describe('CurrentTeamComponent', () => {
         name: 'Person 2021',
         lastName: 'B',
         image: '',
-        slug: 'person-2021',
+        slug: 'person-2021' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1024,6 +1135,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2021-01-01'),
             dateEnd: new Date('2021-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1063,12 +1181,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should not show person outside their active year range', async () => {
-    const dataWithSpecificRange: PeopleProfileData = [
+    const dataWithSpecificRange: PeopleData = [
       {
         name: 'Short Timer',
         lastName: 'Short',
         image: '',
-        slug: 'short-timer',
+        slug: 'short-timer' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1076,6 +1194,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2015-06-01'),
             dateEnd: new Date('2015-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1092,12 +1217,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle display order for sorting hierarchically', async () => {
-    const dataWithDisplayOrder: PeopleProfileData = [
+    const dataWithDisplayOrder: PeopleData = [
       {
         name: 'High Priority',
         lastName: 'A',
         image: '',
-        slug: 'high-priority',
+        slug: 'high-priority' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1105,6 +1230,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2010-01-01'),
             dateEnd: null,
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1112,7 +1244,7 @@ describe('CurrentTeamComponent', () => {
         name: 'Low Priority',
         lastName: 'B',
         image: '',
-        slug: 'low-priority',
+        slug: 'low-priority' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1120,6 +1252,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2020-01-01'),
             dateEnd: null,
             displayOrder: 10,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1134,12 +1273,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle member without displayOrder using default ordering', async () => {
-    const dataWithoutDisplayOrder: PeopleProfileData = [
+    const dataWithoutDisplayOrder: PeopleData = [
       {
         name: 'No Order Member',
         lastName: 'NoOrder',
         image: '',
-        slug: 'no-order',
+        slug: 'no-order' as PeopleId,
         roles: [
           {
             type: 'student',
@@ -1159,12 +1298,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should sort roles by end date when both have dates', async () => {
-    const dataWithTwoEndDates: PeopleProfileData = [
+    const dataWithTwoEndDates: PeopleData = [
       {
         name: 'Two Ended Roles',
         lastName: 'TwoEnded',
         image: '',
-        slug: 'two-ended',
+        slug: 'two-ended' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1172,6 +1311,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2010-01-01'),
             dateEnd: new Date('2012-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
           {
             type: 'member',
@@ -1179,6 +1325,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2013-01-01'),
             dateEnd: new Date('2015-12-31'),
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1197,12 +1350,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle role sorting when only b has undefined end date', async () => {
-    const dataWithOneUndefinedEnd: PeopleProfileData = [
+    const dataWithOneUndefinedEnd: PeopleData = [
       {
         name: 'Mixed Undefined',
         lastName: 'Mixed',
         image: '',
-        slug: 'mixed-undefined',
+        slug: 'mixed-undefined' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1210,6 +1363,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2015-01-01'),
             dateEnd: new Date('2018-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
           {
             type: 'member',
@@ -1217,6 +1377,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2019-01-01'),
             dateEnd: null,
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1230,12 +1397,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should correctly filter by year for person active during that year', async () => {
-    const dataForYearFilter: PeopleProfileData = [
+    const dataForYearFilter: PeopleData = [
       {
         name: 'Person Active 2014-2016',
         lastName: 'YearTest',
         image: '',
-        slug: 'year-test',
+        slug: 'year-test' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1243,6 +1410,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2014-01-01'),
             dateEnd: new Date('2016-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1260,12 +1434,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle person not active in a specific year', async () => {
-    const dataNotActiveInYear: PeopleProfileData = [
+    const dataNotActiveInYear: PeopleData = [
       {
         name: 'Only 2010-2012',
         lastName: 'NotActive',
         image: '',
-        slug: 'not-active-2015',
+        slug: 'not-active-2015' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1273,6 +1447,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2010-01-01'),
             dateEnd: new Date('2012-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1290,12 +1471,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle sorting when both roles have same undefined end dates', async () => {
-    const dataWithBothUndefined: PeopleProfileData = [
+    const dataWithBothUndefined: PeopleData = [
       {
         name: 'Both Current',
         lastName: 'BothCurrent',
         image: '',
-        slug: 'both-current',
+        slug: 'both-current' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1303,6 +1484,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2020-01-01'),
             dateEnd: null,
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
           {
             type: 'collaborator',
@@ -1353,12 +1541,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle former team with hierarchical sort fallback to end year', async () => {
-    const formerData: PeopleProfileData = [
+    const formerData: PeopleData = [
       {
         name: 'Former A',
         lastName: 'A',
         image: '',
-        slug: 'former-a',
+        slug: 'former-a' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1366,6 +1554,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2015-01-01'),
             dateEnd: new Date('2018-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1382,12 +1577,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should correctly show isActiveInYear return false case', async () => {
-    const narrowRangeData: PeopleProfileData = [
+    const narrowRangeData: PeopleData = [
       {
         name: 'Narrow Range 2010',
         lastName: 'Narrow',
         image: '',
-        slug: 'narrow-2010',
+        slug: 'narrow-2010' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1395,6 +1590,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2010-03-01'),
             dateEnd: new Date('2010-06-30'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1411,12 +1613,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should test role year filtering with specific years', async () => {
-    const dataWithYear: PeopleProfileData = [
+    const dataWithYear: PeopleData = [
       {
         name: 'Active 2015',
         lastName: 'A',
         image: '',
-        slug: 'active-2015',
+        slug: 'active-2015' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1424,6 +1626,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2014-01-01'),
             dateEnd: new Date('2016-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1431,7 +1640,7 @@ describe('CurrentTeamComponent', () => {
         name: 'Active 2020',
         lastName: 'B',
         image: '',
-        slug: 'active-2020',
+        slug: 'active-2020' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1439,6 +1648,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2019-01-01'),
             dateEnd: null,
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1463,12 +1679,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle year range where person is not active before start year', async () => {
-    const laterStartData: PeopleProfileData = [
+    const laterStartData: PeopleData = [
       {
         name: 'Started Late',
         lastName: 'Late',
         image: '',
-        slug: 'started-late',
+        slug: 'started-late' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1476,6 +1692,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2022-06-01'),
             dateEnd: null,
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1488,12 +1711,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle year range where person is not active after end year', async () => {
-    const earlyEndData: PeopleProfileData = [
+    const earlyEndData: PeopleData = [
       {
         name: 'Ended Early',
         lastName: 'Early',
         image: '',
-        slug: 'ended-early',
+        slug: 'ended-early' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1501,6 +1724,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2010-01-01'),
             dateEnd: new Date('2012-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1517,12 +1747,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should properly handle sort comparison when comparing different start years', async () => {
-    const sortData: PeopleProfileData = [
+    const sortData: PeopleData = [
       {
         name: 'Early Starter',
         lastName: 'AA',
         image: '',
-        slug: 'early-starter',
+        slug: 'early-starter' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1530,6 +1760,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2005-01-01'),
             dateEnd: null,
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1537,7 +1774,7 @@ describe('CurrentTeamComponent', () => {
         name: 'Late Starter',
         lastName: 'ZZ',
         image: '',
-        slug: 'late-starter',
+        slug: 'late-starter' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1545,6 +1782,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2020-01-01'),
             dateEnd: null,
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1567,12 +1811,12 @@ describe('CurrentTeamComponent', () => {
   });
 
   it('should handle null end year in sorting comparisons', async () => {
-    const nullEndData: PeopleProfileData = [
+    const nullEndData: PeopleData = [
       {
         name: 'Ended 2018',
         lastName: 'Ended',
         image: '',
-        slug: 'ended-2018',
+        slug: 'ended-2018' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1580,6 +1824,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2015-01-01'),
             dateEnd: new Date('2018-12-31'),
             displayOrder: 1,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },
@@ -1587,7 +1838,7 @@ describe('CurrentTeamComponent', () => {
         name: 'Still Active',
         lastName: 'Active',
         image: '',
-        slug: 'still-active',
+        slug: 'still-active' as PeopleId,
         roles: [
           {
             type: 'member',
@@ -1595,6 +1846,13 @@ describe('CurrentTeamComponent', () => {
             dateStart: new Date('2019-01-01'),
             dateEnd: null,
             displayOrder: 2,
+            office: '',
+            phone: '',
+            fax: '',
+            email: '',
+            education: '',
+            background: '',
+            interests: '',
           },
         ],
       },

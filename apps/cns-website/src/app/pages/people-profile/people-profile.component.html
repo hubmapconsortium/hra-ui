@@ -20,7 +20,8 @@
         [breadcrumbs]="breadcrumbs()"
         [tags]="tags()"
       >
-        @if (primaryRole()?.background; as background) {
+        @let role = primaryRole();
+        @if (role.type === 'member' && role.background; as background) {
           <div class="profile-description">
             <p>{{ background }}</p>
           </div>

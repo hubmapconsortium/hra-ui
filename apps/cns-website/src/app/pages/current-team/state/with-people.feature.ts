@@ -9,7 +9,8 @@ import {
   withMethods,
 } from '@ngrx/signals';
 import { entityConfig, setEntities, withEntities } from '@ngrx/signals/entities';
-import { AnyRole, PeopleProfileItem } from '../../../schemas/people-profile/people-profile.schema';
+import { PeopleItem } from '../../../schemas/people.schema';
+import { AnyRole } from '../../../schemas/roles.schema';
 
 /**
  * Normalized role types for team members
@@ -27,17 +28,17 @@ export enum RoleType {
  */
 export type PeopleProps = {
   /** List of all people */
-  people: Signal<PeopleProfileItem[]>;
+  people: Signal<PeopleItem[]>;
   /** Total number of people */
   numPeople: Signal<number>;
   /** Map of people to their roles (sorted by most recent role) */
-  rolesByPerson: Signal<Map<PeopleProfileItem, AnyRole[]>>;
+  rolesByPerson: Signal<Map<PeopleItem, AnyRole[]>>;
   /** Map of people to their start year */
-  startYearByPerson: Signal<Map<PeopleProfileItem, number>>;
+  startYearByPerson: Signal<Map<PeopleItem, number>>;
   /** Map of people to their end year (null if currently active) */
-  endYearByPerson: Signal<Map<PeopleProfileItem, number | null>>;
+  endYearByPerson: Signal<Map<PeopleItem, number | null>>;
   /** Map of people to their display order */
-  displayOrderByPerson: Signal<Map<PeopleProfileItem, number>>;
+  displayOrderByPerson: Signal<Map<PeopleItem, number>>;
 };
 
 /**
@@ -47,13 +48,13 @@ export type PeopleMethods = {
   /** Get the normalized role type for a given role */
   getRoleType(role: AnyRole): RoleType;
   /** Get the display title for a team member */
-  getMemberTitle(person: PeopleProfileItem): string;
+  getMemberTitle(person: PeopleItem): string;
   /** Get the searchable text for a team member */
-  getSearchableText(person: PeopleProfileItem): string;
+  getSearchableText(person: PeopleItem): string;
   /** Check if a person was active in a given year */
-  isActiveInYear(person: PeopleProfileItem, year: number): boolean;
+  isActiveInYear(person: PeopleItem, year: number): boolean;
   /** Set the list of people */
-  setPeople: SignalMethod<PeopleProfileItem[]>;
+  setPeople: SignalMethod<PeopleItem[]>;
 };
 
 /**
@@ -61,7 +62,7 @@ export type PeopleMethods = {
  */
 const peopleConfig = entityConfig({
   collection: 'people',
-  entity: type<PeopleProfileItem>(),
+  entity: type<PeopleItem>(),
   selectId: (person) => person.slug,
 });
 
@@ -74,11 +75,11 @@ const peopleConfig = entityConfig({
  * @returns Map of people to the derived property
  */
 function createRolesPropertyMap<T, R>(
-  people: PeopleProfileItem[],
+  people: PeopleItem[],
   getProperty: (role: AnyRole) => T,
   reducer: (values: T[]) => R,
-): Map<PeopleProfileItem, R> {
-  const result = new Map<PeopleProfileItem, R>();
+): Map<PeopleItem, R> {
+  const result = new Map<PeopleItem, R>();
   for (const person of people) {
     const values = person.roles.map(getProperty);
     result.set(person, reducer(values));
@@ -164,7 +165,7 @@ export function withPeople() {
       } satisfies PeopleProps;
     }),
     withMethods((store) => {
-      const getMemberTitle = (person: PeopleProfileItem) => {
+      const getMemberTitle = (person: PeopleItem) => {
         const rolesByPerson = store.rolesByPerson();
         const role = rolesByPerson.get(person)?.[0];
         switch (role?.type) {
@@ -195,7 +196,7 @@ export function withPeople() {
         }
       };
 
-      const getSearchableText = (person: PeopleProfileItem): string => {
+      const getSearchableText = (person: PeopleItem): string => {
         const parts = [person.name, getMemberTitle(person)];
         return parts
           .join('\t')
@@ -206,7 +207,7 @@ export function withPeople() {
           .replace(/\s{2,}/, ' ');
       };
 
-      const isActiveInYear = (person: PeopleProfileItem, year: number): boolean => {
+      const isActiveInYear = (person: PeopleItem, year: number): boolean => {
         for (const role of person.roles) {
           const startYear = role.dateStart.getFullYear();
           const endYear = role.dateEnd ? role.dateEnd.getFullYear() : null;
@@ -218,9 +219,7 @@ export function withPeople() {
         return false;
       };
 
-      const setPeople = signalMethod((people: PeopleProfileItem[]) =>
-        patchState(store, setEntities(people, peopleConfig)),
-      );
+      const setPeople = signalMethod((people: PeopleItem[]) => patchState(store, setEntities(people, peopleConfig)));
 
       return { getMemberTitle, getRoleType, getSearchableText, isActiveInYear, setPeople } satisfies PeopleMethods;
     }),

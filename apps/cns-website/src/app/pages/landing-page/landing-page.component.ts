@@ -4,9 +4,10 @@ import { HraCommonModule } from '@hra-ui/common';
 import { isAbsolute } from '@hra-ui/common/url';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
-import { FeaturedContentData, FeaturedContentItem } from '../../schemas/featured-content/featured-content.schema';
-import { TagsData } from '../../schemas/tags/tags.schema';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { FeaturedData } from '../../schemas/featured.schema';
+import { ResearchItem } from '../../schemas/research.schema';
+import { TagsData } from '../../schemas/tags.schema';
 
 /** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
@@ -22,7 +23,7 @@ interface LandingPageContentCard {
   /** Image source URL */
   imageSrc: string;
   /** Date string */
-  date: string;
+  date: Date;
   /** Tagline or title */
   tagline: string;
   /** Tags associated with the content */
@@ -34,15 +35,15 @@ interface LandingPageContentCard {
 }
 
 /**
- * Maps a FeaturedContentItem to a LandingPageContentCard
+ * Maps a ResearchItem to a LandingPageContentCard
  *
  * @param item The featured content item from the API
  * @param tagsMap Map of tag slugs to their display names
  * @returns A content card for display
  */
-function mapToContentCard(item: FeaturedContentItem, tagsMap: Map<string, string>): LandingPageContentCard {
+function mapToContentCard(item: ResearchItem, tagsMap: Map<string, string>): LandingPageContentCard {
   /** Determine if the link is external */
-  const isExternal = isAbsolute(item.link);
+  const isExternal = item.link !== undefined && isAbsolute(item.link);
 
   /** Map tag slugs to their proper display names */
   const displayTags = item.tags.map((tagSlug) => tagsMap.get(tagSlug) ?? capitalizeFirstLetter(tagSlug));
@@ -56,7 +57,7 @@ function mapToContentCard(item: FeaturedContentItem, tagsMap: Map<string, string
     date: item.dateStart,
     tagline: item.title,
     tags: displayTags,
-    link: item.link,
+    link: item.link ?? '#',
     external: isExternal,
   };
 }
@@ -93,7 +94,7 @@ function capitalizeFirstLetter(str: string): string {
 })
 export class LandingPageComponent {
   /** Featured content data from resolver */
-  readonly featuredContent = input.required<FeaturedContentData>();
+  readonly featuredContent = input.required<FeaturedData>();
 
   /** Tags data from resolver */
   readonly tags = input.required<TagsData>();

@@ -7,8 +7,8 @@ import {
   TableOfContentsLayoutHeaderComponent,
 } from '@hra-ui/design-system/layouts/table-of-contents';
 import { MarkdownModule } from 'ngx-markdown';
-import { PeopleProfileItem } from '../../schemas/people-profile/people-profile.schema';
-import { ContactInfo, ContactInfoComponent, Role } from './components/contact-info/contact-info.component';
+import { PeopleItem } from '../../schemas/people.schema';
+import { ContactInfo, ContactInfoComponent } from './contact-info/contact-info.component';
 
 /** Profile section data */
 interface ProfileSection {
@@ -42,10 +42,10 @@ export class PeopleProfileComponent {
   /**
    * Profile data from route resolver
    */
-  readonly data = input.required<PeopleProfileItem>();
+  readonly data = input.required<PeopleItem>();
 
   /** Primary role computed from profile data */
-  readonly primaryRole = computed<Role | undefined>(() => this.data().roles?.[0]);
+  readonly primaryRole = computed(() => this.data().roles?.[0]);
 
   /** Contact info computed for the sidebar */
   readonly contactInfo = computed<ContactInfo>(() => ({
@@ -61,10 +61,11 @@ export class PeopleProfileComponent {
     }
 
     const tags: string[] = [];
-    if (role.title) {
-      tags.push(role.title);
-    }
     if (role.type === 'member') {
+      if (role.title) {
+        tags.push(role.title);
+      }
+
       tags.push('Faculty');
     }
     return tags;
@@ -86,28 +87,30 @@ export class PeopleProfileComponent {
 
     const sections: ProfileSection[] = [];
 
-    if (role.education) {
-      sections.push({
-        tagline: 'Education',
-        anchor: 'education',
-        content: role.education,
-      });
-    }
+    if (role.type === 'member') {
+      if (role.education) {
+        sections.push({
+          tagline: 'Education',
+          anchor: 'education',
+          content: role.education,
+        });
+      }
 
-    if (role.background) {
-      sections.push({
-        tagline: 'Background',
-        anchor: 'background',
-        content: role.background,
-      });
-    }
+      if (role.background) {
+        sections.push({
+          tagline: 'Background',
+          anchor: 'background',
+          content: role.background,
+        });
+      }
 
-    if (role.interests) {
-      sections.push({
-        tagline: 'Interests',
-        anchor: 'interests',
-        content: role.interests,
-      });
+      if (role.interests) {
+        sections.push({
+          tagline: 'Interests',
+          anchor: 'interests',
+          content: role.interests,
+        });
+      }
     }
 
     return sections;

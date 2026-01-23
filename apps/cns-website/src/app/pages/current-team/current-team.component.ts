@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
@@ -14,10 +15,9 @@ import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { PeopleProfileData } from '../../schemas/people-profile/people-profile.schema';
+import { PeopleData } from '../../schemas/people.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { CurrentTeamStore } from './state/current-team.store';
-import { LinkDirective } from '@hra-ui/common/router-ext';
 
 /**
  * Page component for displaying current team members
@@ -52,7 +52,7 @@ export class CurrentTeamComponent {
   /**
    * Team members data from route resolver
    */
-  readonly data = input.required<PeopleProfileData>();
+  readonly data = input.required<PeopleData>();
 
   /** Store for managing team member state and filters */
   protected readonly store = inject(CurrentTeamStore);
