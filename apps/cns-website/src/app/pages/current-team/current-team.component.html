@@ -71,7 +71,7 @@
             @for (group of store.sortedGroupedPeople(); track group.label) {
               <section class="section">
                 @if (group.label) {
-                  <h3 hra-section-link [underlined]="true">{{ group.label }}</h3>
+                  <h3 hra-section-link class="title" [underlined]="true">{{ group.label }}</h3>
                 }
                 <hra-gallery-grid class="gallery" [dataSource]="group.people">
                   <hra-profile-card
@@ -98,7 +98,7 @@
           }
         </div>
 
-        <cns-footer />
+        <cns-footer class="footer" />
       </div>
     </ng-scrollbar>
   </mat-sidenav-content>

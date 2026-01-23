@@ -10,7 +10,6 @@
   .container {
     height: 100%;
 
-    // TODO elevation shadow
     @include mat.sidenav-overrides(
       (
         container-background-color: vars.$surface-container-low,
@@ -41,7 +40,10 @@
     }
 
     .content {
+      display: flex;
+      flex-direction: column;
       max-width: 81.25rem;
+      min-height: calc(100vh - 3.5rem);
       margin: 0 auto;
       --profile-card-border-color: #8dc63f;
       --profile-card-description-color: #{vars.$primary};
@@ -57,9 +59,23 @@
       .profile-list {
         margin: 2.5rem;
 
-        .section .gallery {
-          gap: 5rem 2.5rem;
+        .section {
+          .title {
+            margin-bottom: 40px;
+          }
+
+          .gallery {
+            gap: 5rem 2.5rem;
+          }
+
+          &:not(:last-of-type) {
+            margin-bottom: 5rem;
+          }
         }
+      }
+
+      .footer {
+        margin-top: auto;
       }
     }
   }
