@@ -26,6 +26,13 @@ export type PeopleData = z.infer<typeof PeopleDataSchema>;
 /** People data schema (array of items) */
 export const PeopleDataSchema = z.array(PeopleItemSchema);
 
+/**
+ * Compare two roles by their end dates in descending order.
+ *
+ * @param a First role to compare
+ * @param b Second role to compare
+ * @returns Comparison result for sorting
+ */
 function compareRolesByEndDateDesc(a: AnyRole, b: AnyRole): number {
   const aEnd = a.dateEnd?.getTime() ?? Number.MAX_VALUE;
   const bEnd = b.dateEnd?.getTime() ?? Number.MAX_VALUE;
