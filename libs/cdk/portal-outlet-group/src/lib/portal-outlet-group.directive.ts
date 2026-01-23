@@ -29,6 +29,9 @@ export class HraPortalOutletGroupDirective {
   /** Currently active outlet directive */
   private currentOutlet: HraPortalOutletNameDirective | null = null;
 
+  /**
+   * Creates an instance of hra portal outlet group directive.
+   */
   constructor() {
     /** Effect to update the outlet map when outlets change */
     effect(() => {
