@@ -20,7 +20,7 @@ import { IconDef, provideIcons } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { ROUTES } from './app.routes';
-import { OmicsFeaturedStudyCardDef } from './components/omics-featured-study-card';
+import { StudiesGridDef } from './components/studies-grid';
 
 /**
  * Set of config options available during the application bootstrap operation.
@@ -60,7 +60,7 @@ export const appConfig: ApplicationConfig = {
       PageTableDef,
       TextHyperlinkDef,
       CopyEmailButtonDef,
-      OmicsFeaturedStudyCardDef,
+      StudiesGridDef,
     ]),
   ],
 };

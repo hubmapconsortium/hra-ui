@@ -14,7 +14,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     const result = await render(HomeComponent, {
-      providers: [provideIcons(), provideHttpClient(), provideMarkdown()],
+      providers: [provideHttpClient(), provideMarkdown(), provideIcons()],
     });
     component = result.fixture.componentInstance;
   });

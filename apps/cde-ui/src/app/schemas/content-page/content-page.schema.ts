@@ -15,6 +15,7 @@ import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
 import { IconSchema } from '@hra-ui/design-system/icons';
 import { PageTableSchema } from '@hra-ui/design-system/table';
+import { StudiesGridSchema } from '../../components/studies-grid';
 import * as z from 'zod';
 
 export {
@@ -45,6 +46,7 @@ export default z.lazy(() => {
     PageSectionSchema,
     PageTableSchema,
     TextHyperlinkSchema,
+    StudiesGridSchema,
   ]);
 
   return ContentPageDataSchema;

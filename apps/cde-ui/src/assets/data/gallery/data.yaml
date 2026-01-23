@@ -5,10 +5,11 @@ studies:
       of femur: 12 from normal (NBM) samples, 5 from acute myeloid leukemia
       (AML), and 3 from Negative lymphoma staging bone marrow biopsies (NSM).
       The samples were acquired via CODEX imaging.
-    citation: >-
-      Bandyopadhyay, S. et al. Mapping the cellular biogeography of human bone
-      marrow niches using singlecell transcriptomics and proteomic imaging. Cell
-      187, 3120-3140.e29 (2024).
+    citations:
+      - >-
+        Bandyopadhyay, S. et al. Mapping the cellular biogeography of human bone
+        marrow niches using singlecell transcriptomics and proteomic imaging.
+        Cell 187, 3120-3140.e29 (2024).
     thumbnail: thumbnails/bonemarrow-codex-chop.png
     authors: Tan Lab
     affiliations: Children's Hospital of Philadelphia
@@ -17,7 +18,7 @@ studies:
     technology: CODEX
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/hubmap-bone_marrow-tan-2024/
-    publication:
+    publications:
       - https://doi.org/10.1016/j.cell.2024.04.013
     cellCount: 1214088
     datasets:
@@ -348,9 +349,10 @@ studies:
       serially cut) from a donor diagnosed with stage IIIb adenocarcinoma
       Colorectal Cancer (CRC). The samples underwent ten cycles of CyCIF
       resulting in 40 channels per plane/section.
-    citation: >-
-      Lin, J.-R. et al. Multiplexed 3D atlas of state transitions and immune
-      interaction in colorectal cancer. Cell 186, 363-381.e19 (2023).
+    citations:
+      - >-
+        Lin, J.-R. et al. Multiplexed 3D atlas of state transitions and immune
+        interaction in colorectal cancer. Cell 186, 363-381.e19 (2023).
     thumbnail: thumbnails/colon-cycif-sorgerlab.png
     authors: Sorger Lab
     affiliations: Harvard Medical School
@@ -359,7 +361,7 @@ studies:
     technology: CyCIF
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/htan-intestine-sorger-2023/
-    publication:
+    publications:
       - https://doi.org/10.1016/j.cell.2022.12.028
     cellCount: 12758141
     datasets:
@@ -768,9 +770,10 @@ studies:
       This dataset comprises 29 2D serial tissue sections taken 5 micrometers
       apart. The sample is taken from a colon polyp. The samples were acquired
       via Xenium imaging (spatial transcriptomics).
-    citation: >-
-      NCI Human Tumor Atlas Network.
-      https://data.humantumoratlas.org/publications/hta10_2025_tbd_rongduo-han.
+    citations:
+      - >-
+        NCI Human Tumor Atlas Network.
+        https://data.humantumoratlas.org/publications/hta10_2025_tbd_rongduo-han.
     thumbnail: thumbnails/colon-xenium-stanford.png
     authors: Snyder Lab
     affiliations: Stanford University
@@ -779,7 +782,7 @@ studies:
     technology: Xenium
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/htan-colon-snyder-2024/
-    publication:
+    publications:
       - https://data.humantumoratlas.org/publications/hta10_2025_tbd_rongduo-han
     cellCount: 2639215
     datasets:
@@ -1251,13 +1254,14 @@ studies:
     description: >-
       This dataset comprises one tissue section from esophagus from a donor with
       Barrett's Esophagus, acquired via CODEX imaging.
-    citation: >-
-      * Brbić, M. et al. Annotation of spatially resolved single-cell data with
-      STELLAR. Nat. Methods 19, 14111418 (2022).
-
-      * Hickey, J. CODEX multiplexed imaging cell datasets used for using
-      STELLAR to transfer cell type annotations to other tissues and donors.
-      Dryad https://doi.org/10.5061/DRYAD.G4F4QRFRC (2022).
+    citations:
+      - >-
+        Brbić, M. et al. Annotation of spatially resolved single-cell data with
+        STELLAR. Nat. Methods 19, 14111418 (2022).
+      - >-
+        Hickey, J. CODEX multiplexed imaging cell datasets used for using
+        STELLAR to transfer cell type annotations to other tissues and donors.
+        Dryad https://doi.org/10.5061/DRYAD.G4F4QRFRC (2022).
     thumbnail: thumbnails/esophagus-codex-stanford.png
     authors: Snyder Lab
     affiliations: Stanford University
@@ -1265,9 +1269,9 @@ studies:
     organName: Esophagus
     technology: CODEX
     euiUrl: ''
-    publication:
+    publications:
       - https://doi.org/10.1038/s41592-022-01651-8
-      - 'https://doi.org/10.5061/DRYAD.G4F4QRFRC '
+      - https://doi.org/10.5061/DRYAD.G4F4QRFRC
     cellCount: 45958
     datasets:
       - study: esophagus-codex-stanford
@@ -1295,12 +1299,14 @@ studies:
       regions in small intestine); ascending, transverse, descending and sigmoid
       (four regions in large intestine). The dataset uses CODEX imaging
       technology. All 64 datasets are normal tissue samples.
-    citation: >-
-      * Hickey, J. W. et al. Organization of the human intestine at single-cell
-      resolution. Nature 619, 572–584 (2023).
-
-      * Hickey, J. Processed single cell data from CODEX multiplexed imaging of
-      the human intestine. Dryad https://doi.org/10.5061/DRYAD.PK0P2NGRF (2022).
+    citations:
+      - >-
+        Hickey, J. W. et al. Organization of the human intestine at single-cell
+        resolution. Nature 619, 572–584 (2023).
+      - >-
+        Hickey, J. Processed single cell data from CODEX multiplexed imaging of
+        the human intestine. Dryad https://doi.org/10.5061/DRYAD.PK0P2NGRF
+        (2022).
     thumbnail: thumbnails/intestine-codex-stanford.png
     authors: Snyder Lab / Hickey Lab
     affiliations: Stanford University / Duke University
@@ -1309,9 +1315,9 @@ studies:
     technology: CODEX
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/hubmap-intestine-snyder-2023/
-    publication:
+    publications:
       - https://doi.org/10.1038/s41586-023-05915-x
-      - 'https://doi.org/10.5061/DRYAD.PK0P2NGRF  '
+      - https://doi.org/10.5061/DRYAD.PK0P2NGRF
     cellCount: 2512185
     datasets:
       - study: intestine-codex-stanford
@@ -2344,12 +2350,14 @@ studies:
       samples were acquired via CODEX imaging. One dataset is a normal sample
       (D265) and one dataset is a diseased (Bronchopulmonary Disease or BPD)
       sample (D115).
-    citation: >-
-      * Börner, K. et al. Human BioMolecular Atlas Program (HuBMAP): 3D Human
-      Reference Atlas construction and usage. Nat. Methods 22, 845–860 (2025).
-
-      * Jain, Yashvardhan, et al. "Exploring endothelial cell environments
-      across organs in spatially resolved omics data." bioRxiv (2025): 2025-09.
+    citations:
+      - >-
+        Börner, K. et al. Human BioMolecular Atlas Program (HuBMAP): 3D Human
+        Reference Atlas construction and usage. Nat. Methods 22, 845–860 (2025).
+      - >-
+        Jain, Yashvardhan, et al. "Exploring endothelial cell environments
+        across organs in spatially resolved omics data." bioRxiv (2025):
+        2025-09.
     thumbnail: thumbnails/lung-codex-urmc.png
     authors: Pryhuber Research Lab
     affiliations: University of Rochester Medical Center
@@ -2358,9 +2366,9 @@ studies:
     technology: CODEX
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/hubmap-lung-pryhuber-2023/
-    publication:
+    publications:
       - https://doi.org/10.1101/2025.09.23.678129
-      - 'https://doi.org/10.1038/s41592-024-02563-5 '
+      - https://doi.org/10.1038/s41592-024-02563-5
     cellCount: 1209309
     datasets:
       - study: lung-codex-urmc
@@ -2399,26 +2407,27 @@ studies:
     description: >-
       This dataset comprises five tissue samples from lymph nodes acquired via
       CODEX imaging.
-    citation: >-
-      * Enninful, A., Fan, R., Farzad, N. & Zhong, M. PhenoCycler data from the
-      lymph node of a 22.0-year-old unknown female. SenNet Consortium
-      https://doi.org/10.60586/SNT228.XBSK.467 (2025).
-
-      * Enninful, A., Fan, R., Farzad, N. & Zhong, M. PhenoCycler data from the
-      lymph node of a 86.0-year-old white male. SenNet Consortium
-      https://doi.org/10.60586/SNT832.RKFV.643 (2025).
-
-      * Enninful, A., Fan, R., Farzad, N. & Zhong, M. SNT222.DNBF.782 | Dataset
-      | SenNet. https://doi.org/10.60586/SNT222.DNBF.782 (2025).
-
-      * Enninful, A., Fan, R., Farzad, N. & Zhong, M. SNT325.JRSJ.469 | Dataset
-      | SenNet. https://doi.org/10.60586/SNT325.JRSJ.469 (2025).
-
-      * Enninful, A., Fan, R., Farzad, N. & Zhong, M. SNT584.CWSK.568 | Dataset
-      | SenNet. https://doi.org/10.60586/SNT584.CWSK.568 (2025).
-
-      * Enninful, A., Fan, R., Farzad, N. & Zhong, M. SNT625.XDTN.459 | Dataset
-      | SenNet. https://doi.org/10.60586/SNT625.XDTN.459 (2025).
+    citations:
+      - >-
+        Enninful, A., Fan, R., Farzad, N. & Zhong, M. PhenoCycler data from the
+        lymph node of a 22.0-year-old unknown female. SenNet Consortium
+        https://doi.org/10.60586/SNT228.XBSK.467 (2025).
+      - >-
+        Enninful, A., Fan, R., Farzad, N. & Zhong, M. PhenoCycler data from the
+        lymph node of a 86.0-year-old white male. SenNet Consortium
+        https://doi.org/10.60586/SNT832.RKFV.643 (2025).
+      - >-
+        Enninful, A., Fan, R., Farzad, N. & Zhong, M. SNT222.DNBF.782 | Dataset
+        | SenNet. https://doi.org/10.60586/SNT222.DNBF.782 (2025).
+      - >-
+        Enninful, A., Fan, R., Farzad, N. & Zhong, M. SNT325.JRSJ.469 | Dataset
+        | SenNet. https://doi.org/10.60586/SNT325.JRSJ.469 (2025).
+      - >-
+        Enninful, A., Fan, R., Farzad, N. & Zhong, M. SNT584.CWSK.568 | Dataset
+        | SenNet. https://doi.org/10.60586/SNT584.CWSK.568 (2025).
+      - >-
+        Enninful, A., Fan, R., Farzad, N. & Zhong, M. SNT625.XDTN.459 | Dataset
+        | SenNet. https://doi.org/10.60586/SNT625.XDTN.459 (2025).
     thumbnail: thumbnails/lymphnode-codex-yale.png
     authors: Fan Lab
     affiliations: Yale University
@@ -2427,13 +2436,13 @@ studies:
     technology: CODEX
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/sennet-lymph-node-fan-2023/
-    publication:
+    publications:
       - https://doi.org/10.60586/SNT228.XBSK.467
       - https://doi.org/10.60586/SNT832.RKFV.643
       - https://doi.org/10.60586/SNT222.DNBF.782
       - https://doi.org/10.60586/SNT325.JRSJ.469
       - https://doi.org/10.60586/SNT584.CWSK.568
-      - 'https://doi.org/10.60586/SNT625.XDTN.459 '
+      - https://doi.org/10.60586/SNT625.XDTN.459
     cellCount: 8918845
     datasets:
       - study: lymphnode-codex-yale
@@ -2521,9 +2530,10 @@ studies:
       This dataset comprises 209 2D tissue sections from the maternalfetal
       interface. The samples were acquired via MIBI-TOF imaging. The data is
       from normal tissue of 66 individuals.
-    citation: >-
-      Greenbaum, S. et al. A spatially resolved timeline of the human
-      maternal–fetal interface. Nature 619, 595605 (2023).
+    citations:
+      - >-
+        Greenbaum, S. et al. A spatially resolved timeline of the human
+        maternal–fetal interface. Nature 619, 595605 (2023).
     thumbnail: thumbnails/maternalfetalinterface-mibitof-stanford.png
     authors: Angelo Lab
     affiliations: Stanford University
@@ -2531,8 +2541,8 @@ studies:
     organName: Maternal fetal interface
     technology: MIBI-TOF
     euiUrl: ''
-    publication:
-      - 'https://doi.org/10.1038/s41586-023-06298-9 '
+    publications:
+      - https://doi.org/10.1038/s41586-023-06298-9
     cellCount: 477747
     datasets:
       - study: maternalfetalinterface-mibitof-stanford
@@ -5887,17 +5897,18 @@ studies:
       (two datasets), Parotid (four datasets), Submandibular (two datasets), and
       Tongue (three datasets). The samples were acquired via PhenoCycler Fusion
       imaging. All 13 datasets are normal tissue samples.
-    citation: >-
-      * Easter, Q. T. et al. Single-cell and spatially resolved interactomics of
-      tooth-associated keratinocytes in periodontitis. Nat. Commun. 15, 5016
-      (2024).
-
-      * Matuck, B. F. et al. The Immunoregulatory Architecture of the Adult Oral
-      Cavity. 2024.12.01.626279 Preprint at
-      https://doi.org/10.1101/2024.12.01.626279 (2024).
-
-      * Huynh, K. L. A. et al. Deconvolution of cell types and states in spatial
-      multiomics utilizing TACIT. Nat. Commun. 16, 3747 (2025).
+    citations:
+      - >-
+        Easter, Q. T. et al. Single-cell and spatially resolved interactomics of
+        tooth-associated keratinocytes in periodontitis. Nat. Commun. 15, 5016
+        (2024).
+      - >-
+        Matuck, B. F. et al. The Immunoregulatory Architecture of the Adult Oral
+        Cavity. 2024.12.01.626279 Preprint at
+        https://doi.org/10.1101/2024.12.01.626279 (2024).
+      - >-
+        Huynh, K. L. A. et al. Deconvolution of cell types and states in spatial
+        multiomics utilizing TACIT. Nat. Commun. 16, 3747 (2025).
     thumbnail: thumbnails/oralcavity-codex-czi.png
     authors: Lab of Oral & Craniofacial Innovation
     affiliations: Viginia Commonwealth University
@@ -5905,10 +5916,10 @@ studies:
     organName: Oral cavity
     technology: CODEX
     euiUrl: ''
-    publication:
+    publications:
       - https://doi.org/10.1038/s41467-024-49037-y
       - https://doi.org/10.1101/2024.12.01.626279
-      - 'https://doi.org/10.1038/s41467-025-58874-4 '
+      - https://doi.org/10.1038/s41467-025-58874-4
     cellCount: 1412189
     datasets:
       - study: oralcavity-codex-czi
@@ -6128,57 +6139,59 @@ studies:
       samples were stained using multiplex immunofluorescence and acquired via
       GeoMx imaging using a 3-plex antibody panel according to published
       protocol. All 12 datasets are normal tissue samples.
-    citation: >-
-      * Kates, H. & Campbell-Thompson, M. OME TIFF image GeoMX whole
-      transcriptome assay from P2-4AD. figshare
-      https://doi.org/10.6084/m9.figshare.29661272.v4 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P2-13. figshare
-      https://doi.org/10.6084/m9.figshare.29669540.v4 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P2-19. figshare
-      https://doi.org/10.6084/m9.figshare.29669573.v2 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P3-3A. figshare
-      https://doi.org/10.6084/m9.figshare.29669618.v1 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P3-7A. figshare
-      https://doi.org/10.6084/m9.figshare.29669648.v1 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P3-9A. figshare
-      https://doi.org/10.6084/m9.figshare.29669675.v1 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P3-13A. figshare
-      https://doi.org/10.6084/m9.figshare.29669726.v1 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P4-3A. figshare
-      https://doi.org/10.6084/m9.figshare.29669789.v3 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P4-6A. figshare
-      https://doi.org/10.6084/m9.figshare.29669831.v1 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P4-12A. figshare
-      https://doi.org/10.6084/m9.figshare.29669861.v1 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
-      transcriptome assay P4-22. figshare
-      https://doi.org/10.6084/m9.figshare.29669882.v2 (2025).
-
-      * Campbell-Thompson, M. & Kates, H. OME-TIFF image GeoMX whole
-      transcriptome assay from P2-7A. figshare
-      https://doi.org/10.6084/m9.figshare.29661308.v2 (2025).
-
-      * Jain, Yashvardhan, et al. "Exploring endothelial cell environments
-      across organs in spatially resolved omics data." bioRxiv (2025): 2025-09.
+    citations:
+      - >-
+        Kates, H. & Campbell-Thompson, M. OME TIFF image GeoMX whole
+        transcriptome assay from P2-4AD. figshare
+        https://doi.org/10.6084/m9.figshare.29661272.v4 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P2-13. figshare
+        https://doi.org/10.6084/m9.figshare.29669540.v4 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P2-19. figshare
+        https://doi.org/10.6084/m9.figshare.29669573.v2 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P3-3A. figshare
+        https://doi.org/10.6084/m9.figshare.29669618.v1 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P3-7A. figshare
+        https://doi.org/10.6084/m9.figshare.29669648.v1 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P3-9A. figshare
+        https://doi.org/10.6084/m9.figshare.29669675.v1 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P3-13A. figshare
+        https://doi.org/10.6084/m9.figshare.29669726.v1 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P4-3A. figshare
+        https://doi.org/10.6084/m9.figshare.29669789.v3 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P4-6A. figshare
+        https://doi.org/10.6084/m9.figshare.29669831.v1 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P4-12A. figshare
+        https://doi.org/10.6084/m9.figshare.29669861.v1 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME TIFF image GeoMX whole
+        transcriptome assay P4-22. figshare
+        https://doi.org/10.6084/m9.figshare.29669882.v2 (2025).
+      - >-
+        Campbell-Thompson, M. & Kates, H. OME-TIFF image GeoMX whole
+        transcriptome assay from P2-7A. figshare
+        https://doi.org/10.6084/m9.figshare.29661308.v2 (2025).
+      - >-
+        Jain, Yashvardhan, et al. "Exploring endothelial cell environments
+        across organs in spatially resolved omics data." bioRxiv (2025):
+        2025-09.
     thumbnail: thumbnails/pancreas-geomx-ufl.png
     authors: Martha L. Campbell-Thompson Lab
     affiliations: University of Florida
@@ -6187,10 +6200,10 @@ studies:
     technology: GeoMx
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/hubmap-pancreas-campbell-2024/
-    publication:
+    publications:
       - >-
         https://figshare.com/projects/HuBMAP_TMC_-_Pacific_Northwest_National_Laboratory_GeoMX_DSP_Images/256367
-      - 'https://doi.org/10.1101/2025.09.23.678129 '
+      - https://doi.org/10.1101/2025.09.23.678129
     cellCount: 14891875
     datasets:
       - study: pancreas-geomx-ufl
@@ -6390,10 +6403,11 @@ studies:
       This dataset comprises ten 3D tissue samples. The samples were acquired
       via Cell DIVE imaging. Each of the ten datasets consisted of 24 2D serial
       sections that were reconstructed into a 3D volume.
-    citation: >-
-      Ghose, S. et al. 3D reconstruction of skin and spatial mapping of immune
-      cell density, vascular distance and effects of sun exposure and aging.
-      Commun. Biol. 6, 718 (2023).
+    citations:
+      - >-
+        Ghose, S. et al. 3D reconstruction of skin and spatial mapping of immune
+        cell density, vascular distance and effects of sun exposure and aging.
+        Commun. Biol. 6, 718 (2023).
     thumbnail: thumbnails/skin-celldive-ge.png
     authors: Fiona Ginty Lab
     affiliations: GE HealthCare Technology and Innovation Center
@@ -6402,8 +6416,8 @@ studies:
     technology: Cell DIVE
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/hubmap-skin-ginty-2023/
-    publication:
-      - 'https://doi.org/10.1038/s42003-023-04991-z '
+    publications:
+      - https://doi.org/10.1038/s42003-023-04991-z
     cellCount: 94591
     datasets:
       - study: skin-celldive-ge
@@ -6602,9 +6616,10 @@ studies:
       samples prepared and acquired at the same time to reduce batch and
       operator effects. Datasets were segmented and gated by cell type based on
       mean intensity of protein expression.
-    citation: >-
-      Yapp, Clarence, et al. "Highly multiplexed 3D profiling of cell states and
-      immune niches in human tumors." Nature Methods (2025): 1-14.
+    citations:
+      - >-
+        Yapp, Clarence, et al. "Highly multiplexed 3D profiling of cell states
+        and immune niches in human tumors." Nature Methods (2025): 1-14.
     thumbnail: thumbnails/skin-confocal-sorgerlab.png
     authors: Sorger Lab
     affiliations: Harvard Medical School
@@ -6613,8 +6628,8 @@ studies:
     technology: Confocal Microscopy
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/htan-skin-sorger-2024/
-    publication:
-      - 'https://doi.org/10.1038/s41592-025-02824-x '
+    publications:
+      - https://doi.org/10.1038/s41592-025-02824-x
     cellCount: 55255
     datasets:
       - study: skin-confocal-sorgerlab
@@ -6653,14 +6668,15 @@ studies:
     description: >-
       This dataset comprises six normal tissue samples from spleen, acquired via
       CODEX imaging.
-    citation: >-
-      * dos Santos Peixoto, R. et al. Characterizing cell-type spatial
-      relationships across length scales in spatially resolved omics data. Nat.
-      Commun. 16, 350 (2025).
-
-      * Currlin, S. et al. Immune, endothelial and neuronal network map in human
-      lymph node and spleen. 2021.10.20.465151 Preprint at
-      https://doi.org/10.1101/2021.10.20.465151 (2022).
+    citations:
+      - >-
+        dos Santos Peixoto, R. et al. Characterizing cell-type spatial
+        relationships across length scales in spatially resolved omics data.
+        Nat. Commun. 16, 350 (2025).
+      - >-
+        Currlin, S. et al. Immune, endothelial and neuronal network map in human
+        lymph node and spleen. 2021.10.20.465151 Preprint at
+        https://doi.org/10.1101/2021.10.20.465151 (2022).
     thumbnail: thumbnails/spleen-codex-ufl.png
     authors: Fan Lab
     affiliations: Johns Hopkins University
@@ -6669,9 +6685,9 @@ studies:
     technology: CODEX
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/hubmap-spleen-fan-2023/
-    publication:
+    publications:
       - https://doi.org/10.1038/s41467-024-55700-1
-      - 'https://doi.org/10.1101/2021.10.20.465151 '
+      - https://doi.org/10.1101/2021.10.20.465151
     cellCount: 992398
     datasets:
       - study: spleen-codex-ufl
@@ -6774,13 +6790,14 @@ studies:
     description: >-
       This dataset comprises one normal tissue section from tonsil, acquired via
       CODEX imaging.
-    citation: >-
-      * Brbić, M. et al. Annotation of spatially resolved single-cell data with
-      STELLAR. Nat. Methods 19, 14111418 (2022).
-
-      * Hickey, J. CODEX multiplexed imaging cell datasets used for using
-      STELLAR to transfer cell type annotations to other tissues and donors.
-      Dryad https://doi.org/10.5061/DRYAD.G4F4QRFRC (2022).
+    citations:
+      - >-
+        Brbić, M. et al. Annotation of spatially resolved single-cell data with
+        STELLAR. Nat. Methods 19, 14111418 (2022).
+      - >-
+        Hickey, J. CODEX multiplexed imaging cell datasets used for using
+        STELLAR to transfer cell type annotations to other tissues and donors.
+        Dryad https://doi.org/10.5061/DRYAD.G4F4QRFRC (2022).
     thumbnail: thumbnails/tonsil-codex-stanford.png
     authors: Snyder Lab
     affiliations: Stanford University
@@ -6788,9 +6805,9 @@ studies:
     organName: Tonsil
     technology: CODEX
     euiUrl: ''
-    publication:
+    publications:
       - https://doi.org/10.1038/s41592-022-01651-8
-      - 'https://doi.org/10.5061/DRYAD.G4F4QRFRC '
+      - https://doi.org/10.5061/DRYAD.G4F4QRFRC
     cellCount: 173968
     datasets:
       - study: tonsil-codex-stanford
