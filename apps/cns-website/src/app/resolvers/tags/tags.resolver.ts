@@ -1,5 +1,5 @@
 import { ResolveFn } from '@angular/router';
-import { TagsData, TagsDataSchema } from '../../schemas/tags/tags.schema';
+import { TagsData, TagsDataSchema } from '../../schemas/tags.schema';
 import { createJsonResolver } from '../json-resolver.util';
 
 /** URL for the tags JSON data */

@@ -12,6 +12,16 @@
     flex: 1;
     min-width: 160px;
     max-width: 580px;
+
+    .clear-search {
+      @include mat.icon-button-overrides(
+        (
+          state-layer-size: 1.25rem,
+          icon-size: 1.25rem,
+        )
+      );
+      margin-right: 0.875rem;
+    }
   }
 
   .results-counter {

@@ -1,0 +1,34 @@
+<div class="profile-picture">
+  <img alt="Profile picture" [attr.src]="contactInfo().image" />
+</div>
+
+@let role = contactInfo().role;
+@if (role && role.type === 'member') {
+  <hra-page-section class="contact-info-section" tagline="Contact info" [level]="5">
+    @if (role.office; as office) {
+      <hra-page-section tagline="Office" [level]="6">
+        <div class="value">{{ office }}</div>
+      </hra-page-section>
+    }
+
+    @if (role.phone; as phone) {
+      <hra-page-section tagline="Phone" [level]="6">
+        <div class="value">{{ phone }}</div>
+      </hra-page-section>
+    }
+
+    @if (role.fax; as fax) {
+      <hra-page-section tagline="Fax" [level]="6">
+        <div class="value">{{ fax }}</div>
+      </hra-page-section>
+    }
+
+    @if (role.email; as email) {
+      <hra-page-section tagline="Email" [level]="6">
+        <div class="value">
+          <a [attr.href]="`mailto:${email}`">{{ email }}</a>
+        </div>
+      </hra-page-section>
+    }
+  </hra-page-section>
+}

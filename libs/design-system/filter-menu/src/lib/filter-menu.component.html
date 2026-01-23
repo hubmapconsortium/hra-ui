@@ -38,12 +38,13 @@
     </div>
     @for (filter of filters(); track $index) {
       <hra-filter-container
-        enableDivider
         cdkOverlayOrigin
+        [enableDivider]="!$last"
         [action]="filter.label"
+        [active]="activeFilter() === filter"
         [chips]="filter.selected ?? []"
         (chipsChange)="updateFilterSelection(filter, $event)"
-        (actionClick)="activeFilter.set(filter)"
+        (actionClick)="toggleFilterMenu(filter)"
         #filterMenuOrigin="cdkOverlayOrigin"
       />
 
@@ -61,6 +62,7 @@
         <hra-search-list
           [options]="filter.options"
           [selected]="filter.selected ?? []"
+          [disableSearch]="filter.disableSearch ?? false"
           (selectedChange)="updateFilterSelection(filter, $event)"
         />
       </ng-template>

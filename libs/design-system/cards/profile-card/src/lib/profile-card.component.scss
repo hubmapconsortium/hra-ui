@@ -10,7 +10,7 @@
     width: 11.25rem;
     height: 13.375rem;
     clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 90% 100%, 0% 100%);
-    border-left: 0.75rem solid #ff0043;
+    border-left: 0.75rem solid var(--profile-card-border-color, #ff0043);
     margin-bottom: 2rem;
 
     img {
@@ -21,7 +21,7 @@
   }
 
   .content {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     flex-grow: 1;
 
     .name {
@@ -32,7 +32,7 @@
 
     .description {
       @include utils.use-font(body, large);
-      color: vars.$on-secondary-fixed;
+      color: var(--profile-card-description-color, #{vars.$on-secondary-fixed});
       margin-top: 0;
 
       ::ng-deep p {

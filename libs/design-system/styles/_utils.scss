@@ -29,8 +29,7 @@
 }
 
 @mixin global-styles() {
-  .hra-app,
-  .cns-website {
+  .hra-app {
     @content;
   }
 }

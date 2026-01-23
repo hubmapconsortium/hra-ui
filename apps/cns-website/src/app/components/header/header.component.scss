@@ -1,7 +1,7 @@
 @use 'utils';
 @use 'vars';
 
-$z-index: 2000;
+$z-index: 900;
 
 :host {
   display: block;
@@ -59,14 +59,16 @@ $z-index: 2000;
   }
 }
 
-::ng-deep .menu-open-backdrop {
-  background-color: rgba(64, 93, 64, 0.16);
-  backdrop-filter: blur(0.5rem);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-  transition: 0.3s;
-}
+// Reduce z-index of overlay container when menu is open to allow backdrop effect
+// For other overlays we want to keep the higher z-index as they should appear above the header
+::ng-deep .cdk-overlay-container:has(.menu-open-backdrop) {
+  z-index: $z-index - 1;
 
-::ng-deep .menu-open-backdrop ~ .cdk-overlay-pane {
-  left: unset !important;
-  right: 0rem !important;
+  .menu-open-backdrop {
+    background-color: utils.with-alpha(vars.$on-secondary-fixed, 0.16);
+    backdrop-filter: blur(0.5rem);
+    mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    transition: 0.3s;
+    z-index: $z-index - 1;
+  }
 }

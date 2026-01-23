@@ -9,15 +9,9 @@
         </div>
       </hra-info-button>
     }
-    <button
-      mat-button
-      hraButtonVariant="secondary"
-      class="category-button"
-      color="primary"
-      (click)="actionClick.emit()"
-    >
+    <mat-button-toggle class="category-button" [checked]="active()" (change)="actionClick.emit()">
       {{ action() }}
-    </button>
+    </mat-button-toggle>
   </div>
 
   @if (chips().length > 0) {
