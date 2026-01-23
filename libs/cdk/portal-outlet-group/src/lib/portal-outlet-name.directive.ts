@@ -2,20 +2,37 @@ import { CdkPortalOutlet, Portal } from '@angular/cdk/portal';
 import { contentChild, Directive, effect, inject, input, OnDestroy, OnInit } from '@angular/core';
 import { HraPortalOutletGroupDirective } from './portal-outlet-group.directive';
 
+/**
+ * Directive that wraps a CdkPortalOutlet with a name attribute.
+ * Registers itself with the closest HraPortalOutletGroupDirective.
+ *
+ * @example
+ * ```html
+ * <div hraPortalOutletGroup [portal]="myPortal" [activeOutlet]="'main'">
+ *   <div hraPortalOutletName="main"><ng-template cdkPortalOutlet /></div>
+ *   <div hraPortalOutletName="secondary"><ng-template cdkPortalOutlet /></div>
+ * </div>
+ * ```
+ */
 @Directive({
   selector: '[hraPortalOutletName]',
   standalone: true,
 })
 export class HraPortalOutletNameDirective implements OnInit, OnDestroy {
+  /** The name of this outlet, used to identify it within the group */
   readonly name = input.required<string>({ alias: 'hraPortalOutletName' });
 
+  /** Reference to the CdkPortalOutlet contained within this element */
   private readonly portalOutlet = contentChild(CdkPortalOutlet);
 
+  /** Reference to the parent portal outlet group, if any */
   private readonly group = inject(HraPortalOutletGroupDirective, { optional: true });
 
+  /** Previous name used for tracking name changes */
   private previousName: string | null = null;
 
   constructor() {
+    /** Effect to handle name changes and re-register with the group */
     effect(() => {
       const currentName = this.name();
       if (this.previousName !== null && this.previousName !== currentName && this.group) {
@@ -38,6 +55,11 @@ export class HraPortalOutletNameDirective implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Attaches a portal to this outlet
+   *
+   * @param portal The portal to attach
+   */
   attachPortal(portal: Portal<unknown>): void {
     const outlet = this.portalOutlet();
     if (outlet && !outlet.hasAttached()) {
@@ -45,6 +67,9 @@ export class HraPortalOutletNameDirective implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Detaches the currently attached portal from this outlet
+   */
   detachPortal(): void {
     const outlet = this.portalOutlet();
     if (outlet && outlet.hasAttached()) {
@@ -52,6 +77,11 @@ export class HraPortalOutletNameDirective implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Checks if this outlet has an attached portal
+   *
+   * @returns True if a portal is currently attached
+   */
   hasAttached(): boolean {
     const outlet = this.portalOutlet();
     return outlet ? outlet.hasAttached() : false;
