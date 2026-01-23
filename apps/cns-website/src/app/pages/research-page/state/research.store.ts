@@ -51,7 +51,9 @@ export const ResearchStore = signalStore(
       const groupBy = createWritableStateSlice(store.groupBy, store.setGroupBy);
       const commonOptions = { replaceUrl: true, preserveFragment: true };
 
-      linkedQueryParam('view', { source: view, parse: parseView, ...commonOptions });
+      const initialView = store.view();
+      const initialSortBy = store.sortBy();
+
       linkedQueryParam('category', {
         source: categories,
         parse: parseCategories,
@@ -89,7 +91,16 @@ export const ResearchStore = signalStore(
         ...commonOptions,
       });
       linkedQueryParam('search', { source: search, parse: parseSearch, ...commonOptions });
-      linkedQueryParam('sort-by', { source: sortBy, parse: parseSortBy, ...commonOptions });
+      linkedQueryParam('view', {
+        source: view,
+        parse: (value) => parseView(value) ?? initialView,
+        ...commonOptions,
+      });
+      linkedQueryParam('sort-by', {
+        source: sortBy,
+        parse: (value) => parseSortBy(value) ?? initialSortBy,
+        ...commonOptions,
+      });
       linkedQueryParam('group-by', { source: groupBy, parse: parseGroupBy, ...commonOptions });
     },
   }),

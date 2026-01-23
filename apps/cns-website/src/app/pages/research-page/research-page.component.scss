@@ -20,21 +20,22 @@
     align-items: center;
   }
 
+  hra-search-filter {
+    padding: 1.5rem 2.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    max-width: 100rem;
+    margin: 0 auto;
+    background-color: vars.$on-primary;
+
+    @media (max-width: 639px) {
+      padding: 1.5rem 1.25rem 2rem;
+    }
+  }
+
   ng-scrollbar {
     width: 100%;
-
-    hra-search-filter {
-      padding: 1.5rem 2.5rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      max-width: 100rem;
-      margin: 0 auto;
-
-      @media (max-width: 639px) {
-        padding: 1.5rem 1.25rem 2rem;
-      }
-    }
   }
 
   .content {
@@ -47,6 +48,10 @@
 
     @media (max-width: 639px) {
       padding: 0 1.25rem;
+    }
+
+    &:has(.gallery-group) {
+      gap: 3rem;
     }
 
     section {

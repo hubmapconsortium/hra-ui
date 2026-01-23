@@ -112,21 +112,21 @@ const CATEGORIES_FILTER: FilterOptionCategory<CategoryOption> = {
 
 const EVENTS_FILTER: FilterOptionCategory<EventOption> = {
   id: 'event-type',
-  label: 'Event Type',
+  label: 'Event type',
   options: EVENT_OPTIONS,
   selected: [],
 };
 
 const FUNDING_FILTER: FilterOptionCategory<FundingOption> = {
   id: 'funding-type',
-  label: 'Funding Type',
+  label: 'Funding type',
   options: FUNDING_OPTIONS,
   selected: [],
 };
 
 const PUBLICATIONS_FILTER: FilterOptionCategory<PublicationOption> = {
   id: 'publication-type',
-  label: 'Publication Type',
+  label: 'Publication type',
   options: [],
   selected: [],
 };

@@ -48,8 +48,8 @@ function serializeOptions<T extends { id: string }>(options: T[] | null): string
   return options.map((opt) => opt.id).join(',');
 }
 
-export function parseView(value: unknown): View {
-  return parseEnum(View, value) ?? View.Gallery;
+export function parseView(value: unknown): View | null {
+  return parseEnum(View, value);
 }
 
 export function parseCategories(value: unknown): CategoryOption[] | null {

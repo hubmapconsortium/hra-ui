@@ -30,7 +30,6 @@
         <hra-icon class="select-icon" matPrefix>sort</hra-icon>
         <mat-label>Sort by</mat-label>
         <mat-select [value]="store.sortBy()" (valueChange)="store.setSortBy($event)">
-          <mat-option [value]="null">None</mat-option>
           <mat-option value="nameAsc">Ascending (A-Z) by title</mat-option>
           <mat-option value="nameDesc">Descending (Z-A) by title</mat-option>
           <mat-option value="newest">Newest</mat-option>
@@ -51,22 +50,21 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <hra-search-filter
+      label="Search"
+      separator="/"
+      [totalCount]="store.numResearchItems()"
+      [viewingCount]="store.numFilteredItems()"
+      [search]="store.search() ?? ''"
+      (searchChange)="store.setSearch($event)"
+    />
     <ng-scrollbar hraScrollOverflowFade>
-      <hra-search-filter
-        label="Search"
-        separator="/"
-        [totalCount]="store.numResearchItems()"
-        [viewingCount]="store.numFilteredItems()"
-        [search]="store.search() ?? ''"
-        (searchChange)="store.setSearch($event)"
-      />
-
       <div class="content">
         @if (store.numFilteredItems() === 0) {
           <hra-no-results-indicator (clearFilters)="store.resetFilters()" />
         } @else if (store.view() === 'gallery') {
           @for (group of store.sortedGroupedItems(); track group.label) {
-            <section>
+            <section class="gallery-group">
               @if (group.label) {
                 <h3 hra-section-link underlined class="group-title">{{ group.label }}</h3>
               }

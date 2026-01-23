@@ -3,6 +3,7 @@ import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ActivatedRoute } from '@angular/router';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -55,6 +56,7 @@ export class ResearchPageComponent {
 
   readonly headerEvents = inject(HeaderEventsService);
   protected readonly store = inject(ResearchStore);
+  protected readonly route = inject(ActivatedRoute);
 
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
 

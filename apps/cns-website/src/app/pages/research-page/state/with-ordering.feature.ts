@@ -38,7 +38,7 @@ interface OrderingState {
 }
 
 const initialState: OrderingState = {
-  sortBy: null,
+  sortBy: SortBy.Newest,
   groupBy: null,
 };
 
