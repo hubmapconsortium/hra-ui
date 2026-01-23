@@ -5,14 +5,6 @@ import { HraPortalOutletGroupDirective } from './portal-outlet-group.directive';
 /**
  * Directive that wraps a CdkPortalOutlet with a name attribute.
  * Registers itself with the closest HraPortalOutletGroupDirective.
- *
- * @example
- * ```html
- * <div hraPortalOutletGroup [portal]="myPortal" [activeOutlet]="'main'">
- *   <div hraPortalOutletName="main"><ng-template cdkPortalOutlet /></div>
- *   <div hraPortalOutletName="secondary"><ng-template cdkPortalOutlet /></div>
- * </div>
- * ```
  */
 @Directive({
   selector: '[hraPortalOutletName]',
@@ -31,6 +23,9 @@ export class HraPortalOutletNameDirective implements OnInit, OnDestroy {
   /** Previous name used for tracking name changes */
   private previousName: string | null = null;
 
+  /**
+   * Creates an instance of hra portal outlet name directive.
+   */
   constructor() {
     /** Effect to handle name changes and re-register with the group */
     effect(() => {
