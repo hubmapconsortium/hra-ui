@@ -1,8 +1,6 @@
-@use '@fontsource-variable/material-symbols-outlined/fill.css' as outlined;
 @use '@fontsource-variable/material-symbols-rounded/fill.css' as rounded;
 
 /* As per https://fontsource.org/docs/getting-started/material-symbols */
-.material-symbols-outlined,
 .material-symbols-rounded {
   font-weight: 400;
   font-style: normal;
@@ -19,10 +17,6 @@
     'wght' 400,
     'GRAD' 0,
     'opsz' 24;
-}
-
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined Variable';
 }
 
 .material-symbols-rounded {

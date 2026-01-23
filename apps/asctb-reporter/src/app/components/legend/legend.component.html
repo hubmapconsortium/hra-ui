@@ -1,6 +1,6 @@
 <div class="title">Legend</div>
 <div class="legends">
-  @let _legends = legends | orderBy: 'sortOrder';
+  @let _legends = legendList$ | async | orderBy: 'sortOrder';
   @for (l of _legends; track l) {
     <div>
       <div

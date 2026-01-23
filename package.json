@@ -27,7 +27,6 @@
     "@deck.gl/extensions": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
     "@deck.gl/mesh-layers": "~8.8.20",
-    "@fontsource-variable/material-symbols-outlined": "^5.2.30",
     "@fontsource-variable/material-symbols-rounded": "^5.2.30",
     "@fontsource-variable/nunito-sans": "^5.2.7",
     "@fontsource/metropolis": "^5.2.5",

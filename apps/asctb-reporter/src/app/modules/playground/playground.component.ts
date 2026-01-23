@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angular/core';
-import { UntypedFormControl, ValidatorFn, Validators } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Select, Store } from '@ngxs/store';
 import jexcel from 'jspreadsheet-ce';
@@ -43,16 +42,6 @@ export class PlaygroundComponent implements AfterViewInit {
    * Keeps track of the tab index
    */
   tabIndex!: number;
-
-  /**
-   * Controller for entering the link
-   */
-  linkFormControl = new UntypedFormControl('', [
-    Validators.compose([
-      Validators.required,
-      Validators.pattern(/\/([\w-_]{15,})\/(.*?gid=(\d+))?|\w*csv$/),
-    ]) as ValidatorFn,
-  ]);
 
   /** Error State */
   protected readonly error = this.store.selectSignal(UIState.getError);
@@ -276,27 +265,5 @@ export class PlaygroundComponent implements AfterViewInit {
       sheet.formData = data.formData;
     }
     this.store.dispatch(new FetchSheetData(sheet));
-  }
-
-  /**
-   * Link validation function
-   */
-  checkLinkFormat(url: string) {
-    if (url.startsWith('https://docs.google.com/spreadsheets/d/')) {
-      const splitUrl = url.split('/');
-      if (splitUrl.length === 7) {
-        return {
-          sheetID: splitUrl[5],
-          gid: splitUrl[6].split('=')[1],
-          csvUrl: '',
-        };
-      }
-    }
-
-    return {
-      sheetID: '0',
-      gid: '0',
-      csvUrl: url,
-    };
   }
 }
