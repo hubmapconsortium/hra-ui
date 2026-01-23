@@ -13,7 +13,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Store } from '@ngxs/store';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { UpdateConfig } from '../../actions/sheet.actions';
 import { DiscrepencyId, DiscrepencyLabel, DoSearch, DuplicateId } from '../../actions/tree.actions';
 import { CloseSearch, OpenSearch } from '../../actions/ui.actions';
@@ -29,7 +28,6 @@ import { TreeState } from '../../store/tree.state';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-    NgxMatSelectSearchModule,
     FormsModule,
     ReactiveFormsModule,
     MatTooltipModule,
