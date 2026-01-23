@@ -685,6 +685,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/CodeBlockGlobalStylesComponent.html" data-type="entity-link" >CodeBlockGlobalStylesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/CollectionCardActionComponent.html" data-type="entity-link" >CollectionCardActionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/CollectionCardComponent.html" data-type="entity-link" >CollectionCardComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ColorPickerComponent.html" data-type="entity-link" >ColorPickerComponent</a>
                             </li>
                             <li class="link">
