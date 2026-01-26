@@ -28,6 +28,7 @@ const RawStudySchema = z.object({
   citations: z.array(z.string()).optional(),
 });
 
+/** Type for raw study data from YAML */
 type RawStudy = z.infer<typeof RawStudySchema>;
 
 /** Zod schema for the gallery YAML structure */
@@ -35,22 +36,38 @@ const GalleryDataSchema = z.object({
   studies: z.array(RawStudySchema),
 });
 
-/** Study card data structure for collection card display */
+/** A single publication link and optional display label (citation) */
 interface PublicationLink {
+  /** URL to the publication (DOI, figshare, etc.) */
   url: string;
+  /** Optional human-readable label for the publication (e.g., citation text) */
   label?: string;
 }
 
+/**
+ * Data used to render a single study card.
+ * Fields are prepared for direct binding into the UI card component.
+ */
 interface StudyCard {
+  /** Primary tagline shown on the card (for example, "Organ, Technology") */
   tagline: string;
+  /** Secondary chips shown under the tagline (e.g., dataset count, cell count) */
   taglineChips: string[];
+  /** Image URL for the card thumbnail (relative asset path like assets/... or absolute URL) */
   image: string;
+  /** Main label shown on the card (typically authors or lab name) */
   label: string;
+  /** Supporting text such as affiliations or institution */
   supportingText: string;
+  /** Text for the primary action button (e.g., "View datasets") */
   viewButtonText: string;
+  /** Small status tags shown on the card (icon + text) */
   tags: { icon: string; text: string }[];
+  /** Publication links paired with optional citation labels */
   publications: PublicationLink[];
+  /** True when the study is registered in the HRA (controls the presence of EUI action) */
   isHraRegistered: boolean;
+  /** Optional link to explore the study in the Exploration User Interface */
   euiUrl?: string;
 }
 
