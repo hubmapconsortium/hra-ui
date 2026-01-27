@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 8px;
 
   .search-field {
     flex: 1;
@@ -14,13 +15,14 @@
     max-width: 580px;
 
     .clear-search {
+      margin-right: 0.875rem;
+
       @include mat.icon-button-overrides(
         (
           state-layer-size: 1.25rem,
           icon-size: 1.25rem,
         )
       );
-      margin-right: 0.875rem;
     }
   }
 
@@ -28,15 +30,5 @@
     min-width: 5.25rem;
     max-width: 7.5rem;
     white-space: nowrap;
-  }
-
-  @media (max-width: 48rem) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-
-    .results-counter {
-      align-self: flex-end;
-    }
   }
 }
