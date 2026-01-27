@@ -363,7 +363,11 @@ export function withFilters() {
         }
 
         const normalizedSearch = normalizeSearchString(search);
-        return items.filter((item) => normalizeSearchString(item.title).includes(normalizedSearch));
+        return items.filter(
+          (item) =>
+            normalizeSearchString(item.title).includes(normalizedSearch) ||
+            normalizeSearchString(item.description).includes(normalizedSearch),
+        );
       });
 
       const countsByCategory = countsByKey(store.researchItems, (item) => item.category);
