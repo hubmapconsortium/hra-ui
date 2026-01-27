@@ -373,10 +373,10 @@ export function withFilters() {
         return items.filter((item) => normalizeSearchString(item.title).includes(normalizedSearch));
       });
 
-      const countsByCategory = countsByKey(_filteredBySearch, (item) => item.category);
-      const countsByType = countsByKey(_filteredBySearch, (item) => item.type);
-      const countsByPeople = countsByKey(_filteredBySearch, (item) => item.people);
-      const countsByYear = countsByKey(_filteredBySearch, (item) => item.dateStart.getFullYear().toString());
+      const countsByCategory = countsByKey(store.researchItems, (item) => item.category);
+      const countsByType = countsByKey(store.researchItems, (item) => item.type);
+      const countsByPeople = countsByKey(store.researchItems, (item) => item.people);
+      const countsByYear = countsByKey(store.researchItems, (item) => item.dateStart.getFullYear().toString());
 
       const counts = computed(() => [
         countsByCategory(),
