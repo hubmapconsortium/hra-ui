@@ -6,7 +6,6 @@ import {
   effect,
   ElementRef,
   inject,
-  Injectable,
   input,
   signal,
   viewChild,
@@ -36,15 +35,6 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
   { originX: 'end', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetX: -16, offsetY: 16 },
 ];
 
-@Injectable({ providedIn: 'root' })
-export class HeaderEventsService {
-  readonly menuState = signal<boolean>(true);
-
-  toggle(): void {
-    this.menuState.set(!this.menuState());
-  }
-}
-
 /**
  * CNS Website header component
  */
@@ -67,8 +57,6 @@ export class HeaderEventsService {
 export class HeaderComponent {
   /** Navigation options to display on the header */
   readonly menuOptions = input(MENUS);
-
-  readonly headerEvents = inject(HeaderEventsService);
 
   /** Whether the screen is currently mobile sized */
   protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);

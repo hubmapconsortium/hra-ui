@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
-import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
@@ -18,8 +17,8 @@ import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { HeaderEventsService } from '../../components/header/header.component';
 import { PeopleResearchItem, PublicationTypes, ResearchPageData } from '../../schemas/research/research.schema';
+import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { ResearchStore } from './state/research.store';
 
 @Component({
@@ -54,19 +53,21 @@ export class ResearchPageComponent {
   readonly peopleData = input.required<PeopleResearchItem[]>();
   readonly pubTypes = input.required<PublicationTypes>();
 
-  readonly headerEvents = inject(HeaderEventsService);
   protected readonly store = inject(ResearchStore);
   protected readonly route = inject(ActivatedRoute);
+  /** Sidebar store for managing sidebar state */
+  protected readonly sidebarStore = inject(SidebarStore);
 
-  protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');
-
+  /** Reference to the sidebar component */
+  private readonly sidebar = viewChild.required(MatSidenav);
   constructor() {
     this.store.setResearchItems(this.data);
     this.store.setPeopleItems(this.peopleData);
     this.store.setPublicationTypes(this.pubTypes);
 
-    effect(() => {
-      this.headerEvents.menuState.set(this.isWideScreen());
+    effect((onCleanup) => {
+      this.sidebarStore.setSidebar(this.sidebar());
+      onCleanup(() => this.sidebarStore.clearSidebar());
     });
   }
 }

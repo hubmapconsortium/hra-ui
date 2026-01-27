@@ -3,15 +3,17 @@
 @use '@angular/material' as mat;
 
 :host {
-  @include mat.sidenav-overrides(
-    (
-      container-background-color: vars.$surface-container-low,
-      content-background-color: vars.$on-primary,
-      container-divider-color: vars.$outline,
-      container-width: auto,
-      container-shape: 0,
-    )
-  );
+  .container {
+    @include mat.sidenav-overrides(
+      (
+        container-background-color: vars.$surface-container-low,
+        content-background-color: vars.$on-primary,
+        container-divider-color: vars.$outline-variant,
+        container-width: 20rem,
+        container-shape: vars.$corner-none,
+      )
+    );
+  }
 
   mat-sidenav-content {
     display: flex;

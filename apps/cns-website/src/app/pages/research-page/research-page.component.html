@@ -1,9 +1,11 @@
-<mat-sidenav-container hasBackdrop (backdropClick)="headerEvents.toggle()">
+<mat-sidenav-container class="container" hasBackdrop (backdropClick)="sidebarStore.close()">
   <mat-sidenav
-    mode="side"
     class="filter-sidenav"
-    [mode]="!isWideScreen() ? 'over' : 'side'"
-    [opened]="headerEvents.menuState()"
+    aria-label="Filter research"
+    [mode]="sidebarStore.mode()"
+    [opened]="sidebarStore.isOpen()"
+    [disableClose]="sidebarStore.mode() === 'side'"
+    (closedStart)="sidebarStore.close()"
   >
     <hra-filter-menu
       tagline="Research at the Cyberinfrastructure for Network Science Center"
