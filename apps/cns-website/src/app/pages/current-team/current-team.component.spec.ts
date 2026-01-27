@@ -266,7 +266,7 @@ describe('CurrentTeamComponent', () => {
     const user = userEvent.setup();
     await renderComponent();
 
-    expect(screen.getByText((content) => content.includes('4') && content.includes('of'))).toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes('4') && content.includes('/'))).toBeInTheDocument();
 
     const searchInput = await screen.findByRole('textbox', { name: /search/i });
     await user.type(searchInput, 'Katy');
@@ -295,7 +295,7 @@ describe('CurrentTeamComponent', () => {
 
   it('should handle empty data gracefully', async () => {
     await renderComponent([]);
-    expect(screen.getByText((content) => content.includes('0') && content.includes('of'))).toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes('0') && content.includes('/'))).toBeInTheDocument();
   });
 
   it('should filter out members with no roles', async () => {
