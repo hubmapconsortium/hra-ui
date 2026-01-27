@@ -9,7 +9,8 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { PublicationTypes, ResearchItem, ResearchItemType } from '../../../schemas/research/research.schema';
+import { PublicationTypeItem } from '../../../schemas/publication-types.schema';
+import { ResearchItem, ResearchTypeId } from '../../../schemas/research.schema';
 import { FilterProps } from './with-filters.feature';
 import { ResearchState } from './with-research.feature';
 
@@ -36,12 +37,12 @@ export interface GroupedResearchItems {
 }
 
 /** Key type for grouping research items */
-type GroupByKey = ResearchItemType | number | '' | 'unknown';
+type GroupByKey = ResearchTypeId | number | '' | 'unknown';
 
 /** Ordering state for sorting and grouping */
 interface OrderingState {
   /** Active sort option */
-  sortBy: SortBy | null;
+  sortBy: SortBy;
   /** Active grouping option */
   groupBy: GroupBy | null;
 }
@@ -51,6 +52,9 @@ const initialState: OrderingState = {
   sortBy: SortBy.Newest,
   groupBy: null,
 };
+
+/** Label for 'Other' publication types */
+const PUBLICATION_TYPE_OTHER_LABEL = 'Other';
 
 /**
  * Creates a sorting function based on the selected sort option.
@@ -90,7 +94,7 @@ function createGroupByKeyFn(groupBy: GroupBy | null): (item: ResearchItem) => Gr
  * Creates a mapping of group keys to display labels.
  * @param pubTypes Publication type definitions
  */
-function createKeyLabelsMap(pubTypes: PublicationTypes): Record<GroupByKey, string> {
+function createKeyLabelsMap(pubTypes: PublicationTypeItem[]): Record<GroupByKey, string> {
   const map: Record<GroupByKey, string> = {
     '': '',
     unknown: 'Unknown',
@@ -111,7 +115,24 @@ function groupByKeyToLabel(key: GroupByKey, keyLabels: Record<GroupByKey, string
     return key.toString();
   }
 
-  return keyLabels[key] ?? 'Other';
+  return keyLabels[key] ?? PUBLICATION_TYPE_OTHER_LABEL;
+}
+
+/**
+ * Compares two grouped research items for sorting.
+ *
+ * @param a First group item
+ * @param b Second group item
+ * @returns Comparison result for sorting
+ */
+function groupItemCompare(a: GroupedResearchItems, b: GroupedResearchItems): number {
+  if (a.label === PUBLICATION_TYPE_OTHER_LABEL) {
+    return 1;
+  } else if (b.label === PUBLICATION_TYPE_OTHER_LABEL) {
+    return -1;
+  }
+
+  return a.label.localeCompare(b.label);
 }
 
 /**
@@ -161,18 +182,18 @@ export function withOrdering() {
         return groups;
       });
 
+      const _keyLabels = computed(() => createKeyLabelsMap(store.pubTypes()));
       const sortedGroupedItems = computed(() => {
         const groups = Array.from(_groupedItems());
         const groupBy = store.groupBy();
-        const pubTypes = store.pubTypes();
-        const keyLabels = createKeyLabelsMap(pubTypes);
+        const keyLabels = _keyLabels();
 
         const groupedItems = groups.map(([key, items]) => ({
           label: groupByKeyToLabel(key, keyLabels),
           items,
         }));
 
-        groupedItems.sort((a, b) => a.label.localeCompare(b.label));
+        groupedItems.sort(groupItemCompare);
         if (groupBy === GroupBy.Year) {
           groupedItems.reverse();
         }
@@ -196,7 +217,7 @@ export function withOrdering() {
     }),
     withMethods((store) => ({
       /** Sets the current sort option */
-      setSortBy: signalMethod((sortBy: SortBy | null) => patchState(store, { sortBy })),
+      setSortBy: signalMethod((sortBy: SortBy) => patchState(store, { sortBy })),
       /** Sets the current grouping option */
       setGroupBy: signalMethod((groupBy: GroupBy | null) => patchState(store, { groupBy })),
     })),

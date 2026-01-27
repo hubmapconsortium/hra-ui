@@ -1,5 +1,3 @@
-import { inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { patchState, signalMethod, signalStoreFeature, withMethods, withState } from '@ngrx/signals';
 
 /** Display mode for research items */
@@ -25,15 +23,7 @@ const initialState: ViewState = {
  */
 export function withView() {
   return signalStoreFeature(
-    withState(() => {
-      const route = inject(ActivatedRoute);
-      const categoryParam = route.snapshot.queryParams['category'];
-      const view = ['publication', 'event', 'funding', 'presentation'].includes(categoryParam)
-        ? View.List
-        : initialState.view;
-      return { view };
-    }),
-
+    withState(initialState),
     withMethods((store) => ({
       /** Sets the active view mode */
       setView: signalMethod((view: View) => patchState(store, { view })),

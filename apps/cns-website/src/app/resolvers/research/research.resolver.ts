@@ -3,13 +3,9 @@ import { inject } from '@angular/core';
 import { RedirectCommand, ResolveFn, Router } from '@angular/router';
 import { catchError, forkJoin, map, Observable, of } from 'rxjs';
 import * as z from 'zod';
-import ResearchPageDataSchema, {
-  PeopleResearchDataSchema,
-  PeopleResearchItem,
-  PublicationTypes,
-  PublicationTypesSchema,
-  ResearchPageData,
-} from '../../schemas/research/research.schema';
+import { PeopleData, PeopleDataSchema } from '../../schemas/people.schema';
+import { PublicationTypesData, PublicationTypesDataSchema } from '../../schemas/publication-types.schema';
+import { ResearchData, ResearchDataSchema } from '../../schemas/research.schema';
 
 /** Endpoint for publications data */
 const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publications.json';
@@ -52,22 +48,20 @@ function createZodValidatedDataResolver<T extends z.ZodType>(url: string, schema
 }
 
 /** Resolver for publications research data */
-export function createPublicationsDataResolver(): ResolveFn<ResearchPageData> {
-  return createZodValidatedDataResolver(PUBLICATIONS_INDEX_URL, ResearchPageDataSchema);
+export function createPublicationsDataResolver(): ResolveFn<ResearchData> {
+  return createZodValidatedDataResolver(PUBLICATIONS_INDEX_URL, ResearchDataSchema);
 }
 
 /** Resolver for news research data */
-export function createNewsDataResolver(): ResolveFn<ResearchPageData> {
-  return createZodValidatedDataResolver(NEWS_INDEX_URL, ResearchPageDataSchema);
+export function createNewsDataResolver(): ResolveFn<ResearchData> {
+  return createZodValidatedDataResolver(NEWS_INDEX_URL, ResearchDataSchema);
 }
 
 /** Resolver combining news and publications data */
-export function createResearchDataResolver(): ResolveFn<ResearchPageData> {
+export function createResearchDataResolver(): ResolveFn<ResearchData> {
   return (route, state) => {
-    const publications = createPublicationsDataResolver()(route, state) as Observable<
-      ResearchPageData | RedirectCommand
-    >;
-    const news = createNewsDataResolver()(route, state) as Observable<ResearchPageData | RedirectCommand>;
+    const publications = createPublicationsDataResolver()(route, state) as Observable<ResearchData | RedirectCommand>;
+    const news = createNewsDataResolver()(route, state) as Observable<ResearchData | RedirectCommand>;
     return forkJoin({ publications, news }).pipe(
       map((data) => {
         if (data.news instanceof RedirectCommand) {
@@ -83,11 +77,11 @@ export function createResearchDataResolver(): ResolveFn<ResearchPageData> {
 }
 
 /** Resolver for people research data */
-export function createPeopleResolver(): ResolveFn<PeopleResearchItem[]> {
-  return createZodValidatedDataResolver(PEOPLE_INDEX_URL, PeopleResearchDataSchema);
+export function createPeopleResolver(): ResolveFn<PeopleData> {
+  return createZodValidatedDataResolver(PEOPLE_INDEX_URL, PeopleDataSchema);
 }
 
 /** Resolver for publication type definitions */
-export function createPublicationTypesResolver(): ResolveFn<PublicationTypes> {
-  return createZodValidatedDataResolver(PUBLICATION_TYPES_INDEX_URL, PublicationTypesSchema);
+export function createPublicationTypesResolver(): ResolveFn<PublicationTypesData> {
+  return createZodValidatedDataResolver(PUBLICATION_TYPES_INDEX_URL, PublicationTypesDataSchema);
 }

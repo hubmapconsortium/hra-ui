@@ -3,7 +3,6 @@ import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { ActivatedRoute } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
@@ -17,7 +16,9 @@ import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { PeopleResearchItem, PublicationTypes, ResearchPageData } from '../../schemas/research/research.schema';
+import { PeopleData } from '../../schemas/people.schema';
+import { PublicationTypesData } from '../../schemas/publication-types.schema';
+import { ResearchData } from '../../schemas/research.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { ResearchStore } from './state/research.store';
 
@@ -54,16 +55,14 @@ import { ResearchStore } from './state/research.store';
 })
 export class ResearchPageComponent {
   /** Research page data containing all research items */
-  readonly data = input.required<ResearchPageData>();
+  readonly data = input.required<ResearchData>();
   /** People data for filtering and display */
-  readonly peopleData = input.required<PeopleResearchItem[]>();
+  readonly peopleData = input.required<PeopleData>();
   /** Publication type definitions */
-  readonly pubTypes = input.required<PublicationTypes>();
+  readonly pubTypes = input.required<PublicationTypesData>();
 
   /** Research store for state management */
   protected readonly store = inject(ResearchStore);
-  /** Activated route for query parameter access */
-  protected readonly route = inject(ActivatedRoute);
   /** Sidebar store for managing sidebar visibility */
   protected readonly sidebarStore = inject(SidebarStore);
 

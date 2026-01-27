@@ -32,7 +32,7 @@ const MOBILE_MENU_POSITIONS: ConnectedPosition[] = [
 ];
 /** Position of the desktop menu overlay */
 const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
-  { originX: 'end', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetX: -16, offsetY: 16 },
+  { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top', offsetX: -16, offsetY: 16 },
 ];
 
 /**

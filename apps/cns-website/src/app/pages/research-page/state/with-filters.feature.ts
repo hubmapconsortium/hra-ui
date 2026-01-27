@@ -10,34 +10,27 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import {
-  ResearchCategory,
-  ResearchEventType,
-  ResearchFundingType,
-  ResearchItem,
-  ResearchItemType,
-  ResearchPersonType,
-  ResearchPublicationType,
-} from '../../../schemas/research/research.schema';
+import { PeopleId } from '../../../schemas/people.schema';
+import { ResearchCategoryId, ResearchItem, ResearchTypeId } from '../../../schemas/research.schema';
 import { ResearchState } from './with-research.feature';
 
 /** Generic search list option with a typed id */
 type TypedSearchListOption<T extends string> = SearchListOption & { id: T };
 
 /** Filter option for research categories */
-export type CategoryOption = TypedSearchListOption<ResearchCategory>;
+export type CategoryOption = TypedSearchListOption<ResearchCategoryId>;
 
 /** Filter option for research events */
-export type EventOption = TypedSearchListOption<ResearchEventType>;
+export type EventOption = TypedSearchListOption<ResearchTypeId>;
 
 /** Filter option for research funding */
-export type FundingOption = TypedSearchListOption<ResearchFundingType>;
+export type FundingOption = TypedSearchListOption<ResearchTypeId>;
 
 /** Filter option for research publications */
-export type PublicationOption = TypedSearchListOption<ResearchPublicationType>;
+export type PublicationOption = TypedSearchListOption<ResearchTypeId>;
 
 /** Filter option for people */
-export type PeopleOption = TypedSearchListOption<ResearchPersonType>;
+export type PeopleOption = TypedSearchListOption<PeopleId>;
 
 /** Year option with numeric year value */
 export interface YearOption extends SearchListOption {
@@ -104,31 +97,31 @@ function createYearList(startYear: number): number[] {
 
 /** Category filter options */
 export const CATEGORY_OPTIONS: CategoryOption[] = [
-  { id: 'data-tool', label: 'Data & tools' },
-  { id: 'event', label: 'Events' },
-  { id: 'funding', label: 'Funding' },
-  { id: 'display', label: 'Interactive displays' },
-  { id: 'miscellaneous', label: 'Miscellaneous' },
-  { id: 'news', label: 'News' },
-  { id: 'presentation', label: 'Presentations' },
-  { id: 'publication', label: 'Publications' },
-  { id: 'software', label: 'Software Products' },
-  { id: 'teaching', label: 'Teaching' },
-  { id: 'visualization', label: 'Visualizations' },
+  { id: 'data-tool' as ResearchCategoryId, label: 'Data & tools' },
+  { id: 'event' as ResearchCategoryId, label: 'Events' },
+  { id: 'funding' as ResearchCategoryId, label: 'Funding' },
+  { id: 'display' as ResearchCategoryId, label: 'Interactive displays' },
+  { id: 'miscellaneous' as ResearchCategoryId, label: 'Miscellaneous' },
+  { id: 'news' as ResearchCategoryId, label: 'News' },
+  { id: 'presentation' as ResearchCategoryId, label: 'Presentations' },
+  { id: 'publication' as ResearchCategoryId, label: 'Publications' },
+  { id: 'software' as ResearchCategoryId, label: 'Software Products' },
+  { id: 'teaching' as ResearchCategoryId, label: 'Teaching' },
+  { id: 'visualization' as ResearchCategoryId, label: 'Visualizations' },
 ];
 
 /** Event filter options */
 export const EVENT_OPTIONS: EventOption[] = [
-  { id: '24-hour' as ResearchEventType, label: '24-hour' },
-  { id: 'amatria' as ResearchEventType, label: 'Amatria' },
-  { id: 'workshop' as ResearchEventType, label: 'Workshops' },
+  { id: '24-hour' as ResearchTypeId, label: '24-hour' },
+  { id: 'amatria' as ResearchTypeId, label: 'Amatria' },
+  { id: 'workshop' as ResearchTypeId, label: 'Workshops' },
 ];
 
 /** Funding filter options */
 export const FUNDING_OPTIONS: FundingOption[] = [
-  { id: 'research-funding' as ResearchFundingType, label: 'Research funding' },
-  { id: 'teaching-funding' as ResearchFundingType, label: 'Teaching funding' },
-  { id: 'workshop-funding' as ResearchFundingType, label: 'Workshop funding' },
+  { id: 'research-funding' as ResearchTypeId, label: 'Research funding' },
+  { id: 'teaching-funding' as ResearchTypeId, label: 'Teaching funding' },
+  { id: 'workshop-funding' as ResearchTypeId, label: 'Workshop funding' },
 ];
 
 /** Year filter options from 1991 to current year */
@@ -343,7 +336,7 @@ export function withFilters() {
         (item, selectedCategories) => selectedCategories.has(item.category),
       );
 
-      const _selectedTypes = optionsToSet<ResearchItemType>(
+      const _selectedTypes = optionsToSet<ResearchTypeId>(
         store.events,
         store.funding,
         publications as Signal<PublicationOption[]>,
@@ -352,7 +345,7 @@ export function withFilters() {
         selectedTypes.has(item.type),
       );
 
-      const _selectedPeople = optionsToSet<ResearchPersonType>(people);
+      const _selectedPeople = optionsToSet<PeopleId>(people);
       const _filteredByPeople = createFilteredBy(_filteredByType, _selectedPeople, (item, selectedPeople) =>
         item.people.some((person) => selectedPeople.has(person)),
       );

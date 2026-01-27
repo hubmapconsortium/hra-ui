@@ -71,9 +71,4 @@ $z-index: 900;
     transition: 0.3s;
     z-index: $z-index - 1;
   }
-
-  .cdk-overlay-pane {
-    left: unset !important;
-    right: 0rem !important;
-  }
 }

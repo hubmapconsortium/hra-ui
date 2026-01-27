@@ -57,6 +57,7 @@
         <div class="search-bar">
           <hra-search-filter
             label="Search"
+            separator="/"
             [totalCount]="store.numFilteredByTeam()"
             [viewingCount]="store.numFilteredPeople()"
             [search]="store.search() ?? ''"

@@ -1,15 +1,17 @@
 import { computed } from '@angular/core';
 import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
-import { PeopleResearchItem, PublicationTypes, ResearchItem } from '../../../schemas/research/research.schema';
+import { PeopleItem } from '../../../schemas/people.schema';
+import { PublicationTypeItem } from '../../../schemas/publication-types.schema';
+import { ResearchItem } from '../../../schemas/research.schema';
 
 /** Core research page state containing all research data */
 export interface ResearchState {
   /** Research items to display */
   researchItems: ResearchItem[];
   /** People items associated with research */
-  peopleItems: PeopleResearchItem[];
+  peopleItems: PeopleItem[];
   /** Publication type definitions */
-  pubTypes: PublicationTypes;
+  pubTypes: PublicationTypeItem[];
 }
 
 /** Initial empty research state */
@@ -36,9 +38,9 @@ export function withResearch() {
       /** Sets research items */
       setResearchItems: signalMethod((researchItems: ResearchItem[]) => patchState(store, { researchItems })),
       /** Sets people items */
-      setPeopleItems: signalMethod((peopleItems: PeopleResearchItem[]) => patchState(store, { peopleItems })),
+      setPeopleItems: signalMethod((peopleItems: PeopleItem[]) => patchState(store, { peopleItems })),
       /** Sets publication types */
-      setPublicationTypes: signalMethod((pubTypes: PublicationTypes) => patchState(store, { pubTypes })),
+      setPublicationTypes: signalMethod((pubTypes: PublicationTypeItem[]) => patchState(store, { pubTypes })),
     })),
   );
 }

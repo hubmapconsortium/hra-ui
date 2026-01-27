@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
+import { MatListModule, MatListOption } from '@angular/material/list';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -68,14 +68,10 @@ export class SearchListComponent<T extends SearchListOption> {
 
   /**
    * Updates selected options on option click
-   * @param value Option clicked
+   * @param event Selected options
    */
-  selectionUpdate(value: T) {
-    if (this.selected().includes(value)) {
-      this.selected.set(this.selected().filter((x) => x !== value));
-    } else {
-      this.selected.set(this.selected().concat([value]));
-    }
+  selectionUpdate(event: MatListOption[]): void {
+    this.selected.set(event.map((option) => option.value));
   }
 
   /** Gets count for an option, either from the option itself or from the counts input

@@ -63,7 +63,7 @@
       "type": "item",
       "id": "publications",
       "label": "Publications",
-      "url": "https://cns.iu.edu/research/?category=publication"
+      "url": "https://cns.iu.edu/research/?category=publication&view=list&group-by=year"
     },
     {
       "type": "menu",
@@ -84,12 +84,12 @@
             {
               "type": "item",
               "label": "Events",
-              "url": "https://cns.iu.edu/research/?category=event"
+              "url": "https://cns.iu.edu/research/?category=event&view=list&group-by=year"
             },
             {
               "type": "item",
               "label": "Funding",
-              "url": "https://cns.iu.edu/research/?category=funding"
+              "url": "https://cns.iu.edu/research/?category=funding&view=list&group-by=year"
             },
             {
               "type": "item",
@@ -99,17 +99,17 @@
             {
               "type": "item",
               "label": "Publications",
-              "url": "https://cns.iu.edu/research/?category=publication"
+              "url": "https://cns.iu.edu/research/?category=publication&view=list&group-by=year"
             },
             {
               "type": "item",
               "label": "Presentations",
-              "url": "https://cns.iu.edu/research/?category=presentation"
+              "url": "https://cns.iu.edu/research/?category=presentation&view=list&group-by=year"
             },
             {
               "type": "item",
               "label": "Visualizations",
-              "url": "https://cns.iu.edu/research/?category=visualization"
+              "url": "https://cns.iu.edu/research/?category=visualization&group-by=year"
             }
           ]
         },

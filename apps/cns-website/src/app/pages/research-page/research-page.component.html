@@ -1,6 +1,6 @@
 <mat-sidenav-container class="container">
   <mat-sidenav
-    class="filter-sidenav"
+    class="sidebar"
     aria-label="Filter research"
     [mode]="sidebarStore.mode()"
     [opened]="sidebarStore.isOpen()"
@@ -14,22 +14,22 @@
       (filtersChange)="store.updateFilters($event)"
     >
       <mat-form-field subscriptSizing="dynamic">
-        <hra-icon class="select-icon" matPrefix>{{ store.view() === 'gallery' ? 'cards' : 'list' }}</hra-icon>
+        <mat-icon class="select-icon" matPrefix>{{ store.view() === 'gallery' ? 'cards' : 'list' }}</mat-icon>
         <mat-label>View as</mat-label>
         <mat-select [value]="store.view()" (valueChange)="store.setView($event)">
           <mat-option value="gallery">
-            <hra-icon class="select-icon" fontIcon="cards" />
+            <mat-icon class="select-icon" fontIcon="cards" />
             Gallery
           </mat-option>
           <mat-option value="list">
-            <hra-icon class="select-icon" fontIcon="list" />
+            <mat-icon class="select-icon" fontIcon="list" />
             List
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
-        <hra-icon class="select-icon" matPrefix>sort</hra-icon>
+        <mat-icon class="select-icon" matPrefix>sort</mat-icon>
         <mat-label>Sort by</mat-label>
         <mat-select [value]="store.sortBy()" (valueChange)="store.setSortBy($event)">
           <mat-option value="nameAsc">Ascending (A-Z) by title</mat-option>
@@ -40,7 +40,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic">
-        <hra-icon class="select-icon" matPrefix>category</hra-icon>
+        <mat-icon class="select-icon" matPrefix>category</mat-icon>
         <mat-label>Group by</mat-label>
         <mat-select [value]="store.groupBy()" (valueChange)="store.setGroupBy($event)">
           <mat-option [value]="null">None</mat-option>
@@ -51,7 +51,7 @@
     </hra-filter-menu>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content role="main">
     <hra-search-filter
       label="Search"
       separator="/"
@@ -60,6 +60,7 @@
       [search]="store.search() ?? ''"
       (searchChange)="store.setSearch($event)"
     />
+
     <ng-scrollbar hraScrollOverflowFade>
       <div class="content">
         @if (store.numFilteredItems() === 0) {
