@@ -57,6 +57,7 @@ export class SearchListComponent<T extends SearchListOption> {
   /** Currently selected filters */
   readonly selected = model<T[]>([]);
 
+  /** Counts for each filter option */
   readonly counts = input<Record<string, number>>();
 
   /** Current search bar value */
@@ -77,6 +78,9 @@ export class SearchListComponent<T extends SearchListOption> {
     }
   }
 
+  /** Gets count for an option, either from the option itself or from the counts input
+   * @param option Option to get count for
+   */
   getCount(option: T): number | undefined {
     return option.count ?? this.counts()?.[option.id];
   }

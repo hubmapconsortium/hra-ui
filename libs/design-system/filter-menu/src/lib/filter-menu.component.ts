@@ -59,6 +59,7 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** List of all filters with options */
   readonly filters = model.required<FilterOptionCategory<T>[]>();
 
+  /** Counts for each filter option */
   readonly counts = input<Record<string, number>[]>();
 
   /** Emits when the form opening state is toggled */
